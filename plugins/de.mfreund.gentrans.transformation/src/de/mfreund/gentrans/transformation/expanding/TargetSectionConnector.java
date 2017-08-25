@@ -15,6 +15,7 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -34,6 +35,7 @@ import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
 import de.mfreund.gentrans.transformation.util.CancelableElement;
 import pamtram.ConditionalElement;
+import pamtram.NamedElement;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroup;
@@ -43,7 +45,6 @@ import pamtram.mapping.extended.ContainerSelector;
 import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.target.FileType;
 import pamtram.structure.target.TargetSection;
-import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.target.TargetSectionClass;
 
 /**
@@ -58,10 +59,10 @@ public class TargetSectionConnector extends CancelableElement {
 	private static final String RESOLVE_JOINING_AMBIGUITY_STARTED = "[Ambiguity] Resolve joining ambiguity...";
 
 	/**
-	 * This list stores those {@link ModelConnectionPath ModelConnectionPaths} that have beepreviously selected by the
-	 * user for a given {@link ContainerSelector}.
+	 * This list stores those {@link ModelConnectionPath ModelConnectionPaths} that have been previously selected by the
+	 * user for a given {@link MappingHintGroupType}.
 	 */
-	private final LinkedHashMap<ContainerSelector, ModelConnectionPath> standardPaths;
+	private final LinkedHashMap<MappingHintGroupType, ModelConnectionPath> standardPaths;
 
 	/**
 	 * The {@link TargetSectionRegistry} that is used when finding instances to which sections can be connected.
@@ -236,17 +237,13 @@ public class TargetSectionConnector extends CancelableElement {
 					continue;
 				}
 
-				for (ContainerSelector containerSelector : hintGroup.getContainerSelectors()) {
 
-					// Try to connect the remaining instances with the current
-					// ContainerSelector and collect the unconnectable instances
-					// for further ContainerSelectors
-					//
-					instancesToConnect = this.linkToTargetModelUsingModelConnectionHint(mappingInstance, instancesToConnect,
-							hintGroup, containerSelector);
+				// Try to connect the instances with the given
+				// ContainerSelectors and collect the unconnectable instances
+				//
+				instancesToConnect = this.joinWithContainerSelectors(mappingInstance, instancesToConnect, hintGroup,
+						hintGroup.getContainerSelectors());
 
-					this.isCanceled();
-				}
 
 				// After evaluation of all ContainerSelectors, if there are
 				// still unconnected instances, we add them as new root elements
@@ -273,7 +270,7 @@ public class TargetSectionConnector extends CancelableElement {
 			 */
 			containerInstances.removeAll(rootInstances);// we
 
-			this.linkToTargetModelNoConnectionHint(rootInstances, section, ((Mapping) hintGroup.eContainer()).getName(),
+			this.joinWithoutContainerSelector(rootInstances, section, ((Mapping) hintGroup.eContainer()).getName(),
 					hintGroup,
 					section.getContainer() != null ? new HashSet<>(Arrays.asList(section.getContainer().getEClass()))
 							: null,
@@ -359,7 +356,7 @@ public class TargetSectionConnector extends CancelableElement {
 						}
 					}
 					// link
-					this.linkToTargetModelNoConnectionHint(rootInstances, g.getTargetSection(), mapping.getName(), g,
+					this.joinWithoutContainerSelector(rootInstances, g.getTargetSection(), mapping.getName(), g,
 							new HashSet<>(Arrays.asList(hintGroupImporter.getContainer().getEClass())),
 							containerInstances);
 
@@ -383,7 +380,7 @@ public class TargetSectionConnector extends CancelableElement {
 
 			if (rootInstances != null && !rootInstances.isEmpty()) {
 				// link
-				this.linkToTargetModelNoConnectionHint(rootInstances, g.getTargetSection(), mapping.getName(), g,
+				this.joinWithoutContainerSelector(rootInstances, g.getTargetSection(), mapping.getName(), g,
 						containerClasses, containerInstances);
 			}
 		}
@@ -644,7 +641,7 @@ public class TargetSectionConnector extends CancelableElement {
 	 *            A list of container elements that may be used as container (this needs to be all instances if
 	 *            '<em>hasContainer</em>' is <em>false</em>.
 	 */
-	public void linkToTargetModelNoConnectionHint(final List<EObjectWrapper> rootInstances, final TargetSection section,
+	public void joinWithoutContainerSelector(final List<EObjectWrapper> rootInstances, final TargetSection section,
 			final String mappingName, final MappingHintGroupType mappingGroup, final Set<EClass> containerClasses,
 			final List<EObjectWrapper> containerInstances) {
 
@@ -940,13 +937,14 @@ public class TargetSectionConnector extends CancelableElement {
 	 *            <em>mappingInstance</em>).
 	 * @param mappingGroup
 	 *            The {@link MappingHintGroupType} that is used.
-	 * @param containerSelector
-	 *            The {@link ContainerSelector} to be used to connect the given instances.
+	 * @param containerSelectors
+	 *            The list of {@link ContainerSelector ContainerSelectors} to be used to connect the given instances.
 	 * @return A list of {@link EObjectWrapper instances} that could not be connected (a sub-list of the given
 	 *         <em>rootInstances</em> or an empty list).
 	 */
-	public List<EObjectWrapper> linkToTargetModelUsingModelConnectionHint(MappingInstanceStorage mappingInstance,
-			final List<EObjectWrapper> rootInstances, final MappingHintGroupType mappingGroup, final ContainerSelector containerSelector) {// connectionHint.targetAttribute.~owningClass
+	public List<EObjectWrapper> joinWithContainerSelectors(MappingInstanceStorage mappingInstance,
+			final List<EObjectWrapper> rootInstances, final MappingHintGroupType mappingGroup,
+			List<ContainerSelector> containerSelectors) {
 
 		this.checkCanceled();
 
@@ -956,325 +954,588 @@ public class TargetSectionConnector extends CancelableElement {
 			return new ArrayList<>();
 		}
 
-		// Check if there are any possible connection paths based on the specified 'targetClass' of the given container
-		// selector
+		// All potential connection paths
 		//
-		if (this.targetSectionRegistry
-				.getConnections(mappingGroup.getTargetSection().getEClass(),
-						containerSelector.getTargetClass().getEClass(), this.maxPathLength)
-				.isEmpty()) {
+		Map<ContainerSelector, List<ModelConnectionPath>> connectionPathsByContainerSelector = this
+				.getConnectionPathsByContainerSelector(containerSelectors, mappingGroup.getTargetSection().getEClass());
 
-			this.logger
-			.warning(
-					() -> "Could not find a path that leads to the 'targetClass' specified for the ContainerSelector '"
-							+ containerSelector.getName() + "' in the MappingHintGroup '"
-							+ mappingInstance.getMapping().getName() + "' (" + mappingGroup.getName() + ")");
-
-			return new ArrayList<>(rootInstances);
-		}
-
-		List<EObjectWrapper> possibleContainerInstances = this.targetSectionRegistry
-				.getFlattenedPamtramClassInstances(containerSelector.getTargetClass());
-
-		// find container Instance for each element
-
-		final LinkedHashMap<String, LinkedHashSet<EObjectWrapper>> contInstsByHintVal = new LinkedHashMap<>();
-
-		final LinkedHashMap<String, LinkedHashSet<EObjectWrapper>> rootInstancesByHintVal = new LinkedHashMap<>();
-
-		// The hint values for the given ContainerSelector (multiple times if necessary)
+		// All potential container instances
 		//
-		LinkedList<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>> containerSelectorHintValues = this
-				.multiplyContainerSelectorHintValues(mappingInstance.getHintValues().getHintValues(containerSelector),
-						rootInstances.size());
+		Map<ContainerSelector, List<EObjectWrapper>> containerInstancesByContainerSelector = this
+				.getContainerInstancesByContainerSelector(new ArrayList<>(connectionPathsByContainerSelector.keySet()),
+						mappingInstance);
 
-		if (containerSelector.getReferenceAttribute() == null
-				|| containerSelector.getReferenceAttribute().getOwningClass() != containerSelector.getTargetClass()) {
-			throw new RuntimeException(
-					"ContainerSelects without a specified 'referenceAttribute' that is directly contained in the specified 'targetClass' are not yet supported! (ContainerSelector: '"
-							+ containerSelector.getName() + "' in MappingHintGroup '" + mappingGroup.getName() + "')");
-		}
-
-		// This will be returned in the end
+		// None of the potential container instances matches one of the hint values
 		//
-		List<EObjectWrapper> unconnectedInstances = new ArrayList<>();
-
-		for (final Map<InstanceSelectorSourceInterface, AttributeValueRepresentation> hintVal : containerSelectorHintValues) {
-
-
-			// The reference value that will be compared to the value of the 'referenceAttribute' of potential container
-			// instances
-			//
-			String hintValAsString = this.valueCalculator.calculateValue(
-					new ArrayList<>(containerSelector.getSourceElements()),
-					containerSelector.getExpression(), hintVal, containerSelector.getModifiers());
-
-			if (!contInstsByHintVal.containsKey(hintValAsString)) {
-
-				contInstsByHintVal.put(hintValAsString, new LinkedHashSet<EObjectWrapper>());
-			}
-
-			if (!rootInstancesByHintVal.containsKey(hintValAsString)) {
-
-				rootInstancesByHintVal.put(hintValAsString, new LinkedHashSet<EObjectWrapper>());
-			}
-
-			// instances have same order as hintValues
-			rootInstancesByHintVal.get(hintValAsString).add(rootInstances.remove(0));
-
-			TargetSectionAttribute referenceAttribute = containerSelector.getReferenceAttribute();
-
-			/*
-			 * now find a fitting instance get Attribute value
-			 */
-			for (final EObjectWrapper contInst : possibleContainerInstances) {
-
-				// TODO check limited capacity
-				// TODO check type of referenced object
-
-				final String targetValStr = contInst.getAttributeValue(referenceAttribute);
-
-				if (targetValStr != null) {
-					if (hintValAsString.equals(targetValStr)) {
-
-						contInstsByHintVal.get(hintValAsString).add(contInst);
-					}
-				} else {
-					this.logger.warning("Problemo?");
-				}
-
-			}
-
+		if (containerInstancesByContainerSelector.isEmpty()) {
+			return rootInstances;
 		}
 
-		// now select targetInst
-		final LinkedHashMap<EObjectWrapper, LinkedHashSet<EObjectWrapper>> rootInstancesByContainer = new LinkedHashMap<>();
+		// Discard those ContainerSelector for which there are no potential container instances
+		//
+		connectionPathsByContainerSelector = connectionPathsByContainerSelector.entrySet().stream()
+				.filter(e -> containerInstancesByContainerSelector.containsKey(e.getKey()))
+				.collect(Collectors.toMap(Entry::getKey, Entry::getValue));
 
-		for (final Entry<String, LinkedHashSet<EObjectWrapper>> hintValEntry : rootInstancesByHintVal.entrySet()) {
-
-			if (contInstsByHintVal.get(hintValEntry.getKey()).size() == 1) {
-
-				rootInstancesByContainer.put(contInstsByHintVal.get(hintValEntry.getKey()).iterator().next(),
-						hintValEntry.getValue());
-
-			} else if (contInstsByHintVal.get(hintValEntry.getKey()).size() > 1) {
-
-				/*
-				 * Consult the specified resolving strategy to resolve the ambiguity.
-				 */
-				try {
-					this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_STARTED);
-					List<EObjectWrapper> resolved = this.ambiguityResolvingStrategy.joiningSelectContainerInstance(
-							new LinkedList<>(contInstsByHintVal.get(hintValEntry.getKey())),
-							new LinkedList<>(hintValEntry.getValue()), mappingGroup, containerSelector,
-							hintValEntry.getKey());
-					if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
-						((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy).joiningContainerInstanceSelected(
-								new ArrayList<>(contInstsByHintVal.get(hintValEntry.getKey())), resolved.get(0));
-					}
-					this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_ENDED);
-					rootInstancesByContainer.put(resolved.get(0), hintValEntry.getValue());
-
-				} catch (AmbiguityResolvingException e) {
-					if (e.getCause() instanceof UserAbortException) {
-						throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
-					} else {
-						this.logger.severe(
-								() -> "The following exception occured during the resolving of an ambiguity concerning the selection of a common root element: "
-										+ e.getMessage());
-						this.logger.severe("Using default element instead...");
-						rootInstancesByContainer.put(contInstsByHintVal.get(hintValEntry.getKey()).iterator().next(),
-								hintValEntry.getValue());
-					}
-				}
-
-			} else {
-				this.logger.warning(() -> "The ModelConnectionHint '" + containerSelector.getName()
-				+ " of MappingHintGroup " + mappingGroup.getName() + "(Mapping: "
-				+ mappingInstance.getMapping().getName()
-				+ ") could not find an instance to connect the targetSections.\n"
-				+ contInstsByHintVal.keySet());
-				unconnectedInstances.addAll(hintValEntry.getValue());
-				return unconnectedInstances;
+		// Map the possible container instances to the corresponding connection paths
+		//
+		Map<ModelConnectionPath, List<EObjectWrapper>> containerInstancesByConnectionPaths = new LinkedHashMap<>();
+		for (ContainerSelector containerSelector : connectionPathsByContainerSelector.keySet()) {
+			for (ModelConnectionPath connectionPath : connectionPathsByContainerSelector.get(containerSelector)) {
+				Set<EObjectWrapper> containerInstances = new LinkedHashSet<>(
+						containerInstancesByConnectionPaths.getOrDefault(connectionPath, new ArrayList<>()));
+				containerInstances.addAll(containerInstancesByContainerSelector.get(containerSelector));
+				containerInstancesByConnectionPaths.put(connectionPath, new ArrayList<>(containerInstances));
 			}
 		}
 
-		// only go on if any of the instances could be matched
-		if (rootInstancesByContainer.keySet().isEmpty()) {
-			return unconnectedInstances;
-		}
-
-		for (
-
-				final Entry<EObjectWrapper, LinkedHashSet<EObjectWrapper>> containerEntry : rootInstancesByContainer
-				.entrySet()) {
-
-			/*
-			 * Check if there already is a standard path for the given connection hint and the given target eClass that
-			 * satisfies the minimum capacity.
-			 */
-			boolean otherPathsNeeded = false;
-
-			if (!this.standardPaths.containsKey(containerSelector) || !this.standardPaths.get(containerSelector)
-					.getPathRootClass().equals(containerEntry.getKey().getEObject().eClass())) {
-
-				otherPathsNeeded = true;
-			} else {
-
-				final int capacity = this.standardPaths.get(containerSelector)
-						.getCapacity(containerEntry.getKey().getEObject());
-
-				if (!(capacity >= containerEntry.getValue().size() || capacity == -1)) {
-
-					this.standardPaths.remove(containerSelector);
-					otherPathsNeeded = true;
-				}
-			}
-
-			/*
-			 * A set of ModelConnectionPaths that are possible and thus have to be considered by the selection
-			 * algorithms.
-			 */
-			List<ModelConnectionPath> pathsToConsider = new LinkedList<>();
-			if (otherPathsNeeded) {
-				/*
-				 * Find all possible paths to concider that satisfy the minimum capacity.
-				 */
-				pathsToConsider = ModelConnectionPath.findPathsWithMinimumCapacity(
-						this.targetSectionRegistry.getConnections(mappingGroup.getTargetSection().getEClass(),
-								containerEntry.getKey().getEObject().eClass(), this.maxPathLength),
-						containerEntry.getKey().getEObject(), containerEntry.getValue().size());
-
-			} else {
-				/*
-				 *
-				 */
-				pathsToConsider.add(this.standardPaths.get(containerSelector));
-			}
-
-			ModelConnectionPath modelConnectionPath = null;
-
-			// only one path to choose from
-			if (pathsToConsider.size() == 1) {
-
-				modelConnectionPath = pathsToConsider.iterator().next();
-
-				// multiple paths to choos from
-			} else if (!pathsToConsider.isEmpty()) {
-
-				if (this.canceled) {
-					return unconnectedInstances;
-				}
-
-				/*
-				 * Consult the specified resolving strategy to resolve the ambiguity.
-				 */
-				try {
-					this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_STARTED);
-					List<ModelConnectionPath> resolved = this.ambiguityResolvingStrategy
-							.joiningSelectConnectionPath(pathsToConsider, mappingGroup.getTargetSection());
-					if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
-						((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
-						.joiningConnectionPathSelected(new ArrayList<>(pathsToConsider), resolved.get(0));
-					}
-					this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_ENDED);
-					modelConnectionPath = resolved.get(0);
-				} catch (AmbiguityResolvingException e) {
-					if (e.getCause() instanceof UserAbortException) {
-						throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
-					} else {
-						this.logger.severe(
-								() -> "The following exception occured during the resolving of an ambiguity concerning an connection path: "
-										+ e.getMessage());
-						this.logger.severe("Using default path instead...");
-						modelConnectionPath = pathsToConsider.get(0);
-					}
-				}
-
-			} else {
-
-				this.logger.warning(
-						() -> "Could not find a path that leads to the container specified by the ModelConnectionHint of "
-								+ mappingInstance.getMapping().getName() + "::" + mappingGroup.getName());
-				unconnectedInstances.addAll(rootInstances);
-				this.addToTargetModelRoot(containerEntry.getValue());
-				return unconnectedInstances;
-			}
-			if (modelConnectionPath == null) {
-				continue;
-			}
-
-			if (!this.standardPaths.containsKey(containerSelector) || !this.standardPaths.get(containerSelector)
-					.getPathRootClass().equals(containerEntry.getKey().getEObject().eClass())) {
-
-				this.standardPaths.put(containerSelector, modelConnectionPath);
-				this.logger.fine("Path found: " + mappingGroup.getTargetSection().getName() + "("
-						+ mappingInstance.getMapping().getName()
-						+ "::" + mappingGroup.getName()
-						+ "): " + modelConnectionPath.toString());
-			}
-
-			// now instantiate path(s))
-			//
-
-			// we will allow objects that reference themselves as container
-			// because this was explicitly
-			// specified by the ModelConnectionHint
-			if (containerEntry.getValue().contains(containerEntry.getKey())) {// we
-				// will
-				// allow
-				// objects
-				// that
-				// reference
-
-				this.addToTargetModelRoot(containerEntry.getKey());
-			}
-
-			/*
-			 * Try to instantiate Paths and add failed elements to target model root
-			 */
-			unconnectedInstances.addAll(
-					modelConnectionPath.instantiate(containerEntry.getKey().getEObject(), containerEntry.getValue()));
-		}
-
-		return unconnectedInstances;
+		return this.selectAndInstantiateConnections(rootInstances, containerInstancesByConnectionPaths, mappingInstance,
+				mappingGroup);
 	}
 
 	/**
-	 * This can be used to multiply a set of determined hint values for a ContainerSelector. This is necessary e.g. if
-	 * only one hint value was determined but multiple instances need to be connected.
+	 * Based on the given <em>connectionChoices</em>, join the given list of <em>rootInstances</em> with other objects
+	 * of the target model.
+	 * <p />
+	 * If there are multiple possible connection choices (either multiple {@link ModelConnectionPath connection paths}
+	 * and/or multiple {@link EObjectWrapper container instances}, this will select one of the possibilities by using
+	 * the appropriate {@link #ambiguityResolvingStrategy}.
+	 * @param rootInstances
+	 *            A list of {@link EObjectWrapper elements} to connect (created based on the given
+	 *            <em>mappingInstance</em>).
+	 * @param connectionChoices
+	 *            A map representing the possible connection choices (each consisting of a {@link ModelConnectionPath
+	 *            connection path} and a {@link EObjectWrapper container instance}).
+	 * @param mappingInstance
+	 *            The {@link MappingInstanceStorage} representing the given <em>rootInstances</em>.
+	 * @param mappingGroup
+	 *            The {@link MappingHintGroupType} that is used.
 	 *
-	 * @param originalHintValues
-	 *            The hint values to be multiplied (if necessary).
-	 * @param expectedNumberOfHintValues
-	 *            The expected number of hint values.
-	 * @return The resulting list of hint values (containing the original list of values either once or multiple times).
+	 * @return A list of {@link EObjectWrapper instances} that could not be connected (a sub-list of the given
+	 *         <em>rootInstances</em> or an empty list).
 	 */
-	private LinkedList<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>> multiplyContainerSelectorHintValues(
-			LinkedList<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>> originalHintValues,
-			int expectedNumberOfHintValues) {
+	private List<EObjectWrapper> selectAndInstantiateConnections(final List<EObjectWrapper> rootInstances,
+			Map<ModelConnectionPath, List<EObjectWrapper>> connectionChoices, MappingInstanceStorage mappingInstance,
+			final MappingHintGroupType mappingGroup) {
 
-		LinkedList<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>> ret = new LinkedList<>();
+		// The list of Connections that will get instantiated in the end
+		//
+		List<Connection> selectedConnections = new ArrayList<>();
 
-		if (originalHintValues.size() >= expectedNumberOfHintValues) {
+		// The list of (distinct) container instances represented by the 'connectionChoices'
+		//
+		List<EObjectWrapper> containerInstances = new ArrayList<>(
+				connectionChoices.values().stream().flatMap(List::stream).collect(Collectors.toSet()));
 
-			// There are already enough values...
+		if (containerInstances.size() == rootInstances.size()) {
+			// This is the special case where there is exactly one container instance per root instance -> We connect
+			// each root instance to its own container instance if there is a connection path that can be used for each
+			// container instance
 			//
-			ret.addAll(originalHintValues);
+
+			// The set of connection choices that provide exactly as many container elements as root elements
+			//
+			Map<ModelConnectionPath, List<EObjectWrapper>> limitedConnectionChoices = connectionChoices.entrySet()
+					.stream().filter(e -> e.getValue().size() == containerInstances.size())
+					.collect(Collectors.toMap(Entry::getKey, Entry::getValue));
+
+			if (limitedConnectionChoices.isEmpty()) {
+				// Fall back to the 'default' behavior (use the same container instance for each root instance)
+				//
+				selectedConnections
+				.add(this.getConnectionToInstantiate(rootInstances, connectionChoices, mappingGroup));
+			} else {
+				// Create a distinct connection for each pair of container/root instances
+				//
+				Map<EObjectWrapper, EObjectWrapper> containerInstanceByRootInstance = IntStream
+						.range(0, rootInstances.size()).boxed()
+						.collect(Collectors.toMap(rootInstances::get, containerInstances::get));
+
+				selectedConnections.addAll(containerInstanceByRootInstance.entrySet().stream()
+						.map(e -> this.getConnectionToInstantiate(Arrays.asList(e.getKey()),
+								new ArrayList<>(limitedConnectionChoices.keySet()), e.getValue(), mappingGroup))
+						.collect(Collectors.toList()));
+			}
+
+		} else {
+			// This is the default case where each root instance is connected to the same container instance
+			//
+			selectedConnections.add(
+					this.getConnectionToInstantiate(rootInstances, connectionChoices, mappingGroup));
+		}
+
+		// Instantiate each selected connection and return the elements the could not be connected
+		//
+		return selectedConnections.stream().flatMap(connection -> connection.instantiate().stream())
+				.collect(Collectors.toList());
+	}
+
+	/**
+	 * This just merges the given <em>rootInstance</em>, <em>connectionPath</em> and <em>containerInstance</em> to a
+	 * {@link Connection} that can be instantiated. Additionally, if this represents a <em>new</em> connection path for
+	 * the given <em>mappingGroup</em>, the list of {@link #standardPaths} is updated and a log message is printed.
+	 *
+	 * @param rootInstances
+	 *            The list of {@link EObjectWrapper elements} to join.
+	 * @param connectionpath
+	 *            The {@link ModelConnectionPath connection path} to use for the connection.
+	 * @param containerInstance
+	 *            The {@link EObjectWrapper container instance} to use.
+	 * @param mappingGroup
+	 *            The {@link MappingHintGroupType} that is used.
+	 * @return The {@link Connection} that should be used to join the given list of <em>rootInstances</em>.
+	 */
+	private Connection getConnectionToInstantiate(final List<EObjectWrapper> rootInstances,
+			final ModelConnectionPath connectionPath, final EObjectWrapper containerInstance,
+			final MappingHintGroupType mappingGroup) {
+
+		Connection connectionToInstantiate = new Connection(containerInstance, connectionPath, rootInstances);
+
+		if (!this.standardPaths.containsKey(mappingGroup) || this.standardPaths.get(mappingGroup) != connectionPath) {
+
+			this.standardPaths.put(mappingGroup, connectionPath);
+
+			this.logger.info(() -> mappingGroup.getTargetSection().getName() + " ("
+					+ ((Mapping) mappingGroup.eContainer()).getName() + "): "
+					+ connectionToInstantiate.getConnectionPath().toString());
+		}
+
+		return connectionToInstantiate;
+	}
+
+	/**
+	 * Based on the given list of <em>connectionPaths</em>, selects exactly one that should be used to join the given
+	 * list of <em>rootInstances</em> to the given <em>containerInstance</em>.
+	 * <p />
+	 * Note: This simply redirects to {@link #getConnectionToInstantiate(List, Map, MappingHintGroupType)}.
+	 *
+	 * @param rootInstances
+	 *            A list of {@link EObjectWrapper elements} to join.
+	 * @param connectionPaths
+	 *            The list of possible {@link ModelConnectionPath ModelConnectionPaths} to use for the connection.
+	 * @param containerInstance
+	 *            The {@link EObjectWrapper container instance} for the connection.
+	 * @param mappingGroup
+	 *            The {@link MappingHintGroupType} that is used.
+	 * @return The {@link Connection} that should be used to join the given list of <em>rootInstances</em>.
+	 */
+	private Connection getConnectionToInstantiate(final List<EObjectWrapper> rootInstances,
+			List<ModelConnectionPath> connectionPaths, EObjectWrapper containerInstance,
+			final MappingHintGroupType mappingGroup) {
+
+		// If there is already a 'standardPath' for the given 'mappingGroup', we reuse this standard path
+		//
+		ModelConnectionPath standardPath = this.standardPaths.getOrDefault(mappingGroup, null);
+		if (standardPath != null && connectionPaths.contains(standardPath)) {
+
+			return this.getConnectionToInstantiate(rootInstances, standardPath, containerInstance, mappingGroup);
+		}
+
+		Map<ModelConnectionPath, List<EObjectWrapper>> connectionChoices = connectionPaths.stream()
+				.collect(Collectors.toMap(Function.identity(), c -> Arrays.asList(containerInstance)));
+
+		return this.getConnectionToInstantiate(rootInstances, connectionChoices, mappingGroup);
+	}
+
+	/**
+	 * Based on the given list of <em>containerInstances</em>, selects exactly one that should be used to join the given
+	 * list of <em>rootInstances</em>.
+	 * <p />
+	 * Note: This simply redirects to {@link #getConnectionToInstantiate(List, Map, MappingHintGroupType)}.
+	 *
+	 * @param rootInstances
+	 *            A list of {@link EObjectWrapper elements} to join.
+	 * @param connectionPath
+	 *            The {@link ModelConnectionPath} to use for the connection.
+	 * @param containerInstances
+	 *            The list of possible {@link EObjectWrapper container instances} for the connection.
+	 * @param mappingGroup
+	 *            The {@link MappingHintGroupType} that is used.
+	 * @return The {@link Connection} that should be used to join the given list of <em>rootInstances</em>.
+	 */
+	private Connection getConnectionToInstantiate(final List<EObjectWrapper> rootInstances,
+			ModelConnectionPath connectionPath, List<EObjectWrapper> containerInstances,
+			final MappingHintGroupType mappingGroup) {
+
+		EObjectWrapper selectedContainerInstance;
+
+		if (containerInstances.size() == 1) {
+
+			selectedContainerInstance = containerInstances.get(0);
 
 		} else {
 
-			// We need to multiply the existing values...
+			// There are multiple possible container instances
 			//
-			for (int i = 0; i < expectedNumberOfHintValues / originalHintValues.size(); i++) {
+			try {
+				this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_STARTED);
 
-				ret.addAll(originalHintValues);
+				selectedContainerInstance = this.ambiguityResolvingStrategy
+						.joiningSelectContainerInstance(containerInstances, rootInstances, mappingGroup, null, null)
+						.iterator().next();
+				if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
+					((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
+					.joiningContainerInstanceSelected(containerInstances, selectedContainerInstance);
+				}
+				this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_ENDED);
+
+			} catch (AmbiguityResolvingException e) {
+				if (e.getCause() instanceof UserAbortException) {
+					throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
+				} else {
+					this.logger.severe(
+							() -> "The following exception occured during the resolving of an ambiguity concerning the selection of a container instance: "
+									+ e.getMessage());
+					this.logger.severe("Using default path and instance instead...");
+					selectedContainerInstance = containerInstances.get(0);
+				}
 			}
-
 		}
 
-		return ret;
+		return this.getConnectionToInstantiate(rootInstances, connectionPath, selectedContainerInstance, mappingGroup);
 	}
 
+	/**
+	 * Based on the given map of <em>connectionChoices</em>, selects exactly one possible connection (consisting of a
+	 * {@link ModelConnectionPath} and a {@link EObjectWrapper container instance} that should be used to join the given
+	 * list of <em>rootInstances</em>.
+	 *
+	 * @param rootInstances
+	 *            A list of {@link EObjectWrapper elements} to join.
+	 * @param connectionChoices
+	 *            A map representing the possible connection choices (each consisting of a {@link ModelConnectionPath
+	 *            connection path} and a {@link EObjectWrapper container instance}).
+	 * @param mappingGroup
+	 *            The {@link MappingHintGroupType} that is used.
+	 * @return The {@link Connection} that should be used to join the given list of <em>rootInstances</em>.
+	 */
+	private Connection getConnectionToInstantiate(final List<EObjectWrapper> rootInstances,
+			Map<ModelConnectionPath, List<EObjectWrapper>> connectionChoices, final MappingHintGroupType mappingGroup) {
+
+		// If there is already a 'standardPath' for the given 'mappingGroup', we reuse this standard path
+		//
+		ModelConnectionPath standardPath = this.standardPaths.getOrDefault(mappingGroup, null);
+		if (standardPath != null && connectionChoices.containsKey(standardPath) && connectionChoices.size() > 1) {
+
+			return this.getConnectionToInstantiate(rootInstances, standardPath, connectionChoices.get(standardPath),
+					mappingGroup);
+		}
+
+		if (connectionChoices.keySet().size() == 1
+				&& connectionChoices.values().stream().flatMap(List::stream).collect(Collectors.toSet()).size() == 1) {
+
+			// There is only one possible connection path and container instance
+			//
+			ModelConnectionPath connectionPath = connectionChoices.keySet().iterator().next();
+			return this.getConnectionToInstantiate(rootInstances, connectionPath,
+					connectionChoices.get(connectionPath).iterator().next(), mappingGroup);
+
+		} else if (connectionChoices.keySet().size() == 1) {
+
+			// If there is only one possible connection path, we only need to let the user choose the
+			// container instance
+			//
+			ModelConnectionPath connectionPath = connectionChoices.keySet().iterator().next();
+			return this.getConnectionToInstantiate(rootInstances, connectionPath, connectionChoices.get(connectionPath),
+					mappingGroup);
+
+		} else {
+
+			ModelConnectionPath selectedConnectionPath;
+			EObjectWrapper selectedContainerInstance;
+
+			// There are multiple possible connection paths and/or container instances
+			//
+			try {
+				this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_STARTED);
+
+				Map<ModelConnectionPath, List<EObjectWrapper>> resolved;
+				if (connectionChoices.values().stream().flatMap(List::stream).collect(Collectors.toSet())
+						.size() == 1) {
+					// If there is only one possible container instance, we only need to let the user choose the
+					// connection path
+					//
+					List<ModelConnectionPath> resolvedPaths = this.ambiguityResolvingStrategy
+							.joiningSelectConnectionPath(new ArrayList<>(connectionChoices.keySet()),
+									mappingGroup.getTargetSection());
+					resolved = resolvedPaths.stream()
+							.collect(Collectors.toMap(Function.identity(), connectionChoices::get));
+					selectedConnectionPath = resolvedPaths.get(0);
+				} else {
+					// Otherwise, the user needs to select the connection path as well as the container instance
+					//
+					resolved = this.ambiguityResolvingStrategy.joiningSelectConnectionPathAndContainerInstance(
+							connectionChoices, mappingGroup.getTargetSection(), rootInstances, mappingGroup);
+					selectedConnectionPath = resolved.entrySet().iterator().next().getKey();
+				}
+
+				selectedContainerInstance = resolved.entrySet().iterator().next().getValue().get(0);
+				if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
+					((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy).joiningConnectionPathSelected(
+							new ArrayList<>(connectionChoices.keySet()), selectedConnectionPath);
+					((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy).joiningContainerInstanceSelected(
+							new ArrayList<>(connectionChoices.get(selectedConnectionPath)), selectedContainerInstance);
+				}
+				this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_ENDED);
+
+			} catch (AmbiguityResolvingException e) {
+				if (e.getCause() instanceof UserAbortException) {
+					throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
+				} else {
+					this.logger.severe(
+							() -> "The following exception occured during the resolving of an ambiguity concerning the selection of a common root element: "
+									+ e.getMessage());
+					this.logger.severe("Using default path and instance instead...");
+					selectedConnectionPath = connectionChoices.keySet().iterator().next();
+					selectedContainerInstance = connectionChoices.get(selectedConnectionPath).get(0);
+				}
+			}
+
+			return this.getConnectionToInstantiate(rootInstances, selectedConnectionPath, selectedContainerInstance,
+					mappingGroup);
+		}
+
+
+	}
+
+	/**
+	 * For each of the given {@link ContainerSelector ContainerSelectors}, determines the list of
+	 * {@link ModelConnectionPath ModelConnectionPaths} that can be used to connect instances of the given
+	 * {@link EClass} to instances of the {@link ContainerSelector#getTargetClass() targetClass} of the
+	 * ContainerSelector.
+	 * <p />
+	 * Note: Those ContainerSelectors for that there is no possible ModelConnectionPath are not represented in the
+	 * returned Map. Put another way, each of the values of the returned map will contain at least one
+	 * ModelConnectionPath.
+	 * <p />
+	 * Note: Only direct {@link ModelConnectionPath connection paths} (with a length of '0') are considered because the
+	 * user specified a {@link ContainerSelector}.
+	 *
+	 * @param containerSelectors
+	 *            The list of {@link ContainerSelector ContainerSelectors} to evaluate.
+	 * @param eClass
+	 *            The {@link EClass} for which connection shall be determined.
+	 * @return The list of potential {@link ModelConnectionPath ModelConnectionPaths} for each of the given
+	 *         {@link ContainerSelector ContainerSelectors}.
+	 */
+	private Map<ContainerSelector, List<ModelConnectionPath>> getConnectionPathsByContainerSelector(
+			List<ContainerSelector> containerSelectors, EClass eClass) {
+
+		Map<ContainerSelector, List<ModelConnectionPath>> connectionPathsByContainerSelector = new LinkedHashMap<>();
+		for (ContainerSelector containerSelector : containerSelectors) {
+
+			// Check if there are any possible connection paths based on the specified 'targetClass' of the given
+			// container
+			// selector
+			//
+			List<ModelConnectionPath> pathsToConsider = this.targetSectionRegistry.getConnections(eClass,
+					containerSelector.getTargetClass().getEClass(), 0);
+			if (pathsToConsider.isEmpty()) {
+
+				this.logger.warning(() -> "Could not find a path that leads to the 'targetClass' specified for the "
+						+ containerSelector.printInfo());
+
+			} else {
+
+				connectionPathsByContainerSelector.put(containerSelector, pathsToConsider);
+			}
+		}
+
+		return connectionPathsByContainerSelector;
+	}
+
+
+	/**
+	 * For each of the given {@link ContainerSelector ContainerSelectors}, determines the list of {@link EObjectWrapper
+	 * container instances} satisfying at least one of the hint values for the given {@link MappingInstanceStorage} (a
+	 * subset of all instantiated elements of the {@link ContainerSelector#getTargetClass() target class} specified by
+	 * the respective ContainerSelector).
+	 * <p />
+	 * Note: Those ContainerSelectors for that there is no possible container instance are not represented in the
+	 * returned Map. Put another way, each of the values of the returned map will contain at least one container
+	 * instance.
+	 *
+	 * @param containerSelectors
+	 *            The list of {@link ContainerSelector ContainerSelectors} to evaluate.
+	 * @param mappingInstance
+	 *            The {@link MappingInstanceStorage} providing the hint values for the given
+	 *            <em>containerSelectors</em>.
+	 * @return The list of potential {@link EObjectWrapper container instances} for each of the given
+	 *         {@link ContainerSelector ContainerSelectors}.
+	 */
+	private Map<ContainerSelector, List<EObjectWrapper>> getContainerInstancesByContainerSelector(
+			List<ContainerSelector> containerSelectors, MappingInstanceStorage mappingInstance) {
+
+		Map<ContainerSelector, List<EObjectWrapper>> containerInstancesByContainerSelector = new LinkedHashMap<>();
+
+		for (ContainerSelector containerSelector : containerSelectors) {
+
+			// The instances of the specified 'targetClass' -> These are the potential containers
+			//
+			List<EObjectWrapper> possibleContainerInstances = this.targetSectionRegistry
+					.getFlattenedPamtramClassInstances(containerSelector.getTargetClass());
+
+			// Filter those that satisfy one of the calculated hint values
+			//
+			possibleContainerInstances = this.filterContainerInstances(possibleContainerInstances,
+					mappingInstance.getHintValues().getHintValues(containerSelector), containerSelector);
+
+			if (!possibleContainerInstances.isEmpty()) {
+				containerInstancesByContainerSelector.put(containerSelector, possibleContainerInstances);
+			}
+		}
+
+		return containerInstancesByContainerSelector;
+	}
+
+	/**
+	 * From the given list of potential {@link EObjectWrapper container instances}, filters those that satisfy one of
+	 * the given hint values calculated for the given {@link ContainerSelector}.
+	 *
+	 * @param potentialContainerInstances
+	 *            The list of potential {@link EObjectWrapper container instances} to be filtered.
+	 * @param containerSelectorHintValues
+	 *            The hint values of the given <em>containerSelector</em> are to be evaluated.
+	 * @param containerSelector
+	 *            The {@link ContainerSelector} to evaluate.
+	 * @return The filtered list (a subset of the given list) of <em>potentialContainerInstances</em>.
+	 */
+	private List<EObjectWrapper> filterContainerInstances(List<EObjectWrapper> potentialContainerInstances,
+			List<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>> containerSelectorHintValues,
+			ContainerSelector containerSelector) {
+
+		// FIXME this should be possible
+		if (containerSelector.getReferenceAttribute() == null
+				|| containerSelector.getReferenceAttribute().getOwningClass() != containerSelector.getTargetClass()) {
+			throw new RuntimeException(
+					"ContainerSelectors without a specified 'referenceAttribute' that is directly contained in the specified 'targetClass' are not yet supported! (ContainerSelector: '"
+							+ containerSelector.getName() + "' in MappingHintGroup '"
+							+ ((NamedElement) containerSelector.eContainer()).getName() + "')");
+		}
+
+		// The hint values that will be compared to the value of the 'referenceAttribute' (the 'reference values' of
+		// potential container
+		// instances. In most cases, there should be only a single hint value. If there are multiple values,
+		// these will be treated as alternative values.
+		//
+		List<String> hintValues =
+				containerSelectorHintValues.stream()
+				.map(v -> this.valueCalculator.calculateValue(
+						new ArrayList<>(containerSelector.getSourceElements()),
+						containerSelector.getExpression(), v, containerSelector.getModifiers()))
+				.collect(Collectors.toList());
+
+		// The reference value (based on the specified 'referenceAttribute') for each of the potential container
+		// instances.
+		// In the following, these will be compared to the list of 'hintValues'
+		//
+		Map<EObjectWrapper, String> referenceValueByContainerInstance = potentialContainerInstances.stream()
+				.collect(Collectors.toMap(Function.identity(),
+						c -> c.getAttributeValue(containerSelector.getReferenceAttribute())));
+
+		// Filter those container instances, whose 'reference values' match one of the given 'hint values
+		//
+		return referenceValueByContainerInstance.entrySet().stream().filter(e -> hintValues.contains(e.getValue()))
+				.map(Entry::getKey).collect(Collectors.toList());
+	}
+
+	/**
+	 * A class that represents a connection between model elements to be instantiated. Each connection is characterized
+	 * by a {@link #containerInstance} (the starting point of the connection), a {@link #connectionPath}, and a set of
+	 * {@link #rootInstances} (the end point of the connection).
+	 *
+	 * @author mfreund
+	 */
+	public class Connection {
+
+		/**
+		 * The {@link EObjectWrapper model element} representing the starting point of the connection to be
+		 * instantiated.
+		 */
+		protected EObjectWrapper containerInstance;
+
+		/**
+		 * The {@link ModelConnectionPath connection path} to be instantiated.
+		 */
+		protected ModelConnectionPath connectionPath;
+
+		/**
+		 * The {@link EObjectWrapper model element(s)} to be connected to the {@link #containerInstance} via the
+		 * {@link #connectionPath}.
+		 */
+		protected Set<EObjectWrapper> rootInstances;
+
+		/**
+		 * This creates an instance.
+		 *
+		 * @param containerInstance
+		 * @param connectionPath
+		 */
+		public Connection(EObjectWrapper containerInstance, ModelConnectionPath connectionPath) {
+
+			this(containerInstance, connectionPath, new ArrayList<>());
+		}
+
+		/**
+		 * This creates an instance.
+		 *
+		 * @param containerInstance
+		 * @param connectionPath
+		 * @param rootInstances
+		 */
+		public Connection(EObjectWrapper containerInstance, ModelConnectionPath connectionPath,
+				Collection<EObjectWrapper> rootInstances) {
+
+			this.containerInstance = containerInstance;
+			this.connectionPath = connectionPath;
+			this.rootInstances = rootInstances != null ? new LinkedHashSet<>(rootInstances) : new LinkedHashSet<>();
+		}
+
+
+		/**
+		 * @return the {@link #containerInstance}
+		 */
+		public EObjectWrapper getContainerInstance() {
+
+			return this.containerInstance;
+		}
+
+		/**
+		 * @return the {@link #connectionPath}
+		 */
+		public ModelConnectionPath getConnectionPath() {
+
+			return this.connectionPath;
+		}
+
+		/**
+		 * @return the {@link #rootInstances}
+		 */
+		public Set<EObjectWrapper> getRootInstances() {
+
+			return this.rootInstances;
+		}
+
+		/**
+		 * Adds a list of {@link EObjectWrapper model elements} to the existing list of {@link #rootInstances}.
+		 *
+		 * @param rootInstances
+		 */
+		public void addRootInstances(Collection<EObjectWrapper> rootInstances) {
+
+			this.rootInstances.addAll(rootInstances);
+		}
+
+		/**
+		 * Instantiates this connection by invoking {@link ModelConnectionPath#instantiate(EObject, Collection)}.
+		 *
+		 * @return A list of elements (a subset of the {@link #rootInstances}) that could not be connected (possibly
+		 *         because the capacity of the path was not large enough).
+		 */
+		public List<EObjectWrapper> instantiate() {
+
+			return this.connectionPath.instantiate(this.containerInstance.getEObject(), this.rootInstances);
+		}
+	}
 
 }

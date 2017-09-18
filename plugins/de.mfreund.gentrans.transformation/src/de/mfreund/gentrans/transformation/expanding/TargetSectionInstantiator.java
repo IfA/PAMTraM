@@ -775,7 +775,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 
 		// create an EObjectTransformationHelper that wraps the eObject and more
 		// stuff
-		EObjectWrapper instTransformationHelper = new EObjectWrapper(inst, this.attributeValueRegistry);
+		EObjectWrapper instTransformationHelper = new EObjectWrapper(inst, this.targetSectionRegistry);
 
 		/*
 		 * If the target section is a library entry, we create a new 'LibraryEntryInstantiator' that will insert the

@@ -844,6 +844,15 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getContainerSelector__ValidateReferenceAttribute__DiagnosticChain_Map() {
+		return containerSelectorEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getMappedAttributeValueExpander() {
 		return mappedAttributeValueExpanderEClass;
 	}
@@ -1021,6 +1030,7 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 
 		containerSelectorEClass = createEClass(CONTAINER_SELECTOR);
 		createEOperation(containerSelectorEClass, CONTAINER_SELECTOR___VALIDATE_TARGET_CLASS_MATCHES_POSSIBLE_CONTAINER_TYPE__DIAGNOSTICCHAIN_MAP);
+		createEOperation(containerSelectorEClass, CONTAINER_SELECTOR___VALIDATE_REFERENCE_ATTRIBUTE__DIAGNOSTICCHAIN_MAP);
 
 		mappedAttributeValueExpanderEClass = createEClass(MAPPED_ATTRIBUTE_VALUE_EXPANDER);
 		createEReference(mappedAttributeValueExpanderEClass, MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND);
@@ -1418,6 +1428,15 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		op = initEOperation(getContainerSelector__ValidateReferenceAttribute__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateReferenceAttribute", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(mappedAttributeValueExpanderEClass, MappedAttributeValueExpander.class, "MappedAttributeValueExpander", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMappedAttributeValueExpander_HintsToExpand(), this.getExpandableHint(), null, "hintsToExpand", null, 1, -1, MappedAttributeValueExpander.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1767,6 +1786,12 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		   source, 
 		   new String[] {
 			 "body", "if (!(this.eContainer() instanceof <%pamtram.mapping.MappingHintGroupType%>) || this.getTargetClass() == null) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\r\t<%pamtram.structure.target.TargetSection%> targetSection = ((<%pamtram.mapping.MappingHintGroupType%>) this.eContainer()).getTargetSection();\r\n\r\tboolean result = targetSection == null || targetSection.getEClass() == null ? true\r\n\t\t\t\t: this.getTargetClass().getEClass().getEAllContainments().parallelStream()\r\n\t\t\t\t\t\t.anyMatch(r -> r.getEReferenceType().isSuperTypeOf(targetSection.getEClass()));\r\n\r\tif (!result && diagnostics != null) {\r\n\r\t\tString errorMessage = \"The type of the parent hint group\'s target section (\'\"\r\n\t\t\t\t\t+ targetSection.getEClass().getName()\r\n\t\t\t\t\t+ \"\') cannot be connected to (contained in) the specified target class (\'\"\r\n\t\t\t\t\t+ this.getTargetClass().getName() + \"\')!\";\r\n\r\t\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR, <%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.CONTAINER_SELECTOR__VALIDATE_TARGET_CLASS_MATCHES_POSSIBLE_CONTAINER_TYPE,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\t\t\tnew Object[] { this, <%pamtram.structure.StructurePackage%>.Literals.TARGET_INSTANCE_SELECTOR__TARGET_CLASS }));\r\n\r\t}\r\n\r\treturn result;"
+		   });	
+		addAnnotation
+		  (getContainerSelector__ValidateReferenceAttribute__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "if (!(this.eContainer() instanceof <%pamtram.mapping.MappingHintGroupType%>) || this.getTargetClass() == null) {\r\n\treturn true;\r\n}\r\n\r\n<%pamtram.structure.target.TargetSection%> targetSection = ((<%pamtram.mapping.MappingHintGroupType%>) this.eContainer()).getTargetSection();\r\nboolean result = targetSection == null || targetSection.getEClass() == null ? true\r\n\t\t: this.getTargetClass().getEClass().getEAllContainments().parallelStream()\r\n\t\t\t\t.anyMatch(r -> r.getEReferenceType().isSuperTypeOf(targetSection.getEClass()));\r\nif (!result && diagnostics != null) {\r\n\tString errorMessage = \"The type of the parent hint group\'s target section (\'\"\r\n\t\t\t+ targetSection.getEClass().getName()\r\n\t\t\t+ \"\') cannot be connected to (contained in) the specified target class (\'\"\r\n\t\t\t+ this.getTargetClass().getName() + \"\')!\";\r\n\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR, <%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.CONTAINER_SELECTOR__VALIDATE_TARGET_CLASS_MATCHES_POSSIBLE_CONTAINER_TYPE,\r\n\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.StructurePackage%>.Literals.TARGET_INSTANCE_SELECTOR__TARGET_CLASS }));\r\n\r}\r\n\r\r\nreturn result;"
 		   });	
 		addAnnotation
 		  (mappedAttributeValueExpanderEClass, 

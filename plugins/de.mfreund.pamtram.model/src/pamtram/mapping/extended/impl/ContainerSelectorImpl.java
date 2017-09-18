@@ -77,7 +77,7 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	 * @generated
 	 * @ordered
 	 */
-	protected String expression = EXPRESSION_EDEFAULT;
+	protected String expression = ContainerSelectorImpl.EXPRESSION_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getModifiers() <em>Modifiers</em>}' reference list.
@@ -102,7 +102,7 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	/**
 	 * The cached value of the '{@link #getReferenceAttribute() <em>Reference Attribute</em>}' reference. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getReferenceAttribute()
 	 * @generated
 	 * @ordered
@@ -142,7 +142,7 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	 */
 	@Override
 	public String getExpression() {
-		return expression;
+		return this.expression;
 	}
 
 	/**
@@ -151,10 +151,11 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	 */
 	@Override
 	public void setExpression(String newExpression) {
-		String oldExpression = expression;
-		expression = newExpression;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.CONTAINER_SELECTOR__EXPRESSION, oldExpression, expression));
+		String oldExpression = this.expression;
+		this.expression = newExpression;
+		if (this.eNotificationRequired()) {
+			this.eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.CONTAINER_SELECTOR__EXPRESSION, oldExpression, this.expression));
+		}
 	}
 
 	/**
@@ -163,10 +164,10 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	 */
 	@Override
 	public EList<ValueModifierSet> getModifiers() {
-		if (modifiers == null) {
-			modifiers = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, ExtendedPackage.CONTAINER_SELECTOR__MODIFIERS);
+		if (this.modifiers == null) {
+			this.modifiers = new EObjectResolvingEList<>(ValueModifierSet.class, this, ExtendedPackage.CONTAINER_SELECTOR__MODIFIERS);
 		}
-		return modifiers;
+		return this.modifiers;
 	}
 
 	/**
@@ -176,22 +177,22 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	@Override
 	public boolean validateNoModifiedAttributeElementTypesInConditionModelConditions(final DiagnosticChain diagnostics,
 			final Map<?, ?> context) {
-		
+
 		boolean result = this.eContainer() instanceof ComplexCondition && ((ComplexCondition) this.eContainer()).isConditionModelCondition() ? this.getSourceElements().parallelStream().noneMatch(s -> s instanceof pamtram.structure.DynamicSourceElement) : true;
-		
+
 		if (!result && diagnostics != null) {
-		
+
 			String errorMessage = "ModifiedAttributeElementTypes are not allowed as part of ConditionModelConditions!";
-		
+
 			diagnostics.add(new BasicDiagnostic
 					(Diagnostic.ERROR,
-					StructureValidator.DIAGNOSTIC_SOURCE,
+							StructureValidator.DIAGNOSTIC_SOURCE,
 							StructureValidator.INSTANCE_SELECTOR__VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS,
 							errorMessage,
-					new Object[] { this, StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS }));
-		
+							new Object[] { this, StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS }));
+
 		}
-		
+
 		return result;
 	}
 
@@ -201,10 +202,10 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	 */
 	@Override
 	public EList<InstanceSelectorSourceInterface> getSourceElements() {
-		if (sourceElements == null) {
-			sourceElements = new EObjectContainmentEList<InstanceSelectorSourceInterface>(InstanceSelectorSourceInterface.class, this, ExtendedPackage.CONTAINER_SELECTOR__SOURCE_ELEMENTS);
+		if (this.sourceElements == null) {
+			this.sourceElements = new EObjectContainmentEList<>(InstanceSelectorSourceInterface.class, this, ExtendedPackage.CONTAINER_SELECTOR__SOURCE_ELEMENTS);
 		}
-		return sourceElements;
+		return this.sourceElements;
 	}
 
 	/**
@@ -213,15 +214,16 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	 */
 	@Override
 	public TargetSectionAttribute getReferenceAttribute() {
-		if (referenceAttribute != null && referenceAttribute.eIsProxy()) {
-			InternalEObject oldReferenceAttribute = (InternalEObject)referenceAttribute;
-			referenceAttribute = (TargetSectionAttribute)eResolveProxy(oldReferenceAttribute);
-			if (referenceAttribute != oldReferenceAttribute) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExtendedPackage.CONTAINER_SELECTOR__REFERENCE_ATTRIBUTE, oldReferenceAttribute, referenceAttribute));
+		if (this.referenceAttribute != null && this.referenceAttribute.eIsProxy()) {
+			InternalEObject oldReferenceAttribute = (InternalEObject)this.referenceAttribute;
+			this.referenceAttribute = (TargetSectionAttribute)this.eResolveProxy(oldReferenceAttribute);
+			if (this.referenceAttribute != oldReferenceAttribute) {
+				if (this.eNotificationRequired()) {
+					this.eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExtendedPackage.CONTAINER_SELECTOR__REFERENCE_ATTRIBUTE, oldReferenceAttribute, this.referenceAttribute));
+				}
 			}
 		}
-		return referenceAttribute;
+		return this.referenceAttribute;
 	}
 
 	/**
@@ -229,7 +231,7 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	 * @generated
 	 */
 	public TargetSectionAttribute basicGetReferenceAttribute() {
-		return referenceAttribute;
+		return this.referenceAttribute;
 	}
 
 	/**
@@ -238,10 +240,11 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	 */
 	@Override
 	public void setReferenceAttribute(TargetSectionAttribute newReferenceAttribute) {
-		TargetSectionAttribute oldReferenceAttribute = referenceAttribute;
-		referenceAttribute = newReferenceAttribute;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.CONTAINER_SELECTOR__REFERENCE_ATTRIBUTE, oldReferenceAttribute, referenceAttribute));
+		TargetSectionAttribute oldReferenceAttribute = this.referenceAttribute;
+		this.referenceAttribute = newReferenceAttribute;
+		if (this.eNotificationRequired()) {
+			this.eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.CONTAINER_SELECTOR__REFERENCE_ATTRIBUTE, oldReferenceAttribute, this.referenceAttribute));
+		}
 	}
 
 	/**
@@ -250,15 +253,16 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	 */
 	@Override
 	public TargetSectionClass getTargetClass() {
-		if (targetClass != null && targetClass.eIsProxy()) {
-			InternalEObject oldTargetClass = (InternalEObject)targetClass;
-			targetClass = (TargetSectionClass)eResolveProxy(oldTargetClass);
-			if (targetClass != oldTargetClass) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExtendedPackage.CONTAINER_SELECTOR__TARGET_CLASS, oldTargetClass, targetClass));
+		if (this.targetClass != null && this.targetClass.eIsProxy()) {
+			InternalEObject oldTargetClass = (InternalEObject)this.targetClass;
+			this.targetClass = (TargetSectionClass)this.eResolveProxy(oldTargetClass);
+			if (this.targetClass != oldTargetClass) {
+				if (this.eNotificationRequired()) {
+					this.eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExtendedPackage.CONTAINER_SELECTOR__TARGET_CLASS, oldTargetClass, this.targetClass));
+				}
 			}
 		}
-		return targetClass;
+		return this.targetClass;
 	}
 
 	/**
@@ -266,7 +270,7 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	 * @generated
 	 */
 	public TargetSectionClass basicGetTargetClass() {
-		return targetClass;
+		return this.targetClass;
 	}
 
 	/**
@@ -275,10 +279,11 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	 */
 	@Override
 	public void setTargetClass(TargetSectionClass newTargetClass) {
-		TargetSectionClass oldTargetClass = targetClass;
-		targetClass = newTargetClass;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.CONTAINER_SELECTOR__TARGET_CLASS, oldTargetClass, targetClass));
+		TargetSectionClass oldTargetClass = this.targetClass;
+		this.targetClass = newTargetClass;
+		if (this.eNotificationRequired()) {
+			this.eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.CONTAINER_SELECTOR__TARGET_CLASS, oldTargetClass, this.targetClass));
+		}
 	}
 
 	/**
@@ -289,30 +294,63 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	public boolean validateTargetClassMatchesPossibleContainerType(final DiagnosticChain diagnostics,
 			final Map<?, ?> context) {
 		if (!(this.eContainer() instanceof MappingHintGroupType) || this.getTargetClass() == null) {
-					return true;
-				}
-		
-			TargetSection targetSection = ((MappingHintGroupType) this.eContainer()).getTargetSection();
-		
-			boolean result = targetSection == null || targetSection.getEClass() == null ? true
-						: this.getTargetClass().getEClass().getEAllContainments().parallelStream()
-								.anyMatch(r -> r.getEReferenceType().isSuperTypeOf(targetSection.getEClass()));
-		
-			if (!result && diagnostics != null) {
-		
-				String errorMessage = "The type of the parent hint group's target section ('"
-							+ targetSection.getEClass().getName()
-							+ "') cannot be connected to (contained in) the specified target class ('"
-							+ this.getTargetClass().getName() + "')!";
-		
-				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, ExtendedValidator.DIAGNOSTIC_SOURCE,
-							ExtendedValidator.CONTAINER_SELECTOR__VALIDATE_TARGET_CLASS_MATCHES_POSSIBLE_CONTAINER_TYPE,
-							errorMessage,
-							new Object[] { this, StructurePackage.Literals.TARGET_INSTANCE_SELECTOR__TARGET_CLASS }));
-		
-			}
-		
-			return result;
+			return true;
+		}
+
+		TargetSection targetSection = ((MappingHintGroupType) this.eContainer()).getTargetSection();
+
+		boolean result = targetSection == null || targetSection.getEClass() == null ? true
+				: this.getTargetClass().getEClass().getEAllContainments().parallelStream()
+				.anyMatch(r -> r.getEReferenceType().isSuperTypeOf(targetSection.getEClass()));
+
+		if (!result && diagnostics != null) {
+
+			String errorMessage = "The type of the parent hint group's target section ('"
+					+ targetSection.getEClass().getName()
+					+ "') cannot be connected to (contained in) the specified target class ('"
+					+ this.getTargetClass().getName() + "')!";
+
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, ExtendedValidator.DIAGNOSTIC_SOURCE,
+					ExtendedValidator.CONTAINER_SELECTOR__VALIDATE_TARGET_CLASS_MATCHES_POSSIBLE_CONTAINER_TYPE,
+					errorMessage,
+					new Object[] { this, StructurePackage.Literals.TARGET_INSTANCE_SELECTOR__TARGET_CLASS }));
+
+		}
+
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean validateReferenceAttribute(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+
+		if (!(this.eContainer() instanceof MappingHintGroupType) || this.getTargetClass() == null
+				|| this.getReferenceAttribute() == null) {
+			return true;
+		}
+
+		TargetSection targetSection = this.targetClass.getContainingSection();
+		TargetSection referenceAttributeTargetSection = this.getReferenceAttribute().getContainingSection();
+
+		boolean result = targetSection.equals(referenceAttributeTargetSection)
+				|| targetSection.getAllExtend().contains(referenceAttributeTargetSection);
+
+		if (!result && diagnostics != null) {
+			String errorMessage = "The specified 'reference attribute' needs to be part of the same (or an extended) TargetSection as the specified 'target class' ('"
+					+ this.getTargetClass().getName() + "')!";
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, ExtendedValidator.DIAGNOSTIC_SOURCE,
+					ExtendedValidator.CONTAINER_SELECTOR__VALIDATE_REFERENCE_ATTRIBUTE,
+					errorMessage,
+					new Object[] { this, StructurePackage.Literals.TARGET_INSTANCE_SELECTOR__REFERENCE_ATTRIBUTE }));
+
+		}
+
+
+		return result;
 	}
 
 	/**
@@ -323,7 +361,7 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	public EList<InstanceSelectorSourceElement> getLocalSourceElements() {
 		return new BasicEList<>(
 				this.getSourceElements().stream().filter(i -> i instanceof InstanceSelectorSourceElement)
-						.map(i -> (InstanceSelectorSourceElement) i).collect(Collectors.toList()));
+				.map(i -> (InstanceSelectorSourceElement) i).collect(Collectors.toList()));
 	}
 
 	/**
@@ -334,7 +372,7 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	public EList<InstanceSelectorExternalSourceElement> getExternalSourceElements() {
 		return new BasicEList<>(
 				this.getSourceElements().stream().filter(i -> i instanceof InstanceSelectorExternalSourceElement)
-						.map(i -> (InstanceSelectorExternalSourceElement) i).collect(Collectors.toList()));
+				.map(i -> (InstanceSelectorExternalSourceElement) i).collect(Collectors.toList()));
 	}
 
 	/**
@@ -345,7 +383,7 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case ExtendedPackage.CONTAINER_SELECTOR__SOURCE_ELEMENTS:
-				return ((InternalEList<?>)getSourceElements()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)this.getSourceElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -358,17 +396,21 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case ExtendedPackage.CONTAINER_SELECTOR__EXPRESSION:
-				return getExpression();
+				return this.getExpression();
 			case ExtendedPackage.CONTAINER_SELECTOR__MODIFIERS:
-				return getModifiers();
+				return this.getModifiers();
 			case ExtendedPackage.CONTAINER_SELECTOR__SOURCE_ELEMENTS:
-				return getSourceElements();
+				return this.getSourceElements();
 			case ExtendedPackage.CONTAINER_SELECTOR__REFERENCE_ATTRIBUTE:
-				if (resolve) return getReferenceAttribute();
-				return basicGetReferenceAttribute();
+				if (resolve) {
+					return this.getReferenceAttribute();
+				}
+				return this.basicGetReferenceAttribute();
 			case ExtendedPackage.CONTAINER_SELECTOR__TARGET_CLASS:
-				if (resolve) return getTargetClass();
-				return basicGetTargetClass();
+				if (resolve) {
+					return this.getTargetClass();
+				}
+				return this.basicGetTargetClass();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -382,21 +424,21 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case ExtendedPackage.CONTAINER_SELECTOR__EXPRESSION:
-				setExpression((String)newValue);
+				this.setExpression((String)newValue);
 				return;
 			case ExtendedPackage.CONTAINER_SELECTOR__MODIFIERS:
-				getModifiers().clear();
-				getModifiers().addAll((Collection<? extends ValueModifierSet>)newValue);
+				this.getModifiers().clear();
+				this.getModifiers().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
 			case ExtendedPackage.CONTAINER_SELECTOR__SOURCE_ELEMENTS:
-				getSourceElements().clear();
-				getSourceElements().addAll((Collection<? extends InstanceSelectorSourceInterface>)newValue);
+				this.getSourceElements().clear();
+				this.getSourceElements().addAll((Collection<? extends InstanceSelectorSourceInterface>)newValue);
 				return;
 			case ExtendedPackage.CONTAINER_SELECTOR__REFERENCE_ATTRIBUTE:
-				setReferenceAttribute((TargetSectionAttribute)newValue);
+				this.setReferenceAttribute((TargetSectionAttribute)newValue);
 				return;
 			case ExtendedPackage.CONTAINER_SELECTOR__TARGET_CLASS:
-				setTargetClass((TargetSectionClass)newValue);
+				this.setTargetClass((TargetSectionClass)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -410,19 +452,19 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case ExtendedPackage.CONTAINER_SELECTOR__EXPRESSION:
-				setExpression(EXPRESSION_EDEFAULT);
+				this.setExpression(ContainerSelectorImpl.EXPRESSION_EDEFAULT);
 				return;
 			case ExtendedPackage.CONTAINER_SELECTOR__MODIFIERS:
-				getModifiers().clear();
+				this.getModifiers().clear();
 				return;
 			case ExtendedPackage.CONTAINER_SELECTOR__SOURCE_ELEMENTS:
-				getSourceElements().clear();
+				this.getSourceElements().clear();
 				return;
 			case ExtendedPackage.CONTAINER_SELECTOR__REFERENCE_ATTRIBUTE:
-				setReferenceAttribute((TargetSectionAttribute)null);
+				this.setReferenceAttribute((TargetSectionAttribute)null);
 				return;
 			case ExtendedPackage.CONTAINER_SELECTOR__TARGET_CLASS:
-				setTargetClass((TargetSectionClass)null);
+				this.setTargetClass((TargetSectionClass)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -436,15 +478,15 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case ExtendedPackage.CONTAINER_SELECTOR__EXPRESSION:
-				return EXPRESSION_EDEFAULT == null ? expression != null : !EXPRESSION_EDEFAULT.equals(expression);
+				return ContainerSelectorImpl.EXPRESSION_EDEFAULT == null ? this.expression != null : !ContainerSelectorImpl.EXPRESSION_EDEFAULT.equals(this.expression);
 			case ExtendedPackage.CONTAINER_SELECTOR__MODIFIERS:
-				return modifiers != null && !modifiers.isEmpty();
+				return this.modifiers != null && !this.modifiers.isEmpty();
 			case ExtendedPackage.CONTAINER_SELECTOR__SOURCE_ELEMENTS:
-				return sourceElements != null && !sourceElements.isEmpty();
+				return this.sourceElements != null && !this.sourceElements.isEmpty();
 			case ExtendedPackage.CONTAINER_SELECTOR__REFERENCE_ATTRIBUTE:
-				return referenceAttribute != null;
+				return this.referenceAttribute != null;
 			case ExtendedPackage.CONTAINER_SELECTOR__TARGET_CLASS:
-				return targetClass != null;
+				return this.targetClass != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -557,13 +599,15 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 			case ExtendedPackage.CONTAINER_SELECTOR___VALIDATE_TARGET_CLASS_MATCHES_POSSIBLE_CONTAINER_TYPE__DIAGNOSTICCHAIN_MAP:
-				return validateTargetClassMatchesPossibleContainerType((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+				return this.validateTargetClassMatchesPossibleContainerType((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case ExtendedPackage.CONTAINER_SELECTOR___VALIDATE_REFERENCE_ATTRIBUTE__DIAGNOSTICCHAIN_MAP:
+				return this.validateReferenceAttribute((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case ExtendedPackage.CONTAINER_SELECTOR___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP:
-				return validateNoModifiedAttributeElementTypesInConditionModelConditions((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+				return this.validateNoModifiedAttributeElementTypesInConditionModelConditions((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case ExtendedPackage.CONTAINER_SELECTOR___GET_LOCAL_SOURCE_ELEMENTS:
-				return getLocalSourceElements();
+				return this.getLocalSourceElements();
 			case ExtendedPackage.CONTAINER_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS:
-				return getExternalSourceElements();
+				return this.getExternalSourceElements();
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -574,11 +618,13 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (this.eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (expression: ");
-		result.append(expression);
+		result.append(this.expression);
 		result.append(')');
 		return result.toString();
 	}

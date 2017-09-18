@@ -165,12 +165,20 @@ public class ExtendedValidator extends EObjectValidator {
 	public static final int CONTAINER_SELECTOR__VALIDATE_TARGET_CLASS_MATCHES_POSSIBLE_CONTAINER_TYPE = 15;
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Reference Attribute' of 'Container Selector'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int CONTAINER_SELECTOR__VALIDATE_REFERENCE_ATTRIBUTE = 16;
+
+	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 15;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 16;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -1127,6 +1135,7 @@ public class ExtendedValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= structureValidator.validateInstanceSelector_validateNoModifiedAttributeElementTypesInConditionModelConditions(containerSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= validateContainerSelector_sourceMatchesPossibleContainerType(containerSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= validateContainerSelector_validateTargetClassMatchesPossibleContainerType(containerSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validateContainerSelector_validateReferenceAttribute(containerSelector, diagnostics, context);
 		return result;
 	}
 
@@ -1166,6 +1175,16 @@ public class ExtendedValidator extends EObjectValidator {
 	 */
 	public boolean validateContainerSelector_validateTargetClassMatchesPossibleContainerType(ContainerSelector containerSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return containerSelector.validateTargetClassMatchesPossibleContainerType(diagnostics, context);
+	}
+
+	/**
+	 * Validates the validateReferenceAttribute constraint of '<em>Container Selector</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateContainerSelector_validateReferenceAttribute(ContainerSelector containerSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return containerSelector.validateReferenceAttribute(diagnostics, context);
 	}
 
 	/**

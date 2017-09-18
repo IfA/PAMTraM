@@ -3409,6 +3409,18 @@
             </eGenericType>
           </eParameters>
         </eOperations>
+        <eOperations name="validateReferenceAttribute" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="if (!(this.eContainer() instanceof &lt;%pamtram.mapping.MappingHintGroupType%>) || this.getTargetClass() == null) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&lt;%pamtram.structure.target.TargetSection%> targetSection = ((&lt;%pamtram.mapping.MappingHintGroupType%>) this.eContainer()).getTargetSection();&#xD;&#xA;boolean result = targetSection == null || targetSection.getEClass() == null ? true&#xD;&#xA;&#x9;&#x9;: this.getTargetClass().getEClass().getEAllContainments().parallelStream()&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;.anyMatch(r -> r.getEReferenceType().isSuperTypeOf(targetSection.getEClass()));&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#x9;String errorMessage = &quot;The type of the parent hint group's target section ('&quot;&#xD;&#xA;&#x9;&#x9;&#x9;+ targetSection.getEClass().getName()&#xD;&#xA;&#x9;&#x9;&#x9;+ &quot;') cannot be connected to (contained in) the specified target class ('&quot;&#xD;&#xA;&#x9;&#x9;&#x9;+ this.getTargetClass().getName() + &quot;')!&quot;;&#xD;&#xA;&#x9;diagnostics.add(new BasicDiagnostic(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR, &lt;%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&lt;%pamtram.mapping.extended.util.ExtendedValidator%>.CONTAINER_SELECTOR__VALIDATE_TARGET_CLASS_MATCHES_POSSIBLE_CONTAINER_TYPE,&#xD;&#xA;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.structure.StructurePackage%>.Literals.TARGET_INSTANCE_SELECTOR__TARGET_CLASS }));&#xD;&#xA;&#xD;}&#xD;&#xA;&#xD;&#xD;&#xA;return result;"/>
+          </eAnnotations>
+          <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+          <eParameters name="context">
+            <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+              <eTypeArguments/>
+              <eTypeArguments/>
+            </eGenericType>
+          </eParameters>
+        </eOperations>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="MappedAttributeValueExpander" abstract="true"
           eSuperTypes="#//mapping/extended/HintImporterMappingHint">

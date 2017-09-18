@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ASCII"?>
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:extended="http://mfreund.de/pamtram/mapping/extended" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:target="http://mfreund.de/pamtram/structure/target">
+  <sourceSectionModels>
+    <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/"/>
+    <sections xsi:type="source:SourceSection" name="Confirmation">
+      <eClass href="http://www.w3.org/2013/mbui-aui#//Composition"/>
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="id">
+        <attribute href="http://www.w3.org/2013/mbui-aui#//Composition/id"/>
+      </attributes>
+    </sections>
+    <sections xsi:type="source:SourceSection" name="AbstractInteractionUnit">
+      <eClass href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit"/>
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="id">
+        <attribute href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/id"/>
+      </attributes>
+    </sections>
+  </sourceSectionModels>
+  <targetSectionModels>
+    <metaModelPackage href="http://stefan-hennig.de/movisa#/"/>
+    <sections xsi:type="target:TargetSection" name="Button" cardinality="ZERO__INFINITY">
+      <eClass href="http://stefan-hennig.de/movisa#//presentation/Button"/>
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name">
+        <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+      </attributes>
+    </sections>
+    <sections xsi:type="target:TargetSection" name="Abstract SimpleContainer" cardinality="ONE__INFINITY" abstract="true">
+      <eClass href="http://stefan-hennig.de/movisa#//presentation/SimpleContainer"/>
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name">
+        <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+      </attributes>
+    </sections>
+    <sections xsi:type="target:TargetSection" name="SimpleContainer" cardinality="ZERO__INFINITY" extend="//@targetSectionModels.0/@sections.1">
+      <eClass href="http://stefan-hennig.de/movisa#//presentation/SimpleContainer"/>
+    </sections>
+    <sections xsi:type="target:TargetSection" name="SimpleContainer2" cardinality="ZERO__INFINITY" extend="//@targetSectionModels.0/@sections.1">
+      <eClass href="http://stefan-hennig.de/movisa#//presentation/SimpleContainer"/>
+    </sections>
+  </targetSectionModels>
+  <mappingModels>
+    <mappings name="ConfirmationButtonMapping" sourceSection="//@sourceSectionModels.0/@sections.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetSection="//@targetSectionModels.0/@sections.0">
+        <mappingHints xsi:type="extended:AttributeMapping" name="NameMapping" target="//@targetSectionModels.0/@sections.0/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" source="//@sourceSectionModels.0/@sections.0/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ContainerSelector" name="connectToSimpleContainer" referenceAttribute="//@targetSectionModels.0/@sections.1/@attributes.0" targetClass="//@targetSectionModels.0/@sections.1">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.0" source="//@sourceSectionModels.0/@sections.0/@attributes.0"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mappings>
+    <mappings name="AbstractInteractionUnitMapping" sourceSection="//@sourceSectionModels.0/@sections.1">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SimpleContainer" targetSection="//@targetSectionModels.0/@sections.2">
+        <mappingHints xsi:type="extended:AttributeMapping" name="NameMapping" target="//@targetSectionModels.0/@sections.1/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" source="//@sourceSectionModels.0/@sections.1/@attributes.0"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mappings>
+    <modifierSets name="replaceComp">
+      <modifiers xsi:type="modifier:SubstringReplacer" name="replaceComp" regex="comp" replacement=""/>
+    </modifierSets>
+  </mappingModels>
+</pamtram:PAMTraM>

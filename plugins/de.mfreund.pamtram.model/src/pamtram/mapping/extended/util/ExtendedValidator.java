@@ -949,6 +949,8 @@ public class ExtendedValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(referenceTargetSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMappingHint_validateOverwritesValidMappingHint(referenceTargetSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMappingHint_validateConsiderOverwritingHint(referenceTargetSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateInstanceSelector_noModifiedAttributeElementTypesInConditionModelConditions(referenceTargetSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateInstanceSelector_validateNoModifiedAttributeElementTypesInConditionModelConditions(referenceTargetSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= validateReferenceTargetSelector_affectedReferenceIsNonContainment(referenceTargetSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= validateReferenceTargetSelector_affectedReferenceMatchesSection(referenceTargetSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= validateReferenceTargetSelector_validateAffectedReferenceIsNonContainment(referenceTargetSelector, diagnostics, context);

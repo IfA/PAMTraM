@@ -1184,6 +1184,7 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		g1 = createEGenericType(this.getCardinalityMappingSourceInterface());
 		cardinalityMappingGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
 		referenceTargetSelectorEClass.getESuperTypes().add(this.getMappingHint());
+		referenceTargetSelectorEClass.getESuperTypes().add(theStructurePackage.getTargetInstanceSelector());
 		classMatcherEClass.getESuperTypes().add(this.getMatcher());
 		attributeMatcherEClass.getESuperTypes().add(this.getMatcher());
 		attributeMatcherEClass.getESuperTypes().add(this.getExpandableHint());
@@ -1380,7 +1381,7 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 
 		initEClass(referenceTargetSelectorEClass, ReferenceTargetSelector.class, "ReferenceTargetSelector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getReferenceTargetSelector_AffectedReference(), theTargetPackage.getTargetSectionCrossReference(), null, "affectedReference", null, 1, 1, ReferenceTargetSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getReferenceTargetSelector_Matcher(), this.getMatcher(), null, "matcher", null, 1, 1, ReferenceTargetSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getReferenceTargetSelector_Matcher(), this.getMatcher(), null, "matcher", null, 0, 1, ReferenceTargetSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = initEOperation(getReferenceTargetSelector__ValidateAffectedReferenceIsNonContainment__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateAffectedReferenceIsNonContainment", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);

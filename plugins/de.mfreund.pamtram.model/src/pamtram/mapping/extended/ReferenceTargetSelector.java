@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
 
+import pamtram.structure.TargetInstanceSelector;
 import pamtram.structure.target.TargetSectionCrossReference;
 
 /**
@@ -30,7 +31,7 @@ import pamtram.structure.target.TargetSectionCrossReference;
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='affectedReferenceIsNonContainment affectedReferenceMatchesSection'"
  * @generated
  */
-public interface ReferenceTargetSelector extends MappingHint {
+public interface ReferenceTargetSelector extends MappingHint, TargetInstanceSelector {
 	/**
 	 * Returns the value of the '<em><b>Affected Reference</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -74,7 +75,7 @@ public interface ReferenceTargetSelector extends MappingHint {
 	 * @return the value of the '<em>Matcher</em>' containment reference.
 	 * @see #setMatcher(Matcher)
 	 * @see pamtram.mapping.extended.ExtendedPackage#getReferenceTargetSelector_Matcher()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	Matcher getMatcher();

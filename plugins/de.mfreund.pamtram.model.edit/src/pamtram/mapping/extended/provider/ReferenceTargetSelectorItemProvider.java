@@ -18,12 +18,16 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.DeactivatableElement;
+import pamtram.PamtramFactory;
+import pamtram.PamtramPackage;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.extended.ExtendedFactory;
 import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.provider.DeactivatableElementItemProvider;
+import pamtram.structure.StructureFactory;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.target.TargetSectionClass;
 import pamtram.structure.target.TargetSectionCrossReference;
 
@@ -56,9 +60,101 @@ public class ReferenceTargetSelectorItemProvider extends MappingHintItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addExpressionPropertyDescriptor(object);
+			addModifiersPropertyDescriptor(object);
+			addReferenceAttributePropertyDescriptor(object);
+			addTargetClassPropertyDescriptor(object);
 			addAffectedReferencePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Expression feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addExpressionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ExpressionElement_expression_feature"),
+				 getString("_UI_ExpressionElement_expression_description"),
+				 PamtramPackage.Literals.EXPRESSION_ELEMENT__EXPRESSION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 getString("_UI_ExtendedPropertyCategory"),
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Modifiers feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addModifiersPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ModifiableElement_modifiers_feature"),
+				 getString("_UI_ModifiableElement_modifiers_description"),
+				 PamtramPackage.Literals.MODIFIABLE_ELEMENT__MODIFIERS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 getString("_UI_ExtendedPropertyCategory"),
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Reference Attribute feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addReferenceAttributePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TargetInstanceSelector_referenceAttribute_feature"),
+				 getString("_UI_TargetInstanceSelector_referenceAttribute_description"),
+				 StructurePackage.Literals.TARGET_INSTANCE_SELECTOR__REFERENCE_ATTRIBUTE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 getString("_UI_BasicPropertyCategory"),
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Target Class feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTargetClassPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TargetInstanceSelector_targetClass_feature"),
+				 getString("_UI_TargetInstanceSelector_targetClass_description"),
+				 StructurePackage.Literals.TARGET_INSTANCE_SELECTOR__TARGET_CLASS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 getString("_UI_BasicPropertyCategory"),
+				 null));
 	}
 
 	/**
@@ -113,6 +209,7 @@ public class ReferenceTargetSelectorItemProvider extends MappingHintItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
+			childrenFeatures.add(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS);
 			childrenFeatures.add(ExtendedPackage.Literals.REFERENCE_TARGET_SELECTOR__MATCHER);
 		}
 		return childrenFeatures;
@@ -189,6 +286,10 @@ public class ReferenceTargetSelectorItemProvider extends MappingHintItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ReferenceTargetSelector.class)) {
+			case ExtendedPackage.REFERENCE_TARGET_SELECTOR__EXPRESSION:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case ExtendedPackage.REFERENCE_TARGET_SELECTOR__SOURCE_ELEMENTS:
 			case ExtendedPackage.REFERENCE_TARGET_SELECTOR__MATCHER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -206,6 +307,31 @@ public class ReferenceTargetSelectorItemProvider extends MappingHintItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,
+				 ExtendedFactory.eINSTANCE.createGlobalAttributeImporter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,
+				 PamtramFactory.eINSTANCE.createFixedValue()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,
+				 StructureFactory.eINSTANCE.createInstanceSelectorSourceElement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,
+				 StructureFactory.eINSTANCE.createInstanceSelectorExternalSourceElement()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS,
+				 StructureFactory.eINSTANCE.createInstanceSelectorGlobalSourceElement()));
 
 		newChildDescriptors.add
 			(createChildParameter

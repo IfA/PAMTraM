@@ -1810,13 +1810,58 @@ public interface ExtendedPackage extends EPackage {
 	int REFERENCE_TARGET_SELECTOR__OVERWRITE = MAPPING_HINT__OVERWRITE;
 
 	/**
+	 * The feature id for the '<em><b>Expression</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_TARGET_SELECTOR__EXPRESSION = MAPPING_HINT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_TARGET_SELECTOR__MODIFIERS = MAPPING_HINT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Source Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_TARGET_SELECTOR__SOURCE_ELEMENTS = MAPPING_HINT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Reference Attribute</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_TARGET_SELECTOR__REFERENCE_ATTRIBUTE = MAPPING_HINT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Target Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_TARGET_SELECTOR__TARGET_CLASS = MAPPING_HINT_FEATURE_COUNT + 4;
+
+	/**
 	 * The feature id for the '<em><b>Affected Reference</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE = MAPPING_HINT_FEATURE_COUNT + 0;
+	int REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE = MAPPING_HINT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Matcher</b></em>' containment reference.
@@ -1825,7 +1870,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_TARGET_SELECTOR__MATCHER = MAPPING_HINT_FEATURE_COUNT + 1;
+	int REFERENCE_TARGET_SELECTOR__MATCHER = MAPPING_HINT_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Reference Target Selector</em>' class.
@@ -1834,7 +1879,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_TARGET_SELECTOR_FEATURE_COUNT = MAPPING_HINT_FEATURE_COUNT + 2;
+	int REFERENCE_TARGET_SELECTOR_FEATURE_COUNT = MAPPING_HINT_FEATURE_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
@@ -1873,13 +1918,40 @@ public interface ExtendedPackage extends EPackage {
 	int REFERENCE_TARGET_SELECTOR___VALIDATE_CONSIDER_OVERWRITING_HINT__DIAGNOSTICCHAIN_MAP = MAPPING_HINT___VALIDATE_CONSIDER_OVERWRITING_HINT__DIAGNOSTICCHAIN_MAP;
 
 	/**
+	 * The operation id for the '<em>Validate No Modified Attribute Element Types In Condition Model Conditions</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_TARGET_SELECTOR___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Local Source Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_TARGET_SELECTOR___GET_LOCAL_SOURCE_ELEMENTS = MAPPING_HINT_OPERATION_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get External Source Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_TARGET_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS = MAPPING_HINT_OPERATION_COUNT + 2;
+
+	/**
 	 * The operation id for the '<em>Validate Affected Reference Is Non Containment</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_TARGET_SELECTOR___VALIDATE_AFFECTED_REFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 0;
+	int REFERENCE_TARGET_SELECTOR___VALIDATE_AFFECTED_REFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Validate Affected Reference Matches Section</em>' operation.
@@ -1888,7 +1960,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_TARGET_SELECTOR___VALIDATE_AFFECTED_REFERENCE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 1;
+	int REFERENCE_TARGET_SELECTOR___VALIDATE_AFFECTED_REFERENCE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Reference Target Selector</em>' class.
@@ -1897,7 +1969,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_TARGET_SELECTOR_OPERATION_COUNT = MAPPING_HINT_OPERATION_COUNT + 2;
+	int REFERENCE_TARGET_SELECTOR_OPERATION_COUNT = MAPPING_HINT_OPERATION_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.extended.impl.MatcherImpl <em>Matcher</em>}' class.

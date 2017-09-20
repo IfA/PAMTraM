@@ -35,29 +35,27 @@ import pamtram.structure.source.SourceSectionClass;
 public class LocalDynamicSourceElementItemProvider extends DynamicSourceElementItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public LocalDynamicSourceElementItemProvider(AdapterFactory adapterFactory) {
-
 		super(adapterFactory);
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-
-		if (this.itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			this.addReferenceMatchSpecPropertyDescriptor(object);
+			addReferenceMatchSpecPropertyDescriptor(object);
 		}
-		return this.itemPropertyDescriptors;
+		return itemPropertyDescriptors;
 	}
 
 	/**
@@ -67,45 +65,44 @@ public class LocalDynamicSourceElementItemProvider extends DynamicSourceElementI
 	 * @generated
 	 */
 	protected void addReferenceMatchSpecPropertyDescriptor(Object object) {
-
-		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
-				this.getString("_UI_LocalDynamicSourceElement_referenceMatchSpec_feature"),
-				this.getString("_UI_PropertyDescriptor_description",
-						"_UI_LocalDynamicSourceElement_referenceMatchSpec_feature",
-						"_UI_LocalDynamicSourceElement_type"),
-				StructurePackage.Literals.LOCAL_DYNAMIC_SOURCE_ELEMENT__REFERENCE_MATCH_SPEC, true, false, true, null,
-				this.getString("_UI_ExtendedPropertyCategory"), null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_LocalDynamicSourceElement_referenceMatchSpec_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_LocalDynamicSourceElement_referenceMatchSpec_feature", "_UI_LocalDynamicSourceElement_type"),
+				 StructurePackage.Literals.LOCAL_DYNAMIC_SOURCE_ELEMENT__REFERENCE_MATCH_SPEC,
+				 true,
+				 false,
+				 true,
+				 null,
+				 getString("_UI_ExtendedPropertyCategory"),
+				 null));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-
-		return ((StyledString) this.getStyledText(object)).getString();
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This returns the label styled text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-
-		String label = ((LocalDynamicSourceElement<?, ?, ?, ?>) object).getName();
-		StyledString styledLabel = new StyledString();
+		String label = ((LocalDynamicSourceElement<?, ?, ?, ?>)object).getName();
+    	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(this.getString("_UI_LocalDynamicSourceElement_type"),
-					StyledString.Style.QUALIFIER_STYLER);
+			styledLabel.append(getString("_UI_LocalDynamicSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel
-					.append(this.getString("_UI_LocalDynamicSourceElement_type"), StyledString.Style.QUALIFIER_STYLER)
-					.append(" " + label);
+			styledLabel.append(getString("_UI_LocalDynamicSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}
@@ -119,20 +116,18 @@ public class LocalDynamicSourceElementItemProvider extends DynamicSourceElementI
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-
-		this.updateChildren(notification);
+		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

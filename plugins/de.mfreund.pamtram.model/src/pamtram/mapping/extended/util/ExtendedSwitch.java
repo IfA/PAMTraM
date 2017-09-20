@@ -272,10 +272,14 @@ public class ExtendedSwitch<T> extends Switch<T> {
 				ReferenceTargetSelector referenceTargetSelector = (ReferenceTargetSelector)theEObject;
 				T result = caseReferenceTargetSelector(referenceTargetSelector);
 				if (result == null) result = caseMappingHint(referenceTargetSelector);
+				if (result == null) result = caseTargetInstanceSelector(referenceTargetSelector);
 				if (result == null) result = caseMappingHintType(referenceTargetSelector);
 				if (result == null) result = caseConditionalElement(referenceTargetSelector);
 				if (result == null) result = caseDeactivatableElement(referenceTargetSelector);
+				if (result == null) result = caseInstanceSelector(referenceTargetSelector);
 				if (result == null) result = caseMappingHintBaseType(referenceTargetSelector);
+				if (result == null) result = caseExpressionElement(referenceTargetSelector);
+				if (result == null) result = caseModifiableElement(referenceTargetSelector);
 				if (result == null) result = caseNamedElement(referenceTargetSelector);
 				if (result == null) result = defaultCase(theEObject);
 				return result;

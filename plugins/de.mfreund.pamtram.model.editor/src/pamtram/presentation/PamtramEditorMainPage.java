@@ -74,7 +74,6 @@ import pamtram.mapping.extended.AttributeMapping;
 import pamtram.mapping.extended.AttributeMappingSourceInterface;
 import pamtram.mapping.extended.AttributeMatcher;
 import pamtram.mapping.extended.CardinalityMapping;
-import pamtram.mapping.extended.ClassMatcher;
 import pamtram.mapping.extended.ContainerSelector;
 import pamtram.mapping.extended.ExpandableHint;
 import pamtram.mapping.extended.ExternalMappedAttributeValueExpander;
@@ -87,7 +86,6 @@ import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.generic.Attribute;
-import pamtram.structure.generic.CrossReference;
 import pamtram.structure.library.ContainerParameter;
 import pamtram.structure.library.LibraryEntry;
 import pamtram.structure.source.SourceSectionAttribute;
@@ -776,42 +774,26 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 				ReferenceTargetSelector selector = (ReferenceTargetSelector) item.getData();
 
-				CrossReference<?, ?, ?, ?> reference = selector.getAffectedReference();
+				List<Object> sources = new LinkedList<>();
+				List<Object> targets = new LinkedList<>();
 
-				this.setSourceTargetViewerSelections(selector.getSharedCondition(), reference);
+				for (InstanceSelectorSourceInterface c : selector.getSourceElements()) {
+					if (c instanceof DynamicSourceElement<?, ?, ?, ?>) {
+						sources.add(((DynamicSourceElement<?, ?, ?, ?>) c).getSource());
+					}
+				}
+				if (selector.getSharedCondition() != null) {
+					sources.add(selector.getSharedCondition());
+				}
+
+				targets.add(selector.getAffectedReference());
+				targets.add(selector.getTargetClass());
+				targets.add(selector.getReferenceAttribute());
+
+				this.setSourceTargetViewerSelections(selector.getSharedCondition(), targets);
 
 				/*
 				 * If an AttributeMatcher is selected, select its source and target attributes.
-				 */
-			} else if (item.getData() instanceof AttributeMatcher) {
-				AttributeMatcher matcher = (AttributeMatcher) item.getData();
-
-				TargetSectionAttribute target = matcher.getTarget();
-
-				List<Object> sources = new LinkedList<>();
-
-				for (InstanceSelectorSourceInterface srcElement : matcher.getSourceElements()) {
-					if (srcElement instanceof DynamicSourceElement<?, ?, ?, ?>) {
-						sources.add(((DynamicSourceElement<?, ?, ?, ?>) srcElement).getSource());
-					}
-				}
-
-				this.setSourceTargetViewerSelections(sources, target);
-
-				/*
-				 * If a ClassMatcher is selected, select the source and target classes associated with it.
-				 */
-			} else if (item.getData() instanceof ClassMatcher) {
-
-				ClassMatcher matcher = (ClassMatcher) item.getData();
-
-				TargetSectionClass target = matcher.getTargetClass();
-
-				this.setSourceTargetViewerSelections(null, target);
-
-				/*
-				 * If a ModelConnectionHint is selected, Select the source and target item associated with the selected
-				 * matcher.
 				 */
 			} else if (item.getData() instanceof ContainerSelector) {
 

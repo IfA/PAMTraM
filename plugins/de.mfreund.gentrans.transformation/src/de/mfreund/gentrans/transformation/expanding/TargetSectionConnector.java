@@ -1261,7 +1261,7 @@ public class TargetSectionConnector extends CancelableElement {
 								.map(r -> r.getAttributeValue(containerSelector.getReferenceAttribute()))
 								.collect(Collectors.toList())));
 
-		// Filter those container instances, whose 'reference values' match one of the given 'hint values
+		// Filter those container instances, whose 'reference values' match one of the given 'hint values'
 		//
 		return referenceValueByContainerInstance.entrySet().stream()
 				.filter(e -> !Collections.disjoint(hintValues, e.getValue())).map(Entry::getKey)

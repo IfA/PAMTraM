@@ -40,6 +40,18 @@ public class GlobalValueMap {
 	private Map<NamedElement, Double> globalValuesAsDouble;
 
 	/**
+	 * This creates an empty instance.
+	 *
+	 */
+	public GlobalValueMap() {
+
+		this.fixedValues = new HashMap<>();
+		this.globalAttributes = new HashMap<>();
+
+		this.globalValues = new HashMap<>();
+	}
+
+	/**
 	 * This creates an instance.
 	 *
 	 * @param fixedValues

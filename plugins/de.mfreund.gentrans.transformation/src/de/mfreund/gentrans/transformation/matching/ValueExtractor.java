@@ -3,7 +3,6 @@ package de.mfreund.gentrans.transformation.matching;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -16,7 +15,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ParserException;
 
 import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
-import de.mfreund.gentrans.transformation.calculation.ValueCalculator;
 import de.mfreund.gentrans.transformation.calculation.ValueModifierExecutor;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
@@ -45,9 +43,8 @@ import pamtram.structure.source.SourceSectionReference;
 import pamtram.structure.source.VirtualSourceSectionAttribute;
 
 /**
- * This represents an abstract base class that allows to extract
- * {@link AttributeValueRepresentation values} from a list of
- * {@link MatchedSectionDescriptor MatchedSectionDescriptors}.
+ * This represents an abstract base class that allows to extract {@link AttributeValueRepresentation values} from a list
+ * of {@link MatchedSectionDescriptor MatchedSectionDescriptors}.
  *
  * @author mfreund
  *
@@ -55,10 +52,14 @@ import pamtram.structure.source.VirtualSourceSectionAttribute;
 public abstract class ValueExtractor extends CancelableElement {
 
 	/**
-	 * The {@link ValueModifierExecutor} that shall be used for
-	 * modifying attribute values.
+	 * The {@link ValueModifierExecutor} that shall be used for modifying attribute values.
 	 */
 	protected final ValueModifierExecutor attributeValueModifierExecutor;
+
+	/**
+	 * The {@link InstanceSelectorHandler} used for selecting specific instances when extracting values.
+	 */
+	protected final InstanceSelectorHandler instanceSelectorHandler;
 
 	/**
 	 * The {@link Logger} that shall be used to print messages.
@@ -66,92 +67,79 @@ public abstract class ValueExtractor extends CancelableElement {
 	protected final Logger logger;
 
 	/**
-	 * Registry for values of {@link GlobalAttribute GlobalAttributes}.
+	 * The {@link GlobalValueMap} that contains the relevant values of {@link GlobalAttribute GlobalAttributes}.
 	 */
-	protected final Map<GlobalAttribute, String> globalAttributeValues;
+	protected final GlobalValueMap globalValues;
 
 	/**
-	 * Whether extended parallelization shall be used during the transformation
-	 * that might lead to the fact that the transformation result (especially
-	 * the order of lists) varies between executions.
+	 * Whether extended parallelization shall be used during the transformation that might lead to the fact that the
+	 * transformation result (especially the order of lists) varies between executions.
 	 */
 	protected boolean useParallelization;
 
 	/**
-	 * This creates an instance for a given list of
-	 * {@link MatchedSectionDescriptor matchedSectionDescriptors}.
+	 * This creates an instance for a given list of {@link MatchedSectionDescriptor matchedSectionDescriptors}.
 	 *
 	 * @param attributeValueModifierExecutor
-	 *            The {@link ValueModifierExecutor} that shall be used
-	 *            for modifying attribute values.
+	 *            The {@link ValueModifierExecutor} that shall be used for modifying attribute values.
+	 * @param instanceSelectorHandler
+	 *            The {@link InstanceSelectorHandler} used for selecting specific instances when extracting values.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
 	 * @param useParallelization
-	 *            Whether extended parallelization shall be used during the
-	 *            transformation that might lead to the fact that the
-	 *            transformation result (especially the order of lists) varies
-	 *            between executions.
+	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
+	 *            that the transformation result (especially the order of lists) varies between executions.
+	 * @deprecated use
+	 *             {@link #ValueExtractor(GlobalValueMap, InstanceSelectorHandler, ValueModifierExecutor, Logger, boolean)}
+	 *             instead
 	 */
-	public ValueExtractor(ValueModifierExecutor attributeValueModifierExecutor, Logger logger,
-			boolean useParallelization) {
+	@Deprecated
+	public ValueExtractor(ValueModifierExecutor attributeValueModifierExecutor,
+			InstanceSelectorHandler instanceSelectorHandler, Logger logger, boolean useParallelization) {
 
 		this.attributeValueModifierExecutor = attributeValueModifierExecutor;
+		this.instanceSelectorHandler = instanceSelectorHandler;
 		this.logger = logger;
 		this.useParallelization = useParallelization;
-		this.globalAttributeValues = new HashMap<>();
+		this.globalValues = new GlobalValueMap();
 	}
 
 	/**
-	 * This creates an instance for a given list of
-	 * {@link MatchedSectionDescriptor matchedSectionDescriptors}.
+	 * This creates an instance for a given list of {@link MatchedSectionDescriptor matchedSectionDescriptors}.
 	 *
-	 * @param globalAttributeValues
-	 *            The values of {@link GlobalAttribute GlobalAttributes} that
-	 *            shall be used by
-	 *            {@link #extractValue(GlobalAttributeImporter, MatchedSectionDescriptor)}.
+	 * @param globalValues
+	 *            The {@link GlobalValueMap} that contains the relevant values of {@link GlobalAttribute
+	 *            GlobalAttributes}.
+	 * @param instanceSelectorHandler
+	 *            The {@link InstanceSelectorHandler} used for selecting specific instances when extracting values.
 	 * @param attributeValueModifierExecutor
-	 *            The {@link ValueModifierExecutor} that shall be used
-	 *            for modifying attribute values.
+	 *            The {@link ValueModifierExecutor} that shall be used for modifying attribute values.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
 	 * @param useParallelization
-	 *            Whether extended parallelization shall be used during the
-	 *            transformation that might lead to the fact that the
-	 *            transformation result (especially the order of lists) varies
-	 *            between executions.
+	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
+	 *            that the transformation result (especially the order of lists) varies between executions.
 	 */
-	public ValueExtractor(Map<GlobalAttribute, String> globalAttributeValues,
+	public ValueExtractor(GlobalValueMap globalValues, InstanceSelectorHandler instanceSelectorHandler,
 			ValueModifierExecutor attributeValueModifierExecutor, Logger logger, boolean useParallelization) {
 
 		this.attributeValueModifierExecutor = attributeValueModifierExecutor;
+		this.instanceSelectorHandler = instanceSelectorHandler;
 		this.logger = logger;
 		this.useParallelization = useParallelization;
-		this.globalAttributeValues = globalAttributeValues;
+		this.globalValues = globalValues;
 	}
 
 	/**
-	 * This is the getter for the {@link #globalAttributeValues}.
-	 *
-	 * @return The registry for values of {@link GlobalAttribute
-	 *         GlobalAttributes}.
-	 */
-	public Map<GlobalAttribute, String> getGlobalAttributeValues() {
-
-		return this.globalAttributeValues;
-	}
-
-	/**
-	 * This extracts and returns the value for the given {@link FixedValue} from
-	 * the source elements represented by the given
-	 * <em>matchedSectionDescriptor</em>.
+	 * This extracts and returns the value for the given {@link FixedValue} from the source elements represented by the
+	 * given <em>matchedSectionDescriptor</em>.
 	 *
 	 * @param fixedValue
 	 *            The {@link FixedValue} for that the values shall be extracted.
 	 * @param matchedSectionDescriptor
-	 *            The {@link MatchedSectionDescriptor} for that the hint values
-	 *            shall be extracted.
-	 * @return The extracted {@link AttributeValueRepresentation hint value} or
-	 *         '<em>null</em>' if no hint value could be extracted.
+	 *            The {@link MatchedSectionDescriptor} for that the hint values shall be extracted.
+	 * @return The extracted {@link AttributeValueRepresentation hint value} or '<em>null</em>' if no hint value could
+	 *         be extracted.
 	 */
 	protected AttributeValueRepresentation extractValue(FixedValue fixedValue,
 			MatchedSectionDescriptor matchedSectionDescriptor) {
@@ -164,47 +152,40 @@ public abstract class ValueExtractor extends CancelableElement {
 	}
 
 	/**
-	 * This extracts and returns the value for the given
-	 * {@link GlobalAttributeImporter} from the source elements represented by
-	 * the given <em>mappingInstance</em>.
+	 * This extracts and returns the value for the given {@link GlobalAttributeImporter} from the source elements
+	 * represented by the given <em>mappingInstance</em>.
 	 *
 	 * @param globaleAttributeImporter
-	 *            The {@link GlobalAttributeImporter} for that the hint values
-	 *            shall be extracted.
+	 *            The {@link GlobalAttributeImporter} for that the hint values shall be extracted.
 	 * @param matchedSectionDescriptor
-	 *            The {@link MatchedSectionDescriptor} for that the hint values
-	 *            shall be extracted.
-	 * @return The extracted {@link AttributeValueRepresentation hint value} or
-	 *         '<em>null</em>' if no hint value could be extracted.
+	 *            The {@link MatchedSectionDescriptor} for that the hint values shall be extracted.
+	 * @return The extracted {@link AttributeValueRepresentation hint value} or '<em>null</em>' if no hint value could
+	 *         be extracted.
 	 */
 	protected AttributeValueRepresentation extractValue(GlobalAttributeImporter globaleAttributeImporter,
 			MatchedSectionDescriptor matchedSectionDescriptor) {
 
 		this.checkCanceled();
 
-		return this.globalAttributeValues.containsKey(globaleAttributeImporter.getGlobalAttribute())
+		return this.globalValues.getGlobalAttributes().containsKey(globaleAttributeImporter.getGlobalAttribute())
 				? new AttributeValueRepresentation(null,
-						this.globalAttributeValues.get(globaleAttributeImporter.getGlobalAttribute()))
-						: null;
+						this.globalValues.get(globaleAttributeImporter.getGlobalAttribute()))
+				: null;
 	}
 
 	/**
-	 * This extracts and returns the hint value for the given
-	 * {@link DynamicSourceElement} from the source elements represented by the
-	 * given <em>mappingInstance</em>.
+	 * This extracts and returns the hint value for the given {@link DynamicSourceElement} from the source elements
+	 * represented by the given <em>mappingInstance</em>.
 	 * <p />
-	 * Note: This method must not be used for {@link GlobalDynamicSourceElement
-	 * GlobalModifiedAttributeElementTypes}. Use
-	 * {@link #extractValue(GlobalDynamicSourceElement, Map)} instead.
+	 * Note: This method must not be used for {@link GlobalDynamicSourceElement GlobalModifiedAttributeElementTypes}.
+	 * Use {@link #extractValue(GlobalDynamicSourceElement, Map)} instead.
 	 *
 	 * @param mappingHintSourceElement
-	 *            The {@link DynamicSourceElement} for that the hint values
-	 *            shall be extracted.
+	 *            The {@link DynamicSourceElement} for that the hint values shall be extracted.
 	 * @param matchedSectionDescriptor
-	 *            The {@link MatchedSectionDescriptor} for that the hint values
-	 *            shall be extracted.
-	 * @return The extracted {@link AttributeValueRepresentation hint value} or
-	 *         '<em>null</em>' if no hint value could be extracted.
+	 *            The {@link MatchedSectionDescriptor} for that the hint values shall be extracted.
+	 * @return The extracted {@link AttributeValueRepresentation hint value} or '<em>null</em>' if no hint value could
+	 *         be extracted.
 	 */
 	protected AttributeValueRepresentation extractValue(
 			DynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> mappingHintSourceElement,
@@ -292,28 +273,22 @@ public abstract class ValueExtractor extends CancelableElement {
 	}
 
 	/**
-	 * This extracts and returns the hint value for the given
-	 * {@link GlobalDynamicSourceElement} from the source elements represented
-	 * by the given <em>mappingInstance</em>.
+	 * This extracts and returns the hint value for the given {@link GlobalDynamicSourceElement} from the source
+	 * elements represented by the given <em>mappingInstance</em>.
 	 *
 	 * @param mappingHintSourceElement
-	 *            The {@link GlobalDynamicSourceElement} for that the hint
-	 *            values shall be extracted.
+	 *            The {@link GlobalDynamicSourceElement} for that the hint values shall be extracted.
 	 * @param matchedSections
-	 *            Registry for <em>source model objects</em> that have already
-	 *            been matched. The matched objects are stored in a map where
-	 *            the key is the corresponding {@link SourceSectionClass} that
-	 *            they have been matched to.
+	 *            Registry for <em>source model objects</em> that have already been matched. The matched objects are
+	 *            stored in a map where the key is the corresponding {@link SourceSectionClass} that they have been
+	 *            matched to.
 	 * @param matchedSectionDescriptor
-	 *            The {@link MatchedSectionDescriptor} for that the hint values
-	 *            shall be extracted.
+	 *            The {@link MatchedSectionDescriptor} for that the hint values shall be extracted.
 	 * @param useParallelization
-	 *            Whether extended parallelization shall be used during the
-	 *            transformation that might lead to the fact that the
-	 *            transformation result (especially the order of lists) varies
-	 *            between executions.
-	 * @return The extracted {@link AttributeValueRepresentation hint value} or
-	 *         '<em>null</em>' if no hint value could be extracted.
+	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
+	 *            that the transformation result (especially the order of lists) varies between executions.
+	 * @return The extracted {@link AttributeValueRepresentation hint value} or '<em>null</em>' if no hint value could
+	 *         be extracted.
 	 */
 	protected AttributeValueRepresentation extractValue(
 			GlobalDynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute, SourceInstanceSelector> mappingHintSourceElement,
@@ -329,22 +304,17 @@ public abstract class ValueExtractor extends CancelableElement {
 		//
 		List<EObject> sourceElements = (useParallelization ? sourceDescriptors.parallelStream()
 				: sourceDescriptors.stream())
-				.flatMap(descriptor -> descriptor.getSourceModelObjectsMapped()
-						.get(mappingHintSourceElement.getSource().eContainer()).stream())
-				.collect(Collectors.toList());
+						.flatMap(descriptor -> descriptor.getSourceModelObjectsMapped()
+								.get(mappingHintSourceElement.getSource().eContainer()).stream())
+						.collect(Collectors.toList());
 
 		// Reduce the list of instances based on modeled InstancePointers
 		//
 		if (!sourceElements.isEmpty() && !mappingHintSourceElement.getInstanceSelectors().isEmpty()) {
 
-			GlobalValueMap gv = new GlobalValueMap(new HashMap<>(), this.globalAttributeValues);
-			InstanceSelectorHandler instancePointerHandler = new InstanceSelectorHandler(matchedSections, gv,
-					new ValueCalculator(gv, this.attributeValueModifierExecutor, this.logger), this.logger,
-					useParallelization);
-
 			for (SourceInstanceSelector instancePointer : mappingHintSourceElement.getInstanceSelectors()) {
 
-				sourceElements = instancePointerHandler.getSelectedInstancesByInstanceList(instancePointer,
+				sourceElements = this.instanceSelectorHandler.getSelectedInstancesByInstanceList(instancePointer,
 						sourceElements, matchedSectionDescriptor);
 			}
 
@@ -366,15 +336,14 @@ public abstract class ValueExtractor extends CancelableElement {
 	}
 
 	/**
-	 * This extracts and returns the hint value for the given
-	 * {@link DynamicSourceElement} from the given list of source elements.
+	 * This extracts and returns the hint value for the given {@link DynamicSourceElement} from the given list of source
+	 * elements.
 	 *
 	 * @param mappingHintSourceElement
-	 *            The {@link DynamicSourceElement} for that the hint values
-	 *            shall be extracted.
+	 *            The {@link DynamicSourceElement} for that the hint values shall be extracted.
 	 * @param sourceElements
-	 * @return The extracted {@link AttributeValueRepresentation hint value} or
-	 *         '<em>null</em>' if no hint value could be extracted.
+	 * @return The extracted {@link AttributeValueRepresentation hint value} or '<em>null</em>' if no hint value could
+	 *         be extracted.
 	 */
 	protected AttributeValueRepresentation extractValue(
 			DynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> mappingHintSourceElement,
@@ -393,67 +362,64 @@ public abstract class ValueExtractor extends CancelableElement {
 		AttributeValueRepresentation hintValue = null;
 
 		EAttribute sourceAttribute = mappingHintSourceElement.getSource() instanceof ActualSourceSectionAttribute
-				? ((ActualSourceSectionAttribute) mappingHintSourceElement.getSource()).getAttribute() : null;
+				? ((ActualSourceSectionAttribute) mappingHintSourceElement.getSource()).getAttribute()
+				: null;
 
-				// Collect all values of the attribute in all source elements
-				//
-				List<Object> srcAttrValues = ValueExtractor.getAttributeValueAsList(sourceElements,
-						mappingHintSourceElement.getSource(), this.logger);
+		// Collect all values of the attribute in all source elements
+		//
+		List<Object> srcAttrValues = ValueExtractor.getAttributeValueAsList(sourceElements,
+				mappingHintSourceElement.getSource(), this.logger);
 
-				if (srcAttrValues.isEmpty()) {
-					this.logger.warning(() -> "No hint value found for source element '" + mappingHintSourceElement.getName()
+		if (srcAttrValues.isEmpty()) {
+			this.logger.warning(() -> "No hint value found for source element '" + mappingHintSourceElement.getName()
 					+ "' in mapping hint '" + ((NamedElement) mappingHintSourceElement.eContainer()).getName()
 					+ "' (Mapping '" + ((Mapping) AgteleEcoreUtil.getAncestorOfKind(mappingHintSourceElement,
 							MappingPackage.Literals.MAPPING)).getName()
 					+ "')!");
-					return null;
-				}
+			return null;
+		}
 
-				// Extract a hint value for each retrieved value
-				//
-				for (Object srcAttrValue : srcAttrValues) {
+		// Extract a hint value for each retrieved value
+		//
+		for (Object srcAttrValue : srcAttrValues) {
 
-					String srcAttrAsString = srcAttrValue.toString();
+			String srcAttrAsString = srcAttrValue.toString();
 
-					// if the attribute represents an actual EAttribute, we need to
-					// convert the value based on its type
-					if (sourceAttribute != null) {
-						srcAttrAsString = sourceAttribute.getEType().getEPackage().getEFactoryInstance()
-								.convertToString(sourceAttribute.getEAttributeType(), srcAttrValue);
-					}
+			// if the attribute represents an actual EAttribute, we need to
+			// convert the value based on its type
+			if (sourceAttribute != null) {
+				srcAttrAsString = sourceAttribute.getEType().getEPackage().getEFactoryInstance()
+						.convertToString(sourceAttribute.getEAttributeType(), srcAttrValue);
+			}
 
-					final String valCopy = this.attributeValueModifierExecutor.applyAttributeValueModifiers(srcAttrAsString,
-							mappingHintSourceElement.getModifiers());
+			final String valCopy = this.attributeValueModifierExecutor.applyAttributeValueModifiers(srcAttrAsString,
+					mappingHintSourceElement.getModifiers());
 
-					// create a new AttributeValueRepresentation or update the existing
-					// one
-					if (hintValue == null) {
-						hintValue = new AttributeValueRepresentation(mappingHintSourceElement.getSource(), valCopy);
-					} else {
-						hintValue.addValue(valCopy);
-					}
-				}
+			// create a new AttributeValueRepresentation or update the existing
+			// one
+			if (hintValue == null) {
+				hintValue = new AttributeValueRepresentation(mappingHintSourceElement.getSource(), valCopy);
+			} else {
+				hintValue.addValue(valCopy);
+			}
+		}
 
-				return hintValue;
+		return hintValue;
 	}
 
 	/**
 	 * For the given list of {@link EObject EObjects}, this returns the
-	 * {@link EObject#eGet(org.eclipse.emf.ecore.EStructuralFeature) value or
-	 * values} of the given {@link EAttribute} by collecting the values returned
-	 * by
-	 * {@link ValueExtractor#getAttributeValueAsList(EObject, SourceSectionAttribute, Logger)}
-	 * for every element.
+	 * {@link EObject#eGet(org.eclipse.emf.ecore.EStructuralFeature) value or values} of the given {@link EAttribute} by
+	 * collecting the values returned by
+	 * {@link ValueExtractor#getAttributeValueAsList(EObject, SourceSectionAttribute, Logger)} for every element.
 	 *
 	 * @param sourceElements
-	 *            The list of {@link EObject EObjects} for that the values shall
-	 *            be returned.
+	 *            The list of {@link EObject EObjects} for that the values shall be returned.
 	 * @param sourceAttribute
 	 *            The {@link EAttribute} for that the values shall be returned.
 	 * @param logger
 	 *            The {@link Logger} to be used to print message to the user.
-	 * @return The determined values (either an empty list, a list consisting of
-	 *         a single value, or multiple values).
+	 * @return The determined values (either an empty list, a list consisting of a single value, or multiple values).
 	 */
 	public static List<Object> getAttributeValueAsList(List<EObject> sourceElements,
 			SourceSectionAttribute sourceAttribute, Logger logger) {

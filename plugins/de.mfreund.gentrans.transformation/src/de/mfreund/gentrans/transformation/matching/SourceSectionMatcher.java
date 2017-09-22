@@ -25,13 +25,10 @@ import org.eclipse.ocl.ParserException;
 
 import de.mfreund.gentrans.transformation.CancelTransformationException;
 import de.mfreund.gentrans.transformation.UserAbortException;
-import de.mfreund.gentrans.transformation.calculation.ValueCalculator;
-import de.mfreund.gentrans.transformation.calculation.AttributeValueConstraintReferenceValueCalculator;
-import de.mfreund.gentrans.transformation.calculation.ValueModifierExecutor;
+import de.mfreund.gentrans.transformation.calculation.ValueConstraintReferenceValueCalculator;
 import de.mfreund.gentrans.transformation.descriptors.ContainmentTree;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
-import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.maps.SourceSectionMatchingResultsMap;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvedAdapter;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
@@ -39,8 +36,6 @@ import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.
 import de.mfreund.gentrans.transformation.util.CancelableElement;
 import de.mfreund.pamtram.util.NullComparator;
 import de.mfreund.pamtram.util.OCLUtil;
-import pamtram.FixedValue;
-import pamtram.MappingModel;
 import pamtram.structure.constraint.ChoiceConstraint;
 import pamtram.structure.constraint.EqualityConstraint;
 import pamtram.structure.constraint.SingleReferenceValueConstraint;
@@ -104,10 +99,10 @@ public class SourceSectionMatcher extends CancelableElement {
 	private final Map<SourceSectionClass, Set<EObject>> matchedContainers;
 
 	/**
-	 * This {@link AttributeValueConstraintReferenceValueCalculator} will be used for calculating referenceValues that
+	 * This {@link ValueConstraintReferenceValueCalculator} will be used for calculating referenceValues that
 	 * are needed for {@link ValueConstraint}
 	 */
-	private AttributeValueConstraintReferenceValueCalculator refValueCalculator;
+	private ValueConstraintReferenceValueCalculator refValueCalculator;
 
 	private Map<SourceSection, List<MatchedSectionDescriptor>> sections2Descriptors;
 
@@ -119,8 +114,9 @@ public class SourceSectionMatcher extends CancelableElement {
 	 * @param sourceSections
 	 *            The list of {@link SourceSection SourceSections} that the ' <em>containmentTree</em>' shall be matched
 	 *            against.
-	 * @param globalValues
-	 *            The list of {@link MappingModel#getGlobalValues() global values} modeled in the PAMTraM instance.
+	 * @param valueConstraintReferenceValueCalculator
+	 *            The {@link ValueConstraintReferenceValueCalculator} that shall be used to used to calculate
+	 *            reference values of {@link ValueConstraint ValueConstraints}.
 	 * @param ambiguityResolvingStrategy
 	 *            The {@link IAmbiguityResolvingStrategy} to be used.
 	 * @param logger
@@ -130,8 +126,8 @@ public class SourceSectionMatcher extends CancelableElement {
 	 *            that the transformation result (especially the order of lists) varies between executions.
 	 */
 	public SourceSectionMatcher(ContainmentTree containmentTree, EList<SourceSection> sourceSections,
-			Map<FixedValue, String> globalValues, IAmbiguityResolvingStrategy ambiguityResolvingStrategy, Logger logger,
-			boolean useParallelization) {
+			ValueConstraintReferenceValueCalculator valueConstraintReferenceValueCalculator,
+			IAmbiguityResolvingStrategy ambiguityResolvingStrategy, Logger logger, boolean useParallelization) {
 
 		this.containmentTree = containmentTree;
 		this.sourceSections = sourceSections;
@@ -139,10 +135,7 @@ public class SourceSectionMatcher extends CancelableElement {
 		this.logger = logger;
 		this.matchedSections = new HashMap<>();
 		this.matchedContainers = new HashMap<>();
-		GlobalValueMap globalValueMap = new GlobalValueMap(globalValues, new HashMap<>());
-		this.refValueCalculator = new AttributeValueConstraintReferenceValueCalculator(globalValueMap,
-				new ValueCalculator(globalValueMap, ValueModifierExecutor.getInstance(), logger),
-				logger, useParallelization);
+		this.refValueCalculator = valueConstraintReferenceValueCalculator;
 	}
 
 	/**

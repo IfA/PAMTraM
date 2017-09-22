@@ -42,6 +42,8 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 
 	/**
 	 * The {@link Logger} that shall be used to print messages.
+	 *
+	 * FIXME Move the logger to the {@link TransformationUtilManager}?
 	 */
 	private Logger logger;
 

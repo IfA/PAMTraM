@@ -11,52 +11,53 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 
+import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
 import de.mfreund.gentrans.transformation.calculation.ValueModifierExecutor;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
+import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import pamtram.MappingModel;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.structure.source.SourceSection;
 
 /**
- * This class can be used to extract values of {@link GlobalAttribute
- * GlobalAttributes} from source model elements for a given list of
- * {@link MatchedSectionDescriptor matched sections}.
+ * This class can be used to extract values of {@link GlobalAttribute GlobalAttributes} from source model elements for a
+ * given list of {@link MatchedSectionDescriptor matched sections}.
  *
  * @author mfreund
  */
 public class GlobalAttributeValueExtractor extends ValueExtractor {
 
 	/**
-	 * This creates an instance for a given list of
-	 * {@link MatchedSectionDescriptor matchedSectionDescriptors}.
+	 * This creates an instance for a given list of {@link MatchedSectionDescriptor matchedSectionDescriptors}.
 	 *
+	 * @param globalValues
+	 *            The {@link GlobalValueMap} where the extracted values are stored.
+	 * @param instanceSelectorHandler
+	 *            The {@link InstanceSelectorHandler} used for selecting specific instances when extracting values.
 	 * @param attributeValueModifierExecutor
-	 *            The {@link ValueModifierExecutor} that shall be used
-	 *            for modifying attribute values.
+	 *            The {@link ValueModifierExecutor} that shall be used for modifying attribute values.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
 	 * @param useParallelization
-	 *            Whether extended parallelization shall be used during the
-	 *            transformation that might lead to the fact that the
-	 *            transformation result (especially the order of lists) varies
-	 *            between executions.
+	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
+	 *            that the transformation result (especially the order of lists) varies between executions.
 	 */
-	public GlobalAttributeValueExtractor(ValueModifierExecutor attributeValueModifierExecutor, Logger logger,
-			boolean useParallelization) {
-		super(attributeValueModifierExecutor, logger, useParallelization);
+	public GlobalAttributeValueExtractor(GlobalValueMap globalValues, InstanceSelectorHandler instanceSelectorHandler,
+			ValueModifierExecutor attributeValueModifierExecutor, Logger logger, boolean useParallelization) {
+
+		super(globalValues, instanceSelectorHandler, attributeValueModifierExecutor, logger, useParallelization);
 	}
 
 	/**
-	 * This extracts and returns the values of {@link GlobalAttribute
-	 * GlobalAttributes}.
+	 * This extracts and returns the values of {@link GlobalAttribute GlobalAttributes}.
+	 * <p />
+	 * Note: The extracted values are also stored in the {@link #globalValues}.
 	 *
 	 * @param matchingResult
-	 *            The set of MatchedSectionDescriptors that represents the
-	 *            result of the matching process. The values of GlobalAttributes
-	 *            will get extracted from this.
+	 *            The set of MatchedSectionDescriptors that represents the result of the matching process. The values of
+	 *            GlobalAttributes will get extracted from this.
 	 * @param mappingModels
-	 *            The list of {@link MappingModel MappingModels} containing the
-	 *            GlobalAttributes to be extracted.
+	 *            The list of {@link MappingModel MappingModels} containing the GlobalAttributes to be extracted.
 	 * @return The found values of the {@link GlobalAttribute GlobalAttributes}.
 	 */
 	public Map<GlobalAttribute, String> extractGlobalAttributeValues(
@@ -67,7 +68,8 @@ public class GlobalAttributeValueExtractor extends ValueExtractor {
 		// MatchedSectionDescriptors
 		//
 		Map<GlobalAttribute, List<MatchedSectionDescriptor>> sourceSectionByGlobalAttribute = (this.useParallelization
-				? mappingModels.parallelStream() : mappingModels.stream())
+				? mappingModels.parallelStream()
+				: mappingModels.stream())
 						.flatMap(m -> (this.useParallelization ? m.getGlobalAttributes().parallelStream()
 								: m.getGlobalAttributes().stream()))
 						.collect(Collectors.toMap(i -> i,
@@ -80,27 +82,25 @@ public class GlobalAttributeValueExtractor extends ValueExtractor {
 		sourceSectionByGlobalAttribute.entrySet().stream()
 				.forEach(e -> e.getValue().stream().forEach(m -> this.extractGlobalAttributeValue(e.getKey(), m)));
 
-		return this.globalAttributeValues;
+		return this.globalValues.getGlobalAttributes();
 	}
 
 	/**
-	 * This extracts the value for the given {@link GlobalAttribute} from the
-	 * source elements represented by the given
+	 * This extracts the value for the given {@link GlobalAttribute} from the source elements represented by the given
 	 * <em>matchedSectionDescriptor</em>.
 	 * <p />
-	 * Note: The extracted value is stored in {@link #globalAttributeValues}.
+	 * Note: The extracted value is stored in {@link #globalValues}.
 	 *
 	 * @param globalAttribute
-	 *            The {@link GlobalAttribute} for that the value shall be
-	 *            extracted.
+	 *            The {@link GlobalAttribute} for that the value shall be extracted.
 	 * @param matchedSectionDescriptor
-	 *            The {@link MatchedSectionDescriptor} representing the source
-	 *            model elements from that values shall be extracted.
+	 *            The {@link MatchedSectionDescriptor} representing the source model elements from that values shall be
+	 *            extracted.
 	 */
 	private void extractGlobalAttributeValue(GlobalAttribute globalAttribute,
 			MatchedSectionDescriptor matchedSectionDescriptor) {
 
-		if (this.globalAttributeValues.containsKey(globalAttribute)) {
+		if (this.globalValues.getGlobalAttributes().containsKey(globalAttribute)) {
 			this.logger.warning(() -> "Multiple source values found for global attribute '" + globalAttribute.getName()
 					+ "'." + " This is not supported. Only the first element is used!");
 		}
@@ -141,7 +141,7 @@ public class GlobalAttributeValueExtractor extends ValueExtractor {
 
 		// Store the found value
 		//
-		this.globalAttributeValues.put(globalAttribute, valCopy);
+		this.globalValues.getGlobalAttributes().put(globalAttribute, valCopy);
 	}
 
 }

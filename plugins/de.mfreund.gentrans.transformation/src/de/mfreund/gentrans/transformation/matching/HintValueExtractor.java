@@ -10,10 +10,12 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 
+import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
 import de.mfreund.gentrans.transformation.calculation.ValueModifierExecutor;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
+import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.maps.HintValueMap;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.FixedValue;
@@ -36,6 +38,7 @@ import pamtram.mapping.extended.MappingHintSourceInterface;
 import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.GlobalDynamicSourceElement;
+import pamtram.structure.InstanceSelector;
 import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.generic.ActualAttribute;
 import pamtram.structure.source.ActualSourceSectionAttribute;
@@ -82,9 +85,12 @@ public class HintValueExtractor extends ValueExtractor {
 	 * @param mappingInstances
 	 *            The list of {@link MappingInstanceStorage MappingInstanceStorages} for that the hint values shall be
 	 *            extracted.
-	 * @param globalAttributes
-	 *            The values of {@link GlobalAttribute GlobalAttributes} that shall be used by
-	 *            {@link #extractValue(GlobalAttributeImporter, MatchedSectionDescriptor)}.
+	 * @param globalValues
+	 *            The <em>global values</em> (values of {@link FixedValue FixedValues} and {@link GlobalAttribute
+	 *            GlobalAttribute}) defined in the PAMTraM model.
+	 * @param instanceSelectorHandler
+	 *            The {@link InstanceSelectorHandler} that is used to evaluate {@link InstanceSelector InstancePointers}
+	 *            that have been modeled.
 	 * @param attributeValueModifierExecutor
 	 *            The {@link ValueModifierExecutor} that shall be used for modifying attribute values.
 	 * @param logger
@@ -94,10 +100,11 @@ public class HintValueExtractor extends ValueExtractor {
 	 *            that the transformation result (especially the order of lists) varies between executions.
 	 */
 	public HintValueExtractor(Map<SourceSection, List<MatchedSectionDescriptor>> matchingResult,
-			List<MappingInstanceStorage> mappingInstances, Map<GlobalAttribute, String> globalAttributes,
-			ValueModifierExecutor attributeValueModifierExecutor, Logger logger, boolean useParallelization) {
+			List<MappingInstanceStorage> mappingInstances, GlobalValueMap globalValues,
+			InstanceSelectorHandler instanceSelectorHandler, ValueModifierExecutor attributeValueModifierExecutor,
+			Logger logger, boolean useParallelization) {
 
-		super(globalAttributes, attributeValueModifierExecutor, logger, useParallelization);
+		super(globalValues, instanceSelectorHandler, attributeValueModifierExecutor, logger, useParallelization);
 
 		this.matchedSections = matchingResult;
 		this.mappingInstances = mappingInstances;
@@ -229,11 +236,7 @@ public class HintValueExtractor extends ValueExtractor {
 
 		Object hintValue = null;
 
-		if (hint instanceof ReferenceTargetSelector
-				&& !(((ReferenceTargetSelector) hint).getMatcher() instanceof AttributeMatcher)) {
-			// nothing to be done
-
-		} else if (hint instanceof AttributeMapping || hint instanceof ReferenceTargetSelector
+		if (hint instanceof AttributeMapping || hint instanceof ReferenceTargetSelector
 				|| hint instanceof ContainerSelector) {
 
 			MatchedSectionDescriptor matchedSectionDescriptor = mappingInstance.getMatchedSectionDescriptor();
@@ -433,10 +436,8 @@ public class HintValueExtractor extends ValueExtractor {
 		if (hint instanceof AttributeMapping) {
 			mappingInstance.getHintValues().getAttributeMappingHintValues().init((AttributeMapping) hint, false);
 		} else if (hint instanceof ReferenceTargetSelector) {
-			if (((ReferenceTargetSelector) hint).getMatcher() instanceof AttributeMatcher) {
-				mappingInstance.getHintValues().getMappingInstanceSelectorHintValues()
-						.init((ReferenceTargetSelector) hint, false);
-			}
+			mappingInstance.getHintValues().getMappingInstanceSelectorHintValues().init((ReferenceTargetSelector) hint,
+					false);
 		} else if (hint instanceof ContainerSelector) {
 			mappingInstance.getHintValues().getModelConnectionHintValues().init((ContainerSelector) hint, false);
 		} else if (hint instanceof CardinalityMapping) {

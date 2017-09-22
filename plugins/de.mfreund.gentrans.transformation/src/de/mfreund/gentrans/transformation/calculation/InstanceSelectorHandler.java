@@ -26,26 +26,21 @@ import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.target.TargetSectionAttribute;
 
 /**
- * This class will be used to get/extract specific model objects supported by
- * model 'InstanceSelectors' Note: There are two ways: 1.) By
- * 'matchedSection'-HashMap we get specific model objects (from global HashMap
- * defined in the SourceSectionMatcher) 2.) By List we extract specific model
- * objects from a delivered list (so this method can be used everywhere inside
- * generic transformation for minimize the number of specific /concretize model
- * objects
+ * This class will be used to get/extract specific model objects supported by model 'InstanceSelectors' Note: There are
+ * two ways: 1.) By 'matchedSection'-HashMap we get specific model objects (from global HashMap defined in the
+ * SourceSectionMatcher) 2.) By List we extract specific model objects from a delivered list (so this method can be used
+ * everywhere inside generic transformation for minimize the number of specific /concretize model objects
  */
 public class InstanceSelectorHandler {
 
 	/**
-	 * Registry for <em>source model objects</em> that have already been
-	 * matched. The matched objects are stored in a map where the key is the
-	 * corresponding {@link SourceSectionClass} that they have been matched to.
+	 * Registry for <em>source model objects</em> that have already been matched. The matched objects are stored in a
+	 * map where the key is the corresponding {@link SourceSectionClass} that they have been matched to.
 	 */
 	private Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections;
 
 	/**
-	 * The {@link InstanceSelectorValueExtractor} that is used to extract target
-	 * values for InstancePointers.
+	 * The {@link InstanceSelectorValueExtractor} that is used to extract target values for InstancePointers.
 	 */
 	private InstanceSelectorValueExtractor valueExtractor;
 
@@ -55,9 +50,8 @@ public class InstanceSelectorHandler {
 	private final Logger logger;
 
 	/**
-	 * Whether extended parallelization shall be used during the transformation
-	 * that might lead to the fact that the transformation result (especially
-	 * the order of lists) varies between executions.
+	 * Whether extended parallelization shall be used during the transformation that might lead to the fact that the
+	 * transformation result (especially the order of lists) varies between executions.
 	 */
 	private boolean useParallelization;
 
@@ -65,53 +59,44 @@ public class InstanceSelectorHandler {
 	 * This creates an instance.
 	 *
 	 * @param matchedSections
-	 *            A map relating {@link SourceSection SourceSections} and lists
-	 *            of {@link MatchedSectionDescriptor MatchedSectionDescriptors}
-	 *            that have been create for each SourceSection during the
-	 *            <em>matching</em> process.
+	 *            A map relating {@link SourceSection SourceSections} and lists of {@link MatchedSectionDescriptor
+	 *            MatchedSectionDescriptors} that have been create for each SourceSection during the <em>matching</em>
+	 *            process.
 	 * @param globalValues
-	 *            The <em>global values</em> (values of {@link FixedValue
-	 *            FixedValues} and {@link GlobalAttribute GlobalAttribute})
-	 *            defined in the PAMTraM model.
+	 *            The <em>global values</em> (values of {@link FixedValue FixedValues} and {@link GlobalAttribute
+	 *            GlobalAttribute}) defined in the PAMTraM model.
 	 * @param attributeValueCalculator
-	 *            The {@link ValueCalculator} to use in order to
-	 *            calculate resulting values.
+	 *            The {@link ValueCalculator} to use in order to calculate resulting values.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
 	 * @param useParallelization
-	 *            Whether extended parallelization shall be used during the
-	 *            transformation that might lead to the fact that the
-	 *            transformation result (especially the order of lists) varies
-	 *            between executions.
+	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
+	 *            that the transformation result (especially the order of lists) varies between executions.
 	 */
 	public InstanceSelectorHandler(Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections,
 			GlobalValueMap globalValues, ValueCalculator attributeValueCalculator, Logger logger,
 			boolean useParallelization) {
 
 		this.matchedSections = matchedSections;
-		this.valueExtractor = new InstanceSelectorValueExtractor(globalValues.getGlobalAttributes(),
-				attributeValueCalculator, ValueModifierExecutor.getInstance(), logger, useParallelization);
+		this.valueExtractor = new InstanceSelectorValueExtractor(globalValues, this, attributeValueCalculator,
+				ValueModifierExecutor.getInstance(), logger, useParallelization);
 		this.logger = logger;
 		this.useParallelization = useParallelization;
 
 	}
 
 	/**
-	 * From the given {@link SourceSectionClass}, this first retrieves all
-	 * instances from the {@link #matchedSections} and then filters and returns
-	 * those that satisfy the given {@link InstanceSelector}.
+	 * From the given {@link SourceSectionClass}, this first retrieves all instances from the {@link #matchedSections}
+	 * and then filters and returns those that satisfy the given {@link InstanceSelector}.
 	 *
 	 * @param instanceSelector
 	 *            The {@link InstanceSelector} to evaluate.
 	 * @param sourceSectionClass
-	 *            The {@link SourceSectionClass} for that instances shall be
-	 *            retrieved and filtered.
+	 *            The {@link SourceSectionClass} for that instances shall be retrieved and filtered.
 	 * @param matchedSectionDescriptor
-	 *            the {@link MatchedSectionDescriptor} for that the
-	 *            instancePointer shall be evaluated.
-	 * @return The subset of <em>instanceList</em> determined based on the given
-	 *         {@link SourceSectionClass} that satisfy the given
-	 *         <em>instancePointer</em>.
+	 *            the {@link MatchedSectionDescriptor} for that the instancePointer shall be evaluated.
+	 * @return The subset of <em>instanceList</em> determined based on the given {@link SourceSectionClass} that satisfy
+	 *         the given <em>instancePointer</em>.
 	 */
 	public List<EObject> getSelectedInstancesBySourceSectionClass(SourceInstanceSelector instanceSelector,
 			SourceSectionClass sourceSectionClass, MatchedSectionDescriptor matchedSectionDescriptor) {
@@ -120,8 +105,8 @@ public class InstanceSelectorHandler {
 
 		if (this.matchedSections.get(sourceSectionClass.getContainingSection()) != null) {
 			this.matchedSections.get(sourceSectionClass.getContainingSection()).stream()
-			.forEach(descriptor -> correspondEclassInstances
-					.addAll(descriptor.getSourceModelObjectsMapped().get(sourceSectionClass)));
+					.forEach(descriptor -> correspondEclassInstances
+							.addAll(descriptor.getSourceModelObjectsMapped().get(sourceSectionClass)));
 		}
 
 		return this.getSelectedInstancesByInstanceList(instanceSelector, correspondEclassInstances,
@@ -157,7 +142,8 @@ public class InstanceSelectorHandler {
 		String referenceValue = this.valueExtractor.extractRequiredTargetValue(instanceSelector,
 				matchedSectionDescriptor);
 
-		ActualSourceSectionAttribute sourceAttr = (ActualSourceSectionAttribute) instanceSelector.getReferenceAttribute();
+		ActualSourceSectionAttribute sourceAttr = (ActualSourceSectionAttribute) instanceSelector
+				.getReferenceAttribute();
 
 		return (this.useParallelization ? instanceList.parallelStream() : instanceList.stream()).filter(element -> {
 

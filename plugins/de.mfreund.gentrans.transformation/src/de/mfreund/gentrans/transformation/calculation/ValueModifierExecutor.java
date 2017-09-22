@@ -23,8 +23,8 @@ public class ValueModifierExecutor {
 	private static ValueModifierExecutor instance;
 
 	/**
-	 * An {@link Logger} for messages. This is used to print error messages when
-	 * the application of an AttributeValueModifier fails.
+	 * An {@link Logger} for messages. This is used to print error messages when the application of an
+	 * AttributeValueModifier fails.
 	 */
 	private Logger logger;
 
@@ -38,10 +38,11 @@ public class ValueModifierExecutor {
 	 * This constructs an instance.
 	 *
 	 * @param logger
-	 *            A {@link Logger} that will be used to print error messages
-	 *            when the application of an AttributeValueModifier fails.
+	 *            A {@link Logger} that will be used to print error messages when the application of an
+	 *            AttributeValueModifier fails.
 	 */
 	private ValueModifierExecutor(final Logger logger) {
+
 		this.logger = logger;
 		this.modifiersWithErrors = new HashSet<>();
 		ValueModifierExecutor.instance = this;
@@ -50,10 +51,11 @@ public class ValueModifierExecutor {
 	/**
 	 * This returns the single {@link #instance}.
 	 * <p />
-	 * Note: This will {@link #init(Logger) initialize} the instance if
-	 * necessary but without any {@link MessageConsoleStream}. Thus,
-	 * {@link #init(Logger)} should be called once before using this in order to
+	 * Note: This will {@link #init(Logger) initialize} the instance if necessary but without any
+	 * {@link MessageConsoleStream}. Thus, {@link #init(Logger)} should be called once before using this in order to
 	 * allow for printing messages.
+	 *
+	 * FIXME do not use a singleton pattern to be able to run different transformations at the same time
 	 *
 	 * @return The single {@link #instance}.
 	 */
@@ -67,10 +69,8 @@ public class ValueModifierExecutor {
 	}
 
 	/**
-	 * This initializes and returns the {@link #instance} based on the given
-	 * {@link MessageConsoleStream}. This should be called once before
-	 * {@link #getInstance()} in order to set the correct
-	 * {@link MessageConsoleStream} to use.
+	 * This initializes and returns the {@link #instance} based on the given {@link MessageConsoleStream}. This should
+	 * be called once before {@link #getInstance()} in order to set the correct {@link MessageConsoleStream} to use.
 	 *
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
@@ -99,6 +99,7 @@ public class ValueModifierExecutor {
 	 * @return The modified string (after application of the {@link ValueModifierSet modifierSets}.
 	 */
 	public String applyAttributeValueModifiers(final String value, final List<ValueModifierSet> modifierSets) {
+
 		String retVal = value;
 		for (final ValueModifierSet set : modifierSets) {
 			for (final ValueModifier m : set.getModifiers()) {
@@ -106,8 +107,7 @@ public class ValueModifierExecutor {
 					try {
 						retVal = m.modifyValue(retVal);
 						/*
-						 * Catch an exception thrown by RegExes that aren't
-						 * formatted correctly
+						 * Catch an exception thrown by RegExes that aren't formatted correctly
 						 */
 					} catch (final Exception e) {
 						this.modifiersWithErrors.add(m);
@@ -115,9 +115,9 @@ public class ValueModifierExecutor {
 						if (this.logger != null) {
 
 							this.logger.warning(() -> "The ValueModifier '" + m.getName()
-							+ "' of the ValueModifierSet '" + set.getName()
-							+ "' could not be evaluated. The following error was supplied:\n"
-							+ e.getLocalizedMessage());
+									+ "' of the ValueModifierSet '" + set.getName()
+									+ "' could not be evaluated. The following error was supplied:\n"
+									+ e.getLocalizedMessage());
 						}
 					}
 				}

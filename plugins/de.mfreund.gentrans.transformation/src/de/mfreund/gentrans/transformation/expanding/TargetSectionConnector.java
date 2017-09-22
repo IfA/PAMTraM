@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import de.mfreund.gentrans.transformation.CancelTransformationException;
 import de.mfreund.gentrans.transformation.UserAbortException;
+import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
 import de.mfreund.gentrans.transformation.calculation.ValueCalculator;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
@@ -88,6 +89,11 @@ public class TargetSectionConnector extends CancelableElement {
 	private final ValueCalculator valueCalculator;
 
 	/**
+	 * The {@link InstanceSelectorHandler} used to evaluate modeled {@link ContainerSelector ContainerSelectors}.
+	 */
+	private InstanceSelectorHandler instanceSelectorHandler;
+
+	/**
 	 * The maximum length for connection paths that shall be considered by this TargetSectionConnector. If
 	 * 'maxPathLength' is set to '-1' or any other value below '0', connection paths of unbounded length are considered.
 	 */
@@ -116,6 +122,9 @@ public class TargetSectionConnector extends CancelableElement {
 	 * @param valueCalculator
 	 *            A {@link ValueCalculator} that is used to calculate reference values for {@link ContainerSelector
 	 *            ContainerSelectors}.
+	 * @param instanceSelectorHandler
+	 *            The {@link InstanceSelectorHandler} used to evaluate modeled {@link ContainerSelector
+	 *            ContainerSelectors}.
 	 * @param targetModelRegistry
 	 *            The {@link TargetModelRegistry} that is used to manage the various target models and their contents.
 	 * @param maxPathLength
@@ -129,9 +138,9 @@ public class TargetSectionConnector extends CancelableElement {
 	 *            The {@link Logger} that shall be used to print messages.
 	 */
 	public TargetSectionConnector(final TargetSectionRegistry targetSectionRegistry,
-			final ValueCalculator valueCalculator, final TargetModelRegistry targetModelRegistry,
-			final int maxPathLength, final IAmbiguityResolvingStrategy ambiguityResolvingStrategy,
-			final Logger logger) {
+			final ValueCalculator valueCalculator, InstanceSelectorHandler instanceSelectorHandler,
+			final TargetModelRegistry targetModelRegistry, final int maxPathLength,
+			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy, final Logger logger) {
 
 		this.standardPaths = new LinkedHashMap<>();
 		this.targetSectionRegistry = targetSectionRegistry;
@@ -139,6 +148,7 @@ public class TargetSectionConnector extends CancelableElement {
 		this.logger = logger;
 		this.canceled = false;
 		this.valueCalculator = valueCalculator;
+		this.instanceSelectorHandler = instanceSelectorHandler;
 		this.maxPathLength = maxPathLength;
 		this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
 		this.unconnectableElements = new LinkedHashMap<>();

@@ -118,14 +118,8 @@ public class InstanceSelectorValueExtractor extends ValueExtractor {
 		// Assemble the target value based on the value parts and a potential
 		// expression
 		//
-		String expression = instancePointer.getExpression();
-		if (expression == null || expression.isEmpty()) {
-			return this.attributeValueCalculator.calculateValueWithoutExpression(
-					new ArrayList<>(instancePointer.getSourceElements()), valueParts, instancePointer.getModifiers());
-		} else {
-			return this.attributeValueCalculator.calculateValueWithExpression(valueParts, expression,
-					instancePointer.getModifiers());
-		}
+		return this.attributeValueCalculator.calculateValue(new ArrayList<>(instancePointer.getSourceElements()),
+				instancePointer.getExpression(), valueParts, instancePointer.getModifiers());
 
 	}
 

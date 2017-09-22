@@ -1,29 +1,40 @@
 package de.mfreund.gentrans.transformation.calculation;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.function.Function;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.matching.InstanceSelectorValueExtractor;
 import pamtram.FixedValue;
 import pamtram.mapping.GlobalAttribute;
+import pamtram.mapping.extended.ContainerSelector;
 import pamtram.structure.InstanceSelector;
+import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.TargetInstanceSelector;
+import pamtram.structure.generic.CompositeReference;
 import pamtram.structure.generic.VirtualAttribute;
 import pamtram.structure.source.ActualSourceSectionAttribute;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.target.TargetSectionAttribute;
+import pamtram.structure.target.TargetSectionClass;
+import pamtram.structure.target.TargetSectionReference;
 
 /**
  * This class will be used to get/extract specific model objects supported by model 'InstanceSelectors' Note: There are
@@ -43,6 +54,12 @@ public class InstanceSelectorHandler {
 	 * The {@link InstanceSelectorValueExtractor} that is used to extract target values for InstancePointers.
 	 */
 	private InstanceSelectorValueExtractor valueExtractor;
+
+	/**
+	 * The {@link ValueCalculator} that is used to calculate reference values for {@link ContainerSelector
+	 * ContainerSelectors}.
+	 */
+	private final ValueCalculator valueCalculator;
 
 	/**
 	 * The {@link Logger} that shall be used to print messages.
@@ -78,6 +95,7 @@ public class InstanceSelectorHandler {
 			boolean useParallelization) {
 
 		this.matchedSections = matchedSections;
+		this.valueCalculator = attributeValueCalculator;
 		this.valueExtractor = new InstanceSelectorValueExtractor(globalValues, this, attributeValueCalculator,
 				ValueModifierExecutor.getInstance(), logger, useParallelization);
 		this.logger = logger;
@@ -195,4 +213,140 @@ public class InstanceSelectorHandler {
 
 	}
 
+	/**
+	 * From the given list of potential {@link EObjectWrapper model elements}, filters those that satisfy one of the
+	 * given hint values calculated for the given {@link TargetInstanceSelector}.
+	 *
+	 * @param potentialContainerInstances
+	 *            The list of potential {@link EObjectWrapper container instances} to be filtered.
+	 * @param instanceSelectorHintValues
+	 *            The hint values of the given <em>containerSelector</em> are to be evaluated.
+	 * @param targetInstanceSelector
+	 *            The {@link TargetInstanceSelector} to evaluate.
+	 * @return The filtered list (a subset of the given list) of <em>potentialContainerInstances</em>.
+	 */
+	public List<EObjectWrapper> filterContainerInstances(List<EObjectWrapper> potentialContainerInstances,
+			List<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>> instanceSelectorHintValues,
+			TargetInstanceSelector targetInstanceSelector) {
+
+		// The hint values that will be compared to the value of the 'referenceAttribute' (the 'reference values' of
+		// potential target instances. In most cases, there should be only a single hint value. If there are multiple
+		// values, these will be treated as alternative values.
+		//
+		List<String> hintValues = instanceSelectorHintValues.stream()
+				.map(v -> this.valueCalculator.calculateValue(
+						new ArrayList<>(targetInstanceSelector.getSourceElements()),
+						targetInstanceSelector.getExpression(), v, targetInstanceSelector.getModifiers()))
+				.collect(Collectors.toList());
+
+		// The reference value(s) (based on the specified 'referenceAttribute') for each of the potential container
+		// instances. In the following, these will be compared to the list of 'hintValues'
+		//
+		Map<EObjectWrapper, List<String>> referenceValueByContainerInstance = potentialContainerInstances.stream()
+				.collect(Collectors.toMap(Function.identity(),
+						c -> this.getReferenceAttributeInstancesByContainerInstance(c, targetInstanceSelector).stream()
+								.map(r -> r.getAttributeValue(targetInstanceSelector.getReferenceAttribute()))
+								.collect(Collectors.toList())));
+
+		// Filter those container instances, whose 'reference values' match one of the given 'hint values'
+		//
+		return referenceValueByContainerInstance.entrySet().stream()
+				.filter(e -> !Collections.disjoint(hintValues, e.getValue())).map(Entry::getKey)
+				.collect(Collectors.toList());
+	}
+
+	/**
+	 * For a given {@link TargetInstanceSelector} and a given {@link EObjectWrapper model element} that corresponds to
+	 * its {@link TargetInstanceSelector#getTargetClass() targetClass}, returns those {@link EObjectWrapper elements}
+	 * that are responsible for providing the reference values for the
+	 * {@link TargetInstanceSelector#getReferenceAttribute() referenceAttribute} of the TargetInstanceSelector.
+	 * <p />
+	 * Note: If the {@link TargetInstanceSelector#getReferenceAttribute() referenceAttribute} of the InstanceSelector is
+	 * a direct child of its {@link TargetInstanceSelector#getTargetClass() targetClass}, the given
+	 * <em>targetInstance</em> itself is returned. Otherwise, one or multiple elements higher or lower in the
+	 * containment hierarchy of the target model fragment are returned.
+	 *
+	 * @param targetInstance
+	 *            The {@link EObjectWrapper} representing the target instance to be checked against the given
+	 *            <em>targetInstanceSelector</em>.
+	 * @param targetInstanceSelector
+	 *            The {@link TargetInstanceSelector} specifying the
+	 *            {@link TargetInstanceSelector#getReferenceAttribute() referenceAttribute}.
+	 * @return The list of {@link EObjectWrapper elements} that shall be used to determine the reference values for the
+	 *         {@link TargetInstanceSelector#getReferenceAttribute() referenceAttribute} of the TargetInstanceSelector
+	 *         or an empty list if no suitable model elements could be determined.
+	 */
+	private List<EObjectWrapper> getReferenceAttributeInstancesByContainerInstance(EObjectWrapper targetInstance,
+			TargetInstanceSelector targetInstanceSelector) {
+
+		// The TargetSectionClass representing the given 'targetInstance'
+		//
+		TargetSectionClass targetClass = targetInstanceSelector.getTargetClass();
+
+		// The TargetSectionClass that defines the 'referenceAttribute' of the TargetInstanceSelector. This may either
+		// be
+		// the same as the 'targetClass' or a class that is higher or lower in the containment hierarchy
+		//
+		TargetSectionClass referenceAttributeClass = (TargetSectionClass) targetInstanceSelector.getReferenceAttribute()
+				.eContainer();
+
+		if (targetClass.equals(referenceAttributeClass)) {
+			return Arrays.asList(targetInstance);
+		}
+
+		// The 'referenceAttribute' is located in a TargetSectionClass lower in the containment hierarchy than the
+		// 'targetClass'
+		//
+		if (EcoreUtil.isAncestor(targetClass, referenceAttributeClass)) {
+
+			// Iterate upwards in the containment hierarchy of the TargetSection and collect all references that need to
+			// be followed to retrieve the instances of 'referenceAttributeClass' based on the 'targetInstance'
+			//
+			List<TargetSectionReference> references = new ArrayList<>();
+			TargetSectionClass currentClass = referenceAttributeClass;
+
+			while (targetClass != currentClass) {
+				CompositeReference<?, ?, ?, ?> owningCompositeReference = currentClass.getOwningContainmentReference();
+				if (!(owningCompositeReference instanceof TargetSectionReference)
+						|| !(owningCompositeReference.getOwningClass() instanceof TargetSectionClass)) {
+					break; // this should not happen
+				}
+
+				references.add(0, (TargetSectionReference) owningCompositeReference);
+				currentClass = (TargetSectionClass) owningCompositeReference.getOwningClass();
+			}
+
+			// Now, follow the collected references to determine the instances of the 'referenceAttributeClass'
+			//
+			return targetInstance.getReferencedElements(references);
+		}
+
+		// The 'reference attribute' is located in a TargetSectionClass higher in the containment hierarchy than the
+		// 'container class'
+		//
+		if (EcoreUtil.isAncestor(referenceAttributeClass, targetClass)) {
+
+			// Iterate upwards in the containment hierarchy to find the (single) container instance representing the
+			// 'referenceAttribute'
+			//
+			EObject referenceAttributeInstance = targetInstance.getEObject();
+			TargetSectionClass currentClass = targetClass;
+			while (currentClass != referenceAttributeClass) {
+				CompositeReference<?, ?, ?, ?> owningCompositeReference = currentClass.getOwningContainmentReference();
+				if (!(owningCompositeReference instanceof TargetSectionReference)
+						|| !(owningCompositeReference.getOwningClass() instanceof TargetSectionClass)) {
+					break; // this should not happen
+				}
+
+				referenceAttributeInstance = referenceAttributeInstance.eContainer();
+				currentClass = (TargetSectionClass) owningCompositeReference.getOwningClass();
+			}
+
+			return Arrays.asList(this.targetSectionRegistry.getInstanceWrapper(referenceAttributeInstance));
+		}
+
+		this.logger.severe(() -> "Unable to evaluate " + targetInstanceSelector.eClass().getName() + " '"
+				+ targetInstanceSelector.toString() + "'! The specified 'reference attribute' is not valid.");
+		return new ArrayList<>();
+	}
 }

@@ -704,7 +704,8 @@ public class GenericTransformationRunner extends CancelableElement {
 		//
 		monitor.worked(250);
 
-		return ExpandingResult.createExpandingResult(targetSectionRegistry, this.targetSectionInstantiator.getLibEntryInstantiatorMap());
+		return ExpandingResult.createExpandingResult(targetSectionRegistry,
+				this.targetSectionInstantiator.getLibEntryInstantiatorMap());
 	}
 
 	/**
@@ -743,9 +744,9 @@ public class GenericTransformationRunner extends CancelableElement {
 		 * Initialize the TargetSectionConnector
 		 */
 		this.targetSectionConnector = new TargetSectionConnector(expandingResult.getTargetSectionRegistry(),
-				this.transformationUtilManager.getValueCalculator(), targetModelRegistry,
-				this.transformationConfig.getMaxPathLength(), this.transformationConfig.getAmbiguityResolvingStrategy(),
-				this.transformationConfig.getLogger());
+				this.transformationUtilManager.getValueCalculator(), this.transformationUtilManager.getInstanceSelectorHandler(),
+				targetModelRegistry, this.transformationConfig.getMaxPathLength(),
+				this.transformationConfig.getAmbiguityResolvingStrategy(), this.transformationConfig.getLogger());
 		this.objectsToCancel.add(this.targetSectionConnector);
 
 		/*
@@ -1327,7 +1328,7 @@ public class GenericTransformationRunner extends CancelableElement {
 
 			/**
 			 * This constructs an instance for an expanding process.
-			 * 
+			 *
 			 * @param targetSectionRegistry
 			 *            The {@link TargetSectionRegistry} containing/representing created target sections.
 			 */
@@ -1340,6 +1341,7 @@ public class GenericTransformationRunner extends CancelableElement {
 
 			/**
 			 * This constructs an instance for an expanding process.
+			 * 
 			 * @param targetSectionRegistry
 			 *            The {@link TargetSectionRegistry} containing/representing created target sections.
 			 * @param libEntryInstantiatorMap

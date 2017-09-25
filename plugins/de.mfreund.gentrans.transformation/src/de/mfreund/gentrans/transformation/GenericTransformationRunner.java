@@ -60,6 +60,7 @@ import de.mfreund.gentrans.transformation.matching.HintValueExtractor;
 import de.mfreund.gentrans.transformation.matching.MappingSelector;
 import de.mfreund.gentrans.transformation.matching.SourceSectionMatcher;
 import de.mfreund.gentrans.transformation.registries.AttributeValueRegistry;
+import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
 import de.mfreund.gentrans.transformation.registries.TargetModelRegistry;
 import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import de.mfreund.gentrans.transformation.resolving.DefaultAmbiguityResolvingStrategy;
@@ -307,9 +308,9 @@ public class GenericTransformationRunner extends CancelableElement {
 		// These will be filled with the results of the matching phase
 		//
 		final GlobalValueMap globalValues = new GlobalValueMap();
-		final Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections = new LinkedHashMap<>();
+		final MatchedSectionRegistry matchedSections = new MatchedSectionRegistry();
 
-		this.transformationUtilManager.init(matchedSections, globalValues);
+		this.transformationUtilManager.init();
 
 		/*
 		 * Build the ContainmentTree representing the source model. This will keep track of all matched and unmatched
@@ -334,13 +335,14 @@ public class GenericTransformationRunner extends CancelableElement {
 		/*
 		 * Create the SourceSectionMatcher that matches SourceSections
 		 */
-		final SourceSectionMatcher sourceSectionMatcher = new SourceSectionMatcher(containmentTree,
+		final SourceSectionMatcher sourceSectionMatcher = new SourceSectionMatcher(matchedSections, containmentTree,
 				new BasicEList<>(activeSourceSections),
 				this.transformationUtilManager.getValueConstraintReferenceValueCalculator(),
 				this.transformationConfig.getAmbiguityResolvingStrategy(), this.transformationConfig.getLogger(),
 				this.transformationConfig.isUseParallelization());
 
-		matchedSections.putAll(sourceSectionMatcher.matchSections());
+		sourceSectionMatcher.matchSections();
+		// matchedSections.putAll(sourceSectionMatcher.matchSections());
 
 		// Retrieve the list of all created MatchedSectionDescriptors
 		//
@@ -559,9 +561,9 @@ public class GenericTransformationRunner extends CancelableElement {
 		// These will be filled with the results of the matching phase
 		//
 		final GlobalValueMap globalValues = new GlobalValueMap();
-		final Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections = new LinkedHashMap<>();
+		final MatchedSectionRegistry matchedSections = new MatchedSectionRegistry();
 
-		this.transformationUtilManager.init(matchedSections, globalValues);
+		this.transformationUtilManager.init();
 
 		/*
 		 * Build the ContainmentTree representing the source model. This will keep track of all matched and unmatched
@@ -588,7 +590,7 @@ public class GenericTransformationRunner extends CancelableElement {
 		/*
 		 * Create the SourceSectionMatcher that matches SourceSections
 		 */
-		final SourceSectionMatcher sourceSectionMatcher = new SourceSectionMatcher(containmentTree,
+		final SourceSectionMatcher sourceSectionMatcher = new SourceSectionMatcher(matchedSections, containmentTree,
 				new BasicEList<>(activeSourceSections),
 				this.transformationUtilManager.getValueConstraintReferenceValueCalculator(),
 				this.transformationConfig.getAmbiguityResolvingStrategy(), this.transformationConfig.getLogger(),
@@ -596,7 +598,8 @@ public class GenericTransformationRunner extends CancelableElement {
 
 		this.objectsToCancel.add(sourceSectionMatcher);
 
-		matchedSections.putAll(sourceSectionMatcher.matchSections());
+		sourceSectionMatcher.matchSections();
+		// matchedSections.putAll(sourceSectionMatcher.matchSections());
 
 		this.transformationConfig.getLogger()
 				.info(() -> "Summary:\tAvailable Elements:\t" + containmentTree.getNumberOfElements());
@@ -744,9 +747,10 @@ public class GenericTransformationRunner extends CancelableElement {
 		 * Initialize the TargetSectionConnector
 		 */
 		this.targetSectionConnector = new TargetSectionConnector(expandingResult.getTargetSectionRegistry(),
-				this.transformationUtilManager.getValueCalculator(), this.transformationUtilManager.getInstanceSelectorHandler(),
-				targetModelRegistry, this.transformationConfig.getMaxPathLength(),
-				this.transformationConfig.getAmbiguityResolvingStrategy(), this.transformationConfig.getLogger());
+				this.transformationUtilManager.getValueCalculator(),
+				this.transformationUtilManager.getInstanceSelectorHandler(), targetModelRegistry,
+				this.transformationConfig.getMaxPathLength(), this.transformationConfig.getAmbiguityResolvingStrategy(),
+				this.transformationConfig.getLogger());
 		this.objectsToCancel.add(this.targetSectionConnector);
 
 		/*
@@ -1341,7 +1345,7 @@ public class GenericTransformationRunner extends CancelableElement {
 
 			/**
 			 * This constructs an instance for an expanding process.
-			 * 
+			 *
 			 * @param targetSectionRegistry
 			 *            The {@link TargetSectionRegistry} containing/representing created target sections.
 			 * @param libEntryInstantiatorMap

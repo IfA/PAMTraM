@@ -3,8 +3,8 @@
  */
 package de.mfreund.gentrans.transformation;
 
-import java.util.List;
-import java.util.Map;
+import java.util.LinkedHashSet;
+import java.util.stream.Collectors;
 
 import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
 import de.mfreund.gentrans.transformation.calculation.ValueCalculator;
@@ -13,23 +13,47 @@ import de.mfreund.gentrans.transformation.calculation.ValueModifierExecutor;
 import de.mfreund.gentrans.transformation.condition.ConditionHandler;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
+import de.mfreund.gentrans.transformation.registries.AttributeValueRegistry;
+import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
+import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
+import pamtram.FixedValue;
+import pamtram.TargetSectionModel;
 import pamtram.condition.Condition;
+import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.InstanceSelector;
 import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.source.SourceSection;
+import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionAttribute;
 
 /**
- * A control class that encapsulates the various handlers and calculators that are used at multiple points during a
- * transformation and handles their instantiation.
+ * A control class that encapsulates the various handlers, registries and calculators that are used at multiple points
+ * during a transformation and handles their instantiation.
  * <p />
  * Note: After the {@link #TransformationUtilManager(TransformationConfiguration) instantiation} of a manager,
- * {@link #init(Map, GlobalValueMap)} needs to be called at least once before any of the handles objects can be used.
+ * {@link #init()} needs to be called at least once before any of the handles objects can be used.
  *
  * @author mfreund
  */
 class TransformationUtilManager {
+
+	/**
+	 * The {@link GlobalValueMap} where extracted global {@link FixedValue FixedValues} and values of
+	 * {@link GlobalAttribute GlobalAttributes} are stored.
+	 */
+	private GlobalValueMap globalValues;
+
+	/**
+	 * The {@link MatchedSectionRegistry} where the various source model snippets that are matched against
+	 * {@link SourceSection SourceSections} during a transformation are stored.
+	 */
+	private MatchedSectionRegistry matchedSectionRegistry;
+
+	/**
+	 * The {@link TargetSectionRegistry} where instantiated {@link TargetSection TargetSections} are stored.
+	 */
+	private TargetSectionRegistry targetSectionRegistry;
 
 	/**
 	 * The {@link TransformationConfiguration} that this operates on.
@@ -77,20 +101,46 @@ class TransformationUtilManager {
 
 	/**
 	 * Initialize everything at the start of the transformation.
-	 *
-	 * @param matchedSections
-	 *            The map of {@link MatchedSectionDescriptor MatchedSectionDescriptors} that will be filled during the
-	 *            matching phase.
-	 * @param globalValues
-	 *            The {@link GlobalValueMap} that will be filled during the matching phase.
 	 */
-	public void init(Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections, GlobalValueMap globalValues) {
+	public void init() {
+
+		this.globalValues = new GlobalValueMap();
+		this.matchedSectionRegistry = new MatchedSectionRegistry();
+		this.targetSectionRegistry = new TargetSectionRegistry(this.transformationConfig.getLogger(),
+				new AttributeValueRegistry(),
+				new LinkedHashSet<>(this.transformationConfig.getPamtramModels().stream()
+						.flatMap(p -> p.getTargetSectionModels().stream()).map(TargetSectionModel::getMetaModelPackage)
+						.collect(Collectors.toList())));
 
 		this.initValueModifierExecutor();
-		this.initValueCalculator(globalValues);
-		this.initInstanceSelectorHandler(matchedSections, globalValues);
-		this.initValueConstraintReferenceValueCalculator(matchedSections, globalValues);
-		this.initConditionHandler(matchedSections, globalValues);
+		this.initValueCalculator(this.globalValues);
+		this.initInstanceSelectorHandler(this.matchedSectionRegistry, this.globalValues);
+		this.initValueConstraintReferenceValueCalculator(this.matchedSectionRegistry, this.globalValues);
+		this.initConditionHandler(this.matchedSectionRegistry, this.globalValues);
+	}
+
+	/**
+	 * @return the {@link #globalValues}}
+	 */
+	public GlobalValueMap getGlobalValues() {
+
+		return this.globalValues;
+	}
+
+	/**
+	 * @return the {@link #matchedSectionRegistry}
+	 */
+	public MatchedSectionRegistry getMatchedSectionRegistry() {
+
+		return this.matchedSectionRegistry;
+	}
+
+	/**
+	 * @return the {@link #targetSectionRegistry}
+	 */
+	public TargetSectionRegistry getTargetSectionRegistry() {
+
+		return this.targetSectionRegistry;
 	}
 
 	/**
@@ -105,7 +155,7 @@ class TransformationUtilManager {
 	/**
 	 * Returns the {@link #valueModifierExecutor}.
 	 * <p />
-	 * <b>Note:</b> Before calling this, {@link #init(Map, GlobalValueMap)} has to be called at least once.
+	 * <b>Note:</b> Before calling this, {@link #init()} has to be called at least once.
 	 *
 	 * @return the {@link #valueModifierExecutor}
 	 */
@@ -129,7 +179,7 @@ class TransformationUtilManager {
 	/**
 	 * Returns the {@link #valueCalculator}.
 	 * <p />
-	 * <b>Note:</b> Before calling this, {@link #init(Map, GlobalValueMap)} has to be called at least once.
+	 * <b>Note:</b> Before calling this, {@link #init()} has to be called at least once.
 	 *
 	 * @return the {@link #valueCalculator}
 	 */
@@ -149,8 +199,7 @@ class TransformationUtilManager {
 	 * @param globalValues
 	 *            the {@link GlobalValueMap} to use
 	 */
-	protected void initInstanceSelectorHandler(Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections,
-			GlobalValueMap globalValues) {
+	protected void initInstanceSelectorHandler(MatchedSectionRegistry matchedSections, GlobalValueMap globalValues) {
 
 		if (this.valueCalculator == null) {
 			this.initValueCalculator(globalValues);
@@ -163,7 +212,7 @@ class TransformationUtilManager {
 	/**
 	 * Returns the {@link #instanceSelectorHandler}.
 	 * <p />
-	 * <b>Note:</b> Before calling this, {@link #init(Map, GlobalValueMap)} has to be called at least once.
+	 * <b>Note:</b> Before calling this, {@link #init()} has to be called at least once.
 	 *
 	 * @return the {@link #instanceSelectorHandler}
 	 */
@@ -184,8 +233,8 @@ class TransformationUtilManager {
 	 * @param globalValues
 	 *            the {@link GlobalValueMap} to use
 	 */
-	protected void initValueConstraintReferenceValueCalculator(
-			Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections, GlobalValueMap globalValues) {
+	protected void initValueConstraintReferenceValueCalculator(MatchedSectionRegistry matchedSections,
+			GlobalValueMap globalValues) {
 
 		if (this.valueCalculator == null) {
 			this.initValueCalculator(globalValues);
@@ -203,7 +252,7 @@ class TransformationUtilManager {
 	/**
 	 * Returns the {@link #valueConstraintReferenceValueCalculator}.
 	 * <p />
-	 * <b>Note:</b> Before calling this, {@link #init(Map, GlobalValueMap)} has to be called at least once.
+	 * <b>Note:</b> Before calling this, {@link #init()} has to be called at least once.
 	 *
 	 * @return the {@link #valueConstraintReferenceValueCalculator}
 	 */
@@ -224,8 +273,7 @@ class TransformationUtilManager {
 	 * @param globalValues
 	 *            the {@link GlobalValueMap} to use
 	 */
-	protected void initConditionHandler(Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections,
-			GlobalValueMap globalValues) {
+	protected void initConditionHandler(MatchedSectionRegistry matchedSections, GlobalValueMap globalValues) {
 
 		if (this.instanceSelectorHandler == null) {
 			this.initInstanceSelectorHandler(matchedSections, globalValues);
@@ -243,7 +291,7 @@ class TransformationUtilManager {
 	/**
 	 * Returns the {@link #conditionHandler}.
 	 * <p />
-	 * <b>Note:</b> Before calling this, {@link #init(Map, GlobalValueMap)} has to be called at least once.
+	 * <b>Note:</b> Before calling this, {@link #init()} has to be called at least once.
 	 *
 	 * @return the {@link #instanceSelectorHandler}
 	 */

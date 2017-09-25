@@ -20,6 +20,8 @@ import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.matching.InstanceSelectorValueExtractor;
+import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
+import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import pamtram.FixedValue;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.extended.ContainerSelector;
@@ -32,6 +34,7 @@ import pamtram.structure.generic.VirtualAttribute;
 import pamtram.structure.source.ActualSourceSectionAttribute;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionClass;
+import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.target.TargetSectionClass;
 import pamtram.structure.target.TargetSectionReference;
@@ -48,7 +51,12 @@ public class InstanceSelectorHandler {
 	 * Registry for <em>source model objects</em> that have already been matched. The matched objects are stored in a
 	 * map where the key is the corresponding {@link SourceSectionClass} that they have been matched to.
 	 */
-	private Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections;
+	private MatchedSectionRegistry matchedSectionRegistry;
+
+	/**
+	 * The {@link TargetSectionRegistry} where instantiated {@link TargetSection TargetSections} are stored.
+	 */
+	private TargetSectionRegistry targetSectionRegistry;
 
 	/**
 	 * The {@link InstanceSelectorValueExtractor} that is used to extract target values for InstancePointers.
@@ -79,6 +87,8 @@ public class InstanceSelectorHandler {
 	 *            A map relating {@link SourceSection SourceSections} and lists of {@link MatchedSectionDescriptor
 	 *            MatchedSectionDescriptors} that have been create for each SourceSection during the <em>matching</em>
 	 *            process.
+	 * @param targetSectionRegistry
+	 *            The {@link TargetSectionRegistry} where instantiated {@link TargetSection TargetSections} are stored.
 	 * @param globalValues
 	 *            The <em>global values</em> (values of {@link FixedValue FixedValues} and {@link GlobalAttribute
 	 *            GlobalAttribute}) defined in the PAMTraM model.
@@ -90,11 +100,12 @@ public class InstanceSelectorHandler {
 	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
 	 *            that the transformation result (especially the order of lists) varies between executions.
 	 */
-	public InstanceSelectorHandler(Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections,
+	public InstanceSelectorHandler(MatchedSectionRegistry matchedSections, TargetSectionRegistry targetSectionRegistry,
 			GlobalValueMap globalValues, ValueCalculator attributeValueCalculator, Logger logger,
 			boolean useParallelization) {
 
-		this.matchedSections = matchedSections;
+		this.matchedSectionRegistry = matchedSections;
+		this.targetSectionRegistry = targetSectionRegistry;
 		this.valueCalculator = attributeValueCalculator;
 		this.valueExtractor = new InstanceSelectorValueExtractor(globalValues, this, attributeValueCalculator,
 				ValueModifierExecutor.getInstance(), logger, useParallelization);
@@ -104,7 +115,7 @@ public class InstanceSelectorHandler {
 	}
 
 	/**
-	 * From the given {@link SourceSectionClass}, this first retrieves all instances from the {@link #matchedSections}
+	 * From the given {@link SourceSectionClass}, this first retrieves all instances from the {@link #matchedSectionRegistry}
 	 * and then filters and returns those that satisfy the given {@link InstanceSelector}.
 	 *
 	 * @param instanceSelector
@@ -121,8 +132,8 @@ public class InstanceSelectorHandler {
 
 		EList<EObject> correspondEclassInstances = new BasicEList<>();
 
-		if (this.matchedSections.get(sourceSectionClass.getContainingSection()) != null) {
-			this.matchedSections.get(sourceSectionClass.getContainingSection()).stream()
+		if (this.matchedSectionRegistry.get(sourceSectionClass.getContainingSection()) != null) {
+			this.matchedSectionRegistry.get(sourceSectionClass.getContainingSection()).stream()
 					.forEach(descriptor -> correspondEclassInstances
 							.addAll(descriptor.getSourceModelObjectsMapped().get(sourceSectionClass)));
 		}

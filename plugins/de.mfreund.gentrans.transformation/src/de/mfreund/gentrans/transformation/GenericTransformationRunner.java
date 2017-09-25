@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -76,7 +75,6 @@ import de.tud.et.ifa.agtele.resources.ResourceHelper;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
 import pamtram.FixedValue;
 import pamtram.PAMTraM;
-import pamtram.TargetSectionModel;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
@@ -676,20 +674,14 @@ public class GenericTransformationRunner extends CancelableElement {
 		 * Instantiate TargetSectionRegistry, analyzes target-metamodel
 		 */
 		monitor.subTask("Instantiating targetModelSections for selected mappings. First pass");
-		this.writePamtramMessage("Analyzing target metamodel(s)");
-		final TargetSectionRegistry targetSectionRegistry = new TargetSectionRegistry(
-				this.transformationConfig.getLogger(), new AttributeValueRegistry(),
-				new LinkedHashSet<>(this.transformationConfig.getPamtramModels().stream()
-						.flatMap(p -> p.getTargetSectionModels().stream()).map(TargetSectionModel::getMetaModelPackage)
-						.collect(Collectors.toList())));
-		this.objectsToCancel.add(targetSectionRegistry);
 
 		this.writePamtramMessage("Instantiating TargetSections for Selected Mappings");
 
 		/*
 		 * Initialize the TargetSectionInstantiator
 		 */
-		this.targetSectionInstantiator = new TargetSectionInstantiator(targetSectionRegistry,
+		this.targetSectionInstantiator = new TargetSectionInstantiator(
+				this.transformationUtilManager.getTargetSectionRegistry(),
 				this.transformationUtilManager.getValueCalculator(), this.transformationConfig.getLogger(),
 				this.transformationConfig.getAmbiguityResolvingStrategy(),
 				this.transformationConfig.isUseParallelization());
@@ -707,7 +699,7 @@ public class GenericTransformationRunner extends CancelableElement {
 		//
 		monitor.worked(250);
 
-		return ExpandingResult.createExpandingResult(targetSectionRegistry,
+		return ExpandingResult.createExpandingResult(this.transformationUtilManager.getTargetSectionRegistry(),
 				this.targetSectionInstantiator.getLibEntryInstantiatorMap());
 	}
 

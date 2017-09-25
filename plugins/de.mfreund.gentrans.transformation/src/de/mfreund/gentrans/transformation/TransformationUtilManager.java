@@ -13,7 +13,6 @@ import de.mfreund.gentrans.transformation.calculation.ValueModifierExecutor;
 import de.mfreund.gentrans.transformation.condition.ConditionHandler;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
-import de.mfreund.gentrans.transformation.registries.AttributeValueRegistry;
 import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
 import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import pamtram.FixedValue;
@@ -107,16 +106,15 @@ class TransformationUtilManager {
 		this.globalValues = new GlobalValueMap();
 		this.matchedSectionRegistry = new MatchedSectionRegistry();
 		this.targetSectionRegistry = new TargetSectionRegistry(this.transformationConfig.getLogger(),
-				new AttributeValueRegistry(),
 				new LinkedHashSet<>(this.transformationConfig.getPamtramModels().stream()
 						.flatMap(p -> p.getTargetSectionModels().stream()).map(TargetSectionModel::getMetaModelPackage)
 						.collect(Collectors.toList())));
 
 		this.initValueModifierExecutor();
-		this.initValueCalculator(this.globalValues);
-		this.initInstanceSelectorHandler(this.matchedSectionRegistry, this.globalValues);
-		this.initValueConstraintReferenceValueCalculator(this.matchedSectionRegistry, this.globalValues);
-		this.initConditionHandler(this.matchedSectionRegistry, this.globalValues);
+		this.initValueCalculator();
+		this.initInstanceSelectorHandler();
+		this.initValueConstraintReferenceValueCalculator();
+		this.initConditionHandler();
 	}
 
 	/**
@@ -166,13 +164,10 @@ class TransformationUtilManager {
 
 	/**
 	 * This initializes the {@link #valueCalculator}.
-	 *
-	 * @param globalValues
-	 *            the {@link GlobalValueMap} to use
 	 */
-	protected void initValueCalculator(GlobalValueMap globalValues) {
+	protected void initValueCalculator() {
 
-		this.valueCalculator = new ValueCalculator(globalValues, this.valueModifierExecutor,
+		this.valueCalculator = new ValueCalculator(this.globalValues, this.valueModifierExecutor,
 				this.transformationConfig.getLogger());
 	}
 
@@ -196,16 +191,19 @@ class TransformationUtilManager {
 	 * @param matchedSections
 	 *            The map of {@link MatchedSectionDescriptor MatchedSectionDescriptors} that represents the result of
 	 *            the matching process.
+	 * @param targetSectionRegistry
+	 *            The {@link TargetSectionRegistry} where instantiated {@link TargetSection TargetSections} are stored.
 	 * @param globalValues
 	 *            the {@link GlobalValueMap} to use
 	 */
-	protected void initInstanceSelectorHandler(MatchedSectionRegistry matchedSections, GlobalValueMap globalValues) {
+	protected void initInstanceSelectorHandler() {
 
 		if (this.valueCalculator == null) {
-			this.initValueCalculator(globalValues);
+			this.initValueCalculator();
 		}
 
-		this.instanceSelectorHandler = new InstanceSelectorHandler(matchedSections, globalValues, this.valueCalculator,
+		this.instanceSelectorHandler = new InstanceSelectorHandler(this.matchedSectionRegistry,
+				this.targetSectionRegistry, this.globalValues, this.valueCalculator,
 				this.transformationConfig.getLogger(), this.transformationConfig.isUseParallelization());
 	}
 
@@ -227,26 +225,20 @@ class TransformationUtilManager {
 	 * Note: If not already done, also initializes the {@link #valueCalculator} and the
 	 * {@link #instanceSelectorHandler}.
 	 *
-	 * @param matchedSections
-	 *            The map of {@link MatchedSectionDescriptor MatchedSectionDescriptors} that represents the result of
-	 *            the matching process.
-	 * @param globalValues
-	 *            the {@link GlobalValueMap} to use
 	 */
-	protected void initValueConstraintReferenceValueCalculator(MatchedSectionRegistry matchedSections,
-			GlobalValueMap globalValues) {
+	protected void initValueConstraintReferenceValueCalculator() {
 
 		if (this.valueCalculator == null) {
-			this.initValueCalculator(globalValues);
+			this.initValueCalculator();
 		}
 
 		if (this.instanceSelectorHandler == null) {
-			this.initInstanceSelectorHandler(matchedSections, globalValues);
+			this.initInstanceSelectorHandler();
 		}
 
-		this.valueConstraintReferenceValueCalculator = new ValueConstraintReferenceValueCalculator(matchedSections,
-				globalValues, this.instanceSelectorHandler, this.valueCalculator, this.transformationConfig.getLogger(),
-				this.transformationConfig.isUseParallelization());
+		this.valueConstraintReferenceValueCalculator = new ValueConstraintReferenceValueCalculator(
+				this.matchedSectionRegistry, this.globalValues, this.instanceSelectorHandler, this.valueCalculator,
+				this.transformationConfig.getLogger(), this.transformationConfig.isUseParallelization());
 	}
 
 	/**
@@ -266,24 +258,18 @@ class TransformationUtilManager {
 	 * <p />
 	 * Note: If not already done, also initializes the {@link #instanceSelectorHandler} and
 	 * {@link #valueConstraintReferenceValueCalculator}.
-	 *
-	 * @param matchedSections
-	 *            The map of {@link MatchedSectionDescriptor MatchedSectionDescriptors} that represents the result of
-	 *            the matching process.
-	 * @param globalValues
-	 *            the {@link GlobalValueMap} to use
 	 */
-	protected void initConditionHandler(MatchedSectionRegistry matchedSections, GlobalValueMap globalValues) {
+	protected void initConditionHandler() {
 
 		if (this.instanceSelectorHandler == null) {
-			this.initInstanceSelectorHandler(matchedSections, globalValues);
+			this.initInstanceSelectorHandler();
 		}
 
 		if (this.valueConstraintReferenceValueCalculator == null) {
-			this.initValueConstraintReferenceValueCalculator(matchedSections, globalValues);
+			this.initValueConstraintReferenceValueCalculator();
 		}
 
-		this.conditionHandler = new ConditionHandler(matchedSections, this.instanceSelectorHandler,
+		this.conditionHandler = new ConditionHandler(this.matchedSectionRegistry, this.instanceSelectorHandler,
 				this.valueConstraintReferenceValueCalculator, this.transformationConfig.getLogger(),
 				this.transformationConfig.isUseParallelization());
 	}

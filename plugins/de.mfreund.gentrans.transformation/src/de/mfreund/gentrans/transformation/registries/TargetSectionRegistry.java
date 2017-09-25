@@ -117,7 +117,9 @@ public class TargetSectionRegistry extends CancelableElement {
 	 *            The {@link AttributeValueRegistry} that keeps track of already used values for target attributes.
 	 * @param targetMetaModel
 	 *            The {@link EPackage} representing the target meta-model.
+	 * @deprecated use {@link #TargetSectionRegistry(Logger, Set)} instead.
 	 */
+	@Deprecated
 	public TargetSectionRegistry(final Logger logger, final AttributeValueRegistry attrValRegistry,
 			final EPackage targetMetaModel) {
 
@@ -135,11 +137,28 @@ public class TargetSectionRegistry extends CancelableElement {
 	 *            The {@link AttributeValueRegistry} that keeps track of already used values for target attributes.
 	 * @param targetMetaModels
 	 *            The list of {@link EPackage EPackages} representing the target meta-models.
+	 * @deprecated use {@link #TargetSectionRegistry(Logger, Set)} instead.
 	 */
+	@Deprecated
 	public TargetSectionRegistry(final Logger logger, final AttributeValueRegistry attrValRegistry,
 			final Set<EPackage> targetMetaModels) {
 
 		this(logger, attrValRegistry);
+
+		targetMetaModels.stream().forEach(this::analyseTargetMetaModel);
+	}
+
+	/**
+	 * This creates an instance for multiple target meta-models.
+	 *
+	 * @param logger
+	 *            The {@link Logger} that shall be used to print messages.
+	 * @param targetMetaModels
+	 *            The list of {@link EPackage EPackages} representing the target meta-models.
+	 */
+	public TargetSectionRegistry(final Logger logger, final Set<EPackage> targetMetaModels) {
+
+		this(logger, new AttributeValueRegistry());
 
 		targetMetaModels.stream().forEach(this::analyseTargetMetaModel);
 	}
@@ -261,16 +280,12 @@ public class TargetSectionRegistry extends CancelableElement {
 	 */
 	private void analyseTargetMetaModel(final EPackage targetMetaModel) {
 
-		this.logger.fine(() -> "\nAnalyzing target meta-model '" + targetMetaModel.getName() + "'.");
-
 		// Retrieve all EClass defined in the targetMetaModel
 		//
-		this.logger.fine("\tMapping targetMetaModel classes");
 		final List<EClass> classesToAnalyse = this.getClasses(targetMetaModel);
 
 		// Determine the child EClasses for each EClass
 		//
-		this.logger.fine("\tMapping targetMetaModel inheritance and containment relationships");
 		classesToAnalyse.stream().forEach(eClass -> eClass.getEAllSuperTypes().stream()
 				.forEach(superEClass -> this.childClassesRegistry.get(superEClass).add(eClass)));
 
@@ -278,7 +293,6 @@ public class TargetSectionRegistry extends CancelableElement {
 		// 1. register the EClasses that hold the ERefrence and
 		// 2. register to which EClasses this EReference points
 		//
-		this.logger.fine("\tMapping targetMetaModel containment relationships");
 		classesToAnalyse.stream().forEach(e -> e.getEAllContainments().stream().forEach(c -> {
 
 			if (this.targetClassReferencesRegistry.containsKey(c.getEReferenceType())) {

@@ -426,265 +426,265 @@ public class TargetSectionLinker extends CancelableElement {
 					hintValues.getHintValues(referenceTargetSelector), referenceTargetSelector);
 		}
 
-		// FIXME filter evaluating the 'referenceAttribute'
-
-		 /*
-		 * handle AttributeMatcher
-		 */
-		 if (referenceTargetSelector.getMatcher() instanceof AttributeMatcher) {
-
-		 final AttributeMatcher matcher = (AttributeMatcher) referenceTargetSelector.getMatcher();
-
-		 // now search for target attributes
-		 final List<EObjectWrapper> targetInstances = this.targetSectionRegistry
-		 .getFlattenedPamtramClassInstances(matcher.getTarget().getOwningClass());
-
-		 /*
-		 * Sizes of instances and attributeHints must either match, or, in case there was a cardinality mapping, the
-		 * size of the hintValues must be 1
-		 */
-		 LinkedList<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>> newHintValues = new
-		 LinkedList<>();
-		 int numberOfInstancesToCreate = 0;
-		 if (hintValues.getHintValues(referenceTargetSelector).size() == 1) {
-
-		 // one hint value but multiple instances
-		 // -> clone the single hint value for
-		 // each instance
-		 final Map<InstanceSelectorSourceInterface, AttributeValueRepresentation> hintVal = hintValues
-		 .getHintValues(referenceTargetSelector).getFirst();
-		 for (int i = 0; i < sourceInstances.size(); i++) {
-		 newHintValues.add(hintVal);
-		 }
-		 numberOfInstancesToCreate = newHintValues.size();
-		 } else if (sourceInstances.size() == hintValues.getHintValues(referenceTargetSelector).size()) {
-
-		 // multiple hint values and the same
-		 // amount of instances -> each hint
-		 // value is used for one instance
-		 newHintValues = hintValues.getHintValues(referenceTargetSelector);
-		 numberOfInstancesToCreate = newHintValues.size();
-		 } else if (referenceTargetSelector.getAffectedReference().getEReference().isMany()
-		 && hintValues.getHintValues(referenceTargetSelector).size() % sourceInstances.size() == 0) {
-
-		 // a multiple of hint values for each
-		 // instance -> use multiple hint values
-		 // for each instance
-		 newHintValues = hintValues.getHintValues(referenceTargetSelector);
-		 numberOfInstancesToCreate = sourceInstances.size();
-		 } else {
-
-		 this.logger.warning(
-		 () -> "There was a size mismatch while trying to set a non-containment reference, using the Hint "
-		 + referenceTargetSelector.getName() + ". There where " + sourceInstances.size()
-		 + " instances to be connected but "
-		 + hintValues.getHintValues(referenceTargetSelector).size()
-		 + " MappingHint values. The output below"
-		 + " shows the hint values and the source instances for the reference:\n"
-		 + hintValues.getHintValues(referenceTargetSelector) + "\n" + sourceInstances);
-		 }
-
-		 // how many target instances are to be set
-		 // as value of the non-containment reference
-		 // of each instance
-		 final int targetsPerInstance = newHintValues.size() / numberOfInstancesToCreate;
-
-		 for (int i = 0; i < numberOfInstancesToCreate; i++) {
-
-		 final EObjectWrapper srcInst = sourceInstances.remove(0);
-
-		 for (int j = 0; j < targetsPerInstance; j++) {
-
-		 String attrValStr = null;
-		 if (referenceTargetSelector.getMatcher() instanceof AttributeMatcher) {
-		 attrValStr = this.calculator.calculateAttributeValue(null, referenceTargetSelector,
-		 newHintValues);
-		 }
-		 final List<EObjectWrapper> fittingVals = new LinkedList<>();
-
-		 for (final EObjectWrapper targetInst : targetInstances) {
-		 // get Attribute value
-		 final String targetValStr = targetInst.getAttributeValue(matcher.getTarget());
-		 if (targetValStr != null) {
-		 if (targetValStr.equals(attrValStr)) {
-		 fittingVals.add(targetInst);
-		 }
-		 } else {
-		 this.logger.warning("Problemo?");
-		 }
-		 }
-		 // select targetInst
-		 List<EObject> targetInst = new ArrayList<>();
-		 if (fittingVals.size() == 1) {
-		 targetInst.add(fittingVals.get(0).getEObject());
-
-		 } else if (fittingVals.size() > 1) {
-
-		 this.checkCanceled();
-
-		 /*
-		 * Consult the specified resolving strategy to resolve the ambiguity.
-		 */
-		 try {
-		 this.logger.fine(TargetSectionLinker.RESOLVE_LINKING_AMBIGUITY_STARTED);
-		 List<EObjectWrapper> resolved = this.ambiguityResolvingStrategy.linkingSelectTargetInstance(
-		 fittingVals, referenceTargetSelector.getAffectedReference(),
-		 (MappingHintGroupType) mappingGroup, referenceTargetSelector,
-		 Arrays.asList(srcInst));
-		 if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
-		 ((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
-		 .linkingTargetInstanceSelected(new ArrayList<>(fittingVals), resolved.get(0));
-		 }
-		 this.logger.fine(TargetSectionLinker.RESOLVE_LINKING_AMBIGUITY_FINISHED);
-		 if (ref.getEReference().isMany()) {
-		 for (EObjectWrapper eObjectWrapper : resolved) {
-		 targetInst.add(eObjectWrapper.getEObject());
-		 }
-		 } else {
-		 targetInst.add(resolved.get(0).getEObject());
-		 }
-		 } catch (AmbiguityResolvingException e) {
-		 if (e.getCause() instanceof UserAbortException) {
-		 throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
-		 } else {
-		 this.logger.severe(
-		 () -> "The following exception occured during the resolving of an ambiguity concerning a target instance: "
-		 + e.getMessage());
-		 this.logger.severe("Using default instance instead...");
-		 targetInst.add(fittingVals.get(0).getEObject());
-		 }
-		 }
-
-		 } else {
-		 this.logger.warning("The ReferenceTargetSelector " + referenceTargetSelector.getName()
-		 + " (Mapping: " + ((Mapping) mappingGroup.eContainer()).getName() + ", Group: "
-		 + mappingGroup.getName() + " ) has an AttributeMatcher that picked up the value '"
-		 + attrValStr + "' to be matched to the "
-		 + "TargetAttribute, but no fitting TargetSectionInstance with this value could be found.");
-		 continue;
-		 }
-
-		 // finally, we can set the value of
-		 // the reference
-		 if (!sourceClass.isLibraryEntry()) {
-		 this.addValuesToReference(ref, targetInst, srcInst.getEObject());
-		 } else {
-		 /*
-		 * for library entries, we cannot simply add the value as the reference we are handling is not
-		 * part of the targetSectionClass; instead we want to specify the value as 'target' for the
-		 * affected ExternalReferenceParameter
-		 */
-		 LibraryEntry specificLibEntry = this.libEntryInstantiatorMap.get(srcInst).getLibraryEntry();
-		 LibraryEntry genericLibEntry = (LibraryEntry) sourceClass.eContainer().eContainer();
-		 ExternalReferenceParameter extRefParam = (ExternalReferenceParameter) specificLibEntry
-		 .getParameters().get(genericLibEntry.getParameters().indexOf(ref.eContainer()));
-		 @SuppressWarnings("unchecked")
-		 AbstractExternalReferenceParameter<EObject, EObject> originalParam =
-		 (AbstractExternalReferenceParameter<EObject, EObject>) extRefParam
-		 .getOriginalParameter();
-		 // library entries do currently
-		 // not support to set multiple
-		 // target instances for an
-		 // ExternalReferenceParameter
-		 originalParam.setTarget(targetInst.get(0));
-		 }
-		 }
-
-		 }
-
-		 /*
-		 * Handle ClassMatcher
-		 */
-		 } else if (referenceTargetSelector.getMatcher() instanceof ClassMatcher) {
-
-		 if (((ClassMatcher) referenceTargetSelector.getMatcher()).getTargetClass() != null) {// was
-		 // the
-		 // matcher
-		 // modeled
-		 // correctly?
-		 if (refValueClone.contains(((ClassMatcher) referenceTargetSelector.getMatcher()).getTargetClass())) {
-
-		 final TargetSectionClass matcherTargetClass = ((ClassMatcher) referenceTargetSelector.getMatcher())
-		 .getTargetClass();
-
-		 /*
-		 * select potential instances globally
-		 */
-		 final List<EObjectWrapper> insts = this.targetSectionRegistry
-		 .getFlattenedPamtramClassInstances(matcherTargetClass);
-
-		 EObjectWrapper targetInstance = null;
-		 if (insts.size() == 1) {
-		 targetInstance = insts.get(0);
-		 } else if (insts.size() > 1) {
-		 // Dialog
-		 this.checkCanceled();
-
-		 /*
-		 * Consult the specified resolving strategy to resolve the ambiguity.
-		 */
-		 try {
-		 this.logger.fine(TargetSectionLinker.RESOLVE_LINKING_AMBIGUITY_STARTED);
-		 List<EObjectWrapper> resolved = this.ambiguityResolvingStrategy.linkingSelectTargetInstance(
-		 insts, referenceTargetSelector.getAffectedReference(), null,
-		 referenceTargetSelector, sourceInstances);
-		 this.logger.fine(TargetSectionLinker.RESOLVE_LINKING_AMBIGUITY_FINISHED);
-		 targetInstance = resolved.get(0);
-		 } catch (AmbiguityResolvingException e) {
-		 if (e.getCause() instanceof UserAbortException) {
-		 throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
-		 } else {
-		 this.logger.severe(
-		 () -> "The following exception occured during the resolving of an ambiguity concerning the selection of a
-		 target instance: "
-		 + e.getMessage());
-		 this.logger.severe("Using default instance instead...");
-		 targetInstance = insts.get(0);
-		 }
-		 }
-
-		 } else {
-		 this.logger.warning(() -> "The ReferenceTargetSelector '" + referenceTargetSelector.getName()
-		 + " of Mapping" + ((Mapping) mappingGroup.eContainer()).getName() + "(Group: "
-		 + mappingGroup.getName() + ")' has a Matcher that points to the target class "
-		 + matcherTargetClass.getName() + " (Section: "
-		 + matcherTargetClass.getContainingSection().getName()
-		 + "). Sadly, no instances of this Class were created.");
-		 }
-
-		 if (targetInstance != null) {
-		 for (final EObjectWrapper inst : sourceInstances) {// same
-		 // action for every instance of specific
-		 // mapping
-		 //
-		 if (!sourceClass.isLibraryEntry()) {
-		 this.addValueToReference(ref, targetInstance.getEObject(), inst.getEObject());
-		 } else {
-		 /*
-		 * for library entries, we cannot simply add the value as the reference we are handling
-		 * is not part of the targetSectionClass; instead we want to specify the value as
-		 * 'target' for the affected ExternalReferenceParameter
-		 */
-		 LibraryEntry specificLibEntry = this.libEntryInstantiatorMap.get(inst)
-		 .getLibraryEntry();
-		 LibraryEntry genericLibEntry = (LibraryEntry) sourceClass.eContainer().eContainer();
-		 ExternalReferenceParameter extRefParam = (ExternalReferenceParameter) specificLibEntry
-		 .getParameters().get(genericLibEntry.getParameters().indexOf(ref.eContainer()));
-		 @SuppressWarnings("unchecked")
-		 AbstractExternalReferenceParameter<EObject, EObject> originalParam =
-		 (AbstractExternalReferenceParameter<EObject, EObject>) extRefParam
-		 .getOriginalParameter();
-		 originalParam.setTarget(targetInstance.getEObject());
-		 }
-		 }
-		 }
-		 }
-		 }
-
-		 } else {
-		 this.logger.severe(() -> "Matcher of type " + referenceTargetSelector.getMatcher().eClass().getName()
-		 + " in MappingHint " + referenceTargetSelector.getName() + " is not supported.");
-		 }
+		// // FIXME filter evaluating the 'referenceAttribute'
+		//
+		// /*
+		// * handle AttributeMatcher
+		// */
+		// if (referenceTargetSelector.getMatcher() instanceof AttributeMatcher) {
+		//
+		// final AttributeMatcher matcher = (AttributeMatcher) referenceTargetSelector.getMatcher();
+		//
+		// // now search for target attributes
+		// final List<EObjectWrapper> targetInstances = this.targetSectionRegistry
+		// .getFlattenedPamtramClassInstances(matcher.getTarget().getOwningClass());
+		//
+		// /*
+		// * Sizes of instances and attributeHints must either match, or, in case there was a cardinality mapping, the
+		// * size of the hintValues must be 1
+		// */
+		// LinkedList<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>> newHintValues = new
+		// LinkedList<>();
+		// int numberOfInstancesToCreate = 0;
+		// if (hintValues.getHintValues(referenceTargetSelector).size() == 1) {
+		//
+		// // one hint value but multiple instances
+		// // -> clone the single hint value for
+		// // each instance
+		// final Map<InstanceSelectorSourceInterface, AttributeValueRepresentation> hintVal = hintValues
+		// .getHintValues(referenceTargetSelector).getFirst();
+		// for (int i = 0; i < sourceInstances.size(); i++) {
+		// newHintValues.add(hintVal);
+		// }
+		// numberOfInstancesToCreate = newHintValues.size();
+		// } else if (sourceInstances.size() == hintValues.getHintValues(referenceTargetSelector).size()) {
+		//
+		// // multiple hint values and the same
+		// // amount of instances -> each hint
+		// // value is used for one instance
+		// newHintValues = hintValues.getHintValues(referenceTargetSelector);
+		// numberOfInstancesToCreate = newHintValues.size();
+		// } else if (referenceTargetSelector.getAffectedReference().getEReference().isMany()
+		// && hintValues.getHintValues(referenceTargetSelector).size() % sourceInstances.size() == 0) {
+		//
+		// // a multiple of hint values for each
+		// // instance -> use multiple hint values
+		// // for each instance
+		// newHintValues = hintValues.getHintValues(referenceTargetSelector);
+		// numberOfInstancesToCreate = sourceInstances.size();
+		// } else {
+		//
+		// this.logger.warning(
+		// () -> "There was a size mismatch while trying to set a non-containment reference, using the Hint "
+		// + referenceTargetSelector.getName() + ". There where " + sourceInstances.size()
+		// + " instances to be connected but "
+		// + hintValues.getHintValues(referenceTargetSelector).size()
+		// + " MappingHint values. The output below"
+		// + " shows the hint values and the source instances for the reference:\n"
+		// + hintValues.getHintValues(referenceTargetSelector) + "\n" + sourceInstances);
+		// }
+		//
+		// // how many target instances are to be set
+		// // as value of the non-containment reference
+		// // of each instance
+		// final int targetsPerInstance = newHintValues.size() / numberOfInstancesToCreate;
+		//
+		// for (int i = 0; i < numberOfInstancesToCreate; i++) {
+		//
+		// final EObjectWrapper srcInst = sourceInstances.remove(0);
+		//
+		// for (int j = 0; j < targetsPerInstance; j++) {
+		//
+		// String attrValStr = null;
+		// if (referenceTargetSelector.getMatcher() instanceof AttributeMatcher) {
+		// attrValStr = this.calculator.calculateAttributeValue(null, referenceTargetSelector,
+		// newHintValues);
+		// }
+		// final List<EObjectWrapper> fittingVals = new LinkedList<>();
+		//
+		// for (final EObjectWrapper targetInst : targetInstances) {
+		// // get Attribute value
+		// final String targetValStr = targetInst.getAttributeValue(matcher.getTarget());
+		// if (targetValStr != null) {
+		// if (targetValStr.equals(attrValStr)) {
+		// fittingVals.add(targetInst);
+		// }
+		// } else {
+		// this.logger.warning("Problemo?");
+		// }
+		// }
+		// // select targetInst
+		// List<EObject> targetInst = new ArrayList<>();
+		// if (fittingVals.size() == 1) {
+		// targetInst.add(fittingVals.get(0).getEObject());
+		//
+		// } else if (fittingVals.size() > 1) {
+		//
+		// this.checkCanceled();
+		//
+		// /*
+		// * Consult the specified resolving strategy to resolve the ambiguity.
+		// */
+		// try {
+		// this.logger.fine(TargetSectionLinker.RESOLVE_LINKING_AMBIGUITY_STARTED);
+		// List<EObjectWrapper> resolved = this.ambiguityResolvingStrategy.linkingSelectTargetInstance(
+		// fittingVals, referenceTargetSelector.getAffectedReference(),
+		// (MappingHintGroupType) mappingGroup, referenceTargetSelector,
+		// Arrays.asList(srcInst));
+		// if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
+		// ((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
+		// .linkingTargetInstanceSelected(new ArrayList<>(fittingVals), resolved.get(0));
+		// }
+		// this.logger.fine(TargetSectionLinker.RESOLVE_LINKING_AMBIGUITY_FINISHED);
+		// if (ref.getEReference().isMany()) {
+		// for (EObjectWrapper eObjectWrapper : resolved) {
+		// targetInst.add(eObjectWrapper.getEObject());
+		// }
+		// } else {
+		// targetInst.add(resolved.get(0).getEObject());
+		// }
+		// } catch (AmbiguityResolvingException e) {
+		// if (e.getCause() instanceof UserAbortException) {
+		// throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
+		// } else {
+		// this.logger.severe(
+		// () -> "The following exception occured during the resolving of an ambiguity concerning a target instance: "
+		// + e.getMessage());
+		// this.logger.severe("Using default instance instead...");
+		// targetInst.add(fittingVals.get(0).getEObject());
+		// }
+		// }
+		//
+		// } else {
+		// this.logger.warning("The ReferenceTargetSelector " + referenceTargetSelector.getName()
+		// + " (Mapping: " + ((Mapping) mappingGroup.eContainer()).getName() + ", Group: "
+		// + mappingGroup.getName() + " ) has an AttributeMatcher that picked up the value '"
+		// + attrValStr + "' to be matched to the "
+		// + "TargetAttribute, but no fitting TargetSectionInstance with this value could be found.");
+		// continue;
+		// }
+		//
+		// // finally, we can set the value of
+		// // the reference
+		// if (!sourceClass.isLibraryEntry()) {
+		// this.addValuesToReference(ref, targetInst, srcInst.getEObject());
+		// } else {
+		// /*
+		// * for library entries, we cannot simply add the value as the reference we are handling is not
+		// * part of the targetSectionClass; instead we want to specify the value as 'target' for the
+		// * affected ExternalReferenceParameter
+		// */
+		// LibraryEntry specificLibEntry = this.libEntryInstantiatorMap.get(srcInst).getLibraryEntry();
+		// LibraryEntry genericLibEntry = (LibraryEntry) sourceClass.eContainer().eContainer();
+		// ExternalReferenceParameter extRefParam = (ExternalReferenceParameter) specificLibEntry
+		// .getParameters().get(genericLibEntry.getParameters().indexOf(ref.eContainer()));
+		// @SuppressWarnings("unchecked")
+		// AbstractExternalReferenceParameter<EObject, EObject> originalParam =
+		// (AbstractExternalReferenceParameter<EObject, EObject>) extRefParam
+		// .getOriginalParameter();
+		// // library entries do currently
+		// // not support to set multiple
+		// // target instances for an
+		// // ExternalReferenceParameter
+		// originalParam.setTarget(targetInst.get(0));
+		// }
+		// }
+		//
+		// }
+		//
+		// /*
+		// * Handle ClassMatcher
+		// */
+		// } else if (referenceTargetSelector.getMatcher() instanceof ClassMatcher) {
+		//
+		// if (((ClassMatcher) referenceTargetSelector.getMatcher()).getTargetClass() != null) {// was
+		// // the
+		// // matcher
+		// // modeled
+		// // correctly?
+		// if (refValueClone.contains(((ClassMatcher) referenceTargetSelector.getMatcher()).getTargetClass())) {
+		//
+		// final TargetSectionClass matcherTargetClass = ((ClassMatcher) referenceTargetSelector.getMatcher())
+		// .getTargetClass();
+		//
+		// /*
+		// * select potential instances globally
+		// */
+		// final List<EObjectWrapper> insts = this.targetSectionRegistry
+		// .getFlattenedPamtramClassInstances(matcherTargetClass);
+		//
+		// EObjectWrapper targetInstance = null;
+		// if (insts.size() == 1) {
+		// targetInstance = insts.get(0);
+		// } else if (insts.size() > 1) {
+		// // Dialog
+		// this.checkCanceled();
+		//
+		// /*
+		// * Consult the specified resolving strategy to resolve the ambiguity.
+		// */
+		// try {
+		// this.logger.fine(TargetSectionLinker.RESOLVE_LINKING_AMBIGUITY_STARTED);
+		// List<EObjectWrapper> resolved = this.ambiguityResolvingStrategy.linkingSelectTargetInstance(
+		// insts, referenceTargetSelector.getAffectedReference(), null,
+		// referenceTargetSelector, sourceInstances);
+		// this.logger.fine(TargetSectionLinker.RESOLVE_LINKING_AMBIGUITY_FINISHED);
+		// targetInstance = resolved.get(0);
+		// } catch (AmbiguityResolvingException e) {
+		// if (e.getCause() instanceof UserAbortException) {
+		// throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
+		// } else {
+		// this.logger.severe(
+		// () -> "The following exception occured during the resolving of an ambiguity concerning the selection of a
+		// target instance: "
+		// + e.getMessage());
+		// this.logger.severe("Using default instance instead...");
+		// targetInstance = insts.get(0);
+		// }
+		// }
+		//
+		// } else {
+		// this.logger.warning(() -> "The ReferenceTargetSelector '" + referenceTargetSelector.getName()
+		// + " of Mapping" + ((Mapping) mappingGroup.eContainer()).getName() + "(Group: "
+		// + mappingGroup.getName() + ")' has a Matcher that points to the target class "
+		// + matcherTargetClass.getName() + " (Section: "
+		// + matcherTargetClass.getContainingSection().getName()
+		// + "). Sadly, no instances of this Class were created.");
+		// }
+		//
+		// if (targetInstance != null) {
+		// for (final EObjectWrapper inst : sourceInstances) {// same
+		// // action for every instance of specific
+		// // mapping
+		// //
+		// if (!sourceClass.isLibraryEntry()) {
+		// this.addValueToReference(ref, targetInstance.getEObject(), inst.getEObject());
+		// } else {
+		// /*
+		// * for library entries, we cannot simply add the value as the reference we are handling
+		// * is not part of the targetSectionClass; instead we want to specify the value as
+		// * 'target' for the affected ExternalReferenceParameter
+		// */
+		// LibraryEntry specificLibEntry = this.libEntryInstantiatorMap.get(inst)
+		// .getLibraryEntry();
+		// LibraryEntry genericLibEntry = (LibraryEntry) sourceClass.eContainer().eContainer();
+		// ExternalReferenceParameter extRefParam = (ExternalReferenceParameter) specificLibEntry
+		// .getParameters().get(genericLibEntry.getParameters().indexOf(ref.eContainer()));
+		// @SuppressWarnings("unchecked")
+		// AbstractExternalReferenceParameter<EObject, EObject> originalParam =
+		// (AbstractExternalReferenceParameter<EObject, EObject>) extRefParam
+		// .getOriginalParameter();
+		// originalParam.setTarget(targetInstance.getEObject());
+		// }
+		// }
+		// }
+		// }
+		// }
+		//
+		// } else {
+		// this.logger.severe(() -> "Matcher of type " + referenceTargetSelector.getMatcher().eClass().getName()
+		// + " in MappingHint " + referenceTargetSelector.getName() + " is not supported.");
+		// }
 	}
 
 	/**

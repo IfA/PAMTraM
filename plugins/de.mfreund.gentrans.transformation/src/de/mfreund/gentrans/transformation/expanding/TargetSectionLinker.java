@@ -2,21 +2,23 @@ package de.mfreund.gentrans.transformation.expanding;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
+import java.util.Set;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import de.mfreund.gentrans.transformation.CancelTransformationException;
 import de.mfreund.gentrans.transformation.UserAbortException;
@@ -26,7 +28,6 @@ import de.mfreund.gentrans.transformation.descriptors.HintValueStorage;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.library.LibraryEntryInstantiator;
 import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
-import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvedAdapter;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
 import de.mfreund.gentrans.transformation.util.CancelableElement;
@@ -35,7 +36,6 @@ import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractExternalReferenc
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.GenLibraryPackage;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.InstantiableMappingHintGroup;
-import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
@@ -345,9 +345,6 @@ public class TargetSectionLinker extends CancelableElement {
 			return;
 		}
 
-		final LinkedList<TargetSectionClass> refValueClone = new LinkedList<>();
-		refValueClone.addAll(ref.getValue());
-
 		// Collect ReferenceTargetSelectors that affect the current reference
 		//
 		List<ReferenceTargetSelector> referenceTargetSelectorsToConcider = mappingHints.parallelStream()
@@ -369,8 +366,7 @@ public class TargetSectionLinker extends CancelableElement {
 
 			// Link the created instances using the 'value' of the reference or no hint at all
 			//
-			this.linkWithoutReferenceTargetSelector(mappingGroup, instancesBySection.get(targetSectionClass), ref,
-					targetSectionClass, refValueClone);
+			this.linkWithoutReferenceTargetSelector(mappingGroup, instancesBySection.get(targetSectionClass), ref);
 		}
 
 	}
@@ -446,398 +442,95 @@ public class TargetSectionLinker extends CancelableElement {
 	 *
 	 * @param mappingGroup
 	 *            The {@link InstantiableMappingHintGroup} based on which the TargetSection gets instantiated.
-	 * @param mappingHints
-	 *            The list of {@link MappingHint MappingHints} to take into account (in case we are dealing with an
-	 *            {@link MappingHintGroupImporter}, this needs to cover <em>local</em> hints as well as
-	 *            {@link ExportedMappingHintGroup imported hints}).
-	 * @param hintValues
-	 *            The {@link HintValueStorage hint values} to take into account.
-	 * @param instancesBySection
-	 *            The registry for {@link EObjectWrapper instances} created during the first pass of the instantiation.
+	 * @param sourceInstances
+	 *            The {@link EObjectWrapper instances} for which the target elements of the given
+	 *            {@link TargetSectionCrossReference} shall be determined.
 	 * @param ref
 	 *            The {@link TargetSectionCrossReference} for that the target elements shall be determined.
 	 */
 	private void linkWithoutReferenceTargetSelector(final InstantiableMappingHintGroup mappingGroup,
-			final List<EObjectWrapper> sourceInstances, final TargetSectionCrossReference ref,
-			final TargetSectionClass targetSectionClass, final LinkedList<TargetSectionClass> refValueClone) {
+			final List<EObjectWrapper> sourceInstances, final TargetSectionCrossReference ref) {
 
-		/*
-		 * In case no suitable hint could be found we will try the following:
-		 *
-		 * 1.only non-cont ref targets to other subsections of this targetMMSection are considered, we can resolve the
-		 * reference if only one Instance of the ref Target was created in the same mapping instance
-		 *
-		 * if that isn't the case:
-		 *
-		 * 2. consider all available instances of the ref target
-		 */
-		if (true) { // last chance
+		this.checkCanceled();
 
-			final LinkedHashSet<TargetSectionClass> foundLocalNonContRefTargets = new LinkedHashSet<>();
-			final LinkedList<TargetSectionClass> refValue = new LinkedList<>();
-			refValue.addAll(ref.getValue());
-
-			// first check root targetMMSection itself
-			if (refValue.contains(mappingGroup.getTargetMMSectionGeneric())) {
-				foundLocalNonContRefTargets.add(mappingGroup.getTargetMMSectionGeneric());
-				refValue.remove(mappingGroup.getTargetMMSectionGeneric());
-			}
-
-			// then check all its children
-			final TreeIterator<EObject> it = mappingGroup.getTargetMMSectionGeneric().eAllContents();
-			while (it.hasNext() && !refValue.isEmpty()) {
-				final EObject next = it.next();
-				if (refValue.contains(next)) {// at least one of the
-					/*
-					 * values the pamtram-reference points to, is part of the same MappingHintGroup's targetMMSection
-					 */
-					foundLocalNonContRefTargets.add((TargetSectionClass) next);
-					refValue.remove(next);
-				}
-
-			}
-			/*
-			 * only non-cont ref targets to other subsections of this targetMMSection are considered
-			 */
-			if (foundLocalNonContRefTargets.size() > 0) {
-
-				// get root instances of groups targetMMSection
-				final List<EObjectWrapper> rootInstances = this.targetSectionRegistry
-						.getFlattenedPamtramClassInstances(mappingGroup.getTargetMMSectionGeneric());
-
-				// get target instances for the reference
-				final LinkedList<EObjectWrapper> targetInstances = new LinkedList<>();
-				for (final TargetSectionClass section : foundLocalNonContRefTargets) {
-					targetInstances.addAll(this.targetSectionRegistry.getFlattenedPamtramClassInstances(section));
-				}
-
-				// now sort instances by root
-				final LinkedHashMap<EObjectWrapper, EObjectWrapper> rootBySourceInstance = new LinkedHashMap<>();
-				final LinkedHashMap<EObjectWrapper, LinkedList<EObjectWrapper>> targetInstancesByRoot = new LinkedHashMap<>();
-
-				for (final EObjectWrapper root : rootInstances) {
-					targetInstancesByRoot.put(root, new LinkedList<EObjectWrapper>());
-
-					// check if root node itself is a target
-					for (final EObjectWrapper t : targetInstances) {
-						if (t.getEObject().equals(root.getEObject())) {
-							targetInstancesByRoot.get(root).add(root);
-							targetInstances.remove(t);
-							break;
-						}
-					}
-
-					// check root node's contents
-					final TreeIterator<EObject> it1 = root.getEObject().eAllContents();
-					while (it1.hasNext() && !(sourceInstances.size() == 0 && targetInstances.size() == 0)) {
-						final EObject next = it1.next();
-
-						boolean found = false;
-
-						for (final EObjectWrapper h : sourceInstances) {
-							if (h.getEObject().equals(next)) {
-								rootBySourceInstance.put(h, root);
-								sourceInstances.remove(h);
-								found = true;
-								break;
-							}
-						}
-
-						if (!found) {
-							for (final EObjectWrapper t : targetInstances) {
-								if (t.getEObject().equals(next)) {
-									targetInstancesByRoot.get(root).add(t);
-									targetInstances.remove(t);
-									break;
-								}
-							}
-
-						}
-					}
-				}
-				// now select targetInstance for each source
-				// instance
-				for (final EObjectWrapper source : rootBySourceInstance.keySet()) {
-					final List<EObjectWrapper> instances = targetInstancesByRoot.get(rootBySourceInstance.get(source));
-					if (instances.size() == 1) {
-						if (!targetSectionClass.isLibraryEntry()) {
-							this.addValueToReference(ref, instances.get(0).getEObject(), source.getEObject());
-						} else {
-							/*
-							 * for library entries, we cannot simply add the value as the reference we are handling is
-							 * not part of the targetSectionClass; instead we want to specify the value as 'target' for
-							 * the affected ExternalReferenceParameter
-							 */
-							LibraryEntry specificLibEntry = this.libEntryInstantiatorMap.get(source).getLibraryEntry();
-							LibraryEntry genericLibEntry = (LibraryEntry) targetSectionClass.eContainer().eContainer();
-							ExternalReferenceParameter extRefParam = (ExternalReferenceParameter) specificLibEntry
-									.getParameters().get(genericLibEntry.getParameters().indexOf(ref.eContainer()));
-							@SuppressWarnings("unchecked")
-							AbstractExternalReferenceParameter<EObject, EObject> originalParam = (AbstractExternalReferenceParameter<EObject, EObject>) extRefParam
-									.getOriginalParameter();
-							originalParam.setTarget(instances.get(0).getEObject());
-						}
-					} else if (instances.size() > 1) {
-						// Dialog
-						this.checkCanceled();
-
-						/*
-						 * Consult the specified resolving strategy to resolve the ambiguity.
-						 */
-						List<EObject> targets = new ArrayList<>();
-						try {
-							List<EObjectWrapper> resolved = this.ambiguityResolvingStrategy.linkingSelectTargetInstance(
-									instances, ref, (MappingHintGroupType) mappingGroup, null, Arrays.asList(source));
-							if (ref.getEReference().isMany()) {
-								for (EObjectWrapper eObjectWrapper : resolved) {
-									targets.add(eObjectWrapper.getEObject());
-								}
-							} else {
-								targets.add(resolved.get(0).getEObject());
-							}
-						} catch (AmbiguityResolvingException e) {
-							if (e.getCause() instanceof UserAbortException) {
-								throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
-							} else {
-								this.logger.severe(
-										() -> "The following exception occured during the resolving of an ambiguity concerning the selection of a target instance: "
-												+ e.getMessage());
-								this.logger.severe("Using default instance instead...");
-								targets.add(instances.get(0).getEObject());
-							}
-						}
-
-						// final
-						// GenericItemSelectorDialogRunner<EObjectWrapper>
-						// dialog = new
-						// GenericItemSelectorDialogRunner<>(
-						// "There was more than one target element
-						// found for the NonContainmmentReference '"
-						// + ref.getName()
-						// + "' of TargetMMSection "
-						// + groupTargetSection.getName()
-						// + "(Section: "
-						// + targetSectionClass.getName()
-						// + ") in Mapping "
-						// + mappingName
-						// + "(Group: "
-						// + group.getName()
-						// + ") ."
-						// + "Please select a target element for the
-						// following source:\n"
-						// + source.toString(),
-						// instances, 0);
-						// Display.getDefault().syncExec(dialog);
-						//
-						// if
-						// (dialog.wasTransformationStopRequested())
-						// {
-						// canceled = true;
-						// return;
-						// }
-						if (!targetSectionClass.isLibraryEntry()) {
-							this.addValuesToReference(ref, targets, source.getEObject());
-						} else {
-							/*
-							 * for library entries, we cannot simply add the value as the reference we are handling is
-							 * not part of the targetSectionClass; instead we want to specify the value as 'target' for
-							 * the affected ExternalReferenceParameter
-							 */
-							LibraryEntry specificLibEntry = this.libEntryInstantiatorMap.get(source).getLibraryEntry();
-							LibraryEntry genericLibEntry = (LibraryEntry) targetSectionClass.eContainer().eContainer();
-							ExternalReferenceParameter extRefParam = (ExternalReferenceParameter) specificLibEntry
-									.getParameters().get(genericLibEntry.getParameters().indexOf(ref.eContainer()));
-							@SuppressWarnings("unchecked")
-							AbstractExternalReferenceParameter<EObject, EObject> originalParam = (AbstractExternalReferenceParameter<EObject, EObject>) extRefParam
-									.getOriginalParameter();
-							// library entries do currently not
-							// support to set multiple target
-							// instances for an
-							// ExternalReferenceParameter
-							originalParam.setTarget(targets.get(0));
-						}
-
-					} else {
-						this.logger.warning(() -> "No suitable refernce target found for non-cont. reference '"
-								+ ref.getName() + "' of the following instance of target class "
-								+ targetSectionClass.getName() + " (Section: "
-								+ targetSectionClass.getContainingSection().getName() + ").'\n" + source.toString());
-					}
-
-				}
-				/*
-				 * consider all available instances of the ref target
-				 */
-			} else {
-				final LinkedHashMap<String, EObjectWrapper> targetInstancesToConsider = new LinkedHashMap<>();
-				final LinkedList<String> targetSectionChoices = new LinkedList<>();
-				final LinkedList<List<String>> instanceChoices = new LinkedList<>();
-
-				for (final TargetSectionClass v : refValueClone) {
-					final String classString = v.getName() + " (Section: " + v.getContainingSection().getName() + ")";
-					final List<EObjectWrapper> insts = this.targetSectionRegistry.getFlattenedPamtramClassInstances(v);
-
-					if (insts.size() > 0) {
-						targetSectionChoices.add(classString);
-						final LinkedList<String> choices = new LinkedList<>();
-						for (final EObjectWrapper i : insts) {
-							final String description = i.toString();
-							targetInstancesToConsider.put(description, i);
-							choices.add(description);
-						}
-						instanceChoices.add(choices);
-					}
-				}
-
-				// the EObjectWrapper that will be set as target of
-				// the non-containment reference
-				List<EObject> targets = null;
-
-				if (targetInstancesToConsider.values().size() == 1) {
-
-					targets = Arrays.asList(targetInstancesToConsider.values().iterator().next().getEObject());
-
-				} else if (targetInstancesToConsider.values().size() > 1) {
-
-					this.checkCanceled();
-
-					/*
-					 * Consult the specified resolving strategy to resolve the ambiguity.
-					 */
-					HashMap<TargetSectionClass, List<EObjectWrapper>> choices = new HashMap<>();
-					for (TargetSectionClass targetSection : refValueClone) {
-						choices.put(targetSection, new ArrayList<>(
-								this.targetSectionRegistry.getFlattenedPamtramClassInstances(targetSection)));
-					}
-					try {
-						this.logger.fine(TargetSectionLinker.RESOLVE_LINKING_AMBIGUITY_STARTED);
-
-						Map<TargetSectionClass, List<EObjectWrapper>> resolved;
-						if (choices.size() == 1) {
-							// If there is only one possible TargetSection,
-							// we only need to let the user choose the
-							// instance...
-							//
-							TargetSectionClass resolvedSection = choices.keySet().iterator().next();
-							List<EObjectWrapper> resolvedInstances = this.ambiguityResolvingStrategy
-									.linkingSelectTargetInstance(choices.values().iterator().next(), ref,
-											(MappingHintGroupType) mappingGroup, null, sourceInstances);
-							resolved = new HashMap<>();
-							resolved.put(resolvedSection, resolvedInstances);
-						} else {
-							// ... otherwise, the user also needs to select
-							// the container instance.
-							//
-							resolved = this.ambiguityResolvingStrategy.linkingSelectTargetSectionAndInstance(choices,
-									ref, (MappingHintGroupType) mappingGroup);
-						}
-
-						Entry<TargetSectionClass, List<EObjectWrapper>> selected = resolved.entrySet().iterator()
-								.next();
-						if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
-							((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
-									.linkingTargetSectionSelected(new ArrayList<>(choices.keySet()), selected.getKey());
-							((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy).linkingTargetInstanceSelected(
-									new ArrayList<>(choices.get(selected.getKey())), selected.getValue().get(0));
-						}
-						this.logger.fine(TargetSectionLinker.RESOLVE_LINKING_AMBIGUITY_FINISHED);
-						if (ref.getEReference().isMany()) {
-							targets = new ArrayList<>();
-							for (EObjectWrapper eObjectWrapper : selected.getValue()) {
-								targets.add(eObjectWrapper.getEObject());
-							}
-						} else {
-							targets = new ArrayList<>(Arrays.asList(selected.getValue().get(0).getEObject()));
-						}
-					} catch (AmbiguityResolvingException e) {
-						if (e.getCause() instanceof UserAbortException) {
-							throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
-						} else {
-							this.logger.severe(
-									() -> "The following exception occured during the resolving of an ambiguity concerning a target section and instance: "
-											+ e.getMessage());
-							this.logger.severe("Using default section and instance instead...");
-							targets = new ArrayList<>(
-									Arrays.asList(choices.entrySet().iterator().next().getValue().get(0).getEObject()));
-						}
-					}
-
-				} else {
-					this.logger.warning(() -> "No suitable hint targets found for non-cont reference '" + ref.getName()
-							+ "' of TargetMMSection " + mappingGroup.getTargetMMSectionGeneric().getName()
-							+ "(Section: " + targetSectionClass.getName() + ") in Mapping "
-							+ ((Mapping) mappingGroup.eContainer()).getName() + "(Group: " + mappingGroup.getName()
-							+ ").");
-				}
-
-				if (targets != null) {
-					for (final EObjectWrapper inst : sourceInstances) {
-						if (!targetSectionClass.isLibraryEntry()) {
-							this.addValuesToReference(ref, targets, inst.getEObject());
-						} else {
-							/*
-							 * for library entries, we cannot simply add the value as the reference we are handling is
-							 * not part of the targetSectionClass; instead we want to specify the value as 'target' for
-							 * the affected ExternalReferenceParameter
-							 */
-							LibraryEntry specificLibEntry = this.libEntryInstantiatorMap.get(inst).getLibraryEntry();
-							LibraryEntry genericLibEntry = (LibraryEntry) targetSectionClass.eContainer().eContainer();
-							ExternalReferenceParameter extRefParam = (ExternalReferenceParameter) specificLibEntry
-									.getParameters().get(genericLibEntry.getParameters().indexOf(ref.eContainer()));
-							@SuppressWarnings("unchecked")
-							AbstractExternalReferenceParameter<EObject, EObject> originalParam = (AbstractExternalReferenceParameter<EObject, EObject>) extRefParam
-									.getOriginalParameter();
-							// library entries do currently not
-							// support to set multiple target
-							// instances for an
-							// ExternalReferenceParameter
-							originalParam.setTarget(targets.get(0));
-						}
-					}
-				}
-
-			}
-
+		// Nothing to connect
+		//
+		if (sourceInstances == null || sourceInstances.isEmpty()) {
+			return;
 		}
-	}
 
-	// /**
-	// * This iterates further downward in the containment hierarchy and calls
-	// * {@link #linkTargetSection(TargetSectionClass, InstantiableMappingHintGroup, List, HintValueStorage, Map)} for
-	// * every found child {@link TargetSectionClass}.
-	// *
-	// * @param targetSectionClass
-	// * The {@link TargetSectionClass} from where to iterate further downward in the containment hierarchy.
-	// * @param mappingGroup
-	// * The {@link InstantiableMappingHintGroup} based on which the TargetSection gets instantiated.
-	// * @param hints
-	// * The list of {@link MappingHint MappingHints} to take into account (in case we are dealing with an
-	// * {@link MappingHintGroupImporter}, this needs to cover <em>local</em> hints as well as
-	// * {@link ExportedMappingHintGroup imported hints}).
-	// * @param hintValues
-	// * The {@link HintValueStorage hint values} to take into account.
-	// * @param instancesBySection
-	// * The registry for {@link EObjectWrapper instances} created during the first pass of the instantiation.
-	// */
-	// private void instantiateTargetSectionSecondPassGoDeeper(final TargetSectionClass targetSectionClass,
-	// final InstantiableMappingHintGroup mappingGroup, final List<MappingHint> hints,
-	// final HintValueStorage hintValues, final Map<TargetSectionClass, List<EObjectWrapper>> instancesBySection) {
-	//
-	// for (final TargetSectionReference ref : targetSectionClass.getReferences()) {
-	//
-	// if (ref instanceof TargetSectionCompositeReference) {
-	//
-	// for (final TargetSectionClass val : ((TargetSectionCompositeReference) ref).getValue()) {// instantiate
-	// // targets
-	//
-	// this.linkTargetSection(val, mappingGroup, hints, hintValues, instancesBySection);
-	//
-	// this.checkCanceled();
-	// }
-	// }
-	//
-	// }
-	// }
+		// All potential target elements
+		//
+		Set<EObjectWrapper> potentialTargetInstances = new LinkedHashSet<>();
+		if (ref.getValue().isEmpty()) {
+
+			// The user did not model any target classes for the given 'ref'. Thus, we consider all possible classes
+			//
+			List<EClass> possibleTargetClasses = new ArrayList<>();
+			possibleTargetClasses.add(ref.getEReference().getEReferenceType());
+			possibleTargetClasses
+					.addAll(this.targetSectionRegistry.getChildClasses(ref.getEReference().getEReferenceType()));
+
+			potentialTargetInstances.addAll(possibleTargetClasses.stream()
+					.flatMap(targetClass -> this.targetSectionRegistry.getTargetClassInstances(targetClass).stream())
+					.collect(Collectors.toList()));
+
+		} else {
+
+			// The user modeled one or multiple allowed target classes. Thus, we only consider instances that have been
+			// created based on theses.
+			//
+			potentialTargetInstances.addAll(ref.getValue().stream().flatMap(
+					targetClass -> this.targetSectionRegistry.getFlattenedPamtramClassInstances(targetClass).stream())
+					.collect(Collectors.toList()));
+		}
+
+		// We distinguish between 'local' and 'global' linking: 1. 'Local' linking takes place if all classes that have
+		// been modeled as 'target' of the given 'ref' are located inside the same target section that the given
+		// 'mappingGroup' points to. In this case, we consider only created model elements that are located inside the
+		// same created model snippet as the current 'sourceInstance' as possible targets. 2. 'Global' linking instead
+		// takes all created model elements into account as potential target instances.
+		//
+		boolean useLocalLinking = !ref.getValue().isEmpty() && ref.getValue().stream()
+				.allMatch(t -> t.getContainingSection().equals(mappingGroup.getTargetMMSectionGeneric()));
+
+		if (useLocalLinking) {
+
+			// The root instances of the instantiated target section (we use these to filter the 'local' target
+			// instances for each source instance)
+			//
+			final List<EObjectWrapper> rootInstances = this.targetSectionRegistry
+					.getFlattenedPamtramClassInstances(mappingGroup.getTargetMMSectionGeneric());
+
+			// Determine the 'local' potential target instances separately for each of the source instances and select
+			// one or multiple to be used as targets
+			//
+			for (EObjectWrapper sourceInstance : sourceInstances) {
+
+				Optional<EObjectWrapper> localRootInstance = rootInstances.stream()
+						.filter(r -> EcoreUtil.isAncestor(r.getEObject(), sourceInstance.getEObject())).findAny();
+
+				if (!localRootInstance.isPresent()) {
+					this.logger.severe(() -> "Internal error while linking instances via the CrossReference '"
+							+ ref.getName() + "'! No local root instance could be determined.");
+					continue;
+				}
+
+				List<EObjectWrapper> localPotentialTargetInstances = potentialTargetInstances.stream()
+						.filter(t -> EcoreUtil.isAncestor(localRootInstance.get().getEObject(), t.getEObject()))
+						.collect(Collectors.toList());
+
+				this.selectAndInstantiateConnections(Arrays.asList(sourceInstance), localPotentialTargetInstances, ref,
+						mappingGroup);
+			}
+
+		} else {
+
+			this.selectAndInstantiateConnections(sourceInstances, new ArrayList<>(potentialTargetInstances), ref,
+					mappingGroup);
+		}
+
+	}
 
 	/**
 	 * Link the given list of <em>sourceInstances</em> with the given list of <em>targetInstances</em>.
@@ -888,7 +581,10 @@ public class TargetSectionLinker extends CancelableElement {
 				try {
 					this.logger.fine(TargetSectionLinker.RESOLVE_LINKING_AMBIGUITY_STARTED);
 					List<EObjectWrapper> resolved = this.ambiguityResolvingStrategy
-							.linkingSelectTargetInstance(targetInstances, reference, null, null, sourceInstances);
+							.linkingSelectTargetInstance(targetInstances, reference,
+									mappingGroup instanceof MappingHintGroup ? (MappingHintGroup) mappingGroup
+											: ((MappingHintGroupImporter) mappingGroup).getHintGroup(),
+									null, sourceInstances);
 					this.logger.fine(TargetSectionLinker.RESOLVE_LINKING_AMBIGUITY_FINISHED);
 					IntStream.range(0, sourceInstances.size()).forEach(i -> targetInstancesBySourceInstance
 							.put(sourceInstances.get(i), Arrays.asList(resolved.get(0))));

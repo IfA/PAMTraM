@@ -3,7 +3,6 @@ package de.mfreund.gentrans.transformation.expanding;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -25,8 +24,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import de.mfreund.gentrans.transformation.CancelTransformationException;
 import de.mfreund.gentrans.transformation.UserAbortException;
 import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
-import de.mfreund.gentrans.transformation.calculation.ValueCalculator;
-import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
@@ -43,12 +40,9 @@ import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.extended.ContainerSelector;
-import pamtram.structure.InstanceSelectorSourceInterface;
-import pamtram.structure.generic.CompositeReference;
 import pamtram.structure.target.FileType;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionClass;
-import pamtram.structure.target.TargetSectionReference;
 
 /**
  * This class is responsible for joining the unconnected target sections to form one coherent target model.
@@ -83,12 +77,6 @@ public class TargetSectionConnector extends CancelableElement {
 	private final Logger logger;
 
 	/**
-	 * The {@link ValueCalculator} that is used to calculate reference values for {@link ContainerSelector
-	 * ContainerSelectors}.
-	 */
-	private final ValueCalculator valueCalculator;
-
-	/**
 	 * The {@link InstanceSelectorHandler} used to evaluate modeled {@link ContainerSelector ContainerSelectors}.
 	 */
 	private InstanceSelectorHandler instanceSelectorHandler;
@@ -119,9 +107,6 @@ public class TargetSectionConnector extends CancelableElement {
 	 * @param targetSectionRegistry
 	 *            A {@link TargetSectionRegistry} that is necessary for finding instances to which sections can be
 	 *            connected.
-	 * @param valueCalculator
-	 *            A {@link ValueCalculator} that is used to calculate reference values for {@link ContainerSelector
-	 *            ContainerSelectors}.
 	 * @param instanceSelectorHandler
 	 *            The {@link InstanceSelectorHandler} used to evaluate modeled {@link ContainerSelector
 	 *            ContainerSelectors}.
@@ -138,16 +123,15 @@ public class TargetSectionConnector extends CancelableElement {
 	 *            The {@link Logger} that shall be used to print messages.
 	 */
 	public TargetSectionConnector(final TargetSectionRegistry targetSectionRegistry,
-			final ValueCalculator valueCalculator, InstanceSelectorHandler instanceSelectorHandler,
-			final TargetModelRegistry targetModelRegistry, final int maxPathLength,
-			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy, final Logger logger) {
+			InstanceSelectorHandler instanceSelectorHandler, final TargetModelRegistry targetModelRegistry,
+			final int maxPathLength, final IAmbiguityResolvingStrategy ambiguityResolvingStrategy,
+			final Logger logger) {
 
 		this.standardPaths = new LinkedHashMap<>();
 		this.targetSectionRegistry = targetSectionRegistry;
 		this.targetModelRegistry = targetModelRegistry;
 		this.logger = logger;
 		this.canceled = false;
-		this.valueCalculator = valueCalculator;
 		this.instanceSelectorHandler = instanceSelectorHandler;
 		this.maxPathLength = maxPathLength;
 		this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
@@ -1226,7 +1210,7 @@ public class TargetSectionConnector extends CancelableElement {
 
 			// Filter those that satisfy one of the calculated hint values
 			//
-			possibleContainerInstances = this.filterContainerInstances(possibleContainerInstances,
+			possibleContainerInstances = this.instanceSelectorHandler.filterTargetInstances(possibleContainerInstances,
 					mappingInstance.getHintValues().getHintValues(containerSelector), containerSelector);
 
 			if (!possibleContainerInstances.isEmpty()) {
@@ -1235,136 +1219,6 @@ public class TargetSectionConnector extends CancelableElement {
 		}
 
 		return containerInstancesByContainerSelector;
-	}
-
-	/**
-	 * From the given list of potential {@link EObjectWrapper container instances}, filters those that satisfy one of
-	 * the given hint values calculated for the given {@link ContainerSelector}.
-	 *
-	 * @param potentialContainerInstances
-	 *            The list of potential {@link EObjectWrapper container instances} to be filtered.
-	 * @param containerSelectorHintValues
-	 *            The hint values of the given <em>containerSelector</em> are to be evaluated.
-	 * @param containerSelector
-	 *            The {@link ContainerSelector} to evaluate.
-	 * @return The filtered list (a subset of the given list) of <em>potentialContainerInstances</em>.
-	 */
-	private List<EObjectWrapper> filterContainerInstances(List<EObjectWrapper> potentialContainerInstances,
-			List<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>> containerSelectorHintValues,
-			ContainerSelector containerSelector) {
-
-		// The hint values that will be compared to the value of the 'referenceAttribute' (the 'reference values' of
-		// potential container instances. In most cases, there should be only a single hint value. If there are multiple
-		// values, these will be treated as alternative values.
-		//
-		List<String> hintValues = containerSelectorHintValues.stream()
-				.map(v -> this.valueCalculator.calculateValue(new ArrayList<>(containerSelector.getSourceElements()),
-						containerSelector.getExpression(), v, containerSelector.getModifiers()))
-				.collect(Collectors.toList());
-
-		// The reference value(s) (based on the specified 'referenceAttribute') for each of the potential container
-		// instances. In the following, these will be compared to the list of 'hintValues'
-		//
-		Map<EObjectWrapper, List<String>> referenceValueByContainerInstance = potentialContainerInstances.stream()
-				.collect(Collectors.toMap(Function.identity(),
-						c -> this.getReferenceAttributeInstancesByContainerInstance(c, containerSelector).stream()
-								.map(r -> r.getAttributeValue(containerSelector.getReferenceAttribute()))
-								.collect(Collectors.toList())));
-
-		// Filter those container instances, whose 'reference values' match one of the given 'hint values'
-		//
-		return referenceValueByContainerInstance.entrySet().stream()
-				.filter(e -> !Collections.disjoint(hintValues, e.getValue())).map(Entry::getKey)
-				.collect(Collectors.toList());
-	}
-
-	/**
-	 * For a given {@link EObjectWrapper containerInstance} and a given {@link ContainerSelector}, returns those
-	 * {@link EObjectWrapper elements} that are responsible for providing the reference values for the
-	 * {@link ContainerSelector#getReferenceAttribute() referenceAttribute} of the ContainerSelector.
-	 *
-	 *
-	 * @param containerInstance
-	 *            The {@link EObjectWrapper} representing the container instance to be checked against the given
-	 *            <em>containerSelector</em>.
-	 * @param containerSelector
-	 *            The {@link ContainerSelector} specifying the {@link ContainerSelector#getReferenceAttribute()
-	 *            referenceAttribute}
-	 * @return The list of {@link EObjectWrapper elements} that shall be used to determine the reference values for the
-	 *         {@link ContainerSelector#getReferenceAttribute() referenceAttribute} of the ContainerSelector or an empty
-	 *         list if no suitable model elements could be determined.
-	 */
-	private List<EObjectWrapper> getReferenceAttributeInstancesByContainerInstance(EObjectWrapper containerInstance,
-			ContainerSelector containerSelector) {
-
-		// The TargetSectionClass representing the given 'container instance'
-		//
-		TargetSectionClass containerClass = containerSelector.getTargetClass();
-
-		// The TargetSectionClass that defines the 'reference attribute' of the ContainerSelector. This may either be
-		// the same as the 'containerClass' or a class that is higher or lower in the containment hierarchy
-		//
-		TargetSectionClass referenceAttributeClass = (TargetSectionClass) containerSelector.getReferenceAttribute()
-				.eContainer();
-
-		if (containerClass.equals(referenceAttributeClass)) {
-			return Arrays.asList(containerInstance);
-		}
-
-		// The 'reference attribute' is located in a TargetSectionClass lower in the containment hierarchy than the
-		// 'container class'
-		//
-		if (EcoreUtil.isAncestor(containerClass, referenceAttributeClass)) {
-
-			// Iterate upwards in the containment hierarchy of the TargetSection and collect all references that need to
-			// be followed to retrieve the instances of 'referenceAttributeClass' based on the 'containerInstance'
-			//
-			List<TargetSectionReference> references = new ArrayList<>();
-			TargetSectionClass currentClass = referenceAttributeClass;
-
-			while (containerClass != currentClass) {
-				CompositeReference<?, ?, ?, ?> owningCompositeReference = currentClass.getOwningContainmentReference();
-				if (!(owningCompositeReference instanceof TargetSectionReference)
-						|| !(owningCompositeReference.getOwningClass() instanceof TargetSectionClass)) {
-					break; // this should not happen
-				}
-
-				references.add(0, (TargetSectionReference) owningCompositeReference);
-				currentClass = (TargetSectionClass) owningCompositeReference.getOwningClass();
-			}
-
-			// Now, follow the collected references to determine the instances of the 'referenceAttributeClass'
-			//
-			return containerInstance.getReferencedElements(references);
-		}
-
-		// The 'reference attribute' is located in a TargetSectionClass higher in the containment hierarchy than the
-		// 'container class'
-		//
-		if (EcoreUtil.isAncestor(referenceAttributeClass, containerClass)) {
-
-			// Iterate upwards in the containment hierarchy to find the (single) container instance representing the
-			// 'referenceAttribute'
-			//
-			EObject referenceAttributeInstance = containerInstance.getEObject();
-			TargetSectionClass currentClass = containerClass;
-			while (currentClass != referenceAttributeClass) {
-				CompositeReference<?, ?, ?, ?> owningCompositeReference = currentClass.getOwningContainmentReference();
-				if (!(owningCompositeReference instanceof TargetSectionReference)
-						|| !(owningCompositeReference.getOwningClass() instanceof TargetSectionClass)) {
-					break; // this should not happen
-				}
-
-				referenceAttributeInstance = referenceAttributeInstance.eContainer();
-				currentClass = (TargetSectionClass) owningCompositeReference.getOwningClass();
-			}
-
-			return Arrays.asList(this.targetSectionRegistry.getInstanceWrapper(referenceAttributeInstance));
-		}
-
-		this.logger.severe(() -> "Unable to evaluate ContainerSelector '" + containerSelector.printInfo()
-				+ "'! The specified 'reference attribute' is not valid.");
-		return new ArrayList<>();
 	}
 
 	/**

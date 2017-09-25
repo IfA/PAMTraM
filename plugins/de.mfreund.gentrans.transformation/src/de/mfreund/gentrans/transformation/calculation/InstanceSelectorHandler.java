@@ -115,8 +115,9 @@ public class InstanceSelectorHandler {
 	}
 
 	/**
-	 * From the given {@link SourceSectionClass}, this first retrieves all instances from the {@link #matchedSectionRegistry}
-	 * and then filters and returns those that satisfy the given {@link InstanceSelector}.
+	 * From the given {@link SourceSectionClass}, this first retrieves all instances from the
+	 * {@link #matchedSectionRegistry} and then filters and returns those that satisfy the given
+	 * {@link InstanceSelector}.
 	 *
 	 * @param instanceSelector
 	 *            The {@link InstanceSelector} to evaluate.
@@ -228,20 +229,27 @@ public class InstanceSelectorHandler {
 	 * From the given list of potential {@link EObjectWrapper model elements}, filters those that satisfy one of the
 	 * given hint values calculated for the given {@link TargetInstanceSelector}.
 	 *
-	 * @param potentialContainerInstances
-	 *            The list of potential {@link EObjectWrapper container instances} to be filtered.
+	 * @param potentialTargetInstances
+	 *            The list of potential {@link EObjectWrapper target instances} to be filtered.
 	 * @param instanceSelectorHintValues
-	 *            The hint values of the given <em>containerSelector</em> are to be evaluated.
+	 *            The hint values of the given <em>targetInstanceSelector</em> to be evaluated.
 	 * @param targetInstanceSelector
 	 *            The {@link TargetInstanceSelector} to evaluate.
-	 * @return The filtered list (a subset of the given list) of <em>potentialContainerInstances</em>.
+	 * @return The filtered list (a subset of the given list) of <em>potentialTargetInstances</em>.
 	 */
-	public List<EObjectWrapper> filterContainerInstances(List<EObjectWrapper> potentialContainerInstances,
+	public List<EObjectWrapper> filterTargetInstances(List<EObjectWrapper> potentialTargetInstances,
 			List<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>> instanceSelectorHintValues,
 			TargetInstanceSelector targetInstanceSelector) {
 
+		if (potentialTargetInstances == null || potentialTargetInstances.isEmpty()) {
+
+			// Nothing to filter
+			//
+			return new ArrayList<>();
+		}
+
 		// The hint values that will be compared to the value of the 'referenceAttribute' (the 'reference values' of
-		// potential target instances. In most cases, there should be only a single hint value. If there are multiple
+		// potential target instances). In most cases, there should be only a single hint value. If there are multiple
 		// values, these will be treated as alternative values.
 		//
 		List<String> hintValues = instanceSelectorHintValues.stream()
@@ -250,18 +258,18 @@ public class InstanceSelectorHandler {
 						targetInstanceSelector.getExpression(), v, targetInstanceSelector.getModifiers()))
 				.collect(Collectors.toList());
 
-		// The reference value(s) (based on the specified 'referenceAttribute') for each of the potential container
+		// The reference value(s) (based on the specified 'referenceAttribute') for each of the potential target
 		// instances. In the following, these will be compared to the list of 'hintValues'
 		//
-		Map<EObjectWrapper, List<String>> referenceValueByContainerInstance = potentialContainerInstances.stream()
+		Map<EObjectWrapper, List<String>> referenceValueByTargetInstance = potentialTargetInstances.stream()
 				.collect(Collectors.toMap(Function.identity(),
-						c -> this.getReferenceAttributeInstancesByContainerInstance(c, targetInstanceSelector).stream()
+						c -> this.getReferenceAttributeInstancesByTargetInstance(c, targetInstanceSelector).stream()
 								.map(r -> r.getAttributeValue(targetInstanceSelector.getReferenceAttribute()))
 								.collect(Collectors.toList())));
 
-		// Filter those container instances, whose 'reference values' match one of the given 'hint values'
+		// Filter those target instances, whose 'reference values' match one of the given 'hint values'
 		//
-		return referenceValueByContainerInstance.entrySet().stream()
+		return referenceValueByTargetInstance.entrySet().stream()
 				.filter(e -> !Collections.disjoint(hintValues, e.getValue())).map(Entry::getKey)
 				.collect(Collectors.toList());
 	}
@@ -287,7 +295,7 @@ public class InstanceSelectorHandler {
 	 *         {@link TargetInstanceSelector#getReferenceAttribute() referenceAttribute} of the TargetInstanceSelector
 	 *         or an empty list if no suitable model elements could be determined.
 	 */
-	private List<EObjectWrapper> getReferenceAttributeInstancesByContainerInstance(EObjectWrapper targetInstance,
+	private List<EObjectWrapper> getReferenceAttributeInstancesByTargetInstance(EObjectWrapper targetInstance,
 			TargetInstanceSelector targetInstanceSelector) {
 
 		// The TargetSectionClass representing the given 'targetInstance'
@@ -295,8 +303,7 @@ public class InstanceSelectorHandler {
 		TargetSectionClass targetClass = targetInstanceSelector.getTargetClass();
 
 		// The TargetSectionClass that defines the 'referenceAttribute' of the TargetInstanceSelector. This may either
-		// be
-		// the same as the 'targetClass' or a class that is higher or lower in the containment hierarchy
+		// be the same as the 'targetClass' or a class that is higher or lower in the containment hierarchy
 		//
 		TargetSectionClass referenceAttributeClass = (TargetSectionClass) targetInstanceSelector.getReferenceAttribute()
 				.eContainer();
@@ -333,11 +340,11 @@ public class InstanceSelectorHandler {
 		}
 
 		// The 'reference attribute' is located in a TargetSectionClass higher in the containment hierarchy than the
-		// 'container class'
+		// 'referenceAttributeClass'
 		//
 		if (EcoreUtil.isAncestor(referenceAttributeClass, targetClass)) {
 
-			// Iterate upwards in the containment hierarchy to find the (single) container instance representing the
+			// Iterate upwards in the containment hierarchy to find the (single) instance representing the
 			// 'referenceAttribute'
 			//
 			EObject referenceAttributeInstance = targetInstance.getEObject();

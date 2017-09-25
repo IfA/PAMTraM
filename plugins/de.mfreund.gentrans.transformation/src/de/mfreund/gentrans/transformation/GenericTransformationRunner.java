@@ -739,7 +739,6 @@ public class GenericTransformationRunner extends CancelableElement {
 		 * Initialize the TargetSectionConnector
 		 */
 		this.targetSectionConnector = new TargetSectionConnector(expandingResult.getTargetSectionRegistry(),
-				this.transformationUtilManager.getValueCalculator(),
 				this.transformationUtilManager.getInstanceSelectorHandler(), targetModelRegistry,
 				this.transformationConfig.getMaxPathLength(), this.transformationConfig.getAmbiguityResolvingStrategy(),
 				this.transformationConfig.getLogger());
@@ -800,8 +799,9 @@ public class GenericTransformationRunner extends CancelableElement {
 		 * Initialize the TargetSectionLinker
 		 */
 		this.targetSectionLinker = new TargetSectionLinker(expandingResult.getTargetSectionRegistry(),
-				this.transformationUtilManager.getValueCalculator(), expandingResult.getLibEntryInstantiatorMap(),
-				this.transformationConfig.getLogger(), this.transformationConfig.getAmbiguityResolvingStrategy());
+				this.transformationUtilManager.getInstanceSelectorHandler(),
+				expandingResult.getLibEntryInstantiatorMap(), this.transformationConfig.getLogger(),
+				this.transformationConfig.getAmbiguityResolvingStrategy());
 		this.objectsToCancel.add(this.targetSectionLinker);
 
 		/*

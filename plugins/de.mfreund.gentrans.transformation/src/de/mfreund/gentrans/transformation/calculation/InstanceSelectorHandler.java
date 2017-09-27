@@ -2,7 +2,9 @@ package de.mfreund.gentrans.transformation.calculation;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -235,7 +237,8 @@ public class InstanceSelectorHandler {
 	 *            The hint values of the given <em>targetInstanceSelector</em> to be evaluated.
 	 * @param targetInstanceSelector
 	 *            The {@link TargetInstanceSelector} to evaluate.
-	 * @return The filtered list (a subset of the given list) of <em>potentialTargetInstances</em>.
+	 * @return The filtered list of <em>potentialTargetInstances</em>. The order of the instances is determined by the
+	 *         order of hint values.
 	 */
 	public List<EObjectWrapper> filterTargetInstances(List<EObjectWrapper> potentialTargetInstances,
 			List<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>> instanceSelectorHintValues,
@@ -259,7 +262,7 @@ public class InstanceSelectorHandler {
 				.collect(Collectors.toList());
 
 		// The reference value(s) (based on the specified 'referenceAttribute') for each of the potential target
-		// instances. In the following, these will be compared to the list of 'hintValues'
+		// instances. In the following, these will be compared to the list of 'hintValues'.
 		//
 		Map<EObjectWrapper, List<String>> referenceValueByTargetInstance = potentialTargetInstances.stream()
 				.collect(Collectors.toMap(Function.identity(),
@@ -267,11 +270,19 @@ public class InstanceSelectorHandler {
 								.map(r -> r.getAttributeValue(targetInstanceSelector.getReferenceAttribute()))
 								.collect(Collectors.toList())));
 
-		// Filter those target instances, whose 'reference values' match one of the given 'hint values'
+		// Filter those target instances, whose 'reference values' match one of the given 'hint values' and store them
+		// in a map relating the list of potential target instances for each of the specified hint values
 		//
-		return referenceValueByTargetInstance.entrySet().stream()
-				.filter(e -> !Collections.disjoint(hintValues, e.getValue())).map(Entry::getKey)
-				.collect(Collectors.toList());
+		Map<String, List<EObjectWrapper>> targetInstancesByHintValue = hintValues.stream().collect(LinkedHashMap::new,
+				(m, hv) -> m.put(hv, referenceValueByTargetInstance.entrySet().stream()
+						.filter(e -> e.getValue().contains(hv)).map(Entry::getKey).collect(Collectors.toList())),
+				Map::putAll);
+
+		// Return the filtered instances ordered by the hint values
+		//
+		return new ArrayList<>(targetInstancesByHintValue.values().stream().flatMap(Collection::stream)
+				.collect(LinkedHashSet::new, LinkedHashSet::add, LinkedHashSet::addAll));
+
 	}
 
 	/**

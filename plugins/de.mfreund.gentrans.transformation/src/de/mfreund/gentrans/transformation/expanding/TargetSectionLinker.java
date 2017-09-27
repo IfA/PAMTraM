@@ -428,7 +428,7 @@ public class TargetSectionLinker extends CancelableElement {
 					hintValues.getHintValues(referenceTargetSelector), referenceTargetSelector);
 		}
 
-		if (potentialTargetInstances.isEmpty()) {
+		if (filteredTargetInstances.isEmpty()) {
 			this.logger.warning(() -> "Evaluating the ReferenceTargetSelector '" + referenceTargetSelector.printInfo()
 					+ " returned no suitable target instances.");
 

@@ -33,7 +33,6 @@ import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.
 import de.mfreund.gentrans.transformation.util.CancelableElement;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractExternalReferenceParameter;
-import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.GenLibraryPackage;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappingHintGroup;
@@ -282,11 +281,14 @@ public class TargetSectionLinker extends CancelableElement {
 			// affected by ExternalReferenceParameters.
 			//
 			LibraryEntry libEntry = (LibraryEntry) AgteleEcoreUtil.getAncestorOfKind(targetSectionClass,
-					GenLibraryPackage.Literals.LIBRARY_ENTRY);
+					LibraryPackage.Literals.LIBRARY_ENTRY);
 
 			if (libEntry != null) {
 				return libEntry.getParameters().stream().filter(p -> p instanceof ExternalReferenceParameter)
 						.map(p -> ((ExternalReferenceParameter) p).getReference()).collect(Collectors.toList());
+			} else {
+				this.logger.severe(() -> "Internal error determining parent LibraryEntry for TargetSectionClass '"
+						+ targetSectionClass.getName() + "'!");
 			}
 		}
 
@@ -335,7 +337,8 @@ public class TargetSectionLinker extends CancelableElement {
 
 		// We are searching for target elements for instances of this class
 		//
-		final TargetSectionClass targetSectionClass = (TargetSectionClass) ref.eContainer();
+		final TargetSectionClass targetSectionClass = !ref.isLibraryEntry() ? (TargetSectionClass) ref.eContainer()
+				: ref.getContainingSection();
 
 		if (!instancesBySection.containsKey(targetSectionClass)
 				|| instancesBySection.get(targetSectionClass).isEmpty()) {

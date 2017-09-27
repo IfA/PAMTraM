@@ -141,7 +141,7 @@ public class GlobalAttributeValueExtractor extends ValueExtractor {
 
 		// Store the found value
 		//
-		this.globalValues.getGlobalAttributes().put(globalAttribute, valCopy);
+		this.globalValues.addGlobalAttributeValue(globalAttribute, valCopy);
 	}
 
 }

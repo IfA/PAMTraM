@@ -556,11 +556,6 @@ public class GenericTransformationRunner extends CancelableElement {
 		LinkedList<MappingInstanceStorage> selectedMappings;
 		Map<Mapping, List<MappingInstanceStorage>> selectedMappingsByMapping;
 
-		// These will be filled with the results of the matching phase
-		//
-		final GlobalValueMap globalValues = new GlobalValueMap();
-		final MatchedSectionRegistry matchedSections = new MatchedSectionRegistry();
-
 		this.transformationUtilManager.init();
 
 		/*
@@ -583,12 +578,13 @@ public class GenericTransformationRunner extends CancelableElement {
 				.flatMap(p -> p.getGlobalValues().stream())
 				.collect(Collectors.toMap(Function.identity(), FixedValue::getValue));
 
-		globalValues.addFixedValues(globalFixedValues);
+		this.transformationUtilManager.getGlobalValues().addFixedValues(globalFixedValues);
 
 		/*
 		 * Create the SourceSectionMatcher that matches SourceSections
 		 */
-		final SourceSectionMatcher sourceSectionMatcher = new SourceSectionMatcher(matchedSections, containmentTree,
+		final SourceSectionMatcher sourceSectionMatcher = new SourceSectionMatcher(
+				this.transformationUtilManager.getMatchedSectionRegistry(), containmentTree,
 				new BasicEList<>(activeSourceSections),
 				this.transformationUtilManager.getValueConstraintReferenceValueCalculator(),
 				this.transformationConfig.getAmbiguityResolvingStrategy(), this.transformationConfig.getLogger(),
@@ -611,9 +607,11 @@ public class GenericTransformationRunner extends CancelableElement {
 		/*
 		 * Extract values of GlobalAttributes
 		 */
-		new GlobalAttributeValueExtractor(globalValues, this.transformationUtilManager.getInstanceSelectorHandler(),
+		new GlobalAttributeValueExtractor(this.transformationUtilManager.getGlobalValues(),
+				this.transformationUtilManager.getInstanceSelectorHandler(),
 				this.transformationUtilManager.getValueModifierExecutor(), this.transformationConfig.getLogger(),
-				this.transformationConfig.isUseParallelization()).extractGlobalAttributeValues(matchedSections,
+				this.transformationConfig.isUseParallelization()).extractGlobalAttributeValues(
+						this.transformationUtilManager.getMatchedSectionRegistry(),
 						this.transformationConfig.getPamtramModels().stream()
 								.flatMap(p -> p.getMappingModels().stream()).collect(Collectors.toList()));
 
@@ -622,7 +620,8 @@ public class GenericTransformationRunner extends CancelableElement {
 		/*
 		 * Create the MappingSelector that finds applicable mappings
 		 */
-		final MappingSelector mappingSelector = new MappingSelector(matchedSections, suitableMappings,
+		final MappingSelector mappingSelector = new MappingSelector(
+				this.transformationUtilManager.getMatchedSectionRegistry(), suitableMappings,
 				this.transformationConfig.isOnlyAskOnceOnAmbiguousMappings(),
 				this.transformationConfig.getAmbiguityResolvingStrategy(),
 				this.transformationUtilManager.getConditionHandler(), this.transformationConfig.getLogger(),
@@ -637,8 +636,10 @@ public class GenericTransformationRunner extends CancelableElement {
 		/*
 		 * Calculate mapping hints
 		 */
-		final HintValueExtractor hintValueExtractor = new HintValueExtractor(matchedSections, mappingInstances,
-				globalValues, this.transformationUtilManager.getInstanceSelectorHandler(),
+		final HintValueExtractor hintValueExtractor = new HintValueExtractor(
+				this.transformationUtilManager.getMatchedSectionRegistry(), mappingInstances,
+				this.transformationUtilManager.getGlobalValues(),
+				this.transformationUtilManager.getInstanceSelectorHandler(),
 				this.transformationUtilManager.getValueModifierExecutor(), this.transformationConfig.getLogger(),
 				this.transformationConfig.isUseParallelization());
 
@@ -652,7 +653,8 @@ public class GenericTransformationRunner extends CancelableElement {
 						.collect(Collectors.toList()));
 
 		return MatchingResult.createMatchingCompletedResult(selectedMappings, selectedMappingsByMapping,
-				new HintValueStorage(this.transformationConfig.isUseParallelization()), globalValues);
+				new HintValueStorage(this.transformationConfig.isUseParallelization()),
+				this.transformationUtilManager.getGlobalValues());
 
 	}
 

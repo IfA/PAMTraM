@@ -3,16 +3,19 @@ package de.mfreund.gentrans.transformation.maps;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import de.congrace.exp4j.Calculable;
 import de.congrace.exp4j.ExpressionBuilder;
+import pamtram.ExpressionElement;
 import pamtram.FixedValue;
 import pamtram.NamedElement;
 import pamtram.mapping.GlobalAttribute;
 
 /**
- * This is used to store values of {@link FixedValue FixedValues} and {@link GlobalAttribute GlobalAttributes} that can
- * be used throughout the transformation.
+ * This is used to store all extracted values of {@link FixedValue FixedValues} and {@link GlobalAttribute
+ * GlobalAttributes} that can be used throughout the transformation, e.g. when calculating
+ * {@link ExpressionElement#getExpression() expressions}.
  *
  * @author mfreund
  *
@@ -30,11 +33,6 @@ public class GlobalValueMap {
 	private Map<GlobalAttribute, String> globalAttributes;
 
 	/**
-	 * This keeps track of both {@link FixedValue FixedValues} and {@link GlobalAttribute GlobalAttributes}.
-	 */
-	private Map<NamedElement, String> globalValues;
-
-	/**
 	 * This keeps track of a those of the {@link #globalValues} that can be parsed as double.
 	 */
 	private Map<NamedElement, Double> globalValuesAsDouble;
@@ -48,7 +46,6 @@ public class GlobalValueMap {
 		this.fixedValues = new HashMap<>();
 		this.globalAttributes = new HashMap<>();
 
-		this.globalValues = new HashMap<>();
 	}
 
 	/**
@@ -64,9 +61,20 @@ public class GlobalValueMap {
 		this.fixedValues = fixedValues;
 		this.globalAttributes = globalAttributes;
 
-		this.globalValues = new HashMap<>();
-		this.globalValues.putAll(globalAttributes);
-		this.globalValues.putAll(fixedValues);
+	}
+
+	/**
+	 * Add a single {@link FixedValue} to this map.
+	 *
+	 * @param fixedValue
+	 *            the {@link FixedValue} for which the value shall be added
+	 * @param value
+	 *            the value to add
+	 */
+	public void addFixedValue(FixedValue fixedValue, String value) {
+
+		this.fixedValues.put(fixedValue, value);
+		this.globalValuesAsDouble = null;
 	}
 
 	/**
@@ -78,7 +86,20 @@ public class GlobalValueMap {
 	public void addFixedValues(Map<FixedValue, String> fixedValues) {
 
 		this.fixedValues.putAll(fixedValues);
-		this.globalValues.putAll(fixedValues);
+		this.globalValuesAsDouble = null;
+	}
+
+	/**
+	 * Add a single value for a {@link GlobalAttribute} to this map.
+	 *
+	 * @param globalAttribute
+	 *            the {@link GlobalAttribute} for which the value shall be added
+	 * @param value
+	 *            the value to add
+	 */
+	public void addGlobalAttributeValue(GlobalAttribute globalAttribute, String value) {
+
+		this.globalAttributes.put(globalAttribute, value);
 		this.globalValuesAsDouble = null;
 	}
 
@@ -91,7 +112,6 @@ public class GlobalValueMap {
 	public void addGlobalAttributeValues(Map<GlobalAttribute, String> globalAttributeValues) {
 
 		this.globalAttributes.putAll(globalAttributeValues);
-		this.globalValues.putAll(globalAttributeValues);
 		this.globalValuesAsDouble = null;
 	}
 
@@ -120,43 +140,54 @@ public class GlobalValueMap {
 	}
 
 	/**
-	 * This is the getter for the {@link #fixedValues}.
+	 * This returns all the {@link #fixedValues} stored in this map.
+	 * <p />
+	 * Note: This returns a clone of the internal map storing the values so removing/adding values from/to the returned
+	 * map does not have any effect on the {@link #fixedValues}.
 	 *
-	 * @return The values of the {@link FixedValue FixedValues} modeled in the PAMTraM model.
+	 * @return A copy of all {@link #fixedValues}.
 	 */
 	public Map<FixedValue, String> getFixedValues() {
 
-		return this.fixedValues;
+		return new HashMap<>(this.fixedValues);
 	}
 
 	/**
-	 * This is the getter for the {@link #globalAttributes}.
+	 * This returns the values of all the {@link #globalAttributes} stored in this map.
+	 * <p />
+	 * Note: This returns a clone of the internal map storing the values so removing/adding values from/to the returned
+	 * map does not have any effect on the {@link #globalAttributes}.
 	 *
-	 * @return The extracted values of the {@link GlobalAttribute GlobalAttributes} modeled in the PAMTraM model.
+	 * @return A copy of all {@link #globalAttributes}.
 	 */
 	public Map<GlobalAttribute, String> getGlobalAttributes() {
 
-		return this.globalAttributes;
+		return new HashMap<>(this.globalAttributes);
 	}
 
 	/**
-	 * This is the getter for the {@link #globalValues}.
+	 * This returns all the {@link #fixedValues} as well as the {@link #globalAttributes} stored in this map.
+	 * <p />
+	 * Note: This returns a clone of the internal maps storing the values so removing/adding values from/to the returned
+	 * map does not have any effect on the {@link #fixedValues} and {@link #globalAttributes}.
 	 *
-	 * @return The values of both {@link FixedValue FixedValues} and {@link GlobalAttribute GlobalAttributes}.
+	 * @return The values of both the {@link #fixedValues} and the {@link #globalAttributes}.
 	 */
 	public Map<NamedElement, String> getGlobalValues() {
 
-		return this.globalValues;
+		return Stream.of(this.fixedValues, this.globalAttributes).collect(HashMap::new, Map::putAll, Map::putAll);
 	}
 
 	/**
-	 * This returns the values of the {@link #globalValues} as {@link Double} values that can be used in calculations.
+	 * This returns all the {@link #fixedValues} as well as the {@link #globalAttributes} stored in this map as
+	 * {@link Double} values that can be used in calculations.
 	 * <p />
-	 * Therefore, it tries to parse a <em>double</em> value for each of the {@link #globalValues}. Values that cannot be
-	 * parsed as <em>double</em> are ignored.
+	 * Therefore, it tries to parse a <em>double</em> value for each of the {@link #getGlobalValues()}. Values that
+	 * cannot be parsed as <em>double</em> are ignored.
 	 *
-	 * @return The values of both {@link FixedValue FixedValues} and {@link GlobalAttribute GlobalAttributes}
-	 *         represented as <em>double</em>.
+	 * @see #getAsDoubleByString()
+	 *
+	 * @return The values of both {@link #fixedValues} and {@link #globalAttributes} represented as <em>double</em>.
 	 */
 	public Map<NamedElement, Double> getAsDouble() {
 
@@ -166,7 +197,7 @@ public class GlobalValueMap {
 			// values first
 			//
 			this.globalValuesAsDouble = new HashMap<>();
-			this.globalValues.entrySet().stream().forEach(globalValue -> {
+			this.getGlobalValues().entrySet().stream().forEach(globalValue -> {
 
 				try {
 
@@ -187,13 +218,13 @@ public class GlobalValueMap {
 	}
 
 	/**
-	 * This returns the values of the {@link #globalValues} as {@link Double} values that can be used in calculations.
-	 * Thereby, the {@link NamedElement#getName() names} of the respective elements are used as key in the returned map.
+	 * This returns all the {@link #fixedValues} as well as the {@link #globalAttributes} stored in this map as
+	 * {@link Double} values that can be used in calculations. Thereby, the {@link NamedElement#getName() names} of the
+	 * respective elements are used as key in the returned map.
 	 *
 	 * @see #getAsDouble()
 	 *
-	 * @return The values of both {@link FixedValue FixedValues} and {@link GlobalAttribute GlobalAttributes}
-	 *         represented as <em>double</em>.
+	 * @return The values of both {@link #fixedValues} and {@link #globalAttributes} represented as <em>double</em>.
 	 */
 	public Map<String, Double> getAsDoubleByString() {
 

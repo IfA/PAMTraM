@@ -390,10 +390,8 @@
         <mappingHints xsi:type="extended:AttributeMapping" name="xValueDropDownMapping" expression="(id-1)*4" target="//@targetSectionModels.0/@sections.1/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.7" source="//@sourceSectionModels.0/@sections.0/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Effect" affectedReference="//@targetSectionModels.0/@sections.1/@references.1/@value.0/@references.0/@value.0/@references.0">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@references.1/@value.0/@references.1/@value.0/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.4" source="//@sourceSectionModels.0/@sections.0/@attributes.1"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Effect" referenceAttribute="//@targetSectionModels.0/@sections.1/@references.1/@value.0/@references.1/@value.0/@attributes.0" targetClass="//@targetSectionModels.0/@sections.1/@references.1/@value.0/@references.1/@value.0" affectedReference="//@targetSectionModels.0/@sections.1/@references.1/@value.0/@references.0/@value.0/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.4" source="//@sourceSectionModels.0/@sections.0/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="DropDownSignalNameMapping" target="//@targetSectionModels.0/@sections.1/@references.1/@value.0/@references.1/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.4" source="//@sourceSectionModels.0/@sections.0/@attributes.1"/>
@@ -416,10 +414,8 @@
         <mappingHints xsi:type="extended:AttributeMapping" name="virtualRadioButtonRepresentationNameMapping" target="//@targetSectionModels.0/@sections.2/@references.0/@value.0/@attributes.1">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.6" source="//@sourceSectionModels.0/@sections.1/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Effect" affectedReference="//@targetSectionModels.0/@sections.2/@references.1/@value.0/@references.0/@value.0/@references.0">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.2/@references.1/@value.0/@references.1/@value.0/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.0/@sections.1/@attributes.1"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Effect" referenceAttribute="//@targetSectionModels.0/@sections.2/@references.1/@value.0/@references.1/@value.0/@attributes.0" targetClass="//@targetSectionModels.0/@sections.2/@references.1/@value.0/@references.1/@value.0" affectedReference="//@targetSectionModels.0/@sections.2/@references.1/@value.0/@references.0/@value.0/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.0/@sections.1/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="RadioButtonSignalNameMapping" target="//@targetSectionModels.0/@sections.2/@references.1/@value.0/@references.1/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.0/@sections.1/@attributes.1"/>

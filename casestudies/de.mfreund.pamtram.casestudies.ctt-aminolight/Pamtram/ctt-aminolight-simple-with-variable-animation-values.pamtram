@@ -1350,10 +1350,8 @@
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="StaticTextComponent" targetSection="//@targetSectionModels.1/@sections.2">
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="ref" affectedReference="//@targetSectionModels.1/@sections.2/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.2/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="name" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="ref" referenceAttribute="//@targetSectionModels.0/@sections.2/@attributes.0" targetClass="//@targetSectionModels.0/@sections.2" affectedReference="//@targetSectionModels.1/@sections.2/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="name" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="StaticTextComponentNameMapping" target="//@targetSectionModels.1/@sections.2/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="name" modifiers="//@mappingModels.1/@modifierSets.0 //@mappingModels.1/@modifierSets.1" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
@@ -1369,13 +1367,8 @@
         <mappingHints xsi:type="extended:AttributeMapping" name="virtualDynamicTextNameMapping" target="//@targetSectionModels.1/@sections.3/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="ObjectName" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="ref" affectedReference="//@targetSectionModels.1/@sections.3/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0">
-          <matcher xsi:type="extended:ClassMatcher" targetClass="//@targetSectionModels.0/@sections.3"/>
-        </mappingHints>
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="StartTrigger" affectedReference="//@targetSectionModels.1/@sections.3/@references.1/@value.0/@references.0/@value.0/@references.0">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="ObjectName" modifiers="//@mappingModels.0/@modifierSets.0" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="StartTrigger" referenceAttribute="//@targetSectionModels.0/@sections.1/@attributes.0" targetClass="//@targetSectionModels.0/@sections.1" affectedReference="//@targetSectionModels.1/@sections.3/@references.1/@value.0/@references.0/@value.0/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="ObjectName" modifiers="//@mappingModels.0/@modifierSets.0" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:ContainerSelector" name="" referenceAttribute="//@targetSectionModels.1/@sections.1/@attributes.0" targetClass="//@targetSectionModels.1/@sections.1">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="name" modifiers="//@mappingModels.1/@modifierSets.0" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
@@ -1420,10 +1413,8 @@
         <mappingHints xsi:type="extended:AttributeMapping" name="GaugeDynamicWidthValueMapping" target="//@targetSectionModels.1/@sections.0/@references.1/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="pamtram:FixedValue" name="200" value="200"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="GaugeBackgroundColorRef" affectedReference="//@targetSectionModels.1/@sections.0/@references.0/@value.0/@references.0/@value.2/@references.0/@value.0/@references.0">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.5/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="GaugeTaskName" source="//@sourceSectionModels.2/@sections.0/@attributes.1"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="GaugeBackgroundColorRef" referenceAttribute="//@targetSectionModels.0/@sections.5/@attributes.0" targetClass="//@targetSectionModels.0/@sections.5" affectedReference="//@targetSectionModels.1/@sections.0/@references.0/@value.0/@references.0/@value.2/@references.0/@value.0/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="GaugeTaskName" source="//@sourceSectionModels.2/@sections.0/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="AnimationRecordNameMapping" target="//@targetSectionModels.1/@sections.0/@references.2/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="GaugeTaskName" source="//@sourceSectionModels.2/@sections.0/@attributes.1"/>
@@ -1431,10 +1422,8 @@
         <mappingHints xsi:type="extended:AttributeMapping" name="dynamicBackgroundColorNameMapping" target="//@targetSectionModels.1/@sections.0/@references.1/@value.0/@references.0/@value.0/@references.0/@value.2/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="GaugeTaskName" source="//@sourceSectionModels.2/@sections.0/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="StartTrigger" affectedReference="//@targetSectionModels.1/@sections.0/@references.2/@value.0/@references.0/@value.0/@references.1">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.1/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="GaugeTaskName" modifiers="//@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.2/@sections.0/@attributes.1"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="StartTrigger" referenceAttribute="//@targetSectionModels.0/@sections.1/@attributes.0" targetClass="//@targetSectionModels.0/@sections.1" affectedReference="//@targetSectionModels.1/@sections.0/@references.2/@value.0/@references.0/@value.0/@references.1">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="GaugeTaskName" modifiers="//@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.2/@sections.0/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="GaugeAnimationRecordNameMapping" target="//@targetSectionModels.1/@sections.0/@references.2/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="GaugeTaskName" modifiers="//@mappingModels.2/@modifierSets.9" source="//@sourceSectionModels.2/@sections.0/@attributes.1"/>
@@ -1447,10 +1436,8 @@
         <mappingHints xsi:type="extended:AttributeMapping" name="BorderNameMapping" modifiers="//@mappingModels.2/@modifierSets.3" target="//@targetSectionModels.1/@sections.4/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="GaugeTaskName" source="//@sourceSectionModels.2/@sections.0/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="BorderColorRef" affectedReference="//@targetSectionModels.1/@sections.4/@references.0/@value.0/@references.0/@value.1/@references.0/@value.0/@references.0">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.5/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="GaugeTaskName" source="//@sourceSectionModels.2/@sections.0/@attributes.1"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="BorderColorRef" referenceAttribute="//@targetSectionModels.0/@sections.5/@attributes.0" targetClass="//@targetSectionModels.0/@sections.5" affectedReference="//@targetSectionModels.1/@sections.4/@references.0/@value.0/@references.0/@value.1/@references.0/@value.0/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="GaugeTaskName" source="//@sourceSectionModels.2/@sections.0/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="VirtualDefaultBorderColorNameMapping" target="//@targetSectionModels.1/@sections.4/@references.0/@value.0/@references.0/@value.1/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="GaugeTaskName" source="//@sourceSectionModels.2/@sections.0/@attributes.1"/>
@@ -1502,15 +1489,11 @@
         <mappingHints xsi:type="extended:AttributeMapping" name="LampNameMapping" target="//@targetSectionModels.1/@sections.7/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="GaugeTaskName" modifiers="//@mappingModels.2/@modifierSets.11" source="//@sourceSectionModels.2/@sections.0/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="ColorTextRef" affectedReference="//@targetSectionModels.1/@sections.7/@references.0/@value.0/@references.0/@value.2/@references.0/@value.0/@references.0">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.5/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="GaugeTaskName" source="//@sourceSectionModels.2/@sections.0/@attributes.1"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="ColorTextRef" referenceAttribute="//@targetSectionModels.0/@sections.5/@attributes.0" targetClass="//@targetSectionModels.0/@sections.5" affectedReference="//@targetSectionModels.1/@sections.7/@references.0/@value.0/@references.0/@value.2/@references.0/@value.0/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="GaugeTaskName" source="//@sourceSectionModels.2/@sections.0/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="LampColorRef" affectedReference="//@targetSectionModels.1/@sections.7/@references.0/@value.0/@references.0/@value.1/@references.0/@value.0/@references.0">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.5/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="GaugeTaskName" source="//@sourceSectionModels.2/@sections.0/@attributes.1"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="LampColorRef" referenceAttribute="//@targetSectionModels.0/@sections.5/@attributes.0" targetClass="//@targetSectionModels.0/@sections.5" affectedReference="//@targetSectionModels.1/@sections.7/@references.0/@value.0/@references.0/@value.1/@references.0/@value.0/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="GaugeTaskName" source="//@sourceSectionModels.2/@sections.0/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="LampAnimationRecordNameMapping" modifiers="//@mappingModels.2/@modifierSets.11" target="//@targetSectionModels.1/@sections.7/@references.1/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="GaugeTaskName" source="//@sourceSectionModels.2/@sections.0/@attributes.1"/>
@@ -1527,10 +1510,8 @@
         <mappingHints xsi:type="extended:AttributeMapping" name="LampWidthValueMapping" target="//@targetSectionModels.1/@sections.7/@references.0/@value.0/@references.0/@value.4/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="pamtram:FixedValue" name="80" value="80"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="ref" affectedReference="//@targetSectionModels.1/@sections.7/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.2/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="GaugeTaskName" source="//@sourceSectionModels.2/@sections.0/@attributes.1"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="ref" referenceAttribute="//@targetSectionModels.0/@sections.2/@attributes.0" targetClass="//@targetSectionModels.0/@sections.2" affectedReference="//@targetSectionModels.1/@sections.7/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="GaugeTaskName" source="//@sourceSectionModels.2/@sections.0/@attributes.1"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="testTextItem" targetSection="//@targetSectionModels.0/@sections.2">
@@ -1588,22 +1569,16 @@
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SingleGaugeAnimation" targetSection="//@targetSectionModels.4/@sections.0">
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="ref" affectedReference="//@targetSectionModels.4/@sections.0/@references.1/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.0/@sections.5/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="Alarm0ParentName" source="//@sourceSectionModels.2/@sections.1/@references.0/@value.0/@attributes.0"/>
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="Alarm0TaskName" source="//@sourceSectionModels.2/@sections.1/@attributes.0"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="ref" referenceAttribute="//@targetSectionModels.0/@sections.5/@attributes.0" targetClass="//@targetSectionModels.0/@sections.5" affectedReference="//@targetSectionModels.4/@sections.0/@references.1/@value.0/@references.0/@value.0/@references.0/@value.0/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="Alarm0ParentName" source="//@sourceSectionModels.2/@sections.1/@references.0/@value.0/@attributes.0"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="Alarm0TaskName" source="//@sourceSectionModels.2/@sections.1/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Trigger" affectedReference="//@targetSectionModels.4/@sections.0/@references.0">
-          <matcher xsi:type="extended:AttributeMatcher" modifiers="//@mappingModels.0/@modifierSets.2" target="//@targetSectionModels.0/@sections.1/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="Alarm0ParentName" source="//@sourceSectionModels.2/@sections.1/@references.0/@value.0/@attributes.0"/>
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="Alarm0TaskName" source="//@sourceSectionModels.2/@sections.1/@attributes.0"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Trigger" modifiers="//@mappingModels.0/@modifierSets.2" referenceAttribute="//@targetSectionModels.0/@sections.1/@attributes.0" targetClass="//@targetSectionModels.0/@sections.1" affectedReference="//@targetSectionModels.4/@sections.0/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="Alarm0ParentName" source="//@sourceSectionModels.2/@sections.1/@references.0/@value.0/@attributes.0"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="Alarm0TaskName" source="//@sourceSectionModels.2/@sections.1/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="PropertyToAnimate" affectedReference="//@targetSectionModels.4/@sections.0/@references.1/@value.0/@references.1">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.1/@sections.0/@references.1/@value.0/@references.0/@value.0/@references.0/@value.2/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="Alarm0ParentName" source="//@sourceSectionModels.2/@sections.1/@references.0/@value.0/@attributes.0"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="PropertyToAnimate" referenceAttribute="//@targetSectionModels.1/@sections.0/@references.1/@value.0/@references.0/@value.0/@references.0/@value.2/@attributes.0" targetClass="//@targetSectionModels.1/@sections.0/@references.1/@value.0/@references.0/@value.0/@references.0/@value.2" affectedReference="//@targetSectionModels.4/@sections.0/@references.1/@value.0/@references.1">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="Alarm0ParentName" source="//@sourceSectionModels.2/@sections.1/@references.0/@value.0/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="ColorAnimationNameMapping" modifiers="//@mappingModels.2/@modifierSets.9" target="//@targetSectionModels.4/@sections.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="Alarm0ParentName" source="//@sourceSectionModels.2/@sections.1/@references.0/@value.0/@attributes.0"/>
@@ -1626,10 +1601,8 @@
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SoundActiveAnimation" targetSection="//@targetSectionModels.4/@sections.9">
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="SoundActivePropertyToAnimate" affectedReference="//@targetSectionModels.4/@sections.9/@references.1">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.1/@sections.5/@references.0/@value.0/@references.0/@value.1/@references.0/@value.0/@attributes.1">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="Alarm0ParentName" source="//@sourceSectionModels.2/@sections.1/@references.0/@value.0/@attributes.0"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="SoundActivePropertyToAnimate" referenceAttribute="//@targetSectionModels.1/@sections.5/@references.0/@value.0/@references.0/@value.1/@references.0/@value.0/@attributes.1" targetClass="//@targetSectionModels.1/@sections.5/@references.0/@value.0/@references.0/@value.1/@references.0/@value.0" affectedReference="//@targetSectionModels.4/@sections.9/@references.1">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="Alarm0ParentName" source="//@sourceSectionModels.2/@sections.1/@references.0/@value.0/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="SoundActiveValMapping" target="//@targetSectionModels.4/@sections.9/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="pamtram:FixedValue" name="false" value="false"/>
@@ -1644,10 +1617,8 @@
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="VibrationActiveAnimation" targetSection="//@targetSectionModels.4/@sections.10">
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="VibrationActivePropertyToAnimate" affectedReference="//@targetSectionModels.4/@sections.10/@references.1">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.1/@sections.6/@references.0/@value.0/@references.0/@value.1/@references.0/@value.0/@attributes.1">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="Alarm0ParentName" source="//@sourceSectionModels.2/@sections.1/@references.0/@value.0/@attributes.0"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="VibrationActivePropertyToAnimate" referenceAttribute="//@targetSectionModels.1/@sections.6/@references.0/@value.0/@references.0/@value.1/@references.0/@value.0/@attributes.1" targetClass="//@targetSectionModels.1/@sections.6/@references.0/@value.0/@references.0/@value.1/@references.0/@value.0" affectedReference="//@targetSectionModels.4/@sections.10/@references.1">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="Alarm0ParentName" source="//@sourceSectionModels.2/@sections.1/@references.0/@value.0/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="VibrationActiveValMapping" target="//@targetSectionModels.4/@sections.10/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="pamtram:FixedValue" name="false" value="false"/>
@@ -1666,11 +1637,9 @@
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="Alarm0ParentName" source="//@sourceSectionModels.2/@sections.1/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="Alarm0TaskName" source="//@sourceSectionModels.2/@sections.1/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="StartTrigger" affectedReference="//@targetSectionModels.4/@sections.2/@references.0">
-          <matcher xsi:type="extended:AttributeMatcher" modifiers="//@mappingModels.0/@modifierSets.2" target="//@targetSectionModels.0/@sections.1/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="Alarm0ParentName" source="//@sourceSectionModels.2/@sections.1/@references.0/@value.0/@attributes.0"/>
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="Alarm0TaskName" source="//@sourceSectionModels.2/@sections.1/@attributes.0"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="StartTrigger" modifiers="//@mappingModels.0/@modifierSets.2" referenceAttribute="//@targetSectionModels.0/@sections.1/@attributes.0" targetClass="//@targetSectionModels.0/@sections.1" affectedReference="//@targetSectionModels.4/@sections.2/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="Alarm0ParentName" source="//@sourceSectionModels.2/@sections.1/@references.0/@value.0/@attributes.0"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="Alarm0TaskName" source="//@sourceSectionModels.2/@sections.1/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:ContainerSelector" modifiers="//@mappingModels.2/@modifierSets.4" referenceAttribute="//@targetSectionModels.1/@sections.5/@references.1/@value.0/@attributes.0" targetClass="//@targetSectionModels.1/@sections.5/@references.1/@value.0">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="Alarm0ParentName" source="//@sourceSectionModels.2/@sections.1/@references.0/@value.0/@attributes.0"/>
@@ -1681,11 +1650,9 @@
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="Alarm0ParentName" source="//@sourceSectionModels.2/@sections.1/@references.0/@value.0/@attributes.0"/>
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="Alarm0TaskName" source="//@sourceSectionModels.2/@sections.1/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="StartTrigger" affectedReference="//@targetSectionModels.4/@sections.3/@references.0">
-          <matcher xsi:type="extended:AttributeMatcher" modifiers="//@mappingModels.0/@modifierSets.2" target="//@targetSectionModels.0/@sections.1/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="Alarm0ParentName" source="//@sourceSectionModels.2/@sections.1/@references.0/@value.0/@attributes.0"/>
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="Alarm0TaskName" source="//@sourceSectionModels.2/@sections.1/@attributes.0"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="StartTrigger" modifiers="//@mappingModels.0/@modifierSets.2" referenceAttribute="//@targetSectionModels.0/@sections.1/@attributes.0" targetClass="//@targetSectionModels.0/@sections.1" affectedReference="//@targetSectionModels.4/@sections.3/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="Alarm0ParentName" source="//@sourceSectionModels.2/@sections.1/@references.0/@value.0/@attributes.0"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="Alarm0TaskName" source="//@sourceSectionModels.2/@sections.1/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:ContainerSelector" modifiers="//@mappingModels.2/@modifierSets.5" referenceAttribute="//@targetSectionModels.1/@sections.6/@references.1/@value.0/@attributes.0" targetClass="//@targetSectionModels.1/@sections.6/@references.1/@value.0">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="Alarm0ParentName" source="//@sourceSectionModels.2/@sections.1/@references.0/@value.0/@attributes.0"/>

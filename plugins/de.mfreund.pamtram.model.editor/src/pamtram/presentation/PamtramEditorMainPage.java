@@ -790,7 +790,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				targets.add(selector.getTargetClass());
 				targets.add(selector.getReferenceAttribute());
 
-				this.setSourceTargetViewerSelections(selector.getSharedCondition(), targets);
+				this.setSourceTargetViewerSelections(sources, targets);
 
 				/*
 				 * If an AttributeMatcher is selected, select its source and target attributes.
@@ -806,6 +806,10 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 					if (sourceElement instanceof DynamicSourceElement<?, ?, ?, ?>) {
 						sources.add(((DynamicSourceElement<?, ?, ?, ?>) sourceElement).getSource());
 					}
+				}
+
+				if (hint.getSharedCondition() != null) {
+					sources.add(hint.getSharedCondition());
 				}
 
 				targets.add(hint.getTargetClass());

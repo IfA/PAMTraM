@@ -24,15 +24,13 @@ import pamtram.structure.target.TargetSectionClass;
 import pamtram.structure.target.TargetSectionCrossReference;
 
 /**
- * This represents a default implementation of the
- * {@link IAmbiguityResolvingStrategy} interface.
+ * This represents a default implementation of the {@link IAmbiguityResolvingStrategy} interface.
  * <p />
- * Any call to a method defined by the {@link IAmbiguityResolvingStrategy}
- * interface will simply return the first element in the list of choices.
+ * Any call to a method defined by the {@link IAmbiguityResolvingStrategy} interface will simply return the first
+ * element in the list of choices.
  * <p />
- * <b>Note:</b> Making use of this strategy guarantees that all ambiguities will
- * be completely resolved so that only a single option remains for any possible
- * combination of choices.
+ * <b>Note:</b> Making use of this strategy guarantees that all ambiguities will be completely resolved so that only a
+ * single option remains for any possible combination of choices.
  *
  * @author mfreund
  */
@@ -55,7 +53,7 @@ public class DefaultAmbiguityResolvingStrategy extends AbstractAmbiguityResolvin
 		if (choices == null || choices.isEmpty()) {
 			return new ArrayList<>();
 		} else {
-			return new ArrayList<>(choices);
+			return new ArrayList<>(Arrays.asList(choices.get(0)));
 		}
 	}
 

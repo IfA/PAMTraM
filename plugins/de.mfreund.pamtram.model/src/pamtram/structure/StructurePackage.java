@@ -337,13 +337,22 @@ public interface StructurePackage extends EPackage {
 	int TARGET_INSTANCE_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS = INSTANCE_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS;
 
 	/**
+	 * The operation id for the '<em>Validate Reference Attribute Is Valid</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_INSTANCE_SELECTOR___VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID__DIAGNOSTICCHAIN_MAP = INSTANCE_SELECTOR_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Target Instance Selector</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_INSTANCE_SELECTOR_OPERATION_COUNT = INSTANCE_SELECTOR_OPERATION_COUNT + 0;
+	int TARGET_INSTANCE_SELECTOR_OPERATION_COUNT = INSTANCE_SELECTOR_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.InstanceSelectorSourceInterface <em>Instance Selector Source Interface</em>}' class.
@@ -1225,6 +1234,16 @@ public interface StructurePackage extends EPackage {
 	EReference getTargetInstanceSelector_TargetClass();
 
 	/**
+	 * Returns the meta object for the '{@link pamtram.structure.TargetInstanceSelector#validateReferenceAttributeIsValid(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Reference Attribute Is Valid</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Reference Attribute Is Valid</em>' operation.
+	 * @see pamtram.structure.TargetInstanceSelector#validateReferenceAttributeIsValid(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getTargetInstanceSelector__ValidateReferenceAttributeIsValid__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.structure.InstanceSelectorSourceInterface <em>Instance Selector Source Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1493,6 +1512,14 @@ public interface StructurePackage extends EPackage {
 		 * @generated
 		 */
 		EReference TARGET_INSTANCE_SELECTOR__TARGET_CLASS = eINSTANCE.getTargetInstanceSelector_TargetClass();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Reference Attribute Is Valid</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation TARGET_INSTANCE_SELECTOR___VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID__DIAGNOSTICCHAIN_MAP = eINSTANCE.getTargetInstanceSelector__ValidateReferenceAttributeIsValid__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.structure.InstanceSelectorSourceInterface <em>Instance Selector Source Interface</em>}' class.

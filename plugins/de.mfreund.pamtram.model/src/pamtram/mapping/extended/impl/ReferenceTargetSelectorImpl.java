@@ -3,10 +3,13 @@
 package pamtram.mapping.extended.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
-
 import java.util.stream.Collectors;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicDiagnostic;
@@ -17,10 +20,10 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import pamtram.ExpressionElement;
 import pamtram.ModifiableElement;
 import pamtram.PamtramPackage;
@@ -45,29 +48,31 @@ import pamtram.structure.target.TargetSectionCrossReference;
 import pamtram.structure.util.StructureValidator;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Instance Selector</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Instance Selector</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.extended.impl.ReferenceTargetSelectorImpl#getExpression <em>Expression</em>}</li>
- *   <li>{@link pamtram.mapping.extended.impl.ReferenceTargetSelectorImpl#getModifiers <em>Modifiers</em>}</li>
- *   <li>{@link pamtram.mapping.extended.impl.ReferenceTargetSelectorImpl#getSourceElements <em>Source Elements</em>}</li>
- *   <li>{@link pamtram.mapping.extended.impl.ReferenceTargetSelectorImpl#getReferenceAttribute <em>Reference Attribute</em>}</li>
- *   <li>{@link pamtram.mapping.extended.impl.ReferenceTargetSelectorImpl#getTargetClass <em>Target Class</em>}</li>
- *   <li>{@link pamtram.mapping.extended.impl.ReferenceTargetSelectorImpl#getAffectedReference <em>Affected Reference</em>}</li>
- *   <li>{@link pamtram.mapping.extended.impl.ReferenceTargetSelectorImpl#getMatcher <em>Matcher</em>}</li>
+ * <li>{@link pamtram.mapping.extended.impl.ReferenceTargetSelectorImpl#getExpression <em>Expression</em>}</li>
+ * <li>{@link pamtram.mapping.extended.impl.ReferenceTargetSelectorImpl#getModifiers <em>Modifiers</em>}</li>
+ * <li>{@link pamtram.mapping.extended.impl.ReferenceTargetSelectorImpl#getSourceElements <em>Source Elements</em>}</li>
+ * <li>{@link pamtram.mapping.extended.impl.ReferenceTargetSelectorImpl#getReferenceAttribute <em>Reference
+ * Attribute</em>}</li>
+ * <li>{@link pamtram.mapping.extended.impl.ReferenceTargetSelectorImpl#getTargetClass <em>Target Class</em>}</li>
+ * <li>{@link pamtram.mapping.extended.impl.ReferenceTargetSelectorImpl#getAffectedReference <em>Affected
+ * Reference</em>}</li>
+ * <li>{@link pamtram.mapping.extended.impl.ReferenceTargetSelectorImpl#getMatcher <em>Matcher</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ReferenceTargetSelectorImpl extends MappingHintImpl implements ReferenceTargetSelector {
+
 	/**
 	 * The default value of the '{@link #getExpression() <em>Expression</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getExpression()
 	 * @generated
 	 * @ordered
@@ -76,8 +81,8 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 
 	/**
 	 * The cached value of the '{@link #getExpression() <em>Expression</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getExpression()
 	 * @generated
 	 * @ordered
@@ -86,8 +91,8 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 
 	/**
 	 * The cached value of the '{@link #getModifiers() <em>Modifiers</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getModifiers()
 	 * @generated
 	 * @ordered
@@ -95,9 +100,9 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	protected EList<ValueModifierSet> modifiers;
 
 	/**
-	 * The cached value of the '{@link #getSourceElements() <em>Source Elements</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSourceElements() <em>Source Elements</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @see #getSourceElements()
 	 * @generated
 	 * @ordered
@@ -105,9 +110,9 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	protected EList<InstanceSelectorSourceInterface> sourceElements;
 
 	/**
-	 * The cached value of the '{@link #getReferenceAttribute() <em>Reference Attribute</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getReferenceAttribute() <em>Reference Attribute</em>}' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @see #getReferenceAttribute()
 	 * @generated
 	 * @ordered
@@ -116,8 +121,8 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 
 	/**
 	 * The cached value of the '{@link #getTargetClass() <em>Target Class</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getTargetClass()
 	 * @generated
 	 * @ordered
@@ -125,9 +130,9 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	protected TargetSectionClass targetClass;
 
 	/**
-	 * The cached value of the '{@link #getAffectedReference() <em>Affected Reference</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getAffectedReference() <em>Affected Reference</em>}' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @see #getAffectedReference()
 	 * @generated
 	 * @ordered
@@ -145,8 +150,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	protected Matcher matcher;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected ReferenceTargetSelectorImpl() {
@@ -154,8 +158,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -164,19 +167,19 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getExpression() {
 		return expression;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setExpression(String newExpression) {
 		String oldExpression = expression;
 		expression = newExpression;
@@ -185,10 +188,10 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ValueModifierSet> getModifiers() {
 		if (modifiers == null) {
 			modifiers = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, ExtendedPackage.REFERENCE_TARGET_SELECTOR__MODIFIERS);
@@ -197,10 +200,10 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<InstanceSelectorSourceInterface> getSourceElements() {
 		if (sourceElements == null) {
 			sourceElements = new EObjectContainmentEList<InstanceSelectorSourceInterface>(InstanceSelectorSourceInterface.class, this, ExtendedPackage.REFERENCE_TARGET_SELECTOR__SOURCE_ELEMENTS);
@@ -209,10 +212,10 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TargetSectionAttribute getReferenceAttribute() {
 		if (referenceAttribute != null && referenceAttribute.eIsProxy()) {
 			InternalEObject oldReferenceAttribute = (InternalEObject)referenceAttribute;
@@ -226,8 +229,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public TargetSectionAttribute basicGetReferenceAttribute() {
@@ -235,10 +237,10 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferenceAttribute(TargetSectionAttribute newReferenceAttribute) {
 		TargetSectionAttribute oldReferenceAttribute = referenceAttribute;
 		referenceAttribute = newReferenceAttribute;
@@ -247,10 +249,10 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TargetSectionClass getTargetClass() {
 		if (targetClass != null && targetClass.eIsProxy()) {
 			InternalEObject oldTargetClass = (InternalEObject)targetClass;
@@ -264,8 +266,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public TargetSectionClass basicGetTargetClass() {
@@ -273,10 +274,10 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTargetClass(TargetSectionClass newTargetClass) {
 		TargetSectionClass oldTargetClass = targetClass;
 		targetClass = newTargetClass;
@@ -285,8 +286,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -303,8 +303,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public TargetSectionCrossReference basicGetAffectedReference() {
@@ -312,8 +311,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setAffectedReferenceGen(TargetSectionCrossReference newAffectedReference) {
@@ -328,13 +326,13 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	 */
 	@Override
 	public void setAffectedReference(TargetSectionCrossReference newAffectedReference) {
+
 		this.setNameDerived(this.affectedReference, newAffectedReference, null, null);
 		this.setAffectedReferenceGen(newAffectedReference);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -343,8 +341,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NotificationChain basicSetMatcher(Matcher newMatcher, NotificationChain msgs) {
@@ -358,8 +355,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -378,12 +374,12 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public boolean validateAffectedReferenceIsNonContainment(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+	public boolean validateAffectedReferenceIsNonContainment(final DiagnosticChain diagnostics,
+			final Map<?, ?> context) {
 		
 		boolean result = this.getAffectedReference() == null || this.getAffectedReference().getEReference() == null ? true : !this.getAffectedReference().getEReference().isContainment();
 		
@@ -404,8 +400,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -437,11 +432,12 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateNoModifiedAttributeElementTypesInConditionModelConditions(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+	@Override
+	public boolean validateNoModifiedAttributeElementTypesInConditionModelConditions(final DiagnosticChain diagnostics,
+			final Map<?, ?> context) {
 		
 		boolean result = this.eContainer() instanceof ComplexCondition && ((ComplexCondition) this.eContainer()).isConditionModelCondition() ? this.getSourceElements().parallelStream().noneMatch(s -> s instanceof pamtram.structure.DynamicSourceElement) : true;
 		
@@ -461,11 +457,74 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 		return result;
 	}
 
+	@Override
+	public boolean validateReferenceAttributeIsValid(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+
+		if (this.referenceAttribute == null || this.targetClass == null
+				|| this.targetClass.getContainingSection() == null) {
+			return true;
+		}
+
+		// If a 'targetClass' has already been set for this 'TargetInstanceSelector', allow only 'referenceAttributes'
+		// that are part of the same TargetSection as the specified 'targetClass' (or of one of the extended
+		// sections).
+		//
+
+		TargetSection section = this.targetClass.getContainingSection();
+
+		List<TargetSection> allowedSections = new ArrayList<>(Arrays.asList(section));
+		allowedSections.addAll(section.getAllExtend());
+
+		boolean result = allowedSections.contains(this.referenceAttribute.getContainingSection());
+
+		if (!result && diagnostics != null) {
+
+			String errorMessage = "The 'referenceAttribute' must be contained in the same TargetSection (or an extended section) as the 'targetClass'!";
+
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, StructureValidator.DIAGNOSTIC_SOURCE,
+					StructureValidator.TARGET_INSTANCE_SELECTOR__VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID, errorMessage,
+					new Object[] { this, StructurePackage.Literals.TARGET_INSTANCE_SELECTOR__REFERENCE_ATTRIBUTE }));
+
+		}
+
+		return result;
+	}
+
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public boolean validateTargetClass(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		// If an 'affectedReference' has already been set for this 'TargetInstanceSelector', allow only
+				// those choices
+				// that are compatible with the selected reference.
+				//
+				if (this.getAffectedReference() == null || this.getAffectedReference().getEReference() == null
+						|| this.getTargetClass() == null || this.getTargetClass().getEClass() == null) {
+					return true;
+				}
+		
+			boolean result = this.getAffectedReference().getEReference().getEReferenceType()
+						.isSuperTypeOf(this.targetClass.getEClass());
+		
+			if (!result && diagnostics != null) {
+		
+				String errorMessage = "The specified 'targetClass' is not compatible with the specified 'affectedReference'!";
+		
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, ExtendedValidator.DIAGNOSTIC_SOURCE,
+							ExtendedValidator.REFERENCE_TARGET_SELECTOR__VALIDATE_TARGET_CLASS, errorMessage,
+							new Object[] { this, StructurePackage.Literals.TARGET_INSTANCE_SELECTOR__TARGET_CLASS }));
+				}
+		
+			return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EList<InstanceSelectorSourceElement> getLocalSourceElements() {
 		return new BasicEList<>(
 				this.getSourceElements().stream().filter(i -> i instanceof InstanceSelectorSourceElement)
@@ -473,10 +532,10 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<InstanceSelectorExternalSourceElement> getExternalSourceElements() {
 		return new BasicEList<>(
 				this.getSourceElements().stream().filter(i -> i instanceof InstanceSelectorExternalSourceElement)
@@ -484,8 +543,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -500,8 +558,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -529,8 +586,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -565,8 +621,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -598,8 +653,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -624,8 +678,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -659,8 +712,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -694,8 +746,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -720,6 +771,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 		}
 		if (baseClass == TargetInstanceSelector.class) {
 			switch (baseOperationID) {
+				case StructurePackage.TARGET_INSTANCE_SELECTOR___VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID__DIAGNOSTICCHAIN_MAP: return ExtendedPackage.REFERENCE_TARGET_SELECTOR___VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID__DIAGNOSTICCHAIN_MAP;
 				default: return -1;
 			}
 		}
@@ -727,8 +779,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -739,6 +790,10 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 				return validateAffectedReferenceIsNonContainment((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case ExtendedPackage.REFERENCE_TARGET_SELECTOR___VALIDATE_AFFECTED_REFERENCE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP:
 				return validateAffectedReferenceMatchesSection((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case ExtendedPackage.REFERENCE_TARGET_SELECTOR___VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID__DIAGNOSTICCHAIN_MAP:
+				return validateReferenceAttributeIsValid((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case ExtendedPackage.REFERENCE_TARGET_SELECTOR___VALIDATE_TARGET_CLASS__DIAGNOSTICCHAIN_MAP:
+				return validateTargetClass((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case ExtendedPackage.REFERENCE_TARGET_SELECTOR___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP:
 				return validateNoModifiedAttributeElementTypesInConditionModelConditions((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case ExtendedPackage.REFERENCE_TARGET_SELECTOR___GET_LOCAL_SOURCE_ELEMENTS:
@@ -750,8 +805,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -765,4 +819,4 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 		return result.toString();
 	}
 
-} //MappingInstanceSelectorImpl
+} // MappingInstanceSelectorImpl

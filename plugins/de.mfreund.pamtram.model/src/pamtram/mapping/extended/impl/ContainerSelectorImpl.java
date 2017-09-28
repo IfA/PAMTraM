@@ -3,7 +3,10 @@
 package pamtram.mapping.extended.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -316,8 +319,7 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -343,6 +345,39 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 		}
 		
 		
+		return result;
+	}
+
+	@Override
+	public boolean validateReferenceAttributeIsValid(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+
+		if (this.referenceAttribute == null || this.targetClass == null
+				|| this.targetClass.getContainingSection() == null) {
+			return true;
+		}
+
+		// If a 'targetClass' has already been set for this 'TargetInstanceSelector', allow only 'referenceAttributes'
+		// that are part of the same TargetSection as the specified 'targetClass' (or of one of the extended
+		// sections).
+		//
+
+		TargetSection section = this.targetClass.getContainingSection();
+
+		List<TargetSection> allowedSections = new ArrayList<>(Arrays.asList(section));
+		allowedSections.addAll(section.getAllExtend());
+
+		boolean result = allowedSections.contains(this.referenceAttribute.getContainingSection());
+
+		if (!result && diagnostics != null) {
+
+			String errorMessage = "The 'referenceAttribute' must be contained in the same TargetSection (or an extended section) as the 'targetClass'!";
+
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, StructureValidator.DIAGNOSTIC_SOURCE,
+					StructureValidator.TARGET_INSTANCE_SELECTOR__VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID, errorMessage,
+					new Object[] { this, StructurePackage.Literals.TARGET_INSTANCE_SELECTOR__REFERENCE_ATTRIBUTE }));
+
+		}
+
 		return result;
 	}
 
@@ -574,6 +609,7 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 		}
 		if (baseClass == TargetInstanceSelector.class) {
 			switch (baseOperationID) {
+				case StructurePackage.TARGET_INSTANCE_SELECTOR___VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID__DIAGNOSTICCHAIN_MAP: return ExtendedPackage.CONTAINER_SELECTOR___VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID__DIAGNOSTICCHAIN_MAP;
 				default: return -1;
 			}
 		}
@@ -591,6 +627,8 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 				return validateTargetClassMatchesPossibleContainerType((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case ExtendedPackage.CONTAINER_SELECTOR___VALIDATE_REFERENCE_ATTRIBUTE__DIAGNOSTICCHAIN_MAP:
 				return validateReferenceAttribute((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case ExtendedPackage.CONTAINER_SELECTOR___VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID__DIAGNOSTICCHAIN_MAP:
+				return validateReferenceAttributeIsValid((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case ExtendedPackage.CONTAINER_SELECTOR___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP:
 				return validateNoModifiedAttributeElementTypesInConditionModelConditions((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case ExtendedPackage.CONTAINER_SELECTOR___GET_LOCAL_SOURCE_ELEMENTS:

@@ -339,6 +339,15 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getTargetInstanceSelector__ValidateReferenceAttributeIsValid__DiagnosticChain_Map() {
+		return targetInstanceSelectorEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getInstanceSelectorSourceInterface() {
 		return instanceSelectorSourceInterfaceEClass;
 	}
@@ -510,6 +519,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		targetInstanceSelectorEClass = createEClass(TARGET_INSTANCE_SELECTOR);
 		createEReference(targetInstanceSelectorEClass, TARGET_INSTANCE_SELECTOR__REFERENCE_ATTRIBUTE);
 		createEReference(targetInstanceSelectorEClass, TARGET_INSTANCE_SELECTOR__TARGET_CLASS);
+		createEOperation(targetInstanceSelectorEClass, TARGET_INSTANCE_SELECTOR___VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID__DIAGNOSTICCHAIN_MAP);
 
 		instanceSelectorSourceInterfaceEClass = createEClass(INSTANCE_SELECTOR_SOURCE_INTERFACE);
 
@@ -860,6 +870,15 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		initEReference(getTargetInstanceSelector_ReferenceAttribute(), theTargetPackage.getTargetSectionAttribute(), null, "referenceAttribute", null, 0, 1, TargetInstanceSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTargetInstanceSelector_TargetClass(), theTargetPackage.getTargetSectionClass(), null, "targetClass", null, 1, 1, TargetInstanceSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		op = initEOperation(getTargetInstanceSelector__ValidateReferenceAttributeIsValid__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateReferenceAttributeIsValid", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(instanceSelectorSourceInterfaceEClass, InstanceSelectorSourceInterface.class, "InstanceSelectorSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(instanceSelectorSourceElementEClass, InstanceSelectorSourceElement.class, "InstanceSelectorSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1025,6 +1044,12 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		   source, 
 		   new String[] {
 			 "documentation", "TargetInstanceSelectors can be used to select a certain subset of a list of target model excerpts that have been created based on a certain TargetSection in the course of a transformation.\r\nThe specific use case for this selection depends on the concrete sub-type of this class.\r\n<br />\r\n<br />\r\nThe selection process is based on the comparison of the value of a certain attribute of the created TargetSections with a reference value. The reference value is thereby calculated based on the list of specified \'sourceElements\'."
+		   });	
+		addAnnotation
+		  (getTargetInstanceSelector__ValidateReferenceAttributeIsValid__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "if (this.referenceAttribute == null || this.targetClass == null\r\n\t\t\t\t|| this.targetClass.getContainingSection() == null) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\r\t// If a \'targetClass\' has already been set for this \'TargetInstanceSelector\', allow only \'referenceAttributes\'\r\n\t\t// that are part of the same <%pamtram.structure.target.TargetSection%> as the specified \'targetClass\' (or of one of the extended\r\n\t\t// sections).\r\n\t\t//\r\n\r\t<%pamtram.structure.target.TargetSection%> section = this.targetClass.getContainingSection();\r\n\r\tList<<%pamtram.structure.target.TargetSection%>> allowedSections = new ArrayList<>(<%java.util.Arrays%>.asList(section));\r\n\t\tallowedSections.addAll(section.getAllExtend());\r\n\r\tboolean result = allowedSections.contains(this.referenceAttribute.getContainingSection());\r\n\r\tif (!result && diagnostics != null) {\r\n\r\t\tString errorMessage = \"The \'referenceAttribute\' must be contained in the same <%pamtram.structure.target.TargetSection%> (or an extended section) as the \'targetClass\'!\";\r\n\r\t\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR, <%pamtram.structure.util.StructureValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\t<%pamtram.structure.util.StructureValidator%>.TARGET_INSTANCE_SELECTOR__VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID, errorMessage,\r\n\t\t\t\t\tnew Object[] { this, <%pamtram.structure.StructurePackage%>.Literals.TARGET_INSTANCE_SELECTOR__REFERENCE_ATTRIBUTE }));\r\n\r\t}\r\n\r\treturn result;"
 		   });	
 		addAnnotation
 		  (getTargetInstanceSelector_ReferenceAttribute(), 

@@ -249,7 +249,9 @@ public class ValueCalculator {
 	 * parts are assembled is thereby determined by the (order of the) list of <em>sourceElements</em>.
 	 * <p />
 	 * Note: Normally, one {@link AttributeValueRepresentation value} for each of the given <em>sourceElements</em>
-	 * should exist in the given map of <em>valueParts</em>.
+	 * should exist in the given map of <em>valueParts</em>. Additionally, potential
+	 * {@link ModifiableElement#getModifiers() modifiers} for each <em>sourceElement</em> (resp. the corresponding
+	 * value) have to be applied before calling this.
 	 *
 	 * @param sourceElements
 	 *            The list of source elements that determine the order in which the <em>valueParts</em> shall be
@@ -289,6 +291,9 @@ public class ValueCalculator {
 
 	/**
 	 * From the given map of <em>valueParts</em>, this calculates a single String value using the given expression.
+	 * <p />
+	 * Note: potential {@link ModifiableElement#getModifiers() modifiers} for each <em>sourceElement</em> (resp. the
+	 * corresponding value) have to be applied before calling this.
 	 * <p />
 	 * If no value parts are passed (i.e. <em>valueParts</em> is <em>null</em> or <em>empty</em>) the value of the
 	 * expression is returned.

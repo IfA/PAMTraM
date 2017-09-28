@@ -1362,10 +1362,6 @@ public class SourceSectionMatcher extends CancelableElement {
 	private boolean checkAttributeValueConstraint(final String attributeValueAsString,
 			final ValueConstraint constraint) {
 
-		if ("sequential".equals(constraint.getName())) {
-			System.out.println();
-		}
-
 		boolean constraintVal = false;
 
 		// Note: 'checkConstraint' already takes the type (REQUIRED/FORBIDDEN)

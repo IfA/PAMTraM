@@ -429,7 +429,7 @@ public class TargetSectionLinker extends CancelableElement {
 		}
 
 		if (filteredTargetInstances.isEmpty()) {
-			this.logger.warning(() -> "Evaluating the ReferenceTargetSelector '" + referenceTargetSelector.printInfo()
+			this.logger.warning(() -> "Evaluating the " + referenceTargetSelector.printInfo()
 					+ " returned no suitable target instances.");
 
 			return;

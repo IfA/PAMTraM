@@ -2,13 +2,14 @@
 <launchConfiguration type="de.mfreund.gentrans.launchConfigurationType.gentrans">
 <booleanAttribute key="enableHistory" value="false"/>
 <booleanAttribute key="enableStatistics" value="true"/>
-<booleanAttribute key="enableUser" value="false"/>
+<booleanAttribute key="enableUser" value="true"/>
 <booleanAttribute key="handleExpanding" value="false"/>
 <listAttribute key="libraryPaths">
 <listEntry value="D:\git-repos\de.tud.et.ifa.agtele.autoprobe\de.tud.et.ifa.agtele.autoprobe.resources\lib"/>
 </listAttribute>
 <stringAttribute key="logLevel" value="INFO"/>
 <intAttribute key="maxPathLength" value="0"/>
+<booleanAttribute key="openTargetModelOnCompletion" value="true"/>
 <stringAttribute key="pamtramFile" value="STGML2Movisa_enhanced.pamtram"/>
 <listAttribute key="pamtramFiles">
 <listEntry value="STGML2Movisa_enhanced.pamtram"/>

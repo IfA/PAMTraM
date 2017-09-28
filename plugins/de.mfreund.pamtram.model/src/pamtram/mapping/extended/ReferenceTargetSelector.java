@@ -24,7 +24,6 @@ import pamtram.structure.target.TargetSectionCrossReference;
  * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.extended.ReferenceTargetSelector#getAffectedReference <em>Affected Reference</em>}</li>
- *   <li>{@link pamtram.mapping.extended.ReferenceTargetSelector#getMatcher <em>Matcher</em>}</li>
  * </ul>
  *
  * @see pamtram.mapping.extended.ExtendedPackage#getReferenceTargetSelector()
@@ -58,34 +57,6 @@ public interface ReferenceTargetSelector extends MappingHint, TargetInstanceSele
 	 * @generated
 	 */
 	void setAffectedReference(TargetSectionCrossReference value);
-
-	/**
-	 * Returns the value of the '<em><b>Matcher</b></em>' containment reference. <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Matcher</em>' containment reference isn't clear, there really should be more of a
-	 * description here...
-	 * </p>
-	 * <!-- end-user-doc --> <!-- begin-model-doc --> The Matcher that is used to determine the target instances for the
-	 * 'affectedReference'. <!-- end-model-doc -->
-	 * 
-	 * @return the value of the '<em>Matcher</em>' containment reference.
-	 * @see #setMatcher(Matcher)
-	 * @see pamtram.mapping.extended.ExtendedPackage#getReferenceTargetSelector_Matcher()
-	 * @model containment="true"
-	 * @generated
-	 * @deprecated matchers will not be used any longer in the future
-	 */
-	@Deprecated
-	Matcher getMatcher();
-
-	/**
-	 * Sets the value of the '{@link pamtram.mapping.extended.ReferenceTargetSelector#getMatcher <em>Matcher</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Matcher</em>' containment reference.
-	 * @see #getMatcher()
-	 * @generated
-	 */
-	void setMatcher(Matcher value);
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->

@@ -1864,22 +1864,13 @@ public interface ExtendedPackage extends EPackage {
 	int REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE = MAPPING_HINT_FEATURE_COUNT + 5;
 
 	/**
-	 * The feature id for the '<em><b>Matcher</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_TARGET_SELECTOR__MATCHER = MAPPING_HINT_FEATURE_COUNT + 6;
-
-	/**
 	 * The number of structural features of the '<em>Reference Target Selector</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_TARGET_SELECTOR_FEATURE_COUNT = MAPPING_HINT_FEATURE_COUNT + 7;
+	int REFERENCE_TARGET_SELECTOR_FEATURE_COUNT = MAPPING_HINT_FEATURE_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
@@ -1990,171 +1981,6 @@ public interface ExtendedPackage extends EPackage {
 	int REFERENCE_TARGET_SELECTOR_OPERATION_COUNT = MAPPING_HINT_OPERATION_COUNT + 8;
 
 	/**
-	 * The meta object id for the '{@link pamtram.mapping.extended.impl.MatcherImpl <em>Matcher</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.extended.impl.MatcherImpl
-	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getMatcher()
-	 * @generated
-	 */
-	int MATCHER = 18;
-
-	/**
-	 * The number of structural features of the '<em>Matcher</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MATCHER_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Matcher</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MATCHER_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link pamtram.mapping.extended.impl.ClassMatcherImpl <em>Class Matcher</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.extended.impl.ClassMatcherImpl
-	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getClassMatcher()
-	 * @generated
-	 */
-	int CLASS_MATCHER = 19;
-
-	/**
-	 * The feature id for the '<em><b>Target Class</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_MATCHER__TARGET_CLASS = MATCHER_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Class Matcher</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_MATCHER_FEATURE_COUNT = MATCHER_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Class Matcher</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_MATCHER_OPERATION_COUNT = MATCHER_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link pamtram.mapping.extended.impl.AttributeMatcherImpl <em>Attribute Matcher</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.mapping.extended.impl.AttributeMatcherImpl
-	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getAttributeMatcher()
-	 * @generated
-	 */
-	int ATTRIBUTE_MATCHER = 20;
-
-	/**
-	 * The feature id for the '<em><b>Expression</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER__EXPRESSION = MATCHER_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER__MODIFIERS = MATCHER_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Source Elements</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER__SOURCE_ELEMENTS = MATCHER_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER__TARGET = MATCHER_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of structural features of the '<em>Attribute Matcher</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER_FEATURE_COUNT = MATCHER_FEATURE_COUNT + 4;
-
-	/**
-	 * The operation id for the '<em>Validate No Modified Attribute Element Types In Condition Model Conditions</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP = MATCHER_OPERATION_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Get Local Source Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER___GET_LOCAL_SOURCE_ELEMENTS = MATCHER_OPERATION_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Get External Source Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER___GET_EXTERNAL_SOURCE_ELEMENTS = MATCHER_OPERATION_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>Validate Target Matches Affected Reference Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER___VALIDATE_TARGET_MATCHES_AFFECTED_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP = MATCHER_OPERATION_COUNT + 3;
-
-	/**
-	 * The number of operations of the '<em>Attribute Matcher</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MATCHER_OPERATION_COUNT = MATCHER_OPERATION_COUNT + 4;
-
-	/**
 	 * The meta object id for the '{@link pamtram.mapping.extended.impl.ContainerSelectorImpl <em>Container Selector</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2162,7 +1988,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getContainerSelector()
 	 * @generated
 	 */
-	int CONTAINER_SELECTOR = 21;
+	int CONTAINER_SELECTOR = 18;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2370,7 +2196,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getMappedAttributeValueExpander()
 	 * @generated
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_EXPANDER = 22;
+	int MAPPED_ATTRIBUTE_VALUE_EXPANDER = 19;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2425,7 +2251,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getLocalMappedAttributeValueExpander()
 	 * @generated
 	 */
-	int LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER = 23;
+	int LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER = 20;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2534,7 +2360,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getMappedAttributeValuePrepender()
 	 * @generated
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_PREPENDER = 24;
+	int MAPPED_ATTRIBUTE_VALUE_PREPENDER = 21;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2643,7 +2469,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getMappedAttributeValueAppender()
 	 * @generated
 	 */
-	int MAPPED_ATTRIBUTE_VALUE_APPENDER = 25;
+	int MAPPED_ATTRIBUTE_VALUE_APPENDER = 22;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2752,7 +2578,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getExternalMappedAttributeValueExpander()
 	 * @generated
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER = 26;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER = 23;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2852,7 +2678,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getExternalMappedAttributeValuePrepender()
 	 * @generated
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER = 27;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER = 24;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2952,7 +2778,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getExternalMappedAttributeValueAppender()
 	 * @generated
 	 */
-	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER = 28;
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER = 25;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -3464,17 +3290,6 @@ public interface ExtendedPackage extends EPackage {
 	EReference getReferenceTargetSelector_AffectedReference();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link pamtram.mapping.extended.ReferenceTargetSelector#getMatcher <em>Matcher</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Matcher</em>'.
-	 * @see pamtram.mapping.extended.ReferenceTargetSelector#getMatcher()
-	 * @see #getReferenceTargetSelector()
-	 * @generated
-	 */
-	EReference getReferenceTargetSelector_Matcher();
-
-	/**
 	 * Returns the meta object for the '{@link pamtram.mapping.extended.ReferenceTargetSelector#validateAffectedReferenceIsNonContainment(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Affected Reference Is Non Containment</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3513,68 +3328,6 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getReferenceTargetSelector__ValidateTargetClass__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.extended.Matcher <em>Matcher</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Matcher</em>'.
-	 * @see pamtram.mapping.extended.Matcher
-	 * @generated
-	 */
-	EClass getMatcher();
-
-	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.extended.ClassMatcher <em>Class Matcher</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Class Matcher</em>'.
-	 * @see pamtram.mapping.extended.ClassMatcher
-	 * @generated
-	 */
-	EClass getClassMatcher();
-
-	/**
-	 * Returns the meta object for the reference '{@link pamtram.mapping.extended.ClassMatcher#getTargetClass <em>Target Class</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Target Class</em>'.
-	 * @see pamtram.mapping.extended.ClassMatcher#getTargetClass()
-	 * @see #getClassMatcher()
-	 * @generated
-	 */
-	EReference getClassMatcher_TargetClass();
-
-	/**
-	 * Returns the meta object for class '{@link pamtram.mapping.extended.AttributeMatcher <em>Attribute Matcher</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Attribute Matcher</em>'.
-	 * @see pamtram.mapping.extended.AttributeMatcher
-	 * @generated
-	 */
-	EClass getAttributeMatcher();
-
-	/**
-	 * Returns the meta object for the reference '{@link pamtram.mapping.extended.AttributeMatcher#getTarget <em>Target</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Target</em>'.
-	 * @see pamtram.mapping.extended.AttributeMatcher#getTarget()
-	 * @see #getAttributeMatcher()
-	 * @generated
-	 */
-	EReference getAttributeMatcher_Target();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.extended.AttributeMatcher#validateTargetMatchesAffectedReferenceType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Target Matches Affected Reference Type</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Target Matches Affected Reference Type</em>' operation.
-	 * @see pamtram.mapping.extended.AttributeMatcher#validateTargetMatchesAffectedReferenceType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getAttributeMatcher__ValidateTargetMatchesAffectedReferenceType__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.extended.ContainerSelector <em>Container Selector</em>}'.
@@ -4054,13 +3807,6 @@ public interface ExtendedPackage extends EPackage {
 		 */
 		EReference REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE = eINSTANCE.getReferenceTargetSelector_AffectedReference();
 		/**
-		 * The meta object literal for the '<em><b>Matcher</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference REFERENCE_TARGET_SELECTOR__MATCHER = eINSTANCE.getReferenceTargetSelector_Matcher();
-		/**
 		 * The meta object literal for the '<em><b>Validate Affected Reference Is Non Containment</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4088,54 +3834,6 @@ public interface ExtendedPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation REFERENCE_TARGET_SELECTOR___VALIDATE_TARGET_CLASS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getReferenceTargetSelector__ValidateTargetClass__DiagnosticChain_Map();
-		/**
-		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.MatcherImpl <em>Matcher</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.extended.impl.MatcherImpl
-		 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getMatcher()
-		 * @generated
-		 */
-		EClass MATCHER = eINSTANCE.getMatcher();
-		/**
-		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.ClassMatcherImpl <em>Class Matcher</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.extended.impl.ClassMatcherImpl
-		 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getClassMatcher()
-		 * @generated
-		 */
-		EClass CLASS_MATCHER = eINSTANCE.getClassMatcher();
-		/**
-		 * The meta object literal for the '<em><b>Target Class</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CLASS_MATCHER__TARGET_CLASS = eINSTANCE.getClassMatcher_TargetClass();
-		/**
-		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.AttributeMatcherImpl <em>Attribute Matcher</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.mapping.extended.impl.AttributeMatcherImpl
-		 * @see pamtram.mapping.extended.impl.ExtendedPackageImpl#getAttributeMatcher()
-		 * @generated
-		 */
-		EClass ATTRIBUTE_MATCHER = eINSTANCE.getAttributeMatcher();
-		/**
-		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ATTRIBUTE_MATCHER__TARGET = eINSTANCE.getAttributeMatcher_Target();
-		/**
-		 * The meta object literal for the '<em><b>Validate Target Matches Affected Reference Type</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation ATTRIBUTE_MATCHER___VALIDATE_TARGET_MATCHES_AFFECTED_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getAttributeMatcher__ValidateTargetMatchesAffectedReferenceType__DiagnosticChain_Map();
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.ContainerSelectorImpl <em>Container Selector</em>}' class.
 		 * <!-- begin-user-doc -->

@@ -304,52 +304,6 @@ public class ExtendedItemProviderAdapterFactory extends ExtendedAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.extended.ClassMatcher} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ClassMatcherItemProvider classMatcherItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.mapping.extended.ClassMatcher}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createClassMatcherAdapter() {
-		if (classMatcherItemProvider == null) {
-			classMatcherItemProvider = new ClassMatcherItemProvider(this);
-		}
-
-		return classMatcherItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.mapping.extended.AttributeMatcher} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected AttributeMatcherItemProvider attributeMatcherItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.mapping.extended.AttributeMatcher}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createAttributeMatcherAdapter() {
-		if (attributeMatcherItemProvider == null) {
-			attributeMatcherItemProvider = new AttributeMatcherItemProvider(this);
-		}
-
-		return attributeMatcherItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link pamtram.mapping.extended.ContainerSelector} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -575,8 +529,6 @@ public class ExtendedItemProviderAdapterFactory extends ExtendedAdapterFactory
 		if (cardinalityMappingExternalSourceElementItemProvider != null) cardinalityMappingExternalSourceElementItemProvider.dispose();
 		if (cardinalityMappingGlobalSourceElementItemProvider != null) cardinalityMappingGlobalSourceElementItemProvider.dispose();
 		if (referenceTargetSelectorItemProvider != null) referenceTargetSelectorItemProvider.dispose();
-		if (classMatcherItemProvider != null) classMatcherItemProvider.dispose();
-		if (attributeMatcherItemProvider != null) attributeMatcherItemProvider.dispose();
 		if (containerSelectorItemProvider != null) containerSelectorItemProvider.dispose();
 		if (mappedAttributeValuePrependerItemProvider != null) mappedAttributeValuePrependerItemProvider.dispose();
 		if (mappedAttributeValueAppenderItemProvider != null) mappedAttributeValueAppenderItemProvider.dispose();

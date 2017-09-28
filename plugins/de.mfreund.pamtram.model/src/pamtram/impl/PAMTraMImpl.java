@@ -48,15 +48,14 @@ import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
-import pamtram.mapping.extended.AttributeMatcher;
 import pamtram.mapping.extended.ContainerSelector;
 import pamtram.mapping.extended.MappingHint;
 import pamtram.mapping.extended.MappingHintBaseType;
 import pamtram.mapping.extended.ReferenceTargetSelector;
-import pamtram.mapping.extended.impl.ExtendedPackageImpl;
 import pamtram.mapping.impl.MappingPackageImpl;
 import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.ExternalDynamicSourceElement;
+import pamtram.structure.TargetInstanceSelector;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.MetaModelElement;
@@ -68,7 +67,6 @@ import pamtram.structure.source.SourceSection;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.target.TargetSectionClass;
-import pamtram.structure.target.TargetSectionCrossReference;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>PAM Tra M</b></em>'. <!-- end-user-doc -->
@@ -76,21 +74,21 @@ import pamtram.structure.target.TargetSectionCrossReference;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.impl.PAMTraMImpl#getSourceSectionModels <em>Source Section Models</em>}</li>
- *   <li>{@link pamtram.impl.PAMTraMImpl#getSharedSourceSectionModels <em>Shared Source Section Models</em>}</li>
- *   <li>{@link pamtram.impl.PAMTraMImpl#getTargetSectionModels <em>Target Section Models</em>}</li>
- *   <li>{@link pamtram.impl.PAMTraMImpl#getSharedTargetSectionModels <em>Shared Target Section Models</em>}</li>
- *   <li>{@link pamtram.impl.PAMTraMImpl#getMappingModels <em>Mapping Models</em>}</li>
- *   <li>{@link pamtram.impl.PAMTraMImpl#getSharedMappingModels <em>Shared Mapping Models</em>}</li>
- *   <li>{@link pamtram.impl.PAMTraMImpl#getSourceSections <em>Source Sections</em>}</li>
- *   <li>{@link pamtram.impl.PAMTraMImpl#getTargetSections <em>Target Sections</em>}</li>
- *   <li>{@link pamtram.impl.PAMTraMImpl#getMappings <em>Mappings</em>}</li>
- *   <li>{@link pamtram.impl.PAMTraMImpl#getActiveMappings <em>Active Mappings</em>}</li>
- *   <li>{@link pamtram.impl.PAMTraMImpl#getGlobalValues <em>Global Values</em>}</li>
- *   <li>{@link pamtram.impl.PAMTraMImpl#getGlobalAttributes <em>Global Attributes</em>}</li>
- *   <li>{@link pamtram.impl.PAMTraMImpl#getModifierSets <em>Modifier Sets</em>}</li>
- *   <li>{@link pamtram.impl.PAMTraMImpl#getConditionModels <em>Condition Models</em>}</li>
- *   <li>{@link pamtram.impl.PAMTraMImpl#getSharedConditionModels <em>Shared Condition Models</em>}</li>
+ * <li>{@link pamtram.impl.PAMTraMImpl#getSourceSectionModels <em>Source Section Models</em>}</li>
+ * <li>{@link pamtram.impl.PAMTraMImpl#getSharedSourceSectionModels <em>Shared Source Section Models</em>}</li>
+ * <li>{@link pamtram.impl.PAMTraMImpl#getTargetSectionModels <em>Target Section Models</em>}</li>
+ * <li>{@link pamtram.impl.PAMTraMImpl#getSharedTargetSectionModels <em>Shared Target Section Models</em>}</li>
+ * <li>{@link pamtram.impl.PAMTraMImpl#getMappingModels <em>Mapping Models</em>}</li>
+ * <li>{@link pamtram.impl.PAMTraMImpl#getSharedMappingModels <em>Shared Mapping Models</em>}</li>
+ * <li>{@link pamtram.impl.PAMTraMImpl#getSourceSections <em>Source Sections</em>}</li>
+ * <li>{@link pamtram.impl.PAMTraMImpl#getTargetSections <em>Target Sections</em>}</li>
+ * <li>{@link pamtram.impl.PAMTraMImpl#getMappings <em>Mappings</em>}</li>
+ * <li>{@link pamtram.impl.PAMTraMImpl#getActiveMappings <em>Active Mappings</em>}</li>
+ * <li>{@link pamtram.impl.PAMTraMImpl#getGlobalValues <em>Global Values</em>}</li>
+ * <li>{@link pamtram.impl.PAMTraMImpl#getGlobalAttributes <em>Global Attributes</em>}</li>
+ * <li>{@link pamtram.impl.PAMTraMImpl#getModifierSets <em>Modifier Sets</em>}</li>
+ * <li>{@link pamtram.impl.PAMTraMImpl#getConditionModels <em>Condition Models</em>}</li>
+ * <li>{@link pamtram.impl.PAMTraMImpl#getSharedConditionModels <em>Shared Condition Models</em>}</li>
  * </ul>
  *
  * @generated
@@ -98,8 +96,9 @@ import pamtram.structure.target.TargetSectionCrossReference;
 public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM {
 
 	/**
-	 * The cached value of the '{@link #getSourceSectionModels() <em>Source Section Models</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSourceSectionModels() <em>Source Section Models</em>}' containment reference
+	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getSourceSectionModels()
 	 * @generated
 	 * @ordered
@@ -107,8 +106,9 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	protected EList<SourceSectionModel> sourceSectionModels;
 
 	/**
-	 * The cached value of the '{@link #getSharedSourceSectionModels() <em>Shared Source Section Models</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSharedSourceSectionModels() <em>Shared Source Section Models</em>}' reference
+	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getSharedSourceSectionModels()
 	 * @generated
 	 * @ordered
@@ -116,8 +116,9 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	protected EList<SourceSectionModel> sharedSourceSectionModels;
 
 	/**
-	 * The cached value of the '{@link #getTargetSectionModels() <em>Target Section Models</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getTargetSectionModels() <em>Target Section Models</em>}' containment reference
+	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getTargetSectionModels()
 	 * @generated
 	 * @ordered
@@ -125,8 +126,9 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	protected EList<TargetSectionModel> targetSectionModels;
 
 	/**
-	 * The cached value of the '{@link #getSharedTargetSectionModels() <em>Shared Target Section Models</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSharedTargetSectionModels() <em>Shared Target Section Models</em>}' reference
+	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getSharedTargetSectionModels()
 	 * @generated
 	 * @ordered
@@ -156,6 +158,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	/**
 	 * The cached value of the '{@link #getConditionModels() <em>Condition Models</em>}' containment reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getConditionModels()
 	 * @generated
 	 * @ordered
@@ -165,6 +168,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	/**
 	 * The cached value of the '{@link #getSharedConditionModels() <em>Shared Condition Models</em>}' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getSharedConditionModels()
 	 * @generated
 	 * @ordered
@@ -173,102 +177,125 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected PAMTraMImpl() {
+
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
+
 		return PamtramPackage.Literals.PAM_TRA_M;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EList<SourceSectionModel> getSourceSectionModels() {
-		if (sourceSectionModels == null) {
-			sourceSectionModels = new EObjectContainmentEList<SourceSectionModel>(SourceSectionModel.class, this, PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODELS);
+
+		if (this.sourceSectionModels == null) {
+			this.sourceSectionModels = new EObjectContainmentEList<>(SourceSectionModel.class, this,
+					PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODELS);
 		}
-		return sourceSectionModels;
+		return this.sourceSectionModels;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EList<SourceSectionModel> getSharedSourceSectionModels() {
-		if (sharedSourceSectionModels == null) {
-			sharedSourceSectionModels = new EObjectResolvingEList<SourceSectionModel>(SourceSectionModel.class, this, PamtramPackage.PAM_TRA_M__SHARED_SOURCE_SECTION_MODELS);
+
+		if (this.sharedSourceSectionModels == null) {
+			this.sharedSourceSectionModels = new EObjectResolvingEList<>(SourceSectionModel.class,
+					this, PamtramPackage.PAM_TRA_M__SHARED_SOURCE_SECTION_MODELS);
 		}
-		return sharedSourceSectionModels;
+		return this.sharedSourceSectionModels;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EList<TargetSectionModel> getTargetSectionModels() {
-		if (targetSectionModels == null) {
-			targetSectionModels = new EObjectContainmentEList<TargetSectionModel>(TargetSectionModel.class, this, PamtramPackage.PAM_TRA_M__TARGET_SECTION_MODELS);
+
+		if (this.targetSectionModels == null) {
+			this.targetSectionModels = new EObjectContainmentEList<>(TargetSectionModel.class, this,
+					PamtramPackage.PAM_TRA_M__TARGET_SECTION_MODELS);
 		}
-		return targetSectionModels;
+		return this.targetSectionModels;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EList<TargetSectionModel> getSharedTargetSectionModels() {
-		if (sharedTargetSectionModels == null) {
-			sharedTargetSectionModels = new EObjectResolvingEList<TargetSectionModel>(TargetSectionModel.class, this, PamtramPackage.PAM_TRA_M__SHARED_TARGET_SECTION_MODELS);
+
+		if (this.sharedTargetSectionModels == null) {
+			this.sharedTargetSectionModels = new EObjectResolvingEList<>(TargetSectionModel.class,
+					this, PamtramPackage.PAM_TRA_M__SHARED_TARGET_SECTION_MODELS);
 		}
-		return sharedTargetSectionModels;
+		return this.sharedTargetSectionModels;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EList<MappingModel> getMappingModels() {
-		if (mappingModels == null) {
-			mappingModels = new EObjectContainmentEList<MappingModel>(MappingModel.class, this, PamtramPackage.PAM_TRA_M__MAPPING_MODELS);
+
+		if (this.mappingModels == null) {
+			this.mappingModels = new EObjectContainmentEList<>(MappingModel.class, this,
+					PamtramPackage.PAM_TRA_M__MAPPING_MODELS);
 		}
-		return mappingModels;
+		return this.mappingModels;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EList<MappingModel> getSharedMappingModels() {
-		if (sharedMappingModels == null) {
-			sharedMappingModels = new EObjectResolvingEList<MappingModel>(MappingModel.class, this, PamtramPackage.PAM_TRA_M__SHARED_MAPPING_MODELS);
+
+		if (this.sharedMappingModels == null) {
+			this.sharedMappingModels = new EObjectResolvingEList<>(MappingModel.class, this,
+					PamtramPackage.PAM_TRA_M__SHARED_MAPPING_MODELS);
 		}
-		return sharedMappingModels;
+		return this.sharedMappingModels;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EList<SourceSection> getSourceSections() {
+
 		List<SourceSection> sourceSections = Stream
-				.concat(this.getSourceSectionModels().stream(),
-						this.getSharedSourceSectionModels().stream())
+				.concat(this.getSourceSectionModels().stream(), this.getSharedSourceSectionModels().stream())
 				.flatMap(s -> s.getSections().stream()).collect(Collectors.toList());
 		return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__SOURCE_SECTIONS,
 				sourceSections.size(), sourceSections.toArray());
@@ -276,13 +303,14 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EList<TargetSection> getTargetSections() {
+
 		List<TargetSection> targetSections = Stream
-				.concat(this.getTargetSectionModels().stream(),
-						this.getSharedTargetSectionModels().stream())
+				.concat(this.getTargetSectionModels().stream(), this.getSharedTargetSectionModels().stream())
 				.flatMap(s -> s.getSections().stream()).collect(Collectors.toList());
 		return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__TARGET_SECTIONS,
 				targetSections.size(), targetSections.toArray());
@@ -290,23 +318,27 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EList<Mapping> getMappings() {
+
 		List<Mapping> mappings = Stream.concat(this.getMappingModels().stream(), this.getSharedMappingModels().stream())
 				.flatMap(s -> s.getMappings().stream()).collect(Collectors.toList());
-		return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__MAPPINGS,
-				mappings.size(), mappings.toArray());
+		return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__MAPPINGS, mappings.size(),
+				mappings.toArray());
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<Mapping> getActiveMappings() {
+
 		List<Mapping> mappings = Stream.concat(this.getMappingModels().stream(), this.getSharedMappingModels().stream())
 				.filter(m -> !m.isDeactivated()).flatMap(s -> s.getActiveMappings().stream())
 				.filter(m -> m.getSourceSection() == null || !m.getSourceSection().isDeactivated())
@@ -317,12 +349,15 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public EList<FixedValue> getGlobalValues() {
-		List<FixedValue> globalValues = Stream.concat(this.getMappingModels().stream(), this.getSharedMappingModels().stream())
+
+		List<FixedValue> globalValues = Stream
+				.concat(this.getMappingModels().stream(), this.getSharedMappingModels().stream())
 				.flatMap(s -> s.getGlobalValues().stream()).collect(Collectors.toList());
 		return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__GLOBAL_VALUES,
 				globalValues.size(), globalValues.toArray());
@@ -330,11 +365,14 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EList<GlobalAttribute> getGlobalAttributes() {
-		List<GlobalAttribute> globalAttributes = Stream.concat(this.getMappingModels().stream(), this.getSharedMappingModels().stream())
+
+		List<GlobalAttribute> globalAttributes = Stream
+				.concat(this.getMappingModels().stream(), this.getSharedMappingModels().stream())
 				.flatMap(s -> s.getGlobalAttributes().stream()).collect(Collectors.toList());
 		return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__GLOBAL_ATTRIBUTES,
 				globalAttributes.size(), globalAttributes.toArray());
@@ -342,12 +380,15 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public EList<ValueModifierSet> getModifierSets() {
-		List<ValueModifierSet> modifierSets = Stream.concat(this.getMappingModels().stream(), this.getSharedMappingModels().stream())
+
+		List<ValueModifierSet> modifierSets = Stream
+				.concat(this.getMappingModels().stream(), this.getSharedMappingModels().stream())
 				.flatMap(s -> s.getModifierSets().stream()).collect(Collectors.toList());
 		return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.PAM_TRA_M__MODIFIER_SETS,
 				modifierSets.size(), modifierSets.toArray());
@@ -355,26 +396,32 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EList<ConditionModel> getConditionModels() {
-		if (conditionModels == null) {
-			conditionModels = new EObjectContainmentEList<ConditionModel>(ConditionModel.class, this, PamtramPackage.PAM_TRA_M__CONDITION_MODELS);
+
+		if (this.conditionModels == null) {
+			this.conditionModels = new EObjectContainmentEList<>(ConditionModel.class, this,
+					PamtramPackage.PAM_TRA_M__CONDITION_MODELS);
 		}
-		return conditionModels;
+		return this.conditionModels;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EList<ConditionModel> getSharedConditionModels() {
-		if (sharedConditionModels == null) {
-			sharedConditionModels = new EObjectResolvingEList<ConditionModel>(ConditionModel.class, this, PamtramPackage.PAM_TRA_M__SHARED_CONDITION_MODELS);
+
+		if (this.sharedConditionModels == null) {
+			this.sharedConditionModels = new EObjectResolvingEList<>(ConditionModel.class, this,
+					PamtramPackage.PAM_TRA_M__SHARED_CONDITION_MODELS);
 		}
-		return sharedConditionModels;
+		return this.sharedConditionModels;
 	}
 
 	/**
@@ -389,589 +436,552 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	 * <b><em>Note:</em></b> This algorithm changes the contents of the {@link PAMTraM} instance so that it might in
 	 * some cases be necessary to create a {@link EcoreUtil#copy(EObject) copy} that gets changed instead. <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void mergeExtends() {
 		// TODO handle hierarchical extensions (an extended section extends
-				// other sections
-				// TODO implement a more sophisticated merging strategy that takes into
-				// account overwriting of hints?
-		
-			/*
-				 * First, we collect each abstract source and target section as well as the concrete sections that reference
-				 * them
-				 */
-				HashMap<Section, LinkedList<Section>> abstractToConcreteSectionMap = new HashMap<>();
-				Map<EObject, Collection<Setting>> sourceSettings = EcoreUtil.CrossReferencer
-						.find(this.getActiveSourceSections());
-				for (Section section : this.getActiveSourceSections()) {
-					if (section.isAbstract() && sourceSettings.containsKey(section)) {
-						LinkedList<Section> concreteSections = new LinkedList<>();
-						for (Setting setting : sourceSettings.get(section)) {
-							if (setting.getEStructuralFeature().equals(GenericPackageImpl.eINSTANCE.getSection_Extend())) {
-								concreteSections.add((Section) setting.getEObject());
-							}
+		// other sections
+		// TODO implement a more sophisticated merging strategy that takes into
+		// account overwriting of hints?
+
+		/*
+		 * First, we collect each abstract source and target section as well as the concrete sections that reference
+		 * them
+		 */
+		HashMap<Section, LinkedList<Section>> abstractToConcreteSectionMap = new HashMap<>();
+		Map<EObject, Collection<Setting>> sourceSettings = EcoreUtil.CrossReferencer
+				.find(this.getActiveSourceSections());
+		for (Section section : this.getActiveSourceSections()) {
+			if (section.isAbstract() && sourceSettings.containsKey(section)) {
+				LinkedList<Section> concreteSections = new LinkedList<>();
+				for (Setting setting : sourceSettings.get(section)) {
+					if (setting.getEStructuralFeature().equals(GenericPackageImpl.eINSTANCE.getSection_Extend())) {
+						concreteSections.add((Section) setting.getEObject());
+					}
+				}
+				abstractToConcreteSectionMap.put(section, concreteSections);
+			}
+		}
+		Map<EObject, Collection<Setting>> targetSettings = EcoreUtil.CrossReferencer.find(this.getTargetSections());
+		for (Section section : this.getTargetSections()) {
+			if (section.isAbstract() && targetSettings.containsKey(section)) {
+				LinkedList<Section> concreteSections = new LinkedList<>();
+				for (Setting setting : targetSettings.get(section)) {
+					if (setting.getEStructuralFeature().equals(GenericPackageImpl.eINSTANCE.getSection_Extend())) {
+						concreteSections.add((Section) setting.getEObject());
+					}
+				}
+				abstractToConcreteSectionMap.put(section, concreteSections);
+			}
+		}
+
+		ArrayList<Mapping> concreteMappings = new ArrayList<>();
+		for (Mapping mapping : this.getActiveMappings()) {
+			if (!mapping.isAbstract()) {
+				concreteMappings.add(mapping);
+			}
+		}
+
+		/*
+		 * Now, we copy all elements from the abstract sections to the concrete sections that extend them. In this
+		 * process, we store the associations between the elements from the abstract sections and the copied elements in
+		 * a map.
+		 */
+		HashMap<EObject, LinkedList<EObject>> abstractToConcreteElementMap = new HashMap<>();
+		for (Section abstractSection : abstractToConcreteSectionMap.keySet()) {
+			for (Section concreteSection : abstractToConcreteSectionMap.get(abstractSection)) {
+
+				Section copiedSection = EcoreUtil.copy(abstractSection);
+
+				TreeIterator<EObject> originalIterator = EcoreUtil
+						.getAllContents(Collections.singleton(abstractSection));
+				TreeIterator<EObject> copyIterator = EcoreUtil.getAllContents(Collections.singleton(copiedSection));
+
+				// these lists will store the elements that we will add to the
+				// concrete section
+				ArrayList<Attribute> attributesToAdd = new ArrayList<>();
+				ArrayList<Reference> referencesToAdd = new ArrayList<>();
+
+				while (originalIterator.hasNext()) {
+					assert copyIterator.hasNext();
+
+					EObject originalNext = originalIterator.next();
+					EObject copyNext = copyIterator.next();
+
+					// if the element is the section itself, we skip it
+					if (originalNext instanceof Section) {
+						continue;
+					}
+
+					// if the element is a top-level element below the section,
+					// we add it to the concrete section
+					if (originalNext.eContainer().equals(abstractSection)) {
+						if (copyNext instanceof Attribute) {
+							attributesToAdd.add((Attribute) copyNext);
+						} else if (copyNext instanceof Reference) {
+							referencesToAdd.add((Reference) copyNext);
+						} else {
+							throw new RuntimeException("Unsupported element type '" + copyNext.eClass().getName()
+									+ "' encountered when merging extends!");
 						}
-						abstractToConcreteSectionMap.put(section, concreteSections);
 					}
-				}
-				Map<EObject, Collection<Setting>> targetSettings = EcoreUtil.CrossReferencer.find(this.getTargetSections());
-				for (Section section : this.getTargetSections()) {
-					if (section.isAbstract() && targetSettings.containsKey(section)) {
-						LinkedList<Section> concreteSections = new LinkedList<>();
-						for (Setting setting : targetSettings.get(section)) {
-							if (setting.getEStructuralFeature().equals(GenericPackageImpl.eINSTANCE.getSection_Extend())) {
-								concreteSections.add((Section) setting.getEObject());
-							}
-						}
-						abstractToConcreteSectionMap.put(section, concreteSections);
+
+					// in any case, we fill the abstractToConcreteElementMap
+					LinkedList<EObject> vals = abstractToConcreteElementMap.get(originalNext);
+					if (vals == null) {
+						vals = new LinkedList<>();
 					}
+					vals.add(copyNext);
+					abstractToConcreteElementMap.put(originalNext, vals);
 				}
-		
-			ArrayList<Mapping> concreteMappings = new ArrayList<>();
-				for (Mapping mapping : this.getActiveMappings()) {
-					if (!mapping.isAbstract()) {
-						concreteMappings.add(mapping);
-					}
-				}
-		
-			/*
-				 * Now, we copy all elements from the abstract sections to the concrete sections that extend them. In this
-				 * process, we store the associations between the elements from the abstract sections and the copied elements in
-				 * a map.
+
+				/*
+				 * now, we add the collected elements to the concrete section; we have to do this after the process of
+				 * iterating over the contents - otherwise, the TreeIterator will throw IndexOutOfBoundsExceptions
 				 */
-				HashMap<EObject, LinkedList<EObject>> abstractToConcreteElementMap = new HashMap<>();
-				for (Section abstractSection : abstractToConcreteSectionMap.keySet()) {
-					for (Section concreteSection : abstractToConcreteSectionMap.get(abstractSection)) {
-		
-					Section copiedSection = EcoreUtil.copy(abstractSection);
-		
-					TreeIterator<EObject> originalIterator = EcoreUtil
-								.getAllContents(Collections.singleton(abstractSection));
-						TreeIterator<EObject> copyIterator = EcoreUtil.getAllContents(Collections.singleton(copiedSection));
-		
-					// these lists will store the elements that we will add to the
-						// concrete section
-						ArrayList<Attribute> attributesToAdd = new ArrayList<>();
-						ArrayList<Reference> referencesToAdd = new ArrayList<>();
-		
-					while (originalIterator.hasNext()) {
-							assert copyIterator.hasNext();
-		
-						EObject originalNext = originalIterator.next();
-							EObject copyNext = copyIterator.next();
-		
-						// if the element is the section itself, we skip it
-							if (originalNext instanceof Section) {
-								continue;
-							}
-		
-						// if the element is a top-level element below the section,
-							// we add it to the concrete section
-							if (originalNext.eContainer().equals(abstractSection)) {
-								if (copyNext instanceof Attribute) {
-									attributesToAdd.add((Attribute) copyNext);
-								} else if (copyNext instanceof Reference) {
-									referencesToAdd.add((Reference) copyNext);
-								} else {
-									throw new RuntimeException("Unsupported element type '" + copyNext.eClass().getName()
-											+ "' encountered when merging extends!");
-								}
-							}
-		
-						// in any case, we fill the abstractToConcreteElementMap
-							LinkedList<EObject> vals = abstractToConcreteElementMap.get(originalNext);
-							if (vals == null) {
-								vals = new LinkedList<>();
-							}
-							vals.add(copyNext);
-							abstractToConcreteElementMap.put(originalNext, vals);
-						}
-		
-					/*
-						 * now, we add the collected elements to the concrete section; we have to do this after the process of
-						 * iterating over the contents - otherwise, the TreeIterator will throw IndexOutOfBoundsExceptions
-						 */
-						concreteSection.getAttributes().addAll(attributesToAdd);
-						concreteSection.getReferences().addAll(referencesToAdd);
-		
-					/*
-						 * Now, we redirect references from concrete sections to elements from the abstract section to the (new)
-						 * elements from the concrete sections.
-						 */
-						Map<EObject, Collection<Setting>> refsToAbstractSection = EcoreUtil.UsageCrossReferencer
-								.findAll(abstractToConcreteElementMap.keySet(), this.getActiveSourceSections().stream()
-										.filter(s -> !s.isAbstract()).collect(Collectors.toList()));
-						for (EObject referencedObject : refsToAbstractSection.keySet()) {
-		
-						for (Setting setting : refsToAbstractSection.get(referencedObject).stream()
-									.filter(s -> !s.getEStructuralFeature().isDerived()).collect(Collectors.toList())) {
-		
-							if (setting.getEStructuralFeature().equals(GenericPackage.eINSTANCE.getSection_Extend())) {
-									// the 'extend' feature has already been handled
-									// above
-									continue;
-								}
-		
-							// this is the element referencing the abstract section
-								// (it should be an element of a section)
-								EObject hintElement = setting.getEObject();
-		
-							if (setting.getEStructuralFeature().equals(GenericPackage.eINSTANCE.getClass_Container())) {
-									if (abstractSection.equals(hintElement) || abstractSection
-											.isContainerFor((pamtram.structure.generic.Class<?, ?, ?, ?>) hintElement)) {
-		
-									// redirect the reference (we can always use the
-										// 'last' of the concrete objects as we just
-										// added it above
-										setting.set(abstractToConcreteElementMap.get(referencedObject).getLast());
-									}
-		
-							} else {
-									System.out.println(
-											"Unhandled reference to element of an abstract section. Maybe consider redirecting this?");
-								}
-		
-						}
-		
-					}
-		
-					/*
-						 * Now, we redirect references from MappingHints to elements from the abstract section to the elements
-						 * from the concrete sections. Here, we only handle references from concrete mappings as the references
-						 * from abstract mappings (and thus from extended hint groups) are handled afterwards when these hint
-						 * groups are copied.
-						 */
-						refsToAbstractSection = EcoreUtil.UsageCrossReferencer.findAll(abstractToConcreteElementMap.keySet(),
-								concreteMappings);
-						for (EObject referencedObject : refsToAbstractSection.keySet()) {
-		
-						for (Setting setting : refsToAbstractSection.get(referencedObject)) {
-		
-							// this is the element referencing the abstract section
-								// (it should be contained in a Mapping and be either
-								// part of a MappingHintGroup or of a Condition)
-								//
-								MappingHintGroupType hintGroup = (MappingHintGroupType) AgteleEcoreUtil.getAncestorOfKind(
-										setting.getEObject(), MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE);
-								Mapping mapping = (Mapping) AgteleEcoreUtil.getAncestorOfKind(setting.getEObject(),
-										MappingPackage.Literals.MAPPING);
-		
-							if (mapping == null) {
-									throw new RuntimeException(
-											"Internal error during merging of extends. No containing element of type 'Mapping' found for element '"
-													+ setting.getEObject() + "'!");
-								}
-		
-							// We do not need to handle deactivated
-								// Mappings/MappingHintGroups
-								//
-								if (hintGroup instanceof DeactivatableElement
-										&& ((DeactivatableElement) hintGroup).isDeactivated() || mapping.isDeactivated()) {
-									continue;
-								}
-		
-							/*
-								 * check if the hint group or its parent mapping equals the section that we just added the
-								 * concrete elements to
-								 */
-								if (hintGroup != null
-										&& (concreteSection.equals(hintGroup.getTargetSection())
-												|| concreteSection.isContainerFor(hintGroup.getTargetSection()))
-										|| concreteSection.equals(mapping.getSourceSection())
-										|| concreteSection.isContainerFor(mapping.getSourceSection())) {
-		
-								if (setting.getEStructuralFeature().equals(
-											StructurePackageImpl.eINSTANCE.getTargetInstanceSelector_ReferenceAttribute())
-											&& setting.getEObject() instanceof ContainerSelector
-											|| setting.getEStructuralFeature().equals(
-													StructurePackageImpl.eINSTANCE.getTargetInstanceSelector_TargetClass())
-													&& setting.getEObject() instanceof ContainerSelector
-											|| setting.getEStructuralFeature()
-													.equals(ExtendedPackageImpl.eINSTANCE.getAttributeMatcher_Target())
-													&& setting.getEObject() instanceof AttributeMatcher) {
-										// do nothing as
-										// AttributeMatchers and ContainerSelectors are handled
-										// below separately
-									} else {
-		
-									// redirect the reference (we can always use the
-										// 'last' of the concrete objects as we just
-										// added it above
-										setting.set(abstractToConcreteElementMap.get(referencedObject).getLast());
-									}
-		
-							}
-							}
-		
-					}
-		
-				}
-				}
-		
-			/*
-				 * Now, we handle the ContainerSelectors and AttributeMatchers that we skipped above. We can do this now as we
-				 * now know all concrete TargetSections that are a possible match for each ContainerSelector that points to an
-				 * abstract TargetSection.
+				concreteSection.getAttributes().addAll(attributesToAdd);
+				concreteSection.getReferences().addAll(referencesToAdd);
+
+				/*
+				 * Now, we redirect references from concrete sections to elements from the abstract section to the (new)
+				 * elements from the concrete sections.
 				 */
-				for (Section abstractSection : abstractToConcreteSectionMap.keySet()) {
-					for (Section concreteSection : abstractToConcreteSectionMap.get(abstractSection)) {
-		
-					Map<EObject, Collection<Setting>> refsToAbstractSection = EcoreUtil.UsageCrossReferencer
-								.findAll(abstractToConcreteElementMap.keySet(), concreteMappings);
-						for (EObject referencedObject : refsToAbstractSection.keySet()) {
-		
-						for (Setting setting : refsToAbstractSection.get(referencedObject)) {
-		
-							// this is the element referencing the abstract section
-								// (it should be contained in a Mapping and be either
-								// part of a MappingHintGroup or of a Condition)
-								//
-								MappingHintGroupType hintGroup = (MappingHintGroupType) AgteleEcoreUtil.getAncestorOfKind(
-										setting.getEObject(), MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE);
-								Mapping mapping = (Mapping) AgteleEcoreUtil.getAncestorOfKind(setting.getEObject(),
-										MappingPackage.Literals.MAPPING);
-		
-							if (mapping == null) {
-									throw new RuntimeException(
-											"Internal error during merging of extends. No containing element of type 'Mapping' found for element '"
-													+ setting.getEObject() + "'!");
-								}
-		
-							// We do not need to handle deactivated
-								// Mappings/MappingHintGroups
-								//
-								if (hintGroup instanceof DeactivatableElement
-										&& ((DeactivatableElement) hintGroup).isDeactivated() || mapping.isDeactivated()) {
-									continue;
-								}
-		
-							if (setting.getEObject() instanceof ContainerSelector) {
-		
-								if (setting.getEStructuralFeature()
-											.equals(StructurePackageImpl.eINSTANCE.getTargetInstanceSelector_TargetClass())) {
-										continue;
-									} else if (!setting.getEStructuralFeature().equals(
-											StructurePackageImpl.eINSTANCE.getTargetInstanceSelector_ReferenceAttribute())) {
-										throw new RuntimeException(
-												"Internal error during redirection of ContainerSelectors in 'mergeExtends'...!");
-									}
-		
-								// For ContainerSelectors, we must not simply redirect but we create a new ContainerSelector
-									ContainerSelector original = (ContainerSelector) setting.getEObject();
-		
-								for (EObject concreteTargetSectionAttribute : abstractToConcreteElementMap
-											.get(referencedObject)) {
-		
-									if (!(concreteTargetSectionAttribute instanceof TargetSectionAttribute)) {
-											throw new RuntimeException(
-													"Internal error during merging of extends! Object of type 'TargetSectionClass' expected.");
-										}
-		
-									ContainerSelector copy = EcoreUtil.copy(original);
-										// ContainerSelector copy = ExtendedFactoryImpl.eINSTANCE.createContainerSelector();
-										// for (InstanceSelectorSourceInterface sourceElement : original.getSourceElements()) {
-										// EcoreUtil.c
-										// }
-										// copy.getSourceElements().addAll(original.getSourceElements());
-										// copy.setSharedCondition(original.getSharedCondition());
-										// copy.setLocalCondition(original.getLocalCondition());
-										// copy.setName(original.getName());
-										// copy.getModifiers().addAll(original.getModifiers());
-										copy.setReferenceAttribute((TargetSectionAttribute) concreteTargetSectionAttribute);
-		
-									Collection<EObject> possibleTargetClasses = new ArrayList<>();
-										if (original.getTargetClass() instanceof TargetSection) {
-											possibleTargetClasses
-													.addAll(abstractToConcreteSectionMap.get(original.getTargetClass()));
-										} else {
-											possibleTargetClasses
-													.addAll(abstractToConcreteElementMap.get(original.getTargetClass()));
-										}
-										Optional<EObject> targetClass = possibleTargetClasses.stream()
-												.filter(s -> s instanceof TargetSectionClass
-														&& ((TargetSectionClass) s).getContainingSection().equals(
-																((TargetSectionAttribute) concreteTargetSectionAttribute)
-																		.getContainingSection()))
-												.findAny();
-										if (targetClass.isPresent()) {
-											copy.setTargetClass((TargetSectionClass) targetClass.get());
-										}
-		
-									hintGroup.getMappingHints().add(copy);
-									}
-		
-							} else if (setting.getEStructuralFeature()
-										.equals(ExtendedPackageImpl.eINSTANCE.getAttributeMatcher_Target())
-										&& setting.getEObject() instanceof AttributeMatcher) {
-		
-								// For AttributeMatchers, we redirect to
-									// (the) one concrete attribute which is contained
-									// in a TargetSectionClass which is a possible
-									// target for the TargetSectionCrossReference
-									// affected by ReferenceTargetSelectors containing
-									// this matcher
-									//
-									ReferenceTargetSelector parentSelector = (ReferenceTargetSelector) setting.getEObject()
-											.eContainer();
-									TargetSectionCrossReference affectedReference = parentSelector.getAffectedReference();
-		
-								for (EObject concreteTargetSectionAttribute : abstractToConcreteElementMap
-											.get(referencedObject)) {
-										if (!affectedReference.getValue().isEmpty()) {
-											for (TargetSectionClass targetClass : affectedReference.getValue()) {
-												if (targetClass.getAttributes().contains(concreteTargetSectionAttribute)) {
-													setting.getEObject().eSet(setting.getEStructuralFeature(),
-															concreteTargetSectionAttribute);
-													break;
-												}
-											}
-										} else {
-											if (affectedReference.getEReference().getEReferenceType().isSuperTypeOf(
-													((TargetSectionClass) concreteTargetSectionAttribute.eContainer())
-															.getEClass())) {
-												setting.getEObject().eSet(setting.getEStructuralFeature(),
-														concreteTargetSectionAttribute);
-												break;
-											}
-										}
-									}
-								}
-							}
-		
-					}
-		
-				}
-				}
-		
-			/*
-				 * Finally, we can copy the abstract hint groups
-				 */
-		
-			// collect each abstract hint group as well as the concrete hint groups
-				// that reference them
-				HashMap<MappingHintGroupType, LinkedList<MappingHintGroupType>> abstractToConcreteHintGroupMap = new HashMap<>();
-				Map<EObject, Collection<Setting>> mappingSettings = EcoreUtil.CrossReferencer.find(this.getActiveMappings());
-				for (EObject element : mappingSettings.keySet()) {
-					if (element instanceof MappingHintGroupType && ((Mapping) element.eContainer()).isAbstract()) {
-		
-					// We do not need to handle deactivated MappingHintGroups
-						//
-						if (element instanceof DeactivatableElement && ((DeactivatableElement) element).isDeactivated()
-								|| element.eContainer() instanceof DeactivatableElement
-										&& ((DeactivatableElement) element.eContainer()).isDeactivated()) {
+				Map<EObject, Collection<Setting>> refsToAbstractSection = EcoreUtil.UsageCrossReferencer
+						.findAll(abstractToConcreteElementMap.keySet(), this.getActiveSourceSections().stream()
+								.filter(s -> !s.isAbstract()).collect(Collectors.toList()));
+				for (EObject referencedObject : refsToAbstractSection.keySet()) {
+
+					for (Setting setting : refsToAbstractSection.get(referencedObject).stream()
+							.filter(s -> !s.getEStructuralFeature().isDerived()).collect(Collectors.toList())) {
+
+						if (setting.getEStructuralFeature().equals(GenericPackage.eINSTANCE.getSection_Extend())) {
+							// the 'extend' feature has already been handled
+							// above
 							continue;
 						}
-		
-					LinkedList<MappingHintGroupType> concreteHintGroups = new LinkedList<>();
-						for (Setting setting : mappingSettings.get(element)) {
-							if (setting.getEStructuralFeature()
-									.equals(MappingPackageImpl.eINSTANCE.getMappingHintGroupType_Extend())) {
-		
-							// only copy hints to activated hint groups
-								if (setting.getEObject() instanceof DeactivatableElement
-										&& ((DeactivatableElement) setting.getEObject()).isDeactivated()
-										|| setting.getEObject().eContainer() instanceof DeactivatableElement
-												&& ((DeactivatableElement) setting.getEObject().eContainer()).isDeactivated()) {
-									continue;
-								} else {
-									concreteHintGroups.add((MappingHintGroupType) setting.getEObject());
-								}
+
+						// this is the element referencing the abstract section
+						// (it should be an element of a section)
+						EObject hintElement = setting.getEObject();
+
+						if (setting.getEStructuralFeature().equals(GenericPackage.eINSTANCE.getClass_Container())) {
+							if (abstractSection.equals(hintElement) || abstractSection
+									.isContainerFor((pamtram.structure.generic.Class<?, ?, ?, ?>) hintElement)) {
+
+								// redirect the reference (we can always use the
+								// 'last' of the concrete objects as we just
+								// added it above
+								setting.set(abstractToConcreteElementMap.get(referencedObject).getLast());
 							}
+
+						} else {
+							System.out.println(
+									"Unhandled reference to element of an abstract section. Maybe consider redirecting this?");
 						}
-						abstractToConcreteHintGroupMap.put((MappingHintGroupType) element, concreteHintGroups);
+
 					}
+
 				}
-		
-			// copy the contained elements (hints and condition) to the concrete
-				// hint groups
-				for (MappingHintGroupType abstractHintGroup : abstractToConcreteHintGroupMap.keySet()) {
-					for (MappingHintGroupType concreteHintGroup : abstractToConcreteHintGroupMap.get(abstractHintGroup)) {
-		
-					Collection<MappingHintBaseType> hintsToCopy = new BasicEList<>();
-						/*
-						 * Collect all hints that will get copied. Those are all mapping hints (including ContainerSelectors)
-						 * that are not 'overwritten' by hints of the concrete HintGroup.
-						 */
-						for (MappingHint abstractHint : abstractHintGroup.getActiveMappingHints()) {
-		
-						// An abstract hint is copied if it is not overwritten
-							//
-		
-						if (concreteHintGroup.getMappingHints().stream()
-									.noneMatch(h -> h.getOverwrite() != null && h.getOverwrite().equals(abstractHint))) {
-		
-							hintsToCopy.add(abstractHint);
-							}
-		
-					}
-		
-					// Retrieve a possible condition to be copied
-						//
-						ComplexCondition condition = null;
-						if (abstractHintGroup instanceof ConditionalElement) {
-							condition = ((ConditionalElement) abstractHintGroup).getLocalCondition() != null
-									? ((ConditionalElement) abstractHintGroup).getLocalCondition()
-									: ((ConditionalElement) abstractHintGroup).getSharedCondition();
-						}
-						ComplexCondition copiedCondition = condition != null ? EcoreUtil.copy(condition) : null;
-		
-					Collection<MappingHintBaseType> copiedHints = EcoreUtil.copyAll(hintsToCopy);
-		
-					/*
-						 * make sure that all references to elements from the abstract sections are redirected to the concrete
-						 * sections that we created earlier
-						 */
-						Collection<EObject> copiedElements = new ArrayList<>(copiedHints);
-						if (copiedCondition != null) {
-							copiedElements.add(copiedCondition);
-						}
-						for (EObject copiedElement : copiedElements) {
-		
-						/*
-							 * these are the references from the copied hint (that will get added to the concrete hint group) to
-							 * elements from abstract sections
-							 */
-							Map<EObject, Collection<Setting>> refsToAbstractSection = EcoreUtil.UsageCrossReferencer
-									.findAll(abstractToConcreteElementMap.keySet(), copiedElement);
-							for (EObject referencedObject : refsToAbstractSection.keySet()) {
-		
-							/*
-								 * based on the type of hint element that we are handling (local or external), source and target
-								 * sections or their containers are checked
-								 */
-								boolean local = true;
-								if (refsToAbstractSection.get(referencedObject).size() > 1) {
-									throw new RuntimeException("Internal Error! The element '"
-											+ (copiedElement instanceof NamedElement ? ((NamedElement) copiedElement).getName()
-													: copiedElement.toString())
-											+ "' in the hint group '" + abstractHintGroup.getName()
-											+ "' holds multiple references to the same object of an abstract section ('"
-											+ referencedObject + "'.");
-								}
-								if (refsToAbstractSection.get(referencedObject).iterator().next()
-										.getEObject() instanceof ExternalDynamicSourceElement) {
-									local = false;
-								}
-								ArrayList<Section> sourceAndTargetSections = new ArrayList<>();
-								SourceSection sourceSection = ((Mapping) concreteHintGroup.eContainer()).getSourceSection();
-								if (local) {
-									sourceAndTargetSections.add(sourceSection);
-								} else {
-									while (sourceSection.getContainer() != null) {
-										sourceSection = sourceSection.getContainer().getContainingSection();
-										sourceAndTargetSections.add(sourceSection);
-									}
-								}
-								TargetSection targetSection = concreteHintGroup.getTargetSection();
-								if (local) {
-									sourceAndTargetSections.add(targetSection);
-								} else {
-									while (targetSection.getContainer() != null) {
-										targetSection = targetSection.getContainer().getContainingSection();
-										sourceAndTargetSections.add(targetSection);
-									}
-								}
-		
-							/*
-								 * these are possible targets for the redirection of references to the referenced object
-								 */
-								LinkedList<EObject> possibleTargets = abstractToConcreteElementMap.get(referencedObject);
-		
-							boolean found = false;
-								EObject target = null; // this will contain the new
-														// value for the reference
-								for (EObject possibleTarget : possibleTargets) {
-									Section containingSection = ((MetaModelElement) possibleTarget).getContainingSection();
-									if (sourceAndTargetSections.contains(containingSection)) {
-										if (found == false) {
-											found = true;
-											target = possibleTarget;
-										} else {
-											// this should not happen, should it?
-											throw new RuntimeException(
-													"Internal error! Multiple targets found for redirection of element '"
-															+ referencedObject + "' in.");
-										}
-		
-								}
-								}
-		
-							if (found == false) {
-									throw new RuntimeException("Internal error! No target found for redirection of element '"
-											+ referencedObject + "'.");
-								}
-		
-							for (Setting setting : refsToAbstractSection.get(referencedObject)) {
-									setting.set(target);
-								}
-							}
-		
-					}
-		
-					// Finally, we add the copied hints and condition to the
-						// concrete hint group
-						concreteHintGroup.getMappingHints().addAll(0, (Collection<? extends MappingHint>) copiedHints);
-		
-					if (copiedCondition != null && concreteHintGroup instanceof ConditionalElement) {
-							ConditionalElement concreteHintGroupCast = (ConditionalElement) concreteHintGroup;
-							// If there is already a condition present in the concrete
-							// HintGroup, we have to create a new condition that will
-							// conjunct both conditions
-							//
-							if (concreteHintGroupCast.getLocalCondition() != null) {
-								And and = ConditionFactory.eINSTANCE.createAnd();
-								and.getLocalCondParts().add(concreteHintGroupCast.getLocalCondition());
-								and.getLocalCondParts().add(copiedCondition);
-								concreteHintGroupCast.setLocalCondition(and);
-							} else if (concreteHintGroupCast.getSharedCondition() != null) {
-								And and = ConditionFactory.eINSTANCE.createAnd();
-								and.getLocalCondParts().add(EcoreUtil.copy(concreteHintGroupCast.getSharedCondition()));
-								and.getLocalCondParts().add(copiedCondition);
-								concreteHintGroupCast.setSharedCondition(null);
-								concreteHintGroupCast.setLocalCondition(and);
-							} else {
-								concreteHintGroupCast.setLocalCondition(copiedCondition);
-							}
-						}
-					}
-				}
-		
-			/*
-				 * At the end, we clear the values of the 'extend' references of the concrete elements as these are no longer
-				 * needed.
+
+				/*
+				 * Now, we redirect references from MappingHints to elements from the abstract section to the elements
+				 * from the concrete sections. Here, we only handle references from concrete mappings as the references
+				 * from abstract mappings (and thus from extended hint groups) are handled afterwards when these hint
+				 * groups are copied.
 				 */
-				for (Entry<Section, LinkedList<Section>> entry : abstractToConcreteSectionMap.entrySet()) {
-					for (Section concreteSection : entry.getValue()) {
-						concreteSection.getExtend().remove(entry.getKey());
+				refsToAbstractSection = EcoreUtil.UsageCrossReferencer.findAll(abstractToConcreteElementMap.keySet(),
+						concreteMappings);
+				for (EObject referencedObject : refsToAbstractSection.keySet()) {
+
+					for (Setting setting : refsToAbstractSection.get(referencedObject)) {
+
+						// this is the element referencing the abstract section
+						// (it should be contained in a Mapping and be either
+						// part of a MappingHintGroup or of a Condition)
+						//
+						MappingHintGroupType hintGroup = (MappingHintGroupType) AgteleEcoreUtil.getAncestorOfKind(
+								setting.getEObject(), MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE);
+						Mapping mapping = (Mapping) AgteleEcoreUtil.getAncestorOfKind(setting.getEObject(),
+								MappingPackage.Literals.MAPPING);
+
+						if (mapping == null) {
+							throw new RuntimeException(
+									"Internal error during merging of extends. No containing element of type 'Mapping' found for element '"
+											+ setting.getEObject() + "'!");
+						}
+
+						// We do not need to handle deactivated
+						// Mappings/MappingHintGroups
+						//
+						if (hintGroup instanceof DeactivatableElement
+								&& ((DeactivatableElement) hintGroup).isDeactivated() || mapping.isDeactivated()) {
+							continue;
+						}
+
+						/*
+						 * check if the hint group or its parent mapping equals the section that we just added the
+						 * concrete elements to
+						 */
+						if (hintGroup != null
+								&& (concreteSection.equals(hintGroup.getTargetSection())
+										|| concreteSection.isContainerFor(hintGroup.getTargetSection()))
+								|| concreteSection.equals(mapping.getSourceSection())
+								|| concreteSection.isContainerFor(mapping.getSourceSection())) {
+
+							if (setting.getEStructuralFeature().equals(
+									StructurePackageImpl.eINSTANCE.getTargetInstanceSelector_ReferenceAttribute())
+									&& (setting.getEObject() instanceof ContainerSelector
+											|| setting.getEObject() instanceof ReferenceTargetSelector)
+									|| setting.getEStructuralFeature().equals(
+											StructurePackageImpl.eINSTANCE.getTargetInstanceSelector_TargetClass())
+											&& (setting.getEObject() instanceof ContainerSelector
+													|| setting.getEObject() instanceof ReferenceTargetSelector)) {
+								// do nothing as
+								// ReferenceTargetSelectors and ContainerSelectors are handled
+								// below separately
+							} else {
+
+								// redirect the reference (we can always use the
+								// 'last' of the concrete objects as we just
+								// added it above
+								setting.set(abstractToConcreteElementMap.get(referencedObject).getLast());
+							}
+
+						}
+					}
+
+				}
+
+			}
+		}
+
+		/*
+		 * Now, we handle the ContainerSelectors and ReferenceTargetSelectors that we skipped above. We can do this now
+		 * as we now know all concrete TargetSections that are a possible match for each
+		 * ContainerSelector/ReferenceTargetSelector that points to an abstract TargetSection.
+		 */
+		for (Section abstractSection : abstractToConcreteSectionMap.keySet()) {
+			for (Section concreteSection : abstractToConcreteSectionMap.get(abstractSection)) {
+
+				Map<EObject, Collection<Setting>> refsToAbstractSection = EcoreUtil.UsageCrossReferencer
+						.findAll(abstractToConcreteElementMap.keySet(), concreteMappings);
+				for (EObject referencedObject : refsToAbstractSection.keySet()) {
+
+					for (Setting setting : refsToAbstractSection.get(referencedObject)) {
+
+						// this is the element referencing the abstract section
+						// (it should be contained in a Mapping and be either
+						// part of a MappingHintGroup or of a Condition)
+						//
+						MappingHintGroupType hintGroup = (MappingHintGroupType) AgteleEcoreUtil.getAncestorOfKind(
+								setting.getEObject(), MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE);
+						Mapping mapping = (Mapping) AgteleEcoreUtil.getAncestorOfKind(setting.getEObject(),
+								MappingPackage.Literals.MAPPING);
+
+						if (mapping == null) {
+							throw new RuntimeException(
+									"Internal error during merging of extends. No containing element of type 'Mapping' found for element '"
+											+ setting.getEObject() + "'!");
+						}
+
+						// We do not need to handle deactivated
+						// Mappings/MappingHintGroups
+						//
+						if (hintGroup instanceof DeactivatableElement
+								&& ((DeactivatableElement) hintGroup).isDeactivated() || mapping.isDeactivated()) {
+							continue;
+						}
+
+						if (setting.getEObject() instanceof ContainerSelector) {
+
+							if (setting.getEStructuralFeature()
+									.equals(StructurePackageImpl.eINSTANCE.getTargetInstanceSelector_TargetClass())) {
+								continue;
+							} else if (!setting.getEStructuralFeature().equals(
+									StructurePackageImpl.eINSTANCE.getTargetInstanceSelector_ReferenceAttribute())) {
+								throw new RuntimeException(
+										"Internal error during redirection of ContainerSelectors in 'mergeExtends'...!");
+							}
+
+							// For Selectors, we must not simply redirect but we create a new Selector
+							TargetInstanceSelector original = (TargetInstanceSelector) setting.getEObject();
+
+							for (EObject concreteTargetSectionAttribute : abstractToConcreteElementMap
+									.get(referencedObject)) {
+
+								if (!(concreteTargetSectionAttribute instanceof TargetSectionAttribute)) {
+									throw new RuntimeException(
+											"Internal error during merging of extends! Object of type 'TargetSectionClass' expected.");
+								}
+
+								TargetInstanceSelector copy = EcoreUtil.copy(original);
+								copy.setReferenceAttribute((TargetSectionAttribute) concreteTargetSectionAttribute);
+
+								Collection<EObject> possibleTargetClasses = new ArrayList<>();
+								if (original.getTargetClass() instanceof TargetSection) {
+									possibleTargetClasses
+											.addAll(abstractToConcreteSectionMap.get(original.getTargetClass()));
+								} else {
+									possibleTargetClasses
+											.addAll(abstractToConcreteElementMap.get(original.getTargetClass()));
+								}
+								Optional<EObject> targetClass = possibleTargetClasses.stream()
+										.filter(s -> s instanceof TargetSectionClass
+												&& ((TargetSectionClass) s).getContainingSection().equals(
+														((TargetSectionAttribute) concreteTargetSectionAttribute)
+																.getContainingSection()))
+										.findAny();
+								if (targetClass.isPresent()) {
+									copy.setTargetClass((TargetSectionClass) targetClass.get());
+								}
+
+								hintGroup.getMappingHints().add((MappingHint) copy);
+							}
+
+						}
+					}
+
+				}
+
+			}
+		}
+
+		/*
+		 * Finally, we can copy the abstract hint groups
+		 */
+
+		// collect each abstract hint group as well as the concrete hint groups
+		// that reference them
+		HashMap<MappingHintGroupType, LinkedList<MappingHintGroupType>> abstractToConcreteHintGroupMap = new HashMap<>();
+		Map<EObject, Collection<Setting>> mappingSettings = EcoreUtil.CrossReferencer.find(this.getActiveMappings());
+		for (EObject element : mappingSettings.keySet()) {
+			if (element instanceof MappingHintGroupType && ((Mapping) element.eContainer()).isAbstract()) {
+
+				// We do not need to handle deactivated MappingHintGroups
+				//
+				if (element instanceof DeactivatableElement && ((DeactivatableElement) element).isDeactivated()
+						|| element.eContainer() instanceof DeactivatableElement
+								&& ((DeactivatableElement) element.eContainer()).isDeactivated()) {
+					continue;
+				}
+
+				LinkedList<MappingHintGroupType> concreteHintGroups = new LinkedList<>();
+				for (Setting setting : mappingSettings.get(element)) {
+					if (setting.getEStructuralFeature()
+							.equals(MappingPackageImpl.eINSTANCE.getMappingHintGroupType_Extend())) {
+
+						// only copy hints to activated hint groups
+						if (setting.getEObject() instanceof DeactivatableElement
+								&& ((DeactivatableElement) setting.getEObject()).isDeactivated()
+								|| setting.getEObject().eContainer() instanceof DeactivatableElement
+										&& ((DeactivatableElement) setting.getEObject().eContainer()).isDeactivated()) {
+							continue;
+						} else {
+							concreteHintGroups.add((MappingHintGroupType) setting.getEObject());
+						}
 					}
 				}
-				for (Entry<MappingHintGroupType, LinkedList<MappingHintGroupType>> entry : abstractToConcreteHintGroupMap
-						.entrySet()) {
-					for (MappingHintGroupType concreteHintGroup : entry.getValue()) {
-						concreteHintGroup.getExtend().remove(entry.getKey());
+				abstractToConcreteHintGroupMap.put((MappingHintGroupType) element, concreteHintGroups);
+			}
+		}
+
+		// copy the contained elements (hints and condition) to the concrete
+		// hint groups
+		for (MappingHintGroupType abstractHintGroup : abstractToConcreteHintGroupMap.keySet()) {
+			for (MappingHintGroupType concreteHintGroup : abstractToConcreteHintGroupMap.get(abstractHintGroup)) {
+
+				Collection<MappingHintBaseType> hintsToCopy = new BasicEList<>();
+				/*
+				 * Collect all hints that will get copied. Those are all mapping hints (including ContainerSelectors)
+				 * that are not 'overwritten' by hints of the concrete HintGroup.
+				 */
+				for (MappingHint abstractHint : abstractHintGroup.getActiveMappingHints()) {
+
+					// An abstract hint is copied if it is not overwritten
+					//
+
+					if (concreteHintGroup.getMappingHints().stream()
+							.noneMatch(h -> h.getOverwrite() != null && h.getOverwrite().equals(abstractHint))) {
+
+						hintsToCopy.add(abstractHint);
+					}
+
+				}
+
+				// Retrieve a possible condition to be copied
+				//
+				ComplexCondition condition = null;
+				if (abstractHintGroup instanceof ConditionalElement) {
+					condition = ((ConditionalElement) abstractHintGroup).getLocalCondition() != null
+							? ((ConditionalElement) abstractHintGroup).getLocalCondition()
+							: ((ConditionalElement) abstractHintGroup).getSharedCondition();
+				}
+				ComplexCondition copiedCondition = condition != null ? EcoreUtil.copy(condition) : null;
+
+				Collection<MappingHintBaseType> copiedHints = EcoreUtil.copyAll(hintsToCopy);
+
+				/*
+				 * make sure that all references to elements from the abstract sections are redirected to the concrete
+				 * sections that we created earlier
+				 */
+				Collection<EObject> copiedElements = new ArrayList<>(copiedHints);
+				if (copiedCondition != null) {
+					copiedElements.add(copiedCondition);
+				}
+				for (EObject copiedElement : copiedElements) {
+
+					/*
+					 * these are the references from the copied hint (that will get added to the concrete hint group) to
+					 * elements from abstract sections
+					 */
+					Map<EObject, Collection<Setting>> refsToAbstractSection = EcoreUtil.UsageCrossReferencer
+							.findAll(abstractToConcreteElementMap.keySet(), copiedElement);
+					for (EObject referencedObject : refsToAbstractSection.keySet()) {
+
+						/*
+						 * based on the type of hint element that we are handling (local or external), source and target
+						 * sections or their containers are checked
+						 */
+						boolean local = true;
+						if (refsToAbstractSection.get(referencedObject).size() > 1) {
+							throw new RuntimeException("Internal Error! The element '"
+									+ (copiedElement instanceof NamedElement ? ((NamedElement) copiedElement).getName()
+											: copiedElement.toString())
+									+ "' in the hint group '" + abstractHintGroup.getName()
+									+ "' holds multiple references to the same object of an abstract section ('"
+									+ referencedObject + "'.");
+						}
+						if (refsToAbstractSection.get(referencedObject).iterator().next()
+								.getEObject() instanceof ExternalDynamicSourceElement) {
+							local = false;
+						}
+						ArrayList<Section> sourceAndTargetSections = new ArrayList<>();
+						SourceSection sourceSection = ((Mapping) concreteHintGroup.eContainer()).getSourceSection();
+						if (local) {
+							sourceAndTargetSections.add(sourceSection);
+						} else {
+							while (sourceSection.getContainer() != null) {
+								sourceSection = sourceSection.getContainer().getContainingSection();
+								sourceAndTargetSections.add(sourceSection);
+							}
+						}
+						TargetSection targetSection = concreteHintGroup.getTargetSection();
+						if (local) {
+							sourceAndTargetSections.add(targetSection);
+						} else {
+							while (targetSection.getContainer() != null) {
+								targetSection = targetSection.getContainer().getContainingSection();
+								sourceAndTargetSections.add(targetSection);
+							}
+						}
+
+						/*
+						 * these are possible targets for the redirection of references to the referenced object
+						 */
+						LinkedList<EObject> possibleTargets = abstractToConcreteElementMap.get(referencedObject);
+
+						boolean found = false;
+						EObject target = null; // this will contain the new
+												// value for the reference
+						for (EObject possibleTarget : possibleTargets) {
+							Section containingSection = ((MetaModelElement) possibleTarget).getContainingSection();
+							if (sourceAndTargetSections.contains(containingSection)) {
+								if (found == false) {
+									found = true;
+									target = possibleTarget;
+								} else {
+									// this should not happen, should it?
+									throw new RuntimeException(
+											"Internal error! Multiple targets found for redirection of element '"
+													+ referencedObject + "' in.");
+								}
+
+							}
+						}
+
+						if (found == false) {
+							throw new RuntimeException("Internal error! No target found for redirection of element '"
+									+ referencedObject + "'.");
+						}
+
+						for (Setting setting : refsToAbstractSection.get(referencedObject)) {
+							setting.set(target);
+						}
+					}
+
+				}
+
+				// Finally, we add the copied hints and condition to the
+				// concrete hint group
+				concreteHintGroup.getMappingHints().addAll(0, (Collection<? extends MappingHint>) copiedHints);
+
+				if (copiedCondition != null && concreteHintGroup instanceof ConditionalElement) {
+					ConditionalElement concreteHintGroupCast = (ConditionalElement) concreteHintGroup;
+					// If there is already a condition present in the concrete
+					// HintGroup, we have to create a new condition that will
+					// conjunct both conditions
+					//
+					if (concreteHintGroupCast.getLocalCondition() != null) {
+						And and = ConditionFactory.eINSTANCE.createAnd();
+						and.getLocalCondParts().add(concreteHintGroupCast.getLocalCondition());
+						and.getLocalCondParts().add(copiedCondition);
+						concreteHintGroupCast.setLocalCondition(and);
+					} else if (concreteHintGroupCast.getSharedCondition() != null) {
+						And and = ConditionFactory.eINSTANCE.createAnd();
+						and.getLocalCondParts().add(EcoreUtil.copy(concreteHintGroupCast.getSharedCondition()));
+						and.getLocalCondParts().add(copiedCondition);
+						concreteHintGroupCast.setSharedCondition(null);
+						concreteHintGroupCast.setLocalCondition(and);
+					} else {
+						concreteHintGroupCast.setLocalCondition(copiedCondition);
 					}
 				}
+			}
+		}
+
+		/*
+		 * At the end, we clear the values of the 'extend' references of the concrete elements as these are no longer
+		 * needed.
+		 */
+		for (Entry<Section, LinkedList<Section>> entry : abstractToConcreteSectionMap.entrySet()) {
+			for (Section concreteSection : entry.getValue()) {
+				concreteSection.getExtend().remove(entry.getKey());
+			}
+		}
+		for (Entry<MappingHintGroupType, LinkedList<MappingHintGroupType>> entry : abstractToConcreteHintGroupMap
+				.entrySet()) {
+			for (MappingHintGroupType concreteHintGroup : entry.getValue()) {
+				concreteHintGroup.getExtend().remove(entry.getKey());
+			}
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EList<SourceSectionModel> getActiveSourceSectionModels() {
-		Object[] sourceSectionModels = Stream.concat(this.getSourceSectionModels().stream(), this.getSharedSourceSectionModels().stream()).filter(s -> !s.isDeactivated()).toArray();
+
+		Object[] sourceSectionModels = Stream
+				.concat(this.getSourceSectionModels().stream(), this.getSharedSourceSectionModels().stream())
+				.filter(s -> !s.isDeactivated()).toArray();
 		return new BasicEList.UnmodifiableEList<>(sourceSectionModels.length, sourceSectionModels);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EList<SourceSection> getActiveSourceSections() {
-		Object[] sourceSections = getActiveSourceSectionModels().stream().flatMap(s -> s.getSections().stream()).filter(s -> !s.isDeactivated()).toArray();
+
+		Object[] sourceSections = this.getActiveSourceSectionModels().stream().flatMap(s -> s.getSections().stream())
+				.filter(s -> !s.isDeactivated()).toArray();
 		return new BasicEList.UnmodifiableEList<>(sourceSections.length, sourceSections);
 	}
 
@@ -1025,103 +1035,109 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+
 		switch (featureID) {
 			case PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODELS:
-				return ((InternalEList<?>)getSourceSectionModels()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>) this.getSourceSectionModels()).basicRemove(otherEnd, msgs);
 			case PamtramPackage.PAM_TRA_M__TARGET_SECTION_MODELS:
-				return ((InternalEList<?>)getTargetSectionModels()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>) this.getTargetSectionModels()).basicRemove(otherEnd, msgs);
 			case PamtramPackage.PAM_TRA_M__MAPPING_MODELS:
-				return ((InternalEList<?>)getMappingModels()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>) this.getMappingModels()).basicRemove(otherEnd, msgs);
 			case PamtramPackage.PAM_TRA_M__CONDITION_MODELS:
-				return ((InternalEList<?>)getConditionModels()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>) this.getConditionModels()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+
 		switch (featureID) {
 			case PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODELS:
-				return getSourceSectionModels();
+				return this.getSourceSectionModels();
 			case PamtramPackage.PAM_TRA_M__SHARED_SOURCE_SECTION_MODELS:
-				return getSharedSourceSectionModels();
+				return this.getSharedSourceSectionModels();
 			case PamtramPackage.PAM_TRA_M__TARGET_SECTION_MODELS:
-				return getTargetSectionModels();
+				return this.getTargetSectionModels();
 			case PamtramPackage.PAM_TRA_M__SHARED_TARGET_SECTION_MODELS:
-				return getSharedTargetSectionModels();
+				return this.getSharedTargetSectionModels();
 			case PamtramPackage.PAM_TRA_M__MAPPING_MODELS:
-				return getMappingModels();
+				return this.getMappingModels();
 			case PamtramPackage.PAM_TRA_M__SHARED_MAPPING_MODELS:
-				return getSharedMappingModels();
+				return this.getSharedMappingModels();
 			case PamtramPackage.PAM_TRA_M__SOURCE_SECTIONS:
-				return getSourceSections();
+				return this.getSourceSections();
 			case PamtramPackage.PAM_TRA_M__TARGET_SECTIONS:
-				return getTargetSections();
+				return this.getTargetSections();
 			case PamtramPackage.PAM_TRA_M__MAPPINGS:
-				return getMappings();
+				return this.getMappings();
 			case PamtramPackage.PAM_TRA_M__ACTIVE_MAPPINGS:
-				return getActiveMappings();
+				return this.getActiveMappings();
 			case PamtramPackage.PAM_TRA_M__GLOBAL_VALUES:
-				return getGlobalValues();
+				return this.getGlobalValues();
 			case PamtramPackage.PAM_TRA_M__GLOBAL_ATTRIBUTES:
-				return getGlobalAttributes();
+				return this.getGlobalAttributes();
 			case PamtramPackage.PAM_TRA_M__MODIFIER_SETS:
-				return getModifierSets();
+				return this.getModifierSets();
 			case PamtramPackage.PAM_TRA_M__CONDITION_MODELS:
-				return getConditionModels();
+				return this.getConditionModels();
 			case PamtramPackage.PAM_TRA_M__SHARED_CONDITION_MODELS:
-				return getSharedConditionModels();
+				return this.getSharedConditionModels();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
+
 		switch (featureID) {
 			case PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODELS:
-				getSourceSectionModels().clear();
-				getSourceSectionModels().addAll((Collection<? extends SourceSectionModel>)newValue);
+				this.getSourceSectionModels().clear();
+				this.getSourceSectionModels().addAll((Collection<? extends SourceSectionModel>) newValue);
 				return;
 			case PamtramPackage.PAM_TRA_M__SHARED_SOURCE_SECTION_MODELS:
-				getSharedSourceSectionModels().clear();
-				getSharedSourceSectionModels().addAll((Collection<? extends SourceSectionModel>)newValue);
+				this.getSharedSourceSectionModels().clear();
+				this.getSharedSourceSectionModels().addAll((Collection<? extends SourceSectionModel>) newValue);
 				return;
 			case PamtramPackage.PAM_TRA_M__TARGET_SECTION_MODELS:
-				getTargetSectionModels().clear();
-				getTargetSectionModels().addAll((Collection<? extends TargetSectionModel>)newValue);
+				this.getTargetSectionModels().clear();
+				this.getTargetSectionModels().addAll((Collection<? extends TargetSectionModel>) newValue);
 				return;
 			case PamtramPackage.PAM_TRA_M__SHARED_TARGET_SECTION_MODELS:
-				getSharedTargetSectionModels().clear();
-				getSharedTargetSectionModels().addAll((Collection<? extends TargetSectionModel>)newValue);
+				this.getSharedTargetSectionModels().clear();
+				this.getSharedTargetSectionModels().addAll((Collection<? extends TargetSectionModel>) newValue);
 				return;
 			case PamtramPackage.PAM_TRA_M__MAPPING_MODELS:
-				getMappingModels().clear();
-				getMappingModels().addAll((Collection<? extends MappingModel>)newValue);
+				this.getMappingModels().clear();
+				this.getMappingModels().addAll((Collection<? extends MappingModel>) newValue);
 				return;
 			case PamtramPackage.PAM_TRA_M__SHARED_MAPPING_MODELS:
-				getSharedMappingModels().clear();
-				getSharedMappingModels().addAll((Collection<? extends MappingModel>)newValue);
+				this.getSharedMappingModels().clear();
+				this.getSharedMappingModels().addAll((Collection<? extends MappingModel>) newValue);
 				return;
 			case PamtramPackage.PAM_TRA_M__CONDITION_MODELS:
-				getConditionModels().clear();
-				getConditionModels().addAll((Collection<? extends ConditionModel>)newValue);
+				this.getConditionModels().clear();
+				this.getConditionModels().addAll((Collection<? extends ConditionModel>) newValue);
 				return;
 			case PamtramPackage.PAM_TRA_M__SHARED_CONDITION_MODELS:
-				getSharedConditionModels().clear();
-				getSharedConditionModels().addAll((Collection<? extends ConditionModel>)newValue);
+				this.getSharedConditionModels().clear();
+				this.getSharedConditionModels().addAll((Collection<? extends ConditionModel>) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -1129,34 +1145,36 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
+
 		switch (featureID) {
 			case PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODELS:
-				getSourceSectionModels().clear();
+				this.getSourceSectionModels().clear();
 				return;
 			case PamtramPackage.PAM_TRA_M__SHARED_SOURCE_SECTION_MODELS:
-				getSharedSourceSectionModels().clear();
+				this.getSharedSourceSectionModels().clear();
 				return;
 			case PamtramPackage.PAM_TRA_M__TARGET_SECTION_MODELS:
-				getTargetSectionModels().clear();
+				this.getTargetSectionModels().clear();
 				return;
 			case PamtramPackage.PAM_TRA_M__SHARED_TARGET_SECTION_MODELS:
-				getSharedTargetSectionModels().clear();
+				this.getSharedTargetSectionModels().clear();
 				return;
 			case PamtramPackage.PAM_TRA_M__MAPPING_MODELS:
-				getMappingModels().clear();
+				this.getMappingModels().clear();
 				return;
 			case PamtramPackage.PAM_TRA_M__SHARED_MAPPING_MODELS:
-				getSharedMappingModels().clear();
+				this.getSharedMappingModels().clear();
 				return;
 			case PamtramPackage.PAM_TRA_M__CONDITION_MODELS:
-				getConditionModels().clear();
+				this.getConditionModels().clear();
 				return;
 			case PamtramPackage.PAM_TRA_M__SHARED_CONDITION_MODELS:
-				getSharedConditionModels().clear();
+				this.getSharedConditionModels().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -1164,60 +1182,64 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
+
 		switch (featureID) {
 			case PamtramPackage.PAM_TRA_M__SOURCE_SECTION_MODELS:
-				return sourceSectionModels != null && !sourceSectionModels.isEmpty();
+				return this.sourceSectionModels != null && !this.sourceSectionModels.isEmpty();
 			case PamtramPackage.PAM_TRA_M__SHARED_SOURCE_SECTION_MODELS:
-				return sharedSourceSectionModels != null && !sharedSourceSectionModels.isEmpty();
+				return this.sharedSourceSectionModels != null && !this.sharedSourceSectionModels.isEmpty();
 			case PamtramPackage.PAM_TRA_M__TARGET_SECTION_MODELS:
-				return targetSectionModels != null && !targetSectionModels.isEmpty();
+				return this.targetSectionModels != null && !this.targetSectionModels.isEmpty();
 			case PamtramPackage.PAM_TRA_M__SHARED_TARGET_SECTION_MODELS:
-				return sharedTargetSectionModels != null && !sharedTargetSectionModels.isEmpty();
+				return this.sharedTargetSectionModels != null && !this.sharedTargetSectionModels.isEmpty();
 			case PamtramPackage.PAM_TRA_M__MAPPING_MODELS:
-				return mappingModels != null && !mappingModels.isEmpty();
+				return this.mappingModels != null && !this.mappingModels.isEmpty();
 			case PamtramPackage.PAM_TRA_M__SHARED_MAPPING_MODELS:
-				return sharedMappingModels != null && !sharedMappingModels.isEmpty();
+				return this.sharedMappingModels != null && !this.sharedMappingModels.isEmpty();
 			case PamtramPackage.PAM_TRA_M__SOURCE_SECTIONS:
-				return !getSourceSections().isEmpty();
+				return !this.getSourceSections().isEmpty();
 			case PamtramPackage.PAM_TRA_M__TARGET_SECTIONS:
-				return !getTargetSections().isEmpty();
+				return !this.getTargetSections().isEmpty();
 			case PamtramPackage.PAM_TRA_M__MAPPINGS:
-				return !getMappings().isEmpty();
+				return !this.getMappings().isEmpty();
 			case PamtramPackage.PAM_TRA_M__ACTIVE_MAPPINGS:
-				return !getActiveMappings().isEmpty();
+				return !this.getActiveMappings().isEmpty();
 			case PamtramPackage.PAM_TRA_M__GLOBAL_VALUES:
-				return !getGlobalValues().isEmpty();
+				return !this.getGlobalValues().isEmpty();
 			case PamtramPackage.PAM_TRA_M__GLOBAL_ATTRIBUTES:
-				return !getGlobalAttributes().isEmpty();
+				return !this.getGlobalAttributes().isEmpty();
 			case PamtramPackage.PAM_TRA_M__MODIFIER_SETS:
-				return !getModifierSets().isEmpty();
+				return !this.getModifierSets().isEmpty();
 			case PamtramPackage.PAM_TRA_M__CONDITION_MODELS:
-				return conditionModels != null && !conditionModels.isEmpty();
+				return this.conditionModels != null && !this.conditionModels.isEmpty();
 			case PamtramPackage.PAM_TRA_M__SHARED_CONDITION_MODELS:
-				return sharedConditionModels != null && !sharedConditionModels.isEmpty();
+				return this.sharedConditionModels != null && !this.sharedConditionModels.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+
 		switch (operationID) {
 			case PamtramPackage.PAM_TRA_M___MERGE_EXTENDS:
-				mergeExtends();
+				this.mergeExtends();
 				return null;
 			case PamtramPackage.PAM_TRA_M___GET_ACTIVE_SOURCE_SECTION_MODELS:
-				return getActiveSourceSectionModels();
+				return this.getActiveSourceSectionModels();
 			case PamtramPackage.PAM_TRA_M___GET_ACTIVE_SOURCE_SECTIONS:
-				return getActiveSourceSections();
+				return this.getActiveSourceSections();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

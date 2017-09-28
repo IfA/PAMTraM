@@ -31,7 +31,6 @@ import pamtram.condition.ComplexCondition;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.extended.ExtendedPackage;
-import pamtram.mapping.extended.Matcher;
 import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.mapping.extended.util.ExtendedValidator;
 import pamtram.mapping.modifier.ValueModifierSet;
@@ -138,16 +137,6 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	 * @ordered
 	 */
 	protected TargetSectionCrossReference affectedReference;
-
-	/**
-	 * The cached value of the '{@link #getMatcher() <em>Matcher</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMatcher()
-	 * @generated
-	 * @ordered
-	 */
-	protected Matcher matcher;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -336,48 +325,6 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	 * @generated
 	 */
 	@Override
-	public Matcher getMatcher() {
-		return matcher;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetMatcher(Matcher newMatcher, NotificationChain msgs) {
-		Matcher oldMatcher = matcher;
-		matcher = newMatcher;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ExtendedPackage.REFERENCE_TARGET_SELECTOR__MATCHER, oldMatcher, newMatcher);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setMatcher(Matcher newMatcher) {
-		if (newMatcher != matcher) {
-			NotificationChain msgs = null;
-			if (matcher != null)
-				msgs = ((InternalEObject)matcher).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ExtendedPackage.REFERENCE_TARGET_SELECTOR__MATCHER, null, msgs);
-			if (newMatcher != null)
-				msgs = ((InternalEObject)newMatcher).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ExtendedPackage.REFERENCE_TARGET_SELECTOR__MATCHER, null, msgs);
-			msgs = basicSetMatcher(newMatcher, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.REFERENCE_TARGET_SELECTOR__MATCHER, newMatcher, newMatcher));
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public boolean validateAffectedReferenceIsNonContainment(final DiagnosticChain diagnostics,
 			final Map<?, ?> context) {
 		
@@ -551,8 +498,6 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 		switch (featureID) {
 			case ExtendedPackage.REFERENCE_TARGET_SELECTOR__SOURCE_ELEMENTS:
 				return ((InternalEList<?>)getSourceElements()).basicRemove(otherEnd, msgs);
-			case ExtendedPackage.REFERENCE_TARGET_SELECTOR__MATCHER:
-				return basicSetMatcher(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -579,8 +524,6 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 			case ExtendedPackage.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE:
 				if (resolve) return getAffectedReference();
 				return basicGetAffectedReference();
-			case ExtendedPackage.REFERENCE_TARGET_SELECTOR__MATCHER:
-				return getMatcher();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -613,9 +556,6 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 			case ExtendedPackage.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE:
 				setAffectedReference((TargetSectionCrossReference)newValue);
 				return;
-			case ExtendedPackage.REFERENCE_TARGET_SELECTOR__MATCHER:
-				setMatcher((Matcher)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -645,9 +585,6 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 			case ExtendedPackage.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE:
 				setAffectedReference((TargetSectionCrossReference)null);
 				return;
-			case ExtendedPackage.REFERENCE_TARGET_SELECTOR__MATCHER:
-				setMatcher((Matcher)null);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -671,8 +608,6 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 				return targetClass != null;
 			case ExtendedPackage.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE:
 				return affectedReference != null;
-			case ExtendedPackage.REFERENCE_TARGET_SELECTOR__MATCHER:
-				return matcher != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -284,30 +284,6 @@ public class ExtendedSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ExtendedPackage.MATCHER: {
-				Matcher matcher = (Matcher)theEObject;
-				T result = caseMatcher(matcher);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ExtendedPackage.CLASS_MATCHER: {
-				ClassMatcher classMatcher = (ClassMatcher)theEObject;
-				T result = caseClassMatcher(classMatcher);
-				if (result == null) result = caseMatcher(classMatcher);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ExtendedPackage.ATTRIBUTE_MATCHER: {
-				AttributeMatcher attributeMatcher = (AttributeMatcher)theEObject;
-				T result = caseAttributeMatcher(attributeMatcher);
-				if (result == null) result = caseMatcher(attributeMatcher);
-				if (result == null) result = caseExpandableHint(attributeMatcher);
-				if (result == null) result = caseInstanceSelector(attributeMatcher);
-				if (result == null) result = caseExpressionElement(attributeMatcher);
-				if (result == null) result = caseModifiableElement(attributeMatcher);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case ExtendedPackage.CONTAINER_SELECTOR: {
 				ContainerSelector containerSelector = (ContainerSelector)theEObject;
 				T result = caseContainerSelector(containerSelector);
@@ -588,51 +564,6 @@ public class ExtendedSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseReferenceTargetSelector(ReferenceTargetSelector object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Matcher</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Matcher</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMatcher(Matcher object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Class Matcher</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Class Matcher</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseClassMatcher(ClassMatcher object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Attribute Matcher</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Attribute Matcher</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAttributeMatcher(AttributeMatcher object) {
 		return null;
 	}
 

@@ -23,14 +23,14 @@ import pamtram.structure.target.TargetSectionAttribute;
 /**
  * This is the item provider adapter for a {@link pamtram.structure.TargetInstanceSelector} object. <!-- begin-user-doc
  * --> <!-- end-user-doc -->
- *
+ * 
  * @generated
  */
 public class TargetInstanceSelectorItemProvider extends InstanceSelectorItemProvider {
 
 	/**
 	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public TargetInstanceSelectorItemProvider(AdapterFactory adapterFactory) {
@@ -40,7 +40,7 @@ public class TargetInstanceSelectorItemProvider extends InstanceSelectorItemProv
 
 	/**
 	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -103,7 +103,7 @@ public class TargetInstanceSelectorItemProvider extends InstanceSelectorItemProv
 
 	/**
 	 * This adds a property descriptor for the Target Class feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addTargetClassPropertyDescriptor(Object object) {
@@ -118,7 +118,7 @@ public class TargetInstanceSelectorItemProvider extends InstanceSelectorItemProv
 
 	/**
 	 * This returns TargetInstanceSelector.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -129,7 +129,7 @@ public class TargetInstanceSelectorItemProvider extends InstanceSelectorItemProv
 
 	/**
 	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -140,7 +140,7 @@ public class TargetInstanceSelectorItemProvider extends InstanceSelectorItemProv
 
 	/**
 	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -174,7 +174,7 @@ public class TargetInstanceSelectorItemProvider extends InstanceSelectorItemProv
 	/**
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
 	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override

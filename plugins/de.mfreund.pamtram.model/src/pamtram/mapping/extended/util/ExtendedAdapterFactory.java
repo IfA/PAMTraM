@@ -156,18 +156,6 @@ public class ExtendedAdapterFactory extends AdapterFactoryImpl {
 				return createReferenceTargetSelectorAdapter();
 			}
 			@Override
-			public Adapter caseMatcher(Matcher object) {
-				return createMatcherAdapter();
-			}
-			@Override
-			public Adapter caseClassMatcher(ClassMatcher object) {
-				return createClassMatcherAdapter();
-			}
-			@Override
-			public Adapter caseAttributeMatcher(AttributeMatcher object) {
-				return createAttributeMatcherAdapter();
-			}
-			@Override
 			public Adapter caseContainerSelector(ContainerSelector object) {
 				return createContainerSelectorAdapter();
 			}
@@ -422,48 +410,6 @@ public class ExtendedAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createReferenceTargetSelectorAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.Matcher <em>Matcher</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.extended.Matcher
-	 * @generated
-	 */
-	public Adapter createMatcherAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.ClassMatcher <em>Class Matcher</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.extended.ClassMatcher
-	 * @generated
-	 */
-	public Adapter createClassMatcherAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.AttributeMatcher <em>Attribute Matcher</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.extended.AttributeMatcher
-	 * @generated
-	 */
-	public Adapter createAttributeMatcherAdapter() {
 		return null;
 	}
 

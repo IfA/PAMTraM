@@ -129,10 +129,10 @@ public class GenericTransformationRunner extends CancelableElement {
 	private TransformationResult transformationResult;
 
 	/**
-	 * The {@link TransformationUtilManager} encapsulating the various helper objects that will be used during the
+	 * The {@link TransformationAssetManager} encapsulating the various helper objects that will be used during the
 	 * transformation.
 	 */
-	private TransformationUtilManager transformationUtilManager;
+	private TransformationAssetManager assetManager;
 
 	/**
 	 * This creates an instance based on the given {@link TransformationConfiguration}.
@@ -146,7 +146,7 @@ public class GenericTransformationRunner extends CancelableElement {
 		super();
 		this.transformationConfig = config;
 		this.transformationResult = new TransformationResult();
-		this.transformationUtilManager = new TransformationUtilManager(config);
+		this.assetManager = new TransformationAssetManager(config);
 
 		this.objectsToCancel = new LinkedList<>();
 	}
@@ -308,8 +308,6 @@ public class GenericTransformationRunner extends CancelableElement {
 		final GlobalValueMap globalValues = new GlobalValueMap();
 		final MatchedSectionRegistry matchedSections = new MatchedSectionRegistry();
 
-		this.transformationUtilManager.init();
-
 		/*
 		 * Build the ContainmentTree representing the source model. This will keep track of all matched and unmatched
 		 * elements.
@@ -334,8 +332,7 @@ public class GenericTransformationRunner extends CancelableElement {
 		 * Create the SourceSectionMatcher that matches SourceSections
 		 */
 		final SourceSectionMatcher sourceSectionMatcher = new SourceSectionMatcher(matchedSections, containmentTree,
-				new BasicEList<>(activeSourceSections),
-				this.transformationUtilManager.getValueConstraintReferenceValueCalculator(),
+				new BasicEList<>(activeSourceSections), this.assetManager.getValueConstraintReferenceValueCalculator(),
 				this.transformationConfig.getAmbiguityResolvingStrategy(), this.transformationConfig.getLogger(),
 				this.transformationConfig.isUseParallelization());
 
@@ -553,11 +550,6 @@ public class GenericTransformationRunner extends CancelableElement {
 	private MatchingResult performMatching(List<EObject> sourceModels, List<Mapping> suitableMappings,
 			IProgressMonitor monitor) {
 
-		LinkedList<MappingInstanceStorage> selectedMappings;
-		Map<Mapping, List<MappingInstanceStorage>> selectedMappingsByMapping;
-
-		this.transformationUtilManager.init();
-
 		/*
 		 * Build the ContainmentTree representing the source model. This will keep track of all matched and unmatched
 		 * elements.
@@ -578,22 +570,20 @@ public class GenericTransformationRunner extends CancelableElement {
 				.flatMap(p -> p.getGlobalValues().stream())
 				.collect(Collectors.toMap(Function.identity(), FixedValue::getValue));
 
-		this.transformationUtilManager.getGlobalValues().addFixedValues(globalFixedValues);
+		this.assetManager.getGlobalValues().addFixedValues(globalFixedValues);
 
 		/*
 		 * Create the SourceSectionMatcher that matches SourceSections
 		 */
 		final SourceSectionMatcher sourceSectionMatcher = new SourceSectionMatcher(
-				this.transformationUtilManager.getMatchedSectionRegistry(), containmentTree,
-				new BasicEList<>(activeSourceSections),
-				this.transformationUtilManager.getValueConstraintReferenceValueCalculator(),
+				this.assetManager.getMatchedSectionRegistry(), containmentTree, new BasicEList<>(activeSourceSections),
+				this.assetManager.getValueConstraintReferenceValueCalculator(),
 				this.transformationConfig.getAmbiguityResolvingStrategy(), this.transformationConfig.getLogger(),
 				this.transformationConfig.isUseParallelization());
 
 		this.objectsToCancel.add(sourceSectionMatcher);
 
 		sourceSectionMatcher.matchSections();
-		// matchedSections.putAll(sourceSectionMatcher.matchSections());
 
 		this.transformationConfig.getLogger()
 				.info(() -> "Summary:\tAvailable Elements:\t" + containmentTree.getNumberOfElements());
@@ -607,54 +597,50 @@ public class GenericTransformationRunner extends CancelableElement {
 		/*
 		 * Extract values of GlobalAttributes
 		 */
-		new GlobalAttributeValueExtractor(this.transformationUtilManager.getGlobalValues(),
-				this.transformationUtilManager.getInstanceSelectorHandler(),
-				this.transformationUtilManager.getValueModifierExecutor(), this.transformationConfig.getLogger(),
-				this.transformationConfig.isUseParallelization()).extractGlobalAttributeValues(
-						this.transformationUtilManager.getMatchedSectionRegistry(),
-						this.transformationConfig.getPamtramModels().stream()
-								.flatMap(p -> p.getMappingModels().stream()).collect(Collectors.toList()));
+		GlobalAttributeValueExtractor globalAttributeValueExtractor = this.assetManager
+				.getGlobalAttributeValueExtractor();
 
-		this.writePamtramMessage("Selecting Mappings for Matched Sections");
+		this.objectsToCancel.add(globalAttributeValueExtractor);
+		globalAttributeValueExtractor.extractGlobalAttributeValues(this.assetManager.getMatchedSectionRegistry(),
+				this.transformationConfig.getPamtramModels().stream().flatMap(p -> p.getMappingModels().stream())
+						.collect(Collectors.toList()));
 
 		/*
 		 * Create the MappingSelector that finds applicable mappings
 		 */
-		final MappingSelector mappingSelector = new MappingSelector(
-				this.transformationUtilManager.getMatchedSectionRegistry(), suitableMappings,
-				this.transformationConfig.isOnlyAskOnceOnAmbiguousMappings(),
-				this.transformationConfig.getAmbiguityResolvingStrategy(),
-				this.transformationUtilManager.getConditionHandler(), this.transformationConfig.getLogger(),
-				this.transformationConfig.isUseParallelization());
+		this.writePamtramMessage("Selecting Mappings for Matched Sections");
 
-		selectedMappingsByMapping = mappingSelector.selectMappings();
+		MappingSelector mappingSelector = this.assetManager.getMappingSelector();
+
+		this.objectsToCancel.add(mappingSelector);
+		Map<Mapping, List<MappingInstanceStorage>> selectedMappingsByMapping = mappingSelector
+				.selectMappings(this.assetManager.getMatchedSectionRegistry(), suitableMappings);
+
 		List<MappingInstanceStorage> mappingInstances = selectedMappingsByMapping.values().stream()
 				.flatMap(List::stream).collect(Collectors.toList());
 
+		/*
+		 * Calculate values of mapping hints
+		 */
 		this.writePamtramMessage("Extracting Hint Values");
 
-		/*
-		 * Calculate mapping hints
-		 */
-		final HintValueExtractor hintValueExtractor = new HintValueExtractor(
-				this.transformationUtilManager.getMatchedSectionRegistry(), mappingInstances,
-				this.transformationUtilManager.getGlobalValues(),
-				this.transformationUtilManager.getInstanceSelectorHandler(),
-				this.transformationUtilManager.getValueModifierExecutor(), this.transformationConfig.getLogger(),
-				this.transformationConfig.isUseParallelization());
+		HintValueExtractor hintValueExtractor = this.assetManager.getHintValueExtractor();
 
 		this.objectsToCancel.add(hintValueExtractor);
+		hintValueExtractor.extractHintValues(mappingInstances);
 
-		hintValueExtractor.extractHintValues();
-
-		selectedMappings = new LinkedList<>((this.transformationConfig.isUseParallelization()
-				? selectedMappingsByMapping.entrySet().parallelStream()
-				: selectedMappingsByMapping.entrySet().stream()).flatMap(e -> e.getValue().stream())
-						.collect(Collectors.toList()));
+		/*
+		 * Compile and return the result of the matching process
+		 */
+		LinkedList<MappingInstanceStorage> selectedMappings = new LinkedList<>(
+				(this.transformationConfig.isUseParallelization()
+						? selectedMappingsByMapping.entrySet().parallelStream()
+						: selectedMappingsByMapping.entrySet().stream()).flatMap(e -> e.getValue().stream())
+								.collect(Collectors.toList()));
 
 		return MatchingResult.createMatchingCompletedResult(selectedMappings, selectedMappingsByMapping,
 				new HintValueStorage(this.transformationConfig.isUseParallelization()),
-				this.transformationUtilManager.getGlobalValues());
+				this.assetManager.getGlobalValues());
 
 	}
 
@@ -682,9 +668,8 @@ public class GenericTransformationRunner extends CancelableElement {
 		/*
 		 * Initialize the TargetSectionInstantiator
 		 */
-		this.targetSectionInstantiator = new TargetSectionInstantiator(
-				this.transformationUtilManager.getTargetSectionRegistry(),
-				this.transformationUtilManager.getValueCalculator(), this.transformationConfig.getLogger(),
+		this.targetSectionInstantiator = new TargetSectionInstantiator(this.assetManager.getTargetSectionRegistry(),
+				this.assetManager.getValueCalculator(), this.transformationConfig.getLogger(),
 				this.transformationConfig.getAmbiguityResolvingStrategy(),
 				this.transformationConfig.isUseParallelization());
 		this.objectsToCancel.add(this.targetSectionInstantiator);
@@ -701,7 +686,7 @@ public class GenericTransformationRunner extends CancelableElement {
 		//
 		monitor.worked(250);
 
-		return ExpandingResult.createExpandingResult(this.transformationUtilManager.getTargetSectionRegistry(),
+		return ExpandingResult.createExpandingResult(this.assetManager.getTargetSectionRegistry(),
 				this.targetSectionInstantiator.getLibEntryInstantiatorMap());
 	}
 
@@ -741,7 +726,7 @@ public class GenericTransformationRunner extends CancelableElement {
 		 * Initialize the TargetSectionConnector
 		 */
 		this.targetSectionConnector = new TargetSectionConnector(expandingResult.getTargetSectionRegistry(),
-				this.transformationUtilManager.getInstanceSelectorHandler(), targetModelRegistry,
+				this.assetManager.getInstanceSelectorHandler(), targetModelRegistry,
 				this.transformationConfig.getMaxPathLength(), this.transformationConfig.getAmbiguityResolvingStrategy(),
 				this.transformationConfig.getLogger());
 		this.objectsToCancel.add(this.targetSectionConnector);
@@ -801,9 +786,8 @@ public class GenericTransformationRunner extends CancelableElement {
 		 * Initialize the TargetSectionLinker
 		 */
 		this.targetSectionLinker = new TargetSectionLinker(expandingResult.getTargetSectionRegistry(),
-				this.transformationUtilManager.getInstanceSelectorHandler(),
-				expandingResult.getLibEntryInstantiatorMap(), this.transformationConfig.getLogger(),
-				this.transformationConfig.getAmbiguityResolvingStrategy());
+				this.assetManager.getInstanceSelectorHandler(), expandingResult.getLibEntryInstantiatorMap(),
+				this.transformationConfig.getLogger(), this.transformationConfig.getAmbiguityResolvingStrategy());
 		this.objectsToCancel.add(this.targetSectionLinker);
 
 		/*
@@ -868,8 +852,8 @@ public class GenericTransformationRunner extends CancelableElement {
 		 */
 		return libEntryInstantiators.stream().map(libraryEntryInstantiator -> {
 
-			boolean successful = libraryEntryInstantiator.instantiate(manager,
-					this.transformationUtilManager.getValueCalculator(), expandingResult.getTargetSectionRegistry());
+			boolean successful = libraryEntryInstantiator.instantiate(manager, this.assetManager.getValueCalculator(),
+					expandingResult.getTargetSectionRegistry());
 			if (!successful) {
 				this.transformationConfig.getLogger().severe(() -> "Failed to instantiate library entry '"
 						+ libraryEntryInstantiator.getLibraryEntry().getClasspath().getValue() + "'!");

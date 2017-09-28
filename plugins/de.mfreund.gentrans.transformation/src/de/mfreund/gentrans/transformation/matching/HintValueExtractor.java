@@ -62,11 +62,6 @@ public class HintValueExtractor extends ValueExtractor {
 	private Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections;
 
 	/**
-	 * The list of {@link MappingInstanceStorage MappingInstanceStorages} for that the hint values shall be extracted.
-	 */
-	private List<MappingInstanceStorage> mappingInstances;
-
-	/**
 	 * This keeps track of the {@link MappingInstanceStorage MappingInstanceStorages} representing
 	 * {@link ExportedMappingHintGroup ExportedMappingHintGroups}.
 	 * <p/>
@@ -82,9 +77,6 @@ public class HintValueExtractor extends ValueExtractor {
 	 *
 	 * @param matchingResult
 	 *            The result of the <em>matching</em> step.
-	 * @param mappingInstances
-	 *            The list of {@link MappingInstanceStorage MappingInstanceStorages} for that the hint values shall be
-	 *            extracted.
 	 * @param globalValues
 	 *            The <em>global values</em> (values of {@link FixedValue FixedValues} and {@link GlobalAttribute
 	 *            GlobalAttribute}) defined in the PAMTraM model.
@@ -100,31 +92,36 @@ public class HintValueExtractor extends ValueExtractor {
 	 *            that the transformation result (especially the order of lists) varies between executions.
 	 */
 	public HintValueExtractor(Map<SourceSection, List<MatchedSectionDescriptor>> matchingResult,
-			List<MappingInstanceStorage> mappingInstances, GlobalValueMap globalValues,
-			InstanceSelectorHandler instanceSelectorHandler, ValueModifierExecutor attributeValueModifierExecutor,
-			Logger logger, boolean useParallelization) {
+			GlobalValueMap globalValues, InstanceSelectorHandler instanceSelectorHandler,
+			ValueModifierExecutor attributeValueModifierExecutor, Logger logger, boolean useParallelization) {
 
 		super(globalValues, instanceSelectorHandler, attributeValueModifierExecutor, logger, useParallelization);
 
 		this.matchedSections = matchingResult;
-		this.mappingInstances = mappingInstances;
 		this.exportedHintGroups = new HashMap<>();
 	}
 
 	/**
-	 * This extracts the hint values and stores them in the {@link #mappingInstances}.
+	 * This extracts the values for {@link MappingHint MappingHints} in the given <em>mappingInstances</em>.
+	 * <p />
+	 * Note: The extracted values are stored as {@link MappingInstanceStorage#getHintValues() hintValues} inside the
+	 * respective for each {@link MappingInstanceStorage}.
+	 *
+	 * @param mappingInstances
+	 *            The list of {@link MappingInstanceStorage MappingInstanceStorages} for that the hint values shall be
+	 *            extracted.
 	 */
-	public void extractHintValues() {
+	public void extractHintValues(List<MappingInstanceStorage> mappingInstances) {
 
 		// In a first step, we extract the hints of 'normal' and exported hint
 		// groups.
 		//
-		(this.useParallelization ? this.mappingInstances.parallelStream() : this.mappingInstances.stream())
+		(this.useParallelization ? mappingInstances.parallelStream() : mappingInstances.stream())
 				.forEach(this::extractHintValues);
 
 		// Now, we collect exported hint groups and associated mapping instances
 		//
-		(this.useParallelization ? this.mappingInstances.parallelStream() : this.mappingInstances.stream())
+		(this.useParallelization ? mappingInstances.parallelStream() : mappingInstances.stream())
 				.forEach(m -> (this.useParallelization ? m.getMappingHintGroups().parallelStream()
 						: m.getMappingHintGroups().stream()).filter(hg -> hg instanceof ExportedMappingHintGroup)
 								.forEach(hg -> {
@@ -135,11 +132,10 @@ public class HintValueExtractor extends ValueExtractor {
 									this.exportedHintGroups.put((ExportedMappingHintGroup) hg, m);
 								}));
 
-		// Now, we extract the hints for hint group importers (as we can now
-		// used the
-		// hint values of exported hint groups that have been calculated before)
+		// Now, we extract the hints for hint group importers (as we can now used the hint values of exported hint
+		// groups that have been calculated before)
 		//
-		(this.useParallelization ? this.mappingInstances.parallelStream() : this.mappingInstances.stream())
+		(this.useParallelization ? mappingInstances.parallelStream() : mappingInstances.stream())
 				.forEach(this::extractImportedHintValues);
 	}
 

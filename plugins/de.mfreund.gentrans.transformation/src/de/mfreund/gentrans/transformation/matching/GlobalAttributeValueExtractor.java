@@ -15,9 +15,9 @@ import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
 import de.mfreund.gentrans.transformation.calculation.ValueModifierExecutor;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
+import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
 import pamtram.MappingModel;
 import pamtram.mapping.GlobalAttribute;
-import pamtram.structure.source.SourceSection;
 
 /**
  * This class can be used to extract values of {@link GlobalAttribute GlobalAttributes} from source model elements for a
@@ -53,15 +53,15 @@ public class GlobalAttributeValueExtractor extends ValueExtractor {
 	 * <p />
 	 * Note: The extracted values are also stored in the {@link #globalValues}.
 	 *
-	 * @param matchingResult
-	 *            The set of MatchedSectionDescriptors that represents the result of the matching process. The values of
+	 * @param matchedSectionRegistry
+	 *            The {@link MatchedSectionRegistry} that represents the result of the matching process. The values of
 	 *            GlobalAttributes will get extracted from this.
 	 * @param mappingModels
 	 *            The list of {@link MappingModel MappingModels} containing the GlobalAttributes to be extracted.
 	 * @return The found values of the {@link GlobalAttribute GlobalAttributes}.
 	 */
-	public Map<GlobalAttribute, String> extractGlobalAttributeValues(
-			Map<SourceSection, List<MatchedSectionDescriptor>> matchingResult, List<MappingModel> mappingModels) {
+	public Map<GlobalAttribute, String> extractGlobalAttributeValues(MatchedSectionRegistry matchedSectionRegistry,
+			List<MappingModel> mappingModels) {
 
 		// Collect the GlobalAttributes that are modeled for each MappingModels
 		// and the associated
@@ -73,8 +73,8 @@ public class GlobalAttributeValueExtractor extends ValueExtractor {
 						.flatMap(m -> (this.useParallelization ? m.getGlobalAttributes().parallelStream()
 								: m.getGlobalAttributes().stream()))
 						.collect(Collectors.toMap(i -> i,
-								i -> matchingResult.containsKey(i.getSource().getContainingSection())
-										? matchingResult.get(i.getSource().getContainingSection())
+								i -> matchedSectionRegistry.containsKey(i.getSource().getContainingSection())
+										? matchedSectionRegistry.get(i.getSource().getContainingSection())
 										: new ArrayList<>()));
 
 		// Extract values for GlobalAttributes

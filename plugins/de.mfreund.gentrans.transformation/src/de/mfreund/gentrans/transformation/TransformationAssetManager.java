@@ -11,14 +11,18 @@ import de.mfreund.gentrans.transformation.calculation.ValueCalculator;
 import de.mfreund.gentrans.transformation.calculation.ValueConstraintReferenceValueCalculator;
 import de.mfreund.gentrans.transformation.calculation.ValueModifierExecutor;
 import de.mfreund.gentrans.transformation.condition.ConditionHandler;
-import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
+import de.mfreund.gentrans.transformation.matching.GlobalAttributeValueExtractor;
+import de.mfreund.gentrans.transformation.matching.HintValueExtractor;
+import de.mfreund.gentrans.transformation.matching.MappingSelector;
 import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
 import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import pamtram.FixedValue;
 import pamtram.TargetSectionModel;
 import pamtram.condition.Condition;
 import pamtram.mapping.GlobalAttribute;
+import pamtram.mapping.Mapping;
+import pamtram.mapping.extended.MappingHint;
 import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.InstanceSelector;
 import pamtram.structure.constraint.ValueConstraint;
@@ -27,15 +31,14 @@ import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionAttribute;
 
 /**
- * A control class that encapsulates the various handlers, registries and calculators that are used at multiple points
- * during a transformation and handles their instantiation.
+ * A control class that encapsulates the various assets (handlers, registries and calculators) that are used at multiple
+ * points during a transformation and handles their instantiation.
  * <p />
- * Note: After the {@link #TransformationUtilManager(TransformationConfiguration) instantiation} of a manager,
- * {@link #init()} needs to be called at least once before any of the handles objects can be used.
+ * Note: The various getters all handle the prior instantiation of the respective asset automatically.
  *
  * @author mfreund
  */
-class TransformationUtilManager {
+class TransformationAssetManager {
 
 	/**
 	 * The {@link GlobalValueMap} where extracted global {@link FixedValue FixedValues} and values of
@@ -88,62 +91,105 @@ class TransformationUtilManager {
 	private ConditionHandler conditionHandler;
 
 	/**
+	 * The {@link MappingSelector} that is use to select the {@link Mapping Mapping(s)} to be applied for the
+	 * {@link #matchedSectionRegistry matched sections}.
+	 */
+	private MappingSelector mappingSelector;
+
+	/**
+	 * The {@link HintValueExtractor} that is used to extract values for the various types of {@link MappingHint
+	 * MappingHints}.
+	 */
+	private HintValueExtractor hintValueExtractor;
+
+	/**
+	 * The {@link GlobalAttributeValueExtractor} that is used to extract values of {@link GlobalAttribute
+	 * GlobalAttributes}.
+	 */
+	private GlobalAttributeValueExtractor globalAttributeValueExtractor;
+
+	/**
 	 * This creates an instance.
 	 *
 	 * @param transformationConfig
 	 *            The {@link TransformationConfiguration} that this operates on.
 	 */
-	public TransformationUtilManager(TransformationConfiguration transformationConfig) {
+	public TransformationAssetManager(TransformationConfiguration transformationConfig) {
 
 		this.transformationConfig = transformationConfig;
 	}
 
 	/**
-	 * Initialize everything at the start of the transformation.
+	 * This initializes the {@link #globalValues}.
 	 */
-	public void init() {
+	protected void initGlobalValues() {
 
 		this.globalValues = new GlobalValueMap();
-		this.matchedSectionRegistry = new MatchedSectionRegistry();
-		this.targetSectionRegistry = new TargetSectionRegistry(this.transformationConfig.getLogger(),
-				new LinkedHashSet<>(this.transformationConfig.getPamtramModels().stream()
-						.flatMap(p -> p.getTargetSectionModels().stream()).map(TargetSectionModel::getMetaModelPackage)
-						.collect(Collectors.toList())));
-
-		this.initValueModifierExecutor();
-		this.initValueCalculator();
-		this.initInstanceSelectorHandler();
-		this.initValueConstraintReferenceValueCalculator();
-		this.initConditionHandler();
 	}
 
 	/**
+	 * Returns the {@link #globalValues}.
+	 *
 	 * @return the {@link #globalValues}}
 	 */
 	public GlobalValueMap getGlobalValues() {
+
+		if (this.globalValues == null) {
+			this.initGlobalValues();
+		}
 
 		return this.globalValues;
 	}
 
 	/**
+	 * This initializes the {@link #matchedSectionRegistry}.
+	 */
+	protected void initMatchedSectionRegistry() {
+
+		this.matchedSectionRegistry = new MatchedSectionRegistry();
+	}
+
+	/**
+	 * Returns the {@link #matchedSectionRegistry}.
+	 *
 	 * @return the {@link #matchedSectionRegistry}
 	 */
 	public MatchedSectionRegistry getMatchedSectionRegistry() {
+
+		if (this.matchedSectionRegistry == null) {
+			this.initMatchedSectionRegistry();
+		}
 
 		return this.matchedSectionRegistry;
 	}
 
 	/**
+	 * This initializes the {@link #targetSectionRegistry}.
+	 */
+	protected void initTargetSectionRegistry() {
+
+		this.targetSectionRegistry = new TargetSectionRegistry(this.transformationConfig.getLogger(),
+				new LinkedHashSet<>(this.transformationConfig.getPamtramModels().stream()
+						.flatMap(p -> p.getTargetSectionModels().stream()).map(TargetSectionModel::getMetaModelPackage)
+						.collect(Collectors.toList())));
+	}
+
+	/**
+	 * Returns the {@link #targetSectionRegistry}.
+	 *
 	 * @return the {@link #targetSectionRegistry}
 	 */
 	public TargetSectionRegistry getTargetSectionRegistry() {
+
+		if (this.targetSectionRegistry == null) {
+			this.initTargetSectionRegistry();
+		}
 
 		return this.targetSectionRegistry;
 	}
 
 	/**
 	 * This initializes the {@link #valueModifierExecutor}.
-	 *
 	 */
 	protected void initValueModifierExecutor() {
 
@@ -152,12 +198,14 @@ class TransformationUtilManager {
 
 	/**
 	 * Returns the {@link #valueModifierExecutor}.
-	 * <p />
-	 * <b>Note:</b> Before calling this, {@link #init()} has to be called at least once.
 	 *
 	 * @return the {@link #valueModifierExecutor}
 	 */
 	public ValueModifierExecutor getValueModifierExecutor() {
+
+		if (this.valueModifierExecutor == null) {
+			this.initValueModifierExecutor();
+		}
 
 		return this.valueModifierExecutor;
 	}
@@ -167,123 +215,167 @@ class TransformationUtilManager {
 	 */
 	protected void initValueCalculator() {
 
-		this.valueCalculator = new ValueCalculator(this.globalValues, this.valueModifierExecutor,
+		this.valueCalculator = new ValueCalculator(this.getGlobalValues(), this.getValueModifierExecutor(),
 				this.transformationConfig.getLogger());
 	}
 
 	/**
 	 * Returns the {@link #valueCalculator}.
-	 * <p />
-	 * <b>Note:</b> Before calling this, {@link #init()} has to be called at least once.
 	 *
 	 * @return the {@link #valueCalculator}
 	 */
 	public ValueCalculator getValueCalculator() {
+
+		if (this.valueCalculator == null) {
+			this.initValueCalculator();
+		}
 
 		return this.valueCalculator;
 	}
 
 	/**
 	 * This initializes the {@link #instanceSelectorHandler}.
-	 * <p />
-	 * Note: If not already done, also initializes the {@link #valueCalculator}.
-	 *
-	 * @param matchedSections
-	 *            The map of {@link MatchedSectionDescriptor MatchedSectionDescriptors} that represents the result of
-	 *            the matching process.
-	 * @param targetSectionRegistry
-	 *            The {@link TargetSectionRegistry} where instantiated {@link TargetSection TargetSections} are stored.
-	 * @param globalValues
-	 *            the {@link GlobalValueMap} to use
 	 */
 	protected void initInstanceSelectorHandler() {
 
-		if (this.valueCalculator == null) {
-			this.initValueCalculator();
-		}
-
-		this.instanceSelectorHandler = new InstanceSelectorHandler(this.matchedSectionRegistry,
-				this.targetSectionRegistry, this.globalValues, this.valueCalculator,
+		this.instanceSelectorHandler = new InstanceSelectorHandler(this.getMatchedSectionRegistry(),
+				this.getTargetSectionRegistry(), this.getGlobalValues(), this.getValueCalculator(),
 				this.transformationConfig.getLogger(), this.transformationConfig.isUseParallelization());
 	}
 
 	/**
 	 * Returns the {@link #instanceSelectorHandler}.
-	 * <p />
-	 * <b>Note:</b> Before calling this, {@link #init()} has to be called at least once.
 	 *
 	 * @return the {@link #instanceSelectorHandler}
 	 */
 	public InstanceSelectorHandler getInstanceSelectorHandler() {
+
+		if (this.instanceSelectorHandler == null) {
+			this.initInstanceSelectorHandler();
+		}
 
 		return this.instanceSelectorHandler;
 	}
 
 	/**
 	 * This initializes the {@link #valueConstraintReferenceValueCalculator}.
-	 * <p />
-	 * Note: If not already done, also initializes the {@link #valueCalculator} and the
-	 * {@link #instanceSelectorHandler}.
-	 *
 	 */
 	protected void initValueConstraintReferenceValueCalculator() {
 
-		if (this.valueCalculator == null) {
-			this.initValueCalculator();
-		}
-
-		if (this.instanceSelectorHandler == null) {
-			this.initInstanceSelectorHandler();
-		}
-
 		this.valueConstraintReferenceValueCalculator = new ValueConstraintReferenceValueCalculator(
-				this.matchedSectionRegistry, this.globalValues, this.instanceSelectorHandler, this.valueCalculator,
-				this.transformationConfig.getLogger(), this.transformationConfig.isUseParallelization());
+				this.getMatchedSectionRegistry(), this.getGlobalValues(), this.getInstanceSelectorHandler(),
+				this.getValueCalculator(), this.transformationConfig.getLogger(),
+				this.transformationConfig.isUseParallelization());
 	}
 
 	/**
 	 * Returns the {@link #valueConstraintReferenceValueCalculator}.
-	 * <p />
-	 * <b>Note:</b> Before calling this, {@link #init()} has to be called at least once.
 	 *
 	 * @return the {@link #valueConstraintReferenceValueCalculator}
 	 */
 	public ValueConstraintReferenceValueCalculator getValueConstraintReferenceValueCalculator() {
+
+		if (this.valueConstraintReferenceValueCalculator == null) {
+			this.initValueConstraintReferenceValueCalculator();
+		}
 
 		return this.valueConstraintReferenceValueCalculator;
 	}
 
 	/**
 	 * This initializes the {@link #conditionHandler}.
-	 * <p />
-	 * Note: If not already done, also initializes the {@link #instanceSelectorHandler} and
-	 * {@link #valueConstraintReferenceValueCalculator}.
 	 */
 	protected void initConditionHandler() {
 
-		if (this.instanceSelectorHandler == null) {
-			this.initInstanceSelectorHandler();
-		}
-
-		if (this.valueConstraintReferenceValueCalculator == null) {
-			this.initValueConstraintReferenceValueCalculator();
-		}
-
-		this.conditionHandler = new ConditionHandler(this.matchedSectionRegistry, this.instanceSelectorHandler,
-				this.valueConstraintReferenceValueCalculator, this.transformationConfig.getLogger(),
+		this.conditionHandler = new ConditionHandler(this.matchedSectionRegistry, this.getInstanceSelectorHandler(),
+				this.getValueConstraintReferenceValueCalculator(), this.transformationConfig.getLogger(),
 				this.transformationConfig.isUseParallelization());
 	}
 
 	/**
 	 * Returns the {@link #conditionHandler}.
-	 * <p />
-	 * <b>Note:</b> Before calling this, {@link #init()} has to be called at least once.
 	 *
 	 * @return the {@link #instanceSelectorHandler}
 	 */
 	public ConditionHandler getConditionHandler() {
 
+		if (this.conditionHandler == null) {
+			this.initConditionHandler();
+		}
+
 		return this.conditionHandler;
+	}
+
+	/**
+	 * This initializes the {@link #mappingSelector}.
+	 */
+	protected void initMappingSelector() {
+
+		this.mappingSelector = new MappingSelector(this.transformationConfig.isOnlyAskOnceOnAmbiguousMappings(),
+				this.transformationConfig.getAmbiguityResolvingStrategy(), this.getConditionHandler(),
+				this.transformationConfig.getLogger(), this.transformationConfig.isUseParallelization());
+	}
+
+	/**
+	 * Returns the {@link #mappingSelector}.
+	 *
+	 * @return the {@link #mappingSelector}
+	 */
+	public MappingSelector getMappingSelector() {
+
+		if (this.mappingSelector == null) {
+			this.initMappingSelector();
+		}
+
+		return this.mappingSelector;
+	}
+
+	/**
+	 * This initializes the {@link #hintValueExtractor}.
+	 */
+	protected void initHintValueExtractor() {
+
+		this.hintValueExtractor = new HintValueExtractor(this.getMatchedSectionRegistry(), this.getGlobalValues(),
+				this.getInstanceSelectorHandler(), this.getValueModifierExecutor(),
+				this.transformationConfig.getLogger(), this.transformationConfig.isUseParallelization());
+	}
+
+	/**
+	 * Returns the {@link #hintValueExtractor}.
+	 *
+	 * @return the {@link #hintValueExtractor}
+	 */
+	public HintValueExtractor getHintValueExtractor() {
+
+		if (this.hintValueExtractor == null) {
+			this.initHintValueExtractor();
+		}
+
+		return this.hintValueExtractor;
+	}
+
+	/**
+	 * This initializes the {@link #globalAttributeValueExtractor}.
+	 */
+	protected void initGlobalAttributeValueExtractor() {
+
+		this.globalAttributeValueExtractor = new GlobalAttributeValueExtractor(this.getGlobalValues(),
+				this.getInstanceSelectorHandler(), this.getValueModifierExecutor(),
+				this.transformationConfig.getLogger(), this.transformationConfig.isUseParallelization());
+	}
+
+	/**
+	 * Returns the {@link #globalAttributeValueExtractor}.
+	 *
+	 * @return the {@link #globalAttributeValueExtractor}
+	 */
+	public GlobalAttributeValueExtractor getGlobalAttributeValueExtractor() {
+
+		if (this.globalAttributeValueExtractor == null) {
+			this.initGlobalAttributeValueExtractor();
+		}
+
+		return this.globalAttributeValueExtractor;
 	}
 
 }

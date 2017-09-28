@@ -40,26 +40,15 @@ import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.structure.source.SourceSection;
 
 /**
- * This class can be used to {@link #selectMappings() select suitable mappings} for a list of
+ * This class can be used to {@link #selectMappings(Map, List) select suitable mappings} for a list of
  * {@link MatchedSectionDescriptor matched sections}.
  * <p />
  * Conditions will be evaluated and occurring ambiguities will be resolved during the process of
- * {@link #selectMappings()}.
+ * {@link #selectMappings(Map, List)}.
  *
  * @author mfreund
  */
 public class MappingSelector extends CancelableElement {
-
-	/**
-	 * A map representing the {@link MatchedSectionDescriptor MatchedSectionDescriptors} found for every
-	 * {@link SourceSection}.
-	 */
-	private final Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections;
-
-	/**
-	 * The list of {@link Mapping Mappings} that shall be considered.
-	 */
-	private final List<Mapping> mappings;
 
 	/**
 	 * The subset of {@link #mappings} that is equipped with one or more {@link ApplicationDependency
@@ -108,11 +97,6 @@ public class MappingSelector extends CancelableElement {
 	/**
 	 * This creates an instance.
 	 *
-	 * @param matchedSections
-	 *            A map representing the {@link MatchedSectionDescriptor MatchedSectionDescriptors} found for every
-	 *            {@link SourceSection}.
-	 * @param mappings
-	 *            The list of {@link Mapping Mappings} that shall be considered.
 	 * @param onlyAskOnceOnAmbiguousMappings
 	 *            If ambiguous {@link Mapping Mappings} should be resolved only once or on a per-element basis.
 	 * @param ambiguityResolvingStrategy
@@ -125,12 +109,10 @@ public class MappingSelector extends CancelableElement {
 	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
 	 *            that the transformation result (especially the order of lists) varies between executions.
 	 */
-	public MappingSelector(Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections, List<Mapping> mappings,
-			boolean onlyAskOnceOnAmbiguousMappings, IAmbiguityResolvingStrategy ambiguityResolvingStrategy,
-			ConditionHandler conditionHandler, Logger logger, boolean useParallelization) {
+	public MappingSelector(boolean onlyAskOnceOnAmbiguousMappings,
+			IAmbiguityResolvingStrategy ambiguityResolvingStrategy, ConditionHandler conditionHandler, Logger logger,
+			boolean useParallelization) {
 
-		this.matchedSections = matchedSections;
-		this.mappings = new ArrayList<>(mappings);
 		this.dependentMappings = Collections.synchronizedList(new ArrayList<>());
 		this.selectedMappings = Collections.synchronizedMap(new LinkedHashMap<>());
 		this.deferredSections = Collections.synchronizedList(new ArrayList<>());
@@ -142,29 +124,35 @@ public class MappingSelector extends CancelableElement {
 	}
 
 	/**
-	 * For each {@link MatchedSectionDescriptor} represented in the {@link #matchedSections}, this selects a suitable
-	 * mapping.
+	 * For each {@link MatchedSectionDescriptor} represented in the given <em>matchedSections</em>, this selects a
+	 * suitable mapping (one of the given <em>mappings</em>).
 	 *
+	 * @param matchedSections
+	 *            A map representing the {@link MatchedSectionDescriptor MatchedSectionDescriptors} found for every
+	 *            {@link SourceSection}.
+	 * @param mappings
+	 *            The list of {@link Mapping Mappings} that shall be considered.
 	 * @return The selected mappings in the form of a {@link MappingInstanceStorage} for each
 	 *         {@link MatchedSectionDescriptor}.
 	 */
-	public Map<Mapping, List<MappingInstanceStorage>> selectMappings() {
+	public Map<Mapping, List<MappingInstanceStorage>> selectMappings(
+			Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections, List<Mapping> mappings) {
 
 		// First, we need to filter mapping models with conditions that evaluate
 		// to 'false'
 		//
 		Set<MappingModel> mappingModels = new LinkedHashSet<>(
-				(this.useParallelization ? this.mappings.parallelStream() : this.mappings.stream())
+				(this.useParallelization ? mappings.parallelStream() : mappings.stream())
 						.map(m -> (MappingModel) m.eContainer()).collect(Collectors.toList()));
 
 		List<MappingModel> mappingModelsWithNegativeCondition = mappingModels.stream()
 				.filter(m -> !this.checkCondition(m)).collect(Collectors.toList());
-		this.mappings.removeAll(mappingModelsWithNegativeCondition.stream().flatMap(m -> m.getMappings().stream())
+		mappings.removeAll(mappingModelsWithNegativeCondition.stream().flatMap(m -> m.getMappings().stream())
 				.collect(Collectors.toList()));
 
 		// TODO also filter if sub-conditions of type ApplicationDependency
-		this.dependentMappings.addAll(
-				(this.useParallelization ? this.mappings.parallelStream() : this.mappings.stream()).filter(m -> {
+		this.dependentMappings
+				.addAll((this.useParallelization ? mappings.parallelStream() : mappings.stream()).filter(m -> {
 					Stream<ComplexCondition> conditionParts;
 					if (m.getLocalCondition() != null) {
 						conditionParts = m.getLocalCondition().getConditionPartsFlat().stream();
@@ -183,8 +171,9 @@ public class MappingSelector extends CancelableElement {
 		// 'MappingDependency'.
 		//
 		List<MappingInstanceStorage> mappingInstances = (this.useParallelization
-				? this.matchedSections.entrySet().parallelStream()
-				: this.matchedSections.entrySet().stream()).map(e -> this.selectMapping(e.getKey(), e.getValue(), true))
+				? matchedSections.entrySet().parallelStream()
+				: matchedSections.entrySet().stream())
+						.map(e -> this.selectMapping(e.getKey(), e.getValue(), mappings, true))
 						.flatMap(Collection::stream).collect(Collectors.toList());
 
 		for (MappingInstanceStorage mappingInstance : mappingInstances) {
@@ -201,7 +190,8 @@ public class MappingSelector extends CancelableElement {
 		//
 		List<MappingInstanceStorage> deferredInstances = (this.useParallelization
 				? this.deferredSections.parallelStream()
-				: this.deferredSections.stream()).map(s -> this.selectMapping(s, this.matchedSections.get(s), false))
+				: this.deferredSections.stream())
+						.map(s -> this.selectMapping(s, matchedSections.get(s), mappings, false))
 						.flatMap(Collection::stream).collect(Collectors.toList());
 
 		for (MappingInstanceStorage mappingInstance : deferredInstances) {
@@ -226,6 +216,8 @@ public class MappingSelector extends CancelableElement {
 	 * @param descriptors
 	 *            The list of {@link MatchedSectionDescriptor MatchedSectionDescriptors} that are associated with the
 	 *            <em>matchedSection</em>.
+	 * @param mappings
+	 *            The list of {@link Mapping Mappings} that shall be considered.
 	 * @param deferApplicationDependencies
 	 *            This can be used to control whether those sections, for that at least one of the applicable mappings
 	 *            has an {@link ApplicationDependency} shall be 'deferred'. Typically, this should be set to 'true'
@@ -235,7 +227,7 @@ public class MappingSelector extends CancelableElement {
 	 *         contain any calculated hint values.
 	 */
 	private List<MappingInstanceStorage> selectMapping(SourceSection matchedSection,
-			List<MatchedSectionDescriptor> descriptors, boolean deferApplicationDependencies) {
+			List<MatchedSectionDescriptor> descriptors, List<Mapping> mappings, boolean deferApplicationDependencies) {
 
 		this.checkCanceled();
 
@@ -245,9 +237,8 @@ public class MappingSelector extends CancelableElement {
 
 		// The mappings with suitable 'sourceMMSections'
 		//
-		List<Mapping> applicableMappings = (this.useParallelization ? this.mappings.parallelStream()
-				: this.mappings.stream()).filter(m -> matchedSection.equals(m.getSourceSection()))
-						.collect(Collectors.toList());
+		List<Mapping> applicableMappings = (this.useParallelization ? mappings.parallelStream() : mappings.stream())
+				.filter(m -> matchedSection.equals(m.getSourceSection())).collect(Collectors.toList());
 
 		// Check if we need to 'defer' the selection of mappings for the given
 		// set of 'descriptors' as at least one of

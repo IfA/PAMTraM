@@ -25,22 +25,18 @@ import org.eclipse.ocl.ParserException;
 
 import de.mfreund.gentrans.transformation.CancelTransformationException;
 import de.mfreund.gentrans.transformation.UserAbortException;
-import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
-import de.mfreund.gentrans.transformation.calculation.AttributeValueConstraintReferenceValueCalculator;
-import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
+import de.mfreund.gentrans.transformation.calculation.ValueConstraintReferenceValueCalculator;
 import de.mfreund.gentrans.transformation.descriptors.ContainmentTree;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
-import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.maps.SourceSectionMatchingResultsMap;
+import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvedAdapter;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
 import de.mfreund.gentrans.transformation.util.CancelableElement;
 import de.mfreund.pamtram.util.NullComparator;
 import de.mfreund.pamtram.util.OCLUtil;
-import pamtram.FixedValue;
-import pamtram.MappingModel;
 import pamtram.structure.constraint.ChoiceConstraint;
 import pamtram.structure.constraint.EqualityConstraint;
 import pamtram.structure.constraint.SingleReferenceValueConstraint;
@@ -104,23 +100,31 @@ public class SourceSectionMatcher extends CancelableElement {
 	private final Map<SourceSectionClass, Set<EObject>> matchedContainers;
 
 	/**
-	 * This {@link AttributeValueConstraintReferenceValueCalculator} will be used for calculating referenceValues that
-	 * are needed for {@link ValueConstraint}
+	 * This {@link ValueConstraintReferenceValueCalculator} will be used for calculating referenceValues that are needed
+	 * for {@link ValueConstraint}
 	 */
-	private AttributeValueConstraintReferenceValueCalculator refValueCalculator;
+	private ValueConstraintReferenceValueCalculator refValueCalculator;
 
-	private Map<SourceSection, List<MatchedSectionDescriptor>> sections2Descriptors;
+	/**
+	 * The map of {@link MatchedSectionDescriptor MatchedSectionDescriptors} that represents the result of the matching
+	 * process.
+	 */
+	private MatchedSectionRegistry matchedSectionRegistry;
 
 	/**
 	 * This creates an instance.
 	 *
+	 * @param matchedSectionRegistry
+	 *            The map of {@link MatchedSectionDescriptor MatchedSectionDescriptors} that represents the result of
+	 *            the matching process.
 	 * @param containmentTree
 	 *            The {@link ContainmentTree} representing the source models to be matched.
 	 * @param sourceSections
 	 *            The list of {@link SourceSection SourceSections} that the ' <em>containmentTree</em>' shall be matched
 	 *            against.
-	 * @param globalValues
-	 *            The list of {@link MappingModel#getGlobalValues() global values} modeled in the PAMTraM instance.
+	 * @param valueConstraintReferenceValueCalculator
+	 *            The {@link ValueConstraintReferenceValueCalculator} that shall be used to used to calculate reference
+	 *            values of {@link ValueConstraint ValueConstraints}.
 	 * @param ambiguityResolvingStrategy
 	 *            The {@link IAmbiguityResolvingStrategy} to be used.
 	 * @param logger
@@ -129,33 +133,30 @@ public class SourceSectionMatcher extends CancelableElement {
 	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
 	 *            that the transformation result (especially the order of lists) varies between executions.
 	 */
-	public SourceSectionMatcher(ContainmentTree containmentTree, EList<SourceSection> sourceSections,
-			Map<FixedValue, String> globalValues, IAmbiguityResolvingStrategy ambiguityResolvingStrategy, Logger logger,
-			boolean useParallelization) {
+	public SourceSectionMatcher(MatchedSectionRegistry matchedSectionRegistry, ContainmentTree containmentTree,
+			EList<SourceSection> sourceSections,
+			ValueConstraintReferenceValueCalculator valueConstraintReferenceValueCalculator,
+			IAmbiguityResolvingStrategy ambiguityResolvingStrategy, Logger logger, boolean useParallelization) {
 
+		this.matchedSectionRegistry = matchedSectionRegistry;
 		this.containmentTree = containmentTree;
 		this.sourceSections = sourceSections;
 		this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
 		this.logger = logger;
 		this.matchedSections = new HashMap<>();
 		this.matchedContainers = new HashMap<>();
-		GlobalValueMap globalValueMap = new GlobalValueMap(globalValues, new HashMap<>());
-		this.refValueCalculator = new AttributeValueConstraintReferenceValueCalculator(globalValueMap,
-				new AttributeValueCalculator(globalValueMap, AttributeValueModifierExecutor.getInstance(), logger),
-				logger, useParallelization);
+		this.refValueCalculator = valueConstraintReferenceValueCalculator;
 	}
 
 	/**
 	 * This iterates through the {@link #containmentTree} and tries to match each of the given {@link #sourceSections}
 	 * against the elements represented in the tree. The result of this process is a list of
 	 * {@link MatchedSectionDescriptor MatchedSectionDescriptors} that will be returned.
-	 *
-	 * @return The set of {@link MatchedSectionDescriptor MatchedSectionDescriptors} that represents the result of the
-	 *         matching process.
+	 * <p />
+	 * The set of {@link MatchedSectionDescriptor MatchedSectionDescriptors} that represents the result of the matching
+	 * process is stored in the {@link #matchedSectionRegistry}.
 	 */
-	public Map<SourceSection, List<MatchedSectionDescriptor>> matchSections() {
-
-		this.sections2Descriptors = new LinkedHashMap<>();
+	public void matchSections() {
 
 		Optional<EObject> element;
 		while ((element = this.containmentTree.getNextElementForMatching()).isPresent()) {
@@ -179,11 +180,10 @@ public class SourceSectionMatcher extends CancelableElement {
 
 		}
 
-		return this.sections2Descriptors;
 	}
 
 	/**
-	 * Add the given <em>descriptor</em> to the {@link #sections2Descriptors} map and
+	 * Add the given <em>descriptor</em> to the {@link #matchedSectionReg} map and
 	 * {@link #updateMatchedElements(MatchedSectionDescriptor)} or
 	 * {@link #updateMatchedContainers(MatchedSectionDescriptor)} if required.
 	 *
@@ -207,8 +207,8 @@ public class SourceSectionMatcher extends CancelableElement {
 	private void registerDescriptor(SourceSection sourceSection, MatchedSectionDescriptor descriptor,
 			boolean updateMatchedElements, boolean updateMatchedContainers) {
 
-		List<MatchedSectionDescriptor> descriptors = this.sections2Descriptors.containsKey(sourceSection)
-				? this.sections2Descriptors.get(sourceSection)
+		List<MatchedSectionDescriptor> descriptors = this.matchedSectionRegistry.containsKey(sourceSection)
+				? this.matchedSectionRegistry.get(sourceSection)
 				: new ArrayList<>();
 
 		// The descriptor was already registered
@@ -218,7 +218,7 @@ public class SourceSectionMatcher extends CancelableElement {
 		}
 
 		descriptors.add(descriptor);
-		this.sections2Descriptors.put(sourceSection, descriptors);
+		this.matchedSectionRegistry.put(sourceSection, descriptors);
 
 		if (updateMatchedElements) {
 			this.updateMatchedElements(descriptor);
@@ -410,7 +410,7 @@ public class SourceSectionMatcher extends CancelableElement {
 
 	/**
 	 * For a given {@link MatchedSectionDescriptor}, this extracts the associated '<em>container descriptor</em>' from
-	 * the {@link #sections2Descriptors} map and
+	 * the {@link #matchedSectionReg} map and
 	 * {@link MatchedSectionDescriptor#setContainerDescriptor(MatchedSectionDescriptor) sets} it in the descriptor.
 	 *
 	 * @param descriptor
@@ -434,11 +434,11 @@ public class SourceSectionMatcher extends CancelableElement {
 			return true;
 		}
 
-		if (!this.sections2Descriptors.containsKey(section.getContainer().getContainingSection())) {
+		if (!this.matchedSectionRegistry.containsKey(section.getContainer().getContainingSection())) {
 			return false;
 		}
 
-		Set<MatchedSectionDescriptor> containerDescriptors = this.sections2Descriptors
+		Set<MatchedSectionDescriptor> containerDescriptors = this.matchedSectionRegistry
 				.get(section.getContainer().getContainingSection()).parallelStream()
 				.filter(d -> d.getSourceModelObjectFlat().contains(element.eContainer())).collect(Collectors.toSet());
 
@@ -1362,10 +1362,6 @@ public class SourceSectionMatcher extends CancelableElement {
 	private boolean checkAttributeValueConstraint(final String attributeValueAsString,
 			final ValueConstraint constraint) {
 
-		if ("sequential".equals(constraint.getName())) {
-			System.out.println();
-		}
-
 		boolean constraintVal = false;
 
 		// Note: 'checkConstraint' already takes the type (REQUIRED/FORBIDDEN)
@@ -1461,8 +1457,8 @@ public class SourceSectionMatcher extends CancelableElement {
 	}
 
 	/**
-	 * From all {@link MatchedSectionDescriptor MatchedSectionDescriptors} contained in {@link #sections2Descriptors},
-	 * this returns the one instance that represents the given <em>sourceElement</em>.
+	 * From all {@link MatchedSectionDescriptor MatchedSectionDescriptors} contained in {@link #matchedSectionReg}, this
+	 * returns the one instance that represents the given <em>sourceElement</em>.
 	 *
 	 * @param sourceElement
 	 *            The {@link EObject} for which an existing {@link MatchedSectionDescriptor} shall be returned.
@@ -1483,7 +1479,7 @@ public class SourceSectionMatcher extends CancelableElement {
 			// are able to determine the concrete MatchedSectionDescriptor
 			// representing the given sourceElement
 			//
-			List<MatchedSectionDescriptor> descriptors = this.sections2Descriptors.get(sourceSectionClass.get());
+			List<MatchedSectionDescriptor> descriptors = this.matchedSectionRegistry.get(sourceSectionClass.get());
 			return descriptors != null
 					? descriptors.stream().filter(d -> d.getAssociatedSourceModelElement().equals(sourceElement))
 							.findAny()

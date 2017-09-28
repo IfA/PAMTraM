@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
-import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
+import de.mfreund.gentrans.transformation.calculation.ValueCalculator;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.HintValueStorage;
 import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
@@ -141,7 +141,7 @@ public class LibraryEntryInstantiator {
 	 *            target sections.
 	 * @return <em>true</em> if everything went well, <em>false</em> otherwise.
 	 */
-	public boolean instantiate(GenLibraryManager manager, AttributeValueCalculator calculator,
+	public boolean instantiate(GenLibraryManager manager, ValueCalculator calculator,
 			TargetSectionRegistry targetSectionRegistry) {
 
 		if (!manager.existsImplementationFor(this.ePackageURI)) {
@@ -237,7 +237,7 @@ public class LibraryEntryInstantiator {
 	 * affect the names of the elements to be created.
 	 *
 	 * @param calculator
-	 *            The {@link AttributeValueCalculator} that shall be used to
+	 *            The {@link ValueCalculator} that shall be used to
 	 *            calculate the value of the 'id' attribute.
 	 * @return The calculated id or the specified
 	 *         {@link VirtualAttribute#getValue() value} if there was no
@@ -245,7 +245,7 @@ public class LibraryEntryInstantiator {
 	 *         '<em><b>null</b></em>' if an AttributeMapping was found but no
 	 *         value could be calculated.
 	 */
-	private String determineID(AttributeValueCalculator calculator) {
+	private String determineID(ValueCalculator calculator) {
 
 		Optional<AttributeMapping> idMapping = this.mappingHints.parallelStream()
 				.filter(mappingHint -> mappingHint instanceof AttributeMapping
@@ -264,13 +264,13 @@ public class LibraryEntryInstantiator {
 	 * virtual} 'classpath' attribute that produces a more specific classpath.
 	 *
 	 * @param calculator
-	 *            The {@link AttributeValueCalculator} that shall be used to
+	 *            The {@link ValueCalculator} that shall be used to
 	 *            calculate the value of the 'classpath' attribute.
 	 * @return The calculated (more specific) value or the original classpath if
 	 *         there was no {@link AttributeMapping} for the 'classpath'
 	 *         attribute.
 	 */
-	private String determineResultingClasspath(AttributeValueCalculator calculator) {
+	private String determineResultingClasspath(ValueCalculator calculator) {
 
 		// Determine the attribute mapping responsible for the 'Path' attribute
 		//
@@ -305,14 +305,14 @@ public class LibraryEntryInstantiator {
 	 *            {@link ExternalReferenceParameter
 	 *            ExternalReferenceParameters}.
 	 * @param calculator
-	 *            The {@link AttributeValueCalculator} that shall be used to
+	 *            The {@link ValueCalculator} that shall be used to
 	 *            calculate attribute values.
 	 * @return '<em><b>true</b></em>' if everything went well;
 	 *         '<em><b>false</b></em>' if an error occurred.
 	 */
 	@SuppressWarnings("unchecked")
 	private boolean prepareParameters(TargetSectionRegistry targetSectionRegistry,
-			AttributeValueCalculator calculator) {
+			ValueCalculator calculator) {
 
 		for (LibraryParameter<?> param : this.libraryEntry.getParameters()) {
 

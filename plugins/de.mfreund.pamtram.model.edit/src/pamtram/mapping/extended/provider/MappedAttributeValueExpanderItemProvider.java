@@ -15,54 +15,52 @@ import org.eclipse.emf.edit.provider.StyledString;
 
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.extended.AttributeMapping;
-import pamtram.mapping.extended.AttributeMatcher;
 import pamtram.mapping.extended.ExpandableHint;
 import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.mapping.extended.MappedAttributeValueExpander;
 import pamtram.mapping.extended.MappingHint;
-import pamtram.mapping.extended.ReferenceTargetSelector;
 
 /**
- * This is the item provider adapter for a
- * {@link pamtram.mapping.extended.MappedAttributeValueExpander} object. <!--
+ * This is the item provider adapter for a {@link pamtram.mapping.extended.MappedAttributeValueExpander} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  *
  * @generated
  */
 public class MappedAttributeValueExpanderItemProvider extends HintImporterMappingHintItemProvider {
+
 	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
 	public MappedAttributeValueExpanderItemProvider(AdapterFactory adapterFactory) {
+
 		super(adapterFactory);
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addHintsToExpandPropertyDescriptor(object);
+			this.addHintsToExpandPropertyDescriptor(object);
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Hints To Expand feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Hints To Expand feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
 	protected void addHintsToExpandPropertyDescriptor(Object object) {
+
 		this.itemPropertyDescriptors.add(new ItemPropertyDescriptor(
 				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
 				this.getString("_UI_MappedAttributeValueExpander_hintsToExpand_feature"),
@@ -72,6 +70,7 @@ public class MappedAttributeValueExpanderItemProvider extends HintImporterMappin
 
 			@Override
 			public Collection<?> getChoiceOfValues(Object object) {
+
 				// the parent Mapping Hint Group
 				MappingHintGroupImporter parent = (MappingHintGroupImporter) ((MappedAttributeValueExpander) object)
 						.eContainer();
@@ -82,10 +81,6 @@ public class MappedAttributeValueExpanderItemProvider extends HintImporterMappin
 					for (MappingHint h : parent.getHintGroup().getMappingHints()) {
 						if (h instanceof AttributeMapping) {
 							choices.add((AttributeMapping) h);
-						} else if (h instanceof ReferenceTargetSelector) {
-							if (((ReferenceTargetSelector) h).getMatcher() instanceof AttributeMatcher) {
-								choices.add((ExpandableHint) ((ReferenceTargetSelector) h).getMatcher());
-							}
 						}
 					}
 				}
@@ -163,56 +158,59 @@ public class MappedAttributeValueExpanderItemProvider extends HintImporterMappin
 	// }
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+
+		return ((StyledString) this.getStyledText(object)).getString();
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((MappedAttributeValueExpander)object).getName();
-    	StyledString styledLabel = new StyledString();
+
+		String label = ((MappedAttributeValueExpander) object).getName();
+		StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_MappedAttributeValueExpander_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(this.getString("_UI_MappedAttributeValueExpander_type"),
+					StyledString.Style.QUALIFIER_STYLER);
 		} else {
-			styledLabel.append(getString("_UI_MappedAttributeValueExpander_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(this.getString("_UI_MappedAttributeValueExpander_type"),
+					StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+
+		this.updateChildren(notification);
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing the children that can be created under this object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

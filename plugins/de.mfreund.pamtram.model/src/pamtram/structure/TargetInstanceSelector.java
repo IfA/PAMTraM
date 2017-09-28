@@ -2,7 +2,10 @@
  */
 package pamtram.structure;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import pamtram.structure.target.TargetSectionAttribute;
+import pamtram.structure.target.TargetSectionClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,7 +24,8 @@ import pamtram.structure.target.TargetSectionAttribute;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.TargetInstanceSelector#getTarget <em>Target</em>}</li>
+ *   <li>{@link pamtram.structure.TargetInstanceSelector#getReferenceAttribute <em>Reference Attribute</em>}</li>
+ *   <li>{@link pamtram.structure.TargetInstanceSelector#getTargetClass <em>Target Class</em>}</li>
  * </ul>
  *
  * @see pamtram.structure.StructurePackage#getTargetInstanceSelector()
@@ -30,7 +34,7 @@ import pamtram.structure.target.TargetSectionAttribute;
  */
 public interface TargetInstanceSelector extends InstanceSelector {
 	/**
-	 * Returns the value of the '<em><b>Target</b></em>' reference.
+	 * Returns the value of the '<em><b>Reference Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Target</em>' reference isn't clear,
@@ -38,24 +42,57 @@ public interface TargetInstanceSelector extends InstanceSelector {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The specific attribute of the created TargetSections whose value is compared with the reference value used by this selector.
+	 * The TargetSectionClass one of whose created instances shall be selected.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Target</em>' reference.
-	 * @see #setTarget(TargetSectionAttribute)
-	 * @see pamtram.structure.StructurePackage#getTargetInstanceSelector_Target()
+	 * @return the value of the '<em>Reference Attribute</em>' reference.
+	 * @see #setReferenceAttribute(TargetSectionAttribute)
+	 * @see pamtram.structure.StructurePackage#getTargetInstanceSelector_ReferenceAttribute()
+	 * @model
+	 * @generated
+	 */
+	TargetSectionAttribute getReferenceAttribute();
+
+	/**
+	 * Sets the value of the '{@link pamtram.structure.TargetInstanceSelector#getReferenceAttribute <em>Reference Attribute</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Reference Attribute</em>' reference.
+	 * @see #getReferenceAttribute()
+	 * @generated
+	 */
+	void setReferenceAttribute(TargetSectionAttribute value);
+
+	/**
+	 * Returns the value of the '<em><b>Target Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The TargetSectionClass one of whose created instances shall be selected.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Target Class</em>' reference.
+	 * @see #setTargetClass(TargetSectionClass)
+	 * @see pamtram.structure.StructurePackage#getTargetInstanceSelector_TargetClass()
 	 * @model required="true"
 	 * @generated
 	 */
-	TargetSectionAttribute getTarget();
+	TargetSectionClass getTargetClass();
 
 	/**
-	 * Sets the value of the '{@link pamtram.structure.TargetInstanceSelector#getTarget <em>Target</em>}' reference.
+	 * Sets the value of the '{@link pamtram.structure.TargetInstanceSelector#getTargetClass <em>Target Class</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Target</em>' reference.
-	 * @see #getTarget()
+	 * @param value the new value of the '<em>Target Class</em>' reference.
+	 * @see #getTargetClass()
 	 * @generated
 	 */
-	void setTarget(TargetSectionAttribute value);
+	void setTargetClass(TargetSectionClass value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='if (this.referenceAttribute == null || this.targetClass == null\r\n\t\t\t\t|| this.targetClass.getContainingSection() == null) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\r\t// If a \'targetClass\' has already been set for this \'TargetInstanceSelector\', allow only \'referenceAttributes\'\r\n\t\t// that are part of the same &lt;%pamtram.structure.target.TargetSection%&gt; as the specified \'targetClass\' (or of one of the extended\r\n\t\t// sections).\r\n\t\t//\r\n\r\t&lt;%pamtram.structure.target.TargetSection%&gt; section = this.targetClass.getContainingSection();\r\n\r\tList&lt;&lt;%pamtram.structure.target.TargetSection%&gt;&gt; allowedSections = new ArrayList&lt;&gt;(&lt;%java.util.Arrays%&gt;.asList(section));\r\n\t\tallowedSections.addAll(section.getAllExtend());\r\n\r\tboolean result = allowedSections.contains(this.referenceAttribute.getContainingSection());\r\n\r\tif (!result &amp;&amp; diagnostics != null) {\r\n\r\t\tString errorMessage = \"The \'referenceAttribute\' must be contained in the same &lt;%pamtram.structure.target.TargetSection%&gt; (or an extended section) as the \'targetClass\'!\";\r\n\r\t\tdiagnostics.add(new BasicDiagnostic(&lt;%org.eclipse.emf.common.util.Diagnostic%&gt;.ERROR, &lt;%pamtram.structure.util.StructureValidator%&gt;.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\t&lt;%pamtram.structure.util.StructureValidator%&gt;.TARGET_INSTANCE_SELECTOR__VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID, errorMessage,\r\n\t\t\t\t\tnew Object[] { this, &lt;%pamtram.structure.StructurePackage%&gt;.Literals.TARGET_INSTANCE_SELECTOR__REFERENCE_ATTRIBUTE }));\r\n\r\t}\r\n\r\treturn result;'"
+	 * @generated
+	 */
+	boolean validateReferenceAttributeIsValid(DiagnosticChain diagnostics, Map<?, ?> context);
 
 } // TargetInstanceSelector

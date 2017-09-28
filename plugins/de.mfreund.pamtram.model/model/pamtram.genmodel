@@ -103,12 +103,16 @@
         <genOperations ecoreOperation="pamtram.ecore#//structure/InstanceSelector/getExternalSourceElements"/>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//structure/SourceInstanceSelector">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference pamtram.ecore#//structure/SourceInstanceSelector/target"/>
+        <genFeatures notify="false" createChild="false" propertyCategory="Basic" propertyDescription="The specific attribute of the matched SourceSections whose value is compared with the reference value used by this selector."
+            propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//structure/SourceInstanceSelector/referenceAttribute"/>
+        <genFeatures notify="false" createChild="false" propertyCategory="Basic" propertyDescription="The SourceSectionClass one of whose matched instances shall be selected."
+            propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//structure/SourceInstanceSelector/targetClass"/>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//structure/TargetInstanceSelector">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference pamtram.ecore#//structure/TargetInstanceSelector/target"/>
+        <genFeatures notify="false" createChild="false" propertyCategory="Basic" propertyDescription="The TargetSectionClass one of whose created instances shall be selected."
+            propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//structure/TargetInstanceSelector/referenceAttribute"/>
+        <genFeatures notify="false" createChild="false" propertyCategory="Basic" propertyDescription="The TargetSectionClass one of whose created instances shall be selected."
+            propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//structure/TargetInstanceSelector/targetClass"/>
       </genClasses>
       <genClasses image="false" ecoreClass="pamtram.ecore#//structure/InstanceSelectorSourceInterface"/>
       <genClasses ecoreClass="pamtram.ecore#//structure/InstanceSelectorSourceElement"/>
@@ -688,6 +692,14 @@
           <genFeatures notify="false" createChild="false" propertyCategory="Extended"
               propertyDescription="A MappingHint from an extended MappingHintGroup that shall not be added to this MappingHintGroup but be overwritten instead."
               propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/extended/MappingHint/overwrite"/>
+          <genOperations ecoreOperation="pamtram.ecore#//mapping/extended/MappingHint/validateOverwritesValidMappingHint">
+            <genParameters ecoreParameter="pamtram.ecore#//mapping/extended/MappingHint/validateOverwritesValidMappingHint/diagnostics"/>
+            <genParameters ecoreParameter="pamtram.ecore#//mapping/extended/MappingHint/validateOverwritesValidMappingHint/context"/>
+          </genOperations>
+          <genOperations ecoreOperation="pamtram.ecore#//mapping/extended/MappingHint/validateConsiderOverwritingHint">
+            <genParameters ecoreParameter="pamtram.ecore#//mapping/extended/MappingHint/validateConsiderOverwritingHint/diagnostics"/>
+            <genParameters ecoreParameter="pamtram.ecore#//mapping/extended/MappingHint/validateConsiderOverwritingHint/context"/>
+          </genOperations>
         </genClasses>
         <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/extended/ExpandableHint"/>
         <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/extended/HintImporterMappingHint"/>

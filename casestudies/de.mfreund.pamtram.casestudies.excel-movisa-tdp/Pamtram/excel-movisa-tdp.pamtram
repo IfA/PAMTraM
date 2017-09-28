@@ -1,97 +1,76 @@
 <?xml version="1.0" encoding="ASCII"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:extended="http://mfreund.de/pamtram/mapping/extended" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:condition="http://mfreund.de/pamtram/condition" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint" xmlns:extended="http://mfreund.de/pamtram/mapping/extended" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target">
   <sourceSectionModels name="Variablen">
     <metaModelPackage href="http://www.et.tu-dresden.de/ifa/excel#/"/>
-    <sections 
-xsi:type="source:SourceSection" name="Variablen">
+    <sections xsi:type="source:SourceSection" name="Variablen">
       <eClass href="http://www.et.tu-dresden.de/ifa/excel#//Variablen"/>
     </sections>
-    <sections 
-xsi:type="source:SourceSection" name="MBTCP">
+    <sections xsi:type="source:SourceSection" name="MBTCP">
       <eClass href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP"/>
     </sections>
-    <sections 
-xsi:type="source:SourceSection" name="AbstractMBTCPItem" abstract="true">
+    <sections xsi:type="source:SourceSection" name="AbstractMBTCPItem" abstract="true">
       <eClass href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0"/>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="Variablenname">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="Variablenname">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Variablenname"/>
       </attributes>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="Datentyp">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="Datentyp">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Datentyp"/>
       </attributes>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="Kommentar">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="Kommentar">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Kommentar"/>
       </attributes>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="Min">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="Min">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Min"/>
       </attributes>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="Max">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="Max">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Max"/>
       </attributes>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="Fractiondigits">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="Fractiondigits">
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Fractiondigits"/>
       </attributes>
     </sections>
-    <sections 
-xsi:type="source:SourceSection" name="Coils" cardinality="ZERO__INFINITY" extend="//@sourceSectionModels.0/@sections.2">
+    <sections xsi:type="source:SourceSection" name="Coils" cardinality="ZERO__INFINITY" extend="//@sourceSectionModels.0/@sections.2">
       <eClass href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0"/>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="Adresse">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="Adresse">
+        <valueConstraints xsi:type="constraint:StringConstraint" name="0xxxxx" expression="0" operatorType="MATCH_BEGINNING"/>
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Adresse"/>
-        <valueConstraints xsi:type="constraint:StringConstraint" operatorType="MATCH_BEGINNING" name="0xxxxx" expression="0"/>
       </attributes>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="AccessMode">
-        <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/AccessMode"/>
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="AccessMode">
         <valueConstraints xsi:type="constraint:EqualityConstraint" expression="r"/>
+        <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/AccessMode"/>
       </attributes>
     </sections>
-    <sections 
-xsi:type="source:SourceSection" name="DiscreteInput" cardinality="ZERO__INFINITY" extend="//@sourceSectionModels.0/@sections.2">
+    <sections xsi:type="source:SourceSection" name="DiscreteInput" cardinality="ZERO__INFINITY" extend="//@sourceSectionModels.0/@sections.2">
       <eClass href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0"/>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="Adresse">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="Adresse">
+        <valueConstraints xsi:type="constraint:StringConstraint" name="0xxxxx" expression="0" operatorType="MATCH_BEGINNING"/>
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Adresse"/>
-        <valueConstraints xsi:type="constraint:StringConstraint" operatorType="MATCH_BEGINNING" name="0xxxxx" expression="0"/>
       </attributes>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="AccessMode">
-        <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/AccessMode"/>
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="AccessMode">
         <valueConstraints xsi:type="constraint:EqualityConstraint" expression="rw"/>
+        <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/AccessMode"/>
       </attributes>
     </sections>
-    <sections 
-xsi:type="source:SourceSection" name="HoldingRegister" cardinality="ZERO__INFINITY" extend="//@sourceSectionModels.0/@sections.2">
+    <sections xsi:type="source:SourceSection" name="HoldingRegister" cardinality="ZERO__INFINITY" extend="//@sourceSectionModels.0/@sections.2">
       <eClass href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0"/>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="Adresse">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="Adresse">
+        <valueConstraints xsi:type="constraint:StringConstraint" name="4xxxxx" expression="4" operatorType="MATCH_BEGINNING"/>
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Adresse"/>
-        <valueConstraints xsi:type="constraint:StringConstraint" operatorType="MATCH_BEGINNING" name="4xxxxx" expression="4"/>
       </attributes>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="AccessMode">
-        <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/AccessMode"/>
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="AccessMode">
         <valueConstraints xsi:type="constraint:EqualityConstraint" expression="r"/>
+        <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/AccessMode"/>
       </attributes>
     </sections>
-    <sections 
-xsi:type="source:SourceSection" name="InputRegister" cardinality="ZERO__INFINITY" extend="//@sourceSectionModels.0/@sections.2">
+    <sections xsi:type="source:SourceSection" name="InputRegister" cardinality="ZERO__INFINITY" extend="//@sourceSectionModels.0/@sections.2">
       <eClass href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0"/>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="Adresse">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="Adresse">
+        <valueConstraints xsi:type="constraint:StringConstraint" name="4xxxxx" expression="4" operatorType="MATCH_BEGINNING"/>
         <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/Adresse"/>
-        <valueConstraints xsi:type="constraint:StringConstraint" operatorType="MATCH_BEGINNING" name="4xxxxx" expression="4"/>
       </attributes>
-      <attributes 
-xsi:type="source:ActualSourceSectionAttribute" name="AccessMode">
-        <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/AccessMode"/>
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="AccessMode">
         <valueConstraints xsi:type="constraint:EqualityConstraint" expression="rw"/>
+        <attribute href="http://www.et.tu-dresden.de/ifa/excel#//MBTCP_Tabelle0/AccessMode"/>
       </attributes>
     </sections>
   </sourceSectionModels>
@@ -166,6 +145,7 @@ xsi:type="source:ActualSourceSectionAttribute" name="AccessMode">
       </mappingHintGroups>
     </mappings>
     <mappings name="CoilsMapping (MBTCP)" sourceSection="//@sourceSectionModels.0/@sections.3">
+      <localCondition xsi:type="condition:ApplicationDependency" comparator="GE" target="//@mappingModels.1/@mappings.0"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Coils" targetSection="//@targetSectionModels.1/@sections.1" extend="//@mappingModels.1/@mappings.1/@mappingHintGroups.0">
         <mappingHints xsi:type="extended:AttributeMapping" name="BaseTypeMapping" target="//@targetSectionModels.1/@sections.1/@attributes.0">
           <sourceElements xsi:type="pamtram:FixedValue" name="Coils" value="Coils"/>
@@ -176,6 +156,7 @@ xsi:type="source:ActualSourceSectionAttribute" name="AccessMode">
       </mappingHintGroups>
     </mappings>
     <mappings name="DiscreteInputMapping (MBTCP)" sourceSection="//@sourceSectionModels.0/@sections.4">
+      <localCondition xsi:type="condition:ApplicationDependency" comparator="GE" target="//@mappingModels.1/@mappings.0"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="DiscreteInput" targetSection="//@targetSectionModels.1/@sections.1" extend="//@mappingModels.1/@mappings.1/@mappingHintGroups.0">
         <mappingHints xsi:type="extended:AttributeMapping" name="BaseTypeMapping" target="//@targetSectionModels.1/@sections.1/@attributes.0">
           <sourceElements xsi:type="pamtram:FixedValue" name="DiscreteInput" value="DiscreteInput"/>
@@ -186,6 +167,7 @@ xsi:type="source:ActualSourceSectionAttribute" name="AccessMode">
       </mappingHintGroups>
     </mappings>
     <mappings name="HoldingRegisterMapping (MBTCP)" sourceSection="//@sourceSectionModels.0/@sections.5">
+      <localCondition xsi:type="condition:ApplicationDependency" comparator="GE" target="//@mappingModels.1/@mappings.0"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="HoldingRegister" targetSection="//@targetSectionModels.1/@sections.1" extend="//@mappingModels.1/@mappings.1/@mappingHintGroups.0">
         <mappingHints xsi:type="extended:AttributeMapping" name="BaseTypeMapping" target="//@targetSectionModels.1/@sections.1/@attributes.0">
           <sourceElements xsi:type="pamtram:FixedValue" name="HoldingRegister" value="HoldingRegister"/>
@@ -196,6 +178,7 @@ xsi:type="source:ActualSourceSectionAttribute" name="AccessMode">
       </mappingHintGroups>
     </mappings>
     <mappings name="InputRegisterMapping (MBTCP)" sourceSection="//@sourceSectionModels.0/@sections.6">
+      <localCondition xsi:type="condition:ApplicationDependency" comparator="GE" target="//@mappingModels.1/@mappings.0"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="InputRegister" targetSection="//@targetSectionModels.1/@sections.1" extend="//@mappingModels.1/@mappings.1/@mappingHintGroups.0">
         <mappingHints xsi:type="extended:AttributeMapping" name="BaseTypeMapping" target="//@targetSectionModels.1/@sections.1/@attributes.0">
           <sourceElements xsi:type="pamtram:FixedValue" name="InputRegister" value="InputRegister"/>
@@ -213,7 +196,7 @@ xsi:type="source:ActualSourceSectionAttribute" name="AccessMode">
     <mappings name="AbstractXMLDAItemMapping" sourceSection="//@sourceSectionModels.0/@sections.2" abstract="true">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OpcXmlDaItem" targetSection="//@targetSectionModels.2/@sections.1">
         <mappingHints xsi:type="extended:AttributeMapping" name="ItemTypeMapping" target="//@targetSectionModels.2/@sections.1/@attributes.3">
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="Datentyp" source="//@sourceSectionModels.0/@sections.2/@attributes.1" modifiers="//@mappingModels.2/@modifierSets.1"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="Datentyp" modifiers="//@mappingModels.2/@modifierSets.1" source="//@sourceSectionModels.0/@sections.2/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="NameMapping" target="//@targetSectionModels.2/@sections.1/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="Variablenname" source="//@sourceSectionModels.0/@sections.2/@attributes.0"/>
@@ -222,33 +205,33 @@ xsi:type="source:ActualSourceSectionAttribute" name="AccessMode">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="Variablenname" source="//@sourceSectionModels.0/@sections.2/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="ItemPathMapping" target="//@targetSectionModels.2/@sections.1/@attributes.2">
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="Variablenname" source="//@sourceSectionModels.0/@sections.2/@attributes.0" modifiers="//@mappingModels.2/@modifierSets.0"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="Variablenname" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.0/@sections.2/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
     </mappings>
     <mappings name="CoilsMapping (XMLDA)" sourceSection="//@sourceSectionModels.0/@sections.3">
+      <localCondition xsi:type="condition:ApplicationDependency" comparator="GE" target="//@mappingModels.2/@mappings.0"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Coils" targetSection="//@targetSectionModels.2/@sections.1" extend="//@mappingModels.2/@mappings.1/@mappingHintGroups.0"/>
     </mappings>
     <mappings name="DiscreteInputMapping (XMLDA)" sourceSection="//@sourceSectionModels.0/@sections.4">
+      <localCondition xsi:type="condition:ApplicationDependency" comparator="GE" target="//@mappingModels.2/@mappings.0"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="DiscreteInput" targetSection="//@targetSectionModels.2/@sections.1" extend="//@mappingModels.2/@mappings.1/@mappingHintGroups.0"/>
     </mappings>
     <mappings name="HoldingRegisterMapping (XMLDA)" sourceSection="//@sourceSectionModels.0/@sections.5">
+      <localCondition xsi:type="condition:ApplicationDependency" comparator="GE" target="//@mappingModels.2/@mappings.0"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="HoldingRegister" targetSection="//@targetSectionModels.2/@sections.1" extend="//@mappingModels.2/@mappings.1/@mappingHintGroups.0"/>
     </mappings>
     <mappings name="InputRegisterMapping (XMLDA)" sourceSection="//@sourceSectionModels.0/@sections.6">
+      <localCondition xsi:type="condition:ApplicationDependency" comparator="GE" target="//@mappingModels.2/@mappings.0"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="InputRegister" targetSection="//@targetSectionModels.2/@sections.1" extend="//@mappingModels.2/@mappings.1/@mappingHintGroups.0"/>
     </mappings>
     <modifierSets name="preprend &quot;Schneider/&quot;">
-      
-<modifiers xsi:type="modifier:StringPrepender" name="Schneider/" string="Schneider/"/>
+      <modifiers xsi:type="modifier:StringPrepender" name="Schneider/" string="Schneider/"/>
     </modifierSets>
     <modifierSets name="Convert Modbus to XML DA Data Types">
-      
-<modifiers xsi:type="modifier:SubstringReplacer" name="BOOL2boolean" regex="BOOL" replacement="boolean"/>
-      
-<modifiers xsi:type="modifier:SubstringReplacer" name="INT2int" regex="INT" replacement="int"/>
-      
-<modifiers xsi:type="modifier:SubstringReplacer" name="REAL2float" regex="REAL" replacement="float"/>
+      <modifiers xsi:type="modifier:SubstringReplacer" name="BOOL2boolean" regex="BOOL" replacement="boolean"/>
+      <modifiers xsi:type="modifier:SubstringReplacer" name="INT2int" regex="INT" replacement="int"/>
+      <modifiers xsi:type="modifier:SubstringReplacer" name="REAL2float" regex="REAL" replacement="float"/>
     </modifierSets>
   </mappingModels>
 </pamtram:PAMTraM>

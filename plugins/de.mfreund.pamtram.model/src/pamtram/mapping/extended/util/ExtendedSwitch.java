@@ -19,6 +19,7 @@ import pamtram.structure.GlobalDynamicSourceElement;
 import pamtram.structure.InstanceSelector;
 import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.LocalDynamicSourceElement;
+import pamtram.structure.TargetInstanceSelector;
 import pamtram.structure.constraint.ValueConstraintSourceInterface;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Reference;
@@ -271,35 +272,15 @@ public class ExtendedSwitch<T> extends Switch<T> {
 				ReferenceTargetSelector referenceTargetSelector = (ReferenceTargetSelector)theEObject;
 				T result = caseReferenceTargetSelector(referenceTargetSelector);
 				if (result == null) result = caseMappingHint(referenceTargetSelector);
+				if (result == null) result = caseTargetInstanceSelector(referenceTargetSelector);
 				if (result == null) result = caseMappingHintType(referenceTargetSelector);
 				if (result == null) result = caseConditionalElement(referenceTargetSelector);
 				if (result == null) result = caseDeactivatableElement(referenceTargetSelector);
+				if (result == null) result = caseInstanceSelector(referenceTargetSelector);
 				if (result == null) result = caseMappingHintBaseType(referenceTargetSelector);
+				if (result == null) result = caseExpressionElement(referenceTargetSelector);
+				if (result == null) result = caseModifiableElement(referenceTargetSelector);
 				if (result == null) result = caseNamedElement(referenceTargetSelector);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ExtendedPackage.MATCHER: {
-				Matcher matcher = (Matcher)theEObject;
-				T result = caseMatcher(matcher);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ExtendedPackage.CLASS_MATCHER: {
-				ClassMatcher classMatcher = (ClassMatcher)theEObject;
-				T result = caseClassMatcher(classMatcher);
-				if (result == null) result = caseMatcher(classMatcher);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ExtendedPackage.ATTRIBUTE_MATCHER: {
-				AttributeMatcher attributeMatcher = (AttributeMatcher)theEObject;
-				T result = caseAttributeMatcher(attributeMatcher);
-				if (result == null) result = caseMatcher(attributeMatcher);
-				if (result == null) result = caseExpandableHint(attributeMatcher);
-				if (result == null) result = caseInstanceSelector(attributeMatcher);
-				if (result == null) result = caseExpressionElement(attributeMatcher);
-				if (result == null) result = caseModifiableElement(attributeMatcher);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -307,23 +288,15 @@ public class ExtendedSwitch<T> extends Switch<T> {
 				ContainerSelector containerSelector = (ContainerSelector)theEObject;
 				T result = caseContainerSelector(containerSelector);
 				if (result == null) result = caseMappingHint(containerSelector);
-				if (result == null) result = caseInstanceSelector(containerSelector);
+				if (result == null) result = caseTargetInstanceSelector(containerSelector);
 				if (result == null) result = caseMappingHintType(containerSelector);
 				if (result == null) result = caseConditionalElement(containerSelector);
 				if (result == null) result = caseDeactivatableElement(containerSelector);
+				if (result == null) result = caseInstanceSelector(containerSelector);
+				if (result == null) result = caseMappingHintBaseType(containerSelector);
 				if (result == null) result = caseExpressionElement(containerSelector);
 				if (result == null) result = caseModifiableElement(containerSelector);
-				if (result == null) result = caseMappingHintBaseType(containerSelector);
 				if (result == null) result = caseNamedElement(containerSelector);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ExtendedPackage.CONTAINER_SELECTOR_TARGET_ATTRIBUTE: {
-				ContainerSelectorTargetAttribute containerSelectorTargetAttribute = (ContainerSelectorTargetAttribute)theEObject;
-				T result = caseContainerSelectorTargetAttribute(containerSelectorTargetAttribute);
-				if (result == null) result = caseDynamicSourceElement(containerSelectorTargetAttribute);
-				if (result == null) result = caseNamedElement(containerSelectorTargetAttribute);
-				if (result == null) result = caseModifiableElement(containerSelectorTargetAttribute);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -595,51 +568,6 @@ public class ExtendedSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Matcher</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Matcher</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMatcher(Matcher object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Class Matcher</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Class Matcher</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseClassMatcher(ClassMatcher object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Attribute Matcher</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Attribute Matcher</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAttributeMatcher(AttributeMatcher object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Container Selector</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -651,21 +579,6 @@ public class ExtendedSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseContainerSelector(ContainerSelector object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Container Selector Target Attribute</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Container Selector Target Attribute</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseContainerSelectorTargetAttribute(ContainerSelectorTargetAttribute object) {
 		return null;
 	}
 
@@ -1041,6 +954,21 @@ public class ExtendedSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseInstanceSelector(InstanceSelector object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Target Instance Selector</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Target Instance Selector</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTargetInstanceSelector(TargetInstanceSelector object) {
 		return null;
 	}
 

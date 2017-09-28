@@ -25,6 +25,21 @@
     </sections>
     <sections xsi:type="target:TargetSection" name="SimpleContainer" cardinality="ZERO__INFINITY">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/SimpleContainer"/>
+      <references xsi:type="target:TargetSectionCompositeReference" name="AggregatedComponent">
+        <value xsi:type="target:TargetSectionClass" name="SimpleContainer" cardinality="ONE__INFINITY">
+          <eClass href="http://stefan-hennig.de/movisa#//presentation/SimpleContainer"/>
+          <references xsi:type="target:TargetSectionCompositeReference" name="AggregatedComponent">
+            <value xsi:type="target:TargetSectionClass" name="SimpleContainer" cardinality="ONE__INFINITY">
+              <eClass href="http://stefan-hennig.de/movisa#//presentation/SimpleContainer"/>
+              <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name">
+                <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+              </attributes>
+            </value>
+            <eReference href="http://stefan-hennig.de/movisa#//presentation/ComplexUIComponent/AggregatedComponent"/>
+          </references>
+        </value>
+        <eReference href="http://stefan-hennig.de/movisa#//presentation/ComplexUIComponent/AggregatedComponent"/>
+      </references>
       <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name">
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
@@ -36,10 +51,7 @@
         <mappingHints xsi:type="extended:AttributeMapping" name="NameMapping" target="//@targetSectionModels.0/@sections.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" source="//@sourceSectionModels.0/@sections.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ContainerSelector" name="invalid selector" referenceAttribute="//@targetSectionModels.0/@sections.1/@attributes.0" targetClass="//@targetSectionModels.0/@sections.1">
-          <sourceElements xsi:type="pamtram:FixedValue" name="invalid value" value="abcde"/>
-        </mappingHints>
-        <mappingHints xsi:type="extended:ContainerSelector" name="connectToSimpleContainer" referenceAttribute="//@targetSectionModels.0/@sections.1/@attributes.0" targetClass="//@targetSectionModels.0/@sections.1">
+        <mappingHints xsi:type="extended:ContainerSelector" name="connectToSimpleContainer" referenceAttribute="//@targetSectionModels.0/@sections.1/@attributes.0" targetClass="//@targetSectionModels.0/@sections.1/@references.0/@value.0/@references.0/@value.0">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.0" source="//@sourceSectionModels.0/@sections.0/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
@@ -48,6 +60,10 @@
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SimpleContainer" targetSection="//@targetSectionModels.0/@sections.1">
         <mappingHints xsi:type="extended:AttributeMapping" name="NameMapping" target="//@targetSectionModels.0/@sections.1/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" source="//@sourceSectionModels.0/@sections.1/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:AttributeMapping" name="NameMapping" target="//@targetSectionModels.0/@sections.1/@references.0/@value.0/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" source="//@sourceSectionModels.0/@sections.1/@attributes.0"/>
+          <sourceElements xsi:type="pamtram:FixedValue" name="_TextLabel" value="_TextLabel"/>
         </mappingHints>
       </mappingHintGroups>
     </mappings>

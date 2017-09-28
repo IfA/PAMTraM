@@ -325,8 +325,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		Optional<PAMTraM> pamtramModel = modelConnectionHint != null
 				? this.pamtramModels.stream()
 						.filter(p -> p.getTargetSections()
-								.containsAll(modelConnectionHint.getTargetAttributes().stream()
-										.map(t -> t.getSource().getContainingSection()).collect(Collectors.toList())))
+								.contains(modelConnectionHint.getTargetClass().getContainingSection()))
 						.findAny()
 				: Optional.ofNullable(this.pamtramModels.get(0));
 

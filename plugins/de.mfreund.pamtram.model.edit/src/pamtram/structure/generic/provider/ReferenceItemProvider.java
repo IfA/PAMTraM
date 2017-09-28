@@ -25,9 +25,8 @@ import pamtram.structure.generic.Reference;
 public class ReferenceItemProvider extends MetaModelElementItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ReferenceItemProvider(AdapterFactory adapterFactory) {
@@ -35,9 +34,8 @@ public class ReferenceItemProvider extends MetaModelElementItemProvider {
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -51,8 +49,7 @@ public class ReferenceItemProvider extends MetaModelElementItemProvider {
 
 	/**
 	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -61,8 +58,7 @@ public class ReferenceItemProvider extends MetaModelElementItemProvider {
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
@@ -71,7 +67,8 @@ public class ReferenceItemProvider extends MetaModelElementItemProvider {
 
 		String label = ((Reference<?, ?, ?, ?>) object).getName();
 		EReference eReference = object instanceof ActualReference<?, ?, ?, ?>
-				? ((ActualReference<?, ?, ?, ?>) object).getEReference() : null;
+				? ((ActualReference<?, ?, ?, ?>) object).getEReference()
+				: null;
 
 		StyledString styledLabel = new StyledString();
 
@@ -79,7 +76,7 @@ public class ReferenceItemProvider extends MetaModelElementItemProvider {
 			styledLabel.append(label);
 		}
 
-		if (eReference != null) {
+		if (eReference != null && eReference.eContainer() instanceof EClass) {
 			EClass eClass = (EClass) eReference.eContainer();
 			EPackage ePackage = eClass.getEPackage();
 
@@ -100,10 +97,10 @@ public class ReferenceItemProvider extends MetaModelElementItemProvider {
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -113,10 +110,9 @@ public class ReferenceItemProvider extends MetaModelElementItemProvider {
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing the children that can be created under this object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

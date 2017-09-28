@@ -183,13 +183,22 @@ public interface StructurePackage extends EPackage {
 	int SOURCE_INSTANCE_SELECTOR__SOURCE_ELEMENTS = INSTANCE_SELECTOR__SOURCE_ELEMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * The feature id for the '<em><b>Reference Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_INSTANCE_SELECTOR__TARGET = INSTANCE_SELECTOR_FEATURE_COUNT + 0;
+	int SOURCE_INSTANCE_SELECTOR__REFERENCE_ATTRIBUTE = INSTANCE_SELECTOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Target Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_INSTANCE_SELECTOR__TARGET_CLASS = INSTANCE_SELECTOR_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Source Instance Selector</em>' class.
@@ -198,7 +207,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_INSTANCE_SELECTOR_FEATURE_COUNT = INSTANCE_SELECTOR_FEATURE_COUNT + 1;
+	int SOURCE_INSTANCE_SELECTOR_FEATURE_COUNT = INSTANCE_SELECTOR_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Validate No Modified Attribute Element Types In Condition Model Conditions</em>' operation.
@@ -274,13 +283,22 @@ public interface StructurePackage extends EPackage {
 	int TARGET_INSTANCE_SELECTOR__SOURCE_ELEMENTS = INSTANCE_SELECTOR__SOURCE_ELEMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * The feature id for the '<em><b>Reference Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_INSTANCE_SELECTOR__TARGET = INSTANCE_SELECTOR_FEATURE_COUNT + 0;
+	int TARGET_INSTANCE_SELECTOR__REFERENCE_ATTRIBUTE = INSTANCE_SELECTOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Target Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_INSTANCE_SELECTOR__TARGET_CLASS = INSTANCE_SELECTOR_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Target Instance Selector</em>' class.
@@ -289,7 +307,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_INSTANCE_SELECTOR_FEATURE_COUNT = INSTANCE_SELECTOR_FEATURE_COUNT + 1;
+	int TARGET_INSTANCE_SELECTOR_FEATURE_COUNT = INSTANCE_SELECTOR_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Validate No Modified Attribute Element Types In Condition Model Conditions</em>' operation.
@@ -319,13 +337,22 @@ public interface StructurePackage extends EPackage {
 	int TARGET_INSTANCE_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS = INSTANCE_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS;
 
 	/**
+	 * The operation id for the '<em>Validate Reference Attribute Is Valid</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_INSTANCE_SELECTOR___VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID__DIAGNOSTICCHAIN_MAP = INSTANCE_SELECTOR_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Target Instance Selector</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_INSTANCE_SELECTOR_OPERATION_COUNT = INSTANCE_SELECTOR_OPERATION_COUNT + 0;
+	int TARGET_INSTANCE_SELECTOR_OPERATION_COUNT = INSTANCE_SELECTOR_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.InstanceSelectorSourceInterface <em>Instance Selector Source Interface</em>}' class.
@@ -1153,15 +1180,26 @@ public interface StructurePackage extends EPackage {
 	EClass getSourceInstanceSelector();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.structure.SourceInstanceSelector#getTarget <em>Target</em>}'.
+	 * Returns the meta object for the reference '{@link pamtram.structure.SourceInstanceSelector#getReferenceAttribute <em>Reference Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Target</em>'.
-	 * @see pamtram.structure.SourceInstanceSelector#getTarget()
+	 * @return the meta object for the reference '<em>Reference Attribute</em>'.
+	 * @see pamtram.structure.SourceInstanceSelector#getReferenceAttribute()
 	 * @see #getSourceInstanceSelector()
 	 * @generated
 	 */
-	EReference getSourceInstanceSelector_Target();
+	EReference getSourceInstanceSelector_ReferenceAttribute();
+
+	/**
+	 * Returns the meta object for the reference '{@link pamtram.structure.SourceInstanceSelector#getTargetClass <em>Target Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Target Class</em>'.
+	 * @see pamtram.structure.SourceInstanceSelector#getTargetClass()
+	 * @see #getSourceInstanceSelector()
+	 * @generated
+	 */
+	EReference getSourceInstanceSelector_TargetClass();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.structure.TargetInstanceSelector <em>Target Instance Selector</em>}'.
@@ -1174,15 +1212,36 @@ public interface StructurePackage extends EPackage {
 	EClass getTargetInstanceSelector();
 
 	/**
-	 * Returns the meta object for the reference '{@link pamtram.structure.TargetInstanceSelector#getTarget <em>Target</em>}'.
+	 * Returns the meta object for the reference '{@link pamtram.structure.TargetInstanceSelector#getReferenceAttribute <em>Reference Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Target</em>'.
-	 * @see pamtram.structure.TargetInstanceSelector#getTarget()
+	 * @return the meta object for the reference '<em>Reference Attribute</em>'.
+	 * @see pamtram.structure.TargetInstanceSelector#getReferenceAttribute()
 	 * @see #getTargetInstanceSelector()
 	 * @generated
 	 */
-	EReference getTargetInstanceSelector_Target();
+	EReference getTargetInstanceSelector_ReferenceAttribute();
+
+	/**
+	 * Returns the meta object for the reference '{@link pamtram.structure.TargetInstanceSelector#getTargetClass <em>Target Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Target Class</em>'.
+	 * @see pamtram.structure.TargetInstanceSelector#getTargetClass()
+	 * @see #getTargetInstanceSelector()
+	 * @generated
+	 */
+	EReference getTargetInstanceSelector_TargetClass();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.structure.TargetInstanceSelector#validateReferenceAttributeIsValid(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Reference Attribute Is Valid</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Reference Attribute Is Valid</em>' operation.
+	 * @see pamtram.structure.TargetInstanceSelector#validateReferenceAttributeIsValid(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getTargetInstanceSelector__ValidateReferenceAttributeIsValid__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.structure.InstanceSelectorSourceInterface <em>Instance Selector Source Interface</em>}'.
@@ -1413,12 +1472,20 @@ public interface StructurePackage extends EPackage {
 		EClass SOURCE_INSTANCE_SELECTOR = eINSTANCE.getSourceInstanceSelector();
 
 		/**
-		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Reference Attribute</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SOURCE_INSTANCE_SELECTOR__TARGET = eINSTANCE.getSourceInstanceSelector_Target();
+		EReference SOURCE_INSTANCE_SELECTOR__REFERENCE_ATTRIBUTE = eINSTANCE.getSourceInstanceSelector_ReferenceAttribute();
+
+		/**
+		 * The meta object literal for the '<em><b>Target Class</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SOURCE_INSTANCE_SELECTOR__TARGET_CLASS = eINSTANCE.getSourceInstanceSelector_TargetClass();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.structure.impl.TargetInstanceSelectorImpl <em>Target Instance Selector</em>}' class.
@@ -1431,12 +1498,28 @@ public interface StructurePackage extends EPackage {
 		EClass TARGET_INSTANCE_SELECTOR = eINSTANCE.getTargetInstanceSelector();
 
 		/**
-		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Reference Attribute</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TARGET_INSTANCE_SELECTOR__TARGET = eINSTANCE.getTargetInstanceSelector_Target();
+		EReference TARGET_INSTANCE_SELECTOR__REFERENCE_ATTRIBUTE = eINSTANCE.getTargetInstanceSelector_ReferenceAttribute();
+
+		/**
+		 * The meta object literal for the '<em><b>Target Class</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TARGET_INSTANCE_SELECTOR__TARGET_CLASS = eINSTANCE.getTargetInstanceSelector_TargetClass();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Reference Attribute Is Valid</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation TARGET_INSTANCE_SELECTOR___VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID__DIAGNOSTICCHAIN_MAP = eINSTANCE.getTargetInstanceSelector__ValidateReferenceAttributeIsValid__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.structure.InstanceSelectorSourceInterface <em>Instance Selector Source Interface</em>}' class.

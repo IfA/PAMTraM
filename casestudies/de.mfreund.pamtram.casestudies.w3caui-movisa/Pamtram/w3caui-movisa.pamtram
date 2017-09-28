@@ -1,541 +1,541 @@
 <?xml version="1.0" encoding="ASCII"?>
 <pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:condition="http://mfreund.de/pamtram/condition" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint" xmlns:extended="http://mfreund.de/pamtram/mapping/extended" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:target="http://mfreund.de/pamtram/structure/target">
   <sourceSectionModels>
-    <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/0"/>
+    <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/"/>
     <sections xsi:type="source:SourceSection" name="Root">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractUserInterfaceModel"/>
+      <eClass href="http://www.w3.org/2013/mbui-aui#//AbstractUserInterfaceModel"/>
     </sections>
     <sections xsi:type="source:SourceSection" name="sequentialComposition">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
+      <eClass href="http://www.w3.org/2013/mbui-aui#//Composition"/>
       <attributes xsi:type="source:ActualSourceSectionAttribute" name="compositionRole">
         <valueConstraints xsi:type="constraint:EqualityConstraint" name="sequential" expression="sequential"/>
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/compositionRole"/>
+        <attribute href="http://www.w3.org/2013/mbui-aui#//Composition/compositionRole"/>
       </attributes>
       <attributes xsi:type="source:ActualSourceSectionAttribute" name="id">
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/id"/>
+        <attribute href="http://www.w3.org/2013/mbui-aui#//Composition/id"/>
       </attributes>
       <attributes xsi:type="source:ActualSourceSectionAttribute" name="associatedWith">
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/associatedWith"/>
+        <attribute href="http://www.w3.org/2013/mbui-aui#//Composition/associatedWith"/>
       </attributes>
     </sections>
   </sourceSectionModels>
   <sourceSectionModels name="AIUs">
-    <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/0"/>
+    <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/"/>
     <sections xsi:type="source:SourceSection" name="AIU base" abstract="true">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
+      <eClass href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit"/>
       <attributes xsi:type="source:ActualSourceSectionAttribute" name="id">
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>
+        <attribute href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/id"/>
       </attributes>
     </sections>
     <sections xsi:type="source:SourceSection" name="Navigation" extend="//@sourceSectionModels.1/@sections.0">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
+      <eClass href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit"/>
       <references xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
         <value xsi:type="source:SourceSectionClass" name="EventSupport">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
+          <eClass href="http://www.w3.org/2013/mbui-aui#//EventSupport"/>
           <references xsi:type="source:SourceSectionCompositeReference" name="triggerSupport">
             <value xsi:type="source:SourceSectionClass" name="TriggerSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/TriggerSupport"/>
+              <eClass href="http://www.w3.org/2013/mbui-aui#//TriggerSupport"/>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="triggerType">
                 <valueConstraints xsi:type="constraint:EqualityConstraint" name="next" expression="next"/>
                 <valueConstraints xsi:type="constraint:EqualityConstraint" name="navigation" expression="navigation"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/TriggerSupport/triggerType"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//TriggerSupport/triggerType"/>
               </attributes>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="triggerExpression">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/TriggerSupport/triggerExpression"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//TriggerSupport/triggerExpression"/>
               </attributes>
             </value>
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/triggerSupport"/>
+            <eReference href="http://www.w3.org/2013/mbui-aui#//EventSupport/triggerSupport"/>
           </references>
           <references xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
             <value xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
+              <eClass href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport"/>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="defaultValue">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/defaultValue"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport/defaultValue"/>
               </attributes>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport/isDynamic"/>
               </attributes>
             </value>
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
+            <eReference href="http://www.w3.org/2013/mbui-aui#//EventSupport/dataInputOutputSupport"/>
           </references>
         </value>
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
+        <eReference href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/eventSupport"/>
       </references>
       <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
         <valueConstraints xsi:type="constraint:EqualityConstraint" name="navigation" expression="navigation"/>
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
+        <attribute href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/role"/>
       </attributes>
     </sections>
     <sections xsi:type="source:SourceSection" name="Grouping" extend="//@sourceSectionModels.1/@sections.0">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
+      <eClass href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit"/>
       <references xsi:type="source:SourceSectionCompositeReference" name="aggregatedIn">
         <value xsi:type="source:SourceSectionClass" name="Composition">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
+          <eClass href="http://www.w3.org/2013/mbui-aui#//Composition"/>
           <attributes xsi:type="source:ActualSourceSectionAttribute" name="compositionRole">
             <valueConstraints xsi:type="constraint:EqualityConstraint" name="parallel" expression="parallel"/>
-            <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/compositionRole"/>
+            <attribute href="http://www.w3.org/2013/mbui-aui#//Composition/compositionRole"/>
           </attributes>
           <attributes xsi:type="source:ActualSourceSectionAttribute" name="associatedWith">
-            <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/associatedWith"/>
+            <attribute href="http://www.w3.org/2013/mbui-aui#//Composition/associatedWith"/>
           </attributes>
         </value>
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/aggregatedIn"/>
+        <eReference href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/aggregatedIn"/>
       </references>
       <references xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
         <value xsi:type="source:SourceSectionClass" name="EventSupport">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
+          <eClass href="http://www.w3.org/2013/mbui-aui#//EventSupport"/>
           <references xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
             <value xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
+              <eClass href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport"/>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport/isDynamic"/>
               </attributes>
             </value>
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
+            <eReference href="http://www.w3.org/2013/mbui-aui#//EventSupport/dataInputOutputSupport"/>
           </references>
           <references xsi:type="source:SourceSectionCompositeReference" name="dataSelectionSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataSelectionSupport"/>
+            <eReference href="http://www.w3.org/2013/mbui-aui#//EventSupport/dataSelectionSupport"/>
           </references>
         </value>
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
+        <eReference href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/eventSupport"/>
       </references>
       <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
         <valueConstraints xsi:type="constraint:EqualityConstraint" name="grouping" expression="grouping"/>
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
+        <attribute href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/role"/>
       </attributes>
     </sections>
   </sourceSectionModels>
   <sourceSectionModels name="AIUs - Input">
-    <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/0"/>
+    <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/"/>
     <sections xsi:type="source:SourceSection" name="Confirmation" extend="//@sourceSectionModels.1/@sections.0">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
+      <eClass href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit"/>
       <references xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
         <value xsi:type="source:SourceSectionClass" name="EventSupport">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
+          <eClass href="http://www.w3.org/2013/mbui-aui#//EventSupport"/>
           <references xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
             <value xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
+              <eClass href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport"/>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="defaultValue">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/defaultValue"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport/defaultValue"/>
               </attributes>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="dataType">
                 <valueConstraints xsi:type="constraint:EqualityConstraint" name="in" expression="in"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport/dataType"/>
               </attributes>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport/isDynamic"/>
               </attributes>
             </value>
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
+            <eReference href="http://www.w3.org/2013/mbui-aui#//EventSupport/dataInputOutputSupport"/>
           </references>
         </value>
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
+        <eReference href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/eventSupport"/>
       </references>
       <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
         <valueConstraints xsi:type="constraint:EqualityConstraint" name="confirmation" expression="confirmation"/>
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
+        <attribute href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/role"/>
       </attributes>
     </sections>
     <sections xsi:type="source:SourceSection" name="Slider" extend="//@sourceSectionModels.1/@sections.0">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
+      <eClass href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit"/>
       <references xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
         <value xsi:type="source:SourceSectionClass" name="EventSupport">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
+          <eClass href="http://www.w3.org/2013/mbui-aui#//EventSupport"/>
           <references xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
             <value xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
+              <eClass href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport"/>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="dataType">
                 <valueConstraints xsi:type="constraint:EqualityConstraint" name="in" expression="in"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport/dataType"/>
               </attributes>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport/isDynamic"/>
               </attributes>
             </value>
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
+            <eReference href="http://www.w3.org/2013/mbui-aui#//EventSupport/dataInputOutputSupport"/>
           </references>
           <references xsi:type="source:SourceSectionCompositeReference" name="dataSelectionSupport">
             <value xsi:type="source:SourceSectionClass" name="DataSelectionSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport"/>
+              <eClass href="http://www.w3.org/2013/mbui-aui#//DataSelectionSupport"/>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="selectionType">
                 <valueConstraints xsi:type="constraint:EqualityConstraint" name="single" expression="single"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/selectionType"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataSelectionSupport/selectionType"/>
               </attributes>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="end">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/end"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataSelectionSupport/end"/>
               </attributes>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="start">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/start"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataSelectionSupport/start"/>
               </attributes>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="isContinuous">
                 <valueConstraints xsi:type="constraint:EqualityConstraint" name="true" expression="true"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/isContinuous"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataSelectionSupport/isContinuous"/>
               </attributes>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="selectionStep">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/selectionStep"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataSelectionSupport/selectionStep"/>
               </attributes>
             </value>
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataSelectionSupport"/>
+            <eReference href="http://www.w3.org/2013/mbui-aui#//EventSupport/dataSelectionSupport"/>
           </references>
         </value>
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
+        <eReference href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/eventSupport"/>
       </references>
     </sections>
     <sections xsi:type="source:SourceSection" name="inOut" extend="//@sourceSectionModels.1/@sections.0">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
+      <eClass href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit"/>
       <references xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
         <value xsi:type="source:SourceSectionClass" name="EventSupport">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
+          <eClass href="http://www.w3.org/2013/mbui-aui#//EventSupport"/>
           <references xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
             <value xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
+              <eClass href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport"/>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="dataType">
                 <valueConstraints xsi:type="constraint:EqualityConstraint" name="inOut" expression="in_out"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport/dataType"/>
               </attributes>
             </value>
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
+            <eReference href="http://www.w3.org/2013/mbui-aui#//EventSupport/dataInputOutputSupport"/>
           </references>
         </value>
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
+        <eReference href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/eventSupport"/>
       </references>
     </sections>
     <sections xsi:type="source:SourceSection" name="CheckBoxArray" extend="//@sourceSectionModels.1/@sections.0">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
+      <eClass href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit"/>
       <references xsi:type="source:SourceSectionCompositeReference" name="aggregatedIn">
         <value xsi:type="source:SourceSectionClass" name="Composition">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
+          <eClass href="http://www.w3.org/2013/mbui-aui#//Composition"/>
           <attributes xsi:type="source:ActualSourceSectionAttribute" name="compositionRole">
             <valueConstraints xsi:type="constraint:EqualityConstraint" name="parallel" expression="parallel"/>
-            <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/compositionRole"/>
+            <attribute href="http://www.w3.org/2013/mbui-aui#//Composition/compositionRole"/>
           </attributes>
           <attributes xsi:type="source:ActualSourceSectionAttribute" name="associatedWith">
-            <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/associatedWith"/>
+            <attribute href="http://www.w3.org/2013/mbui-aui#//Composition/associatedWith"/>
           </attributes>
         </value>
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/aggregatedIn"/>
+        <eReference href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/aggregatedIn"/>
       </references>
       <references xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
         <value xsi:type="source:SourceSectionClass" name="EventSupport">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
+          <eClass href="http://www.w3.org/2013/mbui-aui#//EventSupport"/>
           <references xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
             <value xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
+              <eClass href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport"/>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="dataType">
                 <valueConstraints xsi:type="constraint:EqualityConstraint" name="in" expression="in"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport/dataType"/>
               </attributes>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport/isDynamic"/>
               </attributes>
             </value>
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
+            <eReference href="http://www.w3.org/2013/mbui-aui#//EventSupport/dataInputOutputSupport"/>
           </references>
           <references xsi:type="source:SourceSectionCompositeReference" name="dataSelectionSupport">
             <value xsi:type="source:SourceSectionClass" name="DataSelectionSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport"/>
+              <eClass href="http://www.w3.org/2013/mbui-aui#//DataSelectionSupport"/>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="selectionType">
                 <valueConstraints xsi:type="constraint:EqualityConstraint" name="multiple" expression="multiple"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/selectionType"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataSelectionSupport/selectionType"/>
               </attributes>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="isContinuous">
                 <valueConstraints xsi:type="constraint:EqualityConstraint" name="false" expression="false"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/isContinuous"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataSelectionSupport/isContinuous"/>
               </attributes>
             </value>
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataSelectionSupport"/>
+            <eReference href="http://www.w3.org/2013/mbui-aui#//EventSupport/dataSelectionSupport"/>
           </references>
         </value>
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
+        <eReference href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/eventSupport"/>
       </references>
       <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
         <valueConstraints xsi:type="constraint:EqualityConstraint" name="grouping" expression="grouping"/>
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
+        <attribute href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/role"/>
       </attributes>
     </sections>
     <sections xsi:type="source:SourceSection" name="CheckBox" extend="//@sourceSectionModels.1/@sections.0">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
+      <eClass href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit"/>
       <references xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
         <value xsi:type="source:SourceSectionClass" name="EventSupport">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
+          <eClass href="http://www.w3.org/2013/mbui-aui#//EventSupport"/>
           <references xsi:type="source:SourceSectionCompositeReference" name="dataSelectionSupport">
             <value xsi:type="source:SourceSectionClass" name="DataSelectionSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport"/>
+              <eClass href="http://www.w3.org/2013/mbui-aui#//DataSelectionSupport"/>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="selectionType">
                 <valueConstraints xsi:type="constraint:EqualityConstraint" name="multiple" expression="multiple"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/selectionType"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataSelectionSupport/selectionType"/>
               </attributes>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="isContinuous">
                 <valueConstraints xsi:type="constraint:EqualityConstraint" name="false" expression="false"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/isContinuous"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataSelectionSupport/isContinuous"/>
               </attributes>
             </value>
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataSelectionSupport"/>
+            <eReference href="http://www.w3.org/2013/mbui-aui#//EventSupport/dataSelectionSupport"/>
           </references>
           <references xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
             <value xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
+              <eClass href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport"/>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="defaultValue">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/defaultValue"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport/defaultValue"/>
               </attributes>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="dataType">
                 <valueConstraints xsi:type="constraint:EqualityConstraint" name="in" expression="in"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport/dataType"/>
               </attributes>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport/isDynamic"/>
               </attributes>
             </value>
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
+            <eReference href="http://www.w3.org/2013/mbui-aui#//EventSupport/dataInputOutputSupport"/>
           </references>
         </value>
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
+        <eReference href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/eventSupport"/>
       </references>
       <references xsi:type="source:SourceSectionCompositeReference" name="aggregatedIn">
         <value xsi:type="source:SourceSectionClass" name="Composition">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
+          <eClass href="http://www.w3.org/2013/mbui-aui#//Composition"/>
           <attributes xsi:type="source:ActualSourceSectionAttribute" name="compositionRole">
             <valueConstraints xsi:type="constraint:EqualityConstraint" name="parallel" type="FORBIDDEN" expression="parallel"/>
-            <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/compositionRole"/>
+            <attribute href="http://www.w3.org/2013/mbui-aui#//Composition/compositionRole"/>
           </attributes>
         </value>
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/aggregatedIn"/>
+        <eReference href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/aggregatedIn"/>
       </references>
       <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
         <valueConstraints xsi:type="constraint:EqualityConstraint" name=""/>
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
+        <attribute href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/role"/>
       </attributes>
     </sections>
     <sections xsi:type="source:SourceSection" name="RadioButton" extend="//@sourceSectionModels.1/@sections.0">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
+      <eClass href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit"/>
       <references xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
         <value xsi:type="source:SourceSectionClass" name="EventSupport">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
+          <eClass href="http://www.w3.org/2013/mbui-aui#//EventSupport"/>
           <references xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
             <value xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
+              <eClass href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport"/>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="dataType">
                 <valueConstraints xsi:type="constraint:EqualityConstraint" name="in" expression="in"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport/dataType"/>
               </attributes>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="defaultValue">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/defaultValue"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport/defaultValue"/>
               </attributes>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport/isDynamic"/>
               </attributes>
             </value>
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
+            <eReference href="http://www.w3.org/2013/mbui-aui#//EventSupport/dataInputOutputSupport"/>
           </references>
           <references xsi:type="source:SourceSectionCompositeReference" name="dataSelectionSupport">
             <value xsi:type="source:SourceSectionClass" name="DataSelectionSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport"/>
+              <eClass href="http://www.w3.org/2013/mbui-aui#//DataSelectionSupport"/>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="isContinuous">
                 <valueConstraints xsi:type="constraint:EqualityConstraint" name="false" expression="false"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/isContinuous"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataSelectionSupport/isContinuous"/>
               </attributes>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="selectionType">
                 <valueConstraints xsi:type="constraint:EqualityConstraint" name="single" expression="single"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/selectionType"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataSelectionSupport/selectionType"/>
               </attributes>
             </value>
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataSelectionSupport"/>
+            <eReference href="http://www.w3.org/2013/mbui-aui#//EventSupport/dataSelectionSupport"/>
           </references>
         </value>
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
+        <eReference href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/eventSupport"/>
       </references>
       <references xsi:type="source:VirtualSourceSectionCrossReference" name="containingRadioButtonGroup" value="//@sourceSectionModels.2/@sections.6" derivation="self.eContainer().oclAsType(w3caui::AbstractUserInterfaceModel).abstractInteractionUnit->select(a|a.oclAsType(w3caui::AbstractInteractionUnit).aggregatedIn.associatedWith->includes(self.id))->asSequence()->first()"/>
       <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
         <valueConstraints xsi:type="constraint:EqualityConstraint" name=""/>
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
+        <attribute href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/role"/>
       </attributes>
     </sections>
     <sections xsi:type="source:SourceSection" name="RadioButtonGroup">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
+      <eClass href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit"/>
       <references xsi:type="source:SourceSectionCompositeReference" name="aggregatedIn">
         <value xsi:type="source:SourceSectionClass" name="Composition">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
+          <eClass href="http://www.w3.org/2013/mbui-aui#//Composition"/>
           <attributes xsi:type="source:ActualSourceSectionAttribute" name="compositionRole">
             <valueConstraints xsi:type="constraint:EqualityConstraint" name="parallel" expression="parallel"/>
-            <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/compositionRole"/>
+            <attribute href="http://www.w3.org/2013/mbui-aui#//Composition/compositionRole"/>
           </attributes>
           <attributes xsi:type="source:ActualSourceSectionAttribute" name="associatedWith">
-            <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/associatedWith"/>
+            <attribute href="http://www.w3.org/2013/mbui-aui#//Composition/associatedWith"/>
           </attributes>
         </value>
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/aggregatedIn"/>
+        <eReference href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/aggregatedIn"/>
       </references>
       <references xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
         <value xsi:type="source:SourceSectionClass" name="EventSupport">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
+          <eClass href="http://www.w3.org/2013/mbui-aui#//EventSupport"/>
           <references xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
             <value xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
+              <eClass href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport"/>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="dataType">
                 <valueConstraints xsi:type="constraint:EqualityConstraint" name="in" expression="in"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport/dataType"/>
               </attributes>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport/isDynamic"/>
               </attributes>
             </value>
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
+            <eReference href="http://www.w3.org/2013/mbui-aui#//EventSupport/dataInputOutputSupport"/>
           </references>
           <references xsi:type="source:SourceSectionCompositeReference" name="dataSelectionSupport">
             <value xsi:type="source:SourceSectionClass" name="DataSelectionSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport"/>
+              <eClass href="http://www.w3.org/2013/mbui-aui#//DataSelectionSupport"/>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="selectionType">
                 <valueConstraints xsi:type="constraint:EqualityConstraint" name="single" expression="single"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/selectionType"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataSelectionSupport/selectionType"/>
               </attributes>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="isContinuous">
                 <valueConstraints xsi:type="constraint:EqualityConstraint" name="false" expression="false"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataSelectionSupport/isContinuous"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataSelectionSupport/isContinuous"/>
               </attributes>
             </value>
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataSelectionSupport"/>
+            <eReference href="http://www.w3.org/2013/mbui-aui#//EventSupport/dataSelectionSupport"/>
           </references>
         </value>
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
+        <eReference href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/eventSupport"/>
       </references>
       <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
         <valueConstraints xsi:type="constraint:EqualityConstraint" name="grouping" expression="grouping"/>
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
+        <attribute href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/role"/>
       </attributes>
       <attributes xsi:type="source:ActualSourceSectionAttribute" name="id">
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>
+        <attribute href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/id"/>
       </attributes>
     </sections>
     <sections xsi:type="source:SourceSection" name="Input" extend="//@sourceSectionModels.1/@sections.0">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
+      <eClass href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit"/>
       <references xsi:type="source:SourceSectionCompositeReference" name="aggregatedIn">
         <value xsi:type="source:SourceSectionClass" name="Composition">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
+          <eClass href="http://www.w3.org/2013/mbui-aui#//Composition"/>
           <attributes xsi:type="source:ActualSourceSectionAttribute" name="compositionRole">
             <valueConstraints xsi:type="constraint:EqualityConstraint" type="FORBIDDEN" expression="parallel"/>
-            <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/compositionRole"/>
+            <attribute href="http://www.w3.org/2013/mbui-aui#//Composition/compositionRole"/>
           </attributes>
         </value>
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/aggregatedIn"/>
+        <eReference href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/aggregatedIn"/>
       </references>
       <references xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
         <value xsi:type="source:SourceSectionClass" name="EventSupport">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
+          <eClass href="http://www.w3.org/2013/mbui-aui#//EventSupport"/>
           <references xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
             <value xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
+              <eClass href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport"/>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="dataType">
                 <valueConstraints xsi:type="constraint:EqualityConstraint" expression="in"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport/dataType"/>
               </attributes>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="defaultValue">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/defaultValue"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport/defaultValue"/>
               </attributes>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport/isDynamic"/>
               </attributes>
             </value>
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
+            <eReference href="http://www.w3.org/2013/mbui-aui#//EventSupport/dataInputOutputSupport"/>
           </references>
           <references xsi:type="source:SourceSectionCompositeReference" name="dataSelectionSupport">
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataSelectionSupport"/>
+            <eReference href="http://www.w3.org/2013/mbui-aui#//EventSupport/dataSelectionSupport"/>
           </references>
         </value>
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
+        <eReference href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/eventSupport"/>
       </references>
       <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
         <valueConstraints xsi:type="constraint:EqualityConstraint"/>
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
+        <attribute href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/role"/>
       </attributes>
     </sections>
   </sourceSectionModels>
   <sourceSectionModels name="AIUs - Output">
-    <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/0"/>
+    <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/"/>
     <sections xsi:type="source:SourceSection" name="ErrorManagement" extend="//@sourceSectionModels.1/@sections.0">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
+      <eClass href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit"/>
       <references xsi:type="source:SourceSectionCompositeReference" name="aggregatedIn">
         <value xsi:type="source:SourceSectionClass" name="Composition">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
+          <eClass href="http://www.w3.org/2013/mbui-aui#//Composition"/>
         </value>
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/aggregatedIn"/>
+        <eReference href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/aggregatedIn"/>
       </references>
       <references xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
         <value xsi:type="source:SourceSectionClass" name="EventSupport">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
+          <eClass href="http://www.w3.org/2013/mbui-aui#//EventSupport"/>
           <references xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
             <value xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
+              <eClass href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport"/>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="dataType">
                 <valueConstraints xsi:type="constraint:EqualityConstraint" name="out" expression="out"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport/dataType"/>
               </attributes>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport/isDynamic"/>
               </attributes>
             </value>
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
+            <eReference href="http://www.w3.org/2013/mbui-aui#//EventSupport/dataInputOutputSupport"/>
           </references>
         </value>
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
+        <eReference href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/eventSupport"/>
       </references>
       <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
         <valueConstraints xsi:type="constraint:EqualityConstraint" name="error management" expression="error management"/>
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
+        <attribute href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/role"/>
       </attributes>
     </sections>
     <sections xsi:type="source:SourceSection" name="Output" extend="//@sourceSectionModels.1/@sections.0">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
+      <eClass href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit"/>
       <references xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
         <value xsi:type="source:SourceSectionClass" name="EventSupport">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
+          <eClass href="http://www.w3.org/2013/mbui-aui#//EventSupport"/>
           <references xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
             <value xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
+              <eClass href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport"/>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="dataType">
                 <valueConstraints xsi:type="constraint:EqualityConstraint" name="out" expression="out"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport/dataType"/>
               </attributes>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="isDynamic">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/isDynamic"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport/isDynamic"/>
               </attributes>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="defaultValue">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/defaultValue"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport/defaultValue"/>
               </attributes>
             </value>
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
+            <eReference href="http://www.w3.org/2013/mbui-aui#//EventSupport/dataInputOutputSupport"/>
           </references>
         </value>
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
+        <eReference href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/eventSupport"/>
       </references>
       <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
         <valueConstraints xsi:type="constraint:EqualityConstraint"/>
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
+        <attribute href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/role"/>
       </attributes>
     </sections>
-    <sections xsi:type="source:SourceSection" name="guidance" container="//@sourceSectionModels.2/@sections.7" extend="//@sourceSectionModels.1/@sections.0">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
+    <sections xsi:type="source:SourceSection" name="guidance" extend="//@sourceSectionModels.1/@sections.0">
+      <eClass href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit"/>
       <references xsi:type="source:SourceSectionCompositeReference" name="eventSupport">
         <value xsi:type="source:SourceSectionClass" name="EventSupport">
-          <eClass href="http://www.w3.org/2013/mbui-aui#/0/EventSupport"/>
+          <eClass href="http://www.w3.org/2013/mbui-aui#//EventSupport"/>
           <references xsi:type="source:SourceSectionCompositeReference" name="dataInputOutputSupport">
             <value xsi:type="source:SourceSectionClass" name="DataInputOutputSupport">
-              <eClass href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport"/>
+              <eClass href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport"/>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="defaultValue">
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/defaultValue"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport/defaultValue"/>
               </attributes>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="dataType">
                 <valueConstraints xsi:type="constraint:EqualityConstraint" expression="out"/>
-                <attribute href="http://www.w3.org/2013/mbui-aui#/0/DataInputOutputSupport/dataType"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#//DataInputOutputSupport/dataType"/>
               </attributes>
             </value>
-            <eReference href="http://www.w3.org/2013/mbui-aui#/0/EventSupport/dataInputOutputSupport"/>
+            <eReference href="http://www.w3.org/2013/mbui-aui#//EventSupport/dataInputOutputSupport"/>
           </references>
         </value>
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/eventSupport"/>
+        <eReference href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/eventSupport"/>
       </references>
       <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
         <valueConstraints xsi:type="constraint:EqualityConstraint" name="guidance" expression="guidance"/>
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
+        <attribute href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/role"/>
       </attributes>
     </sections>
   </sourceSectionModels>
@@ -1523,7 +1523,7 @@
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </sections>
-    <sections xsi:type="target:TargetSection" name="DropDown" container="//@targetSectionModels.2/@sections.5">
+    <sections xsi:type="target:TargetSection" name="DropDown">
       <eClass href="http://stefan-hennig.de/movisa#//presentation/DropDown"/>
       <references xsi:type="target:TargetSectionCompositeReference" name="Representation">
         <value xsi:type="target:TargetSectionClass" name="DropDownRepresentation">
@@ -2832,20 +2832,14 @@
         <mappingHints xsi:type="extended:AttributeMapping" name="NavigationButtonSignalEffectNameMapping" target="//@targetSectionModels.1/@sections.3/@references.1/@value.0/@references.1/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="triggerExpression" modifiers="//@mappingModels.0/@modifierSets.11" source="//@sourceSectionModels.1/@sections.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Effect" affectedReference="//@targetSectionModels.1/@sections.3/@references.1/@value.0/@references.0/@value.0/@references.0">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.1/@sections.3/@references.1/@value.0/@references.1/@value.0/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="triggerExpression" modifiers="//@mappingModels.0/@modifierSets.11" source="//@sourceSectionModels.1/@sections.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Effect" referenceAttribute="//@targetSectionModels.1/@sections.3/@references.1/@value.0/@references.1/@value.0/@attributes.0" targetClass="//@targetSectionModels.1/@sections.3/@references.1/@value.0/@references.1/@value.0" affectedReference="//@targetSectionModels.1/@sections.3/@references.1/@value.0/@references.0/@value.0/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="triggerExpression" modifiers="//@mappingModels.0/@modifierSets.11" source="//@sourceSectionModels.1/@sections.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Signal" affectedReference="//@targetSectionModels.1/@sections.3/@references.1/@value.0/@references.1/@value.0/@references.0">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.4/@sections.0/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="triggerExpression" source="//@sourceSectionModels.1/@sections.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Signal" referenceAttribute="//@targetSectionModels.4/@sections.0/@attributes.0" targetClass="//@targetSectionModels.4/@sections.0" affectedReference="//@targetSectionModels.1/@sections.3/@references.1/@value.0/@references.1/@value.0/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="triggerExpression" source="//@sourceSectionModels.1/@sections.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Text" affectedReference="//@targetSectionModels.1/@sections.3/@references.0/@value.0/@references.2">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.1/@sections.7/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Text" referenceAttribute="//@targetSectionModels.1/@sections.7/@attributes.0" targetClass="//@targetSectionModels.1/@sections.7" affectedReference="//@targetSectionModels.1/@sections.3/@references.0/@value.0/@references.2">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="xPositionNavigationButtonMapping" expression="(id-1)*4" target="//@targetSectionModels.1/@sections.3/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.7" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
@@ -2853,10 +2847,11 @@
         <mappingHints xsi:type="extended:AttributeMapping" name="virtualNavigationButtonRepresentationNameMapping" target="//@targetSectionModels.1/@sections.3/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.6" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ContainerSelector">
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.1/@sections.0/@attributes.0" targetClass="//@targetSectionModels.1/@sections.0">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="PanelName" source="//@targetSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="ContainerName" source="//@targetSectionModels.1/@sections.4/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.1/@sections.4/@attributes.0" targetClass="//@targetSectionModels.1/@sections.4">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetSection="//@targetSectionModels.4/@sections.0">
@@ -2865,23 +2860,17 @@
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ChangeViewNavigationFlow" targetSection="//@targetSectionModels.1/@sections.1">
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Target" affectedReference="//@targetSectionModels.1/@sections.1/@references.1">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.1/@sections.0/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="triggerExpression" source="//@sourceSectionModels.1/@sections.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Target" referenceAttribute="//@targetSectionModels.1/@sections.0/@attributes.0" targetClass="//@targetSectionModels.1/@sections.0" affectedReference="//@targetSectionModels.1/@sections.1/@references.1">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="triggerExpression" source="//@sourceSectionModels.1/@sections.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Source" affectedReference="//@targetSectionModels.1/@sections.1/@references.0">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.1/@sections.0/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Source" referenceAttribute="//@targetSectionModels.1/@sections.0/@attributes.0" targetClass="//@targetSectionModels.1/@sections.0" affectedReference="//@targetSectionModels.1/@sections.1/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="NameMapping" target="//@targetSectionModels.1/@sections.1/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="triggerExpression" modifiers="//@mappingModels.0/@modifierSets.8" source="//@sourceSectionModels.1/@sections.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Trigger" affectedReference="//@targetSectionModels.1/@sections.1/@references.2">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.4/@sections.0/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="triggerExpression" source="//@sourceSectionModels.1/@sections.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Trigger" referenceAttribute="//@targetSectionModels.4/@sections.0/@attributes.0" targetClass="//@targetSectionModels.4/@sections.0" affectedReference="//@targetSectionModels.1/@sections.1/@references.2">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="triggerExpression" source="//@sourceSectionModels.1/@sections.1/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDefinition" targetSection="//@targetSectionModels.1/@sections.7">
@@ -2893,9 +2882,8 @@
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ButtonAnimation" targetSection="//@targetSectionModels.1/@sections.2">
-        <mappingHints xsi:type="extended:ContainerSelector">
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.2/@sections.0/@attributes.0" targetClass="//@targetSectionModels.2/@sections.0">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="ButtonName" source="//@targetSectionModels.2/@sections.0/@attributes.0"/>
         </mappingHints>
         <localCondition xsi:type="condition:AttributeCondition" name="isDynamic" target="//@sourceSectionModels.1/@sections.1/@references.0/@value.0/@references.1/@value.0/@attributes.1">
           <valueConstraints xsi:type="constraint:EqualityConstraint" name="true" expression="true"/>
@@ -2913,15 +2901,13 @@
         <mappingHints xsi:type="extended:AttributeMapping" name="xPositionSimpleContainerMapping" expression="(id-1)*4" target="//@targetSectionModels.1/@sections.4/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.7" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ContainerSelector">
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.1/@sections.0/@attributes.0" targetClass="//@targetSectionModels.1/@sections.0">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="PanelName" source="//@targetSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SimpleContainerAnimation" targetSection="//@targetSectionModels.1/@sections.5">
-        <mappingHints xsi:type="extended:ContainerSelector">
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.1/@sections.4/@attributes.0" targetClass="//@targetSectionModels.1/@sections.4">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="ContainerName" source="//@targetSectionModels.1/@sections.4/@attributes.0"/>
         </mappingHints>
         <localCondition xsi:type="condition:AttributeCondition" name="isDynamic" target="//@sourceSectionModels.1/@sections.2/@references.1/@value.0/@references.0/@value.0/@attributes.0">
           <valueConstraints xsi:type="constraint:EqualityConstraint" expression="true"/>
@@ -2944,10 +2930,8 @@
     </mappings>
     <mappings name="ConfirmationButtonMapping" sourceSection="//@sourceSectionModels.2/@sections.0">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetSection="//@targetSectionModels.2/@sections.0">
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Text" affectedReference="//@targetSectionModels.2/@sections.0/@references.0/@value.0/@references.0">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.1/@sections.7/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Text" referenceAttribute="//@targetSectionModels.1/@sections.7/@attributes.0" targetClass="//@targetSectionModels.1/@sections.7" affectedReference="//@targetSectionModels.2/@sections.0/@references.0/@value.0/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="xPositionConfirmationButtonMapping" expression="(id-1)*4" target="//@targetSectionModels.2/@sections.0/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.7" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
@@ -2958,23 +2942,20 @@
         <mappingHints xsi:type="extended:AttributeMapping" name="virtualButtonRepresentationNameMapping" target="//@targetSectionModels.2/@sections.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.6" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Signal" affectedReference="//@targetSectionModels.2/@sections.0/@references.1/@value.0/@references.1/@value.0/@references.0">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.4/@sections.0/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.12" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Signal" referenceAttribute="//@targetSectionModels.4/@sections.0/@attributes.0" targetClass="//@targetSectionModels.4/@sections.0" affectedReference="//@targetSectionModels.2/@sections.0/@references.1/@value.0/@references.1/@value.0/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.12" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Effect" affectedReference="//@targetSectionModels.2/@sections.0/@references.1/@value.0/@references.0/@value.0/@references.0">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.2/@sections.0/@references.1/@value.0/@references.1/@value.0/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.1" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Effect" referenceAttribute="//@targetSectionModels.2/@sections.0/@references.1/@value.0/@references.1/@value.0/@attributes.0" targetClass="//@targetSectionModels.2/@sections.0/@references.1/@value.0/@references.1/@value.0" affectedReference="//@targetSectionModels.2/@sections.0/@references.1/@value.0/@references.0/@value.0/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.1" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="ButtonSignalNameMapping" target="//@targetSectionModels.2/@sections.0/@references.1/@value.0/@references.1/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.1" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ContainerSelector">
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.1/@sections.0/@attributes.0" targetClass="//@targetSectionModels.1/@sections.0">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="PanelName" source="//@targetSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="ContainerName" source="//@targetSectionModels.1/@sections.4/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.1/@sections.4/@attributes.0" targetClass="//@targetSectionModels.1/@sections.4">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDefinition" targetSection="//@targetSectionModels.1/@sections.7" extend="//@mappingModels.2/@mappings.0/@mappingHintGroups.1">
@@ -2984,9 +2965,8 @@
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetSection="//@targetSectionModels.4/@sections.0" extend="//@mappingModels.2/@mappings.0/@mappingHintGroups.0"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ButtonAnimation" targetSection="//@targetSectionModels.1/@sections.2">
-        <mappingHints xsi:type="extended:ContainerSelector">
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.2/@sections.0/@attributes.0" targetClass="//@targetSectionModels.2/@sections.0">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="ButtonName" source="//@targetSectionModels.2/@sections.0/@attributes.0"/>
         </mappingHints>
         <localCondition xsi:type="condition:AttributeCondition" name="isDynamic" target="//@sourceSectionModels.2/@sections.0/@references.0/@value.0/@references.0/@value.0/@attributes.2">
           <valueConstraints xsi:type="constraint:EqualityConstraint" name="true" expression="true"/>
@@ -3004,16 +2984,16 @@
         <mappingHints xsi:type="extended:AttributeMapping" name="xValueCheckBoxArrayMapping" expression="(id-1)*4" target="//@targetSectionModels.2/@sections.1/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.7" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ContainerSelector">
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.1/@sections.0/@attributes.0" targetClass="//@targetSectionModels.1/@sections.0">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="PanelName" source="//@targetSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="ContainerName" source="//@targetSectionModels.1/@sections.4/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.1/@sections.4/@attributes.0" targetClass="//@targetSectionModels.1/@sections.4">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="CheckBoxAnimation" targetSection="//@targetSectionModels.2/@sections.3">
-        <mappingHints xsi:type="extended:ContainerSelector">
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.2/@sections.1/@attributes.0" targetClass="//@targetSectionModels.2/@sections.1">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="CheckBoxArrayName" source="//@targetSectionModels.2/@sections.1/@attributes.0"/>
         </mappingHints>
         <localCondition xsi:type="condition:AttributeCondition" target="//@sourceSectionModels.2/@sections.3/@references.1/@value.0/@references.0/@value.0/@attributes.1">
           <valueConstraints xsi:type="constraint:EqualityConstraint" name="true" expression="true"/>
@@ -3031,16 +3011,16 @@
         <mappingHints xsi:type="extended:AttributeMapping" name="virtualRadioButtonGroupRepresentationNameMapping" target="//@targetSectionModels.2/@sections.4/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.6" source="//@sourceSectionModels.2/@sections.6/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ContainerSelector">
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.1/@sections.0/@attributes.0" targetClass="//@targetSectionModels.1/@sections.0">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10" source="//@sourceSectionModels.2/@sections.6/@attributes.1"/>
-          <targetAttributes name="PanelName" source="//@targetSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="ContainerName" source="//@targetSectionModels.1/@sections.4/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.1/@sections.4/@attributes.0" targetClass="//@targetSectionModels.1/@sections.4">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10" source="//@sourceSectionModels.2/@sections.6/@attributes.1"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="RadioButtonAnimation" targetSection="//@targetSectionModels.2/@sections.5">
-        <mappingHints xsi:type="extended:ContainerSelector">
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.2/@sections.4/@attributes.0" targetClass="//@targetSectionModels.2/@sections.4">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.2/@sections.6/@attributes.1"/>
-          <targetAttributes name="RadioButtonGroupName" source="//@targetSectionModels.2/@sections.4/@attributes.0"/>
         </mappingHints>
         <localCondition xsi:type="condition:AttributeCondition" name="isDynamic" target="//@sourceSectionModels.2/@sections.6/@references.1/@value.0/@references.0/@value.0/@attributes.1">
           <valueConstraints xsi:type="constraint:EqualityConstraint" name="true" expression="true"/>
@@ -3049,7 +3029,7 @@
     </mappings>
     <mappings name="RadioButtonMapping" sourceSection="//@sourceSectionModels.2/@sections.5">
       <localCondition xsi:type="condition:ApplicationDependency" name="RadioButtonGroupWasChosen" target="//@mappingModels.2/@mappings.3">
-        <instanceSelectors target="//@sourceSectionModels.2/@sections.6/@attributes.1">
+        <instanceSelectors referenceAttribute="//@sourceSectionModels.2/@sections.6/@attributes.1" targetClass="//@sourceSectionModels.2/@sections.6">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.2/@sections.6/@attributes.1"/>
         </instanceSelectors>
       </localCondition>
@@ -3060,30 +3040,23 @@
         <mappingHints xsi:type="extended:AttributeMapping" name="ValueMapping" target="//@targetSectionModels.2/@sections.6/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="defaultValue" source="//@sourceSectionModels.2/@sections.5/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Text" affectedReference="//@targetSectionModels.2/@sections.6/@references.0/@value.0/@references.0">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.1/@sections.7/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Text" referenceAttribute="//@targetSectionModels.1/@sections.7/@attributes.0" targetClass="//@targetSectionModels.1/@sections.7" affectedReference="//@targetSectionModels.2/@sections.6/@references.0/@value.0/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="virtualRadioButtonRepresentationNameMapping" target="//@targetSectionModels.2/@sections.6/@references.0/@value.0/@attributes.1">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.6" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Signal" affectedReference="//@targetSectionModels.2/@sections.6/@references.1/@value.0/@references.1/@value.0/@references.0">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.4/@sections.0/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.12" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Signal" referenceAttribute="//@targetSectionModels.4/@sections.0/@attributes.0" targetClass="//@targetSectionModels.4/@sections.0" affectedReference="//@targetSectionModels.2/@sections.6/@references.1/@value.0/@references.1/@value.0/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.12" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Effect" affectedReference="//@targetSectionModels.2/@sections.6/@references.1/@value.0/@references.0/@value.0/@references.0">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.2/@sections.6/@references.1/@value.0/@references.1/@value.0/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Effect" referenceAttribute="//@targetSectionModels.2/@sections.6/@references.1/@value.0/@references.1/@value.0/@attributes.0" targetClass="//@targetSectionModels.2/@sections.6/@references.1/@value.0/@references.1/@value.0" affectedReference="//@targetSectionModels.2/@sections.6/@references.1/@value.0/@references.0/@value.0/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="RadioButtonSignalNameMapping" target="//@targetSectionModels.2/@sections.6/@references.1/@value.0/@references.1/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ContainerSelector" name="test">
+        <mappingHints xsi:type="extended:ContainerSelector" name="test" referenceAttribute="//@targetSectionModels.2/@sections.4/@attributes.0" targetClass="//@targetSectionModels.2/@sections.4">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.2/@sections.6/@attributes.1"/>
-          <targetAttributes name="RadioButtonGroupName" source="//@targetSectionModels.2/@sections.4/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDefinition" targetSection="//@targetSectionModels.1/@sections.7" extend="//@mappingModels.2/@mappings.0/@mappingHintGroups.1">
@@ -3093,9 +3066,8 @@
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetSection="//@targetSectionModels.4/@sections.0" extend="//@mappingModels.2/@mappings.0/@mappingHintGroups.0"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="RadioButtonAnimation" targetSection="//@targetSectionModels.2/@sections.5">
-        <mappingHints xsi:type="extended:ContainerSelector">
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.2/@sections.6/@attributes.0" targetClass="//@targetSectionModels.2/@sections.6">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="RadioButtonName" source="//@targetSectionModels.2/@sections.6/@attributes.0"/>
         </mappingHints>
         <localCondition xsi:type="condition:AttributeCondition" name="isDynamic" target="//@sourceSectionModels.2/@sections.5/@references.0/@value.0/@references.0/@value.0/@attributes.2">
           <valueConstraints xsi:type="constraint:EqualityConstraint" name="false" expression="true"/>
@@ -3113,29 +3085,25 @@
         <mappingHints xsi:type="extended:AttributeMapping" name="xValueDropDownMapping" expression="(id-1)*4" target="//@targetSectionModels.2/@sections.7/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.7" source="//@sourceSectionModels.2/@sections.6/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Signal" affectedReference="//@targetSectionModels.2/@sections.7/@references.1/@value.0/@references.1/@value.0/@references.0">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.4/@sections.0/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.12" source="//@sourceSectionModels.2/@sections.6/@attributes.1"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Signal" referenceAttribute="//@targetSectionModels.4/@sections.0/@attributes.0" targetClass="//@targetSectionModels.4/@sections.0" affectedReference="//@targetSectionModels.2/@sections.7/@references.1/@value.0/@references.1/@value.0/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.12" source="//@sourceSectionModels.2/@sections.6/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Effect" affectedReference="//@targetSectionModels.2/@sections.7/@references.1/@value.0/@references.0/@value.0/@references.0">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.2/@sections.7/@references.1/@value.0/@references.1/@value.0/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.4" source="//@sourceSectionModels.2/@sections.6/@attributes.1"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Effect" referenceAttribute="//@targetSectionModels.2/@sections.7/@references.1/@value.0/@references.1/@value.0/@attributes.0" targetClass="//@targetSectionModels.2/@sections.7/@references.1/@value.0/@references.1/@value.0" affectedReference="//@targetSectionModels.2/@sections.7/@references.1/@value.0/@references.0/@value.0/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.4" source="//@sourceSectionModels.2/@sections.6/@attributes.1"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="DropDownSignalNameMapping" target="//@targetSectionModels.2/@sections.7/@references.1/@value.0/@references.1/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.4" source="//@sourceSectionModels.2/@sections.6/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ContainerSelector">
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.1/@sections.0/@attributes.0" targetClass="//@targetSectionModels.1/@sections.0">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10" source="//@sourceSectionModels.2/@sections.6/@attributes.1"/>
-          <targetAttributes name="PanelName" source="//@targetSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="ContainerName" source="//@targetSectionModels.1/@sections.4/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.1/@sections.4/@attributes.0" targetClass="//@targetSectionModels.1/@sections.4">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10" source="//@sourceSectionModels.2/@sections.6/@attributes.1"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="DropDownAnimation" targetSection="//@targetSectionModels.2/@sections.8">
-        <mappingHints xsi:type="extended:ContainerSelector">
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.2/@sections.7/@attributes.0" targetClass="//@targetSectionModels.2/@sections.7">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.2/@sections.6/@attributes.1"/>
-          <targetAttributes name="DropDownName" source="//@targetSectionModels.2/@sections.7/@attributes.0"/>
         </mappingHints>
         <localCondition xsi:type="condition:AttributeCondition" target="//@sourceSectionModels.2/@sections.6/@references.1/@value.0/@references.0/@value.0/@attributes.1">
           <valueConstraints xsi:type="constraint:EqualityConstraint" name="true" expression="true"/>
@@ -3149,7 +3117,7 @@
     </mappings>
     <mappings name="DropdownOptionMapping" sourceSection="//@sourceSectionModels.2/@sections.5">
       <localCondition xsi:type="condition:ApplicationDependency" name="DropDownWasChosen" target="//@mappingModels.2/@mappings.5">
-        <instanceSelectors target="//@sourceSectionModels.2/@sections.6/@attributes.1">
+        <instanceSelectors referenceAttribute="//@sourceSectionModels.2/@sections.6/@attributes.1" targetClass="//@sourceSectionModels.2/@sections.6">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.2/@sections.6/@attributes.1"/>
         </instanceSelectors>
       </localCondition>
@@ -3168,14 +3136,11 @@
         <mappingHints xsi:type="extended:AttributeMapping" name="ValueMapping2" target="//@targetSectionModels.2/@sections.9/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="role" source="//@sourceSectionModels.2/@sections.5/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Label" affectedReference="//@targetSectionModels.2/@sections.9/@references.0">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.1/@sections.7/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Label" referenceAttribute="//@targetSectionModels.1/@sections.7/@attributes.0" targetClass="//@targetSectionModels.1/@sections.7" affectedReference="//@targetSectionModels.2/@sections.9/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ContainerSelector">
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.2/@sections.7/@references.0/@value.0/@attributes.0" targetClass="//@targetSectionModels.2/@sections.7/@references.0/@value.0">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.6" source="//@sourceSectionModels.2/@sections.6/@attributes.1"/>
-          <targetAttributes name="virtualDropDownRepresentationName" source="//@targetSectionModels.2/@sections.7/@references.0/@value.0/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
     </mappings>
@@ -3190,28 +3155,20 @@
         <mappingHints xsi:type="extended:AttributeMapping" name="xPositionInputMapping" expression="(id-1)*4" target="//@targetSectionModels.2/@sections.12/@references.0/@value.0/@references.0/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.7" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Signal" affectedReference="//@targetSectionModels.2/@sections.12/@references.1/@value.0/@references.1/@value.0/@references.0">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.4/@sections.0/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.12" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Signal" referenceAttribute="//@targetSectionModels.4/@sections.0/@attributes.0" targetClass="//@targetSectionModels.4/@sections.0" affectedReference="//@targetSectionModels.2/@sections.12/@references.1/@value.0/@references.1/@value.0/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.12" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="InputSignalNameMapping" target="//@targetSectionModels.2/@sections.12/@references.1/@value.0/@references.1/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.5" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Signal" affectedReference="//@targetSectionModels.2/@sections.12/@references.1/@value.0/@references.1/@value.0/@references.0">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.4/@sections.0/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.5" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Effect" referenceAttribute="//@targetSectionModels.2/@sections.12/@references.1/@value.0/@references.1/@value.0/@attributes.0" targetClass="//@targetSectionModels.2/@sections.12/@references.1/@value.0/@references.1/@value.0" affectedReference="//@targetSectionModels.2/@sections.12/@references.1/@value.0/@references.0/@value.0/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.5" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Effect" affectedReference="//@targetSectionModels.2/@sections.12/@references.1/@value.0/@references.0/@value.0/@references.0">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.2/@sections.12/@references.1/@value.0/@references.1/@value.0/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.5" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          </matcher>
-        </mappingHints>
-        <mappingHints xsi:type="extended:ContainerSelector">
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.1/@sections.0/@attributes.0" targetClass="//@targetSectionModels.1/@sections.0">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="PanelName" source="//@targetSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="ContainerName" source="//@targetSectionModels.1/@sections.4/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.1/@sections.4/@attributes.0" targetClass="//@targetSectionModels.1/@sections.4">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ValueTextDefinition" targetSection="//@targetSectionModels.1/@sections.7" extend="//@mappingModels.2/@mappings.0/@mappingHintGroups.1">
@@ -3221,9 +3178,8 @@
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetSection="//@targetSectionModels.4/@sections.0" extend="//@mappingModels.2/@mappings.0/@mappingHintGroups.0"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="InputAnimation" targetSection="//@targetSectionModels.2/@sections.13">
-        <mappingHints xsi:type="extended:ContainerSelector">
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.2/@sections.12/@attributes.0" targetClass="//@targetSectionModels.2/@sections.12">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="InputName" source="//@targetSectionModels.2/@sections.12/@attributes.0"/>
         </mappingHints>
         <localCondition xsi:type="condition:AttributeCondition" target="//@sourceSectionModels.2/@sections.7/@references.1/@value.0/@references.0/@value.0/@attributes.2">
           <valueConstraints xsi:type="constraint:EqualityConstraint" expression="true"/>
@@ -3243,43 +3199,35 @@
         <mappingHints xsi:type="extended:AttributeMapping" name="virtualCheckBoxRepresentationNameMapping" target="//@targetSectionModels.2/@sections.2/@references.0/@value.0/@attributes.1">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.6" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Text" affectedReference="//@targetSectionModels.2/@sections.2/@references.0/@value.0/@references.0">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.1/@sections.7/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Text" referenceAttribute="//@targetSectionModels.1/@sections.7/@attributes.0" targetClass="//@targetSectionModels.1/@sections.7" affectedReference="//@targetSectionModels.2/@sections.2/@references.0/@value.0/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="xPositionCheckBoxMapping" expression="(id-1)*4" target="//@targetSectionModels.2/@sections.2/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.7" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Signal" affectedReference="//@targetSectionModels.2/@sections.2/@references.1/@value.0/@references.1/@value.0/@references.0">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.4/@sections.0/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.12" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Signal" referenceAttribute="//@targetSectionModels.4/@sections.0/@attributes.0" targetClass="//@targetSectionModels.4/@sections.0" affectedReference="//@targetSectionModels.2/@sections.2/@references.1/@value.0/@references.1/@value.0/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.12" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Effect" affectedReference="//@targetSectionModels.2/@sections.2/@references.1/@value.0/@references.0/@value.0/@references.0">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.2/@sections.2/@references.1/@value.0/@references.1/@value.0/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.3" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Effect" referenceAttribute="//@targetSectionModels.2/@sections.2/@references.1/@value.0/@references.1/@value.0/@attributes.0" targetClass="//@targetSectionModels.2/@sections.2/@references.1/@value.0/@references.1/@value.0" affectedReference="//@targetSectionModels.2/@sections.2/@references.1/@value.0/@references.0/@value.0/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.3" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="CheckBoxSignalNameMapping" target="//@targetSectionModels.2/@sections.2/@references.1/@value.0/@references.1/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.3" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ContainerSelector">
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.1/@sections.0/@attributes.0" targetClass="//@targetSectionModels.1/@sections.0">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="PanelName" source="//@targetSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="CheckBoxArrayName" source="//@targetSectionModels.2/@sections.1/@attributes.0"/>
-          <targetAttributes name="ContainerName" source="//@targetSectionModels.1/@sections.4/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.2/@sections.1/@attributes.0" targetClass="//@targetSectionModels.2/@sections.1">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.1/@sections.4/@attributes.0" targetClass="//@targetSectionModels.1/@sections.4">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetSection="//@targetSectionModels.4/@sections.0" extend="//@mappingModels.2/@mappings.0/@mappingHintGroups.0">
-        <mappingHints xsi:type="extended:AttributeMapping" name="SignalNameMapping" target="//@targetSectionModels.4/@sections.0/@attributes.0">
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.12" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-        </mappingHints>
-      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetSection="//@targetSectionModels.4/@sections.0" extend="//@mappingModels.2/@mappings.0/@mappingHintGroups.0"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="CheckBoxAnimation" targetSection="//@targetSectionModels.2/@sections.3">
-        <mappingHints xsi:type="extended:ContainerSelector">
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.2/@sections.2/@attributes.0" targetClass="//@targetSectionModels.2/@sections.2">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="CheckBoxName" source="//@targetSectionModels.2/@sections.2/@attributes.0"/>
         </mappingHints>
         <localCondition xsi:type="condition:AttributeCondition" target="//@sourceSectionModels.2/@sections.4/@references.0/@value.0/@references.1/@value.0/@attributes.2">
           <valueConstraints xsi:type="constraint:EqualityConstraint" name="true" expression="true"/>
@@ -3300,26 +3248,22 @@
         <mappingHints xsi:type="extended:AttributeMapping" name="InputSignalNameMapping" target="//@targetSectionModels.2/@sections.12/@references.1/@value.0/@references.1/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.5" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Signal" affectedReference="//@targetSectionModels.2/@sections.12/@references.1/@value.0/@references.1/@value.0/@references.0">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.4/@sections.0/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.12" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Signal" referenceAttribute="//@targetSectionModels.4/@sections.0/@attributes.0" targetClass="//@targetSectionModels.4/@sections.0" affectedReference="//@targetSectionModels.2/@sections.12/@references.1/@value.0/@references.1/@value.0/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.12" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Effect" affectedReference="//@targetSectionModels.2/@sections.12/@references.1/@value.0/@references.0/@value.0/@references.0">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.2/@sections.12/@references.1/@value.0/@references.1/@value.0/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.5" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Effect" referenceAttribute="//@targetSectionModels.2/@sections.12/@references.1/@value.0/@references.1/@value.0/@attributes.0" targetClass="//@targetSectionModels.2/@sections.12/@references.1/@value.0/@references.1/@value.0" affectedReference="//@targetSectionModels.2/@sections.12/@references.1/@value.0/@references.0/@value.0/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.5" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ContainerSelector">
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.1/@sections.0/@attributes.0" targetClass="//@targetSectionModels.1/@sections.0">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="PanelName" source="//@targetSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="ContainerName" source="//@targetSectionModels.1/@sections.4/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.1/@sections.4/@attributes.0" targetClass="//@targetSectionModels.1/@sections.4">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="InputAnimation" targetSection="//@targetSectionModels.2/@sections.13">
-        <mappingHints xsi:type="extended:ContainerSelector">
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.2/@sections.12/@attributes.0" targetClass="//@targetSectionModels.2/@sections.12">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="InputName" source="//@targetSectionModels.2/@sections.12/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Signal" targetSection="//@targetSectionModels.4/@sections.0">
@@ -3357,16 +3301,16 @@
         <mappingHints xsi:type="extended:AttributeMapping" name="SliderNameMapping" target="//@targetSectionModels.2/@sections.10/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ContainerSelector">
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.1/@sections.0/@attributes.0" targetClass="//@targetSectionModels.1/@sections.0">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="PanelName" source="//@targetSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="ContainerName" source="//@targetSectionModels.1/@sections.4/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.1/@sections.4/@attributes.0" targetClass="//@targetSectionModels.1/@sections.4">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SliderAnimation" targetSection="//@targetSectionModels.2/@sections.11">
-        <mappingHints xsi:type="extended:ContainerSelector">
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.2/@sections.10/@attributes.0" targetClass="//@targetSectionModels.2/@sections.10">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="SliderName" source="//@targetSectionModels.2/@sections.10/@attributes.0"/>
         </mappingHints>
         <localCondition xsi:type="condition:AttributeCondition" name="isDynamic" target="//@sourceSectionModels.2/@sections.1/@references.0/@value.0/@references.0/@value.0/@attributes.1">
           <valueConstraints xsi:type="constraint:EqualityConstraint" name="true" expression="true"/>
@@ -3389,10 +3333,8 @@
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel" targetSection="//@targetSectionModels.3/@sections.0">
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="TextLabelText" affectedReference="//@targetSectionModels.3/@sections.0/@references.0/@value.0/@references.0">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.1/@sections.7/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="TextLabelText" referenceAttribute="//@targetSectionModels.1/@sections.7/@attributes.0" targetClass="//@targetSectionModels.1/@sections.7" affectedReference="//@targetSectionModels.3/@sections.0/@references.0/@value.0/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="NameMapping" target="//@targetSectionModels.3/@sections.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
@@ -3403,16 +3345,16 @@
         <mappingHints xsi:type="extended:AttributeMapping" name="virtualTextLAbelRepresentationNameMapping" target="//@targetSectionModels.3/@sections.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.6" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ContainerSelector" name="">
+        <mappingHints xsi:type="extended:ContainerSelector" name="" referenceAttribute="//@targetSectionModels.1/@sections.0/@attributes.0" targetClass="//@targetSectionModels.1/@sections.0">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="PanelName" source="//@targetSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="ContainerName" source="//@targetSectionModels.1/@sections.4/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ContainerSelector" name="" referenceAttribute="//@targetSectionModels.1/@sections.4/@attributes.0" targetClass="//@targetSectionModels.1/@sections.4">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabelAnimation" targetSection="//@targetSectionModels.3/@sections.1">
-        <mappingHints xsi:type="extended:ContainerSelector">
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.3/@sections.0/@attributes.0" targetClass="//@targetSectionModels.3/@sections.0">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="TextLabelName" source="//@targetSectionModels.3/@sections.0/@attributes.0"/>
         </mappingHints>
         <localCondition xsi:type="condition:AttributeCondition" target="//@sourceSectionModels.3/@sections.1/@references.0/@value.0/@references.0/@value.0/@attributes.1">
           <valueConstraints xsi:type="constraint:EqualityConstraint" name="true" expression="true"/>
@@ -3429,10 +3371,8 @@
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Image" targetSection="//@targetSectionModels.3/@sections.2">
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="ImageResource" affectedReference="//@targetSectionModels.3/@sections.2/@references.0/@value.0/@references.2">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.3/@sections.3/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="ImageResource" referenceAttribute="//@targetSectionModels.3/@sections.3/@attributes.0" targetClass="//@targetSectionModels.3/@sections.3" affectedReference="//@targetSectionModels.3/@sections.2/@references.0/@value.0/@references.2">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="virtualImageRepresentationNameMapping" target="//@targetSectionModels.3/@sections.2/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.6" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
@@ -3443,16 +3383,16 @@
         <mappingHints xsi:type="extended:AttributeMapping" name="ImageNameMapping" target="//@targetSectionModels.3/@sections.2/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ContainerSelector" name="">
+        <mappingHints xsi:type="extended:ContainerSelector" name="" referenceAttribute="//@targetSectionModels.1/@sections.0/@attributes.0" targetClass="//@targetSectionModels.1/@sections.0">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="PanelName" source="//@targetSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="ContainerName" source="//@targetSectionModels.1/@sections.4/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ContainerSelector" name="" referenceAttribute="//@targetSectionModels.1/@sections.4/@attributes.0" targetClass="//@targetSectionModels.1/@sections.4">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ImageAnimation" targetSection="//@targetSectionModels.3/@sections.4">
-        <mappingHints xsi:type="extended:ContainerSelector">
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.3/@sections.2/@attributes.0" targetClass="//@targetSectionModels.3/@sections.2">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="ImageName" source="//@targetSectionModels.3/@sections.2/@attributes.0"/>
         </mappingHints>
         <localCondition xsi:type="condition:AttributeCondition" target="//@sourceSectionModels.3/@sections.1/@references.0/@value.0/@references.0/@value.0/@attributes.1">
           <valueConstraints xsi:type="constraint:EqualityConstraint" name="true" expression="true"/>
@@ -3470,16 +3410,16 @@
         <mappingHints xsi:type="extended:AttributeMapping" name="xPositionTrendMapping" expression="(id-1)*4" target="//@targetSectionModels.3/@sections.5/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.7" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ContainerSelector">
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.1/@sections.0/@attributes.0" targetClass="//@targetSectionModels.1/@sections.0">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="PanelName" source="//@targetSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="ContainerName" source="//@targetSectionModels.1/@sections.4/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.1/@sections.4/@attributes.0" targetClass="//@targetSectionModels.1/@sections.4">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TrendAnimation" targetSection="//@targetSectionModels.3/@sections.6">
-        <mappingHints xsi:type="extended:ContainerSelector">
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.3/@sections.5/@attributes.0" targetClass="//@targetSectionModels.3/@sections.5">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="TrendName" source="//@targetSectionModels.3/@sections.5/@attributes.0"/>
         </mappingHints>
         <localCondition xsi:type="condition:AttributeCondition" target="//@sourceSectionModels.3/@sections.1/@references.0/@value.0/@references.0/@value.0/@attributes.1">
           <valueConstraints xsi:type="constraint:EqualityConstraint" name="true" expression="true"/>
@@ -3497,16 +3437,16 @@
         <mappingHints xsi:type="extended:AttributeMapping" name="xPositionGaugeMapping" expression="(id-1)*4" target="//@targetSectionModels.3/@sections.7/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.1">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.7" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ContainerSelector">
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.1/@sections.0/@attributes.0" targetClass="//@targetSectionModels.1/@sections.0">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="PanelName" source="//@targetSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="ContainerName" source="//@targetSectionModels.1/@sections.4/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.1/@sections.4/@attributes.0" targetClass="//@targetSectionModels.1/@sections.4">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="GaugeAnimation" targetSection="//@targetSectionModels.3/@sections.8">
-        <mappingHints xsi:type="extended:ContainerSelector">
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.3/@sections.7/@attributes.0" targetClass="//@targetSectionModels.3/@sections.7">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="GaugeName" source="//@targetSectionModels.3/@sections.7/@attributes.0"/>
         </mappingHints>
         <localCondition xsi:type="condition:AttributeCondition" target="//@sourceSectionModels.3/@sections.1/@references.0/@value.0/@references.0/@value.0/@attributes.1">
           <valueConstraints xsi:type="constraint:EqualityConstraint" name="true" expression="true"/>
@@ -3520,28 +3460,47 @@
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ToolTipText" targetSection="//@targetSectionModels.3/@sections.9">
-        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="ToolTipDextDefinition" affectedReference="//@targetSectionModels.3/@sections.9/@references.0">
-          <matcher xsi:type="extended:AttributeMatcher" target="//@targetSectionModels.1/@sections.7/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="ToolTipDextDefinition" referenceAttribute="//@targetSectionModels.1/@sections.7/@attributes.0" targetClass="//@targetSectionModels.1/@sections.7" affectedReference="//@targetSectionModels.3/@sections.9/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="ToolTipTextNameMapping" target="//@targetSectionModels.3/@sections.9/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ContainerSelector">
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.3/@sections.10/@references.0/@value.0/@attributes.0" targetClass="//@targetSectionModels.3/@sections.10/@references.0/@value.0">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10 //@mappingModels.0/@modifierSets.6" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="virtualButtonRepresentationName" source="//@targetSectionModels.2/@sections.0/@references.0/@value.0/@attributes.0"/>
-          <targetAttributes name="virtualAlarmControlRepresentationName" source="//@targetSectionModels.3/@sections.10/@references.0/@value.0/@attributes.0"/>
-          <targetAttributes name="virtualCheckBoxArrayRepresentationName" source="//@targetSectionModels.2/@sections.1/@references.0/@value.0/@attributes.0"/>
-          <targetAttributes name="virtualCheckBoxRepresentationName" source="//@targetSectionModels.2/@sections.2/@references.0/@value.0/@attributes.1"/>
-          <targetAttributes name="virtualDropDownRepresentationName" source="//@targetSectionModels.2/@sections.7/@references.0/@value.0/@attributes.0"/>
-          <targetAttributes name="virtualInputRepresentationName" source="//@targetSectionModels.2/@sections.12/@references.0/@value.0/@attributes.0"/>
-          <targetAttributes name="virtualNavigationButtonRepresentationName" source="//@targetSectionModels.1/@sections.3/@references.0/@value.0/@attributes.0"/>
-          <targetAttributes name="virtualRadioButtonGroupRepresentationName" source="//@targetSectionModels.2/@sections.4/@references.0/@value.0/@attributes.0"/>
-          <targetAttributes name="virtualRadioButtonRepresentationName" source="//@targetSectionModels.2/@sections.6/@references.0/@value.0/@attributes.1"/>
-          <targetAttributes name="virtualSimpleContainerName" source="//@targetSectionModels.1/@sections.4/@references.0/@value.0/@attributes.0"/>
-          <targetAttributes name="virtualSliderRepresentationName" source="//@targetSectionModels.2/@sections.10/@references.0/@value.0/@attributes.0"/>
-          <targetAttributes name="virtualTextLAbelRepresentationName" source="//@targetSectionModels.3/@sections.0/@references.0/@value.0/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.2/@sections.0/@references.0/@value.0/@attributes.0" targetClass="//@targetSectionModels.2/@sections.0/@references.0/@value.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10 //@mappingModels.0/@modifierSets.6" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.2/@sections.1/@references.0/@value.0/@attributes.0" targetClass="//@targetSectionModels.2/@sections.1/@references.0/@value.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10 //@mappingModels.0/@modifierSets.6" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.2/@sections.2/@references.0/@value.0/@attributes.1" targetClass="//@targetSectionModels.2/@sections.2/@references.0/@value.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10 //@mappingModels.0/@modifierSets.6" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.2/@sections.7/@references.0/@value.0/@attributes.0" targetClass="//@targetSectionModels.2/@sections.7/@references.0/@value.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10 //@mappingModels.0/@modifierSets.6" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.2/@sections.12/@references.0/@value.0/@attributes.0" targetClass="//@targetSectionModels.2/@sections.12/@references.0/@value.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10 //@mappingModels.0/@modifierSets.6" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.1/@sections.3/@references.0/@value.0/@attributes.0" targetClass="//@targetSectionModels.1/@sections.3/@references.0/@value.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10 //@mappingModels.0/@modifierSets.6" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.2/@sections.4/@references.0/@value.0/@attributes.0" targetClass="//@targetSectionModels.2/@sections.4/@references.0/@value.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10 //@mappingModels.0/@modifierSets.6" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.2/@sections.6/@references.0/@value.0/@attributes.1" targetClass="//@targetSectionModels.2/@sections.6/@references.0/@value.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10 //@mappingModels.0/@modifierSets.6" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.1/@sections.4/@references.0/@value.0/@attributes.0" targetClass="//@targetSectionModels.1/@sections.4/@references.0/@value.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10 //@mappingModels.0/@modifierSets.6" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.2/@sections.10/@references.0/@value.0/@attributes.0" targetClass="//@targetSectionModels.2/@sections.10/@references.0/@value.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10 //@mappingModels.0/@modifierSets.6" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.3/@sections.0/@references.0/@value.0/@attributes.0" targetClass="//@targetSectionModels.3/@sections.0/@references.0/@value.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10 //@mappingModels.0/@modifierSets.6" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
     </mappings>
@@ -3556,16 +3515,16 @@
         <mappingHints xsi:type="extended:AttributeMapping" name="xValueAlarmControlMapping" expression="(id-1)*4" target="//@targetSectionModels.3/@sections.10/@references.0/@value.0/@references.1/@value.0/@references.0/@value.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.7" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:ContainerSelector">
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.1/@sections.0/@attributes.0" targetClass="//@targetSectionModels.1/@sections.0">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="PanelName" source="//@targetSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="ContainerName" source="//@targetSectionModels.1/@sections.4/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.1/@sections.4/@attributes.0" targetClass="//@targetSectionModels.1/@sections.4">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.10" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="AlarmControlAnimation" targetSection="//@targetSectionModels.3/@sections.11">
-        <mappingHints xsi:type="extended:ContainerSelector">
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.3/@sections.10/@attributes.0" targetClass="//@targetSectionModels.3/@sections.10">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
-          <targetAttributes name="AlarmControlName" source="//@targetSectionModels.3/@sections.10/@attributes.0"/>
         </mappingHints>
         <localCondition xsi:type="condition:AttributeCondition" target="//@sourceSectionModels.3/@sections.0/@references.1/@value.0/@references.0/@value.0/@attributes.1">
           <valueConstraints xsi:type="constraint:EqualityConstraint" name="true" expression="true"/>

@@ -150,7 +150,7 @@ public class GlobalDynamicSourceElementItemProvider extends DynamicSourceElement
 		newChildDescriptors.add
 			(createChildParameter
 				(StructurePackage.Literals.GLOBAL_DYNAMIC_SOURCE_ELEMENT__INSTANCE_SELECTORS,
-				 ExtendedFactory.eINSTANCE.createAttributeMatcher()));
+				 ExtendedFactory.eINSTANCE.createReferenceTargetSelector()));
 
 		newChildDescriptors.add
 			(createChildParameter

@@ -24,15 +24,12 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import de.mfreund.gentrans.transformation.CancelTransformationException;
 import de.mfreund.gentrans.transformation.UserAbortException;
-import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
-import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
+import de.mfreund.gentrans.transformation.calculation.ValueCalculator;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.HintValueStorage;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.library.LibraryEntryInstantiator;
-import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
-import de.mfreund.gentrans.transformation.registries.AttributeValueRegistry;
 import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvedAdapter;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
@@ -84,11 +81,6 @@ public class TargetSectionInstantiator extends CancelableElement {
 	private final TargetSectionRegistry targetSectionRegistry;
 
 	/**
-	 * used when setting attribute values
-	 */
-	private final AttributeValueRegistry attributeValueRegistry;
-
-	/**
 	 * The {@link Logger} that shall be used to print messages.
 	 */
 	private final Logger logger;
@@ -100,9 +92,9 @@ public class TargetSectionInstantiator extends CancelableElement {
 	private Map<EObjectWrapper, LibraryEntryInstantiator> libEntryInstantiatorMap;
 
 	/**
-	 * An instance of {@link AttributeValueCalculator} that is used to calculate attribute values.
+	 * An instance of {@link ValueCalculator} that is used to calculate attribute values.
 	 */
-	private AttributeValueCalculator calculator;
+	private ValueCalculator calculator;
 
 	/**
 	 * This is the {@link IAmbiguityResolvingStrategy} that shall be used to resolve ambiguities that arise during the
@@ -121,12 +113,9 @@ public class TargetSectionInstantiator extends CancelableElement {
 	 *
 	 * @param targetSectionRegistry
 	 *            target section registry used when instantiating classes
-	 * @param attributeValueRegistry
-	 *            used when setting attribute values
-	 * @param globalValueMap
-	 *            Registry for values of global Variables
-	 * @param attributeValuemodifier
-	 *            An instance of the {@link AttributeValueModifierExecutor}.
+	 * @param valueCalculator
+	 *            The {@link ValueCalculator} used to calculate values for {@link TargetSectionAttribute
+	 *            TargetSectionAttributes}.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
 	 * @param ambiguityResolvingStrategy
@@ -136,20 +125,17 @@ public class TargetSectionInstantiator extends CancelableElement {
 	 *            that the transformation result (especially the order of lists) varies between executions.
 	 */
 	public TargetSectionInstantiator(final TargetSectionRegistry targetSectionRegistry,
-			final AttributeValueRegistry attributeValueRegistry, final GlobalValueMap globalValueMap,
-			final AttributeValueModifierExecutor attributeValuemodifier, final Logger logger,
-			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy, boolean useParallelzation) {
+			ValueCalculator valueCalculator, final Logger logger, final IAmbiguityResolvingStrategy ambiguityResolvingStrategy,
+			boolean useParallelzation) {
 
 		this.targetSectionRegistry = targetSectionRegistry;
-		this.attributeValueRegistry = attributeValueRegistry;
 		this.logger = logger;
 		this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
 		this.useParallelization = useParallelzation;
 		this.canceled = false;
 		this.wrongCardinalityContainmentRefs = new HashSet<>();
 		this.libEntryInstantiatorMap = new LinkedHashMap<>();
-
-		this.calculator = new AttributeValueCalculator(globalValueMap, attributeValuemodifier, logger);
+		this.calculator = valueCalculator;
 
 	}
 
@@ -687,9 +673,6 @@ public class TargetSectionInstantiator extends CancelableElement {
 		//
 		int localAttributeMappingHintCardinality = 0;
 
-		List<AttributeMapping> t = hints.stream().filter(a -> a.getTarget().equals(targetAttribute))
-				.collect(Collectors.toList());
-
 		for (AttributeMapping hint : hints.stream().filter(a -> a.getTarget().equals(targetAttribute))
 				.collect(Collectors.toList())) {
 
@@ -775,7 +758,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 
 		// create an EObjectTransformationHelper that wraps the eObject and more
 		// stuff
-		EObjectWrapper instTransformationHelper = new EObjectWrapper(inst, this.attributeValueRegistry);
+		EObjectWrapper instTransformationHelper = new EObjectWrapper(inst, this.targetSectionRegistry);
 
 		/*
 		 * If the target section is a library entry, we create a new 'LibraryEntryInstantiator' that will insert the

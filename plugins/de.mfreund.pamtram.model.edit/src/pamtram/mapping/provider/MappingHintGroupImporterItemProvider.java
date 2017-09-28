@@ -33,70 +33,64 @@ import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.target.TargetSectionClass;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.MappingHintGroupImporter} object.
- * <!-- begin-user-doc
+ * This is the item provider adapter for a {@link pamtram.mapping.MappingHintGroupImporter} object. <!-- begin-user-doc
  * --> <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class MappingHintGroupImporterItemProvider extends NamedElementItemProvider {
+
 	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
 	public MappingHintGroupImporterItemProvider(AdapterFactory adapterFactory) {
+
 		super(adapterFactory);
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addDeactivatedPropertyDescriptor(object);
-			addSharedConditionPropertyDescriptor(object);
-			addHintGroupPropertyDescriptor(object);
-			addContainerPropertyDescriptor(object);
+			this.addDeactivatedPropertyDescriptor(object);
+			this.addSharedConditionPropertyDescriptor(object);
+			this.addHintGroupPropertyDescriptor(object);
+			this.addContainerPropertyDescriptor(object);
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Deactivated feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Deactivated feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
 	protected void addDeactivatedPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_DeactivatableElement_deactivated_feature"),
-				 getString("_UI_DeactivatableElement_deactivated_description"),
-				 PamtramPackage.Literals.DEACTIVATABLE_ELEMENT__DEACTIVATED,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 getString("_UI_ExtendedPropertyCategory"),
-				 null));
+
+		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+				this.getString("_UI_DeactivatableElement_deactivated_feature"),
+				this.getString("_UI_DeactivatableElement_deactivated_description"),
+				PamtramPackage.Literals.DEACTIVATABLE_ELEMENT__DEACTIVATED, true, false, false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, this.getString("_UI_ExtendedPropertyCategory"), null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Shared Condition feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Shared Condition feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
 	protected void addSharedConditionPropertyDescriptor(Object object) {
+
 		this.itemPropertyDescriptors.add(
 				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
 						this.getResourceLocator(), this.getString("_UI_ConditionalElement_sharedCondition_feature"),
@@ -122,32 +116,25 @@ public class MappingHintGroupImporterItemProvider extends NamedElementItemProvid
 	}
 
 	/**
-	 * This adds a property descriptor for the Hint Group feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Hint Group feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
 	protected void addHintGroupPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_MappingHintGroupImporter_hintGroup_feature"),
-				 getString("_UI_MappingHintGroupImporter_hintGroup_description"),
-				 MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP,
-				 true,
-				 false,
-				 true,
-				 null,
-				 getString("_UI_BasicPropertyCategory"),
-				 null));
+
+		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+				this.getString("_UI_MappingHintGroupImporter_hintGroup_feature"),
+				this.getString("_UI_MappingHintGroupImporter_hintGroup_description"),
+				MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP, true, false, true, null,
+				this.getString("_UI_BasicPropertyCategory"), null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Container feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Container feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 */
 	protected void addContainerPropertyDescriptor(Object object) {
+
 		this.itemPropertyDescriptors.add(new ItemPropertyDescriptor(
 				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
 				this.getString("_UI_MappingHintGroupImporter_container_feature"),
@@ -157,6 +144,7 @@ public class MappingHintGroupImporterItemProvider extends NamedElementItemProvid
 
 			@Override
 			public Collection<?> getChoiceOfValues(Object object) {
+
 				List<TargetSectionClass> choiceOfValues = new LinkedList<>();
 
 				Mapping mapping = (Mapping) ((EObject) object).eContainer();
@@ -183,22 +171,25 @@ public class MappingHintGroupImporterItemProvider extends NamedElementItemProvid
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+
+		if (this.childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION);
-			childrenFeatures.add(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS);
+			this.childrenFeatures.add(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION);
+			this.childrenFeatures.add(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS);
 		}
-		return childrenFeatures;
+		return this.childrenFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -210,30 +201,29 @@ public class MappingHintGroupImporterItemProvider extends NamedElementItemProvid
 	}
 
 	/**
-	 * This returns MappingHintGroupImporter.gif.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This returns MappingHintGroupImporter.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/MappingHintGroupImporter"));
+
+		return this.overlayImage(object, this.getResourceLocator().getImage("full/obj16/MappingHintGroupImporter"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+
+		return ((StyledString) this.getStyledText(object)).getString();
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
@@ -256,37 +246,38 @@ public class MappingHintGroupImporterItemProvider extends NamedElementItemProvid
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+
+		this.updateChildren(notification);
 
 		switch (notification.getFeatureID(MappingHintGroupImporter.class)) {
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__DEACTIVATED:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__LOCAL_CONDITION:
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing the children that can be created under this object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT due to addition of custom hints and custom sorting
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors
@@ -303,19 +294,11 @@ public class MappingHintGroupImporterItemProvider extends NamedElementItemProvid
 
 		newChildDescriptors
 				.add(this.createChildParameter(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
-						ExtendedFactory.eINSTANCE.createMappingInstanceSelectorWithClassMatcher()));
-
-		newChildDescriptors
-				.add(this.createChildParameter(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
-						ExtendedFactory.eINSTANCE.createMappingInstanceSelectorWithAttributeMatcher()));
-
-		newChildDescriptors
-				.add(this.createChildParameter(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
 						ExtendedFactory.eINSTANCE.createReferenceTargetSelector()));
 
 		newChildDescriptors
 				.add(this.createChildParameter(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
-						ExtendedFactory.eINSTANCE.createContainerSelectorWithSourceAndTarget()));
+						ExtendedFactory.eINSTANCE.createContainerSelectorWithSource()));
 
 		newChildDescriptors
 				.add(this.createChildParameter(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
@@ -357,13 +340,13 @@ public class MappingHintGroupImporterItemProvider extends NamedElementItemProvid
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
+
 		return PamtramEditPlugin.INSTANCE;
 	}
 

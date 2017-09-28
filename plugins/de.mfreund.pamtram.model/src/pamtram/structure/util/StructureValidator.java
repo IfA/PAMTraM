@@ -45,12 +45,20 @@ public class StructureValidator extends EObjectValidator {
 	public static final int INSTANCE_SELECTOR__VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS = 1;
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Reference Attribute Is Valid' of 'Target Instance Selector'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int TARGET_INSTANCE_SELECTOR__VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID = 2;
+
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Source Attribute Matches Section Or Contained Section' of 'Local Dynamic Source Element'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int LOCAL_DYNAMIC_SOURCE_ELEMENT__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION = 2;
+	public static final int LOCAL_DYNAMIC_SOURCE_ELEMENT__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION = 3;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Source Attribute Matches Container Section' of 'External Dynamic Source Element'.
@@ -58,7 +66,7 @@ public class StructureValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int EXTERNAL_DYNAMIC_SOURCE_ELEMENT__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION = 3;
+	public static final int EXTERNAL_DYNAMIC_SOURCE_ELEMENT__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION = 4;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -66,7 +74,7 @@ public class StructureValidator extends EObjectValidator {
 	 * end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 3;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 4;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -237,7 +245,18 @@ public class StructureValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(targetInstanceSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= validateInstanceSelector_noModifiedAttributeElementTypesInConditionModelConditions(targetInstanceSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= validateInstanceSelector_validateNoModifiedAttributeElementTypesInConditionModelConditions(targetInstanceSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTargetInstanceSelector_validateReferenceAttributeIsValid(targetInstanceSelector, diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * Validates the validateReferenceAttributeIsValid constraint of '<em>Target Instance Selector</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateTargetInstanceSelector_validateReferenceAttributeIsValid(TargetInstanceSelector targetInstanceSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return targetInstanceSelector.validateReferenceAttributeIsValid(diagnostics, context);
 	}
 
 	/**

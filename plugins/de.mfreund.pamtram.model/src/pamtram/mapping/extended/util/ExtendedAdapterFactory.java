@@ -21,6 +21,7 @@ import pamtram.structure.GlobalDynamicSourceElement;
 import pamtram.structure.InstanceSelector;
 import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.LocalDynamicSourceElement;
+import pamtram.structure.TargetInstanceSelector;
 import pamtram.structure.constraint.ValueConstraintSourceInterface;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Reference;
@@ -155,24 +156,8 @@ public class ExtendedAdapterFactory extends AdapterFactoryImpl {
 				return createReferenceTargetSelectorAdapter();
 			}
 			@Override
-			public Adapter caseMatcher(Matcher object) {
-				return createMatcherAdapter();
-			}
-			@Override
-			public Adapter caseClassMatcher(ClassMatcher object) {
-				return createClassMatcherAdapter();
-			}
-			@Override
-			public Adapter caseAttributeMatcher(AttributeMatcher object) {
-				return createAttributeMatcherAdapter();
-			}
-			@Override
 			public Adapter caseContainerSelector(ContainerSelector object) {
 				return createContainerSelectorAdapter();
-			}
-			@Override
-			public Adapter caseContainerSelectorTargetAttribute(ContainerSelectorTargetAttribute object) {
-				return createContainerSelectorTargetAttributeAdapter();
 			}
 			@Override
 			public Adapter caseMappedAttributeValueExpander(MappedAttributeValueExpander object) {
@@ -249,6 +234,10 @@ public class ExtendedAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseInstanceSelector(InstanceSelector object) {
 				return createInstanceSelectorAdapter();
+			}
+			@Override
+			public Adapter caseTargetInstanceSelector(TargetInstanceSelector object) {
+				return createTargetInstanceSelectorAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -425,48 +414,6 @@ public class ExtendedAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.Matcher <em>Matcher</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.extended.Matcher
-	 * @generated
-	 */
-	public Adapter createMatcherAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.ClassMatcher <em>Class Matcher</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.extended.ClassMatcher
-	 * @generated
-	 */
-	public Adapter createClassMatcherAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.AttributeMatcher <em>Attribute Matcher</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.extended.AttributeMatcher
-	 * @generated
-	 */
-	public Adapter createAttributeMatcherAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.ContainerSelector <em>Container Selector</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -477,20 +424,6 @@ public class ExtendedAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createContainerSelectorAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.ContainerSelectorTargetAttribute <em>Container Selector Target Attribute</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.extended.ContainerSelectorTargetAttribute
-	 * @generated
-	 */
-	public Adapter createContainerSelectorTargetAttributeAdapter() {
 		return null;
 	}
 
@@ -841,6 +774,20 @@ public class ExtendedAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createInstanceSelectorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.TargetInstanceSelector <em>Target Instance Selector</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.TargetInstanceSelector
+	 * @generated
+	 */
+	public Adapter createTargetInstanceSelectorAdapter() {
 		return null;
 	}
 

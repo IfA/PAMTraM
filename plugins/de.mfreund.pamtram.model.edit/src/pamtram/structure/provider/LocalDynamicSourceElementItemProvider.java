@@ -18,8 +18,6 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
 import pamtram.mapping.Mapping;
-import pamtram.mapping.MappingHintGroupType;
-import pamtram.mapping.extended.ContainerSelectorTargetAttribute;
 import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.LocalDynamicSourceElement;
 import pamtram.structure.StructurePackage;
@@ -29,8 +27,7 @@ import pamtram.structure.generic.Section;
 import pamtram.structure.source.SourceSectionClass;
 
 /**
- * This is the item provider adapter for a
- * {@link pamtram.structure.LocalDynamicSourceElement} object. <!--
+ * This is the item provider adapter for a {@link pamtram.structure.LocalDynamicSourceElement} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  *
  * @generated
@@ -38,9 +35,8 @@ import pamtram.structure.source.SourceSectionClass;
 public class LocalDynamicSourceElementItemProvider extends DynamicSourceElementItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public LocalDynamicSourceElementItemProvider(AdapterFactory adapterFactory) {
@@ -48,9 +44,8 @@ public class LocalDynamicSourceElementItemProvider extends DynamicSourceElementI
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -64,8 +59,9 @@ public class LocalDynamicSourceElementItemProvider extends DynamicSourceElementI
 	}
 
 	/**
-	 * This adds a property descriptor for the Reference Match Spec feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Reference Match Spec feature. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	protected void addReferenceMatchSpecPropertyDescriptor(Object object) {
@@ -86,8 +82,7 @@ public class LocalDynamicSourceElementItemProvider extends DynamicSourceElementI
 
 	/**
 	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -96,9 +91,8 @@ public class LocalDynamicSourceElementItemProvider extends DynamicSourceElementI
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This returns the label styled text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -114,10 +108,10 @@ public class LocalDynamicSourceElementItemProvider extends DynamicSourceElementI
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -127,10 +121,9 @@ public class LocalDynamicSourceElementItemProvider extends DynamicSourceElementI
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing the children that can be created under this object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -139,8 +132,7 @@ public class LocalDynamicSourceElementItemProvider extends DynamicSourceElementI
 	}
 
 	/**
-	 * This adds a property descriptor for the Source feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Source feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
@@ -167,27 +159,7 @@ public class LocalDynamicSourceElementItemProvider extends DynamicSourceElementI
 
 						Class<?, ?, ?, ?> relevantClass = null;
 
-						// If we operate on an ModelConnectionHintTarget, we
-						// need to
-						// scan the container of the target section.
-						//
-						if (object instanceof ContainerSelectorTargetAttribute) {
-							if (parent instanceof MappingHintGroupType
-									&& ((MappingHintGroupType) parent).getTargetSection() != null) {
-								relevantClass = ((MappingHintGroupType) parent).getTargetSection().getContainer();
-
-								// If no container has been specified, we allow
-								// for the
-								// default values.
-								if (relevantClass == null) {
-									return super.getChoiceOfValues(object);
-								}
-							}
-
-							// Otherwise, we need to scan the source section for
-							// suitable attributes.
-							//
-						} else if (mapping != null) {
+						if (mapping != null) {
 							relevantClass = mapping.getSourceSection();
 						}
 

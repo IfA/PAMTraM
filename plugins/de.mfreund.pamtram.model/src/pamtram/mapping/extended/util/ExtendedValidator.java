@@ -149,20 +149,44 @@ public class ExtendedValidator extends EObjectValidator {
 	public static final int REFERENCE_TARGET_SELECTOR__VALIDATE_AFFECTED_REFERENCE_MATCHES_SECTION = 13;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Target Matches Affected Reference Type' of 'Attribute Matcher'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Reference Attribute Is Valid' of 'Reference Target Selector'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ATTRIBUTE_MATCHER__VALIDATE_TARGET_MATCHES_AFFECTED_REFERENCE_TYPE = 14;
+	public static final int REFERENCE_TARGET_SELECTOR__VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID = 14;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Source Matches Possible Container Type' of 'Container Selector Target Attribute'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Target Class' of 'Reference Target Selector'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CONTAINER_SELECTOR_TARGET_ATTRIBUTE__VALIDATE_SOURCE_MATCHES_POSSIBLE_CONTAINER_TYPE = 15;
+	public static final int REFERENCE_TARGET_SELECTOR__VALIDATE_TARGET_CLASS = 15;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Target Class Matches Possible Container Type' of 'Container Selector'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int CONTAINER_SELECTOR__VALIDATE_TARGET_CLASS_MATCHES_POSSIBLE_CONTAINER_TYPE = 16;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Reference Attribute' of 'Container Selector'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int CONTAINER_SELECTOR__VALIDATE_REFERENCE_ATTRIBUTE = 17;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Reference Attribute Is Valid' of 'Container Selector'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int CONTAINER_SELECTOR__VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID = 18;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -170,7 +194,7 @@ public class ExtendedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 15;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 18;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -264,16 +288,8 @@ public class ExtendedValidator extends EObjectValidator {
 				return validateCardinalityMappingGlobalSourceElement((CardinalityMappingGlobalSourceElement)value, diagnostics, context);
 			case ExtendedPackage.REFERENCE_TARGET_SELECTOR:
 				return validateReferenceTargetSelector((ReferenceTargetSelector)value, diagnostics, context);
-			case ExtendedPackage.MATCHER:
-				return validateMatcher((Matcher)value, diagnostics, context);
-			case ExtendedPackage.CLASS_MATCHER:
-				return validateClassMatcher((ClassMatcher)value, diagnostics, context);
-			case ExtendedPackage.ATTRIBUTE_MATCHER:
-				return validateAttributeMatcher((AttributeMatcher)value, diagnostics, context);
 			case ExtendedPackage.CONTAINER_SELECTOR:
 				return validateContainerSelector((ContainerSelector)value, diagnostics, context);
-			case ExtendedPackage.CONTAINER_SELECTOR_TARGET_ATTRIBUTE:
-				return validateContainerSelectorTargetAttribute((ContainerSelectorTargetAttribute)value, diagnostics, context);
 			case ExtendedPackage.MAPPED_ATTRIBUTE_VALUE_EXPANDER:
 				return validateMappedAttributeValueExpander((MappedAttributeValueExpander)value, diagnostics, context);
 			case ExtendedPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER:
@@ -943,10 +959,14 @@ public class ExtendedValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(referenceTargetSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMappingHint_validateOverwritesValidMappingHint(referenceTargetSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMappingHint_validateConsiderOverwritingHint(referenceTargetSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateInstanceSelector_noModifiedAttributeElementTypesInConditionModelConditions(referenceTargetSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateInstanceSelector_validateNoModifiedAttributeElementTypesInConditionModelConditions(referenceTargetSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validateReferenceTargetSelector_validateReferenceAttributeIsValid(referenceTargetSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= validateReferenceTargetSelector_affectedReferenceIsNonContainment(referenceTargetSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= validateReferenceTargetSelector_affectedReferenceMatchesSection(referenceTargetSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= validateReferenceTargetSelector_validateAffectedReferenceIsNonContainment(referenceTargetSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= validateReferenceTargetSelector_validateAffectedReferenceMatchesSection(referenceTargetSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validateReferenceTargetSelector_validateTargetClass(referenceTargetSelector, diagnostics, context);
 		return result;
 	}
 
@@ -1027,81 +1047,23 @@ public class ExtendedValidator extends EObjectValidator {
 	}
 
 	/**
+	 * Validates the validateReferenceAttributeIsValid constraint of '<em>Reference Target Selector</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateMatcher(Matcher matcher, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(matcher, diagnostics, context);
+	public boolean validateReferenceTargetSelector_validateReferenceAttributeIsValid(ReferenceTargetSelector referenceTargetSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return referenceTargetSelector.validateReferenceAttributeIsValid(diagnostics, context);
 	}
 
 	/**
+	 * Validates the validateTargetClass constraint of '<em>Reference Target Selector</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateClassMatcher(ClassMatcher classMatcher, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(classMatcher, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateAttributeMatcher(AttributeMatcher attributeMatcher, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(attributeMatcher, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(attributeMatcher, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(attributeMatcher, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(attributeMatcher, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(attributeMatcher, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(attributeMatcher, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(attributeMatcher, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(attributeMatcher, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(attributeMatcher, diagnostics, context);
-		if (result || diagnostics != null) result &= structureValidator.validateInstanceSelector_noModifiedAttributeElementTypesInConditionModelConditions(attributeMatcher, diagnostics, context);
-		if (result || diagnostics != null) result &= structureValidator.validateInstanceSelector_validateNoModifiedAttributeElementTypesInConditionModelConditions(attributeMatcher, diagnostics, context);
-		if (result || diagnostics != null) result &= validateAttributeMatcher_targetMatchesAffectedReferenceType(attributeMatcher, diagnostics, context);
-		if (result || diagnostics != null) result &= validateAttributeMatcher_validateTargetMatchesAffectedReferenceType(attributeMatcher, diagnostics, context);
-		return result;
-	}
-
-	/**
-	 * Validates the targetMatchesAffectedReferenceType constraint of '<em>Attribute Matcher</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateAttributeMatcher_targetMatchesAffectedReferenceType(AttributeMatcher attributeMatcher, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
-		// -> specify the condition that violates the constraint
-		// -> verify the diagnostic details, including severity, code, and message
-		// Ensure that you remove @generated or mark it @generated NOT
-		if (false) {
-			if (diagnostics != null) {
-				diagnostics.add
-					(createDiagnostic
-						(Diagnostic.ERROR,
-						 DIAGNOSTIC_SOURCE,
-						 0,
-						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "targetMatchesAffectedReferenceType", getObjectLabel(attributeMatcher, context) },
-						 new Object[] { attributeMatcher },
-						 context));
-			}
-			return false;
-		}
-		return true;
-	}
-
-	/**
-	 * Validates the validateTargetMatchesAffectedReferenceType constraint of '<em>Attribute Matcher</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateAttributeMatcher_validateTargetMatchesAffectedReferenceType(AttributeMatcher attributeMatcher, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return attributeMatcher.validateTargetMatchesAffectedReferenceType(diagnostics, context);
+	public boolean validateReferenceTargetSelector_validateTargetClass(ReferenceTargetSelector referenceTargetSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return referenceTargetSelector.validateTargetClass(diagnostics, context);
 	}
 
 	/**
@@ -1127,36 +1089,20 @@ public class ExtendedValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateMappingHint_validateConsiderOverwritingHint(containerSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= structureValidator.validateInstanceSelector_noModifiedAttributeElementTypesInConditionModelConditions(containerSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= structureValidator.validateInstanceSelector_validateNoModifiedAttributeElementTypesInConditionModelConditions(containerSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validateContainerSelector_validateReferenceAttributeIsValid(containerSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validateContainerSelector_sourceMatchesPossibleContainerType(containerSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validateContainerSelector_validateTargetClassMatchesPossibleContainerType(containerSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= validateContainerSelector_validateReferenceAttribute(containerSelector, diagnostics, context);
 		return result;
 	}
 
 	/**
+	 * Validates the sourceMatchesPossibleContainerType constraint of '<em>Container Selector</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateContainerSelectorTargetAttribute(ContainerSelectorTargetAttribute containerSelectorTargetAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(containerSelectorTargetAttribute, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(containerSelectorTargetAttribute, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(containerSelectorTargetAttribute, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(containerSelectorTargetAttribute, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(containerSelectorTargetAttribute, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(containerSelectorTargetAttribute, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(containerSelectorTargetAttribute, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(containerSelectorTargetAttribute, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(containerSelectorTargetAttribute, diagnostics, context);
-		if (result || diagnostics != null) result &= validateContainerSelectorTargetAttribute_sourceMatchesPossibleContainerType(containerSelectorTargetAttribute, diagnostics, context);
-		if (result || diagnostics != null) result &= validateContainerSelectorTargetAttribute_validateSourceMatchesPossibleContainerType(containerSelectorTargetAttribute, diagnostics, context);
-		return result;
-	}
-
-	/**
-	 * Validates the sourceMatchesPossibleContainerType constraint of '<em>Container Selector Target Attribute</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateContainerSelectorTargetAttribute_sourceMatchesPossibleContainerType(ContainerSelectorTargetAttribute containerSelectorTargetAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateContainerSelector_sourceMatchesPossibleContainerType(ContainerSelector containerSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO implement the constraint
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
@@ -1169,8 +1115,8 @@ public class ExtendedValidator extends EObjectValidator {
 						 DIAGNOSTIC_SOURCE,
 						 0,
 						 "_UI_GenericConstraint_diagnostic",
-						 new Object[] { "sourceMatchesPossibleContainerType", getObjectLabel(containerSelectorTargetAttribute, context) },
-						 new Object[] { containerSelectorTargetAttribute },
+						 new Object[] { "sourceMatchesPossibleContainerType", getObjectLabel(containerSelector, context) },
+						 new Object[] { containerSelector },
 						 context));
 			}
 			return false;
@@ -1179,13 +1125,33 @@ public class ExtendedValidator extends EObjectValidator {
 	}
 
 	/**
-	 * Validates the validateSourceMatchesPossibleContainerType constraint of '<em>Container Selector Target Attribute</em>'.
+	 * Validates the validateTargetClassMatchesPossibleContainerType constraint of '<em>Container Selector</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateContainerSelectorTargetAttribute_validateSourceMatchesPossibleContainerType(ContainerSelectorTargetAttribute containerSelectorTargetAttribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return containerSelectorTargetAttribute.validateSourceMatchesPossibleContainerType(diagnostics, context);
+	public boolean validateContainerSelector_validateTargetClassMatchesPossibleContainerType(ContainerSelector containerSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return containerSelector.validateTargetClassMatchesPossibleContainerType(diagnostics, context);
+	}
+
+	/**
+	 * Validates the validateReferenceAttribute constraint of '<em>Container Selector</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateContainerSelector_validateReferenceAttribute(ContainerSelector containerSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return containerSelector.validateReferenceAttribute(diagnostics, context);
+	}
+
+	/**
+	 * Validates the validateReferenceAttributeIsValid constraint of '<em>Container Selector</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateContainerSelector_validateReferenceAttributeIsValid(ContainerSelector containerSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return containerSelector.validateReferenceAttributeIsValid(diagnostics, context);
 	}
 
 	/**

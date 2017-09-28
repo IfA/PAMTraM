@@ -3,6 +3,7 @@
 package pamtram.structure;
 
 import pamtram.structure.source.SourceSectionAttribute;
+import pamtram.structure.source.SourceSectionClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,7 +22,8 @@ import pamtram.structure.source.SourceSectionAttribute;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.SourceInstanceSelector#getTarget <em>Target</em>}</li>
+ *   <li>{@link pamtram.structure.SourceInstanceSelector#getReferenceAttribute <em>Reference Attribute</em>}</li>
+ *   <li>{@link pamtram.structure.SourceInstanceSelector#getTargetClass <em>Target Class</em>}</li>
  * </ul>
  *
  * @see pamtram.structure.StructurePackage#getSourceInstanceSelector()
@@ -31,7 +33,7 @@ import pamtram.structure.source.SourceSectionAttribute;
 public interface SourceInstanceSelector extends InstanceSelector {
 
 	/**
-	 * Returns the value of the '<em><b>Target</b></em>' reference.
+	 * Returns the value of the '<em><b>Reference Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Target</em>' reference isn't clear,
@@ -41,21 +43,46 @@ public interface SourceInstanceSelector extends InstanceSelector {
 	 * <!-- begin-model-doc -->
 	 * The specific attribute of the matched SourceSections whose value is compared with the reference value used by this selector.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Target</em>' reference.
-	 * @see #setTarget(SourceSectionAttribute)
-	 * @see pamtram.structure.StructurePackage#getSourceInstanceSelector_Target()
+	 * @return the value of the '<em>Reference Attribute</em>' reference.
+	 * @see #setReferenceAttribute(SourceSectionAttribute)
+	 * @see pamtram.structure.StructurePackage#getSourceInstanceSelector_ReferenceAttribute()
+	 * @model
+	 * @generated
+	 */
+	SourceSectionAttribute getReferenceAttribute();
+
+	/**
+	 * Sets the value of the '{@link pamtram.structure.SourceInstanceSelector#getReferenceAttribute <em>Reference Attribute</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Reference Attribute</em>' reference.
+	 * @see #getReferenceAttribute()
+	 * @generated
+	 */
+	void setReferenceAttribute(SourceSectionAttribute value);
+
+	/**
+	 * Returns the value of the '<em><b>Target Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The SourceSectionClass one of whose matched instances shall be selected.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Target Class</em>' reference.
+	 * @see #setTargetClass(SourceSectionClass)
+	 * @see pamtram.structure.StructurePackage#getSourceInstanceSelector_TargetClass()
 	 * @model required="true"
 	 * @generated
 	 */
-	SourceSectionAttribute getTarget();
+	SourceSectionClass getTargetClass();
 
 	/**
-	 * Sets the value of the '{@link pamtram.structure.SourceInstanceSelector#getTarget <em>Target</em>}' reference.
+	 * Sets the value of the '{@link pamtram.structure.SourceInstanceSelector#getTargetClass <em>Target Class</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Target</em>' reference.
-	 * @see #getTarget()
+	 * @param value the new value of the '<em>Target Class</em>' reference.
+	 * @see #getTargetClass()
 	 * @generated
 	 */
-	void setTarget(SourceSectionAttribute value);
+	void setTargetClass(SourceSectionClass value);
 } // SourceInstanceSelector

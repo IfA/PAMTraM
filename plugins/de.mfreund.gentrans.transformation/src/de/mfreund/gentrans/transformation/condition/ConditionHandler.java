@@ -17,15 +17,12 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 
-import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
-import de.mfreund.gentrans.transformation.calculation.AttributeValueConstraintReferenceValueCalculator;
+import de.mfreund.gentrans.transformation.calculation.ValueConstraintReferenceValueCalculator;
 import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
-import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.matching.ValueExtractor;
 import pamtram.ConditionalElement;
-import pamtram.FixedValue;
 import pamtram.condition.And;
 import pamtram.condition.ApplicationDependency;
 import pamtram.condition.AttributeCondition;
@@ -37,7 +34,6 @@ import pamtram.condition.Not;
 import pamtram.condition.Or;
 import pamtram.condition.UnaryCondition;
 import pamtram.condition.VariadicCondition;
-import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.extended.MappingHint;
@@ -106,12 +102,12 @@ public class ConditionHandler {
 	/**
 	 * It will be used for calculating referenceValues that are needed for {@link AttributeCondition}s
 	 */
-	private AttributeValueConstraintReferenceValueCalculator refValueCalculator;
+	private ValueConstraintReferenceValueCalculator refValueCalculator;
 
 	/**
 	 * It will be used for extract a more in detail specified Element which was more than one times matched
 	 */
-	private InstanceSelectorHandler instancePointerHandler;
+	private InstanceSelectorHandler instanceSelectorHandler;
 
 	/**
 	 * Whether extended parallelization shall be used during the transformation that might lead to the fact that the
@@ -125,11 +121,12 @@ public class ConditionHandler {
 	 * @param matchedSections
 	 *            The map of {@link SourceSection SourceSections} and associated {@link MatchedSectionDescriptor
 	 *            MatchedSectionDescriptors} that result from the matching process.
-	 * @param globalValues
-	 *            The <em>global values</em> (values of {@link FixedValue FixedValues} and {@link GlobalAttribute
-	 *            GlobalAttribute}) defined in the PAMTraM model.
-	 * @param attributeValueCalculator
-	 *            The {@link AttributeValueCalculator} to use in order to calculate resulting values.
+	 * @param instanceSelectorHandler
+	 *            The {@link InstanceSelectorHandler} used to filter instances by means of {@link InstanceSelector
+	 *            InstanceSelectors}.
+	 * @param valueConstraintReferenceValueCalculator
+	 *            The {@link ValueConstraintReferenceValueCalculator} used to calculate reference values for
+	 *            {@link ValueConstraint ValueConstraints}.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
 	 * @param useParallelization
@@ -137,7 +134,8 @@ public class ConditionHandler {
 	 *            that the transformation result (especially the order of lists) varies between executions.
 	 */
 	public ConditionHandler(Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections,
-			GlobalValueMap globalValues, AttributeValueCalculator attributeValueCalculator, Logger logger,
+			InstanceSelectorHandler instanceSelectorHandler,
+			ValueConstraintReferenceValueCalculator valueConstraintReferenceValueCalculator, Logger logger,
 			boolean useParallelization) {
 
 		this.matchedSections = matchedSections;
@@ -145,10 +143,8 @@ public class ConditionHandler {
 		this.attributeConditionConstraintsWithErrors = new HashSet<>();
 		this.logger = logger;
 		this.useParallelization = useParallelization;
-		this.instancePointerHandler = new InstanceSelectorHandler(matchedSections, globalValues,
-				attributeValueCalculator, this.logger, this.useParallelization);
-		this.refValueCalculator = new AttributeValueConstraintReferenceValueCalculator(matchedSections, globalValues,
-				this.instancePointerHandler, attributeValueCalculator, this.logger, this.useParallelization);
+		this.instanceSelectorHandler = instanceSelectorHandler;
+		this.refValueCalculator = valueConstraintReferenceValueCalculator;
 	}
 
 	/**
@@ -623,7 +619,7 @@ public class ConditionHandler {
 
 			for (SourceInstanceSelector instancePointer : condition.getInstanceSelectors()) {
 
-				correspondEClassInstances = this.instancePointerHandler.getSelectedInstancesByInstanceList(
+				correspondEClassInstances = this.instanceSelectorHandler.getSelectedInstancesByInstanceList(
 						instancePointer, correspondEClassInstances, matchedSectionDescriptor);
 			}
 

@@ -18,12 +18,15 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.ConditionModel;
 import pamtram.ConditionalElement;
 import pamtram.DeactivatableElement;
 import pamtram.PamtramPackage;
 import pamtram.condition.ComplexCondition;
+import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
+import pamtram.mapping.MappingPackage;
 import pamtram.mapping.extended.AttributeMapping;
 import pamtram.mapping.extended.CardinalityMapping;
 import pamtram.mapping.extended.ExtendedPackage;
@@ -607,6 +610,31 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 		result.append(deactivated);
 		result.append(')');
 		return result.toString();
+	}
+
+	@Override
+	public String printInfo() {
+
+		String mappingHintName = this.getName();
+		MappingHintGroupType hintGroup = (MappingHintGroupType) AgteleEcoreUtil.getAncestorOfKind(this,
+				MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE);
+		Mapping mapping = (Mapping) AgteleEcoreUtil.getAncestorOfKind(this, MappingPackage.Literals.MAPPING);
+
+		StringBuilder infoBuilder = new StringBuilder();
+		infoBuilder.append(this.eClass().getName());
+		if (mappingHintName != null) {
+			infoBuilder.append(" '").append(mappingHintName).append("'");
+		}
+
+		if (hintGroup != null) {
+			infoBuilder.append(" (HintGroup '").append(hintGroup.getName()).append("'");
+		}
+		if (mapping != null) {
+			infoBuilder.append(" in Mapping '").append(mapping.getName()).append("')");
+		} else {
+			infoBuilder.append(")");
+		}
+		return infoBuilder.toString();
 	}
 
 } // MappingHintImpl

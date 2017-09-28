@@ -69,7 +69,7 @@ public class JoiningSelectContainerInstanceMappingModelEnhancer
 
 		// The ContainerSelector that is used to enhance the MappingModel
 		//
-		ContainerSelector selector = ExtendedFactory.eINSTANCE.createContainerSelectorWithSourceAndTarget();
+		ContainerSelector selector = ExtendedFactory.eINSTANCE.createContainerSelectorWithSource();
 
 		if (editor == null) {
 

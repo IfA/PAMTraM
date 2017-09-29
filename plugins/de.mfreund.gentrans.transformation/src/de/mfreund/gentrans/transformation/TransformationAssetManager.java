@@ -15,6 +15,7 @@ import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.matching.GlobalAttributeValueExtractor;
 import de.mfreund.gentrans.transformation.matching.HintValueExtractor;
 import de.mfreund.gentrans.transformation.matching.MappingSelector;
+import de.mfreund.gentrans.transformation.matching.SourceSectionMatcher;
 import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
 import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import pamtram.FixedValue;
@@ -107,6 +108,11 @@ class TransformationAssetManager {
 	 * GlobalAttributes}.
 	 */
 	private GlobalAttributeValueExtractor globalAttributeValueExtractor;
+
+	/**
+	 * The {@link SourceSectionMatcher} that is used to perform the <em>matching</em> phase of the transformation.
+	 */
+	private SourceSectionMatcher sourceSectionMatcher;
 
 	/**
 	 * This creates an instance.
@@ -376,6 +382,31 @@ class TransformationAssetManager {
 		}
 
 		return this.globalAttributeValueExtractor;
+	}
+
+	/**
+	 * This initializes the {@link #sourceSectionMatcher}.
+	 */
+	protected void initSourceSectionMatcher() {
+
+		this.sourceSectionMatcher = new SourceSectionMatcher(this.getMatchedSectionRegistry(),
+				this.getValueConstraintReferenceValueCalculator(),
+				this.transformationConfig.getAmbiguityResolvingStrategy(), this.transformationConfig.getLogger(),
+				this.transformationConfig.isUseParallelization());
+	}
+
+	/**
+	 * Returns the {@link #sourceSectionMatcher}.
+	 *
+	 * @return the {@link #sourceSectionMatcher}
+	 */
+	public SourceSectionMatcher getSourceSectionMatcher() {
+
+		if (this.sourceSectionMatcher == null) {
+			this.initSourceSectionMatcher();
+		}
+
+		return this.sourceSectionMatcher;
 	}
 
 }

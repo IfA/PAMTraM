@@ -27,7 +27,9 @@ import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
 import de.mfreund.gentrans.transformation.util.CancelableElement;
 import pamtram.ConditionalElement;
+import pamtram.DeactivatableElement;
 import pamtram.MappingModel;
+import pamtram.PAMTraM;
 import pamtram.condition.ApplicationDependency;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.Condition;
@@ -125,34 +127,71 @@ public class MappingSelector extends CancelableElement {
 
 	/**
 	 * For each {@link MatchedSectionDescriptor} represented in the given <em>matchedSections</em>, this selects a
+	 * suitable mapping (one of the <em>mappings</em> defined by the list given list of {@link PAMTraM PAMTraM models}).
+	 * <p />
+	 * Note: {@link DeactivatableElement#isDeactivated() Deactivated} Mappings and Mappings in deactivated MappingModels
+	 * are not considered in the matching process.
+	 *
+	 * @param matchedSections
+	 *            A map representing the {@link MatchedSectionDescriptor MatchedSectionDescriptors} found for every
+	 *            {@link SourceSection}.
+	 * @param pamtramModels
+	 *            The list of {@link PAMTraM PAMTraM models} providing the {@link Mapping Mappings} that shall be
+	 *            considered.
+	 * @return The selected mappings in the form of a {@link MappingInstanceStorage} for each
+	 *         {@link MatchedSectionDescriptor}.
+	 */
+	public Map<Mapping, List<MappingInstanceStorage>> selectMappings(
+			Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections, List<PAMTraM> pamtramModels) {
+
+		// The Mappings defined by the active MappingModels that will be used
+		//
+		Set<Mapping> activeMappings = pamtramModels.stream().flatMap(p -> p.getActiveMappings().stream())
+				.collect(LinkedHashSet<Mapping>::new, LinkedHashSet::add, LinkedHashSet::addAll);
+
+		return this.selectMappings(matchedSections, activeMappings);
+	}
+
+	/**
+	 * For each {@link MatchedSectionDescriptor} represented in the given <em>matchedSections</em>, this selects a
 	 * suitable mapping (one of the given <em>mappings</em>).
+	 * <p />
+	 * Note: {@link DeactivatableElement#isDeactivated() Deactivated} Mappings are not considered in the matching
+	 * process.
 	 *
 	 * @param matchedSections
 	 *            A map representing the {@link MatchedSectionDescriptor MatchedSectionDescriptors} found for every
 	 *            {@link SourceSection}.
 	 * @param mappings
-	 *            The list of {@link Mapping Mappings} that shall be considered.
+	 *            The set of {@link Mapping Mappings} that shall be considered.
 	 * @return The selected mappings in the form of a {@link MappingInstanceStorage} for each
 	 *         {@link MatchedSectionDescriptor}.
 	 */
 	public Map<Mapping, List<MappingInstanceStorage>> selectMappings(
-			Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections, List<Mapping> mappings) {
+			Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections, Set<Mapping> mappings) {
+
+		// The active Mappings that will be matched against the source models
+		//
+		List<Mapping> activeMappings = mappings.stream().filter(m -> !m.isAbstract() && !m.isDeactivated())
+				.collect(Collectors.toList());
+
+		activeMappings.stream().forEach(m -> this.selectedMappings.put(m, new ArrayList<>()));
 
 		// First, we need to filter mapping models with conditions that evaluate
 		// to 'false'
 		//
 		Set<MappingModel> mappingModels = new LinkedHashSet<>(
-				(this.useParallelization ? mappings.parallelStream() : mappings.stream())
+				(this.useParallelization ? activeMappings.parallelStream() : activeMappings.stream())
 						.map(m -> (MappingModel) m.eContainer()).collect(Collectors.toList()));
 
 		List<MappingModel> mappingModelsWithNegativeCondition = mappingModels.stream()
 				.filter(m -> !this.checkCondition(m)).collect(Collectors.toList());
-		mappings.removeAll(mappingModelsWithNegativeCondition.stream().flatMap(m -> m.getMappings().stream())
+		activeMappings.removeAll(mappingModelsWithNegativeCondition.stream().flatMap(m -> m.getMappings().stream())
 				.collect(Collectors.toList()));
 
 		// TODO also filter if sub-conditions of type ApplicationDependency
-		this.dependentMappings
-				.addAll((this.useParallelization ? mappings.parallelStream() : mappings.stream()).filter(m -> {
+		this.dependentMappings.addAll(
+				(this.useParallelization ? activeMappings.parallelStream() : activeMappings.stream()).filter(m -> {
 					Stream<ComplexCondition> conditionParts;
 					if (m.getLocalCondition() != null) {
 						conditionParts = m.getLocalCondition().getConditionPartsFlat().stream();
@@ -173,7 +212,7 @@ public class MappingSelector extends CancelableElement {
 		List<MappingInstanceStorage> mappingInstances = (this.useParallelization
 				? matchedSections.entrySet().parallelStream()
 				: matchedSections.entrySet().stream())
-						.map(e -> this.selectMapping(e.getKey(), e.getValue(), mappings, true))
+						.map(e -> this.selectMapping(e.getKey(), e.getValue(), activeMappings, true))
 						.flatMap(Collection::stream).collect(Collectors.toList());
 
 		for (MappingInstanceStorage mappingInstance : mappingInstances) {
@@ -191,7 +230,7 @@ public class MappingSelector extends CancelableElement {
 		List<MappingInstanceStorage> deferredInstances = (this.useParallelization
 				? this.deferredSections.parallelStream()
 				: this.deferredSections.stream())
-						.map(s -> this.selectMapping(s, matchedSections.get(s), mappings, false))
+						.map(s -> this.selectMapping(s, matchedSections.get(s), activeMappings, false))
 						.flatMap(Collection::stream).collect(Collectors.toList());
 
 		for (MappingInstanceStorage mappingInstance : deferredInstances) {

@@ -17,6 +17,7 @@ import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
 import pamtram.MappingModel;
+import pamtram.PAMTraM;
 import pamtram.mapping.GlobalAttribute;
 
 /**
@@ -56,12 +57,15 @@ public class GlobalAttributeValueExtractor extends ValueExtractor {
 	 * @param matchedSectionRegistry
 	 *            The {@link MatchedSectionRegistry} that represents the result of the matching process. The values of
 	 *            GlobalAttributes will get extracted from this.
-	 * @param mappingModels
-	 *            The list of {@link MappingModel MappingModels} containing the GlobalAttributes to be extracted.
+	 * @param pamtramModels
+	 *            The list of {@link PAMTraM PAMTraM models} containing the GlobalAttributes to be extracted.
 	 * @return The found values of the {@link GlobalAttribute GlobalAttributes}.
 	 */
 	public Map<GlobalAttribute, String> extractGlobalAttributeValues(MatchedSectionRegistry matchedSectionRegistry,
-			List<MappingModel> mappingModels) {
+			List<PAMTraM> pamtramModels) {
+
+		List<MappingModel> mappingModels = pamtramModels.stream().flatMap(p -> p.getMappingModels().stream())
+				.collect(Collectors.toList());
 
 		// Collect the GlobalAttributes that are modeled for each MappingModels
 		// and the associated

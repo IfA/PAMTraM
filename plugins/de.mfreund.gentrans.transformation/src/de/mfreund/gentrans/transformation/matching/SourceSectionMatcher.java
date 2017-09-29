@@ -37,6 +37,8 @@ import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.
 import de.mfreund.gentrans.transformation.util.CancelableElement;
 import de.mfreund.pamtram.util.NullComparator;
 import de.mfreund.pamtram.util.OCLUtil;
+import pamtram.DeactivatableElement;
+import pamtram.PAMTraM;
 import pamtram.structure.constraint.ChoiceConstraint;
 import pamtram.structure.constraint.EqualityConstraint;
 import pamtram.structure.constraint.SingleReferenceValueConstraint;
@@ -67,13 +69,13 @@ public class SourceSectionMatcher extends CancelableElement {
 	/**
 	 * The {@link ContainmentTree} that represents the list of source models to be matched.
 	 */
-	private final ContainmentTree containmentTree;
+	private ContainmentTree containmentTree;
 
 	/**
 	 * The list of {@link SourceSection SourceSections} that this matcher operates on. These are matched against the
 	 * {@link #containmentTree} in the course of the matching process.
 	 */
-	private EList<SourceSection> sourceSections;
+	private List<SourceSection> sourceSections;
 
 	/**
 	 * This is the {@link IAmbiguityResolvingStrategy} that shall be used to resolve ambiguities that arise during the
@@ -90,14 +92,14 @@ public class SourceSectionMatcher extends CancelableElement {
 	 * Registry for <em>source model elements</em> that have already been matched. The matched elements are stored in a
 	 * map where the key is the corresponding {@link SourceSectionClass} that they have been matched to.
 	 */
-	private final Map<SourceSectionClass, Set<EObject>> matchedSections;
+	private Map<SourceSectionClass, Set<EObject>> matchedSections;
 
 	/**
 	 * Registry for <em>source model elements</em> that were not directly matched but indirectly matched as part of a
 	 * container section. The matched objects are stored in a map where the key is the corresponding
 	 * {@link SourceSectionClass container section} that they have been matched to.
 	 */
-	private final Map<SourceSectionClass, Set<EObject>> matchedContainers;
+	private Map<SourceSectionClass, Set<EObject>> matchedContainers;
 
 	/**
 	 * This {@link ValueConstraintReferenceValueCalculator} will be used for calculating referenceValues that are needed
@@ -109,7 +111,7 @@ public class SourceSectionMatcher extends CancelableElement {
 	 * The map of {@link MatchedSectionDescriptor MatchedSectionDescriptors} that represents the result of the matching
 	 * process.
 	 */
-	private MatchedSectionRegistry matchedSectionRegistry;
+	private final MatchedSectionRegistry matchedSectionRegistry;
 
 	/**
 	 * This creates an instance.
@@ -117,11 +119,6 @@ public class SourceSectionMatcher extends CancelableElement {
 	 * @param matchedSectionRegistry
 	 *            The map of {@link MatchedSectionDescriptor MatchedSectionDescriptors} that represents the result of
 	 *            the matching process.
-	 * @param containmentTree
-	 *            The {@link ContainmentTree} representing the source models to be matched.
-	 * @param sourceSections
-	 *            The list of {@link SourceSection SourceSections} that the ' <em>containmentTree</em>' shall be matched
-	 *            against.
 	 * @param valueConstraintReferenceValueCalculator
 	 *            The {@link ValueConstraintReferenceValueCalculator} that shall be used to used to calculate reference
 	 *            values of {@link ValueConstraint ValueConstraints}.
@@ -133,30 +130,89 @@ public class SourceSectionMatcher extends CancelableElement {
 	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
 	 *            that the transformation result (especially the order of lists) varies between executions.
 	 */
-	public SourceSectionMatcher(MatchedSectionRegistry matchedSectionRegistry, ContainmentTree containmentTree,
-			EList<SourceSection> sourceSections,
+	public SourceSectionMatcher(MatchedSectionRegistry matchedSectionRegistry,
 			ValueConstraintReferenceValueCalculator valueConstraintReferenceValueCalculator,
 			IAmbiguityResolvingStrategy ambiguityResolvingStrategy, Logger logger, boolean useParallelization) {
 
 		this.matchedSectionRegistry = matchedSectionRegistry;
-		this.containmentTree = containmentTree;
-		this.sourceSections = sourceSections;
 		this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
 		this.logger = logger;
-		this.matchedSections = new HashMap<>();
-		this.matchedContainers = new HashMap<>();
 		this.refValueCalculator = valueConstraintReferenceValueCalculator;
 	}
 
 	/**
-	 * This iterates through the {@link #containmentTree} and tries to match each of the given {@link #sourceSections}
-	 * against the elements represented in the tree. The result of this process is a list of
-	 * {@link MatchedSectionDescriptor MatchedSectionDescriptors} that will be returned.
+	 * This iterates through the given list of <em>sourceModels</em> and tries to match each of the {@link SourceSection
+	 * SourceSections} defined in the given list of {@link PAMTraM PAMTraM Models} against the elements of the source
+	 * models. The result of this process is a list of {@link MatchedSectionDescriptor MatchedSectionDescriptors} that
+	 * is stored in the {@link #matchedSectionRegistry}.
 	 * <p />
-	 * The set of {@link MatchedSectionDescriptor MatchedSectionDescriptors} that represents the result of the matching
-	 * process is stored in the {@link #matchedSectionRegistry}.
+	 * Note: {@link DeactivatableElement#isDeactivated() Deactivated} SourceSections and SourceSections in deactivated
+	 * SourceSectionModels are not considered in the matching process.
+	 *
+	 * @param sourceModels
+	 *            The list of source models (each represented by its root {@link EObject element}) to be matched.
+	 * @param pamtramModels
+	 *            The list of {@link PAMTraM PAMTraM Models} providing the {@link SourceSection SourceSections} that the
+	 *            ' <em>sourceModels</em>' shall be matched against.
 	 */
-	public void matchSections() {
+	public void matchSections(List<EObject> sourceModels, List<PAMTraM> pamtramModels) {
+
+		// The SourceSections defined by the active SourceSectionModels that will be matched against the source models
+		//
+		Set<SourceSection> activeSourceSections = pamtramModels.stream()
+				.flatMap(p -> p.getActiveSourceSections().stream())
+				.collect(LinkedHashSet<SourceSection>::new, LinkedHashSet::add, LinkedHashSet::addAll);
+
+		this.matchSections(sourceModels, activeSourceSections);
+	}
+
+	/**
+	 * This iterates through the given list of <em>sourceModels</em> and tries to match each of the given
+	 * {@link SourceSection SourceSections} against the elements of the source models. The result of this process is a
+	 * list of {@link MatchedSectionDescriptor MatchedSectionDescriptors} that is stored in the
+	 * {@link #matchedSectionRegistry}.
+	 * <p />
+	 * Note: {@link DeactivatableElement#isDeactivated() Deactivated} SourceSections are not considered in the matching
+	 * process.
+	 *
+	 * @see #matchSections(List, List)
+	 *
+	 * @param sourceModels
+	 *            The list of source models (each represented by its root {@link EObject element}) to be matched.
+	 * @param sourceSections
+	 *            The list of {@link SourceSection SourceSections} that the ' <em>containmentTree</em>' shall be matched
+	 *            against.
+	 */
+	public void matchSections(List<EObject> sourceModels, Set<SourceSection> sourceSections) {
+
+		// The active SourceSections that will be matched against the source models
+		//
+		List<SourceSection> activeSourceSections = sourceSections.stream()
+				.filter(s -> !s.isAbstract() && !s.isDeactivated()).collect(Collectors.toList());
+
+		ContainmentTree tree = ContainmentTree.build(sourceModels);
+		this.matchSections(tree, activeSourceSections);
+	}
+
+	/**
+	 * This iterates through the given {@link ContainmentTree} representing one or multiple source models and tries to
+	 * match each of the given {@link SourceSection SourceSections} against the elements represented in the tree. The
+	 * result of this process is a list of {@link MatchedSectionDescriptor MatchedSectionDescriptors} that is stored in
+	 * the {@link #matchedSectionRegistry}.
+	 *
+	 * @param containmentTree
+	 *            The {@link ContainmentTree} representing the source models to be matched.
+	 * @param sourceSections
+	 *            The list of {@link SourceSection SourceSections} that the ' <em>containmentTree</em>' shall be matched
+	 *            against.
+	 */
+	private void matchSections(ContainmentTree containmentTree, List<SourceSection> sourceSections) {
+
+		this.containmentTree = containmentTree;
+		this.sourceSections = sourceSections;
+
+		this.matchedSections = new HashMap<>();
+		this.matchedContainers = new HashMap<>();
 
 		Optional<EObject> element;
 		while ((element = this.containmentTree.getNextElementForMatching()).isPresent()) {
@@ -179,6 +235,10 @@ public class SourceSectionMatcher extends CancelableElement {
 					false);
 
 		}
+
+		this.logger.info(() -> "Summary:\tAvailable Elements:\t" + containmentTree.getNumberOfElements());
+		this.logger.info(() -> "\t\tMatched Elements:\t" + containmentTree.getNumberOfMatchedElements());
+		this.logger.info(() -> "\t\tUnmatched Elements:\t" + containmentTree.getNumberOfUnmatchedElements());
 
 	}
 
@@ -1487,5 +1547,13 @@ public class SourceSectionMatcher extends CancelableElement {
 		}
 
 		return Optional.empty();
+	}
+
+	/**
+	 * @return the {@link #matchedSections}
+	 */
+	public Map<SourceSectionClass, Set<EObject>> getMatchedSections() {
+
+		return this.matchedSections;
 	}
 }

@@ -26,7 +26,6 @@ import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.HintValueStorage;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
-import de.mfreund.gentrans.transformation.library.LibraryEntryInstantiator;
 import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
@@ -84,12 +83,6 @@ public class TargetSectionLinker extends CancelableElement {
 	private IAmbiguityResolvingStrategy ambiguityResolvingStrategy;
 
 	/**
-	 * This relates temporarily created elements for LibraryEntries (represented by an {@link EObjectWrapper}) to their
-	 * {@link LibraryEntryInstantiator}.
-	 */
-	private Map<EObjectWrapper, LibraryEntryInstantiator> libEntryInstantiatorMap;
-
-	/**
 	 * This creates an instance.
 	 *
 	 * @param targetSectionRegistry
@@ -97,17 +90,13 @@ public class TargetSectionLinker extends CancelableElement {
 	 * @param instanceSelectorHandler
 	 *            The {@link InstanceSelectorHandler} used to evaluate modeled {@link ReferenceTargetSelector
 	 *            ReferenceTargetSelectors}.
-	 * @param libEntryInstantiatorMap
-	 *            The temporarily created elements for LibraryEntries (represented by an {@link EObjectWrapper}) and
-	 *            their corresponding {@link LibraryEntryInstantiator}.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
 	 * @param ambiguityResolvingStrategy
 	 *            The {@link IAmbiguityResolvingStrategy} that shall be used to resolve occurring ambiguities.
 	 */
 	public TargetSectionLinker(final TargetSectionRegistry targetSectionRegistry,
-			InstanceSelectorHandler instanceSelectorHandler,
-			final Map<EObjectWrapper, LibraryEntryInstantiator> libEntryInstantiatorMap, final Logger logger,
+			InstanceSelectorHandler instanceSelectorHandler, final Logger logger,
 			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
 
 		this.targetSectionRegistry = targetSectionRegistry;
@@ -115,8 +104,20 @@ public class TargetSectionLinker extends CancelableElement {
 		this.logger = logger;
 		this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
 		this.canceled = false;
-		this.libEntryInstantiatorMap = libEntryInstantiatorMap;
 
+	}
+
+	/**
+	 * Link the {@link TargetSection TargetSections} represented by the given list of {@link MappingInstanceStorage
+	 * mapping instances}, i.e. find target elements for the various {@link TargetSectionCrossReference
+	 * TargetSectionCrossReferences} of the TargetSections.
+	 *
+	 * @param mappingInstances
+	 *            The list of {@link MappingInstanceStorage mapping instances} to link.
+	 */
+	public void linkTargetSections(List<MappingInstanceStorage> mappingInstances) {
+
+		mappingInstances.stream().forEach(this::linkTargetSection);
 	}
 
 	/**
@@ -621,8 +622,8 @@ public class TargetSectionLinker extends CancelableElement {
 				 * the targetSectionClass; instead we want to specify the value as 'target' for the affected
 				 * ExternalReferenceParameter
 				 */
-				LibraryEntry specificLibEntry = this.libEntryInstantiatorMap.get(entryToInstantiate.getKey())
-						.getLibraryEntry();
+				LibraryEntry specificLibEntry = this.targetSectionRegistry.getLibraryEntryRegistry()
+						.get(entryToInstantiate.getKey()).getLibraryEntry();
 				LibraryEntry genericLibEntry = (LibraryEntry) AgteleEcoreUtil.getAncestorOfKind(
 						mappingGroup.getTargetMMSectionGeneric(), LibraryPackage.Literals.LIBRARY_ENTRY);
 

@@ -22,6 +22,8 @@ import de.mfreund.gentrans.transformation.condition.ConditionHandler;
 import de.mfreund.gentrans.transformation.condition.ConditionHandler.CondResult;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
+import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
+import de.mfreund.gentrans.transformation.registries.SelectedMappingRegistry;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvedAdapter;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
@@ -42,11 +44,11 @@ import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.structure.source.SourceSection;
 
 /**
- * This class can be used to {@link #selectMappings(Map, List) select suitable mappings} for a list of
- * {@link MatchedSectionDescriptor matched sections}.
+ * This class can be used to {@link #selectMappings(MatchedSectionRegistry, List) select suitable mappings} for a list
+ * of {@link MatchedSectionDescriptor matched sections}.
  * <p />
  * Conditions will be evaluated and occurring ambiguities will be resolved during the process of
- * {@link #selectMappings(Map, List)}.
+ * {@link #selectMappings(MatchedSectionRegistry, List)}.
  *
  * @author mfreund
  */
@@ -61,7 +63,7 @@ public class MappingSelector extends CancelableElement {
 	/**
 	 * This keeps track of the mappings that have been selected (the result of the {@link #selectMappings()} step.
 	 */
-	private Map<Mapping, List<MappingInstanceStorage>> selectedMappings;
+	private SelectedMappingRegistry selectedMappings;
 
 	/**
 	 * The list of {@link SourceSection} for that no mapping could yet be selected because at least one of the available
@@ -98,7 +100,10 @@ public class MappingSelector extends CancelableElement {
 
 	/**
 	 * This creates an instance.
-	 *
+	 * 
+	 * @param selectedMappingRegistry
+	 *            The {@link SelectedMappingRegistry} where all selected Mappings (the result of the
+	 *            {@link #selectMappings(MatchedSectionRegistry, List)} step) will be stored.
 	 * @param onlyAskOnceOnAmbiguousMappings
 	 *            If ambiguous {@link Mapping Mappings} should be resolved only once or on a per-element basis.
 	 * @param ambiguityResolvingStrategy
@@ -111,12 +116,12 @@ public class MappingSelector extends CancelableElement {
 	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
 	 *            that the transformation result (especially the order of lists) varies between executions.
 	 */
-	public MappingSelector(boolean onlyAskOnceOnAmbiguousMappings,
+	public MappingSelector(SelectedMappingRegistry selectedMappingRegistry, boolean onlyAskOnceOnAmbiguousMappings,
 			IAmbiguityResolvingStrategy ambiguityResolvingStrategy, ConditionHandler conditionHandler, Logger logger,
 			boolean useParallelization) {
 
 		this.dependentMappings = Collections.synchronizedList(new ArrayList<>());
-		this.selectedMappings = Collections.synchronizedMap(new LinkedHashMap<>());
+		this.selectedMappings = selectedMappingRegistry;
 		this.deferredSections = Collections.synchronizedList(new ArrayList<>());
 		this.onlyAskOnceOnAmbiguousMappings = onlyAskOnceOnAmbiguousMappings;
 		this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
@@ -128,6 +133,8 @@ public class MappingSelector extends CancelableElement {
 	/**
 	 * For each {@link MatchedSectionDescriptor} represented in the given <em>matchedSections</em>, this selects a
 	 * suitable mapping (one of the <em>mappings</em> defined by the list given list of {@link PAMTraM PAMTraM models}).
+	 * The result of the selection process is returned by means of a {@link SelectedMappingRegistry}. Additionally, all
+	 * the selected mappings are also registered in the (global) {@link #selectedMappings}.
 	 * <p />
 	 * Note: {@link DeactivatableElement#isDeactivated() Deactivated} Mappings and Mappings in deactivated MappingModels
 	 * are not considered in the matching process.
@@ -138,11 +145,10 @@ public class MappingSelector extends CancelableElement {
 	 * @param pamtramModels
 	 *            The list of {@link PAMTraM PAMTraM models} providing the {@link Mapping Mappings} that shall be
 	 *            considered.
-	 * @return The selected mappings in the form of a {@link MappingInstanceStorage} for each
-	 *         {@link MatchedSectionDescriptor}.
+	 * @return The {@link SelectedMappingRegistry} containing (only!) those Mapping instances registered during the
+	 *         execution of this method.
 	 */
-	public Map<Mapping, List<MappingInstanceStorage>> selectMappings(
-			Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections, List<PAMTraM> pamtramModels) {
+	public SelectedMappingRegistry selectMappings(MatchedSectionRegistry matchedSections, List<PAMTraM> pamtramModels) {
 
 		// The Mappings defined by the active MappingModels that will be used
 		//
@@ -154,28 +160,31 @@ public class MappingSelector extends CancelableElement {
 
 	/**
 	 * For each {@link MatchedSectionDescriptor} represented in the given <em>matchedSections</em>, this selects a
-	 * suitable mapping (one of the given <em>mappings</em>).
+	 * suitable mapping (one of the given <em>mappings</em>). The result of the selection process is returned by means
+	 * of a {@link SelectedMappingRegistry}. Additionally, all the selected mappings are also registered in the (global)
+	 * {@link #selectedMappings}.
 	 * <p />
 	 * Note: {@link DeactivatableElement#isDeactivated() Deactivated} Mappings are not considered in the matching
 	 * process.
 	 *
 	 * @param matchedSections
-	 *            A map representing the {@link MatchedSectionDescriptor MatchedSectionDescriptors} found for every
-	 *            {@link SourceSection}.
+	 *            The {@link MatchedSectionRegistry} representing the {@link MatchedSectionDescriptor
+	 *            MatchedSectionDescriptors} found for every {@link SourceSection}.
 	 * @param mappings
 	 *            The set of {@link Mapping Mappings} that shall be considered.
-	 * @return The selected mappings in the form of a {@link MappingInstanceStorage} for each
-	 *         {@link MatchedSectionDescriptor}.
+	 * @return The {@link SelectedMappingRegistry} containing (only!) those Mapping instances registered during the
+	 *         execution of this method.
 	 */
-	public Map<Mapping, List<MappingInstanceStorage>> selectMappings(
-			Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections, Set<Mapping> mappings) {
+	public SelectedMappingRegistry selectMappings(MatchedSectionRegistry matchedSections, Set<Mapping> mappings) {
+
+		SelectedMappingRegistry localRegistry = new SelectedMappingRegistry();
 
 		// The active Mappings that will be matched against the source models
 		//
 		List<Mapping> activeMappings = mappings.stream().filter(m -> !m.isAbstract() && !m.isDeactivated())
 				.collect(Collectors.toList());
 
-		activeMappings.stream().forEach(m -> this.selectedMappings.put(m, new ArrayList<>()));
+		activeMappings.stream().forEach(m -> localRegistry.put(m, new ArrayList<>()));
 
 		// First, we need to filter mapping models with conditions that evaluate
 		// to 'false'
@@ -215,13 +224,7 @@ public class MappingSelector extends CancelableElement {
 						.map(e -> this.selectMapping(e.getKey(), e.getValue(), activeMappings, true))
 						.flatMap(Collection::stream).collect(Collectors.toList());
 
-		for (MappingInstanceStorage mappingInstance : mappingInstances) {
-			List<MappingInstanceStorage> instances = this.selectedMappings.containsKey(mappingInstance.getMapping())
-					? this.selectedMappings.get(mappingInstance.getMapping())
-					: new ArrayList<>();
-			instances.add(mappingInstance);
-			this.selectedMappings.put(mappingInstance.getMapping(), instances);
-		}
+		localRegistry.add(mappingInstances);
 
 		// Now, do the same stuff for the 'deferred' sections as we are now able
 		// to evaluate the
@@ -233,15 +236,11 @@ public class MappingSelector extends CancelableElement {
 						.map(s -> this.selectMapping(s, matchedSections.get(s), activeMappings, false))
 						.flatMap(Collection::stream).collect(Collectors.toList());
 
-		for (MappingInstanceStorage mappingInstance : deferredInstances) {
-			List<MappingInstanceStorage> instances = this.selectedMappings.containsKey(mappingInstance.getMapping())
-					? this.selectedMappings.get(mappingInstance.getMapping())
-					: new ArrayList<>();
-			instances.add(mappingInstance);
-			this.selectedMappings.put(mappingInstance.getMapping(), instances);
-		}
+		localRegistry.add(deferredInstances);
 
-		return this.selectedMappings;
+		this.selectedMappings.addAll(localRegistry);
+
+		return localRegistry;
 	}
 
 	/**
@@ -437,10 +436,8 @@ public class MappingSelector extends CancelableElement {
 
 		// check Conditions of the Mapping (Note: no condition modeled = true)
 		//
-		return this.conditionHandler.checkCondition(mapping.getLocalCondition(), descriptor,
-				this.selectedMappings) == CondResult.TRUE
-				&& this.conditionHandler.checkCondition(mapping.getSharedCondition(), descriptor,
-						this.selectedMappings) == CondResult.TRUE;
+		return this.conditionHandler.checkCondition(mapping.getLocalCondition(), descriptor) == CondResult.TRUE
+				&& this.conditionHandler.checkCondition(mapping.getSharedCondition(), descriptor) == CondResult.TRUE;
 
 	}
 
@@ -537,10 +534,10 @@ public class MappingSelector extends CancelableElement {
 	 */
 	private boolean checkCondition(ConditionalElement conditionalElement, MatchedSectionDescriptor descriptor) {
 
-		return !(this.conditionHandler.checkCondition(conditionalElement.getLocalCondition(), descriptor,
-				this.selectedMappings) == CondResult.FALSE
-				|| this.conditionHandler.checkCondition(conditionalElement.getSharedCondition(), descriptor,
-						this.selectedMappings) == CondResult.FALSE);
+		return !(this.conditionHandler.checkCondition(conditionalElement.getLocalCondition(),
+				descriptor) == CondResult.FALSE
+				|| this.conditionHandler.checkCondition(conditionalElement.getSharedCondition(),
+						descriptor) == CondResult.FALSE);
 
 	}
 
@@ -554,10 +551,8 @@ public class MappingSelector extends CancelableElement {
 	 */
 	private boolean checkCondition(MappingModel mappingModel) {
 
-		return !(this.conditionHandler.checkCondition(mappingModel.getLocalCondition(), null,
-				this.selectedMappings) == CondResult.FALSE
-				|| this.conditionHandler.checkCondition(mappingModel.getSharedCondition(), null,
-						this.selectedMappings) == CondResult.FALSE);
+		return !(this.conditionHandler.checkCondition(mappingModel.getLocalCondition(), null) == CondResult.FALSE
+				|| this.conditionHandler.checkCondition(mappingModel.getSharedCondition(), null) == CondResult.FALSE);
 
 	}
 

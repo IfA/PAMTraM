@@ -117,8 +117,8 @@ public class SourceSectionMatcher extends CancelableElement {
 	 * This creates an instance.
 	 *
 	 * @param matchedSectionRegistry
-	 *            The map of {@link MatchedSectionDescriptor MatchedSectionDescriptors} that represents the result of
-	 *            the matching process.
+	 *            The {@link MatchedSectionRegistry} where matched sections (the result of the matching process) will be
+	 *            stored.
 	 * @param valueConstraintReferenceValueCalculator
 	 *            The {@link ValueConstraintReferenceValueCalculator} that shall be used to used to calculate reference
 	 *            values of {@link ValueConstraint ValueConstraints}.

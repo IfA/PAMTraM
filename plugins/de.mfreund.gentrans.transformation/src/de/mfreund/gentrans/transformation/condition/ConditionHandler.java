@@ -17,11 +17,13 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 
-import de.mfreund.gentrans.transformation.calculation.ValueConstraintReferenceValueCalculator;
 import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
+import de.mfreund.gentrans.transformation.calculation.ValueConstraintReferenceValueCalculator;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.matching.ValueExtractor;
+import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
+import de.mfreund.gentrans.transformation.registries.SelectedMappingRegistry;
 import pamtram.ConditionalElement;
 import pamtram.condition.And;
 import pamtram.condition.ApplicationDependency;
@@ -90,7 +92,14 @@ public class ConditionHandler {
 	 * Registry for <em>source model objects</em> that have already been matched. The matched objects are stored in a
 	 * map where the key is the corresponding {@link SourceSectionClass} that they have been matched to.
 	 */
-	private Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections;
+	private MatchedSectionRegistry matchedSections;
+
+	/**
+	 * The {@link SelectedMappingRegistry} where selected {@link Mapping Mappings} as well as associated
+	 * {@link MappingInstanceStorage Mapping instances} are stored. This registry is consulted when checking
+	 * {@link ApplicationDependency ApplicationDependencies}.
+	 */
+	private SelectedMappingRegistry selectedMappingRegistry;
 
 	/**
 	 * This keeps track of all {@link ValueConstraint AttributeValueConstraints} that could not be evaluated so we don't
@@ -121,6 +130,10 @@ public class ConditionHandler {
 	 * @param matchedSections
 	 *            The map of {@link SourceSection SourceSections} and associated {@link MatchedSectionDescriptor
 	 *            MatchedSectionDescriptors} that result from the matching process.
+	 * @param selectedMappings
+	 *            The {@link SelectedMappingRegistry} where selected {@link Mapping Mappings} as well as associated
+	 *            {@link MappingInstanceStorage Mapping instances} are stored. This registry is consulted when checking
+	 *            {@link ApplicationDependency ApplicationDependencies}.
 	 * @param instanceSelectorHandler
 	 *            The {@link InstanceSelectorHandler} used to filter instances by means of {@link InstanceSelector
 	 *            InstanceSelectors}.
@@ -133,12 +146,13 @@ public class ConditionHandler {
 	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
 	 *            that the transformation result (especially the order of lists) varies between executions.
 	 */
-	public ConditionHandler(Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections,
+	public ConditionHandler(MatchedSectionRegistry matchedSections, SelectedMappingRegistry selectedMappings,
 			InstanceSelectorHandler instanceSelectorHandler,
 			ValueConstraintReferenceValueCalculator valueConstraintReferenceValueCalculator, Logger logger,
 			boolean useParallelization) {
 
 		this.matchedSections = matchedSections;
+		this.selectedMappingRegistry = selectedMappings;
 		this.conditionRepository = new HashMap<>();
 		this.attributeConditionConstraintsWithErrors = new HashSet<>();
 		this.logger = logger;
@@ -149,20 +163,16 @@ public class ConditionHandler {
 
 	/**
 	 * This is the general checkCondition method. Based on the type of condition to be evaluated, it will forward to the
-	 * specific checking methods (e.g. {@link #checkConditionAnd(And, MatchedSectionDescriptor, Map)}).
+	 * specific checking methods (e.g. {@link #checkConditionAnd(And, MatchedSectionDescriptor)}).
 	 *
 	 * @param complexCondition
 	 *            The {@link ComplexCondition} to check.
 	 * @param matchedSectionDescriptor
 	 *            The {@link MatchedSectionDescriptor} for that the condition shall be checked.
-	 * @param mappingInstances
-	 *            A map relating the already created {@link MappingInstanceStorage mapping instances} to their mappings.
-	 *            This is required for checking {@link ApplicationDependency ApplicationDependencies}.
 	 * @return The calculated {@link CondResult} (true, false).
 	 */
 	public CondResult checkCondition(ComplexCondition complexCondition,
-			MatchedSectionDescriptor matchedSectionDescriptor,
-			Map<Mapping, List<MappingInstanceStorage>> mappingInstances) {
+			MatchedSectionDescriptor matchedSectionDescriptor) {
 
 		// Note: No modeled condition always returns true
 		if (complexCondition == null) {
@@ -182,13 +192,11 @@ public class ConditionHandler {
 
 		if (complexCondition instanceof VariadicCondition) {
 
-			result = this.checkVariadicCondition((VariadicCondition) complexCondition, matchedSectionDescriptor,
-					mappingInstances);
+			result = this.checkVariadicCondition((VariadicCondition) complexCondition, matchedSectionDescriptor);
 
 		} else if (complexCondition instanceof UnaryCondition) {
 
-			result = this.checkUnaryCondition((UnaryCondition) complexCondition, matchedSectionDescriptor,
-					mappingInstances);
+			result = this.checkUnaryCondition((UnaryCondition) complexCondition, matchedSectionDescriptor);
 
 		} else if (complexCondition instanceof AttributeCondition) {
 
@@ -200,8 +208,8 @@ public class ConditionHandler {
 
 		} else if (complexCondition instanceof ApplicationDependency) {
 
-			result = this.checkApplicationDependency((ApplicationDependency) complexCondition, matchedSectionDescriptor,
-					mappingInstances);
+			result = this.checkApplicationDependency((ApplicationDependency) complexCondition,
+					matchedSectionDescriptor);
 
 		} else {
 
@@ -413,13 +421,10 @@ public class ConditionHandler {
 	 *            The {@link ApplicationDependency} to check.
 	 * @param matchedSectionDescriptor
 	 *            The {@link MatchedSectionDescriptor} for that the given condition shall be checked.
-	 * @param mappingInstances
-	 *            A map relating the already created {@link MappingInstanceStorage mapping instances} to their mappings.
 	 * @return The {@link CondResult result} of the check.
 	 */
 	private CondResult checkApplicationDependency(ApplicationDependency applicationDependency,
-			MatchedSectionDescriptor matchedSectionDescriptor,
-			Map<Mapping, List<MappingInstanceStorage>> mappingInstances) {
+			MatchedSectionDescriptor matchedSectionDescriptor) {
 
 		// The Section referenced by the SectionCondition was not matched in the
 		// source model
@@ -428,7 +433,7 @@ public class ConditionHandler {
 
 			// mapping has not been applied
 			//
-			if (!mappingInstances.containsKey(applicationDependency.getTarget())) {
+			if (!this.selectedMappingRegistry.containsMapping((Mapping) applicationDependency.getTarget())) {
 
 				// check Cardinality of the condition (e.g. the condition have
 				// to be at least 5 times true)
@@ -453,7 +458,8 @@ public class ConditionHandler {
 
 			// mapping has been applied
 			//
-			List<MappingInstanceStorage> storageInstances = mappingInstances.get(applicationDependency.getTarget());
+			List<MappingInstanceStorage> storageInstances = this.selectedMappingRegistry
+					.get((Mapping) applicationDependency.getTarget());
 
 			// no instance pointers
 			if (applicationDependency.getInstanceSelectors().isEmpty()) {
@@ -696,16 +702,13 @@ public class ConditionHandler {
 	 *            The {@link UnaryCondition} to check.
 	 * @param matchedSectionDescriptor
 	 *            The {@link MatchedSectionDescriptor} for that the condition shall be checked.
-	 * @param mappingInstances
-	 *            A map relating the already created {@link MappingInstanceStorage mapping instances} to their mappings.
-	 *            This is required for checking {@link ApplicationDependency ApplicationDependencies}.
 	 * @return The calculated {@link CondResult} (true, false).
 	 */
-	private CondResult checkUnaryCondition(UnaryCondition condition, MatchedSectionDescriptor matchedSectionDescriptor,
-			Map<Mapping, List<MappingInstanceStorage>> mappingInstances) {
+	private CondResult checkUnaryCondition(UnaryCondition condition,
+			MatchedSectionDescriptor matchedSectionDescriptor) {
 
 		if (condition instanceof Not) {
-			return this.checkConditionNot((Not) condition, matchedSectionDescriptor, mappingInstances);
+			return this.checkConditionNot((Not) condition, matchedSectionDescriptor);
 		} else {
 			// If we are here, some mistake is happened, more types could be
 			// supported in the future
@@ -722,21 +725,17 @@ public class ConditionHandler {
 	 *            The {@link Not} condition to check.
 	 * @param matchedSectionDescriptor
 	 *            The {@link MatchedSectionDescriptor} for that the condition shall be checked.
-	 * @param mappingInstances
-	 *            A map relating the already created {@link MappingInstanceStorage mapping instances} to their mappings.
-	 *            This is required for checking {@link ApplicationDependency ApplicationDependencies}.
 	 * @return The calculated {@link CondResult} (true, false).
 	 */
-	private CondResult checkConditionNot(Not condition, MatchedSectionDescriptor matchedSectionDescriptor,
-			Map<Mapping, List<MappingInstanceStorage>> mappingInstances) {
+	private CondResult checkConditionNot(Not condition, MatchedSectionDescriptor matchedSectionDescriptor) {
 
 		CondResult condTemp = CondResult.TRUE;
 
 		// Not Implementation
 		if (condition.getSharedCondPart() != null) {
-			condTemp = this.checkCondition(condition.getSharedCondPart(), matchedSectionDescriptor, mappingInstances);
+			condTemp = this.checkCondition(condition.getSharedCondPart(), matchedSectionDescriptor);
 		} else if (condition.getLocalCondPart() != null) {
-			condTemp = this.checkCondition(condition.getLocalCondPart(), matchedSectionDescriptor, mappingInstances);
+			condTemp = this.checkCondition(condition.getLocalCondPart(), matchedSectionDescriptor);
 		}
 
 		// Invert the result and return
@@ -766,20 +765,16 @@ public class ConditionHandler {
 	 *            The {@link VariadicCondition} to check.
 	 * @param matchedSectionDescriptor
 	 *            The {@link MatchedSectionDescriptor} for that the condition shall be checked.
-	 * @param mappingInstances
-	 *            A map relating the already created {@link MappingInstanceStorage mapping instances} to their mappings.
-	 *            This is required for checking {@link ApplicationDependency ApplicationDependencies}.
 	 * @return The calculated {@link CondResult} (true, false).
 	 */
 	private CondResult checkVariadicCondition(VariadicCondition condition,
-			MatchedSectionDescriptor matchedSectionDescriptor,
-			Map<Mapping, List<MappingInstanceStorage>> mappingInstances) {
+			MatchedSectionDescriptor matchedSectionDescriptor) {
 
 		if (condition instanceof And) {
-			return this.checkConditionAnd((And) condition, matchedSectionDescriptor, mappingInstances);
+			return this.checkConditionAnd((And) condition, matchedSectionDescriptor);
 
 		} else if (condition instanceof Or) {
-			return this.checkConditionOr((Or) condition, matchedSectionDescriptor, mappingInstances);
+			return this.checkConditionOr((Or) condition, matchedSectionDescriptor);
 
 		} else {
 			// If we are here, some mistake is happened
@@ -797,13 +792,9 @@ public class ConditionHandler {
 	 *            The {@link And} condition to check.
 	 * @param matchedSectionDescriptor
 	 *            The {@link MatchedSectionDescriptor} for that the condition shall be checked.
-	 * @param mappingInstances
-	 *            A map relating the already created {@link MappingInstanceStorage mapping instances} to their mappings.
-	 *            This is required for checking {@link ApplicationDependency ApplicationDependencies}.
 	 * @return The calculated {@link CondResult} (true, false).
 	 */
-	private CondResult checkConditionAnd(And condition, MatchedSectionDescriptor matchedSectionDescriptor,
-			Map<Mapping, List<MappingInstanceStorage>> mappingInstances) {
+	private CondResult checkConditionAnd(And condition, MatchedSectionDescriptor matchedSectionDescriptor) {
 
 		// Get and put all arguments in a new list
 		EList<ComplexCondition> args = new BasicEList<>();
@@ -815,7 +806,7 @@ public class ConditionHandler {
 			// In order to save some time we break the loop after one argument
 			// returned false (And-Operator)
 			//
-			if (this.checkCondition(arg, matchedSectionDescriptor, mappingInstances) == CondResult.FALSE) {
+			if (this.checkCondition(arg, matchedSectionDescriptor) == CondResult.FALSE) {
 				return CondResult.FALSE;
 			}
 		}
@@ -830,13 +821,9 @@ public class ConditionHandler {
 	 *            The {@link Or} condition to check.
 	 * @param matchedSectionDescriptor
 	 *            The {@link MatchedSectionDescriptor} for that the condition shall be checked.
-	 * @param mappingInstances
-	 *            A map relating the already created {@link MappingInstanceStorage mapping instances} to their mappings.
-	 *            This is required for checking {@link ApplicationDependency ApplicationDependencies}.
 	 * @return The calculated {@link CondResult} (true, false).
 	 */
-	private CondResult checkConditionOr(Or condition, MatchedSectionDescriptor matchedSectionDescriptor,
-			Map<Mapping, List<MappingInstanceStorage>> mappingInstances) {
+	private CondResult checkConditionOr(Or condition, MatchedSectionDescriptor matchedSectionDescriptor) {
 
 		// Get and put all arguments in a new list
 		EList<ComplexCondition> args = new BasicEList<>();
@@ -848,7 +835,7 @@ public class ConditionHandler {
 			// In order to save some time we break the loop after one argument
 			// returned false (And-Operator)
 			//
-			if (this.checkCondition(arg, matchedSectionDescriptor, mappingInstances) == CondResult.TRUE) {
+			if (this.checkCondition(arg, matchedSectionDescriptor) == CondResult.TRUE) {
 				return CondResult.TRUE;
 			}
 		}

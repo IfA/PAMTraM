@@ -17,10 +17,9 @@ import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryPlugin;
 import pamtram.structure.library.LibraryEntry;
 
 /**
- * This class is responsible for creating, initializing, and (if necessary)
- * updating an instance of the genlibrary {@link LibraryPluginImpl} to be used
- * during the generic transformation. Furthermore, other necessary elements like
- * a {@link LibraryContext} is managed as well.
+ * This class is responsible for creating, initializing, and (if necessary) updating an instance of the genlibrary
+ * {@link LibraryPluginImpl} to be used during the generic transformation. Furthermore, other necessary elements like a
+ * {@link LibraryContext} is managed as well.
  *
  * @author mfreund
  */
@@ -32,42 +31,59 @@ public class GenLibraryManager {
 	private Logger logger;
 
 	/**
-	 * This holds the instances of {@link LibraryPlugin} that are used for
-	 * retrieving and instantiating library entries sorted by their associated
-	 * ePackage URIs.
+	 * This holds the instances of {@link LibraryPlugin} that are used for retrieving and instantiating library entries
+	 * sorted by their associated ePackage URIs.
 	 * <p />
-	 * <b>This should only be accessed via the {@link #getLibraryPlugin()}
-	 * method!</b>
+	 * <b>This should only be accessed via the {@link #getLibraryPlugin()} method!</b>
 	 */
 	private Map<String, LibraryPlugin> libraryPlugins;
 
 	/**
-	 * This holds the list of namespaceURIs for which no {@link LibraryPlugin}
-	 * could be determined.
+	 * This holds the list of namespaceURIs for which no {@link LibraryPlugin} could be determined.
 	 */
 	private List<String> missingLibraryPlugins;
 
 	/**
 	 * This creates an instance.
 	 *
+	 * @see #GenLibraryManager(List, Logger)
+	 *
 	 * @param logger
-	 *            The {@link Logger} that shall be used to print messages to the
-	 *            user or '<em>null</em>' if no messages shall be printed.
+	 *            The {@link Logger} that shall be used to print messages to the user or '<em>null</em>' if no messages
+	 *            shall be printed.
 	 */
 	public GenLibraryManager(Logger logger) {
+
 		this.logger = logger;
 		this.libraryPlugins = new HashMap<>();
 		this.missingLibraryPlugins = new ArrayList<>();
 	}
 
 	/**
-	 * This returns the instance of {@link LibraryPlugin} that is used for
-	 * retrieving and instantiating library entries for the given
-	 * <em>ePackageURI</em>.
+	 * This creates an instance.
+	 *
+	 * @see #GenLibraryManager(Logger)
+	 *
+	 * @param libPaths
+	 *            A list of paths to the libraries that can be used to retrieve {@link LibraryEntry LibraryEntries}.
+	 * @param logger
+	 *            The {@link Logger} that shall be used to print messages to the user or '<em>null</em>' if no messages
+	 *            shall be printed.
+	 */
+	public GenLibraryManager(List<String> libPaths, Logger logger) {
+
+		this(logger);
+
+		libPaths.stream().forEach(this::addLibPath);
+	}
+
+	/**
+	 * This returns the instance of {@link LibraryPlugin} that is used for retrieving and instantiating library entries
+	 * for the given <em>ePackageURI</em>.
 	 *
 	 * @param ePackageURI
-	 *            The namespace URI of the {@link EPackage} for which the
-	 *            associated {@link LibraryPlugin} shall be returned.
+	 *            The namespace URI of the {@link EPackage} for which the associated {@link LibraryPlugin} shall be
+	 *            returned.
 	 * @return The instance.
 	 */
 	private LibraryPlugin getLibraryPlugin(String ePackageURI) {
@@ -94,13 +110,13 @@ public class GenLibraryManager {
 	}
 
 	/**
-	 * This can be used to check if a concrete implementation of
-	 * {@link LibraryPlugin} exists for the given <em>ePackageURI</em>.
+	 * This can be used to check if a concrete implementation of {@link LibraryPlugin} exists for the given
+	 * <em>ePackageURI</em>.
 	 *
 	 * @param ePackageURI
 	 *            The namespace URI of an {@link EPackage}.
-	 * @return '<em>true</em>' if an implementation of {@link LibraryPlugin}
-	 *         exists for the given URI; <em>false</em> otherwise.
+	 * @return '<em>true</em>' if an implementation of {@link LibraryPlugin} exists for the given URI; <em>false</em>
+	 *         otherwise.
 	 */
 	public boolean existsImplementationFor(String ePackageURI) {
 
@@ -110,18 +126,18 @@ public class GenLibraryManager {
 	/**
 	 * Register a new library to be managed.
 	 * <p />
-	 * Note: This will automatically determine the namespace URI of the EPackage
-	 * that the library located at the given <em>libPath</em> defines entries
-	 * for and register the new library for the correct {@link #libraryPlugins
+	 * Note: This will automatically determine the namespace URI of the EPackage that the library located at the given
+	 * <em>libPath</em> defines entries for and register the new library for the correct {@link #libraryPlugins
 	 * libraryPlugin}.
 	 *
 	 * @param libPath
-	 *            The path to the library to be used to retrieve the
-	 *            LibraryEntry.
-	 * @return <em>true</em> if the library was registered successfully for the
-	 *         given ePackage; <em>false</em> otherwise.
+	 *            The path to the library to be used to retrieve the LibraryEntry.
+	 * @return <em>true</em> if the library was registered successfully for the given ePackage; <em>false</em>
+	 *         otherwise.
 	 */
 	public boolean addLibPath(String libPath) {
+
+		this.logger.info(() -> "Registering library location '" + libPath + "'...");
 
 		String ePackageURI = LibraryImplementationRegistry.getInstance().getNamespaceForLibrary(libPath);
 
@@ -137,15 +153,12 @@ public class GenLibraryManager {
 	}
 
 	/**
-	 * This returns the
-	 * {@link de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry} for
-	 * a given classpath. If <em>useHigher</em> is set to
-	 * '<em><b>true</b></em>', a more abstract library entry will be returned if
-	 * no entry can be determined for the given path.
+	 * This returns the {@link de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry} for a given classpath. If
+	 * <em>useHigher</em> is set to '<em><b>true</b></em>', a more abstract library entry will be returned if no entry
+	 * can be determined for the given path.
 	 *
 	 * @param ePackageURI
-	 *            The namespace URI of the {@link EPackage} for that a
-	 *            LibraryEntry shall be returned.
+	 *            The namespace URI of the {@link EPackage} for that a LibraryEntry shall be returned.
 	 * @param classPath
 	 *            The classPath that is used to retrieve the LibraryEntry.
 	 * @param useHigher
@@ -160,29 +173,24 @@ public class GenLibraryManager {
 	}
 
 	/**
-	 * This inserts the given library item into the given target model while
-	 * taking the given Parameters into account. This is done by calling the
-	 * function
+	 * This inserts the given library item into the given target model while taking the given Parameters into account.
+	 * This is done by calling the function
 	 * {@link LibraryPlugin#insertIntoTargetModel(EObject, de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry, String)}.
 	 *
 	 * @param targetModel
-	 *            The target model into that the given library item shall be
-	 *            inserted.
+	 *            The target model into that the given library item shall be inserted.
 	 * @param libraryEntry
 	 *            The {@link LibraryEntry} to be inserted into the target model.
-	 * @return The
-	 *         {@link de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry}
-	 *         that has been inserted in the target model.
+	 * @return The {@link de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry} that has been inserted in the
+	 *         target model.
 	 */
 	public de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry insertIntoTargetModel(EObject targetModel,
 			LibraryEntry libraryEntry) {
 
 		/*
-		 * We need to create a self-contained copy of the library entry and pass
-		 * it to the LibraryPlugin. Otherwise, the same instance (just with new
-		 * parameters values) might be inserted multiple times in case of
-		 * cardinalities > 1 if the caller would not handle this by himself.
-		 * This would lead to strange behavior.
+		 * We need to create a self-contained copy of the library entry and pass it to the LibraryPlugin. Otherwise, the
+		 * same instance (just with new parameters values) might be inserted multiple times in case of cardinalities > 1
+		 * if the caller would not handle this by himself. This would lead to strange behavior.
 		 */
 		de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry originalLibraryEntry = EcoreUtil
 				.copy(libraryEntry.getOriginalLibraryEntry());
@@ -205,31 +213,26 @@ public class GenLibraryManager {
 	}
 
 	/**
-	 * This inserts the given library item into the given target model while
-	 * taking the given Parameters into account. This is done by calling the
-	 * function
+	 * This inserts the given library item into the given target model while taking the given Parameters into account.
+	 * This is done by calling the function
 	 * {@link LibraryPlugin#insertIntoTargetModel(EObject, de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry, String)}.
 	 *
 	 * @param targetModel
-	 *            The target model into that the given library item shall be
-	 *            inserted.
+	 *            The target model into that the given library item shall be inserted.
 	 * @param libraryEntry
 	 *            The {@link LibraryEntry} to be inserted into the target model.
 	 * @param path
 	 *            The classpath of the '<em>libraryEntry</em>' to be inserted.
-	 * @return The
-	 *         {@link de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry}
-	 *         that has been inserted in the target model.
+	 * @return The {@link de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry} that has been inserted in the
+	 *         target model.
 	 */
 	public de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry insertIntoTargetModel(EObject targetModel,
 			de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry libraryEntry, String path) {
 
 		/*
-		 * We need to create a self-contained copy of the library entry and pass
-		 * it to the LibraryPlugin. Otherwise, the same instance (just with new
-		 * parameters values) might be inserted multiple times in case of
-		 * cardinalities > 1 if the caller would not handle this by himself.
-		 * This would lead to strange behavior.
+		 * We need to create a self-contained copy of the library entry and pass it to the LibraryPlugin. Otherwise, the
+		 * same instance (just with new parameters values) might be inserted multiple times in case of cardinalities > 1
+		 * if the caller would not handle this by himself. This would lead to strange behavior.
 		 */
 		de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry originalLibraryEntry = EcoreUtil
 				.copy(libraryEntry);

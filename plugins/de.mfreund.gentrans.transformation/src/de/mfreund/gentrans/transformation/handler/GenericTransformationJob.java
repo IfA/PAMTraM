@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.logging.Level;
 
@@ -305,7 +306,7 @@ public class GenericTransformationJob extends Job {
 
 		try {
 			// perform the transformation
-			this.genTransRunner.runTransformation(monitor);
+			this.genTransRunner.runTransformation(Optional.ofNullable(monitor));
 			return org.eclipse.core.runtime.Status.OK_STATUS;
 
 		} catch (final Exception e) {

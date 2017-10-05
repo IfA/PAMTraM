@@ -3,21 +3,34 @@
  */
 package de.mfreund.gentrans.transformation;
 
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.stream.Collectors;
+
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
 import de.mfreund.gentrans.transformation.calculation.ValueCalculator;
 import de.mfreund.gentrans.transformation.calculation.ValueConstraintReferenceValueCalculator;
 import de.mfreund.gentrans.transformation.calculation.ValueModifierExecutor;
 import de.mfreund.gentrans.transformation.condition.ConditionHandler;
+import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
+import de.mfreund.gentrans.transformation.expanding.TargetSectionConnector;
+import de.mfreund.gentrans.transformation.expanding.TargetSectionInstantiator;
+import de.mfreund.gentrans.transformation.expanding.TargetSectionLinker;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.matching.GlobalAttributeValueExtractor;
 import de.mfreund.gentrans.transformation.matching.HintValueExtractor;
 import de.mfreund.gentrans.transformation.matching.MappingSelector;
 import de.mfreund.gentrans.transformation.matching.SourceSectionMatcher;
 import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
+import de.mfreund.gentrans.transformation.registries.SelectedMappingRegistry;
+import de.mfreund.gentrans.transformation.registries.TargetModelRegistry;
 import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
+import de.mfreund.gentrans.transformation.util.CancelableElement;
+import de.mfreund.gentrans.transformation.util.ICancelable;
+import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryPlugin;
 import pamtram.FixedValue;
 import pamtram.TargetSectionModel;
 import pamtram.condition.Condition;
@@ -27,9 +40,11 @@ import pamtram.mapping.extended.MappingHint;
 import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.InstanceSelector;
 import pamtram.structure.constraint.ValueConstraint;
+import pamtram.structure.library.LibraryEntry;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionAttribute;
+import pamtram.util.GenLibraryManager;
 
 /**
  * A control class that encapsulates the various assets (handlers, registries and calculators) that are used at multiple
@@ -39,7 +54,13 @@ import pamtram.structure.target.TargetSectionAttribute;
  *
  * @author mfreund
  */
-class TransformationAssetManager {
+class TransformationAssetManager extends CancelableElement {
+
+	/**
+	 * This keeps track of {@link ICancelable cancelable} assets that need to be canceled when the user requests an
+	 * early termination of the transformation.
+	 */
+	private List<ICancelable> objectsToCancel;
 
 	/**
 	 * The {@link GlobalValueMap} where extracted global {@link FixedValue FixedValues} and values of
@@ -54,9 +75,20 @@ class TransformationAssetManager {
 	private MatchedSectionRegistry matchedSectionRegistry;
 
 	/**
+	 * The {@link SelectedMappingRegistry} where the various selected {@link Mapping Mappings} as well as the associated
+	 * {@link MappingInstanceStorage Mapping instances} are stored.
+	 */
+	private SelectedMappingRegistry selectedMappingRegistry;
+
+	/**
 	 * The {@link TargetSectionRegistry} where instantiated {@link TargetSection TargetSections} are stored.
 	 */
 	private TargetSectionRegistry targetSectionRegistry;
+
+	/**
+	 * The {@link TargetModelRegistry} that keeps track of the various target models to be created.
+	 */
+	private TargetModelRegistry targetModelRegistry;
 
 	/**
 	 * The {@link TransformationConfiguration} that this operates on.
@@ -115,6 +147,29 @@ class TransformationAssetManager {
 	private SourceSectionMatcher sourceSectionMatcher;
 
 	/**
+	 * The {@link TargetSectionInstantiator} that is used to perform the <em>instantiating</em> phase of the
+	 * transformation.
+	 */
+	private TargetSectionInstantiator targetSectionInstantiator;
+
+	/**
+	 * The {@link TargetSectionConnector} that is used to perform the <em>joining</em> phase of the transformation.
+	 */
+	private TargetSectionConnector targetSectionConnector;
+
+	/**
+	 * The {@link TargetSectionLinker} that is used to perform the <em>linking</em> phase of the transformation.
+	 */
+	private TargetSectionLinker targetSectionLinker;
+
+	/**
+	 * The {@link GenLibraryManager} that provides access to the {@link LibraryPlugin LibraryPlugins} required for
+	 * instantiation of {@link LibraryEntry LibraryEntries} during the <em>library entry instantiation</em> phase of the
+	 * transformation.
+	 */
+	private GenLibraryManager genLibraryManager;
+
+	/**
 	 * This creates an instance.
 	 *
 	 * @param transformationConfig
@@ -123,6 +178,7 @@ class TransformationAssetManager {
 	public TransformationAssetManager(TransformationConfiguration transformationConfig) {
 
 		this.transformationConfig = transformationConfig;
+		this.objectsToCancel = new ArrayList<>();
 	}
 
 	/**
@@ -170,6 +226,28 @@ class TransformationAssetManager {
 	}
 
 	/**
+	 * This initializes the {@link #selectedMappingRegistry}.
+	 */
+	protected void initSelectedMappingRegistry() {
+
+		this.selectedMappingRegistry = new SelectedMappingRegistry();
+	}
+
+	/**
+	 * Returns the {@link #selectedMappingRegistry}.
+	 *
+	 * @return the {@link #selectedMappingRegistry}
+	 */
+	public SelectedMappingRegistry getSelectedMappingRegistry() {
+
+		if (this.selectedMappingRegistry == null) {
+			this.initSelectedMappingRegistry();
+		}
+
+		return this.selectedMappingRegistry;
+	}
+
+	/**
 	 * This initializes the {@link #targetSectionRegistry}.
 	 */
 	protected void initTargetSectionRegistry() {
@@ -178,6 +256,8 @@ class TransformationAssetManager {
 				new LinkedHashSet<>(this.transformationConfig.getPamtramModels().stream()
 						.flatMap(p -> p.getTargetSectionModels().stream()).map(TargetSectionModel::getMetaModelPackage)
 						.collect(Collectors.toList())));
+
+		this.objectsToCancel.add(this.targetSectionRegistry);
 	}
 
 	/**
@@ -192,6 +272,30 @@ class TransformationAssetManager {
 		}
 
 		return this.targetSectionRegistry;
+	}
+
+	/**
+	 * This initializes the {@link #targetModelRegistry}.
+	 */
+	protected void initTargetModelRegistry() {
+
+		this.targetModelRegistry = new TargetModelRegistry(this.transformationConfig.getTargetBasePath(),
+				this.transformationConfig.getDefaultTargetModel(), new ResourceSetImpl(),
+				this.transformationConfig.getLogger());
+	}
+
+	/**
+	 * Returns the {@link #targetModelRegistry}.
+	 *
+	 * @return the {@link #targetModelRegistry}
+	 */
+	public TargetModelRegistry getTargetModelRegistry() {
+
+		if (this.targetModelRegistry == null) {
+			this.initTargetModelRegistry();
+		}
+
+		return this.targetModelRegistry;
 	}
 
 	/**
@@ -293,7 +397,8 @@ class TransformationAssetManager {
 	 */
 	protected void initConditionHandler() {
 
-		this.conditionHandler = new ConditionHandler(this.matchedSectionRegistry, this.getInstanceSelectorHandler(),
+		this.conditionHandler = new ConditionHandler(this.getMatchedSectionRegistry(),
+				this.getSelectedMappingRegistry(), this.getInstanceSelectorHandler(),
 				this.getValueConstraintReferenceValueCalculator(), this.transformationConfig.getLogger(),
 				this.transformationConfig.isUseParallelization());
 	}
@@ -317,9 +422,11 @@ class TransformationAssetManager {
 	 */
 	protected void initMappingSelector() {
 
-		this.mappingSelector = new MappingSelector(this.transformationConfig.isOnlyAskOnceOnAmbiguousMappings(),
+		this.mappingSelector = new MappingSelector(this.getSelectedMappingRegistry(),
+				this.transformationConfig.isOnlyAskOnceOnAmbiguousMappings(),
 				this.transformationConfig.getAmbiguityResolvingStrategy(), this.getConditionHandler(),
 				this.transformationConfig.getLogger(), this.transformationConfig.isUseParallelization());
+		this.objectsToCancel.add(this.mappingSelector);
 	}
 
 	/**
@@ -344,6 +451,7 @@ class TransformationAssetManager {
 		this.hintValueExtractor = new HintValueExtractor(this.getMatchedSectionRegistry(), this.getGlobalValues(),
 				this.getInstanceSelectorHandler(), this.getValueModifierExecutor(),
 				this.transformationConfig.getLogger(), this.transformationConfig.isUseParallelization());
+		this.objectsToCancel.add(this.hintValueExtractor);
 	}
 
 	/**
@@ -368,6 +476,7 @@ class TransformationAssetManager {
 		this.globalAttributeValueExtractor = new GlobalAttributeValueExtractor(this.getGlobalValues(),
 				this.getInstanceSelectorHandler(), this.getValueModifierExecutor(),
 				this.transformationConfig.getLogger(), this.transformationConfig.isUseParallelization());
+		this.objectsToCancel.add(this.globalAttributeValueExtractor);
 	}
 
 	/**
@@ -393,6 +502,7 @@ class TransformationAssetManager {
 				this.getValueConstraintReferenceValueCalculator(),
 				this.transformationConfig.getAmbiguityResolvingStrategy(), this.transformationConfig.getLogger(),
 				this.transformationConfig.isUseParallelization());
+		this.objectsToCancel.add(this.sourceSectionMatcher);
 	}
 
 	/**
@@ -409,4 +519,113 @@ class TransformationAssetManager {
 		return this.sourceSectionMatcher;
 	}
 
+	/**
+	 * This initializes the {@link #targetSectionInstantiator}.
+	 */
+	protected void initTargetSectionInstantiator() {
+
+		this.targetSectionInstantiator = new TargetSectionInstantiator(this.getTargetSectionRegistry(),
+				this.getValueCalculator(), this.transformationConfig.getLogger(),
+				this.transformationConfig.getAmbiguityResolvingStrategy(),
+				this.transformationConfig.isUseParallelization());
+		this.objectsToCancel.add(this.targetSectionInstantiator);
+	}
+
+	/**
+	 * Returns the {@link #targetSectionInstantiator}.
+	 *
+	 * @return the {@link #targetSectionInstantiator}
+	 */
+	public TargetSectionInstantiator getTargetSectionInstantiator() {
+
+		if (this.targetSectionInstantiator == null) {
+			this.initTargetSectionInstantiator();
+		}
+
+		return this.targetSectionInstantiator;
+	}
+
+	/**
+	 * This initializes the {@link #targetSectionConnector}.
+	 */
+	protected void initTargetSectionConnector() {
+
+		this.targetSectionConnector = new TargetSectionConnector(this.getTargetSectionRegistry(),
+				this.getInstanceSelectorHandler(), this.getTargetModelRegistry(),
+				this.transformationConfig.getMaxPathLength(), this.transformationConfig.getAmbiguityResolvingStrategy(),
+				this.transformationConfig.getLogger());
+		this.objectsToCancel.add(this.targetSectionConnector);
+	}
+
+	/**
+	 * Returns the {@link #targetSectionConnector}.
+	 *
+	 * @return the {@link #targetSectionConnector}
+	 */
+	public TargetSectionConnector getTargetSectionConnector() {
+
+		if (this.targetSectionConnector == null) {
+			this.initTargetSectionConnector();
+		}
+
+		return this.targetSectionConnector;
+	}
+
+	/**
+	 * This initializes the {@link #targetSectionLinker}.
+	 */
+	protected void initTargetSectionLinker() {
+
+		this.targetSectionLinker = new TargetSectionLinker(this.getTargetSectionRegistry(),
+				this.getInstanceSelectorHandler(), this.transformationConfig.getLogger(),
+				this.transformationConfig.getAmbiguityResolvingStrategy());
+		this.objectsToCancel.add(this.targetSectionLinker);
+	}
+
+	/**
+	 * Returns the {@link #targetSectionLinker}.
+	 *
+	 * @return the {@link #targetSectionLinker}
+	 */
+	public TargetSectionLinker getTargetSectionLinker() {
+
+		if (this.targetSectionLinker == null) {
+			this.initTargetSectionLinker();
+		}
+
+		return this.targetSectionLinker;
+	}
+
+	/**
+	 * This initializes the {@link #genLibraryManager}.
+	 */
+	protected void initGenLibraryManager() {
+
+		this.genLibraryManager = new GenLibraryManager(this.transformationConfig.getLibPaths(),
+				this.transformationConfig.getLogger());
+	}
+
+	/**
+	 * Returns the {@link #targetSectionLinker}.
+	 *
+	 * @return the {@link #targetSectionLinker}
+	 */
+	public GenLibraryManager getGenLibraryManager() {
+
+		if (this.genLibraryManager == null) {
+			this.initGenLibraryManager();
+		}
+
+		return this.genLibraryManager;
+	}
+
+	/**
+	 * This cancels any running asset managed by this.
+	 */
+	@Override
+	public void cancel() {
+
+		super.cancel();
+		this.objectsToCancel.parallelStream().forEach(ICancelable::cancel);
+	}
 }

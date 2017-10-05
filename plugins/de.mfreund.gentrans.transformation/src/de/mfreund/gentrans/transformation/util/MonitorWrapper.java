@@ -1,89 +1,98 @@
 package de.mfreund.gentrans.transformation.util;
 
+import java.util.Optional;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 
 /**
- * This is a simple wrapper for an {@link IProgressMonitor} that allows the wrapping of a 'null' monitor. 
- * It redirects all method calls to the wrapped monitor if it does not equal 'null'. This can be used to 
- * write code that reports progress to a monitor but that also works if the monitor equals 'null'.
- * 
+ * This is a simple wrapper for an {@link IProgressMonitor} that allows the wrapping of a 'null' monitor. It redirects
+ * all method calls to the wrapped monitor if it is present - otherwise, all calls to the {@link IProgressMonitor}
+ * interface are simply swallowed. This can be used to write code that reports progress to a monitor but that also works
+ * if the monitor equals 'null'.
+ *
  * @author mfreund
  *
  */
 public class MonitorWrapper implements IProgressMonitor {
 
 	/**
-	 * This is the {@link IProgressMonitor} that this wrapper wraps. All method calls of the {@link IProgressMonitor}
-	 * interface are redirected to this (if it does not equal 'null').
+	 * This is the {@link IProgressMonitor} that this wrapper wraps. If present, all method calls of the
+	 * {@link IProgressMonitor} interface are redirected to this wrapped monitor.
 	 */
-	private IProgressMonitor wrappedMonitor;
+	private Optional<IProgressMonitor> wrappedMonitor;
 
 	/**
 	 * This constructs an instance.
-	 * 
-	 * @param wrappedMonitor The {@link IProgressMonitor monitor} to be wrapped. This may be 'null' if no monitor shall
-	 * be used. In this case all calls to the {@link IProgressMonitor} interface are redirected nowhere.
+	 * <p />
+	 * Note: The <em>wrappedMonitor</em> can also be set/updated later on by using
+	 * {@link #setWrappedMonitor(IProgressMonitor)}.
+	 *
+	 * @param wrappedMonitor
+	 *            The {@link IProgressMonitor monitor} to be wrapped. If no wrappedMonitor is given, all calls to the
+	 *            {@link IProgressMonitor} interface are swallowed.
 	 */
-	public MonitorWrapper(IProgressMonitor wrappedMonitor) {
+	public MonitorWrapper(Optional<IProgressMonitor> wrappedMonitor) {
+
 		this.wrappedMonitor = wrappedMonitor;
+	}
+
+	/**
+	 * This updates the {@link #wrappedMonitor} wrapped by this.
+	 *
+	 * @param wrappedMonitor
+	 *            The new {@link IProgressMonitor} that shall be wrapped by this.
+	 */
+	public void setWrappedMonitor(IProgressMonitor wrappedMonitor) {
+
+		this.wrappedMonitor = Optional.ofNullable(wrappedMonitor);
 	}
 
 	@Override
 	public void beginTask(String name, int totalWork) {
-		if(wrappedMonitor != null) {
-			wrappedMonitor.beginTask(name, totalWork);
-		}
+
+		this.wrappedMonitor.ifPresent(monitor -> monitor.beginTask(name, totalWork));
 	}
 
 	@Override
 	public void done() {
-		if(wrappedMonitor != null) {
-			wrappedMonitor.done();
-		}
+
+		this.wrappedMonitor.ifPresent(IProgressMonitor::done);
 	}
 
 	@Override
 	public void internalWorked(double work) {
-		if(wrappedMonitor != null) {
-			wrappedMonitor.internalWorked(work);
-		}
+
+		this.wrappedMonitor.ifPresent(monitor -> monitor.internalWorked(work));
 	}
 
 	@Override
 	public boolean isCanceled() {
-		if(wrappedMonitor != null) {
-			return wrappedMonitor.isCanceled();
-		} else {
-			return false;
-		}
+
+		return this.wrappedMonitor.isPresent() ? this.wrappedMonitor.get().isCanceled() : false;
 	}
 
 	@Override
 	public void setCanceled(boolean value) {
-		if(wrappedMonitor != null) {
-			wrappedMonitor.setCanceled(value);
-		}
+
+		this.wrappedMonitor.ifPresent(monitor -> monitor.setCanceled(value));
 	}
 
 	@Override
 	public void setTaskName(String name) {
-		if(wrappedMonitor != null) {
-			wrappedMonitor.setTaskName(name);
-		}
+
+		this.wrappedMonitor.ifPresent(monitor -> monitor.setTaskName(name));
 	}
 
 	@Override
 	public void subTask(String name) {
-		if(wrappedMonitor != null) {
-			wrappedMonitor.subTask(name);
-		}
+
+		this.wrappedMonitor.ifPresent(monitor -> monitor.subTask(name));
 	}
 
 	@Override
 	public void worked(int work) {
-		if(wrappedMonitor != null) {
-			wrappedMonitor.worked(work);
-		}
+
+		this.wrappedMonitor.ifPresent(monitor -> monitor.worked(work));
 	}
 
 }

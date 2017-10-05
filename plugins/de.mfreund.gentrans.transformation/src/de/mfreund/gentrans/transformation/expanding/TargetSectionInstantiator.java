@@ -86,12 +86,6 @@ public class TargetSectionInstantiator extends CancelableElement {
 	private final Logger logger;
 
 	/**
-	 * This relates temporarily created elements for LibraryEntries (represented by an {@link EObjectWrapper}) to their
-	 * {@link LibraryEntryInstantiator}.
-	 */
-	private Map<EObjectWrapper, LibraryEntryInstantiator> libEntryInstantiatorMap;
-
-	/**
 	 * An instance of {@link ValueCalculator} that is used to calculate attribute values.
 	 */
 	private ValueCalculator calculator;
@@ -124,8 +118,8 @@ public class TargetSectionInstantiator extends CancelableElement {
 	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
 	 *            that the transformation result (especially the order of lists) varies between executions.
 	 */
-	public TargetSectionInstantiator(final TargetSectionRegistry targetSectionRegistry,
-			ValueCalculator valueCalculator, final Logger logger, final IAmbiguityResolvingStrategy ambiguityResolvingStrategy,
+	public TargetSectionInstantiator(final TargetSectionRegistry targetSectionRegistry, ValueCalculator valueCalculator,
+			final Logger logger, final IAmbiguityResolvingStrategy ambiguityResolvingStrategy,
 			boolean useParallelzation) {
 
 		this.targetSectionRegistry = targetSectionRegistry;
@@ -134,9 +128,28 @@ public class TargetSectionInstantiator extends CancelableElement {
 		this.useParallelization = useParallelzation;
 		this.canceled = false;
 		this.wrongCardinalityContainmentRefs = new HashSet<>();
-		this.libEntryInstantiatorMap = new LinkedHashMap<>();
 		this.calculator = valueCalculator;
 
+	}
+
+	/**
+	 * This expands the {@link TargetSection TargetSections} represented by the <em>hintGroups</em> of the given list of
+	 * {@link MappingInstanceStorage MappingInstanceStorages}.
+	 * <p />
+	 * Created {@link EObjectWrapper instances} are
+	 * {@link MappingInstanceStorage#addInstances(InstantiableMappingHintGroup, TargetSectionClass, java.util.Collection)
+	 * registered} in the corresponding <em>mappingInstance</em>.
+	 *
+	 * @param mappingInstances
+	 *            The list of {@link MappingInstanceStorage mapping instances} to expand.
+	 */
+	public void expandTargetSectionInstances(List<MappingInstanceStorage> mappingInstances) {
+
+		this.logger.info(() -> "Instantiating " + mappingInstances.size() + " TargetSection instances...");
+
+		// Iterate over all the mapping instances and expand them
+		//
+		mappingInstances.stream().forEach(this::expandTargetSectionInstance);
 	}
 
 	/**
@@ -779,7 +792,8 @@ public class TargetSectionInstantiator extends CancelableElement {
 			LibraryEntryInstantiator instLibraryEntryInstantiator = new LibraryEntryInstantiator(clonedLibEntry,
 					instTransformationHelper, mappingGroup, mappingHints, hintValues, this.logger);
 
-			this.libEntryInstantiatorMap.put(instTransformationHelper, instLibraryEntryInstantiator);
+			this.targetSectionRegistry.getLibraryEntryRegistry().put(instTransformationHelper,
+					instLibraryEntryInstantiator);
 		}
 
 		return instTransformationHelper;
@@ -1036,7 +1050,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 							 * not part of the targetSectionClass; instead we want to specify the value as 'new value'
 							 * for the affected AttributeParameter
 							 */
-							LibraryEntry specificLibEntry = this.libEntryInstantiatorMap.get(instance)
+							LibraryEntry specificLibEntry =this.targetSectionRegistry.getLibraryEntryRegistry().get(instance)
 									.getLibraryEntry();
 							LibraryEntry genericLibEntry = (LibraryEntry) targetSectionClass.eContainer().eContainer();
 							AttributeParameter attrParam = (AttributeParameter) specificLibEntry.getParameters()
@@ -1202,17 +1216,6 @@ public class TargetSectionInstantiator extends CancelableElement {
 		hints.addAll(exportedHintGroup.getActiveMappingHints());
 
 		return hints;
-	}
-
-	/**
-	 * This is the getter for the {@link #libEntryInstantiatorMap}.
-	 *
-	 * @return The temporarily created elements for LibraryEntries (represented by an {@link EObjectWrapper}) and their
-	 *         {@link LibraryEntryInstantiator}.
-	 */
-	public Map<EObjectWrapper, LibraryEntryInstantiator> getLibEntryInstantiatorMap() {
-
-		return this.libEntryInstantiatorMap;
 	}
 
 }

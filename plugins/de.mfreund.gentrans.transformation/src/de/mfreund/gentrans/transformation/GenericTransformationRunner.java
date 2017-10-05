@@ -5,10 +5,9 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
@@ -40,8 +39,6 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.progress.UIJob;
 
-import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.ExpandingResult;
-import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.JoiningResult;
 import de.mfreund.gentrans.transformation.GenericTransformationRunner.TransformationResult.MatchingResult;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.HintValueStorage;
@@ -50,19 +47,17 @@ import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.expanding.TargetSectionConnector;
 import de.mfreund.gentrans.transformation.expanding.TargetSectionInstantiator;
 import de.mfreund.gentrans.transformation.expanding.TargetSectionLinker;
-import de.mfreund.gentrans.transformation.library.LibraryEntryInstantiator;
-import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.matching.GlobalAttributeValueExtractor;
 import de.mfreund.gentrans.transformation.matching.HintValueExtractor;
 import de.mfreund.gentrans.transformation.matching.MappingSelector;
 import de.mfreund.gentrans.transformation.matching.SourceSectionMatcher;
 import de.mfreund.gentrans.transformation.registries.AttributeValueRegistry;
+import de.mfreund.gentrans.transformation.registries.LibraryEntryRegistry;
 import de.mfreund.gentrans.transformation.registries.TargetModelRegistry;
 import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import de.mfreund.gentrans.transformation.resolving.DefaultAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.util.CancelableElement;
-import de.mfreund.gentrans.transformation.util.ICancelable;
 import de.mfreund.gentrans.transformation.util.MonitorWrapper;
 import de.mfreund.pamtram.transformation.Transformation;
 import de.mfreund.pamtram.transformation.TransformationFactory;
@@ -75,13 +70,14 @@ import pamtram.PAMTraM;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
+import pamtram.mapping.extended.MappingHint;
 import pamtram.structure.library.LibraryEntry;
+import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionClass;
-import pamtram.util.GenLibraryManager;
 
 /**
  * This class can be used to execute a generic transformation. It performs the different phases of the transformation
- * after calling {@link #runTransformation(IProgressMonitor)}.
+ * after calling {@link #runTransformation(Optional)}.
  * <p />
  * Instances need to be created via the {@link GenericTransformationRunnerFactory}.
  *
@@ -92,43 +88,23 @@ public class GenericTransformationRunner extends CancelableElement {
 	private static final String TRANSFORMATION_ABORTED_MESSAGE = "Transformation aborted.";
 
 	/**
-	 * This keeps track of objects that need to be canceled when the user requests an early termination of the
-	 * transformation.
-	 */
-	private final List<ICancelable> objectsToCancel;
-
-	/**
 	 * The {@link TransformationConfiguration} providing the parameters for the transformation.
 	 */
 	private TransformationConfiguration transformationConfig;
-
-	/**
-	 * This is the {@link TargetSectionInstantiator} that can be used to create new target sections.
-	 */
-	private TargetSectionInstantiator targetSectionInstantiator;
-
-	/**
-	 * This is the {@link TargetSectionConnector} that can be used to connect target sections that have been created
-	 * with the help of the {@link #targetSectionInstantiator}.
-	 */
-	private TargetSectionConnector targetSectionConnector;
-
-	/**
-	 * This is the {@link TargetSectionLinker} that can be used to link target sections.
-	 */
-	private TargetSectionLinker targetSectionLinker;
-
-	/**
-	 * The {@link TransformationResult} holding the various data acquired during the transformation. This will be
-	 * updated after each step of the transformation.
-	 */
-	private TransformationResult transformationResult;
 
 	/**
 	 * The {@link TransformationAssetManager} encapsulating the various helper objects that will be used during the
 	 * transformation.
 	 */
 	private TransformationAssetManager assetManager;
+
+	/**
+	 * The {@link IProgressMonitor} that shall be used to visualize the progress of the transformation.
+	 * <p />
+	 * Instead of directly storing an {@link IProgressMonitor}, we make use of a {@link MonitorWrapper} so that we are
+	 * not dependent on an actual monitor to be present.
+	 */
+	private MonitorWrapper monitor;
 
 	/**
 	 * This creates an instance based on the given {@link TransformationConfiguration}.
@@ -141,10 +117,9 @@ public class GenericTransformationRunner extends CancelableElement {
 
 		super();
 		this.transformationConfig = config;
-		this.transformationResult = new TransformationResult();
 		this.assetManager = new TransformationAssetManager(config);
+		this.monitor = new MonitorWrapper(Optional.empty());
 
-		this.objectsToCancel = new LinkedList<>();
 	}
 
 	/**
@@ -153,21 +128,18 @@ public class GenericTransformationRunner extends CancelableElement {
 	 * '<em>monitor</em>'.
 	 *
 	 * @param monitor
-	 *            An {@link IProgressMonitor} that shall be used to display the progress of the transformation. If
-	 *            '<em>null</em>' is passed as argument, no monitor will be used.
+	 *            An optional {@link IProgressMonitor} that shall be used to display the progress of the transformation.
 	 */
-	public void runTransformation(final IProgressMonitor monitor) {
+	public void runTransformation(Optional<IProgressMonitor> monitor) {
 
-		// create a wrapper for the monitor so that a 'null' argument does not
-		// lead to errors
+		// If the user passed a monitor, we update the MonitorWrapper
 		//
-		MonitorWrapper monitorWrapper = new MonitorWrapper(monitor);
+		monitor.ifPresent(this.monitor::setWrappedMonitor);
 
 		final Date startTime = new Date();
 
-		monitorWrapper.beginTask("GenTrans", 1000);
+		this.monitor.beginTask("GenTrans", 700);
 
-		TransformationResult transformationResult;
 		try {
 
 			// prepare the transformation (validate pamtram model, merge
@@ -183,7 +155,8 @@ public class GenericTransformationRunner extends CancelableElement {
 			/*
 			 * try to execute all active mappings (this includes the 4 resp. 5 main steps of the transformation
 			 */
-			transformationResult = this.executeMappings(monitorWrapper);
+			this.executeMappings();
+
 		} catch (CancelTransformationException e1) {
 
 			String externalMessage = e1.getMessage() != null ? e1.getMessage() : "";
@@ -220,60 +193,60 @@ public class GenericTransformationRunner extends CancelableElement {
 			throw e;
 		}
 
-		if (!this.isCanceled() && !transformationResult.getJoiningResult().getTargetModelRegistry().isEmpty()) {
+		if (!this.isCanceled()) {
 
 			this.writePamtramMessage("Storing target model(s).");
-			monitor.subTask("Storing target model(s).");
+			this.monitor.subTask("Storing target model(s).");
 
 			/*
 			 * create the target models
 			 */
-			boolean result = transformationResult.getJoiningResult().getTargetModelRegistry().saveTargetModels();
+			boolean result = this.assetManager.getTargetModelRegistry().saveTargetModels();
 
 			final Date endTime = new Date();
+
+			if (result) {
+
+				/*
+				 * populate and store the transformation model if necessary
+				 */
+				this.generateTransformationModel(startTime, endTime);
+
+				/*
+				 * Finally, open the (first of the) generated target model(s) if necessary
+				 */
+				if (!this.assetManager.getTargetModelRegistry().isEmpty()
+						&& this.transformationConfig.isOpenTargetModelOnCompletion()) {
+
+					new UIJob("Open Generated Target Model") {
+
+						@Override
+						public IStatus runInUIThread(IProgressMonitor monitor) {
+
+							String targetModelToOpen = GenericTransformationRunner.this.assetManager
+									.getTargetModelRegistry().getTargetModels().keySet().iterator().next();
+							final URI targetModelToOpenUri = URI.createPlatformResourceURI(
+									GenericTransformationRunner.this.transformationConfig.getTargetBasePath()
+											+ Path.SEPARATOR + targetModelToOpen,
+									true);
+
+							try {
+								UIHelper.openEditor(ResourceHelper.getFileForURI(targetModelToOpenUri));
+							} catch (PartInitException e) {
+								GenericTransformationRunner.this.transformationConfig.getLogger()
+										.severe(() -> e.toString());
+								e.printStackTrace();
+							}
+
+							return Status.OK_STATUS;
+						}
+					}.schedule();
+
+				}
+			}
+
 			this.writePamtramMessage(
 					"Transformation done. Time: " + (endTime.getTime() - startTime.getTime()) / 1000d + "s");
-
-			if (!result) {
-				return;
-			}
-
-			/*
-			 * populate and store the transformation model if necessary
-			 */
-			this.generateTransformationModel(this.transformationConfig, transformationResult, startTime, endTime);
-
-			/*
-			 * Finally, open the (first of the) generated target model(s) if necessary
-			 */
-			if (!transformationResult.getJoiningResult().getTargetModelRegistry().isEmpty()
-					&& this.transformationConfig.isOpenTargetModelOnCompletion()) {
-
-				new UIJob("Open Generated Target Model") {
-
-					@Override
-					public IStatus runInUIThread(IProgressMonitor monitor) {
-
-						String targetModelToOpen = transformationResult.getJoiningResult().getTargetModelRegistry()
-								.getTargetModels().keySet().iterator().next();
-						final URI targetModelToOpenUri = URI.createPlatformResourceURI(
-								GenericTransformationRunner.this.transformationConfig.getTargetBasePath()
-										+ Path.SEPARATOR + targetModelToOpen,
-								true);
-
-						try {
-							UIHelper.openEditor(ResourceHelper.getFileForURI(targetModelToOpenUri));
-						} catch (PartInitException e) {
-							GenericTransformationRunner.this.transformationConfig.getLogger()
-									.severe(() -> e.toString());
-							e.printStackTrace();
-						}
-
-						return Status.OK_STATUS;
-					}
-				}.schedule();
-
-			}
 		}
 
 	}
@@ -312,7 +285,6 @@ public class GenericTransformationRunner extends CancelableElement {
 		 */
 		SourceSectionMatcher sourceSectionMatcher = this.assetManager.getSourceSectionMatcher();
 
-		this.objectsToCancel.add(sourceSectionMatcher);
 		sourceSectionMatcher.matchSections(this.transformationConfig.getSourceModels(),
 				this.transformationConfig.getPamtramModels());
 
@@ -339,13 +311,13 @@ public class GenericTransformationRunner extends CancelableElement {
 	}
 
 	/**
-	 * This cancels any running (or future) transformation.
+	 * This cancels the transformation and throws a {@link CancelTransformationException}.
 	 */
 	@Override
 	public void cancel() {
 
 		super.cancel();
-		this.objectsToCancel.parallelStream().forEach(ICancelable::cancel);
+		this.assetManager.cancel();
 		throw new CancelTransformationException();
 	}
 
@@ -407,8 +379,8 @@ public class GenericTransformationRunner extends CancelableElement {
 	}
 
 	/**
-	 * This validates the given {@link PAMTraM} models using the {@link Diagnostician}. If errors occur, the user is
-	 * asked whether to proceed anyway.
+	 * This validates the given {@link PAMTraM} models using a {@link Diagnostician}. If errors occur, the user is asked
+	 * whether to proceed anyway.
 	 *
 	 * @param transformationConfiguration
 	 *            The {@link TransformationConfiguration} specifying the {@link PAMTraM} models to validate.
@@ -443,83 +415,64 @@ public class GenericTransformationRunner extends CancelableElement {
 	}
 
 	/**
-	 * This performs the actual execution of the transformation. In the course of this method, the four main steps of
-	 * the transformation get executed.
+	 * This performs the actual execution of the transformation. In the course of this method, the various phases of the
+	 * transformation get executed.
 	 *
 	 * @param monitor
 	 *            The {@link IProgressMonitor monitor} that shall be used to visualize the progress of the
 	 *            transformation.
-	 * @return '<em><b>true</b></em>' if the transformation was performed successfully, '<em><b>false</b></em>'
-	 *         otherwise
 	 */
-	private TransformationResult executeMappings(final IProgressMonitor monitor) {
+	private void executeMappings() {
 
 		/*
-		 * Perform the 'matching' step of the transformation
+		 * Perform the first step of the 'searching' step of the transformation
 		 */
-		MatchingResult matchingResult = this.performMatching(monitor);
+		this.performSearching_MatchSections();
 
-		if (matchingResult.isCanceled()) {
-			return this.transformationResult;
-		}
+		/*
+		 * Perform the second step of the 'searching' step of the transformation
+		 */
+		this.performSearching_SelectMappings();
+
+		/*
+		 * Perform the second step of the 'searching' step of the transformation
+		 */
+		this.performExtracting();
 
 		/*
 		 * Perform the 'expanding' step of the transformation
 		 */
-		ExpandingResult expandingResult = this.performInstantiating(matchingResult, monitor);
-		this.transformationResult.setExpandingResult(expandingResult);
+		this.performInstantiating();
 
 		/*
 		 * Perform the 'joining' step of the transformation
 		 */
-		JoiningResult joiningResult = this.performJoining(this.transformationConfig.getDefaultTargetModel(),
-				expandingResult, matchingResult, monitor);
-		this.transformationResult.setJoiningResult(joiningResult);
-
-		if (joiningResult.isCanceled()) {
-			return this.transformationResult;
-		}
+		this.performJoining();
 
 		/*
 		 * Perform the 'linking' step of the transformation
 		 */
-		boolean linkingResult = this.performLinking(matchingResult, expandingResult, monitor);
-		this.transformationResult.setLinkingResult(linkingResult);
-
-		if (!linkingResult) {
-			return this.transformationResult;
-		}
+		this.performLinking();
 
 		/*
-		 * Finally, instantiate the collected library entries in the target model.
+		 * Finally, instantiate the collected library entries
 		 */
-		if (joiningResult.getTargetModelRegistry().isEmpty()) {
-			this.transformationConfig.getLogger().warning("Something seems to be wrong! Target model is empty!");
-		} else {
-			boolean libEntryExpandingResult = this.performInstantiatingLibraryEntries(matchingResult, expandingResult,
-					monitor);
-			this.transformationResult.setLibEntryExpandingResult(libEntryExpandingResult);
-		}
-		return this.transformationResult;
+		this.performInstantiatingLibraryEntries();
 
 	}
 
 	/**
-	 * This performs the '<em>matching</em>' step of the transformation. Therefore, it iterates through the list of
-	 * '<em>sourceModels</em>' defined in the {@link #transformationConfig}, {@link SourceSectionMatcher#matchSections()
-	 * matches SourceSections}, {@link MappingSelector#selectMappings() selects mappings} and
-	 * {@link HintValueExtractor#extractHintValues() extracts hint values}.
-	 *
-	 * @param monitor
-	 *            An {@link IProgressMonitor} that shall be used to report the progress of the transformation.
-	 *
-	 * @return A {@link MatchingResult} that contains the various results of the matching.
+	 * This performs the first step of the '<em>searching</em>' phase of the transformation (the matching of the
+	 * {@link SourceSection SourceSections}. Therefore, it iterates through the list of '<em>sourceModels</em>' defined
+	 * in the {@link #transformationConfig} and {@link SourceSectionMatcher#matchSections() matches SourceSections},
+	 * {@link MappingSelector#selectMappings() selects mappings} and {@link HintValueExtractor#extractHintValues()
+	 * extracts hint values}.
 	 */
-	private MatchingResult performMatching(IProgressMonitor monitor) {
+	private void performSearching_MatchSections() {
 
 		List<PAMTraM> pamtramModels = this.transformationConfig.getPamtramModels();
 
-		monitor.subTask("Matching SourceSections");
+		this.monitor.subTask("Searching - Matching SourceSections");
 
 		/*
 		 * Collect the global FixedValues
@@ -538,8 +491,24 @@ public class GenericTransformationRunner extends CancelableElement {
 
 		SourceSectionMatcher sourceSectionMatcher = this.assetManager.getSourceSectionMatcher();
 
-		this.objectsToCancel.add(sourceSectionMatcher);
 		sourceSectionMatcher.matchSections(this.transformationConfig.getSourceModels(), pamtramModels);
+
+		this.monitor.worked(100);
+
+	}
+
+	/**
+	 * This performs the second step of the '<em>searching</em>' phase of the transformation (the selection of the
+	 * {@link Mapping Mappings}. Therefore, it iterates through the list of '<em>sourceModels</em>' defined in the
+	 * {@link #transformationConfig} and {@link SourceSectionMatcher#matchSections() matches SourceSections},
+	 * {@link MappingSelector#selectMappings() selects mappings} and {@link HintValueExtractor#extractHintValues()
+	 * extracts hint values}.
+	 */
+	private void performSearching_SelectMappings() {
+
+		List<PAMTraM> pamtramModels = this.transformationConfig.getPamtramModels();
+
+		this.monitor.subTask("Searching - Selecting Mappings");
 
 		/*
 		 * Extract the values of GlobalAttributes
@@ -549,7 +518,6 @@ public class GenericTransformationRunner extends CancelableElement {
 		GlobalAttributeValueExtractor globalAttributeValueExtractor = this.assetManager
 				.getGlobalAttributeValueExtractor();
 
-		this.objectsToCancel.add(globalAttributeValueExtractor);
 		globalAttributeValueExtractor.extractGlobalAttributeValues(this.assetManager.getMatchedSectionRegistry(),
 				pamtramModels);
 
@@ -560,9 +528,19 @@ public class GenericTransformationRunner extends CancelableElement {
 
 		MappingSelector mappingSelector = this.assetManager.getMappingSelector();
 
-		this.objectsToCancel.add(mappingSelector);
-		Map<Mapping, List<MappingInstanceStorage>> selectedMappingsByMapping = mappingSelector
-				.selectMappings(this.assetManager.getMatchedSectionRegistry(), pamtramModels);
+		mappingSelector.selectMappings(this.assetManager.getMatchedSectionRegistry(), pamtramModels);
+
+		this.monitor.worked(100);
+
+	}
+
+	/**
+	 * This performs the '<em>extracting</em>' phase of the transformation (the extraction of values for the selected
+	 * {@link Mapping Mappings} resp. the contained {@link MappingHint MappingHints}.
+	 */
+	private void performExtracting() {
+
+		this.monitor.subTask("Extractring");
 
 		/*
 		 * Calculate values of mapping hints
@@ -571,21 +549,9 @@ public class GenericTransformationRunner extends CancelableElement {
 
 		HintValueExtractor hintValueExtractor = this.assetManager.getHintValueExtractor();
 
-		this.objectsToCancel.add(hintValueExtractor);
-		hintValueExtractor.extractHintValues(
-				selectedMappingsByMapping.values().stream().flatMap(List::stream).collect(Collectors.toList()));
+		hintValueExtractor.extractHintValues(this.assetManager.getSelectedMappingRegistry().getMappingInstaces());
 
-		/*
-		 * Compile and return the result of the matching process
-		 */
-		LinkedList<MappingInstanceStorage> selectedMappings = new LinkedList<>(
-				(this.transformationConfig.isUseParallelization()
-						? selectedMappingsByMapping.entrySet().parallelStream()
-						: selectedMappingsByMapping.entrySet().stream()).flatMap(e -> e.getValue().stream())
-								.collect(Collectors.toList()));
-
-		return MatchingResult.createMatchingCompletedResult(selectedMappings, selectedMappingsByMapping,
-				this.assetManager.getGlobalValues());
+		this.monitor.worked(100);
 
 	}
 
@@ -593,213 +559,107 @@ public class GenericTransformationRunner extends CancelableElement {
 	 * This performs the '<em>instantiating</em>' step of the transformation: The target sections (excluding those that
 	 * are defined by {@link LibraryEntry LibraryEntries}) are instantiated (only containment references and attributes
 	 * but no non-containment references).
-	 *
-	 * @param matchingResult
-	 *            A {@link MatchingResult} that contains the results from the
-	 *            {@link #performMatching(List, IProgressMonitor) matching} step.
-	 * @param monitor
-	 *            An {@link IProgressMonitor} that shall be used to report the progress of the transformation.
-	 * @return An {@link ExpandingResult} that contains the various results of the expanding step.
 	 */
-	private ExpandingResult performInstantiating(final MatchingResult matchingResult, final IProgressMonitor monitor) {
+	private void performInstantiating() {
+
+		this.monitor.subTask("Instantiating targetModelSections for selected mappings. First pass");
 
 		/*
-		 * Instantiate TargetSectionRegistry, analyzes target-metamodel
+		 * Instantiate the TargetSections
 		 */
-		monitor.subTask("Instantiating targetModelSections for selected mappings. First pass");
-
 		this.writePamtramMessage("Instantiating TargetSections for Selected Mappings");
 
-		/*
-		 * Initialize the TargetSectionInstantiator
-		 */
-		this.targetSectionInstantiator = new TargetSectionInstantiator(this.assetManager.getTargetSectionRegistry(),
-				this.assetManager.getValueCalculator(), this.transformationConfig.getLogger(),
-				this.transformationConfig.getAmbiguityResolvingStrategy(),
-				this.transformationConfig.isUseParallelization());
-		this.objectsToCancel.add(this.targetSectionInstantiator);
+		TargetSectionInstantiator targetSectionInstantiator = this.assetManager.getTargetSectionInstantiator();
 
-		this.transformationConfig.getLogger().info(
-				() -> "Instantiating " + matchingResult.getSelectedMappings().size() + " TargetSection instances...");
+		targetSectionInstantiator
+				.expandTargetSectionInstances(this.assetManager.getSelectedMappingRegistry().getMappingInstaces());
 
-		// Iterate over all selected mapping instances and expand them
-		//
-		matchingResult.getSelectedMappings().stream()
-				.forEach(this.targetSectionInstantiator::expandTargetSectionInstance);
+		this.monitor.worked(100);
 
-		// Used to update the monitor.
-		//
-		monitor.worked(250);
-
-		return ExpandingResult.createExpandingResult(this.assetManager.getTargetSectionRegistry(),
-				this.targetSectionInstantiator.getLibEntryInstantiatorMap());
 	}
 
 	/**
 	 * This performs the '<em>joining</em>' step of the transformation: The target sections that have been instantiated
 	 * during the {@link #performInstantiating(MatchingResult, IProgressMonitor) expanding step} are linked via
 	 * containment references and added to the target model. If necessary, intermediary object are created as well.
-	 *
-	 * @param defaultTargetModel
-	 *            File path of the <em>default</em> target model (relative to the {@link #targetBasePath}).
-	 * @param expandingResult
-	 *            The {@link ExpandingResult} that contains the results of the
-	 *            {@link #performInstantiating(MatchingResult, IProgressMonitor) expanding step}.
-	 * @param matchingResult
-	 *            A {@link MatchingResult} that contains the results from the
-	 *            {@link #performMatching(List, IProgressMonitor) matching} step.
-	 * @param monitor
-	 *            An {@link IProgressMonitor} that shall be used to report the progress of the transformation.
-	 * @return A {@link JoiningResult} representing the result of the joining step.
 	 */
-	private JoiningResult performJoining(final String defaultTargetModel, final ExpandingResult expandingResult,
-			final MatchingResult matchingResult, final IProgressMonitor monitor) {
+	private void performJoining() {
 
+		this.monitor.subTask("Joining Instantiated TargetSections");
+
+		/*
+		 * Join the instantiated TargetSections
+		 */
 		this.writePamtramMessage("Joining Instantiated TargetSections");
-		monitor.subTask("Joining Instantiated TargetSections");
 
-		/*
-		 * The TargetModelRegistry that will be returned at the end as part of the 'JoiningResult'.
-		 */
-		TargetModelRegistry targetModelRegistry = new TargetModelRegistry(this.transformationConfig.getTargetBasePath(),
-				defaultTargetModel, new ResourceSetImpl(), this.transformationConfig.getLogger());
+		TargetSectionConnector targetSectionConnector = this.assetManager.getTargetSectionConnector();
 
-		/*
-		 * Initialize the TargetSectionConnector
-		 */
-		this.targetSectionConnector = new TargetSectionConnector(expandingResult.getTargetSectionRegistry(),
-				this.assetManager.getInstanceSelectorHandler(), targetModelRegistry,
-				this.transformationConfig.getMaxPathLength(), this.transformationConfig.getAmbiguityResolvingStrategy(),
-				this.transformationConfig.getLogger());
-		this.objectsToCancel.add(this.targetSectionConnector);
-
-		/*
-		 * Connect all target sections
-		 */
-		boolean joiningResult = matchingResult.getSelectedMappingsByMapping().entrySet().stream()
-				.allMatch(e -> this.targetSectionConnector.joinTargetSections(e.getKey(), e.getValue(),
-						expandingResult.getTargetSectionRegistry()));
-
-		if (!joiningResult) {
-			this.writePamtramMessage(GenericTransformationRunner.TRANSFORMATION_ABORTED_MESSAGE);
-			return JoiningResult.createJoiningCanceledResult();
-		}
+		targetSectionConnector.joinTargetSections(this.assetManager.getSelectedMappingRegistry());
 
 		// Finally, combine the Sections that are still unlinked with the
 		// Root element of a TargetModel
 		//
-		this.targetSectionConnector.combineUnlinkedSectionsWithTargetModelRoot();
+		targetSectionConnector.combineUnlinkedSectionsWithTargetModelRoot();
 
-		// Used to update the monitor.
-		//
-		monitor.worked(250);
-
-		if (this.targetSectionConnector.isCanceled()) {
-			this.writePamtramMessage(GenericTransformationRunner.TRANSFORMATION_ABORTED_MESSAGE);
-			return JoiningResult.createJoiningCanceledResult();
-		} else {
-			return JoiningResult.createJoiningCompletedResult(targetModelRegistry);
-		}
+		this.monitor.worked(100);
 
 	}
 
 	/**
 	 * This performs the '<em>linking</em>' step of the transformation: Necessary cross references between the created
 	 * target sections are instantiated.
-	 *
-	 * @param matchingResult
-	 *            A {@link MatchingResult} that contains the results from the
-	 *            {@link #performMatching(List, IProgressMonitor) matching} step.
-	 * @param expandingResult
-	 *            The {@link TargetSectionInstantiator} that was used to expand the target sections.
-	 * @param monitor
-	 *            An {@link IProgressMonitor} that shall be used to report the progress of the transformation.
-	 * @return '<em><b>true</b></em>' if everything went well, '<em><b>false</b></em>' otherwise.
 	 */
-	private boolean performLinking(final MatchingResult matchingResult, final ExpandingResult expandingResult,
-			final IProgressMonitor monitor) {
+	private void performLinking() {
 
+		this.monitor.subTask("Linking Instantiated TargetSections");
+
+		/*
+		 * Link the instantiated TargetSections
+		 */
 		this.writePamtramMessage("Linking Instantiated TargetSections");
-		monitor.subTask("Linking Instantiated TargetSections");
 
-		/*
-		 * Initialize the TargetSectionLinker
-		 */
-		this.targetSectionLinker = new TargetSectionLinker(expandingResult.getTargetSectionRegistry(),
-				this.assetManager.getInstanceSelectorHandler(), expandingResult.getLibEntryInstantiatorMap(),
-				this.transformationConfig.getLogger(), this.transformationConfig.getAmbiguityResolvingStrategy());
-		this.objectsToCancel.add(this.targetSectionLinker);
+		TargetSectionLinker targetSectionLinker = this.assetManager.getTargetSectionLinker();
 
-		/*
-		 * Link all target sections
-		 */
-		boolean linkingResult = matchingResult.getSelectedMappings().stream()
-				.allMatch(this.targetSectionLinker::linkTargetSection);
+		targetSectionLinker.linkTargetSections(this.assetManager.getSelectedMappingRegistry().getMappingInstaces());
 
-		if (!linkingResult) {
-			this.writePamtramMessage(GenericTransformationRunner.TRANSFORMATION_ABORTED_MESSAGE);
-			return false;
-		}
+		this.monitor.worked(100);
 
-		// Used to update the monitor.
-		//
-		monitor.worked(250);
-
-		return true;
 	}
 
 	/**
 	 * This performs the final step of the transformation: The stored library entries are finally instantiated in the
 	 * target model.
-	 *
-	 * @param monitor
-	 * @param targetModelRegistry
-	 *            The {@link TargetModelRegistry} representing the target models in which the library entries are to be
-	 *            instantiated.
-	 *
-	 * @return <em>true</em> if everything went well, <em>false</em> otherwise.
 	 */
-	private boolean performInstantiatingLibraryEntries(MatchingResult matchingResult, ExpandingResult expandingResult,
-			IProgressMonitor monitor) {
+	private void performInstantiatingLibraryEntries() {
 
-		this.writePamtramMessage("Instantiating LibraryEntries");
-		monitor.subTask("Instantiating LibraryEntries");
-
-		if (expandingResult.getLibEntryInstantiatorMap().isEmpty()) {
-			return true;
-		}
-
-		this.transformationConfig.getLogger().fine(
-				() -> "Instantiating " + expandingResult.getLibEntryInstantiatorMap().size() + " LibraryEntries...");
+		this.monitor.subTask("Instantiating LibraryEntries");
 
 		/*
-		 * Create a GenLibraryManager that proxies calls to the LibraryPlugin and register all libraries that are to be
-		 * used in during the transformation.
+		 * Instantiate the LibraryEntries
 		 */
-		GenLibraryManager manager = new GenLibraryManager(this.transformationConfig.getLogger());
-		this.transformationConfig.getLibPaths().stream().forEach(libPath -> {
-			this.transformationConfig.getLogger().info(() -> "Registering library location '" + libPath + "'...");
-			manager.addLibPath(libPath);
-		});
+		this.writePamtramMessage("Instantiating LibraryEntries");
 
-		List<LibraryEntryInstantiator> libEntryInstantiators = (this.transformationConfig.isUseParallelization()
-				? expandingResult.getLibEntryInstantiatorMap().entrySet().parallelStream()
-				: expandingResult.getLibEntryInstantiatorMap().entrySet().stream()).map(Entry::getValue)
-						.collect(Collectors.toList());
+		LibraryEntryRegistry libraryEntryRegistry = this.assetManager.getTargetSectionRegistry()
+				.getLibraryEntryRegistry();
+
+		if (libraryEntryRegistry.isEmpty()) {
+			return;
+		}
+
+		this.transformationConfig.getLogger()
+				.fine(() -> "Instantiating " + libraryEntryRegistry.size() + " LibraryEntries...");
 
 		/*
 		 * Iterate over all stored instantiators and instantiate the associated library entry in the given target model.
 		 */
-		return libEntryInstantiators.stream().map(libraryEntryInstantiator -> {
+		libraryEntryRegistry.values().stream()
+				.forEach(libraryEntryInstantiator -> libraryEntryInstantiator.instantiate(
+						this.assetManager.getGenLibraryManager(), this.assetManager.getValueCalculator(),
+						this.assetManager.getTargetSectionRegistry())
 
-			boolean successful = libraryEntryInstantiator.instantiate(manager, this.assetManager.getValueCalculator(),
-					expandingResult.getTargetSectionRegistry());
-			if (!successful) {
-				this.transformationConfig.getLogger().severe(() -> "Failed to instantiate library entry '"
-						+ libraryEntryInstantiator.getLibraryEntry().getClasspath().getValue() + "'!");
-			}
-			return successful;
-		}).reduce(true, (a, b) -> a && b);
+		);
+
+		this.monitor.worked(100);
 
 	}
 
@@ -810,10 +670,6 @@ public class GenericTransformationRunner extends CancelableElement {
 	 * <b>Note:</b> If {@link TransformationConfiguration#transformationModelPath} is set to '<em>null</em>', this does
 	 * nothing.
 	 *
-	 * @param transformationConfiguration
-	 *            The {@link TransformationConfiguration} providing all parameters of the transformation.
-	 * @param transformationResult
-	 *            The {@link TransformationResult result} of the transformation.
 	 * @param startTime
 	 *            The {@link Date time} when the transformation started.
 	 * @param endTime
@@ -821,8 +677,7 @@ public class GenericTransformationRunner extends CancelableElement {
 	 *
 	 * @return '<em><b>true</b></em>' if the resource has successfully been created, '<em><b>false</b></em>' otherwise.
 	 */
-	private boolean generateTransformationModel(TransformationConfiguration transformationConfiguration,
-			TransformationResult transformationResult, Date startTime, Date endTime) {
+	private boolean generateTransformationModel(Date startTime, Date endTime) {
 
 		// Check if we need to create a transformation model
 		//
@@ -859,17 +714,14 @@ public class GenericTransformationRunner extends CancelableElement {
 		transformationModel.getSourceModels().addAll( // add source models
 				this.transformationConfig.getSourceModels());
 		transformationModel.getTargetModels().addAll( // add target models
-				transformationResult.getJoiningResult().getTargetModelRegistry().getTargetModels().values().stream()
+				this.assetManager.getTargetModelRegistry().getTargetModels().values().stream()
 						.flatMap(Collection::stream).collect(Collectors.toList()));
-
-		if (transformationResult.getMatchingResult() == null) {
-			return false;
-		}
 
 		// Create the various TransformationMappings and
 		// TransformationMappingHintGroups
 		//
-		for (final MappingInstanceStorage selMap : transformationResult.getMatchingResult().getSelectedMappings()) {
+		for (final MappingInstanceStorage selMap : this.assetManager.getSelectedMappingRegistry()
+				.getMappingInstaces()) {
 
 			/*
 			 * Create a TransformationMapping for the mapping
@@ -1100,12 +952,6 @@ public class GenericTransformationRunner extends CancelableElement {
 			private final Map<Mapping, List<MappingInstanceStorage>> selectedMappingsByMapping;
 
 			/**
-			 * This is the map of values for global attributes associated with the {@link GlobalAttribute} that they
-			 * represent.
-			 */
-			private final GlobalValueMap globalValues;
-
-			/**
 			 * This constructs an instance.
 			 *
 			 * @param canceled
@@ -1120,17 +966,13 @@ public class GenericTransformationRunner extends CancelableElement {
 			 * @param exportedMappingHints
 			 *            The {@link HintValueStorage} containing values for exported mapping hints.
 			 * @param libEntryInstantiatorMap2
-			 * @param globalAttributeValues
-			 *            The map of values for global attributes associated with the {@link GlobalAttribute} that they
-			 *            represent.
 			 */
 			private MatchingResult(boolean canceled, List<MappingInstanceStorage> selectedMappings,
-					Map<Mapping, List<MappingInstanceStorage>> selectedMappingsByMapping, GlobalValueMap globalValues) {
+					Map<Mapping, List<MappingInstanceStorage>> selectedMappingsByMapping) {
 
 				this.canceled = canceled;
 				this.selectedMappings = selectedMappings;
 				this.selectedMappingsByMapping = selectedMappingsByMapping;
-				this.globalValues = globalValues;
 			}
 
 			/**
@@ -1140,7 +982,7 @@ public class GenericTransformationRunner extends CancelableElement {
 			 */
 			public static MatchingResult createMatchingCanceledResult() {
 
-				return new MatchingResult(true, null, null, null);
+				return new MatchingResult(true, null, null);
 			}
 
 			/**
@@ -1152,14 +994,12 @@ public class GenericTransformationRunner extends CancelableElement {
 			 * @param selectedMappingsByMapping
 			 *            The map of {@link MappingInstanceStorage mappings} that have been selected during the
 			 *            <em>matching</em> process associated with the {@link Mapping} that they represent.
-			 * @param globalValues
-			 *            The values of {@link GlobalAttribute GlobalAttributes} and {@link FixedValue FixedValues}.
 			 * @return An instance of {@link MatchingResult} indicating that the matching has completed successfully.
 			 */
 			public static MatchingResult createMatchingCompletedResult(List<MappingInstanceStorage> selectedMappings,
-					Map<Mapping, List<MappingInstanceStorage>> selectedMappingsByMapping, GlobalValueMap globalValues) {
+					Map<Mapping, List<MappingInstanceStorage>> selectedMappingsByMapping) {
 
-				return new MatchingResult(false, selectedMappings, selectedMappingsByMapping, globalValues);
+				return new MatchingResult(false, selectedMappings, selectedMappingsByMapping);
 			}
 
 			/**
@@ -1195,16 +1035,6 @@ public class GenericTransformationRunner extends CancelableElement {
 				return this.selectedMappingsByMapping;
 			}
 
-			/**
-			 * This is the getter for the {@link #globalAttributeValues}.
-			 *
-			 * @return The map of values for global attributes associated with the {@link GlobalAttribute} that they
-			 *         represent.
-			 */
-			GlobalValueMap getGlobalValues() {
-
-				return this.globalValues;
-			}
 		}
 
 		/**
@@ -1225,19 +1055,15 @@ public class GenericTransformationRunner extends CancelableElement {
 			 */
 			private final TargetSectionRegistry targetSectionRegistry;
 
-			private final Map<EObjectWrapper, LibraryEntryInstantiator> libEntryInstantiatorMap;
-
 			/**
 			 * This constructs an instance for an expanding process.
 			 *
 			 * @param targetSectionRegistry
 			 *            The {@link TargetSectionRegistry} containing/representing created target sections.
 			 */
-			private ExpandingResult(TargetSectionRegistry targetSectionRegistry,
-					Map<EObjectWrapper, LibraryEntryInstantiator> libEntryInstantiatorMap) {
+			private ExpandingResult(TargetSectionRegistry targetSectionRegistry) {
 
 				this.targetSectionRegistry = targetSectionRegistry;
-				this.libEntryInstantiatorMap = libEntryInstantiatorMap;
 			}
 
 			/**
@@ -1245,16 +1071,12 @@ public class GenericTransformationRunner extends CancelableElement {
 			 *
 			 * @param targetSectionRegistry
 			 *            The {@link TargetSectionRegistry} containing/representing created target sections.
-			 * @param libEntryInstantiatorMap
-			 *            The temporarily created elements for LibraryEntries (represented by an {@link EObjectWrapper})
-			 *            and their corresponding {@link LibraryEntryInstantiator}
 			 *
 			 * @return An instance of {@link ExpandingResult}.
 			 */
-			public static ExpandingResult createExpandingResult(TargetSectionRegistry targetSectionRegistry,
-					Map<EObjectWrapper, LibraryEntryInstantiator> libEntryInstantiatorMap) {
+			public static ExpandingResult createExpandingResult(TargetSectionRegistry targetSectionRegistry) {
 
-				return new ExpandingResult(targetSectionRegistry, libEntryInstantiatorMap);
+				return new ExpandingResult(targetSectionRegistry);
 			}
 
 			/**
@@ -1266,15 +1088,6 @@ public class GenericTransformationRunner extends CancelableElement {
 				return this.targetSectionRegistry;
 			}
 
-			/**
-			 * This is the getter for the {@link #libEntryInstantiatorMap}.
-			 *
-			 * @return
-			 */
-			Map<EObjectWrapper, LibraryEntryInstantiator> getLibEntryInstantiatorMap() {
-
-				return this.libEntryInstantiatorMap;
-			}
 		}
 
 		/**

@@ -20,9 +20,11 @@ import org.eclipse.emf.ecore.util.ExtendedMetaData;
 
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
+import de.mfreund.gentrans.transformation.library.LibraryEntryInstantiator;
 import de.mfreund.gentrans.transformation.util.CancelableElement;
 import de.tud.et.ifa.agtele.emf.EPackageHelper;
 import pamtram.mapping.InstantiableMappingHintGroup;
+import pamtram.structure.library.LibraryEntry;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionClass;
 
@@ -39,6 +41,13 @@ public class TargetSectionRegistry extends CancelableElement {
 	 * Attribute value registry, needed when applying model connection hints
 	 */
 	private final AttributeValueRegistry attrValRegistry;
+
+	/**
+	 * The {@link LibraryEntryRegistry} that keeps track of temporarily created {@link EObjectWrapper elements}
+	 * representing {@link LibraryEntry LibraryEntries} that need to be instantiated by means of the associated
+	 * {@link LibraryEntryInstantiator}.
+	 */
+	private final LibraryEntryRegistry libraryEntryRegistry;
 
 	/**
 	 * Map of instantiated EObjects, sorted by TargetSectionClass
@@ -105,6 +114,7 @@ public class TargetSectionRegistry extends CancelableElement {
 		this.targetClassReferencesRegistry = new LinkedHashMap<>(); // ==refsToThis
 		this.containmentReferenceSourcesRegistry = new LinkedHashMap<>(); // ==sources
 		this.attrValRegistry = attrValRegistry;
+		this.libraryEntryRegistry = new LibraryEntryRegistry();
 		this.canceled = false;
 	}
 
@@ -325,6 +335,18 @@ public class TargetSectionRegistry extends CancelableElement {
 	public AttributeValueRegistry getAttrValRegistry() {
 
 		return this.attrValRegistry;
+	}
+
+	/**
+	 * This is the getter for the {@link #libraryEntryRegistry}.
+	 *
+	 * @return The {@link LibraryEntryRegistry} keeping track of temporarily created {@link EObjectWrapper elements}
+	 *         representing {@link LibraryEntry LibraryEntries} that need to be instantiated by means of the associated
+	 *         {@link LibraryEntryInstantiator}..
+	 */
+	public LibraryEntryRegistry getLibraryEntryRegistry() {
+
+		return this.libraryEntryRegistry;
 	}
 
 	/**

@@ -27,6 +27,7 @@ import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
+import de.mfreund.gentrans.transformation.registries.SelectedMappingRegistry;
 import de.mfreund.gentrans.transformation.registries.TargetModelRegistry;
 import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvedAdapter;
@@ -139,25 +140,36 @@ public class TargetSectionConnector extends CancelableElement {
 	}
 
 	/**
+	 * Join the instantiated {@link TargetSection TargetSections}.
+	 *
+	 * @param selectedMappings
+	 *            The {@link SelectedMappingRegistry} providing all the {@link MappingInstanceStorage Mapping instances}
+	 *            whose {@link TargetSection TargetSections} shall be joined.
+	 */
+	public void joinTargetSections(SelectedMappingRegistry selectedMappings) {
+
+		selectedMappings.getMappings().stream()
+				.forEach(mapping -> this.joinTargetSections(mapping, selectedMappings.get(mapping)));
+
+	}
+
+	/**
 	 * Join the {@link TargetSection} instances created by the hint groups of the given {@link MappingHintGroupType}.
 	 *
 	 * @param mapping
 	 *            The {@link Mapping} responsible for the creation of the {@link TargetSection TargetSections}
 	 * @param mappingInstances
 	 *            The list of {@link MappingInstanceStorage instances} created based on the given {@link Mapping}.
-	 * @param targetSectionRegistry
-	 *            The {@link TargetSectionRegistry} that keeps track of instantiated sections.
 	 * @return '<em><b>true</b></em>' if all instances of the TargetSection were joined successfully;
 	 *         '<em><b>false</b></em>' otherwise
 	 */
-	public boolean joinTargetSections(final Mapping mapping, final List<MappingInstanceStorage> mappingInstances,
-			final TargetSectionRegistry targetSectionRegistry) {
+	public boolean joinTargetSections(final Mapping mapping, final List<MappingInstanceStorage> mappingInstances) {
 
 		// Join 'local' hint groups
 		//
 		if (!mapping.getActiveMappingHintGroups().stream()
 				.filter(g -> g.getTargetSection() != null && g instanceof MappingHintGroup)
-				.allMatch(g -> this.joinTargetSection(g, mappingInstances, targetSectionRegistry))) {
+				.allMatch(g -> this.joinTargetSection(g, mappingInstances))) {
 
 			return false;
 		}
@@ -166,7 +178,7 @@ public class TargetSectionConnector extends CancelableElement {
 		//
 		if (!mapping.getActiveImportedMappingHintGroups().stream()
 				.filter(i -> i.getHintGroup() != null && i.getHintGroup().getTargetSection() != null)
-				.allMatch(i -> this.joinTargetSection(i, mappingInstances, targetSectionRegistry))) {
+				.allMatch(i -> this.joinTargetSection(i, mappingInstances))) {
 
 			return false;
 		}
@@ -182,14 +194,12 @@ public class TargetSectionConnector extends CancelableElement {
 	 *            TargetSections} to join.
 	 * @param mappingInstances
 	 *            The list of {@link MappingInstanceStorage instances} created based on the given {@link Mapping}.
-	 * @param targetSectionRegistry
-	 *            The {@link TargetSectionRegistry} that keeps track of instantiated sections.
 	 * @return '<em><b>true</b></em>' if all instances of the TargetSection were joined successfully;
 	 *         '<em><b>false</b></em>' otherwise
 	 */
 	@SuppressWarnings("unlikely-arg-type")
 	private boolean joinTargetSection(final MappingHintGroupType hintGroup,
-			final List<MappingInstanceStorage> mappingInstances, final TargetSectionRegistry targetSectionRegistry) {
+			final List<MappingInstanceStorage> mappingInstances) {
 
 		this.checkCanceled();
 
@@ -289,13 +299,11 @@ public class TargetSectionConnector extends CancelableElement {
 	 *            TargetSections} to join.
 	 * @param mappingInstances
 	 *            The list of {@link MappingInstanceStorage instances} created based on the given {@link Mapping}.
-	 * @param targetSectionRegistry
-	 *            The {@link TargetSectionRegistry} that keeps track of instantiated sections.
 	 * @return '<em><b>true</b></em>' if all instances of the TargetSection were joined successfully;
 	 *         '<em><b>false</b></em>' otherwise
 	 */
 	private boolean joinTargetSection(final MappingHintGroupImporter hintGroupImporter,
-			final List<MappingInstanceStorage> mappingInstances, final TargetSectionRegistry targetSectionRegistry) {
+			final List<MappingInstanceStorage> mappingInstances) {
 
 		this.checkCanceled();
 
@@ -444,6 +452,11 @@ public class TargetSectionConnector extends CancelableElement {
 		if (this.unconnectableElements.isEmpty()) {
 			return;
 		}
+
+		this.logger.info(() -> "Joining "
+				+ this.unconnectableElements.values().parallelStream().flatMap(v -> v.values().stream())
+						.flatMap(v2 -> v2.stream()).collect(Collectors.toList()).size()
+				+ " unconnected instances with a target model root element...");
 
 		// Only one element could not be connected -> we already have our root element
 		//

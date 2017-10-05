@@ -12,6 +12,7 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Function;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -79,7 +80,7 @@ import pamtram.structure.source.SourceSectionClass;
  * This class can be used to execute a generic transformation. It performs the different phases of the transformation
  * after calling {@link #runTransformation(Optional)}.
  * <p />
- * Instances need to be created via the {@link GenericTransformationRunnerFactory}.
+ * Note: Instances need to be created via the {@link GenericTransformationRunnerFactory}.
  *
  * @author mfreund
  */
@@ -108,6 +109,10 @@ public class GenericTransformationRunner extends CancelableElement {
 
 	/**
 	 * This creates an instance based on the given {@link TransformationConfiguration}.
+	 * <p />
+	 * Note: This will use a default {@link Logger} implementation to print log messages.
+	 *
+	 * @see #GenericTransformationRunner(TransformationConfiguration, Logger)
 	 *
 	 * @param config
 	 *            The {@link TransformationConfiguration} specifying all parameters necessary for the execution of the
@@ -118,6 +123,26 @@ public class GenericTransformationRunner extends CancelableElement {
 		super();
 		this.transformationConfig = config;
 		this.assetManager = new TransformationAssetManager(config);
+		this.monitor = new MonitorWrapper(Optional.empty());
+
+	}
+
+	/**
+	 * This creates an instance based on the given {@link TransformationConfiguration}.
+	 * <p />
+	 * Note: This will use the given {@link Logger} implementation to print log messages.
+	 *
+	 * @see #GenericTransformationRunner(TransformationConfiguration)
+	 *
+	 * @param config
+	 *            The {@link TransformationConfiguration} specifying all parameters necessary for the execution of the
+	 *            transformation.
+	 */
+	GenericTransformationRunner(TransformationConfiguration config, Logger logger) {
+
+		super();
+		this.transformationConfig = config;
+		this.assetManager = new TransformationAssetManager(config, logger);
 		this.monitor = new MonitorWrapper(Optional.empty());
 
 	}
@@ -147,8 +172,7 @@ public class GenericTransformationRunner extends CancelableElement {
 			// etc.)
 			//
 			if (!this.prepare(this.transformationConfig)) {
-				this.transformationConfig.getLogger()
-						.severe(GenericTransformationRunner.TRANSFORMATION_ABORTED_MESSAGE);
+				this.assetManager.getLogger().severe(GenericTransformationRunner.TRANSFORMATION_ABORTED_MESSAGE);
 				return;
 			}
 
@@ -175,18 +199,18 @@ public class GenericTransformationRunner extends CancelableElement {
 
 			Activator.log(builder.toString(), e1);
 
-			this.transformationConfig.getLogger().severe(() -> builder.toString());
-			this.transformationConfig.getLogger().severe("See the ErrorLog for more information!");
-			this.transformationConfig.getLogger().severe("Aborting...");
+			this.assetManager.getLogger().severe(() -> builder.toString());
+			this.assetManager.getLogger().severe("See the ErrorLog for more information!");
+			this.assetManager.getLogger().severe("Aborting...");
 			return;
 		} catch (RuntimeException e) {
 			if (e.getMessage() != null) {
-				this.transformationConfig.getLogger().severe(() -> e.getMessage());
+				this.assetManager.getLogger().severe(() -> e.getMessage());
 			} else {
-				this.transformationConfig.getLogger().severe(() -> e.toString());
+				this.assetManager.getLogger().severe(() -> e.toString());
 			}
-			this.transformationConfig.getLogger().severe("See the ErrorLog for more information!");
-			this.transformationConfig.getLogger().severe("Aborting...");
+			this.assetManager.getLogger().severe("See the ErrorLog for more information!");
+			this.assetManager.getLogger().severe("Aborting...");
 
 			Activator.log(e);
 
@@ -233,8 +257,7 @@ public class GenericTransformationRunner extends CancelableElement {
 							try {
 								UIHelper.openEditor(ResourceHelper.getFileForURI(targetModelToOpenUri));
 							} catch (PartInitException e) {
-								GenericTransformationRunner.this.transformationConfig.getLogger()
-										.severe(() -> e.toString());
+								GenericTransformationRunner.this.assetManager.getLogger().severe(() -> e.toString());
 								e.printStackTrace();
 							}
 
@@ -266,7 +289,7 @@ public class GenericTransformationRunner extends CancelableElement {
 		// etc.)
 		//
 		if (!this.prepare(this.transformationConfig)) {
-			this.transformationConfig.getLogger().severe(GenericTransformationRunner.TRANSFORMATION_ABORTED_MESSAGE);
+			this.assetManager.getLogger().severe(GenericTransformationRunner.TRANSFORMATION_ABORTED_MESSAGE);
 			return null;
 		}
 
@@ -335,11 +358,17 @@ public class GenericTransformationRunner extends CancelableElement {
 
 		this.writePamtramMessage("Preparing transformation");
 
+		this.assetManager.getLogger().fine("Validating transformation configuration...");
+
 		// validate the TransformationConfiguration
 		//
 		if (!transformationConfig.validate()) {
 			return false;
 		}
+
+		this.assetManager.getLogger().info(transformationConfig::toString);
+
+		this.assetManager.getLogger().fine("Validation successful!");
 
 		// validate the PAMTraM model
 		//
@@ -361,17 +390,16 @@ public class GenericTransformationRunner extends CancelableElement {
 
 		// Initialize the ambiguity resolving strategy
 		//
-		transformationConfig.getLogger().fine("\nInitializing ambiguity resolving strategy...");
+		this.assetManager.getLogger().fine("\nInitializing ambiguity resolving strategy...");
 		try {
 
 			transformationConfig.getAmbiguityResolvingStrategy().init(transformationConfig.getPamtramModels(),
-					transformationConfig.getSourceModels(), transformationConfig.getLogger());
-			transformationConfig.getLogger().fine("Initialization successful!");
+					transformationConfig.getSourceModels(), this.assetManager.getLogger());
+			this.assetManager.getLogger().fine("Initialization successful!");
 
 		} catch (Exception e1) {
 			e1.printStackTrace();
-			transformationConfig.getLogger()
-					.warning("Internal error. Switching to DefaultAmbiguityResolvingStrategy...");
+			this.assetManager.getLogger().warning("Internal error. Switching to DefaultAmbiguityResolvingStrategy...");
 			transformationConfig.withAmbiguityResolvingStrategy(new DefaultAmbiguityResolvingStrategy());
 		}
 
@@ -389,7 +417,7 @@ public class GenericTransformationRunner extends CancelableElement {
 	 */
 	private boolean validatePamtramModels(TransformationConfiguration transformationConfiguration) {
 
-		transformationConfiguration.getLogger().fine("\nValiding PAMTraM models...");
+		this.assetManager.getLogger().fine("\nValiding PAMTraM models...");
 
 		Set<Integer> diags = transformationConfiguration.getPamtramModels().stream()
 				.map(pamtramModel -> Diagnostician.INSTANCE.validate(pamtramModel).getSeverity())
@@ -398,7 +426,7 @@ public class GenericTransformationRunner extends CancelableElement {
 		if (diags.contains(Diagnostic.ERROR)) {
 			final AtomicBoolean result = new AtomicBoolean();
 
-			transformationConfiguration.getLogger().fine("Validation completed with errors!");
+			this.assetManager.getLogger().fine("Validation completed with errors!");
 
 			Display.getDefault().syncExec(
 					() -> result.set(ErrorDialog.open(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
@@ -408,7 +436,7 @@ public class GenericTransformationRunner extends CancelableElement {
 				return false;
 			}
 		} else {
-			transformationConfiguration.getLogger().fine("Validation successful!");
+			this.assetManager.getLogger().fine("Validation successful!");
 		}
 
 		return true;
@@ -646,8 +674,7 @@ public class GenericTransformationRunner extends CancelableElement {
 			return;
 		}
 
-		this.transformationConfig.getLogger()
-				.fine(() -> "Instantiating " + libraryEntryRegistry.size() + " LibraryEntries...");
+		this.assetManager.getLogger().fine(() -> "Instantiating " + libraryEntryRegistry.size() + " LibraryEntries...");
 
 		/*
 		 * Iterate over all stored instantiators and instantiate the associated library entry in the given target model.
@@ -899,7 +926,7 @@ public class GenericTransformationRunner extends CancelableElement {
 	 */
 	private void writePamtramMessage(final String msg) {
 
-		this.transformationConfig.getLogger().info(() -> "\n################# " + msg + " #################\n");
+		this.assetManager.getLogger().info(() -> "\n################# " + msg + " #################\n");
 	}
 
 	/**

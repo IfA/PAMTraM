@@ -37,9 +37,9 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.ide.ResourceUtil;
 
-import de.mfreund.gentrans.transformation.BaseTransformationConfiguration;
 import de.mfreund.gentrans.transformation.GenericTransformationRunner;
 import de.mfreund.gentrans.transformation.GenericTransformationRunnerFactory;
+import de.mfreund.gentrans.transformation.TransformationConfiguration;
 import de.tud.et.ifa.agtele.ui.interfaces.IPersistable;
 import de.tud.et.ifa.agtele.ui.providers.EObjectTreeContentProvider;
 import de.tud.et.ifa.agtele.ui.widgets.TreeViewerGroup;
@@ -52,8 +52,8 @@ import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.source.SourceSectionClass;
 
 /**
- * The page of the {@link PamtramEditor} that allows to check which source
- * sections are matched for a given source model..
+ * The page of the {@link PamtramEditor} that allows to check which source sections are matched for a given source
+ * model..
  *
  * @author mfreund
  */
@@ -65,8 +65,8 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 	protected PamtramEditor editor;
 
 	/**
-	 * This is the one adapter factory used for providing views of the model.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This is the one adapter factory used for providing views of the model. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
 	 */
 	protected ComposedAdapterFactory adapterFactory;
 
@@ -131,8 +131,7 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 	protected IProject project;
 
 	/**
-	 * This is the list of matched sections that is determined when the user
-	 * selects a source model.
+	 * This is the list of matched sections that is determined when the user selects a source model.
 	 */
 	protected Map<SourceSectionClass, Set<EObject>> matchedSections;
 
@@ -140,8 +139,7 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 	 * This creates an instance.
 	 *
 	 * @param parent
-	 *            A widget which will be the parent of the new instance (cannot
-	 *            be null)
+	 *            A widget which will be the parent of the new instance (cannot be null)
 	 * @param style
 	 *            The style of widget to construct
 	 * @param adapterFactory
@@ -267,11 +265,11 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 	}
 
 	/**
-	 * This updates the source model file shown in the source model tree based
-	 * on the current selection in the source model combo.
+	 * This updates the source model file shown in the source model tree based on the current selection in the source
+	 * model combo.
 	 *
-	 * TODO There should be no direct dependency to the gentrans plug-in/the
-	 * GenericTransformationRunner. This should be solved by an extension point.
+	 * TODO There should be no direct dependency to the gentrans plug-in/the GenericTransformationRunner. This should be
+	 * solved by an extension point.
 	 */
 	protected void updateSourceModel() {
 
@@ -309,10 +307,9 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 		EList<EObject> contents = modelResource.getContents();
 
 		/*
-		 * If an xml source file has been selected, we have to omit the
-		 * 'document root' element and instead determine the actual contents.
-		 * Passing the load option 'XMLResource.OPTION_SUPPRESS_DOCUMENT_ROOT'
-		 * somehow does not seem to work.
+		 * If an xml source file has been selected, we have to omit the 'document root' element and instead determine
+		 * the actual contents. Passing the load option 'XMLResource.OPTION_SUPPRESS_DOCUMENT_ROOT' somehow does not
+		 * seem to work.
 		 */
 		if (contents.get(0).eClass().getName().equals("DocumentRoot")) {
 			contents = contents.get(0).eContents();
@@ -329,11 +326,12 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 		// Create a transformation runner and use it to get the matching source
 		// sections
 		//
-		BaseTransformationConfiguration baseConfig = new BaseTransformationConfiguration()
+		TransformationConfiguration transformationConfig = TransformationConfiguration
+				.createInstanceFromSourceModels(new ArrayList<>(contents), Arrays.asList(this.editor.pamtram),
+						targetBasePath)
 				.withDefaultTargetModel(defaultTargetModel);
 
-		GenericTransformationRunner tr = GenericTransformationRunnerFactory.eINSTANCE.createInstanceFromSourceModels(
-				new ArrayList<>(contents), Arrays.asList(this.editor.pamtram), targetBasePath, baseConfig);
+		GenericTransformationRunner tr = GenericTransformationRunnerFactory.createInstance(transformationConfig, true);
 
 		this.matchedSections = tr.matchSourceSections();
 
@@ -516,9 +514,8 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 
 			String activeSelection = settings.get("ACTIVE_SELECTION");
 			/*
-			 * as the URI of an eObject also reflects the containing resource,
-			 * we can use this to uniquely identify an eObject inside a resource
-			 * set
+			 * as the URI of an eObject also reflects the containing resource, we can use this to uniquely identify an
+			 * eObject inside a resource set
 			 */
 			EObject selection = this.editor.getEditingDomain().getResourceSet()
 					.getEObject(URI.createURI(activeSelection), true);

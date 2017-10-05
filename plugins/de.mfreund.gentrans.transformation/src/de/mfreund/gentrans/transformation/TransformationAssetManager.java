@@ -3,9 +3,12 @@
  */
 package de.mfreund.gentrans.transformation;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -55,6 +58,11 @@ import pamtram.util.GenLibraryManager;
  * @author mfreund
  */
 class TransformationAssetManager extends CancelableElement {
+
+	/**
+	 * The {@link Logger} that shall be used to print messages.
+	 */
+	private Logger logger;
 
 	/**
 	 * This keeps track of {@link ICancelable cancelable} assets that need to be canceled when the user requests an
@@ -170,7 +178,9 @@ class TransformationAssetManager extends CancelableElement {
 	private GenLibraryManager genLibraryManager;
 
 	/**
-	 * This creates an instance.
+	 * This creates an instance using a default {@link Logger}.
+	 *
+	 * @see #TransformationAssetManager(TransformationConfiguration, Logger)
 	 *
 	 * @param transformationConfig
 	 *            The {@link TransformationConfiguration} that this operates on.
@@ -179,6 +189,48 @@ class TransformationAssetManager extends CancelableElement {
 
 		this.transformationConfig = transformationConfig;
 		this.objectsToCancel = new ArrayList<>();
+	}
+
+	/**
+	 * This creates an instance using the specified {@link Logger}.
+	 *
+	 * @see #TransformationAssetManager(TransformationConfiguration)
+	 *
+	 * @param transformationConfig
+	 *            The {@link TransformationConfiguration} that this operates on.
+	 * @param logger
+	 *            The {@link Logger} that shall be used to print messages.
+	 */
+	public TransformationAssetManager(TransformationConfiguration transformationConfig, Logger logger) {
+
+		this.transformationConfig = transformationConfig;
+		this.logger = logger;
+		this.objectsToCancel = new ArrayList<>();
+	}
+
+	/**
+	 * This initializes the {@link #logger}.
+	 */
+	protected void initLogger() {
+
+		this.logger = Logger
+				.getLogger("de.mfreund.gentrans.transformation " + DateFormat.getDateTimeInstance().format(new Date()));
+		this.logger.setLevel(this.transformationConfig.getLogLevel());
+
+	}
+
+	/**
+	 * Returns the {@link #logger}.
+	 *
+	 * @return the {@link #logger}}
+	 */
+	public Logger getLogger() {
+
+		if (this.logger == null) {
+			this.initLogger();
+		}
+
+		return this.logger;
 	}
 
 	/**
@@ -252,7 +304,7 @@ class TransformationAssetManager extends CancelableElement {
 	 */
 	protected void initTargetSectionRegistry() {
 
-		this.targetSectionRegistry = new TargetSectionRegistry(this.transformationConfig.getLogger(),
+		this.targetSectionRegistry = new TargetSectionRegistry(this.getLogger(),
 				new LinkedHashSet<>(this.transformationConfig.getPamtramModels().stream()
 						.flatMap(p -> p.getTargetSectionModels().stream()).map(TargetSectionModel::getMetaModelPackage)
 						.collect(Collectors.toList())));
@@ -280,8 +332,7 @@ class TransformationAssetManager extends CancelableElement {
 	protected void initTargetModelRegistry() {
 
 		this.targetModelRegistry = new TargetModelRegistry(this.transformationConfig.getTargetBasePath(),
-				this.transformationConfig.getDefaultTargetModel(), new ResourceSetImpl(),
-				this.transformationConfig.getLogger());
+				this.transformationConfig.getDefaultTargetModel(), new ResourceSetImpl(), this.getLogger());
 	}
 
 	/**
@@ -303,7 +354,7 @@ class TransformationAssetManager extends CancelableElement {
 	 */
 	protected void initValueModifierExecutor() {
 
-		this.valueModifierExecutor = ValueModifierExecutor.init(this.transformationConfig.getLogger());
+		this.valueModifierExecutor = ValueModifierExecutor.init(this.getLogger());
 	}
 
 	/**
@@ -326,7 +377,7 @@ class TransformationAssetManager extends CancelableElement {
 	protected void initValueCalculator() {
 
 		this.valueCalculator = new ValueCalculator(this.getGlobalValues(), this.getValueModifierExecutor(),
-				this.transformationConfig.getLogger());
+				this.getLogger());
 	}
 
 	/**
@@ -349,8 +400,8 @@ class TransformationAssetManager extends CancelableElement {
 	protected void initInstanceSelectorHandler() {
 
 		this.instanceSelectorHandler = new InstanceSelectorHandler(this.getMatchedSectionRegistry(),
-				this.getTargetSectionRegistry(), this.getGlobalValues(), this.getValueCalculator(),
-				this.transformationConfig.getLogger(), this.transformationConfig.isUseParallelization());
+				this.getTargetSectionRegistry(), this.getGlobalValues(), this.getValueCalculator(), this.getLogger(),
+				this.transformationConfig.isUseParallelization());
 	}
 
 	/**
@@ -374,8 +425,7 @@ class TransformationAssetManager extends CancelableElement {
 
 		this.valueConstraintReferenceValueCalculator = new ValueConstraintReferenceValueCalculator(
 				this.getMatchedSectionRegistry(), this.getGlobalValues(), this.getInstanceSelectorHandler(),
-				this.getValueCalculator(), this.transformationConfig.getLogger(),
-				this.transformationConfig.isUseParallelization());
+				this.getValueCalculator(), this.getLogger(), this.transformationConfig.isUseParallelization());
 	}
 
 	/**
@@ -399,7 +449,7 @@ class TransformationAssetManager extends CancelableElement {
 
 		this.conditionHandler = new ConditionHandler(this.getMatchedSectionRegistry(),
 				this.getSelectedMappingRegistry(), this.getInstanceSelectorHandler(),
-				this.getValueConstraintReferenceValueCalculator(), this.transformationConfig.getLogger(),
+				this.getValueConstraintReferenceValueCalculator(), this.getLogger(),
 				this.transformationConfig.isUseParallelization());
 	}
 
@@ -424,8 +474,8 @@ class TransformationAssetManager extends CancelableElement {
 
 		this.mappingSelector = new MappingSelector(this.getSelectedMappingRegistry(),
 				this.transformationConfig.isOnlyAskOnceOnAmbiguousMappings(),
-				this.transformationConfig.getAmbiguityResolvingStrategy(), this.getConditionHandler(),
-				this.transformationConfig.getLogger(), this.transformationConfig.isUseParallelization());
+				this.transformationConfig.getAmbiguityResolvingStrategy(), this.getConditionHandler(), this.getLogger(),
+				this.transformationConfig.isUseParallelization());
 		this.objectsToCancel.add(this.mappingSelector);
 	}
 
@@ -449,8 +499,8 @@ class TransformationAssetManager extends CancelableElement {
 	protected void initHintValueExtractor() {
 
 		this.hintValueExtractor = new HintValueExtractor(this.getMatchedSectionRegistry(), this.getGlobalValues(),
-				this.getInstanceSelectorHandler(), this.getValueModifierExecutor(),
-				this.transformationConfig.getLogger(), this.transformationConfig.isUseParallelization());
+				this.getInstanceSelectorHandler(), this.getValueModifierExecutor(), this.getLogger(),
+				this.transformationConfig.isUseParallelization());
 		this.objectsToCancel.add(this.hintValueExtractor);
 	}
 
@@ -474,8 +524,8 @@ class TransformationAssetManager extends CancelableElement {
 	protected void initGlobalAttributeValueExtractor() {
 
 		this.globalAttributeValueExtractor = new GlobalAttributeValueExtractor(this.getGlobalValues(),
-				this.getInstanceSelectorHandler(), this.getValueModifierExecutor(),
-				this.transformationConfig.getLogger(), this.transformationConfig.isUseParallelization());
+				this.getInstanceSelectorHandler(), this.getValueModifierExecutor(), this.getLogger(),
+				this.transformationConfig.isUseParallelization());
 		this.objectsToCancel.add(this.globalAttributeValueExtractor);
 	}
 
@@ -500,7 +550,7 @@ class TransformationAssetManager extends CancelableElement {
 
 		this.sourceSectionMatcher = new SourceSectionMatcher(this.getMatchedSectionRegistry(),
 				this.getValueConstraintReferenceValueCalculator(),
-				this.transformationConfig.getAmbiguityResolvingStrategy(), this.transformationConfig.getLogger(),
+				this.transformationConfig.getAmbiguityResolvingStrategy(), this.getLogger(),
 				this.transformationConfig.isUseParallelization());
 		this.objectsToCancel.add(this.sourceSectionMatcher);
 	}
@@ -525,8 +575,7 @@ class TransformationAssetManager extends CancelableElement {
 	protected void initTargetSectionInstantiator() {
 
 		this.targetSectionInstantiator = new TargetSectionInstantiator(this.getTargetSectionRegistry(),
-				this.getValueCalculator(), this.transformationConfig.getLogger(),
-				this.transformationConfig.getAmbiguityResolvingStrategy(),
+				this.getValueCalculator(), this.getLogger(), this.transformationConfig.getAmbiguityResolvingStrategy(),
 				this.transformationConfig.isUseParallelization());
 		this.objectsToCancel.add(this.targetSectionInstantiator);
 	}
@@ -553,7 +602,7 @@ class TransformationAssetManager extends CancelableElement {
 		this.targetSectionConnector = new TargetSectionConnector(this.getTargetSectionRegistry(),
 				this.getInstanceSelectorHandler(), this.getTargetModelRegistry(),
 				this.transformationConfig.getMaxPathLength(), this.transformationConfig.getAmbiguityResolvingStrategy(),
-				this.transformationConfig.getLogger());
+				this.getLogger());
 		this.objectsToCancel.add(this.targetSectionConnector);
 	}
 
@@ -577,7 +626,7 @@ class TransformationAssetManager extends CancelableElement {
 	protected void initTargetSectionLinker() {
 
 		this.targetSectionLinker = new TargetSectionLinker(this.getTargetSectionRegistry(),
-				this.getInstanceSelectorHandler(), this.transformationConfig.getLogger(),
+				this.getInstanceSelectorHandler(), this.getLogger(),
 				this.transformationConfig.getAmbiguityResolvingStrategy());
 		this.objectsToCancel.add(this.targetSectionLinker);
 	}
@@ -601,8 +650,7 @@ class TransformationAssetManager extends CancelableElement {
 	 */
 	protected void initGenLibraryManager() {
 
-		this.genLibraryManager = new GenLibraryManager(this.transformationConfig.getLibPaths(),
-				this.transformationConfig.getLogger());
+		this.genLibraryManager = new GenLibraryManager(this.transformationConfig.getLibPaths(), this.getLogger());
 	}
 
 	/**

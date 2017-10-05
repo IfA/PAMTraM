@@ -25,7 +25,8 @@ import org.eclipse.debug.core.model.ILaunchConfigurationDelegate;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
 
-import de.mfreund.gentrans.transformation.BaseTransformationConfiguration;
+import de.mfreund.gentrans.transformation.TransformationConfiguration;
+import de.mfreund.gentrans.transformation.TransformationConfiguration.InitializationException;
 import de.mfreund.gentrans.transformation.handler.GenericTransformationJob;
 import de.mfreund.gentrans.transformation.resolving.ComposedAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.DefaultAmbiguityResolvingStrategy;
@@ -234,16 +235,21 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 
 		// Create and run the transformation job
 		//
-		BaseTransformationConfiguration transformationConfig = new BaseTransformationConfiguration()
-				.withOpenTargetModelOnCompletion(openTargetModelOnCompletion).withDefaultTargetModel(defaultTargetModel)
-				.withTransformationModelPath(transformationFile)
+		TransformationConfiguration transformationConfig;
+		try {
+			transformationConfig = TransformationConfiguration.createInstanceFromSourcePaths(sourceFiles, pamtramFiles,
+					targetBasePath);
+		} catch (InitializationException e) {
+			throw new CoreException(new Status(IStatus.ERROR, "de.mfreund.gentrans", e.getMessage(), e));
+		}
+		transformationConfig.withOpenTargetModelOnCompletion(openTargetModelOnCompletion)
+				.withDefaultTargetModel(defaultTargetModel).withTransformationModelPath(transformationFile)
 				.withLibPaths(configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_LIB_PATHS,
 						new ArrayList<>()))
 				.withAmbiguityResolvingStrategy(resolvingStrategy).withMaxPathLength(maxPathLength)
 				.withOnlyAskOnceOnAmbiguousMappings(rememberAmbiguousMappingChoice).withLogLevel(logLevel)
 				.withUseParallelization(useParallelization);
-		GenericTransformationJob job = new GenericTransformationJob("GenTrans", sourceFiles, pamtramFiles,
-				targetBasePath, transformationConfig);
+		GenericTransformationJob job = new GenericTransformationJob("GenTrans", transformationConfig);
 
 		job.setUser(true);
 		job.schedule();

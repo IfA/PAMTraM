@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 
+import de.mfreund.gentrans.transformation.resolving.ComposedAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.DefaultAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import pamtram.structure.library.LibraryEntry;
@@ -203,7 +204,9 @@ public class BaseTransformationConfiguration {
 	/**
 	 * Set the {@link #ambiguityResolvingStrategy}.
 	 * <p />
-	 * Note: If this is '<em>null</em>', the {@link DefaultAmbiguityResolvingStrategy} will be used.
+	 * Based on the given <em>ambiguityResolvingStrategy</em>, the resulting strategy is created so that an instance of
+	 * the {@link DefaultAmbiguityResolvingStrategy} is included in the strategy -- if necessary, a
+	 * {@link ComposedAmbiguityResolvingStrategy} is created for this.
 	 *
 	 * @param ambiguityResolvingStrategy
 	 *            The {@link #ambiguityResolvingStrategy} to set.
@@ -212,8 +215,45 @@ public class BaseTransformationConfiguration {
 	public BaseTransformationConfiguration withAmbiguityResolvingStrategy(
 			IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
 
-		this.ambiguityResolvingStrategy = ambiguityResolvingStrategy == null ? new DefaultAmbiguityResolvingStrategy()
-				: ambiguityResolvingStrategy;
+		IAmbiguityResolvingStrategy resultingStrategy;
+
+		if (ambiguityResolvingStrategy == null) {
+
+			resultingStrategy = new DefaultAmbiguityResolvingStrategy();
+
+		} else if (ambiguityResolvingStrategy instanceof DefaultAmbiguityResolvingStrategy) {
+
+			resultingStrategy = ambiguityResolvingStrategy;
+
+		} else if (ambiguityResolvingStrategy instanceof ComposedAmbiguityResolvingStrategy) {
+
+			boolean containsDefaultStrategy = false;
+			for (IAmbiguityResolvingStrategy strategy : ((ComposedAmbiguityResolvingStrategy) ambiguityResolvingStrategy)
+					.getComposedStrategies()) {
+				if (strategy instanceof DefaultAmbiguityResolvingStrategy) {
+					containsDefaultStrategy = true;
+					break;
+				}
+			}
+
+			if (!containsDefaultStrategy) {
+				((ComposedAmbiguityResolvingStrategy) ambiguityResolvingStrategy)
+						.addStrategy(new DefaultAmbiguityResolvingStrategy());
+			}
+
+			resultingStrategy = ambiguityResolvingStrategy;
+
+		} else {
+
+			ArrayList<IAmbiguityResolvingStrategy> composed = new ArrayList<>();
+			composed.add(ambiguityResolvingStrategy);
+			composed.add(new DefaultAmbiguityResolvingStrategy());
+			resultingStrategy = new ComposedAmbiguityResolvingStrategy(composed);
+
+		}
+
+		this.ambiguityResolvingStrategy = resultingStrategy;
+
 		return this;
 	}
 

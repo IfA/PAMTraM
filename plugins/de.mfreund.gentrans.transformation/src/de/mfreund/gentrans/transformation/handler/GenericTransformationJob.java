@@ -9,8 +9,8 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.jobs.Job;
 
-import de.mfreund.gentrans.transformation.GenericTransformationRunner;
 import de.mfreund.gentrans.transformation.GenericTransformationRunnerFactory;
+import de.mfreund.gentrans.transformation.GenericTransformationRunnerWithUI;
 import de.mfreund.gentrans.transformation.TransformationConfiguration;
 
 /**
@@ -22,7 +22,15 @@ import de.mfreund.gentrans.transformation.TransformationConfiguration;
  */
 public class GenericTransformationJob extends Job {
 
-	final GenericTransformationRunner genTransRunner;
+	/**
+	 * The {@link TransformationConfiguration} describing the transformation to be executed by this Job.
+	 */
+	protected final TransformationConfiguration transformationConfig;
+
+	/**
+	 * The {@link GenericTransformationRunner} used to executed the transformation.
+	 */
+	protected GenericTransformationRunnerWithUI genTransRunner;
 
 	/**
 	 * Create a new GenericTransformationJob with the given 'jobName'.
@@ -36,42 +44,29 @@ public class GenericTransformationJob extends Job {
 
 		super(jobName);
 
-		this.genTransRunner = GenericTransformationRunnerFactory.createInstance(transformationConfig, true);
+		this.transformationConfig = transformationConfig;
 
 		this.setPriority(Job.BUILD);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.core.runtime.jobs.Job#canceling()
-	 */
 	@Override
 	protected void canceling() {
 
-		this.genTransRunner.cancel();
+		if (this.genTransRunner != null) {
+			this.genTransRunner.cancel();
+		}
+
 		super.canceling();
 	}
 
-	/**
-	 * @return the genTransRunner
-	 */
-	public GenericTransformationRunner getGenTransRunner() {
-
-		return this.genTransRunner;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.core.runtime.jobs.Job#run(org.eclipse.core.runtime. IProgressMonitor)
-	 */
 	@Override
 	protected IStatus run(final IProgressMonitor monitor) {
 
 		try {
-			// perform the transformation
-			this.genTransRunner.runTransformation(Optional.ofNullable(monitor));
+			this.genTransRunner = GenericTransformationRunnerFactory.createInstance(this.transformationConfig,
+					Optional.ofNullable(monitor), true);
+			this.genTransRunner.runTransformation();
+
 			return org.eclipse.core.runtime.Status.OK_STATUS;
 
 		} catch (final Exception e) {

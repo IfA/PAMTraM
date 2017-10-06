@@ -21,11 +21,11 @@ import pamtram.util.PamtramModelUtil.ModelLoadException;
  * Instances of this class describe a concrete <em>Generic Transformation</em> to be executed and describe all
  * parameters necessary for these tasks.
  * <p />
- * They are used by the {@link GenericTransformationRunnerFactory} to instantiate the
- * {@link GenericTransformationRunner}.
+ * They are used by the {@link GenericTransformationRunnerFactory} to create concrete
+ * {@link BasicGenericTransformationRunner GenericTransformationRunners}.
  * <p />
- * If additional parameters become necessary, the can be added here without the need to change the signature of the
- * {@link GenericTransformationRunner#GenericTransformationRunner(TransformationConfiguration)} constructor.
+ * If additional parameters become necessary, the can be added here without the need to change the
+ * {@link GenericTransformationRunnerFactory}.
  *
  * @author mfreund
  *

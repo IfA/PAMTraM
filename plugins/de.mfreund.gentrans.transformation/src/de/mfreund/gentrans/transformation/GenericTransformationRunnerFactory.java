@@ -2,14 +2,18 @@ package de.mfreund.gentrans.transformation;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+
 import de.mfreund.gentrans.transformation.logging.GenTransConsole;
+import de.mfreund.gentrans.transformation.logging.GenTransPluginStreamHandler;
 
 /**
- * This class provides a factory that can be used to create instances of {@link GenericTransformationRunner} via the
- * static {@link #createInstance(TransformationConfiguration, boolean) createInstance(...)} method.
+ * This class provides a factory that can be used to create instances of {@link GenericTransformationRunnerWithUI}
+ * via the static {@link #createInstance(TransformationConfiguration, Optional, boolean) createInstance(...)} method.
  *
  * @author mfreund
  */
@@ -25,22 +29,25 @@ public class GenericTransformationRunnerFactory {
 	 *
 	 * @param transformationConfig
 	 *            The {@link TransformationConfiguration} to be used to configure the transformation.
+	 * @param monitor
+	 *            An optional {@link IProgressMonitor} that shall be used to display the progress of the transformation.
 	 * @param associateMessageConsole
 	 *            If set to '<em>true</em>', a {@link GenTransConsole} will be associated with the Logger so that log
 	 *            messages are printed to the MessageConsole inside the runtime platform.
-	 * @return The created {@link GenericTransformationRunner} that can be used to execute a transformation for the
-	 *         given {@link TransformationConfiguration}.
+	 * @return The created {@link GenericTransformationRunnerWithUI} that can be used to execute a transformation
+	 *         for the given {@link TransformationConfiguration}.
 	 */
-	public static GenericTransformationRunner createInstance(TransformationConfiguration transformationConfig,
+	public static GenericTransformationRunnerWithUI createInstance(
+			TransformationConfiguration transformationConfig, Optional<IProgressMonitor> monitor,
 			boolean associateMessageConsole) {
 
 		// Create a logger that does not log messages to the console of the development platform and that will display
 		// messages on a MessageConsole inside the runtime platform
 		//
 		Logger logger = GenericTransformationRunnerFactory.eINSTANCE.createLogger(transformationConfig.getLogLevel(),
-				false, associateMessageConsole);
+				false, associateMessageConsole, true);
 
-		return new GenericTransformationRunner(transformationConfig, logger);
+		return new GenericTransformationRunnerWithUI(transformationConfig, monitor, logger);
 	}
 
 	/**
@@ -54,9 +61,14 @@ public class GenericTransformationRunnerFactory {
 	 * @param associateMessageConsole
 	 *            If set to '<em>true</em>', a {@link GenTransConsole} will be associated with the Logger so that log
 	 *            messages are printed to the MessageConsole inside the runtime platform.
+	 * @param associateEclipseLog
+	 *            Whether messages that are based on a thrown {@link Exception} shall be also logged to the internal
+	 *            {@link Activator#log(Exception) logging facilities} of the {@link Activator gentrans.transformation}
+	 *            plugin.
 	 * @return The created {@link Logger}.
 	 */
-	private Logger createLogger(Level logLevel, boolean useParentHandlers, boolean associateMessageConsole) {
+	private Logger createLogger(Level logLevel, boolean useParentHandlers, boolean associateMessageConsole,
+			boolean associateEclipseLog) {
 
 		Logger logger = Logger
 				.getLogger("de.mfreund.gentrans.transformation " + DateFormat.getDateTimeInstance().format(new Date()));
@@ -72,6 +84,13 @@ public class GenericTransformationRunnerFactory {
 		if (associateMessageConsole) {
 
 			new GenTransConsole(logger, logLevel);
+		}
+
+		// Associate the internal eclipse logging facilities with the logger
+		//
+		if (associateEclipseLog) {
+
+			logger.addHandler(new GenTransPluginStreamHandler());
 		}
 
 		return logger;

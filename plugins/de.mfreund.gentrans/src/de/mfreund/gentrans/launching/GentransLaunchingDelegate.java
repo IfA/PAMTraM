@@ -1,11 +1,8 @@
 package de.mfreund.gentrans.launching;
 
 import java.io.File;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -187,16 +184,12 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		String defaultTargetModel = configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_FILE,
 				"out.xmi");
 
-		// determine the name of the transformation file from the current date
+		// the path where transformation models are stored
 		//
-		String transformationFile = null;
+		String transformationModelPath = null;
 		if (configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_STORE_TRANSFORMATION, false)) {
-			DateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
-			String currentDate = df.format(Calendar.getInstance().getTime());
-			transformationFile = project + IPath.SEPARATOR + GentransLaunchingDelegate.PAMTRAM_FOLDER_NAME
-					+ IPath.SEPARATOR + GentransLaunchingDelegate.TRANSFORMATION_FOLDER_NAME + IPath.SEPARATOR
-					+ currentDate + IPath.SEPARATOR + currentDate
-					+ GentransLaunchingDelegate.TRANSFORMATION_FILE_EXTENSION;
+			transformationModelPath = project + IPath.SEPARATOR + GentransLaunchingDelegate.PAMTRAM_FOLDER_NAME
+					+ IPath.SEPARATOR + GentransLaunchingDelegate.TRANSFORMATION_FOLDER_NAME;
 		}
 
 		// get the settings
@@ -243,7 +236,7 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 			throw new CoreException(new Status(IStatus.ERROR, "de.mfreund.gentrans", e.getMessage(), e));
 		}
 		transformationConfig.withOpenTargetModelOnCompletion(openTargetModelOnCompletion)
-				.withDefaultTargetModel(defaultTargetModel).withTransformationModelPath(transformationFile)
+				.withDefaultTargetModel(defaultTargetModel).withTransformationModelPath(transformationModelPath)
 				.withLibPaths(configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_LIB_PATHS,
 						new ArrayList<>()))
 				.withAmbiguityResolvingStrategy(resolvingStrategy).withMaxPathLength(maxPathLength)

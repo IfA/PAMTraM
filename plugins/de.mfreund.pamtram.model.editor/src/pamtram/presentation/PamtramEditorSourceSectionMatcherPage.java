@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 import org.eclipse.core.resources.IProject;
@@ -37,8 +38,8 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.ide.ResourceUtil;
 
-import de.mfreund.gentrans.transformation.GenericTransformationRunner;
 import de.mfreund.gentrans.transformation.GenericTransformationRunnerFactory;
+import de.mfreund.gentrans.transformation.GenericTransformationRunnerWithUI;
 import de.mfreund.gentrans.transformation.TransformationConfiguration;
 import de.tud.et.ifa.agtele.ui.interfaces.IPersistable;
 import de.tud.et.ifa.agtele.ui.providers.EObjectTreeContentProvider;
@@ -331,7 +332,8 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 						targetBasePath)
 				.withDefaultTargetModel(defaultTargetModel);
 
-		GenericTransformationRunner tr = GenericTransformationRunnerFactory.createInstance(transformationConfig, true);
+		GenericTransformationRunnerWithUI tr = GenericTransformationRunnerFactory
+				.createInstance(transformationConfig, Optional.empty(), true);
 
 		this.matchedSections = tr.matchSourceSections();
 

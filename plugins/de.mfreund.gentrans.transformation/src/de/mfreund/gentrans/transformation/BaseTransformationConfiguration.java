@@ -13,7 +13,8 @@ import pamtram.structure.target.FileAttribute;
 
 /**
  * This class captures the optional parameters that can be specified for an instance of the generic transformation. They
- * are used by the {@link GenericTransformationRunnerFactory} to instantiate the {@link GenericTransformationRunner}.
+ * are used by the {@link GenericTransformationRunnerFactory} to instantiate the
+ * {@link GenericTransformationRunnerWithUI}.
  * <p />
  * The various <em>with...</em> methods provide a floating API to configure the parameters.
  *
@@ -36,9 +37,11 @@ public class BaseTransformationConfiguration {
 	protected String defaultTargetModel;
 
 	/**
-	 * This is the file path where the {@link #transformationModel} will be stored after the transformation. It needs to
-	 * be in the form 'project-name/path'. If this is set to '<em>null</em>', the transformation model will not be
-	 * stored.
+	 * This is the path to the folder where the {@link #transformationModel} will be stored after the transformation. It
+	 * needs to be in the form 'project-name/path'. If this is set to '<em>null</em>', the transformation model will not
+	 * be stored.
+	 * <p />
+	 * Note: The transformation (including all related files) will be stored in a sperate folder inside the given path.
 	 */
 	protected String transformationModelPath;
 

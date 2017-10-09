@@ -49,6 +49,9 @@ public class GenericTransformationRunnerWithUI extends GenericTransformationRunn
 	 *            transformation.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
+	 * @param monitor
+	 *            An optional {@link IProgressMonitor} that shall be used to inform the user about the progress of the
+	 *            transformation.
 	 */
 	protected GenericTransformationRunnerWithUI(TransformationTaskRunner taskRunner, Logger logger,
 			Optional<IProgressMonitor> monitor) {

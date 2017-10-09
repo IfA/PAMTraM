@@ -4,7 +4,7 @@ import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
 
-import de.mfreund.gentrans.transformation.Activator;
+import de.mfreund.gentrans.transformation.ui.Activator;
 
 /**
  * A {@link Handler} that prints log messages that are based on a thrown {@link Exception} to the internal

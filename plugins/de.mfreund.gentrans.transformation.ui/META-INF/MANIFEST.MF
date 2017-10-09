@@ -16,4 +16,5 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.console;bundle-version="3.7.1"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
-Export-Package: de.mfreund.gentrans.transformation
+Export-Package: de.mfreund.gentrans.transformation,
+ de.mfreund.gentrans.transformation.logging

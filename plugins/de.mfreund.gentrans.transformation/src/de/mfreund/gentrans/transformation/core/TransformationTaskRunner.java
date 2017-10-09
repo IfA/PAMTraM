@@ -106,13 +106,13 @@ public class TransformationTaskRunner extends CancelableElement {
 	 * <p />
 	 * Note: This will use a default {@link Logger} implementation to print log messages.
 	 *
-	 * @see #AbstractGenericTransformationRunner(TransformationConfiguration, Logger)
+	 * @see #TransformationTaskRunner(TransformationConfiguration, Logger)
 	 *
 	 * @param config
 	 *            The {@link TransformationConfiguration} specifying all parameters necessary for the execution of the
 	 *            transformation.
 	 */
-	protected TransformationTaskRunner(TransformationConfiguration config) {
+	public TransformationTaskRunner(TransformationConfiguration config) {
 
 		super();
 		this.transformationConfig = config;
@@ -124,7 +124,7 @@ public class TransformationTaskRunner extends CancelableElement {
 	 * <p />
 	 * Note: This will use the given {@link Logger} implementation to print log messages.
 	 *
-	 * @see #AbstractGenericTransformationRunner(TransformationConfiguration)
+	 * @see #TransformationTaskRunner(TransformationConfiguration)
 	 *
 	 * @param config
 	 *            The {@link TransformationConfiguration} specifying all parameters necessary for the execution of the
@@ -132,7 +132,7 @@ public class TransformationTaskRunner extends CancelableElement {
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
 	 */
-	protected TransformationTaskRunner(TransformationConfiguration config, Logger logger) {
+	public TransformationTaskRunner(TransformationConfiguration config, Logger logger) {
 
 		super();
 		this.transformationConfig = config;

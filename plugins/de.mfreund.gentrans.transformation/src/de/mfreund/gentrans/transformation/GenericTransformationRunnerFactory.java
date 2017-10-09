@@ -5,13 +5,22 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import de.mfreund.gentrans.transformation.core.TransformationTaskRunner;
+
 /**
- * This class provides a factory that can be used to create instances of {@link BasicGenericTransformationRunner} via
- * the static {@link #createInstance(TransformationConfiguration) createInstance(...)} method.
+ * This class provides a factory that can be used to create instances of {@link ITransformationRunner} via the various
+ * <em>create...</em> methods.
+ * <p />
+ * Access to these methods can be gained via the singleton {@link #INSTANCE}.
  *
  * @author mfreund
  */
 public class GenericTransformationRunnerFactory {
+
+	/**
+	 * The singleton instance of this factory.
+	 */
+	public static final GenericTransformationRunnerFactory INSTANCE = new GenericTransformationRunnerFactory();
 
 	protected GenericTransformationRunnerFactory() {
 
@@ -20,18 +29,38 @@ public class GenericTransformationRunnerFactory {
 	}
 
 	/**
-	 * This creates an instance with the given {@link TransformationConfiguration}.
+	 * This creates an instance of {@link GenericTransformationRunner} with the given
+	 * {@link TransformationConfiguration}.
 	 *
 	 * @param transformationConfig
 	 *            The {@link TransformationConfiguration} to be used to configure the transformation.
-	 * @return The created {@link BasicGenericTransformationRunner} that can be used to execute a transformation for the
+	 * @return The created {@link GenericTransformationRunner} that can be used to execute a transformation for the
 	 *         given {@link TransformationConfiguration}.
 	 */
-	public static BasicGenericTransformationRunner createInstance(TransformationConfiguration transformationConfig) {
+	public ITransformationRunner createGenericTransformationRunner(TransformationConfiguration transformationConfig) {
 
-		Logger logger = GenericTransformationRunnerFactory.createLogger(transformationConfig.getLogLevel(), false);
+		Logger logger = this.createLogger(transformationConfig.getLogLevel(), false);
 
-		return new BasicGenericTransformationRunner(transformationConfig, logger);
+		TransformationTaskRunner taskRunner = this.createTaskRunner(transformationConfig, logger);
+
+		return new GenericTransformationRunner(taskRunner, logger);
+	}
+
+	/**
+	 * This creates an instance of {@link SourceSectionMatcher} with the given {@link TransformationConfiguration}.
+	 *
+	 * @param transformationConfig
+	 *            The {@link TransformationConfiguration} to be used to configure the transformation.
+	 * @return The created {@link GenericTransformationRunner} that can be used to execute a transformation for the
+	 *         given {@link TransformationConfiguration}.
+	 */
+	public ITransformationRunner createSourceSectionMatcher(TransformationConfiguration transformationConfig) {
+
+		Logger logger = this.createLogger(transformationConfig.getLogLevel(), false);
+
+		TransformationTaskRunner taskRunner = this.createTaskRunner(transformationConfig, logger);
+
+		return new SourceSectionMatcher(taskRunner, logger);
 	}
 
 	/**
@@ -44,7 +73,7 @@ public class GenericTransformationRunnerFactory {
 	 *            parent handlers}.
 	 * @return The created {@link Logger}.
 	 */
-	protected static Logger createLogger(Level logLevel, boolean useParentHandlers) {
+	protected Logger createLogger(Level logLevel, boolean useParentHandlers) {
 
 		Logger logger = Logger
 				.getLogger("de.mfreund.gentrans.transformation " + DateFormat.getDateTimeInstance().format(new Date()));
@@ -55,6 +84,19 @@ public class GenericTransformationRunnerFactory {
 		logger.setUseParentHandlers(useParentHandlers);
 
 		return logger;
+	}
+
+	/**
+	 * This creates a {@link TransformationTaskRunner} that shall be used to execute the main tasks of a transformation.
+	 *
+	 * @param transformationConfig
+	 *            The {@link TransformationConfiguration} to be used to configure the transformation.
+	 * @return The created {@link TransformationTaskRunner} that can be used the main tasks of a transformation.
+	 */
+	protected TransformationTaskRunner createTaskRunner(TransformationConfiguration transformationConfig,
+			Logger logger) {
+
+		return new TransformationTaskRunner(transformationConfig, logger);
 	}
 
 }

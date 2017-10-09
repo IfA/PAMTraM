@@ -3,9 +3,8 @@ package pamtram.presentation;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -38,9 +37,11 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.ide.ResourceUtil;
 
-import de.mfreund.gentrans.transformation.GenericTransformationRunnerFactory;
-import de.mfreund.gentrans.transformation.GenericTransformationRunnerWithUI;
+import de.mfreund.gentrans.transformation.ITransformationRunner;
 import de.mfreund.gentrans.transformation.TransformationConfiguration;
+import de.mfreund.gentrans.transformation.TransformationRunnerWithUIFactory;
+import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
+import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
 import de.tud.et.ifa.agtele.ui.interfaces.IPersistable;
 import de.tud.et.ifa.agtele.ui.providers.EObjectTreeContentProvider;
 import de.tud.et.ifa.agtele.ui.widgets.TreeViewerGroup;
@@ -134,7 +135,7 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 	/**
 	 * This is the list of matched sections that is determined when the user selects a source model.
 	 */
-	protected Map<SourceSectionClass, Set<EObject>> matchedSections;
+	protected MatchedSectionRegistry matchedSections;
 
 	/**
 	 * This creates an instance.
@@ -332,10 +333,10 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 						targetBasePath)
 				.withDefaultTargetModel(defaultTargetModel);
 
-		GenericTransformationRunnerWithUI tr = GenericTransformationRunnerFactory
-				.createInstance(transformationConfig, Optional.empty(), true);
+		ITransformationRunner tr = TransformationRunnerWithUIFactory.INSTANCE
+				.createSourceSectionMatcher(transformationConfig);
 
-		this.matchedSections = tr.matchSourceSections();
+		this.matchedSections = tr.run().getMatchedSectionRegistry().orElse(null);
 
 		if (this.matchedSections == null) {
 			return;
@@ -373,7 +374,8 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 						if (EcoreUtil.equals(sourceSectionClass, c)) {
 							// the matched elements that shall be highlighted
 							Set<EObject> matchedEObjects = PamtramEditorSourceSectionMatcherPage.this.matchedSections
-									.get(c);
+									.get(c).stream().map(MatchedSectionDescriptor::getAssociatedSourceModelElement)
+									.collect(Collectors.toSet());
 
 							if (matchedEObjects == null) {
 								continue;
@@ -431,7 +433,8 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 						if (EcoreUtil.equals(sourceSectionClass, c)) {
 							// the matched elements that shall be highlighted
 							Set<EObject> matchedEObjects = PamtramEditorSourceSectionMatcherPage.this.matchedSections
-									.get(c);
+									.get(c).stream().map(MatchedSectionDescriptor::getAssociatedSourceModelElement)
+									.collect(Collectors.toSet());
 
 							if (matchedEObjects == null) {
 								continue;

@@ -15,14 +15,14 @@ import de.mfreund.gentrans.transformation.core.TransformationTaskRunner;
  *
  * @author mfreund
  */
-public class GenericTransformationRunnerFactory {
+public class TransformationRunnerFactory {
 
 	/**
 	 * The singleton instance of this factory.
 	 */
-	public static final GenericTransformationRunnerFactory INSTANCE = new GenericTransformationRunnerFactory();
+	public static final TransformationRunnerFactory INSTANCE = new TransformationRunnerFactory();
 
-	protected GenericTransformationRunnerFactory() {
+	protected TransformationRunnerFactory() {
 
 		// Just to prevent public instantiation
 		//

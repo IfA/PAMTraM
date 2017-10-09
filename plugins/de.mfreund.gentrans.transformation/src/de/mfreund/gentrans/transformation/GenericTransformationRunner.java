@@ -14,7 +14,7 @@ import de.mfreund.gentrans.transformation.core.TransformationTaskRunner;
  * given {@link TransformationTaskRunner} and that is not dependent on any (UI-related) Eclipse features like Monitors
  * or MessageDialogs.
  * <p />
- * Note: Instances need to be created via a {@link GenericTransformationRunnerFactory}.
+ * Note: Instances need to be created via a {@link TransformationRunnerFactory}.
  *
  * @author mfreund
  */

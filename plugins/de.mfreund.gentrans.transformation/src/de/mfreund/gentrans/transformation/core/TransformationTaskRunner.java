@@ -32,7 +32,7 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 import de.mfreund.gentrans.transformation.CancelTransformationException;
-import de.mfreund.gentrans.transformation.GenericTransformationRunnerFactory;
+import de.mfreund.gentrans.transformation.TransformationRunnerFactory;
 import de.mfreund.gentrans.transformation.ITransformationRunner;
 import de.mfreund.gentrans.transformation.ITransformationRunner.TransformationResult;
 import de.mfreund.gentrans.transformation.TransformationConfiguration;
@@ -67,7 +67,7 @@ import pamtram.structure.source.SourceSection;
  * as storing the output models.
  * <p />
  * Note: Instances of this class should usually only be used by means of an {@link ITransformationRunner}. Therefore,
- * instantiation is handled by the {@link GenericTransformationRunnerFactory}.
+ * instantiation is handled by the {@link TransformationRunnerFactory}.
  *
  *
  * @author mfreund

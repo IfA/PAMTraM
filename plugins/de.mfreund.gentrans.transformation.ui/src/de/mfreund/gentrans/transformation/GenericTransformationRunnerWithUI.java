@@ -101,19 +101,21 @@ public class GenericTransformationRunnerWithUI extends GenericTransformationRunn
 			return;
 		}
 
-		// Open the (first of the) generated target model(s). We need to use a 'UIJob' because the transformation was
+		// Determine the URI of the (first of the) generated target model(s)
+		//
+		String targetModelToOpen = targetModelRegistry.getTargetModels().keySet().iterator().next();
+		final URI targetModelToOpenUri = URI.createPlatformResourceURI(
+				GenericTransformationRunnerWithUI.this.taskRunner.getTransformationConfig().getTargetBasePath()
+						+ Path.SEPARATOR + targetModelToOpen,
+				true);
+
+		// Open the target model. We need to use a 'UIJob' because the transformation was
 		// (probably) not run as part of a UIJob so that we have no direct access to the UI thread.
 		//
 		new UIJob("Open Generated Target Model") {
 
 			@Override
 			public IStatus runInUIThread(IProgressMonitor monitor) {
-
-				String targetModelToOpen = targetModelRegistry.getTargetModels().keySet().iterator().next();
-				final URI targetModelToOpenUri = URI.createPlatformResourceURI(
-						GenericTransformationRunnerWithUI.this.taskRunner.getTransformationConfig().getTargetBasePath()
-								+ Path.SEPARATOR + targetModelToOpen,
-						true);
 
 				try {
 					UIHelper.openEditor(ResourceHelper.getFileForURI(targetModelToOpenUri));

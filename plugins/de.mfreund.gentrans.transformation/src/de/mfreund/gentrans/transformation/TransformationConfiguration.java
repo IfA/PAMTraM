@@ -22,7 +22,7 @@ import pamtram.util.PamtramModelUtil.ModelLoadException;
  * parameters necessary for these tasks.
  * <p />
  * They are used by the {@link GenericTransformationRunnerFactory} to create concrete
- * {@link BasicGenericTransformationRunner GenericTransformationRunners}.
+ * {@link GenericTransformationRunner GenericTransformationRunners}.
  * <p />
  * If additional parameters become necessary, the can be added here without the need to change the
  * {@link GenericTransformationRunnerFactory}.

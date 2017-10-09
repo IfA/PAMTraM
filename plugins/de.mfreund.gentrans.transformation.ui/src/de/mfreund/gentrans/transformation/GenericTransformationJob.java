@@ -3,12 +3,12 @@
  */
 package de.mfreund.gentrans.transformation;
 
-import java.util.Optional;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
+
+import de.mfreund.gentrans.transformation.ui.Activator;
 
 /**
  * A {@link Job} for running transformations outside of the Eclipse UI Thread.
@@ -23,9 +23,9 @@ public class GenericTransformationJob extends Job {
 	protected final TransformationConfiguration transformationConfig;
 
 	/**
-	 * The {@link BasicGenericTransformationRunner} used to executed the transformation.
+	 * The {@link ITransformationRunner} used to executed the transformation.
 	 */
-	protected BasicGenericTransformationRunner genTransRunner;
+	protected ITransformationRunner genTransRunner;
 
 	/**
 	 * Create a new GenericTransformationJob with the given 'jobName'.
@@ -58,9 +58,9 @@ public class GenericTransformationJob extends Job {
 	protected IStatus run(final IProgressMonitor monitor) {
 
 		try {
-			this.genTransRunner = GenericTransformationRunnerWithUIFactory
-					.createInstanceWithUI(this.transformationConfig, Optional.ofNullable(monitor));
-			this.genTransRunner.runTransformation();
+			this.genTransRunner = TransformationRunnerWithUIFactory.INSTANCE
+					.createGenericTransformationRunner(this.transformationConfig, monitor);
+			this.genTransRunner.run();
 
 			return org.eclipse.core.runtime.Status.OK_STATUS;
 

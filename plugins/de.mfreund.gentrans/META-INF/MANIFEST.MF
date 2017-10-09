@@ -15,7 +15,8 @@ Require-Bundle: org.eclipse.core.runtime,
  de.tud.et.ifa.agtele.eclipse.commons;bundle-version="1.0.0",
  de.tud.et.ifa.agtele.eclipse.commons.ui;bundle-version="1.0.1",
  de.mfreund.gentrans.transformation.resolving.statistics;bundle-version="1.1.0",
- de.mfreund.pamtram.model.edit
+ de.mfreund.pamtram.model.edit,
+ de.mfreund.gentrans.transformation.ui;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: Matthias Freund, Institute of Automation, TU Dresden

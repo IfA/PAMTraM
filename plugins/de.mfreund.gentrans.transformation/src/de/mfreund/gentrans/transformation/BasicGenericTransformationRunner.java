@@ -21,7 +21,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -32,7 +31,6 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
-import de.mfreund.gentrans.transformation.BasicGenericTransformationRunner.TransformationResult.MatchingResult;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.HintValueStorage;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
@@ -106,6 +104,27 @@ public class BasicGenericTransformationRunner extends CancelableElement {
 	}
 
 	/**
+	 * This creates an instance based on the given {@link TransformationConfiguration}.
+	 * <p />
+	 * Note: This will use the given {@link Logger} implementation to print log messages.
+	 *
+	 * @see #AbstractGenericTransformationRunner(TransformationConfiguration)
+	 *
+	 * @param config
+	 *            The {@link TransformationConfiguration} specifying all parameters necessary for the execution of the
+	 *            transformation.
+	 * @param logger
+	 *            The {@link Logger} that shall be used to print messages.
+	 */
+	protected BasicGenericTransformationRunner(TransformationConfiguration config, Logger logger) {
+
+		super();
+		this.transformationConfig = config;
+		this.assetManager = new TransformationAssetManager(config, logger);
+
+	}
+
+	/**
 	 * This performs the actual generic transformation. It loads all necessary models, executes the mappings defined in
 	 * the PAMTraM model and stores the generated target model. All progress is reported to the given
 	 * '<em>monitor</em>'.
@@ -121,7 +140,7 @@ public class BasicGenericTransformationRunner extends CancelableElement {
 			// Prepare the transformation (validate pamtram model, merge extends, etc.)
 			//
 			if (!this.prepare()) {
-				this.assetManager.getLogger().severe(GenericTransformationRunnerWithUI.TRANSFORMATION_ABORTED_MESSAGE);
+				this.assetManager.getLogger().severe(BasicGenericTransformationRunner.TRANSFORMATION_ABORTED_MESSAGE);
 				return false;
 			}
 
@@ -161,27 +180,6 @@ public class BasicGenericTransformationRunner extends CancelableElement {
 		}
 
 		return true;
-
-	}
-
-	/**
-	 * This creates an instance based on the given {@link TransformationConfiguration}.
-	 * <p />
-	 * Note: This will use the given {@link Logger} implementation to print log messages.
-	 *
-	 * @see #AbstractGenericTransformationRunner(TransformationConfiguration)
-	 *
-	 * @param config
-	 *            The {@link TransformationConfiguration} specifying all parameters necessary for the execution of the
-	 *            transformation.
-	 * @param logger
-	 *            The {@link Logger} that shall be used to print messages.
-	 */
-	protected BasicGenericTransformationRunner(TransformationConfiguration config, Logger logger) {
-
-		super();
-		this.transformationConfig = config;
-		this.assetManager = new TransformationAssetManager(config, logger);
 
 	}
 
@@ -424,8 +422,8 @@ public class BasicGenericTransformationRunner extends CancelableElement {
 
 	/**
 	 * This performs the '<em>joining</em>' step of the transformation: The target sections that have been instantiated
-	 * during the {@link #performInstantiating(MatchingResult, IProgressMonitor) expanding step} are linked via
-	 * containment references and added to the target model. If necessary, intermediary object are created as well.
+	 * during the {@link #performInstantiating() expanding step} are linked via containment references and added to the
+	 * target model. If necessary, intermediary object are created as well.
 	 */
 	protected void performJoining() {
 

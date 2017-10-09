@@ -22,9 +22,9 @@ import org.eclipse.debug.core.model.ILaunchConfigurationDelegate;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
 
+import de.mfreund.gentrans.transformation.GenericTransformationJob;
 import de.mfreund.gentrans.transformation.TransformationConfiguration;
 import de.mfreund.gentrans.transformation.TransformationConfiguration.InitializationException;
-import de.mfreund.gentrans.transformation.handler.GenericTransformationJob;
 import de.mfreund.gentrans.transformation.resolving.ComposedAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.DefaultAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;

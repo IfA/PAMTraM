@@ -5,6 +5,15 @@ Bundle-SymbolicName: de.mfreund.gentrans.transformation.ui
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: de.mfreund.gentrans.transformation.ui.Activator
 Require-Bundle: org.eclipse.ui,
-  org.eclipse.core.runtime
+ org.eclipse.core.runtime,
+ de.mfreund.gentrans.transformation;bundle-version="1.8.0",
+ de.tud.et.ifa.agtele.eclipse.commons,
+ org.eclipse.emf.common,
+ org.eclipse.core.resources,
+ de.tud.et.ifa.agtele.eclipse.commons.ui,
+ de.mfreund.pamtram.model,
+ de.mfreund.pamtram.transformation.model,
+ org.eclipse.ui.console;bundle-version="3.7.1"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
+Export-Package: de.mfreund.gentrans.transformation

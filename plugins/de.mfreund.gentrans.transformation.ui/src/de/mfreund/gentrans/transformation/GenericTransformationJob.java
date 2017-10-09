@@ -1,24 +1,19 @@
 /**
  *
  */
-package de.mfreund.gentrans.transformation.handler;
+package de.mfreund.gentrans.transformation;
 
 import java.util.Optional;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 
-import de.mfreund.gentrans.transformation.GenericTransformationRunnerFactory;
-import de.mfreund.gentrans.transformation.GenericTransformationRunnerWithUI;
-import de.mfreund.gentrans.transformation.TransformationConfiguration;
-
 /**
- * @author Sascha Steffen
- * @version 1.0
+ * A {@link Job} for running transformations outside of the Eclipse UI Thread.
  *
- *          Job for running the GenTrans outside of the Eclipse UI Thread. The GenericTransformationRunner object is
- *          exposed so it can be configured.
+ * @author mfreund
  */
 public class GenericTransformationJob extends Job {
 
@@ -28,9 +23,9 @@ public class GenericTransformationJob extends Job {
 	protected final TransformationConfiguration transformationConfig;
 
 	/**
-	 * The {@link GenericTransformationRunner} used to executed the transformation.
+	 * The {@link BasicGenericTransformationRunner} used to executed the transformation.
 	 */
-	protected GenericTransformationRunnerWithUI genTransRunner;
+	protected BasicGenericTransformationRunner genTransRunner;
 
 	/**
 	 * Create a new GenericTransformationJob with the given 'jobName'.
@@ -63,14 +58,15 @@ public class GenericTransformationJob extends Job {
 	protected IStatus run(final IProgressMonitor monitor) {
 
 		try {
-			this.genTransRunner = GenericTransformationRunnerFactory.createInstance(this.transformationConfig,
-					Optional.ofNullable(monitor), true);
+			this.genTransRunner = GenericTransformationRunnerWithUIFactory
+					.createInstanceWithUI(this.transformationConfig, Optional.ofNullable(monitor));
 			this.genTransRunner.runTransformation();
 
 			return org.eclipse.core.runtime.Status.OK_STATUS;
 
 		} catch (final Exception e) {
-			e.printStackTrace(System.out);
+			Activator.getDefault().getLog().log(new Status(Status.CANCEL, "de.mfreund.gentrans.transformation.ui",
+					e.getMessage() != null ? e.getMessage() : e.toString(), e));
 			return org.eclipse.core.runtime.Status.CANCEL_STATUS;
 		}
 	}

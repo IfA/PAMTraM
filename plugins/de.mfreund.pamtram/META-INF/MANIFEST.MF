@@ -5,8 +5,6 @@ Bundle-SymbolicName: de.mfreund.pamtram;singleton:=true
 Bundle-Version: 1.8.0.qualifier
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.debug.core,
- org.eclipse.jface,
- org.eclipse.ocl.ecore,
  de.tud.et.ifa.agtele.eclipse.commons
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.mfreund.pamtram.preferences,

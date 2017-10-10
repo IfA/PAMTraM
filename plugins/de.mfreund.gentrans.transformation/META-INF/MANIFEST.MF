@@ -4,11 +4,11 @@ Bundle-Name: GenTrans Transformation
 Bundle-SymbolicName: de.mfreund.gentrans.transformation;singleton:=true
 Bundle-Version: 1.8.0.qualifier
 Require-Bundle: org.eclipse.xsd,
- de.mfreund.pamtram.model.edit;bundle-version="1.9.0",
+ de.mfreund.pamtram.model;bundle-version="1.9.0",
  de.mfreund.pamtram.transformation.model;bundle-version="1.0.2",
  de.tud.et.ifa.agtele.eclipse.commons;bundle-version="1.0.0",
  org.eclipse.ocl.ecore;bundle-version="3.6.0",
- de.mfreund.pamtram;bundle-version="1.8.0"
+ de.mfreund.pamtram.model.edit;bundle-version="1.9.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ClassPath: lib/exp4j-0.3.11.jar,
  .

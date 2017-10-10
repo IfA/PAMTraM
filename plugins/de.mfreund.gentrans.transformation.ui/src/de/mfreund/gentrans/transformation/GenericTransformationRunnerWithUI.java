@@ -70,11 +70,11 @@ public class GenericTransformationRunnerWithUI extends GenericTransformationRunn
 	 * @return A {@link ITransformationRunner.TransformationResult} indicating the result of the run.
 	 */
 	@Override
-	public TransformationResult run() {
+	public TransformationResult doRun() {
 
 		this.monitor.beginTask("Executing Generic Transformation", 700);
 
-		TransformationResult result = super.run();
+		TransformationResult result = super.doRun();
 
 		if (this.taskRunner.getTransformationConfig().isOpenTargetModelOnCompletion()) {
 

@@ -4,7 +4,6 @@
 package de.mfreund.gentrans.transformation;
 
 import java.util.Date;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import de.mfreund.gentrans.transformation.core.TransformationTaskRunner;
@@ -45,52 +44,35 @@ public class GenericTransformationRunner extends AbstractTransformationRunner {
 	 * @return A {@link ITransformationRunner.TransformationResult} indicating the result of the run.
 	 */
 	@Override
-	public TransformationResult run() {
+	public TransformationResult doRun() {
 
-		try {
+		final Date startTime = new Date();
 
-			final Date startTime = new Date();
-
-			// Prepare the transformation (validate pamtram model, merge extends, etc.)
-			//
-			if (!this.taskRunner.prepare()) {
-				this.logger.severe(GenericTransformationRunner.TRANSFORMATION_ABORTED_MESSAGE);
-				return new TransformationResult().withAborted(true);
-			}
-
-			// Perform the various phases of the transformation
-			//
-			this.taskRunner.executeMappings();
-
-			// Persist the create target model(s)
-			//
-			if (this.taskRunner.isCanceled() || !this.taskRunner.storeTargetModels()) {
-				return new TransformationResult().withAborted(true);
-			}
-
-			final Date endTime = new Date();
-
-			// Populate and store the transformation model (if necessary)
-			//
-			this.taskRunner.generateTransformationModel(startTime, endTime);
-
-			this.logger.info(() -> "\n################# " + "Transformation done. Time: "
-					+ (endTime.getTime() - startTime.getTime()) / 1000d + "s" + " #################\n");
-
-		} catch (CancelTransformationException e1) {
-
-			this.logger.log(Level.SEVERE, e1, e1::printInfo);
-			this.logger.severe("See the ErrorLog for more information!");
-			this.logger.severe("Aborting...");
-			return new TransformationResult().withAborted(true);
-		} catch (RuntimeException e) {
-
-			this.logger.log(Level.SEVERE, e, () -> e.getMessage() != null ? e.getMessage() : e.toString());
-			this.logger.severe("See the ErrorLog for more information!");
-			this.logger.severe("Aborting...");
-
+		// Prepare the transformation (validate pamtram model, merge extends, etc.)
+		//
+		if (!this.taskRunner.prepare()) {
+			this.logger.severe(GenericTransformationRunner.TRANSFORMATION_ABORTED_MESSAGE);
 			return new TransformationResult().withAborted(true);
 		}
+
+		// Perform the various phases of the transformation
+		//
+		this.taskRunner.executeMappings();
+
+		// Persist the create target model(s)
+		//
+		if (this.taskRunner.isCanceled() || !this.taskRunner.storeTargetModels()) {
+			return new TransformationResult().withAborted(true);
+		}
+
+		final Date endTime = new Date();
+
+		// Populate and store the transformation model (if necessary)
+		//
+		this.taskRunner.generateTransformationModel(startTime, endTime);
+
+		this.logger.info(() -> "\n################# " + "Transformation done. Time: "
+				+ (endTime.getTime() - startTime.getTime()) / 1000d + "s" + " #################\n");
 
 		return this.taskRunner.compileTransformationResult();
 

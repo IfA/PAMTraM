@@ -3,7 +3,6 @@
  */
 package de.mfreund.gentrans.transformation;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import de.mfreund.gentrans.transformation.core.TransformationTaskRunner;
@@ -43,38 +42,21 @@ public class SourceSectionMatcher extends AbstractTransformationRunner {
 	 * @return A {@link ITransformationRunner.TransformationResult} indicating the result of the run.
 	 */
 	@Override
-	public TransformationResult run() {
+	public TransformationResult doRun() {
 
-		try {
-
-			// Prepare the transformation (validate pamtram model, merge extends, etc.)
-			//
-			if (!this.taskRunner.prepare()) {
-				this.logger.severe(GenericTransformationRunner.TRANSFORMATION_ABORTED_MESSAGE);
-				return new TransformationResult().withAborted(true);
-			}
-
-			/*
-			 * Perform the first step of the 'searching' step of the transformation
-			 */
-			this.taskRunner.performSearching_MatchSections();
-
-			this.logger.info(() -> "\n################# " + "Done" + " #################\n");
-
-		} catch (CancelTransformationException e1) {
-
-			this.logger.log(Level.SEVERE, e1, e1::printInfo);
-			this.logger.severe("See the ErrorLog for more information!");
-			this.logger.severe("Aborting...");
-			return new TransformationResult().withAborted(true);
-		} catch (RuntimeException e) {
-
-			this.logger.log(Level.SEVERE, e, () -> e.getMessage() != null ? e.getMessage() : e.toString());
-			this.logger.severe("See the ErrorLog for more information!");
-			this.logger.severe("Aborting...");
-
+		// Prepare the transformation (validate pamtram model, merge extends, etc.)
+		//
+		if (!this.taskRunner.prepare()) {
+			this.logger.severe(GenericTransformationRunner.TRANSFORMATION_ABORTED_MESSAGE);
 			return new TransformationResult().withAborted(true);
 		}
+
+		/*
+		 * Perform the first step of the 'searching' step of the transformation
+		 */
+		this.taskRunner.performSearching_MatchSections();
+
+		this.logger.info(() -> "\n################# " + "Done" + " #################\n");
 
 		return this.taskRunner.compileTransformationResult();
 	}

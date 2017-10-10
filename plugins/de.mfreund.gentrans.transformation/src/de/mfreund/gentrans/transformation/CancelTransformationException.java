@@ -76,7 +76,7 @@ public class CancelTransformationException extends RuntimeException {
 				: "";
 
 		StringBuilder builder = new StringBuilder();
-		if (!externalMessage.isEmpty()) {
+		if (!externalMessage.isEmpty() && !externalMessage.equals(internalMessage)) {
 			builder.append(externalMessage);
 			if (!internalMessage.isEmpty()) {
 				builder.append("\n\t-> ");

@@ -4,8 +4,7 @@ Bundle-Name: GenTrans Transformation
 Bundle-SymbolicName: de.mfreund.gentrans.transformation;singleton:=true
 Bundle-Version: 1.8.0.qualifier
 Bundle-Activator: de.mfreund.gentrans.transformation.Activator
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.xsd,
+Require-Bundle: org.eclipse.xsd,
  de.mfreund.pamtram.model.edit;bundle-version="1.9.0",
  de.mfreund.pamtram.transformation.model;bundle-version="1.0.2",
  de.tud.et.ifa.agtele.eclipse.commons;bundle-version="1.0.0",

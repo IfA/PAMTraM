@@ -22,7 +22,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
 
 import de.mfreund.gentrans.transformation.TransformationConfiguration;
-import de.mfreund.gentrans.transformation.util.MonitorWrapper;
+import de.mfreund.gentrans.transformation.ui.util.MonitorWrapper;
 import de.mfreund.pamtram.transformation.Transformation;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
 

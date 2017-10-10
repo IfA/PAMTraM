@@ -1,5 +1,6 @@
 package de.mfreund.gentrans.transformation.registries;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -12,7 +13,6 @@ import java.util.Map.Entry;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -254,7 +254,7 @@ public class TargetModelRegistry {
 	private Resource getTargetModelResource(String path, FileType fileType) {
 
 		// the URI of the target resource
-		final URI targetFileUri = URI.createPlatformResourceURI(this.basePath + Path.SEPARATOR + path, true);
+		final URI targetFileUri = URI.createPlatformResourceURI(this.basePath + File.separator + path, true);
 
 		Resource resource;
 
@@ -311,7 +311,7 @@ public class TargetModelRegistry {
 		for (Entry<String, List<EObject>> entry : this.targetModels.entrySet()) {
 
 			// the URI of the target resource
-			final URI targetFileUri = URI.createPlatformResourceURI(this.basePath + Path.SEPARATOR + entry.getKey(),
+			final URI targetFileUri = URI.createPlatformResourceURI(this.basePath + File.separator + entry.getKey(),
 					true);
 
 			Resource resource = null;

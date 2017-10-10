@@ -1,4 +1,4 @@
-package de.mfreund.gentrans.transformation.util;
+package de.mfreund.gentrans.transformation.ui.util;
 
 import java.util.Optional;
 

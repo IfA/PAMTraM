@@ -17,7 +17,7 @@ import org.eclipse.ui.progress.UIJob;
 import de.mfreund.gentrans.transformation.core.TransformationTaskRunner;
 import de.mfreund.gentrans.transformation.registries.TargetModelRegistry;
 import de.mfreund.gentrans.transformation.ui.Activator;
-import de.mfreund.gentrans.transformation.util.MonitorWrapper;
+import de.mfreund.gentrans.transformation.ui.util.MonitorWrapper;
 import de.tud.et.ifa.agtele.resources.ResourceHelper;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
 

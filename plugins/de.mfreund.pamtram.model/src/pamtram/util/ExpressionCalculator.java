@@ -1,7 +1,7 @@
 /**
  *
  */
-package de.mfreund.pamtram.util;
+package pamtram.util;
 
 import java.util.Map;
 import java.util.logging.Logger;

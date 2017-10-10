@@ -20,7 +20,6 @@ import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentati
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.util.CancelableElement;
-import de.mfreund.pamtram.util.OCLUtil;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.FixedValue;
 import pamtram.NamedElement;
@@ -41,6 +40,7 @@ import pamtram.structure.source.SourceSectionAttribute;
 import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.source.SourceSectionReference;
 import pamtram.structure.source.VirtualSourceSectionAttribute;
+import pamtram.util.OCLUtil;
 
 /**
  * This represents an abstract base class that allows to extract {@link AttributeValueRepresentation values} from a list

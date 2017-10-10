@@ -35,8 +35,6 @@ import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvedAdapter;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
 import de.mfreund.gentrans.transformation.util.CancelableElement;
-import de.mfreund.pamtram.util.NullComparator;
-import de.mfreund.pamtram.util.OCLUtil;
 import pamtram.DeactivatableElement;
 import pamtram.PAMTraM;
 import pamtram.structure.constraint.ChoiceConstraint;
@@ -57,6 +55,8 @@ import pamtram.structure.source.SourceSectionCrossReference;
 import pamtram.structure.source.SourceSectionReference;
 import pamtram.structure.source.VirtualSourceSectionAttribute;
 import pamtram.structure.source.VirtualSourceSectionCrossReference;
+import pamtram.util.NullComparator;
+import pamtram.util.OCLUtil;
 
 /**
  * This class can be used to match a list of {@link #sourceSections} against a {@link #containmentTree}.

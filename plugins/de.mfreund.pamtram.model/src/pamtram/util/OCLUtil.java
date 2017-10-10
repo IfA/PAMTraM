@@ -1,7 +1,7 @@
 /**
  *
  */
-package de.mfreund.pamtram.util;
+package pamtram.util;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;

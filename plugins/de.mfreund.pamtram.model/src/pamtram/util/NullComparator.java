@@ -1,4 +1,4 @@
-package de.mfreund.pamtram.util;
+package pamtram.util;
 
 /**
  * This class allows to compare two objects that may be '<em>null</em>'.

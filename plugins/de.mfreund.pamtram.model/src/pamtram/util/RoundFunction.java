@@ -1,24 +1,24 @@
-package de.mfreund.pamtram.util;
+package pamtram.util;
 
 import de.congrace.exp4j.CustomFunction;
 import de.congrace.exp4j.InvalidCustomFunctionException;
 
 /**
- * Provides a max(a,b) Function for exp4j
- *
+ * "round" function extending Functionality of the ClaculatorMapping
+ * 
  * @author Sascha Steffen
  * @version 1.0
  *
  */
-public class MaxFunction extends CustomFunction {
+public class RoundFunction extends CustomFunction {
 
 	/**
-	 * Takes 2 args. Returns the greater value (java.lang.Math.max).
-	 *
+	 * Constructor (java.lang.Math.round)
+	 * 
 	 * @throws InvalidCustomFunctionException
 	 */
-	public MaxFunction() throws InvalidCustomFunctionException {
-		super("max", 2);
+	public RoundFunction() throws InvalidCustomFunctionException {
+		super("round");
 	}
 
 	/*
@@ -28,7 +28,7 @@ public class MaxFunction extends CustomFunction {
 	 */
 	@Override
 	public double applyFunction(final double... args) {
-		return java.lang.Math.max(args[0], args[1]);
+		return Math.round(args[0]);
 	}
 
 }

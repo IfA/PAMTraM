@@ -53,7 +53,7 @@ public class GenericTransformationRunnerWithUI extends GenericTransformationRunn
 	 *            An optional {@link IProgressMonitor} that shall be used to inform the user about the progress of the
 	 *            transformation.
 	 */
-	protected GenericTransformationRunnerWithUI(TransformationTaskRunner taskRunner, Logger logger,
+	public GenericTransformationRunnerWithUI(TransformationTaskRunner taskRunner, Logger logger,
 			Optional<IProgressMonitor> monitor) {
 
 		super(taskRunner, logger);

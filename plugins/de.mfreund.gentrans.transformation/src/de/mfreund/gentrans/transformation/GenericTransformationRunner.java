@@ -33,7 +33,7 @@ public class GenericTransformationRunner extends AbstractTransformationRunner {
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
 	 */
-	protected GenericTransformationRunner(TransformationTaskRunner taskRunner, Logger logger) {
+	public GenericTransformationRunner(TransformationTaskRunner taskRunner, Logger logger) {
 
 		super(taskRunner, logger);
 	}

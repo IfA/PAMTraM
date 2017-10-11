@@ -32,10 +32,10 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 import de.mfreund.gentrans.transformation.CancelTransformationException;
-import de.mfreund.gentrans.transformation.TransformationRunnerFactory;
 import de.mfreund.gentrans.transformation.ITransformationRunner;
 import de.mfreund.gentrans.transformation.ITransformationRunner.TransformationResult;
 import de.mfreund.gentrans.transformation.TransformationConfiguration;
+import de.mfreund.gentrans.transformation.TransformationRunnerFactory;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.expanding.TargetSectionConnector;
@@ -52,6 +52,7 @@ import de.mfreund.pamtram.transformation.Transformation;
 import de.mfreund.pamtram.transformation.TransformationFactory;
 import de.mfreund.pamtram.transformation.TransformationMapping;
 import de.mfreund.pamtram.transformation.TransformationMappingHintGroup;
+import de.tud.et.ifa.agtele.resources.ResourceHelper;
 import pamtram.FixedValue;
 import pamtram.PAMTraM;
 import pamtram.mapping.InstantiableMappingHintGroup;
@@ -639,8 +640,8 @@ public class TransformationTaskRunner extends CancelableElement {
 		final XMIResourceFactoryImpl resFactory = new XMIResourceFactoryImpl();
 
 		String fileExtension = PamtramEditPlugin.INSTANCE.getString("TRANSFORMATION_MODEL_FILE_ENDING");
-		URI transformationFolderUri = URI
-				.createPlatformResourceURI(this.transformationConfig.getTransformationModelPath(), true)
+		URI transformationFolderUri = ResourceHelper
+				.getURIForPathString(this.transformationConfig.getTransformationModelPath())
 				.appendSegment(transformationModel.getName());
 		URI transformationModelUri = transformationFolderUri
 				.appendSegment(transformationModel.getName() + fileExtension);

@@ -12,6 +12,7 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.widgets.Shell;
 
 import de.mfreund.pamtram.pages.SharedSectionModelSelectionPage;
+import de.tud.et.ifa.agtele.resources.ResourceHelper;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
 import pamtram.PAMTraM;
 import pamtram.SectionModel;
@@ -19,8 +20,7 @@ import pamtram.util.SharedModelUtil;
 import pamtram.util.SharedModelUtil.SharedModelType;
 
 /**
- * This {@link AbstractImportElementWizard} allows to a shared
- * {@link SectionModel} into a pamtram model.
+ * This {@link AbstractImportElementWizard} allows to a shared {@link SectionModel} into a pamtram model.
  *
  * @author mfreund
  */
@@ -37,17 +37,16 @@ public class ImportSharedModelWizard extends AbstractImportElementWizard {
 	 * This constructs an instance of the wizard.
 	 *
 	 * @param pamtram
-	 *            The {@link PAMTraM} instance into that the library elements
-	 *            shall be imported.
+	 *            The {@link PAMTraM} instance into that the library elements shall be imported.
 	 * @param editingDomain
 	 *            The editing domain to be used to perform model changes.
 	 * @param viewer
-	 *            The {@link Viewer} where the imported elements will be shown
-	 *            and selected.
+	 *            The {@link Viewer} where the imported elements will be shown and selected.
 	 * @param type
 	 *            The {@link SharedModelType} of SectionModel(s) to be imported.
 	 */
 	public ImportSharedModelWizard(PAMTraM pamtram, EditingDomain editingDomain, Viewer viewer, SharedModelType type) {
+
 		super(pamtram, editingDomain, viewer);
 
 		this.type = type;
@@ -83,10 +82,10 @@ public class ImportSharedModelWizard extends AbstractImportElementWizard {
 		EObject sharedModel;
 		try {
 
-			URI sharedModelURI = URI.createPlatformResourceURI(sharedModelFile.getFullPath().toString(), true);
-			Resource sharednModelResource = this.pamtram.eResource().getResourceSet().getResource(sharedModelURI, true);
+			URI sharedModelURI = ResourceHelper.getURIForPathString(sharedModelFile.getFullPath().toString());
+			Resource sharedModelResource = this.pamtram.eResource().getResourceSet().getResource(sharedModelURI, true);
 
-			EObject content = sharednModelResource.getContents().get(0);
+			EObject content = sharedModelResource.getContents().get(0);
 
 			if (!SharedModelUtil.isValidSubModelContent(this.type, content)) {
 				this.showError("The selected file does not contain a valid shared model!");

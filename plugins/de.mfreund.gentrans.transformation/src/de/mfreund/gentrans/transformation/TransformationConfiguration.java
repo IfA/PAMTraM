@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
 
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
+import de.tud.et.ifa.agtele.resources.ResourceHelper;
 import pamtram.PAMTraM;
 import pamtram.util.PamtramModelUtil;
 import pamtram.util.PamtramModelUtil.ModelLoadException;
@@ -21,8 +22,8 @@ import pamtram.util.PamtramModelUtil.ModelLoadException;
  * Instances of this class describe a concrete <em>Generic Transformation</em> to be executed and describe all
  * parameters necessary for these tasks.
  * <p />
- * They are used by the {@link TransformationRunnerFactory} to create concrete
- * {@link GenericTransformationRunner GenericTransformationRunners}.
+ * They are used by the {@link TransformationRunnerFactory} to create concrete {@link GenericTransformationRunner
+ * GenericTransformationRunners}.
  * <p />
  * If additional parameters become necessary, the can be added here without the need to change the
  * {@link TransformationRunnerFactory}.
@@ -140,7 +141,8 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	 * @see #createInstanceFromSourcePaths(Set, List, String)
 	 *
 	 * @param sourceFilePaths
-	 *            List of file paths of the source models. They need to be in the form 'project-name/path'.
+	 *            List of file paths of the source models. Each path must either be absolute or relative to the
+	 *            workspace root (of the form '<em>/project-name/path</em>').
 	 * @param pamtramPaths
 	 *            Paths to the {@link PAMTraM} models to be executed in the form 'project-name/path'.
 	 * @param targetBasePath
@@ -182,7 +184,8 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	 * @see #createInstanceFromSourcePaths(Set, List, String)
 	 *
 	 * @param sourceFilePaths
-	 *            List of file paths of the source models. They need to be in the form 'project-name/path'.
+	 *            List of file paths of the source models. Each path must either be absolute or relative to the
+	 *            workspace root (of the form '<em>/project-name/path</em>').
 	 * @param pamtramModels
 	 *            The transformation model
 	 * @param targetBasePath
@@ -373,7 +376,8 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	 * @param resourceSet
 	 *            The resource set to be used to load the resource.
 	 * @param sourceFilePaths
-	 *            The list of paths pointing to the source models to load (in the form 'project-name/path').
+	 *            The list of paths pointing to the source models to load (absolute or relative in the form
+	 *            'project-name/path').
 	 * @return The loaded {@link EObject source models}.
 	 */
 	private static List<EObject> loadSourceModels(ResourceSet resourceSet, Set<String> sourceFilePaths) {
@@ -383,7 +387,7 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 		for (String sourceFilePath : sourceFilePaths) {
 
 			// the URI of the source resource
-			final URI sourceUri = URI.createPlatformResourceURI(sourceFilePath, true);
+			final URI sourceUri = ResourceHelper.getURIForPathString(sourceFilePath);
 
 			if (sourceFilePath.endsWith(".xml")) {
 				// add file extension to registry

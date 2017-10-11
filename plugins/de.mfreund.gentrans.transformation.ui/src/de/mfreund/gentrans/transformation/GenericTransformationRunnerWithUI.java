@@ -104,10 +104,9 @@ public class GenericTransformationRunnerWithUI extends GenericTransformationRunn
 		// Determine the URI of the (first of the) generated target model(s)
 		//
 		String targetModelToOpen = targetModelRegistry.getTargetModels().keySet().iterator().next();
-		final URI targetModelToOpenUri = URI.createPlatformResourceURI(
+		final URI targetModelToOpenUri = ResourceHelper.getURIForPathString(
 				GenericTransformationRunnerWithUI.this.taskRunner.getTransformationConfig().getTargetBasePath()
-						+ Path.SEPARATOR + targetModelToOpen,
-				true);
+						+ Path.SEPARATOR + targetModelToOpen);
 
 		// Open the target model. We need to use a 'UIJob' because the transformation was
 		// (probably) not run as part of a UIJob so that we have no direct access to the UI thread.

@@ -17,6 +17,7 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.part.FileEditorInput;
 
+import de.tud.et.ifa.agtele.resources.ResourceHelper;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
 import pamtram.SectionModel;
 import pamtram.commands.CreateSharedModelCommand;
@@ -39,6 +40,7 @@ public class CreateSharedModelSiblingAction extends CreateSiblingAction {
 	 * @param descriptor
 	 */
 	public CreateSharedModelSiblingAction(IEditorPart editorPart, ISelection selection, Object descriptor) {
+
 		super(editorPart, selection, descriptor);
 	}
 
@@ -88,7 +90,7 @@ public class CreateSharedModelSiblingAction extends CreateSiblingAction {
 			return;
 		}
 
-		URI sectionModelResourceURI = URI.createPlatformResourceURI(newPath.toString(), true);
+		URI sectionModelResourceURI = ResourceHelper.getURIForPathString(newPath.toString());
 
 		((CreateSharedModelCommand) this.command).setModelURI(sectionModelResourceURI);
 

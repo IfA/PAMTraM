@@ -33,11 +33,11 @@ public class GenTransConsole extends MessageConsole {
 	private static final String CONSOLE_NAME_PREFIX = "GenTrans";
 
 	/**
-	 * This keeps track of the list of {@link GenTransConsoleStreamHandler
+	 * This keeps track of the list of {@link GenTransStreamHandler
 	 * GenTransConsoleStreamHandlers} that are responsible for printing logged
 	 * messages.
 	 */
-	private List<GenTransConsoleStreamHandler> handlers;
+	private List<GenTransStreamHandler> handlers;
 
 	/**
 	 * The {@link Logger} of which the console shall print messages.
@@ -80,7 +80,7 @@ public class GenTransConsole extends MessageConsole {
 			//
 			IOConsoleOutputStream fineStream = this.newOutputStream();
 			fineStream.setColor(new Color(Display.getCurrent(), new RGB(0, 0, 0)));
-			GenTransConsoleStreamHandler fineHandler = new GenTransConsoleStreamHandler(fineStream);
+			GenTransStreamHandler fineHandler = new GenTransStreamHandler(fineStream);
 			fineHandler.setLevel(Level.ALL);
 			fineHandler.setFilter((LogRecord record) -> record.getLevel().intValue() <= Level.FINE.intValue());
 			this.handlers.add(fineHandler);
@@ -92,7 +92,7 @@ public class GenTransConsole extends MessageConsole {
 			//
 			IOConsoleOutputStream infoStream = this.newOutputStream();
 			infoStream.setColor(new Color(Display.getCurrent(), new RGB(0, 0, 0)));
-			GenTransConsoleStreamHandler infoHandler = new GenTransConsoleStreamHandler(infoStream);
+			GenTransStreamHandler infoHandler = new GenTransStreamHandler(infoStream);
 			infoHandler.setLevel(Level.INFO);
 			infoHandler.setFilter((LogRecord record) -> record.getLevel().intValue() > Level.FINE.intValue()
 					&& record.getLevel().intValue() <= Level.INFO.intValue());
@@ -106,7 +106,7 @@ public class GenTransConsole extends MessageConsole {
 			//
 			IOConsoleOutputStream warningStream = this.newOutputStream();
 			warningStream.setColor(new Color(Display.getCurrent(), new RGB(250, 100, 0)));
-			GenTransConsoleStreamHandler warningHandler = new GenTransConsoleStreamHandler(warningStream);
+			GenTransStreamHandler warningHandler = new GenTransStreamHandler(warningStream);
 			warningHandler.setLevel(Level.WARNING);
 			warningHandler.setFilter((LogRecord record) -> record.getLevel().equals(Level.WARNING));
 			this.handlers.add(warningHandler);
@@ -118,7 +118,7 @@ public class GenTransConsole extends MessageConsole {
 			//
 			IOConsoleOutputStream errorStream = this.newOutputStream();
 			errorStream.setColor(new Color(Display.getCurrent(), new RGB(255, 0, 0)));
-			GenTransConsoleStreamHandler errorHandler = new GenTransConsoleStreamHandler(errorStream);
+			GenTransStreamHandler errorHandler = new GenTransStreamHandler(errorStream);
 			errorHandler.setLevel(Level.SEVERE);
 			errorHandler.setFilter((LogRecord record) -> record.getLevel().equals(Level.SEVERE));
 			this.handlers.add(errorHandler);

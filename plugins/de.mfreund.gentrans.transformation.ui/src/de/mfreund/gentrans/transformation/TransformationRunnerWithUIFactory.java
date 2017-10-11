@@ -134,7 +134,7 @@ public class TransformationRunnerWithUIFactory extends TransformationRunnerFacto
 	@Override
 	protected Logger createLogger(Level logLevel, boolean useParentHandlers) {
 
-		Logger logger = super.createLogger(logLevel, useParentHandlers);
+		Logger logger = this.createBasicLogger(logLevel, useParentHandlers);
 
 		// Create the Console that will display the messages printed to the
 		// logger

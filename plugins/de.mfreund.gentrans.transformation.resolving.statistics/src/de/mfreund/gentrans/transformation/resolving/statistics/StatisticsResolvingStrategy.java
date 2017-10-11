@@ -31,13 +31,14 @@ import pamtram.structure.target.TargetSectionClass;
 import pamtram.structure.target.TargetSectionCrossReference;
 
 /**
- * This class implements a concrete {@link AbstractAmbiguityResolvingStrategy}
- * that performs statistical evaluations of previous choices for resolving
- * ambiguities.
+ * This class implements a concrete {@link AbstractAmbiguityResolvingStrategy} that performs statistical evaluations of
+ * previous choices for resolving ambiguities.
  * <p />
- * This strategy will not sort out any choices during the resolving of
- * strategies but will merely sort them so that the most probable choices will
- * be first in the list of choices.
+ * This strategy will not sort out any choices during the resolving of strategies but will merely sort them so that the
+ * most probable choices will be first in the list of choices.
+ * <p />
+ * Note: This strategy can only be used when running inside Eclipse because it stores the statistical data in the
+ * {@link IDialogSettings} of the {@link StatisticsResolvingStrategyPlugin}!
  *
  * @author mfreund
  */
@@ -46,29 +47,24 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 
 	/**
 	 * The weighting factor to be used when calculating
-	 * {@link #getWeightedCount(IDialogSettings, IDialogSettings, double, String)
-	 * weighted counts} for statistics that can be evaluated on mapping model or
-	 * meta-model level.
+	 * {@link #getWeightedCount(IDialogSettings, IDialogSettings, double, String) weighted counts} for statistics that
+	 * can be evaluated on mapping model or meta-model level.
 	 * <p />
-	 * This needs to be between <em>0</em> (statistics will only regard
-	 * decisions on the meta-model level) and <em>1</em> (statistics will only
-	 * regard decisions on the mapping model level).
+	 * This needs to be between <em>0</em> (statistics will only regard decisions on the meta-model level) and
+	 * <em>1</em> (statistics will only regard decisions on the mapping model level).
 	 */
 	private double weightingFactor;
 
 	/**
-	 * The instance of {@link IDialogSettings} that is used to store and
-	 * retrieve statistics on the mapping model level.
+	 * The instance of {@link IDialogSettings} that is used to store and retrieve statistics on the mapping model level.
 	 */
 	private IDialogSettings mappingSection;
 
 	/**
-	 * The instances of {@link IDialogSettings} that are used to store and
-	 * retrieve statistics on the meta-model level.
+	 * The instances of {@link IDialogSettings} that are used to store and retrieve statistics on the meta-model level.
 	 * <p />
-	 * The key of this map represents the {@link EPackage#getNsURI()} of a
-	 * meta-model and the value represents the associated
-	 * {@link IDialogSettings}.
+	 * The key of this map represents the {@link EPackage#getNsURI()} of a meta-model and the value represents the
+	 * associated {@link IDialogSettings}.
 	 */
 	private Map<String, IDialogSettings> metamodelSections;
 
@@ -135,8 +131,8 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 		//
 		return choices.parallelStream()
 				.sorted((o1, o2) -> StatisticsResolvingStrategy.this
-						.getCount(choicesSection, o2.getAssociatedSourceSectionClass().getName()).compareTo(
-								this.getCount(choicesSection, o1.getAssociatedSourceSectionClass().getName())))
+						.getCount(choicesSection, o2.getAssociatedSourceSectionClass().getName())
+						.compareTo(this.getCount(choicesSection, o1.getAssociatedSourceSectionClass().getName())))
 				.collect(Collectors.toList());
 
 	}
@@ -413,8 +409,8 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 		// (we only sort the keys as, up to now, we do not perform statistical
 		// analysis on instances)
 		//
-		List<TargetSectionClass> sortedKeys = choices.keySet()
-				.parallelStream().sorted((o1, o2) -> StatisticsResolvingStrategy.this
+		List<TargetSectionClass> sortedKeys = choices
+				.keySet().parallelStream().sorted((o1, o2) -> StatisticsResolvingStrategy.this
 						.getCount(choicesSection, o2.getName()).compareTo(this.getCount(choicesSection, o1.getName())))
 				.collect(Collectors.toList());
 
@@ -446,16 +442,13 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 	}
 
 	/**
-	 * A helper method to extract a count from an instance of
-	 * {@link IDialogSettings}.
+	 * A helper method to extract a count from an instance of {@link IDialogSettings}.
 	 *
 	 * @param settings
-	 *            The instance of {@link IDialogSettings} from that the count is
-	 *            to be extracted.
+	 *            The instance of {@link IDialogSettings} from that the count is to be extracted.
 	 * @param key
 	 *            The key that shall be used to extract the count.
-	 * @return The extracted count or '<em>0</em>' if no value could be
-	 *         extracted.
+	 * @return The extracted count or '<em>0</em>' if no value could be extracted.
 	 */
 	private Integer getCount(IDialogSettings settings, String key) {
 
@@ -468,24 +461,19 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 	}
 
 	/**
-	 * A helper method to extract a weighted count from two instances of
-	 * {@link IDialogSettings}.
+	 * A helper method to extract a weighted count from two instances of {@link IDialogSettings}.
 	 *
 	 * @param settings1
-	 *            The first instance of {@link IDialogSettings} from that the
-	 *            Integer is to be extracted.
+	 *            The first instance of {@link IDialogSettings} from that the Integer is to be extracted.
 	 * @param settings2
-	 *            The second instance of {@link IDialogSettings} from that the
-	 *            Integer is to be extracted.
+	 *            The second instance of {@link IDialogSettings} from that the Integer is to be extracted.
 	 * @param factor
-	 *            The weighing factor (between <em>0</em> and <em>1</em>) to be
-	 *            used when calculating the weighted count. <em>0</em> means
-	 *            that only <em>settings2</em> is weighted, <em>1</em> means
-	 *            that only <em>settings1</em> is weighted.
+	 *            The weighing factor (between <em>0</em> and <em>1</em>) to be used when calculating the weighted
+	 *            count. <em>0</em> means that only <em>settings2</em> is weighted, <em>1</em> means that only
+	 *            <em>settings1</em> is weighted.
 	 * @param key
 	 *            The key that shall be used to extract the count.
-	 * @return The extracted weighted count or '<em>0</em>' if no count could be
-	 *         extracted.
+	 * @return The extracted weighted count or '<em>0</em>' if no count could be extracted.
 	 */
 	private Double getWeightedCount(IDialogSettings settings1, IDialogSettings settings2, double factor, String key) {
 

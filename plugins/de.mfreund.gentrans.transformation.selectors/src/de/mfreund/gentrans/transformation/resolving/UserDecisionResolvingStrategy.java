@@ -36,6 +36,7 @@ import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.extended.ContainerSelector;
 import pamtram.mapping.extended.ReferenceTargetSelector;
+import pamtram.presentation.PamtramEditor;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.target.TargetSectionClass;
@@ -44,6 +45,9 @@ import pamtram.structure.target.TargetSectionCrossReference;
 /**
  * This class implements a concrete {@link IAmbiguityResolvingStrategy} that allows a user to resolve ambiguities by
  * presenting selection dialogues to him.
+ * <p />
+ * Note: This strategy can only be used when running inside Eclipse because it integrates with the
+ * {@link PamtramEditor}!
  *
  * @author mfreund
  */

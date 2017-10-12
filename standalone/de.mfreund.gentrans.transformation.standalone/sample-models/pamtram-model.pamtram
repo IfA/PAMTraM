@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ASCII"?>
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:extended="http://mfreund.de/pamtram/mapping/extended" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target">
+  <sourceSectionModels name="ecore">
+    <metaModelPackage href="http://www.eclipse.org/emf/2002/Ecore#/"/>
+    <sections xsi:type="source:SourceSection" name="source">
+      <eClass href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="name">
+        <attribute href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+      </attributes>
+    </sections>
+  </sourceSectionModels>
+  <targetSectionModels name="ecore">
+    <metaModelPackage href="http://www.eclipse.org/emf/2002/Ecore#/"/>
+    <sections xsi:type="target:TargetSection" name="target">
+      <eClass href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="name">
+        <attribute href="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+      </attributes>
+    </sections>
+  </targetSectionModels>
+  <mappingModels>
+    <mappings name="sourceMapping" sourceSection="//@sourceSectionModels.0/@sections.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="target" targetSection="//@targetSectionModels.0/@sections.0">
+        <mappingHints xsi:type="extended:AttributeMapping" name="nameMapping" target="//@targetSectionModels.0/@sections.0/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="name" source="//@sourceSectionModels.0/@sections.0/@attributes.0"/>
+          <sourceElements xsi:type="pamtram:FixedValue" name="_new" value="_new"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mappings>
+  </mappingModels>
+  <conditionModels/>
+</pamtram:PAMTraM>

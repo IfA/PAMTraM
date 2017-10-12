@@ -1,5 +1,6 @@
 package de.mfreund.gentrans.transformation.registries;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -12,7 +13,6 @@ import java.util.Map.Entry;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
 
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
+import de.tud.et.ifa.agtele.resources.ResourceHelper;
 import pamtram.structure.target.FileAttribute;
 import pamtram.structure.target.FileType;
 
@@ -56,8 +57,8 @@ public class TargetModelRegistry {
 	/**
 	 * The {@link #basePath} relative to that all the resources for the {@link #targetModels} will be created.
 	 * <p />
-	 * Note: As {@link URI#createPlatformResourceURI(String, boolean)} will be used during the creation of the
-	 * resources, the path must be of the form '<em>/project-name/path</em>'.
+	 * Note: The path must either be absolute or relative to the workspace root (of the form
+	 * '<em>/project-name/path</em>').
 	 */
 	private String basePath;
 
@@ -85,8 +86,8 @@ public class TargetModelRegistry {
 	 *            The {@link #basePath} relative to that all the resources for the {@link #targetModels} will be
 	 *            created.
 	 *            <p />
-	 *            Note: As {@link URI#createPlatformResourceURI(String, boolean)} will be used during the creation of
-	 *            the resources, the path must be of the form '<em>/project-name/path</em>'.
+	 *            Note: The path must either be absolute or relative to the workspace root (of the form
+	 *            '<em>/project-name/path</em>').
 	 * @param defaultTargetModel
 	 *            The path of the {@link #defaultTargetModel default target model}.
 	 * @param resourceSet
@@ -244,7 +245,7 @@ public class TargetModelRegistry {
 	 * exists, one is created.
 	 *
 	 * @param path
-	 *            The path (relative to {@link #basePath} of the target model.
+	 *            The path (relative to {@link #basePath}) of the target model.
 	 * @return The resource representing the target model for the given '<em>path</em>', '<em><b>null</b></em>' if the
 	 *         resource does not exist and could not be created.
 	 * @param fileType
@@ -254,7 +255,7 @@ public class TargetModelRegistry {
 	private Resource getTargetModelResource(String path, FileType fileType) {
 
 		// the URI of the target resource
-		final URI targetFileUri = URI.createPlatformResourceURI(this.basePath + Path.SEPARATOR + path, true);
+		final URI targetFileUri = this.getTargetModelURI(path);
 
 		Resource resource;
 
@@ -300,6 +301,19 @@ public class TargetModelRegistry {
 	}
 
 	/**
+	 * This returns a {@link URI} representing the target model specified by the given '<em>path</em>'.
+	 *
+	 * @param path
+	 *            The path (relative to {@link #basePath}) of the target model.
+	 * @return The {@link URI} representing the target model specified by the given '<em>path</em>'.
+	 */
+	private URI getTargetModelURI(String path) {
+
+		return ResourceHelper.getURIForPathString(this.basePath + File.separator + path);
+
+	}
+
+	/**
 	 * This saves all resources for the various target models as specified by the field {@link #targetModels}.
 	 *
 	 * @return '<em><b>true</b></em>' if all resources have successfully been saved, '<em><b>false</b></em>' otherwise.
@@ -311,8 +325,7 @@ public class TargetModelRegistry {
 		for (Entry<String, List<EObject>> entry : this.targetModels.entrySet()) {
 
 			// the URI of the target resource
-			final URI targetFileUri = URI.createPlatformResourceURI(this.basePath + Path.SEPARATOR + entry.getKey(),
-					true);
+			final URI targetFileUri = this.getTargetModelURI(entry.getKey());
 
 			Resource resource = null;
 

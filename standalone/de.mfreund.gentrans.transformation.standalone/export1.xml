@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="feature_export" name="build" basedir=".">
+
+	<description>
+		This updates the contents of the 'lib' folder with the current version of all required plugins.
+	
+		Note: This is the first part of the export script that will export the 'gentrans.standalone' feature to the 'temp' folder. 
+		After the successful execution, the second export script 'export2.xml' has to be called manually. The reason for this 
+		split-up is	the asynchronous nature of the 'pde.exportFeatures' ant script (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=58413).
+		
+		See the 'readme.md' for more information.
+    </description>
+
+	<target name="prepare">
+		<delete>
+			<fileset dir="${basedir}">
+				<include name="lib${file.separator}**" />
+			</fileset>
+		</delete>
+		<delete dir="${basedir}${file.separator}temp" />
+		<mkdir dir="${basedir}${file.separator}temp" />
+		
+	</target>
+
+	<target name="feature_export" depends="prepare">
+		<pde.exportFeatures destination="${basedir}${file.separator}temp" exportSource="false" exportSourceBundle="false" exportType="directory" filename="${basedir}\..\de.mfreund.gentrans.standalone.feature\feature.xml" features="de.mfreund.gentrans.standalone.feature" useJARFormat="true" />
+	</target>
+</project>

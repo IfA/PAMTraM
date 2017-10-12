@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;
 
-import org.eclipse.ui.console.MessageConsoleStream;
-
 import pamtram.mapping.modifier.ValueModifier;
 import pamtram.mapping.modifier.ValueModifierSet;
 
@@ -51,9 +49,8 @@ public class ValueModifierExecutor {
 	/**
 	 * This returns the single {@link #instance}.
 	 * <p />
-	 * Note: This will {@link #init(Logger) initialize} the instance if necessary but without any
-	 * {@link MessageConsoleStream}. Thus, {@link #init(Logger)} should be called once before using this in order to
-	 * allow for printing messages.
+	 * Note: This will {@link #init(Logger) initialize} the instance if necessary but without any {@link Logger}. Thus,
+	 * {@link #init(Logger)} should be called once before using this in order to allow for printing messages.
 	 *
 	 * FIXME do not use a singleton pattern to be able to run different transformations at the same time
 	 *
@@ -69,8 +66,8 @@ public class ValueModifierExecutor {
 	}
 
 	/**
-	 * This initializes and returns the {@link #instance} based on the given {@link MessageConsoleStream}. This should
-	 * be called once before {@link #getInstance()} in order to set the correct {@link MessageConsoleStream} to use.
+	 * This initializes and returns the {@link #instance} based on the given {@link Logger}. This should be called once
+	 * before {@link #getInstance()} in order to set the correct {@link Logger} to use.
 	 *
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.

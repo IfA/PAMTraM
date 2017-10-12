@@ -47,6 +47,7 @@ import org.eclipse.ui.part.ISetSelectionTarget;
 
 import de.mfreund.pamtram.pages.EPackageSpecificationPage;
 import de.mfreund.pamtram.ui.PamtramUIPlugin;
+import de.tud.et.ifa.agtele.resources.ResourceHelper;
 import pamtram.PAMTraM;
 import pamtram.PamtramFactory;
 import pamtram.PamtramPackage;
@@ -66,16 +67,14 @@ import pamtram.structure.target.TargetPackage;
 import pamtram.structure.target.TargetSection;
 
 /**
- * This is a simple wizard for creating a new model file. <!-- begin-user-doc
- * --> <!-- end-user-doc -->
+ * This is a simple wizard for creating a new model file. <!-- begin-user-doc --> <!-- end-user-doc -->
  *
  * @generated
  */
 public class PamtramModelWizard extends Wizard implements INewWizard {
 
 	/**
-	 * The supported extensions for created files. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The supported extensions for created files. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
@@ -83,8 +82,8 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 			.asList(PamtramUIPlugin.INSTANCE.getString("_UI_PamtramEditorFilenameExtensions").split("\\s*,\\s*")));
 
 	/**
-	 * A formatted list of supported file extensions, suitable for display. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * A formatted list of supported file extensions, suitable for display. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
 	 *
 	 * @generated
 	 */
@@ -92,116 +91,101 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 			.getString("_UI_PamtramEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
 
 	/**
-	 * This caches an instance of the model package. <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This caches an instance of the model package. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
 	protected PamtramPackage pamtramPackage = PamtramPackage.eINSTANCE;
 
 	/**
-	 * This caches an instance of the model factory. <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This caches an instance of the model factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
 	protected PamtramFactory pamtramFactory = this.pamtramPackage.getPamtramFactory();
 
 	/**
-	 * This caches an instance of the 'structure' model sub-package. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This caches an instance of the 'structure' model sub-package. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 */
 	protected StructurePackage structurePackage = StructurePackage.eINSTANCE;
 
 	/**
-	 * This caches an instance of the 'structure' model factory. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This caches an instance of the 'structure' model factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 */
 	protected StructureFactory structureFactory = this.structurePackage.getStructureFactory();
 
 	/**
-	 * This caches an instance of the 'source' model sub-package. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This caches an instance of the 'source' model sub-package. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 */
 	protected SourcePackage sourcePackage = SourcePackage.eINSTANCE;
 
 	/**
-	 * This caches an instance of the 'source' model factory. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This caches an instance of the 'source' model factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 */
 	protected SourceFactory sourceFactory = this.sourcePackage.getSourceFactory();
 
 	/**
-	 * This caches an instance of the 'target' model sub-package. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This caches an instance of the 'target' model sub-package. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 */
 	protected TargetPackage targetPackage = TargetPackage.eINSTANCE;
 
 	/**
-	 * This caches an instance of the 'target' model factory. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This caches an instance of the 'target' model factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 */
 	protected TargetFactory targetFactory = this.targetPackage.getTargetFactory();
 
 	/**
-	 * This caches an instance of the 'mapping' model sub-package. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This caches an instance of the 'mapping' model sub-package. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 */
 	protected MappingPackage mappingPackage = MappingPackage.eINSTANCE;
 
 	/**
-	 * This caches an instance of the 'mapping' model factory. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This caches an instance of the 'mapping' model factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 */
 	protected MappingFactory mappingFactory = this.mappingPackage.getMappingFactory();
 
 	/**
-	 * This is the file creation page. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * This is the file creation page. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
 	protected PamtramModelWizardNewFileCreationPage newFileCreationPage;
 
 	/**
-	 * The wizard page that allows to specify the EPackages for the
-	 * SourceSectionModel.
+	 * The wizard page that allows to specify the EPackages for the SourceSectionModel.
 	 */
 	protected EPackageSpecificationPage sourceEPackageSpecificationPage;
 
 	/**
-	 * The wizard page that allows to specify the EPackages for the
-	 * TargetSectionModel.
+	 * The wizard page that allows to specify the EPackages for the TargetSectionModel.
 	 */
 	protected EPackageSpecificationPage targetEPackageSpecificationPage;
 
 	/**
-	 * Remember the selection during initialization for populating the default
-	 * container. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Remember the selection during initialization for populating the default container. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 *
 	 * @generated
 	 */
 	protected IStructuredSelection selection;
 
 	/**
-	 * Remember the workbench during initialization. <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Remember the workbench during initialization. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
 	protected IWorkbench workbench;
 
 	/**
-	 * Caches the names of the types that can be created as the root object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Caches the names of the types that can be created as the root object. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
 	 *
 	 * @generated
 	 */
 	protected List<String> initialObjectNames;
 
 	/**
-	 * This just records the information. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This just records the information. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
@@ -216,8 +200,8 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 	}
 
 	/**
-	 * Returns the names of the types that can be created as the root object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the names of the types that can be created as the root object. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
 	 *
 	 * @generated
 	 */
@@ -308,11 +292,9 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 	}
 
 	/**
-	 * Do the work after everything is specified. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Do the work after everything is specified. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
-	 * @return '<em><b>true</b></em>' if the wizard finished successfully;
-	 *         '<em><b>false</b></em>' otherwise
+	 * @return '<em><b>true</b></em>' if the wizard finished successfully; '<em><b>false</b></em>' otherwise
 	 * @generated NOT due to using a fixed 'UTF-8' file encoding during save
 	 */
 	@Override
@@ -337,7 +319,7 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 
 						// Get the URI of the model file.
 						//
-						URI fileURI = URI.createPlatformResourceURI(modelFile.getFullPath().toString(), true);
+						URI fileURI = ResourceHelper.getURIForPathString(modelFile.getFullPath().toString());
 
 						// Create a resource for this file.
 						//
@@ -395,8 +377,7 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 	}
 
 	/**
-	 * This is the one page of the wizard. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This is the one page of the wizard. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
@@ -412,12 +393,12 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 		 * @generated
 		 */
 		public PamtramModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
+
 			super(pageId, selection);
 		}
 
 		/**
-		 * The framework calls this to see if the file is correct. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
+		 * The framework calls this to see if the file is correct. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 *
 		 * @generated
 		 */
@@ -441,8 +422,7 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 		/**
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 *
-		 * @return The {@link IFile} representing the {@link PAMTraM} model to
-		 *         be created.
+		 * @return The {@link IFile} representing the {@link PAMTraM} model to be created.
 		 * @generated
 		 */
 		public IFile getModelFile() {
@@ -453,8 +433,7 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 	}
 
 	/**
-	 * The framework calls this to create the contents of the wizard. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The framework calls this to create the contents of the wizard. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT due to usage of custom pages
 	 */
@@ -518,8 +497,7 @@ public class PamtramModelWizard extends Wizard implements INewWizard {
 	/**
 	 * Get the file from the page. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
-	 * @return The {@link IFile} representing the {@link PAMTraM} model to be
-	 *         created.
+	 * @return The {@link IFile} representing the {@link PAMTraM} model to be created.
 	 * @generated
 	 */
 	public IFile getModelFile() {

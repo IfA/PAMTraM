@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.ocl.ParserException;
 
-import de.mfreund.pamtram.util.OCLUtil;
 import pamtram.structure.generic.VirtualReference;
 import pamtram.structure.generic.impl.CrossReferenceImpl;
 import pamtram.structure.source.SourcePackage;
@@ -25,6 +24,7 @@ import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.source.SourceSectionReference;
 import pamtram.structure.source.VirtualSourceSectionCrossReference;
 import pamtram.structure.source.util.SourceValidator;
+import pamtram.util.OCLUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Virtual

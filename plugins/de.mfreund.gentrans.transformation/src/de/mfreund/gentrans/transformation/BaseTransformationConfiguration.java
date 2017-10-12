@@ -13,8 +13,7 @@ import pamtram.structure.target.FileAttribute;
 
 /**
  * This class captures the optional parameters that can be specified for an instance of the generic transformation. They
- * are used by the {@link GenericTransformationRunnerFactory} to instantiate the
- * {@link GenericTransformationRunnerWithUI}.
+ * are used by a {@link TransformationRunnerFactory} to instantiate instances of {@link ITransformationRunner}.
  * <p />
  * The various <em>with...</em> methods provide a floating API to configure the parameters.
  *

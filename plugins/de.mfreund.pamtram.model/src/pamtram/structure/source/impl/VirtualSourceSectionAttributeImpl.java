@@ -14,11 +14,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.ParserException;
 
-import de.mfreund.pamtram.util.OCLUtil;
 import pamtram.structure.source.SourcePackage;
 import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.source.VirtualSourceSectionAttribute;
 import pamtram.structure.source.util.SourceValidator;
+import pamtram.util.OCLUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Virtual

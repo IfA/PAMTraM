@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.EcoreUtil.EqualityHelper;
 
-import de.mfreund.pamtram.util.NullComparator;
 import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.generic.ActualAttribute;
 import pamtram.structure.generic.ActualReference;

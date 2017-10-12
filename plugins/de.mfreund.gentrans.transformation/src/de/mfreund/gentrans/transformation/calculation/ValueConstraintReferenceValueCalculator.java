@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ui.console.MessageConsoleStream;
 
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
@@ -74,7 +73,7 @@ public class ValueConstraintReferenceValueCalculator {
 	 * @param attributeValueCalculator
 	 *            The {@link ValueCalculator} to use in order to calculate resulting values.
 	 * @param logger
-	 *            The {@link MessageConsoleStream} that shall be used to print messages.
+	 *            The {@link Logger} that shall be used to print messages.
 	 * @param useParallelization
 	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
 	 *            that the transformation result (especially the order of lists) varies between executions.

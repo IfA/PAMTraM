@@ -16,6 +16,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.part.FileEditorInput;
 
+import de.tud.et.ifa.agtele.resources.ResourceHelper;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
 import pamtram.ConditionModel;
 import pamtram.MappingModel;
@@ -77,7 +78,7 @@ public class ExportSharedModelHandler extends AbstractHandler {
 			return null;
 		}
 
-		URI sectionModelResourceURI = URI.createPlatformResourceURI(newPath.toString(), true);
+		URI sectionModelResourceURI = ResourceHelper.getURIForPathString(newPath.toString());
 
 		// Determine the editing domain on which to execute the command that will perform the actual exporting
 		//

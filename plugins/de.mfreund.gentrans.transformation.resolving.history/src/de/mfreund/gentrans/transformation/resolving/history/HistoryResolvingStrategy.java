@@ -40,6 +40,7 @@ import de.mfreund.pamtram.transformation.Transformation;
 import de.mfreund.pamtram.transformation.TransformationMapping;
 import de.mfreund.pamtram.transformation.TransformationMappingHintGroup;
 import de.tud.et.ifa.agtele.emf.compare.EMFComparatorFactory;
+import de.tud.et.ifa.agtele.resources.ResourceHelper;
 import pamtram.PAMTraM;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroup;
@@ -54,73 +55,63 @@ import pamtram.structure.target.TargetSectionClass;
 import pamtram.structure.target.TargetSectionCrossReference;
 
 /**
- * This class implements a concrete {@link ComposedAmbiguityResolvingStrategy}
- * that consults previous resolving results in order to resolve ambiguities and
- * additionally can compose multiple other resolving strategies.
+ * This class implements a concrete {@link ComposedAmbiguityResolvingStrategy} that consults previous resolving results
+ * in order to resolve ambiguities and additionally can compose multiple other resolving strategies.
  * <p />
- * Any call to a method defined by the {@link IAmbiguityResolvingStrategy}
- * interface will first check if a previous resolving result is present for the
- * given configuration. If this is the case, it uses this result; otherwise, it
- * iteratively forwards the call to every of the {@link #composedStrategies} and
- * returns the final result. The result is also stored for future ambiguity
- * evaluation requests.
+ * Any call to a method defined by the {@link IAmbiguityResolvingStrategy} interface will first check if a previous
+ * resolving result is present for the given configuration. If this is the case, it uses this result; otherwise, it
+ * iteratively forwards the call to every of the {@link #composedStrategies} and returns the final result. The result is
+ * also stored for future ambiguity evaluation requests.
  *
  * @author mfreund
  */
 public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy {
 
 	/**
-	 * This prefix will be added to {@link #printMessage(String, String)
-	 * messages} printed after successfully resolving an ambiguity.
+	 * This prefix will be added to {@link #printMessage(String, String) messages} printed after successfully resolving
+	 * an ambiguity.
 	 */
 	private static final String historyDecisionPrefix = "History";
 
 	/**
-	 * The path to the {@link Transformation TransformationModel} to be used to
-	 * consult previous resolving results
+	 * The path to the {@link Transformation TransformationModel} to be used to consult previous resolving results
 	 */
 	private String transformationModelPath;
 
 	/**
-	 * The {@link Transformation TransformationModel} to be used to consult
-	 * previous resolving results.
+	 * The {@link Transformation TransformationModel} to be used to consult previous resolving results.
 	 */
 	private Transformation transformationModel;
 
 	/**
-	 * This will contain the results of the comparison process between the
-	 * current PAMTraM models and the 'old' PAMTraM models that are part of the
-	 * {@link #transformationModel}.
+	 * This will contain the results of the comparison process between the current PAMTraM models and the 'old' PAMTraM
+	 * models that are part of the {@link #transformationModel}.
 	 * <p />
-	 * Note: The <em>left</em> sides of these comparisons represents the current
-	 * PAMTraM models, the <em>right</em> side represents the 'old' models (part
-	 * of the transformation model).
+	 * Note: The <em>left</em> sides of these comparisons represents the current PAMTraM models, the <em>right</em> side
+	 * represents the 'old' models (part of the transformation model).
 	 */
 	private List<Comparison> pamtramCompareResults;
 
 	/**
-	 * This will contain a list of results of the comparison processes between
-	 * the current source models and the 'old' source models that are part of
-	 * the {@link #transformationModel}.
+	 * This will contain a list of results of the comparison processes between the current source models and the 'old'
+	 * source models that are part of the {@link #transformationModel}.
 	 * <p />
-	 * Note: The <em>left</em> sides of these comparisons represent the current
-	 * source models, the <em>right</em> sides represent the 'old' models (part
-	 * of the transformation model).
+	 * Note: The <em>left</em> sides of these comparisons represent the current source models, the <em>right</em> sides
+	 * represent the 'old' models (part of the transformation model).
 	 */
 	private List<Comparison> sourceCompareResults;
 
 	/**
-	 * This map is filled once during the
-	 * {@link #init(PAMTraM, ArrayList, Logger)} method and contains
-	 * associations between {@link TargetSection TargetSections} and lists of
-	 * {@link TransformationMappingHintGroup TransformationMappingHintGroups}
-	 * that are contained in the {@link #transformationModel}. It can be used to
-	 * retrieve all hint groups from the transformation model that were
-	 * responsible for instantiating a certain target section.
+	 * This map is filled once during the {@link #init(PAMTraM, ArrayList, Logger)} method and contains associations
+	 * between {@link TargetSection TargetSections} and lists of {@link TransformationMappingHintGroup
+	 * TransformationMappingHintGroups} that are contained in the {@link #transformationModel}. It can be used to
+	 * retrieve all hint groups from the transformation model that were responsible for instantiating a certain target
+	 * section.
 	 */
 	private Map<TargetSection, List<TransformationMappingHintGroup>> targetSectionToTransformationHintGroups;
 
 	private HistoryResolvingStrategy(ArrayList<IAmbiguityResolvingStrategy> composedStrategies) {
+
 		super(composedStrategies);
 	}
 
@@ -128,14 +119,14 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	 * This creates an instance.
 	 *
 	 * @param composedStrategies
-	 *            The list of {@link IAmbiguityResolvingStrategy strategies}
-	 *            that this composes.
+	 *            The list of {@link IAmbiguityResolvingStrategy strategies} that this composes.
 	 * @param transformationModelPath
-	 *            The path to the {@link Transformation TransformationModel} to
-	 *            be used to consult previous resolving results.
+	 *            The path to the {@link Transformation TransformationModel} to be used to consult previous resolving
+	 *            results.
 	 */
 	public HistoryResolvingStrategy(ArrayList<IAmbiguityResolvingStrategy> composedStrategies,
 			String transformationModelPath) {
+
 		this(composedStrategies);
 		this.transformationModelPath = transformationModelPath;
 	}
@@ -180,8 +171,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	}
 
 	/**
-	 * Fill the {@link #targetSectionToTransformationHintGroups} map by
-	 * iterating over the transformation model.
+	 * Fill the {@link #targetSectionToTransformationHintGroups} map by iterating over the transformation model.
 	 */
 	private void buildTargetSectionToTransformationHintGroupMap() {
 
@@ -215,22 +205,20 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	}
 
 	/**
-	 * Load the {@link #transformationModel} from the given
-	 * {@link #transformationModelPath}.
+	 * Load the {@link #transformationModel} from the given {@link #transformationModelPath}.
 	 *
 	 * @throws IOException
 	 */
 	private void loadTransformationModel() throws IOException {
 
 		/*
-		 * We need to load the transformation model to the same ResourceSet as
-		 * the pamtram models, otherwise strange things happen in the EMFcompare
-		 * process (changes are shown even nothing has changed).
+		 * We need to load the transformation model to the same ResourceSet as the pamtram models, otherwise strange
+		 * things happen in the EMFcompare process (changes are shown even nothing has changed).
 		 */
 		ResourceSet resourceSet = this.pamtramModels.get(0).eResource().getResourceSet();
 
 		// the URI of the transformation model resource
-		final URI transformationModelUri = URI.createPlatformResourceURI(this.transformationModelPath, true);
+		final URI transformationModelUri = ResourceHelper.getURIForPathString(this.transformationModelPath);
 
 		// load the transformation model
 		XMIResource transformationModelResource = (XMIResource) resourceSet.getResource(transformationModelUri, true);
@@ -244,9 +232,8 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	}
 
 	/**
-	 * Compare both PAMTraM models (the one stored as part of the
-	 * {@link #transformationModel} and the {@link #pamtramModel}) and store the
-	 * result in the {@link #pamtramCompareResult} field.
+	 * Compare both PAMTraM models (the one stored as part of the {@link #transformationModel} and the
+	 * {@link #pamtramModel}) and store the result in the {@link #pamtramCompareResult} field.
 	 *
 	 * @throws IOException
 	 *             If one of the involved resources cannot be (re)loaded.
@@ -260,11 +247,9 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 			PAMTraM pamtramInstance = this.transformationModel.getPamtramInstances().get(i);
 
 			/*
-			 * We need to reload the pamtram resource that is part of the
-			 * transformation model as otherwise the compare process will show
-			 * strange differences even if there should not be any. TODO This
-			 * might have to do something with the cross-resource containments
-			 * and proxy resolving...
+			 * We need to reload the pamtram resource that is part of the transformation model as otherwise the compare
+			 * process will show strange differences even if there should not be any. TODO This might have to do
+			 * something with the cross-resource containments and proxy resolving...
 			 */
 			URI pamtramUri = pamtramInstance.eResource().getURI();
 			XMIResource pamtramResource = (XMIResource) resourceSet.getResource(pamtramUri, true);
@@ -289,15 +274,10 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 						protected boolean isIgnoredReference(Match match, EReference reference) {
 
 							/*
-							 * We forget about the 'source' reference of library
-							 * parameters as the comparison process will report
-							 * false changes to references of this type as the
-							 * referenced objects are not contained in the
-							 * resource in focus (cf.
-							 * https://www.eclipse.org/emf/compare/
-							 * documentation/
-							 * latest/developer/developer-guide.html#
-							 * Changing_the_FeatureFilter).
+							 * We forget about the 'source' reference of library parameters as the comparison process
+							 * will report false changes to references of this type as the referenced objects are not
+							 * contained in the resource in focus (cf. https://www.eclipse.org/emf/compare/
+							 * documentation/ latest/developer/developer-guide.html# Changing_the_FeatureFilter).
 							 */
 							return reference.equals(LibraryPackage.Literals.LIBRARY_PARAMETER__SOURCE)
 									|| super.isIgnoredReference(match, reference);
@@ -317,9 +297,8 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	}
 
 	/**
-	 * Compare the source models (those stored as part of the
-	 * {@link #transformationModel} and the {@link #sourceModels}) and store the
-	 * results in the {@link #pamtramCompareResult} field.
+	 * Compare the source models (those stored as part of the {@link #transformationModel} and the
+	 * {@link #sourceModels}) and store the results in the {@link #pamtramCompareResult} field.
 	 *
 	 * @throws IOException
 	 *             If one of the involved resources cannot be (re)loaded.
@@ -353,23 +332,19 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	}
 
 	/**
-	 * This is a convenience method to find a match for the given source model
-	 * element in one of the stored {@link #sourceCompareResults}. This method
-	 * simply iterates over all compare results.
+	 * This is a convenience method to find a match for the given source model element in one of the stored
+	 * {@link #sourceCompareResults}. This method simply iterates over all compare results.
 	 *
 	 * @param objectToMatch
-	 *            An element from a source model for that a match shall be
-	 *            found.
-	 * @return The {@link Match} for the given source model element or
-	 *         '<em>null</em>' if no match could be found.
+	 *            An element from a source model for that a match shall be found.
+	 * @return The {@link Match} for the given source model element or '<em>null</em>' if no match could be found.
 	 */
 	private Match getSourceModelMatch(EObject objectToMatch) {
 
 		Match foundMatch = null;
 
 		/*
-		 * Iterate over all of the stored 'sourceCompareResults' and try to find
-		 * a match for the given 'objectToMatch'.
+		 * Iterate over all of the stored 'sourceCompareResults' and try to find a match for the given 'objectToMatch'.
 		 */
 		for (Comparison compareResult : this.sourceCompareResults) {
 			foundMatch = compareResult.getMatch(objectToMatch);
@@ -382,10 +357,9 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	}
 
 	/**
-	 * Consult the list of {@link TransformationMapping TransformationMappings}
-	 * stored in the {@link #transformationModel} in order to retrieve the
-	 * corresponding selection for the given list of choices. If a corresponding
-	 * choice is found, reuse it; otherwise, forward the decision to the list of
+	 * Consult the list of {@link TransformationMapping TransformationMappings} stored in the
+	 * {@link #transformationModel} in order to retrieve the corresponding selection for the given list of choices. If a
+	 * corresponding choice is found, reuse it; otherwise, forward the decision to the list of
 	 * {@link ComposedAmbiguityResolvingStrategy#composedStrategies}.
 	 */
 	@Override
@@ -393,8 +367,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 			EObject element) throws AmbiguityResolvingException {
 
 		/*
-		 * First, we need to check if we can find a match for the given
-		 * 'element'.
+		 * First, we need to check if we can find a match for the given 'element'.
 		 */
 		Match match = this.getSourceModelMatch(element);
 		if (match == null || match.getRight() == null) {
@@ -405,8 +378,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		EObject matchedElement = match.getRight();
 
 		/*
-		 * Now, we can determine the mapping that was used in the 'old'
-		 * transformation.
+		 * Now, we can determine the mapping that was used in the 'old' transformation.
 		 */
 		TransformationMapping oldTransformationMapping = null;
 		for (TransformationMapping transformationMapping : this.transformationModel.getTransformationMappings()) {
@@ -421,12 +393,10 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		}
 
 		/*
-		 * Finally, we check if the list of choices is the 'same' list of
-		 * choices as in the 'old' transformation (we do not want to blindly
-		 * reuse a choice even if there are changes in the list of mappings that
-		 * we can choose from). Currently, we do this by simply checking that
-		 * nothing has been changed in the PAMTraM and source models but this
-		 * might be done in a more clever way in the future.
+		 * Finally, we check if the list of choices is the 'same' list of choices as in the 'old' transformation (we do
+		 * not want to blindly reuse a choice even if there are changes in the list of mappings that we can choose
+		 * from). Currently, we do this by simply checking that nothing has been changed in the PAMTraM and source
+		 * models but this might be done in a more clever way in the future.
 		 */
 		for (Comparison comparison : this.pamtramCompareResults) {
 			if (!comparison.getDifferences().isEmpty()) {
@@ -440,9 +410,8 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		}
 
 		/*
-		 * Now, we are sure that the current list of choices matches the old one
-		 * (and thus that the 'old' choice is also an option in the current list
-		 * of choices). Thus, we may safely reuse the old choice.
+		 * Now, we are sure that the current list of choices matches the old one (and thus that the 'old' choice is also
+		 * an option in the current list of choices). Thus, we may safely reuse the old choice.
 		 */
 		Match sectionMatch = this.getMatch(oldTransformationMapping.getAssociatedMapping().getSourceSection());
 		Optional<MatchedSectionDescriptor> descriptor = choices.parallelStream()
@@ -458,10 +427,9 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	}
 
 	/**
-	 * Consult the list of {@link TransformationMapping TransformationMappings}
-	 * stored in the {@link #transformationModel} in order to retrieve the
-	 * corresponding selection for the given list of choices. If a corresponding
-	 * choice is found, reuse it; otherwise, forward the decision to the list of
+	 * Consult the list of {@link TransformationMapping TransformationMappings} stored in the
+	 * {@link #transformationModel} in order to retrieve the corresponding selection for the given list of choices. If a
+	 * corresponding choice is found, reuse it; otherwise, forward the decision to the list of
 	 * {@link ComposedAmbiguityResolvingStrategy#composedStrategies}.
 	 */
 	@Override
@@ -469,8 +437,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 			throws AmbiguityResolvingException {
 
 		/*
-		 * First, we need to check if we can find a match for the given
-		 * 'element'.
+		 * First, we need to check if we can find a match for the given 'element'.
 		 */
 		Match match = this.getSourceModelMatch(element);
 		if (match == null || match.getRight() == null) {
@@ -481,8 +448,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		EObject matchedElement = match.getRight();
 
 		/*
-		 * Now, we can determine the mappings that were used in the 'old'
-		 * transformation.
+		 * Now, we can determine the mappings that were used in the 'old' transformation.
 		 */
 		List<TransformationMapping> oldTransformationMappings = this.transformationModel.getTransformationMappings()
 				.parallelStream().filter(t -> t.getSourceElement().equals(matchedElement)).collect(Collectors.toList());
@@ -492,10 +458,9 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		}
 
 		/*
-		 * Finally, we check if the list of choices is the 'same' list of
-		 * choices as in the 'old' transformation (we do not want to blindly
-		 * reuse a choice even if there are changes in the list of mappings that
-		 * we can choose from).
+		 * Finally, we check if the list of choices is the 'same' list of choices as in the 'old' transformation (we do
+		 * not want to blindly reuse a choice even if there are changes in the list of mappings that we can choose
+		 * from).
 		 */
 		EList<MappingType> oldChoices = oldTransformationMappings.get(0).getAssociatedMapping().getSourceSection()
 				.getReferencingMappings();
@@ -520,9 +485,8 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		}
 
 		/*
-		 * Now, we are sure that the current list of choices matches the old one
-		 * (and thus that the 'old' choice is also an option in the current list
-		 * of choices). Thus, we may safely reuse the old choice.
+		 * Now, we are sure that the current list of choices matches the old one (and thus that the 'old' choice is also
+		 * an option in the current list of choices). Thus, we may safely reuse the old choice.
 		 */
 		List<Mapping> ret = new ArrayList<>();
 		for (TransformationMapping oldTransformationMapping : oldTransformationMappings) {
@@ -541,17 +505,15 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	}
 
 	/**
-	 * This consults the {@link #transformationModel} in order to determine
-	 * which of the given '<em>choices</em>' was used during the 'old'
-	 * transformation for joining the given '<em>section</em>'.
+	 * This consults the {@link #transformationModel} in order to determine which of the given '<em>choices</em>' was
+	 * used during the 'old' transformation for joining the given '<em>section</em>'.
 	 */
 	@Override
 	public List<ModelConnectionPath> joiningSelectConnectionPath(List<ModelConnectionPath> choices,
 			TargetSection section) throws AmbiguityResolvingException {
 
 		/*
-		 * First, we need to check if we can find a match for the given
-		 * 'section'.
+		 * First, we need to check if we can find a match for the given 'section'.
 		 */
 		Match match = this.getMatch(section);
 		if (match == null || match.getRight() == null || !(match.getRight() instanceof TargetSection)) {
@@ -562,15 +524,12 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		TargetSection matchedSection = (TargetSection) match.getRight();
 
 		/*
-		 * Now, we try to determine an element from the 'old' target model that
-		 * represents the found 'matchedSection'. Therefore, we get a
-		 * TransformationHintGroup of which the associated MappingHintGroup was
-		 * responsible for instantiating the 'matchedSection' from the map
-		 * 'targetSectionToTransformationHintGroups'. That way, we can determine
-		 * the instantiated ModelConnectionPath from the source model. Thereby,
-		 * it should not be relevant which of the (possible multiple)
-		 * TransformationHintGroups we determine as all should lead to the same
-		 * result. Thus, we simply get the first one.
+		 * Now, we try to determine an element from the 'old' target model that represents the found 'matchedSection'.
+		 * Therefore, we get a TransformationHintGroup of which the associated MappingHintGroup was responsible for
+		 * instantiating the 'matchedSection' from the map 'targetSectionToTransformationHintGroups'. That way, we can
+		 * determine the instantiated ModelConnectionPath from the source model. Thereby, it should not be relevant
+		 * which of the (possible multiple) TransformationHintGroups we determine as all should lead to the same result.
+		 * Thus, we simply get the first one.
 		 */
 		if (!this.targetSectionToTransformationHintGroups.containsKey(matchedSection)) {
 			return super.joiningSelectConnectionPath(choices, section);
@@ -583,8 +542,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		}
 
 		/*
-		 * Finally, we can check which ModelConnectionPath was used to connect
-		 * the 'instantiatedElement'.
+		 * Finally, we can check which ModelConnectionPath was used to connect the 'instantiatedElement'.
 		 */
 		ModelConnectionPath usedPath = null;
 		for (ModelConnectionPath modelConnectionPath : choices) {
@@ -592,8 +550,8 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 			usedPath = modelConnectionPath;
 
 			/*
-			 * Iterate over every element of the path and check if it was used
-			 * to connect the given 'instantiatedElement'.
+			 * Iterate over every element of the path and check if it was used to connect the given
+			 * 'instantiatedElement'.
 			 */
 			EObject currentElement = instantiatedElement;
 			Iterator<EObject> pathElementIterator = modelConnectionPath.getPathElements().iterator();
@@ -629,9 +587,8 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	}
 
 	/**
-	 * This consults the {@link #transformationModel} in order to determine
-	 * which of the given '<em>choices</em>' was used during the 'old'
-	 * transformation for joining the given '<em>element</em>'.
+	 * This consults the {@link #transformationModel} in order to determine which of the given '<em>choices</em>' was
+	 * used during the 'old' transformation for joining the given '<em>element</em>'.
 	 */
 	@Override
 	public List<EObjectWrapper> joiningSelectContainerInstance(List<EObjectWrapper> choices,
@@ -639,8 +596,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 			String hintValue) throws AmbiguityResolvingException {
 
 		/*
-		 * First, we need to check if we can find a match for the given
-		 * 'section' and 'hintGroup'.
+		 * First, we need to check if we can find a match for the given 'section' and 'hintGroup'.
 		 */
 		Match sectionMatch = this.getMatch(hintGroup.getTargetSection());
 		Match hintGroupMatch = this.getMatch(hintGroup);
@@ -655,11 +611,10 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		MappingHintGroupType matchedHintGroup = (MappingHintGroupType) hintGroupMatch.getRight();
 
 		/*
-		 * Now, we determine the elements from the 'old' target model that
-		 * correspond to the given 'sectionInstances'. Therefore, we make use of
-		 * the map 'targetSectionToTransformationHintGroups' and collect all
-		 * instantiated target elements from all TransformationMappingHintGroups
-		 * that represent the given 'hintGroup' (and thus the given 'section').
+		 * Now, we determine the elements from the 'old' target model that correspond to the given 'sectionInstances'.
+		 * Therefore, we make use of the map 'targetSectionToTransformationHintGroups' and collect all instantiated
+		 * target elements from all TransformationMappingHintGroups that represent the given 'hintGroup' (and thus the
+		 * given 'section').
 		 */
 		if (!this.targetSectionToTransformationHintGroups.containsKey(matchedSection)) {
 			return super.joiningSelectContainerInstance(choices, element, hintGroup, modelConnectionHint, hintValue);
@@ -669,9 +624,8 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 				.get(matchedSection)) {
 
 			/*
-			 * As only 'InstantiableHintGroups' are stored in the transformation
-			 * model whereas the given 'matchedHintGroup' is of type
-			 * 'MappingHintGroupType' we need to determine the corresponding
+			 * As only 'InstantiableHintGroups' are stored in the transformation model whereas the given
+			 * 'matchedHintGroup' is of type 'MappingHintGroupType' we need to determine the corresponding
 			 * 'MappingHintGroupType' for each 'transformationMappingHintGroup'.
 			 */
 			MappingHintGroupType mappingHintGroupType = null;
@@ -690,17 +644,13 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		}
 
 		/*
-		 * Now, we determine one of the 'oldSectionInstances' that actually
-		 * represents one of the current 'sectionInstances' by comparing them
-		 * ('oldSectionInstances' might represent more elements than
-		 * 'sectionInstances' does as this method is called multiple times). As
-		 * all of the 'sectionInstances' should be connected to the same
-		 * element, we examplarily use only the first of the 'sectionInstances'.
-		 * However, if we find multiple matches (part of the old transformation)
-		 * for this one 'sectionInstance', we must not proceed as we cannot
-		 * guarantee that those did not result from different choices. In that
-		 * case, we try to determine another 'sectionInstance' for that we can
-		 * determine a unique match.
+		 * Now, we determine one of the 'oldSectionInstances' that actually represents one of the current
+		 * 'sectionInstances' by comparing them ('oldSectionInstances' might represent more elements than
+		 * 'sectionInstances' does as this method is called multiple times). As all of the 'sectionInstances' should be
+		 * connected to the same element, we examplarily use only the first of the 'sectionInstances'. However, if we
+		 * find multiple matches (part of the old transformation) for this one 'sectionInstance', we must not proceed as
+		 * we cannot guarantee that those did not result from different choices. In that case, we try to determine
+		 * another 'sectionInstance' for that we can determine a unique match.
 		 */
 		EObject oldSectionInstanceToUse = null;
 
@@ -739,10 +689,9 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		}
 
 		/*
-		 * Finally, we can check which Instance was used to connect the
-		 * 'oldSectionInstanceToUse'. Therefore, we iterate upward in the
-		 * containment hierarchy and compare the elements along this path to the
-		 * possible 'containerInstances'.
+		 * Finally, we can check which Instance was used to connect the 'oldSectionInstanceToUse'. Therefore, we iterate
+		 * upward in the containment hierarchy and compare the elements along this path to the possible
+		 * 'containerInstances'.
 		 */
 		EObject sectionInstanceContainer = oldSectionInstanceToUse;
 		ArrayList<EObjectWrapper> containerInstancesToUse = new ArrayList<>();
@@ -776,9 +725,8 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	}
 
 	/**
-	 * This consults the {@link #transformationModel} in order to determine
-	 * which of the given '<em>choices</em>' (connection path and container
-	 * instance) was used during the 'old' transformation for joining the given
+	 * This consults the {@link #transformationModel} in order to determine which of the given '<em>choices</em>'
+	 * (connection path and container instance) was used during the 'old' transformation for joining the given
 	 * '<em>sectionInstances</em>'.
 	 */
 	@Override
@@ -787,8 +735,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 			List<EObjectWrapper> sectionInstances, MappingHintGroupType hintGroup) throws AmbiguityResolvingException {
 
 		/*
-		 * First, we need to check if we can find a match for the given
-		 * 'section' and 'hintGroup'.
+		 * First, we need to check if we can find a match for the given 'section' and 'hintGroup'.
 		 */
 		Match sectionMatch = this.getMatch(section);
 		Match hintGroupMatch = this.getMatch(hintGroup);
@@ -803,11 +750,10 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		MappingHintGroupType matchedHintGroup = (MappingHintGroupType) hintGroupMatch.getRight();
 
 		/*
-		 * Now, we determine the elements from the 'old' target model that
-		 * correspond to the given 'sectionInstances'. Therefore, we make use of
-		 * the map 'targetSectionToTransformationHintGroups' and collect all
-		 * instantiated target elements from all TransformationMappingHintGroups
-		 * that represent the given 'hintGroup' (and thus the given 'section').
+		 * Now, we determine the elements from the 'old' target model that correspond to the given 'sectionInstances'.
+		 * Therefore, we make use of the map 'targetSectionToTransformationHintGroups' and collect all instantiated
+		 * target elements from all TransformationMappingHintGroups that represent the given 'hintGroup' (and thus the
+		 * given 'section').
 		 */
 		if (!this.targetSectionToTransformationHintGroups.containsKey(matchedSection)) {
 			return super.joiningSelectConnectionPathAndContainerInstance(choices, section, sectionInstances, hintGroup);
@@ -817,9 +763,8 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 				.get(matchedSection)) {
 
 			/*
-			 * As only 'InstantiableHintGroups' are stored in the transformation
-			 * model whereas the given 'matchedHintGroup' is of type
-			 * 'MappingHintGroupType' we need to determine the corresponding
+			 * As only 'InstantiableHintGroups' are stored in the transformation model whereas the given
+			 * 'matchedHintGroup' is of type 'MappingHintGroupType' we need to determine the corresponding
 			 * 'MappingHintGroupType' for each 'transformationMappingHintGroup'.
 			 */
 			MappingHintGroupType mappingHintGroupType = null;
@@ -838,20 +783,18 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		}
 
 		/*
-		 * Now, check if the 'old' and the current 'sectionInstances' are
-		 * equivalent. Here, we simply check if the counts match - a more
-		 * thorough comparison could be performed via EMFCompare but this should
-		 * take quite a bit of time as we have to cross-compare every instance.
+		 * Now, check if the 'old' and the current 'sectionInstances' are equivalent. Here, we simply check if the
+		 * counts match - a more thorough comparison could be performed via EMFCompare but this should take quite a bit
+		 * of time as we have to cross-compare every instance.
 		 */
 		if (oldSectionInstances.isEmpty() || oldSectionInstances.size() != sectionInstances.size()) {
 			return super.joiningSelectConnectionPathAndContainerInstance(choices, section, sectionInstances, hintGroup);
 		}
 
 		/*
-		 * Finally, we can check which ModelConnectionPath and Instance was used
-		 * to connect the 'sectionInstances'. As all of the 'sectionInstances'
-		 * should be connected to the same element (and via the same path), we
-		 * examplarily use only the first of the 'sectionInstances'.
+		 * Finally, we can check which ModelConnectionPath and Instance was used to connect the 'sectionInstances'. As
+		 * all of the 'sectionInstances' should be connected to the same element (and via the same path), we examplarily
+		 * use only the first of the 'sectionInstances'.
 		 */
 		ModelConnectionPath usedPath = null;
 		EObject usedInstance = null;
@@ -860,8 +803,8 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 			usedPath = modelConnectionPath;
 
 			/*
-			 * Iterate over every element of the path and check if it was used
-			 * to connect the given 'instantiatedElement'.
+			 * Iterate over every element of the path and check if it was used to connect the given
+			 * 'instantiatedElement'.
 			 */
 			EObject currentElement = oldSectionInstances.get(0);
 			Iterator<EObject> pathElementIterator = modelConnectionPath.getPathElements().iterator();
@@ -893,11 +836,9 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		}
 
 		/*
-		 * Before returning, we have to identify the 'container instance'
-		 * (represented by an EObjectWrapper) that corresponds to the determined
-		 * 'usedInstance'. Therefore, we compare the 'container instances and
-		 * the 'usedInstance' and select this/these instance(s) that could be
-		 * matched without any differences.
+		 * Before returning, we have to identify the 'container instance' (represented by an EObjectWrapper) that
+		 * corresponds to the determined 'usedInstance'. Therefore, we compare the 'container instances and the
+		 * 'usedInstance' and select this/these instance(s) that could be matched without any differences.
 		 */
 
 		// create a comparator first
@@ -931,17 +872,16 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	}
 
 	/**
-	 * This consults the {@link #transformationModel} in order to determine
-	 * which root class was used during the 'old' transformation.
+	 * This consults the {@link #transformationModel} in order to determine which root class was used during the 'old'
+	 * transformation.
 	 */
 	@Override
 	public List<EClass> joiningSelectRootElement(List<EClass> choices) throws AmbiguityResolvingException {
 
 		/*
-		 * Determine the root element from the 'old' transformation model. Note:
-		 * Up to now, we always simply use the first target model as multiple
-		 * target models are not yet supported. This should probably be changed
-		 * one day...
+		 * Determine the root element from the 'old' transformation model. Note: Up to now, we always simply use the
+		 * first target model as multiple target models are not yet supported. This should probably be changed one
+		 * day...
 		 */
 		EObject targetModelRoot = this.transformationModel.getTargetModels().get(0);
 		EClass targetModelRootClass = targetModelRoot.eClass();
@@ -973,8 +913,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 
 		for (EObjectWrapper sourceElement : sourceElements) {
 			/*
-			 * First, we need to check if we can find a match for the given
-			 * 'sourceElement' in the 'old' target model.
+			 * First, we need to check if we can find a match for the given 'sourceElement' in the 'old' target model.
 			 */
 			EMFCompare comparator = EMFComparatorFactory.getIgnoreNonContainmentReferenceChangesComparator();
 			IComparisonScope scope = new DefaultComparisonScope(EcoreUtil.getRootContainer(sourceElement.getEObject()),
@@ -987,8 +926,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 			}
 			EObject oldInstance = match.getRight();
 			/*
-			 * Now, we can check which element was used as target for the
-			 * 'reference'.
+			 * Now, we can check which element was used as target for the 'reference'.
 			 */
 			EObject oldTargetInstance = null;
 			if (reference.getEReference().isMany()) {
@@ -1008,9 +946,8 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 						sourceElements);
 			}
 			/*
-			 * Finally, we have to determine which of the new choices matches
-			 * the 'oldTargetInstance'. Therefore, we once more rely on
-			 * EMFCompare.
+			 * Finally, we have to determine which of the new choices matches the 'oldTargetInstance'. Therefore, we
+			 * once more rely on EMFCompare.
 			 */
 			ArrayList<EObjectWrapper> localTargetInstancesToUse = new ArrayList<>();
 			for (EObjectWrapper instance : choices) {
@@ -1051,9 +988,8 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	}
 
 	/**
-	 * This consults the {@link #transformationModel} in order to determine
-	 * which combination of {@link TargetSectionClass} and
-	 * {@link EObjectWrapper} was used during the 'old' transformation.
+	 * This consults the {@link #transformationModel} in order to determine which combination of
+	 * {@link TargetSectionClass} and {@link EObjectWrapper} was used during the 'old' transformation.
 	 */
 	@Override
 	public Map<TargetSectionClass, List<EObjectWrapper>> linkingSelectTargetSectionAndInstance(
@@ -1061,8 +997,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 			MappingHintGroupType hintGroup) throws AmbiguityResolvingException {
 
 		/*
-		 * First, we need to check if we can find a match for the given
-		 * 'section' and 'hintGroup'.
+		 * First, we need to check if we can find a match for the given 'section' and 'hintGroup'.
 		 */
 		Match sectionMatch = this.getMatch(hintGroup.getTargetSection());
 		Match hintGroupMatch = this.getMatch(hintGroup);
@@ -1077,14 +1012,11 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		MappingHintGroupType matchedHintGroup = (MappingHintGroupType) hintGroupMatch.getRight();
 
 		/*
-		 * Now, we try to determine an element from the 'old' target model that
-		 * represents the found 'matchedSection'. Therefore, we make use of the
-		 * map 'targetSectionToTransformationHintGroups' and collect all
-		 * instantiated target elements from all TransformationMappingHintGroups
-		 * that represent the given 'hintGroup'. Thereby, it should not be
-		 * relevant which of the (possible multiple) target model elements we
-		 * determine as their 'references' should all be connected to the same
-		 * element. Thus, we simply get the first one.
+		 * Now, we try to determine an element from the 'old' target model that represents the found 'matchedSection'.
+		 * Therefore, we make use of the map 'targetSectionToTransformationHintGroups' and collect all instantiated
+		 * target elements from all TransformationMappingHintGroups that represent the given 'hintGroup'. Thereby, it
+		 * should not be relevant which of the (possible multiple) target model elements we determine as their
+		 * 'references' should all be connected to the same element. Thus, we simply get the first one.
 		 */
 		if (!this.targetSectionToTransformationHintGroups.containsKey(matchedSection)) {
 			return super.linkingSelectTargetSectionAndInstance(choices, reference, hintGroup);
@@ -1094,9 +1026,8 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 				.get(matchedSection)) {
 
 			/*
-			 * As only 'InstantiableHintGroups' are stored in the transformation
-			 * model whereas the given 'matchedHintGroup' is of type
-			 * 'MappingHintGroupType' we need to determine the corresponding
+			 * As only 'InstantiableHintGroups' are stored in the transformation model whereas the given
+			 * 'matchedHintGroup' is of type 'MappingHintGroupType' we need to determine the corresponding
 			 * 'MappingHintGroupType' for each 'transformationMappingHintGroup'.
 			 */
 			MappingHintGroupType mappingHintGroupType = null;
@@ -1119,8 +1050,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		}
 
 		/*
-		 * Now, we can check which element was used as target for the
-		 * 'reference'.
+		 * Now, we can check which element was used as target for the 'reference'.
 		 */
 		EClass usedTargetClass = null;
 		EObject usedTargetInstance = null;
@@ -1144,9 +1074,8 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		usedTargetClass = usedTargetInstance.eClass();
 
 		/*
-		 * Finally, we have to determine which of the new choices matches the
-		 * given combination of 'old' element and class. Therefore, we once more
-		 * rely on EMFCompare.
+		 * Finally, we have to determine which of the new choices matches the given combination of 'old' element and
+		 * class. Therefore, we once more rely on EMFCompare.
 		 */
 		EMFCompare comparator = EMFComparatorFactory.getIgnoreNonContainmentReferenceChangesComparator();
 		TargetSectionClass usedTargetSectionClass = null;
@@ -1184,12 +1113,10 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	}
 
 	/**
-	 * For the given {@link EObject}, return a match from the various
-	 * {@link #pamtramCompareResults}.
+	 * For the given {@link EObject}, return a match from the various {@link #pamtramCompareResults}.
 	 *
 	 * @param element
-	 * @return The found {@link Match} or <em>null</em> if no match could be
-	 *         determined.
+	 * @return The found {@link Match} or <em>null</em> if no match could be determined.
 	 */
 	private Match getMatch(EObject element) {
 

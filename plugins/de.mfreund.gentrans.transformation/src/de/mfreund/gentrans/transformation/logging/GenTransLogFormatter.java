@@ -9,9 +9,9 @@ import java.util.logging.LogRecord;
  *
  * @author mfreund
  */
-class GenTransLogFormatter extends Formatter {
+public class GenTransLogFormatter extends Formatter {
 
-	public static final String LINE_SEPARATOR = "\n";
+	protected static final String LINE_SEPARATOR = "\n";
 
 	/**
 	 * This keeps track of the single instance of this formatter.

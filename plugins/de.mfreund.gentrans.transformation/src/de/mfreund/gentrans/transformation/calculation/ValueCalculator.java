@@ -10,7 +10,6 @@ import java.util.logging.Logger;
 
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
-import de.mfreund.pamtram.util.ExpressionCalculator;
 import pamtram.ConditionalElement;
 import pamtram.ExpressionElement;
 import pamtram.FixedValue;
@@ -24,6 +23,7 @@ import pamtram.mapping.extended.MappingHint;
 import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.target.TargetSectionAttribute;
+import pamtram.util.ExpressionCalculator;
 
 /**
  * This class can be used to calculate values (e.g. of {@link TargetSectionAttribute TargetSectionAttributes}) based on

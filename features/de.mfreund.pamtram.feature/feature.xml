@@ -186,4 +186,11 @@ These terms will be replaced, once it has been decided, which public license to 
          version="0.0.0"
          unpack="false"/>
 
+   <plugin
+         id="de.mfreund.gentrans.transformation.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
 </feature>

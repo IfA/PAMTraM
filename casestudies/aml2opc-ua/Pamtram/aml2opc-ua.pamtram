@@ -2,12 +2,16 @@
 <pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target">
   <sourceSectionModels name="CAEX">
     <metaModelPackage href="http://caex#/"/>
-    <sections xsi:type="source:SourceSection" name="source"/>
+    <sections xsi:type="source:SourceSection" name="CAEXFile">
+      <eClass href="http://caex#//CAEXFile"/>
+    </sections>
   </sourceSectionModels>
   <targetSectionModels name="org.opcfoundation.ua._2011._03.ua.node.set">
     <metaModelPackage href="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#/"/>
-    <sections xsi:type="target:TargetSection" name="target"/>
-    <sections xsi:type="target:TargetSection" name="target"/>
+    <sections xsi:type="target:TargetSection" name="UANodeSet" file="//@targetSectionModels.0/@sections.0/@attributes.0">
+      <eClass href="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#//UANodeSetType"/>
+      <attributes xsi:type="target:FileAttribute" value="out.xml" fileType="XML"/>
+    </sections>
   </targetSectionModels>
   <targetSectionModels name="org.opcfoundation.ua._2008._02.types">
     <metaModelPackage href="http://opcfoundation.org/UA/2008/02/Types.xsd#/"/>

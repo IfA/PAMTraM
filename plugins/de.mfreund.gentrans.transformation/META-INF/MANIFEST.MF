@@ -10,8 +10,7 @@ Require-Bundle: org.eclipse.xsd,
  org.eclipse.ocl.ecore;bundle-version="3.6.0",
  de.mfreund.pamtram.model.edit;bundle-version="1.9.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Bundle-ClassPath: lib/exp4j-0.3.11.jar,
- .
+Bundle-ClassPath: .
 Export-Package: de.mfreund.gentrans.transformation,
  de.mfreund.gentrans.transformation.calculation,
  de.mfreund.gentrans.transformation.condition,

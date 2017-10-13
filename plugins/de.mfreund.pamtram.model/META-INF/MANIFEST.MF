@@ -3,7 +3,8 @@ Bundle-ManifestVersion: 2
 Bundle-Name: PAMTraM Model
 Bundle-SymbolicName: de.mfreund.pamtram.model;singleton:=true
 Bundle-Version: 1.9.0.qualifier
-Bundle-ClassPath: .
+Bundle-ClassPath: .,
+ lib/exp4j-0.3.11.jar
 Bundle-Vendor: Matthias Freund,
  Institute of Automation,
  TU Dresden

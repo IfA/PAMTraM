@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ASCII"?>
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target">
+  <sourceSectionModels name="CAEX">
+    <metaModelPackage href="http://caex#/"/>
+    <sections xsi:type="source:SourceSection" name="source"/>
+  </sourceSectionModels>
+  <targetSectionModels name="org.opcfoundation.ua._2011._03.ua.node.set">
+    <metaModelPackage href="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#/"/>
+    <sections xsi:type="target:TargetSection" name="target"/>
+    <sections xsi:type="target:TargetSection" name="target"/>
+  </targetSectionModels>
+  <targetSectionModels name="org.opcfoundation.ua._2008._02.types">
+    <metaModelPackage href="http://opcfoundation.org/UA/2008/02/Types.xsd#/"/>
+  </targetSectionModels>
+  <mappingModels>
+    <mappings name="sourceMapping" sourceSection="//@sourceSectionModels.0/@sections.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="target" targetSection="//@targetSectionModels.0/@sections.0"/>
+    </mappings>
+  </mappingModels>
+  <conditionModels/>
+</pamtram:PAMTraM>

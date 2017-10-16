@@ -35,14 +35,9 @@ import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
  * @author mfreund
  */
 public class PropertiesPage extends PropertyPage implements IWorkbenchPropertyPage {
-	private DataBindingContext m_bindingContext;
-
-	public PropertiesPage() {
-	}
 
 	/**
-	 * The {@link FileFieldEditor} that allows the user to select new library
-	 * locations.
+	 * The {@link FileFieldEditor} that allows the user to select new library locations.
 	 */
 	private DirectoryFieldEditor libraryPathSelector;
 
@@ -52,12 +47,19 @@ public class PropertiesPage extends PropertyPage implements IWorkbenchPropertyPa
 	private List libraryPathList;
 
 	protected Button libNatureButton;
+
 	private Group libraryPathsGroup;
+
 	private Composite directoryEditorComposite;
+
 	private Button delSourceFileButton;
+
 	private Button upSourceFileButton;
+
 	private Button downSourceFileButton;
+
 	private ScrolledComposite scrolledComposite;
+
 	private Composite comp;
 
 	@Override
@@ -146,7 +148,7 @@ public class PropertiesPage extends PropertyPage implements IWorkbenchPropertyPa
 		// Finally, initialize all properties.
 		//
 		this.initializeValues();
-		this.m_bindingContext = this.initDataBindings();
+		this.initDataBindings();
 
 		return this.comp;
 	}
@@ -259,8 +261,7 @@ public class PropertiesPage extends PropertyPage implements IWorkbenchPropertyPa
 	}
 
 	/**
-	 * Add the file specified in the {@link #libraryPathSelector} to the
-	 * {@link #libraryPathList}.
+	 * Add the file specified in the {@link #libraryPathSelector} to the {@link #libraryPathList}.
 	 */
 	private void handleAddLibrarySelected() {
 
@@ -283,8 +284,9 @@ public class PropertiesPage extends PropertyPage implements IWorkbenchPropertyPa
 
 		int selected = this.libraryPathList.getSelectionIndex();
 		this.libraryPathList.remove(this.libraryPathList.getSelectionIndices());
-		this.libraryPathList.select(selected > this.libraryPathList.getItemCount() - 1
-				? this.libraryPathList.getItemCount() - 1 : selected);
+		this.libraryPathList
+				.select(selected > this.libraryPathList.getItemCount() - 1 ? this.libraryPathList.getItemCount() - 1
+						: selected);
 
 		this.updateApplyButton();
 	}
@@ -340,6 +342,7 @@ public class PropertiesPage extends PropertyPage implements IWorkbenchPropertyPa
 	}
 
 	protected DataBindingContext initDataBindings() {
+
 		DataBindingContext bindingContext = new DataBindingContext();
 		//
 		IObservableValue<?> observeEnabledDirectoryEditorCompositeObserveWidget = WidgetProperties.enabled()

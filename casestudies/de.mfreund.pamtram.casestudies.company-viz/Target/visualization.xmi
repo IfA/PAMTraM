@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<visualization:VisualizationModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:visualization="http://de.tud.et.ifa.agtele.visualization" name="IfA">
+  <panels name="Christopher Martin">
+    <content name="Name" value="Christopher Martin"/>
+    <content name="Phone" value="32237"/>
+    <content name="Email" value="christopher.martin@tu-dresden.de"/>
+  </panels>
+  <panels name="Matthias Freund">
+    <content name="Name" value="Matthias Freund"/>
+    <content name="Phone" value="32237"/>
+    <content name="Email" value="matthias.freund@tu-dresden.de"/>
+  </panels>
+  <panels name="Hager Back Wheel Axis">
+    <content name="Name" value="Hager Back Wheel Axis"/>
+    <content name="Description" value="Fancy Axis"/>
+    <content name="Production Time" value="2 Days"/>
+    <content name="Available Items" value="15"/>
+    <content name="Total Weight " value="1337"/>
+    <content name="Tyre Dimensions" value="185/R15"/>
+  </panels>
+  <panels name="Brakesystem Hannelore">
+    <content name="Name" value="Brakesystem Hannelore"/>
+    <content name="Description" value="Best Brakesystem ever"/>
+    <content name="Production Time" value="5 Days"/>
+    <content name="Available Items" value="7"/>
+    <content name="Total Weight " value="1337"/>
+    <content name="Maximum Break Pressure" value="100bar"/>
+    <content name="Maximum Velocity" value="188km/h"/>
+    <content name="Ventilated" value="true"/>
+  </panels>
+  <panels name="Rear View Mirror Roundview">
+    <content name="Name" value="Rear View Mirror Roundview"/>
+    <content name="Description" value="The Rear View Mirror for foggy days"/>
+    <content name="Production Time" value="1 Days"/>
+    <content name="Available Items" value="5"/>
+    <content name="Automatic Dimming" value="true"/>
+  </panels>
+  <navigationFlows name="Hager Back Wheel Axis_to_Christopher Martin" source="//@panels.2" target="//@panels.0">
+    <signals name="Verantwortlicher Ingenieur"/>
+  </navigationFlows>
+  <navigationFlows name="Brakesystem Hannelore_to_Matthias Freund" source="//@panels.3" target="//@panels.1">
+    <signals name="Verantwortlicher Ingenieur"/>
+  </navigationFlows>
+  <navigationFlows name="Rear View Mirror Roundview_to_Christopher Martin" source="//@panels.4" target="//@panels.0">
+    <signals name="Verantwortlicher Ingenieur"/>
+  </navigationFlows>
+  <navigationFlows name="Rear View Mirror Roundview_to_Matthias Freund" source="//@panels.4" target="//@panels.1">
+    <signals name="Verantwortlicher Ingenieur"/>
+  </navigationFlows>
+</visualization:VisualizationModel>

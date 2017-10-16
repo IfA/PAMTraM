@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<workflow>
+
+	<!-- This is a workflow file to invoke the transformaion. -->
+	
+	<property name="modelfile" value="visualization.xmi" />
+	<property name="metamodelfile" value="visualization.ecore" />
+	
+	
+	
+	<bean class="org.eclipse.emf.mwe.utils.StandaloneSetup" platformUri=".."/>
+	<property name="src-gen" value="./visualization2html/html" />
+	
+	<!-- reads the geraetekatalog model file -->
+	<component class="org.eclipse.emf.mwe.utils.Reader">
+		<uri value="./Target/${modelfile}" />
+		<firstElementOnly value="true" />
+		<modelSlot value="model" />
+	</component>
+
+	<!-- xpand transformation -->
+	<component class="org.eclipse.xpand2.Generator">
+		
+		<!-- Specify the geraetekatalog metamodel file --> 
+		<metaModel class="org.eclipse.xtend.typesystem.emf.EmfMetaModel">
+			<metaModelFile value="./metamodel/${metamodelfile}" />
+		</metaModel>
+		
+		<!-- the actual transformation -->
+		<expand value="visualization2html::visualization2html::root FOR model" />
+		
+		<!-- define the outlet path -->
+		<outlet path="${src-gen}">		
+		
+			<!-- make beautiful html -->
+			<postprocessor class="org.eclipse.xtend.typesystem.xsd.XMLBeautifier">
+				<fileExtensions value=".xml, .html" />
+			</postprocessor>
+		</outlet>
+	</component>
+
+</workflow>

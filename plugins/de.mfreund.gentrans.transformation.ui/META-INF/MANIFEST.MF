@@ -18,3 +18,4 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.mfreund.gentrans.transformation,
  de.mfreund.gentrans.transformation.logging
 Bundle-ActivationPolicy: lazy
+Bundle-Vendor: Matthias Freund, Institute of Automation, TU Dresden

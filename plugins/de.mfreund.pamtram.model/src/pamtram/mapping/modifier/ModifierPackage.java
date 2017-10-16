@@ -22,6 +22,9 @@ import pamtram.PamtramPackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
+ * <!-- begin-model-doc -->
+ * This package contains elements related to the modification of values (e.g. determined values for a TargetSection attribute). 
+ * <!-- end-model-doc -->
  * @see pamtram.mapping.modifier.ModifierFactory
  * @model kind="package"
  * @generated

@@ -13,13 +13,26 @@
 	<patternset id="autoprobe.includes"
 			includes="
 				.project,
+				autoprobe.launch,
 				metamodel/stgml.xsd_original.ecore,
 				metamodel/stgml.xsd_enhanced.ecore,
 				Pamtram/lib/**,
+				Pamtram/source/**,
 				Pamtram/STGML2Movisa_enhanced.pamtram,
-				Pamtram/STGML2Movisa_original.pamtram,
 				Source/beispiel_ver_0_2_3.xml,
 				Target/out.movisa.xmi"/>
+	
+	<!-- The files to include in the 'AutoProBe-simplified-diss' example -->
+	<patternset id="autoprobe-simplified-diss.includes"
+			includes="
+				.project,
+				autoprobe-simplified-diss.launch,
+				metamodel/stgml-simplified.ecore,
+				metamodel/movisa-simplified.ecore,
+				Pamtram/stgml-to-movisa-simplified.pamtram,
+				Pamtram/stgml-to-movisa-simplified.pamtram-basic-mappings,
+				Source/SampleStateModel.xmi,
+				Target/SampleVisualizationModel.xmi"/>
 	
 	<!-- The files to include in the 'ctt-aminolight' example -->
 	<patternset id="ctt-aminolight.includes"
@@ -29,7 +42,8 @@
 				metamodel/AMINO-UI.ecore,
 				metamodel/ctt.xsd.ecore,
 				metamodel/platform.ecore,
-				Pamtram/ctt-aminolight.pamtram,
+				Pamtram/ctt-aminolight-simple-with-fixed-animation-values.pamtram,
+				Pamtram/ctt-aminolight-simple-with-variable-animation-values.pamtram,
 				Source/distanceMeassurement.xml,
 				Source/Smartphone.xmi,
 				Source/SmartphoneWithoutSound.xmi,
@@ -56,6 +70,7 @@
 				metamodel/movisa.ecore,
 				metamodel/Variablen.ecore,
 				Pamtram/excel-movisa-tdp.pamtram,
+				Pamtram/source/**,
 				Source/Variablen.xmi,
 				Target"/>
 	
@@ -73,15 +88,13 @@
 	<patternset id="w3caui-movisa.includes"
 		includes="
 			.project,
-			w3caui-movisa.launch,
-			w3caui-movisa-context-Kleinversuchsanlage01-withMappingConditions.launch,
-			w3caui-movisa-context-Kleinversuchsanlage02-withMappingConditions.launch,
+			w3caui-movisa (platform model 1).launch,
+			w3caui-movisa (platform model 2).launch,
+			w3caui-movisa (platform model 3).launch,
 			metamodel/aui.xsd.ecore,
 			metamodel/movisa.ecore,
 			metamodel/platform_metamodel.ecore,
 			Pamtram/w3caui-movisa.pamtram,
-			Pamtram/w3caui-movisa01.pamtram,
-			Pamtram/w3caui-movisa02.pamtram,
 			Source/allgemeinesModell.xmi,
 			Source/Kleinversuchsanlage.xmi,
 			Source/PMbase1.xmi,
@@ -90,13 +103,39 @@
 			Target/Kleinversuchsanlage.movisa.xmi,
 			Target/allgemeinesModell.movisa.xmi"/>
 	
+	<!-- The files to include in the 'company-viz' example -->
+	<patternset id="company-viz.includes"
+		includes="
+			.project,
+			.classpath,
+			company-viz.launch,
+			build.properties,
+			metamodel/company.ecore,
+			metamodel/company.aird,
+			metamodel/visualization.ecore,
+			metamodel/visualization.aird,
+			visualization2html/visualization2html.xpt,
+			visualization2html/visualization2html.mwe,
+			visualization2html/helper.ext,
+			META-INF/MANIFEST.MF,
+			Pamtram/company-viz.pamtram,
+			Source/IfA.xmi,
+			Target/visualization.xmi"/>
+	
 	
 	<!-- Zip the PAMTraM examples -->
 	<target name="zip.examples" depends="init">
+		
 		<!-- AutoProBe -->
 		<eclipse.convertPath resourcePath="de.mfreund.pamtram.casestudies.autoprobe" property="projectDir"/>
 		<zip destfile="zips/autoprobe.zip" basedir="${projectDir}">
 			<patternset refid="autoprobe.includes"/>
+		</zip>
+		
+		<!-- AutoProBe -->
+		<eclipse.convertPath resourcePath="de.mfreund.pamtram.casestudies.autoprobe-simplified-diss" property="projectDir"/>
+		<zip destfile="zips/autoprobe-simplified-diss.zip" basedir="${projectDir}">
+			<patternset refid="autoprobe-simplified-diss.includes"/>
 		</zip>
 		
 		<!-- CTT-Aminolight -->
@@ -127,6 +166,12 @@
 		<eclipse.convertPath resourcePath="de.mfreund.pamtram.casestudies.w3caui-movisa" property="projectDir"/>
 		<zip destfile="zips/w3caui-movisa.zip" basedir="${projectDir}">
 			<patternset refid="w3caui-movisa.includes"/>
+		</zip>
+		
+		<!-- W3CAUI-Movisa -->
+		<eclipse.convertPath resourcePath="de.mfreund.pamtram.casestudies.company-viz" property="projectDir"/>
+		<zip destfile="zips/company-viz.zip" basedir="${projectDir}">
+			<patternset refid="company-viz.includes"/>
 		</zip>
 		
 	</target>

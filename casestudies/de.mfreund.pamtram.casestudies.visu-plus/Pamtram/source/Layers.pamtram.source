@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="ASCII"?>
+<pamtram:SourceSectionModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmi:id="_FCE34F5SEeebSvNNZJQHVw" name="Layers">
+  <metaModelPackage href="http://gfai.de/stgml.xsd#/"/>
+  <sections xsi:type="source:SourceSection" xmi:id="_FCE34V5SEeebSvNNZJQHVw" name="sourceContainer">
+    <eClass href="http://gfai.de/stgml.xsd#//ScxmlType"/>
+    <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_FCE34l5SEeebSvNNZJQHVw" name="rootStateRef">
+      <value xsi:type="source:SourceSectionClass" xmi:id="_FCE3415SEeebSvNNZJQHVw" name="RootState">
+        <eClass href="http://gfai.de/stgml.xsd#//State"/>
+        <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_FCE35F5SEeebSvNNZJQHVw" name="initial">
+          <value xsi:type="source:SourceSectionClass" xmi:id="_FCE35V5SEeebSvNNZJQHVw" name="Initial">
+            <eClass href="http://gfai.de/stgml.xsd#//Initial"/>
+            <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_FCE35l5SEeebSvNNZJQHVw" name="transition">
+              <value xsi:type="source:SourceSectionClass" xmi:id="_FCE3515SEeebSvNNZJQHVw" name="initial Transition">
+                <eClass href="http://gfai.de/stgml.xsd#//Transition"/>
+                <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCE36F5SEeebSvNNZJQHVw" name="target (mainPanelName)">
+                  <attribute href="http://gfai.de/stgml.xsd#//Transition/target"/>
+                </attributes>
+              </value>
+              <eReference href="http://gfai.de/stgml.xsd#//Initial/transition"/>
+            </references>
+          </value>
+          <eReference href="http://gfai.de/stgml.xsd#//State/initial"/>
+        </references>
+        <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_FCE36V5SEeebSvNNZJQHVw" name="transition">
+          <value xsi:type="source:SourceSectionClass" xmi:id="_FCE36l5SEeebSvNNZJQHVw" name="Transition" cardinality="ZERO__INFINITY">
+            <eClass href="http://gfai.de/stgml.xsd#//Transition"/>
+            <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCE3615SEeebSvNNZJQHVw" name="rootStateEvent">
+              <valueConstraints xsi:type="constraint:EqualityConstraint" xmi:id="_FCE37F5SEeebSvNNZJQHVw" name="event == &quot;BACK&quot;" type="FORBIDDEN" expression="BACK"/>
+              <attribute href="http://gfai.de/stgml.xsd#//Transition/event"/>
+            </attributes>
+            <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCE37V5SEeebSvNNZJQHVw" name="rootStateTarget">
+              <attribute href="http://gfai.de/stgml.xsd#//Transition/target"/>
+            </attributes>
+          </value>
+          <value xsi:type="source:SourceSectionClass" xmi:id="_FCE37l5SEeebSvNNZJQHVw" name="Transition Rest" cardinality="ZERO__INFINITY">
+            <eClass href="http://gfai.de/stgml.xsd#//Transition"/>
+            <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCE3715SEeebSvNNZJQHVw" name="rootStateEvent">
+              <valueConstraints xsi:type="constraint:EqualityConstraint" xmi:id="_FCE38F5SEeebSvNNZJQHVw" name="event !== &quot;BACK&quot;" expression="BACK"/>
+              <attribute href="http://gfai.de/stgml.xsd#//Transition/event"/>
+            </attributes>
+          </value>
+          <eReference href="http://gfai.de/stgml.xsd#//State/transition"/>
+        </references>
+        <references xsi:type="source:SourceSectionCrossReference" xmi:id="_FCE38V5SEeebSvNNZJQHVw" name="state" value="_FCFfBF5SEeebSvNNZJQHVw">
+          <eReference href="http://gfai.de/stgml.xsd#//State/state"/>
+        </references>
+        <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_FCFe8F5SEeebSvNNZJQHVw" name="loginState">
+          <value xsi:type="source:SourceSectionClass" xmi:id="_FCFe8V5SEeebSvNNZJQHVw" name="LoginState" cardinality="ZERO__INFINITY">
+            <eClass href="http://gfai.de/stgml.xsd#//State"/>
+            <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_FCFe8l5SEeebSvNNZJQHVw" name="transition">
+              <value xsi:type="source:SourceSectionClass" xmi:id="_FCFe815SEeebSvNNZJQHVw" name="initial Transition">
+                <eClass href="http://gfai.de/stgml.xsd#//Transition"/>
+                <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCFe9F5SEeebSvNNZJQHVw" name="target (mainPanelName)">
+                  <attribute href="http://gfai.de/stgml.xsd#//Transition/target"/>
+                </attributes>
+                <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCFe9V5SEeebSvNNZJQHVw" name="event">
+                  <valueConstraints xsi:type="constraint:EqualityConstraint" xmi:id="_FCFe9l5SEeebSvNNZJQHVw" name="Login" expression="Login"/>
+                  <attribute href="http://gfai.de/stgml.xsd#//Transition/event"/>
+                </attributes>
+              </value>
+              <eReference href="http://gfai.de/stgml.xsd#//State/transition"/>
+            </references>
+            <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCFe915SEeebSvNNZJQHVw" name="id">
+              <valueConstraints xsi:type="constraint:EqualityConstraint" xmi:id="_FCFe-F5SEeebSvNNZJQHVw" name="LOGIN" expression="LOGIN"/>
+              <attribute href="http://gfai.de/stgml.xsd#//State/id"/>
+            </attributes>
+          </value>
+          <eReference href="http://gfai.de/stgml.xsd#//State/state"/>
+        </references>
+      </value>
+      <eReference href="http://gfai.de/stgml.xsd#//ScxmlType/state"/>
+    </references>
+    <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_FCFe-V5SEeebSvNNZJQHVw" name="configuration">
+      <value xsi:type="source:SourceSectionClass" xmi:id="_FCFe-l5SEeebSvNNZJQHVw" name="Configuration">
+        <eClass href="http://gfai.de/stgml.xsd#//ConfigurationType"/>
+      </value>
+      <eReference href="http://gfai.de/stgml.xsd#//ScxmlType/configuration"/>
+    </references>
+    <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_FCFe-15SEeebSvNNZJQHVw" name="vis">
+      <value xsi:type="source:SourceSectionClass" xmi:id="_FCFe_F5SEeebSvNNZJQHVw" name="Visualization">
+        <eClass href="http://gfai.de/stgml.xsd#//Visualization"/>
+        <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCFe_V5SEeebSvNNZJQHVw" name="xmax">
+          <attribute href="http://gfai.de/stgml.xsd#//Visualization/xmax"/>
+        </attributes>
+        <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCFe_l5SEeebSvNNZJQHVw" name="xmin">
+          <attribute href="http://gfai.de/stgml.xsd#//Visualization/xmin"/>
+        </attributes>
+        <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCFe_15SEeebSvNNZJQHVw" name="ymax">
+          <attribute href="http://gfai.de/stgml.xsd#//Visualization/ymax"/>
+        </attributes>
+        <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCFfAF5SEeebSvNNZJQHVw" name="ymin">
+          <attribute href="http://gfai.de/stgml.xsd#//Visualization/ymin"/>
+        </attributes>
+        <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCFfAV5SEeebSvNNZJQHVw" name="unitspermeter">
+          <attribute href="http://gfai.de/stgml.xsd#//Visualization/unitspermeter"/>
+        </attributes>
+      </value>
+      <eReference href="http://gfai.de/stgml.xsd#//ScxmlType/visualization"/>
+    </references>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCFfAl5SEeebSvNNZJQHVw" name="SCXMLName">
+      <attribute href="http://gfai.de/stgml.xsd#//ScxmlType/name"/>
+    </attributes>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCFfA15SEeebSvNNZJQHVw" name="SCXMLVersion">
+      <attribute href="http://gfai.de/stgml.xsd#//ScxmlType/version"/>
+    </attributes>
+  </sections>
+  <sections xsi:type="source:SourceSection" xmi:id="_FCFfBF5SEeebSvNNZJQHVw" name="State" cardinality="ZERO__INFINITY">
+    <eClass href="http://gfai.de/stgml.xsd#//State"/>
+    <references xsi:type="source:SourceSectionCrossReference" xmi:id="_FCFfBV5SEeebSvNNZJQHVw" name="transition" value="_FCGGAV5SEeebSvNNZJQHVw _FCGGBV5SEeebSvNNZJQHVw">
+      <eReference href="http://gfai.de/stgml.xsd#//State/transition"/>
+    </references>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCFfBl5SEeebSvNNZJQHVw" name="id">
+      <valueConstraints xsi:type="constraint:EqualityConstraint" xmi:id="_FCGGAF5SEeebSvNNZJQHVw" name="LOGIN" type="FORBIDDEN" expression="LOGIN"/>
+      <attribute href="http://gfai.de/stgml.xsd#//State/id"/>
+    </attributes>
+  </sections>
+  <sections xsi:type="source:SourceSection" xmi:id="_FCGGAV5SEeebSvNNZJQHVw" name="Transition" cardinality="ZERO__INFINITY" container="_FCFfBF5SEeebSvNNZJQHVw">
+    <eClass href="http://gfai.de/stgml.xsd#//Transition"/>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCGGAl5SEeebSvNNZJQHVw" name="Event">
+      <attribute href="http://gfai.de/stgml.xsd#//Transition/event"/>
+    </attributes>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCGGA15SEeebSvNNZJQHVw" name="Target">
+      <valueConstraints xsi:type="constraint:EqualityConstraint" xmi:id="_FCGGBF5SEeebSvNNZJQHVw" name="LOGIN" type="FORBIDDEN" expression="LOGIN"/>
+      <attribute href="http://gfai.de/stgml.xsd#//Transition/target"/>
+    </attributes>
+  </sections>
+  <sections xsi:type="source:SourceSection" xmi:id="_FCGGBV5SEeebSvNNZJQHVw" name="LoginTransition" cardinality="ZERO__INFINITY" container="_FCFfBF5SEeebSvNNZJQHVw">
+    <eClass href="http://gfai.de/stgml.xsd#//Transition"/>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCGGBl5SEeebSvNNZJQHVw" name="Event">
+      <attribute href="http://gfai.de/stgml.xsd#//Transition/event"/>
+    </attributes>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCGGB15SEeebSvNNZJQHVw" name="Target">
+      <valueConstraints xsi:type="constraint:EqualityConstraint" xmi:id="_FCGGCF5SEeebSvNNZJQHVw" name="LOGIN" expression="LOGIN"/>
+      <attribute href="http://gfai.de/stgml.xsd#//Transition/target"/>
+    </attributes>
+  </sections>
+  <sections xsi:type="source:SourceSection" xmi:id="_FCGGCV5SEeebSvNNZJQHVw" name="Layer" container="_FCFe_F5SEeebSvNNZJQHVw">
+    <eClass href="http://gfai.de/stgml.xsd#//Layer"/>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCGGCl5SEeebSvNNZJQHVw" name="layerName">
+      <valueConstraints xsi:type="constraint:EqualityConstraint" xmi:id="_FCGGC15SEeebSvNNZJQHVw" name="LOGIN" type="FORBIDDEN" expression="LOGIN"/>
+      <attribute href="http://gfai.de/stgml.xsd#//Layer/name"/>
+    </attributes>
+  </sections>
+</pamtram:SourceSectionModel>

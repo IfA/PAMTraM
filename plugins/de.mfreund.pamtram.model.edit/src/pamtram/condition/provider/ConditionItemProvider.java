@@ -2,7 +2,6 @@
  */
 package pamtram.condition.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -14,23 +13,21 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import pamtram.PamtramPackage;
+
 import pamtram.condition.Condition;
 import pamtram.condition.ConditionPackage;
 import pamtram.structure.StructureFactory;
 
 /**
  * This is the item provider adapter for a {@link pamtram.condition.Condition} object.
- * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> <!-- end-user-doc -->
  * @generated
  */
-public class ConditionItemProvider
-	extends ComplexConditionItemProvider {
+public class ConditionItemProvider extends ComplexConditionItemProvider {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	public ConditionItemProvider(AdapterFactory adapterFactory) {
@@ -38,9 +35,9 @@ public class ConditionItemProvider
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -56,9 +53,9 @@ public class ConditionItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Comparator feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Comparator feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	protected void addComparatorPropertyDescriptor(Object object) {
@@ -67,58 +64,59 @@ public class ConditionItemProvider
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_Condition_comparator_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Condition_comparator_feature", "_UI_Condition_type"),
+				 getString("_UI_Condition_comparator_description"),
 				 ConditionPackage.Literals.CONDITION__COMPARATOR,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
+				 getString("_UI_BasicPropertyCategory"),
 				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Target feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
+	 * This adds a property descriptor for the Target feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
+	 * @generated NOT
 	 */
 	protected void addTargetPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Condition_target_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Condition_target_feature", "_UI_Condition_type"),
-				 ConditionPackage.Literals.CONDITION__TARGET,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+
+		String description = this.getString("_UI_Condition_target_description");
+
+		if (object instanceof pamtram.condition.AttributeCondition) {
+			description = this.getString("_UI_AttributeCondition_target_description");
+		} else if (object instanceof pamtram.condition.CardinalityCondition) {
+			description = this.getString("_UI_CardinalityCondition_target_description");
+		} else if (object instanceof pamtram.condition.ApplicationDependency) {
+			description = this.getString("_UI_ApplicationDependency_target_description");
+		}
+
+		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+				this.getString("_UI_Condition_target_feature"), description,
+				ConditionPackage.Literals.CONDITION__TARGET, true, false, true, null,
+				this.getString("_UI_BasicPropertyCategory"), null));
 	}
 
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(PamtramPackage.Literals.INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS);
+			childrenFeatures.add(ConditionPackage.Literals.CONDITION__INSTANCE_SELECTORS);
 		}
 		return childrenFeatures;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -130,31 +128,33 @@ public class ConditionItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Value feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
+	 * This adds a property descriptor for the Value feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
+	 * @generated NOT
 	 */
 	protected void addValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Condition_value_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Condition_value_feature", "_UI_Condition_type"),
-				 ConditionPackage.Literals.CONDITION__VALUE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
+
+		String description = this.getString("_UI_Condition_value_description");
+
+		if (object instanceof pamtram.condition.AttributeCondition) {
+			description = this.getString("_UI_AttributeCondition_value_description");
+		} else if (object instanceof pamtram.condition.CardinalityCondition) {
+			description = this.getString("_UI_CardinalityCondition_value_description");
+		} else if (object instanceof pamtram.condition.ApplicationDependency) {
+			description = this.getString("_UI_ApplicationDependency_value_description");
+		}
+
+		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+				this.getString("_UI_Condition_value_feature"), description, ConditionPackage.Literals.CONDITION__VALUE,
+				true, false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				this.getString("_UI_BasicPropertyCategory"), null));
 	}
 
 	/**
 	 * This returns Condition.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -164,8 +164,8 @@ public class ConditionItemProvider
 
 	/**
 	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -174,9 +174,9 @@ public class ConditionItemProvider
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the label styled text for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -194,8 +194,8 @@ public class ConditionItemProvider
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -215,10 +215,10 @@ public class ConditionItemProvider
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
+	 * describing the children that can be created under this object. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -227,8 +227,8 @@ public class ConditionItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(PamtramPackage.Literals.INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS,
-				 StructureFactory.eINSTANCE.createInstanceSelector()));
+				(ConditionPackage.Literals.CONDITION__INSTANCE_SELECTORS,
+				 StructureFactory.eINSTANCE.createSourceInstanceSelector()));
 	}
 
 }

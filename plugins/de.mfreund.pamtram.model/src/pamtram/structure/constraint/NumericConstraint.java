@@ -8,6 +8,11 @@ package pamtram.structure.constraint;
  * A representation of the model object '<em><b>Numeric Constraint</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A ValueConstraint type that can be used for numeric attribute values. It (numerically) compares the determined attribute value to the calculated reference value.
+ * 
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -29,6 +34,9 @@ public interface NumericConstraint extends SingleReferenceValueConstraint {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The comparison type used to (numerically) compare the actual attribute value to the determined reference value.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Operator Type</em>' attribute.
 	 * @see pamtram.structure.constraint.NumericConstraintOperatorType
 	 * @see #setOperatorType(NumericConstraintOperatorType)

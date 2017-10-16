@@ -21,6 +21,11 @@ import pamtram.PamtramPackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
+ * <!-- begin-model-doc -->
+ * This package contains all elements related to the usage of library elements as TargetSections resp. right-hand side of a mapping.
+ * <br />
+ * The library elements need to be based on the generic library meta-model 'GenLibrary' (or one of its specializations for a specific UI meta-model).
+ * <!-- end-model-doc -->
  * @see pamtram.structure.library.LibraryFactory
  * @model kind="package"
  * @generated
@@ -398,13 +403,13 @@ public interface LibraryPackage extends EPackage {
 	int LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY = 2;
 
 	/**
-	 * The feature id for the '<em><b>Path</b></em>' containment reference.
+	 * The feature id for the '<em><b>Classpath</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIBRARY_ENTRY__PATH = 3;
+	int LIBRARY_ENTRY__CLASSPATH = 3;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' containment reference.
@@ -614,15 +619,15 @@ public interface LibraryPackage extends EPackage {
 	EReference getLibraryEntry_OriginalLibraryEntry();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link pamtram.structure.library.LibraryEntry#getPath <em>Path</em>}'.
+	 * Returns the meta object for the containment reference '{@link pamtram.structure.library.LibraryEntry#getClasspath <em>Classpath</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Path</em>'.
-	 * @see pamtram.structure.library.LibraryEntry#getPath()
+	 * @return the meta object for the containment reference '<em>Classpath</em>'.
+	 * @see pamtram.structure.library.LibraryEntry#getClasspath()
 	 * @see #getLibraryEntry()
 	 * @generated
 	 */
-	EReference getLibraryEntry_Path();
+	EReference getLibraryEntry_Classpath();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link pamtram.structure.library.LibraryEntry#getId <em>Id</em>}'.
@@ -810,12 +815,12 @@ public interface LibraryPackage extends EPackage {
 		EReference LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY = eINSTANCE.getLibraryEntry_OriginalLibraryEntry();
 
 		/**
-		 * The meta object literal for the '<em><b>Path</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Classpath</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LIBRARY_ENTRY__PATH = eINSTANCE.getLibraryEntry_Path();
+		EReference LIBRARY_ENTRY__CLASSPATH = eINSTANCE.getLibraryEntry_Classpath();
 
 		/**
 		 * The meta object literal for the '<em><b>Id</b></em>' containment reference feature.

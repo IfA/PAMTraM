@@ -9,10 +9,10 @@ import java.util.stream.Stream;
 
 import org.eclipse.emf.ecore.EClass;
 
-import de.mfreund.pamtram.util.NullComparator;
 import pamtram.structure.constraint.ConstraintPackage;
 import pamtram.structure.constraint.EqualityConstraint;
 import pamtram.structure.constraint.ValueConstraintType;
+import pamtram.util.NullComparator;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Equality Matcher</b></em>'. <!-- end-user-doc

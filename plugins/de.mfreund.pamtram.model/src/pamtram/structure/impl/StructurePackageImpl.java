@@ -16,19 +16,24 @@ import pamtram.condition.ConditionPackage;
 import pamtram.condition.impl.ConditionPackageImpl;
 import pamtram.impl.PamtramPackageImpl;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.ExtendedPackage;
+import pamtram.mapping.extended.impl.ExtendedPackageImpl;
 import pamtram.mapping.impl.MappingPackageImpl;
 import pamtram.mapping.modifier.ModifierPackage;
 import pamtram.mapping.modifier.impl.ModifierPackageImpl;
-import pamtram.structure.ExternalModifiedAttributeElementType;
-import pamtram.structure.GlobalModifiedAttributeElementType;
+import pamtram.structure.ExternalDynamicSourceElement;
+import pamtram.structure.GlobalDynamicSourceElement;
 import pamtram.structure.InstanceSelector;
 import pamtram.structure.InstanceSelectorExternalSourceElement;
+import pamtram.structure.InstanceSelectorGlobalSourceElement;
 import pamtram.structure.InstanceSelectorSourceElement;
 import pamtram.structure.InstanceSelectorSourceInterface;
-import pamtram.structure.LocalModifiedAttributeElementType;
-import pamtram.structure.ModifiedAttributeElementType;
+import pamtram.structure.LocalDynamicSourceElement;
+import pamtram.structure.DynamicSourceElement;
+import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.StructureFactory;
 import pamtram.structure.StructurePackage;
+import pamtram.structure.TargetInstanceSelector;
 import pamtram.structure.constraint.ConstraintPackage;
 import pamtram.structure.constraint.impl.ConstraintPackageImpl;
 import pamtram.structure.generic.GenericPackage;
@@ -60,6 +65,20 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass sourceInstanceSelectorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass targetInstanceSelectorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass instanceSelectorSourceInterfaceEClass = null;
 
 	/**
@@ -81,28 +100,35 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass modifiedAttributeElementTypeEClass = null;
+	private EClass instanceSelectorGlobalSourceElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass localModifiedAttributeElementTypeEClass = null;
+	private EClass dynamicSourceElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass externalModifiedAttributeElementTypeEClass = null;
+	private EClass localDynamicSourceElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass globalModifiedAttributeElementTypeEClass = null;
+	private EClass externalDynamicSourceElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass globalDynamicSourceElementEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -163,6 +189,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		ConditionPackageImpl theConditionPackage = (ConditionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI) instanceof ConditionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI) : ConditionPackage.eINSTANCE);
 		MappingPackageImpl theMappingPackage = (MappingPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) instanceof MappingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) : MappingPackage.eINSTANCE);
 		ModifierPackageImpl theModifierPackage = (ModifierPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ModifierPackage.eNS_URI) instanceof ModifierPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ModifierPackage.eNS_URI) : ModifierPackage.eINSTANCE);
+		ExtendedPackageImpl theExtendedPackage = (ExtendedPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ExtendedPackage.eNS_URI) instanceof ExtendedPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ExtendedPackage.eNS_URI) : ExtendedPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theStructurePackage.createPackageContents();
@@ -175,6 +202,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		theConditionPackage.createPackageContents();
 		theMappingPackage.createPackageContents();
 		theModifierPackage.createPackageContents();
+		theExtendedPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theStructurePackage.initializePackageContents();
@@ -187,6 +215,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		theConditionPackage.initializePackageContents();
 		theMappingPackage.initializePackageContents();
 		theModifierPackage.initializePackageContents();
+		theExtendedPackage.initializePackageContents();
 
 		// Register package validator
 		EValidator.Registry.INSTANCE.put
@@ -220,17 +249,8 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInstanceSelector_Target() {
-		return (EReference)instanceSelectorEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getInstanceSelector_SourceElements() {
-		return (EReference)instanceSelectorEClass.getEStructuralFeatures().get(1);
+		return (EReference)instanceSelectorEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -240,6 +260,87 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 */
 	public EOperation getInstanceSelector__ValidateNoModifiedAttributeElementTypesInConditionModelConditions__DiagnosticChain_Map() {
 		return instanceSelectorEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getInstanceSelector__GetLocalSourceElements() {
+		return instanceSelectorEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getInstanceSelector__GetExternalSourceElements() {
+		return instanceSelectorEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSourceInstanceSelector() {
+		return sourceInstanceSelectorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSourceInstanceSelector_ReferenceAttribute() {
+		return (EReference)sourceInstanceSelectorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSourceInstanceSelector_TargetClass() {
+		return (EReference)sourceInstanceSelectorEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTargetInstanceSelector() {
+		return targetInstanceSelectorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTargetInstanceSelector_ReferenceAttribute() {
+		return (EReference)targetInstanceSelectorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTargetInstanceSelector_TargetClass() {
+		return (EReference)targetInstanceSelectorEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getTargetInstanceSelector__ValidateReferenceAttributeIsValid__DiagnosticChain_Map() {
+		return targetInstanceSelectorEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -274,8 +375,8 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getModifiedAttributeElementType() {
-		return modifiedAttributeElementTypeEClass;
+	public EClass getInstanceSelectorGlobalSourceElement() {
+		return instanceSelectorGlobalSourceElementEClass;
 	}
 
 	/**
@@ -283,8 +384,8 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getModifiedAttributeElementType_Source() {
-		return (EReference)modifiedAttributeElementTypeEClass.getEStructuralFeatures().get(0);
+	public EClass getDynamicSourceElement() {
+		return dynamicSourceElementEClass;
 	}
 
 	/**
@@ -292,8 +393,8 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModifiedAttributeElementType__GetMappingHintGroup() {
-		return modifiedAttributeElementTypeEClass.getEOperations().get(0);
+	public EReference getDynamicSourceElement_Source() {
+		return (EReference)dynamicSourceElementEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -301,8 +402,8 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getModifiedAttributeElementType__GetMapping() {
-		return modifiedAttributeElementTypeEClass.getEOperations().get(1);
+	public EOperation getDynamicSourceElement__GetMappingHintGroup() {
+		return dynamicSourceElementEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -310,8 +411,8 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getLocalModifiedAttributeElementType() {
-		return localModifiedAttributeElementTypeEClass;
+	public EOperation getDynamicSourceElement__GetMapping() {
+		return dynamicSourceElementEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -319,8 +420,8 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getLocalModifiedAttributeElementType__ValidateSourceAttributeMatchesSectionOrContainedSection__DiagnosticChain_Map() {
-		return localModifiedAttributeElementTypeEClass.getEOperations().get(0);
+	public EClass getLocalDynamicSourceElement() {
+		return localDynamicSourceElementEClass;
 	}
 
 	/**
@@ -328,8 +429,8 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getExternalModifiedAttributeElementType() {
-		return externalModifiedAttributeElementTypeEClass;
+	public EReference getLocalDynamicSourceElement_ReferenceMatchSpec() {
+		return (EReference)localDynamicSourceElementEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -337,8 +438,8 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalModifiedAttributeElementType__ValidateSourceAttributeMatchesContainerSection__DiagnosticChain_Map() {
-		return externalModifiedAttributeElementTypeEClass.getEOperations().get(0);
+	public EOperation getLocalDynamicSourceElement__ValidateSourceAttributeMatchesSectionOrContainedSection__DiagnosticChain_Map() {
+		return localDynamicSourceElementEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -346,8 +447,35 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getGlobalModifiedAttributeElementType() {
-		return globalModifiedAttributeElementTypeEClass;
+	public EClass getExternalDynamicSourceElement() {
+		return externalDynamicSourceElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getExternalDynamicSourceElement__ValidateSourceAttributeMatchesContainerSection__DiagnosticChain_Map() {
+		return externalDynamicSourceElementEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getGlobalDynamicSourceElement() {
+		return globalDynamicSourceElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGlobalDynamicSourceElement_InstanceSelectors() {
+		return (EReference)globalDynamicSourceElementEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -379,9 +507,19 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 
 		// Create classes and their features
 		instanceSelectorEClass = createEClass(INSTANCE_SELECTOR);
-		createEReference(instanceSelectorEClass, INSTANCE_SELECTOR__TARGET);
 		createEReference(instanceSelectorEClass, INSTANCE_SELECTOR__SOURCE_ELEMENTS);
 		createEOperation(instanceSelectorEClass, INSTANCE_SELECTOR___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP);
+		createEOperation(instanceSelectorEClass, INSTANCE_SELECTOR___GET_LOCAL_SOURCE_ELEMENTS);
+		createEOperation(instanceSelectorEClass, INSTANCE_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS);
+
+		sourceInstanceSelectorEClass = createEClass(SOURCE_INSTANCE_SELECTOR);
+		createEReference(sourceInstanceSelectorEClass, SOURCE_INSTANCE_SELECTOR__REFERENCE_ATTRIBUTE);
+		createEReference(sourceInstanceSelectorEClass, SOURCE_INSTANCE_SELECTOR__TARGET_CLASS);
+
+		targetInstanceSelectorEClass = createEClass(TARGET_INSTANCE_SELECTOR);
+		createEReference(targetInstanceSelectorEClass, TARGET_INSTANCE_SELECTOR__REFERENCE_ATTRIBUTE);
+		createEReference(targetInstanceSelectorEClass, TARGET_INSTANCE_SELECTOR__TARGET_CLASS);
+		createEOperation(targetInstanceSelectorEClass, TARGET_INSTANCE_SELECTOR___VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID__DIAGNOSTICCHAIN_MAP);
 
 		instanceSelectorSourceInterfaceEClass = createEClass(INSTANCE_SELECTOR_SOURCE_INTERFACE);
 
@@ -389,18 +527,22 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 
 		instanceSelectorExternalSourceElementEClass = createEClass(INSTANCE_SELECTOR_EXTERNAL_SOURCE_ELEMENT);
 
-		modifiedAttributeElementTypeEClass = createEClass(MODIFIED_ATTRIBUTE_ELEMENT_TYPE);
-		createEReference(modifiedAttributeElementTypeEClass, MODIFIED_ATTRIBUTE_ELEMENT_TYPE__SOURCE);
-		createEOperation(modifiedAttributeElementTypeEClass, MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING_HINT_GROUP);
-		createEOperation(modifiedAttributeElementTypeEClass, MODIFIED_ATTRIBUTE_ELEMENT_TYPE___GET_MAPPING);
+		instanceSelectorGlobalSourceElementEClass = createEClass(INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT);
 
-		localModifiedAttributeElementTypeEClass = createEClass(LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE);
-		createEOperation(localModifiedAttributeElementTypeEClass, LOCAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP);
+		dynamicSourceElementEClass = createEClass(DYNAMIC_SOURCE_ELEMENT);
+		createEReference(dynamicSourceElementEClass, DYNAMIC_SOURCE_ELEMENT__SOURCE);
+		createEOperation(dynamicSourceElementEClass, DYNAMIC_SOURCE_ELEMENT___GET_MAPPING_HINT_GROUP);
+		createEOperation(dynamicSourceElementEClass, DYNAMIC_SOURCE_ELEMENT___GET_MAPPING);
 
-		externalModifiedAttributeElementTypeEClass = createEClass(EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE);
-		createEOperation(externalModifiedAttributeElementTypeEClass, EXTERNAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP);
+		localDynamicSourceElementEClass = createEClass(LOCAL_DYNAMIC_SOURCE_ELEMENT);
+		createEReference(localDynamicSourceElementEClass, LOCAL_DYNAMIC_SOURCE_ELEMENT__REFERENCE_MATCH_SPEC);
+		createEOperation(localDynamicSourceElementEClass, LOCAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP);
 
-		globalModifiedAttributeElementTypeEClass = createEClass(GLOBAL_MODIFIED_ATTRIBUTE_ELEMENT_TYPE);
+		externalDynamicSourceElementEClass = createEClass(EXTERNAL_DYNAMIC_SOURCE_ELEMENT);
+		createEOperation(externalDynamicSourceElementEClass, EXTERNAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP);
+
+		globalDynamicSourceElementEClass = createEClass(GLOBAL_DYNAMIC_SOURCE_ELEMENT);
+		createEReference(globalDynamicSourceElementEClass, GLOBAL_DYNAMIC_SOURCE_ELEMENT__INSTANCE_SELECTORS);
 	}
 
 	/**
@@ -433,6 +575,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		TargetPackage theTargetPackage = (TargetPackage)EPackage.Registry.INSTANCE.getEPackage(TargetPackage.eNS_URI);
 		LibraryPackage theLibraryPackage = (LibraryPackage)EPackage.Registry.INSTANCE.getEPackage(LibraryPackage.eNS_URI);
 		PamtramPackage thePamtramPackage = (PamtramPackage)EPackage.Registry.INSTANCE.getEPackage(PamtramPackage.eNS_URI);
+		ExtendedPackage theExtendedPackage = (ExtendedPackage)EPackage.Registry.INSTANCE.getEPackage(ExtendedPackage.eNS_URI);
 		MappingPackage theMappingPackage = (MappingPackage)EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI);
 
 		// Add subpackages
@@ -443,190 +586,195 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		getESubpackages().add(theLibraryPackage);
 
 		// Create type parameters
-		ETypeParameter modifiedAttributeElementTypeEClass_S = addETypeParameter(modifiedAttributeElementTypeEClass, "S");
-		ETypeParameter modifiedAttributeElementTypeEClass_C = addETypeParameter(modifiedAttributeElementTypeEClass, "C");
-		ETypeParameter modifiedAttributeElementTypeEClass_R = addETypeParameter(modifiedAttributeElementTypeEClass, "R");
-		ETypeParameter modifiedAttributeElementTypeEClass_A = addETypeParameter(modifiedAttributeElementTypeEClass, "A");
-		ETypeParameter localModifiedAttributeElementTypeEClass_S = addETypeParameter(localModifiedAttributeElementTypeEClass, "S");
-		ETypeParameter localModifiedAttributeElementTypeEClass_C = addETypeParameter(localModifiedAttributeElementTypeEClass, "C");
-		ETypeParameter localModifiedAttributeElementTypeEClass_R = addETypeParameter(localModifiedAttributeElementTypeEClass, "R");
-		ETypeParameter localModifiedAttributeElementTypeEClass_A = addETypeParameter(localModifiedAttributeElementTypeEClass, "A");
-		ETypeParameter externalModifiedAttributeElementTypeEClass_S = addETypeParameter(externalModifiedAttributeElementTypeEClass, "S");
-		ETypeParameter externalModifiedAttributeElementTypeEClass_C = addETypeParameter(externalModifiedAttributeElementTypeEClass, "C");
-		ETypeParameter externalModifiedAttributeElementTypeEClass_R = addETypeParameter(externalModifiedAttributeElementTypeEClass, "R");
-		ETypeParameter externalModifiedAttributeElementTypeEClass_A = addETypeParameter(externalModifiedAttributeElementTypeEClass, "A");
-		ETypeParameter globalModifiedAttributeElementTypeEClass_S = addETypeParameter(globalModifiedAttributeElementTypeEClass, "S");
-		ETypeParameter globalModifiedAttributeElementTypeEClass_C = addETypeParameter(globalModifiedAttributeElementTypeEClass, "C");
-		ETypeParameter globalModifiedAttributeElementTypeEClass_R = addETypeParameter(globalModifiedAttributeElementTypeEClass, "R");
-		ETypeParameter globalModifiedAttributeElementTypeEClass_A = addETypeParameter(globalModifiedAttributeElementTypeEClass, "A");
+		ETypeParameter dynamicSourceElementEClass_S = addETypeParameter(dynamicSourceElementEClass, "S");
+		ETypeParameter dynamicSourceElementEClass_C = addETypeParameter(dynamicSourceElementEClass, "C");
+		ETypeParameter dynamicSourceElementEClass_R = addETypeParameter(dynamicSourceElementEClass, "R");
+		ETypeParameter dynamicSourceElementEClass_A = addETypeParameter(dynamicSourceElementEClass, "A");
+		ETypeParameter localDynamicSourceElementEClass_S = addETypeParameter(localDynamicSourceElementEClass, "S");
+		ETypeParameter localDynamicSourceElementEClass_C = addETypeParameter(localDynamicSourceElementEClass, "C");
+		ETypeParameter localDynamicSourceElementEClass_R = addETypeParameter(localDynamicSourceElementEClass, "R");
+		ETypeParameter localDynamicSourceElementEClass_A = addETypeParameter(localDynamicSourceElementEClass, "A");
+		ETypeParameter externalDynamicSourceElementEClass_S = addETypeParameter(externalDynamicSourceElementEClass, "S");
+		ETypeParameter externalDynamicSourceElementEClass_C = addETypeParameter(externalDynamicSourceElementEClass, "C");
+		ETypeParameter externalDynamicSourceElementEClass_R = addETypeParameter(externalDynamicSourceElementEClass, "R");
+		ETypeParameter externalDynamicSourceElementEClass_A = addETypeParameter(externalDynamicSourceElementEClass, "A");
+		ETypeParameter globalDynamicSourceElementEClass_S = addETypeParameter(globalDynamicSourceElementEClass, "S");
+		ETypeParameter globalDynamicSourceElementEClass_C = addETypeParameter(globalDynamicSourceElementEClass, "C");
+		ETypeParameter globalDynamicSourceElementEClass_R = addETypeParameter(globalDynamicSourceElementEClass, "R");
+		ETypeParameter globalDynamicSourceElementEClass_A = addETypeParameter(globalDynamicSourceElementEClass, "A");
+		ETypeParameter globalDynamicSourceElementEClass_InstanceSelectorType = addETypeParameter(globalDynamicSourceElementEClass, "InstanceSelectorType");
 
 		// Set bounds for type parameters
 		EGenericType g1 = createEGenericType(theGenericPackage.getSection());
-		EGenericType g2 = createEGenericType(modifiedAttributeElementTypeEClass_S);
+		EGenericType g2 = createEGenericType(dynamicSourceElementEClass_S);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(modifiedAttributeElementTypeEClass_C);
+		g2 = createEGenericType(dynamicSourceElementEClass_C);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(modifiedAttributeElementTypeEClass_R);
+		g2 = createEGenericType(dynamicSourceElementEClass_R);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(modifiedAttributeElementTypeEClass_A);
+		g2 = createEGenericType(dynamicSourceElementEClass_A);
 		g1.getETypeArguments().add(g2);
-		modifiedAttributeElementTypeEClass_S.getEBounds().add(g1);
+		dynamicSourceElementEClass_S.getEBounds().add(g1);
 		g1 = createEGenericType(theGenericPackage.getClass_());
-		g2 = createEGenericType(modifiedAttributeElementTypeEClass_S);
+		g2 = createEGenericType(dynamicSourceElementEClass_S);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(modifiedAttributeElementTypeEClass_C);
+		g2 = createEGenericType(dynamicSourceElementEClass_C);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(modifiedAttributeElementTypeEClass_R);
+		g2 = createEGenericType(dynamicSourceElementEClass_R);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(modifiedAttributeElementTypeEClass_A);
+		g2 = createEGenericType(dynamicSourceElementEClass_A);
 		g1.getETypeArguments().add(g2);
-		modifiedAttributeElementTypeEClass_C.getEBounds().add(g1);
+		dynamicSourceElementEClass_C.getEBounds().add(g1);
 		g1 = createEGenericType(theGenericPackage.getReference());
-		g2 = createEGenericType(modifiedAttributeElementTypeEClass_S);
+		g2 = createEGenericType(dynamicSourceElementEClass_S);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(modifiedAttributeElementTypeEClass_C);
+		g2 = createEGenericType(dynamicSourceElementEClass_C);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(modifiedAttributeElementTypeEClass_R);
+		g2 = createEGenericType(dynamicSourceElementEClass_R);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(modifiedAttributeElementTypeEClass_A);
+		g2 = createEGenericType(dynamicSourceElementEClass_A);
 		g1.getETypeArguments().add(g2);
-		modifiedAttributeElementTypeEClass_R.getEBounds().add(g1);
+		dynamicSourceElementEClass_R.getEBounds().add(g1);
 		g1 = createEGenericType(theGenericPackage.getAttribute());
-		g2 = createEGenericType(modifiedAttributeElementTypeEClass_S);
+		g2 = createEGenericType(dynamicSourceElementEClass_S);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(modifiedAttributeElementTypeEClass_C);
+		g2 = createEGenericType(dynamicSourceElementEClass_C);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(modifiedAttributeElementTypeEClass_R);
+		g2 = createEGenericType(dynamicSourceElementEClass_R);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(modifiedAttributeElementTypeEClass_A);
+		g2 = createEGenericType(dynamicSourceElementEClass_A);
 		g1.getETypeArguments().add(g2);
-		modifiedAttributeElementTypeEClass_A.getEBounds().add(g1);
+		dynamicSourceElementEClass_A.getEBounds().add(g1);
 		g1 = createEGenericType(theGenericPackage.getSection());
-		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_S);
+		g2 = createEGenericType(localDynamicSourceElementEClass_S);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_C);
+		g2 = createEGenericType(localDynamicSourceElementEClass_C);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_R);
+		g2 = createEGenericType(localDynamicSourceElementEClass_R);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_A);
+		g2 = createEGenericType(localDynamicSourceElementEClass_A);
 		g1.getETypeArguments().add(g2);
-		localModifiedAttributeElementTypeEClass_S.getEBounds().add(g1);
+		localDynamicSourceElementEClass_S.getEBounds().add(g1);
 		g1 = createEGenericType(theGenericPackage.getClass_());
-		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_S);
+		g2 = createEGenericType(localDynamicSourceElementEClass_S);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_C);
+		g2 = createEGenericType(localDynamicSourceElementEClass_C);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_R);
+		g2 = createEGenericType(localDynamicSourceElementEClass_R);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_A);
+		g2 = createEGenericType(localDynamicSourceElementEClass_A);
 		g1.getETypeArguments().add(g2);
-		localModifiedAttributeElementTypeEClass_C.getEBounds().add(g1);
+		localDynamicSourceElementEClass_C.getEBounds().add(g1);
 		g1 = createEGenericType(theGenericPackage.getReference());
-		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_S);
+		g2 = createEGenericType(localDynamicSourceElementEClass_S);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_C);
+		g2 = createEGenericType(localDynamicSourceElementEClass_C);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_R);
+		g2 = createEGenericType(localDynamicSourceElementEClass_R);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_A);
+		g2 = createEGenericType(localDynamicSourceElementEClass_A);
 		g1.getETypeArguments().add(g2);
-		localModifiedAttributeElementTypeEClass_R.getEBounds().add(g1);
+		localDynamicSourceElementEClass_R.getEBounds().add(g1);
 		g1 = createEGenericType(theGenericPackage.getAttribute());
-		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_S);
+		g2 = createEGenericType(localDynamicSourceElementEClass_S);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_C);
+		g2 = createEGenericType(localDynamicSourceElementEClass_C);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_R);
+		g2 = createEGenericType(localDynamicSourceElementEClass_R);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_A);
+		g2 = createEGenericType(localDynamicSourceElementEClass_A);
 		g1.getETypeArguments().add(g2);
-		localModifiedAttributeElementTypeEClass_A.getEBounds().add(g1);
+		localDynamicSourceElementEClass_A.getEBounds().add(g1);
 		g1 = createEGenericType(theGenericPackage.getSection());
-		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_S);
+		g2 = createEGenericType(externalDynamicSourceElementEClass_S);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_C);
+		g2 = createEGenericType(externalDynamicSourceElementEClass_C);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_R);
+		g2 = createEGenericType(externalDynamicSourceElementEClass_R);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_A);
+		g2 = createEGenericType(externalDynamicSourceElementEClass_A);
 		g1.getETypeArguments().add(g2);
-		externalModifiedAttributeElementTypeEClass_S.getEBounds().add(g1);
+		externalDynamicSourceElementEClass_S.getEBounds().add(g1);
 		g1 = createEGenericType(theGenericPackage.getClass_());
-		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_S);
+		g2 = createEGenericType(externalDynamicSourceElementEClass_S);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_C);
+		g2 = createEGenericType(externalDynamicSourceElementEClass_C);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_R);
+		g2 = createEGenericType(externalDynamicSourceElementEClass_R);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_A);
+		g2 = createEGenericType(externalDynamicSourceElementEClass_A);
 		g1.getETypeArguments().add(g2);
-		externalModifiedAttributeElementTypeEClass_C.getEBounds().add(g1);
+		externalDynamicSourceElementEClass_C.getEBounds().add(g1);
 		g1 = createEGenericType(theGenericPackage.getReference());
-		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_S);
+		g2 = createEGenericType(externalDynamicSourceElementEClass_S);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_C);
+		g2 = createEGenericType(externalDynamicSourceElementEClass_C);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_R);
+		g2 = createEGenericType(externalDynamicSourceElementEClass_R);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_A);
+		g2 = createEGenericType(externalDynamicSourceElementEClass_A);
 		g1.getETypeArguments().add(g2);
-		externalModifiedAttributeElementTypeEClass_R.getEBounds().add(g1);
+		externalDynamicSourceElementEClass_R.getEBounds().add(g1);
 		g1 = createEGenericType(theGenericPackage.getAttribute());
-		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_S);
+		g2 = createEGenericType(externalDynamicSourceElementEClass_S);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_C);
+		g2 = createEGenericType(externalDynamicSourceElementEClass_C);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_R);
+		g2 = createEGenericType(externalDynamicSourceElementEClass_R);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_A);
+		g2 = createEGenericType(externalDynamicSourceElementEClass_A);
 		g1.getETypeArguments().add(g2);
-		externalModifiedAttributeElementTypeEClass_A.getEBounds().add(g1);
+		externalDynamicSourceElementEClass_A.getEBounds().add(g1);
 		g1 = createEGenericType(theGenericPackage.getSection());
-		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_S);
+		g2 = createEGenericType(globalDynamicSourceElementEClass_S);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_C);
+		g2 = createEGenericType(globalDynamicSourceElementEClass_C);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_R);
+		g2 = createEGenericType(globalDynamicSourceElementEClass_R);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_A);
+		g2 = createEGenericType(globalDynamicSourceElementEClass_A);
 		g1.getETypeArguments().add(g2);
-		globalModifiedAttributeElementTypeEClass_S.getEBounds().add(g1);
+		globalDynamicSourceElementEClass_S.getEBounds().add(g1);
 		g1 = createEGenericType(theGenericPackage.getClass_());
-		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_S);
+		g2 = createEGenericType(globalDynamicSourceElementEClass_S);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_C);
+		g2 = createEGenericType(globalDynamicSourceElementEClass_C);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_R);
+		g2 = createEGenericType(globalDynamicSourceElementEClass_R);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_A);
+		g2 = createEGenericType(globalDynamicSourceElementEClass_A);
 		g1.getETypeArguments().add(g2);
-		globalModifiedAttributeElementTypeEClass_C.getEBounds().add(g1);
+		globalDynamicSourceElementEClass_C.getEBounds().add(g1);
 		g1 = createEGenericType(theGenericPackage.getReference());
-		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_S);
+		g2 = createEGenericType(globalDynamicSourceElementEClass_S);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_C);
+		g2 = createEGenericType(globalDynamicSourceElementEClass_C);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_R);
+		g2 = createEGenericType(globalDynamicSourceElementEClass_R);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_A);
+		g2 = createEGenericType(globalDynamicSourceElementEClass_A);
 		g1.getETypeArguments().add(g2);
-		globalModifiedAttributeElementTypeEClass_R.getEBounds().add(g1);
+		globalDynamicSourceElementEClass_R.getEBounds().add(g1);
 		g1 = createEGenericType(theGenericPackage.getAttribute());
-		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_S);
+		g2 = createEGenericType(globalDynamicSourceElementEClass_S);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_C);
+		g2 = createEGenericType(globalDynamicSourceElementEClass_C);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_R);
+		g2 = createEGenericType(globalDynamicSourceElementEClass_R);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_A);
+		g2 = createEGenericType(globalDynamicSourceElementEClass_A);
 		g1.getETypeArguments().add(g2);
-		globalModifiedAttributeElementTypeEClass_A.getEBounds().add(g1);
+		globalDynamicSourceElementEClass_A.getEBounds().add(g1);
+		g1 = createEGenericType(this.getInstanceSelector());
+		globalDynamicSourceElementEClass_InstanceSelectorType.getEBounds().add(g1);
 
 		// Add supertypes to classes
 		instanceSelectorEClass.getESuperTypes().add(thePamtramPackage.getExpressionElement());
 		instanceSelectorEClass.getESuperTypes().add(thePamtramPackage.getModifiableElement());
-		instanceSelectorSourceInterfaceEClass.getESuperTypes().add(theMappingPackage.getMappingHintSourceInterface());
-		g1 = createEGenericType(this.getLocalModifiedAttributeElementType());
+		sourceInstanceSelectorEClass.getESuperTypes().add(this.getInstanceSelector());
+		targetInstanceSelectorEClass.getESuperTypes().add(this.getInstanceSelector());
+		instanceSelectorSourceInterfaceEClass.getESuperTypes().add(theExtendedPackage.getMappingHintSourceInterface());
+		g1 = createEGenericType(this.getLocalDynamicSourceElement());
 		g2 = createEGenericType(theSourcePackage.getSourceSection());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
@@ -638,7 +786,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		instanceSelectorSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getInstanceSelectorSourceInterface());
 		instanceSelectorSourceElementEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getExternalModifiedAttributeElementType());
+		g1 = createEGenericType(this.getExternalDynamicSourceElement());
 		g2 = createEGenericType(theSourcePackage.getSourceSection());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
@@ -650,47 +798,79 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		instanceSelectorExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getInstanceSelectorSourceInterface());
 		instanceSelectorExternalSourceElementEClass.getEGenericSuperTypes().add(g1);
-		modifiedAttributeElementTypeEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
-		modifiedAttributeElementTypeEClass.getESuperTypes().add(thePamtramPackage.getModifiableElement());
-		g1 = createEGenericType(this.getModifiedAttributeElementType());
-		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_S);
+		g1 = createEGenericType(this.getGlobalDynamicSourceElement());
+		g2 = createEGenericType(theSourcePackage.getSourceSection());
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_C);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_R);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionReference());
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(localModifiedAttributeElementTypeEClass_A);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
 		g1.getETypeArguments().add(g2);
-		localModifiedAttributeElementTypeEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getModifiedAttributeElementType());
-		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_S);
+		g2 = createEGenericType(this.getSourceInstanceSelector());
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_C);
+		instanceSelectorGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getInstanceSelectorSourceInterface());
+		instanceSelectorGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
+		dynamicSourceElementEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
+		dynamicSourceElementEClass.getESuperTypes().add(thePamtramPackage.getModifiableElement());
+		g1 = createEGenericType(this.getDynamicSourceElement());
+		g2 = createEGenericType(localDynamicSourceElementEClass_S);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_R);
+		g2 = createEGenericType(localDynamicSourceElementEClass_C);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(externalModifiedAttributeElementTypeEClass_A);
+		g2 = createEGenericType(localDynamicSourceElementEClass_R);
 		g1.getETypeArguments().add(g2);
-		externalModifiedAttributeElementTypeEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getModifiedAttributeElementType());
-		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_S);
+		g2 = createEGenericType(localDynamicSourceElementEClass_A);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_C);
+		localDynamicSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getDynamicSourceElement());
+		g2 = createEGenericType(externalDynamicSourceElementEClass_S);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_R);
+		g2 = createEGenericType(externalDynamicSourceElementEClass_C);
 		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(globalModifiedAttributeElementTypeEClass_A);
+		g2 = createEGenericType(externalDynamicSourceElementEClass_R);
 		g1.getETypeArguments().add(g2);
-		globalModifiedAttributeElementTypeEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(thePamtramPackage.getInstanceSelectingElement());
-		globalModifiedAttributeElementTypeEClass.getEGenericSuperTypes().add(g1);
+		g2 = createEGenericType(externalDynamicSourceElementEClass_A);
+		g1.getETypeArguments().add(g2);
+		externalDynamicSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(this.getDynamicSourceElement());
+		g2 = createEGenericType(globalDynamicSourceElementEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(globalDynamicSourceElementEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(globalDynamicSourceElementEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(globalDynamicSourceElementEClass_A);
+		g1.getETypeArguments().add(g2);
+		globalDynamicSourceElementEClass.getEGenericSuperTypes().add(g1);
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(instanceSelectorEClass, InstanceSelector.class, "InstanceSelector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getInstanceSelector_Target(), theSourcePackage.getActualSourceSectionAttribute(), null, "target", null, 1, 1, InstanceSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(instanceSelectorEClass, InstanceSelector.class, "InstanceSelector", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInstanceSelector_SourceElements(), this.getInstanceSelectorSourceInterface(), null, "sourceElements", null, 0, -1, InstanceSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = initEOperation(getInstanceSelector__ValidateNoModifiedAttributeElementTypesInConditionModelConditions__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateNoModifiedAttributeElementTypesInConditionModelConditions", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getInstanceSelector__GetLocalSourceElements(), this.getInstanceSelectorSourceElement(), "getLocalSourceElements", 0, -1, !IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getInstanceSelector__GetExternalSourceElements(), this.getInstanceSelectorExternalSourceElement(), "getExternalSourceElements", 0, -1, !IS_UNIQUE, IS_ORDERED);
+
+		initEClass(sourceInstanceSelectorEClass, SourceInstanceSelector.class, "SourceInstanceSelector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSourceInstanceSelector_ReferenceAttribute(), theSourcePackage.getSourceSectionAttribute(), null, "referenceAttribute", null, 0, 1, SourceInstanceSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSourceInstanceSelector_TargetClass(), theSourcePackage.getSourceSectionClass(), null, "targetClass", null, 1, 1, SourceInstanceSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(targetInstanceSelectorEClass, TargetInstanceSelector.class, "TargetInstanceSelector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTargetInstanceSelector_ReferenceAttribute(), theTargetPackage.getTargetSectionAttribute(), null, "referenceAttribute", null, 0, 1, TargetInstanceSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTargetInstanceSelector_TargetClass(), theTargetPackage.getTargetSectionClass(), null, "targetClass", null, 1, 1, TargetInstanceSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		op = initEOperation(getTargetInstanceSelector__ValidateReferenceAttributeIsValid__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateReferenceAttributeIsValid", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType();
@@ -705,17 +885,21 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 
 		initEClass(instanceSelectorExternalSourceElementEClass, InstanceSelectorExternalSourceElement.class, "InstanceSelectorExternalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(modifiedAttributeElementTypeEClass, ModifiedAttributeElementType.class, "ModifiedAttributeElementType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		g1 = createEGenericType(modifiedAttributeElementTypeEClass_A);
-		initEReference(getModifiedAttributeElementType_Source(), g1, null, "source", null, 1, 1, ModifiedAttributeElementType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(instanceSelectorGlobalSourceElementEClass, InstanceSelectorGlobalSourceElement.class, "InstanceSelectorGlobalSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEOperation(getModifiedAttributeElementType__GetMappingHintGroup(), thePamtramPackage.getNamedElement(), "getMappingHintGroup", 1, 1, !IS_UNIQUE, IS_ORDERED);
+		initEClass(dynamicSourceElementEClass, DynamicSourceElement.class, "DynamicSourceElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		g1 = createEGenericType(dynamicSourceElementEClass_A);
+		initEReference(getDynamicSourceElement_Source(), g1, null, "source", null, 1, 1, DynamicSourceElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEOperation(getModifiedAttributeElementType__GetMapping(), theMappingPackage.getMapping(), "getMapping", 1, 1, !IS_UNIQUE, IS_ORDERED);
+		initEOperation(getDynamicSourceElement__GetMappingHintGroup(), thePamtramPackage.getNamedElement(), "getMappingHintGroup", 1, 1, !IS_UNIQUE, IS_ORDERED);
 
-		initEClass(localModifiedAttributeElementTypeEClass, LocalModifiedAttributeElementType.class, "LocalModifiedAttributeElementType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEOperation(getDynamicSourceElement__GetMapping(), theMappingPackage.getMapping(), "getMapping", 1, 1, !IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getLocalModifiedAttributeElementType__ValidateSourceAttributeMatchesSectionOrContainedSection__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateSourceAttributeMatchesSectionOrContainedSection", 0, 1, IS_UNIQUE, IS_ORDERED);
+		initEClass(localDynamicSourceElementEClass, LocalDynamicSourceElement.class, "LocalDynamicSourceElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		g1 = createEGenericType(localDynamicSourceElementEClass_R);
+		initEReference(getLocalDynamicSourceElement_ReferenceMatchSpec(), g1, null, "referenceMatchSpec", null, 0, -1, LocalDynamicSourceElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		op = initEOperation(getLocalDynamicSourceElement__ValidateSourceAttributeMatchesSectionOrContainedSection__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateSourceAttributeMatchesSectionOrContainedSection", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType();
@@ -724,9 +908,9 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(externalModifiedAttributeElementTypeEClass, ExternalModifiedAttributeElementType.class, "ExternalModifiedAttributeElementType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(externalDynamicSourceElementEClass, ExternalDynamicSourceElement.class, "ExternalDynamicSourceElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		op = initEOperation(getExternalModifiedAttributeElementType__ValidateSourceAttributeMatchesContainerSection__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateSourceAttributeMatchesContainerSection", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getExternalDynamicSourceElement__ValidateSourceAttributeMatchesContainerSection__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateSourceAttributeMatchesContainerSection", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType();
@@ -735,11 +919,15 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(globalModifiedAttributeElementTypeEClass, GlobalModifiedAttributeElementType.class, "GlobalModifiedAttributeElementType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(globalDynamicSourceElementEClass, GlobalDynamicSourceElement.class, "GlobalDynamicSourceElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		g1 = createEGenericType(globalDynamicSourceElementEClass_InstanceSelectorType);
+		initEReference(getGlobalDynamicSourceElement_InstanceSelectors(), g1, null, "instanceSelectors", null, 0, -1, GlobalDynamicSourceElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create annotations
 		// http://www.eclipse.org/OCL/Import
 		createImportAnnotations();
+		// http://www.eclipse.org/emf/2002/GenModel
+		createGenModelAnnotations();
 		// http://www.eclipse.org/emf/2002/Ecore
 		createEcoreAnnotations();
 	}
@@ -759,13 +947,13 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 			 "constraints", "noModifiedAttributeElementTypesInConditionModelConditions"
 		   });	
 		addAnnotation
-		  (localModifiedAttributeElementTypeEClass, 
+		  (localDynamicSourceElementEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "sourceAttributeMatchesSectionOrContainedSection"
 		   });	
 		addAnnotation
-		  (externalModifiedAttributeElementTypeEClass, 
+		  (externalDynamicSourceElementEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "sourceAttributeMatchesContainerSection"
@@ -786,6 +974,184 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		   new String[] {
 			 "ecore", "http://www.eclipse.org/emf/2002/Ecore",
 			 "genlib", "http://www.et.tu-dresden.de/ifa/agtele/genlib"
+		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/GenModel</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createGenModelAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/GenModel";	
+		addAnnotation
+		  (this, 
+		   source, 
+		   new String[] {
+			 "documentation", "Main package of the PAMTraM (Persistent Ambiguous Mapping and Transformation Model) meta-model containing various structuring and general elements."
+		   });	
+		addAnnotation
+		  (instanceSelectorEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "InstanceSelectors can be used to select a certain subset of a list of model excerpts that have been matched for a certain Section.\r\nThe specific use case for this selection depends on the concrete sub-type of this class.\r\n<br />\r\n<br />\r\nThe selection process is based on the comparison of the value of a certain attribute of the matched Section with a reference value. The reference value is thereby calculated based on the list of specified \'sourceElements\'."
+		   });	
+		addAnnotation
+		  (getInstanceSelector__ValidateNoModifiedAttributeElementTypesInConditionModelConditions__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nboolean result = this.eContainer() instanceof <%pamtram.condition.ComplexCondition%> && ((ComplexCondition) this.eContainer()).isConditionModelCondition() ? this.getSourceElements().parallelStream().noneMatch(s -> s instanceof pamtram.structure.DynamicSourceElement) : true;\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"ModifiedAttributeElementTypes are not allowed as part of ConditionModelConditions!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.structure.util.StructureValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tStructureValidator.INSTANCE_SELECTOR__VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.StructurePackage%>.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getInstanceSelector__GetLocalSourceElements(), 
+		   source, 
+		   new String[] {
+			 "body", "return new <%org.eclipse.emf.common.util.BasicEList%><>(\r\n\t\tthis.getSourceElements().stream().filter(i -> i instanceof InstanceSelectorSourceElement)\r\n\t\t\t\t.map(i -> (InstanceSelectorSourceElement) i).collect(<%java.util.stream.Collectors%>.toList()));"
+		   });	
+		addAnnotation
+		  (getInstanceSelector__GetExternalSourceElements(), 
+		   source, 
+		   new String[] {
+			 "body", "return new <%org.eclipse.emf.common.util.BasicEList%><>(\r\n\t\tthis.getSourceElements().stream().filter(i -> i instanceof InstanceSelectorExternalSourceElement)\r\n\t\t\t\t.map(i -> (InstanceSelectorExternalSourceElement) i).collect(<%java.util.stream.Collectors%>.toList()));"
+		   });	
+		addAnnotation
+		  (getInstanceSelector_SourceElements(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of \'sourceElements\' based on which the reference value used by this selector is calculated."
+		   });	
+		addAnnotation
+		  (sourceInstanceSelectorEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "SourceInstanceSelectors can be used to select a certain subset of a list of source model excerpts that have been matched for a certain SourceSection in the course of a transformation.\r\nThe specific use case for this selection depends on the concrete sub-type of this class.\r\n<br />\r\n<br />\r\nThe selection process is based on the comparison of the value of a certain attribute of the matched SourceSections with a reference value. The reference value is thereby calculated based on the list of specified \'sourceElements\'."
+		   });	
+		addAnnotation
+		  (getSourceInstanceSelector_ReferenceAttribute(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The specific attribute of the matched SourceSections whose value is compared with the reference value used by this selector."
+		   });	
+		addAnnotation
+		  (getSourceInstanceSelector_TargetClass(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The SourceSectionClass one of whose matched instances shall be selected."
+		   });	
+		addAnnotation
+		  (targetInstanceSelectorEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "TargetInstanceSelectors can be used to select a certain subset of a list of target model excerpts that have been created based on a certain TargetSection in the course of a transformation.\r\nThe specific use case for this selection depends on the concrete sub-type of this class.\r\n<br />\r\n<br />\r\nThe selection process is based on the comparison of the value of a certain attribute of the created TargetSections with a reference value. The reference value is thereby calculated based on the list of specified \'sourceElements\'."
+		   });	
+		addAnnotation
+		  (getTargetInstanceSelector__ValidateReferenceAttributeIsValid__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "if (this.referenceAttribute == null || this.targetClass == null\r\n\t\t\t\t|| this.targetClass.getContainingSection() == null) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\r\t// If a \'targetClass\' has already been set for this \'TargetInstanceSelector\', allow only \'referenceAttributes\'\r\n\t\t// that are part of the same <%pamtram.structure.target.TargetSection%> as the specified \'targetClass\' (or of one of the extended\r\n\t\t// sections).\r\n\t\t//\r\n\r\t<%pamtram.structure.target.TargetSection%> section = this.targetClass.getContainingSection();\r\n\r\tList<<%pamtram.structure.target.TargetSection%>> allowedSections = new ArrayList<>(<%java.util.Arrays%>.asList(section));\r\n\t\tallowedSections.addAll(section.getAllExtend());\r\n\r\tboolean result = allowedSections.contains(this.referenceAttribute.getContainingSection());\r\n\r\tif (!result && diagnostics != null) {\r\n\r\t\tString errorMessage = \"The \'referenceAttribute\' must be contained in the same <%pamtram.structure.target.TargetSection%> (or an extended section) as the \'targetClass\'!\";\r\n\r\t\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR, <%pamtram.structure.util.StructureValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\t<%pamtram.structure.util.StructureValidator%>.TARGET_INSTANCE_SELECTOR__VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID, errorMessage,\r\n\t\t\t\t\tnew Object[] { this, <%pamtram.structure.StructurePackage%>.Literals.TARGET_INSTANCE_SELECTOR__REFERENCE_ATTRIBUTE }));\r\n\r\t}\r\n\r\treturn result;"
+		   });	
+		addAnnotation
+		  (getTargetInstanceSelector_ReferenceAttribute(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The TargetSectionClass one of whose created instances shall be selected."
+		   });	
+		addAnnotation
+		  (getTargetInstanceSelector_TargetClass(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The TargetSectionClass one of whose created instances shall be selected."
+		   });	
+		addAnnotation
+		  (instanceSelectorSourceInterfaceEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "The common superclass of all types that can be used as \'sourceElement\' to calculate the reference value used by an InstanceSelector."
+		   });	
+		addAnnotation
+		  (instanceSelectorSourceElementEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A concrete type of \'sourceElement\' to calculate the reference value used by an InstanceSelector.<br />\r\nThis type is based on the value of a \'local\' attribute.\r\n<br /><br />\r\nNote: See the documentation of \'LocalDynamicSourceElement\' for a detailed explanation of the meaning of \'local\' source elements."
+		   });	
+		addAnnotation
+		  (instanceSelectorExternalSourceElementEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A concrete type of \'sourceElement\' to calculate the reference value used by an InstanceSelector.<br />\r\nThis type is based on the value of an \'external\' attribute.\r\n<br /><br />\r\nNote: See the documentation of \'ExternalDynamicSourceElement\' for a detailed explanation of the meaning of \'external\' source elements."
+		   });	
+		addAnnotation
+		  (instanceSelectorGlobalSourceElementEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A concrete type of \'sourceElement\' to calculate the reference value used by an InstanceSelector.<br />\r\nThis type is based on the value of a \'global\' attribute.\r\n<br /><br />\r\nNote: See the documentation of \'GlobalDynamicSourceElement\' for a detailed explanation of the meaning of \'global\' source elements."
+		   });	
+		addAnnotation
+		  (dynamicSourceElementEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A DynamicSourceElement represents a certain value that can be used in various calculations.\r\n<br /><br />\r\nThe dynamic value is thereby calculated based on the value of an attribute of a SourceSection (resp. the matched source model excerpt(s)). As multiple source model excerpts can be matched against a single SourceSection (and thus against a single SourceSectionAttribute), a DynamicSourceElement may actually deliver many values that will be used by the calculation."
+		   });	
+		addAnnotation
+		  (getDynamicSourceElement__GetMappingHintGroup(), 
+		   source, 
+		   new String[] {
+			 "body", "EObject ret = this.eContainer;\r\nwhile(!(ret instanceof MappingHintGroupType || ret instanceof InstantiableMappingHintGroup)) {\r\n\tret = ret.eContainer();\r\n\tif(ret instanceof PAMTraM) {\r\n\t\t// something went wrong\r\n\t\treturn null;\r\n\t}\r\n}\r\nreturn (NamedElement) ret;"
+		   });	
+		addAnnotation
+		  (getDynamicSourceElement__GetMapping(), 
+		   source, 
+		   new String[] {
+			 "body", "EObject ret = this.eContainer;\r\nwhile(!(ret instanceof Mapping)) {\r\n\tret = ret.eContainer();\r\n\tif(ret instanceof PAMTraM) {\r\n\t\t// something went wrong\r\n\t\treturn null;\r\n\t}\r\n}\r\nreturn (Mapping) ret;"
+		   });	
+		addAnnotation
+		  (getDynamicSourceElement_Source(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The attribute of a SourceSection based on which the dynamic value(s) is/are calculated.\r\n<br /><br />\r\nThe concrete sub-type of DynamicSourceElement poses additional constraints on the fact which SourceSectionAttributes may be used as \'source\'."
+		   });	
+		addAnnotation
+		  (localDynamicSourceElementEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A LocalDynamicSourceElement represents a certain value that can be used in various calculations.\r\n<br /><br />\r\nThe dynamic value is thereby calculated based on the value of an attribute of a SourceSection (resp. the matched source model excerpt(s)) that is specified via the \'source\' reference. As multiple source model excerpts can be matched against a single SourceSection (and thus against a single SourceSectionAttribute), a DynamicSourceElement may actually deliver many values that will be used by the calculation.\r\n<br /><br />\r\nFor \'LocalDynamicSourceElements\', only instances of the specified \'source\' attribute that are part of the source model excerpt which is currently handled by the transformation are used."
+		   });	
+		addAnnotation
+		  (getLocalDynamicSourceElement__ValidateSourceAttributeMatchesSectionOrContainedSection__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "if(this.getMapping() == null || this.source == null || this.getMapping().getSourceSection() == null\r\n\t\t\t\t|| !(this.source.getContainingSection() instanceof <%pamtram.structure.source.SourceSection%>)) {\r\n\treturn true;\r\n}\r\n\r\nSourceSection sourceSection = this.getMapping().getSourceSection();\r\nSourceSection containingSourceSection = (SourceSection) this.source.getContainingSection();\r\n\r\nboolean result = sourceSection == containingSourceSection \r\n\t\t|| sourceSection.getExtend().parallelStream().filter(e -> e.equals(containingSourceSection)).findAny().isPresent()\r\n\t\t|| sourceSection.getExtend().parallelStream().filter(e -> containingSourceSection.isReferencedBy(e, null)).findAny().isPresent()\r\n\t\t|| containingSourceSection.isReferencedBy(sourceSection, null);\r\n\r\nif (!result && diagnostics != null) {\r\n\t\r\n\tString errorMessage = \"The source attribute \'\" +\r\n\t\t\t this.source.getName() + \"\' is not referenced by the source section of the parent mapping \'\" +\r\n\t\t\t sourceSection.getName() + \"\' or in one of its extended sections/sub-sections!\'\";\r\n\t\r\n\tdiagnostics.add\r\n\t\t(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t <%pamtram.structure.util.StructureValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t StructureValidator.LOCAL_DYNAMIC_SOURCE_ELEMENT__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION,\r\n\t\t\t errorMessage,\r\n\t\t\t new Object [] { this, <%pamtram.structure.StructurePackage%>.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE }));\r\n\t}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getLocalDynamicSourceElement_ReferenceMatchSpec(), 
+		   source, 
+		   new String[] {
+			 "documentation", "In case of SourceSections referencing itself via a CrossReference, it may be necessary to further restrict the determined values that are used for the calculation (e.g. do not use the \'own\' attribute value but only attribute values of \'referenced\' elements. Therefore, this allows to specify a list of References describing a path how to get to the relevant attribute instances based on the root element of the Section."
+		   });	
+		addAnnotation
+		  (externalDynamicSourceElementEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "An ExternalDynamicSourceElement represents a certain value that can be used in various calculations.\r\n<br /><br />\r\nThe dynamic value is thereby calculated based on the value of an attribute of a SourceSection (resp. the matched source model excerpt(s)) that is specified via the \'source\' reference. As multiple source model excerpts can be matched against a single SourceSection (and thus against a single SourceSectionAttribute), a DynamicSourceElement may actually deliver many values that will be used by the calculation.\r\n<br /><br />\r\nFor \'ExternalDynamicSourceElements\', only instances of the specified \'source\' attribute that are part of source model excerpts that are containers of the source model excerpt which is currently handled by the transformation are used."
+		   });	
+		addAnnotation
+		  (getExternalDynamicSourceElement__ValidateSourceAttributeMatchesContainerSection__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "if(this.getMapping() == null || this.getSource() == null) {\r\n\treturn true;\r\n}\r\n\r\n<%pamtram.structure.source.SourceSection%> sourceSection = this.getMapping().getSourceSection();\r\n\r\nboolean result = sourceSection == null || !(this.getSource().getContainingSection() instanceof SourceSection) ? true : ((SourceSection) this.getSource().getContainingSection()).isContainerFor(sourceSection);\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The source attribute \'\" + this.getSource().getName() + \"\' is not part of a container section of the source section of the parent mapping \'\" + this.getMapping().getSourceSection().getName() + \"\'!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.structure.util.StructureValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tStructureValidator.EXTERNAL_DYNAMIC_SOURCE_ELEMENT__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.StructurePackage%>.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (globalDynamicSourceElementEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A GlobalDynamicSourceElement represents a certain value that can be used in various calculations.\r\n<br /><br />\r\nThe dynamic value is thereby calculated based on the value of an attribute of a SourceSection (resp. the matched source model excerpt(s)) that is specified via the \'source\' reference. As multiple source model excerpts can be matched against a single SourceSection (and thus against a single SourceSectionAttribute), a DynamicSourceElement may actually deliver many values that will be used by the calculation.\r\n<br /><br />\r\nFor \'GlobalDynamicSourceElements\', all instances of the specified \'source\' attribute found in the source model are used."
+		   });	
+		addAnnotation
+		  (getGlobalDynamicSourceElement_InstanceSelectors(), 
+		   source, 
+		   new String[] {
+			 "documentation", "A list of InstanceSelectors that can be used to select a certain subset of the list of matched SourceSectionAttributes that will be used to calculated the value(s) represented by this DynamicSourceElement."
 		   });
 	}
 

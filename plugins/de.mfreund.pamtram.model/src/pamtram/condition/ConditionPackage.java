@@ -22,6 +22,9 @@ import pamtram.PamtramPackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
+ * <!-- begin-model-doc -->
+ * This package contains all elements related to the description of Conditions. These can e.g. be used to restrict the applicability of a Mapping.
+ * <!-- end-model-doc -->
  * @see pamtram.condition.ConditionFactory
  * @model kind="package"
  *        annotation="http://www.eclipse.org/OCL/Import ecore='http://www.eclipse.org/emf/2002/Ecore' genlib='http://www.et.tu-dresden.de/ifa/agtele/genlib'"
@@ -116,13 +119,22 @@ public interface ConditionPackage extends EPackage {
 	int COMPLEX_CONDITION___IS_CONDITION_MODEL_CONDITION = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Get Condition Parts Flat</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_CONDITION___GET_CONDITION_PARTS_FLAT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 3;
+
+	/**
 	 * The number of operations of the '<em>Complex Condition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_CONDITION_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 3;
+	int COMPLEX_CONDITION_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link pamtram.condition.impl.ConditionImpl <em>Condition</em>}' class.
@@ -206,6 +218,15 @@ public interface ConditionPackage extends EPackage {
 	 * @ordered
 	 */
 	int VARIADIC_CONDITION___IS_CONDITION_MODEL_CONDITION = COMPLEX_CONDITION___IS_CONDITION_MODEL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Get Condition Parts Flat</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIADIC_CONDITION___GET_CONDITION_PARTS_FLAT = COMPLEX_CONDITION___GET_CONDITION_PARTS_FLAT;
 
 	/**
 	 * The operation id for the '<em>References Only Valid Conditions</em>' operation.
@@ -308,6 +329,15 @@ public interface ConditionPackage extends EPackage {
 	int AND___IS_CONDITION_MODEL_CONDITION = VARIADIC_CONDITION___IS_CONDITION_MODEL_CONDITION;
 
 	/**
+	 * The operation id for the '<em>Get Condition Parts Flat</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND___GET_CONDITION_PARTS_FLAT = VARIADIC_CONDITION___GET_CONDITION_PARTS_FLAT;
+
+	/**
 	 * The operation id for the '<em>References Only Valid Conditions</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -406,6 +436,15 @@ public interface ConditionPackage extends EPackage {
 	 * @ordered
 	 */
 	int OR___IS_CONDITION_MODEL_CONDITION = VARIADIC_CONDITION___IS_CONDITION_MODEL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Get Condition Parts Flat</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OR___GET_CONDITION_PARTS_FLAT = VARIADIC_CONDITION___GET_CONDITION_PARTS_FLAT;
 
 	/**
 	 * The operation id for the '<em>References Only Valid Conditions</em>' operation.
@@ -508,6 +547,15 @@ public interface ConditionPackage extends EPackage {
 	int UNARY_CONDITION___IS_CONDITION_MODEL_CONDITION = COMPLEX_CONDITION___IS_CONDITION_MODEL_CONDITION;
 
 	/**
+	 * The operation id for the '<em>Get Condition Parts Flat</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNARY_CONDITION___GET_CONDITION_PARTS_FLAT = COMPLEX_CONDITION___GET_CONDITION_PARTS_FLAT;
+
+	/**
 	 * The operation id for the '<em>Validate Exactly One Arg</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -599,6 +647,15 @@ public interface ConditionPackage extends EPackage {
 	int NOT___IS_CONDITION_MODEL_CONDITION = UNARY_CONDITION___IS_CONDITION_MODEL_CONDITION;
 
 	/**
+	 * The operation id for the '<em>Get Condition Parts Flat</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOT___GET_CONDITION_PARTS_FLAT = UNARY_CONDITION___GET_CONDITION_PARTS_FLAT;
+
+	/**
 	 * The operation id for the '<em>Validate Exactly One Arg</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -635,22 +692,13 @@ public interface ConditionPackage extends EPackage {
 	int CONDITION__NAME = COMPLEX_CONDITION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITION__INSTANCE_SELECTORS = COMPLEX_CONDITION_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITION__VALUE = COMPLEX_CONDITION_FEATURE_COUNT + 1;
+	int CONDITION__VALUE = COMPLEX_CONDITION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Comparator</b></em>' attribute.
@@ -659,7 +707,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITION__COMPARATOR = COMPLEX_CONDITION_FEATURE_COUNT + 2;
+	int CONDITION__COMPARATOR = COMPLEX_CONDITION_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -668,7 +716,16 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITION__TARGET = COMPLEX_CONDITION_FEATURE_COUNT + 3;
+	int CONDITION__TARGET = COMPLEX_CONDITION_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION__INSTANCE_SELECTORS = COMPLEX_CONDITION_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Condition</em>' class.
@@ -705,6 +762,15 @@ public interface ConditionPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONDITION___IS_CONDITION_MODEL_CONDITION = COMPLEX_CONDITION___IS_CONDITION_MODEL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Get Condition Parts Flat</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION___GET_CONDITION_PARTS_FLAT = COMPLEX_CONDITION___GET_CONDITION_PARTS_FLAT;
 
 	/**
 	 * The operation id for the '<em>Check Condition</em>' operation.
@@ -744,15 +810,6 @@ public interface ConditionPackage extends EPackage {
 	int ATTRIBUTE_CONDITION__NAME = CONDITION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_CONDITION__INSTANCE_SELECTORS = CONDITION__INSTANCE_SELECTORS;
-
-	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -778,6 +835,15 @@ public interface ConditionPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTRIBUTE_CONDITION__TARGET = CONDITION__TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_CONDITION__INSTANCE_SELECTORS = CONDITION__INSTANCE_SELECTORS;
 
 	/**
 	 * The feature id for the '<em><b>Value Constraints</b></em>' containment reference list.
@@ -825,6 +891,15 @@ public interface ConditionPackage extends EPackage {
 	int ATTRIBUTE_CONDITION___IS_CONDITION_MODEL_CONDITION = CONDITION___IS_CONDITION_MODEL_CONDITION;
 
 	/**
+	 * The operation id for the '<em>Get Condition Parts Flat</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_CONDITION___GET_CONDITION_PARTS_FLAT = CONDITION___GET_CONDITION_PARTS_FLAT;
+
+	/**
 	 * The operation id for the '<em>Check Condition</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -862,15 +937,6 @@ public interface ConditionPackage extends EPackage {
 	int CARDINALITY_CONDITION__NAME = CONDITION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CARDINALITY_CONDITION__INSTANCE_SELECTORS = CONDITION__INSTANCE_SELECTORS;
-
-	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -896,6 +962,15 @@ public interface ConditionPackage extends EPackage {
 	 * @ordered
 	 */
 	int CARDINALITY_CONDITION__TARGET = CONDITION__TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_CONDITION__INSTANCE_SELECTORS = CONDITION__INSTANCE_SELECTORS;
 
 	/**
 	 * The number of structural features of the '<em>Cardinality Condition</em>' class.
@@ -932,6 +1007,15 @@ public interface ConditionPackage extends EPackage {
 	 * @ordered
 	 */
 	int CARDINALITY_CONDITION___IS_CONDITION_MODEL_CONDITION = CONDITION___IS_CONDITION_MODEL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Get Condition Parts Flat</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_CONDITION___GET_CONDITION_PARTS_FLAT = CONDITION___GET_CONDITION_PARTS_FLAT;
 
 	/**
 	 * The operation id for the '<em>Check Condition</em>' operation.
@@ -971,15 +1055,6 @@ public interface ConditionPackage extends EPackage {
 	int APPLICATION_DEPENDENCY__NAME = CONDITION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int APPLICATION_DEPENDENCY__INSTANCE_SELECTORS = CONDITION__INSTANCE_SELECTORS;
-
-	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1005,6 +1080,15 @@ public interface ConditionPackage extends EPackage {
 	 * @ordered
 	 */
 	int APPLICATION_DEPENDENCY__TARGET = CONDITION__TARGET;
+
+	/**
+	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION_DEPENDENCY__INSTANCE_SELECTORS = CONDITION__INSTANCE_SELECTORS;
 
 	/**
 	 * The number of structural features of the '<em>Application Dependency</em>' class.
@@ -1041,6 +1125,15 @@ public interface ConditionPackage extends EPackage {
 	 * @ordered
 	 */
 	int APPLICATION_DEPENDENCY___IS_CONDITION_MODEL_CONDITION = CONDITION___IS_CONDITION_MODEL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Get Condition Parts Flat</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION_DEPENDENCY___GET_CONDITION_PARTS_FLAT = CONDITION___GET_CONDITION_PARTS_FLAT;
 
 	/**
 	 * The operation id for the '<em>Check Condition</em>' operation.
@@ -1112,6 +1205,16 @@ public interface ConditionPackage extends EPackage {
 	EOperation getComplexCondition__IsConditionModelCondition();
 
 	/**
+	 * Returns the meta object for the '{@link pamtram.condition.ComplexCondition#getConditionPartsFlat() <em>Get Condition Parts Flat</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Condition Parts Flat</em>' operation.
+	 * @see pamtram.condition.ComplexCondition#getConditionPartsFlat()
+	 * @generated
+	 */
+	EOperation getComplexCondition__GetConditionPartsFlat();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.condition.Condition <em>Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1142,6 +1245,17 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getCondition_Target();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link pamtram.condition.Condition#getInstanceSelectors <em>Instance Selectors</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Instance Selectors</em>'.
+	 * @see pamtram.condition.Condition#getInstanceSelectors()
+	 * @see #getCondition()
+	 * @generated
+	 */
+	EReference getCondition_InstanceSelectors();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.condition.Condition#checkCondition(pamtram.condition.ComplexCondition) <em>Check Condition</em>}' operation.
@@ -1407,6 +1521,14 @@ public interface ConditionPackage extends EPackage {
 		EOperation COMPLEX_CONDITION___IS_CONDITION_MODEL_CONDITION = eINSTANCE.getComplexCondition__IsConditionModelCondition();
 
 		/**
+		 * The meta object literal for the '<em><b>Get Condition Parts Flat</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation COMPLEX_CONDITION___GET_CONDITION_PARTS_FLAT = eINSTANCE.getComplexCondition__GetConditionPartsFlat();
+
+		/**
 		 * The meta object literal for the '{@link pamtram.condition.impl.ConditionImpl <em>Condition</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1431,6 +1553,14 @@ public interface ConditionPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CONDITION__TARGET = eINSTANCE.getCondition_Target();
+
+		/**
+		 * The meta object literal for the '<em><b>Instance Selectors</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONDITION__INSTANCE_SELECTORS = eINSTANCE.getCondition_InstanceSelectors();
 
 		/**
 		 * The meta object literal for the '<em><b>Check Condition</b></em>' operation.

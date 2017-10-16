@@ -2,10 +2,8 @@
  */
 package pamtram;
 
-import pamtram.mapping.AttributeMappingSourceInterface;
-import pamtram.mapping.AttributeMatcherSourceInterface;
-import pamtram.mapping.CardinalityMappingSourceInterface;
-import pamtram.mapping.ContainerSelectorSourceInterface;
+import pamtram.mapping.extended.AttributeMappingSourceInterface;
+import pamtram.mapping.extended.CardinalityMappingSourceInterface;
 import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.constraint.ValueConstraintSourceInterface;
 
@@ -13,6 +11,10 @@ import pamtram.structure.constraint.ValueConstraintSourceInterface;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Fixed Value</b></em>'.
  * <!-- end-user-doc -->
+ *
+ * <!-- begin-model-doc -->
+ * This simply represents a certain numeric or literal value. It can be used e.g. as part of an AttributeMapping to specify the value of a TargetSectionAttribute.
+ * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
@@ -25,7 +27,7 @@ import pamtram.structure.constraint.ValueConstraintSourceInterface;
  * @model
  * @generated
  */
-public interface FixedValue extends NamedElement, AttributeMappingSourceInterface, AttributeMatcherSourceInterface, ContainerSelectorSourceInterface, InstanceSelectorSourceInterface, ValueConstraintSourceInterface, CardinalityMappingSourceInterface {
+public interface FixedValue extends NamedElement, AttributeMappingSourceInterface, InstanceSelectorSourceInterface, ValueConstraintSourceInterface, CardinalityMappingSourceInterface {
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -34,6 +36,9 @@ public interface FixedValue extends NamedElement, AttributeMappingSourceInterfac
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The numeric or literal value.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Value</em>' attribute.
 	 * @see #setValue(String)
 	 * @see pamtram.PamtramPackage#getFixedValue_Value()

@@ -25,6 +25,8 @@ import pamtram.impl.PamtramPackageImpl;
 
 import pamtram.mapping.MappingPackage;
 
+import pamtram.mapping.extended.ExtendedPackage;
+import pamtram.mapping.extended.impl.ExtendedPackageImpl;
 import pamtram.mapping.impl.MappingPackageImpl;
 
 import pamtram.mapping.modifier.ModifierPackage;
@@ -200,6 +202,7 @@ public class TargetPackageImpl extends EPackageImpl implements TargetPackage {
 		ConditionPackageImpl theConditionPackage = (ConditionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI) instanceof ConditionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI) : ConditionPackage.eINSTANCE);
 		MappingPackageImpl theMappingPackage = (MappingPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) instanceof MappingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) : MappingPackage.eINSTANCE);
 		ModifierPackageImpl theModifierPackage = (ModifierPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ModifierPackage.eNS_URI) instanceof ModifierPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ModifierPackage.eNS_URI) : ModifierPackage.eINSTANCE);
+		ExtendedPackageImpl theExtendedPackage = (ExtendedPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ExtendedPackage.eNS_URI) instanceof ExtendedPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ExtendedPackage.eNS_URI) : ExtendedPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theTargetPackage.createPackageContents();
@@ -212,6 +215,7 @@ public class TargetPackageImpl extends EPackageImpl implements TargetPackage {
 		theConditionPackage.createPackageContents();
 		theMappingPackage.createPackageContents();
 		theModifierPackage.createPackageContents();
+		theExtendedPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theTargetPackage.initializePackageContents();
@@ -224,6 +228,7 @@ public class TargetPackageImpl extends EPackageImpl implements TargetPackage {
 		theConditionPackage.initializePackageContents();
 		theMappingPackage.initializePackageContents();
 		theModifierPackage.initializePackageContents();
+		theExtendedPackage.initializePackageContents();
 
 		// Register package validator
 		EValidator.Registry.INSTANCE.put
@@ -277,6 +282,15 @@ public class TargetPackageImpl extends EPackageImpl implements TargetPackage {
 	 */
 	public EOperation getTargetSection__ValidateIsReferencedByMappingHintGroup__DiagnosticChain_Map() {
 		return targetSectionEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getTargetSection__ValidateCardinality__DiagnosticChain_Map() {
+		return targetSectionEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -428,6 +442,7 @@ public class TargetPackageImpl extends EPackageImpl implements TargetPackage {
 		createEReference(targetSectionEClass, TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS);
 		createEReference(targetSectionEClass, TARGET_SECTION__FILE);
 		createEOperation(targetSectionEClass, TARGET_SECTION___VALIDATE_IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP);
+		createEOperation(targetSectionEClass, TARGET_SECTION___VALIDATE_CARDINALITY__DIAGNOSTICCHAIN_MAP);
 
 		fileAttributeEClass = createEClass(FILE_ATTRIBUTE);
 		createEAttribute(fileAttributeEClass, FILE_ATTRIBUTE__FILE_TYPE);
@@ -530,6 +545,16 @@ public class TargetPackageImpl extends EPackageImpl implements TargetPackage {
 		targetSectionCompositeReferenceEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getTargetSectionReference());
 		targetSectionCompositeReferenceEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theGenericPackage.getActualReference());
+		g2 = createEGenericType(this.getTargetSection());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(this.getTargetSectionClass());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(this.getTargetSectionReference());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(this.getTargetSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		targetSectionCompositeReferenceEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(theGenericPackage.getCrossReference());
 		g2 = createEGenericType(this.getTargetSection());
 		g1.getETypeArguments().add(g2);
@@ -541,6 +566,16 @@ public class TargetPackageImpl extends EPackageImpl implements TargetPackage {
 		g1.getETypeArguments().add(g2);
 		targetSectionCrossReferenceEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getTargetSectionReference());
+		targetSectionCrossReferenceEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theGenericPackage.getActualReference());
+		g2 = createEGenericType(this.getTargetSection());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(this.getTargetSectionClass());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(this.getTargetSectionReference());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(this.getTargetSectionAttribute());
+		g1.getETypeArguments().add(g2);
 		targetSectionCrossReferenceEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(theGenericPackage.getAttribute());
 		g2 = createEGenericType(this.getTargetSection());
@@ -591,6 +626,15 @@ public class TargetPackageImpl extends EPackageImpl implements TargetPackage {
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		op = initEOperation(getTargetSection__ValidateCardinality__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateCardinality", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(fileAttributeEClass, FileAttribute.class, "FileAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFileAttribute_FileType(), this.getFileType(), "fileType", null, 1, 1, FileAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -625,8 +669,152 @@ public class TargetPackageImpl extends EPackageImpl implements TargetPackage {
 		addEEnumLiteral(fileTypeEEnum, FileType.XML);
 
 		// Create annotations
+		// http://www.eclipse.org/emf/2002/GenModel
+		createGenModelAnnotations();
 		// http://www.eclipse.org/emf/2002/Ecore
 		createEcoreAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/GenModel</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createGenModelAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/GenModel";	
+		addAnnotation
+		  (this, 
+		   source, 
+		   new String[] {
+			 "documentation", "This package contains all elements related to the description of target element structures (aka TargetSections). These form the right-hand side (RHS) of a mapping."
+		   });	
+		addAnnotation
+		  (targetSectionEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A special TargetSectionClass that represents the root element (as an instance of an EClass) of an element structure to be created in a target model.\r\n<br />\r\nNote: Every specified target model structure must contain one and only one TargetSection element (its root element)."
+		   });	
+		addAnnotation
+		  (getTargetSection__ValidateIsReferencedByMappingHintGroup__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nboolean result = !this.getReferencingMappingHintGroups().isEmpty();\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The section is not referenced by any hint group and will not be instantiated!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.WARNING,\r\n\t\t\t<%pamtram.structure.target.util.TargetValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tTargetValidator.TARGET_SECTION__VALIDATE_IS_REFERENCED_BY_MAPPING_HINT_GROUP,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.target.TargetPackage%>.Literals.TARGET_SECTION }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getTargetSection__ValidateCardinality__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "boolean result = this.getCardinality() != <%pamtram.structure.generic.CardinalityType%>.ONE;\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The cardinality of this section is currently set to \'ONE\'. Consider changing the cardinality if you want to allow that multiple instances of this section are created based on a mapping!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.WARNING,\r\n\t\t\t<%pamtram.structure.target.util.TargetValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tTargetValidator.TARGET_SECTION__VALIDATE_CARDINALITY,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.target.TargetPackage%>.Literals.TARGET_SECTION }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getTargetSection_ReferencingMappingHintGroups(), 
+		   source, 
+		   new String[] {
+			 "get", "\r\nList<<%pamtram.mapping.Mapping%>> mappings = new <%java.util.ArrayList%><>();\r\n\r\nif (this.eResource() != null) {\r\n\r\n\tmappings = this.eResource().getResourceSet().getResources().stream()\r\n\t\t\t.filter(r -> r.getContents().get(0) instanceof pamtram.PAMTraM)\r\n\t\t\t.flatMap(r -> ((pamtram.PAMTraM) r.getContents().get(0)).getMappings().stream())\r\n\t\t\t.collect(<%java.util.stream.Collectors%>.toList());\r\n}\r\n\r\nList<MappingHintGroupType> referencingHintGroups = mappings.stream().flatMap(m -> m.getMappingHintGroups().stream()).filter(m -> this.equals(m.getTargetSection())).collect(Collectors.toList());\r\n\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList%><>(this, <%pamtram.structure.target.TargetPackage%>.Literals.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS,\r\n\t\treferencingHintGroups.size(), referencingHintGroups.toArray());"
+		   });	
+		addAnnotation
+		  (getTargetSection_ReferencingMappingHintGroups(), 
+		   source, 
+		   new String[] {
+			 "documentation", "All MappingHintGroups that lead to the instantiation of this TargetSection (that specify this as their \'targetSection\')."
+		   });	
+		addAnnotation
+		  (getTargetSection_File(), 
+		   source, 
+		   new String[] {
+			 "documentation", "If present, this specifies the model resp. file to which the created target model structure will be persisted.\r\n<br /><br />\r\nThis can be used to statically or dynamically specify the target models/model files to be created in the course of a transformation."
+		   });	
+		addAnnotation
+		  (fileAttributeEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This specifies the model resp. file to which the target model structure(s) created based on this TargetSection will be persisted.\r\n<br /><br />\r\nThis can be used to statically or dynamically specify the target models/model files to be created in the course of a transformation. For example, this can be used to persist each instance of a TargetSection in its own file (if the \'value\' of this attribute is set dynamically for each instance)."
+		   });	
+		addAnnotation
+		  (getFileAttribute_FileType(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The type of the model/file to be created."
+		   });	
+		addAnnotation
+		  (fileTypeEEnum, 
+		   source, 
+		   new String[] {
+			 "documentation", "The type of a model/file."
+		   });	
+		addAnnotation
+		  (fileTypeEEnum.getELiterals().get(0), 
+		   source, 
+		   new String[] {
+			 "documentation", "An XMI file that is based on an Ecore-based metamodel."
+		   });	
+		addAnnotation
+		  (fileTypeEEnum.getELiterals().get(1), 
+		   source, 
+		   new String[] {
+			 "documentation", "An XML file that is based on an XML schema (XSD)."
+		   });	
+		addAnnotation
+		  (targetSectionClassEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This represents one element (as an instance of an EClass) of an element structure to be created in a target model.\r\n<br />\r\nIn order to allow for the description of complex element structures, Classes can be equipped with Attributes and References (which itself may reference/contain other Classes)."
+		   });	
+		addAnnotation
+		  (targetSectionReferenceEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This represents a reference of an element structure to be created in a target model.\r\n<br />\r\nIn order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the \'value\' reference."
+		   });	
+		addAnnotation
+		  (targetSectionCompositeReferenceEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This represents a reference (as an instance of an EReference) of an element structure to be created in a target model. CompositeReferences can be used to describe the tree that is the basis of an element structure.\r\n<br />\r\nIn order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the \'value\' reference."
+		   });	
+		addAnnotation
+		  (targetSectionCrossReferenceEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This represents a reference (as an instance of an EReference) of an element structure to be created in a target model. CrossReferences can be used to describe references to other element structures or to other elements of this structure.\r\n<br />\r\nIn order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the \'value\' reference."
+		   });	
+		addAnnotation
+		  (getTargetSectionCrossReference__ValidateEReferenceIsNonContainment__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nboolean result = this.getEReference() == null ? true : !this.getEReference().isContainment();\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The eReference \'\" + this.getEReference().getName() + \"\' is no non-containment reference! CrossReferences based on ContainmentReferences are not yet supported...\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.structure.target.util.TargetValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tTargetValidator.TARGET_SECTION_CROSS_REFERENCE__VALIDATE_EREFERENCE_IS_NON_CONTAINMENT,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.generic.GenericPackage%>.Literals.ACTUAL_REFERENCE__EREFERENCE }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (targetSectionAttributeEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This represents an attribute of an element structure to be created in a target model."
+		   });	
+		addAnnotation
+		  (getTargetSectionAttribute_Unique(), 
+		   source, 
+		   new String[] {
+			 "documentation", "If this is set to \'true\', no two element structures with the same value of this Attribute will be created in the course of a transformation.\r\n<br /><br />\r\nCurrently, if a second element structure with the same attribute value would be created, this second structure is simply discarded. In the future, it might be useful to consider merging the two created structures."
+		   });	
+		addAnnotation
+		  (getTargetSectionAttribute_Value(), 
+		   source, 
+		   new String[] {
+			 "documentation", "This can be used to specify a fixed value for this attribute that will be used for all created instances.\r\n<br /><br />\r\nNote: The specified value will be overriden in case an AttributeMapping is specified for this Attribute."
+		   });	
+		addAnnotation
+		  (actualTargetSectionAttributeEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This represents an attribute (as an instance of an EAttribute) of an element structure to be created in a target model."
+		   });	
+		addAnnotation
+		  (virtualTargetSectionAttributeEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This represents an attribute of a target model element structure. In contrast to \'actual\' Attributes, \'virtual\' Attributes do not represent an actual metamodel element (EAttribtue) an will thus not actually be persisted in the target model.\r\n<br /><br />\r\nVirtualTargetSectionAttributes are usually used as temporary variables (to store values calculated by means of an AttributeMapping). The stored values can then e.g. be used as reference value for Container- or ReferenceTargetSelectors."
+		   });
 	}
 
 	/**

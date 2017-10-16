@@ -3,7 +3,9 @@ package de.mfreund.gentrans.transformation;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
+import java.util.stream.Collectors;
 
+import de.mfreund.gentrans.transformation.resolving.ComposedAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.DefaultAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import pamtram.structure.library.LibraryEntry;
@@ -11,7 +13,7 @@ import pamtram.structure.target.FileAttribute;
 
 /**
  * This class captures the optional parameters that can be specified for an instance of the generic transformation. They
- * are used by the {@link GenericTransformationRunnerFactory} to instantiate the {@link GenericTransformationRunner}.
+ * are used by a {@link TransformationRunnerFactory} to instantiate instances of {@link ITransformationRunner}.
  * <p />
  * The various <em>with...</em> methods provide a floating API to configure the parameters.
  *
@@ -21,6 +23,12 @@ import pamtram.structure.target.FileAttribute;
 public class BaseTransformationConfiguration {
 
 	/**
+	 * Whether the (first of the) generated target model(s) shall be automatically opened after a (successful) execution
+	 * of the transformation.
+	 */
+	protected boolean openTargetModelOnCompletion;
+
+	/**
 	 * File path of the <em>default</em> target model (relative to the given '<em>targetBasePath</em>'). The default
 	 * target model is that target model to which all contents will be added that are not associated with a special
 	 * model via the {@link FileAttribute}.
@@ -28,9 +36,11 @@ public class BaseTransformationConfiguration {
 	protected String defaultTargetModel;
 
 	/**
-	 * This is the file path where the {@link #transformationModel} will be stored after the transformation. It needs to
-	 * be in the form 'project-name/path'. If this is set to '<em>null</em>', the transformation model will not be
-	 * stored.
+	 * This is the path to the folder where the {@link #transformationModel} will be stored after the transformation. It
+	 * needs to be in the form 'project-name/path'. If this is set to '<em>null</em>', the transformation model will not
+	 * be stored.
+	 * <p />
+	 * Note: The transformation (including all related files) will be stored in a sperate folder inside the given path.
 	 */
 	protected String transformationModelPath;
 
@@ -65,6 +75,12 @@ public class BaseTransformationConfiguration {
 	protected Level logLevel;
 
 	/**
+	 * Whether extended parallelization shall be used during the transformation that might lead to the fact that the
+	 * transformation result (especially the order of lists) varies between executions.
+	 */
+	protected boolean useParallelization;
+
+	/**
 	 * This creates an instance and initializes all parameters with default values.
 	 * <p />
 	 * Note: These can be changed by means of the various <em>with...</em> methods.
@@ -80,6 +96,7 @@ public class BaseTransformationConfiguration {
 		this.withLibPaths(null);
 		this.withAmbiguityResolvingStrategy(null);
 		this.withLogLevel(null);
+		this.withUseParallelization(false);
 	}
 
 	/**
@@ -91,6 +108,23 @@ public class BaseTransformationConfiguration {
 	public boolean validate() {
 
 		return this.defaultTargetModel != null && this.ambiguityResolvingStrategy != null;
+	}
+
+	/**
+	 * Set the {@link #openTargetModelOnCompletion}.
+	 * <p />
+	 * Note: If this is set to '<em>true</em>', it means that the (first of the) generated target model(s) shall be
+	 * automatically opened after a (successful) execution of the transformation.
+	 *
+	 * @param openTargetModelOnCompletion
+	 *            The {@link #openTargetModelOnCompletion} to set.
+	 * @return The {@link BaseTransformationConfiguration} after setting the {@link #openTargetModelOnCompletion}.
+	 *
+	 */
+	public BaseTransformationConfiguration withOpenTargetModelOnCompletion(boolean openTargetModelOnCompletion) {
+
+		this.openTargetModelOnCompletion = openTargetModelOnCompletion;
+		return this;
 	}
 
 	/**
@@ -172,7 +206,9 @@ public class BaseTransformationConfiguration {
 	/**
 	 * Set the {@link #ambiguityResolvingStrategy}.
 	 * <p />
-	 * Note: If this is '<em>null</em>', the {@link DefaultAmbiguityResolvingStrategy} will be used.
+	 * Based on the given <em>ambiguityResolvingStrategy</em>, the resulting strategy is created so that an instance of
+	 * the {@link DefaultAmbiguityResolvingStrategy} is included in the strategy -- if necessary, a
+	 * {@link ComposedAmbiguityResolvingStrategy} is created for this.
 	 *
 	 * @param ambiguityResolvingStrategy
 	 *            The {@link #ambiguityResolvingStrategy} to set.
@@ -181,8 +217,45 @@ public class BaseTransformationConfiguration {
 	public BaseTransformationConfiguration withAmbiguityResolvingStrategy(
 			IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
 
-		this.ambiguityResolvingStrategy = ambiguityResolvingStrategy == null ? new DefaultAmbiguityResolvingStrategy()
-				: ambiguityResolvingStrategy;
+		IAmbiguityResolvingStrategy resultingStrategy;
+
+		if (ambiguityResolvingStrategy == null) {
+
+			resultingStrategy = new DefaultAmbiguityResolvingStrategy();
+
+		} else if (ambiguityResolvingStrategy instanceof DefaultAmbiguityResolvingStrategy) {
+
+			resultingStrategy = ambiguityResolvingStrategy;
+
+		} else if (ambiguityResolvingStrategy instanceof ComposedAmbiguityResolvingStrategy) {
+
+			boolean containsDefaultStrategy = false;
+			for (IAmbiguityResolvingStrategy strategy : ((ComposedAmbiguityResolvingStrategy) ambiguityResolvingStrategy)
+					.getComposedStrategies()) {
+				if (strategy instanceof DefaultAmbiguityResolvingStrategy) {
+					containsDefaultStrategy = true;
+					break;
+				}
+			}
+
+			if (!containsDefaultStrategy) {
+				((ComposedAmbiguityResolvingStrategy) ambiguityResolvingStrategy)
+						.addStrategy(new DefaultAmbiguityResolvingStrategy());
+			}
+
+			resultingStrategy = ambiguityResolvingStrategy;
+
+		} else {
+
+			ArrayList<IAmbiguityResolvingStrategy> composed = new ArrayList<>();
+			composed.add(ambiguityResolvingStrategy);
+			composed.add(new DefaultAmbiguityResolvingStrategy());
+			resultingStrategy = new ComposedAmbiguityResolvingStrategy(composed);
+
+		}
+
+		this.ambiguityResolvingStrategy = resultingStrategy;
+
 		return this;
 	}
 
@@ -199,6 +272,29 @@ public class BaseTransformationConfiguration {
 
 		this.logLevel = logLevel == null ? Level.ALL : logLevel;
 		return this;
+	}
+
+	/**
+	 * Set the {@link #useParallelization}.
+	 *
+	 * @param useParallelization
+	 *            The {@link #useParallelization} to set.
+	 * @return The {@link BaseTransformationConfiguration} after setting the {@link #logLevel}.
+	 */
+	public BaseTransformationConfiguration withUseParallelization(boolean useParallelization) {
+
+		this.useParallelization = useParallelization;
+		return this;
+	}
+
+	/**
+	 * The getter for the {@link #openTargetModelOnCompletion}.
+	 *
+	 * @return the openTargetModelOnCompletion
+	 */
+	public boolean isOpenTargetModelOnCompletion() {
+
+		return this.openTargetModelOnCompletion;
 	}
 
 	/**
@@ -269,6 +365,37 @@ public class BaseTransformationConfiguration {
 	public Level getLogLevel() {
 
 		return this.logLevel;
+	}
+
+	/**
+	 * The getter for the {@link #useParallelization}.
+	 *
+	 * @return the useParallelization
+	 */
+	public boolean isUseParallelization() {
+
+		return this.useParallelization;
+	}
+
+	/**
+	 * Print a summary of the used configuration.
+	 */
+	@Override
+	public String toString() {
+
+		StringBuilder builder = new StringBuilder();
+		builder.append("- Open Target Model on Completion: " + this.openTargetModelOnCompletion);
+		builder.append("\n- Default Target Model: " + this.defaultTargetModel);
+		builder.append("\n- Maximum length for Connection Paths: " + this.maxPathLength);
+		builder.append("\n- Remember Choices For Ambiguous Mappings: " + this.onlyAskOnceOnAmbiguousMappings);
+		builder.append("\n- Create Transformation Model: " + (this.transformationModelPath != null ? "true" : "false"));
+		builder.append("\n- Extended Parallelization: " + this.useParallelization);
+		builder.append("\n- Used Ambiguity Resolving Strategy: " + this.ambiguityResolvingStrategy);
+		builder.append("\n- Library Location(s): ");
+		builder.append(
+				this.libPaths.isEmpty() ? "---" : "\n\t" + this.libPaths.stream().collect(Collectors.joining("\n\t")));
+
+		return builder.toString();
 	}
 
 }

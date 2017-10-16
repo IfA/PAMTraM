@@ -10,6 +10,10 @@ import org.eclipse.emf.ecore.EObject;
  * @extends IDerivedNameSetter
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A NamedElement provides a human-readable name that can be used to identify it, e.g. when working with the model editor.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -30,6 +34,9 @@ public interface NamedElement extends EObject, IDerivedNameSetter {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * A human-readable name for this element. This does not necessarilly need to be unique.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see pamtram.PamtramPackage#getNamedElement_Name()

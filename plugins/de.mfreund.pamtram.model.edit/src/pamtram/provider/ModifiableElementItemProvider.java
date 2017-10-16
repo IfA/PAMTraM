@@ -71,13 +71,13 @@ public class ModifiableElementItemProvider
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_ModifiableElement_modifiers_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModifiableElement_modifiers_feature", "_UI_ModifiableElement_type"),
+				 getString("_UI_ModifiableElement_modifiers_description"),
 				 PamtramPackage.Literals.MODIFIABLE_ELEMENT__MODIFIERS,
 				 true,
 				 false,
 				 true,
 				 null,
-				 null,
+				 getString("_UI_ExtendedPropertyCategory"),
 				 null));
 	}
 

@@ -62,13 +62,13 @@ public class StringPrependerItemProvider
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_StringPrepender_string_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_StringPrepender_string_feature", "_UI_StringPrepender_type"),
+				 getString("_UI_StringPrepender_string_description"),
 				 ModifierPackage.Literals.STRING_PREPENDER__STRING,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
+				 getString("_UI_BasicPropertyCategory"),
 				 null));
 	}
 

@@ -23,6 +23,9 @@ import pamtram.structure.generic.GenericPackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
+ * <!-- begin-model-doc -->
+ * This package contains all elements related to the description of target element structures (aka TargetSections). These form the right-hand side (RHS) of a mapping.
+ * <!-- end-model-doc -->
  * @see pamtram.structure.target.TargetFactory
  * @model kind="package"
  * @generated
@@ -123,6 +126,51 @@ public interface TargetPackage extends EPackage {
 	 * @ordered
 	 */
 	int TARGET_SECTION_CLASS__ATTRIBUTES = GenericPackage.CLASS__ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>All Container</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_CLASS__ALL_CONTAINER = GenericPackage.CLASS__ALL_CONTAINER;
+
+	/**
+	 * The feature id for the '<em><b>Actual Attributes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_CLASS__ACTUAL_ATTRIBUTES = GenericPackage.CLASS__ACTUAL_ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Virtual Attributes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_CLASS__VIRTUAL_ATTRIBUTES = GenericPackage.CLASS__VIRTUAL_ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Actual References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_CLASS__ACTUAL_REFERENCES = GenericPackage.CLASS__ACTUAL_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Virtual References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_CLASS__VIRTUAL_REFERENCES = GenericPackage.CLASS__VIRTUAL_REFERENCES;
 
 	/**
 	 * The number of structural features of the '<em>Section Class</em>' class.
@@ -297,6 +345,51 @@ public interface TargetPackage extends EPackage {
 	int TARGET_SECTION__ATTRIBUTES = TARGET_SECTION_CLASS__ATTRIBUTES;
 
 	/**
+	 * The feature id for the '<em><b>All Container</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION__ALL_CONTAINER = TARGET_SECTION_CLASS__ALL_CONTAINER;
+
+	/**
+	 * The feature id for the '<em><b>Actual Attributes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION__ACTUAL_ATTRIBUTES = TARGET_SECTION_CLASS__ACTUAL_ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Virtual Attributes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION__VIRTUAL_ATTRIBUTES = TARGET_SECTION_CLASS__VIRTUAL_ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>Actual References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION__ACTUAL_REFERENCES = TARGET_SECTION_CLASS__ACTUAL_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Virtual References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION__VIRTUAL_REFERENCES = TARGET_SECTION_CLASS__VIRTUAL_REFERENCES;
+
+	/**
 	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -315,13 +408,22 @@ public interface TargetPackage extends EPackage {
 	int TARGET_SECTION__EXTEND = TARGET_SECTION_CLASS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>All Extend</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION__ALL_EXTEND = TARGET_SECTION_CLASS_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Referencing Mapping Hint Groups</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS = TARGET_SECTION_CLASS_FEATURE_COUNT + 2;
+	int TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS = TARGET_SECTION_CLASS_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>File</b></em>' reference.
@@ -330,7 +432,7 @@ public interface TargetPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION__FILE = TARGET_SECTION_CLASS_FEATURE_COUNT + 3;
+	int TARGET_SECTION__FILE = TARGET_SECTION_CLASS_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Section</em>' class.
@@ -339,7 +441,7 @@ public interface TargetPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_FEATURE_COUNT = TARGET_SECTION_CLASS_FEATURE_COUNT + 4;
+	int TARGET_SECTION_FEATURE_COUNT = TARGET_SECTION_CLASS_FEATURE_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -459,13 +561,22 @@ public interface TargetPackage extends EPackage {
 	int TARGET_SECTION___VALIDATE_IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP = TARGET_SECTION_CLASS_OPERATION_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Validate Cardinality</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION___VALIDATE_CARDINALITY__DIAGNOSTICCHAIN_MAP = TARGET_SECTION_CLASS_OPERATION_COUNT + 3;
+
+	/**
 	 * The number of operations of the '<em>Section</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_OPERATION_COUNT = TARGET_SECTION_CLASS_OPERATION_COUNT + 3;
+	int TARGET_SECTION_OPERATION_COUNT = TARGET_SECTION_CLASS_OPERATION_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.target.impl.TargetSectionAttributeImpl <em>Section Attribute</em>}' class.
@@ -769,15 +880,6 @@ public interface TargetPackage extends EPackage {
 	int TARGET_SECTION_REFERENCE__NAME = GenericPackage.REFERENCE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>EReference</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TARGET_SECTION_REFERENCE__EREFERENCE = GenericPackage.REFERENCE__EREFERENCE;
-
-	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -821,15 +923,6 @@ public interface TargetPackage extends EPackage {
 	 * @ordered
 	 */
 	int TARGET_SECTION_REFERENCE___IS_LIBRARY_ENTRY = GenericPackage.REFERENCE___IS_LIBRARY_ENTRY;
-
-	/**
-	 * The operation id for the '<em>Validate EReference Matches Parent EClass</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TARGET_SECTION_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = GenericPackage.REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Get Values Generic</em>' operation.
@@ -878,15 +971,6 @@ public interface TargetPackage extends EPackage {
 	int TARGET_SECTION_COMPOSITE_REFERENCE__NAME = GenericPackage.COMPOSITE_REFERENCE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>EReference</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TARGET_SECTION_COMPOSITE_REFERENCE__EREFERENCE = GenericPackage.COMPOSITE_REFERENCE__EREFERENCE;
-
-	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -905,13 +989,22 @@ public interface TargetPackage extends EPackage {
 	int TARGET_SECTION_COMPOSITE_REFERENCE__VALUE = GenericPackage.COMPOSITE_REFERENCE__VALUE;
 
 	/**
+	 * The feature id for the '<em><b>EReference</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_COMPOSITE_REFERENCE__EREFERENCE = GenericPackage.COMPOSITE_REFERENCE_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Section Composite Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_COMPOSITE_REFERENCE_FEATURE_COUNT = GenericPackage.COMPOSITE_REFERENCE_FEATURE_COUNT + 0;
+	int TARGET_SECTION_COMPOSITE_REFERENCE_FEATURE_COUNT = GenericPackage.COMPOSITE_REFERENCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -941,15 +1034,6 @@ public interface TargetPackage extends EPackage {
 	int TARGET_SECTION_COMPOSITE_REFERENCE___IS_LIBRARY_ENTRY = GenericPackage.COMPOSITE_REFERENCE___IS_LIBRARY_ENTRY;
 
 	/**
-	 * The operation id for the '<em>Validate EReference Matches Parent EClass</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TARGET_SECTION_COMPOSITE_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = GenericPackage.COMPOSITE_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
-
-	/**
 	 * The operation id for the '<em>Get Values Generic</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -977,13 +1061,22 @@ public interface TargetPackage extends EPackage {
 	int TARGET_SECTION_COMPOSITE_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP = GenericPackage.COMPOSITE_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP;
 
 	/**
+	 * The operation id for the '<em>Validate EReference Matches Parent EClass</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_COMPOSITE_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = GenericPackage.COMPOSITE_REFERENCE_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Section Composite Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_COMPOSITE_REFERENCE_OPERATION_COUNT = GenericPackage.COMPOSITE_REFERENCE_OPERATION_COUNT + 0;
+	int TARGET_SECTION_COMPOSITE_REFERENCE_OPERATION_COUNT = GenericPackage.COMPOSITE_REFERENCE_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.target.impl.TargetSectionCrossReferenceImpl <em>Section Cross Reference</em>}' class.
@@ -1005,15 +1098,6 @@ public interface TargetPackage extends EPackage {
 	int TARGET_SECTION_CROSS_REFERENCE__NAME = GenericPackage.CROSS_REFERENCE__NAME;
 
 	/**
-	 * The feature id for the '<em><b>EReference</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TARGET_SECTION_CROSS_REFERENCE__EREFERENCE = GenericPackage.CROSS_REFERENCE__EREFERENCE;
-
-	/**
 	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1032,13 +1116,22 @@ public interface TargetPackage extends EPackage {
 	int TARGET_SECTION_CROSS_REFERENCE__VALUE = GenericPackage.CROSS_REFERENCE__VALUE;
 
 	/**
+	 * The feature id for the '<em><b>EReference</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_CROSS_REFERENCE__EREFERENCE = GenericPackage.CROSS_REFERENCE_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Section Cross Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CROSS_REFERENCE_FEATURE_COUNT = GenericPackage.CROSS_REFERENCE_FEATURE_COUNT + 0;
+	int TARGET_SECTION_CROSS_REFERENCE_FEATURE_COUNT = GenericPackage.CROSS_REFERENCE_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -1068,15 +1161,6 @@ public interface TargetPackage extends EPackage {
 	int TARGET_SECTION_CROSS_REFERENCE___IS_LIBRARY_ENTRY = GenericPackage.CROSS_REFERENCE___IS_LIBRARY_ENTRY;
 
 	/**
-	 * The operation id for the '<em>Validate EReference Matches Parent EClass</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TARGET_SECTION_CROSS_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = GenericPackage.CROSS_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP;
-
-	/**
 	 * The operation id for the '<em>Get Values Generic</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1104,13 +1188,22 @@ public interface TargetPackage extends EPackage {
 	int TARGET_SECTION_CROSS_REFERENCE___VALIDATE_VALUES_MATCH_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP = GenericPackage.CROSS_REFERENCE___VALIDATE_VALUES_MATCH_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP;
 
 	/**
+	 * The operation id for the '<em>Validate EReference Matches Parent EClass</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_CROSS_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = GenericPackage.CROSS_REFERENCE_OPERATION_COUNT + 0;
+
+	/**
 	 * The operation id for the '<em>Validate EReference Is Non Containment</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CROSS_REFERENCE___VALIDATE_EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP = GenericPackage.CROSS_REFERENCE_OPERATION_COUNT + 0;
+	int TARGET_SECTION_CROSS_REFERENCE___VALIDATE_EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP = GenericPackage.CROSS_REFERENCE_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Section Cross Reference</em>' class.
@@ -1119,7 +1212,7 @@ public interface TargetPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_CROSS_REFERENCE_OPERATION_COUNT = GenericPackage.CROSS_REFERENCE_OPERATION_COUNT + 1;
+	int TARGET_SECTION_CROSS_REFERENCE_OPERATION_COUNT = GenericPackage.CROSS_REFERENCE_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.target.impl.ActualTargetSectionAttributeImpl <em>Actual Target Section Attribute</em>}' class.
@@ -1282,6 +1375,16 @@ public interface TargetPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getTargetSection__ValidateIsReferencedByMappingHintGroup__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.structure.target.TargetSection#validateCardinality(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Cardinality</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Cardinality</em>' operation.
+	 * @see pamtram.structure.target.TargetSection#validateCardinality(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getTargetSection__ValidateCardinality__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.structure.target.FileAttribute <em>File Attribute</em>}'.
@@ -1472,6 +1575,14 @@ public interface TargetPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation TARGET_SECTION___VALIDATE_IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP = eINSTANCE.getTargetSection__ValidateIsReferencedByMappingHintGroup__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Cardinality</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation TARGET_SECTION___VALIDATE_CARDINALITY__DIAGNOSTICCHAIN_MAP = eINSTANCE.getTargetSection__ValidateCardinality__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.structure.target.impl.FileAttributeImpl <em>File Attribute</em>}' class.

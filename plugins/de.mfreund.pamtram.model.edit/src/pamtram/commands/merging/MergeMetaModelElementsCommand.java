@@ -41,12 +41,12 @@ public abstract class MergeMetaModelElementsCommand<L extends MetaModelElement<S
 	/**
 	 * This caches the label.
 	 */
-	protected static final String LABEL = "MergeCommand";
+	protected static final String COMMAND_LABEL = "MergeCommand";
 
 	/**
 	 * This caches the description.
 	 */
-	protected static final String DESCRIPTION = "Merges a set of MetaModelElements";
+	protected static final String COMMAND_DESCRIPTION = "Merges a set of MetaModelElements";
 
 	/**
 	 * The set of {@link EObject elements} that need to be consulted when
@@ -89,8 +89,8 @@ public abstract class MergeMetaModelElementsCommand<L extends MetaModelElement<S
 
 		super();
 
-		this.setLabel(MergeMetaModelElementsCommand.LABEL);
-		this.setDescription(MergeMetaModelElementsCommand.DESCRIPTION);
+		this.setLabel(MergeMetaModelElementsCommand.COMMAND_LABEL);
+		this.setDescription(MergeMetaModelElementsCommand.COMMAND_DESCRIPTION);
 
 		this.domain = domain;
 		this.left = left;

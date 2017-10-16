@@ -11,6 +11,10 @@ import pamtram.structure.target.ActualTargetSectionAttribute;
  * A representation of the model object '<em><b>Attribute Parameter</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A wrapper element for a GenLibrary AttributeParameter.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -31,6 +35,9 @@ public interface AttributeParameter extends LibraryParameter<AbstractAttributePa
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The Attribute that can be used to set the value for the AttributeParameter (either by specifying a fixed value or by means of an AttributeMapping).
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Attribute</em>' containment reference.
 	 * @see #setAttribute(ActualTargetSectionAttribute)
 	 * @see pamtram.structure.library.LibraryPackage#getAttributeParameter_Attribute()

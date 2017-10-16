@@ -4,40 +4,38 @@ package pamtram.mapping.provider;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import de.tud.et.ifa.agtele.emf.edit.commands.BasicDragAndDropSetCommand;
+import pamtram.DeactivatableElement;
 import pamtram.PAMTraM;
 import pamtram.PamtramPackage;
-import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionFactory;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingPackage;
+import pamtram.provider.DeactivatableElementItemProvider;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.Mapping} object.
- * <!-- begin-user-doc --> <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> <!-- end-user-doc -->
  * @generated
  */
 public class MappingItemProvider extends MappingTypeItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	public MappingItemProvider(AdapterFactory adapterFactory) {
@@ -45,8 +43,9 @@ public class MappingItemProvider extends MappingTypeItemProvider {
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -61,29 +60,40 @@ public class MappingItemProvider extends MappingTypeItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Shared Condition feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
+	 * This adds a property descriptor for the Shared Condition feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
+	 * @generated NOT
 	 */
 	protected void addSharedConditionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ConditionalElement_sharedCondition_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ConditionalElement_sharedCondition_feature", "_UI_ConditionalElement_type"),
-				 PamtramPackage.Literals.CONDITIONAL_ELEMENT__SHARED_CONDITION,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		this.itemPropertyDescriptors.add(
+				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(), this.getString("_UI_ConditionalElement_sharedCondition_feature"),
+						this.getString("_UI_ConditionalElement_sharedCondition_description"),
+						PamtramPackage.Literals.CONDITIONAL_ELEMENT__SHARED_CONDITION, true, false, true, null,
+						this.getString("_UI_ExtendedPropertyCategory"), null) {
+
+					@Override
+					public Collection<?> getChoiceOfValues(Object object) {
+
+						Collection<?> choices = super.getChoiceOfValues(object);
+
+						// Only allow to reference ConditionModel-conditions as
+						// shared
+						// conditions
+						//
+						return choices.stream()
+								.filter(c -> c instanceof pamtram.condition.ComplexCondition
+										&& ((pamtram.condition.ComplexCondition) c).isConditionModelCondition())
+								.collect(Collectors.toList());
+					}
+				});
 	}
 
 	/**
-	 * This adds a property descriptor for the Abstract feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Abstract feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	protected void addAbstractPropertyDescriptor(Object object) {
@@ -92,13 +102,13 @@ public class MappingItemProvider extends MappingTypeItemProvider {
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_Mapping_abstract_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Mapping_abstract_feature", "_UI_Mapping_type"),
+				 getString("_UI_Mapping_abstract_description"),
 				 MappingPackage.Literals.MAPPING__ABSTRACT,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
+				 getString("_UI_ExtendedPropertyCategory"),
 				 null));
 	}
 
@@ -106,8 +116,7 @@ public class MappingItemProvider extends MappingTypeItemProvider {
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -117,7 +126,6 @@ public class MappingItemProvider extends MappingTypeItemProvider {
 			childrenFeatures.add(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION);
 			childrenFeatures.add(MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS);
 			childrenFeatures.add(MappingPackage.Literals.MAPPING__IMPORTED_MAPPING_HINT_GROUPS);
-			childrenFeatures.add(MappingPackage.Literals.MAPPING__GLOBAL_VARIABLES);
 		}
 		return childrenFeatures;
 	}
@@ -135,7 +143,10 @@ public class MappingItemProvider extends MappingTypeItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Source MM Section feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Source MM Section feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
 	 */
 	@Override
 	protected void addSourceSectionPropertyDescriptor(Object object) {
@@ -143,9 +154,9 @@ public class MappingItemProvider extends MappingTypeItemProvider {
 		this.itemPropertyDescriptors.add(
 				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
 						this.getResourceLocator(), this.getString("_UI_MappingType_sourceMMSection_feature"),
-						this.getString("_UI_PropertyDescriptor_description", "_UI_MappingType_sourceMMSection_feature",
-								"_UI_MappingType_type"),
-						MappingPackage.Literals.MAPPING_TYPE__SOURCE_SECTION, true, false, true, null, null, null) {
+						this.getString("_UI_MappingType_sourceSection_description"),
+						MappingPackage.Literals.MAPPING_TYPE__SOURCE_SECTION, true, false, true, null,
+						this.getString("_UI_BasicPropertyCategory"), null) {
 
 					@Override
 					public Collection<?> getChoiceOfValues(Object object) {
@@ -170,7 +181,8 @@ public class MappingItemProvider extends MappingTypeItemProvider {
 
 	/**
 	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -179,8 +191,9 @@ public class MappingItemProvider extends MappingTypeItemProvider {
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label styled text for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated NOT
 	 */
 	@Override
@@ -196,21 +209,16 @@ public class MappingItemProvider extends MappingTypeItemProvider {
 					: StyledString.Style.NO_STYLE);
 		}
 
-		if (((Mapping) object).isDeactivated()) {
-			return new StyledString(styledLabel.getString(),
-					StyledString.Style.newBuilder().setStrikedout(true).toStyle());
-		} else {
-			return styledLabel;
-
-		}
+		return DeactivatableElementItemProvider.modifyLabelBasedOnActivationStatus((DeactivatableElement) object,
+				styledLabel);
 
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
-	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -224,7 +232,6 @@ public class MappingItemProvider extends MappingTypeItemProvider {
 			case MappingPackage.MAPPING__LOCAL_CONDITION:
 			case MappingPackage.MAPPING__MAPPING_HINT_GROUPS:
 			case MappingPackage.MAPPING__IMPORTED_MAPPING_HINT_GROUPS:
-			case MappingPackage.MAPPING__GLOBAL_VARIABLES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -232,9 +239,10 @@ public class MappingItemProvider extends MappingTypeItemProvider {
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
+	 * describing the children that can be created under this object. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -285,26 +293,6 @@ public class MappingItemProvider extends MappingTypeItemProvider {
 			(createChildParameter
 				(MappingPackage.Literals.MAPPING__IMPORTED_MAPPING_HINT_GROUPS,
 				 MappingFactory.eINSTANCE.createMappingHintGroupImporter()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MappingPackage.Literals.MAPPING__GLOBAL_VARIABLES,
-				 MappingFactory.eINSTANCE.createGlobalAttribute()));
-	}
-
-	@Override
-	protected Command createDragAndDropCommand(EditingDomain domain, Object owner, float location, int operations,
-			int operation, Collection<?> collection) {
-
-		if (collection.size() == 1) {
-			Object object = collection.iterator().next();
-			if (object instanceof ComplexCondition) {
-				return new BasicDragAndDropSetCommand(domain, (EObject) owner,
-						PamtramPackage.Literals.CONDITIONAL_ELEMENT__SHARED_CONDITION, object, 0);
-			}
-		}
-
-		return super.createDragAndDropCommand(domain, owner, location, operations, operation, collection);
 	}
 
 }

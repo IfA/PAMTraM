@@ -7,6 +7,10 @@ package pamtram.mapping.modifier;
  * A representation of the model object '<em><b>Match To Lower Case Converter</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * This ValueModifier will modify the (String-based) 'value' by converting the sub-string identified by the given 'regex' to lower case.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -27,6 +31,9 @@ public interface ToLowerCaseConverter extends StringModifier {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The regular expression identifying the string to be converted.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Regex</em>' attribute.
 	 * @see #setRegex(String)
 	 * @see pamtram.mapping.modifier.ModifierPackage#getToLowerCaseConverter_Regex()

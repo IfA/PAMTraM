@@ -11,6 +11,10 @@ import pamtram.structure.source.SourceSection;
  * A representation of the model object '<em><b>Type</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * An abstract super type for elements describing some kind of mapping. Currently, there is only one concrete sub-element (Mapping).
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -31,6 +35,11 @@ public interface MappingType extends NamedElement, DeactivatableElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The SourceSection that this Mapping is based on.
+	 * <br /><br />
+	 * This Mapping will be executed/applied if the specified SourceSection is matched in the source model. If the SourceSection is matched multiple times, this Mapping will also be executed multiple times.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Source Section</em>' reference.
 	 * @see #setSourceSection(SourceSection)
 	 * @see pamtram.mapping.MappingPackage#getMappingType_SourceSection()

@@ -1,12 +1,11 @@
 package de.mfreund.gentrans.launching;
 
 import java.io.File;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,7 +22,9 @@ import org.eclipse.debug.core.model.ILaunchConfigurationDelegate;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
 
-import de.mfreund.gentrans.transformation.handler.GenericTransformationJob;
+import de.mfreund.gentrans.transformation.GenericTransformationJob;
+import de.mfreund.gentrans.transformation.TransformationConfiguration;
+import de.mfreund.gentrans.transformation.TransformationConfiguration.InitializationException;
 import de.mfreund.gentrans.transformation.resolving.ComposedAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.DefaultAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
@@ -31,6 +32,7 @@ import de.mfreund.gentrans.transformation.resolving.UserDecisionResolvingStrateg
 import de.mfreund.gentrans.transformation.resolving.history.HistoryResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.statistics.StatisticsResolvingStrategy;
 import de.tud.et.ifa.agtele.ui.listeners.ProjectRefreshingJobDoneListener;
+import pamtram.provider.PamtramEditPlugin;
 
 /**
  * An {@link ILaunchConfigurationDelegate} that is able to launch GenTrans transformations.
@@ -56,12 +58,17 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 	/**
 	 * The name of the 'pamtramFile' attribute.
 	 */
-	public static final String ATTRIBUTE_NAME_PAMTRAM_FILE = "pamtramFile";
+	public static final String ATTRIBUTE_NAME_PAMTRAM_FILES = "pamtramFiles";
 
 	/**
 	 * The name of the 'targetFile' attribute.
 	 */
 	public static final String ATTRIBUTE_NAME_TARGET_FILE = "targetFile";
+
+	/**
+	 * The name of the 'openTargetModelOnCompletion' attribute.
+	 */
+	public static final String ATTRIBUTE_NAME_OPEN_TARGET_MODEL_ON_COMPLETION = "openTargetModelOnCompletion";
 
 	/**
 	 * The name of the 'maxPathLength' attribute.
@@ -92,6 +99,11 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 	 * The name of the 'transformationModel' attribute.
 	 */
 	public static final String ATTRIBUTE_NAME_TRANSFORMATION_MODEL = "transformationModel";
+
+	/**
+	 * The name of the 'useParallelization' attribute.
+	 */
+	public static final String ATTRIBUTE_NAME_USE_PARALLELIZATION = "useParallelization";
 
 	/**
 	 * The name of the 'enableStatistics' attribute.
@@ -131,23 +143,24 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 	/**
 	 * The name of the folder where the target models are stored.
 	 */
-	private static final String TARGET_FOLDER_NAME = "Target";
+	private static final String TARGET_FOLDER_NAME = PamtramEditPlugin.INSTANCE.getString("TARGET_FOLDER_NAME");
 
 	/**
 	 * The name of the folder where the source models are stored.
 	 */
-	private static final String SOURCE_FOLDER_NAME = "Source";
+	private static final String SOURCE_FOLDER_NAME = PamtramEditPlugin.INSTANCE.getString("SOURCE_FOLDER_NAME");
 
 	/**
 	 * The name of the folder where the pamtram models are stored.
 	 */
-	private static final String PAMTRAM_FOLDER_NAME = "Pamtram";
+	private static final String PAMTRAM_FOLDER_NAME = PamtramEditPlugin.INSTANCE.getString("PAMTRAM_FOLDER_NAME");
 
 	@Override
 	public void launch(ILaunchConfiguration configuration, String mode, ILaunch launch, IProgressMonitor monitor)
 			throws CoreException {
 
-		// Validate the launch configuration. If this fails, a CoreException will be thrown
+		// Validate the launch configuration. If this fails, a CoreException
+		// will be thrown
 		// and the launch is canceled.
 		//
 		this.validateLaunchConfig(configuration);
@@ -155,32 +168,34 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		// get the associated files from the launch configuration
 		//
 		final String project = configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PROJECT, "");
-		ArrayList<String> sourceFiles = new ArrayList<>();
+		Set<String> sourceFiles = new HashSet<>();
 		for (String sourceFile : configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_SRC_FILES,
 				new ArrayList<>())) {
 			sourceFiles.add(project + IPath.SEPARATOR + GentransLaunchingDelegate.SOURCE_FOLDER_NAME + IPath.SEPARATOR
 					+ sourceFile);
 		}
-		String pamtramFile = project + IPath.SEPARATOR + GentransLaunchingDelegate.PAMTRAM_FOLDER_NAME + IPath.SEPARATOR
-				+ configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PAMTRAM_FILE, "");
+		Set<String> pamtramFiles = new HashSet<>();
+		for (String pamtramFile : configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PAMTRAM_FILES,
+				new ArrayList<>())) {
+			pamtramFiles.add(project + IPath.SEPARATOR + GentransLaunchingDelegate.PAMTRAM_FOLDER_NAME + IPath.SEPARATOR
+					+ pamtramFile);
+		}
 		String targetBasePath = project + IPath.SEPARATOR + GentransLaunchingDelegate.TARGET_FOLDER_NAME;
 		String defaultTargetModel = configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_FILE,
 				"out.xmi");
 
-		// determine the name of the transformation file from the current date
+		// the path where transformation models are stored
 		//
-		String transformationFile = null;
+		String transformationModelPath = null;
 		if (configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_STORE_TRANSFORMATION, false)) {
-			DateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
-			String currentDate = df.format(Calendar.getInstance().getTime());
-			transformationFile = project + IPath.SEPARATOR + GentransLaunchingDelegate.PAMTRAM_FOLDER_NAME
-					+ IPath.SEPARATOR + GentransLaunchingDelegate.TRANSFORMATION_FOLDER_NAME + IPath.SEPARATOR
-					+ currentDate + IPath.SEPARATOR + currentDate
-					+ GentransLaunchingDelegate.TRANSFORMATION_FILE_EXTENSION;
+			transformationModelPath = project + IPath.SEPARATOR + GentransLaunchingDelegate.PAMTRAM_FOLDER_NAME
+					+ IPath.SEPARATOR + GentransLaunchingDelegate.TRANSFORMATION_FOLDER_NAME;
 		}
 
 		// get the settings
 		//
+		boolean openTargetModelOnCompletion = configuration
+				.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_OPEN_TARGET_MODEL_ON_COMPLETION, true);
 		int maxPathLength = configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_MAX_PATH_LENGTH, -1);
 		boolean rememberAmbiguousMappingChoice = configuration.getAttribute("rememberAmbiguousMappingChoice", true);
 		Level logLevel = Level.ALL;
@@ -190,6 +205,8 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		} catch (Exception e) {
 			Logger.getLogger(GentransLaunchingDelegate.class.getName()).log(Level.SEVERE, e.getMessage(), e);
 		}
+		boolean useParallelization = configuration
+				.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_USE_PARALLELIZATION, false);
 
 		// if at least one xml source file shall be transformed,
 		// add the file extension to registry
@@ -203,17 +220,29 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 
 		}
 
-		// Initialize the strategy that shall be used to resolve ambiguities base on the given launch configuration.
+		// Initialize the strategy that shall be used to resolve ambiguities
+		// base on the given launch configuration.
 		//
 		IAmbiguityResolvingStrategy resolvingStrategy = this.initializeAmbiguityResolvingStrategy(configuration,
 				project);
 
 		// Create and run the transformation job
 		//
-		GenericTransformationJob job = new GenericTransformationJob("GenTrans", sourceFiles, pamtramFile,
-				targetBasePath, defaultTargetModel, transformationFile,
-				configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_LIB_PATHS, new ArrayList<>()),
-				resolvingStrategy, maxPathLength, rememberAmbiguousMappingChoice, logLevel);
+		TransformationConfiguration transformationConfig;
+		try {
+			transformationConfig = TransformationConfiguration.createInstanceFromSourcePaths(sourceFiles, pamtramFiles,
+					targetBasePath);
+		} catch (InitializationException e) {
+			throw new CoreException(new Status(IStatus.ERROR, "de.mfreund.gentrans", e.getMessage(), e));
+		}
+		transformationConfig.withOpenTargetModelOnCompletion(openTargetModelOnCompletion)
+				.withDefaultTargetModel(defaultTargetModel).withTransformationModelPath(transformationModelPath)
+				.withLibPaths(configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_LIB_PATHS,
+						new ArrayList<>()))
+				.withAmbiguityResolvingStrategy(resolvingStrategy).withMaxPathLength(maxPathLength)
+				.withOnlyAskOnceOnAmbiguousMappings(rememberAmbiguousMappingChoice).withLogLevel(logLevel)
+				.withUseParallelization(useParallelization);
+		GenericTransformationJob job = new GenericTransformationJob("GenTrans", transformationConfig);
 
 		job.setUser(true);
 		job.schedule();
@@ -245,7 +274,8 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 			IFolder transformationFolder = ResourcesPlugin.getWorkspace().getRoot().getProject(project)
 					.getFolder(GentransLaunchingDelegate.PAMTRAM_FOLDER_NAME)
 					.getFolder(GentransLaunchingDelegate.TRANSFORMATION_FOLDER_NAME);
-			// try to determine the location of the last stored transformation model
+			// try to determine the location of the last stored transformation
+			// model
 			if (transformationFolder.exists() && transformationFolder.members().length > 0) {
 				String transformationName = configuration.getAttribute("transformationModel", "");
 				if (transformationName.isEmpty()) {
@@ -339,7 +369,8 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 			throw new GentransLaunchingDelegateValidationException("No source file has been specified!");
 		}
 
-		if (configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PAMTRAM_FILE, "").isEmpty()) {
+		if (configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PAMTRAM_FILES, new ArrayList<>())
+				.isEmpty()) {
 			throw new GentransLaunchingDelegateValidationException("No pamtram file has been specified!");
 		}
 
@@ -363,7 +394,8 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 				new ArrayList<>());
 
 		if (libraryPaths.isEmpty()) {
-			// do nothing as this is not necessary if no library entries are used
+			// do nothing as this is not necessary if no library entries are
+			// used
 			return;
 		}
 
@@ -405,6 +437,7 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		 *            The message that shall be displayed to the user.
 		 */
 		private GentransLaunchingDelegateValidationException(String message) {
+
 			super(new Status(IStatus.ERROR, GentransLaunchingDelegateValidationException.ID, message));
 		}
 
@@ -417,6 +450,7 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		 *            The {@link Throwable} that caused this exception to be thrown.
 		 */
 		private GentransLaunchingDelegateValidationException(String message, Throwable cause) {
+
 			super(new Status(IStatus.ERROR, GentransLaunchingDelegateValidationException.ID, message, cause));
 		}
 

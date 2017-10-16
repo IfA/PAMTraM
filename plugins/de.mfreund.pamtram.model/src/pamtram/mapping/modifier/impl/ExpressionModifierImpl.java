@@ -11,9 +11,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import pamtram.ExpressionElement;
 import pamtram.PamtramPackage;
-import de.mfreund.pamtram.util.ExpressionCalculator;
 import pamtram.mapping.modifier.ExpressionModifier;
 import pamtram.mapping.modifier.ModifierPackage;
+import pamtram.util.ExpressionCalculator;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Expression Modifier</b></em>'. <!--

@@ -8,6 +8,11 @@ package pamtram.structure.constraint;
  * A representation of the model object '<em><b>String Constraint</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A ValueConstraint type that can be used for literal attribute values. It compares the determined attribute value to the calculated reference value based on a String comparison.
+ * 
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -30,6 +35,9 @@ public interface StringConstraint extends SingleReferenceValueConstraint {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The comparison type used to compare the actual attribute value to the determined reference value.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Operator Type</em>' attribute.
 	 * @see pamtram.structure.constraint.StringConstraintOperatorType
 	 * @see #setOperatorType(StringConstraintOperatorType)
@@ -59,6 +67,9 @@ public interface StringConstraint extends SingleReferenceValueConstraint {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Whether the String comparison shall be performed case-sensitive (true) or case-insensitive (false).
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Case Sensitive</em>' attribute.
 	 * @see #setCaseSensitive(boolean)
 	 * @see pamtram.structure.constraint.ConstraintPackage#getStringConstraint_CaseSensitive()

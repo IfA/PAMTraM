@@ -1,45 +1,45 @@
 package de.mfreund.gentrans.transformation.matching;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 
-import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
+import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
+import de.mfreund.gentrans.transformation.calculation.ValueModifierExecutor;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
+import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.maps.HintValueMap;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.FixedValue;
-import pamtram.mapping.AttributeMapping;
-import pamtram.mapping.AttributeMappingSourceInterface;
-import pamtram.mapping.AttributeMatcher;
-import pamtram.mapping.AttributeMatcherSourceInterface;
-import pamtram.mapping.CardinalityMapping;
-import pamtram.mapping.CardinalityMappingSourceInterface;
-import pamtram.mapping.ContainerSelector;
-import pamtram.mapping.ContainerSelectorSourceInterface;
-import pamtram.mapping.ExpandableHint;
 import pamtram.mapping.ExportedMappingHintGroup;
-import pamtram.mapping.ExternalMappedAttributeValuePrepender;
 import pamtram.mapping.GlobalAttribute;
-import pamtram.mapping.GlobalAttributeImporter;
-import pamtram.mapping.HintImporterMappingHint;
-import pamtram.mapping.MappedAttributeValueExpander;
-import pamtram.mapping.MappedAttributeValuePrepender;
-import pamtram.mapping.MappingHintBaseType;
-import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
-import pamtram.mapping.MappingHintGroupType;
-import pamtram.mapping.ReferenceTargetSelector;
-import pamtram.structure.GlobalModifiedAttributeElementType;
-import pamtram.structure.ModifiedAttributeElementType;
+import pamtram.mapping.extended.AttributeMapping;
+import pamtram.mapping.extended.AttributeMatcher;
+import pamtram.mapping.extended.CardinalityMapping;
+import pamtram.mapping.extended.ContainerSelector;
+import pamtram.mapping.extended.ExpandableHint;
+import pamtram.mapping.extended.ExternalMappedAttributeValuePrepender;
+import pamtram.mapping.extended.GlobalAttributeImporter;
+import pamtram.mapping.extended.HintImporterMappingHint;
+import pamtram.mapping.extended.MappedAttributeValueExpander;
+import pamtram.mapping.extended.MappedAttributeValuePrepender;
+import pamtram.mapping.extended.MappingHint;
+import pamtram.mapping.extended.MappingHintBaseType;
+import pamtram.mapping.extended.MappingHintSourceInterface;
+import pamtram.mapping.extended.ReferenceTargetSelector;
+import pamtram.structure.DynamicSourceElement;
+import pamtram.structure.GlobalDynamicSourceElement;
+import pamtram.structure.InstanceSelector;
+import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.generic.ActualAttribute;
 import pamtram.structure.source.ActualSourceSectionAttribute;
 import pamtram.structure.source.SourceSection;
@@ -62,11 +62,6 @@ public class HintValueExtractor extends ValueExtractor {
 	private Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections;
 
 	/**
-	 * The list of {@link MappingInstanceStorage MappingInstanceStorages} for that the hint values shall be extracted.
-	 */
-	private List<MappingInstanceStorage> mappingInstances;
-
-	/**
 	 * This keeps track of the {@link MappingInstanceStorage MappingInstanceStorages} representing
 	 * {@link ExportedMappingHintGroup ExportedMappingHintGroups}.
 	 * <p/>
@@ -82,52 +77,66 @@ public class HintValueExtractor extends ValueExtractor {
 	 *
 	 * @param matchingResult
 	 *            The result of the <em>matching</em> step.
-	 * @param mappingInstances
-	 *            The list of {@link MappingInstanceStorage MappingInstanceStorages} for that the hint values shall be
-	 *            extracted.
-	 * @param globalAttributes
-	 *            The values of {@link GlobalAttribute GlobalAttributes} that shall be used by
-	 *            {@link #extractValue(GlobalAttributeImporter, MatchedSectionDescriptor)}.
+	 * @param globalValues
+	 *            The <em>global values</em> (values of {@link FixedValue FixedValues} and {@link GlobalAttribute
+	 *            GlobalAttribute}) defined in the PAMTraM model.
+	 * @param instanceSelectorHandler
+	 *            The {@link InstanceSelectorHandler} that is used to evaluate {@link InstanceSelector InstancePointers}
+	 *            that have been modeled.
 	 * @param attributeValueModifierExecutor
-	 *            The {@link AttributeValueModifierExecutor} that shall be used for modifying attribute values.
+	 *            The {@link ValueModifierExecutor} that shall be used for modifying attribute values.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
+	 * @param useParallelization
+	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
+	 *            that the transformation result (especially the order of lists) varies between executions.
 	 */
 	public HintValueExtractor(Map<SourceSection, List<MatchedSectionDescriptor>> matchingResult,
-			List<MappingInstanceStorage> mappingInstances, Map<GlobalAttribute, String> globalAttributes,
-			AttributeValueModifierExecutor attributeValueModifierExecutor, Logger logger) {
+			GlobalValueMap globalValues, InstanceSelectorHandler instanceSelectorHandler,
+			ValueModifierExecutor attributeValueModifierExecutor, Logger logger, boolean useParallelization) {
 
-		super(globalAttributes, attributeValueModifierExecutor, logger);
+		super(globalValues, instanceSelectorHandler, attributeValueModifierExecutor, logger, useParallelization);
 
 		this.matchedSections = matchingResult;
-		this.mappingInstances = mappingInstances;
 		this.exportedHintGroups = new HashMap<>();
 	}
 
 	/**
-	 * This extracts the hint values and stores them in the {@link #mappingInstances}.
+	 * This extracts the values for {@link MappingHint MappingHints} in the given <em>mappingInstances</em>.
+	 * <p />
+	 * Note: The extracted values are stored as {@link MappingInstanceStorage#getHintValues() hintValues} inside the
+	 * respective for each {@link MappingInstanceStorage}.
+	 *
+	 * @param mappingInstances
+	 *            The list of {@link MappingInstanceStorage MappingInstanceStorages} for that the hint values shall be
+	 *            extracted.
 	 */
-	public void extractHintValues() {
+	public void extractHintValues(List<MappingInstanceStorage> mappingInstances) {
 
-		// In a first step, we extract the hints of 'normal' and exported hint groups.
+		// In a first step, we extract the hints of 'normal' and exported hint
+		// groups.
 		//
-		this.mappingInstances.parallelStream().forEach(this::extractHintValues);
+		(this.useParallelization ? mappingInstances.parallelStream() : mappingInstances.stream())
+				.forEach(this::extractHintValues);
 
 		// Now, we collect exported hint groups and associated mapping instances
 		//
-		this.mappingInstances.parallelStream().forEach(m -> m.getMappingHintGroups().parallelStream()
-				.filter(hg -> hg instanceof ExportedMappingHintGroup).forEach(hg -> {
-					if (this.exportedHintGroups.containsKey(hg)) {
-						this.logger.warning("Multiple occurences found for exported hint group '" + hg.getName()
-								+ "'! This is currently not supported!");
-					}
-					this.exportedHintGroups.put((ExportedMappingHintGroup) hg, m);
-				}));
+		(this.useParallelization ? mappingInstances.parallelStream() : mappingInstances.stream())
+				.forEach(m -> (this.useParallelization ? m.getMappingHintGroups().parallelStream()
+						: m.getMappingHintGroups().stream()).filter(hg -> hg instanceof ExportedMappingHintGroup)
+								.forEach(hg -> {
+									if (this.exportedHintGroups.containsKey(hg)) {
+										this.logger.warning(() -> "Multiple occurences found for exported hint group '"
+												+ hg.getName() + "'! This is currently not supported!");
+									}
+									this.exportedHintGroups.put((ExportedMappingHintGroup) hg, m);
+								}));
 
-		// Now, we extract the hints for hint group importers (as we can now used the
-		// hint values of exported hint groups that have been calculated before)
+		// Now, we extract the hints for hint group importers (as we can now used the hint values of exported hint
+		// groups that have been calculated before)
 		//
-		this.mappingInstances.parallelStream().forEach(this::extractImportedHintValues);
+		(this.useParallelization ? mappingInstances.parallelStream() : mappingInstances.stream())
+				.forEach(this::extractImportedHintValues);
 	}
 
 	/**
@@ -140,26 +149,26 @@ public class HintValueExtractor extends ValueExtractor {
 	 */
 	private void extractHintValues(MappingInstanceStorage mappingInstance) {
 
-		// First, we collect all hints (including a possible ModelConnectionHint)
+		// First, we collect all hints of all hint groups
 		//
-		List<MappingHintBaseType> mappingHints = new ArrayList<>();
-		for (MappingHintGroupType hintGroup : mappingInstance.getMappingHintGroups()) {
-			if (hintGroup instanceof MappingHintGroup
-					&& ((MappingHintGroup) hintGroup).getContainerSelector() != null) {
-				mappingHints.add(((MappingHintGroup) hintGroup).getContainerSelector());
-			}
-			mappingHints.addAll(hintGroup.getMappingHints());
-		}
+		List<MappingHint> mappingHints = (this.useParallelization
+				? mappingInstance.getMappingHintGroups().parallelStream()
+				: mappingInstance.getMappingHintGroups().stream())
+						.flatMap(hintGroup -> mappingInstance.getMappingHints(hintGroup).stream())
+						.collect(Collectors.toList());
 
-		// Now, we need to initialize the corresponding maps to store hint values
-		// (Note: Using a parallel stream would for whatever reason result in exceptions, so we make use of a sequential
+		// Now, we need to initialize the corresponding maps to store hint
+		// values
+		// (Note: Using a parallel stream would for whatever reason result in
+		// exceptions, so we make use of a sequential
 		// stream).
 		//
 		mappingHints.stream().forEach(hint -> this.initializeHintValueMap(hint, mappingInstance));
 
 		// Now, we can extract the hint values for each hint
 		//
-		mappingHints.parallelStream().forEach(h -> this.extractHintValue(h, mappingInstance));
+		(this.useParallelization ? mappingHints.parallelStream() : mappingHints.stream())
+				.forEach(h -> this.extractHintValue(h, mappingInstance));
 	}
 
 	/**
@@ -176,30 +185,35 @@ public class HintValueExtractor extends ValueExtractor {
 		for (MappingHintGroupImporter hintGroupImporter : mappingInstance.getMappingHintGroupImporters()) {
 
 			// First, we copy all imported hint values
-			// (Note: Using a parallel stream would for whatever reason result in exceptions, so we make use of a
+			// (Note: Using a parallel stream would for whatever reason result
+			// in exceptions, so we make use of a
 			// sequential stream).
 			//
 			ExportedMappingHintGroup exportedHintGroup = hintGroupImporter.getHintGroup();
 			MappingInstanceStorage exported = this.exportedHintGroups.get(exportedHintGroup);
 
-			exportedHintGroup.getMappingHints().stream().forEach(hint -> {
+			mappingInstance.getMappingHints(exportedHintGroup).stream().forEach(hint -> {
 				this.initializeHintValueMap(hint, mappingInstance);
 				mappingInstance.getHintValues().addHintValues(hint, exported.getHintValues().getHintValuesCloned(hint));
 			});
 
-			// Now, we need to initialize the corresponding maps to store values for own hints
-			// (Note: Using a parallel stream would for whatever reason result in exceptions, so we make use of a
+			// Now, we need to initialize the corresponding maps to store values
+			// for own hints
+			// (Note: Using a parallel stream would for whatever reason result
+			// in exceptions, so we make use of a
 			// sequential stream).
 			//
 			hintGroupImporter.getMappingHints().stream()
 					.forEach(hint -> this.initializeHintValueMap(hint, mappingInstance));
 
 			// Now, we can extract the hint values for each own hint.
-			// (Note: MappedAttributeValueExpanders that change existing values of imported hints are also handled
+			// (Note: MappedAttributeValueExpanders that change existing values
+			// of imported hints are also handled
 			// here).
 			//
-			hintGroupImporter.getMappingHints().parallelStream()
-					.forEach(h -> this.extractHintValue(h, mappingInstance));
+			(this.useParallelization ? hintGroupImporter.getMappingHints().parallelStream()
+					: hintGroupImporter.getMappingHints().stream())
+							.forEach(h -> this.extractHintValue(h, mappingInstance));
 		}
 
 	}
@@ -216,39 +230,44 @@ public class HintValueExtractor extends ValueExtractor {
 	 */
 	private void extractHintValue(MappingHintBaseType hint, MappingInstanceStorage mappingInstance) {
 
-		// The MatchedSectionDescriptor for the SourceSection from that we want to extract hint values
-		//
-		MatchedSectionDescriptor matchedSectionDescriptor = mappingInstance.getMatchedSectionDescriptor();
-
 		Object hintValue = null;
 
-		if (hint instanceof AttributeMapping) {
+		if (hint instanceof AttributeMapping || hint instanceof ReferenceTargetSelector
+				|| hint instanceof ContainerSelector) {
 
-			hintValue = this.extractHintValue((AttributeMapping) hint, matchedSectionDescriptor);
+			MatchedSectionDescriptor matchedSectionDescriptor = mappingInstance.getMatchedSectionDescriptor();
 
-		} else if (hint instanceof ReferenceTargetSelector) {
+			// This keeps track of the extracted hint value parts
+			//
+			Map<MappingHintSourceInterface, AttributeValueRepresentation> hintValueMap = new HashMap<>();
 
-			if (((ReferenceTargetSelector) hint).getMatcher() instanceof AttributeMatcher) {
+			// Extract the hint value parts based on the type
+			// (Disregard source elements with negative conditions)
+			//
+			for (MappingHintSourceInterface attributeMappingSourceInterface : mappingInstance
+					.getMappingHintSourceElements((MappingHint) hint)) {
 
-				hintValue = this.extractHintValue((AttributeMatcher) ((ReferenceTargetSelector) hint).getMatcher(),
-						matchedSectionDescriptor);
+				AttributeValueRepresentation attributeValueRepresentation = this
+						.extractHintValue(attributeMappingSourceInterface, matchedSectionDescriptor);
+
+				if (attributeValueRepresentation != null) {
+					hintValueMap.put(attributeMappingSourceInterface, attributeValueRepresentation);
+				}
 			}
 
-		} else if (hint instanceof ContainerSelector) {
-
-			hintValue = this.extractHintValue((ContainerSelector) hint, matchedSectionDescriptor);
+			hintValue = hintValueMap.isEmpty() ? null : hintValueMap;
 
 		} else if (hint instanceof CardinalityMapping) {
 
-			hintValue = this.extractHintValue((CardinalityMapping) hint, matchedSectionDescriptor);
+			hintValue = this.extractHintValue((CardinalityMapping) hint, mappingInstance);
 
 		} else if (hint instanceof MappedAttributeValueExpander) {
 
-			hintValue = this.extractHintValue((MappedAttributeValueExpander) hint, matchedSectionDescriptor);
+			hintValue = this.extractHintValue((MappedAttributeValueExpander) hint, mappingInstance);
 
 		} else {
 
-			this.logger.severe("Unsupported type of MappingHint found: '" + hint.eClass().getName() + "'!");
+			this.logger.severe(() -> "Unsupported type of MappingHint found: '" + hint.eClass().getName() + "'!");
 		}
 
 		this.storeHintValueConsolidated(hintValue, hint, mappingInstance);
@@ -256,155 +275,39 @@ public class HintValueExtractor extends ValueExtractor {
 	}
 
 	/**
-	 * This extracts and returns the hint value for the given {@link AttributeMapping}.
+	 * Extracts a (partial) hint value for a single {@link MappingHintSourceInterface source element} of a MappingHint.
 	 *
-	 * @param attributeMapping
-	 *            The {@link AttributeMapping} for that the hint values shall be extracted.
+	 * @param sourceElement
+	 *            The {@link MappingHintSourceInterface} for which the value shall be extracted.
 	 * @param matchedSectionDescriptor
-	 *            The {@link MatchedSectionDescriptor} for that the hint values shall be extracted.
-	 * @return The extracted hint value or '<em>null</em>' if nothing could be extracted.
+	 *            The {@link MatchedSectionDescriptor} representing the part of the source model from which the value is
+	 *            to be extracted.
+	 * @return The {@link AttributeValueRepresentation} representing the extracted value.
 	 */
 	@SuppressWarnings("unchecked")
-	private Map<AttributeMappingSourceInterface, AttributeValueRepresentation> extractHintValue(
-			AttributeMapping attributeMapping, MatchedSectionDescriptor matchedSectionDescriptor) {
+	private AttributeValueRepresentation extractHintValue(MappingHintSourceInterface sourceElement,
+			MatchedSectionDescriptor matchedSectionDescriptor) {
 
-		// This keeps track of the extracted hint value parts
-		//
-		Map<AttributeMappingSourceInterface, AttributeValueRepresentation> hintValue = new HashMap<>();
+		AttributeValueRepresentation attributeValueRepresentation = null;
 
-		// Extract the hint value part based on its type
-		//
-		for (AttributeMappingSourceInterface attributeMappingSourceInterface : attributeMapping.getSourceElements()) {
-
-			AttributeValueRepresentation attributeValueRepresentation = null;
-
-			if (attributeMappingSourceInterface instanceof GlobalModifiedAttributeElementType<?, ?, ?, ?>) {
-				attributeValueRepresentation = this.extractValue(
-						(GlobalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) attributeMappingSourceInterface,
-						this.matchedSections, matchedSectionDescriptor);
-			} else if (attributeMappingSourceInterface instanceof ModifiedAttributeElementType<?, ?, ?, ?>) {
-				attributeValueRepresentation = this.extractValue(
-						(ModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) attributeMappingSourceInterface,
-						matchedSectionDescriptor);
-			} else if (attributeMappingSourceInterface instanceof FixedValue) {
-				attributeValueRepresentation = this.extractValue((FixedValue) attributeMappingSourceInterface,
-						matchedSectionDescriptor);
-			} else if (attributeMappingSourceInterface instanceof GlobalAttributeImporter) {
-				attributeValueRepresentation = this.extractValue(
-						(GlobalAttributeImporter) attributeMappingSourceInterface, matchedSectionDescriptor);
-			} else {
-				this.logger.severe("Unsupported type of source element for an AttributeMapping found: '"
-						+ attributeMappingSourceInterface.eClass().getName() + "'!");
-			}
-
-			if (attributeValueRepresentation != null) {
-				hintValue.put(attributeMappingSourceInterface, attributeValueRepresentation);
-			}
+		if (sourceElement instanceof GlobalDynamicSourceElement<?, ?, ?, ?, ?>) {
+			attributeValueRepresentation = this.extractValue(
+					(GlobalDynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute, SourceInstanceSelector>) sourceElement,
+					this.matchedSections, matchedSectionDescriptor, this.useParallelization);
+		} else if (sourceElement instanceof DynamicSourceElement<?, ?, ?, ?>) {
+			attributeValueRepresentation = this.extractValue(
+					(DynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) sourceElement,
+					matchedSectionDescriptor);
+		} else if (sourceElement instanceof FixedValue) {
+			attributeValueRepresentation = this.extractValue((FixedValue) sourceElement, matchedSectionDescriptor);
+		} else if (sourceElement instanceof GlobalAttributeImporter) {
+			attributeValueRepresentation = this.extractValue((GlobalAttributeImporter) sourceElement,
+					matchedSectionDescriptor);
+		} else {
+			this.logger.severe(() -> "Unsupported type of source element for a MappingHint found: '"
+					+ sourceElement.eClass().getName() + "'!");
 		}
-
-		return hintValue.isEmpty() ? null : hintValue;
-	}
-
-	/**
-	 * This extracts and returns the hint value for the given {@link MappingHintBaseType mapping hint}.
-	 *
-	 * @param attributeMatcher
-	 *            The {@link AttributeMatcher} for that the hint values shall be extracted.
-	 * @param matchedSectionDescriptor
-	 *            The {@link MatchedSectionDescriptor} for that the hint values shall be extracted.
-	 * @return The extracted hint value or '<em>null</em>' if nothing could be extracted.
-	 */
-	@SuppressWarnings("unchecked")
-	private Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> extractHintValue(
-			AttributeMatcher attributeMatcher, MatchedSectionDescriptor matchedSectionDescriptor) {
-
-		// This keeps track of the extracted hint value parts
-		//
-		Map<AttributeMatcherSourceInterface, AttributeValueRepresentation> hintValue = new HashMap<>();
-
-		// Extract the hint value part based on its type
-		//
-		for (AttributeMatcherSourceInterface attributeMatcherSourceInterface : attributeMatcher.getSourceElements()) {
-
-			AttributeValueRepresentation attributeValueRepresentation = null;
-
-			if (attributeMatcherSourceInterface instanceof GlobalModifiedAttributeElementType<?, ?, ?, ?>) {
-				attributeValueRepresentation = this.extractValue(
-						(GlobalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) attributeMatcherSourceInterface,
-						this.matchedSections, matchedSectionDescriptor);
-			} else if (attributeMatcherSourceInterface instanceof ModifiedAttributeElementType<?, ?, ?, ?>) {
-				attributeValueRepresentation = this.extractValue(
-						(ModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) attributeMatcherSourceInterface,
-						matchedSectionDescriptor);
-			} else if (attributeMatcherSourceInterface instanceof FixedValue) {
-				attributeValueRepresentation = this.extractValue((FixedValue) attributeMatcherSourceInterface,
-						matchedSectionDescriptor);
-			} else if (attributeMatcherSourceInterface instanceof GlobalAttributeImporter) {
-				attributeValueRepresentation = this.extractValue(
-						(GlobalAttributeImporter) attributeMatcherSourceInterface, matchedSectionDescriptor);
-			} else {
-				this.logger.severe("Unsupported type of source element for an AttributeMatcher found: '"
-						+ attributeMatcherSourceInterface.eClass().getName() + "'!");
-			}
-
-			if (attributeValueRepresentation != null) {
-				hintValue.put(attributeMatcherSourceInterface, attributeValueRepresentation);
-			}
-
-		}
-
-		return hintValue.isEmpty() ? null : hintValue;
-	}
-
-	/**
-	 * This extracts and returns the hint value for the given {@link ContainerSelector}.
-	 *
-	 * @param modelConnectionHint
-	 *            The {@link ContainerSelector} for that the hint values shall be extracted.
-	 * @param matchedSectionDescriptor
-	 *            The {@link MatchedSectionDescriptor} for that the hint values shall be extracted.
-	 * @return The extracted hint value or '<em>null</em>' if nothing could be extracted.
-	 */
-	@SuppressWarnings("unchecked")
-	private Map<ContainerSelectorSourceInterface, AttributeValueRepresentation> extractHintValue(
-			ContainerSelector modelConnectionHint, MatchedSectionDescriptor matchedSectionDescriptor) {
-
-		// This keeps track of the extracted hint value parts
-		//
-		Map<ContainerSelectorSourceInterface, AttributeValueRepresentation> hintValue = new HashMap<>();
-
-		// Extract the hint value part based on its type
-		//
-		for (ContainerSelectorSourceInterface modelConnectionHintSourceInterface : modelConnectionHint
-				.getSourceElements()) {
-
-			AttributeValueRepresentation attributeValueRepresentation = null;
-
-			if (modelConnectionHintSourceInterface instanceof GlobalModifiedAttributeElementType<?, ?, ?, ?>) {
-				attributeValueRepresentation = this.extractValue(
-						(GlobalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) modelConnectionHintSourceInterface,
-						this.matchedSections, matchedSectionDescriptor);
-			} else if (modelConnectionHintSourceInterface instanceof ModifiedAttributeElementType<?, ?, ?, ?>) {
-				attributeValueRepresentation = this.extractValue(
-						(ModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) modelConnectionHintSourceInterface,
-						matchedSectionDescriptor);
-			} else if (modelConnectionHintSourceInterface instanceof FixedValue) {
-				attributeValueRepresentation = this.extractValue((FixedValue) modelConnectionHintSourceInterface,
-						matchedSectionDescriptor);
-			} else if (modelConnectionHintSourceInterface instanceof GlobalAttributeImporter) {
-				attributeValueRepresentation = this.extractValue(
-						(GlobalAttributeImporter) modelConnectionHintSourceInterface, matchedSectionDescriptor);
-			} else {
-				this.logger.severe("Unsupported type of source element for a ModelConnectionHint found: '"
-						+ modelConnectionHintSourceInterface.eClass().getName() + "'!");
-			}
-
-			if (attributeValueRepresentation != null) {
-				hintValue.put(modelConnectionHintSourceInterface, attributeValueRepresentation);
-			}
-		}
-
-		return hintValue.isEmpty() ? null : hintValue;
+		return attributeValueRepresentation;
 	}
 
 	/**
@@ -412,19 +315,20 @@ public class HintValueExtractor extends ValueExtractor {
 	 *
 	 * @param cardinalityMapping
 	 *            The {@link CardinalityMapping} for that the hint values shall be extracted.
-	 * @param matchedSectionDescriptor
-	 *            The {@link MatchedSectionDescriptor} for that the hint values shall be extracted.
+	 * @param mappingInstance
+	 *            The {@link MappingInstanceStorage} for that the hint values shall be extracted.
 	 * @return The extracted hint value or '<em>null</em>' if nothing could be extracted.
 	 */
-	@SuppressWarnings("unchecked")
-	private Object extractHintValue(CardinalityMapping cardinalityMapping,
-			MatchedSectionDescriptor matchedSectionDescriptor) {
+	private Object extractHintValue(CardinalityMapping cardinalityMapping, MappingInstanceStorage mappingInstance) {
+
+		MatchedSectionDescriptor matchedSectionDescriptor = mappingInstance.getMatchedSectionDescriptor();
 
 		if (cardinalityMapping.getSource() != null) {
 
 			if (cardinalityMapping.getSource() instanceof SourceSectionClass) {
 
-				// If the cardinality mapping specifies a SourceSectionClass as source, we simply return the number of
+				// If the cardinality mapping specifies a SourceSectionClass as
+				// source, we simply return the number of
 				// times
 				// this class has been matched
 				//
@@ -434,8 +338,10 @@ public class HintValueExtractor extends ValueExtractor {
 
 			} else if (cardinalityMapping.getSource() instanceof SourceSectionAttribute) {
 
-				// If the cardinality mapping specifies a SourceSectionAttribute as source, we first collect all matches
-				// of this attribute and then return the sum of the values for each of the found matches
+				// If the cardinality mapping specifies a SourceSectionAttribute
+				// as source, we first collect all matches
+				// of this attribute and then return the sum of the values for
+				// each of the found matches
 				//
 				SourceSectionAttribute sourceAttribute = (SourceSectionAttribute) cardinalityMapping.getSource();
 				Set<EObject> sourceElements = matchedSectionDescriptor.getSourceModelObjectsMapped()
@@ -444,14 +350,14 @@ public class HintValueExtractor extends ValueExtractor {
 						: sourceElements.parallelStream()
 								.mapToInt(sourceElement -> sourceAttribute instanceof ActualAttribute<?, ?, ?, ?>
 										? AgteleEcoreUtil
-												.getAttributeValueAsList(sourceElement,
+												.getStructuralFeatureValueAsList(sourceElement,
 														((ActualAttribute<?, ?, ?, ?>) sourceAttribute).getAttribute())
 												.size()
 										: 1)
 								.sum();
 
 			} else {
-				this.logger.severe("CardinalityMapping '" + cardinalityMapping.getName()
+				this.logger.severe(() -> "CardinalityMapping '" + cardinalityMapping.getName()
 						+ "' specifies an unsupported element type as 'source'. Only SourceSectionClasses and SourceSectionAttributes are supported!");
 				return null;
 			}
@@ -459,33 +365,15 @@ public class HintValueExtractor extends ValueExtractor {
 		} else {
 			// This keeps track of the extracted hint value parts
 			//
-			Map<CardinalityMappingSourceInterface, AttributeValueRepresentation> hintValue = new HashMap<>();
+			Map<MappingHintSourceInterface, AttributeValueRepresentation> hintValue = new HashMap<>();
 
 			// Extract the hint value part based on its type
 			//
-			for (CardinalityMappingSourceInterface cardinalityMappingSourceInterface : cardinalityMapping
-					.getSourceElements()) {
+			for (MappingHintSourceInterface cardinalityMappingSourceInterface : mappingInstance
+					.getMappingHintSourceElements(cardinalityMapping)) {
 
-				AttributeValueRepresentation attributeValueRepresentation = null;
-
-				if (cardinalityMappingSourceInterface instanceof GlobalModifiedAttributeElementType<?, ?, ?, ?>) {
-					attributeValueRepresentation = this.extractValue(
-							(GlobalModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) cardinalityMappingSourceInterface,
-							this.matchedSections, matchedSectionDescriptor);
-				} else if (cardinalityMappingSourceInterface instanceof ModifiedAttributeElementType<?, ?, ?, ?>) {
-					attributeValueRepresentation = this.extractValue(
-							(ModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) cardinalityMappingSourceInterface,
-							matchedSectionDescriptor);
-				} else if (cardinalityMappingSourceInterface instanceof FixedValue) {
-					attributeValueRepresentation = this.extractValue((FixedValue) cardinalityMappingSourceInterface,
-							matchedSectionDescriptor);
-				} else if (cardinalityMappingSourceInterface instanceof GlobalAttributeImporter) {
-					attributeValueRepresentation = this.extractValue(
-							(GlobalAttributeImporter) cardinalityMappingSourceInterface, matchedSectionDescriptor);
-				} else {
-					this.logger.severe("Unsupported type of source element for an AttributeMapping found: '"
-							+ cardinalityMappingSourceInterface.eClass().getName() + "'!");
-				}
+				AttributeValueRepresentation attributeValueRepresentation = this
+						.extractHintValue(cardinalityMappingSourceInterface, matchedSectionDescriptor);
 
 				if (attributeValueRepresentation != null) {
 					hintValue.put(cardinalityMappingSourceInterface, attributeValueRepresentation);
@@ -503,13 +391,15 @@ public class HintValueExtractor extends ValueExtractor {
 	 *
 	 * @param mappedAttributeValueExpander
 	 *            The {@link MappedAttributeValueExpander} for that the hint values shall be extracted.
-	 * @param matchedSectionDescriptor
-	 *            The {@link MatchedSectionDescriptor} for that the hint values shall be extracted.
+	 * @param mappingInstance
+	 *            The {@link MappingInstanceStorage} for that the hint values shall be extracted.
 	 * @return The extracted hint value or '<em>null</em>' if nothing could be extracted.
 	 */
 	@SuppressWarnings("unchecked")
 	private String extractHintValue(MappedAttributeValueExpander mappedAttributeValueExpander,
-			MatchedSectionDescriptor matchedSectionDescriptor) {
+			MappingInstanceStorage mappingInstance) {
+
+		MatchedSectionDescriptor matchedSectionDescriptor = mappingInstance.getMatchedSectionDescriptor();
 
 		if (mappedAttributeValueExpander.getSourceAttribute() instanceof ActualSourceSectionAttribute
 				&& ((ActualSourceSectionAttribute) mappedAttributeValueExpander.getSourceAttribute()).getAttribute()
@@ -522,7 +412,7 @@ public class HintValueExtractor extends ValueExtractor {
 		// Extract the hint value
 		//
 		AttributeValueRepresentation attributeValueRepresentation = this.extractValue(
-				(ModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) mappedAttributeValueExpander,
+				(DynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) mappedAttributeValueExpander,
 				matchedSectionDescriptor);
 
 		return attributeValueRepresentation == null ? null : attributeValueRepresentation.getNextValue();
@@ -542,10 +432,8 @@ public class HintValueExtractor extends ValueExtractor {
 		if (hint instanceof AttributeMapping) {
 			mappingInstance.getHintValues().getAttributeMappingHintValues().init((AttributeMapping) hint, false);
 		} else if (hint instanceof ReferenceTargetSelector) {
-			if (((ReferenceTargetSelector) hint).getMatcher() instanceof AttributeMatcher) {
-				mappingInstance.getHintValues().getMappingInstanceSelectorHintValues()
-						.init((ReferenceTargetSelector) hint, false);
-			}
+			mappingInstance.getHintValues().getMappingInstanceSelectorHintValues().init((ReferenceTargetSelector) hint,
+					false);
 		} else if (hint instanceof ContainerSelector) {
 			mappingInstance.getHintValues().getModelConnectionHintValues().init((ContainerSelector) hint, false);
 		} else if (hint instanceof CardinalityMapping) {
@@ -588,8 +476,8 @@ public class HintValueExtractor extends ValueExtractor {
 
 			for (AttributeValueRepresentation valueRepresentation : hintValueMap.values()) {
 				if (maxNumberOfValues % valueRepresentation.getValues().size() > 0) {
-					this.logger.warning("The source elements of the mapping hint '" + hint.getName() + "' produced an "
-							+ "inconsistent number of hint values. They are thus skipped...");
+					this.logger.warning(() -> "The source elements of the mapping hint '" + hint.getName()
+							+ "' produced an " + "inconsistent number of hint values. They are thus skipped...");
 					return;
 				}
 			}
@@ -611,7 +499,8 @@ public class HintValueExtractor extends ValueExtractor {
 		} else if (hint instanceof HintImporterMappingHint) {
 
 			if (!(hint instanceof MappedAttributeValueExpander)) {
-				this.logger.severe("Unknown type of HintImporterMappingHint found: '" + hint.eClass().getName() + "'.");
+				this.logger.severe(
+						() -> "Unknown type of HintImporterMappingHint found: '" + hint.eClass().getName() + "'.");
 				return;
 			}
 
@@ -620,8 +509,9 @@ public class HintValueExtractor extends ValueExtractor {
 			boolean prepend = hint instanceof MappedAttributeValuePrepender
 					|| hint instanceof ExternalMappedAttributeValuePrepender;
 
-			((MappedAttributeValueExpander) hint).getHintsToExpand().parallelStream()
-					.forEach(h -> this.expandHint(h, hintValue, mappingInstance, prepend));
+			(this.useParallelization ? ((MappedAttributeValueExpander) hint).getHintsToExpand().parallelStream()
+					: ((MappedAttributeValueExpander) hint).getHintsToExpand().stream())
+							.forEach(h -> this.expandHint(h, hintValue, mappingInstance, prepend));
 
 			/*
 			 * Otherwise, we can simply store the single hint value in the mapping instance.
@@ -660,7 +550,8 @@ public class HintValueExtractor extends ValueExtractor {
 			this.expandAttributeMatcher((AttributeMatcher) expandableHint, (String) hintValue, mappingInstance,
 					prepend);
 		} else {
-			this.logger.severe("Unknown type of ExpandableHint found '" + expandableHint.eClass().getName() + "'!");
+			this.logger
+					.severe(() -> "Unknown type of ExpandableHint found '" + expandableHint.eClass().getName() + "'!");
 		}
 	}
 
@@ -680,12 +571,15 @@ public class HintValueExtractor extends ValueExtractor {
 	private void expandAttributeMapping(AttributeMapping attributeMapping, String hintValue,
 			MappingInstanceStorage mappingInstance, boolean prepend) {
 
-		AttributeMappingSourceInterface element;
+		MappingHintSourceInterface element;
+
+		List<MappingHintSourceInterface> activeSourceElements = mappingInstance
+				.getMappingHintSourceElements(attributeMapping);
 
 		if (prepend) {
-			element = attributeMapping.getSourceElements().get(0);
+			element = activeSourceElements.get(0);
 		} else {
-			element = attributeMapping.getSourceElements().get(attributeMapping.getSourceElements().size() - 1);
+			element = activeSourceElements.get(activeSourceElements.size() - 1);
 		}
 
 		mappingInstance.getHintValues().getHintValues(attributeMapping).parallelStream().forEach(existingValue -> {
@@ -716,12 +610,15 @@ public class HintValueExtractor extends ValueExtractor {
 	private void expandAttributeMatcher(AttributeMatcher attributeMatcher, String hintValue,
 			MappingInstanceStorage mappingInstance, boolean prepend) {
 
-		AttributeMatcherSourceInterface element;
+		MappingHintSourceInterface element;
+
+		List<MappingHintSourceInterface> activeSourceElements = mappingInstance
+				.getMappingHintSourceElements((MappingHint) attributeMatcher.eContainer());
 
 		if (prepend) {
-			element = attributeMatcher.getSourceElements().get(0);
+			element = activeSourceElements.get(0);
 		} else {
-			element = attributeMatcher.getSourceElements().get(attributeMatcher.getSourceElements().size() - 1);
+			element = activeSourceElements.get(activeSourceElements.size() - 1);
 		}
 
 		mappingInstance.getHintValues().getHintValues((ReferenceTargetSelector) attributeMatcher.eContainer())

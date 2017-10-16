@@ -11,6 +11,12 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * A representation of the model object '<em><b>Single Condition Operator</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A Condition that is composed of exactly one sub-condition.
+ * <br />
+ * The sub-condition can be specified locally (via the 'localCondPart' reference) or globally (specified via the 'sharedCondPart' reference).
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -33,6 +39,11 @@ public interface UnaryCondition extends ComplexCondition {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The locally defined sub-condition.
+	 * <br /><br />
+	 * Note: Only one of 'localCondPart' or 'sharedCondPart' may be set!
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Local Cond Part</em>' containment reference.
 	 * @see #setLocalCondPart(ComplexCondition)
 	 * @see pamtram.condition.ConditionPackage#getUnaryCondition_LocalCondPart()
@@ -59,6 +70,11 @@ public interface UnaryCondition extends ComplexCondition {
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The globally specified sub-condition.
+	 * <br /><br />
+	 * Note: Only one of 'localCondPart' or 'sharedCondPart' may be set!
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Shared Cond Part</em>' reference.
 	 * @see #setSharedCondPart(ComplexCondition)
 	 * @see pamtram.condition.ConditionPackage#getUnaryCondition_SharedCondPart()
@@ -80,7 +96,7 @@ public interface UnaryCondition extends ComplexCondition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nboolean result = this.getLocalCondPart() != null ^ this.getSharedCondPart() != null;\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"Please specify exactly one (local or shared) condition part!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.condition.util.ConditionValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tConditionValidator.UNARY_CONDITION__VALIDATE_EXACTLY_ONE_ARG,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.condition.ConditionPackage%>.Literals.UNARY_CONDITION }));\r\n\r\n}\r\n\r\nreturn result;'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nboolean result = this.getLocalCondPart() != null ^ this.getSharedCondPart() != null;\r\n\r\nif (!result &amp;&amp; diagnostics != null) {\r\n\r\n\tString errorMessage = \"Please specify exactly one (local or shared) condition part!\";\r\n\r\n\tdiagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%&gt;\r\n\t\t\t(&lt;%org.eclipse.emf.common.util.Diagnostic%&gt;.ERROR,\r\n\t\t\t&lt;%pamtram.condition.util.ConditionValidator%&gt;.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tConditionValidator.UNARY_CONDITION__VALIDATE_EXACTLY_ONE_ARG,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, &lt;%pamtram.condition.ConditionPackage%&gt;.Literals.UNARY_CONDITION }));\r\n\r\n}\r\n\r\nreturn result;'"
 	 * @generated
 	 */
 	boolean validateExactlyOneArg(DiagnosticChain diagnostics, Map<?, ?> context);

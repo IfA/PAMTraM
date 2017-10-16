@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="cleanup" name="build" basedir=".">
+
+	<description>
+		This updates the contents of the 'lib' folder with the current version of all required plugins.
+	
+		Note: This is the second part of the export script that will copy the exported feature to the 'lib' folder. 
+		
+		See the 'readme.md' for more information.
+    </description>
+	
+	<target name="prepare">
+		<delete>
+			<fileset dir="${basedir}">
+				<include name="lib${file.separator}*" />
+			</fileset>
+		</delete>
+	</target>
+	
+	<target name="copy" depends="prepare">	
+		<copy todir="${basedir}${file.separator}lib">
+			<fileset dir="${basedir}${file.separator}temp${file.separator}plugins" />
+		</copy>
+	</target>
+	
+	<target name="cleanup" depends="copy">
+		<delete dir="${basedir}${file.separator}temp" />
+		<eclipse.refreshLocal resource="${basedir}" depth="infinite" />
+	</target>
+</project>

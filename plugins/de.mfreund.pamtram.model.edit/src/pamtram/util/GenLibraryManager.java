@@ -46,14 +46,35 @@ public class GenLibraryManager {
 	/**
 	 * This creates an instance.
 	 *
+	 * @see #GenLibraryManager(List, Logger)
+	 *
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages to the user or '<em>null</em>' if no messages
 	 *            shall be printed.
 	 */
 	public GenLibraryManager(Logger logger) {
+
 		this.logger = logger;
 		this.libraryPlugins = new HashMap<>();
 		this.missingLibraryPlugins = new ArrayList<>();
+	}
+
+	/**
+	 * This creates an instance.
+	 *
+	 * @see #GenLibraryManager(Logger)
+	 *
+	 * @param libPaths
+	 *            A list of paths to the libraries that can be used to retrieve {@link LibraryEntry LibraryEntries}.
+	 * @param logger
+	 *            The {@link Logger} that shall be used to print messages to the user or '<em>null</em>' if no messages
+	 *            shall be printed.
+	 */
+	public GenLibraryManager(List<String> libPaths, Logger logger) {
+
+		this(logger);
+
+		libPaths.stream().forEach(this::addLibPath);
 	}
 
 	/**
@@ -74,12 +95,12 @@ public class GenLibraryManager {
 			if (libraryPlugin == null) {
 				if (this.logger != null) {
 					this.logger.severe(
-							"Unable to find GenLibrary implementation for namespace URI '" + ePackageURI + "'!");
+							() -> "Unable to find GenLibrary implementation for namespace URI '" + ePackageURI + "'!");
 				}
 				this.missingLibraryPlugins.add(ePackageURI);
 			} else {
 				if (this.logger != null) {
-					this.logger.info("Found GenLibrary implementation for namespace URI '" + ePackageURI + "'");
+					this.logger.info(() -> "Found GenLibrary implementation for namespace URI '" + ePackageURI + "'");
 				}
 				this.libraryPlugins.put(ePackageURI, libraryPlugin);
 			}
@@ -115,6 +136,8 @@ public class GenLibraryManager {
 	 *         otherwise.
 	 */
 	public boolean addLibPath(String libPath) {
+
+		this.logger.info(() -> "Registering library location '" + libPath + "'...");
 
 		String ePackageURI = LibraryImplementationRegistry.getInstance().getNamespaceForLibrary(libPath);
 
@@ -184,7 +207,7 @@ public class GenLibraryManager {
 			return null;
 		}
 
-		plugin.insertIntoTargetModel(targetModel, originalLibraryEntry, libraryEntry.getPath().getValue());
+		plugin.insertIntoTargetModel(targetModel, originalLibraryEntry, libraryEntry.getClasspath().getValue());
 
 		return originalLibraryEntry;
 	}

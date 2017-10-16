@@ -2,12 +2,15 @@ package de.mfreund.gentrans.ui.launching;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.beans.PojoProperties;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
@@ -21,10 +24,11 @@ import org.eclipse.jface.bindings.Binding;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
+import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.TreeSelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
@@ -33,15 +37,15 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.dialogs.ListSelectionDialog;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 import de.mfreund.gentrans.launching.GentransLaunchingDelegate;
-import de.tud.et.ifa.agtele.ui.listeners.KeyPressedListener;
-import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
+import de.tud.et.ifa.agtele.ui.widgets.ManageableItemList;
+import pamtram.provider.PamtramEditPlugin;
 
 /**
  * An {@link ILaunchConfigurationTab2} that allows to customize the main settings to be applied during a GenTrans
@@ -54,17 +58,17 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	/**
 	 * The name of the folder in the PAMTraM project where the source files are located.
 	 */
-	private static final String SOURCE_FOLDER = "Source";
+	private static final String SOURCE_FOLDER = PamtramEditPlugin.INSTANCE.getString("SOURCE_FOLDER_NAME");
 
 	/**
 	 * The name of the folder in the PAMTraM project where the PAMTraM files are located.
 	 */
-	private static final String PAMTRAM_FOLDER = "Pamtram";
+	private static final String PAMTRAM_FOLDER = PamtramEditPlugin.INSTANCE.getString("PAMTRAM_FOLDER_NAME");
 
 	/**
 	 * The name of the folder in the PAMTraM project where the target files are located.
 	 */
-	private static final String TARGET_FOLDER = "Target";
+	private static final String TARGET_FOLDER = PamtramEditPlugin.INSTANCE.getString("TARGET_FOLDER_NAME");
 
 	/**
 	 * The font to be used across the tab.
@@ -92,19 +96,15 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	private Combo projectCombo;
 
 	/**
-	 * The combo box to select the source file
-	 */
-	private Combo srcFileCombo;
-
-	/**
-	 * The combo box to select the pamtram file
-	 */
-	private Combo pamtramFileCombo;
-
-	/**
 	 * The combo box to select the target file
 	 */
 	private Combo targetFileCombo;
+
+	/**
+	 * The check box for setting whether the generated target model should be automatically opened after a successful
+	 * transformation execution
+	 */
+	private Button openTargetModelOnCompletion;
 
 	/**
 	 * The combo box to select the log level
@@ -122,15 +122,26 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	private Button onlyAskOnceForAmbiguousMappings;
 
 	/**
-	 * This CheckBox controls whether a TransformationModel representing the results of the transformation
-	 * shall be created at the end of every executed transformation.
+	 * This CheckBox controls whether a TransformationModel representing the results of the transformation shall be
+	 * created at the end of every executed transformation.
 	 */
 	private Button createTransformationModel;
 
 	/**
-	 * A {@link List} to display the selected source files to be used in a GenTrans transformation.
+	 * This CheckBox controls whether extended parallelization is used during the transformation that might lead to the
+	 * fact that the transformation result (especially the order of lists) varies between executions.
 	 */
-	private List sourceFileList;
+	private Button useParallelization;
+
+	/**
+	 * A {@link ManageableItemList} that allows the user to manage the source files used for the transformation.
+	 */
+	private ManageableItemList srcList;
+
+	/**
+	 * A {@link ManageableItemList} that allows the user to manage the pamtram files used for the transformation.
+	 */
+	private ManageableItemList pamtramList;
 
 	/**
 	 * This creates an instance.
@@ -139,6 +150,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	 *            The {@link GentransLaunchContext} that shall be used for data bindings to the various widgets.
 	 */
 	public GentransLaunchMainTab(GentransLaunchContext context) {
+
 		this.context = context;
 		this.projects = this.workspaceRoot.getProjects();
 	}
@@ -170,11 +182,12 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		this.projectCombo = new Combo(projectGroup, SWT.DROP_DOWN | SWT.BORDER);
 		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).grab(true, false).applyTo(this.projectCombo);
 		// populate the current projects in the workspace to the list
-		for(IProject project : this.projects) {
+		for (IProject project : this.projects) {
 			this.projectCombo.add(project.getName());
 		}
 
-		// if a project is selected populate the source, pamtram and target file lists
+		// if a project is selected populate the source, pamtram and target file
+		// lists
 		//
 		this.projectCombo.addModifyListener(e -> this.updateFileLists(this.projectCombo.getText()));
 
@@ -186,82 +199,33 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).grab(true, false).span(2, 1).applyTo(fileGroup);
 		GridLayoutFactory.swtDefaults().numColumns(3).applyTo(fileGroup);
 
-		// create a label for the source file selection
+		// The widget that allows to manage the source files used for the
+		// transformation
 		//
-		Label srcFileLabel = new Label(fileGroup, SWT.NONE);
-		srcFileLabel.setText("Source File(s):");
-
-		// create drop-down list for the source file selection (based on the project)
-		//
-		this.srcFileCombo = new Combo(fileGroup, SWT.DROP_DOWN | SWT.BORDER);
-		this.srcFileCombo.setEnabled(false);
-		this.srcFileCombo.addModifyListener(e -> GentransLaunchMainTab.this.updateLaunchConfigurationDialog());
-		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).grab(true, false).applyTo(this.srcFileCombo);
-
-		// create a button that allows to add additional source files to be used in the transformation
-		//
-		Button addSourceFileButton = new Button(fileGroup, SWT.NONE);
-		addSourceFileButton.setText("Add...");
-		addSourceFileButton.addSelectionListener((SelectionListener2) e -> this.handleAddSourceFileButtonPressed());
-		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).applyTo(addSourceFileButton);
-
-		// a composite to display the selected source files as well as buttons to add/remove/reorder files
-		//
-		ScrolledComposite scrolledComposite = new ScrolledComposite(fileGroup, SWT.V_SCROLL);
-		scrolledComposite.setExpandHorizontal(true);
-		scrolledComposite.setExpandVertical(true);
-		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.FILL).grab(true, false).span(2, 3).applyTo(scrolledComposite);
-
-		// a list to display the selected source files
-		//
-		this.sourceFileList = new List(scrolledComposite, SWT.BORDER | SWT.V_SCROLL | SWT.MULTI);
-		this.sourceFileList.addKeyListener((KeyPressedListener) e -> {
-			if(e.keyCode == SWT.DEL && GentransLaunchMainTab.this.sourceFileList.getSelectionIndex() != -1) {
-
-				this.handleDelSourceFileButtonPressed();
-			}
-		});
-		scrolledComposite.setContent(this.sourceFileList);
-		scrolledComposite.setMinSize(this.sourceFileList.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-
-		// a button that allows to delete elements from the 'sourceFileList'
-		//
-		Button delSourceFileButton = new Button(fileGroup, SWT.NONE);
-		delSourceFileButton.setText("Del...");
-		delSourceFileButton.addSelectionListener((SelectionListener2) e -> this.handleDelSourceFileButtonPressed());
-		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).applyTo(delSourceFileButton);
-
-		// a button that allows to move elements up in the 'sourceFileList'
-		//
-		Button upSourceFileButton = new Button(fileGroup, SWT.NONE);
-		upSourceFileButton.setText("Up...");
-		upSourceFileButton.addSelectionListener((SelectionListener2) e -> this.handleUpSourceFileButtonPressed());
-		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).applyTo(upSourceFileButton);
-
-		// a button that allows to move elements down in the 'sourceFileList'
-		//
-		Button downSourceFileButton = new Button(fileGroup, SWT.NONE);
-		downSourceFileButton.setText("Down...");
-		downSourceFileButton.addSelectionListener((SelectionListener2) e -> this.handleDownSourceFileButtonPressed());
-		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).applyTo(downSourceFileButton);
+		this.srcList = new ManageableItemList(fileGroup, SWT.NONE, "Source File(s):");
+		this.srcList.setToolTipText("Specify the source model(s) that will be used in the transformation");
+		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false).span(3, 1).applyTo(this.srcList);
+		this.srcList.setEnabled(false);
+		// Call 'updateLaunchConfigurationDialog' whenever changes are made to
+		// the list
+		this.srcList.addObserver(o -> GentransLaunchMainTab.this.updateLaunchConfigurationDialog());
 
 		// just a separator
 		//
 		Label separator1 = new Label(fileGroup, SWT.SEPARATOR | SWT.HORIZONTAL);
 		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).span(3, 1).applyTo(separator1);
 
-		// create a label for the pamtram file selection
+		// The widget that allows to manage the source files used for the
+		// transformation
 		//
-		Label pamtramFileLabel = new Label(fileGroup, SWT.NONE);
-		pamtramFileLabel.setText("Pamtram File:");
-
-		// create drop-down list for the pamtram file selection (based on the project)
-		//
-		this.pamtramFileCombo = new Combo(fileGroup, SWT.DROP_DOWN | SWT.BORDER);
-		this.pamtramFileCombo.setEnabled(false);
-		this.pamtramFileCombo.addModifyListener(e -> GentransLaunchMainTab.this.updateLaunchConfigurationDialog());
-		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).grab(true, false).span(2, 1)
-		.applyTo(this.pamtramFileCombo);
+		this.pamtramList = new ManageableItemList(fileGroup, SWT.NONE, "Pamtram File(s):");
+		this.pamtramList.setToolTipText("Specify the PAMTraM model(s) that will be used in the transformation");
+		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).grab(true, false).span(3, 1)
+				.applyTo(this.pamtramList);
+		this.pamtramList.setEnabled(false);
+		// Call 'updateLaunchConfigurationDialog' whenever changes are made to
+		// the list
+		this.pamtramList.addObserver(o -> GentransLaunchMainTab.this.updateLaunchConfigurationDialog());
 
 		// just a separator
 		//
@@ -276,13 +240,14 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 						+ "this will be used as single target model.");
 		targetFileLabel.setText("Default Target File:");
 
-		// create drop-down list for the target file selection (based on the project)
+		// create drop-down list for the target file selection (based on the
+		// project)
 		//
 		this.targetFileCombo = new Combo(fileGroup, SWT.DROP_DOWN | SWT.BORDER);
 		this.targetFileCombo.setEnabled(false);
 		this.targetFileCombo.addModifyListener(e -> GentransLaunchMainTab.this.updateLaunchConfigurationDialog());
 		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).grab(true, false).span(2, 1)
-		.applyTo(this.targetFileCombo);
+				.applyTo(this.targetFileCombo);
 
 		// a group for specific GenTrans settings
 		//
@@ -292,14 +257,32 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).grab(true, false).span(2, 1).applyTo(settingsGroup);
 		GridLayoutFactory.swtDefaults().numColumns(2).applyTo(settingsGroup);
 
+		// create check box for open target model on completion setting
+		//
+		this.openTargetModelOnCompletion = new Button(settingsGroup, SWT.CHECK);
+		this.openTargetModelOnCompletion.addSelectionListener(new SelectionAdapter() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+
+				GentransLaunchMainTab.this.updateLaunchConfigurationDialog();
+			}
+		});
+		this.openTargetModelOnCompletion.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 2, 1));
+		this.openTargetModelOnCompletion.setText("Open Target Model on Completion");
+		this.openTargetModelOnCompletion.setToolTipText(
+				"If checked, the (first of the) generated target model(s) will be automatically opened after a (successful) execution of the transformation.");
+
 		// create a spinner for path setting
 		//
-		this.pathLengthSpinner= new Spinner(settingsGroup, SWT.BORDER);
+		this.pathLengthSpinner = new Spinner(settingsGroup, SWT.BORDER);
 		this.pathLengthSpinner.setMinimum(-1);
 		this.pathLengthSpinner.setMaximum(Integer.MAX_VALUE);
 		this.pathLengthSpinner.addSelectionListener(new SelectionAdapter() {
+
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+
 				GentransLaunchMainTab.this.updateLaunchConfigurationDialog();
 			}
 		});
@@ -307,31 +290,41 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 
 		// a label for the path length
 		Label pathLengthLabel = new Label(settingsGroup, SWT.NONE);
-		pathLengthLabel.setText("max. length for model connection paths (0 = direct connection only, -1 = unbounded)");
+		pathLengthLabel.setText("Maximum length of connection paths");
+		pathLengthLabel.setToolTipText(
+				"Maximum length of automatically determined connection paths between instantiated elements (0 = direct connection only; -1 = unbounded)");
 		GridDataFactory.swtDefaults().grab(true, false).applyTo(pathLengthLabel);
 
 		// create check box for ambiguous mappings setting
 		//
 		this.onlyAskOnceForAmbiguousMappings = new Button(settingsGroup, SWT.CHECK);
 		this.onlyAskOnceForAmbiguousMappings.addSelectionListener(new SelectionAdapter() {
+
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+
 				GentransLaunchMainTab.this.updateLaunchConfigurationDialog();
 			}
 		});
 		this.onlyAskOnceForAmbiguousMappings.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 2, 1));
-		this.onlyAskOnceForAmbiguousMappings.setText("Remember choices for ambiguous Mappings");
+		this.onlyAskOnceForAmbiguousMappings.setText("Remember choices for ambiguous mappings");
+		this.onlyAskOnceForAmbiguousMappings.setToolTipText(
+				"If checked, a user decision concerning an ambiguous mapping will be reused for each instance of the associated SourceSection. Otherwise, the user will be asked every time.");
 
-		// create a check box to customize whether a transformation model shall be stored
+		// create a check box to customize whether a transformation model shall
+		// be stored
 		//
 		this.createTransformationModel = new Button(settingsGroup, SWT.CHECK);
 		this.createTransformationModel.addSelectionListener(new SelectionAdapter() {
+
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+
 				GentransLaunchMainTab.this.updateLaunchConfigurationDialog();
 			}
 		});
-		this.createTransformationModel.setToolTipText("Whether a TransformationModel shall be created in the folder 'Pamtram/transformation' for every executed transformation. This trace model can be used for further reasoning about the executed transformation...");
+		this.createTransformationModel.setToolTipText(
+				"Whether a TransformationModel shall be created in the folder 'Pamtram/transformation' for every executed transformation. This trace model can be used for further reasoning about the executed transformation...");
 		this.createTransformationModel.setText("Create transformation model");
 		GridDataFactory.swtDefaults().span(2, 1).applyTo(this.createTransformationModel);
 
@@ -346,87 +339,33 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 
 		// a label for the log level
 		Label logLevelLabel = new Label(settingsGroup, SWT.NONE);
-		logLevelLabel.setText("Select the verbosity of the log.");
+		logLevelLabel.setToolTipText("Select the verbosity of the log");
+		logLevelLabel.setText("Log Level");
 		GridDataFactory.swtDefaults().grab(true, false).applyTo(logLevelLabel);
 
-		// After we have created all widgets, we can initialize the data bindings among the widgets and between widgets
+		// create a check box to customize whether a transformation model shall
+		// be stored
+		//
+		this.useParallelization = new Button(settingsGroup, SWT.CHECK);
+		this.useParallelization.addSelectionListener(new SelectionAdapter() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+
+				GentransLaunchMainTab.this.updateLaunchConfigurationDialog();
+			}
+		});
+		this.useParallelization.setToolTipText(
+				"Whether extended parallelization shall be used during the transformation. If checked, this will speed up the transformation. However, it might lead to the fact that the transformation result (especially the order of lists) varies between executions.");
+		this.useParallelization.setText("Use extended parallelization (experimental)");
+		GridDataFactory.swtDefaults().span(2, 1).applyTo(this.useParallelization);
+
+		// After we have created all widgets, we can initialize the data
+		// bindings among the widgets and between widgets
 		// and the context
 		//
 		this.initDataBindings();
 
-	}
-
-	/**
-	 * Add the file specified in the {@link #srcFileCombo} to the {@link #sourceFileList}.
-	 */
-	private void handleAddSourceFileButtonPressed() {
-
-		GentransLaunchMainTab.this.sourceFileList.add(GentransLaunchMainTab.this.srcFileCombo.getText());
-		GentransLaunchMainTab.this.sourceFileList.deselectAll();
-		GentransLaunchMainTab.this.sourceFileList.select(GentransLaunchMainTab.this.sourceFileList.getItemCount() - 1);
-		GentransLaunchMainTab.this.updateLaunchConfigurationDialog();
-	}
-
-	/**
-	 * Delete all elements that are selected in the {@link #sourceFileList}.
-	 */
-	private void handleDelSourceFileButtonPressed() {
-
-		int selected = GentransLaunchMainTab.this.sourceFileList.getSelectionIndex();
-		GentransLaunchMainTab.this.sourceFileList
-		.remove(GentransLaunchMainTab.this.sourceFileList.getSelectionIndices());
-		GentransLaunchMainTab.this.sourceFileList
-		.select(selected > GentransLaunchMainTab.this.sourceFileList.getItemCount() - 1
-				? GentransLaunchMainTab.this.sourceFileList.getItemCount() - 1 : selected);
-		GentransLaunchMainTab.this.updateLaunchConfigurationDialog();
-	}
-
-	/**
-	 * Move all elements that are selected in the {@link #sourceFileList} up.
-	 */
-	private void handleUpSourceFileButtonPressed() {
-
-		for (int selected : GentransLaunchMainTab.this.sourceFileList.getSelectionIndices()) {
-			if (selected == 0) {
-				return;
-			}
-			String[] items = GentransLaunchMainTab.this.sourceFileList.getItems();
-			String prevItem = GentransLaunchMainTab.this.sourceFileList.getItem(selected - 1);
-			items[selected - 1] = GentransLaunchMainTab.this.sourceFileList.getItem(selected);
-			items[selected] = prevItem;
-			int[] currentSel = GentransLaunchMainTab.this.sourceFileList.getSelectionIndices();
-			GentransLaunchMainTab.this.sourceFileList.setItems(items);
-			GentransLaunchMainTab.this.sourceFileList.select(currentSel);
-			GentransLaunchMainTab.this.sourceFileList.deselect(selected);
-			GentransLaunchMainTab.this.sourceFileList.select(selected - 1);
-		}
-
-		GentransLaunchMainTab.this.updateLaunchConfigurationDialog();
-	}
-
-	/**
-	 * Move all elements that are selected in the {@link #sourceFileList} down.
-	 */
-	private void handleDownSourceFileButtonPressed() {
-
-		int[] selections = GentransLaunchMainTab.this.sourceFileList.getSelectionIndices();
-		for (int i = selections.length - 1; i >= 0; i--) {
-			int sel = selections[i];
-			if (sel == GentransLaunchMainTab.this.sourceFileList.getItemCount() - 1) {
-				return;
-			}
-			String[] items = GentransLaunchMainTab.this.sourceFileList.getItems();
-			String nextItem = GentransLaunchMainTab.this.sourceFileList.getItem(sel + 1);
-			items[sel + 1] = GentransLaunchMainTab.this.sourceFileList.getItem(sel);
-			items[sel] = nextItem;
-			int[] currentSel = GentransLaunchMainTab.this.sourceFileList.getSelectionIndices();
-			GentransLaunchMainTab.this.sourceFileList.setItems(items);
-			GentransLaunchMainTab.this.sourceFileList.select(currentSel);
-			GentransLaunchMainTab.this.sourceFileList.deselect(sel);
-			GentransLaunchMainTab.this.sourceFileList.select(sel + 1);
-		}
-
-		GentransLaunchMainTab.this.updateLaunchConfigurationDialog();
 	}
 
 	/**
@@ -439,50 +378,50 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 
 		// save the selected values in the other combo boxes
 		//
-		String oldSrcFile = GentransLaunchMainTab.this.srcFileCombo.getText();
-		String oldPamtramFile = GentransLaunchMainTab.this.pamtramFileCombo.getText();
-		String oldTargetFile = GentransLaunchMainTab.this.targetFileCombo.getText();
+		String oldSrcFile = this.srcList.getComboText();
+		String oldPamtramFile = this.pamtramList.getComboText();
+		String oldTargetFile = this.targetFileCombo.getText();
 
 		// reset the source and pamtram file combo
 		//
-		GentransLaunchMainTab.this.srcFileCombo.setItems(new String[]{});
-		GentransLaunchMainTab.this.pamtramFileCombo.setItems(new String[]{});
-		GentransLaunchMainTab.this.targetFileCombo.setItems(new String[]{});
+		this.srcList.setSelectableItems(new ArrayList<>());
+		this.pamtramList.setSelectableItems(new ArrayList<>());
+		this.targetFileCombo.setItems(new String[] {});
 
 		// check if a valid project has been selected
 		//
-		if (projectName.isEmpty() || GentransLaunchMainTab.this.projectCombo.indexOf(projectName) == -1) {
-			GentransLaunchMainTab.this.srcFileCombo.setEnabled(false);
-			GentransLaunchMainTab.this.pamtramFileCombo.setEnabled(false);
-			GentransLaunchMainTab.this.targetFileCombo.setEnabled(false);
+		if (projectName.isEmpty() || this.projectCombo.indexOf(projectName) == -1) {
+			this.srcList.setEnabled(false);
+			this.pamtramList.setEnabled(false);
+			this.targetFileCombo.setEnabled(false);
 			return;
 		}
 
 		// update the source file combo
 		//
 		try {
-			for(IResource r1 : GentransLaunchMainTab.this.workspaceRoot.getProject(projectName).getFolder(GentransLaunchMainTab.SOURCE_FOLDER).members()) {
-				if(r1.getName().endsWith(".xmi") || r1.getName().endsWith(".xml")) {
-					GentransLaunchMainTab.this.srcFileCombo.add(r1.getName());
+			for (IResource r1 : GentransLaunchMainTab.this.workspaceRoot.getProject(projectName)
+					.getFolder(GentransLaunchMainTab.SOURCE_FOLDER).members()) {
+				if (r1.getName().endsWith(".xmi") || r1.getName().endsWith(".xml")) {
+					this.srcList.addSelectableItem(r1.getName());
 				}
 			}
-			int index1 = GentransLaunchMainTab.this.srcFileCombo.indexOf(oldSrcFile);
-			GentransLaunchMainTab.this.srcFileCombo.select(index1 != -1 ? index1 : 0);
-			GentransLaunchMainTab.this.srcFileCombo.setEnabled(true);
+			this.srcList.select(oldSrcFile);
+			this.srcList.setEnabled(true);
 		} catch (CoreException e11) {
 			e11.printStackTrace();
 		}
 
 		// update the pamtram file combo
 		try {
-			for(IResource r2 : GentransLaunchMainTab.this.workspaceRoot.getProject(projectName).getFolder(GentransLaunchMainTab.PAMTRAM_FOLDER).members()) {
-				if(r2.getName().endsWith(".pamtram")) {
-					GentransLaunchMainTab.this.pamtramFileCombo.add(r2.getName());
+			for (IResource r2 : GentransLaunchMainTab.this.workspaceRoot.getProject(projectName)
+					.getFolder(GentransLaunchMainTab.PAMTRAM_FOLDER).members()) {
+				if (r2.getName().endsWith(PamtramEditPlugin.INSTANCE.getString("PAMTRAM_MODEL_FILE_ENDING"))) {
+					this.pamtramList.addSelectableItem(r2.getName());
 				}
 			}
-			int index2 = GentransLaunchMainTab.this.pamtramFileCombo.indexOf(oldPamtramFile);
-			GentransLaunchMainTab.this.pamtramFileCombo.select(index2 != -1 ? index2 : 0);
-			GentransLaunchMainTab.this.pamtramFileCombo.setEnabled(true);
+			this.pamtramList.select(oldPamtramFile);
+			this.pamtramList.setEnabled(true);
 		} catch (CoreException e12) {
 			e12.printStackTrace();
 		}
@@ -491,8 +430,9 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		//
 		GentransLaunchMainTab.this.targetFileCombo.add("out.xmi");
 		try {
-			for(IResource r3 : GentransLaunchMainTab.this.workspaceRoot.getProject(projectName).getFolder(GentransLaunchMainTab.TARGET_FOLDER).members()) {
-				if(r3.getName().endsWith(".xmi")) {
+			for (IResource r3 : GentransLaunchMainTab.this.workspaceRoot.getProject(projectName)
+					.getFolder(GentransLaunchMainTab.TARGET_FOLDER).members()) {
+				if (r3.getName().endsWith(".xmi")) {
 					GentransLaunchMainTab.this.targetFileCombo.add(r3.getName());
 				}
 			}
@@ -509,41 +449,75 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	@Override
 	public void setDefaults(ILaunchConfigurationWorkingCopy configuration) {
 
-		ISelection sel = UIHelper.getCurrentSelection();
-
-		// nothing can be done if the user did not select anything
-		if(sel.isEmpty() || !(sel instanceof TreeSelection)) {
-			return;
-		}
+		IResource launchableResource = this.getLaunchableResourceBasedOnSelection();
 
 		try {
-			// initialize the launch configuration
-			this.initLaunchConfiguration(configuration, (TreeSelection) sel);
+			// init the launch configuration based on the determined launchable
+			// resource
+			//
+			this.initLaunchConfiguration(configuration, launchableResource, false);
 		} catch (CoreException e) {
 			this.setErrorMessage(e.getMessage());
 		}
 	}
 
+	/**
+	 * Based on the current selection made by the user, determine an {@link IResource} that can be used as the basis for
+	 * a GenTrans transformation.
+	 *
+	 * @return The {@link IResource} to launch of '<em>null</em>' if no such resource could be determined.
+	 */
+	public IResource getLaunchableResourceBasedOnSelection() {
+
+		ISelection selection = UIHelper.getCurrentSelection();
+
+		// get the launchable resource based on the current selection
+		//
+		IResource launchableResource = null;
+
+		if (!selection.isEmpty() && selection instanceof IStructuredSelection) {
+
+			Object selectedElement = ((IStructuredSelection) selection).getFirstElement();
+
+			if (selectedElement instanceof IProject) {
+
+				launchableResource = IsLaunchablePropertyTester.isLaunchablePamtramProject((IProject) selectedElement)
+						? (IProject) selectedElement
+						: null;
+
+			} else if (selectedElement instanceof IFile) {
+
+				if (IsLaunchablePropertyTester.isLaunchablePamtramFile((IFile) selectedElement)
+						|| IsLaunchablePropertyTester.isLaunchableSourceFile((IFile) selectedElement)) {
+					launchableResource = (IFile) selectedElement;
+				} else {
+					launchableResource = IsLaunchablePropertyTester.isLaunchablePamtramProject(
+							((IFile) selectedElement).getProject()) ? ((IFile) selectedElement).getProject() : null;
+				}
+			}
+		}
+		return launchableResource;
+	}
+
 	@Override
 	public void initializeFrom(ILaunchConfiguration configuration) {
+
 		try {
 
 			// set the project
 			this.projectCombo.setText(configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PROJECT, ""));
 
 			// set the files
-			this.sourceFileList.removeAll();
-			ArrayList<String> srcFiles = (ArrayList<String>) configuration
-					.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_SRC_FILES, new ArrayList<>());
-			for (String srcFile : srcFiles) {
-				this.sourceFileList.add(srcFile);
-			}
-			this.pamtramFileCombo
-			.setText(configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PAMTRAM_FILE, ""));
+			this.srcList.setSelectedItems(
+					configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_SRC_FILES, new ArrayList<>()));
+			this.pamtramList.setSelectedItems(configuration
+					.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PAMTRAM_FILES, new ArrayList<>()));
 			this.targetFileCombo
-			.setText(configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_FILE, ""));
+					.setText(configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_FILE, ""));
 
-			//settings
+			// settings
+			this.openTargetModelOnCompletion.setSelection(configuration
+					.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_OPEN_TARGET_MODEL_ON_COMPLETION, true));
 			this.pathLengthSpinner.setSelection(
 					configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_MAX_PATH_LENGTH, -1));
 			this.onlyAskOnceForAmbiguousMappings.setSelection(configuration
@@ -552,6 +526,8 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 					configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_STORE_TRANSFORMATION, false));
 			this.logLevelCombo.select(this.logLevelCombo
 					.indexOf(configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_LOG_LEVEL, "INFO")));
+			this.useParallelization.setSelection(
+					configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_USE_PARALLELIZATION, false));
 		} catch (CoreException e) {
 			this.setErrorMessage(e.getMessage());
 		}
@@ -564,14 +540,15 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		configuration.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PROJECT, this.projectCombo.getText());
 
 		// store the files
-		configuration.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_SRC_FILES,
-				new ArrayList<>(Arrays.asList(this.sourceFileList.getItems())));
-		configuration.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PAMTRAM_FILE,
-				this.pamtramFileCombo.getText());
+		configuration.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_SRC_FILES, this.srcList.getSelectedItems());
+		configuration.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PAMTRAM_FILES,
+				this.pamtramList.getSelectedItems());
 		configuration.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_FILE,
 				this.targetFileCombo.getText());
 
-		//settings
+		// settings
+		configuration.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_OPEN_TARGET_MODEL_ON_COMPLETION,
+				this.openTargetModelOnCompletion.getSelection());
 		configuration.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_MAX_PATH_LENGTH,
 				this.pathLengthSpinner.getSelection());
 		configuration.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_REMEMBER_AMBIGUOUS_MAPPINGS_CHOICE,
@@ -579,10 +556,14 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		configuration.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_STORE_TRANSFORMATION,
 				this.createTransformationModel.getSelection());
 		configuration.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_LOG_LEVEL, this.logLevelCombo.getText());
+		configuration.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_USE_PARALLELIZATION,
+				this.useParallelization.getSelection());
+
 	}
 
 	@Override
 	public String getName() {
+
 		return "Main";
 	}
 
@@ -591,22 +572,22 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 
 		this.setErrorMessage(null);
 
-		if(!this.isProjectComboValid()) {
+		if (!this.isProjectComboValid()) {
 			this.setErrorMessage("Select a valid project directory");
 			return false;
 		}
 
-		if(!this.isSrcFileListValid()) {
+		if (!this.isSrcFileListValid()) {
 			this.setErrorMessage("Select one or multiple valid source files");
 			return false;
 		}
 
-		if(!this.isPamtramFileComboValid()) {
+		if (!this.isPamtramFileComboValid()) {
 			this.setErrorMessage("Select a valid Pamtram file");
 			return false;
 		}
 
-		if(!this.isTargetFileComboValid()) {
+		if (!this.isTargetFileComboValid()) {
 			this.setErrorMessage("Specify a valid target file");
 			return false;
 		}
@@ -627,9 +608,9 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	private boolean isProjectComboValid() {
 
 		// check if the selected project exists
-		try{
+		try {
 			return this.workspaceRoot.getProject(this.projectCombo.getText()).exists();
-		} catch(Exception e) {
+		} catch (Exception e) {
 			return false;
 		}
 	}
@@ -640,9 +621,14 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	 * @return '<em><b>true</b></em>' if the settings are valid; '<em><b>false</b></em>' otherwise.
 	 */
 	private boolean isSrcFileListValid() {
-		for (String sourceFile : this.sourceFileList.getItems()) {
-			if(!(this.workspaceRoot.getProject(this.projectCombo.getText()).getFolder(GentransLaunchMainTab.SOURCE_FOLDER).getFile(sourceFile).exists() &&
-					(sourceFile.endsWith(".xmi") || sourceFile.endsWith(".xml")))) {
+
+		if (this.srcList.getSelectedItems().isEmpty()) {
+			return false;
+		}
+		for (String sourceFile : this.srcList.getSelectedItems()) {
+			if (!(this.workspaceRoot.getProject(this.projectCombo.getText())
+					.getFolder(GentransLaunchMainTab.SOURCE_FOLDER).getFile(sourceFile).exists()
+					&& (sourceFile.endsWith(".xmi") || sourceFile.endsWith(".xml")))) {
 				return false;
 			}
 		}
@@ -655,8 +641,18 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	 * @return '<em><b>true</b></em>' if the setting is valid; '<em><b>false</b></em>' otherwise.
 	 */
 	private boolean isPamtramFileComboValid() {
-		return this.workspaceRoot.getProject(this.projectCombo.getText()).getFolder(GentransLaunchMainTab.PAMTRAM_FOLDER).getFile(this.pamtramFileCombo.getText()).exists() &&
-				this.pamtramFileCombo.getText().endsWith(".pamtram");
+
+		if (this.pamtramList.getSelectedItems().isEmpty()) {
+			return false;
+		}
+		for (String pamtramFile : this.pamtramList.getSelectedItems()) {
+			if (!(this.workspaceRoot.getProject(this.projectCombo.getText())
+					.getFolder(GentransLaunchMainTab.PAMTRAM_FOLDER).getFile(pamtramFile).exists()
+					&& pamtramFile.endsWith(PamtramEditPlugin.INSTANCE.getString("PAMTRAM_MODEL_FILE_ENDING")))) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**
@@ -665,6 +661,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	 * @return '<em><b>true</b></em>' if the setting is valid; '<em><b>false</b></em>' otherwise.
 	 */
 	private boolean isTargetFileComboValid() {
+
 		return this.targetFileCombo.getText().endsWith(".xmi");
 	}
 
@@ -674,98 +671,83 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	 * @return '<em><b>true</b></em>' if the setting is valid; '<em><b>false</b></em>' otherwise.
 	 */
 	private boolean isLogLevelValid() {
-		return Stream.of("ALL", "INFO", "WARNING", "SEVERE", "OFF").anyMatch(l -> l.equals(this.logLevelCombo.getText()));
+
+		return Stream.of("ALL", "INFO", "WARNING", "SEVERE", "OFF")
+				.anyMatch(l -> l.equals(this.logLevelCombo.getText()));
 	}
 
 	/**
-	 * Initializes the values of a launch configuration based on the current selection
+	 * Initializes the values of a launch configuration based on the current selection.
 	 *
-	 * @param workingCopy a launch configuration to be initialized
-	 * @param selection the current selection
+	 * If <em>userInteraction</em> is set to '<em>true</em>', the user is consulted if necessary.
+	 *
+	 * @param workingCopy
+	 *            a launch configuration to be initialized
+	 * @param userInteraction
+	 *            Whether the user shall be asked if necessary.
+	 * @param launchableResource
+	 *            The {@link IResource} based on which the launch configuration shall be initialized.
+	 * @throws CoreException
 	 */
-	private void initLaunchConfiguration(ILaunchConfigurationWorkingCopy workingCopy,
-			TreeSelection selection) throws CoreException {
+	public void initLaunchConfiguration(ILaunchConfigurationWorkingCopy workingCopy, IResource launchableResource,
+			boolean userInteraction) throws CoreException {
 
-		// the selected element
-		Object el = selection.getFirstElement();
+		String projectToLaunch = null;
+		List<String> pamtramFilesToLaunch = new ArrayList<>();
+		List<String> sourceFilesToLaunch = new ArrayList<>();
 
-		IProject project;
-		IFile srcFile = null;
-		IFile pamtramFile = null;
+		// determine project, source and pamtram model files to use
+		if (launchableResource instanceof IProject) {
 
-		// determine the project based on the selection
-		if(el instanceof IProject) {
-			project = (IProject) el;
-		} else if(el instanceof IFile) {
-			project = ((IFile) el).getProject();
-			IFile file = (IFile) el;
-			// check if the file can be used as source file...
-			if(file.getParent().getName().equals(GentransLaunchMainTab.SOURCE_FOLDER) &&
-					(file.getName().endsWith(".xmi") || file.getName().endsWith(".xml"))) {
-				srcFile = file;
-				// ... or as pamtram file
-			} else if(file.getName().endsWith(".pamtram") &&
-					file.getParent().getName().equals(GentransLaunchMainTab.PAMTRAM_FOLDER)) {
-				pamtramFile = file;
+			projectToLaunch = launchableResource.getName();
+			pamtramFilesToLaunch = GentransLaunchMainTab.getPamtramFilesToLaunch((IProject) launchableResource,
+					userInteraction);
+			sourceFilesToLaunch = GentransLaunchMainTab.getSourceFilesToLaunch((IProject) launchableResource,
+					userInteraction);
+
+		} else if (launchableResource instanceof IFile) {
+
+			projectToLaunch = launchableResource.getProject().getName();
+
+			if (IsLaunchablePropertyTester.isLaunchablePamtramFile((IFile) launchableResource)) {
+
+				pamtramFilesToLaunch = Arrays.asList(launchableResource.getName());
+				sourceFilesToLaunch = GentransLaunchMainTab.getSourceFilesToLaunch(launchableResource.getProject(),
+						userInteraction);
+
+			} else if (IsLaunchablePropertyTester.isLaunchableSourceFile((IFile) launchableResource)) {
+
+				sourceFilesToLaunch = Arrays.asList(launchableResource.getName());
+				pamtramFilesToLaunch = GentransLaunchMainTab.getPamtramFilesToLaunch(launchableResource.getProject(),
+						userInteraction);
 			}
-		} else {
-			return;
 		}
 
-		// check if the project has the pamtram nature assigned
-		if(project.hasNature("de.mfreund.pamtram.pamtramNature")) {
-			// set the project attribute
-			workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PROJECT, project.getName());
+		workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PROJECT,
+				projectToLaunch != null ? projectToLaunch : "");
+		workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PAMTRAM_FILES, pamtramFilesToLaunch);
+		workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_SRC_FILES, sourceFilesToLaunch);
 
-			// set the srcFile attribute
-			if(srcFile == null) {
-				for(IResource res : project.getFolder(GentransLaunchMainTab.SOURCE_FOLDER).members()) {
-					// search for a suitable src file
-					if(res instanceof IFile &&
-							(((IFile) res).getName().endsWith(".xmi") || ((IFile) res).getName().endsWith(".xml"))) {
-						srcFile = (IFile) res;
-						break;
-					}
-				}
-			}
-			ArrayList<String> srcFiles = new ArrayList<>();
-			if(srcFile != null) {
-				srcFiles.add(srcFile.getName());
-			}
-			workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_SRC_FILES, srcFiles);
+		// set the targetFile attribute
+		workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_FILE, "out.xmi");
 
-			// set the pamtramFile attribute
-			if(pamtramFile == null) {
-				for(IResource res : project.getFolder(GentransLaunchMainTab.PAMTRAM_FOLDER).members()) {
-					// search for a suitable pamtram file
-					if(res instanceof IFile && ((IFile) res).getName().endsWith(".pamtram")) {
-						pamtramFile = (IFile) res;
-						workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PAMTRAM_FILE,
-								pamtramFile.getName());
-						break;
-					}
-				}
-			} else {
-				workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PAMTRAM_FILE, pamtramFile.getName());
-			}
-			// set the targetFile attribute
-			workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_TARGET_FILE, "out.xmi");
+		// set the open target model on completion attribute
+		workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_OPEN_TARGET_MODEL_ON_COMPLETION, true);
 
-			//set the direct paths only setting
-			workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_MAX_PATH_LENGTH, -1);
+		// set the direct paths only setting
+		workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_MAX_PATH_LENGTH, -1);
 
-			//set the ambiguous Mappings choice
-			workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_REMEMBER_AMBIGUOUS_MAPPINGS_CHOICE, true);
+		// set the ambiguous Mappings choice
+		workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_REMEMBER_AMBIGUOUS_MAPPINGS_CHOICE, true);
 
-			//set whether a TransformationModel shall be created
-			workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_STORE_TRANSFORMATION, false);
+		// set whether a TransformationModel shall be created
+		workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_STORE_TRANSFORMATION, false);
 
-			// set the log level
-			workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_LOG_LEVEL, "INFO");
+		// set the log level
+		workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_LOG_LEVEL, "INFO");
 
-		} else {
-			return;
-		}
+		// set whether parallelization shall be used
+		workingCopy.setAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_USE_PARALLELIZATION, false);
 
 	}
 
@@ -776,6 +758,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	 */
 	@SuppressWarnings("unchecked")
 	protected DataBindingContext initDataBindings() {
+
 		DataBindingContext bindingContext = new DataBindingContext();
 		//
 		IObservableValue<String> observeTextProjectComboObserveWidget = WidgetProperties.text()
@@ -784,5 +767,84 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		bindingContext.bindValue(observeTextProjectComboObserveWidget, projectContextObserveValue, null, null);
 		//
 		return bindingContext;
+	}
+
+	/**
+	 * For a given project, determine one or multiple PAMTraM files to use for a transformation.
+	 *
+	 * If <em>userInteraction</em> is set to '<em>true</em>', the user is consulted if necessary.
+	 *
+	 * @param project
+	 * @param userInteraction
+	 *            Whether the user shall be asked if necessary.
+	 * @return The list of PAMTraM files to launch.
+	 * @throws CoreException
+	 */
+	public static List<String> getPamtramFilesToLaunch(IProject project, boolean userInteraction) throws CoreException {
+
+		IFolder pamtramFolder = project.getFolder(PamtramEditPlugin.INSTANCE.getString("PAMTRAM_FOLDER_NAME"));
+		List<String> pamtramFiles = Arrays.asList(pamtramFolder.members()).stream()
+				.filter(p -> p instanceof IFile && IsLaunchablePropertyTester.isLaunchablePamtramFile((IFile) p))
+				.map(IResource::getName).collect(Collectors.toList());
+
+		if (pamtramFiles.isEmpty() || pamtramFiles.size() > 1 && !userInteraction) {
+			return new ArrayList<>();
+		} else if (pamtramFiles.size() == 1) {
+			return pamtramFiles;
+		} else {
+			// Let the user decide which PAMTraM file(s) to use
+			//
+			ListSelectionDialog pamtramFileSelectionDialog = new ListSelectionDialog(UIHelper.getShell(), pamtramFiles,
+					new ArrayContentProvider(), new LabelProvider(),
+					"Multiple suitable PAMTraM files found. Please select one or multiple to be used in the transformation...");
+			pamtramFileSelectionDialog.setTitle("Select PAMTraM File(s)");
+			pamtramFileSelectionDialog.open();
+
+			Object[] result = pamtramFileSelectionDialog.getResult();
+			if (result == null || result.length == 0) {
+				return new ArrayList<>();
+			}
+			return Arrays.asList(result).stream().map(f -> (String) f).collect(Collectors.toList());
+
+		}
+	}
+
+	/**
+	 * For a given project, determine one or multiple source files to use for a transformation.
+	 *
+	 * If <em>userInteraction</em> is set to '<em>true</em>', the user is consulted if necessary.
+	 *
+	 * @param project
+	 * @param userInteraction
+	 *            Whether the user shall be asked if necessary.
+	 * @return The list of source files to launch.
+	 * @throws CoreException
+	 */
+	public static List<String> getSourceFilesToLaunch(IProject project, boolean userInteraction) throws CoreException {
+
+		IFolder sourceFolder = project.getFolder(PamtramEditPlugin.INSTANCE.getString("SOURCE_FOLDER_NAME"));
+		List<String> sourceFiles = Arrays.asList(sourceFolder.members()).stream()
+				.filter(p -> p instanceof IFile && IsLaunchablePropertyTester.isLaunchableSourceFile((IFile) p))
+				.map(IResource::getName).collect(Collectors.toList());
+		if (sourceFiles.isEmpty() || sourceFiles.size() > 1 && !userInteraction) {
+			return new ArrayList<>();
+		} else if (sourceFiles.size() == 1) {
+			return sourceFiles;
+		} else {
+			// Let the user decide which source file(s) to use
+			//
+			ListSelectionDialog sourceFileSelectionDialog = new ListSelectionDialog(UIHelper.getShell(), sourceFiles,
+					new ArrayContentProvider(), new LabelProvider(),
+					"Multiple suitable source files found. Please select one or multiple to be used in the transformation...");
+			sourceFileSelectionDialog.setTitle("Select Source File(s)");
+			sourceFileSelectionDialog.open();
+
+			Object[] result = sourceFileSelectionDialog.getResult();
+			if (result == null || result.length == 0) {
+				return new ArrayList<>();
+			}
+			return Arrays.asList(result).stream().map(f -> (String) f).collect(Collectors.toList());
+
+		}
 	}
 }

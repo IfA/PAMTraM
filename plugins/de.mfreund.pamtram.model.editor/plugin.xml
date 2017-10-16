@@ -35,12 +35,13 @@
    <extension point="org.eclipse.ui.editors">
       <!-- @generated pamtram -->
       <editor
-            id="pamtram.presentation.PamtramEditorID"
-            name="%_UI_PamtramEditor_label"
-            icon="icons/full/obj16/PamtramModelFile.gif"
-            extensions="pamtram"
             class="pamtram.presentation.PamtramEditor"
-            contributorClass="pamtram.presentation.PamtramActionBarContributor">
+            contributorClass="pamtram.presentation.PamtramActionBarContributor"
+            default="true"
+            extensions="pamtram"
+            icon="icons/full/obj16/PamtramModelFile.gif"
+            id="pamtram.presentation.PamtramEditorID"
+            name="%_UI_PamtramEditor_label">
       </editor>
    </extension>
 

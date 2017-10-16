@@ -7,19 +7,21 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import pamtram.ConditionModel;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
@@ -27,9 +29,8 @@ import pamtram.condition.VariadicCondition;
 import pamtram.condition.util.ConditionValidator;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Multiple Condition Operator</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object
+ * '<em><b>Multiple Condition Operator</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -43,8 +44,8 @@ import pamtram.condition.util.ConditionValidator;
 public abstract class VariadicConditionImpl extends ComplexConditionImpl implements VariadicCondition {
 	/**
 	 * The cached value of the '{@link #getLocalCondParts() <em>Local Cond Parts</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getLocalCondParts()
 	 * @generated
 	 * @ordered
@@ -52,9 +53,10 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	protected EList<ComplexCondition> localCondParts;
 
 	/**
-	 * The cached value of the '{@link #getSharedCondParts() <em>Shared Cond Parts</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSharedCondParts() <em>Shared Cond
+	 * Parts</em>}' reference list. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #getSharedCondParts()
 	 * @generated
 	 * @ordered
@@ -62,8 +64,7 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	protected EList<ComplexCondition> sharedCondParts;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected VariadicConditionImpl() {
@@ -71,8 +72,7 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -81,10 +81,10 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ComplexCondition> getLocalCondParts() {
 		if (localCondParts == null) {
 			localCondParts = new EObjectContainmentEList<ComplexCondition>(ComplexCondition.class, this, ConditionPackage.VARIADIC_CONDITION__LOCAL_COND_PARTS);
@@ -93,10 +93,10 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ComplexCondition> getSharedCondParts() {
 		if (sharedCondParts == null) {
 			sharedCondParts = new EObjectResolvingEList<ComplexCondition>(ComplexCondition.class, this, ConditionPackage.VARIADIC_CONDITION__SHARED_COND_PARTS);
@@ -105,10 +105,10 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean referencesOnlyValidConditions() {
 		if(this.sharedCondParts == null || this.sharedCondParts.size() == 0) {
 			return true;
@@ -124,10 +124,10 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateMinimalNumberOfArgs(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
 		boolean result = this.getLocalCondParts().size() + this.getSharedCondParts().size() > 1;
@@ -149,8 +149,7 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -163,8 +162,7 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -179,8 +177,7 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -200,8 +197,7 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -218,8 +214,7 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -234,8 +229,7 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -249,16 +243,25 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 		}
 		return super.eInvoke(operationID, arguments);
 	}
-	
+
 	@Override
 	public boolean isLocalCondition() {
-		
+
 		List<ComplexCondition> subConditions = new ArrayList<>();
-		
-		subConditions.addAll(getLocalCondParts());
-		subConditions.addAll(getSharedCondParts());
-		
+
+		subConditions.addAll(this.getLocalCondParts());
+		subConditions.addAll(this.getSharedCondParts());
+
 		return subConditions.parallelStream().filter(c -> c.isLocalCondition()).findAny().isPresent();
 	}
 
-} //MultipleConditionOperatorImpl
+	@Override
+	public EList<ComplexCondition> getConditionPartsFlat() {
+		EList<ComplexCondition> ret = new BasicEList<>();
+		ret.add(this);
+		ret.addAll(Stream.concat(this.getLocalCondParts().stream(), this.getSharedCondParts().stream())
+				.collect(Collectors.toList()));
+		return ret;
+	}
+
+} // MultipleConditionOperatorImpl

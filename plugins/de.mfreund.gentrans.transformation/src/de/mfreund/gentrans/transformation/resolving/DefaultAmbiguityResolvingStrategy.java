@@ -13,11 +13,11 @@ import org.eclipse.emf.ecore.EObject;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
-import pamtram.mapping.ContainerSelector;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
-import pamtram.mapping.ReferenceTargetSelector;
+import pamtram.mapping.extended.ContainerSelector;
+import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.target.TargetSectionClass;
@@ -53,7 +53,7 @@ public class DefaultAmbiguityResolvingStrategy extends AbstractAmbiguityResolvin
 		if (choices == null || choices.isEmpty()) {
 			return new ArrayList<>();
 		} else {
-			return new ArrayList<>(choices);
+			return new ArrayList<>(Arrays.asList(choices.get(0)));
 		}
 	}
 
@@ -132,7 +132,7 @@ public class DefaultAmbiguityResolvingStrategy extends AbstractAmbiguityResolvin
 	@Override
 	public List<EObjectWrapper> linkingSelectTargetInstance(List<EObjectWrapper> choices,
 			TargetSectionCrossReference reference, MappingHintGroupType hintGroup,
-			ReferenceTargetSelector mappingInstanceSelector, EObjectWrapper sourceElement) {
+			ReferenceTargetSelector mappingInstanceSelector, List<EObjectWrapper> sourceElements) {
 
 		if (choices == null || choices.isEmpty()) {
 			return new ArrayList<>();

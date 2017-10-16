@@ -6,15 +6,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
-import de.mfreund.gentrans.transformation.calculation.AttributeValueModifierExecutor;
+import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
+import de.mfreund.gentrans.transformation.calculation.ValueCalculator;
+import de.mfreund.gentrans.transformation.calculation.ValueModifierExecutor;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
+import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import pamtram.FixedValue;
 import pamtram.mapping.GlobalAttribute;
-import pamtram.mapping.GlobalAttributeImporter;
+import pamtram.mapping.extended.GlobalAttributeImporter;
 import pamtram.mapping.modifier.ValueModifierSet;
-import pamtram.structure.ModifiedAttributeElementType;
+import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.constraint.SingleReferenceValueConstraint;
 import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.constraint.ValueConstraintSourceInterface;
@@ -32,28 +34,33 @@ import pamtram.structure.source.SourceSectionReference;
 public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 
 	/**
-	 * The {@link AttributeValueCalculator} to be used calculate target values.
+	 * The {@link ValueCalculator} to be used calculate target values.
 	 */
-	private AttributeValueCalculator attributeValueCalculator;
+	private ValueCalculator attributeValueCalculator;
 
 	/**
 	 * This creates an instance for a given list of {@link MatchedSectionDescriptor matchedSectionDescriptors}.
 	 *
-	 * @param globalAttributeValues
-	 *            The values of {@link GlobalAttribute GlobalAttributes} that shall be used by
-	 *            {@link #extractValue(GlobalAttributeImporter, MatchedSectionDescriptor)}.
+	 * @param globalValues
+	 *            The {@link GlobalValueMap} that contains the relevant values of {@link GlobalAttribute
+	 *            GlobalAttributes}.
+	 * @param instanceSelectorHandler
+	 *            The {@link InstanceSelectorHandler} used for selecting specific instances when extracting values.
 	 * @param attributeValueCalculator
-	 *            The {@link AttributeValueCalculator} to use in order to calculate resulting values.
+	 *            The {@link ValueCalculator} to use in order to calculate resulting values.
 	 * @param attributeValueModifierExecutor
-	 *            The {@link AttributeValueModifierExecutor} that shall be used for modifying attribute values.
+	 *            The {@link ValueModifierExecutor} that shall be used for modifying attribute values.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
+	 * @param useParallelization
+	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
+	 *            that the transformation result (especially the order of lists) varies between executions.
 	 */
-	public AttributeValueConstraintValueExtractor(Map<GlobalAttribute, String> globalAttributeValues,
-			AttributeValueCalculator attributeValueCalculator,
-			AttributeValueModifierExecutor attributeValueModifierExecutor, Logger logger) {
+	public AttributeValueConstraintValueExtractor(GlobalValueMap globalValues,
+			InstanceSelectorHandler instanceSelectorHandler, ValueCalculator attributeValueCalculator,
+			ValueModifierExecutor attributeValueModifierExecutor, Logger logger, boolean useParallelization) {
 
-		super(globalAttributeValues, attributeValueModifierExecutor, logger);
+		super(globalValues, instanceSelectorHandler, attributeValueModifierExecutor, logger, useParallelization);
 
 		this.attributeValueCalculator = attributeValueCalculator;
 	}
@@ -61,17 +68,28 @@ public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 	/**
 	 * This creates an instance for a given list of {@link MatchedSectionDescriptor matchedSectionDescriptors}.
 	 *
+	 * @param instanceSelectorHandler
+	 *            The {@link InstanceSelectorHandler} used for selecting specific instances when extracting values.
 	 * @param attributeValueModifierExecutor
-	 *            The {@link AttributeValueModifierExecutor} that shall be used for modifying attribute values.
+	 *            The {@link ValueModifierExecutor} that shall be used for modifying attribute values.
 	 * @param attributeValueCalculator
-	 *            The {@link AttributeValueCalculator} to use in order to calculate resulting values.
+	 *            The {@link ValueCalculator} to use in order to calculate resulting values.
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
+	 * @param useParallelization
+	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
+	 *            that the transformation result (especially the order of lists) varies between executions.
+	 * @deprecated use
+	 *             {@link #AttributeValueConstraintValueExtractor(GlobalValueMap, InstanceSelectorHandler, ValueCalculator, ValueModifierExecutor, Logger, boolean)}
+	 *             instead
 	 */
-	public AttributeValueConstraintValueExtractor(AttributeValueModifierExecutor attributeValueModifierExecutor,
-			AttributeValueCalculator attributeValueCalculator, Logger logger) {
+	@Deprecated
+	public AttributeValueConstraintValueExtractor(InstanceSelectorHandler instanceSelectorHandler,
+			ValueModifierExecutor attributeValueModifierExecutor, ValueCalculator attributeValueCalculator,
+			Logger logger, boolean useParallelization) {
 
-		super(attributeValueModifierExecutor, logger);
+		super(new GlobalValueMap(), instanceSelectorHandler, attributeValueModifierExecutor, logger,
+				useParallelization);
 
 		this.attributeValueCalculator = attributeValueCalculator;
 	}
@@ -128,9 +146,9 @@ public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 
 			AttributeValueRepresentation attributeValueRepresentation = null;
 
-			if (sourceElement instanceof ModifiedAttributeElementType<?, ?, ?, ?>) {
+			if (sourceElement instanceof DynamicSourceElement<?, ?, ?, ?>) {
 				attributeValueRepresentation = this.extractValue(
-						(ModifiedAttributeElementType<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) sourceElement,
+						(DynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) sourceElement,
 						matchedSectionDescriptor);
 			} else if (sourceElement instanceof FixedValue) {
 				attributeValueRepresentation = this.extractValue((FixedValue) sourceElement, matchedSectionDescriptor);
@@ -138,14 +156,14 @@ public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 				attributeValueRepresentation = this.extractValue((GlobalAttributeImporter) sourceElement,
 						matchedSectionDescriptor);
 			} else {
-				this.logger.severe("Unsupported type of source element for an AttributeValueConstraint found: '"
+				this.logger.severe(() -> "Unsupported type of source element for an AttributeValueConstraint found: '"
 						+ sourceElement.eClass().getName() + "'!");
 			}
 
 			if (attributeValueRepresentation != null) {
 
 				if (attributeValueRepresentation.isMany()) {
-					this.logger.warning("Multiple values found for the source element '" + sourceElement.getName()
+					this.logger.warning(() -> "Multiple values found for the source element '" + sourceElement.getName()
 							+ "' of an AttributeValueConstraint! This is currently not supported and only the first found value will be used!'");
 				}
 
@@ -153,7 +171,8 @@ public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 			}
 		}
 
-		// Assemble the target value based on the value parts and a potential expression
+		// Assemble the target value based on the value parts and a potential
+		// expression
 		//
 		if (expression == null || expression.isEmpty()) {
 			return this.attributeValueCalculator.calculateValueWithoutExpression(new ArrayList<>(sourceElements),

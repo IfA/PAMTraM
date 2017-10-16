@@ -3,8 +3,11 @@
 package pamtram.structure.generic.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -17,8 +20,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.CardinalityType;
 import pamtram.structure.generic.CompositeReference;
@@ -39,6 +44,11 @@ import pamtram.structure.generic.util.GenericValidator;
  *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getReferences <em>References</em>}</li>
  *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getContainer <em>Container</em>}</li>
  *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getAttributes <em>Attributes</em>}</li>
+ *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getAllContainer <em>All Container</em>}</li>
+ *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getActualAttributes <em>Actual Attributes</em>}</li>
+ *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getVirtualAttributes <em>Virtual Attributes</em>}</li>
+ *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getActualReferences <em>Actual References</em>}</li>
+ *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getVirtualReferences <em>Virtual References</em>}</li>
  * </ul>
  *
  * @generated
@@ -79,7 +89,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	/**
 	 * The cached value of the '{@link #getReferences() <em>References</em>}' containment reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getReferences()
 	 * @generated
 	 * @ordered
@@ -99,7 +109,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	/**
 	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getAttributes()
 	 * @generated
 	 * @ordered
@@ -270,6 +280,82 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 * @generated
 	 */
 	@Override
+	public EList<C> getAllContainer() {
+		List<Object> ret = new ArrayList<>();
+		if(this.getContainer() != null) {
+		
+			pamtram.structure.generic.Class<?, ?, ?, ?> toCheck = this;
+		
+			while (toCheck.getContainer() != null && !ret.contains(toCheck.getContainer())) {
+				ret.add(toCheck.getContainer());
+				toCheck = toCheck.getContainer();
+			}
+			
+			if(this.getContainer() instanceof Section<?, ?, ?, ?>) {				
+				ret.addAll(((Section<?, ?, ?, ?>) this.getContainer()).getAllExtend());
+				ret.addAll(((Section<?, ?, ?, ?>) this.getContainer()).getAllExtend().stream().flatMap(s -> s.getAllContainer().stream()).collect(Collectors.toList()));
+			}
+		}
+		
+		ret = ret.stream().distinct().collect(Collectors.toList());
+		
+		return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.CLASS__ALL_CONTAINER,
+				ret.size(), ret.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<A> getActualAttributes() {
+		List<Object> ret = this.getAttributes().stream().filter(a -> a instanceof pamtram.structure.generic.ActualAttribute<?, ?, ?, ?>).collect(Collectors.toList());
+		
+		return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.CLASS__ACTUAL_ATTRIBUTES,
+				ret.size(), ret.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<A> getVirtualAttributes() {
+		List<Object> ret = this.getAttributes().stream().filter(a -> a instanceof pamtram.structure.generic.VirtualAttribute<?, ?, ?, ?>).collect(Collectors.toList());
+		
+		return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.CLASS__ACTUAL_ATTRIBUTES,
+				ret.size(), ret.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<R> getActualReferences() {
+		List<Object> ret = this.getReferences().stream().filter(a -> a instanceof pamtram.structure.generic.ActualReference<?, ?, ?, ?>).collect(Collectors.toList());
+		
+		return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.CLASS__ACTUAL_REFERENCES,
+				ret.size(), ret.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<R> getVirtualReferences() {
+		List<Object> ret = this.getReferences().stream().filter(a -> a instanceof pamtram.structure.generic.VirtualReference<?, ?, ?, ?>).collect(Collectors.toList());
+		
+		return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.CLASS__VIRTUAL_REFERENCES,
+				ret.size(), ret.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public boolean isContainerFor(final C containedClass) {
 		C container = containedClass.getContainer();
 				
@@ -306,7 +392,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 		}
 		
 		for (R ref : containerClass.getReferences()) {
-			if(!(ref.getEReference().isContainment())) {
+			if(!(ref instanceof ActualReference<?, ?, ?, ?>) || !(((ActualReference<?, ?, ?, ?>) ref).getEReference().isContainment())) {
 				continue;
 			}
 			if(ref instanceof CompositeReference<?,?,?,?>){
@@ -348,7 +434,6 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 * @generated NOT
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public boolean isReferencedBy(final C referencingClass, EList<C> referencedClasses) {
 
 		if (referencedClasses == null) {
@@ -361,9 +446,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 			if (ref instanceof CompositeReference<?, ?, ?, ?>) {
 				classes.addAll(((CompositeReference<S, C, R, A>) ref).getValue());
-			} else if (ref instanceof CrossReference) {
-				classes.addAll(((CrossReference) ref).getValue());
-			} else if (ref instanceof CrossReference) {
+			} else if (ref instanceof CrossReference<?, ?, ?, ?>) {
 				classes.addAll(((CrossReference<S, C, R, A>) ref).getValue());
 			}
 		}
@@ -389,11 +472,11 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	@Override
 	public boolean validateEClassMatchesParentEReference(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
-		if(this == this.getContainingSection() || this.getEClass() == null || !(this.eContainer() instanceof Reference<?, ?, ?, ?>)) {
+		if(this == this.getContainingSection() || this.getEClass() == null || !(this.eContainer() instanceof ActualReference<?, ?, ?, ?>)) {
 			return true;
 		}
 		
-		Reference<?, ?, ?, ?> parentReference = (Reference<?, ?, ?, ?>) this.eContainer();
+		ActualReference<?, ?, ?, ?> parentReference = (ActualReference<?, ?, ?, ?>) this.eContainer();
 		
 		if(parentReference.getEReference() == null) {
 			return true;
@@ -424,21 +507,21 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	@Override
 	public boolean validateCardinalityIsValid(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
-		if(this == this.getContainingSection() || this.getEClass() == null || !(this.eContainer() instanceof Reference<?, ?, ?, ?>)) {
+		if(this == this.getContainingSection() || this.getEClass() == null || !(this.eContainer() instanceof ActualReference<?, ?, ?, ?>)) {
 			return true;
 		}
 		
-		Reference<?, ?, ?, ?> parentReference = (Reference<?, ?, ?, ?>) this.eContainer();
+		ActualReference<?, ?, ?, ?> parentReference = (ActualReference<?, ?, ?, ?>) this.eContainer();
 		
 		if(parentReference.getEReference() == null) {
 			return true;
 		}
 		
-		boolean result = !(this.cardinality != CardinalityType.ONE && parentReference.getEReference().getUpperBound() == 1);
+		boolean result = !(this.cardinality != CardinalityType.ONE && parentReference.getEReference().getUpperBound() == 1 && parentReference.getEReference().getLowerBound() == 1);
 		
 		if (!result && diagnostics != null) {
 		
-			String errorMessage = "The cardinality of a Class must be specified as 'CardinalityType::ONE' when the upper bound of the containing Reference is '1'!";
+			String errorMessage = "The cardinality of a Class must be specified as 'CardinalityType::ONE' when the upper and lower bound of the containing Reference is '1'!";
 		
 			diagnostics.add(new BasicDiagnostic
 					(Diagnostic.ERROR,
@@ -458,23 +541,37 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 */
 	@Override
 	public boolean validateContainerIsValid(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		boolean result;
+				String errorMessage = "";
 		
-		boolean result = this instanceof Section<?, ?, ?, ?> || this.getContainer() == null ? true : this.getContainer().equals(this.eContainer().eContainer());
+			if (this.getContainer() == null) {
+					// nothing specified -> no problem as the 'container' is an optional info
+					//
+					result = true;
+				} else if (this instanceof Section<?, ?, ?, ?>) {
+					// For Sections, the container must point to a Class that can theoretically (according to the metamodel) act
+					// as container
+					//
+					result = this.getEClass() == null || this.getContainer().getEClass() == null
+							|| this.getContainer().getEClass().getEAllContainments().stream().map(org.eclipse.emf.ecore.EReference::getEReferenceType)
+									.anyMatch(e -> e.isSuperTypeOf(this.getEClass()));
+					errorMessage = "The 'container' reference must point to a Class whose type (EClass) owns a suitable containment reference!";
+				} else {
+					// For normal Class, the container must point to a the containing Class
+					//
+					result = this.getContainer().equals(this.eContainer().eContainer());
+					errorMessage = "The 'container' refrence must point to the containing Class!";
+				}
 		
-		if (!result && diagnostics != null) {
+			if (!result && diagnostics != null) {
 		
-			String errorMessage = "The 'container' refrence must point to the containing Class!";
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, GenericValidator.DIAGNOSTIC_SOURCE,
+							GenericValidator.CLASS__VALIDATE_CONTAINER_IS_VALID, errorMessage,
+							new Object[] { this, GenericPackage.Literals.CLASS__CONTAINER }));
 		
-			diagnostics.add(new BasicDiagnostic
-					(Diagnostic.ERROR,
-					GenericValidator.DIAGNOSTIC_SOURCE,
-							GenericValidator.CLASS__VALIDATE_CONTAINER_IS_VALID,
-							errorMessage,
-					new Object[] { this, GenericPackage.Literals.CLASS__CONTAINER }));
+			}
 		
-		}
-		
-		return result;
+			return result;
 	}
 
 	/**
@@ -527,6 +624,16 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 				return basicGetContainer();
 			case GenericPackage.CLASS__ATTRIBUTES:
 				return getAttributes();
+			case GenericPackage.CLASS__ALL_CONTAINER:
+				return getAllContainer();
+			case GenericPackage.CLASS__ACTUAL_ATTRIBUTES:
+				return getActualAttributes();
+			case GenericPackage.CLASS__VIRTUAL_ATTRIBUTES:
+				return getVirtualAttributes();
+			case GenericPackage.CLASS__ACTUAL_REFERENCES:
+				return getActualReferences();
+			case GenericPackage.CLASS__VIRTUAL_REFERENCES:
+				return getVirtualReferences();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -603,6 +710,16 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 				return container != null;
 			case GenericPackage.CLASS__ATTRIBUTES:
 				return attributes != null && !attributes.isEmpty();
+			case GenericPackage.CLASS__ALL_CONTAINER:
+				return !getAllContainer().isEmpty();
+			case GenericPackage.CLASS__ACTUAL_ATTRIBUTES:
+				return !getActualAttributes().isEmpty();
+			case GenericPackage.CLASS__VIRTUAL_ATTRIBUTES:
+				return !getVirtualAttributes().isEmpty();
+			case GenericPackage.CLASS__ACTUAL_REFERENCES:
+				return !getActualReferences().isEmpty();
+			case GenericPackage.CLASS__VIRTUAL_REFERENCES:
+				return !getVirtualReferences().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

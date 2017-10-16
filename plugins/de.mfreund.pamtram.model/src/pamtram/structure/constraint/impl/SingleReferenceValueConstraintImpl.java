@@ -23,18 +23,17 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.ExpressionElement;
 import pamtram.FixedValue;
-import pamtram.InstanceSelectingElement;
 import pamtram.ModifiableElement;
 import pamtram.PamtramPackage;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
 import pamtram.impl.NamedElementImpl;
-import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.Mapping;
+import pamtram.mapping.extended.GlobalAttributeImporter;
 import pamtram.mapping.modifier.ValueModifierSet;
-import pamtram.structure.InstanceSelector;
 import pamtram.structure.InstanceSelectorExternalSourceElement;
 import pamtram.structure.InstanceSelectorSourceElement;
+import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.constraint.ChoiceConstraint;
 import pamtram.structure.constraint.ConstraintPackage;
 import pamtram.structure.constraint.SingleReferenceValueConstraint;
@@ -57,8 +56,8 @@ import pamtram.structure.source.SourceSection;
  *   <li>{@link pamtram.structure.constraint.impl.SingleReferenceValueConstraintImpl#getType <em>Type</em>}</li>
  *   <li>{@link pamtram.structure.constraint.impl.SingleReferenceValueConstraintImpl#getExpression <em>Expression</em>}</li>
  *   <li>{@link pamtram.structure.constraint.impl.SingleReferenceValueConstraintImpl#getModifiers <em>Modifiers</em>}</li>
- *   <li>{@link pamtram.structure.constraint.impl.SingleReferenceValueConstraintImpl#getInstanceSelectors <em>Instance Selectors</em>}</li>
  *   <li>{@link pamtram.structure.constraint.impl.SingleReferenceValueConstraintImpl#getSourceElements <em>Source Elements</em>}</li>
+ *   <li>{@link pamtram.structure.constraint.impl.SingleReferenceValueConstraintImpl#getInstanceSelectors <em>Instance Selectors</em>}</li>
  * </ul>
  *
  * @generated
@@ -117,16 +116,6 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	protected EList<ValueModifierSet> modifiers;
 
 	/**
-	 * The cached value of the '{@link #getInstanceSelectors() <em>Instance Selectors</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getInstanceSelectors()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<InstanceSelector> instanceSelectors;
-
-	/**
 	 * The cached value of the '{@link #getSourceElements() <em>Source Elements</em>}' containment reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 *
@@ -135,6 +124,16 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 * @ordered
 	 */
 	protected EList<ValueConstraintSourceInterface> sourceElements;
+
+	/**
+	 * The cached value of the '{@link #getInstanceSelectors() <em>Instance Selectors</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInstanceSelectors()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<SourceInstanceSelector> instanceSelectors;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -212,9 +211,9 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 * @generated
 	 */
 	@Override
-	public EList<InstanceSelector> getInstanceSelectors() {
+	public EList<SourceInstanceSelector> getInstanceSelectors() {
 		if (instanceSelectors == null) {
-			instanceSelectors = new EObjectContainmentEList<InstanceSelector>(InstanceSelector.class, this, ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS);
+			instanceSelectors = new EObjectContainmentEList<SourceInstanceSelector>(SourceInstanceSelector.class, this, ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS);
 		}
 		return instanceSelectors;
 	}
@@ -392,10 +391,10 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS:
-				return ((InternalEList<?>)getInstanceSelectors()).basicRemove(otherEnd, msgs);
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
 				return ((InternalEList<?>)getSourceElements()).basicRemove(otherEnd, msgs);
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS:
+				return ((InternalEList<?>)getInstanceSelectors()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -413,10 +412,10 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 				return getExpression();
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__MODIFIERS:
 				return getModifiers();
-			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS:
-				return getInstanceSelectors();
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
 				return getSourceElements();
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS:
+				return getInstanceSelectors();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -439,13 +438,13 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 				getModifiers().clear();
 				getModifiers().addAll((Collection<? extends ValueModifierSet>)newValue);
 				return;
-			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS:
-				getInstanceSelectors().clear();
-				getInstanceSelectors().addAll((Collection<? extends InstanceSelector>)newValue);
-				return;
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
 				getSourceElements().clear();
 				getSourceElements().addAll((Collection<? extends ValueConstraintSourceInterface>)newValue);
+				return;
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS:
+				getInstanceSelectors().clear();
+				getInstanceSelectors().addAll((Collection<? extends SourceInstanceSelector>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -467,11 +466,11 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__MODIFIERS:
 				getModifiers().clear();
 				return;
-			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS:
-				getInstanceSelectors().clear();
-				return;
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
 				getSourceElements().clear();
+				return;
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS:
+				getInstanceSelectors().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -490,10 +489,10 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 				return EXPRESSION_EDEFAULT == null ? expression != null : !EXPRESSION_EDEFAULT.equals(expression);
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__MODIFIERS:
 				return modifiers != null && !modifiers.isEmpty();
-			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS:
-				return instanceSelectors != null && !instanceSelectors.isEmpty();
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS:
 				return sourceElements != null && !sourceElements.isEmpty();
+			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS:
+				return instanceSelectors != null && !instanceSelectors.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -516,12 +515,6 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 				default: return -1;
 			}
 		}
-		if (baseClass == InstanceSelectingElement.class) {
-			switch (derivedFeatureID) {
-				case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS: return PamtramPackage.INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS;
-				default: return -1;
-			}
-		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
@@ -540,12 +533,6 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 		if (baseClass == ModifiableElement.class) {
 			switch (baseFeatureID) {
 				case PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS: return ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__MODIFIERS;
-				default: return -1;
-			}
-		}
-		if (baseClass == InstanceSelectingElement.class) {
-			switch (baseFeatureID) {
-				case PamtramPackage.INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS: return ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS;
 				default: return -1;
 			}
 		}

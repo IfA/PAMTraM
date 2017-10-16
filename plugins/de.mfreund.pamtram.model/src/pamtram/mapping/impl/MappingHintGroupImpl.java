@@ -3,7 +3,9 @@
 package pamtram.mapping.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -14,6 +16,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import pamtram.ConditionModel;
 import pamtram.ConditionalElement;
 import pamtram.DeactivatableElement;
@@ -22,14 +25,14 @@ import pamtram.condition.ComplexCondition;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.ContainerSelector;
+import pamtram.mapping.extended.MappingHint;
 import pamtram.structure.target.TargetSection;
-import pamtram.mapping.ContainerSelector;
 import pamtram.util.PamtramValidator;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Hint Group</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Hint
+ * Group</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -37,7 +40,6 @@ import pamtram.util.PamtramValidator;
  *   <li>{@link pamtram.mapping.impl.MappingHintGroupImpl#isDeactivated <em>Deactivated</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingHintGroupImpl#getLocalCondition <em>Local Condition</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingHintGroupImpl#getSharedCondition <em>Shared Condition</em>}</li>
- *   <li>{@link pamtram.mapping.impl.MappingHintGroupImpl#getContainerSelector <em>Container Selector</em>}</li>
  * </ul>
  *
  * @generated
@@ -45,8 +47,7 @@ import pamtram.util.PamtramValidator;
 public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements MappingHintGroup {
 	/**
 	 * The default value of the '{@link #isDeactivated() <em>Deactivated</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #isDeactivated()
 	 * @generated
 	 * @ordered
@@ -54,8 +55,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	protected static final boolean DEACTIVATED_EDEFAULT = false;
 	/**
 	 * The cached value of the '{@link #isDeactivated() <em>Deactivated</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #isDeactivated()
 	 * @generated
 	 * @ordered
@@ -63,8 +63,8 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	protected boolean deactivated = DEACTIVATED_EDEFAULT;
 	/**
 	 * The cached value of the '{@link #getLocalCondition() <em>Local Condition</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getLocalCondition()
 	 * @generated
 	 * @ordered
@@ -72,26 +72,15 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	protected ComplexCondition localCondition;
 	/**
 	 * The cached value of the '{@link #getSharedCondition() <em>Shared Condition</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getSharedCondition()
 	 * @generated
 	 * @ordered
 	 */
 	protected ComplexCondition sharedCondition;
-	/**
-	 * The cached value of the '{@link #getContainerSelector() <em>Container Selector</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getContainerSelector()
-	 * @generated
-	 * @ordered
-	 */
-	protected ContainerSelector containerSelector;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected MappingHintGroupImpl() {
@@ -99,8 +88,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -109,8 +97,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -119,8 +106,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -132,8 +118,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -142,8 +127,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NotificationChain basicSetLocalCondition(ComplexCondition newLocalCondition, NotificationChain msgs) {
@@ -157,8 +141,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -177,8 +160,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -195,8 +177,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ComplexCondition basicGetSharedCondition() {
@@ -204,8 +185,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -217,55 +197,10 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public ContainerSelector getContainerSelector() {
-		return containerSelector;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetContainerSelector(ContainerSelector newContainerSelector, NotificationChain msgs) {
-		ContainerSelector oldContainerSelector = containerSelector;
-		containerSelector = newContainerSelector;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR, oldContainerSelector, newContainerSelector);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setContainerSelector(ContainerSelector newContainerSelector) {
-		if (newContainerSelector != containerSelector) {
-			NotificationChain msgs = null;
-			if (containerSelector != null)
-				msgs = ((InternalEObject)containerSelector).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR, null, msgs);
-			if (newContainerSelector != null)
-				msgs = ((InternalEObject)newContainerSelector).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR, null, msgs);
-			msgs = basicSetContainerSelector(newContainerSelector, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR, newContainerSelector, newContainerSelector));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validateEitherModelOrReferCondition(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
 		boolean result = !(this.getLocalCondition() != null && this.getSharedCondition() != null);
@@ -287,11 +222,12 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateReferenceOnlyConditionsFromConditionModel(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+	@Override
+	public boolean validateReferenceOnlyConditionsFromConditionModel(final DiagnosticChain diagnostics,
+			final Map<?, ?> context) {
 		
 		boolean result = this.getSharedCondition() == null || this.getSharedCondition().eContainer() instanceof ConditionModel;
 		
@@ -312,8 +248,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -321,15 +256,12 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 		switch (featureID) {
 			case MappingPackage.MAPPING_HINT_GROUP__LOCAL_CONDITION:
 				return basicSetLocalCondition(null, msgs);
-			case MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR:
-				return basicSetContainerSelector(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -342,15 +274,12 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 			case MappingPackage.MAPPING_HINT_GROUP__SHARED_CONDITION:
 				if (resolve) return getSharedCondition();
 				return basicGetSharedCondition();
-			case MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR:
-				return getContainerSelector();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -365,16 +294,12 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 			case MappingPackage.MAPPING_HINT_GROUP__SHARED_CONDITION:
 				setSharedCondition((ComplexCondition)newValue);
 				return;
-			case MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR:
-				setContainerSelector((ContainerSelector)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -389,16 +314,12 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 			case MappingPackage.MAPPING_HINT_GROUP__SHARED_CONDITION:
 				setSharedCondition((ComplexCondition)null);
 				return;
-			case MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR:
-				setContainerSelector((ContainerSelector)null);
-				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -410,15 +331,12 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 				return localCondition != null;
 			case MappingPackage.MAPPING_HINT_GROUP__SHARED_CONDITION:
 				return sharedCondition != null;
-			case MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR:
-				return containerSelector != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -445,8 +363,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -473,8 +390,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -500,8 +416,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -517,8 +432,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -537,4 +451,24 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 		return this.getTargetSection();
 	}
 
-} //MappingHintGroupImpl
+	/**
+	 * This guarantees compatibility to legacy implementations.
+	 *
+	 * @return
+	 * @deprecated {@link ContainerSelector} is now a full-fledged
+	 *             {@link MappingHint} and should be accessed via
+	 *             {@link MappingHintGroup#getMappingHints()}
+	 */
+	@Deprecated
+	@Override
+	public ContainerSelector getContainerSelector() {
+		List<MappingHint> containerSelectors = this.getMappingHints().parallelStream()
+				.filter(hint -> hint instanceof ContainerSelector).collect(Collectors.toList());
+		if (containerSelectors.size() > 1) {
+			System.out.println(
+					"Warning: Multiple ContainerSelectors have been specified! Using the first one by default.");
+		}
+		return containerSelectors.isEmpty() ? null : (ContainerSelector) containerSelectors.iterator().next();
+	}
+
+} // MappingHintGroupImpl

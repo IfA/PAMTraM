@@ -32,6 +32,7 @@ import de.tud.et.ifa.agtele.emf.edit.commands.BasicDragAndDropCompoundCommand;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.Section;
 import pamtram.structure.target.FileAttribute;
+import pamtram.structure.target.TargetFactory;
 import pamtram.structure.target.TargetPackage;
 import pamtram.structure.target.TargetSection;
 
@@ -44,8 +45,9 @@ import pamtram.structure.target.TargetSection;
 public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TargetSectionItemProvider(AdapterFactory adapterFactory) {
@@ -53,8 +55,9 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -65,14 +68,14 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 			addAbstractPropertyDescriptor(object);
 			addExtendPropertyDescriptor(object);
 			addReferencingMappingHintGroupsPropertyDescriptor(object);
-			addFilePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Abstract feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Abstract feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addAbstractPropertyDescriptor(Object object) {
@@ -81,18 +84,19 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_Section_abstract_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Section_abstract_feature", "_UI_Section_type"),
+				 getString("_UI_Section_abstract_description"),
 				 GenericPackage.Literals.SECTION__ABSTRACT,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
+				 getString("_UI_ExtendedPropertyCategory"),
 				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Extend feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Extend feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
@@ -101,9 +105,8 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 		this.itemPropertyDescriptors.add(
 				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
 						this.getResourceLocator(), this.getString("_UI_Section_extend_feature"),
-						this.getString("_UI_PropertyDescriptor_description", "_UI_Section_extend_feature",
-								"_UI_Section_type"),
-						GenericPackage.Literals.SECTION__EXTEND, true, false, true, null, null, null) {
+						this.getString("_UI_Section_extend_description"), GenericPackage.Literals.SECTION__EXTEND, true,
+						false, true, null, this.getString("_UI_ExtendedPropertyCategory"), null) {
 
 					@Override
 					public Collection<?> getChoiceOfValues(Object object) {
@@ -118,7 +121,8 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 						Collection<TargetSection> ret = new BasicEList<>();
 
 						for (TargetSection val : values) {
-							// only abstract sections that have a matching eClass can be used as extended section
+							// only abstract sections that have a matching
+							// eClass can be used as extended section
 							if (val.isAbstract() && (val.getEClass() == targetSection.getEClass()
 									|| targetSection.getEClass().getEAllSuperTypes().contains(val.getEClass()))) {
 								ret.add(val);
@@ -132,8 +136,7 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 
 	/**
 	 * This adds a property descriptor for the Referencing Mapping Hint Groups feature.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addReferencingMappingHintGroupsPropertyDescriptor(Object object) {
@@ -142,34 +145,13 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_TargetSection_referencingMappingHintGroups_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TargetSection_referencingMappingHintGroups_feature", "_UI_TargetSection_type"),
+				 getString("_UI_TargetSection_referencingMappingHintGroups_description"),
 				 TargetPackage.Literals.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS,
 				 false,
 				 false,
 				 false,
 				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the File feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addFilePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_TargetSection_file_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TargetSection_file_feature", "_UI_TargetSection_type"),
-				 TargetPackage.Literals.TARGET_SECTION__FILE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
+				 getString("_UI_InfoPropertyCategory"),
 				 null));
 	}
 
@@ -184,7 +166,8 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	}
 
 	/**
-	 * This returns TargetSection.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns TargetSection.gif. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
 	 *
 	 * @generated NOT
 	 */
@@ -195,7 +178,8 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
@@ -206,7 +190,8 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label styled text for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
@@ -248,10 +233,10 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
-	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 *
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	public void notifyChangedGen(Notification notification) {
@@ -259,6 +244,7 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 
 		switch (notification.getFeatureID(TargetSection.class)) {
 			case TargetPackage.TARGET_SECTION__ABSTRACT:
+			case TargetPackage.TARGET_SECTION__FILE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -273,19 +259,26 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
+	 * describing the children that can be created under this object. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(TargetPackage.Literals.TARGET_SECTION__FILE,
+				 TargetFactory.eINSTANCE.createFileAttribute()));
 	}
 
 	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}. <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the label text for
+	 * {@link org.eclipse.emf.edit.command.CreateChildCommand}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
@@ -302,7 +295,8 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 		// if (qualify) {
 		// return getString
 		// ("_UI_CreateChild_text2",
-		// new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		// new Object[] { getTypeText(childObject),
+		// getFeatureText(childFeature), getTypeText(owner) });
 		// }
 		return super.getCreateChildText(owner, feature, child, selection);
 	}
@@ -312,7 +306,8 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 			Collection<?> collection, int index) {
 
 		/*
-		 * If a 'FileAttribute' is added, we also need to set the 'file' reference.
+		 * If a 'FileAttribute' is added, we also need to set the 'file'
+		 * reference.
 		 */
 		if (feature == GenericPackage.Literals.CLASS__ATTRIBUTES) {
 			for (Object object : collection) {
@@ -342,7 +337,8 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	protected Command createSetCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, Object value) {
 
 		/*
-		 * If a 'FileAttribute' is created, we also need to add it to the 'attributes' reference.
+		 * If a 'FileAttribute' is created, we also need to add it to the
+		 * 'attributes' reference.
 		 */
 		if (feature == TargetPackage.Literals.TARGET_SECTION__FILE) {
 			if (value.equals(SetCommand.UNSET_VALUE)) {
@@ -367,8 +363,8 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 			int operation, Collection<?> collection) {
 
 		/*
-		 * If a 'FileAttribute' is dragged, we also need to remove the 'file' from the old owner and set the 'file'
-		 * reference in the new owner..
+		 * If a 'FileAttribute' is dragged, we also need to remove the 'file'
+		 * from the old owner and set the 'file' reference in the new owner..
 		 */
 		Collection<Object> collectionWithoutFile = new ArrayList<>();
 		FileAttribute file = null;

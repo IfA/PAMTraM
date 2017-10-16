@@ -12,12 +12,19 @@ import org.eclipse.emf.common.util.EList;
  * A representation of the model object '<em><b>Section</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A special Class that represents the root element (as an instance of an EClass) of an element structure.
+ * <br />
+ * Note: Every specified structure must contain one and only one Section element (its root element).
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
  *   <li>{@link pamtram.structure.generic.Section#isAbstract <em>Abstract</em>}</li>
  *   <li>{@link pamtram.structure.generic.Section#getExtend <em>Extend</em>}</li>
+ *   <li>{@link pamtram.structure.generic.Section#getAllExtend <em>All Extend</em>}</li>
  * </ul>
  *
  * @see pamtram.structure.generic.GenericPackage#getSection()
@@ -36,6 +43,11 @@ public interface Section<S extends Section<S, C, R, A>, C extends pamtram.struct
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * If set to 'true', this Section can be extended by other specified Sections (via the 'extend' reference) which will then recursively inherit the structure specified by this Section (all contained Attributes, References and Classes).
+	 * <br /><br />
+	 * Note: Abstract Sections will not be (directly) matched against a source model. Consequently, Mappings based on abstract Sections will never be executed. Such mappings can however be used to specifiy abstract MappingHintGroups which can be extended by concrete MappingHintGroups that are based on a concrete Sub-Section of this abstract Section.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Abstract</em>' attribute.
 	 * @see #setAbstract(boolean)
 	 * @see pamtram.structure.generic.GenericPackage#getSection_Abstract()
@@ -62,6 +74,11 @@ public interface Section<S extends Section<S, C, R, A>, C extends pamtram.struct
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The list of (abstract) Sections that this Section extends.
+	 * <br /><br />
+	 * This Section will recursively inherit the structure specified by all extended Sections (all contained Attributes, References and Classes).
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Extend</em>' reference list.
 	 * @see pamtram.structure.generic.GenericPackage#getSection_Extend()
 	 * @model
@@ -70,9 +87,25 @@ public interface Section<S extends Section<S, C, R, A>, C extends pamtram.struct
 	EList<S> getExtend();
 
 	/**
+	 * Returns the value of the '<em><b>All Extend</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>All Extend</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>All Extend</em>' reference list.
+	 * @see pamtram.structure.generic.GenericPackage#getSection_AllExtend()
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='&lt;%java.util.Set%&gt;&lt;Object&gt; ret = new &lt;%java.util.HashSet%&gt;&lt;&gt;();\r\n\r\tList&lt;Section&lt;?, ?, ?, ?&gt;&gt; toCheck = new ArrayList&lt;&gt;();\r\n\t\ttoCheck.add(this);\r\n\r\twhile (!toCheck.isEmpty()) {\r\n\t\t\tSection&lt;?, ?, ?, ?&gt; next = toCheck.remove(0);\r\n\r\t\tList&lt;Section&lt;?, ?, ?, ?&gt;&gt; localToCheck = next.getExtend().stream().filter(e -&gt; !ret.contains(e))\r\n\t\t\t\t\t.collect(&lt;%java.util.stream.Collectors%&gt;.toList());\r\n\t\t\tret.addAll(localToCheck);\r\n\t\t\ttoCheck.addAll(localToCheck);\r\n\t\t}\r\n\r\tret.addAll(this.getExtend().stream().flatMap(s -&gt; s.getAllExtend().stream()).collect(&lt;%java.util.stream.Collectors%&gt;.toList()));\r\n\r\treturn new &lt;%org.eclipse.emf.ecore.util.EcoreEList%&gt;.UnmodifiableEList&lt;&gt;(this, &lt;%pamtram.structure.generic.GenericPackage%&gt;.Literals.SECTION__ALL_EXTEND, ret.size(),\r\n\t\t\t\tret.toArray());'"
+	 * @generated
+	 */
+	EList<S> getAllExtend();
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='if(this.getContainer() == null) {\r\n\treturn true;\r\n}\r\n\r\nboolean result = this.getExtend().parallelStream().allMatch(\r\n\t\te -> e.getContainer() == null || e.getContainer() == this.getContainer());\r\n\r\nif (!result && diagnostics != null) {\r\n\t\r\n\tString errorMessage = \"The section extends a section that specifies a different container!\";\r\n\t\r\n\tdiagnostics.add\r\n\t\t(new BasicDiagnostic\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t <%pamtram.structure.generic.util.GenericValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\tGenericValidator.SECTION__VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER,\r\n\t\t\t errorMessage,\r\n\t\t\t new Object [] { this, <%pamtram.structure.generic.GenericPackage%>.Literals.SECTION__EXTEND }));\r\n\t}\r\n\r\nreturn result;'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='if(this.getContainer() == null) {\r\n\treturn true;\r\n}\r\n\r\nboolean result = this.getExtend().parallelStream().allMatch(\r\n\t\te -&gt; e.getContainer() == null || e.getContainer() == this.getContainer());\r\n\r\nif (!result &amp;&amp; diagnostics != null) {\r\n\t\r\n\tString errorMessage = \"The section extends a section that specifies a different container!\";\r\n\t\r\n\tdiagnostics.add\r\n\t\t(new BasicDiagnostic\r\n\t\t\t(&lt;%org.eclipse.emf.common.util.Diagnostic%&gt;.ERROR,\r\n\t\t\t &lt;%pamtram.structure.generic.util.GenericValidator%&gt;.DIAGNOSTIC_SOURCE,\r\n\t\t\tGenericValidator.SECTION__VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER,\r\n\t\t\t errorMessage,\r\n\t\t\t new Object [] { this, &lt;%pamtram.structure.generic.GenericPackage%&gt;.Literals.SECTION__EXTEND }));\r\n\t}\r\n\r\nreturn result;'"
 	 * @generated
 	 */
 	boolean validateContainerMatchesExtendContainer(DiagnosticChain diagnostics, Map<?, ?> context);
@@ -80,7 +113,7 @@ public interface Section<S extends Section<S, C, R, A>, C extends pamtram.struct
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nif(this.getEClass() == null) {\r\n\treturn true;\r\n}\r\n\r\nboolean result = this.getExtend().parallelStream().noneMatch(e -> !e.isAbstract() || e.getEClass() != null\r\n\t\t&& this.getEClass() != e.getEClass() && !this.getEClass().getEAllSuperTypes().contains(e.getEClass()));\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The section extends a section that is either not abstract or that references an EClass of a different (super-)type!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.structure.generic.util.GenericValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tGenericValidator.SECTION__VALIDATE_EXTENDS_VALID_SECTIONS,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.generic.GenericPackage%>.Literals.SECTION__EXTEND }));\r\n\r\n}\r\n\r\nreturn result;'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nif(this.getEClass() == null) {\r\n\treturn true;\r\n}\r\n\r\nboolean result = this.getExtend().parallelStream().noneMatch(e -&gt; !e.isAbstract() || e.getEClass() != null\r\n\t\t&amp;&amp; this.getEClass() != e.getEClass() &amp;&amp; !this.getEClass().getEAllSuperTypes().contains(e.getEClass()));\r\n\r\nif (!result &amp;&amp; diagnostics != null) {\r\n\r\n\tString errorMessage = \"The section extends a section that is either not abstract or that references an EClass of a different (super-)type!\";\r\n\r\n\tdiagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%&gt;\r\n\t\t\t(&lt;%org.eclipse.emf.common.util.Diagnostic%&gt;.ERROR,\r\n\t\t\t&lt;%pamtram.structure.generic.util.GenericValidator%&gt;.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tGenericValidator.SECTION__VALIDATE_EXTENDS_VALID_SECTIONS,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, &lt;%pamtram.structure.generic.GenericPackage%&gt;.Literals.SECTION__EXTEND }));\r\n\r\n}\r\n\r\nreturn result;'"
 	 * @generated
 	 */
 	boolean validateExtendsValidSections(DiagnosticChain diagnostics, Map<?, ?> context);

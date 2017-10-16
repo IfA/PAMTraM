@@ -5,6 +5,7 @@ package pamtram.structure.source;
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
+import pamtram.DeactivatableElement;
 import pamtram.mapping.MappingType;
 import pamtram.structure.generic.Section;
 
@@ -13,6 +14,12 @@ import pamtram.structure.generic.Section;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Source Section</b></em>'.
  * <!-- end-user-doc -->
+ *
+ * <!-- begin-model-doc -->
+ * A special SourceSectionClass that represents the root element (as an instance of an EClass) of an element structure in a source model.
+ * <br />
+ * Note: Every specified source model structure must contain one and only one SourceSection element (its root element).
+ * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
@@ -25,7 +32,7 @@ import pamtram.structure.generic.Section;
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='isReferencedByMapping'"
  * @generated
  */
-public interface SourceSection extends SourceSectionClass, Section<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> {
+public interface SourceSection extends SourceSectionClass, Section<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, DeactivatableElement {
 
 	/**
 	 * Returns the value of the '<em><b>Referencing Mappings</b></em>' reference list.
@@ -39,7 +46,7 @@ public interface SourceSection extends SourceSectionClass, Section<SourceSection
 	 * @return the value of the '<em>Referencing Mappings</em>' reference list.
 	 * @see pamtram.structure.source.SourcePackage#getSourceSection_ReferencingMappings()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='\r\nList<<%pamtram.mapping.Mapping%>> mappings = new <%java.util.ArrayList%><>();\r\n\r\nif (this.eResource() != null) {\r\n\r\n\tmappings = this.eResource().getResourceSet().getResources().stream()\r\n\t\t\t.filter(r -> r.getContents().get(0) instanceof pamtram.PAMTraM)\r\n\t\t\t.flatMap(r -> ((pamtram.PAMTraM) r.getContents().get(0)).getMappings().parallelStream())\r\n\t\t\t.collect(<%java.util.stream.Collectors%>.toList());\r\n}\r\n\r\nList<Mapping> referencingMappings = mappings.parallelStream().filter(m -> this.equals(m.getSourceSection())).collect(Collectors.toList());\r\n\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList%><>(this, <%pamtram.structure.source.SourcePackage%>.Literals.SOURCE_SECTION__REFERENCING_MAPPINGS,\r\n\t\treferencingMappings.size(), referencingMappings.toArray());'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='\r\nList&lt;&lt;%pamtram.mapping.Mapping%&gt;&gt; mappings = new &lt;%java.util.ArrayList%&gt;&lt;&gt;();\r\n\r\nif (this.eResource() != null) {\r\n\r\n\tmappings = this.eResource().getResourceSet().getResources().stream()\r\n\t\t\t.filter(r -&gt; r.getContents().get(0) instanceof pamtram.PAMTraM)\r\n\t\t\t.flatMap(r -&gt; ((pamtram.PAMTraM) r.getContents().get(0)).getMappings().stream())\r\n\t\t\t.collect(&lt;%java.util.stream.Collectors%&gt;.toList());\r\n}\r\n\r\nList&lt;Mapping&gt; referencingMappings = mappings.stream().filter(m -&gt; this.equals(m.getSourceSection())).collect(Collectors.toList());\r\n\r\nreturn new &lt;%org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList%&gt;&lt;&gt;(this, &lt;%pamtram.structure.source.SourcePackage%&gt;.Literals.SOURCE_SECTION__REFERENCING_MAPPINGS,\r\n\t\treferencingMappings.size(), referencingMappings.toArray());'"
 	 * @generated
 	 */
 	EList<MappingType> getReferencingMappings();
@@ -47,7 +54,7 @@ public interface SourceSection extends SourceSectionClass, Section<SourceSection
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nboolean result = !this.getReferencingMappings().isEmpty();\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The section is not referenced by any mapping!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.WARNING,\r\n\t\t\t<%pamtram.structure.source.util.SourceValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tSourceValidator.SOURCE_SECTION__VALIDATE_IS_REFERENCED_BY_MAPPING,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.source.SourcePackage%>.Literals.SOURCE_SECTION }));\r\n\r\n}\r\n\r\nreturn result;'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nboolean result = !this.getReferencingMappings().isEmpty();\r\n\r\nif (!result &amp;&amp; diagnostics != null) {\r\n\r\n\tString errorMessage = \"The section is not referenced by any mapping!\";\r\n\r\n\tdiagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%&gt;\r\n\t\t\t(&lt;%org.eclipse.emf.common.util.Diagnostic%&gt;.WARNING,\r\n\t\t\t&lt;%pamtram.structure.source.util.SourceValidator%&gt;.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tSourceValidator.SOURCE_SECTION__VALIDATE_IS_REFERENCED_BY_MAPPING,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, &lt;%pamtram.structure.source.SourcePackage%&gt;.Literals.SOURCE_SECTION }));\r\n\r\n}\r\n\r\nreturn result;'"
 	 * @generated
 	 */
 	boolean validateIsReferencedByMapping(DiagnosticChain diagnostics, Map<?, ?> context);

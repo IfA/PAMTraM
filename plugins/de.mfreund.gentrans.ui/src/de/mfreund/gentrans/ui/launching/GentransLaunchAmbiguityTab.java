@@ -34,22 +34,25 @@ import org.eclipse.wb.swt.SWTResourceManager;
 
 import de.mfreund.gentrans.launching.GentransLaunchingDelegate;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
+import pamtram.provider.PamtramEditPlugin;
 
 /**
- * An {@link ILaunchConfigurationTab2} that allows to customize the ambiguity resolving strategies to be applied during
- * a GenTrans transformation.
+ * An {@link ILaunchConfigurationTab2} that allows to customize the ambiguity
+ * resolving strategies to be applied during a GenTrans transformation.
  *
  * @author mfreund
  */
 public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 
 	/**
-	 * The name of the folder in the PAMTraM project where the PAMTraM files are located.
+	 * The name of the folder in the PAMTraM project where the PAMTraM files are
+	 * located.
 	 */
-	private static final String PAMTRAM_FOLDER = "Pamtram";
+	private static final String PAMTRAM_FOLDER = PamtramEditPlugin.INSTANCE.getString("PAMTRAM_FOLDER_NAME");
 
 	/**
-	 * The name of the folder in the PAMTraM folder where transformation models are stored.
+	 * The name of the folder in the PAMTraM folder where transformation models
+	 * are stored.
 	 */
 	private static final String TRANSFORMATION_MODEL_FOLDER = "transformation";
 
@@ -75,8 +78,8 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 	private GentransLaunchContext context;
 
 	/**
-	 * The {@link DataBindingContext} that is used to realize all data bindings among widgets and between widgets and
-	 * the {@link #context}.
+	 * The {@link DataBindingContext} that is used to realize all data bindings
+	 * among widgets and between widgets and the {@link #context}.
 	 */
 	private DataBindingContext bindingContext;
 
@@ -84,7 +87,8 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 	 * This creates an instance.
 	 *
 	 * @param context
-	 *            The {@link GentransLaunchContext} that shall be used for data bindings to the various widgets.
+	 *            The {@link GentransLaunchContext} that shall be used for data
+	 *            bindings to the various widgets.
 	 */
 	public GentransLaunchAmbiguityTab(GentransLaunchContext context) {
 		this.context = context;
@@ -131,7 +135,8 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.CENTER).span(2, 1)
 				.applyTo(historyComposite);
 
-		// a button to control the use of the latest transformation model in the HistoryStrategy
+		// a button to control the use of the latest transformation model in the
+		// HistoryStrategy
 		//
 		this.btnUseLatestTransformation = new Button(historyComposite, SWT.RADIO);
 		this.btnUseLatestTransformation.setSelection(true);
@@ -145,7 +150,8 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 		//
 		new Label(historyComposite, SWT.NONE);
 
-		// a button to control the use of a specific transformation model in the HistoryStrategy
+		// a button to control the use of a specific transformation model in the
+		// HistoryStrategy
 		//
 		this.btnUseSpecificTransformation = new Button(historyComposite, SWT.RADIO);
 		this.btnUseSpecificTransformation.setToolTipText("Use a specific transformation model to resolve ambiguities");
@@ -153,7 +159,8 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 		this.btnUseSpecificTransformation.addSelectionListener(
 				(SelectionListener2) e -> GentransLaunchAmbiguityTab.this.updateLaunchConfigurationDialog());
 
-		// a combo to select the transformation model to be used in the HistoryStrategy
+		// a combo to select the transformation model to be used in the
+		// HistoryStrategy
 		//
 		this.comboSelectTransformation = new Combo(historyComposite, SWT.NONE);
 		this.comboSelectTransformation.setEnabled(false);
@@ -178,7 +185,8 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 				(SelectionListener2) e -> GentransLaunchAmbiguityTab.this.updateLaunchConfigurationDialog());
 		GridDataFactory.swtDefaults().span(3, 1).applyTo(this.btnEnableStatistics);
 
-		// a composite for additional setting to customize the StatisticsStrategy
+		// a composite for additional setting to customize the
+		// StatisticsStrategy
 		//
 		Composite statisticsComposite = new Composite(ambiguityStrategyGroup, SWT.NONE);
 		GridLayoutFactory.swtDefaults().numColumns(4).extendedMargins(10, 0, 0, 0).applyTo(statisticsComposite);
@@ -189,13 +197,16 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 		//
 		Label labelWeightingFactor = new Label(statisticsComposite, SWT.HORIZONTAL);
 		labelWeightingFactor.setText("Auswertungsebene (Wichtungsfaktor): ");
+		labelWeightingFactor.setToolTipText(
+				"Manche Arten von Mehrdeutigkeiten können statistisch entweder auf Metamodell- und/oder auf Mapping- (bzw. Projekt-)Ebene ausgewertet werden. Hiermit kann der Wichtungsfaktor zwischen diesen beiden Arten konfiguriert werden.");
 
 		// a simple label
 		//
 		Label labelMetaModelLevel = new Label(statisticsComposite, SWT.HORIZONTAL);
 		labelMetaModelLevel.setText("Metamodell");
 
-		// a scale to control the weighting factor to be used in the StatisticsStrategy
+		// a scale to control the weighting factor to be used in the
+		// StatisticsStrategy
 		//
 		this.scaleStatisticsFactor = new Scale(statisticsComposite, SWT.HORIZONTAL);
 		this.scaleStatisticsFactor.setMinimum(0);
@@ -229,13 +240,15 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 				(SelectionListener2) e -> GentransLaunchAmbiguityTab.this.updateLaunchConfigurationDialog());
 		GridDataFactory.swtDefaults().span(3, 1).applyTo(this.btnEnableUser);
 
-		// a composite for additional setting to customize the UserDecisionStrategy
+		// a composite for additional setting to customize the
+		// UserDecisionStrategy
 		//
 		Composite userComposite = new Composite(ambiguityStrategyGroup, SWT.NONE);
 		GridLayoutFactory.swtDefaults().extendedMargins(10, 0, 0, 0).applyTo(userComposite);
 		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.CENTER).span(2, 1).applyTo(userComposite);
 
-		// a button to enable the handling of expanding ambiguities in the UserDecisionStrategy
+		// a button to enable the handling of expanding ambiguities in the
+		// UserDecisionStrategy
 		//
 		this.btnHandleExpandingAmbiguities = new Button(userComposite, SWT.CHECK);
 		this.btnHandleExpandingAmbiguities.setSelection(true);
@@ -247,7 +260,8 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 		this.btnHandleExpandingAmbiguities.addSelectionListener(
 				(SelectionListener2) e -> GentransLaunchAmbiguityTab.this.updateLaunchConfigurationDialog());
 
-		// After we have created all widgets, we can initialize the data bindings among the widgets and between widgets
+		// After we have created all widgets, we can initialize the data
+		// bindings among the widgets and between widgets
 		// and the context
 		//
 		this.initDataBindings();
@@ -305,7 +319,8 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 						.collect(Collectors.toList()).toArray(new String[] {});
 				this.comboSelectTransformation.setItems(transformationModelNames);
 			} catch (Exception e1) {
-				// error while determining the list of stored transformation models
+				// error while determining the list of stored transformation
+				// models
 			}
 
 			String[] transformationsToChooseFrom = this.comboSelectTransformation.getItems();
@@ -378,8 +393,8 @@ public class GentransLaunchAmbiguityTab extends AbstractLaunchConfigurationTab {
 	}
 
 	/**
-	 * Initialize all {@link Binding data bindings} between the various widgets displayed on this tab and the
-	 * {@link #context} as well as among widgets.
+	 * Initialize all {@link Binding data bindings} between the various widgets
+	 * displayed on this tab and the {@link #context} as well as among widgets.
 	 *
 	 */
 	@SuppressWarnings("unchecked")

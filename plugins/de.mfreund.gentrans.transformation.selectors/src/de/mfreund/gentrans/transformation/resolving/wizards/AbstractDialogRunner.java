@@ -2,13 +2,12 @@ package de.mfreund.gentrans.transformation.resolving.wizards;
 
 import org.eclipse.swt.widgets.Dialog;
 
-import de.mfreund.gentrans.transformation.handler.GenericTransformationJob;
 import de.mfreund.gentrans.transformation.resolving.enhancing.MappingModelEnhancer;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 
 /**
- * This represents a {@link Runnable} that will spawn some sort of {@link Dialog} during an execution
- * of a {@link GenericTransformationJob generic transformation}.
+ * This represents a {@link Runnable} that will spawn some sort of {@link Dialog} during an execution of a generic
+ * transformation.
  *
  * @author mfreund
  */
@@ -47,6 +46,7 @@ public abstract class AbstractDialogRunner implements Runnable {
 	 *            The message that shall be displayed in the {@link Dialog} that this runner will instantiate.
 	 */
 	public AbstractDialogRunner(final String message) {
+
 		this(message, null);
 	}
 
@@ -66,6 +66,7 @@ public abstract class AbstractDialogRunner implements Runnable {
 	 */
 	public AbstractDialogRunner(final String message,
 			final MappingModelEnhancer<? extends AbstractDialogRunner> enhanceMappingModelListener) {
+
 		super();
 		this.transformationStopRequested = false;
 		this.message = message;
@@ -81,7 +82,7 @@ public abstract class AbstractDialogRunner implements Runnable {
 
 		// Create the dialog
 		//
-		if(this.dialog == null) {
+		if (this.dialog == null) {
 			this.initializeDialog();
 		}
 
@@ -100,9 +101,10 @@ public abstract class AbstractDialogRunner implements Runnable {
 	 * Whether the user has requested the termination of the transformation.
 	 *
 	 * @return '<em><b>true</b></em>' if the button "Abort Transformation" was clicked during run();
-	 * '<em><b>false</b></em>' otherwise
+	 *         '<em><b>false</b></em>' otherwise
 	 */
 	public boolean wasTransformationStopRequested() {
+
 		return this.transformationStopRequested;
 	}
 

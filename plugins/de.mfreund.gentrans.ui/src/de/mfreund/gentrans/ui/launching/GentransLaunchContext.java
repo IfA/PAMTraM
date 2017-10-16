@@ -11,6 +11,8 @@ import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 
+import pamtram.provider.PamtramEditPlugin;
+
 /**
  * A bean to describe all settings necessary to launch a new generic transformation.
  *
@@ -159,8 +161,9 @@ class GentransLaunchContext {
 		// update the list of possible transformation models to choose from based on the changed selection
 		ArrayList<String> transformationModels = new ArrayList<>();
 		try {
-			IResource[] transformationFolders = this.workspaceRoot.getProject(project).getFolder("Pamtram")
-					.getFolder("transformation").members();
+			IResource[] transformationFolders = this.workspaceRoot.getProject(project)
+					.getFolder(PamtramEditPlugin.INSTANCE.getString("PAMTRAM_FOLDER_NAME")).getFolder("transformation")
+					.members();
 			for (IResource iResource : transformationFolders) {
 				if (iResource instanceof IFolder
 						&& ((IFolder) iResource).getFile(iResource.getName() + ".transformation").exists()) {

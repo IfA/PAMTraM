@@ -4,6 +4,7 @@ package pamtram.mapping.provider;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -18,13 +19,15 @@ import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import de.tud.et.ifa.agtele.emf.edit.commands.BasicDragAndDropSetCommand;
+import pamtram.DeactivatableElement;
 import pamtram.PamtramPackage;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionFactory;
-import pamtram.mapping.ContainerSelector;
-import pamtram.mapping.MappingFactory;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.ContainerSelector;
+import pamtram.mapping.extended.ExtendedFactory;
+import pamtram.provider.DeactivatableElementItemProvider;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.MappingHintGroup} object.
@@ -70,35 +73,45 @@ public class MappingHintGroupItemProvider extends MappingHintGroupTypeItemProvid
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_DeactivatableElement_deactivated_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DeactivatableElement_deactivated_feature", "_UI_DeactivatableElement_type"),
+				 getString("_UI_DeactivatableElement_deactivated_description"),
 				 PamtramPackage.Literals.DEACTIVATABLE_ELEMENT__DEACTIVATED,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
+				 getString("_UI_ExtendedPropertyCategory"),
 				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Shared Condition feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
+	 * This adds a property descriptor for the Shared Condition feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
+	 * @generated NOT
 	 */
 	protected void addSharedConditionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ConditionalElement_sharedCondition_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ConditionalElement_sharedCondition_feature", "_UI_ConditionalElement_type"),
-				 PamtramPackage.Literals.CONDITIONAL_ELEMENT__SHARED_CONDITION,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+
+		this.itemPropertyDescriptors.add(
+				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(), this.getString("_UI_ConditionalElement_sharedCondition_feature"),
+						this.getString("_UI_ConditionalElement_sharedCondition_description"),
+						PamtramPackage.Literals.CONDITIONAL_ELEMENT__SHARED_CONDITION, true, false, true, null,
+						this.getString("_UI_ExtendedPropertyCategory"), null) {
+
+					@Override
+					public Collection<?> getChoiceOfValues(Object object) {
+
+						Collection<?> choices = super.getChoiceOfValues(object);
+
+						// Only allow to reference ConditionModel-conditions as
+						// shared
+						// conditions
+						//
+						return choices.stream()
+								.filter(c -> c instanceof ComplexCondition
+										&& ((ComplexCondition) c).isConditionModelCondition())
+								.collect(Collectors.toList());
+					}
+				});
 	}
 
 	/**
@@ -114,7 +127,6 @@ public class MappingHintGroupItemProvider extends MappingHintGroupTypeItemProvid
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION);
-			childrenFeatures.add(MappingPackage.Literals.MAPPING_HINT_GROUP__CONTAINER_SELECTOR);
 		}
 		return childrenFeatures;
 	}
@@ -153,7 +165,7 @@ public class MappingHintGroupItemProvider extends MappingHintGroupTypeItemProvid
 
 	/**
 	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated NOT
 	 */
 	@Override
@@ -161,13 +173,8 @@ public class MappingHintGroupItemProvider extends MappingHintGroupTypeItemProvid
 
 		StyledString styledLabel = (StyledString) super.getStyledText(object);
 
-		if (((MappingHintGroup) object).isDeactivated()) {
-			return new StyledString(styledLabel.getString(),
-					StyledString.Style.newBuilder().setStrikedout(true).toStyle());
-		} else {
-			return styledLabel;
-
-		}
+		return DeactivatableElementItemProvider.modifyLabelBasedOnActivationStatus((DeactivatableElement) object,
+				styledLabel);
 	}
 
 	/**
@@ -186,7 +193,6 @@ public class MappingHintGroupItemProvider extends MappingHintGroupTypeItemProvid
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case MappingPackage.MAPPING_HINT_GROUP__LOCAL_CONDITION:
-			case MappingPackage.MAPPING_HINT_GROUP__CONTAINER_SELECTOR:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -232,11 +238,6 @@ public class MappingHintGroupItemProvider extends MappingHintGroupTypeItemProvid
 			(createChildParameter
 				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
 				 ConditionFactory.eINSTANCE.createApplicationDependency()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(MappingPackage.Literals.MAPPING_HINT_GROUP__CONTAINER_SELECTOR,
-				 MappingFactory.eINSTANCE.createContainerSelector()));
 	}
 
 	/**
@@ -249,8 +250,8 @@ public class MappingHintGroupItemProvider extends MappingHintGroupTypeItemProvid
 		this.collectNewChildDescriptorsGen(newChildDescriptors, object);
 
 		newChildDescriptors
-				.add(this.createChildParameter(MappingPackage.Literals.MAPPING_HINT_GROUP__CONTAINER_SELECTOR,
-						MappingFactory.eINSTANCE.createContainerSelectorWithSourceAndTarget()));
+				.add(this.createChildParameter(MappingPackage.Literals.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS,
+						ExtendedFactory.eINSTANCE.createContainerSelectorWithSource()));
 
 	}
 
@@ -260,10 +261,8 @@ public class MappingHintGroupItemProvider extends MappingHintGroupTypeItemProvid
 		// provide labels for the custom child descriptors
 		if (child instanceof ContainerSelector) {
 			ContainerSelector modelConnectionHint = (ContainerSelector) child;
-			if (!modelConnectionHint.getSourceElements().isEmpty()
-					&& !modelConnectionHint.getTargetAttributes().isEmpty()) {
-				return super.getCreateChildText(owner, feature, child, selection)
-						+ " (incl. Source and Target Attribute)";
+			if (!modelConnectionHint.getSourceElements().isEmpty()) {
+				return super.getCreateChildText(owner, feature, child, selection) + " (incl. Source Attribute)";
 			}
 		}
 		return super.getCreateChildText(owner, feature, child, selection);

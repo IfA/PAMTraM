@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target" xmlns:structure="http://mfreund.de/pamtram/structure">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:extended="http://mfreund.de/pamtram/mapping/extended" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:target="http://mfreund.de/pamtram/structure/target">
   <sourceSectionModels name="stgml-simplified">
     <metaModelPackage href="http://stgml-simplified#/"/>
     <sections xsi:type="source:SourceSection" name="State">
@@ -35,13 +35,13 @@
         <eReference href="http://stefan-hennig.de/movisa-simplified#//NavigationFlow/target"/>
       </references>
       <references xsi:type="target:TargetSectionCompositeReference" name="signals">
-        <eReference href="http://stefan-hennig.de/movisa-simplified#//NavigationFlow/signals"/>
         <value xsi:type="target:TargetSectionClass" name="Signal">
           <eClass href="http://stefan-hennig.de/movisa-simplified#//Signal"/>
           <attributes xsi:type="target:ActualTargetSectionAttribute" name="Signal.name">
             <attribute href="http://stefan-hennig.de/movisa-simplified#//NamedElement/name"/>
           </attributes>
         </value>
+        <eReference href="http://stefan-hennig.de/movisa-simplified#//NavigationFlow/signals"/>
       </references>
       <attributes xsi:type="target:ActualTargetSectionAttribute" name="NavigationFlow.name">
         <attribute href="http://stefan-hennig.de/movisa-simplified#//NamedElement/name"/>
@@ -51,30 +51,26 @@
   <mappingModels>
     <mappings name="StateMapping" sourceSection="//@sourceSectionModels.0/@sections.0">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Panel" targetSection="//@targetSectionModels.0/@sections.0">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="Panel.nameMapping" target="//@targetSectionModels.0/@sections.0/@attributes.0">
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="id" source="//@sourceSectionModels.0/@sections.0/@attributes.0"/>
+        <mappingHints xsi:type="extended:AttributeMapping" name="Panel.nameMapping" target="//@targetSectionModels.0/@sections.0/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" source="//@sourceSectionModels.0/@sections.0/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
     </mappings>
     <mappings name="TransitionMapping" sourceSection="//@sourceSectionModels.0/@sections.1">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="NavigationFlow" targetSection="//@targetSectionModels.0/@sections.1">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="NavigationFlow.nameMapping" target="//@targetSectionModels.0/@sections.1/@attributes.0">
-          <sourceElements xsi:type="mapping:AttributeMappingExternalSourceElement" name="[Quelle]" source="//@sourceSectionModels.0/@sections.0/@attributes.0"/>
+        <mappingHints xsi:type="extended:AttributeMapping" name="NavigationFlow.nameMapping" target="//@targetSectionModels.0/@sections.1/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="[Quelle]" source="//@sourceSectionModels.0/@sections.0/@attributes.0"/>
           <sourceElements xsi:type="pamtram:FixedValue" name="_to_" value="_to_"/>
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="[Ziel]" source="//@sourceSectionModels.0/@sections.1/@attributes.0"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="[Ziel]" source="//@sourceSectionModels.0/@sections.1/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="source" affectedReference="//@targetSectionModels.0/@sections.1/@references.0">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.0/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="id" source="//@sourceSectionModels.0/@sections.0/@attributes.0"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="source" referenceAttribute="//@targetSectionModels.0/@sections.0/@attributes.0" targetClass="//@targetSectionModels.0/@sections.0" affectedReference="//@targetSectionModels.0/@sections.1/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="id" source="//@sourceSectionModels.0/@sections.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:ReferenceTargetSelector" name="target" affectedReference="//@targetSectionModels.0/@sections.1/@references.1">
-          <matcher xsi:type="mapping:AttributeMatcher" target="//@targetSectionModels.0/@sections.0/@attributes.0">
-            <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="target" source="//@sourceSectionModels.0/@sections.1/@attributes.0"/>
-          </matcher>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="target" referenceAttribute="//@targetSectionModels.0/@sections.0/@attributes.0" targetClass="//@targetSectionModels.0/@sections.0" affectedReference="//@targetSectionModels.0/@sections.1/@references.1">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="target" source="//@sourceSectionModels.0/@sections.1/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="Signal.nameMapping" target="//@targetSectionModels.0/@sections.1/@references.2/@value.0/@attributes.0">
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="event" source="//@sourceSectionModels.0/@sections.1/@attributes.1"/>
+        <mappingHints xsi:type="extended:AttributeMapping" name="Signal.nameMapping" target="//@targetSectionModels.0/@sections.1/@references.2/@value.0/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="event" source="//@sourceSectionModels.0/@sections.1/@attributes.1"/>
         </mappingHints>
       </mappingHintGroups>
     </mappings>

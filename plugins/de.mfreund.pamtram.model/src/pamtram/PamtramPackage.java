@@ -20,6 +20,9 @@ import org.eclipse.emf.ecore.EReference;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
+ * <!-- begin-model-doc -->
+ * Main package of the PAMTraM (Persistent Ambiguous Mapping and Transformation Model) meta-model containing various structuring and general elements.
+ * <!-- end-model-doc -->
  * @see pamtram.PamtramFactory
  * @model kind="package"
  *        annotation="http://www.eclipse.org/OCL/Import ecore='http://www.eclipse.org/emf/2002/Ecore' genlib='http://www.et.tu-dresden.de/ifa/agtele/genlib'"
@@ -242,13 +245,22 @@ public interface PamtramPackage extends EPackage {
 	int PAM_TRA_M__GLOBAL_VALUES = 10;
 
 	/**
+	 * The feature id for the '<em><b>Global Attributes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAM_TRA_M__GLOBAL_ATTRIBUTES = 11;
+
+	/**
 	 * The feature id for the '<em><b>Modifier Sets</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__MODIFIER_SETS = 11;
+	int PAM_TRA_M__MODIFIER_SETS = 12;
 
 	/**
 	 * The feature id for the '<em><b>Condition Models</b></em>' containment reference list.
@@ -257,7 +269,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__CONDITION_MODELS = 12;
+	int PAM_TRA_M__CONDITION_MODELS = 13;
 
 	/**
 	 * The feature id for the '<em><b>Shared Condition Models</b></em>' reference list.
@@ -266,7 +278,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M__SHARED_CONDITION_MODELS = 13;
+	int PAM_TRA_M__SHARED_CONDITION_MODELS = 14;
 
 	/**
 	 * The number of structural features of the '<em>PAM Tra M</em>' class.
@@ -275,7 +287,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M_FEATURE_COUNT = 14;
+	int PAM_TRA_M_FEATURE_COUNT = 15;
 
 	/**
 	 * The operation id for the '<em>Merge Extends</em>' operation.
@@ -287,13 +299,31 @@ public interface PamtramPackage extends EPackage {
 	int PAM_TRA_M___MERGE_EXTENDS = 0;
 
 	/**
+	 * The operation id for the '<em>Get Active Source Section Models</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAM_TRA_M___GET_ACTIVE_SOURCE_SECTION_MODELS = 1;
+
+	/**
+	 * The operation id for the '<em>Get Active Source Sections</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAM_TRA_M___GET_ACTIVE_SOURCE_SECTIONS = 2;
+
+	/**
 	 * The number of operations of the '<em>PAM Tra M</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M_OPERATION_COUNT = 1;
+	int PAM_TRA_M_OPERATION_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link pamtram.impl.SectionModelImpl <em>Section Model</em>}' class.
@@ -388,13 +418,22 @@ public interface PamtramPackage extends EPackage {
 	int SOURCE_SECTION_MODEL__SECTIONS = SECTION_MODEL__SECTIONS;
 
 	/**
+	 * The feature id for the '<em><b>Deactivated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_MODEL__DEACTIVATED = SECTION_MODEL_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Source Section Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_MODEL_FEATURE_COUNT = SECTION_MODEL_FEATURE_COUNT + 0;
+	int SOURCE_SECTION_MODEL_FEATURE_COUNT = SECTION_MODEL_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Source Section Model</em>' class.
@@ -552,13 +591,22 @@ public interface PamtramPackage extends EPackage {
 	int MAPPING_MODEL__ACTIVE_MAPPINGS = NAMED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
+	 * The feature id for the '<em><b>Global Attributes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_MODEL__GLOBAL_ATTRIBUTES = NAMED_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
 	 * The number of structural features of the '<em>Mapping Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_MODEL_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 7;
+	int MAPPING_MODEL_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
@@ -772,43 +820,6 @@ public interface PamtramPackage extends EPackage {
 	int MODIFIABLE_ELEMENT_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link pamtram.impl.InstanceSelectingElementImpl <em>Instance Selecting Element</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see pamtram.impl.InstanceSelectingElementImpl
-	 * @see pamtram.impl.PamtramPackageImpl#getInstanceSelectingElement()
-	 * @generated
-	 */
-	int INSTANCE_SELECTING_ELEMENT = 11;
-
-	/**
-	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS = 0;
-
-	/**
-	 * The number of structural features of the '<em>Instance Selecting Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_SELECTING_ELEMENT_FEATURE_COUNT = 1;
-
-	/**
-	 * The number of operations of the '<em>Instance Selecting Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_SELECTING_ELEMENT_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link pamtram.impl.FixedValueImpl <em>Fixed Value</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -816,7 +827,7 @@ public interface PamtramPackage extends EPackage {
 	 * @see pamtram.impl.PamtramPackageImpl#getFixedValue()
 	 * @generated
 	 */
-	int FIXED_VALUE = 12;
+	int FIXED_VALUE = 11;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -828,13 +839,31 @@ public interface PamtramPackage extends EPackage {
 	int FIXED_VALUE__NAME = NAMED_ELEMENT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Local Condition</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_VALUE__LOCAL_CONDITION = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Shared Condition</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_VALUE__SHARED_CONDITION = NAMED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FIXED_VALUE__VALUE = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int FIXED_VALUE__VALUE = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Fixed Value</em>' class.
@@ -843,16 +872,25 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FIXED_VALUE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int FIXED_VALUE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The operation id for the '<em>Get Source Attribute</em>' operation.
+	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FIXED_VALUE___GET_SOURCE_ATTRIBUTE = NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int FIXED_VALUE___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_VALUE___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Fixed Value</em>' class.
@@ -861,7 +899,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FIXED_VALUE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 1;
+	int FIXED_VALUE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.NamedElement <em>Named Element</em>}'.
@@ -1037,6 +1075,17 @@ public interface PamtramPackage extends EPackage {
 	EReference getPAMTraM_GlobalValues();
 
 	/**
+	 * Returns the meta object for the reference list '{@link pamtram.PAMTraM#getGlobalAttributes <em>Global Attributes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Global Attributes</em>'.
+	 * @see pamtram.PAMTraM#getGlobalAttributes()
+	 * @see #getPAMTraM()
+	 * @generated
+	 */
+	EReference getPAMTraM_GlobalAttributes();
+
+	/**
 	 * Returns the meta object for the reference list '{@link pamtram.PAMTraM#getModifierSets <em>Modifier Sets</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1078,6 +1127,26 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getPAMTraM__MergeExtends();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.PAMTraM#getActiveSourceSectionModels() <em>Get Active Source Section Models</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Active Source Section Models</em>' operation.
+	 * @see pamtram.PAMTraM#getActiveSourceSectionModels()
+	 * @generated
+	 */
+	EOperation getPAMTraM__GetActiveSourceSectionModels();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.PAMTraM#getActiveSourceSections() <em>Get Active Source Sections</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Active Source Sections</em>' operation.
+	 * @see pamtram.PAMTraM#getActiveSourceSections()
+	 * @generated
+	 */
+	EOperation getPAMTraM__GetActiveSourceSections();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.SectionModel <em>Section Model</em>}'.
@@ -1197,6 +1266,17 @@ public interface PamtramPackage extends EPackage {
 	EReference getMappingModel_ActiveMappings();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link pamtram.MappingModel#getGlobalAttributes <em>Global Attributes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Global Attributes</em>'.
+	 * @see pamtram.MappingModel#getGlobalAttributes()
+	 * @see #getMappingModel()
+	 * @generated
+	 */
+	EReference getMappingModel_GlobalAttributes();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.ConditionalElement <em>Conditional Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1310,27 +1390,6 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getModifiableElement_Modifiers();
-
-	/**
-	 * Returns the meta object for class '{@link pamtram.InstanceSelectingElement <em>Instance Selecting Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Instance Selecting Element</em>'.
-	 * @see pamtram.InstanceSelectingElement
-	 * @generated
-	 */
-	EClass getInstanceSelectingElement();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link pamtram.InstanceSelectingElement#getInstanceSelectors <em>Instance Selectors</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Instance Selectors</em>'.
-	 * @see pamtram.InstanceSelectingElement#getInstanceSelectors()
-	 * @see #getInstanceSelectingElement()
-	 * @generated
-	 */
-	EReference getInstanceSelectingElement_InstanceSelectors();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.FixedValue <em>Fixed Value</em>}'.
@@ -1511,6 +1570,14 @@ public interface PamtramPackage extends EPackage {
 		EReference PAM_TRA_M__GLOBAL_VALUES = eINSTANCE.getPAMTraM_GlobalValues();
 
 		/**
+		 * The meta object literal for the '<em><b>Global Attributes</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PAM_TRA_M__GLOBAL_ATTRIBUTES = eINSTANCE.getPAMTraM_GlobalAttributes();
+
+		/**
 		 * The meta object literal for the '<em><b>Modifier Sets</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1541,6 +1608,22 @@ public interface PamtramPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation PAM_TRA_M___MERGE_EXTENDS = eINSTANCE.getPAMTraM__MergeExtends();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Active Source Section Models</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation PAM_TRA_M___GET_ACTIVE_SOURCE_SECTION_MODELS = eINSTANCE.getPAMTraM__GetActiveSourceSectionModels();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Active Source Sections</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation PAM_TRA_M___GET_ACTIVE_SOURCE_SECTIONS = eINSTANCE.getPAMTraM__GetActiveSourceSections();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.impl.SectionModelImpl <em>Section Model</em>}' class.
@@ -1639,6 +1722,14 @@ public interface PamtramPackage extends EPackage {
 		EReference MAPPING_MODEL__ACTIVE_MAPPINGS = eINSTANCE.getMappingModel_ActiveMappings();
 
 		/**
+		 * The meta object literal for the '<em><b>Global Attributes</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MAPPING_MODEL__GLOBAL_ATTRIBUTES = eINSTANCE.getMappingModel_GlobalAttributes();
+
+		/**
 		 * The meta object literal for the '{@link pamtram.impl.ConditionalElementImpl <em>Conditional Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1733,24 +1824,6 @@ public interface PamtramPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MODIFIABLE_ELEMENT__MODIFIERS = eINSTANCE.getModifiableElement_Modifiers();
-
-		/**
-		 * The meta object literal for the '{@link pamtram.impl.InstanceSelectingElementImpl <em>Instance Selecting Element</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see pamtram.impl.InstanceSelectingElementImpl
-		 * @see pamtram.impl.PamtramPackageImpl#getInstanceSelectingElement()
-		 * @generated
-		 */
-		EClass INSTANCE_SELECTING_ELEMENT = eINSTANCE.getInstanceSelectingElement();
-
-		/**
-		 * The meta object literal for the '<em><b>Instance Selectors</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference INSTANCE_SELECTING_ELEMENT__INSTANCE_SELECTORS = eINSTANCE.getInstanceSelectingElement_InstanceSelectors();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.impl.FixedValueImpl <em>Fixed Value</em>}' class.

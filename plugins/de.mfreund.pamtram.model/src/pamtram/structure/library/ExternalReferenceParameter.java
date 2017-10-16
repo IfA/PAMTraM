@@ -11,6 +11,10 @@ import pamtram.structure.target.TargetSectionCrossReference;
  * A representation of the model object '<em><b>External Reference Parameter</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A wrapper element for a GenLibrary ExternalReferenceParameter.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -31,6 +35,9 @@ public interface ExternalReferenceParameter extends LibraryParameter<AbstractExt
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The Reference that can be used to set the value(s) for the ExternalReferenceParameter (e.g. by means of a ReferenceTargetSelector).
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Reference</em>' containment reference.
 	 * @see #setReference(TargetSectionCrossReference)
 	 * @see pamtram.structure.library.LibraryPackage#getExternalReferenceParameter_Reference()

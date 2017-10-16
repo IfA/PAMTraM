@@ -9,9 +9,11 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
+import pamtram.DeactivatableElement;
 import pamtram.NamedElement;
 
 import pamtram.structure.generic.ActualAttribute;
+import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.CompositeReference;
 import pamtram.structure.generic.CrossReference;
@@ -19,6 +21,8 @@ import pamtram.structure.generic.MetaModelElement;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 
+import pamtram.structure.generic.VirtualAttribute;
+import pamtram.structure.generic.VirtualReference;
 import pamtram.structure.source.*;
 
 /**
@@ -98,12 +102,20 @@ public class SourceAdapterFactory extends AdapterFactoryImpl {
 				return createSourceSectionCrossReferenceAdapter();
 			}
 			@Override
+			public Adapter caseVirtualSourceSectionCrossReference(VirtualSourceSectionCrossReference object) {
+				return createVirtualSourceSectionCrossReferenceAdapter();
+			}
+			@Override
 			public Adapter caseSourceSectionAttribute(SourceSectionAttribute object) {
 				return createSourceSectionAttributeAdapter();
 			}
 			@Override
 			public Adapter caseActualSourceSectionAttribute(ActualSourceSectionAttribute object) {
 				return createActualSourceSectionAttributeAdapter();
+			}
+			@Override
+			public Adapter caseVirtualSourceSectionAttribute(VirtualSourceSectionAttribute object) {
+				return createVirtualSourceSectionAttributeAdapter();
 			}
 			@Override
 			public Adapter caseNamedElement(NamedElement object) {
@@ -122,6 +134,10 @@ public class SourceAdapterFactory extends AdapterFactoryImpl {
 				return createSectionAdapter();
 			}
 			@Override
+			public Adapter caseDeactivatableElement(DeactivatableElement object) {
+				return createDeactivatableElementAdapter();
+			}
+			@Override
 			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseReference(Reference<S, C, R, A> object) {
 				return createReferenceAdapter();
 			}
@@ -130,8 +146,16 @@ public class SourceAdapterFactory extends AdapterFactoryImpl {
 				return createCompositeReferenceAdapter();
 			}
 			@Override
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseActualReference(ActualReference<S, C, R, A> object) {
+				return createActualReferenceAdapter();
+			}
+			@Override
 			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseCrossReference(CrossReference<S, C, R, A> object) {
 				return createCrossReferenceAdapter();
+			}
+			@Override
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseVirtualReference(VirtualReference<S, C, R, A> object) {
+				return createVirtualReferenceAdapter();
 			}
 			@Override
 			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseAttribute(Attribute<S, C, R, A> object) {
@@ -140,6 +164,10 @@ public class SourceAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseActualAttribute(ActualAttribute<S, C, R, A> object) {
 				return createActualAttributeAdapter();
+			}
+			@Override
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseVirtualAttribute(VirtualAttribute<S, C, R, A> object) {
+				return createVirtualAttributeAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -232,6 +260,20 @@ public class SourceAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.source.VirtualSourceSectionCrossReference <em>Virtual Source Section Cross Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.source.VirtualSourceSectionCrossReference
+	 * @generated
+	 */
+	public Adapter createVirtualSourceSectionCrossReferenceAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link pamtram.structure.source.SourceSectionAttribute <em>Section Attribute</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -256,6 +298,20 @@ public class SourceAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createActualSourceSectionAttributeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.source.VirtualSourceSectionAttribute <em>Virtual Source Section Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.source.VirtualSourceSectionAttribute
+	 * @generated
+	 */
+	public Adapter createVirtualSourceSectionAttributeAdapter() {
 		return null;
 	}
 
@@ -316,6 +372,20 @@ public class SourceAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.DeactivatableElement <em>Deactivatable Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.DeactivatableElement
+	 * @generated
+	 */
+	public Adapter createDeactivatableElementAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link pamtram.structure.generic.Reference <em>Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -344,6 +414,20 @@ public class SourceAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.generic.ActualReference <em>Actual Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.generic.ActualReference
+	 * @generated
+	 */
+	public Adapter createActualReferenceAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link pamtram.structure.generic.CrossReference <em>Cross Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -354,6 +438,20 @@ public class SourceAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createCrossReferenceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.generic.VirtualReference <em>Virtual Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.generic.VirtualReference
+	 * @generated
+	 */
+	public Adapter createVirtualReferenceAdapter() {
 		return null;
 	}
 
@@ -382,6 +480,20 @@ public class SourceAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createActualAttributeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.structure.generic.VirtualAttribute <em>Virtual Attribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.structure.generic.VirtualAttribute
+	 * @generated
+	 */
+	public Adapter createVirtualAttributeAdapter() {
 		return null;
 	}
 

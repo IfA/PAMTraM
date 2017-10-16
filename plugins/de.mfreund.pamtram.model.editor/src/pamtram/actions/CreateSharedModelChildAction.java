@@ -17,13 +17,14 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.part.FileEditorInput;
 
+import de.tud.et.ifa.agtele.resources.ResourceHelper;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
 import pamtram.ConditionModel;
 import pamtram.MappingModel;
-import pamtram.PamtramPackage;
 import pamtram.SourceSectionModel;
 import pamtram.TargetSectionModel;
 import pamtram.commands.CreateSharedModelCommand;
+import pamtram.util.SharedModelUtil;
 
 /**
  * A special {@link CreateChildAction} that allows to create a shared {@link SourceSectionModel},
@@ -34,14 +35,6 @@ import pamtram.commands.CreateSharedModelCommand;
  */
 public class CreateSharedModelChildAction extends CreateChildAction {
 
-	private static final String SOURCE_FILE_ENDING = ".pamtram.source";
-
-	private static final String TARGET_FILE_ENDING = ".pamtram.target";
-
-	private static final String MAPPING_FILE_ENDING = ".pamtram.mapping";
-
-	private static final String CONDITION_FILE_ENDING = ".pamtram.condition";
-
 	/**
 	 * This creates an instance.
 	 *
@@ -50,6 +43,7 @@ public class CreateSharedModelChildAction extends CreateChildAction {
 	 * @param descriptor
 	 */
 	public CreateSharedModelChildAction(IEditorPart editorPart, ISelection selection, Object descriptor) {
+
 		super(editorPart, selection, descriptor);
 	}
 
@@ -65,24 +59,12 @@ public class CreateSharedModelChildAction extends CreateChildAction {
 
 		EStructuralFeature feature = (EStructuralFeature) ((CommandParameter) this.descriptor).getFeature();
 
-		if (!(feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODELS)
-				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODELS)
-				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_MAPPING_MODELS)
-				|| feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_CONDITION_MODELS))) {
+		if (!SharedModelUtil.isValidSubModelFeature(feature)) {
 			this.showError("Internal error while executing the action!");
 			return;
 		}
 
-		String fileEnding = "";
-		if (feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODELS)) {
-			fileEnding = CreateSharedModelChildAction.SOURCE_FILE_ENDING;
-		} else if (feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODELS)) {
-			fileEnding = CreateSharedModelChildAction.TARGET_FILE_ENDING;
-		} else if (feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_MAPPING_MODELS)) {
-			fileEnding = CreateSharedModelChildAction.MAPPING_FILE_ENDING;
-		} else if (feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_CONDITION_MODELS)) {
-			fileEnding = CreateSharedModelChildAction.CONDITION_FILE_ENDING;
-		}
+		String fileEnding = SharedModelUtil.getFileEndingBySubModelFeature(feature);
 		IPath newPath = ((FileEditorInput) UIHelper.getCurrentEditorInput()).getPath().removeLastSegments(1)
 				.append(fileEnding);
 		IFile newFile = ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(newPath);
@@ -93,19 +75,8 @@ public class CreateSharedModelChildAction extends CreateChildAction {
 		dialog.setOriginalFile(newFile);
 		dialog.create();
 		dialog.setTitle("Export SectionModel");
-		if (feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODELS)) {
-			dialog.setMessage("Specify the location for the shared SourceSectionModel (*"
-					+ CreateSharedModelChildAction.SOURCE_FILE_ENDING + ")");
-		} else if (feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODELS)) {
-			dialog.setMessage("Specify the location for the shared TargetSectionModel (*"
-					+ CreateSharedModelChildAction.TARGET_FILE_ENDING + ")");
-		} else if (feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_MAPPING_MODELS)) {
-			dialog.setMessage("Specify the location for the shared MapingModel (*"
-					+ CreateSharedModelChildAction.MAPPING_FILE_ENDING + ")");
-		} else if (feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_CONDITION_MODELS)) {
-			dialog.setMessage("Specify the location for the shared ConditionModel (*"
-					+ CreateSharedModelChildAction.CONDITION_FILE_ENDING + ")");
-		}
+		dialog.setMessage("Specify the location for the shared " + feature.getEType().getName() + " (*"
+				+ SharedModelUtil.getFileEndingBySubModelFeature(feature) + ")");
 		dialog.setBlockOnOpen(true);
 		dialog.open();
 		newPath = dialog.getResult();
@@ -116,29 +87,13 @@ public class CreateSharedModelChildAction extends CreateChildAction {
 
 		// Validate the file name
 		//
-		if (feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODELS)
-				&& !newPath.toString().endsWith(CreateSharedModelChildAction.SOURCE_FILE_ENDING)) {
-			this.showError(
-					"Please specify a valid file name (*" + CreateSharedModelChildAction.SOURCE_FILE_ENDING + ")");
-			return;
-		} else if (feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODELS)
-				&& !newPath.toString().endsWith(CreateSharedModelChildAction.TARGET_FILE_ENDING)) {
-			this.showError(
-					"Please specify a valid file name (*" + CreateSharedModelChildAction.TARGET_FILE_ENDING + ")");
-			return;
-		} else if (feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_MAPPING_MODELS)
-				&& !newPath.toString().endsWith(CreateSharedModelChildAction.MAPPING_FILE_ENDING)) {
-			this.showError(
-					"Please specify a valid file name (*" + CreateSharedModelChildAction.MAPPING_FILE_ENDING + ")");
-			return;
-		} else if (feature.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_CONDITION_MODELS)
-				&& !newPath.toString().endsWith(CreateSharedModelChildAction.CONDITION_FILE_ENDING)) {
-			this.showError(
-					"Please specify a valid file name (*" + CreateSharedModelChildAction.CONDITION_FILE_ENDING + ")");
+		if (!newPath.toString().endsWith(SharedModelUtil.getFileEndingBySubModelFeature(feature))) {
+			this.showError("Please specify a valid file name (*"
+					+ SharedModelUtil.getFileEndingBySubModelFeature(feature) + ")");
 			return;
 		}
 
-		URI sectionModelResourceURI = URI.createPlatformResourceURI(newPath.toString(), true);
+		URI sectionModelResourceURI = ResourceHelper.getURIForPathString(newPath.toString());
 
 		((CreateSharedModelCommand) this.command).setModelURI(sectionModelResourceURI);
 

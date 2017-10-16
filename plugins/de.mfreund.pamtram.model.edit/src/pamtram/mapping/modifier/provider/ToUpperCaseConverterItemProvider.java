@@ -61,13 +61,13 @@ public class ToUpperCaseConverterItemProvider extends StringModifierItemProvider
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_ToUpperCaseConverter_regex_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ToUpperCaseConverter_regex_feature", "_UI_ToUpperCaseConverter_type"),
+				 getString("_UI_ToUpperCaseConverter_regex_description"),
 				 ModifierPackage.Literals.TO_UPPER_CASE_CONVERTER__REGEX,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
+				 getString("_UI_BasicPropertyCategory"),
 				 null));
 	}
 

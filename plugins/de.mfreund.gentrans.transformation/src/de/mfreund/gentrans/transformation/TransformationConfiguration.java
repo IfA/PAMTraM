@@ -1,22 +1,32 @@
 package de.mfreund.gentrans.transformation;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
 
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
+import de.tud.et.ifa.agtele.resources.ResourceHelper;
 import pamtram.PAMTraM;
+import pamtram.util.PamtramModelUtil;
+import pamtram.util.PamtramModelUtil.ModelLoadException;
 
 /**
  * Instances of this class describe a concrete <em>Generic Transformation</em> to be executed and describe all
  * parameters necessary for these tasks.
  * <p />
- * They are used by the {@link GenericTransformationRunnerFactory} to instantiate the
- * {@link GenericTransformationRunner}.
+ * They are used by the {@link TransformationRunnerFactory} to create concrete {@link GenericTransformationRunner
+ * GenericTransformationRunners}.
  * <p />
- * If additional parameters become necessary, the can be added here without the need to change the signature of the
- * {@link GenericTransformationRunner#GenericTransformationRunner(TransformationConfiguration)} constructor.
+ * If additional parameters become necessary, the can be added here without the need to change the
+ * {@link TransformationRunnerFactory}.
  *
  * @author mfreund
  *
@@ -30,9 +40,9 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	private List<EObject> sourceModels;
 
 	/**
-	 * The {@link PAMTraM} model to be executed.
+	 * The list of {@link PAMTraM} models to be executed.
 	 */
-	private PAMTraM pamtramModel;
+	private List<PAMTraM> pamtramModels;
 
 	/**
 	 * The path relative to that all target models will be created. This needs to be in the form 'project-name/path'.
@@ -40,9 +50,19 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	private String targetBasePath;
 
 	/**
-	 * The {@link Logger} that shall be used to print messages.
+	 * This creates an (empty) instance.
+	 * <p />
+	 * Note: All optional parameters are initialized with default values but can be set/changed with the various
+	 * <em>with...</em> methods.
+	 *
 	 */
-	private Logger logger;
+	private TransformationConfiguration() {
+
+		// Initialize all optional parameters with default values
+		//
+		super();
+
+	}
 
 	/**
 	 * This creates an instance and sets all necessary parameters.
@@ -52,16 +72,14 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	 *
 	 * @param sourceModels
 	 *            The list of {@link EObject EObjects} representing the source models to be transformed.
-	 * @param pamtramModel
-	 *            The {@link PAMTraM} model containing the mappings to execute in the transformation.
+	 * @param pamtramModels
+	 *            The list of {@link PAMTraM} models containing the mappings to execute in the transformation.
 	 * @param targetBasePath
 	 *            The path to the folder where the target models shall be stored. This needs to be in the form
 	 *            'project-name/path'.
-	 * @param logger
-	 *            The {@link Logger} that shall be used by the transformation to print messages.
 	 */
-	public TransformationConfiguration(List<EObject> sourceModels, PAMTraM pamtramModel, String targetBasePath,
-			Logger logger) {
+	private TransformationConfiguration(List<EObject> sourceModels, List<PAMTraM> pamtramModels,
+			String targetBasePath) {
 
 		// Initialize all optional parameters with default values
 		//
@@ -70,9 +88,8 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 		// Initialize the mandatory parameters
 		//
 		this.sourceModels = sourceModels;
-		this.pamtramModel = pamtramModel;
+		this.pamtramModels = pamtramModels;
 		this.targetBasePath = targetBasePath;
-		this.logger = logger;
 
 	}
 
@@ -84,35 +101,146 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	 *
 	 * @param sourceModels
 	 *            The list of {@link EObject EObjects} representing the source models to be transformed.
-	 * @param pamtramModel
-	 *            The {@link PAMTraM} model containing the mappings to execute in the transformation.
+	 * @param pamtramModels
+	 *            The list of {@link PAMTraM} models containing the mappings to execute in the transformation.
 	 * @param targetBasePath
 	 *            The path to the folder where the target models shall be stored. This needs to be in the form
 	 *            '/project-name/path'.
-	 * @param logger
-	 *            The {@link Logger} that shall be used by the transformation to print messages.
 	 * @param baseConfig
 	 *            The {@link BaseTransformationConfiguration} that shall be used to set the optional parameters.
 	 */
-	public TransformationConfiguration(List<EObject> sourceModels, PAMTraM pamtramModel, String targetBasePath,
-			Logger logger, BaseTransformationConfiguration baseConfig) {
+	private TransformationConfiguration(List<EObject> sourceModels, List<PAMTraM> pamtramModels, String targetBasePath,
+			BaseTransformationConfiguration baseConfig) {
 
-		// Initialize all optional parameters with the values specified in the given
+		// Initialize all optional parameters with the values specified in the
+		// given
 		// BaseTransformationConfiguraiton
 		//
+		this.openTargetModelOnCompletion = baseConfig.isOpenTargetModelOnCompletion();
 		this.defaultTargetModel = baseConfig.getDefaultTargetModel();
 		this.transformationModelPath = baseConfig.getTransformationModelPath();
 		this.maxPathLength = baseConfig.getMaxPathLength();
 		this.onlyAskOnceOnAmbiguousMappings = baseConfig.isOnlyAskOnceOnAmbiguousMappings();
 		this.libPaths = baseConfig.getLibPaths();
 		this.ambiguityResolvingStrategy = baseConfig.getAmbiguityResolvingStrategy();
+		this.useParallelization = baseConfig.isUseParallelization();
 
 		// Initialize the mandatory parameters
 		//
 		this.sourceModels = sourceModels;
-		this.pamtramModel = pamtramModel;
+		this.pamtramModels = pamtramModels;
 		this.targetBasePath = targetBasePath;
-		this.logger = logger;
+	}
+
+	/**
+	 * This constructs an instance.
+	 * <p />
+	 * Note: The instance is initialized with a default {@link BaseTransformationConfiguration}.
+	 *
+	 * @see #createInstanceFromSourceModels(List, List, String)
+	 * @see #createInstanceFromSourcePaths(Set, List, String)
+	 *
+	 * @param sourceFilePaths
+	 *            List of file paths of the source models. Each path must either be absolute or relative to the
+	 *            workspace root (of the form '<em>/project-name/path</em>').
+	 * @param pamtramPaths
+	 *            Paths to the {@link PAMTraM} models to be executed in the form 'project-name/path'.
+	 * @param targetBasePath
+	 *            File path relative to that all target models will be created in the form 'project-name/path'.
+	 * @return The created {@link TransformationConfiguration}.
+	 * @throws InitializationException
+	 *             If the initialization failed for some reason, e.g. because one of the models could not be loaded.
+	 */
+	public static TransformationConfiguration createInstanceFromSourcePaths(Set<String> sourceFilePaths,
+			Set<String> pamtramPaths, String targetBasePath) throws InitializationException {
+
+		// Create a resource set to load the models.
+		//
+		ResourceSet resourceSet = new ResourceSetImpl();
+
+		// Load the PAMTraM models
+		//
+		List<PAMTraM> pamtramModels = null;
+		try {
+			pamtramModels = PamtramModelUtil.loadPamtramModels(resourceSet, pamtramPaths, true);
+		} catch (ModelLoadException e) {
+			throw new TransformationConfiguration().new InitializationException(e);
+		}
+
+		if (pamtramModels == null || pamtramModels.isEmpty()) {
+			throw new TransformationConfiguration().new InitializationException("No PAMTraM model was loaded!");
+		}
+
+		return TransformationConfiguration.createInstanceFromSourcePaths(sourceFilePaths, pamtramModels,
+				targetBasePath);
+	}
+
+	/**
+	 * This constructs an instance based on a PAMTraM model that is already loaded.
+	 * <p />
+	 * Note: The instance is initialized with a default {@link BaseTransformationConfiguration}.
+	 *
+	 * @see #createInstanceFromSourceModels(List, List, String)
+	 * @see #createInstanceFromSourcePaths(Set, List, String)
+	 *
+	 * @param sourceFilePaths
+	 *            List of file paths of the source models. Each path must either be absolute or relative to the
+	 *            workspace root (of the form '<em>/project-name/path</em>').
+	 * @param pamtramModels
+	 *            The transformation model
+	 * @param targetBasePath
+	 *            File path relative to that all target models will be created in the form 'project-name/path'.
+	 * @return The created {@link TransformationConfiguration}.
+	 * @throws InitializationException
+	 *             If the initialization failed for some reason, e.g. because one of the models could not be loaded.
+	 */
+	public static TransformationConfiguration createInstanceFromSourcePaths(Set<String> sourceFilePaths,
+			List<PAMTraM> pamtramModels, String targetBasePath) throws InitializationException {
+
+		// Create a resource set to load the models.
+		//
+		ResourceSet resourceSet = new ResourceSetImpl();
+
+		// Load the source models
+		//
+		List<EObject> sourceModels = null;
+
+		try {
+			sourceModels = TransformationConfiguration.loadSourceModels(resourceSet, sourceFilePaths);
+		} catch (Exception e) {
+
+			throw new TransformationConfiguration().new InitializationException(e);
+		}
+
+		if (sourceModels == null || sourceModels.isEmpty()) {
+			throw new TransformationConfiguration().new InitializationException("No source model was loaded!");
+		}
+
+		return TransformationConfiguration.createInstanceFromSourceModels(sourceModels, pamtramModels, targetBasePath);
+	}
+
+	/**
+	 * This constructs an instance based on source and PAMTraM models that are already loaded.
+	 * <p />
+	 * Note: The instance is initialized with a default {@link BaseTransformationConfiguration}.
+	 *
+	 * @see #createInstanceFromSourcePaths(Set, Set, String)
+	 * @see #createInstanceFromSourcePaths(Set, List, String)
+	 *
+	 * @param sourceModels
+	 *            The list of source models
+	 * @param pamtramModels
+	 *            The transformation model
+	 * @param targetBasePath
+	 *            File path relative to that all target models will be created in the form 'project-name/path'.
+	 * @return The created {@link TransformationConfiguration}.
+	 */
+	public static TransformationConfiguration createInstanceFromSourceModels(List<EObject> sourceModels,
+			List<PAMTraM> pamtramModels, String targetBasePath) {
+
+		return new TransformationConfiguration(sourceModels, pamtramModels, targetBasePath,
+				new BaseTransformationConfiguration());
+
 	}
 
 	/**
@@ -128,26 +256,26 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 			return false;
 		}
 
-		if (this.logger == null) {
-			return false;
-		}
-
 		if (this.sourceModels == null || this.sourceModels.isEmpty()) {
-			this.logger.severe("No source models have been specified!");
 			return false;
 		}
 
-		if (this.pamtramModel == null) {
-			this.logger.severe("No PAMTraM model has been specified!");
+		if (this.pamtramModels == null || this.pamtramModels.isEmpty()) {
 			return false;
 		}
 
 		if (this.targetBasePath == null || this.targetBasePath.isEmpty()) {
-			this.logger.severe("No target base path has been specified!");
 			return false;
 		}
 
 		return true;
+	}
+
+	@Override
+	public TransformationConfiguration withOpenTargetModelOnCompletion(boolean openTargetModelOnCompletion) {
+
+		super.withOpenTargetModelOnCompletion(openTargetModelOnCompletion);
+		return this;
 	}
 
 	@Override
@@ -204,13 +332,13 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	}
 
 	/**
-	 * The getter for the {@link #pamtramModel}.
+	 * The getter for the {@link #pamtramModels}.
 	 *
 	 * @return the pamtramModel
 	 */
-	public PAMTraM getPamtramModel() {
+	public List<PAMTraM> getPamtramModels() {
 
-		return this.pamtramModel;
+		return this.pamtramModels;
 	}
 
 	/**
@@ -224,12 +352,99 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	}
 
 	/**
-	 * The getter for the {@link #logger}.
-	 *
-	 * @return the logger
+	 * Print a summary of the used configuration.
 	 */
-	public Logger getLogger() {
+	@Override
+	public String toString() {
 
-		return this.logger;
+		StringBuilder builder = new StringBuilder();
+		builder.append("- Source Model(s): ");
+		builder.append("\n\t" + this.sourceModels.stream().map(m -> m.eResource().getURI().toString())
+				.collect(Collectors.joining("\n\t")));
+		builder.append("\n- PAMTraM Model(s): ");
+		builder.append("\n\t" + this.pamtramModels.stream().map(m -> m.eResource().getURI().toString())
+				.collect(Collectors.joining("\n\t")));
+
+		builder.append("\n" + super.toString());
+
+		return builder.toString();
+	}
+
+	/**
+	 * This loads the source models from XMI or XML files.
+	 *
+	 * @param resourceSet
+	 *            The resource set to be used to load the resource.
+	 * @param sourceFilePaths
+	 *            The list of paths pointing to the source models to load (absolute or relative in the form
+	 *            'project-name/path').
+	 * @return The loaded {@link EObject source models}.
+	 */
+	private static List<EObject> loadSourceModels(ResourceSet resourceSet, Set<String> sourceFilePaths) {
+
+		List<EObject> sourceModels = new ArrayList<>();
+
+		for (String sourceFilePath : sourceFilePaths) {
+
+			// the URI of the source resource
+			final URI sourceUri = ResourceHelper.getURIForPathString(sourceFilePath);
+
+			if (sourceFilePath.endsWith(".xml")) {
+				// add file extension to registry
+				Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xml",
+						new GenericXMLResourceFactoryImpl());
+			}
+
+			// try to load source model
+			Resource sourceResource = resourceSet.getResource(sourceUri, true);
+
+			sourceModels.add(sourceResource.getContents().get(0));
+
+		}
+
+		return sourceModels;
+	}
+
+	/**
+	 * An {@link Exception} indicating that something went wrong while creating a new
+	 * {@link TransformationConfiguration}.
+	 *
+	 * @author mfreund
+	 */
+	public class InitializationException extends Exception {
+
+		/**
+		 *
+		 */
+		private static final long serialVersionUID = 6490592189785361220L;
+
+		/**
+		 *
+		 * @param cause
+		 *
+		 */
+		public InitializationException(String cause) {
+
+			super(cause);
+		}
+
+		/**
+		 *
+		 * @param throwable
+		 */
+		public InitializationException(Throwable throwable) {
+
+			super(throwable);
+		}
+
+		/**
+		 *
+		 * @param cause
+		 * @param throwable
+		 */
+		public InitializationException(String cause, Throwable throwable) {
+
+			super(cause, throwable);
+		}
 	}
 }

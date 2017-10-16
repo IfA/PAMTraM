@@ -23,6 +23,8 @@ import pamtram.impl.PamtramPackageImpl;
 
 import pamtram.mapping.MappingPackage;
 
+import pamtram.mapping.extended.ExtendedPackage;
+import pamtram.mapping.extended.impl.ExtendedPackageImpl;
 import pamtram.mapping.impl.MappingPackageImpl;
 
 import pamtram.mapping.modifier.ModifierPackage;
@@ -166,6 +168,7 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage {
 		ConditionPackageImpl theConditionPackage = (ConditionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI) instanceof ConditionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ConditionPackage.eNS_URI) : ConditionPackage.eINSTANCE);
 		MappingPackageImpl theMappingPackage = (MappingPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) instanceof MappingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) : MappingPackage.eINSTANCE);
 		ModifierPackageImpl theModifierPackage = (ModifierPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ModifierPackage.eNS_URI) instanceof ModifierPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ModifierPackage.eNS_URI) : ModifierPackage.eINSTANCE);
+		ExtendedPackageImpl theExtendedPackage = (ExtendedPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ExtendedPackage.eNS_URI) instanceof ExtendedPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ExtendedPackage.eNS_URI) : ExtendedPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theLibraryPackage.createPackageContents();
@@ -178,6 +181,7 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage {
 		theConditionPackage.createPackageContents();
 		theMappingPackage.createPackageContents();
 		theModifierPackage.createPackageContents();
+		theExtendedPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theLibraryPackage.initializePackageContents();
@@ -190,6 +194,7 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage {
 		theConditionPackage.initializePackageContents();
 		theMappingPackage.initializePackageContents();
 		theModifierPackage.initializePackageContents();
+		theExtendedPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theLibraryPackage.freeze();
@@ -349,7 +354,7 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLibraryEntry_Path() {
+	public EReference getLibraryEntry_Classpath() {
 		return (EReference)libraryEntryEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -420,7 +425,7 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage {
 		createEReference(libraryEntryEClass, LIBRARY_ENTRY__PARAMETERS);
 		createEAttribute(libraryEntryEClass, LIBRARY_ENTRY__LIBRARY_FILE);
 		createEReference(libraryEntryEClass, LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY);
-		createEReference(libraryEntryEClass, LIBRARY_ENTRY__PATH);
+		createEReference(libraryEntryEClass, LIBRARY_ENTRY__CLASSPATH);
 		createEReference(libraryEntryEClass, LIBRARY_ENTRY__ID);
 		createEReference(libraryEntryEClass, LIBRARY_ENTRY__RESOURCE_PARAMETERS);
 	}
@@ -510,9 +515,143 @@ public class LibraryPackageImpl extends EPackageImpl implements LibraryPackage {
 		initEReference(getLibraryEntry_Parameters(), g1, null, "parameters", null, 1, -1, LibraryEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLibraryEntry_LibraryFile(), ecorePackage.getEString(), "libraryFile", null, 1, 1, LibraryEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLibraryEntry_OriginalLibraryEntry(), theGenLibraryPackage.getLibraryEntry(), null, "originalLibraryEntry", null, 1, 1, LibraryEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getLibraryEntry_Path(), theTargetPackage.getVirtualTargetSectionAttribute(), null, "path", null, 1, 1, LibraryEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLibraryEntry_Classpath(), theTargetPackage.getVirtualTargetSectionAttribute(), null, "classpath", null, 1, 1, LibraryEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLibraryEntry_Id(), theTargetPackage.getVirtualTargetSectionAttribute(), null, "id", null, 1, 1, LibraryEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLibraryEntry_ResourceParameters(), this.getResourceParameter(), null, "resourceParameters", null, 0, -1, LibraryEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Create annotations
+		// http://www.eclipse.org/emf/2002/GenModel
+		createGenModelAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/GenModel</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createGenModelAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/GenModel";	
+		addAnnotation
+		  (this, 
+		   source, 
+		   new String[] {
+			 "documentation", "This package contains all elements related to the usage of library elements as TargetSections resp. right-hand side of a mapping.\r\n<br />\r\nThe library elements need to be based on the generic library meta-model \'GenLibrary\' (or one of its specializations for a specific UI meta-model)."
+		   });	
+		addAnnotation
+		  (libraryParameterEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "The common super type for all wrapper elements for GenLibrary parameters."
+		   });	
+		addAnnotation
+		  (getLibraryParameter_Source(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The model element inside the GenLibrary entry that this parameter influences."
+		   });	
+		addAnnotation
+		  (getLibraryParameter_OriginalParameter(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The GenLibrary parameter that this wraps."
+		   });	
+		addAnnotation
+		  (attributeParameterEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A wrapper element for a GenLibrary AttributeParameter."
+		   });	
+		addAnnotation
+		  (getAttributeParameter_Attribute(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The Attribute that can be used to set the value for the AttributeParameter (either by specifying a fixed value or by means of an AttributeMapping)."
+		   });	
+		addAnnotation
+		  (containerParameterEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A wrapper element for a GenLibrary ContainerParameter."
+		   });	
+		addAnnotation
+		  (getContainerParameter_Class(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The Class that can be used to set the value (the container) for the ContainerParameter (e.g. by means of a ContainerSelector)."
+		   });	
+		addAnnotation
+		  (externalReferenceParameterEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A wrapper element for a GenLibrary ExternalReferenceParameter."
+		   });	
+		addAnnotation
+		  (getExternalReferenceParameter_Reference(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The Reference that can be used to set the value(s) for the ExternalReferenceParameter (e.g. by means of a ReferenceTargetSelector)."
+		   });	
+		addAnnotation
+		  (resourceParameterEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A wrapper element for a GenLibrary ResourceParameter."
+		   });	
+		addAnnotation
+		  (getResourceParameter_Attribute(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The Attribute that can be used to set the value for the ResourceParameter (either by specifying a fixed value or by means of an AttributeMapping)."
+		   });	
+		addAnnotation
+		  (getResourceParameter_OriginalParameter(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The GenLibrary parameter that this wraps."
+		   });	
+		addAnnotation
+		  (libraryEntryEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This represents an element structure to be created in a target model based on a GenLibrary LibraryEntry.\r\n<br />\r\nInstances of this class act as wrapper for GenLibrary entries. This wrapper-based approach allows us to (1) instantiate LibraryEntries during the course of a transformation while (2) relying on the existing mechanisms for MappingHints."
+		   });	
+		addAnnotation
+		  (getLibraryEntry_Parameters(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of LibraryParameters that need to be specified by the user for a successful instantiation of the LibraryEntry."
+		   });	
+		addAnnotation
+		  (getLibraryEntry_LibraryFile(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The file containing the GenLibrary LibraryEntry that this wraps."
+		   });	
+		addAnnotation
+		  (getLibraryEntry_OriginalLibraryEntry(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The GenLibrary LibraryEntry that this wraps."
+		   });	
+		addAnnotation
+		  (getLibraryEntry_Classpath(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The classpath identifying the GenLibrary LibraryEntry that this wraps.\r\n<br /><br />\r\nNote: This can be overridden by an AttributeMapping during a transformation. That way, more specific LibraryEntries may be instantiated without having to create an own wrapper for each specific GenLibrary LibraryEntry."
+		   });	
+		addAnnotation
+		  (getLibraryEntry_Id(), 
+		   source, 
+		   new String[] {
+			 "documentation", "This can be used to specify an optional unique id for the entry to be instantiated. The id will be passed to the GenLibrary instantiation mechanism."
+		   });	
+		addAnnotation
+		  (getLibraryEntry_ResourceParameters(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of ResourceParameters that need to be specified by the user for a successful instantiation of the LibraryEntry."
+		   });
 	}
 
 } //LibraryPackageImpl

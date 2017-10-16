@@ -4,23 +4,22 @@ package pamtram.condition.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import pamtram.condition.ConditionPackage;
+
 import pamtram.condition.CardinalityCondition;
+import pamtram.condition.ConditionPackage;
 import pamtram.mapping.Mapping;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionClass;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Section Condition</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Section
+ * Condition</b></em>'. <!-- end-user-doc -->
  *
  * @generated
  */
 public class CardinalityConditionImpl extends ConditionImpl<SourceSectionClass> implements CardinalityCondition {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected CardinalityConditionImpl() {
@@ -28,8 +27,7 @@ public class CardinalityConditionImpl extends ConditionImpl<SourceSectionClass> 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -38,9 +36,9 @@ public class CardinalityConditionImpl extends ConditionImpl<SourceSectionClass> 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * This is specialized for the more specific type known in this context.
+	 * <!-- begin-user-doc --> <!-- end-user-doc --> This is specialized for the
+	 * more specific type known in this context.
+	 *
 	 * @generated
 	 */
 	@Override
@@ -50,39 +48,48 @@ public class CardinalityConditionImpl extends ConditionImpl<SourceSectionClass> 
 
 	@Override
 	public boolean isLocalCondition() {
-		
-		if(getTarget() == null) {
+
+		if (this.getTarget() == null) {
 			return false;
 		}
-		
+
 		// The SourceSection that the condition references
 		//
-		SourceSection referencedSection = getTarget().getContainingSection();
-		
+		SourceSection referencedSection = this.getTarget().getContainingSection();
+
 		EObject container = this;
-		
-		while(!(container instanceof Mapping)) {
-			if(container == null) {
+
+		while (!(container instanceof Mapping)) {
+			if (container == null) {
 				return false;
 			}
 			container = container.eContainer();
 		}
-		
+
 		// The SourceSection of the Mapping that contains the condition
 		//
 		SourceSection localSection = ((Mapping) container).getSourceSection();
-		
-		if(referencedSection.equals(localSection)) {
+
+		// A condition is local if it is based on the same section as the
+		// containing mapping or if this section that is a direct or indirect
+		// container section of the section referenced by the condition
+		// A condition is also local if it is based on a container section of
+		// the section referenced by the mapping
+		//
+		//
+		if (referencedSection.equals(localSection) || referencedSection.getAllContainer().contains(localSection)
+				|| localSection.getAllContainer().contains(referencedSection)) {
 			return true;
 		}
-		
-		// A condition is also 'local' if an InstanceSelector with local or external SourceAttributes exist
+
+		// A condition is also 'local' if an InstanceSelector with local or
+		// external SourceAttributes exist
 		//
-		return getInstanceSelectors().parallelStream().flatMap(
-				instancePointer -> instancePointer.getSourceElements().parallelStream().filter(
-						s -> s instanceof pamtram.structure.InstanceSelectorSourceElement || 
-						s instanceof pamtram.structure.InstanceSelectorExternalSourceElement)
-				).findAny().isPresent();
+		return this.getInstanceSelectors().parallelStream()
+				.flatMap(instancePointer -> instancePointer.getSourceElements().parallelStream()
+						.filter(s -> s instanceof pamtram.structure.InstanceSelectorSourceElement
+								|| s instanceof pamtram.structure.InstanceSelectorExternalSourceElement))
+				.findAny().isPresent();
 	}
 
-} //SectionConditionImpl
+} // SectionConditionImpl

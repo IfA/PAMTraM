@@ -31,6 +31,8 @@ import pamtram.condition.UnaryCondition;
 import pamtram.condition.util.ConditionValidator;
 import pamtram.impl.PamtramPackageImpl;
 import pamtram.mapping.MappingPackage;
+import pamtram.mapping.extended.ExtendedPackage;
+import pamtram.mapping.extended.impl.ExtendedPackageImpl;
 import pamtram.mapping.impl.MappingPackageImpl;
 import pamtram.mapping.modifier.ModifierPackage;
 import pamtram.mapping.modifier.impl.ModifierPackageImpl;
@@ -190,6 +192,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		LibraryPackageImpl theLibraryPackage = (LibraryPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(LibraryPackage.eNS_URI) instanceof LibraryPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(LibraryPackage.eNS_URI) : LibraryPackage.eINSTANCE);
 		MappingPackageImpl theMappingPackage = (MappingPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) instanceof MappingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI) : MappingPackage.eINSTANCE);
 		ModifierPackageImpl theModifierPackage = (ModifierPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ModifierPackage.eNS_URI) instanceof ModifierPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ModifierPackage.eNS_URI) : ModifierPackage.eINSTANCE);
+		ExtendedPackageImpl theExtendedPackage = (ExtendedPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ExtendedPackage.eNS_URI) instanceof ExtendedPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ExtendedPackage.eNS_URI) : ExtendedPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theConditionPackage.createPackageContents();
@@ -202,6 +205,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		theLibraryPackage.createPackageContents();
 		theMappingPackage.createPackageContents();
 		theModifierPackage.createPackageContents();
+		theExtendedPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theConditionPackage.initializePackageContents();
@@ -214,6 +218,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		theLibraryPackage.initializePackageContents();
 		theMappingPackage.initializePackageContents();
 		theModifierPackage.initializePackageContents();
+		theExtendedPackage.initializePackageContents();
 
 		// Register package validator
 		EValidator.Registry.INSTANCE.put
@@ -274,6 +279,15 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getComplexCondition__GetConditionPartsFlat() {
+		return complexConditionEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCondition() {
 		return conditionEClass;
 	}
@@ -294,6 +308,15 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 */
 	public EReference getCondition_Target() {
 		return (EReference)conditionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCondition_InstanceSelectors() {
+		return (EReference)conditionEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -508,6 +531,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		createEOperation(complexConditionEClass, COMPLEX_CONDITION___IS_LOCAL_CONDITION);
 		createEOperation(complexConditionEClass, COMPLEX_CONDITION___IS_MAPPING_CONDITION);
 		createEOperation(complexConditionEClass, COMPLEX_CONDITION___IS_CONDITION_MODEL_CONDITION);
+		createEOperation(complexConditionEClass, COMPLEX_CONDITION___GET_CONDITION_PARTS_FLAT);
 
 		variadicConditionEClass = createEClass(VARIADIC_CONDITION);
 		createEReference(variadicConditionEClass, VARIADIC_CONDITION__LOCAL_COND_PARTS);
@@ -531,6 +555,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		createEAttribute(conditionEClass, CONDITION__VALUE);
 		createEAttribute(conditionEClass, CONDITION__COMPARATOR);
 		createEReference(conditionEClass, CONDITION__TARGET);
+		createEReference(conditionEClass, CONDITION__INSTANCE_SELECTORS);
 		createEOperation(conditionEClass, CONDITION___CHECK_CONDITION__COMPLEXCONDITION);
 
 		attributeConditionEClass = createEClass(ATTRIBUTE_CONDITION);
@@ -569,6 +594,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 
 		// Obtain other dependent packages
 		PamtramPackage thePamtramPackage = (PamtramPackage)EPackage.Registry.INSTANCE.getEPackage(PamtramPackage.eNS_URI);
+		StructurePackage theStructurePackage = (StructurePackage)EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI);
 		SourcePackage theSourcePackage = (SourcePackage)EPackage.Registry.INSTANCE.getEPackage(SourcePackage.eNS_URI);
 		ConstraintPackage theConstraintPackage = (ConstraintPackage)EPackage.Registry.INSTANCE.getEPackage(ConstraintPackage.eNS_URI);
 
@@ -585,7 +611,6 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		unaryConditionEClass.getESuperTypes().add(this.getComplexCondition());
 		notEClass.getESuperTypes().add(this.getUnaryCondition());
 		conditionEClass.getESuperTypes().add(this.getComplexCondition());
-		conditionEClass.getESuperTypes().add(thePamtramPackage.getInstanceSelectingElement());
 		EGenericType g1 = createEGenericType(this.getCondition());
 		EGenericType g2 = createEGenericType(theSourcePackage.getActualSourceSectionAttribute());
 		g1.getETypeArguments().add(g2);
@@ -607,6 +632,8 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		initEOperation(getComplexCondition__IsMappingCondition(), ecorePackage.getEBoolean(), "isMappingCondition", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getComplexCondition__IsConditionModelCondition(), ecorePackage.getEBoolean(), "isConditionModelCondition", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getComplexCondition__GetConditionPartsFlat(), this.getComplexCondition(), "getConditionPartsFlat", 1, -1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(variadicConditionEClass, VariadicCondition.class, "VariadicCondition", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getVariadicCondition_LocalCondParts(), this.getComplexCondition(), null, "localCondParts", null, 0, -1, VariadicCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -656,6 +683,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		initEAttribute(getCondition_Comparator(), this.getComparatorEnum(), "comparator", null, 0, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		g1 = createEGenericType(conditionEClass_TargetType);
 		initEReference(getCondition_Target(), g1, null, "target", null, 1, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCondition_InstanceSelectors(), theStructurePackage.getSourceInstanceSelector(), null, "instanceSelectors", null, 0, -1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = initEOperation(getCondition__CheckCondition__ComplexCondition(), ecorePackage.getEBoolean(), "checkCondition", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getComplexCondition(), "condition", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -678,6 +706,8 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		// Create annotations
 		// http://www.eclipse.org/OCL/Import
 		createImportAnnotations();
+		// http://www.eclipse.org/emf/2002/GenModel
+		createGenModelAnnotations();
 		// http://www.eclipse.org/emf/2002/Ecore
 		createEcoreAnnotations();
 	}
@@ -724,6 +754,208 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		   new String[] {
 			 "ecore", "http://www.eclipse.org/emf/2002/Ecore",
 			 "genlib", "http://www.et.tu-dresden.de/ifa/agtele/genlib"
+		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/GenModel</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createGenModelAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/GenModel";	
+		addAnnotation
+		  (this, 
+		   source, 
+		   new String[] {
+			 "documentation", "This package contains all elements related to the description of Conditions. These can e.g. be used to restrict the applicability of a Mapping."
+		   });	
+		addAnnotation
+		  (complexConditionEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "The super type for all specific Condition types."
+		   });	
+		addAnnotation
+		  (getComplexCondition__IsMappingCondition(), 
+		   source, 
+		   new String[] {
+			 "body", "return getRootCondition().eContainer() instanceof Mapping;"
+		   });	
+		addAnnotation
+		  (getComplexCondition__IsConditionModelCondition(), 
+		   source, 
+		   new String[] {
+			 "body", "return getRootCondition().eContainer() instanceof ConditionModel;"
+		   });	
+		addAnnotation
+		  (variadicConditionEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A Condition that is composed of multiple sub-conditions.\r\n<br />\r\nThe sub-conditions can be specified locally (via the \'localCondParts\' reference) and/or globally (specified via the \'sharedCondParts\' reference)."
+		   });	
+		addAnnotation
+		  (getVariadicCondition__ReferencesOnlyValidConditions(), 
+		   source, 
+		   new String[] {
+			 "body", "if(this.sharedCondParts == null || this.sharedCondParts.size() == 0) {\r\n\treturn true;\r\n}\r\nEList<ComplexCondition> conditionRefs = new BasicEList<ComplexCondition>();\r\nconditionRefs.add((ComplexCondition) this.sharedCondParts);\r\nfor(ComplexCondition condition : conditionRefs){\r\n\tif(!(condition instanceof ConditionModel)){\r\n\t\treturn false;\r\n\t}\r\n}\r\nreturn true;"
+		   });	
+		addAnnotation
+		  (getVariadicCondition__ValidateMinimalNumberOfArgs__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nboolean result = this.getLocalCondParts().size() + this.getSharedCondParts().size() > 1;\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"At least two (local or shared) condition parts need to be specified!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.condition.util.ConditionValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tConditionValidator.VARIADIC_CONDITION__VALIDATE_MINIMAL_NUMBER_OF_ARGS,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.condition.ConditionPackage%>.Literals.VARIADIC_CONDITION }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getVariadicCondition_LocalCondParts(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of locally defined sub-conditions."
+		   });	
+		addAnnotation
+		  (getVariadicCondition_SharedCondParts(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of globally specified sub-conditions."
+		   });	
+		addAnnotation
+		  (andEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A Condition that evaluates to \'true\' only if ALL specified sub-conditions evaluate to \'true\'.\r\n<br />\r\nThe sub-conditions can be specified locally (via the \'localCondParts\' reference) and/or globally (specified via the \'sharedCondParts\' reference)."
+		   });	
+		addAnnotation
+		  (orEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A Condition that evaluates to \'true\' if AT LEAST ONE of the specified sub-conditions evaluates to \'true\'.\r\n<br />\r\nThe sub-conditions can be specified locally (via the \'localCondParts\' reference) and/or globally (specified via the \'sharedCondParts\' reference)."
+		   });	
+		addAnnotation
+		  (unaryConditionEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A Condition that is composed of exactly one sub-condition.\r\n<br />\r\nThe sub-condition can be specified locally (via the \'localCondPart\' reference) or globally (specified via the \'sharedCondPart\' reference)."
+		   });	
+		addAnnotation
+		  (getUnaryCondition__ValidateExactlyOneArg__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nboolean result = this.getLocalCondPart() != null ^ this.getSharedCondPart() != null;\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"Please specify exactly one (local or shared) condition part!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.condition.util.ConditionValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tConditionValidator.UNARY_CONDITION__VALIDATE_EXACTLY_ONE_ARG,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.condition.ConditionPackage%>.Literals.UNARY_CONDITION }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getUnaryCondition_LocalCondPart(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The locally defined sub-condition.\r\n<br /><br />\r\nNote: Only one of \'localCondPart\' or \'sharedCondPart\' may be set!"
+		   });	
+		addAnnotation
+		  (getUnaryCondition_SharedCondPart(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The globally specified sub-condition.\r\n<br /><br />\r\nNote: Only one of \'localCondPart\' or \'sharedCondPart\' may be set!"
+		   });	
+		addAnnotation
+		  (notEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A Condition that evaluates to \'true\' if the specified sub-condition evaluates to \'false\'.\r\n<br />\r\nThe sub-condition can be specified locally (via the \'localCondPart\' reference) or globally (specified via the \'sharedCondPart\' reference)."
+		   });	
+		addAnnotation
+		  (getNot__ValidateReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nif(this.sharedCondPart == null) {\r\n\treturn true;\r\n}\r\n\r\n<%org.eclipse.emf.ecore.EObject%> sharedCondPartContainer = this.sharedCondPart.eContainer();\r\n\r\nboolean result = sharedCondPartContainer instanceof <%pamtram.ConditionModel%> || sharedCondPartContainer instanceof ConditionalElement;\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"Reference only Conditions that are placed inside ConditionModel or where the Container is a ConditionalElement!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.condition.util.ConditionValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tConditionValidator.NOT__VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.condition.ConditionPackage%>.Literals.UNARY_CONDITION__SHARED_COND_PART }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (conditionEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "The super type for all Condition types that are not only simple logical compositions of sub-conditions."
+		   });	
+		addAnnotation
+		  (getCondition_Value(), 
+		   source, 
+		   new String[] {
+			 "documentation", "Together with the defined \'comparator\', this specifies how often/for how many of the elements matched for the specified \'target\' element this Condition needs to be fulfilled.\r\n<br /><br />\r\nFor example, if \'value\' is set to \'1\' and \'comparator is set to \'GE\', the condition needs to be fulfilled at least once."
+		   });	
+		addAnnotation
+		  (getCondition_Comparator(), 
+		   source, 
+		   new String[] {
+			 "documentation", "Together with the defined \'value\', this specifies how often/for how many of the elements matched for the specified \'target\' element this Condition needs to be fulfilled.\r\n<br /><br />\r\nFor example, if \'value\' is set to \'1\' and \'comparator is set to \'GE\', the condition needs to be fulfilled at least once."
+		   });	
+		addAnnotation
+		  (getCondition_Target(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The element on which this condition is evaluated.\r\n<br /><br />\r\nNote: As the specified \'target\' element may be matched multiple times in a source model, additional restrictions on how often this condition should be met may be specified via the \'value\' and \'comparator\' attributes."
+		   });	
+		addAnnotation
+		  (getCondition_InstanceSelectors(), 
+		   source, 
+		   new String[] {
+			 "documentation", "A list of InstanceSelectors that can be used to restrict the application of this condition: \r\n<br />\r\nThe specified \'target\' element may be matched multiple times in a source model. However, the Condition will only evaluated for those matches that are identified by the specified list of InstanceSelectors."
+		   });	
+		addAnnotation
+		  (comparatorEnumEEnum, 
+		   source, 
+		   new String[] {
+			 "documentation", "This specifies how two values shall be compared."
+		   });	
+		addAnnotation
+		  (comparatorEnumEEnum.getELiterals().get(0), 
+		   source, 
+		   new String[] {
+			 "documentation", "The value to be checked needs to be equal to the reference value."
+		   });	
+		addAnnotation
+		  (comparatorEnumEEnum.getELiterals().get(1), 
+		   source, 
+		   new String[] {
+			 "documentation", "The value to be checked needs to be greater than the reference value."
+		   });	
+		addAnnotation
+		  (comparatorEnumEEnum.getELiterals().get(2), 
+		   source, 
+		   new String[] {
+			 "documentation", "The value to be checked needs to be less than the reference value."
+		   });	
+		addAnnotation
+		  (comparatorEnumEEnum.getELiterals().get(3), 
+		   source, 
+		   new String[] {
+			 "documentation", "The value to be checked needs to be greater than or equal to the reference value."
+		   });	
+		addAnnotation
+		  (comparatorEnumEEnum.getELiterals().get(4), 
+		   source, 
+		   new String[] {
+			 "documentation", "The value to be checked needs to be less than or equal to the reference value."
+		   });	
+		addAnnotation
+		  (attributeConditionEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This condition can be used to check the value of an Attribute."
+		   });	
+		addAnnotation
+		  (getAttributeCondition_ValueConstraints(), 
+		   source, 
+		   new String[] {
+			 "documentation", "A list of ValueConstraints that specify a single reference value or a list/range of reference values which the value of the \'target\' Attribute must or must not satisfy.\r\n<br /><br />\r\nA certain attribute (value) in a source model will only match against the specified \'target\' Attribute if all specified constraints are met."
+		   });	
+		addAnnotation
+		  (cardinalityConditionEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "This condition can be used to check the cardinality of a Class (how often the class is present in the matched source model excerpt)."
+		   });	
+		addAnnotation
+		  (applicationDependencyEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A condition that allows to check whether another \'ConditionalElement\' was applied/executed a certain number of times.\r\n<br /><br />\r\nThis can e.g. be used to create dependencies between mappings like \"Only execute this mapping, if another mapping was applied for a certain part of a source model\".\r\n"
 		   });
 	}
 

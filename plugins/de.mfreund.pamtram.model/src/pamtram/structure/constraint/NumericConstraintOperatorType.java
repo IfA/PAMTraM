@@ -13,6 +13,9 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>Numeric Constraint Operator Type</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
+ * <!-- begin-model-doc -->
+ * The type of numerical comparison to be performed.
+ * <!-- end-model-doc -->
  * @see pamtram.structure.constraint.ConstraintPackage#getNumericConstraintOperatorType()
  * @model
  * @generated
@@ -76,6 +79,9 @@ public enum NumericConstraintOperatorType implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The actual attribute value must be equal to the determined reference value.
+	 * <!-- end-model-doc -->
 	 * @see #EQUAL
 	 * @model
 	 * @generated
@@ -91,6 +97,9 @@ public enum NumericConstraintOperatorType implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The actual attribute value must be greater then the determined reference value.
+	 * <!-- end-model-doc -->
 	 * @see #GREATER
 	 * @model
 	 * @generated
@@ -106,6 +115,9 @@ public enum NumericConstraintOperatorType implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The actual attribute value must be greater then or equal to the determined reference value.
+	 * <!-- end-model-doc -->
 	 * @see #GREATER_OR_EQUAL
 	 * @model
 	 * @generated
@@ -121,6 +133,9 @@ public enum NumericConstraintOperatorType implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The actual attribute value must be less then the determined reference value.
+	 * <!-- end-model-doc -->
 	 * @see #LESS
 	 * @model
 	 * @generated
@@ -136,6 +151,9 @@ public enum NumericConstraintOperatorType implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The actual attribute value must be less then or equal to the determined reference value.
+	 * <!-- end-model-doc -->
 	 * @see #LESS_OR_EQUAL
 	 * @model
 	 * @generated

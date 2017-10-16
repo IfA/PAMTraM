@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -31,10 +32,11 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.swt.widgets.TreeItem;
+import org.eclipse.ui.part.FileEditorInput;
 
+import de.mfreund.pamtram.properties.PropertySupplier;
 import de.mfreund.pamtram.wizards.ImportLibraryElementWizard;
 import de.mfreund.pamtram.wizards.ImportSharedModelWizard;
-import de.mfreund.pamtram.wizards.ImportSharedModelWizard.SharedModelType;
 import de.tud.et.ifa.agtele.resources.BundleContentHelper;
 import de.tud.et.ifa.agtele.ui.interfaces.IPersistable;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
@@ -54,6 +56,7 @@ import pamtram.condition.ComplexCondition;
 import pamtram.condition.UnaryCondition;
 import pamtram.condition.VariadicCondition;
 import pamtram.contentadapter.DeactivationListenerAdapter;
+import pamtram.contentadapter.LibraryNatureListenerAdapter;
 import pamtram.contentprovider.ConditionContentProvider;
 import pamtram.contentprovider.LibraryEntryContentProvider;
 import pamtram.contentprovider.MappingContentProvider;
@@ -62,38 +65,36 @@ import pamtram.contentprovider.SourceSectionContentProvider;
 import pamtram.contentprovider.TargetSectionContentProvider;
 import pamtram.listeners.SetViewerMouseListener;
 import pamtram.listeners.SetViewerSelectionListener;
-import pamtram.mapping.AttributeMapping;
-import pamtram.mapping.AttributeMappingSourceInterface;
-import pamtram.mapping.AttributeMatcher;
-import pamtram.mapping.AttributeMatcherSourceInterface;
-import pamtram.mapping.CardinalityMapping;
-import pamtram.mapping.ClassMatcher;
-import pamtram.mapping.ContainerSelector;
-import pamtram.mapping.ContainerSelectorSourceInterface;
-import pamtram.mapping.ContainerSelectorTargetAttribute;
-import pamtram.mapping.ExpandableHint;
-import pamtram.mapping.ExternalMappedAttributeValueExpander;
 import pamtram.mapping.GlobalAttribute;
-import pamtram.mapping.GlobalAttributeImporter;
 import pamtram.mapping.InstantiableMappingHintGroup;
-import pamtram.mapping.LocalMappedAttributeValueExpander;
-import pamtram.mapping.MappedAttributeValueExpander;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
-import pamtram.mapping.ReferenceTargetSelector;
+import pamtram.mapping.extended.AttributeMapping;
+import pamtram.mapping.extended.AttributeMappingSourceInterface;
+import pamtram.mapping.extended.AttributeMatcher;
+import pamtram.mapping.extended.CardinalityMapping;
+import pamtram.mapping.extended.ContainerSelector;
+import pamtram.mapping.extended.ExpandableHint;
+import pamtram.mapping.extended.ExternalMappedAttributeValueExpander;
+import pamtram.mapping.extended.GlobalAttributeImporter;
+import pamtram.mapping.extended.LocalMappedAttributeValueExpander;
+import pamtram.mapping.extended.MappedAttributeValueExpander;
+import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.mapping.modifier.ValueModifierSet;
-import pamtram.structure.InstanceSelector;
-import pamtram.structure.ModifiedAttributeElementType;
+import pamtram.structure.DynamicSourceElement;
+import pamtram.structure.InstanceSelectorSourceInterface;
+import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.generic.Attribute;
-import pamtram.structure.generic.CrossReference;
 import pamtram.structure.library.ContainerParameter;
 import pamtram.structure.library.LibraryEntry;
 import pamtram.structure.source.SourceSectionAttribute;
 import pamtram.structure.source.SourceSectionClass;
+import pamtram.structure.source.SourceSectionCrossReference;
 import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.target.TargetSectionClass;
 import pamtram.structure.target.TargetSectionCrossReference;
+import pamtram.util.SharedModelUtil.SharedModelType;
 
 /**
  * The main page of the {@link PamtramEditor} that allows to configure source sections, mappings, and target sections.
@@ -266,7 +267,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				this.editor.getEditingDomain(), PamtramEditorPlugin.getPlugin().getDialogSettings(), "Source Sections",
 				new TreeViewerGroupToolbarAddButtonOption(), new TreeViewerGroupToolbarCollapseAllButtonOption(),
 				new TreeViewerGroupToolbarImportSharedSectionModelButtonOption(this.editor.pamtram,
-						this.editor.getEditingDomain(), SharedModelType.SOURCE));
+						this.editor.getEditingDomain(), SharedModelType.SOURCE),
+				TreeViewerGroup.BIND_HELP_LISTENER());
 
 		this.sourceViewer = this.sourceViewerGroup.getViewer();
 		this.sourceViewer.setContentProvider(new SourceSectionContentProvider(this.adapterFactory));
@@ -284,7 +286,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				this.editor.getEditingDomain(), PamtramEditorPlugin.getPlugin().getDialogSettings(), "Conditions",
 				new TreeViewerGroupToolbarAddButtonOption(), new TreeViewerGroupToolbarCollapseAllButtonOption(),
 				new TreeViewerGroupToolbarImportSharedSectionModelButtonOption(this.editor.pamtram,
-						this.editor.getEditingDomain(), SharedModelType.CONDITION));
+						this.editor.getEditingDomain(), SharedModelType.CONDITION),
+				TreeViewerGroup.BIND_HELP_LISTENER());
 		this.conditionViewer = this.conditionViewerGroup.getViewer();
 		this.conditionViewer.setContentProvider(new ConditionContentProvider(this.adapterFactory));
 		this.conditionViewer.setInput(this.editor.pamtram);
@@ -312,7 +315,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				this.editor.getEditingDomain(), PamtramEditorPlugin.getPlugin().getDialogSettings(), "Mappings",
 				new TreeViewerGroupToolbarAddButtonOption(), new TreeViewerGroupToolbarCollapseAllButtonOption(),
 				new TreeViewerGroupToolbarImportSharedSectionModelButtonOption(this.editor.pamtram,
-						this.editor.getEditingDomain(), SharedModelType.MAPPING));
+						this.editor.getEditingDomain(), SharedModelType.MAPPING),
+				TreeViewerGroup.BIND_HELP_LISTENER());
 		this.mappingViewer = this.mappingViewerGroup.getViewer();
 		/*
 		 * We add a special content adapter that will refresh the viewer when an element gets (de-)activated. Otherwise,
@@ -341,14 +345,15 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				"Modifier Sets and Global Values", new TreeViewerGroupToolbarAddButtonOption(),
 				new TreeViewerGroupToolbarCollapseAllButtonOption(),
 				new TreeViewerGroupToolbarImportSharedSectionModelButtonOption(this.editor.pamtram,
-						this.editor.getEditingDomain(), SharedModelType.MAPPING));
+						this.editor.getEditingDomain(), SharedModelType.MAPPING),
+				TreeViewerGroup.BIND_HELP_LISTENER());
 		this.globalElementsViewer = this.globalElementsViewerGroup.getViewer();
 
 		this.globalElementsViewer.setContentProvider(new ModifierSetContentProvider(this.adapterFactory));
 		this.globalElementsViewer.setInput(this.editor.pamtram);
 
 		this.globalElementsViewer.getTree()
-				.addSelectionListener(new SetViewerSelectionListener(this.editor, this.globalElementsViewer));
+				.addSelectionListener(new GlobalElementsViewerSelectionListener(this.globalElementsViewer));
 		this.globalElementsViewer.getTree()
 				.addMouseListener(new SetViewerMouseListener(this.editor, this.globalElementsViewer));
 
@@ -374,7 +379,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				this.editor.getEditingDomain(), PamtramEditorPlugin.getPlugin().getDialogSettings(), "Target Sections",
 				new TreeViewerGroupToolbarAddButtonOption(), new TreeViewerGroupToolbarCollapseAllButtonOption(),
 				new TreeViewerGroupToolbarImportSharedSectionModelButtonOption(this.editor.pamtram,
-						this.editor.getEditingDomain(), SharedModelType.TARGET));
+						this.editor.getEditingDomain(), SharedModelType.TARGET),
+				TreeViewerGroup.BIND_HELP_LISTENER());
 
 		this.targetViewer = this.targetViewerGroup.getViewer();
 
@@ -393,7 +399,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				this.editor.getEditingDomain(), PamtramEditorPlugin.getPlugin().getDialogSettings(),
 				"Library Element Target Sections", new TreeViewerGroupToolbarCollapseAllButtonOption(),
 				new TreeViewerGroupToolbarImportLibraryEntryButtonOption(this.editor.pamtram,
-						this.editor.getEditingDomain()));
+						this.editor.getEditingDomain()),
+				TreeViewerGroup.BIND_HELP_LISTENER());
 
 		this.libTargetViewer = this.libTargetViewerGroup.getViewer();
 
@@ -406,6 +413,27 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		new AdapterFactoryTreeEditor(this.libTargetViewer.getTree(), this.adapterFactory);
 
 		this.editor.createContextMenuFor(this.libTargetViewer);
+
+		try {
+			boolean hasLibraryNature = this.editor.getEditorInput() instanceof FileEditorInput && Boolean
+					.parseBoolean(PropertySupplier.getResourceProperty(PropertySupplier.PROP_HAS_LIBRARY_NATURE,
+							((FileEditorInput) this.editor.getEditorInput()).getFile().getProject()));
+
+			// Do not show the libTargetViewerGroup if the project is not
+			// equipped
+			// with the 'PAMTraM Library Nature'
+			//
+			this.libTargetViewerGroup.setVisible(hasLibraryNature);
+
+			// Add an adapter that will add the library nature if necessary
+			//
+			if (!hasLibraryNature) {
+				this.editor.getPamtramContentAdapter().addSubAdapter(new LibraryNatureListenerAdapter(
+						this.editor.getPamtramContentAdapter(), this.libTargetViewerGroup));
+			}
+		} catch (CoreException e) {
+			e.printStackTrace();
+		}
 
 	}
 
@@ -421,6 +449,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 	private final class SourceViewerSelectionListener extends SetViewerSelectionListener {
 
 		private SourceViewerSelectionListener(TreeViewer viewer) {
+
 			super(PamtramEditorMainPage.this.editor, viewer);
 		}
 
@@ -432,11 +461,11 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 			// if a non containment reference has been selected while holding
 			// down the
 			// control key, jump to the referenced class
-			if (((TreeItem) e.item).getData() instanceof CrossReference && e.stateMask == SWT.CTRL) {
+			if (((TreeItem) e.item).getData() instanceof SourceSectionCrossReference && e.stateMask == SWT.CTRL) {
 
-				CrossReference reference = (CrossReference) ((TreeItem) e.item).getData();
+				SourceSectionCrossReference reference = (SourceSectionCrossReference) ((TreeItem) e.item).getData();
 
-				EList<pamtram.structure.source.SourceSectionClass> referencedElements = reference.getValue();
+				EList<SourceSectionClass> referencedElements = reference.getValue();
 
 				PamtramEditorMainPage.this.sourceViewer
 						.setSelection(new StructuredSelection(referencedElements.toArray()));
@@ -462,6 +491,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		private Mapping currentMapping;
 
 		private MappingViewerSelectionListener(TreeViewer viewer) {
+
 			super(PamtramEditorMainPage.this.editor, viewer);
 		}
 
@@ -565,12 +595,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 					 */
 				} else if (item.getData() instanceof GlobalAttribute) {
 					GlobalAttribute g = (GlobalAttribute) item.getData();
-					mapping = (Mapping) g.eContainer();
-					if (g.getSource() != null) {
-						source = g.getSource();
-					} else {
-						source = mapping.getSourceSection();
-					}
+					source = g.getSource();
 					// expanded.add(mapping);
 					// expanded.add(g);
 
@@ -670,12 +695,11 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				this.currentMapping = mapping;
 
 				/*
-				 * If a ModifiedAttributeElementType is selected, select the source attribute that it represents and the
-				 * target attribute of a possible parent AttributeMapping.
+				 * If a DynamicSourceElement is selected, select the source attribute that it represents and the target
+				 * attribute of a possible parent AttributeMapping.
 				 */
-			} else if (item.getData() instanceof ModifiedAttributeElementType<?, ?, ?, ?>) {
-				ModifiedAttributeElementType<?, ?, ?, ?> modifiedAttribute = (ModifiedAttributeElementType<?, ?, ?, ?>) item
-						.getData();
+			} else if (item.getData() instanceof DynamicSourceElement<?, ?, ?, ?>) {
+				DynamicSourceElement<?, ?, ?, ?> modifiedAttribute = (DynamicSourceElement<?, ?, ?, ?>) item.getData();
 
 				Attribute<?, ?, ?, ?> target = null;
 				if (modifiedAttribute.eContainer() instanceof AttributeMapping) {
@@ -698,13 +722,12 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 				} else if (importer.eContainer() instanceof AttributeMatcher) {
 					target = ((AttributeMatcher) importer.eContainer()).getTarget();
 				} else if (importer.eContainer() instanceof ContainerSelector) {
-					if (!((ContainerSelector) importer.eContainer()).getTargetAttributes().isEmpty()) {
-						target = ((ContainerSelector) importer.eContainer()).getTargetAttributes().get(0).getSource();
-					}
-				} else if (importer.eContainer() instanceof InstanceSelector) {
-					target = ((InstanceSelector) importer.eContainer()).getTarget();
+					target = ((ContainerSelector) importer.eContainer()).getReferenceAttribute();
+				} else if (importer.eContainer() instanceof SourceInstanceSelector) {
+					target = ((SourceInstanceSelector) importer.eContainer()).getReferenceAttribute();
 				}
-				Attribute<?, ?, ?, ?> source = importer.getSourceAttribute();
+				Attribute<?, ?, ?, ?> source = importer.getGlobalAttribute() == null ? null
+						: importer.getGlobalAttribute().getSource();
 
 				this.setSourceTargetViewerSelections(source, target);
 
@@ -717,8 +740,8 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 				List<Object> sources = new LinkedList<>();
 				for (AttributeMappingSourceInterface c : mapping.getSourceElements()) {
-					if (c.getSourceAttribute() != null) {
-						sources.add(c.getSourceAttribute());
+					if (c instanceof DynamicSourceElement<?, ?, ?, ?>) {
+						sources.add(((DynamicSourceElement<?, ?, ?, ?>) c).getSource());
 					}
 				}
 				if (mapping.getSharedCondition() != null) {
@@ -751,66 +774,48 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 				ReferenceTargetSelector selector = (ReferenceTargetSelector) item.getData();
 
-				CrossReference<?, ?, ?, ?> reference = selector.getAffectedReference();
+				List<Object> sources = new LinkedList<>();
+				List<Object> targets = new LinkedList<>();
 
-				this.setSourceTargetViewerSelections(selector.getSharedCondition(), reference);
+				for (InstanceSelectorSourceInterface c : selector.getSourceElements()) {
+					if (c instanceof DynamicSourceElement<?, ?, ?, ?>) {
+						sources.add(((DynamicSourceElement<?, ?, ?, ?>) c).getSource());
+					}
+				}
+				if (selector.getSharedCondition() != null) {
+					sources.add(selector.getSharedCondition());
+				}
+
+				targets.add(selector.getAffectedReference());
+				targets.add(selector.getTargetClass());
+				targets.add(selector.getReferenceAttribute());
+
+				this.setSourceTargetViewerSelections(sources, targets);
 
 				/*
 				 * If an AttributeMatcher is selected, select its source and target attributes.
-				 */
-			} else if (item.getData() instanceof AttributeMatcher) {
-				AttributeMatcher matcher = (AttributeMatcher) item.getData();
-
-				TargetSectionAttribute target = matcher.getTarget();
-
-				List<SourceSectionAttribute> sources = new LinkedList<>();
-
-				for (AttributeMatcherSourceInterface srcElement : matcher.getSourceElements()) {
-					if (srcElement.getSourceAttribute() != null) {
-						sources.add(srcElement.getSourceAttribute());
-					}
-				}
-
-				this.setSourceTargetViewerSelections(sources, target);
-
-				/*
-				 * If a ClassMatcher is selected, select the source and target classes associated with it.
-				 */
-			} else if (item.getData() instanceof ClassMatcher) {
-
-				ClassMatcher matcher = (ClassMatcher) item.getData();
-
-				TargetSectionClass target = matcher.getTargetClass();
-
-				this.setSourceTargetViewerSelections(null, target);
-
-				/*
-				 * If a ModelConnectionHint is selected, Select the source and target item associated with the selected
-				 * matcher.
 				 */
 			} else if (item.getData() instanceof ContainerSelector) {
 
 				ContainerSelector hint = (ContainerSelector) item.getData();
 
-				ArrayList<Attribute<?, ?, ?, ?>> sources = new ArrayList<>();
-				ArrayList<Attribute<?, ?, ?, ?>> targets = new ArrayList<>();
+				List<Object> sources = new ArrayList<>();
+				List<Object> targets = new ArrayList<>();
 
-				for (ContainerSelectorSourceInterface sourceElement : hint.getSourceElements()) {
-					sources.add(sourceElement.getSourceAttribute());
+				for (InstanceSelectorSourceInterface sourceElement : hint.getSourceElements()) {
+					if (sourceElement instanceof DynamicSourceElement<?, ?, ?, ?>) {
+						sources.add(((DynamicSourceElement<?, ?, ?, ?>) sourceElement).getSource());
+					}
 				}
 
-				for (ContainerSelectorTargetAttribute a : hint.getTargetAttributes()) {
-					targets.add(a.getSource());
+				if (hint.getSharedCondition() != null) {
+					sources.add(hint.getSharedCondition());
 				}
+
+				targets.add(hint.getTargetClass());
+				targets.add(hint.getReferenceAttribute());
 
 				this.setSourceTargetViewerSelections(sources, targets);
-
-				/*
-				 * If a ConnectionHintTargetAttribute is selected, select its specified target attribute.
-				 */
-			} else if (item.getData() instanceof ContainerSelectorTargetAttribute) {
-				ContainerSelectorTargetAttribute a = (ContainerSelectorTargetAttribute) item.getData();
-				this.setSourceTargetViewerSelections(null, a.getSource());
 
 				/*
 				 * If a MappedAttributeValueExpander is selected, select ist source attribute and the targets of all
@@ -892,6 +897,47 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 	}
 
 	/**
+	 * A {@link SourceViewerSelectionListener} that handles selections in the
+	 * {@link PamtramEditorMainPage#globalElementsViewer}.
+	 * <p />
+	 * It automatically expands referenced elements. For example, if a {@link GlobalAttribute} is selected, the
+	 * associated {@link SourceSectionAttribute} is expanded so that the user can easily determine it.
+	 *
+	 * @author mfreund
+	 */
+	private final class GlobalElementsViewerSelectionListener extends SetViewerSelectionListener {
+
+		private GlobalElementsViewerSelectionListener(TreeViewer viewer) {
+
+			super(PamtramEditorMainPage.this.editor, viewer);
+		}
+
+		@Override
+		public void widgetSelected(SelectionEvent e) {
+
+			super.widgetSelected(e);
+
+			TreeItem item = (TreeItem) e.item;
+
+			Object source = null;
+
+			if (item.getData() instanceof GlobalAttribute) {
+
+				source = ((GlobalAttribute) item.getData()).getSource();
+			}
+
+			// Select and expand the source and target items associated with
+			// the selected mapping.
+			if (source == null) {
+				PamtramEditorMainPage.this.sourceViewer.setSelection(new StructuredSelection());
+			} else {
+				PamtramEditorMainPage.this.sourceViewer.setSelection(new StructuredSelection(source));
+			}
+
+		}
+	}
+
+	/**
 	 * A {@link SetViewerSelectionListener} that also handles selections in the
 	 * {@link PamtramEditorMainPage#targetViewer}.
 	 * <p />
@@ -903,6 +949,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 	private final class TargetViewerSelectionListener extends SetViewerSelectionListener {
 
 		private TargetViewerSelectionListener(TreeViewer viewer) {
+
 			super(PamtramEditorMainPage.this.editor, PamtramEditorMainPage.this.targetViewer);
 		}
 
@@ -932,7 +979,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 	 *
 	 * @author mfreund
 	 */
-	public abstract static class TreeViewerGroupToolbarImportButtonOption implements TreeViewerGroupToolbarOption {
+	public abstract class TreeViewerGroupToolbarImportButtonOption implements TreeViewerGroupToolbarOption {
 
 		/**
 		 * The added item.
@@ -951,6 +998,26 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		protected SelectionListener2 selectionListener;
 
 		/**
+		 * The containing TreeViewerGroup.
+		 */
+		protected TreeViewerGroup group;
+
+		/**
+		 * This creates an instance without setting the {@link #selectionListener}. If this constructor is used, the
+		 * {@link #selectionListener} should be set manually via {@link #setSelectionListener(SelectionListener2)}.
+		 * Otherwise, nothing happens when the option is selected by the user.
+		 *
+		 * @param toolTipText
+		 *            The tool-tip text for the import button.
+		 *
+		 */
+		public TreeViewerGroupToolbarImportButtonOption(String toolTipText) {
+
+			this.toolTipText = toolTipText;
+			this.selectionListener = null;
+		}
+
+		/**
 		 * This creates an instance.
 		 *
 		 * @param toolTipText
@@ -961,18 +1028,39 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		 *
 		 */
 		public TreeViewerGroupToolbarImportButtonOption(String toolTipText, SelectionListener2 listener) {
+
 			this.toolTipText = toolTipText;
 			this.selectionListener = listener;
+		}
+
+		/**
+		 * Set/update the {@link #selectionListener}.
+		 *
+		 * @param selectionListener
+		 *            the selectionListener to set
+		 */
+		public void setSelectionListener(SelectionListener2 selectionListener) {
+
+			if (this.item != null && this.selectionListener != null) {
+				this.item.removeSelectionListener(this.selectionListener);
+			}
+			this.selectionListener = selectionListener;
+			if (this.item != null) {
+				this.item.addSelectionListener(selectionListener);
+			}
 		}
 
 		@Override
 		public void addToolbarControls(TreeViewerGroup group, ToolBar toolbar, TreeViewerGroupOption[] options) {
 
+			this.group = group;
 			this.item = new ToolItem(toolbar, SWT.PUSH);
 			this.item.setImage(BundleContentHelper.getBundleImage(PamtramEditorPlugin.getPlugin().getSymbolicName(),
 					"icons/import_wiz.gif"));
 			this.item.setToolTipText(this.toolTipText);
-			this.item.addSelectionListener(this.selectionListener);
+			if (this.selectionListener != null) {
+				this.item.addSelectionListener(this.selectionListener);
+			}
 
 		}
 
@@ -987,7 +1075,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 	 * A {@link TreeViewerGroupToolbarImportButtonOption} that allows to import shared {@link SectionModel
 	 * SectionModels}.
 	 */
-	public static class TreeViewerGroupToolbarImportSharedSectionModelButtonOption
+	public class TreeViewerGroupToolbarImportSharedSectionModelButtonOption
 			extends TreeViewerGroupToolbarImportButtonOption {
 
 		/**
@@ -1003,15 +1091,47 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		public TreeViewerGroupToolbarImportSharedSectionModelButtonOption(PAMTraM pamtram, EditingDomain editingDomain,
 				SharedModelType sharedModelType) {
 
-			super("Import Shared Model", (SelectionListener2) e -> {
+			super("Import Shared Model", null);
+			this.setSelectionListener((SelectionListener2) e -> {
 
 				// create the wizard that allows to import shared
 				// SourceSectionModels
 				//
 				WizardDialog wizardDialog = new WizardDialog(UIHelper.getShell(),
-						new ImportSharedModelWizard(pamtram, editingDomain, sharedModelType));
+						new ImportSharedModelWizard(pamtram, editingDomain, this.group.getViewer(), sharedModelType));
 				wizardDialog.create();
 				wizardDialog.open();
+
+				// Ensure that the source section viewer is not minimized
+				//
+				switch (sharedModelType) {
+					case SOURCE:
+						if (PamtramEditorMainPage.this.sourceViewerGroup
+								.equals(PamtramEditorMainPage.this.sourceSash.getMinimizedControl())) {
+							PamtramEditorMainPage.this.sourceSash.restoreLayout();
+						}
+						break;
+					case CONDITION:
+						if (PamtramEditorMainPage.this.conditionViewerGroup
+								.equals(PamtramEditorMainPage.this.sourceSash.getMinimizedControl())) {
+							PamtramEditorMainPage.this.sourceSash.restoreLayout();
+						}
+						break;
+					case MAPPING:
+						if (PamtramEditorMainPage.this.mappingViewerGroup
+								.equals(PamtramEditorMainPage.this.mappingSash.getMinimizedControl())) {
+							PamtramEditorMainPage.this.mappingSash.restoreLayout();
+						}
+						break;
+					case TARGET:
+						if (PamtramEditorMainPage.this.targetViewerGroup
+								.equals(PamtramEditorMainPage.this.targetSash.getMinimizedControl())) {
+							PamtramEditorMainPage.this.targetSash.restoreLayout();
+						}
+						break;
+					default:
+						break;
+				}
 			});
 		}
 
@@ -1020,8 +1140,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 	/**
 	 * A {@link TreeViewerGroupToolbarImportButtonOption} that allows to import {@link LibraryEntry LibraryEntries}.
 	 */
-	public static class TreeViewerGroupToolbarImportLibraryEntryButtonOption
-			extends TreeViewerGroupToolbarImportButtonOption {
+	public class TreeViewerGroupToolbarImportLibraryEntryButtonOption extends TreeViewerGroupToolbarImportButtonOption {
 
 		/**
 		 * This creates an instance.
@@ -1032,17 +1151,44 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		 *            The {@link EditingDomain} that shall be used to import elements.
 		 */
 		public TreeViewerGroupToolbarImportLibraryEntryButtonOption(PAMTraM pamtram, EditingDomain editingDomain) {
-			super("Import Library Entry", (SelectionListener2) e -> {
+
+			super("Import Library Entry", null);
+			this.setSelectionListener((SelectionListener2) e -> {
 
 				// create the wizard that allows to import LibraryEntries
 				//
-				WizardDialog wizardDialog = new WizardDialog(new Shell(),
-						new ImportLibraryElementWizard(pamtram, editingDomain));
+				WizardDialog wizardDialog = new WizardDialog(new Shell(), new ImportLibraryElementWizard(pamtram,
+						editingDomain, this.group.getViewer(), PamtramEditorMainPage.this.mappingViewer));
 				wizardDialog.create();
 				wizardDialog.open();
+
+				// Ensure that the library element viewer and the mapping viewer
+				// are not minimized
+				//
+				if (PamtramEditorMainPage.this.libTargetViewerGroup
+						.equals(PamtramEditorMainPage.this.targetSash.getMinimizedControl())) {
+					PamtramEditorMainPage.this.targetSash.restoreLayout();
+				}
+				if (PamtramEditorMainPage.this.mappingViewerGroup
+						.equals(PamtramEditorMainPage.this.mappingSash.getMinimizedControl())) {
+					PamtramEditorMainPage.this.mappingSash.restoreLayout();
+				}
 			});
+
 		}
 
+	}
+
+	/**
+	 * This intializes the page by minimizing the {@link #conditionViewerGroup}, the {@link #globalElementsViewerGroup},
+	 * and the {@link #libTargetViewerGroup}.
+	 *
+	 */
+	public void init() {
+
+		this.sourceSash.minimizeControl(this.conditionViewerGroup);
+		this.mappingSash.minimizeControl(this.globalElementsViewerGroup);
+		this.targetSash.minimizeControl(this.libTargetViewerGroup);
 	}
 
 	@Override

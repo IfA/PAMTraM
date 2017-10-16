@@ -16,6 +16,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.part.FileEditorInput;
 
+import de.tud.et.ifa.agtele.resources.ResourceHelper;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
 import pamtram.ConditionModel;
 import pamtram.MappingModel;
@@ -25,6 +26,7 @@ import pamtram.SourceSectionModel;
 import pamtram.TargetSectionModel;
 import pamtram.commands.ExportSharedModelCommand;
 import pamtram.presentation.PamtramEditor;
+import pamtram.util.SharedModelUtil;
 
 /**
  * An {@link AbstractHandler} that allows to export a shared {@link SourceSectionModel}, {@link TargetSectionModel},
@@ -34,14 +36,6 @@ import pamtram.presentation.PamtramEditor;
  * @author mfreund
  */
 public class ExportSharedModelHandler extends AbstractHandler {
-
-	private static final String SOURCE_FILE_ENDING = ".pamtram.source";
-
-	private static final String TARGET_FILE_ENDING = ".pamtram.target";
-
-	private static final String MAPPING_FILE_ENDING = ".pamtram.mapping";
-
-	private static final String CONDITION_FILE_ENDING = ".pamtram.condition";
 
 	@Override
 	public Object execute(ExecutionEvent event) {
@@ -54,16 +48,8 @@ public class ExportSharedModelHandler extends AbstractHandler {
 			return null;
 		}
 
-		String fileEnding = "";
-		if (sharedModelRoot instanceof SourceSectionModel) {
-			fileEnding = ExportSharedModelHandler.SOURCE_FILE_ENDING;
-		} else if (sharedModelRoot instanceof TargetSectionModel) {
-			fileEnding = ExportSharedModelHandler.TARGET_FILE_ENDING;
-		} else if (sharedModelRoot instanceof MappingModel) {
-			fileEnding = ExportSharedModelHandler.MAPPING_FILE_ENDING;
-		} else if (sharedModelRoot instanceof ConditionModel) {
-			fileEnding = ExportSharedModelHandler.CONDITION_FILE_ENDING;
-		}
+		String fileEnding = SharedModelUtil.getFileEndingBySharedModelRoot(sharedModelRoot);
+
 		IPath newPath = ((FileEditorInput) UIHelper.getCurrentEditorInput()).getPath().removeLastSegments(1)
 				.append(((NamedElement) sharedModelRoot).getName() + fileEnding);
 		IFile newFile = ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(newPath);
@@ -74,19 +60,9 @@ public class ExportSharedModelHandler extends AbstractHandler {
 		dialog.setOriginalFile(newFile);
 		dialog.create();
 		dialog.setTitle("Export Shared Model");
-		if (sharedModelRoot instanceof SourceSectionModel) {
-			dialog.setMessage("Specify the location for the exported SourceSectionModel (*"
-					+ ExportSharedModelHandler.SOURCE_FILE_ENDING + ")");
-		} else if (sharedModelRoot instanceof TargetSectionModel) {
-			dialog.setMessage("Specify the location for the exported TargetSectionModel (*"
-					+ ExportSharedModelHandler.TARGET_FILE_ENDING + ")");
-		} else if (sharedModelRoot instanceof MappingModel) {
-			dialog.setMessage("Specify the location for the exported MappingModel (*"
-					+ ExportSharedModelHandler.MAPPING_FILE_ENDING + ")");
-		} else if (sharedModelRoot instanceof ConditionModel) {
-			dialog.setMessage("Specify the location for the exported ConditionModel (*"
-					+ ExportSharedModelHandler.CONDITION_FILE_ENDING + ")");
-		}
+		dialog.setMessage("Specify the location for the exported " + sharedModelRoot.eClass().getName() + " (*"
+				+ fileEnding + ")");
+
 		dialog.setBlockOnOpen(true);
 		dialog.open();
 		newPath = dialog.getResult();
@@ -97,26 +73,12 @@ public class ExportSharedModelHandler extends AbstractHandler {
 
 		// Validate the file name
 		//
-		if (sharedModelRoot instanceof SourceSectionModel
-				&& !newPath.toString().endsWith(ExportSharedModelHandler.SOURCE_FILE_ENDING)) {
-			this.showError("Please specify a valid file name (*" + ExportSharedModelHandler.SOURCE_FILE_ENDING + ")");
-			return null;
-		} else if (sharedModelRoot instanceof TargetSectionModel
-				&& !newPath.toString().endsWith(ExportSharedModelHandler.TARGET_FILE_ENDING)) {
-			this.showError("Please specify a valid file name (*" + ExportSharedModelHandler.TARGET_FILE_ENDING + ")");
-			return null;
-		} else if (sharedModelRoot instanceof MappingModel
-				&& !newPath.toString().endsWith(ExportSharedModelHandler.MAPPING_FILE_ENDING)) {
-			this.showError("Please specify a valid file name (*" + ExportSharedModelHandler.MAPPING_FILE_ENDING + ")");
-			return null;
-		} else if (sharedModelRoot instanceof ConditionModel
-				&& !newPath.toString().endsWith(ExportSharedModelHandler.CONDITION_FILE_ENDING)) {
-			this.showError(
-					"Please specify a valid file name (*" + ExportSharedModelHandler.CONDITION_FILE_ENDING + ")");
+		if (!newPath.toString().endsWith(fileEnding)) {
+			this.showError("Please specify a valid file name (*" + fileEnding + ")");
 			return null;
 		}
 
-		URI sectionModelResourceURI = URI.createPlatformResourceURI(newPath.toString(), true);
+		URI sectionModelResourceURI = ResourceHelper.getURIForPathString(newPath.toString());
 
 		// Determine the editing domain on which to execute the command that will perform the actual exporting
 		//

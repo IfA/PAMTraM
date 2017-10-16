@@ -7,12 +7,11 @@ import java.util.stream.Collectors;
 
 import org.eclipse.swt.widgets.Dialog;
 
-import de.mfreund.gentrans.transformation.handler.GenericTransformationJob;
 import de.mfreund.gentrans.transformation.resolving.enhancing.MappingModelEnhancer;
 
 /**
  * This represents a {@link Runnable} that will spawn an {@link GenericSelectionDialog} that allows a user to select
- * between multiple options during an execution of a {@link GenericTransformationJob generic transformation}.
+ * between multiple options during an execution of a generic transformation.
  * <p />
  * Clients can overwrite the {@link #initializeDialog()} method if a sub-class of {@link GenericSelectionDialog} shall
  * be used as dialog.

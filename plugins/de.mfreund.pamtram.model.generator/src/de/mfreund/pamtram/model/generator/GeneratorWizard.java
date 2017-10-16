@@ -24,25 +24,28 @@ import pamtram.structure.generic.MetaModelElement;
 import pamtram.structure.generic.Section;
 
 /**
- * A {@link Wizard} that allows to create new {@link Section Sections} in a {@link PAMTraM} model based on a set of
- * selected {@link EObject EObjects}.
+ * A {@link Wizard} that allows to create new {@link Section Sections} in a
+ * {@link PAMTraM} model based on a set of selected {@link EObject EObjects}.
  *
  * @author mfreund
  */
 public class GeneratorWizard extends Wizard {
 
 	/**
-	 * The {@link WizardPage} that allows the user to select a target {@link PAMTraM} model.
+	 * The {@link WizardPage} that allows the user to select a target
+	 * {@link PAMTraM} model.
 	 */
 	protected MappingModelSelectorPage one;
 
 	/**
-	 * The {@link WizardPage} that allows the user to preview and customize the created Section(s).
+	 * The {@link WizardPage} that allows the user to preview and customize the
+	 * created Section(s).
 	 */
 	protected PreviewPage two;
 
 	/**
-	 * The {@link WizardData} that contains the necessary information to be used throughout the wizard.
+	 * The {@link WizardData} that contains the necessary information to be used
+	 * throughout the wizard.
 	 */
 	protected WizardData wizardData;
 
@@ -50,7 +53,8 @@ public class GeneratorWizard extends Wizard {
 	 * This creates an instance.
 	 *
 	 * @param wizardData
-	 *            The {@link WizardData} that contains the necessary information to be used throughout the wizard.
+	 *            The {@link WizardData} that contains the necessary information
+	 *            to be used throughout the wizard.
 	 */
 	public GeneratorWizard(WizardData wizardData) {
 		super();
@@ -66,18 +70,24 @@ public class GeneratorWizard extends Wizard {
 		this.addPage(this.two);
 	}
 
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean performFinish() {
 
-		// Delete all elements that have been excluded by the user in the 'PreviewPage'
+		// Delete all elements that have been excluded by the user in the
+		// 'PreviewPage'
 		//
-		for(MetaModelElement<?, ?, ?, ?> element : this.two.getElementsToExclude()) {
+		for (MetaModelElement<?, ?, ?, ?> element : this.two.getElementsToExclude()) {
 
-			Collection<Setting> crossReferences = EcoreUtil.UsageCrossReferencer.find(element, this.wizardData.getCreatedSections());
+			Collection<Setting> crossReferences = EcoreUtil.UsageCrossReferencer.find(element,
+					this.wizardData.getCreatedSections());
 			for (Setting setting : crossReferences) {
-				if(setting.getEStructuralFeature().isMany()) {
+
+				if (setting.getEStructuralFeature().isDerived()) {
+					continue;
+				}
+
+				if (setting.getEStructuralFeature().isMany()) {
 					List<EObject> values = new BasicEList<>(
 							(List<EObject>) setting.getEObject().eGet(setting.getEStructuralFeature()));
 					values.remove(element);
@@ -94,20 +104,22 @@ public class GeneratorWizard extends Wizard {
 
 		// merge duplicate items
 		//
-		List<Section<?, ?, ?, ?>> sectionsToAdd =
-				this.wizardData.getGenerator().mergeDuplicates(this.wizardData.getCreatedSections());
-
+		List<Section<?, ?, ?, ?>> sectionsToAdd = this.wizardData.getGenerator()
+				.mergeDuplicates(this.wizardData.getCreatedSections());
 
 		/*
-		 * If there is an open editor for our pamtram instance, we may use the editing domain of the editor
-		 * to add the new elements. That way, undo/redo and other things will be possible.
-		 * If there is no open editor, we just add the pamtram model manually and save the resource that contains it.
+		 * If there is an open editor for our pamtram instance, we may use the
+		 * editing domain of the editor to add the new elements. That way,
+		 * undo/redo and other things will be possible. If there is no open
+		 * editor, we just add the pamtram model manually and save the resource
+		 * that contains it.
 		 */
-		if(this.wizardData.getEditor() != null) {
+		if (this.wizardData.getEditor() != null) {
 
 			EditingDomain editingDomain = this.wizardData.getEditor().getEditingDomain();
 
-			// now that we now which of the sections are unique, we can add those to the pamtram model
+			// now that we now which of the sections are unique, we can add
+			// those to the pamtram model
 			//
 			AddCommand addGeneratedSections = new AddCommand(editingDomain, this.wizardData.getSectionModel(),
 					PamtramPackage.Literals.SECTION_MODEL__SECTIONS, sectionsToAdd);
@@ -115,27 +127,29 @@ public class GeneratorWizard extends Wizard {
 			editingDomain.getCommandStack().execute(addGeneratedSections);
 
 			// bring the editor to the top to show the changes to the user
-			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().bringToTop(this.wizardData.getEditor());
+			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
+					.bringToTop(this.wizardData.getEditor());
 		} else {
 
-			// now that we now which of the sections are unique, we can add those to the pamtram model
+			// now that we now which of the sections are unique, we can add
+			// those to the pamtram model
 			((EList<Class<?, ?, ?, ?>>) this.wizardData.getSectionModel().getSections()).addAll(sectionsToAdd);
 
 			// finally, we save the model
 			try {
 				this.wizardData.getPamtram().eResource().save(null);
 			} catch (IOException e) {
-				MessageDialog.openError(new Shell(),
-						"Error", "Error while trying to save the PAMTraM model!");
+				MessageDialog.openError(new Shell(), "Error", "Error while trying to save the PAMTraM model!");
 				e.printStackTrace();
 				return false;
 			}
 		}
 
 		MessageDialog.openInformation(new Shell(), "Export Result",
-				sectionsToAdd.size() + " sections have been added to the PAMTraM model. There were " +
-						(this.wizardData.getCreatedSections().size() - sectionsToAdd.size()) + " sections that have been identified as duplicates of " +
-				"existing sections. Those have not added but merged with the existing ones.");
+				sectionsToAdd.size() + " sections have been added to the PAMTraM model. There were "
+						+ (this.wizardData.getCreatedSections().size() - sectionsToAdd.size())
+						+ " sections that have been identified as duplicates of "
+						+ "existing sections. Those have not added but merged with the existing ones.");
 
 		return true;
 	}
@@ -151,7 +165,7 @@ public class GeneratorWizard extends Wizard {
 
 	@Override
 	public boolean performCancel() {
-		if(this.wizardData.getTargetModelResource() != null) {
+		if (this.wizardData.getTargetModelResource() != null) {
 			this.wizardData.getTargetModelResource().unload();
 		}
 		return super.performCancel();

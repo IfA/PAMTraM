@@ -2,6 +2,7 @@ package pamtram.commands;
 
 import java.util.Collection;
 import java.util.Collections;
+
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -11,216 +12,246 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 
 /**
  * A generic command that converts an instance of a source type to an instance of the target type.
- * 
- * Therefore, an implementation of the interface 'IConverter' has to be provided that does the conversion when
- * the command is invoked.
- * 
+ *
+ * Therefore, an implementation of the interface 'IConverter' has to be provided that does the conversion when the
+ * command is invoked.
+ *
  * @author mfreund
  *
- * @param <SourceType> the type of the object to be converted
- * @param <TargetType> the type of the object to be created during the conversion
+ * @param <S>
+ *            the type of the object to be converted (source type)
+ * @param <T>
+ *            the type of the object to be created during the conversion (target type)
  */
-public class GenericConvertCommand<SourceType extends EObject, TargetType extends EObject> 
-	extends AbstractOverrideableCommand {
+public class GenericConvertCommand<S extends EObject, T extends EObject> extends AbstractOverrideableCommand {
 
 	/**
-	 * This caches the label.
-	 */
-	protected static final String LABEL = "ConvertCommand";
-	/**
-	 * This caches the description.
-	 */
-	protected static final String DESCRIPTION = "ConvertCommand";
-	/**
-	 * This is the owner object upon which the command will act.
-	 * It could be null, in the case that we are dealing with an {@link org.eclipse.emf.common.util.EList}.
+	 * This is the owner object upon which the command will act. It could be null, in the case that we are dealing with
+	 * an {@link org.eclipse.emf.common.util.EList}.
 	 */
 	protected EObject owner;
+
 	/**
-	 * This is the feature of the owner object upon the command will act.
-	 * It could be null, in the case that we are dealing with an {@link org.eclipse.emf.common.util.EList}.
+	 * This is the feature of the owner object upon the command will act. It could be null, in the case that we are
+	 * dealing with an {@link org.eclipse.emf.common.util.EList}.
 	 */
 	protected EStructuralFeature feature;
+
 	/**
 	 * This is the source type to be converted.
 	 */
-	protected SourceType source;
+	protected S source;
+
 	/**
 	 * This is the target type to be created.
 	 */
-	protected TargetType target;
+	protected T target;
+
 	/**
 	 * This is the converter used to convert the source to the target.
 	 */
-	protected IConverter<SourceType, TargetType> converter;
+	protected IConverter<S, T> converter;
+
 	/**
-	 * This is the index at which to reinsert the replaced object during an undo so as to achieve the original list order.
-	 */ 
+	 * This is the index at which to reinsert the replaced object during an undo so as to achieve the original list
+	 * order.
+	 */
 	protected int index;
+
 	/**
-	 * The is the value returned by {@link Command#getAffectedObjects}.
-	 * The affected objects are different after an execute than after an undo, so we record it.
+	 * The is the value returned by {@link Command#getAffectedObjects}. The affected objects are different after an
+	 * execute than after an undo, so we record it.
 	 */
 	protected Collection<?> affectedObjects;
-	
+
 	/**
-	 * This constructs an instance of the generic command to convert an instance of a source type to an 
-	 * instance of the target type.
-	 * 
+	 * This constructs an instance of the generic command to convert an instance of a source type to an instance of the
+	 * target type.
+	 *
 	 * The actual conversion is performed by an instance of 'IConverter' that is called when the command is invoked.
-	 * 
-	 * @param domain the editing domain that the command operated on
-	 * @param owner the owner of the object to be converted (will probably be 'source.eContainer()')
-	 * @param feature the feature that holds the source object (and after the conversion the target object) 
-	 * @param source the source object to be converted
-	 * @param converter the converter used to transform the source object during the execution of the command
+	 *
+	 * @param domain
+	 *            the editing domain that the command operated on
+	 * @param owner
+	 *            the owner of the object to be converted (will probably be 'source.eContainer()')
+	 * @param feature
+	 *            the feature that holds the source object (and after the conversion the target object)
+	 * @param source
+	 *            the source object to be converted
+	 * @param converter
+	 *            the converter used to transform the source object during the execution of the command
 	 */
-	public GenericConvertCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, SourceType source, IConverter<SourceType, TargetType> converter)
-	{
-	  super(domain, LABEL, DESCRIPTION);
-	  // Initialize all the fields from the command parameter.
-	  //
-	  this.owner = owner;
-	  this.feature = feature;
-	  this.source = source;
-	  this.converter = converter;
+	public GenericConvertCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, S source,
+			IConverter<S, T> converter) {
+		super(domain, "ConvertCommand", "ConvertCommand");
+		// Initialize all the fields from the command parameter.
+		//
+		this.owner = owner;
+		this.feature = feature;
+		this.source = source;
+		this.converter = converter;
 	}
+
 	/**
-	 * This returns the owner object upon which the command will act.
-	 * It could be null, in the case that we are dealing with an {@link org.eclipse.emf.common.util.EList}.
+	 * This returns the owner object upon which the command will act. It could be null, in the case that we are dealing
+	 * with an {@link org.eclipse.emf.common.util.EList}.
+	 *
+	 * @return The owner object upon which the command will act.
 	 */
-	public EObject getOwner()
-	{
-	  return owner;
+	public EObject getOwner() {
+
+		return this.owner;
 	}
+
 	/**
-	 * This returns the feature of the owner object upon the command will act.
-	 * It could be null, in the case that we are dealing with an {@link org.eclipse.emf.common.util.EList}.
+	 * This returns the feature of the owner object upon the command will act. It could be null, in the case that we are
+	 * dealing with an {@link org.eclipse.emf.common.util.EList}.
+	 *
+	 * @return The feature of the owner object upon the command will act.
 	 */
-	public EStructuralFeature getFeature()
-	{
-	  return feature;
+	public EStructuralFeature getFeature() {
+
+		return this.feature;
 	}
+
 	/**
 	 * This returns the source type to be converted.
+	 *
+	 * @return The source type to be converted.
 	 */
-	public SourceType getSource()
-	{
-	  return source;
+	public S getSource() {
+
+		return this.source;
 	}
+
 	/**
 	 * This returns the target type to be created.
+	 *
+	 * @return The source type to be converted.
 	 */
-	public TargetType getTarget()
-	{
-	  return target;
+	public T getTarget() {
+
+		return this.target;
 	}
+
 	/**
-	 * This returns the index at which to reinsert the replace objects during an undo so as to achieve the original list order.
-	 */ 
-	public int getIndex()
-	{
-		return index;
+	 * This returns the index at which to reinsert the replaced objects during an undo so as to achieve the original
+	 * list order.
+	 *
+	 * @return The index at which to reinsert the replaced objects.
+	 */
+	public int getIndex() {
+
+		return this.index;
 	}
+
 	@Override
-	protected boolean prepare() 
-	{
-	  return true;
+	protected boolean prepare() {
+
+		return true;
 	}
+
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	public void doExecute() 
-	{
+	public void doExecute() {
 
-		if(feature.isMany()) {
-			index = ((EList)(owner.eGet(feature))).indexOf(source);
+		if (this.feature.isMany()) {
+			this.index = ((EList) this.owner.eGet(this.feature)).indexOf(this.source);
 		}
-		
-		target = converter.convert(source);
-				
-		if(feature.isMany()) {
-			((EList)(owner.eGet(feature))).remove(source);
-			((EList)(owner.eGet(feature))).add(index, target);
+
+		this.target = this.converter.convert(this.source);
+
+		if (this.feature.isMany()) {
+			((EList) this.owner.eGet(this.feature)).remove(this.source);
+			((EList) this.owner.eGet(this.feature)).add(this.index, this.target);
 		} else {
-			owner.eSet(feature, target);
+			this.owner.eSet(this.feature, this.target);
 		}
 
-		affectedObjects = Collections.singleton(target);
+		this.affectedObjects = Collections.singleton(this.target);
 	}
+
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
-	public void doUndo() 
-	{
-		if(feature.isMany()) {
-			((EList)(owner.eGet(feature))).remove(target);
-			((EList)(owner.eGet(feature))).add(index, source);
+	public void doUndo() {
+
+		if (this.feature.isMany()) {
+			((EList) this.owner.eGet(this.feature)).remove(this.target);
+			((EList) this.owner.eGet(this.feature)).add(this.index, this.source);
 		} else {
-			owner.eSet(feature, source);
+			this.owner.eSet(this.feature, this.source);
 		}
 
-		affectedObjects = Collections.singleton(source);
+		this.affectedObjects = Collections.singleton(this.source);
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	public void doRedo()
-	{
-		if(feature.isMany()) {
-			((EList)(owner.eGet(feature))).remove(source);
-			((EList)(owner.eGet(feature))).add(index, target);
+	public void doRedo() {
+
+		if (this.feature.isMany()) {
+			((EList) this.owner.eGet(this.feature)).remove(this.source);
+			((EList) this.owner.eGet(this.feature)).add(this.index, this.target);
 		} else {
-			owner.eSet(feature, target);
+			this.owner.eSet(this.feature, this.target);
 		}
 
-		affectedObjects = Collections.singleton(target);
+		this.affectedObjects = Collections.singleton(this.target);
 	}
+
 	@Override
-	public Collection<?> doGetResult()
-	{
-	  return affectedObjects;
+	public Collection<?> doGetResult() {
+
+		return this.affectedObjects;
 	}
+
 	@Override
-	public Collection<?> doGetAffectedObjects()
-	{
-	  return affectedObjects;
+	public Collection<?> doGetAffectedObjects() {
+
+		return this.affectedObjects;
 	}
+
 	/**
-	 * This gives an abbreviated name using this object's own class' name, without package qualification,
-	 * followed by a space separated list of <tt>field:value</tt> pairs.
+	 * This gives an abbreviated name using this object's own class' name, without package qualification, followed by a
+	 * space separated list of <tt>field:value</tt> pairs.
 	 */
 	@Override
-	public String toString()
-	{
-	  StringBuffer result = new StringBuffer(super.toString());
-	  result.append(" (owner: " + owner + ")");
-	  result.append(" (feature: " + feature + ")");
-	  result.append(" (source: " + source + ")");
-	  result.append(" (target: " + target + ")");
-	  result.append(" (affectedObjects:" + affectedObjects + ")");
-	  return result.toString();
+	public String toString() {
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (owner: " + this.owner + ")");
+		result.append(" (feature: " + this.feature + ")");
+		result.append(" (source: " + this.source + ")");
+		result.append(" (target: " + this.target + ")");
+		result.append(" (affectedObjects:" + this.affectedObjects + ")");
+		return result.toString();
 	}
-	
+
 	/**
 	 * Interface that needs to be implemented to convert a source element to a target element.
-	 * 
+	 *
 	 * @author mfreund
 	 *
-	 * @param <SourceType>
-	 * @param <TargetType>
+	 * @param <S>
+	 *            the type of the object to be converted (source type)
+	 * @param <T>
+	 *            the type of the object to be created during the conversion (target type)
 	 */
-	public interface IConverter<SourceType extends EObject, TargetType extends EObject> {
-		
+	@FunctionalInterface
+	public interface IConverter<S extends EObject, T extends EObject> {
+
 		/**
 		 * Converts an instance of the SourceType to an instance of the TargetType.
-		 * 
-		 * Attention: When implementing this interface, make sure that 'EcoreUtil.copyAll()' is
-		 * used to copy child elements (referenced via a containment reference). Otherwise, 
-		 * 'undo()' does not work correctly (the child elements are lost).
-		 * 
-		 * @param source instance of the source type
+		 *
+		 * Attention: When implementing this interface, make sure that 'EcoreUtil.copyAll()' is used to copy child
+		 * elements (referenced via a containment reference). Otherwise, 'undo()' does not work correctly (the child
+		 * elements are lost).
+		 *
+		 * @param source
+		 *            instance of the source type
 		 * @return instance of the target type
 		 */
-		public TargetType convert(SourceType source);
+		public T convert(S source);
 	}
-	
+
 }

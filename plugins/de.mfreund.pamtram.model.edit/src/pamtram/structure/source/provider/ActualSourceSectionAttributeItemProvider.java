@@ -12,20 +12,23 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
+
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.GenericPackage;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.source.ActualSourceSectionAttribute} object. <!--
+ * This is the item provider adapter for a
+ * {@link pamtram.structure.source.ActualSourceSectionAttribute} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
- * 
+ *
  * @generated
  */
 public class ActualSourceSectionAttributeItemProvider extends SourceSectionAttributeItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	public ActualSourceSectionAttributeItemProvider(AdapterFactory adapterFactory) {
@@ -33,8 +36,9 @@ public class ActualSourceSectionAttributeItemProvider extends SourceSectionAttri
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -48,16 +52,19 @@ public class ActualSourceSectionAttributeItemProvider extends SourceSectionAttri
 	}
 
 	/**
-	 * This adds a property descriptor for the Attribute feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Attribute feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
 	 */
 	protected void addAttributePropertyDescriptor(Object object) {
 
 		this.itemPropertyDescriptors.add(
 				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
 						this.getResourceLocator(), this.getString("_UI_SourceSectionAttribute_attribute_feature"),
-						this.getString("_UI_PropertyDescriptor_description",
-								"_UI_SourceSectionAttribute_attribute_feature", "_UI_SourceSectionAttribute_type"),
-						GenericPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE, true, false, true, null, null, null) {
+						this.getString("_UI_ActualAttribute_attribute_description"),
+						GenericPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE, true, false, true, null,
+						this.getString("_UI_BasicPropertyCategory"), null) {
 
 					@Override
 					public Collection<?> getChoiceOfValues(Object object) {
@@ -74,17 +81,9 @@ public class ActualSourceSectionAttributeItemProvider extends SourceSectionAttri
 	}
 
 	/**
-	 * This returns SourceSectionAttribute.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 */
-	@Override
-	public Object getImage(Object object) {
-
-		return super.getImage(object);
-	}
-
-	/**
 	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -93,8 +92,9 @@ public class ActualSourceSectionAttributeItemProvider extends SourceSectionAttri
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label styled text for the adapted class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated NOT
 	 */
 	@Override
@@ -104,10 +104,10 @@ public class ActualSourceSectionAttributeItemProvider extends SourceSectionAttri
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
-	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -117,9 +117,10 @@ public class ActualSourceSectionAttributeItemProvider extends SourceSectionAttri
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
+	 * describing the children that can be created under this object. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override

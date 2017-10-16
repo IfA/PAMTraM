@@ -7,6 +7,12 @@ package pamtram.structure.target;
  * A representation of the model object '<em><b>File Attribute</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * This specifies the model resp. file to which the target model structure(s) created based on this TargetSection will be persisted.
+ * <br /><br />
+ * This can be used to statically or dynamically specify the target models/model files to be created in the course of a transformation. For example, this can be used to persist each instance of a TargetSection in its own file (if the 'value' of this attribute is set dynamically for each instance).
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -29,6 +35,9 @@ public interface FileAttribute extends VirtualTargetSectionAttribute {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The type of the model/file to be created.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>File Type</em>' attribute.
 	 * @see pamtram.structure.target.FileType
 	 * @see #setFileType(FileType)

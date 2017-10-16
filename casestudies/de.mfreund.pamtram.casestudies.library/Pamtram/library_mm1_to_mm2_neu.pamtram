@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:extended="http://mfreund.de/pamtram/mapping/extended" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
   <sourceSectionModels xsi:type="pamtram:SourceSectionModel" name="mm1">
     <metaModelPackage xsi:type="ecore:EPackage" href="http://mm1#/"/>
     <sections 
@@ -77,15 +77,15 @@ xsi:type="source:ActualSourceSectionAttribute" name="name">
   <mappingModels xsi:type="pamtram:MappingModel">
     <mappings xsi:type="mapping:Mapping" name="LibraryMapping" sourceSection="//@sourceSectionModels.0/@sections.0">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Library" targetSection="//@targetSectionModels.0/@sections.0">
-        <mappingHints xsi:type="mapping:AttributeMapping" name="nameMapping" target="//@targetSectionModels.0/@sections.0/@references.2/@value.0/@attributes.0">
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="name" source="//@sourceSectionModels.0/@sections.0/@references.0/@value.0/@attributes.0"/>
+        <mappingHints xsi:type="extended:AttributeMapping" name="nameMapping" target="//@targetSectionModels.0/@sections.0/@references.2/@value.0/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="name" source="//@sourceSectionModels.0/@sections.0/@references.0/@value.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="nameMapping" target="//@targetSectionModels.0/@sections.0/@references.0/@value.0/@attributes.0">
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="name" source="//@sourceSectionModels.0/@sections.0/@references.1/@value.0/@attributes.0"/>
+        <mappingHints xsi:type="extended:AttributeMapping" name="nameMapping" target="//@targetSectionModels.0/@sections.0/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="name" source="//@sourceSectionModels.0/@sections.0/@references.1/@value.0/@attributes.0"/>
         </mappingHints>
-        <mappingHints xsi:type="mapping:AttributeMapping" name="nameMapping" target="//@targetSectionModels.0/@sections.0/@references.1/@value.0/@attributes.0">
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="name" source="//@sourceSectionModels.0/@sections.0/@references.1/@value.0/@attributes.0"/>
-          <sourceElements xsi:type="mapping:AttributeMappingSourceElement" name="name" source="//@sourceSectionModels.0/@sections.0/@references.0/@value.0/@attributes.0"/>
+        <mappingHints xsi:type="extended:AttributeMapping" name="nameMapping" target="//@targetSectionModels.0/@sections.0/@references.1/@value.0/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="name" source="//@sourceSectionModels.0/@sections.0/@references.1/@value.0/@attributes.0"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="name" source="//@sourceSectionModels.0/@sections.0/@references.0/@value.0/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
     </mappings>

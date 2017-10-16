@@ -11,6 +11,19 @@
          </run>
       </runtime>
    </extension>
+   <extension
+         id="pamtramLibraryNature"
+         name="PAMTraM Library Nature"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="de.mfreund.pamtram.natures.PamtramLibraryNature">
+         </run>
+      </runtime>
+      <requires-nature
+            id="de.mfreund.pamtram.pamtramNature">
+      </requires-nature>
+   </extension>
  
    
    

@@ -36,6 +36,9 @@ import pamtram.structure.target.TargetSectionCrossReference;
  * <p />
  * This strategy will not sort out any choices during the resolving of strategies but will merely sort them so that the
  * most probable choices will be first in the list of choices.
+ * <p />
+ * Note: This strategy can only be used when running inside Eclipse because it stores the statistical data in the
+ * {@link IDialogSettings} of the {@link StatisticsResolvingStrategyPlugin}!
  *
  * @author mfreund
  */
@@ -66,27 +69,32 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 	private Map<String, IDialogSettings> metamodelSections;
 
 	@Override
-	public void init(PAMTraM pamtramModel, List<EObject> sourceModels, Logger logger)
+	public void init(List<PAMTraM> pamtramModels, List<EObject> sourceModels, Logger logger)
 			throws AmbiguityResolvingException {
 
-		super.init(pamtramModel, sourceModels, logger);
+		super.init(pamtramModels, sourceModels, logger);
 
 		// Set the default weighting factor
 		this.weightingFactor = 0.5;
 
-		// Acquire the various IDialogSettings that are used to persist/evaluate stored choices
+		// Acquire the various IDialogSettings that are used to persist/evaluate
+		// stored choices
 		//
 		IDialogSettings settings = StatisticsResolvingStrategyPlugin.getPlugin().getDialogSettings();
 		IDialogSettings section = DialogSettings.getOrCreateSection(settings, "STATISTICS");
 
 		IDialogSettings mapping = DialogSettings.getOrCreateSection(section, "MAPPING");
 
-		this.mappingSection = DialogSettings.getOrCreateSection(mapping, pamtramModel.eResource().getURI().toString());
+		this.mappingSection = DialogSettings.getOrCreateSection(mapping,
+				String.join(",",
+						pamtramModels.stream().map(pamtramModel -> pamtramModel.eResource().getURI().toString())
+								.collect(Collectors.toList()).toArray(new String[] {})));
 
 		IDialogSettings metamodel = DialogSettings.getOrCreateSection(section, "METAMODEL");
 
 		Set<String> nsURIs = Stream
-				.concat(pamtramModel.getSourceSectionModels().stream(), pamtramModel.getTargetSectionModels().stream())
+				.concat(pamtramModels.stream().flatMap(pamtramModel -> pamtramModel.getSourceSectionModels().stream()),
+						pamtramModels.stream().flatMap(pamtramModel -> pamtramModel.getTargetSectionModels().stream()))
 				.map(sm -> AgteleEcoreUtil.getRootEPackage(sm.getMetaModelPackage()).getNsURI())
 				.collect(Collectors.toSet());
 
@@ -110,19 +118,21 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 	public List<MatchedSectionDescriptor> searchingSelectSection(List<MatchedSectionDescriptor> choices,
 			EObject element) throws AmbiguityResolvingException {
 
-		// We use the concatenated names of all sections in the list of choices as key
+		// We use the concatenated names of all sections in the list of choices
+		// as key
 		//
 		String key = String.join(";", choices.parallelStream().map(m -> m.getAssociatedSourceSectionClass().getName())
 				.sorted().collect(Collectors.toList()));
 
 		IDialogSettings choicesSection = DialogSettings.getOrCreateSection(this.mappingSection, key);
 
-		// Sort the choices in descending order based on the number of previous count
+		// Sort the choices in descending order based on the number of previous
+		// count
 		//
 		return choices.parallelStream()
 				.sorted((o1, o2) -> StatisticsResolvingStrategy.this
-						.getCount(choicesSection, o2.getAssociatedSourceSectionClass().getName()).compareTo(
-								this.getCount(choicesSection, o1.getAssociatedSourceSectionClass().getName())))
+						.getCount(choicesSection, o2.getAssociatedSourceSectionClass().getName())
+						.compareTo(this.getCount(choicesSection, o1.getAssociatedSourceSectionClass().getName())))
 				.collect(Collectors.toList());
 
 	}
@@ -130,7 +140,8 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 	@Override
 	public void searchingSectionSelected(List<MatchedSectionDescriptor> choices, MatchedSectionDescriptor resolved) {
 
-		// We use the concatenated names of all sections in the list of choices as key
+		// We use the concatenated names of all sections in the list of choices
+		// as key
 		//
 		String key = String.join(";", choices.parallelStream().map(m -> m.getAssociatedSourceSectionClass().getName())
 				.sorted().collect(Collectors.toList()));
@@ -149,14 +160,16 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 	public List<Mapping> searchingSelectMapping(List<Mapping> choices, EObject element)
 			throws AmbiguityResolvingException {
 
-		// We use the concatenated names of all mappings in the list of choices as key
+		// We use the concatenated names of all mappings in the list of choices
+		// as key
 		//
 		String key = String.join(";",
 				choices.parallelStream().map(Mapping::getName).sorted().collect(Collectors.toList()));
 
 		IDialogSettings choicesSection = DialogSettings.getOrCreateSection(this.mappingSection, key);
 
-		// Sort the choices in descending order based on the number of previous count
+		// Sort the choices in descending order based on the number of previous
+		// count
 		//
 		return choices
 				.parallelStream().sorted((o1, o2) -> StatisticsResolvingStrategy.this
@@ -167,7 +180,8 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 	@Override
 	public void searchingMappingSelected(List<Mapping> choices, List<Mapping> resolved) {
 
-		// We use the concatenated names of all mappings in the list of choices as key
+		// We use the concatenated names of all mappings in the list of choices
+		// as key
 		//
 		String key = String.join(";",
 				choices.parallelStream().map(Mapping::getName).sorted().collect(Collectors.toList()));
@@ -190,21 +204,24 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 	@Override
 	public void instantiatingAttributeValueSelected(List<String> choices, String resolved) {
 
-		// up to now, we do not apply statistical analysis in the instantiating phase so nothing is to be done here
+		// up to now, we do not apply statistical analysis in the instantiating
+		// phase so nothing is to be done here
 
 	}
 
 	@Override
 	public void instantiatingCardinalitySelected(List<Integer> choices, Integer resolved) {
 
-		// up to now, we do not apply statistical analysis in the instantiating phase so nothing is to be done here
+		// up to now, we do not apply statistical analysis in the instantiating
+		// phase so nothing is to be done here
 
 	}
 
 	@Override
 	public void joiningContainerInstanceSelected(List<EObjectWrapper> choices, EObjectWrapper resolved) {
 
-		// up to now, we do not apply statistical analysis on selected instances so nothing is to be done here
+		// up to now, we do not apply statistical analysis on selected instances
+		// so nothing is to be done here
 
 	}
 
@@ -213,7 +230,8 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 			Map<ModelConnectionPath, List<EObjectWrapper>> choices, TargetSection section,
 			List<EObjectWrapper> sectionInstances, MappingHintGroupType hintGroup) throws AmbiguityResolvingException {
 
-		// We use the concatenated string representations of all paths in the list of choices as key
+		// We use the concatenated string representations of all paths in the
+		// list of choices as key
 		//
 		String key = String.join(";",
 				choices.keySet().parallelStream().map(m -> m.toString()).sorted().collect(Collectors.toList()));
@@ -223,8 +241,10 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 				.get(AgteleEcoreUtil.getRootEPackage(choices.keySet().iterator().next().getPathRootClass()).getNsURI()),
 				key);
 
-		// Sort the choices in descending order based on the number of previous count
-		// (we only sort the keys as, up to now, we do not perform statistical analysis on instances)
+		// Sort the choices in descending order based on the number of previous
+		// count
+		// (we only sort the keys as, up to now, we do not perform statistical
+		// analysis on instances)
 		//
 		List<ModelConnectionPath> sortedKeys = choices.keySet().parallelStream()
 				.sorted((o1, o2) -> StatisticsResolvingStrategy.this
@@ -246,7 +266,8 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 	public List<ModelConnectionPath> joiningSelectConnectionPath(List<ModelConnectionPath> choices,
 			TargetSection section) throws AmbiguityResolvingException {
 
-		// We use the concatenated string representations of all paths in the list of choices as key
+		// We use the concatenated string representations of all paths in the
+		// list of choices as key
 		//
 		String key = String.join(";",
 				choices.parallelStream().map(m -> m.toString()).sorted().collect(Collectors.toList()));
@@ -255,7 +276,8 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 		IDialogSettings metamodelLayerSection = DialogSettings.getOrCreateSection(this.metamodelSections
 				.get(AgteleEcoreUtil.getRootEPackage(choices.get(0).getPathRootClass()).getNsURI()), key);
 
-		// Sort the choices in descending order based on the number of previous count
+		// Sort the choices in descending order based on the number of previous
+		// count
 		//
 		return choices.parallelStream()
 				.sorted((o1, o2) -> StatisticsResolvingStrategy.this
@@ -269,7 +291,8 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 	@Override
 	public void joiningConnectionPathSelected(List<ModelConnectionPath> choices, ModelConnectionPath resolved) {
 
-		// We use the concatenated string representations of all paths in the list of choices as key
+		// We use the concatenated string representations of all paths in the
+		// list of choices as key
 		//
 		String key = String.join(";",
 				choices.parallelStream().map(m -> m.toString()).sorted().collect(Collectors.toList()));
@@ -303,7 +326,8 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 	@Override
 	public List<EClass> joiningSelectRootElement(List<EClass> choices) throws AmbiguityResolvingException {
 
-		// We use the concatenated names of all classes in the list of choices as key
+		// We use the concatenated names of all classes in the list of choices
+		// as key
 		//
 		String key = String.join(";",
 				choices.parallelStream().map(m -> m.getName()).sorted().collect(Collectors.toList()));
@@ -312,7 +336,8 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 		IDialogSettings metamodelLayerSection = DialogSettings.getOrCreateSection(
 				this.metamodelSections.get(AgteleEcoreUtil.getRootEPackage(choices.get(0)).getNsURI()), key);
 
-		// Sort the choices in descending order based on the number of previous count
+		// Sort the choices in descending order based on the number of previous
+		// count
 		//
 		return choices.parallelStream()
 				.sorted((o1, o2) -> StatisticsResolvingStrategy.this
@@ -326,7 +351,8 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 	@Override
 	public void joiningRootElementSelected(List<EClass> choices, EClass resolved) {
 
-		// We use the concatenated names of all classes in the list of choices as key
+		// We use the concatenated names of all classes in the list of choices
+		// as key
 		//
 		String key = String.join(";",
 				choices.parallelStream().map(m -> m.getName()).sorted().collect(Collectors.toList()));
@@ -360,7 +386,8 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 	@Override
 	public void linkingTargetInstanceSelected(List<EObjectWrapper> choices, EObjectWrapper resolved) {
 
-		// up to now, we do not apply statistical analysis on selected instances so nothing is to be done here
+		// up to now, we do not apply statistical analysis on selected instances
+		// so nothing is to be done here
 
 	}
 
@@ -369,18 +396,21 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 			Map<TargetSectionClass, List<EObjectWrapper>> choices, TargetSectionCrossReference reference,
 			MappingHintGroupType hintGroup) throws AmbiguityResolvingException {
 
-		// We use the concatenated names of all classes in the list of choices as key
+		// We use the concatenated names of all classes in the list of choices
+		// as key
 		//
 		String key = String.join(";",
 				choices.keySet().parallelStream().map(m -> m.getName()).sorted().collect(Collectors.toList()));
 
 		IDialogSettings choicesSection = DialogSettings.getOrCreateSection(this.mappingSection, key);
 
-		// Sort the choices in descending order based on the number of previous count
-		// (we only sort the keys as, up to now, we do not perform statistical analysis on instances)
+		// Sort the choices in descending order based on the number of previous
+		// count
+		// (we only sort the keys as, up to now, we do not perform statistical
+		// analysis on instances)
 		//
-		List<TargetSectionClass> sortedKeys = choices.keySet()
-				.parallelStream().sorted((o1, o2) -> StatisticsResolvingStrategy.this
+		List<TargetSectionClass> sortedKeys = choices
+				.keySet().parallelStream().sorted((o1, o2) -> StatisticsResolvingStrategy.this
 						.getCount(choicesSection, o2.getName()).compareTo(this.getCount(choicesSection, o1.getName())))
 				.collect(Collectors.toList());
 
@@ -395,7 +425,8 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 	@Override
 	public void linkingTargetSectionSelected(List<TargetSectionClass> choices, TargetSectionClass resolved) {
 
-		// We use the concatenated names of all classes in the list of choices as key
+		// We use the concatenated names of all classes in the list of choices
+		// as key
 		//
 		String key = String.join(";",
 				choices.parallelStream().map(m -> m.getName()).sorted().collect(Collectors.toList()));

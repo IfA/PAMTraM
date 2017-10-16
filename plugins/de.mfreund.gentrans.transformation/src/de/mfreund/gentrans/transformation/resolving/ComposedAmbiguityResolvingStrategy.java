@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -14,21 +15,23 @@ import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
 import pamtram.PAMTraM;
-import pamtram.mapping.ContainerSelector;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
-import pamtram.mapping.ReferenceTargetSelector;
+import pamtram.mapping.extended.ContainerSelector;
+import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.target.TargetSectionClass;
 import pamtram.structure.target.TargetSectionCrossReference;
 
 /**
- * This provides support for composing several {@link IAmbiguityResolvingStrategy IAmbiguityResolvingStrategies}.
+ * This provides support for composing several
+ * {@link IAmbiguityResolvingStrategy IAmbiguityResolvingStrategies}.
  * <p />
- * Any call to a method defined by the {@link IAmbiguityResolvingStrategy} interface iteratively forwards the call to
- * every of the {@link #composedStrategies} and returns the final result.
+ * Any call to a method defined by the {@link IAmbiguityResolvingStrategy}
+ * interface iteratively forwards the call to every of the
+ * {@link #composedStrategies} and returns the final result.
  *
  * @author mfreund
  */
@@ -44,7 +47,8 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 	 * This creates an instance.
 	 *
 	 * @param composedStrategies
-	 *            The list of {@link IAmbiguityResolvingStrategy strategies} that this composes.
+	 *            The list of {@link IAmbiguityResolvingStrategy strategies}
+	 *            that this composes.
 	 */
 	public ComposedAmbiguityResolvingStrategy(List<IAmbiguityResolvingStrategy> composedStrategies) {
 		this.composedStrategies = composedStrategies;
@@ -53,7 +57,8 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 	/**
 	 * This is the getter for the {@link #composedStrategies}.
 	 *
-	 * @return The list of {@link IAmbiguityResolvingStrategy strategies} that this composes.
+	 * @return The list of {@link IAmbiguityResolvingStrategy strategies} that
+	 *         this composes.
 	 */
 	public List<IAmbiguityResolvingStrategy> getComposedStrategies() {
 
@@ -61,7 +66,8 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 	}
 
 	/**
-	 * This adds a new strategy to end of the list of {@link #composedStrategies}.
+	 * This adds a new strategy to end of the list of
+	 * {@link #composedStrategies}.
 	 *
 	 * @param strategyToAdd
 	 *            The {@link IAmbiguityResolvingStrategy strategy} to add.
@@ -78,15 +84,15 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 	 *             If an error occurs during the initialization.
 	 */
 	@Override
-	public void init(PAMTraM pamtramModel, List<EObject> sourceModels, Logger logger)
+	public void init(List<PAMTraM> pamtramModels, List<EObject> sourceModels, Logger logger)
 			throws AmbiguityResolvingException {
 
-		super.init(pamtramModel, sourceModels, logger);
+		super.init(pamtramModels, sourceModels, logger);
 
 		this.printMessage("\t--> Init composed stragies:");
 
 		for (IAmbiguityResolvingStrategy strategy : this.composedStrategies) {
-			strategy.init(pamtramModel, sourceModels, logger);
+			strategy.init(pamtramModels, sourceModels, logger);
 		}
 	}
 
@@ -219,7 +225,7 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 	@Override
 	public List<EObjectWrapper> linkingSelectTargetInstance(List<EObjectWrapper> choices,
 			TargetSectionCrossReference reference, MappingHintGroupType hintGroup,
-			ReferenceTargetSelector mappingInstanceSelector, EObjectWrapper sourceElement)
+			ReferenceTargetSelector mappingInstanceSelector, List<EObjectWrapper> sourceElements)
 			throws AmbiguityResolvingException {
 
 		List<EObjectWrapper> ret = new ArrayList<>();
@@ -227,13 +233,13 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 			ret.addAll(choices);
 		}
 
-		if (ret.size() <= 1) {
+		if (ret.size() <= 1 && sourceElements.isEmpty()) {
 			return ret;
 		}
 
 		for (IAmbiguityResolvingStrategy strategy : this.composedStrategies) {
 			ret = strategy.linkingSelectTargetInstance(ret, reference, hintGroup, mappingInstanceSelector,
-					sourceElement);
+					sourceElements);
 			if (ret == null) {
 				return null;
 			} else if (ret.size() <= 1) {
@@ -450,6 +456,15 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 			}
 		}
 
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder(this.getClass().getSimpleName());
+		builder.append(" (Sub-Strategies: ");
+		builder.append(this.composedStrategies.stream().map(Object::toString).collect(Collectors.joining(", ")));
+		builder.append(")");
+		return builder.toString();
 	}
 
 }

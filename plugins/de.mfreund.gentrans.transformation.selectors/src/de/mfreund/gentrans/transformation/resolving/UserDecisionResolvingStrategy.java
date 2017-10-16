@@ -5,11 +5,17 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.swt.widgets.Display;
 
+import de.mfreund.gentrans.transformation.UserAbortException;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
@@ -21,12 +27,16 @@ import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectRootE
 import de.mfreund.gentrans.transformation.resolving.wizards.GenericSelectionDialogRunner;
 import de.mfreund.gentrans.transformation.resolving.wizards.PathAndInstanceSelectorRunner;
 import de.mfreund.gentrans.transformation.resolving.wizards.ValueSpecificationDialogRunner;
-import pamtram.mapping.ContainerSelector;
+import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
+import pamtram.PAMTraM;
+import pamtram.TargetSectionModel;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupType;
-import pamtram.mapping.ReferenceTargetSelector;
+import pamtram.mapping.extended.ContainerSelector;
+import pamtram.mapping.extended.ReferenceTargetSelector;
+import pamtram.presentation.PamtramEditor;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.target.TargetSectionClass;
@@ -35,6 +45,9 @@ import pamtram.structure.target.TargetSectionCrossReference;
 /**
  * This class implements a concrete {@link IAmbiguityResolvingStrategy} that allows a user to resolve ambiguities by
  * presenting selection dialogues to him.
+ * <p />
+ * Note: This strategy can only be used when running inside Eclipse because it integrates with the
+ * {@link PamtramEditor}!
  *
  * @author mfreund
  */
@@ -122,17 +135,22 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 			return choices;
 		}
 
+		Optional<PAMTraM> pamtramModel = this.pamtramModels.stream()
+				.filter(p -> EcoreUtil.isAncestor(p.getTargetSections(), attribute)).findAny();
+
 		String dialogMessage = "Please specify a value for the TargetSectionAttribute '"
 				+ attribute.getOwningClass().getName() + "." + attribute.getName() + "':";
 
 		InstantiatingSelectAttributeValueMappingModelEnhancer enhancer = new InstantiatingSelectAttributeValueMappingModelEnhancer(
-				this.pamtramModel, attribute, mappingHintGroup);
+				pamtramModel.orElseThrow(
+						() -> new RuntimeException("Internal error while determining PAMTraM instance to enhance...")),
+				attribute, mappingHintGroup);
 		final ValueSpecificationDialogRunner dialog = new ValueSpecificationDialogRunner(dialogMessage, enhancer);
 
 		Display.getDefault().syncExec(dialog);
 
 		if (dialog.wasTransformationStopRequested()) {
-			throw new AmbiguityResolvingException(new UserAbortException());
+			throw new AmbiguityResolvingException(new UserAbortException().getMessage(), new UserAbortException());
 		}
 
 		this.printMessage(dialog.getSingleValue(), UserDecisionResolvingStrategy.userDecisionPrefix);
@@ -158,7 +176,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		Display.getDefault().syncExec(dialog);
 
 		if (dialog.wasTransformationStopRequested()) {
-			throw new AmbiguityResolvingException(new UserAbortException());
+			throw new AmbiguityResolvingException(new UserAbortException().getMessage(), new UserAbortException());
 		}
 
 		int cardinality = -1;
@@ -169,7 +187,8 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 			} catch (NumberFormatException e) {
 				throw new AmbiguityResolvingException(
 						"Could not parse a valid cardinality (positive integer) from the string '"
-								+ dialog.getSingleValue() + "'!");
+								+ dialog.getSingleValue() + "'!",
+						e);
 			}
 		}
 		if (cardinality == -1) {
@@ -183,14 +202,21 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 	@Override
 	public List<EClass> joiningSelectRootElement(List<EClass> choices) throws AmbiguityResolvingException {
 
-		ArrayList<String> classNames = new ArrayList<>();
+		List<String> classNames = new ArrayList<>();
 
 		for (EClass eClass : choices) {
 			classNames.add(eClass.getName());
 		}
 
+		Set<EPackage> ePackages = choices.stream().map(AgteleEcoreUtil::getRootEPackage).collect(Collectors.toSet());
+
+		Optional<PAMTraM> pamtramModel = this.pamtramModels.stream().filter(p -> p.getTargetSectionModels().stream()
+				.map(TargetSectionModel::getMetaModelPackage).collect(Collectors.toSet()).containsAll(ePackages))
+				.findAny();
+
 		JoiningSelectRootElementMappingModelEnhancer enhancer = new JoiningSelectRootElementMappingModelEnhancer(
-				this.pamtramModel);
+				pamtramModel.orElseThrow(
+						() -> new RuntimeException("Internal error while determining PAMTraM instance to enhance...")));
 		final GenericSelectionDialogRunner<EClass> dialog = new GenericSelectionDialogRunner<EClass>(
 				"There was more than one target model element that could not be connected to a root element. Therefore "
 						+ "a model root element needs to be created. Please select a fitting class:",
@@ -205,7 +231,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 
 		Display.getDefault().syncExec(dialog);
 		if (dialog.wasTransformationStopRequested()) {
-			throw new AmbiguityResolvingException(new UserAbortException());
+			throw new AmbiguityResolvingException(new UserAbortException().getMessage(), new UserAbortException());
 		}
 		this.printMessage(dialog.getSingleSelection().getName(), UserDecisionResolvingStrategy.userDecisionPrefix);
 		return new ArrayList<>(Arrays.asList(dialog.getSingleSelection()));
@@ -215,8 +241,13 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 	public List<ModelConnectionPath> joiningSelectConnectionPath(List<ModelConnectionPath> choices,
 			TargetSection section) throws AmbiguityResolvingException {
 
+		Optional<PAMTraM> pamtramModel = this.pamtramModels.stream()
+				.filter(p -> p.getTargetSections().contains(section)).findAny();
+
 		JoiningSelectConnectionPathMappingModelEnhancer enhancer = new JoiningSelectConnectionPathMappingModelEnhancer(
-				this.pamtramModel, section);
+				pamtramModel.orElseThrow(
+						() -> new RuntimeException("Internal error while determining PAMTraM instance to enhance...")),
+				section);
 		final GenericSelectionDialogRunner<ModelConnectionPath> dialog = new GenericSelectionDialogRunner<>(
 				"Please choose one of the possible connections for connecting the "
 						+ "instances of the target section '" + section.getName() + "' (EClass: '"
@@ -225,7 +256,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 				0, false, choices, enhancer);
 		Display.getDefault().syncExec(dialog);
 		if (dialog.wasTransformationStopRequested()) {
-			throw new AmbiguityResolvingException(new UserAbortException());
+			throw new AmbiguityResolvingException(new UserAbortException().getMessage(), new UserAbortException());
 		}
 		this.printMessage(dialog.getSelection().toString(), UserDecisionResolvingStrategy.userDecisionPrefix);
 		return new ArrayList<>(Arrays.asList(dialog.getSingleSelection()));
@@ -236,8 +267,15 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 			Map<ModelConnectionPath, List<EObjectWrapper>> choices, TargetSection section,
 			List<EObjectWrapper> sectionInstances, MappingHintGroupType hintGroup) throws AmbiguityResolvingException {
 
+		Optional<PAMTraM> pamtramModel = this.pamtramModels.stream()
+				.filter(p -> p.getTargetSections().contains(section) || EcoreUtil.isAncestor(p.getTargetSectionModels()
+						.stream().flatMap(t -> t.getLibraryElements().stream()).collect(Collectors.toList()), section))
+				.findAny();
+
 		JoiningSelectConnectionPathAndContainerInstanceMappingModelEnhancer enhancer = new JoiningSelectConnectionPathAndContainerInstanceMappingModelEnhancer(
-				this.pamtramModel, section);
+				pamtramModel.orElseThrow(
+						() -> new RuntimeException("Internal error while determining PAMTraM instance to enhance...")),
+				section);
 		final PathAndInstanceSelectorRunner<ModelConnectionPath> dialog = new PathAndInstanceSelectorRunner<>(
 				sectionInstances.size() + " Instance" + (sectionInstances.size() > 1 ? "s" : "")
 						+ " of the TargetSection '" + section.getName() + "', created by the mapping '"
@@ -252,7 +290,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 
 		Display.getDefault().syncExec(dialog);
 		if (dialog.wasTransformationStopRequested()) {
-			throw new AmbiguityResolvingException(new UserAbortException());
+			throw new AmbiguityResolvingException(new UserAbortException().getMessage(), new UserAbortException());
 		}
 
 		ModelConnectionPath retPath = dialog.getPath();
@@ -288,8 +326,16 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 					+ " should be inserted.\n\n" + "Attribute value: " + hintValue;
 		}
 
+		Optional<PAMTraM> pamtramModel = modelConnectionHint != null
+				? this.pamtramModels.stream()
+						.filter(p -> p.getTargetSections()
+								.contains(modelConnectionHint.getTargetClass().getContainingSection()))
+						.findAny()
+				: Optional.ofNullable(this.pamtramModels.get(0));
+
 		JoiningSelectContainerInstanceMappingModelEnhancer enhancer = hintGroup instanceof MappingHintGroup
-				? new JoiningSelectContainerInstanceMappingModelEnhancer(this.pamtramModel,
+				? new JoiningSelectContainerInstanceMappingModelEnhancer(pamtramModel.orElseThrow(
+						() -> new RuntimeException("Internal error while determining PAMTraM instance to enhance...")),
 						(MappingHintGroup) hintGroup)
 				: null;
 
@@ -297,7 +343,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 				false, choices, enhancer);
 		Display.getDefault().syncExec(dialog);
 		if (dialog.wasTransformationStopRequested()) {
-			throw new AmbiguityResolvingException(new UserAbortException());
+			throw new AmbiguityResolvingException(new UserAbortException().getMessage(), new UserAbortException());
 		}
 
 		this.printMessage(dialog.getSelection().toString(), UserDecisionResolvingStrategy.userDecisionPrefix);
@@ -307,8 +353,12 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 	@Override
 	public List<EObjectWrapper> linkingSelectTargetInstance(List<EObjectWrapper> choices,
 			TargetSectionCrossReference reference, MappingHintGroupType hintGroup,
-			ReferenceTargetSelector referenceTargetSelector, EObjectWrapper sourceElement)
+			ReferenceTargetSelector referenceTargetSelector, List<EObjectWrapper> sourceElements)
 			throws AmbiguityResolvingException {
+
+		if (sourceElements.isEmpty()) {
+			return sourceElements;
+		}
 
 		String dialogMessage;
 		if (referenceTargetSelector != null) {
@@ -316,7 +366,8 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 					+ ((Mapping) hintGroup.eContainer()).getName() + "(Group: " + hintGroup.getName()
 					+ ")' has a Matcher that points to a target element with more than one instance. "
 					+ "Please choose to which element the Reference '" + reference.getName() + "' of the "
-					+ (sourceElement != null ? "following element should point to:\n\n" + sourceElement.toString()
+					+ (sourceElements.size() == 1
+							? "following element should point to:\n\n" + sourceElements.get(0).toString()
 							: "affected elements should point to.");
 		} else {
 			dialogMessage = "There was more than one target element found for the CrossReference '"
@@ -325,7 +376,8 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 							: hintGroup.getTargetSection().getEClass().getName())
 					+ " in Mapping " + ((Mapping) hintGroup.eContainer()).getName() + " (HintGroup: "
 					+ hintGroup.getName() + ") . Please select a target element"
-					+ (sourceElement != null ? " for the following source:\n" + sourceElement.toString() : ".");
+					+ (sourceElements.size() == 1 ? " for the following source:\n" + sourceElements.get(0).toString()
+							: ".");
 		}
 
 		final GenericSelectionDialogRunner<EObjectWrapper> dialog = new GenericSelectionDialogRunner<>(dialogMessage, 0,
@@ -334,7 +386,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		Display.getDefault().syncExec(dialog);
 
 		if (dialog.wasTransformationStopRequested()) {
-			throw new AmbiguityResolvingException(new UserAbortException());
+			throw new AmbiguityResolvingException(new UserAbortException().getMessage(), new UserAbortException());
 		}
 
 		this.printMessage(Arrays.toString(dialog.getSelection().toArray()),
@@ -369,7 +421,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		Display.getDefault().syncExec(dialog);
 
 		if (dialog.wasTransformationStopRequested()) {
-			throw new AmbiguityResolvingException(new UserAbortException());
+			throw new AmbiguityResolvingException(new UserAbortException().getMessage(), new UserAbortException());
 		}
 
 		TargetSectionClass retSection = dialog.getPath();

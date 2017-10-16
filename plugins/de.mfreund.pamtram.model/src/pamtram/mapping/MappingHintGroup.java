@@ -2,48 +2,39 @@
  */
 package pamtram.mapping;
 
+import pamtram.mapping.extended.ContainerSelector;
+import pamtram.mapping.extended.MappingHint;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Hint Group</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Hint
+ * Group</b></em>'. <!-- end-user-doc -->
  *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link pamtram.mapping.MappingHintGroup#getContainerSelector <em>Container Selector</em>}</li>
- * </ul>
+ * <!-- begin-model-doc -->
+ * A MappingHintGroup serves two purposes:
+ * <br />
+ * (1) It specifies a TargetSection that will be instantiated when the Mapping containing this MappingHintGroup is executed.
+ * <br />
+ * (2) It acts as container for a set of MappingHints. MappingHints can be used to assist the transformation algorithm in the instantiation of the specified TargetSection. For example, AttributeMappings can be added that specify how to set the values of the Attributes defined as part of the TargetSection.
+ * <br /><br />
+ * Note: Each execution of the Mapping will result in the instantiation of the specified TargetSection.
+ * <!-- end-model-doc -->
+ *
  *
  * @see pamtram.mapping.MappingPackage#getMappingHintGroup()
  * @model
  * @generated
  */
 public interface MappingHintGroup extends MappingHintGroupType, InstantiableMappingHintGroup {
-	/**
-	 * Returns the value of the '<em><b>Container Selector</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Model Connection Matcher</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Container Selector</em>' containment reference.
-	 * @see #setContainerSelector(ContainerSelector)
-	 * @see pamtram.mapping.MappingPackage#getMappingHintGroup_ContainerSelector()
-	 * @model containment="true"
-	 * @generated
-	 */
-	ContainerSelector getContainerSelector();
 
 	/**
-	 * Sets the value of the '{@link pamtram.mapping.MappingHintGroup#getContainerSelector <em>Container Selector</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Container Selector</em>' containment reference.
-	 * @see #getContainerSelector()
-	 * @generated
+	 * This guarantees compatibility to legacy implementations.
+	 *
+	 * @return
+	 * @deprecated {@link ContainerSelector} is now a full-fledged
+	 *             {@link MappingHint} and should be accessed via
+	 *             {@link MappingHintGroup#getMappingHints()}
 	 */
-	void setContainerSelector(ContainerSelector value);
+	@Deprecated
+	ContainerSelector getContainerSelector();
 
 } // MappingHintGroup

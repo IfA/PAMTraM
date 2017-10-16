@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
-import de.mfreund.gentrans.transformation.calculation.AttributeValueCalculator;
+import de.mfreund.gentrans.transformation.calculation.ValueCalculator;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.HintValueStorage;
 import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
@@ -17,11 +17,11 @@ import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractContainerParameter;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ParameterDescription;
 import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryPlugin;
-import pamtram.mapping.AttributeMapping;
 import pamtram.mapping.InstantiableMappingHintGroup;
-import pamtram.mapping.MappingHint;
 import pamtram.mapping.MappingHintGroup;
-import pamtram.mapping.MappingHintType;
+import pamtram.mapping.extended.AttributeMapping;
+import pamtram.mapping.extended.MappingHint;
+import pamtram.mapping.extended.MappingHintType;
 import pamtram.structure.generic.VirtualAttribute;
 import pamtram.structure.library.AttributeParameter;
 import pamtram.structure.library.ContainerParameter;
@@ -131,7 +131,7 @@ public class LibraryEntryInstantiator {
 	 *            The {@link TargetSectionRegistry} that has registered the target sections.
 	 * @return <em>true</em> if everything went well, <em>false</em> otherwise.
 	 */
-	public boolean instantiate(GenLibraryManager manager, AttributeValueCalculator calculator,
+	public boolean instantiate(GenLibraryManager manager, ValueCalculator calculator,
 			TargetSectionRegistry targetSectionRegistry) {
 
 		if (!manager.existsImplementationFor(this.ePackageURI)) {
@@ -145,7 +145,7 @@ public class LibraryEntryInstantiator {
 		 */
 		// TODO may, support for this should be added to the genlibrary
 		if (targetModel.equals(this.transformationHelper.getEObject())) {
-			this.logger.severe("Internal Error: Could not instantiate library entry for element '"
+			this.logger.severe(() -> "Internal Error: Could not instantiate library entry for element '"
 					+ this.transformationHelper.getEObject().toString() + "' as the element has no"
 					+ "container. This is currently not supported by the 'genlibrary'.");
 		}
@@ -170,22 +170,25 @@ public class LibraryEntryInstantiator {
 
 		// we may import a more specialized library entry
 		//
-		if (!resultingPath.equals(this.libraryEntry.getPath().getValue())) {
+		if (!resultingPath.equals(this.libraryEntry.getClasspath().getValue())) {
 
-			// Check if there is an actual LibraryEntry for the determined classpath or
+			// Check if there is an actual LibraryEntry for the determined
+			// classpath or
 			// move upwards in the classpath hierarchy until an entry is found.
 			//
 			de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry moreSpecificEntry = this.getMoreSpecificEntry(
-					this.libraryEntry, this.libraryEntry.getPath().getValue(), resultingPath, manager);
+					this.libraryEntry, this.libraryEntry.getClasspath().getValue(), resultingPath, manager);
 
 			if (moreSpecificEntry != null) {
 				libEntryToInsert = moreSpecificEntry;
 			}
 
-			// Finally, we can set the final, resulting classpath that we are going to use
-			// (This has been stored in the libraryEntry by #getMoreSpecificEntry).
+			// Finally, we can set the final, resulting classpath that we are
+			// going to use
+			// (This has been stored in the libraryEntry by
+			// #getMoreSpecificEntry).
 			//
-			resultingPath = this.libraryEntry.getPath().getValue();
+			resultingPath = this.libraryEntry.getClasspath().getValue();
 
 		}
 
@@ -205,6 +208,12 @@ public class LibraryEntryInstantiator {
 		de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry insertedEntry = manager
 				.insertIntoTargetModel(targetModel, libEntryToInsert, resultingPath);
 
+		if (insertedEntry == null) {
+			this.logger.severe(() -> "Failed to instantiate library entry '"
+					+ this.getLibraryEntry().getClasspath().getValue() + "'!");
+			return false;
+		}
+
 		/*
 		 * Now, we update the eObject wrapped by the 'transformationHelper' so this will point to the right element if
 		 * any further algorithms try to evaluate this.
@@ -220,12 +229,12 @@ public class LibraryEntryInstantiator {
 	 * created.
 	 *
 	 * @param calculator
-	 *            The {@link AttributeValueCalculator} that shall be used to calculate the value of the 'id' attribute.
+	 *            The {@link ValueCalculator} that shall be used to calculate the value of the 'id' attribute.
 	 * @return The calculated id or the specified {@link VirtualAttribute#getValue() value} if there was no
 	 *         {@link AttributeMapping} for the 'id' attribute. Returns '<em><b>null</b></em>' if an AttributeMapping
 	 *         was found but no value could be calculated.
 	 */
-	private String determineID(AttributeValueCalculator calculator) {
+	private String determineID(ValueCalculator calculator) {
 
 		Optional<AttributeMapping> idMapping = this.mappingHints.parallelStream()
 				.filter(mappingHint -> mappingHint instanceof AttributeMapping
@@ -243,12 +252,11 @@ public class LibraryEntryInstantiator {
 	 * the {@link VirtualAttribute virtual} 'classpath' attribute that produces a more specific classpath.
 	 *
 	 * @param calculator
-	 *            The {@link AttributeValueCalculator} that shall be used to calculate the value of the 'classpath'
-	 *            attribute.
+	 *            The {@link ValueCalculator} that shall be used to calculate the value of the 'classpath' attribute.
 	 * @return The calculated (more specific) value or the original classpath if there was no {@link AttributeMapping}
 	 *         for the 'classpath' attribute.
 	 */
-	private String determineResultingClasspath(AttributeValueCalculator calculator) {
+	private String determineResultingClasspath(ValueCalculator calculator) {
 
 		// Determine the attribute mapping responsible for the 'Path' attribute
 		//
@@ -258,12 +266,14 @@ public class LibraryEntryInstantiator {
 						&& ((AttributeMapping) mappingHint).getTarget().eContainer() instanceof LibraryEntry)
 				.map(mappingHint -> (AttributeMapping) mappingHint).findAny();
 
-		// If there is such a mapping, calculate the more specific classpath; otherwise, use the original
-		// classpath as denoted in the library entry imported into the pamtram model
+		// If there is such a mapping, calculate the more specific classpath;
+		// otherwise, use the original
+		// classpath as denoted in the library entry imported into the pamtram
+		// model
 		//
-		return pathMapping.isPresent() ? calculator.calculateAttributeValue(this.libraryEntry.getPath(),
+		return pathMapping.isPresent() ? calculator.calculateAttributeValue(this.libraryEntry.getClasspath(),
 				pathMapping.get(), this.hintValues.getHintValues(pathMapping.get()))
-				: this.libraryEntry.getPath().getValue();
+				: this.libraryEntry.getClasspath().getValue();
 	}
 
 	/**
@@ -277,12 +287,11 @@ public class LibraryEntryInstantiator {
 	 *            containers for {@link ContainerParameter ContainerParameters} and targets for
 	 *            {@link ExternalReferenceParameter ExternalReferenceParameters}.
 	 * @param calculator
-	 *            The {@link AttributeValueCalculator} that shall be used to calculate attribute values.
+	 *            The {@link ValueCalculator} that shall be used to calculate attribute values.
 	 * @return '<em><b>true</b></em>' if everything went well; '<em><b>false</b></em>' if an error occurred.
 	 */
 	@SuppressWarnings("unchecked")
-	private boolean prepareParameters(TargetSectionRegistry targetSectionRegistry,
-			AttributeValueCalculator calculator) {
+	private boolean prepareParameters(TargetSectionRegistry targetSectionRegistry, ValueCalculator calculator) {
 
 		for (LibraryParameter<?> param : this.libraryEntry.getParameters()) {
 
@@ -296,8 +305,8 @@ public class LibraryEntryInstantiator {
 				 * parameter
 				 */
 				if (attParam.getOriginalParameter().getNewValue() == null) {
-					this.logger.severe("Internal Error: The new value for the AttributeParameter '" + attParam.getName()
-							+ "' could not be determined!");
+					this.logger.severe(() -> "Internal Error: The new value for the AttributeParameter '"
+							+ attParam.getName() + "' could not be determined!");
 					return false;
 				}
 
@@ -334,7 +343,7 @@ public class LibraryEntryInstantiator {
 				 * every parameter
 				 */
 				if (extRefParam.getOriginalParameter().getTarget() == null) {
-					this.logger.severe("Internal Error: The target for the ExternalReferenceParameter '"
+					this.logger.severe(() -> "Internal Error: The target for the ExternalReferenceParameter '"
 							+ extRefParam.getName() + "' could not be determined!");
 					return false;
 				}
@@ -343,9 +352,11 @@ public class LibraryEntryInstantiator {
 
 		for (ResourceParameter resParam : this.libraryEntry.getResourceParameters()) {
 
-			// We need to compare the VirtualAttributes by their value instead of directly comparing the instances
+			// We need to compare the VirtualAttributes by their value instead
+			// of directly comparing the instances
 			// because
-			// those will be two different instances because of the previous cloning of the library entry
+			// those will be two different instances because of the previous
+			// cloning of the library entry
 			//
 			Optional<AttributeMapping> resParamMapping = this.mappingHints.parallelStream()
 					.filter(mappingHint -> mappingHint instanceof AttributeMapping && resParam.getAttribute().getValue()
@@ -368,7 +379,7 @@ public class LibraryEntryInstantiator {
 	 * This retrieves an entry for the given 'newPath' from the library, checks if the parameters match those of the old
 	 * library entry, copies the old parameters to the new entry and returns the new entry. If there is no match for the
 	 * given 'newPath', this algorithm goes up in the classpath and tries to determine a more abstract entry. The
-	 * resulting classpath for that an entry could be determined is stored in the {@link LibraryEntry#getPath()}
+	 * resulting classpath for that an entry could be determined is stored in the {@link LibraryEntry#getClasspath()}
 	 * variable of the 'oldEntry' and can be evaulated by clients.
 	 *
 	 * @param oldEntry
@@ -399,7 +410,8 @@ public class LibraryEntryInstantiator {
 
 			newEntry = manager.getLibraryEntry(this.ePackageURI, resultPath, false);
 
-			// An entry for the given path has been found. Now, we need to check if the parameters
+			// An entry for the given path has been found. Now, we need to check
+			// if the parameters
 			// match.
 			//
 			if (newEntry != null) {
@@ -428,7 +440,7 @@ public class LibraryEntryInstantiator {
 		}
 
 		// we update the resulting path
-		oldEntry.getPath().setValue(resultPath);
+		oldEntry.getClasspath().setValue(resultPath);
 		return newEntry;
 
 	}
@@ -450,7 +462,8 @@ public class LibraryEntryInstantiator {
 	 */
 	private boolean checkParameters(ParameterDescription oldParams, ParameterDescription newParams) {
 
-		// TODO up to now, we just compare the types of the existing parameters; maybe there is a way to get a better
+		// TODO up to now, we just compare the types of the existing parameters;
+		// maybe there is a way to get a better
 		// comparison result???
 		// TODO check resource parameters
 

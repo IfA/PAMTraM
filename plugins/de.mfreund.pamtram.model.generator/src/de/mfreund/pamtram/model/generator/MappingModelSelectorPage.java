@@ -30,6 +30,7 @@ import pamtram.SectionModel;
 import pamtram.SourceSectionModel;
 import pamtram.TargetSectionModel;
 import pamtram.presentation.PamtramEditor;
+import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.generic.Section;
 
 /**
@@ -98,7 +99,8 @@ public class MappingModelSelectorPage extends WizardPage {
 		// create a file selector
 		FileFieldEditor fileFieldEditor;
 		fileFieldEditor = new FileFieldEditor("fileSelect", "Select file...", container);
-		fileFieldEditor.setFileExtensions(new String[] {"*.pamtram"});
+		fileFieldEditor.setFileExtensions(
+				new String[] { "*" + PamtramEditPlugin.INSTANCE.getString("PAMTRAM_MODEL_FILE_ENDING") });
 
 		// set the initial browse path
 		if (this.wizardData.getSourceElements() != null && !this.wizardData.getSourceElements().isEmpty()
@@ -106,7 +108,8 @@ public class MappingModelSelectorPage extends WizardPage {
 
 			Resource resource = this.wizardData.getSourceElements().get(0).eResource();
 			File initialBrowsePath = new File(ResourceHelper
-					.convertPlatformToFileURI(resource.getURI().trimSegments(2).appendSegment("Pamtram"))
+					.convertPlatformToFileURI(resource.getURI().trimSegments(2)
+							.appendSegment(PamtramEditPlugin.INSTANCE.getString("PAMTRAM_FOLDER_NAME")))
 					.toFileString());
 			if (!initialBrowsePath.exists()) {
 				initialBrowsePath = new File(ResourcesPlugin.getWorkspace().getRoot().getLocationURI());
@@ -135,7 +138,7 @@ public class MappingModelSelectorPage extends WizardPage {
 		// Create a separator
 		//
 		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).span(3, 1)
-		.applyTo(new Label(container, SWT.SEPARATOR | SWT.HORIZONTAL));
+				.applyTo(new Label(container, SWT.SEPARATOR | SWT.HORIZONTAL));
 
 		Label sectionTypeLabel = new Label(container, SWT.NONE);
 		sectionTypeLabel.setText("Type of metamodel section to be created:");
@@ -163,7 +166,7 @@ public class MappingModelSelectorPage extends WizardPage {
 		// Create a separator
 		//
 		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).span(3, 1)
-		.applyTo(new Label(container, SWT.SEPARATOR | SWT.HORIZONTAL));
+				.applyTo(new Label(container, SWT.SEPARATOR | SWT.HORIZONTAL));
 
 		Label modelSelectionLabel = new Label(container, SWT.NONE);
 		modelSelectionLabel.setText("Target Source/TargetSectionModel:");
@@ -172,7 +175,8 @@ public class MappingModelSelectorPage extends WizardPage {
 		// list for selecting the target Source/TargetSectionModel
 		//
 		this.modelSelectionList = new List(container, SWT.NONE);
-		this.modelSelectionList.setToolTipText("Please specify the Source/TargetSectionModel into that the generated section(s) shall be added...");
+		this.modelSelectionList.setToolTipText(
+				"Please specify the Source/TargetSectionModel into that the generated section(s) shall be added...");
 		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).span(3, 1).applyTo(this.modelSelectionList);
 
 		this.modelSelectionList.addSelectionListener((SelectionListener2) e -> this.sectionModelSelectionChanged());
@@ -294,9 +298,8 @@ public class MappingModelSelectorPage extends WizardPage {
 		final URI pamtramUri = URI.createFileURI(modelPath);
 
 		// load the pamtram model
-		XMIResource pamtramResource =
-				(XMIResource) resourceSet.getResource(pamtramUri, true);
-		if(!(pamtramResource.getContents().get(0) instanceof PAMTraM)) {
+		XMIResource pamtramResource = (XMIResource) resourceSet.getResource(pamtramUri, true);
+		if (!(pamtramResource.getContents().get(0) instanceof PAMTraM)) {
 			throw new IOException("The pamtram file does not seem to contain a pamtram instance. Aborting...");
 		}
 		this.wizardData.setPamtram((PAMTraM) pamtramResource.getContents().get(0));
@@ -314,18 +317,14 @@ public class MappingModelSelectorPage extends WizardPage {
 
 		// get the source packages
 		Set<EPackage> sourcePackages = pamtram.getSourceSectionModels().stream()
-				.map(SourceSectionModel::getMetaModelPackage)
-				.collect(Collectors.toSet());
-		sourcePackages
-		.addAll(pamtram.getSharedSourceSectionModels().stream().map(SourceSectionModel::getMetaModelPackage)
-				.collect(Collectors.toSet()));
+				.map(SourceSectionModel::getMetaModelPackage).collect(Collectors.toSet());
+		sourcePackages.addAll(pamtram.getSharedSourceSectionModels().stream()
+				.map(SourceSectionModel::getMetaModelPackage).collect(Collectors.toSet()));
 		// get the target packages
 		Set<EPackage> targetPackages = pamtram.getTargetSectionModels().stream()
-				.map(TargetSectionModel::getMetaModelPackage)
-				.collect(Collectors.toSet());
+				.map(TargetSectionModel::getMetaModelPackage).collect(Collectors.toSet());
 		targetPackages.addAll(pamtram.getSharedTargetSectionModels().stream()
-				.map(TargetSectionModel::getMetaModelPackage)
-				.collect(Collectors.toSet()));
+				.map(TargetSectionModel::getMetaModelPackage).collect(Collectors.toSet()));
 
 		boolean source = sourcePackages.parallelStream().anyMatch(s -> s.getNsURI().equals(ePackage.getNsURI()));
 		boolean target = targetPackages.parallelStream().anyMatch(s -> s.getNsURI().equals(ePackage.getNsURI()));
@@ -394,12 +393,13 @@ public class MappingModelSelectorPage extends WizardPage {
 	 */
 	private void updateSectionModelList() {
 
-		this.modelSelectionList.setItems(new String[]{});
+		this.modelSelectionList.setItems(new String[] {});
 
 		// update the list of section models to choose
 		//
 		PAMTraM pamtram = this.wizardData.getPamtram();
-		if(pamtram == null || this.wizardData.getSectionType() == SectionType.NONE || this.wizardData.getSectionType() == SectionType.BOTH) {
+		if (pamtram == null || this.wizardData.getSectionType() == SectionType.NONE
+				|| this.wizardData.getSectionType() == SectionType.BOTH) {
 			return;
 		}
 
@@ -408,31 +408,32 @@ public class MappingModelSelectorPage extends WizardPage {
 		Stream<SectionModel<?, ?, ?, ?>> sectionModelStream = this.wizardData.getSectionType() == SectionType.SOURCE
 				? Stream.concat(this.wizardData.getPamtram().getSourceSectionModels().stream(),
 						this.wizardData.getPamtram().getSharedSourceSectionModels().stream())
-						: Stream.concat(this.wizardData.getPamtram().getTargetSectionModels().stream(),
-								this.wizardData.getPamtram().getSharedTargetSectionModels().stream());
+				: Stream.concat(this.wizardData.getPamtram().getTargetSectionModels().stream(),
+						this.wizardData.getPamtram().getSharedTargetSectionModels().stream());
 
-				// Filter those packages with the correct MetaModelPackage
-				//
-				this.sectionModels = sectionModelStream
-						.filter(s -> this.wizardData.getEPackage().equals(s.getMetaModelPackage()))
-						.collect(Collectors.toList());
+		// Filter those packages with the correct MetaModelPackage
+		//
+		this.sectionModels = sectionModelStream
+				.filter(s -> this.wizardData.getEPackage().equals(s.getMetaModelPackage()))
+				.collect(Collectors.toList());
 
-				// Update the list
-				//
-				String prefix = this.wizardData.getSectionType() == SectionType.SOURCE ? "SourceSectionModel "
-						: "TargetSectionModel ";
-				this.sectionModels.stream().forEach(sectionModel -> this.modelSelectionList
-						.add(prefix + (sectionModel.getName() != null ? sectionModel.getName() : "")));
+		// Update the list
+		//
+		String prefix = this.wizardData.getSectionType() == SectionType.SOURCE ? "SourceSectionModel "
+				: "TargetSectionModel ";
+		this.sectionModels.stream().forEach(sectionModel -> this.modelSelectionList
+				.add(prefix + (sectionModel.getName() != null ? sectionModel.getName() : "")));
 
-				// Select the first entry
-				//
-				this.modelSelectionList.select(0);
-				this.sectionModelSelectionChanged();
+		// Select the first entry
+		//
+		this.modelSelectionList.select(0);
+		this.sectionModelSelectionChanged();
 	}
 
 	@Override
 	public boolean isPageComplete() {
-		return this.wizardData.getPamtram() != null && this.wizardData.getSectionType() != SectionType.NONE &&
-				this.wizardData.getSectionType() != SectionType.BOTH && this.wizardData.getSectionModel() != null;
+
+		return this.wizardData.getPamtram() != null && this.wizardData.getSectionType() != SectionType.NONE
+				&& this.wizardData.getSectionType() != SectionType.BOTH && this.wizardData.getSectionModel() != null;
 	}
 }

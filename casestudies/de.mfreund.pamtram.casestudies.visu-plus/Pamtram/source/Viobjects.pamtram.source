@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="ASCII"?>
+<pamtram:SourceSectionModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmi:id="_FCHUIF5SEeebSvNNZJQHVw" name="Viobjects">
+  <metaModelPackage href="http://gfai.de/stgml.xsd#/"/>
+  <sections xsi:type="source:SourceSection" xmi:id="_FCHUIV5SEeebSvNNZJQHVw" name="viObject Base" abstract="true">
+    <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
+    <container xsi:type="source:SourceSection" href="Layers.pamtram.source#_FCGGCV5SEeebSvNNZJQHVw"/>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCHUIl5SEeebSvNNZJQHVw" name="x">
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/x"/>
+    </attributes>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCHUI15SEeebSvNNZJQHVw" name="y">
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/y"/>
+    </attributes>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCHUJF5SEeebSvNNZJQHVw" name="width">
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/width"/>
+    </attributes>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCHUJV5SEeebSvNNZJQHVw" name="height">
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/height"/>
+    </attributes>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCHUJl5SEeebSvNNZJQHVw" name="label">
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/label"/>
+    </attributes>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCHUJ15SEeebSvNNZJQHVw" name="id">
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/id"/>
+    </attributes>
+  </sections>
+  <sections xsi:type="source:SourceSection" xmi:id="_FCH7MF5SEeebSvNNZJQHVw" name="viObject with FunctionInterface Base" abstract="true">
+    <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
+    <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_FCH7MV5SEeebSvNNZJQHVw" name="externaldata">
+      <value xsi:type="source:SourceSectionClass" xmi:id="_FCIiQF5SEeebSvNNZJQHVw" name="extdataType">
+        <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
+        <references xsi:type="source:SourceSectionCrossReference" xmi:id="_FCJJUF5SEeebSvNNZJQHVw" name="extdata">
+          <value xsi:type="source:SourceSection" href="Extdata.pamtram.source#_FCLlkV5SEeebSvNNZJQHVw"/>
+          <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
+        </references>
+      </value>
+      <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
+    </references>
+    <container xsi:type="source:SourceSection" href="Layers.pamtram.source#_FCGGCV5SEeebSvNNZJQHVw"/>
+  </sections>
+  <sections xsi:type="source:SourceSection" xmi:id="_FCJJUV5SEeebSvNNZJQHVw" name="viObject with SignalInterface Base" abstract="true">
+    <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
+    <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_FCJJUl5SEeebSvNNZJQHVw" name="externalData">
+      <value xsi:type="source:SourceSectionClass" xmi:id="_FCJJU15SEeebSvNNZJQHVw" name="ExternalData">
+        <eClass href="http://gfai.de/stgml.xsd#//Externaldatatype"/>
+        <references xsi:type="source:SourceSectionCrossReference" xmi:id="_FCJJVF5SEeebSvNNZJQHVw" name="extdata">
+          <value xsi:type="source:SourceSection" href="Extdata.pamtram.source#_FCMzsV5SEeebSvNNZJQHVw"/>
+          <eReference href="http://gfai.de/stgml.xsd#//Externaldatatype/extdata"/>
+        </references>
+      </value>
+      <eReference href="http://gfai.de/stgml.xsd#//Viobject/externaldata"/>
+    </references>
+    <container xsi:type="source:SourceSection" href="Layers.pamtram.source#_FCGGCV5SEeebSvNNZJQHVw"/>
+  </sections>
+  <sections xsi:type="source:SourceSection" xmi:id="_FCJJVV5SEeebSvNNZJQHVw" name="viObject Input/Output Bool/Double" extend="_FCHUIV5SEeebSvNNZJQHVw _FCJJUV5SEeebSvNNZJQHVw">
+    <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
+    <container xsi:type="source:SourceSection" href="Layers.pamtram.source#_FCGGCV5SEeebSvNNZJQHVw"/>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCJJVl5SEeebSvNNZJQHVw" name="ctrltype">
+      <valueConstraints xsi:type="constraint:EqualityConstraint" xmi:id="_FCJJV15SEeebSvNNZJQHVw" name="Output:Bool" expression="Output:Bool"/>
+      <valueConstraints xsi:type="constraint:EqualityConstraint" xmi:id="_FCJJWF5SEeebSvNNZJQHVw" name="Input:Bool" expression="Input:Bool"/>
+      <valueConstraints xsi:type="constraint:EqualityConstraint" xmi:id="_FCJJWV5SEeebSvNNZJQHVw" name="Output:Double" expression="Output:Double"/>
+      <valueConstraints xsi:type="constraint:EqualityConstraint" xmi:id="_FCJJWl5SEeebSvNNZJQHVw" name="Input:Double" expression="Input:Double"/>
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
+    </attributes>
+  </sections>
+  <sections xsi:type="source:SourceSection" xmi:id="_FCJJW15SEeebSvNNZJQHVw" name="viObject NavigatorButton" extend="_FCHUIV5SEeebSvNNZJQHVw">
+    <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
+    <container xsi:type="source:SourceSection" href="Layers.pamtram.source#_FCGGCV5SEeebSvNNZJQHVw"/>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCJJXF5SEeebSvNNZJQHVw" name="ctrltype = &quot;NavigatorButton&quot;">
+      <valueConstraints xsi:type="constraint:EqualityConstraint" xmi:id="_FCJJXV5SEeebSvNNZJQHVw" name="NavigatorButton" expression="NavigatorButton"/>
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
+    </attributes>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCJJXl5SEeebSvNNZJQHVw" name="send@NavigatorButton">
+      <valueConstraints xsi:type="constraint:EqualityConstraint" xmi:id="_FCJJX15SEeebSvNNZJQHVw" name="Logout" type="FORBIDDEN" expression="Logout"/>
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/send"/>
+    </attributes>
+  </sections>
+  <sections xsi:type="source:SourceSection" xmi:id="_FCJwYF5SEeebSvNNZJQHVw" name="viObject FunctionButton" extend="_FCHUIV5SEeebSvNNZJQHVw _FCH7MF5SEeebSvNNZJQHVw">
+    <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
+    <container xsi:type="source:SourceSection" href="Layers.pamtram.source#_FCGGCV5SEeebSvNNZJQHVw"/>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCJwYV5SEeebSvNNZJQHVw" name="ctrltype = &quot;FunctionButton&quot;">
+      <valueConstraints xsi:type="constraint:EqualityConstraint" xmi:id="_FCJwYl5SEeebSvNNZJQHVw" name="FunctionButton" expression="FunctionButton"/>
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
+    </attributes>
+  </sections>
+  <sections xsi:type="source:SourceSection" xmi:id="_FCJwY15SEeebSvNNZJQHVw" name="viObject AlertInterface" extend="_FCHUIV5SEeebSvNNZJQHVw _FCJJUV5SEeebSvNNZJQHVw">
+    <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
+    <container xsi:type="source:SourceSection" href="Layers.pamtram.source#_FCGGCV5SEeebSvNNZJQHVw"/>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCJwZF5SEeebSvNNZJQHVw" name="ctrltype = &quot;AlertInterface&quot;">
+      <valueConstraints xsi:type="constraint:EqualityConstraint" xmi:id="_FCJwZV5SEeebSvNNZJQHVw" name="AlertInterface" expression="AlertInterface"/>
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
+    </attributes>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCJwZl5SEeebSvNNZJQHVw" name="grType == &quot;Rectangle&quot;">
+      <valueConstraints xsi:type="constraint:EqualityConstraint" xmi:id="_FCJwZ15SEeebSvNNZJQHVw" name="Rectangle" expression="Rectangle"/>
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/grtype"/>
+    </attributes>
+  </sections>
+  <sections xsi:type="source:SourceSection" xmi:id="_FCJwaF5SEeebSvNNZJQHVw" name="viObject container Rectangle/Ellipse" extend="_FCHUIV5SEeebSvNNZJQHVw">
+    <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
+    <container xsi:type="source:SourceSection" href="Layers.pamtram.source#_FCGGCV5SEeebSvNNZJQHVw"/>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCJwaV5SEeebSvNNZJQHVw" name="ctrltype = &quot;StructureComponentControl&quot;">
+      <valueConstraints xsi:type="constraint:EqualityConstraint" xmi:id="_FCJwal5SEeebSvNNZJQHVw" name="StructureComponentControl" expression="StructureComponentControl"/>
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
+    </attributes>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCJwa15SEeebSvNNZJQHVw" name="grType == &quot;Rectangle/Ellipse&quot;">
+      <valueConstraints xsi:type="constraint:EqualityConstraint" xmi:id="_FCJwbF5SEeebSvNNZJQHVw" name="Ellipse" expression="Ellipse"/>
+      <valueConstraints xsi:type="constraint:EqualityConstraint" xmi:id="_FCJwbV5SEeebSvNNZJQHVw" name="Rectangle" expression="Rectangle"/>
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/grtype"/>
+    </attributes>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCJwbl5SEeebSvNNZJQHVw" name="conveyorImageName">
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/conveyorImageName"/>
+    </attributes>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCJwb15SEeebSvNNZJQHVw" name="correctedX">
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/correctedX"/>
+    </attributes>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCJwcF5SEeebSvNNZJQHVw" name="correctedY">
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/correctedY"/>
+    </attributes>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCJwcV5SEeebSvNNZJQHVw" name="correctedHeight">
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/correctedHeight"/>
+    </attributes>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCJwcl5SEeebSvNNZJQHVw" name="stopperHorizontalInDirection">
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/stopperHorizontalInDirection"/>
+    </attributes>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCJwc15SEeebSvNNZJQHVw" name="stopperVerticalInDirection">
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/stopperVerticalInDirection"/>
+    </attributes>
+    <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCJwdF5SEeebSvNNZJQHVw" name="isVertical">
+      <attribute href="http://gfai.de/stgml.xsd#//Viobject/isVertical"/>
+    </attributes>
+  </sections>
+</pamtram:SourceSectionModel>

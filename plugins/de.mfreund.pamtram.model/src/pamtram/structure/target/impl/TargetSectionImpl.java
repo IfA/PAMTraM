@@ -5,8 +5,10 @@ package pamtram.structure.target.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -18,10 +20,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
+import pamtram.structure.generic.CardinalityType;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.Section;
 import pamtram.structure.generic.util.GenericValidator;
@@ -38,6 +42,7 @@ import pamtram.structure.target.util.TargetValidator;
  * <ul>
  *   <li>{@link pamtram.structure.target.impl.TargetSectionImpl#isAbstract <em>Abstract</em>}</li>
  *   <li>{@link pamtram.structure.target.impl.TargetSectionImpl#getExtend <em>Extend</em>}</li>
+ *   <li>{@link pamtram.structure.target.impl.TargetSectionImpl#getAllExtend <em>All Extend</em>}</li>
  *   <li>{@link pamtram.structure.target.impl.TargetSectionImpl#getReferencingMappingHintGroups <em>Referencing Mapping Hint Groups</em>}</li>
  *   <li>{@link pamtram.structure.target.impl.TargetSectionImpl#getFile <em>File</em>}</li>
  * </ul>
@@ -137,6 +142,32 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<TargetSection> getAllExtend() {
+		Set<Object> ret = new HashSet<>();
+		
+			List<Section<?, ?, ?, ?>> toCheck = new ArrayList<>();
+				toCheck.add(this);
+		
+			while (!toCheck.isEmpty()) {
+					Section<?, ?, ?, ?> next = toCheck.remove(0);
+		
+				List<Section<?, ?, ?, ?>> localToCheck = next.getExtend().stream().filter(e -> !ret.contains(e))
+							.collect(Collectors.toList());
+					ret.addAll(localToCheck);
+					toCheck.addAll(localToCheck);
+				}
+		
+			ret.addAll(this.getExtend().stream().flatMap(s -> s.getAllExtend().stream()).collect(Collectors.toList()));
+		
+			return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.SECTION__ALL_EXTEND, ret.size(),
+						ret.toArray());
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -150,11 +181,11 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 		
 			mappings = this.eResource().getResourceSet().getResources().stream()
 					.filter(r -> r.getContents().get(0) instanceof pamtram.PAMTraM)
-					.flatMap(r -> ((pamtram.PAMTraM) r.getContents().get(0)).getMappings().parallelStream())
+					.flatMap(r -> ((pamtram.PAMTraM) r.getContents().get(0)).getMappings().stream())
 					.collect(Collectors.toList());
 		}
 		
-		List<MappingHintGroupType> referencingHintGroups = mappings.parallelStream().flatMap(m -> m.getMappingHintGroups().parallelStream()).filter(m -> this.equals(m.getTargetSection())).collect(Collectors.toList());
+		List<MappingHintGroupType> referencingHintGroups = mappings.stream().flatMap(m -> m.getMappingHintGroups().stream()).filter(m -> this.equals(m.getTargetSection())).collect(Collectors.toList());
 		
 		return new UnmodifiableEList<>(this, TargetPackage.Literals.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS,
 				referencingHintGroups.size(), referencingHintGroups.toArray());
@@ -214,6 +245,30 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 					(Diagnostic.WARNING,
 					TargetValidator.DIAGNOSTIC_SOURCE,
 							TargetValidator.TARGET_SECTION__VALIDATE_IS_REFERENCED_BY_MAPPING_HINT_GROUP,
+							errorMessage,
+					new Object[] { this, TargetPackage.Literals.TARGET_SECTION }));
+		
+		}
+		
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean validateCardinality(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		boolean result = this.getCardinality() != CardinalityType.ONE;
+		
+		if (!result && diagnostics != null) {
+		
+			String errorMessage = "The cardinality of this section is currently set to 'ONE'. Consider changing the cardinality if you want to allow that multiple instances of this section are created based on a mapping!";
+		
+			diagnostics.add(new BasicDiagnostic
+					(Diagnostic.WARNING,
+					TargetValidator.DIAGNOSTIC_SOURCE,
+							TargetValidator.TARGET_SECTION__VALIDATE_CARDINALITY,
 							errorMessage,
 					new Object[] { this, TargetPackage.Literals.TARGET_SECTION }));
 		
@@ -292,6 +347,8 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 				return isAbstract();
 			case TargetPackage.TARGET_SECTION__EXTEND:
 				return getExtend();
+			case TargetPackage.TARGET_SECTION__ALL_EXTEND:
+				return getAllExtend();
 			case TargetPackage.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS:
 				return getReferencingMappingHintGroups();
 			case TargetPackage.TARGET_SECTION__FILE:
@@ -354,6 +411,8 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 				return abstract_ != ABSTRACT_EDEFAULT;
 			case TargetPackage.TARGET_SECTION__EXTEND:
 				return extend != null && !extend.isEmpty();
+			case TargetPackage.TARGET_SECTION__ALL_EXTEND:
+				return !getAllExtend().isEmpty();
 			case TargetPackage.TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS:
 				return !getReferencingMappingHintGroups().isEmpty();
 			case TargetPackage.TARGET_SECTION__FILE:
@@ -372,6 +431,7 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 			switch (derivedFeatureID) {
 				case TargetPackage.TARGET_SECTION__ABSTRACT: return GenericPackage.SECTION__ABSTRACT;
 				case TargetPackage.TARGET_SECTION__EXTEND: return GenericPackage.SECTION__EXTEND;
+				case TargetPackage.TARGET_SECTION__ALL_EXTEND: return GenericPackage.SECTION__ALL_EXTEND;
 				default: return -1;
 			}
 		}
@@ -388,6 +448,7 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 			switch (baseFeatureID) {
 				case GenericPackage.SECTION__ABSTRACT: return TargetPackage.TARGET_SECTION__ABSTRACT;
 				case GenericPackage.SECTION__EXTEND: return TargetPackage.TARGET_SECTION__EXTEND;
+				case GenericPackage.SECTION__ALL_EXTEND: return TargetPackage.TARGET_SECTION__ALL_EXTEND;
 				default: return -1;
 			}
 		}
@@ -420,6 +481,8 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 		switch (operationID) {
 			case TargetPackage.TARGET_SECTION___VALIDATE_IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP:
 				return validateIsReferencedByMappingHintGroup((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case TargetPackage.TARGET_SECTION___VALIDATE_CARDINALITY__DIAGNOSTICCHAIN_MAP:
+				return validateCardinality((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case TargetPackage.TARGET_SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP:
 				return validateContainerMatchesExtendContainer((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case TargetPackage.TARGET_SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP:

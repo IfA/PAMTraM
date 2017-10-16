@@ -69,13 +69,13 @@ public class UnaryConditionItemProvider extends ComplexConditionItemProvider {
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_UnaryCondition_sharedCondPart_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_UnaryCondition_sharedCondPart_feature", "_UI_UnaryCondition_type"),
+				 getString("_UI_UnaryCondition_sharedCondPart_description"),
 				 ConditionPackage.Literals.UNARY_CONDITION__SHARED_COND_PART,
 				 true,
 				 false,
 				 true,
 				 null,
-				 null,
+				 getString("_UI_ExtendedPropertyCategory"),
 				 null));
 	}
 

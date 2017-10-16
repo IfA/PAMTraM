@@ -44,7 +44,9 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 
-import pamtram.PamtramPackage;
+import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
+import pamtram.PAMTraM;
+import pamtram.SectionModel;
 import pamtram.actions.CreateSharedModelChildAction;
 import pamtram.actions.CreateSharedModelSiblingAction;
 import pamtram.actions.CutClassAndPasteAsNewSectionAction;
@@ -64,9 +66,11 @@ import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.target.TargetSectionClass;
 import pamtram.structure.target.TargetSectionReference;
+import pamtram.util.SharedModelUtil;
 
 /**
- * This is the action bar contributor for the Pamtram model editor. <!-- begin-user-doc --> <!-- end-user-doc -->
+ * This is the action bar contributor for the Pamtram model editor. <!--
+ * begin-user-doc --> <!-- end-user-doc -->
  *
  * @generated
  */
@@ -74,21 +78,24 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 		implements ISelectionChangedListener {
 
 	/**
-	 * This keeps track of the active editor. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This keeps track of the active editor. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 *
 	 * @generated
 	 */
 	protected IEditorPart activeEditorPart;
 
 	/**
-	 * This keeps track of the current selection provider. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This keeps track of the current selection provider. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
 	protected ISelectionProvider selectionProvider;
 
 	/**
-	 * This action opens the Properties view. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This action opens the Properties view. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 *
 	 * @generated
 	 */
@@ -107,8 +114,9 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 	};
 
 	/**
-	 * This action refreshes the viewer of the current editor if the editor implements
-	 * {@link org.eclipse.emf.common.ui.viewer.IViewerProvider}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This action refreshes the viewer of the current editor if the editor
+	 * implements {@link org.eclipse.emf.common.ui.viewer.IViewerProvider}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
@@ -134,32 +142,38 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 	};
 
 	/**
-	 * This will contain one {@link org.eclipse.emf.edit.ui.action.CreateChildAction} corresponding to each descriptor
-	 * generated for the current selection by the item provider. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This will contain one
+	 * {@link org.eclipse.emf.edit.ui.action.CreateChildAction} corresponding to
+	 * each descriptor generated for the current selection by the item provider.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
 	protected Collection<IAction> createChildActions;
 
 	/**
-	 * This is the menu manager into which menu contribution items should be added for CreateChild actions. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This is the menu manager into which menu contribution items should be
+	 * added for CreateChild actions. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
 	 *
 	 * @generated
 	 */
 	protected IMenuManager createChildMenuManager;
 
 	/**
-	 * This will contain one {@link org.eclipse.emf.edit.ui.action.CreateSiblingAction} corresponding to each descriptor
-	 * generated for the current selection by the item provider. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This will contain one
+	 * {@link org.eclipse.emf.edit.ui.action.CreateSiblingAction} corresponding
+	 * to each descriptor generated for the current selection by the item
+	 * provider. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
 	protected Collection<IAction> createSiblingActions;
 
 	/**
-	 * This is the menu manager into which menu contribution items should be added for CreateSibling actions. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This is the menu manager into which menu contribution items should be
+	 * added for CreateSibling actions. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 *
 	 * @generated
 	 */
@@ -171,12 +185,14 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 	protected Collection<IAction> otherActions;
 
 	/**
-	 * This is the menu manager into which menu contribution items should be added for "other actions" actions.
+	 * This is the menu manager into which menu contribution items should be
+	 * added for "other actions" actions.
 	 */
 	protected IMenuManager otherActionsMenuManager;
 
 	/**
-	 * This creates an instance of the contributor. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This creates an instance of the contributor. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 *
 	 * @generated
 	 */
@@ -190,7 +206,8 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 	}
 
 	/**
-	 * This adds Separators for editor additions to the tool bar. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds Separators for editor additions to the tool bar. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
@@ -202,8 +219,9 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 	}
 
 	/**
-	 * This adds to the menu bar a menu and some separators for editor additions, as well as the sub-menus for object
-	 * creation items. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds to the menu bar a menu and some separators for editor
+	 * additions, as well as the sub-menus for object creation items. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 */
 	@Override
 	public void contributeToMenu(IMenuManager menuManager) {
@@ -243,8 +261,9 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 	}
 
 	/**
-	 * When the active editor changes, this remembers the change and registers with it as a selection provider. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * When the active editor changes, this remembers the change and registers
+	 * with it as a selection provider. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 *
 	 * @generated
 	 */
@@ -275,9 +294,12 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 	}
 
 	/**
-	 * This implements {@link org.eclipse.jface.viewers.ISelectionChangedListener}, handling
-	 * {@link org.eclipse.jface.viewers.SelectionChangedEvent}s by querying for the children and siblings that can be
-	 * added to the selected object and updating the menus accordingly. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This implements
+	 * {@link org.eclipse.jface.viewers.ISelectionChangedListener}, handling
+	 * {@link org.eclipse.jface.viewers.SelectionChangedEvent}s by querying for
+	 * the children and siblings that can be added to the selected object and
+	 * updating the menus accordingly. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
 	 */
 	@Override
 	public void selectionChanged(SelectionChangedEvent event) {
@@ -332,9 +354,9 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 	}
 
 	/**
-	 * This generates a {@link org.eclipse.emf.edit.ui.action.CreateChildAction} for each object in
-	 * <code>descriptors</code>, and returns the collection of these actions. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * This generates a {@link org.eclipse.emf.edit.ui.action.CreateChildAction}
+	 * for each object in <code>descriptors</code>, and returns the collection
+	 * of these actions. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
@@ -354,14 +376,8 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 				if (this.isValidDescriptor(descriptor, provider)) {
 					if (descriptor instanceof CommandParameter
 							&& ((CommandParameter) descriptor).getFeature() instanceof EStructuralFeature
-							&& (((CommandParameter) descriptor).getFeature()
-									.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODELS)
-									|| ((CommandParameter) descriptor).getFeature()
-											.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODELS)
-									|| ((CommandParameter) descriptor).getFeature()
-											.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_MAPPING_MODELS)
-									|| ((CommandParameter) descriptor).getFeature()
-											.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_CONDITION_MODELS))) {
+							&& SharedModelUtil.isValidSubModelFeature(
+									(EStructuralFeature) ((CommandParameter) descriptor).getFeature())) {
 						actions.add(new CreateSharedModelChildAction(this.activeEditorPart, selection, descriptor));
 					} else {
 						actions.add(new CreateChildAction(this.activeEditorPart, selection, descriptor));
@@ -381,7 +397,8 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 					"Convert to exported MappingHintGroup", MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS,
 					(MappingHintGroup) descriptor, new HintGroupToExportedHintGroupConverter()));
 		} else if (descriptor instanceof pamtram.structure.generic.Class) {
-			// the section may be 'null' if the class is not part of a target section but of a library element
+			// the section may be 'null' if the class is not part of a target
+			// section but of a library element
 			pamtram.structure.generic.Class<?, ?, ?, ?> section = ((pamtram.structure.generic.Class<?, ?, ?, ?>) descriptor)
 					.getContainingSection();
 			if (section != null && !section.equals(descriptor)) {
@@ -399,12 +416,14 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 				Class<? extends Object> metaModelElementClass = types.iterator().next();
 
 				if (SourceSectionClass.class.isAssignableFrom(metaModelElementClass)
-						|| SourceSectionReference.class.isAssignableFrom(metaModelElementClass)) {
+						|| SourceSectionReference.class.isAssignableFrom(metaModelElementClass)
+						|| SourceSectionAttribute.class.isAssignableFrom(metaModelElementClass)) {
 					actions.add(
 							new MetaModelElementMergeAction<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>(
 									this.activeEditorPart, (IStructuredSelection) selection));
 				} else if (TargetSectionClass.class.isAssignableFrom(metaModelElementClass)
-						|| TargetSectionReference.class.isAssignableFrom(metaModelElementClass)) {
+						|| TargetSectionReference.class.isAssignableFrom(metaModelElementClass)
+						|| TargetSectionAttribute.class.isAssignableFrom(metaModelElementClass)) {
 					actions.add(
 							new MetaModelElementMergeAction<TargetSection, TargetSectionClass, TargetSectionReference, TargetSectionAttribute>(
 									this.activeEditorPart, (IStructuredSelection) selection));
@@ -416,15 +435,17 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 	}
 
 	/**
-	 * This generates a {@link org.eclipse.emf.edit.ui.action.CreateSiblingAction} for each object in
-	 * <code>descriptors</code>, and returns the collection of these actions. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * This generates a
+	 * {@link org.eclipse.emf.edit.ui.action.CreateSiblingAction} for each
+	 * object in <code>descriptors</code>, and returns the collection of these
+	 * actions. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
 	protected Collection<IAction> generateCreateSiblingActions(Collection<?> descriptors, ISelection selection) {
 
 		Collection<IAction> actions = new ArrayList<>();
+
 		if (descriptors != null) {
 
 			IContentProvider provider = null;
@@ -438,14 +459,8 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 				if (this.isValidDescriptor(descriptor, provider)) {
 					if (descriptor instanceof CommandParameter
 							&& ((CommandParameter) descriptor).getFeature() instanceof EStructuralFeature
-							&& (((CommandParameter) descriptor).getFeature()
-									.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_SOURCE_SECTION_MODELS)
-									|| ((CommandParameter) descriptor).getFeature()
-											.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_TARGET_SECTION_MODELS)
-									|| ((CommandParameter) descriptor).getFeature()
-											.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_MAPPING_MODELS)
-									|| ((CommandParameter) descriptor).getFeature()
-											.equals(PamtramPackage.Literals.PAM_TRA_M__SHARED_CONDITION_MODELS))) {
+							&& SharedModelUtil.isValidSubModelFeature(
+									(EStructuralFeature) ((CommandParameter) descriptor).getFeature())) {
 						actions.add(new CreateSharedModelSiblingAction(this.activeEditorPart, selection, descriptor));
 					} else {
 						actions.add(new CreateSiblingAction(this.activeEditorPart, selection, descriptor));
@@ -453,21 +468,71 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 				}
 
 			}
+
+			// The user selected a shared SectionModel (that is not contained in
+			// a PAMTraM model but in its own resource); thus, we need to
+			// handle the creation of SectionModels as siblings
+			// manually
+			//
+			if (selection instanceof IStructuredSelection && ((IStructuredSelection) selection).size() == 1
+					&& ((IStructuredSelection) selection).getFirstElement() instanceof SectionModel<?, ?, ?, ?>) {
+				SectionModel<?, ?, ?, ?> object = (SectionModel<?, ?, ?, ?>) ((IStructuredSelection) selection)
+						.getFirstElement();
+
+				if (!(object.eContainer() instanceof PAMTraM)) {
+
+					PAMTraM pamtram = ((PamtramEditor) this.activeEditorPart).getPamtram();
+					List<Object> customDescriptors = new ArrayList<>(
+							AgteleEcoreUtil.getAdapterFactoryItemDelegatorFor(pamtram).getNewChildDescriptors(pamtram,
+									((PamtramEditor) this.activeEditorPart).getEditingDomain(), null));
+
+					// A custom selection to make the Action think the user
+					// selected the 'parent' PAMTraM model
+					//
+					ISelection customSelection = new StructuredSelection(pamtram);
+
+					for (Object descriptor : customDescriptors) {
+
+						if (this.isValidDescriptor(descriptor, provider)) {
+
+							// Use 'CreateChild' instead of 'CreateSibling'
+							// actions based on the (virtually) selected parent
+							// PAMTraM model
+							//
+							if (descriptor instanceof CommandParameter
+									&& ((CommandParameter) descriptor).getFeature() instanceof EStructuralFeature
+									&& SharedModelUtil.isValidSubModelFeature(
+											(EStructuralFeature) ((CommandParameter) descriptor).getFeature())) {
+								actions.add(new CreateSharedModelChildAction(this.activeEditorPart, customSelection,
+										descriptor));
+							} else {
+								actions.add(new CreateChildAction(this.activeEditorPart, customSelection, descriptor));
+							}
+						}
+
+					}
+				}
+			}
 		}
+
 		return actions;
 	}
 
 	/**
-	 * This is used by {@link #generateCreateChildActions(Collection, ISelection)} and
-	 * {@link #generateCreateSiblingActions(Collection, ISelection)} to perform additional checks if an action
-	 * corresponding to the given <em>descriptor</em> is valid for the active <em>content provider</em>.
+	 * This is used by
+	 * {@link #generateCreateChildActions(Collection, ISelection)} and
+	 * {@link #generateCreateSiblingActions(Collection, ISelection)} to perform
+	 * additional checks if an action corresponding to the given
+	 * <em>descriptor</em> is valid for the active <em>content provider</em>.
 	 *
 	 * @param descriptor
-	 *            The {@link CommandParameter} that describes an action to be executed.
+	 *            The {@link CommandParameter} that describes an action to be
+	 *            executed.
 	 * @param provider
-	 *            The {@link IContentProvider content provider} that is associated with the active viewer.
-	 * @return '<em><b>true</b></em>' if the descriptor is valid for the active viewer; '<em><b>false</b></em>'
-	 *         otherwise.
+	 *            The {@link IContentProvider content provider} that is
+	 *            associated with the active viewer.
+	 * @return '<em><b>true</b></em>' if the descriptor is valid for the active
+	 *         viewer; '<em><b>false</b></em>' otherwise.
 	 */
 	private boolean isValidDescriptor(Object descriptor, IContentProvider provider) {
 
@@ -490,10 +555,13 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 	}
 
 	/**
-	 * This populates the specified <code>manager</code> with {@link org.eclipse.jface.action.ActionContributionItem}s
-	 * based on the {@link org.eclipse.jface.action.IAction}s contained in the <code>actions</code> collection, by
-	 * inserting them before the specified contribution item <code>contributionID</code>. If <code>contributionID</code>
-	 * is <code>null</code>, they are simply added. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This populates the specified <code>manager</code> with
+	 * {@link org.eclipse.jface.action.ActionContributionItem}s based on the
+	 * {@link org.eclipse.jface.action.IAction}s contained in the
+	 * <code>actions</code> collection, by inserting them before the specified
+	 * contribution item <code>contributionID</code>. If
+	 * <code>contributionID</code> is <code>null</code>, they are simply added.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
@@ -512,9 +580,11 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 	}
 
 	/**
-	 * This removes from the specified <code>manager</code> all {@link org.eclipse.jface.action.ActionContributionItem}s
-	 * based on the {@link org.eclipse.jface.action.IAction}s contained in the <code>actions</code> collection. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This removes from the specified <code>manager</code> all
+	 * {@link org.eclipse.jface.action.ActionContributionItem}s based on the
+	 * {@link org.eclipse.jface.action.IAction}s contained in the
+	 * <code>actions</code> collection. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 *
 	 * @generated
 	 */
@@ -543,7 +613,8 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 	}
 
 	/**
-	 * This populates the pop-up menu before it appears. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This populates the pop-up menu before it appears. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 */
 	@Override
 	public void menuAboutToShow(IMenuManager menuManager) {
@@ -565,7 +636,8 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 	}
 
 	/**
-	 * This inserts global actions before the "additions-end" separator. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This inserts global actions before the "additions-end" separator. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
@@ -582,8 +654,8 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 	}
 
 	/**
-	 * This ensures that a delete action will clean up all references to deleted objects. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This ensures that a delete action will clean up all references to deleted
+	 * objects. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
@@ -596,7 +668,8 @@ public class PamtramActionBarContributor extends EditingDomainActionBarContribut
 	@Override
 	protected DeleteAction createDeleteAction() {
 
-		// Use the special PamtramDeleteAction which allows to also delete shared SectionModels
+		// Use the special PamtramDeleteAction which allows to also delete
+		// shared SectionModels
 		//
 		return new PamtramDeleteAction(this.removeAllReferencesOnDelete());
 	}

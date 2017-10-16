@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="ASCII"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:extended="http://mfreund.de/pamtram/mapping/extended" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target">
   <sourceSectionModels>
-    <metaModelPackage href="http://www.w3.org/2013/mbui-uiCommons#/0"/>
+    <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/0"/>
     <sections xsi:type="source:SourceSection" name="AbstractUserInterfaceModel">
-      <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractUserInterfaceModel"/>
+      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractUserInterfaceModel"/>
       <references xsi:type="source:SourceSectionCompositeReference" name="abstractInteractionUnit">
-        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractUserInterfaceModel/abstractInteractionUnit"/>
+        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractUserInterfaceModel/abstractInteractionUnit"/>
         <value xsi:type="source:SourceSectionClass" name="AbstractInteractionUnit" cardinality="ONE__INFINITY">
-          <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit"/>
+          <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
           <references xsi:type="source:SourceSectionCompositeReference" name="aggregatedIn">
-            <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/aggregatedIn"/>
+            <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/aggregatedIn"/>
             <value xsi:type="source:SourceSectionClass" name="Composition">
-              <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/Composition"/>
+              <eClass href="http://www.w3.org/2013/mbui-aui#/0/Composition"/>
               <attributes xsi:type="source:ActualSourceSectionAttribute" name="associatedWith">
-                <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/Composition/associatedWith"/>
+                <attribute href="http://www.w3.org/2013/mbui-aui#/0/Composition/associatedWith"/>
               </attributes>
             </value>
           </references>
           <attributes xsi:type="source:ActualSourceSectionAttribute" name="id">
-            <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/id"/>
+            <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>
           </attributes>
           <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
             <valueConstraints xsi:type="constraint:EqualityConstraint" expression="confirmation"/>
-            <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/role"/>
+            <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
           </attributes>
         </value>
       </references>
       <references xsi:type="source:SourceSectionCrossReference" name="abstractInteractionUnit" value="//@sourceSectionModels.0/@sections.1">
-        <eReference href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractUserInterfaceModel/abstractInteractionUnit"/>
+        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractUserInterfaceModel/abstractInteractionUnit"/>
       </references>
     </sections>
     <sections xsi:type="source:SourceSection" name="AbstractInteractionUnit" cardinality="ZERO__INFINITY">
-      <eClass href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit"/>
+      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
       <attributes xsi:type="source:ActualSourceSectionAttribute" name="id">
-        <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/id"/>
+        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>
       </attributes>
       <attributes xsi:type="source:ActualSourceSectionAttribute" name="repetitionFactor">
-        <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/repetitionFactor"/>
+        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/repetitionFactor"/>
       </attributes>
       <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
         <valueConstraints xsi:type="constraint:EqualityConstraint" expression="repetition"/>
-        <attribute href="http://www.w3.org/2013/mbui-uiCommons#/0/AbstractInteractionUnit/role"/>
+        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/role"/>
       </attributes>
     </sections>
   </sourceSectionModels>
@@ -74,16 +74,16 @@
   <mappingModels>
     <mappings name="AbstractUserInterfaceModelMapping" sourceSection="//@sourceSectionModels.0/@sections.0">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Panel_incl_Buttons" targetSection="//@targetSectionModels.0/@sections.0">
-        <mappingHints xsi:type="mapping:CardinalityMapping" name="Class Cardinality" source="//@sourceSectionModels.0/@sections.0/@references.0/@value.0" target="//@targetSectionModels.0/@sections.0/@references.0/@value.0"/>
+        <mappingHints xsi:type="extended:CardinalityMapping" name="Class Cardinality" source="//@sourceSectionModels.0/@sections.0/@references.0/@value.0" target="//@targetSectionModels.0/@sections.0/@references.0/@value.0"/>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Buttons" targetSection="//@targetSectionModels.0/@sections.1">
-        <mappingHints xsi:type="mapping:CardinalityMapping" name="Attribute Cardinality" source="//@sourceSectionModels.0/@sections.0/@references.0/@value.0/@references.0/@value.0/@attributes.0" target="//@targetSectionModels.0/@sections.1"/>
+        <mappingHints xsi:type="extended:CardinalityMapping" name="Attribute Cardinality" source="//@sourceSectionModels.0/@sections.0/@references.0/@value.0/@references.0/@value.0/@attributes.0" target="//@targetSectionModels.0/@sections.1"/>
       </mappingHintGroups>
     </mappings>
     <mappings name="AbstractInteractionUnitMapping" sourceSection="//@sourceSectionModels.0/@sections.1">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetSection="//@targetSectionModels.0/@sections.2">
-        <mappingHints xsi:type="mapping:CardinalityMapping" name="Source Element Cardinality" expression="repetitionFactor-2" modifiers="//@mappingModels.0/@modifierSets.0" target="//@targetSectionModels.0/@sections.2">
-          <sourceElements xsi:type="mapping:CardinalityMappingSourceElement" name="repetitionFactor" source="//@sourceSectionModels.0/@sections.1/@attributes.1"/>
+        <mappingHints xsi:type="extended:CardinalityMapping" name="Source Element Cardinality" expression="repetitionFactor-2" modifiers="//@mappingModels.0/@modifierSets.0" target="//@targetSectionModels.0/@sections.2">
+          <sourceElements xsi:type="extended:CardinalityMappingSourceElement" name="repetitionFactor" source="//@sourceSectionModels.0/@sections.1/@attributes.1"/>
         </mappingHints>
       </mappingHintGroups>
     </mappings>

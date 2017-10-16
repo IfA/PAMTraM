@@ -7,6 +7,12 @@ package pamtram.structure.generic;
  * A representation of the model object '<em><b>Virtual Attribute</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * This represents an attribute of an element structure. In contrast to 'actual' Attributes, 'virtual' Attributes do not represent an actual metamodel element (EAttribtue) but can be used to create additional (virtual) attributes.
+ * <br />
+ *  As the Attribute is not based on an actual EAttribute, the actual values held by this Attribute need to be specified manually by means of additional language elements (dependent on the concrete sub-type).
+ * <!-- end-model-doc -->
+ *
  *
  * @see pamtram.structure.generic.GenericPackage#getVirtualAttribute()
  * @model abstract="true"

@@ -40,14 +40,15 @@ import de.mfreund.pamtram.transformation.Transformation;
 import de.mfreund.pamtram.transformation.TransformationMapping;
 import de.mfreund.pamtram.transformation.TransformationMappingHintGroup;
 import de.tud.et.ifa.agtele.emf.compare.EMFComparatorFactory;
+import de.tud.et.ifa.agtele.resources.ResourceHelper;
 import pamtram.PAMTraM;
-import pamtram.mapping.ContainerSelector;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingType;
-import pamtram.mapping.ReferenceTargetSelector;
+import pamtram.mapping.extended.ContainerSelector;
+import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.structure.library.LibraryPackage;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionClass;
@@ -83,13 +84,13 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	private Transformation transformationModel;
 
 	/**
-	 * This will contain the result of the comparison process between the current PAMTraM model and the 'old' PAMTraM
-	 * model that is part of the {@link #transformationModel}.
+	 * This will contain the results of the comparison process between the current PAMTraM models and the 'old' PAMTraM
+	 * models that are part of the {@link #transformationModel}.
 	 * <p />
-	 * Note: The <em>left</em> side of this comparison represents the current PAMTraM model, the <em>right</em> side
-	 * represents the 'old' model (part of the transformation model).
+	 * Note: The <em>left</em> sides of these comparisons represents the current PAMTraM models, the <em>right</em> side
+	 * represents the 'old' models (part of the transformation model).
 	 */
-	private Comparison pamtramCompareResult;
+	private List<Comparison> pamtramCompareResults;
 
 	/**
 	 * This will contain a list of results of the comparison processes between the current source models and the 'old'
@@ -98,7 +99,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	 * Note: The <em>left</em> sides of these comparisons represent the current source models, the <em>right</em> sides
 	 * represent the 'old' models (part of the transformation model).
 	 */
-	private ArrayList<Comparison> sourceCompareResults;
+	private List<Comparison> sourceCompareResults;
 
 	/**
 	 * This map is filled once during the {@link #init(PAMTraM, ArrayList, Logger)} method and contains associations
@@ -110,6 +111,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	private Map<TargetSection, List<TransformationMappingHintGroup>> targetSectionToTransformationHintGroups;
 
 	private HistoryResolvingStrategy(ArrayList<IAmbiguityResolvingStrategy> composedStrategies) {
+
 		super(composedStrategies);
 	}
 
@@ -124,15 +126,16 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	 */
 	public HistoryResolvingStrategy(ArrayList<IAmbiguityResolvingStrategy> composedStrategies,
 			String transformationModelPath) {
+
 		this(composedStrategies);
 		this.transformationModelPath = transformationModelPath;
 	}
 
 	@Override
-	public void init(PAMTraM pamtramModel, List<EObject> sourceModels, Logger logger)
+	public void init(List<PAMTraM> pamtramModels, List<EObject> sourceModels, Logger logger)
 			throws AmbiguityResolvingException {
 
-		super.init(pamtramModel, sourceModels, logger);
+		super.init(pamtramModels, sourceModels, logger);
 
 		/*
 		 * load the transformation model to be used by this strategy
@@ -146,7 +149,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		/*
 		 * compare old and new models
 		 */
-		this.pamtramCompareResult = null;
+		this.pamtramCompareResults = new ArrayList<>();
 		this.sourceCompareResults = new ArrayList<>();
 
 		try {
@@ -209,13 +212,13 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	private void loadTransformationModel() throws IOException {
 
 		/*
-		 * We need to load the transformation model to the same ResourceSet as the pamtram model, otherwise strange
+		 * We need to load the transformation model to the same ResourceSet as the pamtram models, otherwise strange
 		 * things happen in the EMFcompare process (changes are shown even nothing has changed).
 		 */
-		ResourceSet resourceSet = this.pamtramModel.eResource().getResourceSet();
+		ResourceSet resourceSet = this.pamtramModels.get(0).eResource().getResourceSet();
 
 		// the URI of the transformation model resource
-		final URI transformationModelUri = URI.createPlatformResourceURI(this.transformationModelPath, true);
+		final URI transformationModelUri = ResourceHelper.getURIForPathString(this.transformationModelPath);
 
 		// load the transformation model
 		XMIResource transformationModelResource = (XMIResource) resourceSet.getResource(transformationModelUri, true);
@@ -239,50 +242,57 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 
 		ResourceSet resourceSet = this.transformationModel.eResource().getResourceSet();
 
-		/*
-		 * We need to reload the pamtram resource that is part of the transformation model as otherwise the compare
-		 * process will show strange differences even if there should not be any. TODO This might have to do something
-		 * with the cross-resource containments and proxy resolving...
-		 */
-		URI pamtramUri = this.transformationModel.getPamtramInstance().eResource().getURI();
-		XMIResource pamtramResource = (XMIResource) resourceSet.getResource(pamtramUri, true);
-		pamtramResource.unload(); // reload the resource as the compare process will show strange differences otherwise
-		pamtramResource.load(Collections.EMPTY_MAP);
+		for (int i = 0; i < this.transformationModel.getPamtramInstances().size(); i++) {
 
-		/*
-		 * Compare the Pamtram resources
-		 */
-		IComparisonScope scope = new DefaultComparisonScope(this.pamtramModel.eResource(), pamtramResource, null);
-		EMFCompare comparator = EMFComparatorFactory.getComparator(new DefaultDiffEngine(new DiffBuilder()) {
+			PAMTraM pamtramInstance = this.transformationModel.getPamtramInstances().get(i);
 
-			@Override
-			protected FeatureFilter createFeatureFilter() {
+			/*
+			 * We need to reload the pamtram resource that is part of the transformation model as otherwise the compare
+			 * process will show strange differences even if there should not be any. TODO This might have to do
+			 * something with the cross-resource containments and proxy resolving...
+			 */
+			URI pamtramUri = pamtramInstance.eResource().getURI();
+			XMIResource pamtramResource = (XMIResource) resourceSet.getResource(pamtramUri, true);
+			pamtramResource.unload(); // reload the resource as the compare
+										// process
+			// will show strange differences otherwise
+			pamtramResource.load(Collections.EMPTY_MAP);
 
-				return new FeatureFilter() {
+			/*
+			 * Compare the Pamtram resources
+			 */
+			IComparisonScope scope = new DefaultComparisonScope(this.pamtramModels.get(i).eResource(), pamtramResource,
+					null);
+			EMFCompare comparator = EMFComparatorFactory.getComparator(new DefaultDiffEngine(new DiffBuilder()) {
 
-					@Override
-					protected boolean isIgnoredReference(Match match, EReference reference) {
+				@Override
+				protected FeatureFilter createFeatureFilter() {
 
-						/*
-						 * We forget about the 'source' reference of library parameters as the comparison process will
-						 * report false changes to references of this type as the referenced objects are not contained
-						 * in the resource in focus (cf.
-						 * https://www.eclipse.org/emf/compare/documentation/latest/developer/developer-guide.html#
-						 * Changing_the_FeatureFilter).
-						 */
-						return reference.equals(LibraryPackage.Literals.LIBRARY_PARAMETER__SOURCE)
-								|| super.isIgnoredReference(match, reference);
-					}
+					return new FeatureFilter() {
 
-					@Override
-					public boolean checkForOrderingChanges(EStructuralFeature feature) {
+						@Override
+						protected boolean isIgnoredReference(Match match, EReference reference) {
 
-						return false;
-					}
-				};
-			}
-		});
-		this.pamtramCompareResult = comparator.compare(scope);
+							/*
+							 * We forget about the 'source' reference of library parameters as the comparison process
+							 * will report false changes to references of this type as the referenced objects are not
+							 * contained in the resource in focus (cf. https://www.eclipse.org/emf/compare/
+							 * documentation/ latest/developer/developer-guide.html# Changing_the_FeatureFilter).
+							 */
+							return reference.equals(LibraryPackage.Literals.LIBRARY_PARAMETER__SOURCE)
+									|| super.isIgnoredReference(match, reference);
+						}
+
+						@Override
+						public boolean checkForOrderingChanges(EStructuralFeature feature) {
+
+							return false;
+						}
+					};
+				}
+			});
+			this.pamtramCompareResults.add(comparator.compare(scope));
+		}
 
 	}
 
@@ -305,7 +315,9 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 			for (int i = 0; i < this.sourceModels.size(); i++) {
 				URI sourceUri = this.transformationModel.getSourceModels().get(i).eResource().getURI();
 				XMLResource sourceResource = (XMLResource) resourceSet.getResource(sourceUri, true);
-				sourceResource.unload(); // reload the resource as the compare process will show strange differences
+				sourceResource.unload(); // reload the resource as the compare
+											// process will show strange
+											// differences
 				sourceResource.load(Collections.EMPTY_MAP);
 
 				IComparisonScope sourceScope = new DefaultComparisonScope(this.sourceModels.get(i).eResource(),
@@ -386,8 +398,10 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		 * from). Currently, we do this by simply checking that nothing has been changed in the PAMTraM and source
 		 * models but this might be done in a more clever way in the future.
 		 */
-		if (!this.pamtramCompareResult.getDifferences().isEmpty()) {
-			return super.searchingSelectSection(choices, element);
+		for (Comparison comparison : this.pamtramCompareResults) {
+			if (!comparison.getDifferences().isEmpty()) {
+				return super.searchingSelectSection(choices, element);
+			}
 		}
 		for (Comparison comparison : this.sourceCompareResults) {
 			if (!comparison.getDifferences().isEmpty()) {
@@ -399,8 +413,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		 * Now, we are sure that the current list of choices matches the old one (and thus that the 'old' choice is also
 		 * an option in the current list of choices). Thus, we may safely reuse the old choice.
 		 */
-		Match sectionMatch = this.pamtramCompareResult
-				.getMatch(oldTransformationMapping.getAssociatedMapping().getSourceSection());
+		Match sectionMatch = this.getMatch(oldTransformationMapping.getAssociatedMapping().getSourceSection());
 		Optional<MatchedSectionDescriptor> descriptor = choices.parallelStream()
 				.filter(m -> m.getAssociatedSourceSectionClass().equals(sectionMatch.getLeft())).findAny();
 
@@ -463,7 +476,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		}
 		for (MappingType oldChoice : oldChoicesWithoutDeactivated) {
 			// find a matching 'new' choice
-			Match matchingNewChoice = this.pamtramCompareResult.getMatch(oldChoice);
+			Match matchingNewChoice = this.getMatch(oldChoice);
 			if (matchingNewChoice == null || matchingNewChoice.getLeft() == null
 					|| !(matchingNewChoice.getLeft() instanceof Mapping)
 					|| !choices.contains(matchingNewChoice.getLeft())) {
@@ -478,7 +491,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		List<Mapping> ret = new ArrayList<>();
 		for (TransformationMapping oldTransformationMapping : oldTransformationMappings) {
 
-			Match mappingMatch = this.pamtramCompareResult.getMatch(oldTransformationMapping.getAssociatedMapping());
+			Match mappingMatch = this.getMatch(oldTransformationMapping.getAssociatedMapping());
 			if (mappingMatch == null || mappingMatch.getLeft() == null
 					|| !(mappingMatch.getLeft() instanceof Mapping)) {
 				return super.searchingSelectMapping(choices, element);
@@ -502,7 +515,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		/*
 		 * First, we need to check if we can find a match for the given 'section'.
 		 */
-		Match match = this.pamtramCompareResult.getMatch(section);
+		Match match = this.getMatch(section);
 		if (match == null || match.getRight() == null || !(match.getRight() instanceof TargetSection)) {
 			return super.joiningSelectConnectionPath(choices, section);
 		}
@@ -585,8 +598,8 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		/*
 		 * First, we need to check if we can find a match for the given 'section' and 'hintGroup'.
 		 */
-		Match sectionMatch = this.pamtramCompareResult.getMatch(hintGroup.getTargetSection());
-		Match hintGroupMatch = this.pamtramCompareResult.getMatch(hintGroup);
+		Match sectionMatch = this.getMatch(hintGroup.getTargetSection());
+		Match hintGroupMatch = this.getMatch(hintGroup);
 		if (sectionMatch == null || sectionMatch.getRight() == null
 				|| !(sectionMatch.getRight() instanceof TargetSection) || hintGroupMatch == null
 				|| hintGroupMatch.getRight() == null || !(hintGroupMatch.getRight() instanceof MappingHintGroupType)) {
@@ -655,7 +668,8 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 				}
 				if (match.getDifferences().isEmpty()) {
 					if (oldSectionInstanceToUse != null) {
-						// we have found another match so that we need to try to find a unique match for one of the
+						// we have found another match so that we need to try to
+						// find a unique match for one of the
 						// other choices
 						oldSectionInstanceToUse = null;
 						break;
@@ -723,8 +737,8 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		/*
 		 * First, we need to check if we can find a match for the given 'section' and 'hintGroup'.
 		 */
-		Match sectionMatch = this.pamtramCompareResult.getMatch(section);
-		Match hintGroupMatch = this.pamtramCompareResult.getMatch(hintGroup);
+		Match sectionMatch = this.getMatch(section);
+		Match hintGroupMatch = this.getMatch(hintGroup);
 		if (sectionMatch == null || sectionMatch.getRight() == null
 				|| !(sectionMatch.getRight() instanceof TargetSection) || hintGroupMatch == null
 				|| hintGroupMatch.getRight() == null || !(hintGroupMatch.getRight() instanceof MappingHintGroupType)) {
@@ -883,73 +897,93 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	@Override
 	public List<EObjectWrapper> linkingSelectTargetInstance(List<EObjectWrapper> choices,
 			TargetSectionCrossReference reference, MappingHintGroupType hintGroup,
-			ReferenceTargetSelector mappingInstanceSelector, EObjectWrapper sourceElement)
+			ReferenceTargetSelector mappingInstanceSelector, List<EObjectWrapper> sourceElements)
 			throws AmbiguityResolvingException {
 
-		/*
-		 * First, we need to check if we can find a match for the given 'sourceElement' in the 'old' target model.
-		 */
-		EMFCompare comparator = EMFComparatorFactory.getIgnoreNonContainmentReferenceChangesComparator();
-		IComparisonScope scope = new DefaultComparisonScope(EcoreUtil.getRootContainer(sourceElement.getEObject()),
-				this.transformationModel.getTargetModels().get(0), null);
-		Comparison comparison = comparator.compare(scope);
-		Match match = comparison.getMatch(sourceElement.getEObject());
-		if (match == null || match.getRight() == null || match.getAllDifferences().iterator().hasNext()) {
+		if (sourceElements.isEmpty()) {
 			return super.linkingSelectTargetInstance(choices, reference, hintGroup, mappingInstanceSelector,
-					sourceElement);
+					sourceElements);
 		}
 
-		EObject oldInstance = match.getRight();
+		// We can only reuse a previous decision if the same choice was made for
+		// each of the given 'sourceElements'. Thus, we have to compare all
+		// these choices...
+		//
+		List<EObjectWrapper> targetInstancesToUse = null;
 
-		/*
-		 * Now, we can check which element was used as target for the 'reference'.
-		 */
-		EObject oldTargetInstance = null;
-
-		if (reference.getEReference().isMany()) {
-			@SuppressWarnings("unchecked")
-			EList<EObject> referenceTargets = (EList<EObject>) oldInstance.eGet(reference.getEReference());
-			if (referenceTargets.isEmpty()) {
+		for (EObjectWrapper sourceElement : sourceElements) {
+			/*
+			 * First, we need to check if we can find a match for the given 'sourceElement' in the 'old' target model.
+			 */
+			EMFCompare comparator = EMFComparatorFactory.getIgnoreNonContainmentReferenceChangesComparator();
+			IComparisonScope scope = new DefaultComparisonScope(EcoreUtil.getRootContainer(sourceElement.getEObject()),
+					this.transformationModel.getTargetModels().get(0), null);
+			Comparison comparison = comparator.compare(scope);
+			Match match = comparison.getMatch(sourceElement.getEObject());
+			if (match == null || match.getRight() == null || match.getAllDifferences().iterator().hasNext()) {
 				return super.linkingSelectTargetInstance(choices, reference, hintGroup, mappingInstanceSelector,
-						sourceElement);
+						sourceElements);
+			}
+			EObject oldInstance = match.getRight();
+			/*
+			 * Now, we can check which element was used as target for the 'reference'.
+			 */
+			EObject oldTargetInstance = null;
+			if (reference.getEReference().isMany()) {
+				@SuppressWarnings("unchecked")
+				EList<EObject> referenceTargets = (EList<EObject>) oldInstance.eGet(reference.getEReference());
+				if (referenceTargets.isEmpty()) {
+					return super.linkingSelectTargetInstance(choices, reference, hintGroup, mappingInstanceSelector,
+							sourceElements);
+				} else {
+					oldTargetInstance = referenceTargets.get(0);
+				}
 			} else {
-				oldTargetInstance = referenceTargets.get(0);
+				oldTargetInstance = (EObject) oldInstance.eGet(reference.getEReference());
 			}
-		} else {
-			oldTargetInstance = (EObject) oldInstance.eGet(reference.getEReference());
-		}
-
-		if (oldTargetInstance == null) {
-			return super.linkingSelectTargetInstance(choices, reference, hintGroup, mappingInstanceSelector,
-					sourceElement);
-		}
-
-		/*
-		 * Finally, we have to determine which of the new choices matches the 'oldTargetInstance'. Therefore, we once
-		 * more rely on EMFCompare.
-		 */
-		ArrayList<EObjectWrapper> targetInstancesToUse = new ArrayList<>();
-		for (EObjectWrapper instance : choices) {
-			scope = new DefaultComparisonScope(instance.getEObject(), oldTargetInstance, null);
-			comparison = comparator.compare(scope);
-			match = comparison.getMatch(oldTargetInstance);
-			if (match == null || match.getLeft() == null) {
-				continue;
+			if (oldTargetInstance == null) {
+				return super.linkingSelectTargetInstance(choices, reference, hintGroup, mappingInstanceSelector,
+						sourceElements);
 			}
-			if (match.getDifferences().isEmpty()) {
-				// we have found a matching instance that can be used
-				targetInstancesToUse.add(instance);
+			/*
+			 * Finally, we have to determine which of the new choices matches the 'oldTargetInstance'. Therefore, we
+			 * once more rely on EMFCompare.
+			 */
+			ArrayList<EObjectWrapper> localTargetInstancesToUse = new ArrayList<>();
+			for (EObjectWrapper instance : choices) {
+				scope = new DefaultComparisonScope(instance.getEObject(), oldTargetInstance, null);
+				comparison = comparator.compare(scope);
+				match = comparison.getMatch(oldTargetInstance);
+				if (match == null || match.getLeft() == null) {
+					continue;
+				}
+				if (match.getDifferences().isEmpty()) {
+					// we have found a matching instance that can be used
+					localTargetInstancesToUse.add(instance);
+				}
+			}
+
+			// Now, we check if the found choice(s) to reuse match the choice(s)
+			// found for the other source elements
+			//
+			if (targetInstancesToUse == null) {
+				targetInstancesToUse = localTargetInstancesToUse;
+			} else if (!targetInstancesToUse.equals(localTargetInstancesToUse)) {
+				// We cannot reuse the decision if the results are not equal...
+				//
+				return super.linkingSelectTargetInstance(targetInstancesToUse, reference, hintGroup,
+						mappingInstanceSelector, sourceElements);
 			}
 		}
 
 		if (targetInstancesToUse.isEmpty()) {
 			return super.linkingSelectTargetInstance(choices, reference, hintGroup, mappingInstanceSelector,
-					sourceElement);
+					sourceElements);
 		} else {
 			this.printMessage(targetInstancesToUse.toString(), HistoryResolvingStrategy.historyDecisionPrefix);
 			System.out.println("Reusing choice during 'linkingSelectTargetInstance': " + targetInstancesToUse);
 			return super.linkingSelectTargetInstance(targetInstancesToUse, reference, hintGroup,
-					mappingInstanceSelector, sourceElement);
+					mappingInstanceSelector, sourceElements);
 		}
 	}
 
@@ -965,8 +999,8 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		/*
 		 * First, we need to check if we can find a match for the given 'section' and 'hintGroup'.
 		 */
-		Match sectionMatch = this.pamtramCompareResult.getMatch(hintGroup.getTargetSection());
-		Match hintGroupMatch = this.pamtramCompareResult.getMatch(hintGroup);
+		Match sectionMatch = this.getMatch(hintGroup.getTargetSection());
+		Match hintGroupMatch = this.getMatch(hintGroup);
 		if (sectionMatch == null || sectionMatch.getRight() == null
 				|| !(sectionMatch.getRight() instanceof TargetSection) || hintGroupMatch == null
 				|| hintGroupMatch.getRight() == null || !(hintGroupMatch.getRight() instanceof MappingHintGroupType)) {
@@ -1076,5 +1110,19 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 			return super.linkingSelectTargetSectionAndInstance(ret, reference, hintGroup);
 		}
 
+	}
+
+	/**
+	 * For the given {@link EObject}, return a match from the various {@link #pamtramCompareResults}.
+	 *
+	 * @param element
+	 * @return The found {@link Match} or <em>null</em> if no match could be determined.
+	 */
+	private Match getMatch(EObject element) {
+
+		Optional<Comparison> compareResult = this.pamtramCompareResults.parallelStream()
+				.filter(c -> c.getMatch(element) != null).findAny();
+
+		return compareResult.isPresent() ? compareResult.get().getMatch(element) : null;
 	}
 }

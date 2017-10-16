@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 
 import pamtram.structure.generic.ActualAttribute;
+import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.CardinalityType;
 import pamtram.structure.generic.CompositeReference;
@@ -20,6 +21,7 @@ import pamtram.structure.generic.MetaModelElement;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 import pamtram.structure.generic.VirtualAttribute;
+import pamtram.structure.generic.VirtualReference;
 
 /**
  * <!-- begin-user-doc --> The <b>Validator</b> for the model. <!-- end-user-doc
@@ -88,11 +90,12 @@ public class GenericValidator extends EObjectValidator {
 	public static final int SECTION__VALIDATE_EXTENDS_VALID_SECTIONS = 5;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate EReference Matches Parent EClass' of 'Reference'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate EReference Matches Parent EClass' of 'Actual Reference'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int REFERENCE__VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS = 6;
+	public static final int ACTUAL_REFERENCE__VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS = 6;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate EReference Is Containment' of 'Composite Reference'.
@@ -171,6 +174,10 @@ public class GenericValidator extends EObjectValidator {
 				return validateSection((Section<?, ?, ?, ?>)value, diagnostics, context);
 			case GenericPackage.REFERENCE:
 				return validateReference((Reference<?, ?, ?, ?>)value, diagnostics, context);
+			case GenericPackage.ACTUAL_REFERENCE:
+				return validateActualReference((ActualReference<?, ?, ?, ?>)value, diagnostics, context);
+			case GenericPackage.VIRTUAL_REFERENCE:
+				return validateVirtualReference((VirtualReference<?, ?, ?, ?>)value, diagnostics, context);
 			case GenericPackage.COMPOSITE_REFERENCE:
 				return validateCompositeReference((CompositeReference<?, ?, ?, ?>)value, diagnostics, context);
 			case GenericPackage.CROSS_REFERENCE:
@@ -458,7 +465,6 @@ public class GenericValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(reference, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(reference, diagnostics, context);
 		if (result || diagnostics != null) result &= validateReference_eReferenceMatchesParentEClass(reference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateReference_validateEReferenceMatchesParentEClass(reference, diagnostics, context);
 		return result;
 	}
 
@@ -491,13 +497,52 @@ public class GenericValidator extends EObjectValidator {
 	}
 
 	/**
-	 * Validates the validateEReferenceMatchesParentEClass constraint of '<em>Reference</em>'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateReference_validateEReferenceMatchesParentEClass(Reference<?, ?, ?, ?> reference,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return reference.validateEReferenceMatchesParentEClass(diagnostics, context);
+	public boolean validateActualReference(ActualReference<?, ?, ?, ?> actualReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(actualReference, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(actualReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(actualReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(actualReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(actualReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(actualReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(actualReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(actualReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(actualReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateReference_eReferenceMatchesParentEClass(actualReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateActualReference_validateEReferenceMatchesParentEClass(actualReference, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the validateEReferenceMatchesParentEClass constraint of '<em>Actual Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateActualReference_validateEReferenceMatchesParentEClass(ActualReference<?, ?, ?, ?> actualReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return actualReference.validateEReferenceMatchesParentEClass(diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateVirtualReference(VirtualReference<?, ?, ?, ?> virtualReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(virtualReference, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(virtualReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(virtualReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(virtualReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(virtualReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(virtualReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(virtualReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(virtualReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(virtualReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateReference_eReferenceMatchesParentEClass(virtualReference, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -516,7 +561,6 @@ public class GenericValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(compositeReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(compositeReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validateReference_eReferenceMatchesParentEClass(compositeReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateReference_validateEReferenceMatchesParentEClass(compositeReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validateCompositeReference_eReferenceIsContainment(compositeReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validateCompositeReference_validateEReferenceIsContainment(compositeReference, diagnostics, context);
 		return result;
@@ -576,7 +620,6 @@ public class GenericValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(crossReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(crossReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validateReference_eReferenceMatchesParentEClass(crossReference, diagnostics, context);
-		if (result || diagnostics != null) result &= validateReference_validateEReferenceMatchesParentEClass(crossReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validateCrossReference_eReferenceIsNonContainment(crossReference, diagnostics, context);
 		if (result || diagnostics != null) result &= validateCrossReference_validateValuesMatchReferenceType(crossReference, diagnostics, context);
 		return result;

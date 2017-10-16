@@ -7,11 +7,9 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import pamtram.*;
-import pamtram.mapping.AttributeMappingSourceInterface;
-import pamtram.mapping.AttributeMatcherSourceInterface;
-import pamtram.mapping.CardinalityMappingSourceInterface;
-import pamtram.mapping.ContainerSelectorSourceInterface;
-import pamtram.mapping.MappingHintSourceInterface;
+import pamtram.mapping.extended.AttributeMappingSourceInterface;
+import pamtram.mapping.extended.CardinalityMappingSourceInterface;
+import pamtram.mapping.extended.MappingHintSourceInterface;
 import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.constraint.ValueConstraintSourceInterface;
 import pamtram.structure.generic.Attribute;
@@ -119,10 +117,6 @@ public class PamtramAdapterFactory extends AdapterFactoryImpl {
 				return createModifiableElementAdapter();
 			}
 			@Override
-			public Adapter caseInstanceSelectingElement(InstanceSelectingElement object) {
-				return createInstanceSelectingElementAdapter();
-			}
-			@Override
 			public Adapter caseFixedValue(FixedValue object) {
 				return createFixedValueAdapter();
 			}
@@ -133,14 +127,6 @@ public class PamtramAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseAttributeMappingSourceInterface(AttributeMappingSourceInterface object) {
 				return createAttributeMappingSourceInterfaceAdapter();
-			}
-			@Override
-			public Adapter caseAttributeMatcherSourceInterface(AttributeMatcherSourceInterface object) {
-				return createAttributeMatcherSourceInterfaceAdapter();
-			}
-			@Override
-			public Adapter caseContainerSelectorSourceInterface(ContainerSelectorSourceInterface object) {
-				return createContainerSelectorSourceInterfaceAdapter();
 			}
 			@Override
 			public Adapter caseInstanceSelectorSourceInterface(InstanceSelectorSourceInterface object) {
@@ -329,20 +315,6 @@ public class PamtramAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.InstanceSelectingElement <em>Instance Selecting Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.InstanceSelectingElement
-	 * @generated
-	 */
-	public Adapter createInstanceSelectingElementAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link pamtram.FixedValue <em>Fixed Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -357,13 +329,13 @@ public class PamtramAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.MappingHintSourceInterface <em>Hint Source Interface</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.MappingHintSourceInterface <em>Mapping Hint Source Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.MappingHintSourceInterface
+	 * @see pamtram.mapping.extended.MappingHintSourceInterface
 	 * @generated
 	 */
 	public Adapter createMappingHintSourceInterfaceAdapter() {
@@ -371,44 +343,16 @@ public class PamtramAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.AttributeMappingSourceInterface <em>Attribute Mapping Source Interface</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.AttributeMappingSourceInterface <em>Attribute Mapping Source Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.AttributeMappingSourceInterface
+	 * @see pamtram.mapping.extended.AttributeMappingSourceInterface
 	 * @generated
 	 */
 	public Adapter createAttributeMappingSourceInterfaceAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.AttributeMatcherSourceInterface <em>Attribute Matcher Source Interface</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.AttributeMatcherSourceInterface
-	 * @generated
-	 */
-	public Adapter createAttributeMatcherSourceInterfaceAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.ContainerSelectorSourceInterface <em>Container Selector Source Interface</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.mapping.ContainerSelectorSourceInterface
-	 * @generated
-	 */
-	public Adapter createContainerSelectorSourceInterfaceAdapter() {
 		return null;
 	}
 
@@ -441,13 +385,13 @@ public class PamtramAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.mapping.CardinalityMappingSourceInterface <em>Cardinality Mapping Source Interface</em>}'.
+	 * Creates a new adapter for an object of class '{@link pamtram.mapping.extended.CardinalityMappingSourceInterface <em>Cardinality Mapping Source Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see pamtram.mapping.CardinalityMappingSourceInterface
+	 * @see pamtram.mapping.extended.CardinalityMappingSourceInterface
 	 * @generated
 	 */
 	public Adapter createCardinalityMappingSourceInterfaceAdapter() {

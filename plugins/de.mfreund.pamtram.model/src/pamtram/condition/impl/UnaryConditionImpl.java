@@ -3,26 +3,28 @@
 package pamtram.condition.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
 import java.util.Map;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
 import pamtram.condition.UnaryCondition;
 import pamtram.condition.util.ConditionValidator;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Single Condition Operator</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Single
+ * Condition Operator</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -36,8 +38,8 @@ import pamtram.condition.util.ConditionValidator;
 public abstract class UnaryConditionImpl extends ComplexConditionImpl implements UnaryCondition {
 	/**
 	 * The cached value of the '{@link #getLocalCondPart() <em>Local Cond Part</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getLocalCondPart()
 	 * @generated
 	 * @ordered
@@ -46,8 +48,7 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 
 	/**
 	 * The cached value of the '{@link #getSharedCondPart() <em>Shared Cond Part</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getSharedCondPart()
 	 * @generated
 	 * @ordered
@@ -55,8 +56,7 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	protected ComplexCondition sharedCondPart;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected UnaryConditionImpl() {
@@ -64,8 +64,7 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -74,17 +73,16 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ComplexCondition getLocalCondPart() {
 		return localCondPart;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NotificationChain basicSetLocalCondPart(ComplexCondition newLocalCondPart, NotificationChain msgs) {
@@ -98,10 +96,10 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLocalCondPart(ComplexCondition newLocalCondPart) {
 		if (newLocalCondPart != localCondPart) {
 			NotificationChain msgs = null;
@@ -117,10 +115,10 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ComplexCondition getSharedCondPart() {
 		if (sharedCondPart != null && sharedCondPart.eIsProxy()) {
 			InternalEObject oldSharedCondPart = (InternalEObject)sharedCondPart;
@@ -134,8 +132,7 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ComplexCondition basicGetSharedCondPart() {
@@ -143,10 +140,10 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSharedCondPart(ComplexCondition newSharedCondPart) {
 		ComplexCondition oldSharedCondPart = sharedCondPart;
 		sharedCondPart = newSharedCondPart;
@@ -155,10 +152,10 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateExactlyOneArg(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
 		boolean result = this.getLocalCondPart() != null ^ this.getSharedCondPart() != null;
@@ -180,8 +177,7 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -194,8 +190,7 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -211,8 +206,7 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -230,8 +224,7 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -248,8 +241,7 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -264,8 +256,7 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -277,17 +268,23 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 		}
 		return super.eInvoke(operationID, arguments);
 	}
-	
+
 	@Override
 	public boolean isLocalCondition() {
-		
-		ComplexCondition subCondition = getLocalCondPart();
-		
-		if(subCondition == null) {
-			subCondition = getSharedCondPart();
+
+		ComplexCondition subCondition = this.getLocalCondPart();
+
+		if (subCondition == null) {
+			subCondition = this.getSharedCondPart();
 		}
-		
+
 		return subCondition == null ? false : subCondition.isLocalCondition();
 	}
 
-} //SingleConditionOperatorImpl
+	@Override
+	public EList<ComplexCondition> getConditionPartsFlat() {
+		return new BasicEList<>(Arrays.asList(this,
+				this.getLocalCondPart() != null ? this.getLocalCondPart() : this.getSharedCondPart()));
+	}
+
+} // SingleConditionOperatorImpl

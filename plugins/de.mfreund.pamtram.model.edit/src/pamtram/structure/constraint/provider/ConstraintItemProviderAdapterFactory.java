@@ -207,6 +207,29 @@ public class ConstraintItemProviderAdapterFactory extends ConstraintAdapterFacto
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link pamtram.structure.constraint.ValueConstraintGlobalSourceElement} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ValueConstraintGlobalSourceElementItemProvider valueConstraintGlobalSourceElementItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link pamtram.structure.constraint.ValueConstraintGlobalSourceElement}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createValueConstraintGlobalSourceElementAdapter() {
+		if (valueConstraintGlobalSourceElementItemProvider == null) {
+			valueConstraintGlobalSourceElementItemProvider = new ValueConstraintGlobalSourceElementItemProvider(this);
+		}
+
+		return valueConstraintGlobalSourceElementItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -310,6 +333,7 @@ public class ConstraintItemProviderAdapterFactory extends ConstraintAdapterFacto
 		if (stringConstraintItemProvider != null) stringConstraintItemProvider.dispose();
 		if (valueConstraintSourceElementItemProvider != null) valueConstraintSourceElementItemProvider.dispose();
 		if (valueConstraintExternalSourceElementItemProvider != null) valueConstraintExternalSourceElementItemProvider.dispose();
+		if (valueConstraintGlobalSourceElementItemProvider != null) valueConstraintGlobalSourceElementItemProvider.dispose();
 	}
 
 }

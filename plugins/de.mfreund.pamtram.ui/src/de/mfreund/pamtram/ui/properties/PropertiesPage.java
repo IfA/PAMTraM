@@ -3,9 +3,13 @@ package de.mfreund.pamtram.ui.properties;
 import java.io.File;
 import java.util.Arrays;
 
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.UpdateValueStrategy;
+import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.QualifiedName;
+import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.preference.DirectoryFieldEditor;
@@ -31,8 +35,6 @@ import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
  * @author mfreund
  */
 public class PropertiesPage extends PropertyPage implements IWorkbenchPropertyPage {
-	public PropertiesPage() {
-	}
 
 	/**
 	 * The {@link FileFieldEditor} that allows the user to select new library locations.
@@ -44,81 +46,111 @@ public class PropertiesPage extends PropertyPage implements IWorkbenchPropertyPa
 	 */
 	private List libraryPathList;
 
+	protected Button libNatureButton;
+
+	private Group libraryPathsGroup;
+
+	private Composite directoryEditorComposite;
+
+	private Button delSourceFileButton;
+
+	private Button upSourceFileButton;
+
+	private Button downSourceFileButton;
+
+	private ScrolledComposite scrolledComposite;
+
+	private Composite comp;
+
 	@Override
 	protected Control createContents(Composite parent) {
 
 		// a composite to host all other controls
 		//
-		Composite comp = new Composite(parent, SWT.NONE);
-		GridLayoutFactory.swtDefaults().numColumns(2).equalWidth(true).applyTo(comp);
-		comp.setFont(parent.getFont());
+		this.comp = new Composite(parent, SWT.NONE);
+		GridLayoutFactory.swtDefaults().numColumns(2).equalWidth(true).applyTo(this.comp);
+		this.comp.setFont(parent.getFont());
 
-		// a group to confiure all libraries that are to be used
-		//
-		Group libraryPathsGroup = new Group(comp, SWT.NONE);
-		libraryPathsGroup.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
-		libraryPathsGroup.setText("Library Location(s)");
+		this.libNatureButton = new Button(this.comp, SWT.CHECK);
+		this.libNatureButton.setEnabled(true);
+		this.libNatureButton.setText("Enable PAMTraM Library Nature");
+		this.libNatureButton.setToolTipText(
+				"Enable the Library Nature to be able to use LibraryEntries as TargetSections for Mappings.");
+		this.libNatureButton.addSelectionListener((SelectionListener2) e -> PropertiesPage.this.updateApplyButton());
+
 		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).span(2, 1)
-				.applyTo(libraryPathsGroup);
-		GridLayoutFactory.swtDefaults().numColumns(3).applyTo(libraryPathsGroup);
+				.applyTo(this.libNatureButton);
 
-		Composite directoryEditorComposite = new Composite(libraryPathsGroup, SWT.NONE);
-		directoryEditorComposite.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.NORMAL));
+		// a group to configure all libraries that are to be used
+		//
+		this.libraryPathsGroup = new Group(this.comp, SWT.NONE);
+		this.libraryPathsGroup.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.BOLD));
+		this.libraryPathsGroup.setText("Library Location(s)");
+		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).span(2, 1)
+				.applyTo(this.libraryPathsGroup);
+		GridLayoutFactory.swtDefaults().numColumns(3).applyTo(this.libraryPathsGroup);
+
+		this.directoryEditorComposite = new Composite(this.libraryPathsGroup, SWT.NONE);
+		this.directoryEditorComposite.setFont(SWTResourceManager.getFont("Segoe UI", 9, SWT.NORMAL));
 		GridDataFactory.swtDefaults().grab(true, false).align(SWT.FILL, SWT.BEGINNING).span(3, 1)
-				.applyTo(directoryEditorComposite);
-		GridLayoutFactory.swtDefaults().numColumns(3).applyTo(directoryEditorComposite);
+				.applyTo(this.directoryEditorComposite);
+		GridLayoutFactory.swtDefaults().numColumns(3).applyTo(this.directoryEditorComposite);
 
-		// create drop-down list for the source file selection (based on the project)
+		// create drop-down list for the source file selection (based on the
+		// project)
 		//
 		this.libraryPathSelector = new DirectoryFieldEditor("libraryPathSelect", "Add Library Location:",
-				directoryEditorComposite);
+				this.directoryEditorComposite);
 		this.libraryPathSelector.setPropertyChangeListener(e -> this.handleAddLibrarySelected());
 
-		// a composite to display the selected source files as well as buttons to add/remove/reorder files
+		// a composite to display the selected source files as well as buttons
+		// to add/remove/reorder files
 		//
-		ScrolledComposite scrolledComposite = new ScrolledComposite(libraryPathsGroup, SWT.V_SCROLL);
-		scrolledComposite.setExpandHorizontal(true);
-		scrolledComposite.setExpandVertical(true);
-		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.FILL).grab(true, false).span(2, 3).applyTo(scrolledComposite);
+		this.scrolledComposite = new ScrolledComposite(this.libraryPathsGroup, SWT.V_SCROLL);
+		this.scrolledComposite.setExpandHorizontal(true);
+		this.scrolledComposite.setExpandVertical(true);
+		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.FILL).grab(true, false).span(2, 3)
+				.applyTo(this.scrolledComposite);
 
 		// a list to display the selected source files
 		//
-		this.libraryPathList = new List(scrolledComposite, SWT.BORDER | SWT.V_SCROLL | SWT.MULTI);
+		this.libraryPathList = new List(this.scrolledComposite, SWT.BORDER | SWT.V_SCROLL | SWT.MULTI);
 		this.libraryPathList.addKeyListener((KeyPressedListener) e -> {
 			if (e.keyCode == SWT.DEL && this.libraryPathList.getSelectionIndex() != -1) {
 
 				this.handleDelLibraryButtonPressed();
 			}
 		});
-		scrolledComposite.setContent(this.libraryPathList);
-		scrolledComposite.setMinSize(this.libraryPathList.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+		this.scrolledComposite.setContent(this.libraryPathList);
+		this.scrolledComposite.setMinSize(this.libraryPathList.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 
 		// a button that allows to delete elements from the 'sourceFileList'
 		//
-		Button delSourceFileButton = new Button(libraryPathsGroup, SWT.NONE);
-		delSourceFileButton.setText("Del...");
-		delSourceFileButton.addSelectionListener((SelectionListener2) e -> this.handleDelLibraryButtonPressed());
-		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).applyTo(delSourceFileButton);
+		this.delSourceFileButton = new Button(this.libraryPathsGroup, SWT.NONE);
+		this.delSourceFileButton.setText("Del...");
+		this.delSourceFileButton.addSelectionListener((SelectionListener2) e -> this.handleDelLibraryButtonPressed());
+		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).applyTo(this.delSourceFileButton);
 
 		// a button that allows to move elements up in the 'sourceFileList'
 		//
-		Button upSourceFileButton = new Button(libraryPathsGroup, SWT.NONE);
-		upSourceFileButton.setText("Up...");
-		upSourceFileButton.addSelectionListener((SelectionListener2) e -> this.handleUpLibraryButtonPressed());
-		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).applyTo(upSourceFileButton);
+		this.upSourceFileButton = new Button(this.libraryPathsGroup, SWT.NONE);
+		this.upSourceFileButton.setText("Up...");
+		this.upSourceFileButton.addSelectionListener((SelectionListener2) e -> this.handleUpLibraryButtonPressed());
+		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).applyTo(this.upSourceFileButton);
 
 		// a button that allows to move elements down in the 'sourceFileList'
 		//
-		Button downSourceFileButton = new Button(libraryPathsGroup, SWT.NONE);
-		downSourceFileButton.setText("Down...");
-		downSourceFileButton.addSelectionListener((SelectionListener2) e -> this.handleDownLibraryButtonPressed());
-		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).applyTo(downSourceFileButton);
+		this.downSourceFileButton = new Button(this.libraryPathsGroup, SWT.NONE);
+		this.downSourceFileButton.setText("Down...");
+		this.downSourceFileButton.addSelectionListener((SelectionListener2) e -> this.handleDownLibraryButtonPressed());
+		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).applyTo(this.downSourceFileButton);
 
 		// Finally, initialize all properties.
 		//
 		this.initializeValues();
+		this.initDataBindings();
 
-		return comp;
+		return this.comp;
 	}
 
 	@Override
@@ -138,15 +170,25 @@ public class PropertiesPage extends PropertyPage implements IWorkbenchPropertyPa
 	 */
 	private boolean storeValues() {
 
-		IResource resource = (IResource) this.getElement();
+		IProject project = (IProject) this.getElement();
+
 		try {
-			resource.setPersistentProperty(
-					new QualifiedName(PropertySupplier.PROPERTY_QUALIFIER, PropertySupplier.PROP_LIBRARY_PATHS),
-					String.join(";", this.libraryPathList.getItems()));
+			// Add/Remove the 'PAMTram Library Nature'
+			PropertySupplier.setResourceProperty(PropertySupplier.PROP_HAS_LIBRARY_NATURE,
+					String.valueOf(this.libNatureButton.getSelection()), project);
+
+			// Set the library paths
+			//
+			PropertySupplier.setResourceProperty(PropertySupplier.PROP_LIBRARY_PATHS,
+					String.join(";", this.libraryPathList.getItems()), project);
+
 		} catch (CoreException e) {
-			e.printStackTrace();
+			this.setErrorMessage(e.getMessage());
 			return false;
 		}
+
+		this.updateApplyButton();
+
 		return true;
 	}
 
@@ -168,11 +210,15 @@ public class PropertiesPage extends PropertyPage implements IWorkbenchPropertyPa
 	 */
 	private boolean initializeValues() {
 
-		IResource resource = (IResource) this.getElement();
+		IProject project = ((IResource) this.getElement()).getProject();
 
 		try {
-			this.libraryPathList.setItems(
-					PropertySupplier.getResourceProperty(PropertySupplier.PROP_LIBRARY_PATHS, resource).split(";"));
+			this.libNatureButton.setSelection(Boolean.parseBoolean(
+					PropertySupplier.getResourceProperty(PropertySupplier.PROP_HAS_LIBRARY_NATURE, project)));
+			if (!PropertySupplier.getResourceProperty(PropertySupplier.PROP_LIBRARY_PATHS, project).isEmpty()) {
+				this.libraryPathList.setItems(
+						PropertySupplier.getResourceProperty(PropertySupplier.PROP_LIBRARY_PATHS, project).split(";"));
+			}
 		} catch (CoreException e) {
 			e.printStackTrace();
 			return false;
@@ -194,8 +240,9 @@ public class PropertiesPage extends PropertyPage implements IWorkbenchPropertyPa
 		//
 		java.util.List<String> libraryPaths = Arrays.asList(this.libraryPathList.getItems());
 
-		if (libraryPaths.isEmpty()) {
-			// do nothing as this is not necessary if no library entries are used
+		if (!this.libNatureButton.getSelection() || libraryPaths.isEmpty()) {
+			// do nothing as this is not necessary if no library entries are
+			// used
 			return true;
 		}
 
@@ -226,6 +273,8 @@ public class PropertiesPage extends PropertyPage implements IWorkbenchPropertyPa
 		this.libraryPathList.deselectAll();
 		this.libraryPathList.select(this.libraryPathList.getItemCount() - 1);
 		this.libraryPathSelector.setStringValue(null);
+
+		this.updateApplyButton();
 	}
 
 	/**
@@ -235,8 +284,11 @@ public class PropertiesPage extends PropertyPage implements IWorkbenchPropertyPa
 
 		int selected = this.libraryPathList.getSelectionIndex();
 		this.libraryPathList.remove(this.libraryPathList.getSelectionIndices());
-		this.libraryPathList.select(selected > this.libraryPathList.getItemCount() - 1
-				? this.libraryPathList.getItemCount() - 1 : selected);
+		this.libraryPathList
+				.select(selected > this.libraryPathList.getItemCount() - 1 ? this.libraryPathList.getItemCount() - 1
+						: selected);
+
+		this.updateApplyButton();
 	}
 
 	/**
@@ -258,6 +310,8 @@ public class PropertiesPage extends PropertyPage implements IWorkbenchPropertyPa
 			this.libraryPathList.deselect(selected);
 			this.libraryPathList.select(selected - 1);
 		}
+
+		this.updateApplyButton();
 
 	}
 
@@ -283,5 +337,61 @@ public class PropertiesPage extends PropertyPage implements IWorkbenchPropertyPa
 			this.libraryPathList.select(sel + 1);
 		}
 
+		this.updateApplyButton();
+
+	}
+
+	protected DataBindingContext initDataBindings() {
+
+		DataBindingContext bindingContext = new DataBindingContext();
+		//
+		IObservableValue<?> observeEnabledDirectoryEditorCompositeObserveWidget = WidgetProperties.enabled()
+				.observe(this.directoryEditorComposite);
+		IObservableValue<?> observeSelectionLibNatureButtonObserveWidget = WidgetProperties.selection()
+				.observe(this.libNatureButton);
+		bindingContext.bindValue(observeEnabledDirectoryEditorCompositeObserveWidget,
+				observeSelectionLibNatureButtonObserveWidget, new UpdateValueStrategy(UpdateValueStrategy.POLICY_NEVER),
+				null);
+		//
+		IObservableValue<?> observeEnabledDelSourceFileButtonObserveWidget = WidgetProperties.enabled()
+				.observe(this.delSourceFileButton);
+		IObservableValue<?> observeSelectionLibNatureButtonObserveWidget_1 = WidgetProperties.selection()
+				.observe(this.libNatureButton);
+		bindingContext.bindValue(observeEnabledDelSourceFileButtonObserveWidget,
+				observeSelectionLibNatureButtonObserveWidget_1,
+				new UpdateValueStrategy(UpdateValueStrategy.POLICY_NEVER), null);
+		//
+		IObservableValue<?> observeSelectionUpSourceFileButtonObserveWidget = WidgetProperties.enabled()
+				.observe(this.upSourceFileButton);
+		IObservableValue<?> observeSelectionLibNatureButtonObserveWidget_2 = WidgetProperties.selection()
+				.observe(this.libNatureButton);
+		bindingContext.bindValue(observeSelectionUpSourceFileButtonObserveWidget,
+				observeSelectionLibNatureButtonObserveWidget_2,
+				new UpdateValueStrategy(UpdateValueStrategy.POLICY_NEVER), null);
+		//
+		IObservableValue<?> observeSelectionDownSourceFileButtonObserveWidget = WidgetProperties.enabled()
+				.observe(this.downSourceFileButton);
+		IObservableValue<?> observeSelectionLibNatureButtonObserveWidget_3 = WidgetProperties.selection()
+				.observe(this.libNatureButton);
+		bindingContext.bindValue(observeSelectionDownSourceFileButtonObserveWidget,
+				observeSelectionLibNatureButtonObserveWidget_3,
+				new UpdateValueStrategy(UpdateValueStrategy.POLICY_NEVER), null);
+		//
+		IObservableValue<?> observeEnabledScrolledCompositeObserveWidget = WidgetProperties.enabled()
+				.observe(this.scrolledComposite);
+		IObservableValue<?> observeSelectionLibNatureButtonObserveWidget_4 = WidgetProperties.selection()
+				.observe(this.libNatureButton);
+		bindingContext.bindValue(observeEnabledScrolledCompositeObserveWidget,
+				observeSelectionLibNatureButtonObserveWidget_4,
+				new UpdateValueStrategy(UpdateValueStrategy.POLICY_NEVER), null);
+		//
+		IObservableValue<?> observeEnabledCompObserveWidget = WidgetProperties.enabled()
+				.observe(this.libraryPathsGroup);
+		IObservableValue<?> selectionLibNatureButtonObserveValue = WidgetProperties.selection()
+				.observe(this.libNatureButton);
+		bindingContext.bindValue(observeEnabledCompObserveWidget, selectionLibNatureButtonObserveValue,
+				new UpdateValueStrategy(UpdateValueStrategy.POLICY_NEVER), null);
+		//
+		return bindingContext;
 	}
 }

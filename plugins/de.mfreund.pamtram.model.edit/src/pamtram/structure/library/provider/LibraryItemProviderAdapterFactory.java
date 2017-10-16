@@ -12,6 +12,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.Disposable;
 import org.eclipse.emf.edit.provider.IChangeNotifier;
 import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -49,6 +50,14 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 	 * @generated
 	 */
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
+
+	/**
+	 * This keeps track of all the item providers created, so that they can be {@link #dispose disposed}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected Disposable disposable = new Disposable();
 
 	/**
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
@@ -166,14 +175,6 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.library.LibraryEntry} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected LibraryEntryItemProvider libraryEntryItemProvider;
-
-	/**
 	 * This creates an adapter for a {@link pamtram.structure.library.LibraryEntry}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -181,11 +182,7 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 	 */
 	@Override
 	public Adapter createLibraryEntryAdapter() {
-		if (libraryEntryItemProvider == null) {
-			libraryEntryItemProvider = new LibraryEntryItemProvider(this);
-		}
-
-		return libraryEntryItemProvider;
+		return new LibraryEntryItemProvider(this);
 	}
 
 	/**
@@ -247,6 +244,20 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 	}
 
 	/**
+	 * Associates an adapter with a notifier via the base implementation, then records it to ensure it will be disposed.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected void associate(Adapter adapter, Notifier target) {
+		super.associate(adapter, target);
+		if (adapter != null) {
+			disposable.add(adapter);
+		}
+	}
+
+	/**
 	 * This adds a listener.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -287,11 +298,7 @@ public class LibraryItemProviderAdapterFactory extends LibraryAdapterFactory imp
 	 * @generated
 	 */
 	public void dispose() {
-		if (attributeParameterItemProvider != null) attributeParameterItemProvider.dispose();
-		if (containerParameterItemProvider != null) containerParameterItemProvider.dispose();
-		if (externalReferenceParameterItemProvider != null) externalReferenceParameterItemProvider.dispose();
-		if (resourceParameterItemProvider != null) resourceParameterItemProvider.dispose();
-		if (libraryEntryItemProvider != null) libraryEntryItemProvider.dispose();
+		disposable.dispose();
 	}
 
 }

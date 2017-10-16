@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: PAMTraM Transformation Model
 Bundle-SymbolicName: de.mfreund.pamtram.transformation.model;singleton:=true
-Bundle-Version: 1.0.2.qualifier
+Bundle-Version: 2.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: Matthias Freund,
  Institute of Automation,
@@ -12,6 +12,6 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: de.mfreund.pamtram.transformation,
  de.mfreund.pamtram.transformation.impl,
  de.mfreund.pamtram.transformation.util
-Require-Bundle: de.mfreund.pamtram.model;bundle-version="1.6.0";visibility:=reexport,
+Require-Bundle: de.mfreund.pamtram.model;bundle-version="2.0.0";visibility:=reexport,
  org.eclipse.emf.ecore
 Bundle-ActivationPolicy: lazy

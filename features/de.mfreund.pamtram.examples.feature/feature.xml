@@ -2,7 +2,7 @@
 <feature
       id="de.mfreund.pamtram.examples.feature"
       label="PAMTraM Examples"
-      version="1.1.0.qualifier"
+      version="2.0.0.qualifier"
       provider-name="Matthias Freund, Institute of Automation, TU Dresden">
 
    <description url="http://www.example.com/description">
@@ -35,16 +35,17 @@ These terms will be replaced, once it has been decided, which public license to 
       <discovery label="Eclipse-Commons Update Site" url="https://agtele.eats.et.tu-dresden.de/projects/eclipse-commons/updates"/>
       <discovery label="PAMTraM Update Site" url="https://agtele.eats.et.tu-dresden.de/eclipse/updates/"/>
       <discovery label="PAMTraM Update Site" url="https://agtele.eats.et.tu-dresden.de/eclipse/updates"/>
+      <discovery label="Eclipse Neon Release" url="http://download.eclipse.org/eclipse/updates/4.6"/>
+      <discovery label="Eclipse Neon Release" url="http://download.eclipse.org/eclipse/updates/4.6/"/>
+      <discovery label="Eclipse Oxygen Release" url="http://download.eclipse.org/eclipse/updates/4.7"/>
+      <discovery label="Eclipse Oxygen Release" url="http://download.eclipse.org/eclipse/updates/4.7/"/>
    </url>
-
-   <includes
-         id="org.eclipse.ocl.examples"
-         version="0.0.0"/>
 
    <requires>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.emf.common.ui" version="2.10.0" match="greaterOrEqual"/>
       <import feature="de.mfreund.pamtram.feature" version="1.9.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.ocl.examples" version="6.3.0.v20170613-1432"/>
    </requires>
 
    <plugin

@@ -568,6 +568,13 @@ public class TargetSectionLinker extends CancelableElement {
 			//
 			IntStream.range(0, sourceInstances.size()).forEach(i -> targetInstancesBySourceInstance
 					.put(sourceInstances.get(i), Arrays.asList(targetInstances.get(i))));
+		} else if (targetInstances.size() == 1) {
+
+			// The single target instance will be used for each source instance
+			//
+			IntStream.range(0, sourceInstances.size()).forEach(i -> targetInstancesBySourceInstance
+					.put(sourceInstances.get(i), Arrays.asList(targetInstances.iterator().next())));
+
 		} else {
 
 			if (reference.getEReference().isMany()) {

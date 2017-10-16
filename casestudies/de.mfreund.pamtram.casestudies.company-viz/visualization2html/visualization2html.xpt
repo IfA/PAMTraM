@@ -1,0 +1,72 @@
+«IMPORT visualization»
+
+«EXTENSION helper»
+
+«REM»This is the entry point for the workflow«ENDREM»
+«DEFINE root FOR visualization::VisualizationModel»
+
+«REM»Create a new file 'index.html'«ENDREM»
+«FILE "index.html"»
+
+«REM»Create the basic HTML structure«ENDREM»
+<html>
+	<head>
+		<title>
+		«IF this.name.length > 0»
+			«this.name»
+		«ENDIF»
+		</title>
+		<script type="text/javascript" src="navigation.js"><!-- --></script>
+	</head>
+	<body onload="createNavigationFlows()">
+		<h1>Visualization Model '«this.name»'</h1>
+		
+		«EXPAND createPanel FOREACH this.panels»
+	</body>
+</html>
+
+«ENDFILE»
+
+«REM»Create a new file 'navigation.js' that creates the navigation strcuture.«ENDREM»
+«FILE "navigation.js"»
+function createNavigationFlows() {«EXPAND createNavFlow FOREACH this.navigationFlows»};
+«ENDFILE»
+
+«ENDDEFINE»
+
+«REM»Create a div for the Panel. The div contains a table that will be used to display the InfoItems.«ENDREM»
+«DEFINE createPanel FOR visualization::Panel»
+<div class="panelDiv" id="«createIdForNamedElement(this)»">
+	<h2>Panel '«this.name»'</h2>
+	<table>
+		<tbody id="«createIdForNamedElement(this)»_infoTable">
+		«EXPAND createTableRow FOREACH this.content»
+		</tbody>
+	</table>
+</div>
+«ENDDEFINE»
+
+«REM»Each InfoItem is represented as one row of a table.«ENDREM»
+«DEFINE createTableRow FOR visualization::InfoItem»
+	<tr><td>«this.name»:</td><td>«this.value»</td></tr>
+«ENDDEFINE»
+
+«REM»Create JavaScript code that creates a link for each defined NavigationFlow«ENDREM»
+«DEFINE createNavFlow FOR visualization::NavigationFlow»
+	«LET createIdForNamedElement(this.source) + '_infoTable' AS navSource»
+	«LET createIdForNamedElement(this.target) AS navTarget»
+	«IF navSource.length > 0 && navTarget.length > 0»
+	«IF this.signals.isEmpty»
+document.getElementById('«navSource»').innerHTML = 
+	document.getElementById('«navSource»').innerHTML + '<tr><td></td><td><a href="#«navTarget»" >«this.target.name»</a></td></tr>';
+	«ELSE»
+	«FOREACH this.signals AS signal»
+document.getElementById('«navSource»').innerHTML = 
+	document.getElementById('«navSource»').innerHTML + '<tr><td>«signal.name»:</td><td><a href="#«navTarget»" >«this.target.name»</a></td></tr>';
+	«ENDFOREACH»
+	«ENDIF»
+	«ENDIF»
+	«ENDLET»
+	«ENDLET»
+«ENDDEFINE»
+

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Company xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://de.tud.et.ifa.agtele.xmlweb.mdsd"
+    xsi:schemaLocation="http://de.tud.et.ifa.agtele.xmlweb.mdsd ../metamodel/company.ecore"
+    name="IfA"
+    ceo="Klaus Janschek"
+    companyType="GmbH">
+  <staff>
+    <members
+        name="Christopher Martin"
+        phone="32237"
+        mail="christopher.martin@tu-dresden.de"/>
+    <members
+        name="Matthias Freund"
+        phone="32237"
+        mail="matthias.freund@tu-dresden.de"/>
+  </staff>
+  <stock>
+    <components
+        xsi:type="BackWheelAxis"
+        engineers="//@staff/@members.0"
+        name="Hager Back Wheel Axis"
+        description="Fancy Axis"
+        productionTime="2"
+        availableItems="15"
+        totalWeight="1337"
+        tyreDimensions="185/R15"/>
+    <components
+        xsi:type="BrakeSystem"
+        engineers="//@staff/@members.1"
+        name="Brakesystem Hannelore"
+        description="Best Brakesystem ever"
+        productionTime="5"
+        availableItems="7"
+        totalWeight="1337"
+        maxBrakePressure="100"
+        maxVelocity="188"
+        ventilated="true"/>
+    <components
+        xsi:type="RearViewMirror"
+        engineers="//@staff/@members.0 //@staff/@members.1"
+        name="Rear View Mirror Roundview"
+        description="The Rear View Mirror for foggy days"
+        productionTime="1"
+        availableItems="5"
+        autoDimming="true"/>
+  </stock>
+</Company>

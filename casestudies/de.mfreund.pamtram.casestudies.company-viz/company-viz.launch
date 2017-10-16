@@ -8,21 +8,16 @@
 <stringAttribute key="logLevel" value="INFO"/>
 <intAttribute key="maxPathLength" value="-1"/>
 <booleanAttribute key="openTargetModelOnCompletion" value="true"/>
-<stringAttribute key="pamtramFile" value="visu-plus.pamtram"/>
 <listAttribute key="pamtramFiles">
-<listEntry value="visu-plus.pamtram"/>
+<listEntry value="company-viz.pamtram"/>
 </listAttribute>
-<stringAttribute key="project" value="de.mfreund.pamtram.casestudies.visu-plus"/>
+<stringAttribute key="project" value="de.mfreund.pamtram.casestudies.company-viz"/>
 <booleanAttribute key="rememberAmbiguousMappingChoice" value="true"/>
 <listAttribute key="srcFiles">
-<listEntry value="beispiel_ver_0_2_3.xml"/>
+<listEntry value="IfA.xmi"/>
 </listAttribute>
 <booleanAttribute key="storeTransformation" value="false"/>
-<stringAttribute key="targetFile" value="out.xmi"/>
-<stringAttribute key="targetLibBundle" value=""/>
-<stringAttribute key="targetLibContext" value=""/>
-<stringAttribute key="targetLibParser" value=""/>
-<stringAttribute key="targetLibPath" value=""/>
+<stringAttribute key="targetFile" value="visualization.xmi"/>
 <stringAttribute key="transformationModel" value=""/>
 <booleanAttribute key="useParallelization" value="false"/>
 <intAttribute key="weightingFactor" value="50"/>

@@ -66,6 +66,15 @@
             name="W3CAUI -&gt; Movisa"
             project="true">
       </wizard>
+      <wizard
+            category="org.eclipse.ui.Examples/de.mfreund.pamtram.examples.category"
+            class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
+            finalPerspective="de.mfreund.pamtram.pamtramPerspective"
+            icon="icons/project.png"
+            id="de.mfreund.pamtram.examples.company-viz"
+            name="Company -&gt; Visualization"
+            project="true">
+      </wizard>
       <category
             id="de.mfreund.pamtram.examples.category"
             name="PAMTraM"
@@ -156,6 +165,18 @@
          <fileToOpen
                editorID="pamtram.presentation.PamtramEditorID"
                location="de.mfreund.pamtram.casestudies.w3caui-movisa/Pamtram/w3caui-movisa.pamtram">
+         </fileToOpen>
+      </example>
+      <example
+            wizardID="de.mfreund.pamtram.examples.company-viz">
+         <projectDescriptor
+               contentURI="zips/company-viz.zip"
+               description="This casestudy demonstrates a simple transformation from a &apos;Company&apos; metamodel to a &apos;Visualization&apos; metamodel. Note: This also includes a subsequent model-to-text transformation that produces HTML output. For this to work, the &apos;XPand SDK&apos; needs to be installed (see &apos;https://www.eclipse.org/modeling/m2t/?project=xpand&apos; for more information."
+               name="de.mfreund.pamtram.casestudies.company-viz">
+         </projectDescriptor>
+         <fileToOpen
+               editorID="pamtram.presentation.PamtramEditorID"
+               location="de.mfreund.pamtram.casestudies.company-viz/Pamtram/company-viz.pamtram">
          </fileToOpen>
       </example>
    </extension>

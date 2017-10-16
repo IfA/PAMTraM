@@ -1,0 +1,4 @@
+import visualization;
+
+createIdForNamedElement(visualization::NamedElement element):
+	element.name.toLowerCase().replaceAll(' ', '').replaceAll("ä", "ae").replaceAll("ö", "oe").replaceAll("ü", "ue").replaceAll("ß", "ss");

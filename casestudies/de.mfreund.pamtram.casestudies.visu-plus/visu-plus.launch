@@ -7,7 +7,11 @@
 <listAttribute key="libraryPaths"/>
 <stringAttribute key="logLevel" value="INFO"/>
 <intAttribute key="maxPathLength" value="-1"/>
+<booleanAttribute key="openTargetModelOnCompletion" value="true"/>
 <stringAttribute key="pamtramFile" value="visu-plus.pamtram"/>
+<listAttribute key="pamtramFiles">
+<listEntry value="visu-plus.pamtram"/>
+</listAttribute>
 <stringAttribute key="project" value="de.mfreund.pamtram.casestudies.visu-plus"/>
 <booleanAttribute key="rememberAmbiguousMappingChoice" value="true"/>
 <listAttribute key="srcFiles">

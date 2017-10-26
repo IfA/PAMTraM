@@ -1,5 +1,7 @@
 package de.mfreund.gentrans.transformation.resolving.wizards;
 
+import java.util.Optional;
+
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
@@ -50,45 +52,24 @@ public abstract class AbstractDialog extends TitleAreaDialog {
 
 	/**
 	 * Create the dialog.
-	 * <p />
-	 * Note: this is equivalent to calling {@link #AbstractDialog(String, String, SelectionListener2)
-	 * AbstractDialog(String, String, null)}.
-	 *
-	 * @see #AbstractDialog(String, String, SelectionListener2)
 	 *
 	 * @param title
 	 *            The title for the dialog.
 	 * @param message
 	 *            The message that shall be displayed in the dialog.
+	 * @param enhanceMappingModelListener2
+	 *            An optional {@link SelectionListener2} that will be called when the <em>EnhanceMappingModelButton</em>
+	 *            is clicked. If no listener is given, the button will be grayed out.
 	 */
-	public AbstractDialog(String title, String message) {
-
-		this(title, message, null);
-	}
-
-	/**
-	 * Create the dialog.
-	 * <p />
-	 * If <em>enhanceMappingModelListener</em> is <em>null</em>, the corresponding button will be grayed out.
-	 *
-	 * @see #AbstractDialog(String, String)
-	 *
-	 * @param title
-	 *            The title for the dialog.
-	 * @param message
-	 *            The message that shall be displayed in the dialog.
-	 * @param enhanceMappingModelListener
-	 *            A {@link SelectionListener2} that will be called when the <em>EnhanceMappingModelButton</em> is
-	 *            clicked.
-	 */
-	public AbstractDialog(String title, String message, final SelectionListener2 enhanceMappingModelListener) {
+	public AbstractDialog(String title, String message,
+			final Optional<SelectionListener2> enhanceMappingModelListener2) {
 
 		super(UIHelper.getShell());
 
 		this.title = title;
 		this.message = message;
 
-		this.enhanceMappingModelListener = enhanceMappingModelListener;
+		this.enhanceMappingModelListener = enhanceMappingModelListener2.orElse(null);
 	}
 
 	@Override

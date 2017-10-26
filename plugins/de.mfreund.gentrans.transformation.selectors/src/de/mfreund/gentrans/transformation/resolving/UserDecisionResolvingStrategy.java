@@ -96,16 +96,9 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		//
 		Display.getDefault().syncExec(() -> {
 
-			dialog.set(new GenericSelectionDialog<MatchedSectionDescriptor>(UserDecisionResolvingStrategy.DIALOG_TITLE,
+			dialog.set(new GenericSelectionDialog<>(UserDecisionResolvingStrategy.DIALOG_TITLE,
 					"Please select a SourceSection for the source element\n'" + EObjectWrapper.asString(element) + "'",
-					choices, false, 0, null) {
-
-				@Override
-				protected String getStringRepresentation(MatchedSectionDescriptor option) {
-
-					return option.getAssociatedSourceSectionClass().getName();
-				}
-			});
+					choices, false, Optional.empty()));
 			dialog.get().create();
 			dialog.get().open();
 		});
@@ -129,16 +122,9 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		//
 		Display.getDefault().syncExec(() -> {
 
-			dialog.set(new GenericSelectionDialog<Mapping>(UserDecisionResolvingStrategy.DIALOG_TITLE,
+			dialog.set(new GenericSelectionDialog<>(UserDecisionResolvingStrategy.DIALOG_TITLE,
 					"Please select a Mapping for the source element\n'" + EObjectWrapper.asString(element) + "'",
-					choices, true, 0, null) {
-
-				@Override
-				protected String getStringRepresentation(Mapping option) {
-
-					return option.getName();
-				}
-			});
+					choices, true, Optional.empty()));
 			dialog.get().create();
 			dialog.get().open();
 		});
@@ -179,8 +165,8 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		//
 		Display.getDefault().syncExec(() -> {
 
-			dialog.set(
-					new ValueSpecificationDialog(UserDecisionResolvingStrategy.DIALOG_TITLE, dialogMessage, enhancer));
+			dialog.set(new ValueSpecificationDialog(UserDecisionResolvingStrategy.DIALOG_TITLE, dialogMessage,
+					Optional.of(enhancer)));
 			dialog.get().create();
 			dialog.get().open();
 		});
@@ -214,7 +200,8 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		//
 		Display.getDefault().syncExec(() -> {
 
-			dialog.set(new ValueSpecificationDialog(UserDecisionResolvingStrategy.DIALOG_TITLE, dialogMessage));
+			dialog.set(new ValueSpecificationDialog(UserDecisionResolvingStrategy.DIALOG_TITLE, dialogMessage,
+					Optional.empty()));
 			dialog.get().create();
 			dialog.get().open();
 		});
@@ -269,17 +256,10 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		//
 		Display.getDefault().syncExec(() -> {
 
-			dialog.set(new GenericSelectionDialog<EClass>(UserDecisionResolvingStrategy.DIALOG_TITLE,
+			dialog.set(new GenericSelectionDialog<>(UserDecisionResolvingStrategy.DIALOG_TITLE,
 					"There was more than one target model element that could not be connected to a root element. Therefore "
 							+ "a model root element needs to be created. Please select a fitting class:",
-					choices, false, 0, enhancer) {
-
-				@Override
-				protected String getStringRepresentation(EClass option) {
-
-					return option.getName();
-				}
-			});
+					choices, false, Optional.of(enhancer)));
 			dialog.get().create();
 			dialog.get().open();
 		});
@@ -316,7 +296,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 							+ "instances of the target section '" + section.getName() + "' (EClass: '"
 							+ section.getEClass().getName() + "') to the model root element of the type '"
 							+ choices.get(0).getPathRootClass().getName() + "'.",
-					choices, false, 0, enhancer));
+					choices, false, Optional.of(enhancer)));
 			dialog.get().create();
 			dialog.get().open();
 		});
@@ -361,7 +341,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 							+ " to be put at a sensible position in the target model. "
 							+ "Please choose one of the possible connections to other existing target model elements"
 							+ " below.",
-					choices, enhancer));
+					choices, false, Optional.of(enhancer)));
 			dialog.get().create();
 			dialog.get().open();
 		});
@@ -424,7 +404,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		Display.getDefault().syncExec(() -> {
 
 			dialog.set(new GenericSelectionDialog<>(UserDecisionResolvingStrategy.DIALOG_TITLE, message, choices, false,
-					0, enhancer));
+					Optional.of(enhancer)));
 			dialog.get().create();
 			dialog.get().open();
 		});
@@ -475,7 +455,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		Display.getDefault().syncExec(() -> {
 
 			dialog.set(new GenericSelectionDialog<>(UserDecisionResolvingStrategy.DIALOG_TITLE, dialogMessage, choices,
-					reference.getEReference().isMany(), 0, null));
+					reference.getEReference().isMany(), Optional.empty()));
 			dialog.get().create();
 			dialog.get().open();
 		});
@@ -512,7 +492,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 							+ "(Section: " + hintGroup.getTargetSection().getEClass().getName() + ") in Mapping "
 							+ ((Mapping) hintGroup.eContainer()).getName() + "(Group: " + hintGroup.getName() + ") ."
 							+ "Please select a target Class and element.",
-					choices, reference.getEReference().isMany(), null) {
+					choices, reference.getEReference().isMany(), Optional.empty()) {
 
 				@Override
 				protected String getStringRepresentation(TargetSectionClass option) {

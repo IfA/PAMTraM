@@ -2,20 +2,17 @@ package de.mfreund.gentrans.transformation.resolving.wizards;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
+import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ListViewer;
-import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Group;
 
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
@@ -37,35 +34,12 @@ public class ClassAndInstanceSelectorDialog<T> extends GenericSelectionDialog<T>
 	/**
 	 * This keeps track of the instances the can be selected for each of the possible {@link #options}.
 	 */
-	protected final Map<T, Map<String, EObjectWrapper>> instanceOptions;
+	protected final Map<T, List<EObjectWrapper>> instanceOptions;
 
 	/**
 	 * The instances that have been selected by the user.
 	 */
 	protected List<EObjectWrapper> selectedInstances;
-
-	/**
-	 * Create the dialog without allowing for multi-selection.
-	 * <p />
-	 * Note: This is equal to calling '<em>PathAndInstanceSelectorDialog(message, paths, instances, <b>false</b>,
-	 * standardSelectionIndex)</em>'.
-	 *
-	 * @param title
-	 *            The title for the dialog.
-	 * @param message
-	 *            The message that shall be displayed in the dialog.
-	 * @param options
-	 *            A map that describes the options that can be chosen by the user.
-	 * @param enhanceMappingModelListener
-	 *            A {@link SelectionListener2} that will be called when the
-	 *            {@link AbstractDialog#enhanceMappingModelButton} is clicked.
-	 */
-	public ClassAndInstanceSelectorDialog(String title, String message, Map<T, List<EObjectWrapper>> options,
-			final SelectionListener2 enhanceMappingModelListener) {
-
-		this(title, message, options, false, enhanceMappingModelListener);
-
-	}
 
 	/**
 	 * Create the dialog.
@@ -79,22 +53,20 @@ public class ClassAndInstanceSelectorDialog<T> extends GenericSelectionDialog<T>
 	 * @param multiSelectionAllowed
 	 *            Whether multi-selection shall be allowed in the dialog.
 	 * @param enhanceMappingModelListener
-	 *            A {@link SelectionListener2} that will be called when the
-	 *            {@link AbstractDialog#enhanceMappingModelButton} is clicked.
+	 *            An optional {@link SelectionListener2} that will be called when the <em>EnhanceMappingModelButton</em>
+	 *            is clicked. If no listener is given, the button will be grayed out.
 	 */
 	public ClassAndInstanceSelectorDialog(String title, String message, Map<T, List<EObjectWrapper>> options,
-			boolean multiSelectionAllowed, final SelectionListener2 enhanceMappingModelListener) {
+			boolean multiSelectionAllowed, Optional<SelectionListener2> enhanceMappingModelListener) {
 
-		super(title, message, new ArrayList<>(options.keySet()), multiSelectionAllowed, 0, enhanceMappingModelListener);
+		super(title, message, new ArrayList<>(options.keySet()), multiSelectionAllowed, enhanceMappingModelListener);
 
-		this.instanceOptions = options.entrySet().stream().collect(LinkedHashMap::new,
-				(outerMap, entry) -> outerMap.put(entry.getKey(), entry.getValue().stream().collect(LinkedHashMap::new,
-						(innerMap, value) -> innerMap.put(value.toString(), value), (map1, map2) -> map1.putAll(map2))),
-				(map1, map2) -> map1.putAll(map2));
+		this.instanceOptions = options;
 
 		this.selectedInstances = Arrays.asList(options.get(0).get(0));
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void createInnerContents(Composite container) {
 
@@ -103,49 +75,35 @@ public class ClassAndInstanceSelectorDialog<T> extends GenericSelectionDialog<T>
 		SashForm sashForm = new SashForm(container, SWT.NONE);
 		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).minSize(200, 200).applyTo(sashForm);
 
-		// Create the group that will display the list of paths to the user
-		//
-		Group grpPossiblePaths = new Group(sashForm, SWT.NONE);
-		grpPossiblePaths.setText("Possible Paths");
-		grpPossiblePaths.setLayout(new FillLayout(SWT.HORIZONTAL));
-
 		// Create the list viewer for the list of types
 		//
-		ListViewer pathListViewer = this.createListViewer(grpPossiblePaths, false, this.options.keySet(),
-				this.standardSelectionIndex);
-
-		// Create the group that will display the list of instances to the user
-		//
-		final Group grpPossibleInstances = new Group(sashForm, SWT.NONE);
-		grpPossibleInstances.setText("Possible Instances");
-		grpPossibleInstances.setLayout(new FillLayout(SWT.HORIZONTAL));
+		ListViewer pathListViewer = this.createListViewer(sashForm, Optional.of("Possible Paths"), false);
 
 		// Create the list viewer for the list of instances
 		//
-		ListViewer instanceListViewer = this.createListViewer(grpPossibleInstances, this.multiSelectionAllowed,
-				new ArrayList<>(this.instanceOptions.entrySet()).get(this.standardSelectionIndex).getValue().keySet(),
-				this.standardSelectionIndex);
+		ListViewer instanceListViewer = this.createListViewer(sashForm, Optional.of("Possible Instances"),
+				this.multiSelectionAllowed);
 
 		pathListViewer.addSelectionChangedListener(event -> {
-			T selectedType = this.options
-					.get(pathListViewer.getList().getItem(pathListViewer.getList().getSelectionIndex()));
+			T selectedType = (T) pathListViewer.getStructuredSelection().getFirstElement();
 			this.selectedItems = Arrays.asList(selectedType);
-			EObjectWrapper instanceToSelect = new ArrayList<>(this.instanceOptions.get(selectedType).values())
-					.get(this.standardSelectionIndex);
-			instanceListViewer.setSelection(new StructuredSelection(instanceToSelect));
+			List<EObjectWrapper> newInstancesToSelectFrom = this.instanceOptions.get(selectedType);
+			instanceListViewer.setInput(newInstancesToSelectFrom);
 		});
 
-		instanceListViewer
-				.addDoubleClickListener((IDoubleClickListener) e -> ClassAndInstanceSelectorDialog.this.close());
+		pathListViewer.setInput(this.instanceOptions.keySet());
+
+		instanceListViewer.addDoubleClickListener((IDoubleClickListener) e -> {
+			this.setReturnCode(IDialogConstants.OK_ID);
+			this.close();
+		});
+
+		instanceListViewer.addSelectionChangedListener(
+				event -> this.selectedInstances = instanceListViewer.getStructuredSelection().toList());
+
+		instanceListViewer.setInput(this.instanceOptions.entrySet().iterator().next().getValue());
 
 		sashForm.setWeights(new int[] { 50, 50 });
-
-		instanceListViewer.addSelectionChangedListener(event -> {
-			T selectedType = this.options
-					.get(pathListViewer.getList().getItem(pathListViewer.getList().getSelectionIndex()));
-			this.selectedInstances = Arrays.asList(instanceListViewer.getList().getSelection()).stream()
-					.map(s -> this.instanceOptions.get(selectedType).get(s)).collect(Collectors.toList());
-		});
 	}
 
 	/**

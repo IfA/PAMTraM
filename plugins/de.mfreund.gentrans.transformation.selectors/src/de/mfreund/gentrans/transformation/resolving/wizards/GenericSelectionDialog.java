@@ -1,17 +1,16 @@
 package de.mfreund.gentrans.transformation.resolving.wizards;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ListViewer;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -30,14 +29,12 @@ import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 public class GenericSelectionDialog<T> extends AbstractDialog {
 
 	/**
-	 * A map describing the options that will be presented to the user. The key thereby represents a String
-	 * representation of the option, whereas the value represents the actual option.
+	 * The options that are be presented to the user.
 	 */
-	protected final Map<String, T> options;
+	protected final List<T> options;
 
 	/**
-	 * The options that have been selected by the user (a subset of the options passed in the
-	 * {@link #GenericSelectionDialog(String, String, List, boolean, int, SelectionListener2) constructor}.
+	 * The options that have been selected by the user (a subset of the {@link #options}).
 	 */
 	protected List<T> selectedItems;
 
@@ -45,37 +42,6 @@ public class GenericSelectionDialog<T> extends AbstractDialog {
 	 * Whether multi-selection shall be allowed in the dialog.
 	 */
 	protected boolean multiSelectionAllowed;
-
-	/**
-	 * The options that have been selected by the user (this will be a subset of {@link #options}).
-	 */
-	protected final int standardSelectionIndex;
-
-	/**
-	 * Create the dialog without allowing for multi-selection.
-	 * <p />
-	 * Note: This is equal to calling '<em>GenericSelectionDialog(message, options, <b>false</b>,
-	 * standardSelectionIndex)</em>'.
-	 *
-	 * @param title
-	 *            The title for the dialog.
-	 * @param message
-	 *            The message that shall be displayed in the dialog.
-	 * @param options
-	 *            The list of options from which the user may select.
-	 * @param standardSelectionIndex
-	 *            The index of the option that shall be default selected in the dialog (pass '<em>-1</em/>' if no option
-	 *            shall be default selected.
-	 * @param enhanceMappingModelListener
-	 *            A {@link SelectionListener2} that will be called when the <em>EnhanceMappingModelButton</em> is
-	 *            clicked.
-	 */
-	public GenericSelectionDialog(String title, String message, final List<T> options, final int standardSelectionIndex,
-			final SelectionListener2 enhanceMappingModelListener) {
-
-		this(title, message, options, false, standardSelectionIndex, enhanceMappingModelListener);
-
-	}
 
 	/**
 	 * Create the dialog.
@@ -88,80 +54,93 @@ public class GenericSelectionDialog<T> extends AbstractDialog {
 	 *            The list of options from which the user may select.
 	 * @param multiSelectionAllowed
 	 *            Whether multi-selection shall be allowed in the dialog.
-	 * @param standardSelectionIndex
-	 *            The index of the option that shall be default selected in the dialog (pass '<em>-1</em/>' if no option
-	 *            shall be default selected.
 	 * @param enhanceMappingModelListener
-	 *            A {@link SelectionListener2} that will be called when the <em>EnhanceMappingModelButton</em> is
-	 *            clicked.
+	 *            An optional {@link SelectionListener2} that will be called when the <em>EnhanceMappingModelButton</em>
+	 *            is clicked. If no listener is given, the button will be grayed out.
 	 */
-	public GenericSelectionDialog(String title, String message, final List<T> options, boolean multiSelectionAllowed,
-			final int standardSelectionIndex, final SelectionListener2 enhanceMappingModelListener) {
+	public GenericSelectionDialog(String title, String message, List<T> options, boolean multiSelectionAllowed,
+			Optional<SelectionListener2> enhanceMappingModelListener) {
 
 		super(title, message, enhanceMappingModelListener);
 
-		this.options = options.stream().collect(LinkedHashMap::new,
-				(map, option) -> map.put(this.getStringRepresentation(option), option),
-				(map1, map2) -> map1.putAll(map2));
+		this.options = options;
 
-		this.standardSelectionIndex = standardSelectionIndex;
 		this.selectedItems = new ArrayList<>();
-		if (standardSelectionIndex >= 0) {
-			this.selectedItems.add(options.get(0));
-		}
 		this.multiSelectionAllowed = multiSelectionAllowed;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void createInnerContents(Composite container) {
 
-		// Create the group that will display the list of options to the user
-		//
-		Group grpOptions = new Group(container, SWT.NONE);
-		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).minSize(200, 200).applyTo(grpOptions);
-		grpOptions.setText("Possible choices");
-		grpOptions.setLayout(new FillLayout(SWT.HORIZONTAL));
-
 		// Create the list viewer for the list of options
 		//
-		ListViewer listViewer = this.createListViewer(grpOptions, this.multiSelectionAllowed,
-				new ArrayList<>(this.options.keySet()), this.standardSelectionIndex);
+		ListViewer listViewer = this.createListViewer(container, Optional.of("Possible choices"),
+				this.multiSelectionAllowed);
 
 		listViewer.addSelectionChangedListener(
-				event -> this.selectedItems = Arrays.asList(listViewer.getList().getSelection()).stream()
-						.map(this.options::get).collect(Collectors.toList()));
+				event -> this.selectedItems = listViewer.getStructuredSelection().toList());
 
 		listViewer.addDoubleClickListener(event -> {
-			this.setReturnCode(IDialogConstants.OPEN_ID);
-			GenericSelectionDialog.this.close();
+			this.setReturnCode(IDialogConstants.OK_ID);
+			this.close();
 		});
+
+		listViewer.setInput(this.options);
 	}
 
 	/**
-	 * Creates a {@link org.eclipse.swt.widgets.List} to display options to the user and allow for selection.
+	 * Creates a {@link ListViewer} that can be used to display options to the user.
 	 *
-	 * ${tags}
-	 *
-	 * @return
+	 * @param container
+	 *            The {@link Composite} in which the viewer shall be displayed.
+	 * @param groupText
+	 *            If this optional String is present, the created {@link ListViewer} will be wrapped in a {@link Group}
+	 *            with the given text.
+	 * @param multiSelectionAllowed
+	 *            Whether the user shall be able to select more than one of the options.
+	 * @return The created {@link ListViewer} (potentially wrapped in a {@link Group}).
 	 */
-	protected ListViewer createListViewer(Composite container, boolean multiSelectionAllowed,
-			Collection<String> options, int standardSelectionIndex) {
+	protected ListViewer createListViewer(Composite container, Optional<String> groupText,
+			boolean multiSelectionAllowed) {
 
-		ListViewer listViewer = new ListViewer(container,
-				SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL | (multiSelectionAllowed ? SWT.MULTI : 0));
-		org.eclipse.swt.widgets.List listWidget = listViewer.getList();
+		Composite parent = container;
 
-		listWidget.addKeyListener((KeyPressedListener) e -> {
-			if (e.keyCode == SWT.KeyDown) {
-				listWidget.select(listWidget.getSelectionIndex() + 1);
-			} else if (e.keyCode == SWT.KeyUp) {
-				listWidget.select(listWidget.getSelectionIndex() - 1);
+		if (groupText.isPresent()) {
+
+			Group group = new Group(container, SWT.NONE);
+			GridDataFactory.swtDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).minSize(200, 200).applyTo(group);
+			group.setText(groupText.get());
+			group.setLayout(new FillLayout(SWT.HORIZONTAL));
+
+			parent = group;
+		}
+
+		ListViewer listViewer = new ListViewer(parent,
+				SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL | (multiSelectionAllowed ? SWT.MULTI : 0)) {
+
+			@SuppressWarnings("unchecked")
+			@Override
+			protected void inputChanged(Object input, Object oldInput) {
+
+				super.inputChanged(input, oldInput);
+
+				// Automatically select the first element when the input changes
+				//
+				if (input instanceof Collection<?>) {
+					this.setSelection(new StructuredSelection(((Collection<Object>) input).iterator().next()));
+				}
+			}
+		};
+
+		listViewer.getList().addKeyListener((KeyPressedListener) e -> {
+			if (e.keyCode == SWT.KeyDown || e.keyCode == SWT.KeyUp) {
+				listViewer.setSelection(new StructuredSelection(listViewer
+						.getElementAt(listViewer.getList().getSelectionIndex() + (e.keyCode == SWT.KeyDown ? 1 : -1))));
 			}
 		});
-		// TODO set the input for the list viewer an use a content/label provider
-		listWidget.setItems(options.toArray(new String[] {}));
-		listWidget.setSelection(standardSelectionIndex);
-		listWidget.showSelection();
+		listViewer.setContentProvider(new ArrayContentProvider());
+		listViewer.setLabelProvider(new UserDecisionStrategyLabelProvider());
 
 		return listViewer;
 	}
@@ -175,6 +154,7 @@ public class GenericSelectionDialog<T> extends AbstractDialog {
 	 */
 	public T getSingleSelection() {
 
+		// FIXME selection is somehow not initialized on startup
 		return this.selectedItems == null || this.selectedItems.isEmpty() ? null : this.selectedItems.iterator().next();
 	}
 
@@ -210,6 +190,6 @@ public class GenericSelectionDialog<T> extends AbstractDialog {
 	 */
 	public List<T> getOptions() {
 
-		return new ArrayList<>(this.options.values());
+		return this.options;
 	}
 }

@@ -1,5 +1,7 @@
 package de.mfreund.gentrans.transformation.resolving.wizards;
 
+import java.util.Optional;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.layout.GridData;
@@ -29,25 +31,12 @@ public class ValueSpecificationDialog extends AbstractDialog {
 	 *            The title for the dialog.
 	 * @param message
 	 *            The message that shall be displayed in the dialog.
-	 */
-	public ValueSpecificationDialog(String title, String message) {
-
-		this(title, message, null);
-	}
-
-	/**
-	 * Create the dialog.
-	 *
-	 * @param title
-	 *            The title for the dialog.
-	 * @param message
-	 *            The message that shall be displayed in the dialog.
 	 * @param enhanceMappingModelListener
-	 *            A {@link SelectionListener2} that will be called when the {@link #enhanceMappingModelButton} is
-	 *            clicked.
+	 *            An optional {@link SelectionListener2} that will be called when the <em>EnhanceMappingModelButton</em>
+	 *            is clicked. If no listener is given, the button will be grayed out.
 	 */
 	public ValueSpecificationDialog(String title, String message,
-			final SelectionListener2 enhanceMappingModelListener) {
+			Optional<SelectionListener2> enhanceMappingModelListener) {
 
 		super(title, message, enhanceMappingModelListener);
 	}

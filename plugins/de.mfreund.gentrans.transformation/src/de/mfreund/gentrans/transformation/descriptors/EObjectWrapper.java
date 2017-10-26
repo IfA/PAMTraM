@@ -284,15 +284,27 @@ public class EObjectWrapper {
 	 */
 	public static String asString(final EObject eObject) {
 
-		String returnString = eObject.eClass().getName() + " (HashCode: " + eObject.hashCode() + ")";
+		return EObjectWrapper.asStringBuilder(eObject).toString();
+	}
+
+	/**
+	 * This creates a String representation of an EObject that includes the values of all {@link ActualAttribute
+	 * ActualAttributes}.
+	 *
+	 * @param eObject
+	 *            The {@link EObject} for that the String representation shall be created.
+	 * @return The String representation as {@link StringBuilder}.
+	 */
+	protected static StringBuilder asStringBuilder(final EObject eObject) {
+
+		StringBuilder returnString = new StringBuilder(eObject.eClass().getName()).append(" (");
 		for (final EAttribute a : eObject.eClass().getEAllAttributes()) {
 			final String val = EObjectWrapper.convertAttributeValue(eObject, a);
 			if (val != null) {
-				returnString += "\n   " + a.getName() + ": " + val;
+				returnString.append("\n    ").append(a.getName()).append(": ").append(val);
 			}
 		}
-		returnString += "\n";
-
+		returnString.append("\n)");
 		return returnString;
 	}
 
@@ -343,13 +355,20 @@ public class EObjectWrapper {
 	@Override
 	public String toString() {
 
-		String returnString = EObjectWrapper.asString(this.eObject);
+		StringBuilder returnString = EObjectWrapper.asStringBuilder(this.eObject);
+
+		// Remove the '\n)' at the end of the String
+		//
+		returnString.delete(returnString.lastIndexOf("\n)"), returnString.length());
 
 		for (final VirtualAttribute<?, ?, ?, ?> a : this.virtualAttributeValues.keySet()) {
-			returnString += "\n   " + a.getName() + "(v): " + this.virtualAttributeValues.get(a);
+
+			returnString.append("\n    ").append(a.getName()).append("(v): ")
+					.append(this.virtualAttributeValues.get(a));
 		}
 
-		return returnString;
+		returnString.append("\n)");
+		return returnString.toString();
 	}
 
 	/**

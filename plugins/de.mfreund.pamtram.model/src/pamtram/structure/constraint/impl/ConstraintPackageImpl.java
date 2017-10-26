@@ -432,15 +432,6 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getSingleReferenceValueConstraint__ValidateNoResultModifierInSourceSections__DiagnosticChain_Map() {
-		return singleReferenceValueConstraintEClass.getEOperations().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getValueConstraintSourceInterface() {
 		return valueConstraintSourceInterfaceEClass;
 	}
@@ -537,7 +528,6 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		createEOperation(singleReferenceValueConstraintEClass, SINGLE_REFERENCE_VALUE_CONSTRAINT___CHECK_CONSTRAINT__STRING_STRING);
 		createEOperation(singleReferenceValueConstraintEClass, SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP);
 		createEOperation(singleReferenceValueConstraintEClass, SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP);
-		createEOperation(singleReferenceValueConstraintEClass, SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP);
 
 		equalityConstraintEClass = createEClass(EQUALITY_CONSTRAINT);
 
@@ -678,15 +668,6 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getSingleReferenceValueConstraint__ValidateNoResultModifierInSourceSections__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateNoResultModifierInSourceSections", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
 		initEClass(equalityConstraintEClass, EqualityConstraint.class, "EqualityConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(choiceConstraintEClass, ChoiceConstraint.class, "ChoiceConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -806,12 +787,6 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 			 "body", "if(this.getSourceElements().isEmpty() || \r\n\t\t!<%de.tud.et.ifa.agtele.emf.AgteleEcoreUtil%>.hasAncestorOfKind(this, <%pamtram.condition.ConditionPackage%>.eINSTANCE.getComplexCondition())) {\r\n\treturn true;\r\n}\r\n\r\n<%pamtram.condition.ComplexCondition%> condition = (ComplexCondition) AgteleEcoreUtil.getAncestorOfKind(this, <%pamtram.condition.ConditionPackage%>.eINSTANCE.getComplexCondition());\r\n\r\nif(!condition.isConditionModelCondition()) {\r\n\treturn true;\r\n}\r\n\r\nboolean result = this.getSourceElements().parallelStream().allMatch(s -> s instanceof <%pamtram.FixedValue%> || s instanceof <%pamtram.mapping.extended.GlobalAttributeImporter%>);\r\n\r\nif (!result && diagnostics != null) {\r\n\t\r\n\tString errorMessage = \"This ValueConstraint must only\"\r\n\t\t\t+ \" contain FixedValues or GlobalAttributeImporters as source elements as it is modeled as part of a condition inside a ConditionModel!\'\";\r\n\t\r\n\tdiagnostics.add\r\n\t\t(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t <%pamtram.structure.constraint.util.ConstraintValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t ConstraintValidator.SINGLE_REFERENCE_VALUE_CONSTRAINT__VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL,\r\n\t\t\t errorMessage,\r\n\t\t\t new Object [] { this,  <%pamtram.structure.constraint.ConstraintPackage%>.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS }));\r\n\t}\r\n\r\nreturn result;"
 		   });	
 		addAnnotation
-		  (getSingleReferenceValueConstraint__ValidateNoResultModifierInSourceSections__DiagnosticChain_Map(), 
-		   source, 
-		   new String[] {
-			 "body", "boolean result = this.getModifiers().isEmpty() ||\r\n\t\t!<%de.tud.et.ifa.agtele.emf.AgteleEcoreUtil%>.hasAncestorOfKind(this, <%pamtram.structure.source.SourcePackage%>.eINSTANCE.getActualSourceSectionAttribute());\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"ValueConstraints that are part of a SourceSection must not\"\r\n\t\t\t+ \" specify a Modifier!\'\";\r\n\r\n\tdiagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, <%pamtram.structure.constraint.util.ConstraintValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\tConstraintValidator.SINGLE_REFERENCE_VALUE_CONSTRAINT__VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS,\r\n\t\t\terrorMessage, new Object[] { this,\r\n\t\t\t\t\t<%pamtram.PamtramPackage%>.Literals.MODIFIABLE_ELEMENT__MODIFIERS }));\r\n}\r\n\r\nreturn result;"
-		   });	
-		addAnnotation
 		  (getSingleReferenceValueConstraint_SourceElements(), 
 		   source, 
 		   new String[] {
@@ -834,6 +809,12 @@ public class ConstraintPackageImpl extends EPackageImpl implements ConstraintPac
 		   source, 
 		   new String[] {
 			 "documentation", "A ValueConstraint that specifies a list of values (each by means of an EqualityConstraint). For this constraint to be fulfilled, the actual attribute value must match at least one of the specified values."
+		   });	
+		addAnnotation
+		  (getChoiceConstraint__CheckConstraint__String_EList(), 
+		   source, 
+		   new String[] {
+			 "body", "return refValue.stream().anyMatch(r -> r.equals(attrValue));"
 		   });	
 		addAnnotation
 		  (numericConstraintEClass, 

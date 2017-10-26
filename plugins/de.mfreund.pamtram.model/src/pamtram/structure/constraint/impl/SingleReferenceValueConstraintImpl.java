@@ -313,30 +313,6 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 * @generated
 	 */
 	@Override
-	public boolean validateNoResultModifierInSourceSections(final DiagnosticChain diagnostics,
-			final Map<?, ?> context) {
-		boolean result = this.getModifiers().isEmpty() ||
-				!AgteleEcoreUtil.hasAncestorOfKind(this, SourcePackage.eINSTANCE.getActualSourceSectionAttribute());
-		
-		if (!result && diagnostics != null) {
-		
-			String errorMessage = "ValueConstraints that are part of a SourceSection must not"
-					+ " specify a Modifier!'";
-		
-			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, ConstraintValidator.DIAGNOSTIC_SOURCE,
-					ConstraintValidator.SINGLE_REFERENCE_VALUE_CONSTRAINT__VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS,
-					errorMessage, new Object[] { this,
-							PamtramPackage.Literals.MODIFIABLE_ELEMENT__MODIFIERS }));
-		}
-		
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public boolean isLocalConstraint() {
 		if (this instanceof ChoiceConstraint) {
 			return ((ChoiceConstraint) this).getChoices().stream().allMatch(ValueConstraint::isLocalConstraint);
@@ -552,8 +528,6 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 				return validateOnlyFixedValuesInSourceSections((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP:
 				return validateOnlyFixedValuesOrGlobalAttributesInConditionModel((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
-			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP:
-				return validateNoResultModifierInSourceSections((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT:
 				return isLocalConstraint();
 		}

@@ -6,7 +6,6 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
@@ -21,39 +20,44 @@ public class ValueSpecificationDialog extends AbstractDialog {
 	/**
 	 * The value entered by the user.
 	 */
-	private String retValue;
+	protected String retValue;
 
 	/**
 	 * Create the dialog.
 	 *
+	 * @param title
+	 *            The title for the dialog.
 	 * @param message
 	 *            The message that shall be displayed in the dialog.
 	 */
-	public ValueSpecificationDialog(final String message) {
+	public ValueSpecificationDialog(String title, String message) {
 
-		super(message);
+		this(title, message, null);
 	}
 
 	/**
 	 * Create the dialog.
 	 *
+	 * @param title
+	 *            The title for the dialog.
 	 * @param message
 	 *            The message that shall be displayed in the dialog.
 	 * @param enhanceMappingModelListener
 	 *            A {@link SelectionListener2} that will be called when the {@link #enhanceMappingModelButton} is
 	 *            clicked.
 	 */
-	public ValueSpecificationDialog(final String message, final SelectionListener2 enhanceMappingModelListener) {
+	public ValueSpecificationDialog(String title, String message,
+			final SelectionListener2 enhanceMappingModelListener) {
 
-		super(message, enhanceMappingModelListener);
+		super(title, message, enhanceMappingModelListener);
 	}
 
 	@Override
-	protected void createInnerContents(Shell parent) {
+	protected void createInnerContents(Composite container) {
 
 		// Create the composite that allows to enter a value
 		//
-		Composite valueComposite = new Composite(this.shell, SWT.NONE);
+		Composite valueComposite = new Composite(container, SWT.NONE);
 		valueComposite.setLayout(new GridLayout(2, false));
 		valueComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 

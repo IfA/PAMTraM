@@ -1,7 +1,7 @@
 package de.mfreund.gentrans.transformation.resolving.wizards;
 
-import org.eclipse.jface.layout.GridDataFactory;
-import org.eclipse.jface.layout.GridLayoutFactory;
+import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
@@ -10,24 +10,22 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Dialog;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
 
 /**
- * A customizable {@link Dialog} with a message and two buttons ('<em>OK</em>' and '<em>Abort Transformation</em>'). The
- * dialog will return a result of the type '<em>ResultType</em>'.
+ * A customizable {@link TitleAreaDialog} with a message and three buttons ('<em>OK</em>', '<em>Abort
+ * Transformation</em>', and <em>Enhance PAMTraM Model</em>).
  * <p />
  * An additional {@link SelectionListener2} may be passed in the constructor. This will result in the creation of an
  * additional button entitled '<em>Enhance PAMTraM Model</em>', triggering the given listener when clicked.
  *
  * @author mfreund
  */
-public abstract class AbstractDialog extends Dialog {
+public abstract class AbstractDialog extends TitleAreaDialog {
 
 	/**
 	 * This keeps track of the last location where a dialog was situated (possibly after being moved by the user). We
@@ -42,90 +40,68 @@ public abstract class AbstractDialog extends Dialog {
 	private static Point lastSize;
 
 	/**
-	 * This is the {@link Button} that allows the user to confirm his selection.
-	 */
-	protected Button okButton;
-
-	/**
-	 * This is the {@link Button} that allows the user to trigger the enhancement of the mapping model.
-	 */
-	protected Button enhanceMappingModelButton;
-
-	/**
 	 * A {@link SelectionListener2} that is triggered when the {@link #enhanceMappingModelButton} is selected.
 	 */
 	protected final SelectionListener2 enhanceMappingModelListener;
 
-	/**
-	 * This is the {@link Button} that allows the user to abort the transformation.
-	 */
-	protected Button abortTransFormationButton;
+	private String title;
 
-	/**
-	 * This is the {@link Label} that dispalys the {@link #message} to the user and that is placed at the top of the
-	 * dialog.
-	 */
-	protected Label dialogMessage;
-
-	/**
-	 * This is the {@link Composite} that holds the {@link #okButton} and the {@link #abortTransFormationButton} and
-	 * that is placed at the bottom of the dialog.
-	 */
-	protected Composite buttonComposite;
-
-	/**
-	 * The message that shall be displayed in the {@link Dialog} that this runner will instantiate.
-	 */
-	protected final String message;
-
-	/**
-	 * Whether the user requested the termination of the generic transformation.
-	 */
-	protected boolean transformationStopRequested;
-
-	/**
-	 * The {@link Shell} on that this dialog will be created.
-	 */
-	protected Shell shell;
+	private String message;
 
 	/**
 	 * Create the dialog.
 	 * <p />
-	 * Note: this is equivalent to calling {@link #AbstractDialog(String, SelectionListener2) AbstractDialog(String,
-	 * null)}.
+	 * Note: this is equivalent to calling {@link #AbstractDialog(String, String, SelectionListener2)
+	 * AbstractDialog(String, String, null)}.
 	 *
-	 * @see #AbstractDialog(String, SelectionListener2)
+	 * @see #AbstractDialog(String, String, SelectionListener2)
 	 *
+	 * @param title
+	 *            The title for the dialog.
 	 * @param message
 	 *            The message that shall be displayed in the dialog.
 	 */
-	public AbstractDialog(final String message) {
+	public AbstractDialog(String title, String message) {
 
-		this(message, null);
+		this(title, message, null);
 	}
 
 	/**
 	 * Create the dialog.
 	 * <p />
-	 * If <em>enhanceMappingModelListener</em> is <em>null</em>, the {@link #enhanceMappingModelButton} will be grayed
-	 * out.
+	 * If <em>enhanceMappingModelListener</em> is <em>null</em>, the corresponding button will be grayed out.
 	 *
-	 * @see #AbstractDialog(String)
+	 * @see #AbstractDialog(String, String)
 	 *
+	 * @param title
+	 *            The title for the dialog.
 	 * @param message
 	 *            The message that shall be displayed in the dialog.
 	 * @param enhanceMappingModelListener
-	 *            A {@link SelectionListener2} that will be called when the {@link #enhanceMappingModelButton} is
+	 *            A {@link SelectionListener2} that will be called when the <em>EnhanceMappingModelButton</em> is
 	 *            clicked.
 	 */
-	public AbstractDialog(final String message, final SelectionListener2 enhanceMappingModelListener) {
+	public AbstractDialog(String title, String message, final SelectionListener2 enhanceMappingModelListener) {
 
-		super(UIHelper.getShell(), SWT.CLOSE | SWT.MODELESS | SWT.BORDER | SWT.TITLE);
+		super(UIHelper.getShell());
 
-		this.setText("SWT Dialog");
+		this.title = title;
 		this.message = message;
-		this.transformationStopRequested = false;
+
 		this.enhanceMappingModelListener = enhanceMappingModelListener;
+	}
+
+	@Override
+	protected Point getInitialSize() {
+
+		return AbstractDialog.lastSize == null ? super.getInitialSize() : AbstractDialog.lastSize;
+	}
+
+	@Override
+	protected Point getInitialLocation(Point initialSize) {
+
+		return AbstractDialog.lastLocation == null ? super.getInitialLocation(initialSize)
+				: AbstractDialog.lastLocation;
 	}
 
 	/**
@@ -168,139 +144,86 @@ public abstract class AbstractDialog extends Dialog {
 		return AbstractDialog.lastSize;
 	}
 
-	/**
-	 * Create the contents of the dialog.
-	 */
-	protected void createContents() {
+	@Override
+	protected void configureShell(Shell newShell) {
 
-		this.shell = new Shell(this.getParent(), SWT.DIALOG_TRIM | SWT.RESIZE);
+		super.configureShell(newShell);
 
-		this.shell.setMinimumSize(new Point(300, 350));
-		this.shell.setSize(900, 600);
-		this.shell.setText("Please select..");
-		GridLayoutFactory.swtDefaults().margins(5, 0).applyTo(this.shell);
-
-		// Create the message at the top of the dialog
+		// update the 'lastLocation' and 'lastSize' on shell movement/resizing
 		//
-		this.dialogMessage = new Label(this.shell, SWT.WRAP);
-		GridDataFactory.swtDefaults().hint(this.shell.getSize().x - 10, SWT.DEFAULT).applyTo(this.dialogMessage);
-		this.dialogMessage.setText(this.message);
-		this.shell.redraw();
-
-		this.shell.addControlListener(new ControlAdapter() {
+		newShell.addControlListener(new ControlAdapter() {
 
 			@Override
 			public void controlMoved(final ControlEvent e) {
 
-				AbstractDialog.setLastLocation(AbstractDialog.this.shell.getLocation());
+				AbstractDialog.setLastLocation(AbstractDialog.this.getShell().getLocation());
 			}
 
 			@Override
 			public void controlResized(final ControlEvent e) {
 
-				((GridData) AbstractDialog.this.dialogMessage.getLayoutData()).widthHint = AbstractDialog.this.shell
-						.getClientArea().width - 2 * ((GridLayout) AbstractDialog.this.shell.getLayout()).marginWidth;
-				AbstractDialog.this.shell.layout(true);
-				AbstractDialog.setLastSize(AbstractDialog.this.shell.getSize());
+				AbstractDialog.setLastSize(AbstractDialog.this.getShell().getSize());
 			}
 		});
+	}
 
-		// Allow clients to create custom inner contents
-		//
-		this.createInnerContents(this.shell);
+	@Override
+	public void create() {
 
-		// Create the buttons at the bottom of the dialog
-		//
-		this.buttonComposite = new Composite(this.shell, SWT.NONE);
-		GridLayoutFactory.swtDefaults().numColumns(3).equalWidth(true).spacing(5, 0).applyTo(this.buttonComposite);
-		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).grab(true, false).hint(564, SWT.DEFAULT)
-				.applyTo(this.buttonComposite);
+		super.create();
 
-		this.abortTransFormationButton = new Button(this.buttonComposite, SWT.NONE);
-		this.abortTransFormationButton.addSelectionListener((SelectionListener2) e -> {
-			AbstractDialog.this.transformationStopRequested = true;
-			AbstractDialog.this.shell.dispose();
+		this.setTitle(this.title);
+		this.setMessage(this.message);
+	}
+
+	@Override
+	protected void createButtonsForButtonBar(Composite parent) {
+
+		Button enhanceMappingModelButton = this.createButton(parent, IDialogConstants.OPEN_ID, "Enhance PAMTraM Model",
+				false);
+		enhanceMappingModelButton
+				.setToolTipText("Enhance the PAMTraM model (e.g. by creating additional mapping hints) to prevent this "
+						+ "user interaction in future executions of the transformation...");
+		enhanceMappingModelButton.addSelectionListener((SelectionListener2) e -> {
+			this.setReturnCode(IDialogConstants.OPEN_ID);
+			this.close();
+
 		});
-
-		GridDataFactory.swtDefaults().align(SWT.LEFT, SWT.CENTER).grab(true, false).minSize(80, 35)
-				.applyTo(this.abortTransFormationButton);
-		this.abortTransFormationButton.setAlignment(SWT.LEFT);
-		this.abortTransFormationButton.setText("Abort transformation");
-
-		this.enhanceMappingModelButton = new Button(this.buttonComposite, SWT.NONE);
-		GridDataFactory.swtDefaults().align(SWT.CENTER, SWT.CENTER).grab(true, false).minSize(80, 35)
-				.applyTo(this.enhanceMappingModelButton);
-
-		if (this.enhanceMappingModelListener != null) {
-			this.enhanceMappingModelButton.addSelectionListener(this.enhanceMappingModelListener);
-			this.enhanceMappingModelButton.addSelectionListener((SelectionListener2) e -> {
-				AbstractDialog.this.transformationStopRequested = true;
-				AbstractDialog.this.shell.dispose();
-			});
+		if (this.enhanceMappingModelListener == null) {
+			enhanceMappingModelButton.setEnabled(false);
 		} else {
-			this.enhanceMappingModelButton.setEnabled(false);
+			enhanceMappingModelButton.addSelectionListener(this.enhanceMappingModelListener);
 		}
-		this.enhanceMappingModelButton.setText("Enhance PAMTraM Model");
-		this.enhanceMappingModelButton
-		.setToolTipText("Enhance the PAMTraM model (e.g. by creating additional mapping hints) to prevent this "
-				+ "user interaction in future executions of the transformation...");
+		this.createButton(parent, IDialogConstants.OK_ID, "OK", true);
+		this.createButton(parent, IDialogConstants.CANCEL_ID, "Abort transformation", false);
+	}
 
-		this.okButton = new Button(this.buttonComposite, SWT.NONE);
-		GridDataFactory.swtDefaults().align(SWT.RIGHT, SWT.CENTER).grab(true, false).minSize(80, 35)
-				.applyTo(this.okButton);
+	@Override
+	protected Control createDialogArea(Composite parent) {
 
-		this.okButton.addSelectionListener((SelectionListener2) e -> AbstractDialog.this.shell.dispose());
-		this.okButton.setText("OK");
-		this.okButton.setSelection(true);
+		Composite area = (Composite) super.createDialogArea(parent);
 
-		this.okButton.setFocus();
+		Composite container = new Composite(area, SWT.NONE);
+		container.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		GridLayout layout = new GridLayout(2, false);
+		layout.verticalSpacing = 5;
+		layout.marginRight = 5;
+		layout.marginLeft = 5;
+		container.setLayout(layout);
 
-		if (AbstractDialog.lastSize != null) {
-			this.shell.setSize(AbstractDialog.lastSize);
-		}
+		this.createInnerContents(container);
 
-		if (AbstractDialog.lastLocation != null) {
-			this.shell.setLocation(AbstractDialog.lastLocation);
-		}
+		return container;
 	}
 
 	/**
-	 * This is called as part of {@link #createContents()} to create the contents between the displayed message (top)
-	 * and the ok/abort buttons (bottom).
+	 * This is called as part of {@link #createDialogArea(Composite)} to create the contents between the displayed
+	 * message (top) and the buttons (bottom).
 	 * <p />
 	 * Clients must overwrite this to insert specific contents.
 	 *
-	 * @param parent
+	 * @param container
 	 */
-	protected abstract void createInnerContents(Shell parent);
-
-	/**
-	 * Whether the user has requested the termination of the transformation.
-	 *
-	 * @return '<em><b>true</b></em>' if the button "Abort Transformation" was clicked during run();
-	 *         '<em><b>false</b></em>' otherwise
-	 */
-	public boolean isTransformationStopRequested() {
-
-		return this.transformationStopRequested;
-	}
-
-	/**
-	 * Open the dialog.
-	 */
-	public void open() {
-
-		this.createContents();
-
-		this.shell.open();
-		this.shell.layout();
-
-		final Display display = this.getParent().getDisplay();
-		while (!this.shell.isDisposed()) {
-			if (!display.readAndDispatch()) {
-				display.sleep();
-			}
-		}
-	}
+	protected abstract void createInnerContents(Composite container);
 
 }

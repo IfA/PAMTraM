@@ -18,7 +18,7 @@ import org.eclipse.swt.widgets.Shell;
 
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
 import de.mfreund.gentrans.transformation.resolving.UserDecisionResolvingStrategy;
-import de.mfreund.gentrans.transformation.resolving.wizards.GenericSelectionDialogRunner;
+import de.mfreund.gentrans.transformation.resolving.wizards.GenericSelectionDialog;
 import de.tud.et.ifa.agtele.emf.compare.EMFCompareUtil;
 import pamtram.PAMTraM;
 import pamtram.PamtramPackage;
@@ -37,7 +37,7 @@ import pamtram.structure.target.TargetSectionCompositeReference;
  * @author mfreund
  */
 public class JoiningSelectConnectionPathAndContainerInstanceMappingModelEnhancer
-		extends MappingModelEnhancer<GenericSelectionDialogRunner<ModelConnectionPath>> {
+		extends MappingModelEnhancer<GenericSelectionDialog<ModelConnectionPath>> {
 
 	/**
 	 * The {@link TargetSection} that shall be connected via the selected path to the selected instance.
@@ -70,6 +70,7 @@ public class JoiningSelectConnectionPathAndContainerInstanceMappingModelEnhancer
 	 */
 	public JoiningSelectConnectionPathAndContainerInstanceMappingModelEnhancer(PAMTraM pamtramModel,
 			TargetSection sectionToConnect) {
+
 		super(pamtramModel);
 		this.sectionToConnect = sectionToConnect;
 	}
@@ -81,7 +82,7 @@ public class JoiningSelectConnectionPathAndContainerInstanceMappingModelEnhancer
 
 		PAMTraM pamtramToEnhance = editor == null ? this.pamtramModel : editor.getPamtram();
 
-		ModelConnectionPath selectedPath = this.dialogRunner.getSingleSelection();
+		ModelConnectionPath selectedPath = this.dialog.getSingleSelection();
 
 		Optional<TargetSection> rootSectionOptional = pamtramToEnhance.getTargetSections().parallelStream()
 				.filter(t -> selectedPath.getPathRootClass().equals(t.getEClass())).findAny();

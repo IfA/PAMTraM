@@ -7,12 +7,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.swt.widgets.Display;
 
 import de.mfreund.gentrans.transformation.UserAbortException;
@@ -24,9 +26,9 @@ import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectConne
 import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectConnectionPathMappingModelEnhancer;
 import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectContainerInstanceMappingModelEnhancer;
 import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectRootElementMappingModelEnhancer;
-import de.mfreund.gentrans.transformation.resolving.wizards.GenericSelectionDialogRunner;
-import de.mfreund.gentrans.transformation.resolving.wizards.PathAndInstanceSelectorRunner;
-import de.mfreund.gentrans.transformation.resolving.wizards.ValueSpecificationDialogRunner;
+import de.mfreund.gentrans.transformation.resolving.wizards.ClassAndInstanceSelectorDialog;
+import de.mfreund.gentrans.transformation.resolving.wizards.GenericSelectionDialog;
+import de.mfreund.gentrans.transformation.resolving.wizards.ValueSpecificationDialog;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.PAMTraM;
 import pamtram.TargetSectionModel;
@@ -52,6 +54,11 @@ import pamtram.structure.target.TargetSectionCrossReference;
  * @author mfreund
  */
 public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStrategy {
+
+	/**
+	 *
+	 */
+	private static final String DIALOG_TITLE = "An ambiguity needs to be resolved...";
 
 	/**
 	 * This prefix will be added to {@link #printMessage(String, String) messages} printed after user selections.
@@ -82,47 +89,66 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 	public List<MatchedSectionDescriptor> searchingSelectSection(List<MatchedSectionDescriptor> choices,
 			EObject element) throws AmbiguityResolvingException {
 
-		final GenericSelectionDialogRunner<MatchedSectionDescriptor> dialog = new GenericSelectionDialogRunner<MatchedSectionDescriptor>(
-				"Please select a SourceSection for the source element\n'" + EObjectWrapper.asString(element) + "'", 0,
-				false, choices, null) {
+		AtomicReference<GenericSelectionDialog<MatchedSectionDescriptor>> dialog = new AtomicReference<>(null);
 
-			@Override
-			protected String getStringRepresentation(MatchedSectionDescriptor option) {
+		// As we are not in the UI thread, we have to use a runnable to show the dialog in order to prevent
+		// 'InvalidThreadAccess' exceptions
+		//
+		Display.getDefault().syncExec(() -> {
 
-				return option.getAssociatedSourceSectionClass().getName();
-			}
-		};
+			dialog.set(new GenericSelectionDialog<MatchedSectionDescriptor>(UserDecisionResolvingStrategy.DIALOG_TITLE,
+					"Please select a SourceSection for the source element\n'" + EObjectWrapper.asString(element) + "'",
+					choices, false, 0, null) {
 
-		Display.getDefault().syncExec(dialog);
-		if (dialog.wasTransformationStopRequested()) {
+				@Override
+				protected String getStringRepresentation(MatchedSectionDescriptor option) {
+
+					return option.getAssociatedSourceSectionClass().getName();
+				}
+			});
+			dialog.get().create();
+			dialog.get().open();
+		});
+
+		if (dialog.get().getReturnCode() == IDialogConstants.CANCEL_ID) {
 			throw new AmbiguityResolvingException(new UserAbortException());
 		}
-		this.printMessage(dialog.getSingleSelection().getAssociatedSourceSectionClass().getName(),
+		this.printMessage(dialog.get().getSingleSelection().getAssociatedSourceSectionClass().getName(),
 				UserDecisionResolvingStrategy.userDecisionPrefix);
-		return dialog.getSelection();
+		return dialog.get().getSelection();
 	}
 
 	@Override
 	public List<Mapping> searchingSelectMapping(List<Mapping> choices, EObject element)
 			throws AmbiguityResolvingException {
 
-		final GenericSelectionDialogRunner<Mapping> dialog = new GenericSelectionDialogRunner<Mapping>(
-				"Please select a Mapping for the source element\n'" + EObjectWrapper.asString(element) + "'", 0, true,
-				choices, null) {
+		AtomicReference<GenericSelectionDialog<Mapping>> dialog = new AtomicReference<>(null);
 
-			@Override
-			protected String getStringRepresentation(Mapping option) {
+		// As we are not in the UI thread, we have to use a runnable to show the dialog in order to prevent
+		// 'InvalidThreadAccess' exceptions
+		//
+		Display.getDefault().syncExec(() -> {
 
-				return option.getName();
-			}
-		};
+			dialog.set(new GenericSelectionDialog<Mapping>(UserDecisionResolvingStrategy.DIALOG_TITLE,
+					"Please select a Mapping for the source element\n'" + EObjectWrapper.asString(element) + "'",
+					choices, true, 0, null) {
 
-		Display.getDefault().syncExec(dialog);
-		if (dialog.wasTransformationStopRequested()) {
+				@Override
+				protected String getStringRepresentation(Mapping option) {
+
+					return option.getName();
+				}
+			});
+			dialog.get().create();
+			dialog.get().open();
+		});
+
+		if (dialog.get().getReturnCode() == IDialogConstants.CANCEL_ID) {
 			throw new AmbiguityResolvingException(new UserAbortException());
 		}
-		this.printMessage(dialog.getSingleSelection().getName(), UserDecisionResolvingStrategy.userDecisionPrefix);
-		return dialog.getSelection();
+		this.printMessage(dialog.get().getSingleSelection().getName(),
+				UserDecisionResolvingStrategy.userDecisionPrefix);
+		return dialog.get().getSelection();
 	}
 
 	@Override
@@ -145,16 +171,26 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 				pamtramModel.orElseThrow(
 						() -> new RuntimeException("Internal error while determining PAMTraM instance to enhance...")),
 				attribute, mappingHintGroup);
-		final ValueSpecificationDialogRunner dialog = new ValueSpecificationDialogRunner(dialogMessage, enhancer);
 
-		Display.getDefault().syncExec(dialog);
+		AtomicReference<ValueSpecificationDialog> dialog = new AtomicReference<>(null);
 
-		if (dialog.wasTransformationStopRequested()) {
+		// As we are not in the UI thread, we have to use a runnable to show the dialog in order to prevent
+		// 'InvalidThreadAccess' exceptions
+		//
+		Display.getDefault().syncExec(() -> {
+
+			dialog.set(
+					new ValueSpecificationDialog(UserDecisionResolvingStrategy.DIALOG_TITLE, dialogMessage, enhancer));
+			dialog.get().create();
+			dialog.get().open();
+		});
+
+		if (dialog.get().getReturnCode() == IDialogConstants.CANCEL_ID) {
 			throw new AmbiguityResolvingException(new UserAbortException().getMessage(), new UserAbortException());
 		}
 
-		this.printMessage(dialog.getSingleValue(), UserDecisionResolvingStrategy.userDecisionPrefix);
-		return Arrays.asList(dialog.getSingleValue());
+		this.printMessage(dialog.get().getValue(), UserDecisionResolvingStrategy.userDecisionPrefix);
+		return Arrays.asList(dialog.get().getValue());
 	}
 
 	@Override
@@ -171,23 +207,31 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 				+ targetSectionClass.getName() + "' that is instantiated by the mapping hint group '"
 				+ mappingHintGroup.getName() + "'...";
 
-		final ValueSpecificationDialogRunner dialog = new ValueSpecificationDialogRunner(dialogMessage);
+		AtomicReference<ValueSpecificationDialog> dialog = new AtomicReference<>(null);
 
-		Display.getDefault().syncExec(dialog);
+		// As we are not in the UI thread, we have to use a runnable to show the dialog in order to prevent
+		// 'InvalidThreadAccess' exceptions
+		//
+		Display.getDefault().syncExec(() -> {
 
-		if (dialog.wasTransformationStopRequested()) {
+			dialog.set(new ValueSpecificationDialog(UserDecisionResolvingStrategy.DIALOG_TITLE, dialogMessage));
+			dialog.get().create();
+			dialog.get().open();
+		});
+
+		if (dialog.get().getReturnCode() == IDialogConstants.CANCEL_ID) {
 			throw new AmbiguityResolvingException(new UserAbortException().getMessage(), new UserAbortException());
 		}
 
 		int cardinality = -1;
-		if (dialog.getSingleValue() != null && !dialog.getSingleValue().isEmpty()) {
+		if (dialog.get().getValue() != null && !dialog.get().getValue().isEmpty()) {
 			try {
-				cardinality = Integer.parseInt(dialog.getSingleValue());
+				cardinality = Integer.parseInt(dialog.get().getValue());
 
 			} catch (NumberFormatException e) {
 				throw new AmbiguityResolvingException(
 						"Could not parse a valid cardinality (positive integer) from the string '"
-								+ dialog.getSingleValue() + "'!",
+								+ dialog.get().getValue() + "'!",
 						e);
 			}
 		}
@@ -217,24 +261,35 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		JoiningSelectRootElementMappingModelEnhancer enhancer = new JoiningSelectRootElementMappingModelEnhancer(
 				pamtramModel.orElseThrow(
 						() -> new RuntimeException("Internal error while determining PAMTraM instance to enhance...")));
-		final GenericSelectionDialogRunner<EClass> dialog = new GenericSelectionDialogRunner<EClass>(
-				"There was more than one target model element that could not be connected to a root element. Therefore "
-						+ "a model root element needs to be created. Please select a fitting class:",
-				0, false, choices, enhancer) {
 
-			@Override
-			protected String getStringRepresentation(EClass option) {
+		AtomicReference<GenericSelectionDialog<EClass>> dialog = new AtomicReference<>(null);
 
-				return option.getName();
-			}
-		};
+		// As we are not in the UI thread, we have to use a runnable to show the dialog in order to prevent
+		// 'InvalidThreadAccess' exceptions
+		//
+		Display.getDefault().syncExec(() -> {
 
-		Display.getDefault().syncExec(dialog);
-		if (dialog.wasTransformationStopRequested()) {
+			dialog.set(new GenericSelectionDialog<EClass>(UserDecisionResolvingStrategy.DIALOG_TITLE,
+					"There was more than one target model element that could not be connected to a root element. Therefore "
+							+ "a model root element needs to be created. Please select a fitting class:",
+					choices, false, 0, enhancer) {
+
+				@Override
+				protected String getStringRepresentation(EClass option) {
+
+					return option.getName();
+				}
+			});
+			dialog.get().create();
+			dialog.get().open();
+		});
+
+		if (dialog.get().getReturnCode() == IDialogConstants.CANCEL_ID) {
 			throw new AmbiguityResolvingException(new UserAbortException().getMessage(), new UserAbortException());
 		}
-		this.printMessage(dialog.getSingleSelection().getName(), UserDecisionResolvingStrategy.userDecisionPrefix);
-		return new ArrayList<>(Arrays.asList(dialog.getSingleSelection()));
+		this.printMessage(dialog.get().getSingleSelection().getName(),
+				UserDecisionResolvingStrategy.userDecisionPrefix);
+		return new ArrayList<>(Arrays.asList(dialog.get().getSingleSelection()));
 	}
 
 	@Override
@@ -248,18 +303,29 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 				pamtramModel.orElseThrow(
 						() -> new RuntimeException("Internal error while determining PAMTraM instance to enhance...")),
 				section);
-		final GenericSelectionDialogRunner<ModelConnectionPath> dialog = new GenericSelectionDialogRunner<>(
-				"Please choose one of the possible connections for connecting the "
-						+ "instances of the target section '" + section.getName() + "' (EClass: '"
-						+ section.getEClass().getName() + "') to the model root element of the type '"
-						+ choices.get(0).getPathRootClass().getName() + "'.",
-				0, false, choices, enhancer);
-		Display.getDefault().syncExec(dialog);
-		if (dialog.wasTransformationStopRequested()) {
+
+		AtomicReference<GenericSelectionDialog<ModelConnectionPath>> dialog = new AtomicReference<>(null);
+
+		// As we are not in the UI thread, we have to use a runnable to show the dialog in order to prevent
+		// 'InvalidThreadAccess' exceptions
+		//
+		Display.getDefault().syncExec(() -> {
+
+			dialog.set(new GenericSelectionDialog<>(UserDecisionResolvingStrategy.DIALOG_TITLE,
+					"Please choose one of the possible connections for connecting the "
+							+ "instances of the target section '" + section.getName() + "' (EClass: '"
+							+ section.getEClass().getName() + "') to the model root element of the type '"
+							+ choices.get(0).getPathRootClass().getName() + "'.",
+					choices, false, 0, enhancer));
+			dialog.get().create();
+			dialog.get().open();
+		});
+
+		if (dialog.get().getReturnCode() == IDialogConstants.CANCEL_ID) {
 			throw new AmbiguityResolvingException(new UserAbortException().getMessage(), new UserAbortException());
 		}
-		this.printMessage(dialog.getSelection().toString(), UserDecisionResolvingStrategy.userDecisionPrefix);
-		return new ArrayList<>(Arrays.asList(dialog.getSingleSelection()));
+		this.printMessage(dialog.get().getSelection().toString(), UserDecisionResolvingStrategy.userDecisionPrefix);
+		return new ArrayList<>(Arrays.asList(dialog.get().getSingleSelection()));
 	}
 
 	@Override
@@ -276,28 +342,39 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 				pamtramModel.orElseThrow(
 						() -> new RuntimeException("Internal error while determining PAMTraM instance to enhance...")),
 				section);
-		final PathAndInstanceSelectorRunner<ModelConnectionPath> dialog = new PathAndInstanceSelectorRunner<>(
-				sectionInstances.size() + " Instance" + (sectionInstances.size() > 1 ? "s" : "")
-						+ " of the TargetSection '" + section.getName() + "', created by the mapping '"
-						+ ((Mapping) hintGroup.eContainer()).getName() + " (Group: " + hintGroup.getName() + ")', "
-						+ (sectionInstances.size() > 1 ? "have" : "has a") + " root element"
-						+ (sectionInstances.size() > 1 ? "s" : "") + " of the type '" + section.getEClass().getName()
-						+ "'. " + (sectionInstances.size() > 1 ? "Theese need" : "It needs")
-						+ " to be put at a sensible position in the target model. "
-						+ "Please choose one of the possible connections to other existing target model elements"
-						+ " below.",
-				new ArrayList<>(choices.keySet()), new ArrayList<>(choices.values()), enhancer);
 
-		Display.getDefault().syncExec(dialog);
-		if (dialog.wasTransformationStopRequested()) {
+		AtomicReference<ClassAndInstanceSelectorDialog<ModelConnectionPath>> dialog = new AtomicReference<>(null);
+
+		// As we are not in the UI thread, we have to use a runnable to show the dialog in order to prevent
+		// 'InvalidThreadAccess' exceptions
+		//
+		Display.getDefault().syncExec(() -> {
+
+			dialog.set(new ClassAndInstanceSelectorDialog<>(UserDecisionResolvingStrategy.DIALOG_TITLE,
+					sectionInstances.size() + " Instance" + (sectionInstances.size() > 1 ? "s" : "")
+							+ " of the TargetSection '" + section.getName() + "', created by the mapping '"
+							+ ((Mapping) hintGroup.eContainer()).getName() + " (Group: " + hintGroup.getName() + ")', "
+							+ (sectionInstances.size() > 1 ? "have" : "has a") + " root element"
+							+ (sectionInstances.size() > 1 ? "s" : "") + " of the type '"
+							+ section.getEClass().getName() + "'. "
+							+ (sectionInstances.size() > 1 ? "Theese need" : "It needs")
+							+ " to be put at a sensible position in the target model. "
+							+ "Please choose one of the possible connections to other existing target model elements"
+							+ " below.",
+					choices, enhancer));
+			dialog.get().create();
+			dialog.get().open();
+		});
+
+		if (dialog.get().getReturnCode() == IDialogConstants.CANCEL_ID) {
 			throw new AmbiguityResolvingException(new UserAbortException().getMessage(), new UserAbortException());
 		}
 
-		ModelConnectionPath retPath = dialog.getPath();
-		EObjectWrapper retWrapper = dialog.getSingleInstance();
+		ModelConnectionPath retPath = dialog.get().getSingleSelection();
+		EObjectWrapper retWrapper = dialog.get().getSingleInstance();
 
 		HashMap<ModelConnectionPath, List<EObjectWrapper>> ret = new HashMap<>();
-		ret.put(retPath, Arrays.asList(dialog.getSingleInstance()));
+		ret.put(retPath, Arrays.asList(dialog.get().getSingleInstance()));
 		this.printMessage(retPath + "-->" + retWrapper.toString(), UserDecisionResolvingStrategy.userDecisionPrefix);
 
 		return ret;
@@ -339,15 +416,25 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 						(MappingHintGroup) hintGroup)
 				: null;
 
-		final GenericSelectionDialogRunner<EObjectWrapper> dialog = new GenericSelectionDialogRunner<>(message, 0,
-				false, choices, enhancer);
-		Display.getDefault().syncExec(dialog);
-		if (dialog.wasTransformationStopRequested()) {
+		AtomicReference<GenericSelectionDialog<EObjectWrapper>> dialog = new AtomicReference<>(null);
+
+		// As we are not in the UI thread, we have to use a runnable to show the dialog in order to prevent
+		// 'InvalidThreadAccess' exceptions
+		//
+		Display.getDefault().syncExec(() -> {
+
+			dialog.set(new GenericSelectionDialog<>(UserDecisionResolvingStrategy.DIALOG_TITLE, message, choices, false,
+					0, enhancer));
+			dialog.get().create();
+			dialog.get().open();
+		});
+
+		if (dialog.get().getReturnCode() == IDialogConstants.CANCEL_ID) {
 			throw new AmbiguityResolvingException(new UserAbortException().getMessage(), new UserAbortException());
 		}
 
-		this.printMessage(dialog.getSelection().toString(), UserDecisionResolvingStrategy.userDecisionPrefix);
-		return Arrays.asList(dialog.getSingleSelection());
+		this.printMessage(dialog.get().getSelection().toString(), UserDecisionResolvingStrategy.userDecisionPrefix);
+		return Arrays.asList(dialog.get().getSingleSelection());
 	}
 
 	@Override
@@ -380,21 +467,29 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 							: ".");
 		}
 
-		final GenericSelectionDialogRunner<EObjectWrapper> dialog = new GenericSelectionDialogRunner<>(dialogMessage, 0,
-				reference.getEReference().isMany(), choices, null);
+		AtomicReference<GenericSelectionDialog<EObjectWrapper>> dialog = new AtomicReference<>(null);
 
-		Display.getDefault().syncExec(dialog);
+		// As we are not in the UI thread, we have to use a runnable to show the dialog in order to prevent
+		// 'InvalidThreadAccess' exceptions
+		//
+		Display.getDefault().syncExec(() -> {
 
-		if (dialog.wasTransformationStopRequested()) {
+			dialog.set(new GenericSelectionDialog<>(UserDecisionResolvingStrategy.DIALOG_TITLE, dialogMessage, choices,
+					reference.getEReference().isMany(), 0, null));
+			dialog.get().create();
+			dialog.get().open();
+		});
+
+		if (dialog.get().getReturnCode() == IDialogConstants.CANCEL_ID) {
 			throw new AmbiguityResolvingException(new UserAbortException().getMessage(), new UserAbortException());
 		}
 
-		this.printMessage(Arrays.toString(dialog.getSelection().toArray()),
+		this.printMessage(Arrays.toString(dialog.get().getSelection().toArray()),
 				UserDecisionResolvingStrategy.userDecisionPrefix);
 		if (reference.getEReference().isMany()) {
-			return new ArrayList<>(dialog.getSelection());
+			return new ArrayList<>(dialog.get().getSelection());
 		} else {
-			return Arrays.asList(dialog.getSingleSelection());
+			return Arrays.asList(dialog.get().getSingleSelection());
 		}
 	}
 
@@ -403,31 +498,40 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 			Map<TargetSectionClass, List<EObjectWrapper>> choices, TargetSectionCrossReference reference,
 			MappingHintGroupType hintGroup) throws AmbiguityResolvingException {
 
-		final PathAndInstanceSelectorRunner<TargetSectionClass> dialog = new PathAndInstanceSelectorRunner<TargetSectionClass>(
-				"There was more than one target element found for the NonContainmmentReference '" + reference.getName()
-						+ "' of TargetMMSection " + hintGroup.getTargetSection().getName() + "(Section: "
-						+ hintGroup.getTargetSection().getEClass().getName() + ") in Mapping "
-						+ ((Mapping) hintGroup.eContainer()).getName() + "(Group: " + hintGroup.getName() + ") ."
-						+ "Please select a target Class and element.",
-				new ArrayList<>(choices.keySet()), new ArrayList<>(choices.values()),
-				reference.getEReference().isMany(), null) {
+		AtomicReference<ClassAndInstanceSelectorDialog<TargetSectionClass>> dialog = new AtomicReference<>(null);
 
-			@Override
-			protected String getStringRepresentation(TargetSectionClass option) {
+		// As we are not in the UI thread, we have to use a runnable to show the dialog in order to prevent
+		// 'InvalidThreadAccess' exceptions
+		//
+		Display.getDefault().syncExec(() -> {
 
-				return option.getName() + " (Section: " + option.getContainingSection().getName() + ")";
-			}
-		};
-		Display.getDefault().syncExec(dialog);
+			dialog.set(new ClassAndInstanceSelectorDialog<TargetSectionClass>(
+					UserDecisionResolvingStrategy.DIALOG_TITLE,
+					"There was more than one target element found for the NonContainmmentReference '"
+							+ reference.getName() + "' of TargetMMSection " + hintGroup.getTargetSection().getName()
+							+ "(Section: " + hintGroup.getTargetSection().getEClass().getName() + ") in Mapping "
+							+ ((Mapping) hintGroup.eContainer()).getName() + "(Group: " + hintGroup.getName() + ") ."
+							+ "Please select a target Class and element.",
+					choices, reference.getEReference().isMany(), null) {
 
-		if (dialog.wasTransformationStopRequested()) {
+				@Override
+				protected String getStringRepresentation(TargetSectionClass option) {
+
+					return option.getName() + " (Section: " + option.getContainingSection().getName() + ")";
+				}
+			});
+			dialog.get().create();
+			dialog.get().open();
+		});
+
+		if (dialog.get().getReturnCode() == IDialogConstants.CANCEL_ID) {
 			throw new AmbiguityResolvingException(new UserAbortException().getMessage(), new UserAbortException());
 		}
 
-		TargetSectionClass retSection = dialog.getPath();
+		TargetSectionClass retSection = dialog.get().getSingleSelection();
 
 		HashMap<TargetSectionClass, List<EObjectWrapper>> ret = new HashMap<>();
-		ret.put(retSection, new ArrayList<>(dialog.getInstances()));
+		ret.put(retSection, new ArrayList<>(dialog.get().getInstances()));
 
 		this.printMessage(retSection.getName() + "-->" + Arrays.toString(ret.get(retSection).toArray()),
 				UserDecisionResolvingStrategy.userDecisionPrefix);

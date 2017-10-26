@@ -1676,6 +1676,9 @@
           <details key="documentation" value="A ValueConstraint that specifies a list of values (each by means of an EqualityConstraint). For this constraint to be fulfilled, the actual attribute value must match at least one of the specified values."/>
         </eAnnotations>
         <eOperations name="checkConstraint" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="return refValue.stream().anyMatch(r -> r.equals(attrValue));"/>
+          </eAnnotations>
           <eParameters name="attrValue" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
           <eParameters name="refValue" lowerBound="1" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         </eOperations>

@@ -67,12 +67,12 @@ public class ChoiceConstraintImpl extends NamedElementImpl implements ChoiceCons
 	 * @generated
 	 * @ordered
 	 */
-	protected ValueConstraintType type = TYPE_EDEFAULT;
+	protected ValueConstraintType type = ChoiceConstraintImpl.TYPE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getChoices() <em>Choices</em>}' containment reference list.
-	 * <!-- begin-user-doc
+	 * The cached value of the '{@link #getChoices() <em>Choices</em>}' containment reference list. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 *
 	 * @see #getChoices()
 	 * @generated
 	 * @ordered
@@ -81,97 +81,112 @@ public class ChoiceConstraintImpl extends NamedElementImpl implements ChoiceCons
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	protected ChoiceConstraintImpl() {
+
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
+
 		return ConstraintPackage.Literals.CHOICE_CONSTRAINT;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public ValueConstraintType getType() {
-		return type;
+
+		return this.type;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public void setType(ValueConstraintType newType) {
-		ValueConstraintType oldType = type;
-		type = newType == null ? TYPE_EDEFAULT : newType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConstraintPackage.CHOICE_CONSTRAINT__TYPE, oldType, type));
+
+		ValueConstraintType oldType = this.type;
+		this.type = newType == null ? ChoiceConstraintImpl.TYPE_EDEFAULT : newType;
+		if (this.eNotificationRequired()) {
+			this.eNotify(new ENotificationImpl(this, Notification.SET, ConstraintPackage.CHOICE_CONSTRAINT__TYPE,
+					oldType, this.type));
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public EList<EqualityConstraint> getChoices() {
-		if (choices == null) {
-			choices = new EObjectContainmentEList<EqualityConstraint>(EqualityConstraint.class, this, ConstraintPackage.CHOICE_CONSTRAINT__CHOICES);
+
+		if (this.choices == null) {
+			this.choices = new EObjectContainmentEList<>(EqualityConstraint.class, this,
+					ConstraintPackage.CHOICE_CONSTRAINT__CHOICES);
 		}
-		return choices;
+		return this.choices;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public boolean checkConstraint(String attrValue, EList<String> refValue) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+
+		return refValue.stream().anyMatch(r -> r.equals(attrValue));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public boolean isLocalConstraint() {
+
 		if (this instanceof ChoiceConstraint) {
 			return ((ChoiceConstraint) this).getChoices().stream().allMatch(ValueConstraint::isLocalConstraint);
 		}
-		
+
 		if (AgteleEcoreUtil.hasAncestorOfKind(this, SourcePackage.Literals.ACTUAL_SOURCE_SECTION_ATTRIBUTE)) {
 			return true;
 		}
-		
+
 		if (!(this instanceof SingleReferenceValueConstraint)
 				|| !AgteleEcoreUtil.hasAncestorOfKind(this, ConditionPackage.Literals.ATTRIBUTE_CONDITION)) {
 			throw new UnsupportedOperationException();
 		}
-		
+
 		EObject container = this;
-		
+
 		while (!(container instanceof Mapping)) {
 			if (container == null) {
 				return false;
 			}
 			container = container.eContainer();
 		}
-		
+
 		// The SourceSection of the Mapping that contains the constraint
 		//
 		SourceSection localSection = ((Mapping) container).getSourceSection();
-		
+
 		if (((SingleReferenceValueConstraint) this).getSourceElements().parallelStream()
 				.allMatch(s -> s instanceof FixedValue || s instanceof GlobalAttributeImporter
 						|| s instanceof ValueConstraintSourceElement && ((ValueConstraintSourceElement) s).getSource()
@@ -181,11 +196,10 @@ public class ChoiceConstraintImpl extends NamedElementImpl implements ChoiceCons
 										.isContainerFor(localSection))) {
 			return true;
 		}
-		
+
 		// A constraint is also 'local' if an InstancePointer with local or external SourceAttributes exist
 		//
-		return ((SingleReferenceValueConstraint) this).getInstanceSelectors()
-				.parallelStream()
+		return ((SingleReferenceValueConstraint) this).getInstanceSelectors().parallelStream()
 				.flatMap(instanceSelector -> instanceSelector.getSourceElements().parallelStream()
 						.filter(s -> s instanceof InstanceSelectorSourceElement
 								|| s instanceof InstanceSelectorExternalSourceElement))
@@ -194,46 +208,52 @@ public class ChoiceConstraintImpl extends NamedElementImpl implements ChoiceCons
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+
 		switch (featureID) {
 			case ConstraintPackage.CHOICE_CONSTRAINT__CHOICES:
-				return ((InternalEList<?>)getChoices()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>) this.getChoices()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+
 		switch (featureID) {
 			case ConstraintPackage.CHOICE_CONSTRAINT__TYPE:
-				return getType();
+				return this.getType();
 			case ConstraintPackage.CHOICE_CONSTRAINT__CHOICES:
-				return getChoices();
+				return this.getChoices();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
+
 		switch (featureID) {
 			case ConstraintPackage.CHOICE_CONSTRAINT__TYPE:
-				setType((ValueConstraintType)newValue);
+				this.setType((ValueConstraintType) newValue);
 				return;
 			case ConstraintPackage.CHOICE_CONSTRAINT__CHOICES:
-				getChoices().clear();
-				getChoices().addAll((Collection<? extends EqualityConstraint>)newValue);
+				this.getChoices().clear();
+				this.getChoices().addAll((Collection<? extends EqualityConstraint>) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -241,16 +261,18 @@ public class ChoiceConstraintImpl extends NamedElementImpl implements ChoiceCons
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
+
 		switch (featureID) {
 			case ConstraintPackage.CHOICE_CONSTRAINT__TYPE:
-				setType(TYPE_EDEFAULT);
+				this.setType(ChoiceConstraintImpl.TYPE_EDEFAULT);
 				return;
 			case ConstraintPackage.CHOICE_CONSTRAINT__CHOICES:
-				getChoices().clear();
+				this.getChoices().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -258,46 +280,54 @@ public class ChoiceConstraintImpl extends NamedElementImpl implements ChoiceCons
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
+
 		switch (featureID) {
 			case ConstraintPackage.CHOICE_CONSTRAINT__TYPE:
-				return type != TYPE_EDEFAULT;
+				return this.type != ChoiceConstraintImpl.TYPE_EDEFAULT;
 			case ConstraintPackage.CHOICE_CONSTRAINT__CHOICES:
-				return choices != null && !choices.isEmpty();
+				return this.choices != null && !this.choices.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+
 		switch (operationID) {
 			case ConstraintPackage.CHOICE_CONSTRAINT___CHECK_CONSTRAINT__STRING_ELIST:
-				return checkConstraint((String)arguments.get(0), (EList<String>)arguments.get(1));
+				return this.checkConstraint((String) arguments.get(0), (EList<String>) arguments.get(1));
 			case ConstraintPackage.CHOICE_CONSTRAINT___IS_LOCAL_CONSTRAINT:
-				return isLocalConstraint();
+				return this.isLocalConstraint();
 		}
 		return super.eInvoke(operationID, arguments);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+
+		if (this.eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (type: ");
-		result.append(type);
+		result.append(this.type);
 		result.append(')');
 		return result.toString();
 	}

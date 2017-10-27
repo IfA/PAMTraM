@@ -66,6 +66,8 @@ public abstract class AbstractDialog extends TitleAreaDialog {
 
 		super(UIHelper.getShell());
 
+		this.setShellStyle(SWT.CLOSE | SWT.BORDER | SWT.TITLE | SWT.RESIZE);
+
 		this.title = title;
 		this.message = message;
 

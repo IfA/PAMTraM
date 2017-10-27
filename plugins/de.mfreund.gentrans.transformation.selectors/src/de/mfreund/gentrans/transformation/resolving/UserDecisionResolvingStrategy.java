@@ -216,27 +216,12 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 				pamtramModel.orElseThrow(
 						() -> new RuntimeException("Internal error while determining PAMTraM instance to enhance...")));
 
-		AtomicReference<GenericSelectionDialog<EClass>> dialog = new AtomicReference<>(null);
+		EClass result = GenericSelectionDialog.createAndExecuteJoiningSelectRootElementDialog(choices,
+				Optional.of(enhancer));
 
-		// As we are not in the UI thread, we have to use a runnable to show the dialog in order to prevent
-		// 'InvalidThreadAccess' exceptions
-		//
-		Display.getDefault().syncExec(() -> {
+		this.printMessage(result.getName(), UserDecisionResolvingStrategy.userDecisionPrefix);
 
-			dialog.set(new GenericSelectionDialog<>(
-					"There was more than one target model element that could not be connected to a root element. Therefore "
-							+ "a model root element needs to be created. Please select a fitting class:",
-					choices, false, Optional.of(enhancer)));
-			dialog.get().create();
-			dialog.get().open();
-		});
-
-		if (dialog.get().getReturnCode() == IDialogConstants.CANCEL_ID) {
-			throw new AmbiguityResolvingException(new UserAbortException().getMessage(), new UserAbortException());
-		}
-		this.printMessage(dialog.get().getSingleSelection().getName(),
-				UserDecisionResolvingStrategy.userDecisionPrefix);
-		return new ArrayList<>(Arrays.asList(dialog.get().getSingleSelection()));
+		return Arrays.asList(result);
 	}
 
 	@Override

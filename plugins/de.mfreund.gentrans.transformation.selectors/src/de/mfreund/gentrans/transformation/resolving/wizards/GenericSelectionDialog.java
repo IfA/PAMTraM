@@ -8,11 +8,11 @@ import java.util.Optional;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 
@@ -45,7 +45,7 @@ public class GenericSelectionDialog<T> extends AbstractDialog {
 
 	/**
 	 * Create the dialog.
-	 * 
+	 *
 	 * @param message
 	 *            The message that shall be displayed in the dialog.
 	 * @param options
@@ -73,8 +73,7 @@ public class GenericSelectionDialog<T> extends AbstractDialog {
 
 		// Create the list viewer for the list of options
 		//
-		ListViewer listViewer = this.createListViewer(container, Optional.of("Possible choices"),
-				this.multiSelectionAllowed);
+		ListViewer listViewer = this.createListViewer(container, this.getGroupText(), this.multiSelectionAllowed);
 
 		listViewer.addSelectionChangedListener(
 				event -> this.selectedItems = listViewer.getStructuredSelection().toList());
@@ -85,6 +84,17 @@ public class GenericSelectionDialog<T> extends AbstractDialog {
 		});
 
 		listViewer.setInput(this.options);
+	}
+
+	/**
+	 * Return the group text for the default {@link #createListViewer(Composite, Optional, boolean) list viewer} created
+	 * as part of {@link #createInnerContents(Composite)}.
+	 *
+	 * @return The group text or an empty optional if no {@link Group} shall be created.
+	 */
+	protected Optional<String> getGroupText() {
+
+		return Optional.of("Possible options");
 	}
 
 	/**
@@ -107,9 +117,9 @@ public class GenericSelectionDialog<T> extends AbstractDialog {
 		if (groupText.isPresent()) {
 
 			Group group = new Group(container, SWT.NONE);
-			GridDataFactory.swtDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).minSize(200, 200).applyTo(group);
+			GridDataFactory.fillDefaults().grab(true, true).minSize(200, 200).applyTo(group);
 			group.setText(groupText.get());
-			group.setLayout(new FillLayout(SWT.HORIZONTAL));
+			GridLayoutFactory.fillDefaults().margins(5, 5).applyTo(group);
 
 			parent = group;
 		}
@@ -130,6 +140,8 @@ public class GenericSelectionDialog<T> extends AbstractDialog {
 				}
 			}
 		};
+
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(listViewer.getList());
 
 		listViewer.getList().addKeyListener((KeyPressedListener) e -> {
 			if (e.keyCode == SWT.KeyDown || e.keyCode == SWT.KeyUp) {

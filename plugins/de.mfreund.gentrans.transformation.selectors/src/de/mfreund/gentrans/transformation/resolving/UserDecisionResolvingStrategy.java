@@ -28,6 +28,7 @@ import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectConta
 import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectRootElementMappingModelEnhancer;
 import de.mfreund.gentrans.transformation.resolving.wizards.ClassAndInstanceSelectorDialog;
 import de.mfreund.gentrans.transformation.resolving.wizards.GenericSelectionDialog;
+import de.mfreund.gentrans.transformation.resolving.wizards.SearchingAmbiguityDialog;
 import de.mfreund.gentrans.transformation.resolving.wizards.ValueSpecificationDialog;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.PAMTraM;
@@ -84,52 +85,25 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 	public List<MatchedSectionDescriptor> searchingSelectSection(List<MatchedSectionDescriptor> choices,
 			EObject element) throws AmbiguityResolvingException {
 
-		AtomicReference<GenericSelectionDialog<MatchedSectionDescriptor>> dialog = new AtomicReference<>(null);
+		MatchedSectionDescriptor result = SearchingAmbiguityDialog.createAndExecuteSearchingSelectSectionDialog(choices,
+				element);
 
-		// As we are not in the UI thread, we have to use a runnable to show the dialog in order to prevent
-		// 'InvalidThreadAccess' exceptions
-		//
-		Display.getDefault().syncExec(() -> {
-
-			dialog.set(new GenericSelectionDialog<>(
-					"Please select a SourceSection for the source element\n'" + EObjectWrapper.asString(element) + "'",
-					choices, false, Optional.empty()));
-			dialog.get().create();
-			dialog.get().open();
-		});
-
-		if (dialog.get().getReturnCode() == IDialogConstants.CANCEL_ID) {
-			throw new AmbiguityResolvingException(new UserAbortException());
-		}
-		this.printMessage(dialog.get().getSingleSelection().getAssociatedSourceSectionClass().getName(),
+		this.printMessage(result.getAssociatedSourceSectionClass().getName(),
 				UserDecisionResolvingStrategy.userDecisionPrefix);
-		return dialog.get().getSelection();
+
+		return Arrays.asList(result);
 	}
 
 	@Override
 	public List<Mapping> searchingSelectMapping(List<Mapping> choices, EObject element)
 			throws AmbiguityResolvingException {
 
-		AtomicReference<GenericSelectionDialog<Mapping>> dialog = new AtomicReference<>(null);
+		List<Mapping> result = SearchingAmbiguityDialog.createAndExecuteSearchingSelectMappingDialog(choices, element);
 
-		// As we are not in the UI thread, we have to use a runnable to show the dialog in order to prevent
-		// 'InvalidThreadAccess' exceptions
-		//
-		Display.getDefault().syncExec(() -> {
-
-			dialog.set(new GenericSelectionDialog<>(
-					"Please select a Mapping for the source element\n'" + EObjectWrapper.asString(element) + "'",
-					choices, true, Optional.empty()));
-			dialog.get().create();
-			dialog.get().open();
-		});
-
-		if (dialog.get().getReturnCode() == IDialogConstants.CANCEL_ID) {
-			throw new AmbiguityResolvingException(new UserAbortException());
-		}
-		this.printMessage(dialog.get().getSingleSelection().getName(),
+		this.printMessage(String.join(", ", result.stream().map(Mapping::getName).collect(Collectors.toList())),
 				UserDecisionResolvingStrategy.userDecisionPrefix);
-		return dialog.get().getSelection();
+
+		return result;
 	}
 
 	@Override

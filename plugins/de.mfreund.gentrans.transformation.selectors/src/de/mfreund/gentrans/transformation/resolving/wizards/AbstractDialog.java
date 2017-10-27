@@ -32,7 +32,7 @@ public abstract class AbstractDialog extends TitleAreaDialog {
 	/**
 	 * The title for the dialog.
 	 */
-	private static final String DIALOG_TITLE = "An ambiguity needs to be resolved...";
+	private static final String DIALOG_TITLE = "Please resolve the following ambiguity...";
 
 	/**
 	 * This keeps track of the last location where a dialog was situated (possibly after being moved by the user). We
@@ -51,10 +51,14 @@ public abstract class AbstractDialog extends TitleAreaDialog {
 	 */
 	protected final SelectionListener2 enhanceMappingModelListener;
 
-	private String message;
+	/**
+	 * The message for the dialog.
+	 */
+	protected String message;
 
 	/**
 	 * Create the dialog.
+	 *
 	 * @param message
 	 *            The message that shall be displayed in the dialog.
 	 * @param enhanceMappingModelListener2

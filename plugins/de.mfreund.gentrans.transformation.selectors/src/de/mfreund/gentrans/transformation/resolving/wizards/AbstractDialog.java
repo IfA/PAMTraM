@@ -30,6 +30,11 @@ import de.tud.et.ifa.agtele.ui.util.UIHelper;
 public abstract class AbstractDialog extends TitleAreaDialog {
 
 	/**
+	 * The title for the dialog.
+	 */
+	private static final String DIALOG_TITLE = "An ambiguity needs to be resolved...";
+
+	/**
 	 * This keeps track of the last location where a dialog was situated (possibly after being moved by the user). We
 	 * use this to open each new dialog at the same exact position.
 	 */
@@ -46,29 +51,22 @@ public abstract class AbstractDialog extends TitleAreaDialog {
 	 */
 	protected final SelectionListener2 enhanceMappingModelListener;
 
-	private String title;
-
 	private String message;
 
 	/**
 	 * Create the dialog.
-	 *
-	 * @param title
-	 *            The title for the dialog.
 	 * @param message
 	 *            The message that shall be displayed in the dialog.
 	 * @param enhanceMappingModelListener2
 	 *            An optional {@link SelectionListener2} that will be called when the <em>EnhanceMappingModelButton</em>
 	 *            is clicked. If no listener is given, the button will be grayed out.
 	 */
-	public AbstractDialog(String title, String message,
-			final Optional<SelectionListener2> enhanceMappingModelListener2) {
+	public AbstractDialog(String message, final Optional<SelectionListener2> enhanceMappingModelListener2) {
 
 		super(UIHelper.getShell());
 
 		this.setShellStyle(SWT.CLOSE | SWT.BORDER | SWT.TITLE | SWT.RESIZE);
 
-		this.title = title;
 		this.message = message;
 
 		this.enhanceMappingModelListener = enhanceMappingModelListener2.orElse(null);
@@ -155,7 +153,7 @@ public abstract class AbstractDialog extends TitleAreaDialog {
 
 		super.create();
 
-		this.setTitle(this.title);
+		this.setTitle(AbstractDialog.DIALOG_TITLE);
 		this.setMessage(this.message);
 	}
 

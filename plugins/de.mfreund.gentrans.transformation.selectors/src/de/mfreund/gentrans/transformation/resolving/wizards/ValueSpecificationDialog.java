@@ -27,18 +27,15 @@ public class ValueSpecificationDialog extends AbstractDialog {
 	/**
 	 * Create the dialog.
 	 *
-	 * @param title
-	 *            The title for the dialog.
 	 * @param message
 	 *            The message that shall be displayed in the dialog.
 	 * @param enhanceMappingModelListener
 	 *            An optional {@link SelectionListener2} that will be called when the <em>EnhanceMappingModelButton</em>
 	 *            is clicked. If no listener is given, the button will be grayed out.
 	 */
-	public ValueSpecificationDialog(String title, String message,
-			Optional<SelectionListener2> enhanceMappingModelListener) {
+	public ValueSpecificationDialog(String message, Optional<SelectionListener2> enhanceMappingModelListener) {
 
-		super(title, message, enhanceMappingModelListener);
+		super(message, enhanceMappingModelListener);
 	}
 
 	@Override

@@ -43,9 +43,6 @@ public class ClassAndInstanceSelectorDialog<T> extends GenericSelectionDialog<T>
 
 	/**
 	 * Create the dialog.
-	 *
-	 * @param title
-	 *            The title for the dialog.
 	 * @param message
 	 *            The message that shall be displayed in the dialog.
 	 * @param options
@@ -56,10 +53,10 @@ public class ClassAndInstanceSelectorDialog<T> extends GenericSelectionDialog<T>
 	 *            An optional {@link SelectionListener2} that will be called when the <em>EnhanceMappingModelButton</em>
 	 *            is clicked. If no listener is given, the button will be grayed out.
 	 */
-	public ClassAndInstanceSelectorDialog(String title, String message, Map<T, List<EObjectWrapper>> options,
-			boolean multiSelectionAllowed, Optional<SelectionListener2> enhanceMappingModelListener) {
+	public ClassAndInstanceSelectorDialog(String message, Map<T, List<EObjectWrapper>> options, boolean multiSelectionAllowed,
+			Optional<SelectionListener2> enhanceMappingModelListener) {
 
-		super(title, message, new ArrayList<>(options.keySet()), multiSelectionAllowed, enhanceMappingModelListener);
+		super(message, new ArrayList<>(options.keySet()), multiSelectionAllowed, enhanceMappingModelListener);
 
 		this.instanceOptions = options;
 

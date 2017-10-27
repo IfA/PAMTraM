@@ -45,9 +45,7 @@ public class GenericSelectionDialog<T> extends AbstractDialog {
 
 	/**
 	 * Create the dialog.
-	 *
-	 * @param title
-	 *            The title for the dialog.
+	 * 
 	 * @param message
 	 *            The message that shall be displayed in the dialog.
 	 * @param options
@@ -58,10 +56,10 @@ public class GenericSelectionDialog<T> extends AbstractDialog {
 	 *            An optional {@link SelectionListener2} that will be called when the <em>EnhanceMappingModelButton</em>
 	 *            is clicked. If no listener is given, the button will be grayed out.
 	 */
-	public GenericSelectionDialog(String title, String message, List<T> options, boolean multiSelectionAllowed,
+	public GenericSelectionDialog(String message, List<T> options, boolean multiSelectionAllowed,
 			Optional<SelectionListener2> enhanceMappingModelListener) {
 
-		super(title, message, enhanceMappingModelListener);
+		super(message, enhanceMappingModelListener);
 
 		this.options = options;
 
@@ -154,7 +152,6 @@ public class GenericSelectionDialog<T> extends AbstractDialog {
 	 */
 	public T getSingleSelection() {
 
-		// FIXME selection is somehow not initialized on startup
 		return this.selectedItems == null || this.selectedItems.isEmpty() ? null : this.selectedItems.iterator().next();
 	}
 

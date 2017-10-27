@@ -27,8 +27,8 @@ import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectConne
 import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectContainerInstanceMappingModelEnhancer;
 import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectRootElementMappingModelEnhancer;
 import de.mfreund.gentrans.transformation.resolving.wizards.ClassAndInstanceSelectorDialog;
+import de.mfreund.gentrans.transformation.resolving.wizards.DialogFactory;
 import de.mfreund.gentrans.transformation.resolving.wizards.GenericSelectionDialog;
-import de.mfreund.gentrans.transformation.resolving.wizards.SearchingAmbiguityDialog;
 import de.mfreund.gentrans.transformation.resolving.wizards.ValueSpecificationDialog;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.PAMTraM;
@@ -85,7 +85,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 	public List<MatchedSectionDescriptor> searchingSelectSection(List<MatchedSectionDescriptor> choices,
 			EObject element) throws AmbiguityResolvingException {
 
-		MatchedSectionDescriptor result = SearchingAmbiguityDialog.createAndExecuteSearchingSelectSectionDialog(choices,
+		MatchedSectionDescriptor result = DialogFactory.createAndExecuteSearchingSelectSectionDialog(choices,
 				element);
 
 		this.printMessage(result.getAssociatedSourceSectionClass().getName(),
@@ -98,7 +98,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 	public List<Mapping> searchingSelectMapping(List<Mapping> choices, EObject element)
 			throws AmbiguityResolvingException {
 
-		List<Mapping> result = SearchingAmbiguityDialog.createAndExecuteSearchingSelectMappingDialog(choices, element);
+		List<Mapping> result = DialogFactory.createAndExecuteSearchingSelectMappingDialog(choices, element);
 
 		this.printMessage(String.join(", ", result.stream().map(Mapping::getName).collect(Collectors.toList())),
 				UserDecisionResolvingStrategy.userDecisionPrefix);
@@ -216,7 +216,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 				pamtramModel.orElseThrow(
 						() -> new RuntimeException("Internal error while determining PAMTraM instance to enhance...")));
 
-		EClass result = GenericSelectionDialog.createAndExecuteJoiningSelectRootElementDialog(choices,
+		EClass result = DialogFactory.createAndExecuteJoiningSelectRootElementDialog(choices,
 				Optional.of(enhancer));
 
 		this.printMessage(result.getName(), UserDecisionResolvingStrategy.userDecisionPrefix);

@@ -1,8 +1,6 @@
 package de.mfreund.gentrans.transformation.resolving.wizards;
 
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicReference;
-import java.util.function.Supplier;
 
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
@@ -15,11 +13,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
-import de.mfreund.gentrans.transformation.UserAbortException;
-import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
 
@@ -215,43 +210,5 @@ public abstract class AbstractDialog extends TitleAreaDialog {
 	 * @param container
 	 */
 	protected abstract void createInnerContents(Composite container);
-
-	/**
-	 * Creates and executes an {@link AbstractDialog}.
-	 * <p />
-	 * Note: This can be called from outside the UI thread as the dialog is executed via its own {@link Runnable}.
-	 *
-	 * @param <D>
-	 *            The type of the {@link AbstractDialog} to be created.
-	 *
-	 * @param dialogSupplier
-	 *            A supplier that will create the {@link AbstractDialog} to be executed.
-	 * @return The created {@link AbstractDialog} after its execution.
-	 * @throws AmbiguityResolvingException
-	 *             If the user pressed the <em>Abort Transformation</em> button in the dialog.
-	 */
-	protected static <D extends AbstractDialog> D createAndExecuteDialog(Supplier<D> dialogSupplier)
-			throws AmbiguityResolvingException {
-
-		AtomicReference<D> dialogReference = new AtomicReference<>(null);
-
-		// As we are not in the UI thread, we have to use a runnable to show the dialog in order to prevent
-		// 'InvalidThreadAccess' exceptions
-		//
-		Display.getDefault().syncExec(() -> {
-
-			D dialog = dialogSupplier.get();
-			dialogReference.set(dialog);
-			dialogReference.get().create();
-			dialogReference.get().open();
-
-		});
-
-		if (dialogReference.get().getReturnCode() == IDialogConstants.CANCEL_ID) {
-			throw new AmbiguityResolvingException(new UserAbortException());
-		}
-
-		return dialogReference.get();
-	}
 
 }

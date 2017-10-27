@@ -16,12 +16,9 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
 
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
-import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
-import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
 import de.mfreund.gentrans.transformation.resolving.UserDecisionResolvingStrategy;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
-import pamtram.mapping.Mapping;
 
 /**
  * The dialog that is used by the {@link UserDecisionResolvingStrategy} to resolve ambiguities during the
@@ -92,70 +89,6 @@ public class SearchingAmbiguityDialog<T> extends GenericSelectionDialog<T> {
 		});
 
 		super.createInnerContents(container);
-	}
-
-	/**
-	 * Creates and executes a {@link SearchingAmbiguityDialog} in order to resolve a <em>SearchingSelectSection</em>
-	 * ambiguity.
-	 * <p />
-	 * Note: This can be called from outside the UI thread as the dialog is executed via its own {@link Runnable}.
-	 *
-	 * @param choices
-	 *            The list of {@link MatchedSectionDescriptor options} that the user can choose from.
-	 * @param element
-	 *            The source {@link EObject element} for that the option shall be chosen.
-	 * @return The chosen {@link MatchedSectionDescriptor}.
-	 * @throws AmbiguityResolvingException
-	 *             If the user pressed the <em>Abort Transformation</em> button in the dialog.
-	 */
-	public static MatchedSectionDescriptor createAndExecuteSearchingSelectSectionDialog(
-			List<MatchedSectionDescriptor> choices, EObject element) throws AmbiguityResolvingException {
-
-		SearchingAmbiguityDialog<MatchedSectionDescriptor> dialog = AbstractDialog
-				.createAndExecuteDialog(() -> new SearchingAmbiguityDialog<MatchedSectionDescriptor>(
-						"Multiple matching SourceSections found for an element of the source model!", choices, element,
-						false, Optional.empty()) {
-
-					@Override
-					protected Optional<String> getGroupText() {
-
-						return Optional.of("Applicable SourceSections:");
-					}
-				});
-
-		return dialog.getSingleSelection();
-	}
-
-	/**
-	 * Creates and executes a {@link SearchingAmbiguityDialog} in order to resolve a <em>SearchingSelectMapping</em>
-	 * ambiguity.
-	 * <p />
-	 * Note: This can be called from outside the UI thread as the dialog is executed via its own {@link Runnable}.
-	 *
-	 * @param choices
-	 *            The list of {@link Mapping options} that the user can choose from.
-	 * @param element
-	 *            The source {@link EObject element} for that the option shall be chosen.
-	 * @return The chosen {@link Mapping Mappings}.
-	 * @throws AmbiguityResolvingException
-	 *             If the user pressed the <em>Abort Transformation</em> button in the dialog.
-	 */
-	public static List<Mapping> createAndExecuteSearchingSelectMappingDialog(List<Mapping> choices, EObject element)
-			throws AmbiguityResolvingException {
-
-		SearchingAmbiguityDialog<Mapping> dialog = AbstractDialog
-				.createAndExecuteDialog(() -> new SearchingAmbiguityDialog<Mapping>(
-						"Multiple applicable Mappings found for an element of the source model!", choices, element,
-						true, Optional.empty()) {
-
-					@Override
-					protected Optional<String> getGroupText() {
-
-						return Optional.of("Applicable Mappings:");
-					}
-				});
-
-		return dialog.getSelection();
 	}
 
 }

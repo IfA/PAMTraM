@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridDataFactory;
@@ -17,7 +16,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 
-import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
 import de.tud.et.ifa.agtele.ui.listeners.KeyPressedListener;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 
@@ -202,37 +200,5 @@ public class GenericSelectionDialog<T> extends AbstractDialog {
 	public List<T> getOptions() {
 
 		return this.options;
-	}
-
-	/**
-	 * Creates and executes a {@link GenericSelectionDialog} in order to resolve a <em>JoiningSelectRootElement</em>
-	 * ambiguity.
-	 * <p />
-	 * Note: This can be called from outside the UI thread as the dialog is executed via its own {@link Runnable}.
-	 *
-	 * @param choices
-	 *            The list of {@link EClass options} that the user can choose from.
-	 * @param enhanceMappingModelListener
-	 *            An optional {@link SelectionListener2} that will be called when the <em>EnhanceMappingModelButton</em>
-	 *            is clicked. If no listener is given, the button will be grayed out.
-	 * @return The chosen {@link EClass}.
-	 * @throws AmbiguityResolvingException
-	 *             If the user pressed the <em>Abort Transformation</em> button in the dialog.
-	 */
-	public static EClass createAndExecuteJoiningSelectRootElementDialog(List<EClass> choices,
-			Optional<SelectionListener2> enhanceMappingModelListener) throws AmbiguityResolvingException {
-
-		GenericSelectionDialog<EClass> dialog = AbstractDialog
-				.createAndExecuteDialog(() -> new GenericSelectionDialog<EClass>("A root element needs to be created!",
-						choices, false, enhanceMappingModelListener) {
-
-					@Override
-					protected Optional<String> getGroupText() {
-
-						return Optional.of("Possible Root Element Types:");
-					}
-				});
-
-		return dialog.getSingleSelection();
 	}
 }

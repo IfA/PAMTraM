@@ -5,20 +5,16 @@ package de.mfreund.gentrans.transformation.resolving.wizards;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicReference;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
 
-import de.mfreund.gentrans.transformation.UserAbortException;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
@@ -115,32 +111,19 @@ public class SearchingAmbiguityDialog<T> extends GenericSelectionDialog<T> {
 	public static MatchedSectionDescriptor createAndExecuteSearchingSelectSectionDialog(
 			List<MatchedSectionDescriptor> choices, EObject element) throws AmbiguityResolvingException {
 
-		AtomicReference<GenericSelectionDialog<MatchedSectionDescriptor>> dialog = new AtomicReference<>(null);
+		SearchingAmbiguityDialog<MatchedSectionDescriptor> dialog = AbstractDialog
+				.createAndExecuteDialog(() -> new SearchingAmbiguityDialog<MatchedSectionDescriptor>(
+						"Multiple matching SourceSections found for an element of the source model!", choices, element,
+						false, Optional.empty()) {
 
-		// As we are not in the UI thread, we have to use a runnable to show the dialog in order to prevent
-		// 'InvalidThreadAccess' exceptions
-		//
-		Display.getDefault().syncExec(() -> {
+					@Override
+					protected Optional<String> getGroupText() {
 
-			dialog.set(new SearchingAmbiguityDialog<MatchedSectionDescriptor>(
-					"Multiple matching SourceSections found for an element of the source model!", choices, element,
-					false, Optional.empty()) {
+						return Optional.of("Applicable SourceSections:");
+					}
+				});
 
-				@Override
-				protected Optional<String> getGroupText() {
-
-					return Optional.of("Applicable SourceSections:");
-				}
-			});
-			dialog.get().create();
-			dialog.get().open();
-		});
-
-		if (dialog.get().getReturnCode() == IDialogConstants.CANCEL_ID) {
-			throw new AmbiguityResolvingException(new UserAbortException());
-		}
-
-		return dialog.get().getSingleSelection();
+		return dialog.getSingleSelection();
 	}
 
 	/**
@@ -160,32 +143,19 @@ public class SearchingAmbiguityDialog<T> extends GenericSelectionDialog<T> {
 	public static List<Mapping> createAndExecuteSearchingSelectMappingDialog(List<Mapping> choices, EObject element)
 			throws AmbiguityResolvingException {
 
-		AtomicReference<GenericSelectionDialog<Mapping>> dialog = new AtomicReference<>(null);
+		SearchingAmbiguityDialog<Mapping> dialog = AbstractDialog
+				.createAndExecuteDialog(() -> new SearchingAmbiguityDialog<Mapping>(
+						"Multiple applicable Mappings found for an element of the source model!", choices, element,
+						true, Optional.empty()) {
 
-		// As we are not in the UI thread, we have to use a runnable to show the dialog in order to prevent
-		// 'InvalidThreadAccess' exceptions
-		//
-		Display.getDefault().syncExec(() -> {
+					@Override
+					protected Optional<String> getGroupText() {
 
-			dialog.set(new SearchingAmbiguityDialog<Mapping>(
-					"Multiple applicable Mappings found for an element of the source model!", choices, element, true,
-					Optional.empty()) {
+						return Optional.of("Applicable Mappings:");
+					}
+				});
 
-				@Override
-				protected Optional<String> getGroupText() {
-
-					return Optional.of("Applicable Mappings:");
-				}
-			});
-			dialog.get().create();
-			dialog.get().open();
-		});
-
-		if (dialog.get().getReturnCode() == IDialogConstants.CANCEL_ID) {
-			throw new AmbiguityResolvingException(new UserAbortException());
-		}
-
-		return dialog.get().getSelection();
+		return dialog.getSelection();
 	}
 
 }

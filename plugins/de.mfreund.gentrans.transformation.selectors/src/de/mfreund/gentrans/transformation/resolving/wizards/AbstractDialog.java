@@ -3,6 +3,7 @@ package de.mfreund.gentrans.transformation.resolving.wizards;
 import java.util.Optional;
 
 import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ControlAdapter;
@@ -158,7 +159,7 @@ public abstract class AbstractDialog extends TitleAreaDialog {
 		super.create();
 
 		this.setTitle(AbstractDialog.DIALOG_TITLE);
-		this.setMessage(this.message);
+		this.setMessage(this.message, IMessageProvider.WARNING);
 	}
 
 	@Override

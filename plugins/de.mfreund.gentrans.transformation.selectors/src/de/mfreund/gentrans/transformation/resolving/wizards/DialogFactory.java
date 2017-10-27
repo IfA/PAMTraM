@@ -15,10 +15,12 @@ import org.eclipse.swt.widgets.Display;
 
 import de.mfreund.gentrans.transformation.UserAbortException;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
+import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
 import de.mfreund.gentrans.transformation.resolving.UserDecisionResolvingStrategy;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import pamtram.mapping.Mapping;
+import pamtram.structure.target.TargetSectionClass;
 
 /**
  * A factory that simplifies the creation of the various {@link AbstractDialog AbstractDialogs} used by the
@@ -168,6 +170,43 @@ public class DialogFactory {
 		};
 
 		GenericSelectionDialog<EClass> dialog = DialogFactory.createAndExecuteDialog(dialogSupplier);
+
+		return dialog.getSingleSelection();
+	}
+
+	/**
+	 * Creates and executes a {@link GenericSelectionDialog} in order to resolve a <em>SelectConnectionPath</em>
+	 * ambiguity.
+	 * <p />
+	 * Note: This can be called from outside the UI thread as the dialog is executed via its own {@link Runnable}.
+	 *
+	 * @param choices
+	 *            The list of {@link ModelConnectionPath options} that the user can choose from.
+	 * @param element
+	 *            The {@link TargetSectionClass} for that the option shall be chosen.
+	 * @param enhanceMappingModelListener
+	 *            An optional {@link SelectionListener2} that will be called when the <em>EnhanceMappingModelButton</em>
+	 *            is clicked. If no listener is given, the button will be grayed out.
+	 * @return The chosen {@link ModelConnectionPath}.
+	 * @throws AmbiguityResolvingException
+	 *             If the user pressed the <em>Abort Transformation</em> button in the dialog.
+	 */
+	public static ModelConnectionPath createAndExecuteSelectConnectionPathDialog(List<ModelConnectionPath> choices,
+			TargetSectionClass element, Optional<SelectionListener2> enhanceMappingModelListener)
+			throws AmbiguityResolvingException {
+
+		Supplier<JoiningSelectConnectionPathAmbiguityDialog> dialogSupplier = () -> new JoiningSelectConnectionPathAmbiguityDialog(
+				"Multiple possible paths found to join elements of the target model!", choices, element,
+				enhanceMappingModelListener) {
+
+			@Override
+			protected Optional<String> getGroupText() {
+
+				return Optional.of("Possible Connection Paths:");
+			}
+		};
+
+		JoiningSelectConnectionPathAmbiguityDialog dialog = DialogFactory.createAndExecuteDialog(dialogSupplier);
 
 		return dialog.getSingleSelection();
 	}

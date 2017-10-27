@@ -85,8 +85,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 	public List<MatchedSectionDescriptor> searchingSelectSection(List<MatchedSectionDescriptor> choices,
 			EObject element) throws AmbiguityResolvingException {
 
-		MatchedSectionDescriptor result = DialogFactory.createAndExecuteSearchingSelectSectionDialog(choices,
-				element);
+		MatchedSectionDescriptor result = DialogFactory.createAndExecuteSearchingSelectSectionDialog(choices, element);
 
 		this.printMessage(result.getAssociatedSourceSectionClass().getName(),
 				UserDecisionResolvingStrategy.userDecisionPrefix);
@@ -216,8 +215,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 				pamtramModel.orElseThrow(
 						() -> new RuntimeException("Internal error while determining PAMTraM instance to enhance...")));
 
-		EClass result = DialogFactory.createAndExecuteJoiningSelectRootElementDialog(choices,
-				Optional.of(enhancer));
+		EClass result = DialogFactory.createAndExecuteJoiningSelectRootElementDialog(choices, Optional.of(enhancer));
 
 		this.printMessage(result.getName(), UserDecisionResolvingStrategy.userDecisionPrefix);
 
@@ -236,28 +234,12 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 						() -> new RuntimeException("Internal error while determining PAMTraM instance to enhance...")),
 				section);
 
-		AtomicReference<GenericSelectionDialog<ModelConnectionPath>> dialog = new AtomicReference<>(null);
+		ModelConnectionPath result = DialogFactory.createAndExecuteSelectConnectionPathDialog(choices, section,
+				Optional.of(enhancer));
 
-		// As we are not in the UI thread, we have to use a runnable to show the dialog in order to prevent
-		// 'InvalidThreadAccess' exceptions
-		//
-		Display.getDefault().syncExec(() -> {
+		this.printMessage(result.toString(), UserDecisionResolvingStrategy.userDecisionPrefix);
 
-			dialog.set(new GenericSelectionDialog<>(
-					"Please choose one of the possible connections for connecting the "
-							+ "instances of the target section '" + section.getName() + "' (EClass: '"
-							+ section.getEClass().getName() + "') to the model root element of the type '"
-							+ choices.get(0).getPathRootClass().getName() + "'.",
-					choices, false, Optional.of(enhancer)));
-			dialog.get().create();
-			dialog.get().open();
-		});
-
-		if (dialog.get().getReturnCode() == IDialogConstants.CANCEL_ID) {
-			throw new AmbiguityResolvingException(new UserAbortException().getMessage(), new UserAbortException());
-		}
-		this.printMessage(dialog.get().getSelection().toString(), UserDecisionResolvingStrategy.userDecisionPrefix);
-		return new ArrayList<>(Arrays.asList(dialog.get().getSingleSelection()));
+		return Arrays.asList(result);
 	}
 
 	@Override

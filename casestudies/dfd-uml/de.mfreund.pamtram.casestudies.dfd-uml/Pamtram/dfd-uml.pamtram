@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ASCII"?>
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target">
+  <sourceSectionModels name="dfd">
+    <metaModelPackage href="http://data-flow-diagram#/"/>
+    <sections xsi:type="source:SourceSection" name="source"/>
+  </sourceSectionModels>
+  <targetSectionModels name="uml">
+    <metaModelPackage href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
+    <sections xsi:type="target:TargetSection" name="target"/>
+  </targetSectionModels>
+  <mappingModels>
+    <mappings name="sourceMapping" sourceSection="//@sourceSectionModels.0/@sections.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="target" targetSection="//@targetSectionModels.0/@sections.0"/>
+    </mappings>
+  </mappingModels>
+  <conditionModels/>
+</pamtram:PAMTraM>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="ASCII"?>
+<dfd:DFD xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:dfd="http://data-flow-diagram"
+    name="Messen und Auswerten einer Temperatur">
+  <elements
+      xsi:type="dfd:Process"
+      name="lese Messwert"
+      number="1">
+    <elements
+        xsi:type="dfd:Process"
+        name="Lese Messwert zyklisch"
+        number="1.1"/>
+    <elements
+        xsi:type="dfd:Process"
+        name="Pr&#xfc;fe G&#xfc;ltigkeit"
+        number="1.2"/>
+    <elements
+        xsi:type="dfd:Process"
+        name="Erzeuge GK-Zahl"
+        number="1.3"/>
+    <flows xsi:type="dfd:DataFlow"
+        name="Analoger Messwert"
+        to="1.1"/>
+    <flows xsi:type="dfd:DataFlow"
+        name="Integerzahl"
+        from="1.1"
+        to="1.2"/>
+    <flows xsi:type="dfd:DataFlow"
+        name="G&#xfc;ltiger Messwert"
+        from="1.2"
+        to="1.3"/>
+    <flows xsi:type="dfd:DataFlow"
+        name="Messwert (als GK-Zahl)"
+        from="1.3"/>
+  </elements>
+  <elements
+      xsi:type="dfd:Process"
+      name="bilde Mittelwert"
+      number="2"/>
+  <elements
+      xsi:type="dfd:Process"
+      name="errechne Temperatur"
+      number="3"/>
+  <elements
+      xsi:type="dfd:Process"
+      name="teste auf GW"
+      number="4"/>
+  <elements
+      xsi:type="dfd:Process"
+      name="zeige Meldung an"
+      number="5"/>
+  <elements
+      xsi:type="dfd:Process"
+      name="lese GW ein"
+      number="6"/>
+  <elements
+      xsi:type="dfd:Process"
+      name="schreibe in DB"
+      number="7"/>
+  <elements
+      xsi:type="dfd:DataStore"
+      name="Grenzwert"/>
+  <elements
+      xsi:type="dfd:DataStore"
+      name="Mittelwerte"/>
+  <elements
+      xsi:type="dfd:DataStore"
+      name="Temperaturen"/>
+  <flows xsi:type="dfd:DataFlow"
+      name="Analoger Messwert"
+      to="1"/>
+  <flows xsi:type="dfd:DataFlow"
+      name="Messwert (als GK-Zahl)"
+      from="1"
+      to="3"/>
+  <flows xsi:type="dfd:DataFlow"
+      name="Temperatur"
+      from="3"
+      to="4"/>
+  <flows xsi:type="dfd:DataFlow"
+      name="Alter Mittelwert"
+      from="//@elements.8"
+      to="2"/>
+  <flows xsi:type="dfd:DataFlow"
+      name="Neuer Mittelwert"
+      from="2"
+      to="//@elements.8"/>
+  <flows xsi:type="dfd:DataFlow"
+      name="Gepr&#xfc;fte Temperatur"
+      from="4"
+      to="2"/>
+  <flows xsi:type="dfd:DataFlow"
+      name="Gepr&#xfc;fte Temperatur"
+      from="4"
+      to="7"/>
+  <flows xsi:type="dfd:DataFlow"
+      name="Gepr&#xfc;fte Temperatur"
+      from="//@elements.9"
+      to="2"/>
+  <flows xsi:type="dfd:DataFlow"
+      name="Gepr&#xfc;fte Temperatur"
+      from="7"
+      to="//@elements.9"/>
+  <flows xsi:type="dfd:DataFlow"
+      name="Meldungsdaten"
+      from="4"
+      to="5"/>
+  <flows xsi:type="dfd:DataFlow"
+      name="Meldung"
+      from="5"/>
+  <flows xsi:type="dfd:DataFlow"
+      name="Grenzwert"
+      from="//@elements.7"
+      to="4"/>
+  <flows xsi:type="dfd:DataFlow"
+      name="Grenzwert"
+      from="6"
+      to="//@elements.7"/>
+  <flows xsi:type="dfd:DataFlow"
+      name="Grenzwert"
+      to="6"/>
+  <flows xsi:type="dfd:ControlFlow"
+      name="Sek.-Takt"
+      to="1"/>
+  <flows xsi:type="dfd:ControlFlow"
+      name="Start/Ende Messung"
+      to="1"/>
+  <flows xsi:type="dfd:ControlFlow"
+      name="Fehlerfreier MW"
+      from="2"
+      to="3"/>
+  <flows xsi:type="dfd:ControlFlow"
+      name="Fertig"
+      from="3"
+      to="4"/>
+  <flows xsi:type="dfd:ControlFlow"
+      name="Verf&#xfc;gbar"
+      from="6"
+      to="4"/>
+  <flows xsi:type="dfd:ControlFlow"
+      name="Keine GW-Ueberschreitung"
+      from="4"
+      to="2"/>
+  <flows xsi:type="dfd:ControlFlow"
+      name="Keine GW-Ueberschreitung"
+      from="4"
+      to="7"/>
+  <flows xsi:type="dfd:ControlFlow"
+      name="GW-Ueberschreitung"
+      from="4"
+      to="5"/>
+  <flows xsi:type="dfd:ControlFlow"
+      name="24h-Takt"
+      to="2"/>
+</dfd:DFD>

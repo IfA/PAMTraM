@@ -8,8 +8,11 @@ import org.eclipse.emf.ecore.EObject;
 import pamtram.condition.CardinalityCondition;
 import pamtram.condition.ConditionPackage;
 import pamtram.mapping.Mapping;
+import pamtram.structure.generic.MetaModelElement;
 import pamtram.structure.source.SourceSection;
+import pamtram.structure.source.SourceSectionAttribute;
 import pamtram.structure.source.SourceSectionClass;
+import pamtram.structure.source.SourceSectionReference;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Section
@@ -17,7 +20,7 @@ import pamtram.structure.source.SourceSectionClass;
  *
  * @generated
  */
-public class CardinalityConditionImpl extends ConditionImpl<SourceSectionClass> implements CardinalityCondition {
+public class CardinalityConditionImpl extends ConditionImpl<MetaModelElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>> implements CardinalityCondition {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -36,13 +39,13 @@ public class CardinalityConditionImpl extends ConditionImpl<SourceSectionClass> 
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc --> This is specialized for the
-	 * more specific type known in this context.
-	 *
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * This is specialized for the more specific type known in this context.
 	 * @generated
 	 */
 	@Override
-	public void setTarget(SourceSectionClass newTarget) {
+	public void setTarget(MetaModelElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> newTarget) {
 		super.setTarget(newTarget);
 	}
 

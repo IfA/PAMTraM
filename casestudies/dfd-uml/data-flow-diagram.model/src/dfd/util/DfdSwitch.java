@@ -113,6 +113,7 @@ public class DfdSwitch<T> extends Switch<T> {
 			case DfdPackage.FLOW: {
 				Flow flow = (Flow)theEObject;
 				T result = caseFlow(flow);
+				if (result == null) result = caseNamedElement(flow);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -120,6 +121,7 @@ public class DfdSwitch<T> extends Switch<T> {
 				ControlFlow controlFlow = (ControlFlow)theEObject;
 				T result = caseControlFlow(controlFlow);
 				if (result == null) result = caseFlow(controlFlow);
+				if (result == null) result = caseNamedElement(controlFlow);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -127,6 +129,7 @@ public class DfdSwitch<T> extends Switch<T> {
 				DataFlow dataFlow = (DataFlow)theEObject;
 				T result = caseDataFlow(dataFlow);
 				if (result == null) result = caseFlow(dataFlow);
+				if (result == null) result = caseNamedElement(dataFlow);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

@@ -307,13 +307,22 @@ public interface DfdPackage extends EPackage {
 	int FLOW = 5;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOW__NAME = NAMED_ELEMENT__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Incoming</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW__INCOMING = 0;
+	int FLOW__INCOMING = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Outgoing</b></em>' reference.
@@ -322,7 +331,7 @@ public interface DfdPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW__OUTGOING = 1;
+	int FLOW__OUTGOING = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Flow</em>' class.
@@ -331,7 +340,7 @@ public interface DfdPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW_FEATURE_COUNT = 2;
+	int FLOW_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Validate Incoming Points To Element Of Same System</em>' operation.
@@ -340,7 +349,7 @@ public interface DfdPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW___VALIDATE_INCOMING_POINTS_TO_ELEMENT_OF_SAME_SYSTEM__DIAGNOSTICCHAIN_MAP = 0;
+	int FLOW___VALIDATE_INCOMING_POINTS_TO_ELEMENT_OF_SAME_SYSTEM__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Validate Outgoing Points To Element Of Same System</em>' operation.
@@ -349,7 +358,7 @@ public interface DfdPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW___VALIDATE_OUTGOING_POINTS_TO_ELEMENT_OF_SAME_SYSTEM__DIAGNOSTICCHAIN_MAP = 1;
+	int FLOW___VALIDATE_OUTGOING_POINTS_TO_ELEMENT_OF_SAME_SYSTEM__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Flow</em>' class.
@@ -358,7 +367,7 @@ public interface DfdPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW_OPERATION_COUNT = 2;
+	int FLOW_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link dfd.impl.ControlFlowImpl <em>Control Flow</em>}' class.
@@ -369,6 +378,15 @@ public interface DfdPackage extends EPackage {
 	 * @generated
 	 */
 	int CONTROL_FLOW = 6;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTROL_FLOW__NAME = FLOW__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Incoming</b></em>' reference.
@@ -433,6 +451,15 @@ public interface DfdPackage extends EPackage {
 	 * @generated
 	 */
 	int DATA_FLOW = 7;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_FLOW__NAME = FLOW__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Incoming</b></em>' reference.

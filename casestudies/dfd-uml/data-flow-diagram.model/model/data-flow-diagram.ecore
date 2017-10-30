@@ -31,7 +31,7 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DataStore" eSuperTypes="#//DFDElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Flow" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="Flow" abstract="true" eSuperTypes="#//NamedElement">
     <eOperations name="validateIncomingPointsToElementOfSameSystem" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="boolean result = this.incoming == null || this.incoming.eContainer().equals(this.eContainer);&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;String errorMessage = &quot;The 'incoming' element is not part of the same (Sub-)System!&quot;;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;%dfd.util.DfdValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;%dfd.util.DfdValidator%>.FLOW__VALIDATE_INCOMING_POINTS_TO_ELEMENT_OF_SAME_SYSTEM,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;new Object[] { this, &lt;%dfd.DfdPackage%>.Literals.FLOW__INCOMING}));&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#xD;&#x9;return result;"/>

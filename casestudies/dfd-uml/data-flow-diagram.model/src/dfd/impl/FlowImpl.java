@@ -13,8 +13,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import dfd.DFDElement;
 import dfd.DfdPackage;
 import dfd.Flow;
@@ -32,7 +30,7 @@ import dfd.util.DfdValidator;
  *
  * @generated
  */
-public abstract class FlowImpl extends MinimalEObjectImpl.Container implements Flow {
+public abstract class FlowImpl extends NamedElementImpl implements Flow {
 
 	/**
 	 * The cached value of the '{@link #getIncoming() <em>Incoming</em>}' reference.

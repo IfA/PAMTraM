@@ -6,8 +6,6 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Flow</b></em>'.
@@ -25,7 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model abstract="true"
  * @generated
  */
-public interface Flow extends EObject {
+public interface Flow extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Incoming</b></em>' reference.
 	 * <!-- begin-user-doc -->

@@ -396,6 +396,7 @@ public class DfdPackageImpl extends EPackageImpl implements DfdPackage {
 		processEClass.getESuperTypes().add(this.getDFDElement());
 		processEClass.getESuperTypes().add(this.getDFD());
 		dataStoreEClass.getESuperTypes().add(this.getDFDElement());
+		flowEClass.getESuperTypes().add(this.getNamedElement());
 		controlFlowEClass.getESuperTypes().add(this.getFlow());
 		dataFlowEClass.getESuperTypes().add(this.getFlow());
 

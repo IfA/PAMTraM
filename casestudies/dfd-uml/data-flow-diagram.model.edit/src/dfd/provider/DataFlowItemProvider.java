@@ -3,6 +3,7 @@
 package dfd.provider;
 
 
+import dfd.DataFlow;
 import java.util.Collection;
 import java.util.List;
 
@@ -62,7 +63,10 @@ public class DataFlowItemProvider extends FlowItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_DataFlow_type");
+		String label = ((DataFlow)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_DataFlow_type") :
+			getString("_UI_DataFlow_type") + " " + label;
 	}
 	
 

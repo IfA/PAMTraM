@@ -3,6 +3,7 @@
 package dfd.provider;
 
 
+import dfd.ControlFlow;
 import java.util.Collection;
 import java.util.List;
 
@@ -62,7 +63,10 @@ public class ControlFlowItemProvider extends FlowItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_ControlFlow_type");
+		String label = ((ControlFlow)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ControlFlow_type") :
+			getString("_UI_ControlFlow_type") + " " + label;
 	}
 	
 

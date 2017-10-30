@@ -31,7 +31,7 @@ public interface Process extends DFDElement, DFD {
 	 * @return the value of the '<em>Number</em>' attribute.
 	 * @see #setNumber(String)
 	 * @see dfd.DfdPackage#getProcess_Number()
-	 * @model required="true"
+	 * @model id="true" required="true"
 	 * @generated
 	 */
 	String getNumber();

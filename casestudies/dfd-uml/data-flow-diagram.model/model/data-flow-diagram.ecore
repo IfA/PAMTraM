@@ -13,7 +13,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="DFDElement" abstract="true" eSuperTypes="#//NamedElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="Process" eSuperTypes="#//DFDElement #//DFD">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="number" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DataStore" eSuperTypes="#//DFDElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="Flow" abstract="true">

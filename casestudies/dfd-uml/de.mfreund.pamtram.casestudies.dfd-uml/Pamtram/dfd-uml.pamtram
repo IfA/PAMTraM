@@ -1,16 +1,68 @@
 <?xml version="1.0" encoding="ASCII"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:condition="http://mfreund.de/pamtram/condition" xmlns:extended="http://mfreund.de/pamtram/mapping/extended" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target">
   <sourceSectionModels name="dfd">
     <metaModelPackage href="http://data-flow-diagram#/"/>
-    <sections xsi:type="source:SourceSection" name="source"/>
+    <sections xsi:type="source:SourceSection" name="DFD" cardinality="ONE__INFINITY" includeSubTypes="false" abstract="true">
+      <eClass href="http://data-flow-diagram#//DFD"/>
+      <references xsi:type="source:SourceSectionCrossReference" name="elements" value="//@sourceSectionModels.0/@sections.2 //@sourceSectionModels.0/@sections.3">
+        <eReference href="http://data-flow-diagram#//DFD/elements"/>
+      </references>
+      <references xsi:type="source:SourceSectionCrossReference" name="flows" value="//@sourceSectionModels.0/@sections.4 //@sourceSectionModels.0/@sections.5">
+        <eReference href="http://data-flow-diagram#//DFD/flows"/>
+      </references>
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="name">
+        <attribute href="http://data-flow-diagram#//NamedElement/name"/>
+      </attributes>
+    </sections>
+    <sections xsi:type="source:SourceSection" name="root DFD" includeSubTypes="false" extend="//@sourceSectionModels.0/@sections.0">
+      <eClass href="http://data-flow-diagram#//DFD"/>
+    </sections>
+    <sections xsi:type="source:SourceSection" name="Process" cardinality="ZERO__INFINITY" extend="//@sourceSectionModels.0/@sections.0">
+      <eClass href="http://data-flow-diagram#//Process"/>
+    </sections>
+    <sections xsi:type="source:SourceSection" name="DataStore" cardinality="ZERO__INFINITY">
+      <eClass href="http://data-flow-diagram#//DataStore"/>
+    </sections>
+    <sections xsi:type="source:SourceSection" name="DataFlow" cardinality="ZERO__INFINITY">
+      <eClass href="http://data-flow-diagram#//DataFlow"/>
+    </sections>
+    <sections xsi:type="source:SourceSection" name="ControlFlow" cardinality="ZERO__INFINITY">
+      <eClass href="http://data-flow-diagram#//ControlFlow"/>
+    </sections>
   </sourceSectionModels>
   <targetSectionModels name="uml">
     <metaModelPackage href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
-    <sections xsi:type="target:TargetSection" name="target"/>
+    <sections xsi:type="target:TargetSection" name="Activity" cardinality="ONE__INFINITY">
+      <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//Activity"/>
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="name">
+        <attribute href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
+      </attributes>
+    </sections>
+    <sections xsi:type="target:TargetSection" name="OpaqueAction" container="//@targetSectionModels.0/@sections.0">
+      <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//OpaqueAction"/>
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="name">
+        <attribute href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
+      </attributes>
+    </sections>
   </targetSectionModels>
   <mappingModels>
-    <mappings name="sourceMapping" sourceSection="//@sourceSectionModels.0/@sections.0">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="target" targetSection="//@targetSectionModels.0/@sections.0"/>
+    <mappings name="DFDMapping" sourceSection="//@sourceSectionModels.0/@sections.0" abstract="true">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Activity" targetSection="//@targetSectionModels.0/@sections.0">
+        <mappingHints xsi:type="extended:AttributeMapping" name="nameMapping" target="//@targetSectionModels.0/@sections.0/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="name" source="//@sourceSectionModels.0/@sections.0/@attributes.0"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mappings>
+    <mappings name="root DFDMapping" sourceSection="//@sourceSectionModels.0/@sections.1">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Activity" targetSection="//@targetSectionModels.0/@sections.0" extend="//@mappingModels.0/@mappings.0/@mappingHintGroups.0"/>
+    </mappings>
+    <mappings name="ProcessMapping" sourceSection="//@sourceSectionModels.0/@sections.2">
+      <localCondition xsi:type="condition:CardinalityCondition"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OpaqueAction" targetSection="//@targetSectionModels.0/@sections.1">
+        <mappingHints xsi:type="extended:AttributeMapping" name="nameMapping" target="//@targetSectionModels.0/@sections.1/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="name" source="//@sourceSectionModels.0/@sections.0/@attributes.0"/>
+        </mappingHints>
+      </mappingHintGroups>
     </mappings>
   </mappingModels>
   <conditionModels/>

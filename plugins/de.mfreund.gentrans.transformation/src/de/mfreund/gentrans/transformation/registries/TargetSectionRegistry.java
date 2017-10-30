@@ -375,7 +375,7 @@ public class TargetSectionRegistry extends CancelableElement {
 	 */
 	private List<EClass> getClasses(final EPackage rootEPackage) {
 
-		List<EClass> classes = new LinkedList<>();
+		Set<EClass> classes = new LinkedHashSet<>();
 
 		// collect all sub-packages
 		//
@@ -396,14 +396,22 @@ public class TargetSectionRegistry extends CancelableElement {
 				}
 
 				classes.add((EClass) c);
-
-				this.childClassesRegistry.put((EClass) c, new LinkedHashSet<EClass>());
-				this.targetClassReferencesRegistry.put((EClass) c, new LinkedHashSet<EReference>());
 			});
-
 		}
 
-		return classes;
+		// as the found classes may have super-types that stem from different ePackages, we need to add these
+		// super-types manually
+		//
+		classes.addAll(classes.stream().flatMap(c -> c.getEAllSuperTypes().stream()).collect(Collectors.toList()));
+
+		// register all found classes
+		//
+		for (EClass c : classes) {
+			this.childClassesRegistry.put(c, new LinkedHashSet<EClass>());
+			this.targetClassReferencesRegistry.put(c, new LinkedHashSet<EReference>());
+		}
+
+		return new ArrayList<>(classes);
 	}
 
 	/**

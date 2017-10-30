@@ -2,6 +2,9 @@
  */
 package dfd;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -16,7 +19,7 @@ package dfd;
  * </ul>
  *
  * @see dfd.DfdPackage#getProcess()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='DummyConstraint'"
  * @generated
  */
 public interface Process extends DFDElement, DFD {
@@ -45,5 +48,13 @@ public interface Process extends DFDElement, DFD {
 	 * @generated
 	 */
 	void setNumber(String value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='boolean result = this.number == null || this.number.matches(\"[0-9]+(\\\\.[0-9]+)*\");\n\nif (!result &amp;&amp; diagnostics != null) {\n\n\tString errorMessage = \"The number is not formatted correctly! Valid numbers are e.g. \'1\', \'1.10\', or \'1.10.8\'...\";\n\n\tdiagnostics.add(new BasicDiagnostic(&lt;%org.eclipse.emf.common.util.Diagnostic%&gt;.ERROR, &lt;%dfd.util.DfdValidator%&gt;.DIAGNOSTIC_SOURCE,\n\t\t\t&lt;%dfd.util.DfdValidator%&gt;.PROCESS__VALIDATE_NUMBER_FORMAT_IS_CORRECT, errorMessage,\n\t\t\tnew Object[] { this, &lt;%dfd.DfdPackage%&gt;.Literals.PROCESS__NUMBER }));\n\n}\n\nreturn result;'"
+	 * @generated
+	 */
+	boolean validateNumberFormatIsCorrect(DiagnosticChain diagnostics, Map<?, ?> context);
 
 } // Process

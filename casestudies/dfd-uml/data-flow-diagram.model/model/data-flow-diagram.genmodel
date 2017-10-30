@@ -16,6 +16,14 @@
     <genClasses image="false" ecoreClass="data-flow-diagram.ecore#//DFDElement"/>
     <genClasses ecoreClass="data-flow-diagram.ecore#//Process">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute data-flow-diagram.ecore#//Process/number"/>
+      <genOperations ecoreOperation="data-flow-diagram.ecore#//Process/validateNumberIsUnique">
+        <genParameters ecoreParameter="data-flow-diagram.ecore#//Process/validateNumberIsUnique/diagnostics"/>
+        <genParameters ecoreParameter="data-flow-diagram.ecore#//Process/validateNumberIsUnique/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="data-flow-diagram.ecore#//Process/validateNumberFormatIsCorrect">
+        <genParameters ecoreParameter="data-flow-diagram.ecore#//Process/validateNumberFormatIsCorrect/diagnostics"/>
+        <genParameters ecoreParameter="data-flow-diagram.ecore#//Process/validateNumberFormatIsCorrect/context"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="data-flow-diagram.ecore#//DataStore"/>
     <genClasses image="false" ecoreClass="data-flow-diagram.ecore#//Flow">

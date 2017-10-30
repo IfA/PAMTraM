@@ -2,33 +2,26 @@
  */
 package dfd.impl;
 
-import dfd.DFDElement;
-import dfd.DfdPackage;
-import dfd.Flow;
-
-import dfd.util.DfdValidator;
-
 import java.lang.reflect.InvocationTargetException;
-
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import dfd.DFDElement;
+import dfd.DfdPackage;
+import dfd.Flow;
+import dfd.util.DfdValidator;
+
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Flow</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Flow</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -40,10 +33,11 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * @generated
  */
 public abstract class FlowImpl extends MinimalEObjectImpl.Container implements Flow {
+
 	/**
 	 * The cached value of the '{@link #getIncoming() <em>Incoming</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getIncoming()
 	 * @generated
 	 * @ordered
@@ -52,8 +46,8 @@ public abstract class FlowImpl extends MinimalEObjectImpl.Container implements F
 
 	/**
 	 * The cached value of the '{@link #getOutgoing() <em>Outgoing</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getOutgoing()
 	 * @generated
 	 * @ordered
@@ -61,8 +55,7 @@ public abstract class FlowImpl extends MinimalEObjectImpl.Container implements F
 	protected DFDElement outgoing;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected FlowImpl() {
@@ -70,8 +63,7 @@ public abstract class FlowImpl extends MinimalEObjectImpl.Container implements F
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -80,10 +72,10 @@ public abstract class FlowImpl extends MinimalEObjectImpl.Container implements F
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DFDElement getIncoming() {
 		if (incoming != null && incoming.eIsProxy()) {
 			InternalEObject oldIncoming = (InternalEObject)incoming;
@@ -97,8 +89,7 @@ public abstract class FlowImpl extends MinimalEObjectImpl.Container implements F
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public DFDElement basicGetIncoming() {
@@ -106,10 +97,10 @@ public abstract class FlowImpl extends MinimalEObjectImpl.Container implements F
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIncoming(DFDElement newIncoming) {
 		DFDElement oldIncoming = incoming;
 		incoming = newIncoming;
@@ -118,10 +109,10 @@ public abstract class FlowImpl extends MinimalEObjectImpl.Container implements F
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DFDElement getOutgoing() {
 		if (outgoing != null && outgoing.eIsProxy()) {
 			InternalEObject oldOutgoing = (InternalEObject)outgoing;
@@ -135,8 +126,7 @@ public abstract class FlowImpl extends MinimalEObjectImpl.Container implements F
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public DFDElement basicGetOutgoing() {
@@ -144,10 +134,10 @@ public abstract class FlowImpl extends MinimalEObjectImpl.Container implements F
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOutgoing(DFDElement newOutgoing) {
 		DFDElement oldOutgoing = outgoing;
 		outgoing = newOutgoing;
@@ -156,11 +146,12 @@ public abstract class FlowImpl extends MinimalEObjectImpl.Container implements F
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateIncomingPointsToElementOfSameSystem(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+	@Override
+	public boolean validateIncomingPointsToElementOfSameSystem(final DiagnosticChain diagnostics,
+			final Map<?, ?> context) {
 		boolean result = this.incoming == null || this.incoming.eContainer().equals(this.eContainer);
 				
 				if (!result && diagnostics != null) {
@@ -180,11 +171,12 @@ public abstract class FlowImpl extends MinimalEObjectImpl.Container implements F
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateOutgoingPointsToElementOfSameSystem(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+	@Override
+	public boolean validateOutgoingPointsToElementOfSameSystem(final DiagnosticChain diagnostics,
+			final Map<?, ?> context) {
 		boolean result = this.outgoing == null || this.outgoing.eContainer().equals(this.eContainer);
 		
 			if (!result && diagnostics != null) {
@@ -201,8 +193,7 @@ public abstract class FlowImpl extends MinimalEObjectImpl.Container implements F
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -219,8 +210,7 @@ public abstract class FlowImpl extends MinimalEObjectImpl.Container implements F
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -237,8 +227,7 @@ public abstract class FlowImpl extends MinimalEObjectImpl.Container implements F
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -255,8 +244,7 @@ public abstract class FlowImpl extends MinimalEObjectImpl.Container implements F
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -271,8 +259,7 @@ public abstract class FlowImpl extends MinimalEObjectImpl.Container implements F
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -286,4 +273,4 @@ public abstract class FlowImpl extends MinimalEObjectImpl.Container implements F
 		return super.eInvoke(operationID, arguments);
 	}
 
-} //FlowImpl
+} // FlowImpl

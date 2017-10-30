@@ -2,30 +2,29 @@
  */
 package dfd.impl;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
+import java.util.Map;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+
 import dfd.DFD;
 import dfd.DFDElement;
 import dfd.DfdPackage;
 import dfd.Flow;
-
-import java.util.Collection;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
+import dfd.util.DfdValidator;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Process</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Process</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -38,10 +37,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class ProcessImpl extends DFDElementImpl implements dfd.Process {
+
 	/**
-	 * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @see #getElements()
 	 * @generated
 	 * @ordered
@@ -60,8 +60,8 @@ public class ProcessImpl extends DFDElementImpl implements dfd.Process {
 
 	/**
 	 * The default value of the '{@link #getNumber() <em>Number</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getNumber()
 	 * @generated
 	 * @ordered
@@ -70,8 +70,8 @@ public class ProcessImpl extends DFDElementImpl implements dfd.Process {
 
 	/**
 	 * The cached value of the '{@link #getNumber() <em>Number</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getNumber()
 	 * @generated
 	 * @ordered
@@ -79,8 +79,7 @@ public class ProcessImpl extends DFDElementImpl implements dfd.Process {
 	protected String number = NUMBER_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected ProcessImpl() {
@@ -88,8 +87,7 @@ public class ProcessImpl extends DFDElementImpl implements dfd.Process {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -98,10 +96,10 @@ public class ProcessImpl extends DFDElementImpl implements dfd.Process {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<DFDElement> getElements() {
 		if (elements == null) {
 			elements = new EObjectContainmentEList<DFDElement>(DFDElement.class, this, DfdPackage.PROCESS__ELEMENTS);
@@ -110,10 +108,10 @@ public class ProcessImpl extends DFDElementImpl implements dfd.Process {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Flow> getFlows() {
 		if (flows == null) {
 			flows = new EObjectContainmentEList<Flow>(Flow.class, this, DfdPackage.PROCESS__FLOWS);
@@ -122,19 +120,19 @@ public class ProcessImpl extends DFDElementImpl implements dfd.Process {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getNumber() {
 		return number;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNumber(String newNumber) {
 		String oldNumber = number;
 		number = newNumber;
@@ -143,8 +141,28 @@ public class ProcessImpl extends DFDElementImpl implements dfd.Process {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean validateNumberFormatIsCorrect(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		boolean result = this.number == null || this.number.matches("[0-9]+(\\.[0-9]+)*");
+		
+		if (!result && diagnostics != null) {
+		
+			String errorMessage = "The number is not formatted correctly! Valid numbers are e.g. '1', '1.10', or '1.10.8'...";
+		
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, DfdValidator.DIAGNOSTIC_SOURCE,
+					DfdValidator.PROCESS__VALIDATE_NUMBER_FORMAT_IS_CORRECT, errorMessage,
+					new Object[] { this, DfdPackage.Literals.PROCESS__NUMBER }));
+		
+		}
+		
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -159,8 +177,7 @@ public class ProcessImpl extends DFDElementImpl implements dfd.Process {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -177,8 +194,7 @@ public class ProcessImpl extends DFDElementImpl implements dfd.Process {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -201,8 +217,7 @@ public class ProcessImpl extends DFDElementImpl implements dfd.Process {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -222,8 +237,7 @@ public class ProcessImpl extends DFDElementImpl implements dfd.Process {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -240,8 +254,7 @@ public class ProcessImpl extends DFDElementImpl implements dfd.Process {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -257,8 +270,7 @@ public class ProcessImpl extends DFDElementImpl implements dfd.Process {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -274,8 +286,20 @@ public class ProcessImpl extends DFDElementImpl implements dfd.Process {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case DfdPackage.PROCESS___VALIDATE_NUMBER_FORMAT_IS_CORRECT__DIAGNOSTICCHAIN_MAP:
+				return validateNumberFormatIsCorrect((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+		}
+		return super.eInvoke(operationID, arguments);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -289,4 +313,4 @@ public class ProcessImpl extends DFDElementImpl implements dfd.Process {
 		return result.toString();
 	}
 
-} //ProcessImpl
+} // ProcessImpl

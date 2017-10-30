@@ -242,13 +242,22 @@ public interface DfdPackage extends EPackage {
 	int PROCESS_FEATURE_COUNT = DFD_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The operation id for the '<em>Validate Number Format Is Correct</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS___VALIDATE_NUMBER_FORMAT_IS_CORRECT__DIAGNOSTICCHAIN_MAP = DFD_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Process</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS_OPERATION_COUNT = DFD_ELEMENT_OPERATION_COUNT + 0;
+	int PROCESS_OPERATION_COUNT = DFD_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link dfd.impl.DataStoreImpl <em>Data Store</em>}' class.
@@ -565,6 +574,16 @@ public interface DfdPackage extends EPackage {
 	EAttribute getProcess_Number();
 
 	/**
+	 * Returns the meta object for the '{@link dfd.Process#validateNumberFormatIsCorrect(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Number Format Is Correct</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Number Format Is Correct</em>' operation.
+	 * @see dfd.Process#validateNumberFormatIsCorrect(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getProcess__ValidateNumberFormatIsCorrect__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for class '{@link dfd.DataStore <em>Data Store</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -740,6 +759,14 @@ public interface DfdPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PROCESS__NUMBER = eINSTANCE.getProcess_Number();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Number Format Is Correct</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation PROCESS___VALIDATE_NUMBER_FORMAT_IS_CORRECT__DIAGNOSTICCHAIN_MAP = eINSTANCE.getProcess__ValidateNumberFormatIsCorrect__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link dfd.impl.DataStoreImpl <em>Data Store</em>}' class.

@@ -13,6 +13,7 @@ import dfd.NamedElement;
 
 import java.util.Map;
 
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 
@@ -47,12 +48,20 @@ public class DfdValidator extends EObjectValidator {
 	public static final String DIAGNOSTIC_SOURCE = "dfd";
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Number Format Is Correct' of 'Process'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int PROCESS__VALIDATE_NUMBER_FORMAT_IS_CORRECT = 1;
+
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Incoming Points To Element Of Same System' of 'Flow'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int FLOW__VALIDATE_INCOMING_POINTS_TO_ELEMENT_OF_SAME_SYSTEM = 1;
+	public static final int FLOW__VALIDATE_INCOMING_POINTS_TO_ELEMENT_OF_SAME_SYSTEM = 2;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Outgoing Points To Element Of Same System' of 'Flow'.
@@ -60,7 +69,7 @@ public class DfdValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int FLOW__VALIDATE_OUTGOING_POINTS_TO_ELEMENT_OF_SAME_SYSTEM = 2;
+	public static final int FLOW__VALIDATE_OUTGOING_POINTS_TO_ELEMENT_OF_SAME_SYSTEM = 3;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -68,7 +77,7 @@ public class DfdValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 2;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 3;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -162,7 +171,56 @@ public class DfdValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateProcess(dfd.Process process, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(process, diagnostics, context);
+		if (!validate_NoCircularContainment(process, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(process, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(process, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(process, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(process, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(process, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(process, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(process, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(process, diagnostics, context);
+		if (result || diagnostics != null) result &= validateProcess_DummyConstraint(process, diagnostics, context);
+		if (result || diagnostics != null) result &= validateProcess_validateNumberFormatIsCorrect(process, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the DummyConstraint constraint of '<em>Process</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateProcess_DummyConstraint(dfd.Process process, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		// TODO implement the constraint
+		// -> specify the condition that violates the constraint
+		// -> verify the diagnostic details, including severity, code, and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(createDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 "_UI_GenericConstraint_diagnostic",
+						 new Object[] { "DummyConstraint", getObjectLabel(process, context) },
+						 new Object[] { process },
+						 context));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Validates the validateNumberFormatIsCorrect constraint of '<em>Process</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateProcess_validateNumberFormatIsCorrect(dfd.Process process, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return process.validateNumberFormatIsCorrect(diagnostics, context);
 	}
 
 	/**

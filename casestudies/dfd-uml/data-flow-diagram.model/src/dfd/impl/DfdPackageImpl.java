@@ -233,6 +233,15 @@ public class DfdPackageImpl extends EPackageImpl implements DfdPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getProcess__ValidateNumberFormatIsCorrect__DiagnosticChain_Map() {
+		return processEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getDataStore() {
 		return dataStoreEClass;
 	}
@@ -339,6 +348,7 @@ public class DfdPackageImpl extends EPackageImpl implements DfdPackage {
 
 		processEClass = createEClass(PROCESS);
 		createEAttribute(processEClass, PROCESS__NUMBER);
+		createEOperation(processEClass, PROCESS___VALIDATE_NUMBER_FORMAT_IS_CORRECT__DIAGNOSTICCHAIN_MAP);
 
 		dataStoreEClass = createEClass(DATA_STORE);
 
@@ -402,16 +412,25 @@ public class DfdPackageImpl extends EPackageImpl implements DfdPackage {
 		initEClass(processEClass, dfd.Process.class, "Process", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getProcess_Number(), ecorePackage.getEString(), "number", null, 1, 1, dfd.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		EOperation op = initEOperation(getProcess__ValidateNumberFormatIsCorrect__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateNumberFormatIsCorrect", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EGenericType g1 = createEGenericType(ecorePackage.getEMap());
+		EGenericType g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(dataStoreEClass, DataStore.class, "DataStore", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(flowEClass, Flow.class, "Flow", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFlow_Incoming(), this.getDFDElement(), null, "incoming", null, 0, 1, Flow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFlow_Outgoing(), this.getDFDElement(), null, "outgoing", null, 0, 1, Flow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		EOperation op = initEOperation(getFlow__ValidateIncomingPointsToElementOfSameSystem__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateIncomingPointsToElementOfSameSystem", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getFlow__ValidateIncomingPointsToElementOfSameSystem__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateIncomingPointsToElementOfSameSystem", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		EGenericType g1 = createEGenericType(ecorePackage.getEMap());
-		EGenericType g2 = createEGenericType();
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType();
 		g1.getETypeArguments().add(g2);
@@ -432,6 +451,26 @@ public class DfdPackageImpl extends EPackageImpl implements DfdPackage {
 
 		// Create resource
 		createResource(eNS_URI);
+
+		// Create annotations
+		// http://www.eclipse.org/emf/2002/Ecore
+		createEcoreAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createEcoreAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/Ecore";	
+		addAnnotation
+		  (processEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "DummyConstraint"
+		   });
 	}
 
 } //DfdPackageImpl

@@ -56,20 +56,20 @@ public class DfdValidator extends EObjectValidator {
 	public static final int PROCESS__VALIDATE_NUMBER_FORMAT_IS_CORRECT = 1;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Incoming Points To Element Of Same System' of 'Flow'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate From Points To Element Of Same System' of 'Flow'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int FLOW__VALIDATE_INCOMING_POINTS_TO_ELEMENT_OF_SAME_SYSTEM = 2;
+	public static final int FLOW__VALIDATE_FROM_POINTS_TO_ELEMENT_OF_SAME_SYSTEM = 2;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Outgoing Points To Element Of Same System' of 'Flow'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate To Points To Element Of Same System' of 'Flow'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int FLOW__VALIDATE_OUTGOING_POINTS_TO_ELEMENT_OF_SAME_SYSTEM = 3;
+	public static final int FLOW__VALIDATE_TO_POINTS_TO_ELEMENT_OF_SAME_SYSTEM = 3;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -247,29 +247,29 @@ public class DfdValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(flow, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(flow, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(flow, diagnostics, context);
-		if (result || diagnostics != null) result &= validateFlow_validateIncomingPointsToElementOfSameSystem(flow, diagnostics, context);
-		if (result || diagnostics != null) result &= validateFlow_validateOutgoingPointsToElementOfSameSystem(flow, diagnostics, context);
+		if (result || diagnostics != null) result &= validateFlow_validateFromPointsToElementOfSameSystem(flow, diagnostics, context);
+		if (result || diagnostics != null) result &= validateFlow_validateToPointsToElementOfSameSystem(flow, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * Validates the validateIncomingPointsToElementOfSameSystem constraint of '<em>Flow</em>'.
+	 * Validates the validateFromPointsToElementOfSameSystem constraint of '<em>Flow</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateFlow_validateIncomingPointsToElementOfSameSystem(Flow flow, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return flow.validateIncomingPointsToElementOfSameSystem(diagnostics, context);
+	public boolean validateFlow_validateFromPointsToElementOfSameSystem(Flow flow, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return flow.validateFromPointsToElementOfSameSystem(diagnostics, context);
 	}
 
 	/**
-	 * Validates the validateOutgoingPointsToElementOfSameSystem constraint of '<em>Flow</em>'.
+	 * Validates the validateToPointsToElementOfSameSystem constraint of '<em>Flow</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateFlow_validateOutgoingPointsToElementOfSameSystem(Flow flow, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return flow.validateOutgoingPointsToElementOfSameSystem(diagnostics, context);
+	public boolean validateFlow_validateToPointsToElementOfSameSystem(Flow flow, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return flow.validateToPointsToElementOfSameSystem(diagnostics, context);
 	}
 
 	/**
@@ -287,8 +287,8 @@ public class DfdValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(controlFlow, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(controlFlow, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(controlFlow, diagnostics, context);
-		if (result || diagnostics != null) result &= validateFlow_validateIncomingPointsToElementOfSameSystem(controlFlow, diagnostics, context);
-		if (result || diagnostics != null) result &= validateFlow_validateOutgoingPointsToElementOfSameSystem(controlFlow, diagnostics, context);
+		if (result || diagnostics != null) result &= validateFlow_validateFromPointsToElementOfSameSystem(controlFlow, diagnostics, context);
+		if (result || diagnostics != null) result &= validateFlow_validateToPointsToElementOfSameSystem(controlFlow, diagnostics, context);
 		return result;
 	}
 
@@ -307,8 +307,8 @@ public class DfdValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(dataFlow, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(dataFlow, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(dataFlow, diagnostics, context);
-		if (result || diagnostics != null) result &= validateFlow_validateIncomingPointsToElementOfSameSystem(dataFlow, diagnostics, context);
-		if (result || diagnostics != null) result &= validateFlow_validateOutgoingPointsToElementOfSameSystem(dataFlow, diagnostics, context);
+		if (result || diagnostics != null) result &= validateFlow_validateFromPointsToElementOfSameSystem(dataFlow, diagnostics, context);
+		if (result || diagnostics != null) result &= validateFlow_validateToPointsToElementOfSameSystem(dataFlow, diagnostics, context);
 		return result;
 	}
 

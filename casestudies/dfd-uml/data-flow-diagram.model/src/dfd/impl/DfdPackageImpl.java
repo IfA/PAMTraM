@@ -260,7 +260,7 @@ public class DfdPackageImpl extends EPackageImpl implements DfdPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFlow_Incoming() {
+	public EReference getFlow_From() {
 		return (EReference)flowEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -269,7 +269,7 @@ public class DfdPackageImpl extends EPackageImpl implements DfdPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFlow_Outgoing() {
+	public EReference getFlow_To() {
 		return (EReference)flowEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -278,7 +278,7 @@ public class DfdPackageImpl extends EPackageImpl implements DfdPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getFlow__ValidateIncomingPointsToElementOfSameSystem__DiagnosticChain_Map() {
+	public EOperation getFlow__ValidateFromPointsToElementOfSameSystem__DiagnosticChain_Map() {
 		return flowEClass.getEOperations().get(0);
 	}
 
@@ -287,7 +287,7 @@ public class DfdPackageImpl extends EPackageImpl implements DfdPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getFlow__ValidateOutgoingPointsToElementOfSameSystem__DiagnosticChain_Map() {
+	public EOperation getFlow__ValidateToPointsToElementOfSameSystem__DiagnosticChain_Map() {
 		return flowEClass.getEOperations().get(1);
 	}
 
@@ -353,10 +353,10 @@ public class DfdPackageImpl extends EPackageImpl implements DfdPackage {
 		dataStoreEClass = createEClass(DATA_STORE);
 
 		flowEClass = createEClass(FLOW);
-		createEReference(flowEClass, FLOW__INCOMING);
-		createEReference(flowEClass, FLOW__OUTGOING);
-		createEOperation(flowEClass, FLOW___VALIDATE_INCOMING_POINTS_TO_ELEMENT_OF_SAME_SYSTEM__DIAGNOSTICCHAIN_MAP);
-		createEOperation(flowEClass, FLOW___VALIDATE_OUTGOING_POINTS_TO_ELEMENT_OF_SAME_SYSTEM__DIAGNOSTICCHAIN_MAP);
+		createEReference(flowEClass, FLOW__FROM);
+		createEReference(flowEClass, FLOW__TO);
+		createEOperation(flowEClass, FLOW___VALIDATE_FROM_POINTS_TO_ELEMENT_OF_SAME_SYSTEM__DIAGNOSTICCHAIN_MAP);
+		createEOperation(flowEClass, FLOW___VALIDATE_TO_POINTS_TO_ELEMENT_OF_SAME_SYSTEM__DIAGNOSTICCHAIN_MAP);
 
 		controlFlowEClass = createEClass(CONTROL_FLOW);
 
@@ -425,10 +425,10 @@ public class DfdPackageImpl extends EPackageImpl implements DfdPackage {
 		initEClass(dataStoreEClass, DataStore.class, "DataStore", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(flowEClass, Flow.class, "Flow", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFlow_Incoming(), this.getDFDElement(), null, "incoming", null, 0, 1, Flow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFlow_Outgoing(), this.getDFDElement(), null, "outgoing", null, 0, 1, Flow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFlow_From(), this.getDFDElement(), null, "from", null, 0, 1, Flow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFlow_To(), this.getDFDElement(), null, "to", null, 0, 1, Flow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getFlow__ValidateIncomingPointsToElementOfSameSystem__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateIncomingPointsToElementOfSameSystem", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getFlow__ValidateFromPointsToElementOfSameSystem__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateFromPointsToElementOfSameSystem", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType();
@@ -437,7 +437,7 @@ public class DfdPackageImpl extends EPackageImpl implements DfdPackage {
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getFlow__ValidateOutgoingPointsToElementOfSameSystem__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateOutgoingPointsToElementOfSameSystem", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getFlow__ValidateToPointsToElementOfSameSystem__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateToPointsToElementOfSameSystem", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType();

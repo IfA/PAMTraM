@@ -316,22 +316,22 @@ public interface DfdPackage extends EPackage {
 	int FLOW__NAME = NAMED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Incoming</b></em>' reference.
+	 * The feature id for the '<em><b>From</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW__INCOMING = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int FLOW__FROM = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Outgoing</b></em>' reference.
+	 * The feature id for the '<em><b>To</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW__OUTGOING = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int FLOW__TO = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Flow</em>' class.
@@ -343,22 +343,22 @@ public interface DfdPackage extends EPackage {
 	int FLOW_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The operation id for the '<em>Validate Incoming Points To Element Of Same System</em>' operation.
+	 * The operation id for the '<em>Validate From Points To Element Of Same System</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW___VALIDATE_INCOMING_POINTS_TO_ELEMENT_OF_SAME_SYSTEM__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int FLOW___VALIDATE_FROM_POINTS_TO_ELEMENT_OF_SAME_SYSTEM__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Validate Outgoing Points To Element Of Same System</em>' operation.
+	 * The operation id for the '<em>Validate To Points To Element Of Same System</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW___VALIDATE_OUTGOING_POINTS_TO_ELEMENT_OF_SAME_SYSTEM__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 1;
+	int FLOW___VALIDATE_TO_POINTS_TO_ELEMENT_OF_SAME_SYSTEM__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Flow</em>' class.
@@ -389,22 +389,22 @@ public interface DfdPackage extends EPackage {
 	int CONTROL_FLOW__NAME = FLOW__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Incoming</b></em>' reference.
+	 * The feature id for the '<em><b>From</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTROL_FLOW__INCOMING = FLOW__INCOMING;
+	int CONTROL_FLOW__FROM = FLOW__FROM;
 
 	/**
-	 * The feature id for the '<em><b>Outgoing</b></em>' reference.
+	 * The feature id for the '<em><b>To</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTROL_FLOW__OUTGOING = FLOW__OUTGOING;
+	int CONTROL_FLOW__TO = FLOW__TO;
 
 	/**
 	 * The number of structural features of the '<em>Control Flow</em>' class.
@@ -416,22 +416,22 @@ public interface DfdPackage extends EPackage {
 	int CONTROL_FLOW_FEATURE_COUNT = FLOW_FEATURE_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Validate Incoming Points To Element Of Same System</em>' operation.
+	 * The operation id for the '<em>Validate From Points To Element Of Same System</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTROL_FLOW___VALIDATE_INCOMING_POINTS_TO_ELEMENT_OF_SAME_SYSTEM__DIAGNOSTICCHAIN_MAP = FLOW___VALIDATE_INCOMING_POINTS_TO_ELEMENT_OF_SAME_SYSTEM__DIAGNOSTICCHAIN_MAP;
+	int CONTROL_FLOW___VALIDATE_FROM_POINTS_TO_ELEMENT_OF_SAME_SYSTEM__DIAGNOSTICCHAIN_MAP = FLOW___VALIDATE_FROM_POINTS_TO_ELEMENT_OF_SAME_SYSTEM__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>Validate Outgoing Points To Element Of Same System</em>' operation.
+	 * The operation id for the '<em>Validate To Points To Element Of Same System</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTROL_FLOW___VALIDATE_OUTGOING_POINTS_TO_ELEMENT_OF_SAME_SYSTEM__DIAGNOSTICCHAIN_MAP = FLOW___VALIDATE_OUTGOING_POINTS_TO_ELEMENT_OF_SAME_SYSTEM__DIAGNOSTICCHAIN_MAP;
+	int CONTROL_FLOW___VALIDATE_TO_POINTS_TO_ELEMENT_OF_SAME_SYSTEM__DIAGNOSTICCHAIN_MAP = FLOW___VALIDATE_TO_POINTS_TO_ELEMENT_OF_SAME_SYSTEM__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Control Flow</em>' class.
@@ -462,22 +462,22 @@ public interface DfdPackage extends EPackage {
 	int DATA_FLOW__NAME = FLOW__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Incoming</b></em>' reference.
+	 * The feature id for the '<em><b>From</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_FLOW__INCOMING = FLOW__INCOMING;
+	int DATA_FLOW__FROM = FLOW__FROM;
 
 	/**
-	 * The feature id for the '<em><b>Outgoing</b></em>' reference.
+	 * The feature id for the '<em><b>To</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_FLOW__OUTGOING = FLOW__OUTGOING;
+	int DATA_FLOW__TO = FLOW__TO;
 
 	/**
 	 * The number of structural features of the '<em>Data Flow</em>' class.
@@ -489,22 +489,22 @@ public interface DfdPackage extends EPackage {
 	int DATA_FLOW_FEATURE_COUNT = FLOW_FEATURE_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Validate Incoming Points To Element Of Same System</em>' operation.
+	 * The operation id for the '<em>Validate From Points To Element Of Same System</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_FLOW___VALIDATE_INCOMING_POINTS_TO_ELEMENT_OF_SAME_SYSTEM__DIAGNOSTICCHAIN_MAP = FLOW___VALIDATE_INCOMING_POINTS_TO_ELEMENT_OF_SAME_SYSTEM__DIAGNOSTICCHAIN_MAP;
+	int DATA_FLOW___VALIDATE_FROM_POINTS_TO_ELEMENT_OF_SAME_SYSTEM__DIAGNOSTICCHAIN_MAP = FLOW___VALIDATE_FROM_POINTS_TO_ELEMENT_OF_SAME_SYSTEM__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>Validate Outgoing Points To Element Of Same System</em>' operation.
+	 * The operation id for the '<em>Validate To Points To Element Of Same System</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_FLOW___VALIDATE_OUTGOING_POINTS_TO_ELEMENT_OF_SAME_SYSTEM__DIAGNOSTICCHAIN_MAP = FLOW___VALIDATE_OUTGOING_POINTS_TO_ELEMENT_OF_SAME_SYSTEM__DIAGNOSTICCHAIN_MAP;
+	int DATA_FLOW___VALIDATE_TO_POINTS_TO_ELEMENT_OF_SAME_SYSTEM__DIAGNOSTICCHAIN_MAP = FLOW___VALIDATE_TO_POINTS_TO_ELEMENT_OF_SAME_SYSTEM__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Data Flow</em>' class.
@@ -631,46 +631,46 @@ public interface DfdPackage extends EPackage {
 	EClass getFlow();
 
 	/**
-	 * Returns the meta object for the reference '{@link dfd.Flow#getIncoming <em>Incoming</em>}'.
+	 * Returns the meta object for the reference '{@link dfd.Flow#getFrom <em>From</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Incoming</em>'.
-	 * @see dfd.Flow#getIncoming()
+	 * @return the meta object for the reference '<em>From</em>'.
+	 * @see dfd.Flow#getFrom()
 	 * @see #getFlow()
 	 * @generated
 	 */
-	EReference getFlow_Incoming();
+	EReference getFlow_From();
 
 	/**
-	 * Returns the meta object for the reference '{@link dfd.Flow#getOutgoing <em>Outgoing</em>}'.
+	 * Returns the meta object for the reference '{@link dfd.Flow#getTo <em>To</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Outgoing</em>'.
-	 * @see dfd.Flow#getOutgoing()
+	 * @return the meta object for the reference '<em>To</em>'.
+	 * @see dfd.Flow#getTo()
 	 * @see #getFlow()
 	 * @generated
 	 */
-	EReference getFlow_Outgoing();
+	EReference getFlow_To();
 
 	/**
-	 * Returns the meta object for the '{@link dfd.Flow#validateIncomingPointsToElementOfSameSystem(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Incoming Points To Element Of Same System</em>}' operation.
+	 * Returns the meta object for the '{@link dfd.Flow#validateFromPointsToElementOfSameSystem(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate From Points To Element Of Same System</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Incoming Points To Element Of Same System</em>' operation.
-	 * @see dfd.Flow#validateIncomingPointsToElementOfSameSystem(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @return the meta object for the '<em>Validate From Points To Element Of Same System</em>' operation.
+	 * @see dfd.Flow#validateFromPointsToElementOfSameSystem(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getFlow__ValidateIncomingPointsToElementOfSameSystem__DiagnosticChain_Map();
+	EOperation getFlow__ValidateFromPointsToElementOfSameSystem__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link dfd.Flow#validateOutgoingPointsToElementOfSameSystem(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Outgoing Points To Element Of Same System</em>}' operation.
+	 * Returns the meta object for the '{@link dfd.Flow#validateToPointsToElementOfSameSystem(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate To Points To Element Of Same System</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Outgoing Points To Element Of Same System</em>' operation.
-	 * @see dfd.Flow#validateOutgoingPointsToElementOfSameSystem(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @return the meta object for the '<em>Validate To Points To Element Of Same System</em>' operation.
+	 * @see dfd.Flow#validateToPointsToElementOfSameSystem(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getFlow__ValidateOutgoingPointsToElementOfSameSystem__DiagnosticChain_Map();
+	EOperation getFlow__ValidateToPointsToElementOfSameSystem__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link dfd.ControlFlow <em>Control Flow</em>}'.
@@ -816,36 +816,36 @@ public interface DfdPackage extends EPackage {
 		EClass FLOW = eINSTANCE.getFlow();
 
 		/**
-		 * The meta object literal for the '<em><b>Incoming</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>From</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FLOW__INCOMING = eINSTANCE.getFlow_Incoming();
+		EReference FLOW__FROM = eINSTANCE.getFlow_From();
 
 		/**
-		 * The meta object literal for the '<em><b>Outgoing</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>To</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FLOW__OUTGOING = eINSTANCE.getFlow_Outgoing();
+		EReference FLOW__TO = eINSTANCE.getFlow_To();
 
 		/**
-		 * The meta object literal for the '<em><b>Validate Incoming Points To Element Of Same System</b></em>' operation.
+		 * The meta object literal for the '<em><b>Validate From Points To Element Of Same System</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation FLOW___VALIDATE_INCOMING_POINTS_TO_ELEMENT_OF_SAME_SYSTEM__DIAGNOSTICCHAIN_MAP = eINSTANCE.getFlow__ValidateIncomingPointsToElementOfSameSystem__DiagnosticChain_Map();
+		EOperation FLOW___VALIDATE_FROM_POINTS_TO_ELEMENT_OF_SAME_SYSTEM__DIAGNOSTICCHAIN_MAP = eINSTANCE.getFlow__ValidateFromPointsToElementOfSameSystem__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '<em><b>Validate Outgoing Points To Element Of Same System</b></em>' operation.
+		 * The meta object literal for the '<em><b>Validate To Points To Element Of Same System</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation FLOW___VALIDATE_OUTGOING_POINTS_TO_ELEMENT_OF_SAME_SYSTEM__DIAGNOSTICCHAIN_MAP = eINSTANCE.getFlow__ValidateOutgoingPointsToElementOfSameSystem__DiagnosticChain_Map();
+		EOperation FLOW___VALIDATE_TO_POINTS_TO_ELEMENT_OF_SAME_SYSTEM__DIAGNOSTICCHAIN_MAP = eINSTANCE.getFlow__ValidateToPointsToElementOfSameSystem__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link dfd.impl.ControlFlowImpl <em>Control Flow</em>}' class.

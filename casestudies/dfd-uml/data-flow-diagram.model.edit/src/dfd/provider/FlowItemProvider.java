@@ -11,39 +11,42 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+
 import dfd.DfdPackage;
 import dfd.Flow;
 
 /**
- * This is the item provider adapter for a {@link dfd.Flow} object.
- * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link dfd.Flow} object. <!-- begin-user-doc --> <!-- end-user-doc -->
+ *
  * @generated
  */
 public class FlowItemProvider extends NamedElementItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	public FlowItemProvider(AdapterFactory adapterFactory) {
+
 		super(adapterFactory);
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addIncomingPropertyDescriptor(object);
-			addOutgoingPropertyDescriptor(object);
+			this.addFromPropertyDescriptor(object);
+			this.addToPropertyDescriptor(object);
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
@@ -51,21 +54,20 @@ public class FlowItemProvider extends NamedElementItemProvider {
 	 *
 	 * @generated NOT due to customization of 'getChoiceOfValues'
 	 */
-	protected void addIncomingPropertyDescriptor(Object object) {
+	protected void addFromPropertyDescriptor(Object object) {
 
 		this.itemPropertyDescriptors.add(
 				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
-						this.getResourceLocator(), this.getString("_UI_Flow_incoming_feature"),
-						this.getString("_UI_PropertyDescriptor_description", "_UI_Flow_incoming_feature",
-								"_UI_Flow_type"),
-						DfdPackage.Literals.FLOW__INCOMING, true, false, true, null, null, null) {
+						this.getResourceLocator(), this.getString("_UI_Flow_from_feature"),
+						this.getString("_UI_PropertyDescriptor_description", "_UI_Flow_from_feature", "_UI_Flow_type"),
+						DfdPackage.Literals.FLOW__FROM, true, false, true, null, null, null) {
 
 					@Override
 					public Collection<?> getChoiceOfValues(Object object) {
 
 						return super.getChoiceOfValues(object).stream()
-								.filter(e -> ((org.eclipse.emf.ecore.EObject) e).eContainer()
-										.equals(((org.eclipse.emf.ecore.EObject) object).eContainer()))
+								.filter(e -> e != null && ((org.eclipse.emf.ecore.EObject) object).eContainer()
+										.equals(((org.eclipse.emf.ecore.EObject) e).eContainer()))
 								.collect(Collectors.toList());
 					}
 				});
@@ -76,37 +78,36 @@ public class FlowItemProvider extends NamedElementItemProvider {
 	 *
 	 * @generated NOT due to customization of 'getChoiceOfValues'
 	 */
-	protected void addOutgoingPropertyDescriptor(Object object) {
+	protected void addToPropertyDescriptor(Object object) {
 
 		this.itemPropertyDescriptors.add(
 				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
-						this.getResourceLocator(), this.getString("_UI_Flow_outgoing_feature"),
-						this.getString("_UI_PropertyDescriptor_description", "_UI_Flow_outgoing_feature",
-								"_UI_Flow_type"),
-						DfdPackage.Literals.FLOW__OUTGOING, true, false, true, null, null, null) {
+						this.getResourceLocator(), this.getString("_UI_Flow_to_feature"),
+						this.getString("_UI_PropertyDescriptor_description", "_UI_Flow_to_feature", "_UI_Flow_type"),
+						DfdPackage.Literals.FLOW__TO, true, false, true, null, null, null) {
 
 					@Override
 					public Collection<?> getChoiceOfValues(Object object) {
 
 						return super.getChoiceOfValues(object).stream()
-								.filter(e -> ((org.eclipse.emf.ecore.EObject) e).eContainer()
-										.equals(((org.eclipse.emf.ecore.EObject) object).eContainer()))
+								.filter(e -> e != null && ((org.eclipse.emf.ecore.EObject) object).eContainer()
+										.equals(((org.eclipse.emf.ecore.EObject) e).eContainer()))
 								.collect(Collectors.toList());
 					}
 				});
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Flow)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Flow_type") :
-			getString("_UI_Flow_type") + " " + label;
+
+		String label = ((Flow) object).getName();
+		return label == null || label.length() == 0 ? this.getString("_UI_Flow_type")
+				: this.getString("_UI_Flow_type") + " " + label;
 	}
 
 	/**
@@ -118,18 +119,20 @@ public class FlowItemProvider extends NamedElementItemProvider {
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+
+		this.updateChildren(notification);
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

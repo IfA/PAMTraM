@@ -19,6 +19,9 @@
     </sections>
     <sections xsi:type="source:SourceSection" name="DataStore" cardinality="ZERO__INFINITY" container="//@sourceSectionModels.0/@sections.0">
       <eClass href="http://data-flow-diagram#//DataStore"/>
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="dataStoreName">
+        <attribute href="http://data-flow-diagram#//NamedElement/name"/>
+      </attributes>
     </sections>
     <sections xsi:type="source:SourceSection" name="DataFlow" cardinality="ZERO__INFINITY" container="//@sourceSectionModels.0/@sections.0">
       <eClass href="http://data-flow-diagram#//DataFlow"/>
@@ -47,6 +50,12 @@
         <eReference href="http://www.eclipse.org/uml2/5.0.0/UML#//CallBehaviorAction/behavior"/>
       </references>
       <attributes xsi:type="target:ActualTargetSectionAttribute" name="callBehaviorActionName">
+        <attribute href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
+      </attributes>
+    </sections>
+    <sections xsi:type="target:TargetSection" name="DataStoreNode" cardinality="ONE__INFINITY">
+      <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//DataStoreNode"/>
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="dataStoreName">
         <attribute href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
       </attributes>
     </sections>
@@ -80,6 +89,16 @@
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="name" source="//@sourceSectionModels.0/@sections.0/@attributes.0"/>
         </mappingHints>
         <localCondition xsi:type="condition:CardinalityCondition" name="hasDFD" target="//@sourceSectionModels.0/@sections.1/@references.0"/>
+      </mappingHintGroups>
+    </mappings>
+    <mappings name="DataStoreMapping" sourceSection="//@sourceSectionModels.0/@sections.2">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="DataStoreNode" targetSection="//@targetSectionModels.0/@sections.3">
+        <mappingHints xsi:type="extended:AttributeMapping" name="dataStoreName" target="//@targetSectionModels.0/@sections.3/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="dataStoreName" source="//@sourceSectionModels.0/@sections.2/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.0/@sections.0/@attributes.0" targetClass="//@targetSectionModels.0/@sections.0">
+          <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="name" source="//@sourceSectionModels.0/@sections.0/@attributes.0"/>
+        </mappingHints>
       </mappingHintGroups>
     </mappings>
   </mappingModels>

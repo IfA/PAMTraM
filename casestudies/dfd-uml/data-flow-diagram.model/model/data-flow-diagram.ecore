@@ -11,7 +11,7 @@
         eType="#//Flow" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DFDElement" abstract="true" eSuperTypes="#//NamedElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Process" eSuperTypes="#//DFDElement #//DFD">
+  <eClassifiers xsi:type="ecore:EClass" name="Process" eSuperTypes="#//DFDElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="DummyConstraint"/>
     </eAnnotations>
@@ -29,6 +29,7 @@
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="number" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dfd" eType="#//DFD" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DataStore" eSuperTypes="#//DFDElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="Flow" abstract="true" eSuperTypes="#//NamedElement">

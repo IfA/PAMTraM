@@ -1655,7 +1655,7 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		  (getClass__IsContainerFor__Class(), 
 		   source, 
 		   new String[] {
-			 "body", "C container = containedClass.getContainer();\r\n\t\t\r\n// this means that we have reached the top level container for the \'containedClass\'\r\nif(container == null) {\r\n\treturn false;\r\n// this is the container\r\n} else if(this.equals(container)) {\r\n\treturn true;\r\n// one of the extended sections is the container\r\n} else if(container instanceof Section && ((Section) container).getExtend().contains(this)) {\r\n\treturn true;\r\n// this was not the container, so iterate up in the containment hierarchy\r\n} else {\r\n\treturn isContainerFor(container);\r\n}"
+			 "body", "C container = containedClass.getContainer();\r\n\t\t\r\n\t\t// Prevent stack overflow in case of modeling error\r\n\t\t//\r\n\t\tif(<%org.eclipse.emf.ecore.util.EcoreUtil%>.isAncestor(containedClass, container)) {\r\n\t\t\treturn false;\r\n\t\t}\r\n\r\t// this means that we have reached the top level container for the \'containedClass\'\r\n\t\tif (container == null) {\r\n\t\t\treturn false;\r\n\t\t\t// this is the container\r\n\t\t} else if (this.equals(container)) {\r\n\t\t\treturn true;\r\n\t\t\t// one of the extended sections is the container\r\n\t\t} else if (container instanceof <%pamtram.structure.generic.Section%> && ((<%pamtram.structure.generic.Section%>) container).getExtend().contains(this)) {\r\n\t\t\treturn true;\r\n\t\t\t// this was not the container, so iterate up in the containment hierarchy\r\n\t\t} else {\r\n\t\t\treturn this.isContainerFor(container);\r\n\t\t}"
 		   });	
 		addAnnotation
 		  (getClass__IsContainedIn__Class(), 

@@ -206,31 +206,22 @@ public interface DfdPackage extends EPackage {
 	int PROCESS__NAME = DFD_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROCESS__ELEMENTS = DFD_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Flows</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROCESS__FLOWS = DFD_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Number</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS__NUMBER = DFD_ELEMENT_FEATURE_COUNT + 2;
+	int PROCESS__NUMBER = DFD_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Dfd</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS__DFD = DFD_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Process</em>' class.
@@ -239,7 +230,7 @@ public interface DfdPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS_FEATURE_COUNT = DFD_ELEMENT_FEATURE_COUNT + 3;
+	int PROCESS_FEATURE_COUNT = DFD_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Validate Number Format Is Correct</em>' operation.
@@ -601,6 +592,17 @@ public interface DfdPackage extends EPackage {
 	EAttribute getProcess_Number();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link dfd.Process#getDfd <em>Dfd</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Dfd</em>'.
+	 * @see dfd.Process#getDfd()
+	 * @see #getProcess()
+	 * @generated
+	 */
+	EReference getProcess_Dfd();
+
+	/**
 	 * Returns the meta object for the '{@link dfd.Process#validateNumberFormatIsCorrect(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Number Format Is Correct</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -786,6 +788,14 @@ public interface DfdPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PROCESS__NUMBER = eINSTANCE.getProcess_Number();
+
+		/**
+		 * The meta object literal for the '<em><b>Dfd</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROCESS__DFD = eINSTANCE.getProcess_Dfd();
 
 		/**
 		 * The meta object literal for the '<em><b>Validate Number Format Is Correct</b></em>' operation.

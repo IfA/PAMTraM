@@ -233,6 +233,15 @@ public class DfdPackageImpl extends EPackageImpl implements DfdPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getProcess_Dfd() {
+		return (EReference)processEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getProcess__ValidateNumberFormatIsCorrect__DiagnosticChain_Map() {
 		return processEClass.getEOperations().get(0);
 	}
@@ -348,6 +357,7 @@ public class DfdPackageImpl extends EPackageImpl implements DfdPackage {
 
 		processEClass = createEClass(PROCESS);
 		createEAttribute(processEClass, PROCESS__NUMBER);
+		createEReference(processEClass, PROCESS__DFD);
 		createEOperation(processEClass, PROCESS___VALIDATE_NUMBER_FORMAT_IS_CORRECT__DIAGNOSTICCHAIN_MAP);
 
 		dataStoreEClass = createEClass(DATA_STORE);
@@ -394,7 +404,6 @@ public class DfdPackageImpl extends EPackageImpl implements DfdPackage {
 		dfdEClass.getESuperTypes().add(this.getNamedElement());
 		dfdElementEClass.getESuperTypes().add(this.getNamedElement());
 		processEClass.getESuperTypes().add(this.getDFDElement());
-		processEClass.getESuperTypes().add(this.getDFD());
 		dataStoreEClass.getESuperTypes().add(this.getDFDElement());
 		flowEClass.getESuperTypes().add(this.getNamedElement());
 		controlFlowEClass.getESuperTypes().add(this.getFlow());
@@ -412,6 +421,7 @@ public class DfdPackageImpl extends EPackageImpl implements DfdPackage {
 
 		initEClass(processEClass, dfd.Process.class, "Process", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getProcess_Number(), ecorePackage.getEString(), "number", null, 1, 1, dfd.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProcess_Dfd(), this.getDFD(), null, "dfd", null, 0, 1, dfd.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = initEOperation(getProcess__ValidateNumberFormatIsCorrect__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateNumberFormatIsCorrect", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);

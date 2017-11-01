@@ -80,8 +80,7 @@ public class ProcessItemProvider extends DFDElementItemProvider {
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(DfdPackage.Literals.DFD__ELEMENTS);
-			childrenFeatures.add(DfdPackage.Literals.DFD__FLOWS);
+			childrenFeatures.add(DfdPackage.Literals.PROCESS__DFD);
 		}
 		return childrenFeatures;
 	}
@@ -143,8 +142,7 @@ public class ProcessItemProvider extends DFDElementItemProvider {
 			case DfdPackage.PROCESS__NUMBER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case DfdPackage.PROCESS__ELEMENTS:
-			case DfdPackage.PROCESS__FLOWS:
+			case DfdPackage.PROCESS__DFD:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -163,23 +161,8 @@ public class ProcessItemProvider extends DFDElementItemProvider {
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DfdPackage.Literals.DFD__ELEMENTS,
-				 DfdFactory.eINSTANCE.createProcess()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DfdPackage.Literals.DFD__ELEMENTS,
-				 DfdFactory.eINSTANCE.createDataStore()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DfdPackage.Literals.DFD__FLOWS,
-				 DfdFactory.eINSTANCE.createControlFlow()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DfdPackage.Literals.DFD__FLOWS,
-				 DfdFactory.eINSTANCE.createDataFlow()));
+				(DfdPackage.Literals.PROCESS__DFD,
+				 DfdFactory.eINSTANCE.createDFD()));
 	}
 
 }

@@ -16,13 +16,14 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * </p>
  * <ul>
  *   <li>{@link dfd.Process#getNumber <em>Number</em>}</li>
+ *   <li>{@link dfd.Process#getDfd <em>Dfd</em>}</li>
  * </ul>
  *
  * @see dfd.DfdPackage#getProcess()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='DummyConstraint'"
  * @generated
  */
-public interface Process extends DFDElement, DFD {
+public interface Process extends DFDElement {
 	/**
 	 * Returns the value of the '<em><b>Number</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -48,6 +49,32 @@ public interface Process extends DFDElement, DFD {
 	 * @generated
 	 */
 	void setNumber(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Dfd</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Dfd</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Dfd</em>' containment reference.
+	 * @see #setDfd(DFD)
+	 * @see dfd.DfdPackage#getProcess_Dfd()
+	 * @model containment="true"
+	 * @generated
+	 */
+	DFD getDfd();
+
+	/**
+	 * Sets the value of the '{@link dfd.Process#getDfd <em>Dfd</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Dfd</em>' containment reference.
+	 * @see #getDfd()
+	 * @generated
+	 */
+	void setDfd(DFD value);
 
 	/**
 	 * <!-- begin-user-doc -->

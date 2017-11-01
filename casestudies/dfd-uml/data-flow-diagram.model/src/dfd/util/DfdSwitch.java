@@ -97,7 +97,6 @@ public class DfdSwitch<T> extends Switch<T> {
 				dfd.Process process = (dfd.Process)theEObject;
 				T result = caseProcess(process);
 				if (result == null) result = caseDFDElement(process);
-				if (result == null) result = caseDFD(process);
 				if (result == null) result = caseNamedElement(process);
 				if (result == null) result = defaultCase(theEObject);
 				return result;

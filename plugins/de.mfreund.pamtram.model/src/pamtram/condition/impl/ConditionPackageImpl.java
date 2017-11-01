@@ -597,6 +597,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		StructurePackage theStructurePackage = (StructurePackage)EPackage.Registry.INSTANCE.getEPackage(StructurePackage.eNS_URI);
 		SourcePackage theSourcePackage = (SourcePackage)EPackage.Registry.INSTANCE.getEPackage(SourcePackage.eNS_URI);
 		ConstraintPackage theConstraintPackage = (ConstraintPackage)EPackage.Registry.INSTANCE.getEPackage(ConstraintPackage.eNS_URI);
+		GenericPackage theGenericPackage = (GenericPackage)EPackage.Registry.INSTANCE.getEPackage(GenericPackage.eNS_URI);
 
 		// Create type parameters
 		ETypeParameter conditionEClass_TargetType = addETypeParameter(conditionEClass, "TargetType");
@@ -616,8 +617,16 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		g1.getETypeArguments().add(g2);
 		attributeConditionEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getCondition());
-		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
+		g2 = createEGenericType(theGenericPackage.getMetaModelElement());
 		g1.getETypeArguments().add(g2);
+		EGenericType g3 = createEGenericType(theSourcePackage.getSourceSection());
+		g2.getETypeArguments().add(g3);
+		g3 = createEGenericType(theSourcePackage.getSourceSectionClass());
+		g2.getETypeArguments().add(g3);
+		g3 = createEGenericType(theSourcePackage.getSourceSectionReference());
+		g2.getETypeArguments().add(g3);
+		g3 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
+		g2.getETypeArguments().add(g3);
 		cardinalityConditionEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getCondition());
 		g2 = createEGenericType(thePamtramPackage.getConditionalElement());

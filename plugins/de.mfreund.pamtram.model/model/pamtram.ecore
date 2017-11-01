@@ -2567,7 +2567,12 @@
         <details key="documentation" value="This condition can be used to check the cardinality of a Class (how often the class is present in the matched source model excerpt)."/>
       </eAnnotations>
       <eGenericSuperTypes eClassifier="#//condition/Condition">
-        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
+        <eTypeArguments eClassifier="#//structure/generic/MetaModelElement">
+          <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+        </eTypeArguments>
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ApplicationDependency">

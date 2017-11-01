@@ -556,10 +556,13 @@ public class ConditionHandler {
 		// ConditionalElement targeted by the condition.
 		//
 		List<SourceSectionClass> affectedClasses;
+		SourceSection affectedSection;
 
 		if (condition instanceof CardinalityCondition) {
 			MetaModelElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> conditionTarget = ((CardinalityCondition) condition)
 					.getTarget();
+			affectedSection = (SourceSection) AgteleEcoreUtil.getAncestorOfType(conditionTarget,
+					SourcePackage.Literals.SOURCE_SECTION);
 			if (conditionTarget instanceof SourceSectionClass) {
 				affectedClasses = Arrays.asList((SourceSectionClass) conditionTarget);
 			} else if (conditionTarget instanceof SourceSectionAttribute) {
@@ -573,17 +576,23 @@ public class ConditionHandler {
 				return new ArrayList<>();
 			}
 		} else if (condition instanceof AttributeCondition) {
+			affectedSection = (SourceSection) AgteleEcoreUtil.getAncestorOfType((EObject) condition.getTarget(),
+					SourcePackage.Literals.SOURCE_SECTION);
 			affectedClasses = Arrays
 					.asList((SourceSectionClass) ((AttributeCondition) condition).getTarget().eContainer());
 		} else if (condition instanceof ApplicationDependency) {
 			ConditionalElement conditionalElement = ((ApplicationDependency) condition).getTarget();
 			if (conditionalElement instanceof Mapping) {
 				affectedClasses = Arrays.asList(((Mapping) conditionalElement).getSourceSection());
+				affectedSection = (SourceSection) AgteleEcoreUtil.getAncestorOfType(conditionalElement,
+						SourcePackage.Literals.SOURCE_SECTION);
 			} else if (conditionalElement instanceof InstantiableMappingHintGroup) {
 				affectedClasses = Arrays.asList(((Mapping) conditionalElement.eContainer()).getSourceSection());
+				affectedSection = ((Mapping) conditionalElement.eContainer()).getSourceSection();
 			} else if (conditionalElement instanceof MappingHint) {
 				affectedClasses = Arrays
 						.asList(((Mapping) conditionalElement.eContainer().eContainer()).getSourceSection());
+				affectedSection = ((Mapping) conditionalElement.eContainer().eContainer()).getSourceSection();
 			} else {
 				this.logger.severe(() -> "Unknown type of ConditionalElement '" + conditionalElement.eClass().getName()
 						+ "' found!");
@@ -594,17 +603,12 @@ public class ConditionHandler {
 			return new ArrayList<>();
 		}
 
-		Set<SourceSection> affectedSections = affectedClasses.stream().map(SourceSectionClass::getContainingSection)
-				.collect(Collectors.toSet());
-
 		List<MatchedSectionDescriptor> descriptorsToConsider = new ArrayList<>();
 
 		if (condition.isLocalCondition() && condition.getInstanceSelectors().isEmpty()) {
 
-			List<SourceSection> containerSections = new ArrayList<>(affectedSections);
-			containerSections.retainAll(matchedSectionDescriptor.getAssociatedSourceSectionClass().getAllContainer());
-
-			if (containerSections.isEmpty()) {
+			if (affectedSection.equals(matchedSectionDescriptor.getAssociatedSourceSectionClass()) || affectedSection
+					.isReferencedBy(matchedSectionDescriptor.getAssociatedSourceSectionClass(), null)) {
 
 				// In case of a 'local' condition without any InstancePointers
 				// specified,
@@ -618,21 +622,19 @@ public class ConditionHandler {
 				// use the corresponding 'container descriptors' instead of the
 				// determined 'descriptors' themselves
 				//
-				for (SourceSection containerSection : containerSections) {
 
-					MatchedSectionDescriptor descriptorToConsider = matchedSectionDescriptor;
-					while (!descriptorToConsider.getAssociatedSourceSectionClass().getContainingSection()
-							.equals(containerSection)) {
+				MatchedSectionDescriptor descriptorToConsider = matchedSectionDescriptor;
+				while (!descriptorToConsider.getAssociatedSourceSectionClass().getContainingSection()
+						.equals(affectedSection)) {
 
-						if (descriptorToConsider.getContainerDescriptor() == null) {
-							this.logger.severe(() -> "Internal error while evaluating condition '" + condition.getName()
-									+ "'! Unable to determine correct MatchedSectionDescriptor.");
-							break;
-						}
-						descriptorToConsider = matchedSectionDescriptor.getContainerDescriptor();
+					if (descriptorToConsider.getContainerDescriptor() == null) {
+						this.logger.severe(() -> "Internal error while evaluating condition '" + condition.getName()
+								+ "'! Unable to determine correct MatchedSectionDescriptor.");
+						break;
 					}
-					descriptorsToConsider.add(descriptorToConsider);
+					descriptorToConsider = matchedSectionDescriptor.getContainerDescriptor();
 				}
+				descriptorsToConsider.add(descriptorToConsider);
 
 			}
 
@@ -643,11 +645,9 @@ public class ConditionHandler {
 			// have to consider all 'descriptors' for the SourceSection under
 			// consideration
 			//
-			for (SourceSection accectedSection : affectedSections) {
-				descriptorsToConsider.addAll(
-						this.matchedSections.containsKey(accectedSection) ? this.matchedSections.get(accectedSection)
-								: new ArrayList<>());
-			}
+			descriptorsToConsider.addAll(
+					this.matchedSections.containsKey(affectedSection) ? this.matchedSections.get(affectedSection)
+							: new ArrayList<>());
 		}
 
 		// Collect all instances for the selected MatchedSectionDescriptors

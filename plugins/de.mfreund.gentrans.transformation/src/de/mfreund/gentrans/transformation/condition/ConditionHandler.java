@@ -52,6 +52,7 @@ import pamtram.structure.source.SourcePackage;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
 import pamtram.structure.source.SourceSectionClass;
+import pamtram.structure.source.SourceSectionCrossReference;
 import pamtram.structure.source.SourceSectionReference;
 
 /**
@@ -658,6 +659,26 @@ public class ConditionHandler {
 								.ofNullable(descriptor.getSourceModelObjectsMapped().get(affectedClass))
 								.orElse(new HashSet<>()).stream()))
 				.collect(Collectors.toList());
+
+		// For CardinalityConditions based on SourceSectionCrossReferences, we need to filter some more and only
+		// consider those instances that are reference via the correct reference
+		//
+		if (!correspondEClassInstances.isEmpty() && condition instanceof CardinalityCondition
+				&& ((CardinalityCondition) condition).getTarget() instanceof SourceSectionCrossReference) {
+			SourceSectionCrossReference reference = (SourceSectionCrossReference) ((CardinalityCondition) condition)
+					.getTarget();
+
+			SourceSectionClass owningClass = reference.getOwningClass();
+			Set<EObject> owningElements = descriptorsToConsider.stream()
+					.flatMap(
+							descriptor -> Optional.ofNullable(descriptor.getSourceModelObjectsMapped().get(owningClass))
+									.orElse(new HashSet<>()).stream())
+					.collect(Collectors.toSet());
+			correspondEClassInstances = correspondEClassInstances.stream()
+					.filter(instance -> owningElements.stream().anyMatch(owner -> AgteleEcoreUtil
+							.getStructuralFeatureValueAsList(owner, reference.getEReference()).contains(instance)))
+					.collect(Collectors.toList());
+		}
 
 		// Reduce the list of instances based on modeled InstancePointers
 		//

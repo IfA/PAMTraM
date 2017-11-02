@@ -8,6 +8,7 @@ import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -379,7 +380,7 @@ public class TargetSectionRegistry extends CancelableElement {
 
 		// collect all sub-packages
 		//
-		Set<EPackage> packagesToScan = EPackageHelper.collectEPackages(rootEPackage);
+		Set<EPackage> packagesToScan = EPackageHelper.collectEPackages(rootEPackage, true, true, Optional.empty());
 
 		// scan all packages
 		//
@@ -398,11 +399,6 @@ public class TargetSectionRegistry extends CancelableElement {
 				classes.add((EClass) c);
 			});
 		}
-
-		// as the found classes may have super-types that stem from different ePackages, we need to add these
-		// super-types manually
-		//
-		classes.addAll(classes.stream().flatMap(c -> c.getEAllSuperTypes().stream()).collect(Collectors.toList()));
 
 		// register all found classes
 		//

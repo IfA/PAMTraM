@@ -29,7 +29,7 @@ public class SourceSectionMatcher extends AbstractTransformationRunner {
 	 * @param logger
 	 *            The {@link Logger} that shall be used to print messages.
 	 */
-	protected SourceSectionMatcher(TransformationTaskRunner taskRunner, Logger logger) {
+	public SourceSectionMatcher(TransformationTaskRunner taskRunner, Logger logger) {
 
 		super(taskRunner, logger);
 

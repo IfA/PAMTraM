@@ -149,20 +149,12 @@ public class ExtendedValidator extends EObjectValidator {
 	public static final int REFERENCE_TARGET_SELECTOR__VALIDATE_AFFECTED_REFERENCE_MATCHES_SECTION = 13;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Reference Attribute Is Valid' of 'Reference Target Selector'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int REFERENCE_TARGET_SELECTOR__VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID = 14;
-
-	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Target Class' of 'Reference Target Selector'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int REFERENCE_TARGET_SELECTOR__VALIDATE_TARGET_CLASS = 15;
+	public static final int REFERENCE_TARGET_SELECTOR__VALIDATE_TARGET_CLASS = 14;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Target Class Matches Possible Container Type' of 'Container Selector'.
@@ -170,23 +162,7 @@ public class ExtendedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CONTAINER_SELECTOR__VALIDATE_TARGET_CLASS_MATCHES_POSSIBLE_CONTAINER_TYPE = 16;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Reference Attribute' of 'Container Selector'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int CONTAINER_SELECTOR__VALIDATE_REFERENCE_ATTRIBUTE = 17;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Reference Attribute Is Valid' of 'Container Selector'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int CONTAINER_SELECTOR__VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID = 18;
+	public static final int CONTAINER_SELECTOR__VALIDATE_TARGET_CLASS_MATCHES_POSSIBLE_CONTAINER_TYPE = 15;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -194,7 +170,7 @@ public class ExtendedValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 18;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 15;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -961,7 +937,7 @@ public class ExtendedValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateMappingHint_validateConsiderOverwritingHint(referenceTargetSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= structureValidator.validateInstanceSelector_noModifiedAttributeElementTypesInConditionModelConditions(referenceTargetSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= structureValidator.validateInstanceSelector_validateNoModifiedAttributeElementTypesInConditionModelConditions(referenceTargetSelector, diagnostics, context);
-		if (result || diagnostics != null) result &= validateReferenceTargetSelector_validateReferenceAttributeIsValid(referenceTargetSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateTargetInstanceSelector_validateReferenceAttributeIsValid(referenceTargetSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= validateReferenceTargetSelector_affectedReferenceIsNonContainment(referenceTargetSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= validateReferenceTargetSelector_affectedReferenceMatchesSection(referenceTargetSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= validateReferenceTargetSelector_validateAffectedReferenceIsNonContainment(referenceTargetSelector, diagnostics, context);
@@ -1047,16 +1023,6 @@ public class ExtendedValidator extends EObjectValidator {
 	}
 
 	/**
-	 * Validates the validateReferenceAttributeIsValid constraint of '<em>Reference Target Selector</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateReferenceTargetSelector_validateReferenceAttributeIsValid(ReferenceTargetSelector referenceTargetSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return referenceTargetSelector.validateReferenceAttributeIsValid(diagnostics, context);
-	}
-
-	/**
 	 * Validates the validateTargetClass constraint of '<em>Reference Target Selector</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1089,10 +1055,9 @@ public class ExtendedValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateMappingHint_validateConsiderOverwritingHint(containerSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= structureValidator.validateInstanceSelector_noModifiedAttributeElementTypesInConditionModelConditions(containerSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= structureValidator.validateInstanceSelector_validateNoModifiedAttributeElementTypesInConditionModelConditions(containerSelector, diagnostics, context);
-		if (result || diagnostics != null) result &= validateContainerSelector_validateReferenceAttributeIsValid(containerSelector, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateTargetInstanceSelector_validateReferenceAttributeIsValid(containerSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= validateContainerSelector_sourceMatchesPossibleContainerType(containerSelector, diagnostics, context);
 		if (result || diagnostics != null) result &= validateContainerSelector_validateTargetClassMatchesPossibleContainerType(containerSelector, diagnostics, context);
-		if (result || diagnostics != null) result &= validateContainerSelector_validateReferenceAttribute(containerSelector, diagnostics, context);
 		return result;
 	}
 
@@ -1132,26 +1097,6 @@ public class ExtendedValidator extends EObjectValidator {
 	 */
 	public boolean validateContainerSelector_validateTargetClassMatchesPossibleContainerType(ContainerSelector containerSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return containerSelector.validateTargetClassMatchesPossibleContainerType(diagnostics, context);
-	}
-
-	/**
-	 * Validates the validateReferenceAttribute constraint of '<em>Container Selector</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateContainerSelector_validateReferenceAttribute(ContainerSelector containerSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return containerSelector.validateReferenceAttribute(diagnostics, context);
-	}
-
-	/**
-	 * Validates the validateReferenceAttributeIsValid constraint of '<em>Container Selector</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateContainerSelector_validateReferenceAttributeIsValid(ContainerSelector containerSelector, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return containerSelector.validateReferenceAttributeIsValid(diagnostics, context);
 	}
 
 	/**

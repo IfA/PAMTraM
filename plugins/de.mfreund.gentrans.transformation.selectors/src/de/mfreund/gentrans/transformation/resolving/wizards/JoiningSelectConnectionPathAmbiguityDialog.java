@@ -83,7 +83,6 @@ public class JoiningSelectConnectionPathAmbiguityDialog extends GenericSelection
 				PamtramEditor editor = (PamtramEditor) UIHelper.openEditor(
 						ResourceHelper.getFileForResource(this.element.eResource()),
 						"pamtram.presentation.PamtramEditorID");
-				// FIXME selecting elements in the PAMTraM editor via 'setSelection' does not work!
 				editor.setSelection(new StructuredSelection(AgteleEcoreUtil.getEquivalentElementFrom(this.element,
 						editor.getEditingDomain().getResourceSet())));
 			} catch (Exception e1) {

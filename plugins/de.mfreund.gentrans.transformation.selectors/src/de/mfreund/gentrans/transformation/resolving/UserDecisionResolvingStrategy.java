@@ -29,7 +29,6 @@ import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectRootE
 import de.mfreund.gentrans.transformation.resolving.wizards.ClassAndInstanceSelectorDialog;
 import de.mfreund.gentrans.transformation.resolving.wizards.DialogFactory;
 import de.mfreund.gentrans.transformation.resolving.wizards.GenericSelectionDialog;
-import de.mfreund.gentrans.transformation.resolving.wizards.ValueSpecificationDialog;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.PAMTraM;
 import pamtram.TargetSectionModel;
@@ -85,6 +84,10 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 	public List<MatchedSectionDescriptor> searchingSelectSection(List<MatchedSectionDescriptor> choices,
 			EObject element) throws AmbiguityResolvingException {
 
+		if (choices == null || choices.isEmpty()) {
+			return new ArrayList<>();
+		}
+
 		MatchedSectionDescriptor result = DialogFactory.createAndExecuteSearchingSelectSectionDialog(choices, element);
 
 		this.printMessage(result.getAssociatedSourceSectionClass().getName(),
@@ -96,6 +99,10 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 	@Override
 	public List<Mapping> searchingSelectMapping(List<Mapping> choices, EObject element)
 			throws AmbiguityResolvingException {
+
+		if (choices == null || choices.isEmpty()) {
+			return new ArrayList<>();
+		}
 
 		List<Mapping> result = DialogFactory.createAndExecuteSearchingSelectMappingDialog(choices, element);
 
@@ -118,32 +125,16 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 		Optional<PAMTraM> pamtramModel = this.pamtramModels.stream()
 				.filter(p -> EcoreUtil.isAncestor(p.getTargetSections(), attribute)).findAny();
 
-		String dialogMessage = "Please specify a value for the TargetSectionAttribute '"
-				+ attribute.getOwningClass().getName() + "." + attribute.getName() + "':";
-
 		InstantiatingSelectAttributeValueMappingModelEnhancer enhancer = new InstantiatingSelectAttributeValueMappingModelEnhancer(
 				pamtramModel.orElseThrow(
 						() -> new RuntimeException("Internal error while determining PAMTraM instance to enhance...")),
 				attribute, mappingHintGroup);
 
-		AtomicReference<ValueSpecificationDialog> dialog = new AtomicReference<>(null);
+		String result = DialogFactory.createAndExecuteInstantiatingSelectAttributeValueDialog(attribute, element,
+				mappingHintGroup, Optional.of(enhancer));
 
-		// As we are not in the UI thread, we have to use a runnable to show the dialog in order to prevent
-		// 'InvalidThreadAccess' exceptions
-		//
-		Display.getDefault().syncExec(() -> {
-
-			dialog.set(new ValueSpecificationDialog(dialogMessage, Optional.of(enhancer)));
-			dialog.get().create();
-			dialog.get().open();
-		});
-
-		if (dialog.get().getReturnCode() == IDialogConstants.CANCEL_ID) {
-			throw new AmbiguityResolvingException(new UserAbortException().getMessage(), new UserAbortException());
-		}
-
-		this.printMessage(dialog.get().getValue(), UserDecisionResolvingStrategy.userDecisionPrefix);
-		return Arrays.asList(dialog.get().getValue());
+		this.printMessage(result, UserDecisionResolvingStrategy.userDecisionPrefix);
+		return Arrays.asList(result);
 	}
 
 	@Override
@@ -156,36 +147,17 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 			return choices;
 		}
 
-		String dialogMessage = "Please specify a cardinality for the target section class '"
-				+ targetSectionClass.getName() + "' that is instantiated by the mapping hint group '"
-				+ mappingHintGroup.getName() + "'...";
-
-		AtomicReference<ValueSpecificationDialog> dialog = new AtomicReference<>(null);
-
-		// As we are not in the UI thread, we have to use a runnable to show the dialog in order to prevent
-		// 'InvalidThreadAccess' exceptions
-		//
-		Display.getDefault().syncExec(() -> {
-
-			dialog.set(new ValueSpecificationDialog(dialogMessage, Optional.empty()));
-			dialog.get().create();
-			dialog.get().open();
-		});
-
-		if (dialog.get().getReturnCode() == IDialogConstants.CANCEL_ID) {
-			throw new AmbiguityResolvingException(new UserAbortException().getMessage(), new UserAbortException());
-		}
+		String result = DialogFactory.createAndExecuteInstantiatingSelectCardinalityDialog(targetSectionClass,
+				mappingHintGroup, Optional.empty());
 
 		int cardinality = -1;
-		if (dialog.get().getValue() != null && !dialog.get().getValue().isEmpty()) {
+		if (result != null && !result.isEmpty()) {
 			try {
-				cardinality = Integer.parseInt(dialog.get().getValue());
+				cardinality = Integer.parseInt(result);
 
 			} catch (NumberFormatException e) {
 				throw new AmbiguityResolvingException(
-						"Could not parse a valid cardinality (positive integer) from the string '"
-								+ dialog.get().getValue() + "'!",
-						e);
+						"Could not parse a valid cardinality (positive integer) from the string '" + result + "'!", e);
 			}
 		}
 		if (cardinality == -1) {

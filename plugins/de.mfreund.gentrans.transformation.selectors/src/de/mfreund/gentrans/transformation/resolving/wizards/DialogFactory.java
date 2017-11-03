@@ -19,7 +19,9 @@ import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
 import de.mfreund.gentrans.transformation.resolving.UserDecisionResolvingStrategy;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
+import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
+import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.target.TargetSectionClass;
 
 /**
@@ -139,6 +141,69 @@ public class DialogFactory {
 		SearchingAmbiguityDialog<Mapping> dialog = DialogFactory.createAndExecuteDialog(dialogSupplier);
 
 		return dialog.getSelection();
+	}
+
+	/**
+	 * Creates and executes a {@link InstantiatingSelectAttributeValueDialog} in order to resolve a
+	 * <em>InstantiatingSelectAttributeValue</em> ambiguity.
+	 * <p />
+	 * Note: This can be called from outside the UI thread as the dialog is executed via its own {@link Runnable}.
+	 *
+	 * @param attribute
+	 *            The {@link TargetSectionAttribute} for that a value shall be entered.
+	 * @param element
+	 *            The target {@link EObject element} for that the option shall be chosen.
+	 * @param mappingHintGroup
+	 *            The {@link InstantiableMappingHintGroup mapping hint group} based on which the attribute was created.
+	 * @param enhanceMappingModelListener
+	 *            An optional {@link SelectionListener2} that will be called when the <em>EnhanceMappingModelButton</em>
+	 *            is clicked. If no listener is given, the button will be grayed out.
+	 * @return The chosen {@link Mapping Mappings}.
+	 * @throws AmbiguityResolvingException
+	 *             If the user pressed the <em>Abort Transformation</em> button in the dialog.
+	 */
+	public static String createAndExecuteInstantiatingSelectAttributeValueDialog(TargetSectionAttribute attribute,
+			EObject element, InstantiableMappingHintGroup mappingHintGroup,
+			Optional<SelectionListener2> enhanceMappingModelListener) throws AmbiguityResolvingException {
+
+		Supplier<InstantiatingSelectAttributeValueDialog> dialogSupplier = () -> new InstantiatingSelectAttributeValueDialog(
+				"Unspecified attribute value found for an element of the target model!", attribute, element,
+				mappingHintGroup, enhanceMappingModelListener);
+
+		ValueSpecificationDialog dialog = DialogFactory.createAndExecuteDialog(dialogSupplier);
+
+		return dialog.getValue();
+	}
+
+	/**
+	 * Creates and executes a {@link InstantiatingSelectCardinalityDialog} in order to resolve a
+	 * <em>InstantiatingSelectCardinality</em> ambiguity.
+	 * <p />
+	 * Note: This can be called from outside the UI thread as the dialog is executed via its own {@link Runnable}.
+	 *
+	 * @param targetSectionClass
+	 *            The {@link TargetSectionClass} for that a cardinality shall be entered.
+	 * @param mappingHintGroup
+	 *            The {@link InstantiableMappingHintGroup} that is responsible for the instantiation of the target
+	 *            section.
+	 * @param enhanceMappingModelListener
+	 *            An optional {@link SelectionListener2} that will be called when the <em>EnhanceMappingModelButton</em>
+	 *            is clicked. If no listener is given, the button will be grayed out.
+	 * @return The chosen {@link Mapping Mappings}.
+	 * @throws AmbiguityResolvingException
+	 *             If the user pressed the <em>Abort Transformation</em> button in the dialog.
+	 */
+	public static String createAndExecuteInstantiatingSelectCardinalityDialog(TargetSectionClass targetSectionClass,
+			InstantiableMappingHintGroup mappingHintGroup, Optional<SelectionListener2> enhanceMappingModelListener)
+			throws AmbiguityResolvingException {
+
+		Supplier<InstantiatingSelectCardinalityDialog> dialogSupplier = () -> new InstantiatingSelectCardinalityDialog(
+				"Unspecified cardinality found for a TargetSectionClass!", targetSectionClass, mappingHintGroup,
+				enhanceMappingModelListener);
+
+		ValueSpecificationDialog dialog = DialogFactory.createAndExecuteDialog(dialogSupplier);
+
+		return dialog.getValue();
 	}
 
 	/**

@@ -200,14 +200,14 @@ public abstract class ValueExtractor extends CancelableElement {
 		// 'container descriptor' that represents the source element
 		//
 		if (mappingHintSourceElement instanceof ExternalDynamicSourceElement<?, ?, ?, ?>) {
-			while (!sourceDescriptor.getSourceModelObjectsMapped()
-					.containsKey(mappingHintSourceElement.getSource().eContainer())) {
+			do {
 				sourceDescriptor = sourceDescriptor.getContainerDescriptor();
 				if (sourceDescriptor == null) {
 					// Error: could not determine hint value
 					return null;
 				}
-			}
+			} while (!sourceDescriptor.getSourceModelObjectsMapped()
+					.containsKey(mappingHintSourceElement.getSource().eContainer()));
 		}
 
 		Set<EObject> sourceElements = sourceDescriptor.getSourceModelObjectsMapped()

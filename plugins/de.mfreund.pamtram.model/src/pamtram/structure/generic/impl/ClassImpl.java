@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import pamtram.structure.generic.ActualReference;
@@ -359,19 +360,25 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	public boolean isContainerFor(final C containedClass) {
 		C container = containedClass.getContainer();
 				
-		// this means that we have reached the top level container for the 'containedClass'
-		if(container == null) {
-			return false;
-		// this is the container
-		} else if(this.equals(container)) {
-			return true;
-		// one of the extended sections is the container
-		} else if(container instanceof Section && ((Section) container).getExtend().contains(this)) {
-			return true;
-		// this was not the container, so iterate up in the containment hierarchy
-		} else {
-			return isContainerFor(container);
-		}
+				// Prevent stack overflow in case of modeling error
+				//
+				if(EcoreUtil.isAncestor(containedClass, container)) {
+					return false;
+				}
+		
+			// this means that we have reached the top level container for the 'containedClass'
+				if (container == null) {
+					return false;
+					// this is the container
+				} else if (this.equals(container)) {
+					return true;
+					// one of the extended sections is the container
+				} else if (container instanceof Section && ((Section) container).getExtend().contains(this)) {
+					return true;
+					// this was not the container, so iterate up in the containment hierarchy
+				} else {
+					return this.isContainerFor(container);
+				}
 	}
 
 	/**
@@ -453,12 +460,13 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 		// recursively iterate over all referenced classes
 		for (C clazz : classes) {
+			if (!referencedClasses.contains(clazz)) {
+				referencedClasses.add(clazz);
+			} else {
+				continue;
+			}
 			if (clazz.equals(this) || this.isReferencedBy(clazz, referencedClasses)) {
 				return true;
-			} else {
-				if (!referencedClasses.contains(clazz)) {
-					referencedClasses.add(clazz);
-				}
 			}
 		}
 

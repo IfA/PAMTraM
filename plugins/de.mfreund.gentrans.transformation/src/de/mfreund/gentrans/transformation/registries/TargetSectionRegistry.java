@@ -8,6 +8,7 @@ import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -375,11 +376,11 @@ public class TargetSectionRegistry extends CancelableElement {
 	 */
 	private List<EClass> getClasses(final EPackage rootEPackage) {
 
-		List<EClass> classes = new LinkedList<>();
+		Set<EClass> classes = new LinkedHashSet<>();
 
 		// collect all sub-packages
 		//
-		Set<EPackage> packagesToScan = EPackageHelper.collectEPackages(rootEPackage);
+		Set<EPackage> packagesToScan = EPackageHelper.collectEPackages(rootEPackage, true, true, Optional.empty());
 
 		// scan all packages
 		//
@@ -396,14 +397,17 @@ public class TargetSectionRegistry extends CancelableElement {
 				}
 
 				classes.add((EClass) c);
-
-				this.childClassesRegistry.put((EClass) c, new LinkedHashSet<EClass>());
-				this.targetClassReferencesRegistry.put((EClass) c, new LinkedHashSet<EReference>());
 			});
-
 		}
 
-		return classes;
+		// register all found classes
+		//
+		for (EClass c : classes) {
+			this.childClassesRegistry.put(c, new LinkedHashSet<EClass>());
+			this.targetClassReferencesRegistry.put(c, new LinkedHashSet<EReference>());
+		}
+
+		return new ArrayList<>(classes);
 	}
 
 	/**

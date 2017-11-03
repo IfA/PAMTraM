@@ -29,29 +29,27 @@ import pamtram.mapping.extended.MappingHint;
 public class MappedAttributeValueExpanderItemProvider extends HintImporterMappingHintItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public MappedAttributeValueExpanderItemProvider(AdapterFactory adapterFactory) {
-
 		super(adapterFactory);
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-
-		if (this.itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			this.addHintsToExpandPropertyDescriptor(object);
+			addHintsToExpandPropertyDescriptor(object);
 		}
-		return this.itemPropertyDescriptors;
+		return itemPropertyDescriptors;
 	}
 
 	/**
@@ -158,32 +156,28 @@ public class MappedAttributeValueExpanderItemProvider extends HintImporterMappin
 	// }
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-
-		return ((StyledString) this.getStyledText(object)).getString();
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This returns the label styled text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-
-		String label = ((MappedAttributeValueExpander) object).getName();
-		StyledString styledLabel = new StyledString();
+		String label = ((MappedAttributeValueExpander)object).getName();
+    	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(this.getString("_UI_MappedAttributeValueExpander_type"),
-					StyledString.Style.QUALIFIER_STYLER);
+			styledLabel.append(getString("_UI_MappedAttributeValueExpander_type"), StyledString.Style.QUALIFIER_STYLER); 
 		} else {
-			styledLabel.append(this.getString("_UI_MappedAttributeValueExpander_type"),
-					StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_MappedAttributeValueExpander_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
 		}
 		return styledLabel;
 	}
@@ -197,20 +191,18 @@ public class MappedAttributeValueExpanderItemProvider extends HintImporterMappin
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-
-		this.updateChildren(notification);
+		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

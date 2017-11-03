@@ -1936,6 +1936,15 @@ public interface ExtendedPackage extends EPackage {
 	int REFERENCE_TARGET_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS = MAPPING_HINT_OPERATION_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Validate Reference Attribute Is Valid</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_TARGET_SELECTOR___VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 3;
+
+	/**
 	 * The operation id for the '<em>Validate Affected Reference Is Non Containment</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1954,22 +1963,13 @@ public interface ExtendedPackage extends EPackage {
 	int REFERENCE_TARGET_SELECTOR___VALIDATE_AFFECTED_REFERENCE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 5;
 
 	/**
-	 * The operation id for the '<em>Validate Reference Attribute Is Valid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_TARGET_SELECTOR___VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 6;
-
-	/**
 	 * The operation id for the '<em>Validate Target Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_TARGET_SELECTOR___VALIDATE_TARGET_CLASS__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 7;
+	int REFERENCE_TARGET_SELECTOR___VALIDATE_TARGET_CLASS__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Reference Target Selector</em>' class.
@@ -1978,7 +1978,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_TARGET_SELECTOR_OPERATION_COUNT = MAPPING_HINT_OPERATION_COUNT + 8;
+	int REFERENCE_TARGET_SELECTOR_OPERATION_COUNT = MAPPING_HINT_OPERATION_COUNT + 7;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.extended.impl.ContainerSelectorImpl <em>Container Selector</em>}' class.
@@ -2153,6 +2153,15 @@ public interface ExtendedPackage extends EPackage {
 	int CONTAINER_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS = MAPPING_HINT_OPERATION_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Validate Reference Attribute Is Valid</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTAINER_SELECTOR___VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 3;
+
+	/**
 	 * The operation id for the '<em>Validate Target Class Matches Possible Container Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2162,31 +2171,13 @@ public interface ExtendedPackage extends EPackage {
 	int CONTAINER_SELECTOR___VALIDATE_TARGET_CLASS_MATCHES_POSSIBLE_CONTAINER_TYPE__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 4;
 
 	/**
-	 * The operation id for the '<em>Validate Reference Attribute</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTAINER_SELECTOR___VALIDATE_REFERENCE_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 5;
-
-	/**
-	 * The operation id for the '<em>Validate Reference Attribute Is Valid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTAINER_SELECTOR___VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 6;
-
-	/**
 	 * The number of operations of the '<em>Container Selector</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_SELECTOR_OPERATION_COUNT = MAPPING_HINT_OPERATION_COUNT + 7;
+	int CONTAINER_SELECTOR_OPERATION_COUNT = MAPPING_HINT_OPERATION_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.extended.impl.MappedAttributeValueExpanderImpl <em>Mapped Attribute Value Expander</em>}' class.
@@ -3310,16 +3301,6 @@ public interface ExtendedPackage extends EPackage {
 	EOperation getReferenceTargetSelector__ValidateAffectedReferenceMatchesSection__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.extended.ReferenceTargetSelector#validateReferenceAttributeIsValid(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Reference Attribute Is Valid</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Reference Attribute Is Valid</em>' operation.
-	 * @see pamtram.mapping.extended.ReferenceTargetSelector#validateReferenceAttributeIsValid(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getReferenceTargetSelector__ValidateReferenceAttributeIsValid__DiagnosticChain_Map();
-
-	/**
 	 * Returns the meta object for the '{@link pamtram.mapping.extended.ReferenceTargetSelector#validateTargetClass(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Target Class</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3348,26 +3329,6 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getContainerSelector__ValidateTargetClassMatchesPossibleContainerType__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.extended.ContainerSelector#validateReferenceAttribute(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Reference Attribute</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Reference Attribute</em>' operation.
-	 * @see pamtram.mapping.extended.ContainerSelector#validateReferenceAttribute(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getContainerSelector__ValidateReferenceAttribute__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.extended.ContainerSelector#validateReferenceAttributeIsValid(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Reference Attribute Is Valid</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Reference Attribute Is Valid</em>' operation.
-	 * @see pamtram.mapping.extended.ContainerSelector#validateReferenceAttributeIsValid(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getContainerSelector__ValidateReferenceAttributeIsValid__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.extended.MappedAttributeValueExpander <em>Mapped Attribute Value Expander</em>}'.
@@ -3821,13 +3782,6 @@ public interface ExtendedPackage extends EPackage {
 		 */
 		EOperation REFERENCE_TARGET_SELECTOR___VALIDATE_AFFECTED_REFERENCE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP = eINSTANCE.getReferenceTargetSelector__ValidateAffectedReferenceMatchesSection__DiagnosticChain_Map();
 		/**
-		 * The meta object literal for the '<em><b>Validate Reference Attribute Is Valid</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation REFERENCE_TARGET_SELECTOR___VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID__DIAGNOSTICCHAIN_MAP = eINSTANCE.getReferenceTargetSelector__ValidateReferenceAttributeIsValid__DiagnosticChain_Map();
-		/**
 		 * The meta object literal for the '<em><b>Validate Target Class</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3850,20 +3804,6 @@ public interface ExtendedPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation CONTAINER_SELECTOR___VALIDATE_TARGET_CLASS_MATCHES_POSSIBLE_CONTAINER_TYPE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getContainerSelector__ValidateTargetClassMatchesPossibleContainerType__DiagnosticChain_Map();
-		/**
-		 * The meta object literal for the '<em><b>Validate Reference Attribute</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation CONTAINER_SELECTOR___VALIDATE_REFERENCE_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getContainerSelector__ValidateReferenceAttribute__DiagnosticChain_Map();
-		/**
-		 * The meta object literal for the '<em><b>Validate Reference Attribute Is Valid</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation CONTAINER_SELECTOR___VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID__DIAGNOSTICCHAIN_MAP = eINSTANCE.getContainerSelector__ValidateReferenceAttributeIsValid__DiagnosticChain_Map();
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.MappedAttributeValueExpanderImpl <em>Mapped Attribute Value Expander</em>}' class.
 		 * <!-- begin-user-doc -->

@@ -269,23 +269,6 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 			List<EObjectWrapper> sectionInstances, MappingHintGroupType hintGroup,
 			ContainerSelector modelConnectionHint, String hintValue) throws AmbiguityResolvingException {
 
-		String message;
-		if (modelConnectionHint == null) {
-			message = "Instances created by the group '" + hintGroup.getName() + " (Mapping :"
-					+ ((Mapping) hintGroup.eContainer()).getName()
-					+ ")' can be connected to multiple container instances. Please choose under which elements "
-					+ (sectionInstances.size() > 1 ? "these " + sectionInstances.size() + " elements"
-							: "this " + sectionInstances.size() + "element")
-					+ " should be inserted.";
-		} else {
-			message = "The ModelConnectionHint '" + modelConnectionHint.getName() + " (Mapping :"
-					+ ((Mapping) hintGroup.eContainer()).getName() + ", Group: " + hintGroup.getName()
-					+ ")' points to a non-unique Attribute. Please choose under which elements "
-					+ (sectionInstances.size() > 1 ? "these " + sectionInstances.size() + " elements"
-							: "this " + sectionInstances.size() + "element")
-					+ " should be inserted.\n\n" + "Attribute value: " + hintValue;
-		}
-
 		Optional<PAMTraM> pamtramModel = modelConnectionHint != null
 				? this.pamtramModels.stream()
 						.filter(p -> p.getTargetSections()
@@ -299,24 +282,12 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 						(MappingHintGroup) hintGroup)
 				: null;
 
-		AtomicReference<GenericSelectionDialog<EObjectWrapper>> dialog = new AtomicReference<>(null);
+		EObjectWrapper result = DialogFactory.createAndExecuteJoiningSelectContainerInstanceDialog(choices,
+				sectionInstances, hintGroup, Optional.ofNullable(modelConnectionHint), Optional.ofNullable(hintValue),
+				Optional.of(enhancer));
 
-		// As we are not in the UI thread, we have to use a runnable to show the dialog in order to prevent
-		// 'InvalidThreadAccess' exceptions
-		//
-		Display.getDefault().syncExec(() -> {
-
-			dialog.set(new GenericSelectionDialog<>(message, choices, false, Optional.of(enhancer)));
-			dialog.get().create();
-			dialog.get().open();
-		});
-
-		if (dialog.get().getReturnCode() == IDialogConstants.CANCEL_ID) {
-			throw new AmbiguityResolvingException(new UserAbortException().getMessage(), new UserAbortException());
-		}
-
-		this.printMessage(dialog.get().getSelection().toString(), UserDecisionResolvingStrategy.userDecisionPrefix);
-		return Arrays.asList(dialog.get().getSingleSelection());
+		this.printMessage(result.toString(), UserDecisionResolvingStrategy.userDecisionPrefix);
+		return Arrays.asList(result);
 	}
 
 	@Override

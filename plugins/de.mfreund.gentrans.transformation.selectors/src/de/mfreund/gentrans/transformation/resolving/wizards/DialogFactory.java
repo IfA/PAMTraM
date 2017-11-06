@@ -14,6 +14,7 @@ import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.swt.widgets.Display;
 
 import de.mfreund.gentrans.transformation.UserAbortException;
+import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
@@ -21,6 +22,8 @@ import de.mfreund.gentrans.transformation.resolving.UserDecisionResolvingStrateg
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
+import pamtram.mapping.MappingHintGroupType;
+import pamtram.mapping.extended.ContainerSelector;
 import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.target.TargetSectionClass;
 
@@ -272,6 +275,50 @@ public class DialogFactory {
 		};
 
 		JoiningSelectConnectionPathAmbiguityDialog dialog = DialogFactory.createAndExecuteDialog(dialogSupplier);
+
+		return dialog.getSingleSelection();
+	}
+
+	/**
+	 * Creates and executes a {@link GenericSelectionDialog} in order to resolve a <em>SelectContainerInstance</em>
+	 * ambiguity.
+	 * <p />
+	 * Note: This can be called from outside the UI thread as the dialog is executed via its own {@link Runnable}.
+	 *
+	 * @param choices
+	 *            The list of {@link EObjectWrapper options} that the user can choose from.
+	 * @param sectionInstances
+	 *            The list of {@link EObjectWrapper elements} that need to be joined.
+	 * @param hintGroup
+	 *            The {@link MappingHintGroupType} based on which the <em>sectionInstances</em> were created.
+	 * @param containerSelector
+	 *            An {@link ContainerSelector} that was specified for the <em>hintGroup</em>.
+	 * @param hintValue
+	 *            A hint value determined for the <em>containerSelector</em>.
+	 * @param enhanceMappingModelListener
+	 *            An optional {@link SelectionListener2} that will be called when the <em>EnhanceMappingModelButton</em>
+	 *            is clicked. If no listener is given, the button will be grayed out.
+	 * @return The chosen {@link EObjectWrapper}.
+	 * @throws AmbiguityResolvingException
+	 *             If the user pressed the <em>Abort Transformation</em> button in the dialog.
+	 */
+	public static EObjectWrapper createAndExecuteJoiningSelectContainerInstanceDialog(List<EObjectWrapper> choices,
+			List<EObjectWrapper> sectionInstances, MappingHintGroupType hintGroup,
+			Optional<ContainerSelector> containerSelector, Optional<String> hintValue,
+			Optional<SelectionListener2> enhanceMappingModelListener) throws AmbiguityResolvingException {
+
+		Supplier<JoiningSelectContainerInstanceAmbiguityDialog> dialogSupplier = () -> new JoiningSelectContainerInstanceAmbiguityDialog(
+				"Multiple possible container instances found to join elements of the target model!", choices,
+				sectionInstances, hintGroup, containerSelector, hintValue, enhanceMappingModelListener) {
+
+			@Override
+			protected Optional<String> getGroupText() {
+
+				return Optional.of("Possible Container Instances:");
+			};
+		};
+
+		JoiningSelectContainerInstanceAmbiguityDialog dialog = DialogFactory.createAndExecuteDialog(dialogSupplier);
 
 		return dialog.getSingleSelection();
 	}

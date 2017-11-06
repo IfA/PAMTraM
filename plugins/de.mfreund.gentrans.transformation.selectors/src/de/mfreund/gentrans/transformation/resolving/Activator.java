@@ -1,39 +1,20 @@
 package de.mfreund.gentrans.transformation.resolving;
 
-import org.osgi.framework.BundleActivator;
-import org.osgi.framework.BundleContext;
+import org.eclipse.emf.common.ui.EclipseUIPlugin;
 
 /**
  * The activator class controls the plug-in life cycle
  */
-public class Activator implements BundleActivator {
+public class Activator extends EclipseUIPlugin {
 
-	private static BundleContext context;
-
-	static BundleContext getContext() {
-		return Activator.context;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.osgi.framework.BundleActivator#start(org.osgi.framework.
-	 * BundleContext)
+	/**
+	 * The Plugin ID
 	 */
-	@Override
-	public void start(BundleContext bundleContext) throws Exception {
-		Activator.context = bundleContext;
-	}
+	public static final String PLUGIN_ID = "de.mfreund.gentrans.transformation.resolving.user";
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see
-	 * org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
+	/**
+	 * Keep track of the singleton. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 */
-	@Override
-	public void stop(BundleContext bundleContext) throws Exception {
-		Activator.context = null;
-	}
+	public static final Activator INSTANCE = new Activator();
 
 }

@@ -1,55 +1,44 @@
 package de.mfreund.gentrans.transformation.resolving.wizards;
 
+import java.util.Optional;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.dialogs.IDialogSettings;
+import org.eclipse.jface.dialogs.IMessageProvider;
+import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridDataFactory;
-import org.eclipse.jface.layout.GridLayoutFactory;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ControlAdapter;
-import org.eclipse.swt.events.ControlEvent;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Dialog;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Link;
 
+import de.mfreund.gentrans.transformation.resolving.Activator;
+import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
+import de.tud.et.ifa.agtele.resources.ResourceHelper;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
+import pamtram.presentation.PamtramEditor;
 
 /**
- * A customizable {@link Dialog} with a message and two buttons ('<em>OK</em>' and '<em>Abort Transformation</em>'). The
- * dialog will return a result of the type '<em>ResultType</em>'.
+ * A customizable {@link TitleAreaDialog} with a message and three buttons ('<em>OK</em>', '<em>Abort
+ * Transformation</em>', and <em>Enhance PAMTraM Model</em>).
  * <p />
  * An additional {@link SelectionListener2} may be passed in the constructor. This will result in the creation of an
  * additional button entitled '<em>Enhance PAMTraM Model</em>', triggering the given listener when clicked.
  *
  * @author mfreund
  */
-public abstract class AbstractDialog extends Dialog {
+public abstract class AbstractDialog extends TitleAreaDialog {
 
 	/**
-	 * This keeps track of the last location where a dialog was situated (possibly after being moved by the user). We
-	 * use this to open each new dialog at the same exact position.
+	 * The title for the dialog.
 	 */
-	private static Point lastLocation;
-
-	/**
-	 * This keeps track of the last size of a dialog (possibly after being resized by the user). We use this to open
-	 * each new dialog with the same exact size.
-	 */
-	private static Point lastSize;
-
-	/**
-	 * This is the {@link Button} that allows the user to confirm his selection.
-	 */
-	protected Button okButton;
-
-	/**
-	 * This is the {@link Button} that allows the user to trigger the enhancement of the mapping model.
-	 */
-	protected Button enhanceMappingModelButton;
+	private static final String DIALOG_TITLE = "Please resolve the following ambiguity...";
 
 	/**
 	 * A {@link SelectionListener2} that is triggered when the {@link #enhanceMappingModelButton} is selected.
@@ -57,250 +46,199 @@ public abstract class AbstractDialog extends Dialog {
 	protected final SelectionListener2 enhanceMappingModelListener;
 
 	/**
-	 * This is the {@link Button} that allows the user to abort the transformation.
+	 * The message for the dialog.
 	 */
-	protected Button abortTransFormationButton;
-
-	/**
-	 * This is the {@link Label} that dispalys the {@link #message} to the user and that is placed at the top of the
-	 * dialog.
-	 */
-	protected Label dialogMessage;
-
-	/**
-	 * This is the {@link Composite} that holds the {@link #okButton} and the {@link #abortTransFormationButton} and
-	 * that is placed at the bottom of the dialog.
-	 */
-	protected Composite buttonComposite;
-
-	/**
-	 * The message that shall be displayed in the {@link Dialog} that this runner will instantiate.
-	 */
-	protected final String message;
-
-	/**
-	 * Whether the user requested the termination of the generic transformation.
-	 */
-	protected boolean transformationStopRequested;
-
-	/**
-	 * The {@link Shell} on that this dialog will be created.
-	 */
-	protected Shell shell;
+	protected String message;
 
 	/**
 	 * Create the dialog.
-	 * <p />
-	 * Note: this is equivalent to calling {@link #AbstractDialog(String, SelectionListener2) AbstractDialog(String,
-	 * null)}.
-	 *
-	 * @see #AbstractDialog(String, SelectionListener2)
 	 *
 	 * @param message
 	 *            The message that shall be displayed in the dialog.
+	 * @param enhanceMappingModelListener2
+	 *            An optional {@link SelectionListener2} that will be called when the <em>EnhanceMappingModelButton</em>
+	 *            is clicked. If no listener is given, the button will be grayed out.
 	 */
-	public AbstractDialog(final String message) {
+	public AbstractDialog(String message, final Optional<SelectionListener2> enhanceMappingModelListener2) {
 
-		this(message, null);
-	}
+		super(UIHelper.getShell());
 
-	/**
-	 * Create the dialog.
-	 * <p />
-	 * If <em>enhanceMappingModelListener</em> is <em>null</em>, the {@link #enhanceMappingModelButton} will be grayed
-	 * out.
-	 *
-	 * @see #AbstractDialog(String)
-	 *
-	 * @param message
-	 *            The message that shall be displayed in the dialog.
-	 * @param enhanceMappingModelListener
-	 *            A {@link SelectionListener2} that will be called when the {@link #enhanceMappingModelButton} is
-	 *            clicked.
-	 */
-	public AbstractDialog(final String message, final SelectionListener2 enhanceMappingModelListener) {
+		this.setShellStyle(SWT.CLOSE | SWT.BORDER | SWT.TITLE | SWT.RESIZE);
 
-		super(UIHelper.getShell(), SWT.CLOSE | SWT.MODELESS | SWT.BORDER | SWT.TITLE);
-
-		this.setText("SWT Dialog");
 		this.message = message;
-		this.transformationStopRequested = false;
-		this.enhanceMappingModelListener = enhanceMappingModelListener;
+
+		this.enhanceMappingModelListener = enhanceMappingModelListener2.orElse(null);
 	}
 
-	/**
-	 * The setter for the {@link #lastLocation}.
-	 *
-	 * @param lastLocation
-	 */
-	protected static synchronized void setLastLocation(Point lastLocation) {
+	@Override
+	protected IDialogSettings getDialogBoundsSettings() {
 
-		AbstractDialog.lastLocation = lastLocation;
+		return Activator.INSTANCE.getDialogSettings();
 	}
 
-	/**
-	 * The getter for the {@link #lastLocation}.
-	 *
-	 * @param lastLocation
-	 */
-	protected static synchronized Point getLastLocation() {
+	@Override
+	public void create() {
 
-		return AbstractDialog.lastLocation;
+		super.create();
+
+		this.setTitle(AbstractDialog.DIALOG_TITLE);
+		this.setMessage(this.message, IMessageProvider.WARNING);
 	}
 
-	/**
-	 * The setter for the {@link #lastSize}.
-	 *
-	 * @param lastSize
-	 */
-	protected static synchronized void setLastSize(Point lastSize) {
+	@Override
+	protected void createButtonsForButtonBar(Composite parent) {
 
-		AbstractDialog.lastSize = lastSize;
-	}
+		Button enhanceMappingModelButton = this.createButton(parent, IDialogConstants.OPEN_ID, "Enhance PAMTraM Model",
+				false);
+		enhanceMappingModelButton
+				.setToolTipText("Enhance the PAMTraM model (e.g. by creating additional mapping hints) to prevent this "
+						+ "user interaction in future executions of the transformation...");
+		enhanceMappingModelButton.addSelectionListener((SelectionListener2) e -> {
+			this.setReturnCode(IDialogConstants.OPEN_ID);
+			this.close();
 
-	/**
-	 * The getter for the {@link #lastSize}.
-	 *
-	 * @param lastSize
-	 */
-	protected static synchronized Point getLastSize() {
-
-		return AbstractDialog.lastSize;
-	}
-
-	/**
-	 * Create the contents of the dialog.
-	 */
-	protected void createContents() {
-
-		this.shell = new Shell(this.getParent(), SWT.DIALOG_TRIM | SWT.RESIZE);
-
-		this.shell.setMinimumSize(new Point(300, 350));
-		this.shell.setSize(900, 600);
-		this.shell.setText("Please select..");
-		GridLayoutFactory.swtDefaults().margins(5, 0).applyTo(this.shell);
-
-		// Create the message at the top of the dialog
-		//
-		this.dialogMessage = new Label(this.shell, SWT.WRAP);
-		GridDataFactory.swtDefaults().hint(this.shell.getSize().x - 10, SWT.DEFAULT).applyTo(this.dialogMessage);
-		this.dialogMessage.setText(this.message);
-		this.shell.redraw();
-
-		this.shell.addControlListener(new ControlAdapter() {
-
-			@Override
-			public void controlMoved(final ControlEvent e) {
-
-				AbstractDialog.setLastLocation(AbstractDialog.this.shell.getLocation());
-			}
-
-			@Override
-			public void controlResized(final ControlEvent e) {
-
-				((GridData) AbstractDialog.this.dialogMessage.getLayoutData()).widthHint = AbstractDialog.this.shell
-						.getClientArea().width - 2 * ((GridLayout) AbstractDialog.this.shell.getLayout()).marginWidth;
-				AbstractDialog.this.shell.layout(true);
-				AbstractDialog.setLastSize(AbstractDialog.this.shell.getSize());
-			}
 		});
-
-		// Allow clients to create custom inner contents
-		//
-		this.createInnerContents(this.shell);
-
-		// Create the buttons at the bottom of the dialog
-		//
-		this.buttonComposite = new Composite(this.shell, SWT.NONE);
-		GridLayoutFactory.swtDefaults().numColumns(3).equalWidth(true).spacing(5, 0).applyTo(this.buttonComposite);
-		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.CENTER).grab(true, false).hint(564, SWT.DEFAULT)
-				.applyTo(this.buttonComposite);
-
-		this.abortTransFormationButton = new Button(this.buttonComposite, SWT.NONE);
-		this.abortTransFormationButton.addSelectionListener((SelectionListener2) e -> {
-			AbstractDialog.this.transformationStopRequested = true;
-			AbstractDialog.this.shell.dispose();
-		});
-
-		GridDataFactory.swtDefaults().align(SWT.LEFT, SWT.CENTER).grab(true, false).minSize(80, 35)
-				.applyTo(this.abortTransFormationButton);
-		this.abortTransFormationButton.setAlignment(SWT.LEFT);
-		this.abortTransFormationButton.setText("Abort transformation");
-
-		this.enhanceMappingModelButton = new Button(this.buttonComposite, SWT.NONE);
-		GridDataFactory.swtDefaults().align(SWT.CENTER, SWT.CENTER).grab(true, false).minSize(80, 35)
-				.applyTo(this.enhanceMappingModelButton);
-
-		if (this.enhanceMappingModelListener != null) {
-			this.enhanceMappingModelButton.addSelectionListener(this.enhanceMappingModelListener);
-			this.enhanceMappingModelButton.addSelectionListener((SelectionListener2) e -> {
-				AbstractDialog.this.transformationStopRequested = true;
-				AbstractDialog.this.shell.dispose();
-			});
+		if (this.enhanceMappingModelListener == null) {
+			enhanceMappingModelButton.setEnabled(false);
 		} else {
-			this.enhanceMappingModelButton.setEnabled(false);
+			enhanceMappingModelButton.addSelectionListener(this.enhanceMappingModelListener);
 		}
-		this.enhanceMappingModelButton.setText("Enhance PAMTraM Model");
-		this.enhanceMappingModelButton
-		.setToolTipText("Enhance the PAMTraM model (e.g. by creating additional mapping hints) to prevent this "
-				+ "user interaction in future executions of the transformation...");
+		this.createButton(parent, IDialogConstants.OK_ID, "OK", true);
+		this.createButton(parent, IDialogConstants.CANCEL_ID, "Abort transformation", false);
+	}
 
-		this.okButton = new Button(this.buttonComposite, SWT.NONE);
-		GridDataFactory.swtDefaults().align(SWT.RIGHT, SWT.CENTER).grab(true, false).minSize(80, 35)
-				.applyTo(this.okButton);
+	@Override
+	protected Control createDialogArea(Composite parent) {
 
-		this.okButton.addSelectionListener((SelectionListener2) e -> AbstractDialog.this.shell.dispose());
-		this.okButton.setText("OK");
-		this.okButton.setSelection(true);
+		Composite area = (Composite) super.createDialogArea(parent);
 
-		this.okButton.setFocus();
+		Composite container = new Composite(area, SWT.NONE);
+		container.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		GridLayout layout = new GridLayout(2, false);
+		layout.verticalSpacing = 5;
+		layout.marginRight = 5;
+		layout.marginLeft = 5;
+		container.setLayout(layout);
 
-		if (AbstractDialog.lastSize != null) {
-			this.shell.setSize(AbstractDialog.lastSize);
-		}
+		this.createInnerContents(container);
 
-		if (AbstractDialog.lastLocation != null) {
-			this.shell.setLocation(AbstractDialog.lastLocation);
-		}
+		return container;
 	}
 
 	/**
-	 * This is called as part of {@link #createContents()} to create the contents between the displayed message (top)
-	 * and the ok/abort buttons (bottom).
+	 * This is called as part of {@link #createDialogArea(Composite)} to create the contents between the displayed
+	 * message (top) and the buttons (bottom).
 	 * <p />
 	 * Clients must overwrite this to insert specific contents.
 	 *
-	 * @param parent
+	 * @param container
 	 */
-	protected abstract void createInnerContents(Shell parent);
+	protected abstract void createInnerContents(Composite container);
 
 	/**
-	 * Whether the user has requested the termination of the transformation.
+	 * Create a {@link Link} widget that allows to select the given <em>element</em> in a PAMTraM editor (which is
+	 * opened if necessary).
+	 * <p />
+	 * Note: This just calls {@link #createLinkToPamtramModel(Composite, String, EObject)} and provides a label in the
+	 * form of '-> Show " + element.eClass().getName() + " in PAMTraM Model...'.
 	 *
-	 * @return '<em><b>true</b></em>' if the button "Abort Transformation" was clicked during run();
-	 *         '<em><b>false</b></em>' otherwise
+	 * @see #createLinkToPamtramModel(Composite, String, EObject)
+	 *
+	 * @param container
+	 *            The {@link Composite} below which the link shall be created.
+	 * @param element
+	 *            The {@link EObject} to select in the PAMTraM editor.
 	 */
-	public boolean isTransformationStopRequested() {
+	protected Link createLinkToPamtramModel(Composite container, EObject element) {
 
-		return this.transformationStopRequested;
+		return this.createLinkToPamtramModel(container,
+				"-> Show " + element.eClass().getName() + " in PAMTraM Model...", element);
 	}
 
 	/**
-	 * Open the dialog.
+	 * Create a {@link Link} widget that allows to select the given <em>element</em> in a PAMTraM editor (which is
+	 * opened if necessary).
+	 *
+	 * @see #createLinkToPamtramModel(Composite, EObject)
+	 *
+	 * @param container
+	 *            The {@link Composite} below which the link shall be created.
+	 * @param label
+	 *            The label for the link.
+	 * @param element
+	 *            The {@link EObject} to select in the PAMTraM editor.
 	 */
-	public void open() {
+	protected Link createLinkToPamtramModel(Composite container, String label, EObject element) {
 
-		this.createContents();
+		Link link = new Link(container, SWT.NONE);
+		GridDataFactory.swtDefaults().applyTo(link);
+		link.setText("<A>" + label + "</A>");
+		link.addSelectionListener((SelectionListener2) e -> {
 
-		this.shell.open();
-		this.shell.layout();
-
-		final Display display = this.getParent().getDisplay();
-		while (!this.shell.isDisposed()) {
-			if (!display.readAndDispatch()) {
-				display.sleep();
+			try {
+				PamtramEditor editor = (PamtramEditor) UIHelper.openEditor(
+						ResourceHelper.getFileForResource(element.eResource()), "pamtram.presentation.PamtramEditorID");
+				editor.setSelection(new StructuredSelection(
+						AgteleEcoreUtil.getEquivalentElementFrom(element, editor.getEditingDomain().getResourceSet())));
+			} catch (Exception e1) {
+				UIHelper.log(e1);
+				this.setErrorMessage("Unable to select element in the PAMTraM Editor!");
 			}
-		}
+
+		});
+
+		return link;
+	}
+
+	/**
+	 * Create a {@link Link} widget that allows to select the given <em>element</em> in a source model editor (which is
+	 * opened if necessary).
+	 * <p />
+	 * Note: This just calls {@link #createLinkToSourceModel(Composite, String, EObject)} and provides a label in the
+	 * form of '-> Show Element in Source Model...'.
+	 *
+	 * @see #createLinkToSourceModel(Composite, String, EObject)
+	 *
+	 * @param container
+	 *            The {@link Composite} below which the link shall be created.
+	 * @param element
+	 *            The {@link EObject} to select in the source model editor.
+	 */
+	protected Link createLinkToSourceModel(Composite container, EObject element) {
+
+		return this.createLinkToPamtramModel(container, "-> Show Element in Source Model...", element);
+	}
+
+	/**
+	 * Create a {@link Link} widget that allows to select the given <em>element</em> in a source model editor (which is
+	 * opened if necessary).
+	 *
+	 * @see #createLinkToSourceModel(Composite, EObject)
+	 *
+	 * @param container
+	 *            The {@link Composite} below which the link shall be created.
+	 * @param label
+	 *            The label for the link.
+	 * @param element
+	 *            The {@link EObject} to select in the source model editor.
+	 */
+	protected Link createLinkToSourceModel(Composite container, String label, EObject element) {
+
+		Link link = new Link(container, SWT.NONE);
+		GridDataFactory.swtDefaults().applyTo(link);
+		link.setText("<A>" + label + "</A>");
+		link.addSelectionListener((SelectionListener2) e -> {
+
+			try {
+				UIHelper.selectEObjectInEditor(element, Optional.empty());
+			} catch (Exception e1) {
+				UIHelper.log(e1);
+				this.setErrorMessage("Unable to select element in the Source Model Editor!");
+			}
+
+		});
+
+		return link;
 	}
 
 }

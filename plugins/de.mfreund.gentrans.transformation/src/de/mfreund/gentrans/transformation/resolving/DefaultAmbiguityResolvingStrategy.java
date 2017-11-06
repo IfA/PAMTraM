@@ -50,11 +50,7 @@ public class DefaultAmbiguityResolvingStrategy extends AbstractAmbiguityResolvin
 	@Override
 	public List<Mapping> searchingSelectMapping(List<Mapping> choices, EObject element) {
 
-		if (choices == null || choices.isEmpty()) {
-			return new ArrayList<>();
-		} else {
-			return new ArrayList<>(Arrays.asList(choices.get(0)));
-		}
+		return choices == null ? new ArrayList<>() : choices;
 	}
 
 	@Override

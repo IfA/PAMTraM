@@ -2,9 +2,12 @@ package de.mfreund.gentrans.transformation.resolving.wizards;
 
 import java.util.Optional;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
+import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
@@ -14,10 +17,14 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Shell;
 
+import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
+import de.tud.et.ifa.agtele.resources.ResourceHelper;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
+import pamtram.presentation.PamtramEditor;
 
 /**
  * A customizable {@link TitleAreaDialog} with a message and three buttons ('<em>OK</em>', '<em>Abort
@@ -211,5 +218,60 @@ public abstract class AbstractDialog extends TitleAreaDialog {
 	 * @param container
 	 */
 	protected abstract void createInnerContents(Composite container);
+
+	/**
+	 * Create a {@link Link} widget that allows to select the given <em>element</em> in a PAMTraM editor (which is
+	 * opened if necessary).
+	 * <p />
+	 * Note: This just calls {@link #createLinkToPamtramModel(Composite, String, EObject)} and provides a label in the
+	 * form of '-> Show " + element.eClass().getName() + " in PAMTraM Model...'.
+	 *
+	 * @see #createLinkToPamtramModel(Composite, String, EObject)
+	 *
+	 * @param container
+	 *            The {@link Composite} below which the link shall be created.
+	 * @param element
+	 *            The {@link EObject} to select in the PAMTraM editor.
+	 */
+	protected Link createLinkToPamtramModel(Composite container, EObject element) {
+
+		return this.createLinkToPamtramModel(container,
+				"-> Show " + element.eClass().getName() + " in PAMTraM Model...", element);
+	}
+
+	/**
+	 * Create a {@link Link} widget that allows to select the given <em>element</em> in a PAMTraM editor (which is
+	 * opened if necessary).
+	 *
+	 * @see #createLinkToPamtramModel(Composite, EObject)
+	 *
+	 * @param container
+	 *            The {@link Composite} below which the link shall be created.
+	 * @param label
+	 *            The label for the link.
+	 * @param element
+	 *            The {@link EObject} to select in the PAMTraM editor.
+	 */
+	protected Link createLinkToPamtramModel(Composite container, String label, EObject element) {
+
+		Link link = new Link(container, SWT.NONE);
+		GridDataFactory.swtDefaults().applyTo(link);
+		link.setText("<A>" + label + "</A>");
+		link.addSelectionListener((SelectionListener2) e -> {
+
+			try {
+				PamtramEditor editor = (PamtramEditor) UIHelper.openEditor(
+						ResourceHelper.getFileForResource(element.eResource()), "pamtram.presentation.PamtramEditorID");
+				editor.setSelection(new StructuredSelection(
+						AgteleEcoreUtil.getEquivalentElementFrom(element, editor.getEditingDomain().getResourceSet())));
+			} catch (Exception e1) {
+				UIHelper.log(e1);
+				this.setErrorMessage("Unable to select element in the PAMTraM Editor!");
+			}
+
+		});
+
+		return link;
+	}
 
 }

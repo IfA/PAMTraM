@@ -13,12 +13,10 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Link;
 
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.resolving.UserDecisionResolvingStrategy;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
-import de.tud.et.ifa.agtele.ui.util.UIHelper;
 
 /**
  * The dialog that is used by the {@link UserDecisionResolvingStrategy} to resolve ambiguities during the
@@ -74,19 +72,7 @@ public class SearchingAmbiguityDialog<T> extends GenericSelectionDialog<T> {
 
 		// A link that allows jumping to the source model and selecting the element
 		//
-		Link link = new Link(group, SWT.NONE);
-		GridDataFactory.swtDefaults().applyTo(link);
-		link.setText("<A>-> Show in Source Model...</A>");
-		link.addSelectionListener((SelectionListener2) e -> {
-
-			try {
-				UIHelper.selectEObjectInEditor(this.element, Optional.empty());
-			} catch (Exception e1) {
-				UIHelper.log(e1);
-				this.setErrorMessage("Unable to select element in the Editor!");
-			}
-
-		});
+		this.createLinkToSourceModel(group, this.element);
 
 		super.createInnerContents(container);
 	}

@@ -251,6 +251,13 @@ public class InstanceSelectorHandler {
 			return new ArrayList<>();
 		}
 
+		if (targetInstanceSelector.getReferenceAttribute() == null) {
+
+			// Nothing to filter
+			//
+			return new ArrayList<>(potentialTargetInstances);
+		}
+
 		// The hint values that will be compared to the value of the 'referenceAttribute' (the 'reference values' of
 		// potential target instances). In most cases, there should be only a single hint value. If there are multiple
 		// values, these will be treated as alternative values.

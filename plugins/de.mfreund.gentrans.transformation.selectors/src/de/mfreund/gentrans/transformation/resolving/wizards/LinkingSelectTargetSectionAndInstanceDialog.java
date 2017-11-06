@@ -4,97 +4,81 @@
 package de.mfreund.gentrans.transformation.resolving.wizards;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
-import de.mfreund.gentrans.transformation.resolving.UserDecisionResolvingStrategy;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import pamtram.mapping.MappingHintGroupType;
-import pamtram.mapping.extended.ReferenceTargetSelector;
+import pamtram.structure.target.TargetSectionClass;
 import pamtram.structure.target.TargetSectionCrossReference;
 
 /**
- * The dialog that is used by the {@link UserDecisionResolvingStrategy} to resolve <em>LinkingSelectTargetInstance</em>
- * ambiguities during the <em>joining</em> phase.
  *
  * @author mfreund
  */
-public class LinkingSelectTargetInstanceAmbiguityDialog extends GenericSelectionDialog<EObjectWrapper> {
+public class LinkingSelectTargetSectionAndInstanceDialog extends ClassAndInstanceSelectorDialog<TargetSectionClass> {
 
 	/**
 	 * The {@link TargetSectionCrossReference} whose target shall be set.
 	 */
-	protected TargetSectionCrossReference reference;
+	private TargetSectionCrossReference reference;
 
 	/**
-	 * The list of {@link EObjectWrapper elements} for that the given <em>reference</em> shall be set.
+	 * The {@link MappingHintGroupType} based on which the elements to link were created.
 	 */
-	protected List<EObjectWrapper> sourceElements;
-
-	/**
-	 * The {@link MappingHintGroupType} based on which the {@link #sectionInstances} were created.
-	 */
-	protected MappingHintGroupType hintGroup;
-
-	/**
-	 * An optional {@link ReferenceTargetSelector} that was specified for the {@link #hintGroup}.
-	 */
-	protected Optional<ReferenceTargetSelector> referenceTargetSelector;
-
-	/**
-	 * A hint value determined for the {@link #referenceTargetSelector}.
-	 */
-	protected Optional<String> hintValue;
+	private MappingHintGroupType hintGroup;
 
 	/**
 	 * This creates an instance.
 	 * @param options
 	 *            The options that the user can choose from.
-	 * @param reference
-	 *            The {@link TargetSectionCrossReference} whose target shall be set.
-	 * @param hintGroup
-	 *            The {@link MappingHintGroupType} based on which the {@link #sourceElements} were created.
-	 * @param referenceTargetSelector
-	 *            An {@link ReferenceTargetSelector} that was specified for the {@link #hintGroup}.
-	 * @param sourceElements
-	 *            The list of {@link EObjectWrapper elements} for that the given <em>reference</em> shall be set.
 	 * @param enhanceMappingModelListener
 	 *            An optional {@link SelectionListener2} that will be called when the <em>EnhanceMappingModelButton</em>
 	 *            is clicked. If no listener is given, the button will be grayed out.
+	 * @param reference
+	 *            The {@link TargetSectionCrossReference} whose target shall be set.
+	 * @param hintGroup
+	 *            The {@link MappingHintGroupType} based on which the elements to link were created.
 	 */
-	public LinkingSelectTargetInstanceAmbiguityDialog(List<EObjectWrapper> options, TargetSectionCrossReference reference,
-			MappingHintGroupType hintGroup, Optional<ReferenceTargetSelector> referenceTargetSelector,
-			List<EObjectWrapper> sourceElements, Optional<SelectionListener2> enhanceMappingModelListener) {
+	public LinkingSelectTargetSectionAndInstanceDialog(Map<TargetSectionClass, List<EObjectWrapper>> options,
+			Optional<SelectionListener2> enhanceMappingModelListener,
+			TargetSectionCrossReference reference, MappingHintGroupType hintGroup) {
 
-		super("Multiple possible target elements found to link elements of the target model!", options,
-				reference.getEReference().isMany(), enhanceMappingModelListener);
-
+		super("Multiple possible target sections and instances found to link elements of the target model!", options,
+				false, enhanceMappingModelListener);
 		this.reference = reference;
-		this.sourceElements = sourceElements;
 		this.hintGroup = hintGroup;
-		this.referenceTargetSelector = referenceTargetSelector;
 	}
 
 	@Override
 	protected Optional<String> getGroupText() {
 
-		return Optional.of("Possible Target Instances:");
+		return Optional.of("Possible Target Section Classes:");
 	}
 
 	@Override
 	protected void createInnerContents(Composite container) {
 
+		Composite newContainer = new Composite(container, SWT.NONE);
+		GridDataFactory.fillDefaults().grab(true, true).span(2, 1).applyTo(newContainer);
+		GridLayout layout = new GridLayout(3, false);
+		layout.verticalSpacing = 5;
+		layout.marginRight = 0;
+		layout.marginLeft = 0;
+		newContainer.setLayout(layout);
+
 		StringBuilder message = new StringBuilder().append(
 				"The ambiguity occurred while setting the target element(s) for the TargetSectionCrossReference '")
-				.append(this.reference.getName()).append("' for ").append(this.sourceElements.size())
-				.append(this.sourceElements.size() == 1 ? " instance" : "instances").append(" of the TargetSection '")
+				.append(this.reference.getName()).append("' of the TargetSection '")
 				.append(this.hintGroup.getTargetSection().getName()).append("' created by the MappingHintGroup '")
 				.append(this.hintGroup.getName()).append("'.\n\n");
 
@@ -118,6 +102,6 @@ public class LinkingSelectTargetInstanceAmbiguityDialog extends GenericSelection
 		this.createLinkToPamtramModel(group, this.hintGroup);
 
 		super.createInnerContents(container);
-	}
 
+	}
 }

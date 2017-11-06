@@ -49,9 +49,6 @@ public class JoiningSelectContainerInstanceAmbiguityDialog extends GenericSelect
 
 	/**
 	 * This creates an instance.
-	 *
-	 * @param message
-	 *            The message that shall be displayed in the dialog.
 	 * @param options
 	 *            The options that the user can choose from.
 	 * @param sectionInstances
@@ -66,12 +63,12 @@ public class JoiningSelectContainerInstanceAmbiguityDialog extends GenericSelect
 	 *            An optional {@link SelectionListener2} that will be called when the <em>EnhanceMappingModelButton</em>
 	 *            is clicked. If no listener is given, the button will be grayed out.
 	 */
-	public JoiningSelectContainerInstanceAmbiguityDialog(String message, List<EObjectWrapper> options,
-			List<EObjectWrapper> sectionInstances, MappingHintGroupType hintGroup,
-			Optional<ContainerSelector> containerSelector, Optional<String> hintValue,
-			Optional<SelectionListener2> enhanceMappingModelListener) {
+	public JoiningSelectContainerInstanceAmbiguityDialog(List<EObjectWrapper> options, List<EObjectWrapper> sectionInstances,
+			MappingHintGroupType hintGroup, Optional<ContainerSelector> containerSelector,
+			Optional<String> hintValue, Optional<SelectionListener2> enhanceMappingModelListener) {
 
-		super(message, options, false, enhanceMappingModelListener);
+		super("Multiple possible container instances found to join elements of the target model!", options, false,
+				enhanceMappingModelListener);
 
 		this.sectionInstances = sectionInstances;
 		this.hintGroup = hintGroup;
@@ -114,6 +111,12 @@ public class JoiningSelectContainerInstanceAmbiguityDialog extends GenericSelect
 		this.createLinkToPamtramModel(group, this.hintGroup);
 
 		super.createInnerContents(container);
+	}
+
+	@Override
+	protected Optional<String> getGroupText() {
+
+		return Optional.of("Possible Container Instances:");
 	}
 
 }

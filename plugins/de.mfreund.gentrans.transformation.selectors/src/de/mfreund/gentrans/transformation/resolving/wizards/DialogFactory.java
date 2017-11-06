@@ -14,14 +14,7 @@ import java.util.function.Supplier;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.IDialogConstants;
-import org.eclipse.jface.layout.GridDataFactory;
-import org.eclipse.jface.layout.GridLayoutFactory;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.widgets.Label;
 
 import de.mfreund.gentrans.transformation.UserAbortException;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
@@ -183,8 +176,7 @@ public class DialogFactory {
 			Optional<SelectionListener2> enhanceMappingModelListener) throws AmbiguityResolvingException {
 
 		Supplier<InstantiatingSelectAttributeValueDialog> dialogSupplier = () -> new InstantiatingSelectAttributeValueDialog(
-				"Unspecified attribute value found for an element of the target model!", attribute, element,
-				mappingHintGroup, enhanceMappingModelListener);
+				attribute, element, mappingHintGroup, enhanceMappingModelListener);
 
 		ValueSpecificationDialog dialog = DialogFactory.createAndExecuteDialog(dialogSupplier);
 
@@ -214,8 +206,7 @@ public class DialogFactory {
 			throws AmbiguityResolvingException {
 
 		Supplier<InstantiatingSelectCardinalityDialog> dialogSupplier = () -> new InstantiatingSelectCardinalityDialog(
-				"Unspecified cardinality found for a TargetSectionClass!", targetSectionClass, mappingHintGroup,
-				enhanceMappingModelListener);
+				targetSectionClass, mappingHintGroup, enhanceMappingModelListener);
 
 		ValueSpecificationDialog dialog = DialogFactory.createAndExecuteDialog(dialogSupplier);
 
@@ -256,7 +247,7 @@ public class DialogFactory {
 	}
 
 	/**
-	 * Creates and executes a {@link GenericSelectionDialog} in order to resolve a <em>SelectConnectionPath</em>
+	 * Creates and executes a {@link GenericSelectionDialog} in order to resolve a <em>JoiningSelectConnectionPath</em>
 	 * ambiguity.
 	 * <p />
 	 * Note: This can be called from outside the UI thread as the dialog is executed via its own {@link Runnable}.
@@ -264,7 +255,7 @@ public class DialogFactory {
 	 * @param choices
 	 *            The list of {@link ModelConnectionPath options} that the user can choose from.
 	 * @param element
-	 *            The {@link TargetSectionClass} for that the option shall be chosen.
+	 *            The {@link TargetSection} for that the option shall be chosen.
 	 * @param enhanceMappingModelListener
 	 *            An optional {@link SelectionListener2} that will be called when the <em>EnhanceMappingModelButton</em>
 	 *            is clicked. If no listener is given, the button will be grayed out.
@@ -272,20 +263,12 @@ public class DialogFactory {
 	 * @throws AmbiguityResolvingException
 	 *             If the user pressed the <em>Abort Transformation</em> button in the dialog.
 	 */
-	public static ModelConnectionPath createAndExecuteSelectConnectionPathDialog(List<ModelConnectionPath> choices,
-			TargetSectionClass element, Optional<SelectionListener2> enhanceMappingModelListener)
-			throws AmbiguityResolvingException {
+	public static ModelConnectionPath createAndExecuteJoiningSelectConnectionPathDialog(
+			List<ModelConnectionPath> choices, TargetSection element,
+			Optional<SelectionListener2> enhanceMappingModelListener) throws AmbiguityResolvingException {
 
 		Supplier<JoiningSelectConnectionPathAmbiguityDialog> dialogSupplier = () -> new JoiningSelectConnectionPathAmbiguityDialog(
-				"Multiple possible paths found to join elements of the target model!", choices, element,
-				enhanceMappingModelListener) {
-
-			@Override
-			protected Optional<String> getGroupText() {
-
-				return Optional.of("Possible Connection Paths:");
-			}
-		};
+				choices, element, enhanceMappingModelListener);
 
 		JoiningSelectConnectionPathAmbiguityDialog dialog = DialogFactory.createAndExecuteDialog(dialogSupplier);
 
@@ -293,8 +276,8 @@ public class DialogFactory {
 	}
 
 	/**
-	 * Creates and executes a {@link GenericSelectionDialog} in order to resolve a <em>SelectContainerInstance</em>
-	 * ambiguity.
+	 * Creates and executes a {@link GenericSelectionDialog} in order to resolve a
+	 * <em>JoiningSelectContainerInstance</em> ambiguity.
 	 * <p />
 	 * Note: This can be called from outside the UI thread as the dialog is executed via its own {@link Runnable}.
 	 *
@@ -321,15 +304,7 @@ public class DialogFactory {
 			Optional<SelectionListener2> enhanceMappingModelListener) throws AmbiguityResolvingException {
 
 		Supplier<JoiningSelectContainerInstanceAmbiguityDialog> dialogSupplier = () -> new JoiningSelectContainerInstanceAmbiguityDialog(
-				"Multiple possible container instances found to join elements of the target model!", choices,
-				sectionInstances, hintGroup, containerSelector, hintValue, enhanceMappingModelListener) {
-
-			@Override
-			protected Optional<String> getGroupText() {
-
-				return Optional.of("Possible Container Instances:");
-			}
-		};
+				choices, sectionInstances, hintGroup, containerSelector, hintValue, enhanceMappingModelListener);
 
 		JoiningSelectContainerInstanceAmbiguityDialog dialog = DialogFactory.createAndExecuteDialog(dialogSupplier);
 
@@ -337,7 +312,7 @@ public class DialogFactory {
 	}
 
 	/**
-	 * Creates and executes a {@link GenericSelectionDialog} in order to resolve a <em>SelectConnectionPath</em>
+	 * Creates and executes a {@link GenericSelectionDialog} in order to resolve a <em>JoiningSelectConnectionPath</em>
 	 * ambiguity.
 	 * <p />
 	 * Note: This can be called from outside the UI thread as the dialog is executed via its own {@link Runnable}.
@@ -356,62 +331,13 @@ public class DialogFactory {
 	 * @throws AmbiguityResolvingException
 	 *             If the user pressed the <em>Abort Transformation</em> button in the dialog.
 	 */
-	public static Map<ModelConnectionPath, List<EObjectWrapper>> createAndExecuteSelectConnectionPathAndContainerInstanceDialog(
+	public static Map<ModelConnectionPath, List<EObjectWrapper>> createAndExecuteJoiningSelectConnectionPathAndContainerInstanceDialog(
 			Map<ModelConnectionPath, List<EObjectWrapper>> choices, MappingHintGroupType hintGroup,
 			List<EObjectWrapper> sectionInstances, Optional<SelectionListener2> enhanceMappingModelListener)
 			throws AmbiguityResolvingException {
 
-		Supplier<ClassAndInstanceSelectorDialog<ModelConnectionPath>> dialogSupplier = () -> new ClassAndInstanceSelectorDialog<ModelConnectionPath>(
-				"Multiple possible paths and container instances found to join elements of the target model!", choices,
-				false, enhanceMappingModelListener) {
-
-			@Override
-			protected Optional<String> getGroupText() {
-
-				return Optional.of("Possible Connection Paths:");
-			}
-
-			@Override
-			protected void createInnerContents(Composite container) {
-
-				Composite newContainer = new Composite(container, SWT.NONE);
-				GridDataFactory.fillDefaults().grab(true, true).span(2, 1).applyTo(newContainer);
-				GridLayout layout = new GridLayout(3, false);
-				layout.verticalSpacing = 5;
-				layout.marginRight = 0;
-				layout.marginLeft = 0;
-				newContainer.setLayout(layout);
-
-				StringBuilder message = new StringBuilder().append("The ambiguity occurred while joining ")
-						.append(sectionInstances.size())
-						.append(sectionInstances.size() == 1 ? " instance" : "instances")
-						.append(" of the TargetSection '").append(hintGroup.getTargetSection().getName())
-						.append("' created by the MappingHintGroup '").append(hintGroup.getName()).append("'.\n\n");
-
-				Group group = new Group(container, SWT.NONE);
-				GridDataFactory.fillDefaults().grab(true, true).minSize(300, 200).applyTo(group);
-				group.setText("Source of the Ambiguity:");
-				GridLayoutFactory.fillDefaults().margins(5, 5).applyTo(group);
-
-				// A label providing information about the element
-				//
-				Label label = new Label(group, SWT.WRAP);
-				GridDataFactory.fillDefaults().grab(true, false).applyTo(label);
-				label.setText(message.toString());
-
-				// A link that allows jumping to the pamtram model and selecting the targetSection
-				//
-				this.createLinkToPamtramModel(group, hintGroup.getTargetSection());
-
-				// A link that allows jumping to the pamtram model and selecting the mappingHintGroup
-				//
-				this.createLinkToPamtramModel(group, hintGroup);
-
-				super.createInnerContents(container);
-
-			}
-
-		};
+		Supplier<ClassAndInstanceSelectorDialog<ModelConnectionPath>> dialogSupplier = () -> new JoiningSelectConnectionPathAndContainerInstanceDialog(
+				choices, hintGroup, sectionInstances, enhanceMappingModelListener);
 
 		ClassAndInstanceSelectorDialog<ModelConnectionPath> dialog = DialogFactory
 				.createAndExecuteDialog(dialogSupplier);
@@ -450,15 +376,7 @@ public class DialogFactory {
 			Optional<SelectionListener2> enhanceMappingModelListener) throws AmbiguityResolvingException {
 
 		Supplier<LinkingSelectTargetInstanceAmbiguityDialog> dialogSupplier = () -> new LinkingSelectTargetInstanceAmbiguityDialog(
-				"Multiple possible target elements found to link elements of the target model!", choices, reference,
-				hintGroup, referenceTargetSelector, sourceElements, enhanceMappingModelListener) {
-
-			@Override
-			protected Optional<String> getGroupText() {
-
-				return Optional.of("Possible Target Instances:");
-			};
-		};
+				choices, reference, hintGroup, referenceTargetSelector, sourceElements, enhanceMappingModelListener);
 
 		LinkingSelectTargetInstanceAmbiguityDialog dialog = DialogFactory.createAndExecuteDialog(dialogSupplier);
 
@@ -491,57 +409,8 @@ public class DialogFactory {
 			MappingHintGroupType hintGroup, Optional<SelectionListener2> enhanceMappingModelListener)
 			throws AmbiguityResolvingException {
 
-		Supplier<ClassAndInstanceSelectorDialog<TargetSectionClass>> dialogSupplier = () -> new ClassAndInstanceSelectorDialog<TargetSectionClass>(
-				"Multiple possible target sections and instances found to link elements of the target model!", choices,
-				false, enhanceMappingModelListener) {
-
-			@Override
-			protected Optional<String> getGroupText() {
-
-				return Optional.of("Possible Target Section Classes:");
-			}
-
-			@Override
-			protected void createInnerContents(Composite container) {
-
-				Composite newContainer = new Composite(container, SWT.NONE);
-				GridDataFactory.fillDefaults().grab(true, true).span(2, 1).applyTo(newContainer);
-				GridLayout layout = new GridLayout(3, false);
-				layout.verticalSpacing = 5;
-				layout.marginRight = 0;
-				layout.marginLeft = 0;
-				newContainer.setLayout(layout);
-
-				StringBuilder message = new StringBuilder().append(
-						"The ambiguity occurred while setting the target element(s) for the TargetSectionCrossReference '")
-						.append(reference.getName()).append("' of the TargetSection '")
-						.append(hintGroup.getTargetSection().getName()).append("' created by the MappingHintGroup '")
-						.append(hintGroup.getName()).append("'.\n\n");
-
-				Group group = new Group(container, SWT.NONE);
-				GridDataFactory.fillDefaults().grab(true, true).minSize(300, 200).applyTo(group);
-				group.setText("Source of the Ambiguity:");
-				GridLayoutFactory.fillDefaults().margins(5, 5).applyTo(group);
-
-				// A label providing information about the element
-				//
-				Label label = new Label(group, SWT.WRAP);
-				GridDataFactory.fillDefaults().grab(true, false).applyTo(label);
-				label.setText(message.toString());
-
-				// A link that allows jumping to the pamtram model and selecting the targetSection
-				//
-				this.createLinkToPamtramModel(group, hintGroup.getTargetSection());
-
-				// A link that allows jumping to the pamtram model and selecting the mappingHintGroup
-				//
-				this.createLinkToPamtramModel(group, hintGroup);
-
-				super.createInnerContents(container);
-
-			}
-
-		};
+		Supplier<LinkingSelectTargetSectionAndInstanceDialog> dialogSupplier = () -> new LinkingSelectTargetSectionAndInstanceDialog(
+				choices, enhanceMappingModelListener, reference, hintGroup);
 
 		ClassAndInstanceSelectorDialog<TargetSectionClass> dialog = DialogFactory
 				.createAndExecuteDialog(dialogSupplier);

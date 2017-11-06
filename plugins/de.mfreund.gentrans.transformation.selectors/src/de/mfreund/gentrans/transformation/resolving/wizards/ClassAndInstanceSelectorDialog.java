@@ -13,6 +13,7 @@ import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Group;
 
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
@@ -75,11 +76,11 @@ public class ClassAndInstanceSelectorDialog<T> extends GenericSelectionDialog<T>
 
 		// Create the list viewer for the list of types
 		//
-		ListViewer pathListViewer = this.createListViewer(sashForm, Optional.of("Possible Paths"), false);
+		ListViewer pathListViewer = this.createListViewer(sashForm, this.getGroupText(), false);
 
 		// Create the list viewer for the list of instances
 		//
-		ListViewer instanceListViewer = this.createListViewer(sashForm, Optional.of("Possible Instances"),
+		ListViewer instanceListViewer = this.createListViewer(sashForm, this.getInstanceGroupText(),
 				this.multiSelectionAllowed);
 
 		pathListViewer.addSelectionChangedListener(event -> {
@@ -127,6 +128,17 @@ public class ClassAndInstanceSelectorDialog<T> extends GenericSelectionDialog<T>
 	public List<EObjectWrapper> getInstances() {
 
 		return this.selectedInstances;
+	}
+
+	/**
+	 * Return the group text for the {@link #createListViewer(Composite, Optional, boolean) instance list viewer}
+	 * created as part of {@link #createInnerContents(Composite)}.
+	 *
+	 * @return The group text or an empty optional if no {@link Group} shall be created.
+	 */
+	protected Optional<String> getInstanceGroupText() {
+
+		return Optional.of("Possible Instances:");
 	}
 
 }

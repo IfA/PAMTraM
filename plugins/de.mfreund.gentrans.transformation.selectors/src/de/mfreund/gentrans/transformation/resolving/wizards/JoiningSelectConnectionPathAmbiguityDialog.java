@@ -16,7 +16,7 @@ import org.eclipse.swt.widgets.Label;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
 import de.mfreund.gentrans.transformation.resolving.UserDecisionResolvingStrategy;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
-import pamtram.structure.target.TargetSectionClass;
+import pamtram.structure.target.TargetSection;
 
 /**
  * The dialog that is used by the {@link UserDecisionResolvingStrategy} to resolve <em>JoiningSelectConnectionPath</em>
@@ -27,29 +27,34 @@ import pamtram.structure.target.TargetSectionClass;
 public class JoiningSelectConnectionPathAmbiguityDialog extends GenericSelectionDialog<ModelConnectionPath> {
 
 	/**
-	 * The {@link TargetSectionClass} for that the option shall be chosen.
+	 * The {@link TargetSection} for that the option shall be chosen.
 	 */
-	protected TargetSectionClass element;
+	protected TargetSection element;
 
 	/**
 	 * This creates an instance.
 	 *
-	 * @param message
-	 *            The message that shall be displayed in the dialog.
 	 * @param options
 	 *            The options that the user can choose from.
 	 * @param element
-	 *            The {@link TargetSectionClass} for that the option shall be chosen.
+	 *            The {@link TargetSection} for that the option shall be chosen.
 	 * @param enhanceMappingModelListener
 	 *            An optional {@link SelectionListener2} that will be called when the <em>EnhanceMappingModelButton</em>
 	 *            is clicked. If no listener is given, the button will be grayed out.
 	 */
-	public JoiningSelectConnectionPathAmbiguityDialog(String message, List<ModelConnectionPath> options,
-			TargetSectionClass element, Optional<SelectionListener2> enhanceMappingModelListener) {
+	public JoiningSelectConnectionPathAmbiguityDialog(List<ModelConnectionPath> options, TargetSection element,
+			Optional<SelectionListener2> enhanceMappingModelListener) {
 
-		super(message, options, false, enhanceMappingModelListener);
+		super("Multiple possible paths found to join elements of the target model!", options, false,
+				enhanceMappingModelListener);
 
 		this.element = element;
+	}
+
+	@Override
+	protected Optional<String> getGroupText() {
+
+		return Optional.of("Possible Connection Paths:");
 	}
 
 	@Override
@@ -64,7 +69,7 @@ public class JoiningSelectConnectionPathAmbiguityDialog extends GenericSelection
 		//
 		Label label = new Label(group, SWT.WRAP);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(label);
-		label.setText("Instances of the following TargetSectionClass need to be joined:\n\n" + this.element.getName());
+		label.setText("Instances of the following TargetSection need to be joined:\n\n" + this.element.getName());
 
 		// A link that allows jumping to the source model and selecting the element
 		//

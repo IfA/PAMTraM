@@ -199,7 +199,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 						() -> new RuntimeException("Internal error while determining PAMTraM instance to enhance...")),
 				section);
 
-		ModelConnectionPath result = DialogFactory.createAndExecuteSelectConnectionPathDialog(choices, section,
+		ModelConnectionPath result = DialogFactory.createAndExecuteJoiningSelectConnectionPathDialog(choices, section,
 				Optional.of(enhancer));
 
 		this.printMessage(result.toString(), UserDecisionResolvingStrategy.userDecisionPrefix);
@@ -223,7 +223,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 				section);
 
 		Map<ModelConnectionPath, List<EObjectWrapper>> result = DialogFactory
-				.createAndExecuteSelectConnectionPathAndContainerInstanceDialog(choices, hintGroup, sectionInstances,
+				.createAndExecuteJoiningSelectConnectionPathAndContainerInstanceDialog(choices, hintGroup, sectionInstances,
 						Optional.of(enhancer));
 
 		this.printMessage(

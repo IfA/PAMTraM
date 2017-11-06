@@ -41,9 +41,6 @@ public class InstantiatingSelectAttributeValueDialog extends ValueSpecificationD
 
 	/**
 	 * Create the dialog.
-	 *
-	 * @param message
-	 *            The message that shall be displayed in the dialog.
 	 * @param attribute
 	 *            The {@link TargetSectionAttribute} for that a value shall be entered.
 	 * @param element
@@ -54,10 +51,10 @@ public class InstantiatingSelectAttributeValueDialog extends ValueSpecificationD
 	 *            An optional {@link SelectionListener2} that will be called when the <em>EnhanceMappingModelButton</em>
 	 *            is clicked. If no listener is given, the button will be grayed out.
 	 */
-	public InstantiatingSelectAttributeValueDialog(String message, TargetSectionAttribute attribute, EObject element,
-			InstantiableMappingHintGroup mappingHintGroup, Optional<SelectionListener2> enhanceMappingModelListener) {
+	public InstantiatingSelectAttributeValueDialog(TargetSectionAttribute attribute, EObject element, InstantiableMappingHintGroup mappingHintGroup,
+			Optional<SelectionListener2> enhanceMappingModelListener) {
 
-		super(message,
+		super("Unspecified attribute value found for an element of the target model!",
 				attribute instanceof ActualTargetSectionAttribute
 						? ((ActualTargetSectionAttribute) attribute).getAttribute().getEAttributeType()
 						: EcorePackage.Literals.ESTRING,

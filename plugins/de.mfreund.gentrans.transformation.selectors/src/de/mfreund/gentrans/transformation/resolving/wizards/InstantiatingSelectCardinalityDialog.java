@@ -36,9 +36,6 @@ public class InstantiatingSelectCardinalityDialog extends ValueSpecificationDial
 
 	/**
 	 * Create the dialog.
-	 *
-	 * @param message
-	 *            The message that shall be displayed in the dialog.
 	 * @param targetSectionClass
 	 *            The {@link TargetSectionClass} for that a cardinality shall be entered.
 	 * @param mappingHintGroup
@@ -47,10 +44,11 @@ public class InstantiatingSelectCardinalityDialog extends ValueSpecificationDial
 	 *            An optional {@link SelectionListener2} that will be called when the <em>EnhanceMappingModelButton</em>
 	 *            is clicked. If no listener is given, the button will be grayed out.
 	 */
-	public InstantiatingSelectCardinalityDialog(String message, TargetSectionClass targetSectionClass,
-			InstantiableMappingHintGroup mappingHintGroup, Optional<SelectionListener2> enhanceMappingModelListener) {
+	public InstantiatingSelectCardinalityDialog(TargetSectionClass targetSectionClass, InstantiableMappingHintGroup mappingHintGroup,
+			Optional<SelectionListener2> enhanceMappingModelListener) {
 
-		super(message, EcorePackage.Literals.EINT, enhanceMappingModelListener);
+		super("Unspecified cardinality found for a TargetSectionClass!", EcorePackage.Literals.EINT,
+				enhanceMappingModelListener);
 
 		this.targetSectionClass = targetSectionClass;
 		this.mappingHintGroup = mappingHintGroup;

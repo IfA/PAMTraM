@@ -2,22 +2,17 @@ package de.mfreund.gentrans.transformation.resolving;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.jface.dialogs.IDialogConstants;
-import org.eclipse.swt.widgets.Display;
 
-import de.mfreund.gentrans.transformation.UserAbortException;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
@@ -26,9 +21,7 @@ import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectConne
 import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectConnectionPathMappingModelEnhancer;
 import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectContainerInstanceMappingModelEnhancer;
 import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectRootElementMappingModelEnhancer;
-import de.mfreund.gentrans.transformation.resolving.wizards.ClassAndInstanceSelectorDialog;
 import de.mfreund.gentrans.transformation.resolving.wizards.DialogFactory;
-import de.mfreund.gentrans.transformation.resolving.wizards.GenericSelectionDialog;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.PAMTraM;
 import pamtram.TargetSectionModel;
@@ -229,38 +222,15 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 						() -> new RuntimeException("Internal error while determining PAMTraM instance to enhance...")),
 				section);
 
-		AtomicReference<ClassAndInstanceSelectorDialog<ModelConnectionPath>> dialog = new AtomicReference<>(null);
+		Map<ModelConnectionPath, List<EObjectWrapper>> result = DialogFactory
+				.createAndExecuteSelectConnectionPathAndContainerInstanceDialog(choices, hintGroup, sectionInstances,
+						Optional.of(enhancer));
 
-		// As we are not in the UI thread, we have to use a runnable to show the dialog in order to prevent
-		// 'InvalidThreadAccess' exceptions
-		//
-		Display.getDefault().syncExec(() -> {
+		this.printMessage(
+				result.keySet().iterator().next() + "-->" + result.values().iterator().next().get(0).toString(),
+				UserDecisionResolvingStrategy.userDecisionPrefix);
 
-			dialog.set(new ClassAndInstanceSelectorDialog<>(sectionInstances.size() + " Instance"
-					+ (sectionInstances.size() > 1 ? "s" : "") + " of the TargetSection '" + section.getName()
-					+ "', created by the mapping '" + ((Mapping) hintGroup.eContainer()).getName() + " (Group: "
-					+ hintGroup.getName() + ")', " + (sectionInstances.size() > 1 ? "have" : "has a") + " root element"
-					+ (sectionInstances.size() > 1 ? "s" : "") + " of the type '" + section.getEClass().getName()
-					+ "'. " + (sectionInstances.size() > 1 ? "Theese need" : "It needs")
-					+ " to be put at a sensible position in the target model. "
-					+ "Please choose one of the possible connections to other existing target model elements"
-					+ " below.", choices, false, Optional.of(enhancer)));
-			dialog.get().create();
-			dialog.get().open();
-		});
-
-		if (dialog.get().getReturnCode() == IDialogConstants.CANCEL_ID) {
-			throw new AmbiguityResolvingException(new UserAbortException().getMessage(), new UserAbortException());
-		}
-
-		ModelConnectionPath retPath = dialog.get().getSingleSelection();
-		EObjectWrapper retWrapper = dialog.get().getSingleInstance();
-
-		HashMap<ModelConnectionPath, List<EObjectWrapper>> ret = new HashMap<>();
-		ret.put(retPath, Arrays.asList(dialog.get().getSingleInstance()));
-		this.printMessage(retPath + "-->" + retWrapper.toString(), UserDecisionResolvingStrategy.userDecisionPrefix);
-
-		return ret;
+		return result;
 
 	}
 
@@ -300,50 +270,11 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 			return sourceElements;
 		}
 
-		String dialogMessage;
-		if (referenceTargetSelector != null) {
-			dialogMessage = "The ReferenceTargetSelector '" + referenceTargetSelector.getName() + " of Mapping"
-					+ ((Mapping) hintGroup.eContainer()).getName() + "(Group: " + hintGroup.getName()
-					+ ")' has a Matcher that points to a target element with more than one instance. "
-					+ "Please choose to which element the Reference '" + reference.getName() + "' of the "
-					+ (sourceElements.size() == 1
-							? "following element should point to:\n\n" + sourceElements.get(0).toString()
-							: "affected elements should point to.");
-		} else {
-			dialogMessage = "There was more than one target element found for the CrossReference '"
-					+ reference.getName() + "' of TargetSection "
-					+ (hintGroup.getTargetSection().getName().isEmpty() ? hintGroup.getTargetSection().getName()
-							: hintGroup.getTargetSection().getEClass().getName())
-					+ " in Mapping " + ((Mapping) hintGroup.eContainer()).getName() + " (HintGroup: "
-					+ hintGroup.getName() + ") . Please select a target element"
-					+ (sourceElements.size() == 1 ? " for the following source:\n" + sourceElements.get(0).toString()
-							: ".");
-		}
+		List<EObjectWrapper> result = DialogFactory.createAndExecuteLinkingSelectTargetInstanceDialog(choices,
+				reference, hintGroup, Optional.ofNullable(referenceTargetSelector), sourceElements, Optional.empty());
 
-		AtomicReference<GenericSelectionDialog<EObjectWrapper>> dialog = new AtomicReference<>(null);
-
-		// As we are not in the UI thread, we have to use a runnable to show the dialog in order to prevent
-		// 'InvalidThreadAccess' exceptions
-		//
-		Display.getDefault().syncExec(() -> {
-
-			dialog.set(new GenericSelectionDialog<>(dialogMessage, choices, reference.getEReference().isMany(),
-					Optional.empty()));
-			dialog.get().create();
-			dialog.get().open();
-		});
-
-		if (dialog.get().getReturnCode() == IDialogConstants.CANCEL_ID) {
-			throw new AmbiguityResolvingException(new UserAbortException().getMessage(), new UserAbortException());
-		}
-
-		this.printMessage(Arrays.toString(dialog.get().getSelection().toArray()),
-				UserDecisionResolvingStrategy.userDecisionPrefix);
-		if (reference.getEReference().isMany()) {
-			return new ArrayList<>(dialog.get().getSelection());
-		} else {
-			return Arrays.asList(dialog.get().getSingleSelection());
-		}
+		this.printMessage(Arrays.toString(result.toArray()), UserDecisionResolvingStrategy.userDecisionPrefix);
+		return new ArrayList<>(result);
 	}
 
 	@Override
@@ -351,42 +282,14 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 			Map<TargetSectionClass, List<EObjectWrapper>> choices, TargetSectionCrossReference reference,
 			MappingHintGroupType hintGroup) throws AmbiguityResolvingException {
 
-		AtomicReference<ClassAndInstanceSelectorDialog<TargetSectionClass>> dialog = new AtomicReference<>(null);
+		Map<TargetSectionClass, List<EObjectWrapper>> result = DialogFactory
+				.createAndExecuteLinkingSelectTargetSectionAndInstanceDialog(choices, reference, hintGroup,
+						Optional.empty());
 
-		// As we are not in the UI thread, we have to use a runnable to show the dialog in order to prevent
-		// 'InvalidThreadAccess' exceptions
-		//
-		Display.getDefault().syncExec(() -> {
-
-			dialog.set(new ClassAndInstanceSelectorDialog<TargetSectionClass>(
-					"There was more than one target element found for the NonContainmmentReference '"
-							+ reference.getName() + "' of TargetMMSection " + hintGroup.getTargetSection().getName()
-							+ "(Section: " + hintGroup.getTargetSection().getEClass().getName() + ") in Mapping "
-							+ ((Mapping) hintGroup.eContainer()).getName() + "(Group: " + hintGroup.getName() + ") ."
-							+ "Please select a target Class and element.",
-					choices, reference.getEReference().isMany(), Optional.empty()) {
-
-				@Override
-				protected String getStringRepresentation(TargetSectionClass option) {
-
-					return option.getName() + " (Section: " + option.getContainingSection().getName() + ")";
-				}
-			});
-			dialog.get().create();
-			dialog.get().open();
-		});
-
-		if (dialog.get().getReturnCode() == IDialogConstants.CANCEL_ID) {
-			throw new AmbiguityResolvingException(new UserAbortException().getMessage(), new UserAbortException());
-		}
-
-		TargetSectionClass retSection = dialog.get().getSingleSelection();
-
-		HashMap<TargetSectionClass, List<EObjectWrapper>> ret = new HashMap<>();
-		ret.put(retSection, new ArrayList<>(dialog.get().getInstances()));
-
-		this.printMessage(retSection.getName() + "-->" + Arrays.toString(ret.get(retSection).toArray()),
+		this.printMessage(
+				result.keySet().iterator().next().getName() + "-->"
+						+ Arrays.toString(result.values().iterator().next().toArray()),
 				UserDecisionResolvingStrategy.userDecisionPrefix);
-		return ret;
+		return result;
 	}
 }

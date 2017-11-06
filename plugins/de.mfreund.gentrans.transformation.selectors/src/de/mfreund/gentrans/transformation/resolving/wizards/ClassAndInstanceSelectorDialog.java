@@ -43,7 +43,7 @@ public class ClassAndInstanceSelectorDialog<T> extends GenericSelectionDialog<T>
 
 	/**
 	 * Create the dialog.
-	 * 
+	 *
 	 * @param message
 	 *            The message that shall be displayed in the dialog.
 	 * @param options
@@ -71,7 +71,7 @@ public class ClassAndInstanceSelectorDialog<T> extends GenericSelectionDialog<T>
 		// Create the sash form that will contain the two lists for paths and instances
 		//
 		SashForm sashForm = new SashForm(container, SWT.NONE);
-		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).minSize(200, 200).applyTo(sashForm);
+		GridDataFactory.swtDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).minSize(400, 200).applyTo(sashForm);
 
 		// Create the list viewer for the list of types
 		//

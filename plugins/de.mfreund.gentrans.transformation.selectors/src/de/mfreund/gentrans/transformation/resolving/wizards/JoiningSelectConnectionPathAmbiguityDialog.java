@@ -8,20 +8,14 @@ import java.util.Optional;
 
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
-import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Link;
 
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
 import de.mfreund.gentrans.transformation.resolving.UserDecisionResolvingStrategy;
-import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
-import de.tud.et.ifa.agtele.resources.ResourceHelper;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
-import de.tud.et.ifa.agtele.ui.util.UIHelper;
-import pamtram.presentation.PamtramEditor;
 import pamtram.structure.target.TargetSectionClass;
 
 /**
@@ -74,23 +68,7 @@ public class JoiningSelectConnectionPathAmbiguityDialog extends GenericSelection
 
 		// A link that allows jumping to the source model and selecting the element
 		//
-		Link link = new Link(group, SWT.NONE);
-		GridDataFactory.swtDefaults().applyTo(link);
-		link.setText("<A>-> Show in PAMTraM Model...</A>");
-		link.addSelectionListener((SelectionListener2) e -> {
-
-			try {
-				PamtramEditor editor = (PamtramEditor) UIHelper.openEditor(
-						ResourceHelper.getFileForResource(this.element.eResource()),
-						"pamtram.presentation.PamtramEditorID");
-				editor.setSelection(new StructuredSelection(AgteleEcoreUtil.getEquivalentElementFrom(this.element,
-						editor.getEditingDomain().getResourceSet())));
-			} catch (Exception e1) {
-				UIHelper.log(e1);
-				this.setErrorMessage("Unable to select element in the PAMTraM Editor!");
-			}
-
-		});
+		this.createLinkToPamtramModel(group, this.element);
 
 		super.createInnerContents(container);
 	}

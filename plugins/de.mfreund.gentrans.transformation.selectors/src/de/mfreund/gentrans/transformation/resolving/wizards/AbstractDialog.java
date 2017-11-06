@@ -274,4 +274,55 @@ public abstract class AbstractDialog extends TitleAreaDialog {
 		return link;
 	}
 
+	/**
+	 * Create a {@link Link} widget that allows to select the given <em>element</em> in a source model editor (which is
+	 * opened if necessary).
+	 * <p />
+	 * Note: This just calls {@link #createLinkToSourceModel(Composite, String, EObject)} and provides a label in the
+	 * form of '-> Show Element in Source Model...'.
+	 *
+	 * @see #createLinkToSourceModel(Composite, String, EObject)
+	 *
+	 * @param container
+	 *            The {@link Composite} below which the link shall be created.
+	 * @param element
+	 *            The {@link EObject} to select in the source model editor.
+	 */
+	protected Link createLinkToSourceModel(Composite container, EObject element) {
+
+		return this.createLinkToPamtramModel(container, "-> Show Element in Source Model...", element);
+	}
+
+	/**
+	 * Create a {@link Link} widget that allows to select the given <em>element</em> in a source model editor (which is
+	 * opened if necessary).
+	 *
+	 * @see #createLinkToSourceModel(Composite, EObject)
+	 *
+	 * @param container
+	 *            The {@link Composite} below which the link shall be created.
+	 * @param label
+	 *            The label for the link.
+	 * @param element
+	 *            The {@link EObject} to select in the source model editor.
+	 */
+	protected Link createLinkToSourceModel(Composite container, String label, EObject element) {
+
+		Link link = new Link(container, SWT.NONE);
+		GridDataFactory.swtDefaults().applyTo(link);
+		link.setText("<A>" + label + "</A>");
+		link.addSelectionListener((SelectionListener2) e -> {
+
+			try {
+				UIHelper.selectEObjectInEditor(element, Optional.empty());
+			} catch (Exception e1) {
+				UIHelper.log(e1);
+				this.setErrorMessage("Unable to select element in the Source Model Editor!");
+			}
+
+		});
+
+		return link;
+	}
+
 }

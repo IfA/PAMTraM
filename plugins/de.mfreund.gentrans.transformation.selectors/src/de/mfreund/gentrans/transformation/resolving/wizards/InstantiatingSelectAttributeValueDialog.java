@@ -6,20 +6,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
-import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Link;
 
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
-import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
-import de.tud.et.ifa.agtele.resources.ResourceHelper;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
-import de.tud.et.ifa.agtele.ui.util.UIHelper;
 import pamtram.mapping.InstantiableMappingHintGroup;
-import pamtram.presentation.PamtramEditor;
 import pamtram.structure.target.ActualTargetSectionAttribute;
 import pamtram.structure.target.TargetSectionAttribute;
 
@@ -92,43 +86,11 @@ public class InstantiatingSelectAttributeValueDialog extends ValueSpecificationD
 
 		// A link that allows jumping to the pamtram model and selecting the attribute
 		//
-		Link link = new Link(group, SWT.NONE);
-		GridDataFactory.swtDefaults().applyTo(link);
-		link.setText("<A>-> Show TargetSectionAttribute in PAMTraM Model...</A>");
-		link.addSelectionListener((SelectionListener2) e -> {
-
-			try {
-				PamtramEditor editor = (PamtramEditor) UIHelper.openEditor(
-						ResourceHelper.getFileForResource(this.attribute.eResource()),
-						"pamtram.presentation.PamtramEditorID");
-				editor.setSelection(new StructuredSelection(AgteleEcoreUtil.getEquivalentElementFrom(this.attribute,
-						editor.getEditingDomain().getResourceSet())));
-			} catch (Exception e1) {
-				UIHelper.log(e1);
-				this.setErrorMessage("Unable to select element in the PAMTraM Editor!");
-			}
-
-		});
+		this.createLinkToPamtramModel(group, "-> Show TargetSectionAttribute in PAMTraM Model...", this.attribute);
 
 		// A link that allows jumping to the pamtram model and selecting the mappingHintGroup
 		//
-		Link link2 = new Link(group, SWT.NONE);
-		GridDataFactory.swtDefaults().applyTo(link2);
-		link2.setText("<A>-> Show MappingHintGroup in PAMTraM Model...</A>");
-		link2.addSelectionListener((SelectionListener2) e -> {
-
-			try {
-				PamtramEditor editor = (PamtramEditor) UIHelper.openEditor(
-						ResourceHelper.getFileForResource(this.mappingHintGroup.eResource()),
-						"pamtram.presentation.PamtramEditorID");
-				editor.setSelection(new StructuredSelection(AgteleEcoreUtil
-						.getEquivalentElementFrom(this.mappingHintGroup, editor.getEditingDomain().getResourceSet())));
-			} catch (Exception e1) {
-				UIHelper.log(e1);
-				this.setErrorMessage("Unable to select element in the PAMTraM Editor!");
-			}
-
-		});
+		this.createLinkToPamtramModel(group, this.mappingHintGroup);
 
 		super.createInnerContents(container);
 

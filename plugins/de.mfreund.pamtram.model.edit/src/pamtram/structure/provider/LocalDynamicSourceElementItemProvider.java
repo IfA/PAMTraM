@@ -17,6 +17,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
+import pamtram.PamtramPackage;
 import pamtram.mapping.Mapping;
 import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.LocalDynamicSourceElement;
@@ -61,7 +62,7 @@ public class LocalDynamicSourceElementItemProvider extends DynamicSourceElementI
 	/**
 	 * This adds a property descriptor for the Reference Match Spec feature. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected void addReferenceMatchSpecPropertyDescriptor(Object object) {
@@ -69,9 +70,9 @@ public class LocalDynamicSourceElementItemProvider extends DynamicSourceElementI
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_LocalDynamicSourceElement_referenceMatchSpec_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LocalDynamicSourceElement_referenceMatchSpec_feature", "_UI_LocalDynamicSourceElement_type"),
-				 StructurePackage.Literals.LOCAL_DYNAMIC_SOURCE_ELEMENT__REFERENCE_MATCH_SPEC,
+				 getString("_UI_MatchSpecElement_referenceMatchSpec_feature"),
+				 getString("_UI_MatchSpecElement_referenceMatchSpec_description"),
+				 PamtramPackage.Literals.MATCH_SPEC_ELEMENT__REFERENCE_MATCH_SPEC,
 				 true,
 				 false,
 				 true,
@@ -111,7 +112,7 @@ public class LocalDynamicSourceElementItemProvider extends DynamicSourceElementI
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
 	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override

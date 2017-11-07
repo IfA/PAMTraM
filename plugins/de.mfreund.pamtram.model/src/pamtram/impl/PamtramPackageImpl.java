@@ -19,6 +19,7 @@ import pamtram.DeactivatableElement;
 import pamtram.ExpressionElement;
 import pamtram.FixedValue;
 import pamtram.MappingModel;
+import pamtram.MatchSpecElement;
 import pamtram.ModifiableElement;
 import pamtram.NamedElement;
 import pamtram.PAMTraM;
@@ -132,6 +133,13 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * @generated
 	 */
 	private EClass modifiableElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass matchSpecElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -664,6 +672,24 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getMatchSpecElement() {
+		return matchSpecElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMatchSpecElement_ReferenceMatchSpec() {
+		return (EReference)matchSpecElementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getFixedValue() {
 		return fixedValueEClass;
 	}
@@ -762,6 +788,9 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		modifiableElementEClass = createEClass(MODIFIABLE_ELEMENT);
 		createEReference(modifiableElementEClass, MODIFIABLE_ELEMENT__MODIFIERS);
 
+		matchSpecElementEClass = createEClass(MATCH_SPEC_ELEMENT);
+		createEReference(matchSpecElementEClass, MATCH_SPEC_ELEMENT__REFERENCE_MATCH_SPEC);
+
 		fixedValueEClass = createEClass(FIXED_VALUE);
 		createEAttribute(fixedValueEClass, FIXED_VALUE__VALUE);
 	}
@@ -811,6 +840,10 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		ETypeParameter sectionModelEClass_C = addETypeParameter(sectionModelEClass, "C");
 		ETypeParameter sectionModelEClass_R = addETypeParameter(sectionModelEClass, "R");
 		ETypeParameter sectionModelEClass_A = addETypeParameter(sectionModelEClass, "A");
+		ETypeParameter matchSpecElementEClass_S = addETypeParameter(matchSpecElementEClass, "S");
+		ETypeParameter matchSpecElementEClass_C = addETypeParameter(matchSpecElementEClass, "C");
+		ETypeParameter matchSpecElementEClass_R = addETypeParameter(matchSpecElementEClass, "R");
+		ETypeParameter matchSpecElementEClass_A = addETypeParameter(matchSpecElementEClass, "A");
 
 		// Set bounds for type parameters
 		EGenericType g1 = createEGenericType(theGenericPackage.getSection());
@@ -853,6 +886,46 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		g2 = createEGenericType(sectionModelEClass_A);
 		g1.getETypeArguments().add(g2);
 		sectionModelEClass_A.getEBounds().add(g1);
+		g1 = createEGenericType(theGenericPackage.getSection());
+		g2 = createEGenericType(matchSpecElementEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(matchSpecElementEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(matchSpecElementEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(matchSpecElementEClass_A);
+		g1.getETypeArguments().add(g2);
+		matchSpecElementEClass_S.getEBounds().add(g1);
+		g1 = createEGenericType(theGenericPackage.getClass_());
+		g2 = createEGenericType(matchSpecElementEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(matchSpecElementEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(matchSpecElementEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(matchSpecElementEClass_A);
+		g1.getETypeArguments().add(g2);
+		matchSpecElementEClass_C.getEBounds().add(g1);
+		g1 = createEGenericType(theGenericPackage.getReference());
+		g2 = createEGenericType(matchSpecElementEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(matchSpecElementEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(matchSpecElementEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(matchSpecElementEClass_A);
+		g1.getETypeArguments().add(g2);
+		matchSpecElementEClass_R.getEBounds().add(g1);
+		g1 = createEGenericType(theGenericPackage.getAttribute());
+		g2 = createEGenericType(matchSpecElementEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(matchSpecElementEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(matchSpecElementEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(matchSpecElementEClass_A);
+		g1.getETypeArguments().add(g2);
+		matchSpecElementEClass_A.getEBounds().add(g1);
 
 		// Add supertypes to classes
 		sectionModelEClass.getESuperTypes().add(this.getNamedElement());
@@ -965,6 +1038,10 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 
 		initEClass(modifiableElementEClass, ModifiableElement.class, "ModifiableElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModifiableElement_Modifiers(), theModifierPackage.getValueModifierSet(), null, "modifiers", null, 0, -1, ModifiableElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(matchSpecElementEClass, MatchSpecElement.class, "MatchSpecElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		g1 = createEGenericType(matchSpecElementEClass_R);
+		initEReference(getMatchSpecElement_ReferenceMatchSpec(), g1, null, "referenceMatchSpec", null, 0, -1, MatchSpecElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(fixedValueEClass, FixedValue.class, "FixedValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFixedValue_Value(), ecorePackage.getEString(), "value", null, 1, 1, FixedValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1335,6 +1412,18 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		   source, 
 		   new String[] {
 			 "documentation", "The list of \'ValueModifierSets\' that will be applied on the value of this element.\r\n<br />\r\nThe specific meaning of the modified \'value\' is dependent on the concrete sub-type of this element."
+		   });	
+		addAnnotation
+		  (matchSpecElementEClass, 
+		   source, 
+		   new String[] {
+			 "documentation", "A MatchSpecElement can be equipped with a \'referenceMatchSpec\' consisting of a list of References. The \'referenceMatchSpec\' restricts the application of matched elements by specifiy an additional path (based on references)."
+		   });	
+		addAnnotation
+		  (getMatchSpecElement_ReferenceMatchSpec(), 
+		   source, 
+		   new String[] {
+			 "documentation", "In case of SourceSections referencing itself via a CrossReference, it may be necessary to further restrict the determined values that are used for calculation (e.g. do not use the \'own\' attribute value but only attribute values of \'referenced\' elements. Therefore, this allows to specify a list of References describing a path how to get to the relevant instances based on the root element of the Section."
 		   });	
 		addAnnotation
 		  (fixedValueEClass, 

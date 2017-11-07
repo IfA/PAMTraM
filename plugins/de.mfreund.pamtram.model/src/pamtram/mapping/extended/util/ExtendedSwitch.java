@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.util.Switch;
 import pamtram.ConditionalElement;
 import pamtram.DeactivatableElement;
 import pamtram.ExpressionElement;
+import pamtram.MatchSpecElement;
 import pamtram.ModifiableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.extended.*;
@@ -173,6 +174,7 @@ public class ExtendedSwitch<T> extends Switch<T> {
 				if (result == null) result = caseLocalDynamicSourceElement(attributeMappingSourceElement);
 				if (result == null) result = caseAttributeMappingSourceInterface(attributeMappingSourceElement);
 				if (result == null) result = caseDynamicSourceElement(attributeMappingSourceElement);
+				if (result == null) result = caseMatchSpecElement(attributeMappingSourceElement);
 				if (result == null) result = caseMappingHintSourceInterface(attributeMappingSourceElement);
 				if (result == null) result = caseNamedElement(attributeMappingSourceElement);
 				if (result == null) result = caseModifiableElement(attributeMappingSourceElement);
@@ -235,6 +237,7 @@ public class ExtendedSwitch<T> extends Switch<T> {
 				if (result == null) result = caseLocalDynamicSourceElement(cardinalityMappingSourceElement);
 				if (result == null) result = caseCardinalityMappingSourceInterface(cardinalityMappingSourceElement);
 				if (result == null) result = caseDynamicSourceElement(cardinalityMappingSourceElement);
+				if (result == null) result = caseMatchSpecElement(cardinalityMappingSourceElement);
 				if (result == null) result = caseMappingHintSourceInterface(cardinalityMappingSourceElement);
 				if (result == null) result = caseNamedElement(cardinalityMappingSourceElement);
 				if (result == null) result = caseModifiableElement(cardinalityMappingSourceElement);
@@ -316,6 +319,7 @@ public class ExtendedSwitch<T> extends Switch<T> {
 				if (result == null) result = caseLocalDynamicSourceElement(localMappedAttributeValueExpander);
 				if (result == null) result = caseMappedAttributeValueExpander(localMappedAttributeValueExpander);
 				if (result == null) result = caseDynamicSourceElement(localMappedAttributeValueExpander);
+				if (result == null) result = caseMatchSpecElement(localMappedAttributeValueExpander);
 				if (result == null) result = caseHintImporterMappingHint(localMappedAttributeValueExpander);
 				if (result == null) result = caseModifiableElement(localMappedAttributeValueExpander);
 				if (result == null) result = caseMappingHintType(localMappedAttributeValueExpander);
@@ -331,6 +335,7 @@ public class ExtendedSwitch<T> extends Switch<T> {
 				if (result == null) result = caseLocalDynamicSourceElement(mappedAttributeValuePrepender);
 				if (result == null) result = caseMappedAttributeValueExpander(mappedAttributeValuePrepender);
 				if (result == null) result = caseDynamicSourceElement(mappedAttributeValuePrepender);
+				if (result == null) result = caseMatchSpecElement(mappedAttributeValuePrepender);
 				if (result == null) result = caseHintImporterMappingHint(mappedAttributeValuePrepender);
 				if (result == null) result = caseModifiableElement(mappedAttributeValuePrepender);
 				if (result == null) result = caseMappingHintType(mappedAttributeValuePrepender);
@@ -346,6 +351,7 @@ public class ExtendedSwitch<T> extends Switch<T> {
 				if (result == null) result = caseLocalDynamicSourceElement(mappedAttributeValueAppender);
 				if (result == null) result = caseMappedAttributeValueExpander(mappedAttributeValueAppender);
 				if (result == null) result = caseDynamicSourceElement(mappedAttributeValueAppender);
+				if (result == null) result = caseMatchSpecElement(mappedAttributeValueAppender);
 				if (result == null) result = caseHintImporterMappingHint(mappedAttributeValueAppender);
 				if (result == null) result = caseModifiableElement(mappedAttributeValueAppender);
 				if (result == null) result = caseMappingHintType(mappedAttributeValueAppender);
@@ -894,6 +900,21 @@ public class ExtendedSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseDynamicSourceElement(DynamicSourceElement<S, C, R, A> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Match Spec Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Match Spec Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseMatchSpecElement(MatchSpecElement<S, C, R, A> object) {
 		return null;
 	}
 

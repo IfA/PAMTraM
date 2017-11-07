@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link pamtram.structure.generic.Section#isAbstract <em>Abstract</em>}</li>
  *   <li>{@link pamtram.structure.generic.Section#getExtend <em>Extend</em>}</li>
  *   <li>{@link pamtram.structure.generic.Section#getAllExtend <em>All Extend</em>}</li>
+ *   <li>{@link pamtram.structure.generic.Section#getAllExtending <em>All Extending</em>}</li>
  * </ul>
  *
  * @see pamtram.structure.generic.GenericPackage#getSection()
@@ -101,6 +102,22 @@ public interface Section<S extends Section<S, C, R, A>, C extends pamtram.struct
 	 * @generated
 	 */
 	EList<S> getAllExtend();
+
+	/**
+	 * Returns the value of the '<em><b>All Extending</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>All Extending</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>All Extending</em>' reference list.
+	 * @see pamtram.structure.generic.GenericPackage#getSection_AllExtending()
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='&lt;%java.util.Set%&gt;&lt;Object&gt; extendingSections = new &lt;%java.util.HashSet%&gt;&lt;&gt;();\r\n&lt;%java.util.Iterator%&gt;&lt;&lt;%org.eclipse.emf.common.notify.Notifier%&gt;&gt; it = this.eResource().getResourceSet().getAllContents();\r\nwhile(it.hasNext()) {\r\n\t&lt;%org.eclipse.emf.common.notify.Notifier%&gt; next = it.next();\r\n\tif(next instanceof Section&lt;?, ?, ?, ?&gt; &amp;&amp; ((Section&lt;?, ?, ?, ?&gt;) next).getAllExtend().contains(this)) {\r\n\t\textendingSections.add(next);\r\n\t}\r\n}\r\n\r\nreturn new &lt;%org.eclipse.emf.ecore.util.EcoreEList%&gt;.UnmodifiableEList&lt;&gt;(this, &lt;%pamtram.structure.generic.GenericPackage%&gt;.Literals.SECTION__ALL_EXTENDING,\r\n\t\t\textendingSections.size(), extendingSections.toArray());'"
+	 * @generated
+	 */
+	EList<S> getAllExtending();
 
 	/**
 	 * <!-- begin-user-doc -->

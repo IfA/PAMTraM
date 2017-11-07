@@ -495,6 +495,15 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getSection_AllExtending() {
+		return (EReference)sectionEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getSection__ValidateContainerMatchesExtendContainer__DiagnosticChain_Map() {
 		return sectionEClass.getEOperations().get(0);
 	}
@@ -753,6 +762,7 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		createEAttribute(sectionEClass, SECTION__ABSTRACT);
 		createEReference(sectionEClass, SECTION__EXTEND);
 		createEReference(sectionEClass, SECTION__ALL_EXTEND);
+		createEReference(sectionEClass, SECTION__ALL_EXTENDING);
 		createEOperation(sectionEClass, SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP);
 		createEOperation(sectionEClass, SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP);
 
@@ -1505,6 +1515,8 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		initEReference(getSection_Extend(), g1, null, "extend", null, 0, -1, Section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		g1 = createEGenericType(sectionEClass_S);
 		initEReference(getSection_AllExtend(), g1, null, "allExtend", null, 0, -1, Section.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		g1 = createEGenericType(sectionEClass_S);
+		initEReference(getSection_AllExtending(), g1, null, "allExtending", null, 0, -1, Section.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		op = initEOperation(getSection__ValidateContainerMatchesExtendContainer__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateContainerMatchesExtendContainer", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -1824,6 +1836,18 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		   source, 
 		   new String[] {
 			 "documentation", "The list of recursively collected (abstract) extended Sections."
+		   });	
+		addAnnotation
+		  (getSection_AllExtending(), 
+		   source, 
+		   new String[] {
+			 "get", "<%java.util.Set%><Object> extendingSections = new <%java.util.HashSet%><>();\r\n<%java.util.Iterator%><<%org.eclipse.emf.common.notify.Notifier%>> it = this.eResource().getResourceSet().getAllContents();\r\nwhile(it.hasNext()) {\r\n\t<%org.eclipse.emf.common.notify.Notifier%> next = it.next();\r\n\tif(next instanceof Section<?, ?, ?, ?> && ((Section<?, ?, ?, ?>) next).getAllExtend().contains(this)) {\r\n\t\textendingSections.add(next);\r\n\t}\r\n}\r\n\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.structure.generic.GenericPackage%>.Literals.SECTION__ALL_EXTENDING,\r\n\t\t\textendingSections.size(), extendingSections.toArray());"
+		   });	
+		addAnnotation
+		  (getSection_AllExtending(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of recursively collected Sections extending this Section."
 		   });	
 		addAnnotation
 		  (referenceEClass, 

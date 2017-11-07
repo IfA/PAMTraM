@@ -239,6 +239,7 @@
               propertyDescription="A list of Sections from which this Section inherits modeled Attributes and References."
               propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//structure/generic/Section/extend"/>
           <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/generic/Section/allExtend"/>
+          <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/generic/Section/allExtending"/>
           <genOperations ecoreOperation="pamtram.ecore#//structure/generic/Section/validateContainerMatchesExtendContainer">
             <genParameters ecoreParameter="pamtram.ecore#//structure/generic/Section/validateContainerMatchesExtendContainer/diagnostics"/>
             <genParameters ecoreParameter="pamtram.ecore#//structure/generic/Section/validateContainerMatchesExtendContainer/context"/>
@@ -527,6 +528,8 @@
       </genEnums>
       <genClasses image="false" ecoreClass="pamtram.ecore#//condition/ComplexCondition">
         <genOperations ecoreOperation="pamtram.ecore#//condition/ComplexCondition/isLocalCondition"/>
+        <genOperations ecoreOperation="pamtram.ecore#//condition/ComplexCondition/isExternalCondition"/>
+        <genOperations ecoreOperation="pamtram.ecore#//condition/ComplexCondition/isGlobalCondition"/>
         <genOperations ecoreOperation="pamtram.ecore#//condition/ComplexCondition/isMappingCondition"/>
         <genOperations ecoreOperation="pamtram.ecore#//condition/ComplexCondition/isConditionModelCondition"/>
         <genOperations ecoreOperation="pamtram.ecore#//condition/ComplexCondition/getConditionPartsFlat"/>

@@ -26,17 +26,18 @@ import pamtram.structure.source.SourceSectionReference;
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Condition</b></em>'. <!-- end-user-doc -->
  *
- * <!-- begin-model-doc --> The super type for all Condition types that are not only simple logical compositions of
- * sub-conditions. <!-- end-model-doc -->
+ * <!-- begin-model-doc -->
+ * The super type for all Condition types that are not only simple logical compositions of sub-conditions.
+ * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link pamtram.condition.Condition#getValue <em>Value</em>}</li>
- * <li>{@link pamtram.condition.Condition#getComparator <em>Comparator</em>}</li>
- * <li>{@link pamtram.condition.Condition#getTarget <em>Target</em>}</li>
- * <li>{@link pamtram.condition.Condition#getInstanceSelectors <em>Instance Selectors</em>}</li>
+ *   <li>{@link pamtram.condition.Condition#getValue <em>Value</em>}</li>
+ *   <li>{@link pamtram.condition.Condition#getComparator <em>Comparator</em>}</li>
+ *   <li>{@link pamtram.condition.Condition#getTarget <em>Target</em>}</li>
+ *   <li>{@link pamtram.condition.Condition#getInstanceSelectors <em>Instance Selectors</em>}</li>
  * </ul>
  *
  * @see pamtram.condition.ConditionPackage#getCondition()
@@ -132,7 +133,6 @@ public interface Condition<TargetType> extends ComplexCondition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @model required="true"
 	 * @generated
 	 */

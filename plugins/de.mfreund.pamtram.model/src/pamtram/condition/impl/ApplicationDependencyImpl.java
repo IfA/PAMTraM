@@ -18,22 +18,18 @@ public class ApplicationDependencyImpl extends ConditionImpl<ConditionalElement>
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ApplicationDependencyImpl() {
-
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-
 		return ConditionPackage.Literals.APPLICATION_DEPENDENCY;
 	}
 
@@ -45,7 +41,6 @@ public class ApplicationDependencyImpl extends ConditionImpl<ConditionalElement>
 	 */
 	@Override
 	public void setTarget(ConditionalElement newTarget) {
-
 		super.setTarget(newTarget);
 	}
 

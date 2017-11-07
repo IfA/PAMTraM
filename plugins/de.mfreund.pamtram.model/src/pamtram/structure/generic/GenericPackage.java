@@ -483,13 +483,22 @@ public interface GenericPackage extends EPackage {
 	int SECTION__ALL_EXTEND = CLASS_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>All Extending</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SECTION__ALL_EXTENDING = CLASS_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Section</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION_FEATURE_COUNT = CLASS_FEATURE_COUNT + 3;
+	int SECTION_FEATURE_COUNT = CLASS_FEATURE_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -1640,6 +1649,17 @@ public interface GenericPackage extends EPackage {
 	EReference getSection_AllExtend();
 
 	/**
+	 * Returns the meta object for the reference list '{@link pamtram.structure.generic.Section#getAllExtending <em>All Extending</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>All Extending</em>'.
+	 * @see pamtram.structure.generic.Section#getAllExtending()
+	 * @see #getSection()
+	 * @generated
+	 */
+	EReference getSection_AllExtending();
+
+	/**
 	 * Returns the meta object for the '{@link pamtram.structure.generic.Section#validateContainerMatchesExtendContainer(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Container Matches Extend Container</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2111,6 +2131,14 @@ public interface GenericPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SECTION__ALL_EXTEND = eINSTANCE.getSection_AllExtend();
+
+		/**
+		 * The meta object literal for the '<em><b>All Extending</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SECTION__ALL_EXTENDING = eINSTANCE.getSection_AllExtending();
 
 		/**
 		 * The meta object literal for the '<em><b>Validate Container Matches Extend Container</b></em>' operation.

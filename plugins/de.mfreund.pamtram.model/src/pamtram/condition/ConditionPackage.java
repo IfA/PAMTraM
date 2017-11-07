@@ -101,13 +101,31 @@ public interface ConditionPackage extends EPackage {
 	int COMPLEX_CONDITION___IS_LOCAL_CONDITION = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Is External Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_CONDITION___IS_EXTERNAL_CONDITION = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Is Global Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_CONDITION___IS_GLOBAL_CONDITION = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 2;
+
+	/**
 	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_CONDITION___IS_MAPPING_CONDITION = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
+	int COMPLEX_CONDITION___IS_MAPPING_CONDITION = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Is Condition Model Condition</em>' operation.
@@ -116,7 +134,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_CONDITION___IS_CONDITION_MODEL_CONDITION = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 2;
+	int COMPLEX_CONDITION___IS_CONDITION_MODEL_CONDITION = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Get Condition Parts Flat</em>' operation.
@@ -125,7 +143,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_CONDITION___GET_CONDITION_PARTS_FLAT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 3;
+	int COMPLEX_CONDITION___GET_CONDITION_PARTS_FLAT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Complex Condition</em>' class.
@@ -134,7 +152,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_CONDITION_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 4;
+	int COMPLEX_CONDITION_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link pamtram.condition.impl.ConditionImpl <em>Condition</em>}' class.
@@ -200,6 +218,24 @@ public interface ConditionPackage extends EPackage {
 	 * @ordered
 	 */
 	int VARIADIC_CONDITION___IS_LOCAL_CONDITION = COMPLEX_CONDITION___IS_LOCAL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is External Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIADIC_CONDITION___IS_EXTERNAL_CONDITION = COMPLEX_CONDITION___IS_EXTERNAL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Global Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIADIC_CONDITION___IS_GLOBAL_CONDITION = COMPLEX_CONDITION___IS_GLOBAL_CONDITION;
 
 	/**
 	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
@@ -311,6 +347,24 @@ public interface ConditionPackage extends EPackage {
 	int AND___IS_LOCAL_CONDITION = VARIADIC_CONDITION___IS_LOCAL_CONDITION;
 
 	/**
+	 * The operation id for the '<em>Is External Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND___IS_EXTERNAL_CONDITION = VARIADIC_CONDITION___IS_EXTERNAL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Global Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND___IS_GLOBAL_CONDITION = VARIADIC_CONDITION___IS_GLOBAL_CONDITION;
+
+	/**
 	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -418,6 +472,24 @@ public interface ConditionPackage extends EPackage {
 	 * @ordered
 	 */
 	int OR___IS_LOCAL_CONDITION = VARIADIC_CONDITION___IS_LOCAL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is External Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OR___IS_EXTERNAL_CONDITION = VARIADIC_CONDITION___IS_EXTERNAL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Global Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OR___IS_GLOBAL_CONDITION = VARIADIC_CONDITION___IS_GLOBAL_CONDITION;
 
 	/**
 	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
@@ -529,6 +601,24 @@ public interface ConditionPackage extends EPackage {
 	int UNARY_CONDITION___IS_LOCAL_CONDITION = COMPLEX_CONDITION___IS_LOCAL_CONDITION;
 
 	/**
+	 * The operation id for the '<em>Is External Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNARY_CONDITION___IS_EXTERNAL_CONDITION = COMPLEX_CONDITION___IS_EXTERNAL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Global Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNARY_CONDITION___IS_GLOBAL_CONDITION = COMPLEX_CONDITION___IS_GLOBAL_CONDITION;
+
+	/**
 	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -627,6 +717,24 @@ public interface ConditionPackage extends EPackage {
 	 * @ordered
 	 */
 	int NOT___IS_LOCAL_CONDITION = UNARY_CONDITION___IS_LOCAL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is External Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOT___IS_EXTERNAL_CONDITION = UNARY_CONDITION___IS_EXTERNAL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Global Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOT___IS_GLOBAL_CONDITION = UNARY_CONDITION___IS_GLOBAL_CONDITION;
 
 	/**
 	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
@@ -744,6 +852,24 @@ public interface ConditionPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONDITION___IS_LOCAL_CONDITION = COMPLEX_CONDITION___IS_LOCAL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is External Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION___IS_EXTERNAL_CONDITION = COMPLEX_CONDITION___IS_EXTERNAL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Global Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION___IS_GLOBAL_CONDITION = COMPLEX_CONDITION___IS_GLOBAL_CONDITION;
 
 	/**
 	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
@@ -873,6 +999,24 @@ public interface ConditionPackage extends EPackage {
 	int ATTRIBUTE_CONDITION___IS_LOCAL_CONDITION = CONDITION___IS_LOCAL_CONDITION;
 
 	/**
+	 * The operation id for the '<em>Is External Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_CONDITION___IS_EXTERNAL_CONDITION = CONDITION___IS_EXTERNAL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Global Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_CONDITION___IS_GLOBAL_CONDITION = CONDITION___IS_GLOBAL_CONDITION;
+
+	/**
 	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -973,13 +1117,22 @@ public interface ConditionPackage extends EPackage {
 	int CARDINALITY_CONDITION__INSTANCE_SELECTORS = CONDITION__INSTANCE_SELECTORS;
 
 	/**
+	 * The feature id for the '<em><b>Reference Match Spec</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_CONDITION__REFERENCE_MATCH_SPEC = CONDITION_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Cardinality Condition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_CONDITION_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 0;
+	int CARDINALITY_CONDITION_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Is Local Condition</em>' operation.
@@ -989,6 +1142,24 @@ public interface ConditionPackage extends EPackage {
 	 * @ordered
 	 */
 	int CARDINALITY_CONDITION___IS_LOCAL_CONDITION = CONDITION___IS_LOCAL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is External Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_CONDITION___IS_EXTERNAL_CONDITION = CONDITION___IS_EXTERNAL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Global Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_CONDITION___IS_GLOBAL_CONDITION = CONDITION___IS_GLOBAL_CONDITION;
 
 	/**
 	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
@@ -1109,6 +1280,24 @@ public interface ConditionPackage extends EPackage {
 	int APPLICATION_DEPENDENCY___IS_LOCAL_CONDITION = CONDITION___IS_LOCAL_CONDITION;
 
 	/**
+	 * The operation id for the '<em>Is External Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION_DEPENDENCY___IS_EXTERNAL_CONDITION = CONDITION___IS_EXTERNAL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Global Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION_DEPENDENCY___IS_GLOBAL_CONDITION = CONDITION___IS_GLOBAL_CONDITION;
+
+	/**
 	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1183,6 +1372,26 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getComplexCondition__IsLocalCondition();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.condition.ComplexCondition#isExternalCondition() <em>Is External Condition</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is External Condition</em>' operation.
+	 * @see pamtram.condition.ComplexCondition#isExternalCondition()
+	 * @generated
+	 */
+	EOperation getComplexCondition__IsExternalCondition();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.condition.ComplexCondition#isGlobalCondition() <em>Is Global Condition</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Global Condition</em>' operation.
+	 * @see pamtram.condition.ComplexCondition#isGlobalCondition()
+	 * @generated
+	 */
+	EOperation getComplexCondition__IsGlobalCondition();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.condition.ComplexCondition#isMappingCondition() <em>Is Mapping Condition</em>}' operation.
@@ -1503,6 +1712,22 @@ public interface ConditionPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation COMPLEX_CONDITION___IS_LOCAL_CONDITION = eINSTANCE.getComplexCondition__IsLocalCondition();
+
+		/**
+		 * The meta object literal for the '<em><b>Is External Condition</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation COMPLEX_CONDITION___IS_EXTERNAL_CONDITION = eINSTANCE.getComplexCondition__IsExternalCondition();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Global Condition</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation COMPLEX_CONDITION___IS_GLOBAL_CONDITION = eINSTANCE.getComplexCondition__IsGlobalCondition();
 
 		/**
 		 * The meta object literal for the '<em><b>Is Mapping Condition</b></em>' operation.

@@ -2,6 +2,7 @@
  */
 package pamtram.condition;
 
+import pamtram.MatchSpecElement;
 import pamtram.structure.generic.MetaModelElement;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
@@ -22,6 +23,6 @@ import pamtram.structure.source.SourceSectionReference;
  * @model
  * @generated
  */
-public interface CardinalityCondition extends Condition<MetaModelElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>> {
+public interface CardinalityCondition extends Condition<MetaModelElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>>, MatchSpecElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> {
 
 } // SectionCondition

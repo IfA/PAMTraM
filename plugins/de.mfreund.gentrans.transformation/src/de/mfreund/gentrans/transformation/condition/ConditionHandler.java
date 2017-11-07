@@ -1,7 +1,6 @@
 package de.mfreund.gentrans.transformation.condition;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -18,6 +17,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 
 import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
+import de.mfreund.gentrans.transformation.calculation.MatchSpecHandler;
 import de.mfreund.gentrans.transformation.calculation.ValueConstraintReferenceValueCalculator;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
@@ -25,21 +25,19 @@ import de.mfreund.gentrans.transformation.matching.ValueExtractor;
 import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
 import de.mfreund.gentrans.transformation.registries.SelectedMappingRegistry;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
-import pamtram.ConditionalElement;
 import pamtram.condition.And;
 import pamtram.condition.ApplicationDependency;
 import pamtram.condition.AttributeCondition;
 import pamtram.condition.CardinalityCondition;
 import pamtram.condition.ComparatorEnum;
 import pamtram.condition.ComplexCondition;
+import pamtram.condition.ComplexCondition.ConditionEvaluationException;
 import pamtram.condition.Condition;
 import pamtram.condition.Not;
 import pamtram.condition.Or;
 import pamtram.condition.UnaryCondition;
 import pamtram.condition.VariadicCondition;
-import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
-import pamtram.mapping.extended.MappingHint;
 import pamtram.structure.InstanceSelector;
 import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.constraint.ChoiceConstraint;
@@ -47,13 +45,9 @@ import pamtram.structure.constraint.EqualityConstraint;
 import pamtram.structure.constraint.SingleReferenceValueConstraint;
 import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.constraint.ValueConstraintType;
-import pamtram.structure.generic.MetaModelElement;
-import pamtram.structure.source.SourcePackage;
 import pamtram.structure.source.SourceSection;
-import pamtram.structure.source.SourceSectionAttribute;
 import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.source.SourceSectionCrossReference;
-import pamtram.structure.source.SourceSectionReference;
 
 /**
  * This class will be used to evaluate conditions and store their result.
@@ -261,6 +255,19 @@ public class ConditionHandler {
 		//
 		List<EObject> correspondEClassInstances = this.getInstancesToConsider(sectionCondition,
 				matchedSectionDescriptor);
+
+		// If the user specified an additional 'referenceMatchSpec', use
+		// only that subset of the determined instances corresponding
+		// to this matching path.
+		//
+		if (!sectionCondition.getReferenceMatchSpec().isEmpty()) {
+
+			correspondEClassInstances = correspondEClassInstances.stream()
+					.filter(s -> MatchSpecHandler.conformsMatchedObject(
+							matchedSectionDescriptor.getAssociatedSourceModelElement(), s, sectionCondition,
+							this.logger))
+					.collect(Collectors.toList());
+		}
 
 		// check Cardinality of the condition (e.g. the condition have to be at
 		// least 5 times true)
@@ -546,98 +553,42 @@ public class ConditionHandler {
 	private List<EObject> getInstancesToConsider(Condition<?> condition,
 			MatchedSectionDescriptor matchedSectionDescriptor) {
 
-		// The SourceSectionClasses that are affected by the condition.
-		// 1. For a CardinalityCondition pointed at a...
-		// 1.1. Class, this is the Class itself
-		// 1.2. Attribute, this is the Class holding the Attribute
-		// 1.3. Reference, these are the classes referenced as 'value' by the Reference which is the target of the
-		// condition,
-		// 2. For an AttributeCondition, this is the Class holding the attribute that is the target of the condition,
-		// 3. For an ApplicationDependency, this is the SourceSection referenced by the Mapping which contains the
-		// ConditionalElement targeted by the condition.
-		//
-		List<SourceSectionClass> affectedClasses;
 		SourceSection affectedSection;
-
-		if (condition instanceof CardinalityCondition) {
-			MetaModelElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> conditionTarget = ((CardinalityCondition) condition)
-					.getTarget();
-			affectedSection = (SourceSection) AgteleEcoreUtil.getAncestorOfType(conditionTarget,
-					SourcePackage.Literals.SOURCE_SECTION);
-			if (conditionTarget instanceof SourceSectionClass) {
-				affectedClasses = Arrays.asList((SourceSectionClass) conditionTarget);
-			} else if (conditionTarget instanceof SourceSectionAttribute) {
-				affectedClasses = Arrays.asList((SourceSectionClass) AgteleEcoreUtil.getAncestorOfKind(conditionTarget,
-						SourcePackage.Literals.SOURCE_SECTION_CLASS));
-			} else if (conditionTarget instanceof SourceSectionReference) {
-				affectedClasses = new ArrayList<>(((SourceSectionReference) conditionTarget).getValuesGeneric());
-			} else {
-				this.logger.severe(() -> "Unsupported type of target for a CardinalityCondition '"
-						+ conditionTarget.eClass().getName() + "' found!");
-				return new ArrayList<>();
-			}
-		} else if (condition instanceof AttributeCondition) {
-			affectedSection = (SourceSection) AgteleEcoreUtil.getAncestorOfType((EObject) condition.getTarget(),
-					SourcePackage.Literals.SOURCE_SECTION);
-			affectedClasses = Arrays
-					.asList((SourceSectionClass) ((AttributeCondition) condition).getTarget().eContainer());
-		} else if (condition instanceof ApplicationDependency) {
-			ConditionalElement conditionalElement = ((ApplicationDependency) condition).getTarget();
-			if (conditionalElement instanceof Mapping) {
-				affectedClasses = Arrays.asList(((Mapping) conditionalElement).getSourceSection());
-				affectedSection = (SourceSection) AgteleEcoreUtil.getAncestorOfType(conditionalElement,
-						SourcePackage.Literals.SOURCE_SECTION);
-			} else if (conditionalElement instanceof InstantiableMappingHintGroup) {
-				affectedClasses = Arrays.asList(((Mapping) conditionalElement.eContainer()).getSourceSection());
-				affectedSection = ((Mapping) conditionalElement.eContainer()).getSourceSection();
-			} else if (conditionalElement instanceof MappingHint) {
-				affectedClasses = Arrays
-						.asList(((Mapping) conditionalElement.eContainer().eContainer()).getSourceSection());
-				affectedSection = ((Mapping) conditionalElement.eContainer().eContainer()).getSourceSection();
-			} else {
-				this.logger.severe(() -> "Unknown type of ConditionalElement '" + conditionalElement.eClass().getName()
-						+ "' found!");
-				return new ArrayList<>();
-			}
-		} else {
-			this.logger.severe(() -> "Unknown condition type '" + condition.eClass().getName() + "' found!");
+		List<SourceSectionClass> affectedClasses;
+		try {
+			affectedSection = condition.getAffectedSection();
+			affectedClasses = condition.getAffectedClasses();
+		} catch (ConditionEvaluationException e) {
+			this.logger.severe(e.getMessage());
 			return new ArrayList<>();
 		}
 
 		List<MatchedSectionDescriptor> descriptorsToConsider = new ArrayList<>();
 
-		if (condition.isLocalCondition() && condition.getInstanceSelectors().isEmpty()) {
+		if (condition.isLocalCondition()) {
 
-			if (affectedSection.equals(matchedSectionDescriptor.getAssociatedSourceSectionClass()) || affectedSection
-					.isReferencedBy(matchedSectionDescriptor.getAssociatedSourceSectionClass(), null)) {
+			descriptorsToConsider.add(matchedSectionDescriptor);
 
-				// In case of a 'local' condition without any InstancePointers
-				// specified,
-				// we only consider the given 'matchedSectionDescriptor'.
-				//
-				descriptorsToConsider.add(matchedSectionDescriptor);
-			} else {
+		} else if (condition.isExternalCondition()) {
 
-				// If we are dealing with an 'external' condition (a local condition
-				// that is based on elements from a container section), we need to
-				// use the corresponding 'container descriptors' instead of the
-				// determined 'descriptors' themselves
-				//
+			// If we are dealing with an 'external' condition (a local condition
+			// that is based on elements from a container section), we need to
+			// use the corresponding 'container descriptors' instead of the
+			// determined 'descriptors' themselves
+			//
 
-				MatchedSectionDescriptor descriptorToConsider = matchedSectionDescriptor;
-				while (!descriptorToConsider.getAssociatedSourceSectionClass().getContainingSection()
-						.equals(affectedSection)) {
+			MatchedSectionDescriptor descriptorToConsider = matchedSectionDescriptor;
+			while (!descriptorToConsider.getAssociatedSourceSectionClass().getContainingSection()
+					.equals(affectedSection)) {
 
-					if (descriptorToConsider.getContainerDescriptor() == null) {
-						this.logger.severe(() -> "Internal error while evaluating condition '" + condition.getName()
-								+ "'! Unable to determine correct MatchedSectionDescriptor.");
-						break;
-					}
-					descriptorToConsider = matchedSectionDescriptor.getContainerDescriptor();
+				if (descriptorToConsider.getContainerDescriptor() == null) {
+					this.logger.severe(() -> "Internal error while evaluating condition '" + condition.getName()
+							+ "'! Unable to determine correct MatchedSectionDescriptor.");
+					break;
 				}
-				descriptorsToConsider.add(descriptorToConsider);
-
+				descriptorToConsider = matchedSectionDescriptor.getContainerDescriptor();
 			}
+			descriptorsToConsider.add(descriptorToConsider);
 
 		} else {
 

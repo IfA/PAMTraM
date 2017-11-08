@@ -212,10 +212,14 @@ public abstract class PamtramCasestudyTest {
 
 		Comparison compareResult = EMFCompareUtil.compare(expectedResultResource, resultResource);
 
-		Assert.assertTrue("Comparing expected and actual result 'out.xmi' resulted in conflicts!",
+		Assert.assertTrue(
+				"Comparing expected file '" + expectedResultResource.getURI().lastSegment() + "' and actual result '"
+						+ resultResource.getURI().lastSegment() + "' resulted in conflicts!",
 				compareResult.getConflicts().isEmpty());
 
-		Assert.assertTrue("Comparing expected and actual result 'out.xmi' resulted in differences!",
+		Assert.assertTrue(
+				"Comparing expected file '" + expectedResultResource.getURI().lastSegment() + "' and actual result '"
+						+ resultResource.getURI().lastSegment() + "' resulted in differences!",
 				compareResult.getDifferences().isEmpty());
 	}
 }

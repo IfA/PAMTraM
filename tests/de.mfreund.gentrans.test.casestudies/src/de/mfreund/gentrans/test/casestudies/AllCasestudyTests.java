@@ -21,8 +21,15 @@ import de.tud.et.ifa.agtele.resources.ResourceHelper;
  * @author mfreund
  */
 @RunWith(Suite.class)
-@SuiteClasses({ AutoProBeSimplifiedDissTest.class, AutoProBeTest.class, CompanyVizTest.class, DislMovisaTest.class,
-		ExcelMovisaTdpTest.class, LibraryTest.class, VisuPlusTest.class })
+@SuiteClasses({ AutoProBeSimplifiedDissTest.class, //
+		AutoProBeTest.class, //
+		CompanyVizTest.class, //
+		DislMovisaTest.class, //
+		ExcelMovisaTdpTest.class, //
+		LibraryTest.class, //
+		VisuPlusTest.class, //
+		W3CAuiMovisaTest.class //
+})
 public class AllCasestudyTests {
 
 	protected static final String resultsFolderPath = "de.mfreund.gentrans.test.casestudies/results";

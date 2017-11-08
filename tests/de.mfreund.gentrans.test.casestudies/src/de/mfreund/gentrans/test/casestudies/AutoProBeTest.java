@@ -5,105 +5,60 @@ package de.mfreund.gentrans.test.casestudies;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.logging.Level;
+import java.util.Set;
 
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.junit.Test;
+import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 
-import de.mfreund.gentrans.transformation.ITransformationRunner;
+import de.mfreund.gentrans.transformation.ITransformationRunner.TransformationResult;
 import de.mfreund.gentrans.transformation.TransformationConfiguration;
-import de.mfreund.gentrans.transformation.TransformationConfiguration.InitializationException;
-import de.mfreund.gentrans.transformation.TransformationRunnerFactory;
 
 /**
  *
  * @author mfreund
  */
-public class AutoProBeTest {
+public class AutoProBeTest extends PamtramCasestudyTest {
 
-	private static final String ABORTING = "Aborting...";
+	@Override
+	protected String getCaseStudyName() {
 
-	@Test
-	public void autoProBeCaseStudyShouldProduceCorrectResult() {
-
-		String sourceModelPath = "/de.mfreund.pamtram.casestudies.autoprobe/Source/beispiel_ver_0_2_3.xml";
-		String pamtramModelPath = "/de.mfreund.pamtram.casestudies.autoprobe/Pamtram/STGML2Movisa_enhanced.pamtram";
-		String targetBasePath = "de.mfreund.gentrans.test/src/de/mfreund/gentrans/test/casestudies";
-		String libPath = "D:\\git-repos\\de.tud.et.ifa.agtele.autoprobe\\de.tud.et.ifa.agtele.autoprobe.resources\\lib";
-
-		// // Initialize the PAMTraM and GenLibrary packages (required as we run outside Eclipse)
-		// //
-		// PamtramPackageImpl.init();
-		// GenLibraryPackageImpl.init();
-
-		// Load the required models
-		//
-		// ResourceSet resourceSet = new ResourceSetImpl();
-		//
-		// EObject pamtram = this.loadModel(resourceSet, pamtramModelPath);
-		//
-		// if (pamtram == null || !(pamtram instanceof PAMTraM)) {
-		// System.err.println("The specified PAMTraM File does not seem to contain a PAMTraM model!");
-		// System.err.println(AutoProBeTest.ABORTING);
-		// return;
-		// }
-		//
-		// EObject sourceModel = this.loadModel(resourceSet, sourceModelPath);
-		//
-		// if (sourceModel == null) {
-		// System.err.println("The specified Source Model File does not seem to contain an XMI/XML model!");
-		// System.err.println(AutoProBeTest.ABORTING);
-		// return;
-		// }
-
-		// Create the transformation runner
-		//
-		TransformationConfiguration config;
-		try {
-			config = TransformationConfiguration.createInstanceFromSourcePaths(Collections.singleton(sourceModelPath),
-					Collections.singleton(pamtramModelPath), targetBasePath);
-		} catch (InitializationException e) {
-			System.err.println(e.getMessage());
-			return;
-		}
-		// TransformationConfiguration config = TransformationConfiguration.createInstanceFromSourceModels(
-		// Arrays.asList(sourceModel), Arrays.asList((PAMTraM) pamtram), targetBasePath);
-		config.withLogLevel(Level.INFO).withDefaultTargetModel("target-model.xmi").withLibPaths(Arrays.asList(libPath))
-				.withLogLevel(Level.WARNING).withMaxPathLength(0).withOpenTargetModelOnCompletion(false)
-				.withOnlyAskOnceOnAmbiguousMappings(true).withUseParallelization(false);
-		ITransformationRunner runner = TransformationRunnerFactory.INSTANCE.createGenericTransformationRunner(config);
-
-		// Execute the transformation
-		//
-		runner.run();
-
+		return "autoprobe";
 	}
 
-	protected EObject loadModel(ResourceSet resourceSet, String path) {
+	@Override
+	protected Set<String> getSourceModels() {
 
-		// the URI of the source resource
-		//
-		URI uri = URI.createPlatformResourceURI(path, true);
+		return Collections.singleton("/de.mfreund.pamtram.casestudies.autoprobe/Source/beispiel_ver_0_2_3.xml");
+	}
 
-		if (!Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().containsKey(uri.fileExtension())) {
+	@Override
+	protected Set<String> getPamtramModels() {
 
-			// Register the file extension. We assume XMI models unless the file extension is '.xml'
-			//
-			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(uri.fileExtension(),
-					uri.fileExtension().equalsIgnoreCase(".xml") ? new GenericXMLResourceFactoryImpl()
-							: new XMIResourceFactoryImpl());
+		return Collections.singleton("/de.mfreund.pamtram.casestudies.autoprobe/Pamtram/STGML2Movisa_enhanced.pamtram");
+	}
+
+	@Override
+	protected TransformationConfiguration getTransformationConfig() {
+
+		String libPath = "D:\\git-repos\\de.tud.et.ifa.agtele.autoprobe\\de.tud.et.ifa.agtele.autoprobe.resources\\lib";
+
+		return super.getTransformationConfig().withLibPaths(Arrays.asList(libPath)).withMaxPathLength(0);
+	}
+
+	@Override
+	protected void validateCaseStudyResult(TransformationResult result) {
+
+		if (!result.getTargetModelRegistry().isPresent()) {
+			Assertions.fail("Execution returned no TargetModelRegistry!");
+			return;
 		}
 
-		// Load source model
-		//
-		Resource sourceResource = resourceSet.getResource(uri, true);
+		Set<String> targetModels = result.getTargetModelRegistry().get().getTargetModels().keySet();
 
-		return sourceResource.getContents().isEmpty() ? null : sourceResource.getContents().get(0);
+		Assert.assertTrue("Unexpected (number of) target model(s)!",
+				targetModels.size() == 1 && "out.xmi".equals(targetModels.iterator().next()));
+
+		this.assertResultingModelIsEqualToExpected("out.xmi");
 	}
 
 }

@@ -4,6 +4,12 @@ package pamtram.condition.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -11,19 +17,19 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import pamtram.condition.ComparatorEnum;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.Condition;
 import pamtram.condition.ConditionPackage;
 import pamtram.structure.SourceInstanceSelector;
+import pamtram.structure.source.SourceSection;
+import pamtram.structure.source.SourceSectionClass;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Condition</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Condition</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -37,10 +43,11 @@ import pamtram.structure.SourceInstanceSelector;
  * @generated
  */
 public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl implements Condition<TargetType> {
+
 	/**
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
@@ -48,9 +55,9 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 	protected static final int VALUE_EDEFAULT = 1;
 
 	/**
-	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
@@ -59,8 +66,8 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 
 	/**
 	 * The default value of the '{@link #getComparator() <em>Comparator</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getComparator()
 	 * @generated
 	 * @ordered
@@ -69,8 +76,8 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 
 	/**
 	 * The cached value of the '{@link #getComparator() <em>Comparator</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getComparator()
 	 * @generated
 	 * @ordered
@@ -79,8 +86,8 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getTarget()
 	 * @generated
 	 * @ordered
@@ -89,8 +96,7 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 
 	/**
 	 * The cached value of the '{@link #getInstanceSelectors() <em>Instance Selectors</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getInstanceSelectors()
 	 * @generated
 	 * @ordered
@@ -98,8 +104,7 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 	protected EList<SourceInstanceSelector> instanceSelectors;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected ConditionImpl() {
@@ -107,8 +112,7 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -117,10 +121,10 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<SourceInstanceSelector> getInstanceSelectors() {
 		if (instanceSelectors == null) {
 			instanceSelectors = new EObjectContainmentEList<SourceInstanceSelector>(SourceInstanceSelector.class, this, ConditionPackage.CONDITION__INSTANCE_SELECTORS);
@@ -129,19 +133,19 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ComparatorEnum getComparator() {
 		return comparator;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setComparator(ComparatorEnum newComparator) {
 		ComparatorEnum oldComparator = comparator;
 		comparator = newComparator == null ? COMPARATOR_EDEFAULT : newComparator;
@@ -150,10 +154,10 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public TargetType getTarget() {
 		if (target != null && ((EObject)target).eIsProxy()) {
@@ -168,8 +172,7 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public TargetType basicGetTarget() {
@@ -177,10 +180,10 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTarget(TargetType newTarget) {
 		TargetType oldTarget = target;
 		target = newTarget;
@@ -189,10 +192,10 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean checkCondition(ComplexCondition condition) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
@@ -200,8 +203,7 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -214,19 +216,19 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getValue() {
 		return value;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValue(int newValue) {
 		int oldValue = value;
 		value = newValue;
@@ -235,8 +237,7 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -256,8 +257,7 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -282,8 +282,7 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -306,8 +305,7 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -326,8 +324,7 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -340,8 +337,7 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -357,4 +353,104 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 		return result.toString();
 	}
 
-} //ConditionImpl
+	@Override
+	public boolean isLocalCondition() {
+
+		SourceSection localSection = this.getLocalSection();
+		SourceSection affectedSection;
+		try {
+			affectedSection = this.getAffectedSection();
+		} catch (ConditionEvaluationException e) {
+			e.printStackTrace();
+			return false;
+		}
+
+		if (localSection == null || affectedSection == null) {
+			return false;
+		}
+
+		// Based on the 'affectedSection', we collect all other Sections that are indirectly affected (i.e. extended
+		// sections)
+		//
+		Set<SourceSection> affectedSections = new HashSet<>();
+		affectedSections.add(affectedSection);
+		affectedSections.addAll(affectedSection.getAllExtend());
+
+		// Based on the 'localSection', we collect all other Sections that are indirectly considered as local (e.g.
+		// extended or container sections)
+		//
+		Set<SourceSection> localSections = new HashSet<>();
+		localSections.add(localSection);
+		localSections.addAll(localSection.getAllExtend());
+
+		// A condition is local if it is based on the same section as the
+		// containing mapping or if this section that is a direct or indirect
+		// container section of the section referenced by the condition
+		if (!Collections.disjoint(localSections, affectedSections)) {
+			return true;
+		}
+
+		// A condition is also local if any of the local sections reference any of the classes affected by the condition
+		//
+		try {
+			List<SourceSectionClass> affectedClasses = this.getAffectedClasses();
+			if (localSections.stream()
+					.anyMatch(l -> affectedClasses.stream().anyMatch(r -> r.isReferencedBy(l, null)))) {
+				return true;
+			}
+		} catch (ConditionEvaluationException e) {
+			e.printStackTrace();
+		}
+
+		// A condition is also 'local' if an InstanceSelector with local SourceAttributes exist
+		//
+		return this.getInstanceSelectors().parallelStream()
+				.flatMap(instancePointer -> instancePointer.getSourceElements().parallelStream()
+						.filter(s -> s instanceof pamtram.structure.InstanceSelectorSourceElement))
+				.findAny().isPresent();
+	}
+
+	@Override
+	public boolean isExternalCondition() {
+
+		if (this.isLocalCondition()) {
+			return false;
+		}
+
+		SourceSection localSection = this.getLocalSection();
+		SourceSection affectedSection;
+		try {
+			affectedSection = this.getAffectedSection();
+		} catch (ConditionEvaluationException e) {
+			e.printStackTrace();
+			return false;
+		}
+
+		if (localSection == null || affectedSection == null) {
+			return false;
+		}
+
+		// Based on the 'localSection', we collect all external sections
+		//
+		Set<SourceSection> externalSections = new HashSet<>();
+		externalSections.addAll(localSection.getAllContainer().stream().map(SourceSectionClass::getContainingSection)
+				.collect(Collectors.toSet()));
+		externalSections
+				.addAll(externalSections.stream().flatMap(e -> e.getAllExtend().stream()).collect(Collectors.toSet()));
+
+		// A condition is external if it is based on a container section of
+		// the section referenced by the mapping
+		//
+		if (externalSections.contains(affectedSection)) {
+			return true;
+		}
+
+		// A condition is also 'external' if an InstanceSelector with external SourceAttributes exist
+		//
+		return this.getInstanceSelectors().parallelStream()
+				.flatMap(instancePointer -> instancePointer.getSourceElements().parallelStream()
+						.filter(s -> s instanceof pamtram.structure.InstanceSelectorExternalSourceElement))
+				.findAny().isPresent();
+	}
+
+} // ConditionImpl

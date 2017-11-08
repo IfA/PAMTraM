@@ -23,8 +23,8 @@ import pamtram.condition.UnaryCondition;
 import pamtram.condition.util.ConditionValidator;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Single
- * Condition Operator</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Single Condition Operator</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -36,10 +36,11 @@ import pamtram.condition.util.ConditionValidator;
  * @generated
  */
 public abstract class UnaryConditionImpl extends ComplexConditionImpl implements UnaryCondition {
+
 	/**
-	 * The cached value of the '{@link #getLocalCondPart() <em>Local Cond Part</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getLocalCondPart() <em>Local Cond Part</em>}' containment reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @see #getLocalCondPart()
 	 * @generated
 	 * @ordered
@@ -48,7 +49,8 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 
 	/**
 	 * The cached value of the '{@link #getSharedCondPart() <em>Shared Cond Part</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @see #getSharedCondPart()
 	 * @generated
 	 * @ordered
@@ -282,7 +284,20 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	}
 
 	@Override
+	public boolean isExternalCondition() {
+
+		ComplexCondition subCondition = this.getLocalCondPart();
+
+		if (subCondition == null) {
+			subCondition = this.getSharedCondPart();
+		}
+
+		return subCondition == null ? false : subCondition.isExternalCondition();
+	}
+
+	@Override
 	public EList<ComplexCondition> getConditionPartsFlat() {
+
 		return new BasicEList<>(Arrays.asList(this,
 				this.getLocalCondPart() != null ? this.getLocalCondPart() : this.getSharedCondPart()));
 	}

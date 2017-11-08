@@ -129,6 +129,8 @@ public class PamtramValidator extends EObjectValidator {
 				return validateExpressionElement((ExpressionElement)value, diagnostics, context);
 			case PamtramPackage.MODIFIABLE_ELEMENT:
 				return validateModifiableElement((ModifiableElement)value, diagnostics, context);
+			case PamtramPackage.MATCH_SPEC_ELEMENT:
+				return validateMatchSpecElement((MatchSpecElement<?, ?, ?, ?>)value, diagnostics, context);
 			case PamtramPackage.FIXED_VALUE:
 				return validateFixedValue((FixedValue)value, diagnostics, context);
 			default:
@@ -335,6 +337,15 @@ public class PamtramValidator extends EObjectValidator {
 	 */
 	public boolean validateModifiableElement(ModifiableElement modifiableElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(modifiableElement, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMatchSpecElement(MatchSpecElement<?, ?, ?, ?> matchSpecElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(matchSpecElement, diagnostics, context);
 	}
 
 	/**

@@ -261,7 +261,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getComplexCondition__IsMappingCondition() {
+	public EOperation getComplexCondition__IsExternalCondition() {
 		return complexConditionEClass.getEOperations().get(1);
 	}
 
@@ -270,7 +270,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getComplexCondition__IsConditionModelCondition() {
+	public EOperation getComplexCondition__IsGlobalCondition() {
 		return complexConditionEClass.getEOperations().get(2);
 	}
 
@@ -279,8 +279,26 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getComplexCondition__GetConditionPartsFlat() {
+	public EOperation getComplexCondition__IsMappingCondition() {
 		return complexConditionEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getComplexCondition__IsConditionModelCondition() {
+		return complexConditionEClass.getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getComplexCondition__GetConditionPartsFlat() {
+		return complexConditionEClass.getEOperations().get(5);
 	}
 
 	/**
@@ -529,6 +547,8 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		// Create classes and their features
 		complexConditionEClass = createEClass(COMPLEX_CONDITION);
 		createEOperation(complexConditionEClass, COMPLEX_CONDITION___IS_LOCAL_CONDITION);
+		createEOperation(complexConditionEClass, COMPLEX_CONDITION___IS_EXTERNAL_CONDITION);
+		createEOperation(complexConditionEClass, COMPLEX_CONDITION___IS_GLOBAL_CONDITION);
 		createEOperation(complexConditionEClass, COMPLEX_CONDITION___IS_MAPPING_CONDITION);
 		createEOperation(complexConditionEClass, COMPLEX_CONDITION___IS_CONDITION_MODEL_CONDITION);
 		createEOperation(complexConditionEClass, COMPLEX_CONDITION___GET_CONDITION_PARTS_FLAT);
@@ -628,6 +648,16 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		g3 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
 		g2.getETypeArguments().add(g3);
 		cardinalityConditionEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(thePamtramPackage.getMatchSpecElement());
+		g2 = createEGenericType(theSourcePackage.getSourceSection());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionReference());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		cardinalityConditionEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getCondition());
 		g2 = createEGenericType(thePamtramPackage.getConditionalElement());
 		g1.getETypeArguments().add(g2);
@@ -637,6 +667,10 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		initEClass(complexConditionEClass, ComplexCondition.class, "ComplexCondition", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEOperation(getComplexCondition__IsLocalCondition(), ecorePackage.getEBoolean(), "isLocalCondition", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getComplexCondition__IsExternalCondition(), ecorePackage.getEBoolean(), "isExternalCondition", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getComplexCondition__IsGlobalCondition(), ecorePackage.getEBoolean(), "isGlobalCondition", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getComplexCondition__IsMappingCondition(), ecorePackage.getEBoolean(), "isMappingCondition", 1, 1, IS_UNIQUE, IS_ORDERED);
 

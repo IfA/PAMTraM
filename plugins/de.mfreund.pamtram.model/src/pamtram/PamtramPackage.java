@@ -820,6 +820,43 @@ public interface PamtramPackage extends EPackage {
 	int MODIFIABLE_ELEMENT_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link pamtram.impl.MatchSpecElementImpl <em>Match Spec Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.impl.MatchSpecElementImpl
+	 * @see pamtram.impl.PamtramPackageImpl#getMatchSpecElement()
+	 * @generated
+	 */
+	int MATCH_SPEC_ELEMENT = 11;
+
+	/**
+	 * The feature id for the '<em><b>Reference Match Spec</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MATCH_SPEC_ELEMENT__REFERENCE_MATCH_SPEC = 0;
+
+	/**
+	 * The number of structural features of the '<em>Match Spec Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MATCH_SPEC_ELEMENT_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Match Spec Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MATCH_SPEC_ELEMENT_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link pamtram.impl.FixedValueImpl <em>Fixed Value</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -827,7 +864,7 @@ public interface PamtramPackage extends EPackage {
 	 * @see pamtram.impl.PamtramPackageImpl#getFixedValue()
 	 * @generated
 	 */
-	int FIXED_VALUE = 11;
+	int FIXED_VALUE = 12;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1392,6 +1429,27 @@ public interface PamtramPackage extends EPackage {
 	EReference getModifiableElement_Modifiers();
 
 	/**
+	 * Returns the meta object for class '{@link pamtram.MatchSpecElement <em>Match Spec Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Match Spec Element</em>'.
+	 * @see pamtram.MatchSpecElement
+	 * @generated
+	 */
+	EClass getMatchSpecElement();
+
+	/**
+	 * Returns the meta object for the reference list '{@link pamtram.MatchSpecElement#getReferenceMatchSpec <em>Reference Match Spec</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Reference Match Spec</em>'.
+	 * @see pamtram.MatchSpecElement#getReferenceMatchSpec()
+	 * @see #getMatchSpecElement()
+	 * @generated
+	 */
+	EReference getMatchSpecElement_ReferenceMatchSpec();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.FixedValue <em>Fixed Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1824,6 +1882,24 @@ public interface PamtramPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MODIFIABLE_ELEMENT__MODIFIERS = eINSTANCE.getModifiableElement_Modifiers();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.impl.MatchSpecElementImpl <em>Match Spec Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.impl.MatchSpecElementImpl
+		 * @see pamtram.impl.PamtramPackageImpl#getMatchSpecElement()
+		 * @generated
+		 */
+		EClass MATCH_SPEC_ELEMENT = eINSTANCE.getMatchSpecElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Reference Match Spec</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MATCH_SPEC_ELEMENT__REFERENCE_MATCH_SPEC = eINSTANCE.getMatchSpecElement_ReferenceMatchSpec();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.impl.FixedValueImpl <em>Fixed Value</em>}' class.

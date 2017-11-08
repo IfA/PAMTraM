@@ -4,7 +4,7 @@ package pamtram.structure;
 
 import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
-import org.eclipse.emf.common.util.EList;
+import pamtram.MatchSpecElement;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
@@ -22,37 +22,13 @@ import pamtram.structure.generic.Section;
  * For 'LocalDynamicSourceElements', only instances of the specified 'source' attribute that are part of the source model excerpt which is currently handled by the transformation are used.
  * <!-- end-model-doc -->
  *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link pamtram.structure.LocalDynamicSourceElement#getReferenceMatchSpec <em>Reference Match Spec</em>}</li>
- * </ul>
  *
  * @see pamtram.structure.StructurePackage#getLocalDynamicSourceElement()
  * @model abstract="true"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='sourceAttributeMatchesSectionOrContainedSection'"
  * @generated
  */
-public interface LocalDynamicSourceElement<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends DynamicSourceElement<S, C, R, A> {
-
-	/**
-	 * Returns the value of the '<em><b>Reference Match Spec</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Reference Match Spec</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * In case of SourceSections referencing itself via a CrossReference, it may be necessary to further restrict the determined values that are used for the calculation (e.g. do not use the 'own' attribute value but only attribute values of 'referenced' elements. Therefore, this allows to specify a list of References describing a path how to get to the relevant attribute instances based on the root element of the Section.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Reference Match Spec</em>' reference list.
-	 * @see pamtram.structure.StructurePackage#getLocalDynamicSourceElement_ReferenceMatchSpec()
-	 * @model
-	 * @generated
-	 */
-	EList<R> getReferenceMatchSpec();
+public interface LocalDynamicSourceElement<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends DynamicSourceElement<S, C, R, A>, MatchSpecElement<S, C, R, A> {
 
 	/**
 	 * <!-- begin-user-doc -->

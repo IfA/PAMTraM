@@ -6,12 +6,14 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
@@ -36,6 +38,7 @@ import pamtram.structure.generic.util.GenericValidator;
  *   <li>{@link pamtram.structure.generic.impl.SectionImpl#isAbstract <em>Abstract</em>}</li>
  *   <li>{@link pamtram.structure.generic.impl.SectionImpl#getExtend <em>Extend</em>}</li>
  *   <li>{@link pamtram.structure.generic.impl.SectionImpl#getAllExtend <em>All Extend</em>}</li>
+ *   <li>{@link pamtram.structure.generic.impl.SectionImpl#getAllExtending <em>All Extending</em>}</li>
  * </ul>
  *
  * @generated
@@ -154,6 +157,25 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 	 * @generated
 	 */
 	@Override
+	public EList<S> getAllExtending() {
+		Set<Object> extendingSections = new HashSet<>();
+		Iterator<Notifier> it = this.eResource().getResourceSet().getAllContents();
+		while(it.hasNext()) {
+			Notifier next = it.next();
+			if(next instanceof Section<?, ?, ?, ?> && ((Section<?, ?, ?, ?>) next).getAllExtend().contains(this)) {
+				extendingSections.add(next);
+			}
+		}
+		
+		return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.SECTION__ALL_EXTENDING,
+					extendingSections.size(), extendingSections.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public boolean validateContainerMatchesExtendContainer(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		if(this.getContainer() == null) {
 			return true;
@@ -221,6 +243,8 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 				return getExtend();
 			case GenericPackage.SECTION__ALL_EXTEND:
 				return getAllExtend();
+			case GenericPackage.SECTION__ALL_EXTENDING:
+				return getAllExtending();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -274,6 +298,8 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 				return extend != null && !extend.isEmpty();
 			case GenericPackage.SECTION__ALL_EXTEND:
 				return !getAllExtend().isEmpty();
+			case GenericPackage.SECTION__ALL_EXTENDING:
+				return !getAllExtending().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

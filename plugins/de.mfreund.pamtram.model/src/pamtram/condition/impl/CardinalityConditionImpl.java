@@ -2,12 +2,16 @@
  */
 package pamtram.condition.impl;
 
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
+import java.util.Collection;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
+import pamtram.MatchSpecElement;
+import pamtram.PamtramPackage;
 import pamtram.condition.CardinalityCondition;
 import pamtram.condition.ConditionPackage;
-import pamtram.mapping.Mapping;
 import pamtram.structure.generic.MetaModelElement;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
@@ -15,12 +19,31 @@ import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.source.SourceSectionReference;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Section
- * Condition</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Section Condition</b></em>'. <!-- end-user-doc
+ * -->
+ * <p>
+ * The following features are implemented:
+ * </p>
+ * <ul>
+ * <li>{@link pamtram.condition.impl.CardinalityConditionImpl#getReferenceMatchSpec <em>Reference Match Spec</em>}</li>
+ * </ul>
  *
  * @generated
  */
-public class CardinalityConditionImpl extends ConditionImpl<MetaModelElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>> implements CardinalityCondition {
+public class CardinalityConditionImpl extends
+		ConditionImpl<MetaModelElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>>
+		implements CardinalityCondition {
+
+	/**
+	 * The cached value of the '{@link #getReferenceMatchSpec() <em>Reference Match Spec</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
+	 * @see #getReferenceMatchSpec()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<SourceSectionReference> referenceMatchSpec;
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -39,60 +62,113 @@ public class CardinalityConditionImpl extends ConditionImpl<MetaModelElement<Sou
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * This is specialized for the more specific type known in this context.
+	 * <!-- begin-user-doc --> <!-- end-user-doc --> This is specialized for the more specific type known in this
+	 * context.
+	 *
 	 * @generated
 	 */
 	@Override
-	public void setTarget(MetaModelElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> newTarget) {
+	public void setTarget(
+			MetaModelElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> newTarget) {
 		super.setTarget(newTarget);
 	}
 
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
-	public boolean isLocalCondition() {
-
-		if (this.getTarget() == null) {
-			return false;
+	public EList<SourceSectionReference> getReferenceMatchSpec() {
+		if (referenceMatchSpec == null) {
+			referenceMatchSpec = new EObjectResolvingEList<SourceSectionReference>(SourceSectionReference.class, this, ConditionPackage.CARDINALITY_CONDITION__REFERENCE_MATCH_SPEC);
 		}
+		return referenceMatchSpec;
+	}
 
-		// The SourceSection that the condition references
-		//
-		SourceSection referencedSection = this.getTarget().getContainingSection();
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case ConditionPackage.CARDINALITY_CONDITION__REFERENCE_MATCH_SPEC:
+				return getReferenceMatchSpec();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
-		EObject container = this;
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case ConditionPackage.CARDINALITY_CONDITION__REFERENCE_MATCH_SPEC:
+				getReferenceMatchSpec().clear();
+				getReferenceMatchSpec().addAll((Collection<? extends SourceSectionReference>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
-		while (!(container instanceof Mapping)) {
-			if (container == null) {
-				return false;
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case ConditionPackage.CARDINALITY_CONDITION__REFERENCE_MATCH_SPEC:
+				getReferenceMatchSpec().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case ConditionPackage.CARDINALITY_CONDITION__REFERENCE_MATCH_SPEC:
+				return referenceMatchSpec != null && !referenceMatchSpec.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == MatchSpecElement.class) {
+			switch (derivedFeatureID) {
+				case ConditionPackage.CARDINALITY_CONDITION__REFERENCE_MATCH_SPEC: return PamtramPackage.MATCH_SPEC_ELEMENT__REFERENCE_MATCH_SPEC;
+				default: return -1;
 			}
-			container = container.eContainer();
 		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
 
-		// The SourceSection of the Mapping that contains the condition
-		//
-		SourceSection localSection = ((Mapping) container).getSourceSection();
-
-		// A condition is local if it is based on the same section as the
-		// containing mapping or if this section that is a direct or indirect
-		// container section of the section referenced by the condition
-		// A condition is also local if it is based on a container section of
-		// the section referenced by the mapping
-		//
-		//
-		if (referencedSection.equals(localSection) || referencedSection.getAllContainer().contains(localSection)
-				|| localSection.getAllContainer().contains(referencedSection)) {
-			return true;
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == MatchSpecElement.class) {
+			switch (baseFeatureID) {
+				case PamtramPackage.MATCH_SPEC_ELEMENT__REFERENCE_MATCH_SPEC: return ConditionPackage.CARDINALITY_CONDITION__REFERENCE_MATCH_SPEC;
+				default: return -1;
+			}
 		}
-
-		// A condition is also 'local' if an InstanceSelector with local or
-		// external SourceAttributes exist
-		//
-		return this.getInstanceSelectors().parallelStream()
-				.flatMap(instancePointer -> instancePointer.getSourceElements().parallelStream()
-						.filter(s -> s instanceof pamtram.structure.InstanceSelectorSourceElement
-								|| s instanceof pamtram.structure.InstanceSelectorExternalSourceElement))
-				.findAny().isPresent();
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 } // SectionConditionImpl

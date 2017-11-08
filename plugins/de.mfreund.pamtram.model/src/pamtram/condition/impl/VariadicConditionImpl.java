@@ -29,8 +29,8 @@ import pamtram.condition.VariadicCondition;
 import pamtram.condition.util.ConditionValidator;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object
- * '<em><b>Multiple Condition Operator</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Multiple Condition Operator</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -42,10 +42,11 @@ import pamtram.condition.util.ConditionValidator;
  * @generated
  */
 public abstract class VariadicConditionImpl extends ComplexConditionImpl implements VariadicCondition {
+
 	/**
-	 * The cached value of the '{@link #getLocalCondParts() <em>Local Cond Parts</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getLocalCondParts() <em>Local Cond Parts</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @see #getLocalCondParts()
 	 * @generated
 	 * @ordered
@@ -53,10 +54,9 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	protected EList<ComplexCondition> localCondParts;
 
 	/**
-	 * The cached value of the '{@link #getSharedCondParts() <em>Shared Cond
-	 * Parts</em>}' reference list. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
+	 * The cached value of the '{@link #getSharedCondParts() <em>Shared Cond Parts</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @see #getSharedCondParts()
 	 * @generated
 	 * @ordered
@@ -252,11 +252,24 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 		subConditions.addAll(this.getLocalCondParts());
 		subConditions.addAll(this.getSharedCondParts());
 
-		return subConditions.parallelStream().filter(c -> c.isLocalCondition()).findAny().isPresent();
+		return subConditions.parallelStream().allMatch(ComplexCondition::isLocalCondition);
+	}
+
+	@Override
+	public boolean isExternalCondition() {
+
+		List<ComplexCondition> subConditions = new ArrayList<>();
+
+		subConditions.addAll(this.getLocalCondParts());
+		subConditions.addAll(this.getSharedCondParts());
+
+		return !this.isLocalCondition()
+				&& subConditions.parallelStream().allMatch(c -> c.isLocalCondition() || c.isExternalCondition());
 	}
 
 	@Override
 	public EList<ComplexCondition> getConditionPartsFlat() {
+
 		EList<ComplexCondition> ret = new BasicEList<>();
 		ret.add(this);
 		ret.addAll(Stream.concat(this.getLocalCondParts().stream(), this.getSharedCondParts().stream())

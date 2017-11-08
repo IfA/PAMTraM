@@ -434,13 +434,22 @@ public interface SourcePackage extends EPackage {
 	int SOURCE_SECTION__ALL_EXTEND = SOURCE_SECTION_CLASS_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>All Extending</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION__ALL_EXTENDING = SOURCE_SECTION_CLASS_FEATURE_COUNT + 3;
+
+	/**
 	 * The feature id for the '<em><b>Deactivated</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION__DEACTIVATED = SOURCE_SECTION_CLASS_FEATURE_COUNT + 3;
+	int SOURCE_SECTION__DEACTIVATED = SOURCE_SECTION_CLASS_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Referencing Mappings</b></em>' reference list.
@@ -449,7 +458,7 @@ public interface SourcePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION__REFERENCING_MAPPINGS = SOURCE_SECTION_CLASS_FEATURE_COUNT + 4;
+	int SOURCE_SECTION__REFERENCING_MAPPINGS = SOURCE_SECTION_CLASS_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Section</em>' class.
@@ -458,7 +467,7 @@ public interface SourcePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_FEATURE_COUNT = SOURCE_SECTION_CLASS_FEATURE_COUNT + 5;
+	int SOURCE_SECTION_FEATURE_COUNT = SOURCE_SECTION_CLASS_FEATURE_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.

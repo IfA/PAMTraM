@@ -361,6 +361,49 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MatchSpecElement" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A MatchSpecElement can be equipped with a 'referenceMatchSpec' consisting of a list of References. The 'referenceMatchSpec' restricts the application of matched elements by specifiy an additional path (based on references)."/>
+    </eAnnotations>
+    <eTypeParameters name="S">
+      <eBounds eClassifier="#//structure/generic/Section">
+        <eTypeArguments eTypeParameter="#//MatchSpecElement/S"/>
+        <eTypeArguments eTypeParameter="#//MatchSpecElement/C"/>
+        <eTypeArguments eTypeParameter="#//MatchSpecElement/R"/>
+        <eTypeArguments eTypeParameter="#//MatchSpecElement/A"/>
+      </eBounds>
+    </eTypeParameters>
+    <eTypeParameters name="C">
+      <eBounds eClassifier="#//structure/generic/Class">
+        <eTypeArguments eTypeParameter="#//MatchSpecElement/S"/>
+        <eTypeArguments eTypeParameter="#//MatchSpecElement/C"/>
+        <eTypeArguments eTypeParameter="#//MatchSpecElement/R"/>
+        <eTypeArguments eTypeParameter="#//MatchSpecElement/A"/>
+      </eBounds>
+    </eTypeParameters>
+    <eTypeParameters name="R">
+      <eBounds eClassifier="#//structure/generic/Reference">
+        <eTypeArguments eTypeParameter="#//MatchSpecElement/S"/>
+        <eTypeArguments eTypeParameter="#//MatchSpecElement/C"/>
+        <eTypeArguments eTypeParameter="#//MatchSpecElement/R"/>
+        <eTypeArguments eTypeParameter="#//MatchSpecElement/A"/>
+      </eBounds>
+    </eTypeParameters>
+    <eTypeParameters name="A">
+      <eBounds eClassifier="#//structure/generic/Attribute">
+        <eTypeArguments eTypeParameter="#//MatchSpecElement/S"/>
+        <eTypeArguments eTypeParameter="#//MatchSpecElement/C"/>
+        <eTypeArguments eTypeParameter="#//MatchSpecElement/R"/>
+        <eTypeArguments eTypeParameter="#//MatchSpecElement/A"/>
+      </eBounds>
+    </eTypeParameters>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referenceMatchSpec" upperBound="-1">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="In case of SourceSections referencing itself via a CrossReference, it may be necessary to further restrict the determined values that are used for calculation (e.g. do not use the 'own' attribute value but only attribute values of 'referenced' elements. Therefore, this allows to specify a list of References describing a path how to get to the relevant instances based on the root element of the Section."/>
+      </eAnnotations>
+      <eGenericType eTypeParameter="#//MatchSpecElement/R"/>
+    </eStructuralFeatures>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FixedValue" eSuperTypes="#//NamedElement #//mapping/extended/AttributeMappingSourceInterface #//structure/InstanceSelectorSourceInterface #//structure/constraint/ValueConstraintSourceInterface #//mapping/extended/CardinalityMappingSourceInterface">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="This simply represents a certain numeric or literal value. It can be used e.g. as part of an AttributeMapping to specify the value of a TargetSectionAttribute."/>
@@ -611,13 +654,13 @@
           </eGenericType>
         </eParameters>
       </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="referenceMatchSpec" upperBound="-1">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="In case of SourceSections referencing itself via a CrossReference, it may be necessary to further restrict the determined values that are used for the calculation (e.g. do not use the 'own' attribute value but only attribute values of 'referenced' elements. Therefore, this allows to specify a list of References describing a path how to get to the relevant attribute instances based on the root element of the Section."/>
-        </eAnnotations>
-        <eGenericType eTypeParameter="#//structure/LocalDynamicSourceElement/R"/>
-      </eStructuralFeatures>
       <eGenericSuperTypes eClassifier="#//structure/DynamicSourceElement">
+        <eTypeArguments eTypeParameter="#//structure/LocalDynamicSourceElement/S"/>
+        <eTypeArguments eTypeParameter="#//structure/LocalDynamicSourceElement/C"/>
+        <eTypeArguments eTypeParameter="#//structure/LocalDynamicSourceElement/R"/>
+        <eTypeArguments eTypeParameter="#//structure/LocalDynamicSourceElement/A"/>
+      </eGenericSuperTypes>
+      <eGenericSuperTypes eClassifier="#//MatchSpecElement">
         <eTypeArguments eTypeParameter="#//structure/LocalDynamicSourceElement/S"/>
         <eTypeArguments eTypeParameter="#//structure/LocalDynamicSourceElement/C"/>
         <eTypeArguments eTypeParameter="#//structure/LocalDynamicSourceElement/R"/>
@@ -1085,6 +1128,16 @@
           </eAnnotations>
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
             <details key="documentation" value="The list of recursively collected (abstract) extended Sections."/>
+          </eAnnotations>
+          <eGenericType eTypeParameter="#//structure/generic/Section/S"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="allExtending" upperBound="-1"
+            changeable="false" volatile="true" transient="true" derived="true">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="get" value="&lt;%java.util.Set%>&lt;Object> extendingSections = new &lt;%java.util.HashSet%>&lt;>();&#xD;&#xA;&lt;%java.util.Iterator%>&lt;&lt;%org.eclipse.emf.common.notify.Notifier%>> it = this.eResource().getResourceSet().getAllContents();&#xD;&#xA;while(it.hasNext()) {&#xD;&#xA;&#x9;&lt;%org.eclipse.emf.common.notify.Notifier%> next = it.next();&#xD;&#xA;&#x9;if(next instanceof Section&lt;?, ?, ?, ?> &amp;&amp; ((Section&lt;?, ?, ?, ?>) next).getAllExtend().contains(this)) {&#xD;&#xA;&#x9;&#x9;extendingSections.add(next);&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList&lt;>(this, &lt;%pamtram.structure.generic.GenericPackage%>.Literals.SECTION__ALL_EXTENDING,&#xD;&#xA;&#x9;&#x9;&#x9;extendingSections.size(), extendingSections.toArray());"/>
+          </eAnnotations>
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="The list of recursively collected Sections extending this Section."/>
           </eAnnotations>
           <eGenericType eTypeParameter="#//structure/generic/Section/S"/>
         </eStructuralFeatures>
@@ -2374,6 +2427,8 @@
         <details key="documentation" value="The super type for all specific Condition types."/>
       </eAnnotations>
       <eOperations name="isLocalCondition" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eOperations name="isExternalCondition" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eOperations name="isGlobalCondition" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eOperations name="isMappingCondition" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="body" value="return getRootCondition().eContainer() instanceof Mapping;"/>
@@ -2573,6 +2628,12 @@
           <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
           <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
         </eTypeArguments>
+      </eGenericSuperTypes>
+      <eGenericSuperTypes eClassifier="#//MatchSpecElement">
+        <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ApplicationDependency">

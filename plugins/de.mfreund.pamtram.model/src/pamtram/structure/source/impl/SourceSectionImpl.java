@@ -6,12 +6,14 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
@@ -21,6 +23,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
+
 import pamtram.DeactivatableElement;
 import pamtram.PamtramPackage;
 import pamtram.mapping.Mapping;
@@ -41,6 +44,7 @@ import pamtram.structure.source.util.SourceValidator;
  *   <li>{@link pamtram.structure.source.impl.SourceSectionImpl#isAbstract <em>Abstract</em>}</li>
  *   <li>{@link pamtram.structure.source.impl.SourceSectionImpl#getExtend <em>Extend</em>}</li>
  *   <li>{@link pamtram.structure.source.impl.SourceSectionImpl#getAllExtend <em>All Extend</em>}</li>
+ *   <li>{@link pamtram.structure.source.impl.SourceSectionImpl#getAllExtending <em>All Extending</em>}</li>
  *   <li>{@link pamtram.structure.source.impl.SourceSectionImpl#isDeactivated <em>Deactivated</em>}</li>
  *   <li>{@link pamtram.structure.source.impl.SourceSectionImpl#getReferencingMappings <em>Referencing Mappings</em>}</li>
  * </ul>
@@ -81,8 +85,8 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 
 	/**
 	 * The default value of the '{@link #isDeactivated() <em>Deactivated</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #isDeactivated()
 	 * @generated
 	 * @ordered
@@ -91,8 +95,8 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 
 	/**
 	 * The cached value of the '{@link #isDeactivated() <em>Deactivated</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #isDeactivated()
 	 * @generated
 	 * @ordered
@@ -150,10 +154,10 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<SourceSection> getAllExtend() {
 		Set<Object> ret = new HashSet<>();
 		
@@ -176,19 +180,38 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public EList<SourceSection> getAllExtending() {
+		Set<Object> extendingSections = new HashSet<>();
+		Iterator<Notifier> it = this.eResource().getResourceSet().getAllContents();
+		while(it.hasNext()) {
+			Notifier next = it.next();
+			if(next instanceof Section<?, ?, ?, ?> && ((Section<?, ?, ?, ?>) next).getAllExtend().contains(this)) {
+				extendingSections.add(next);
+			}
+		}
+		
+		return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.SECTION__ALL_EXTENDING,
+					extendingSections.size(), extendingSections.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public boolean isDeactivated() {
 		return deactivated;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDeactivated(boolean newDeactivated) {
 		boolean oldDeactivated = deactivated;
 		deactivated = newDeactivated;
@@ -316,6 +339,8 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 				return getExtend();
 			case SourcePackage.SOURCE_SECTION__ALL_EXTEND:
 				return getAllExtend();
+			case SourcePackage.SOURCE_SECTION__ALL_EXTENDING:
+				return getAllExtending();
 			case SourcePackage.SOURCE_SECTION__DEACTIVATED:
 				return isDeactivated();
 			case SourcePackage.SOURCE_SECTION__REFERENCING_MAPPINGS:
@@ -379,6 +404,8 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 				return extend != null && !extend.isEmpty();
 			case SourcePackage.SOURCE_SECTION__ALL_EXTEND:
 				return !getAllExtend().isEmpty();
+			case SourcePackage.SOURCE_SECTION__ALL_EXTENDING:
+				return !getAllExtending().isEmpty();
 			case SourcePackage.SOURCE_SECTION__DEACTIVATED:
 				return deactivated != DEACTIVATED_EDEFAULT;
 			case SourcePackage.SOURCE_SECTION__REFERENCING_MAPPINGS:
@@ -398,6 +425,7 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 				case SourcePackage.SOURCE_SECTION__ABSTRACT: return GenericPackage.SECTION__ABSTRACT;
 				case SourcePackage.SOURCE_SECTION__EXTEND: return GenericPackage.SECTION__EXTEND;
 				case SourcePackage.SOURCE_SECTION__ALL_EXTEND: return GenericPackage.SECTION__ALL_EXTEND;
+				case SourcePackage.SOURCE_SECTION__ALL_EXTENDING: return GenericPackage.SECTION__ALL_EXTENDING;
 				default: return -1;
 			}
 		}
@@ -421,6 +449,7 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 				case GenericPackage.SECTION__ABSTRACT: return SourcePackage.SOURCE_SECTION__ABSTRACT;
 				case GenericPackage.SECTION__EXTEND: return SourcePackage.SOURCE_SECTION__EXTEND;
 				case GenericPackage.SECTION__ALL_EXTEND: return SourcePackage.SOURCE_SECTION__ALL_EXTEND;
+				case GenericPackage.SECTION__ALL_EXTENDING: return SourcePackage.SOURCE_SECTION__ALL_EXTENDING;
 				default: return -1;
 			}
 		}

@@ -429,15 +429,6 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLocalDynamicSourceElement_ReferenceMatchSpec() {
-		return (EReference)localDynamicSourceElementEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EOperation getLocalDynamicSourceElement__ValidateSourceAttributeMatchesSectionOrContainedSection__DiagnosticChain_Map() {
 		return localDynamicSourceElementEClass.getEOperations().get(0);
 	}
@@ -535,7 +526,6 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		createEOperation(dynamicSourceElementEClass, DYNAMIC_SOURCE_ELEMENT___GET_MAPPING);
 
 		localDynamicSourceElementEClass = createEClass(LOCAL_DYNAMIC_SOURCE_ELEMENT);
-		createEReference(localDynamicSourceElementEClass, LOCAL_DYNAMIC_SOURCE_ELEMENT__REFERENCE_MATCH_SPEC);
 		createEOperation(localDynamicSourceElementEClass, LOCAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP);
 
 		externalDynamicSourceElementEClass = createEClass(EXTERNAL_DYNAMIC_SOURCE_ELEMENT);
@@ -824,6 +814,16 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		g2 = createEGenericType(localDynamicSourceElementEClass_A);
 		g1.getETypeArguments().add(g2);
 		localDynamicSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(thePamtramPackage.getMatchSpecElement());
+		g2 = createEGenericType(localDynamicSourceElementEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(localDynamicSourceElementEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(localDynamicSourceElementEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(localDynamicSourceElementEClass_A);
+		g1.getETypeArguments().add(g2);
+		localDynamicSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getDynamicSourceElement());
 		g2 = createEGenericType(externalDynamicSourceElementEClass_S);
 		g1.getETypeArguments().add(g2);
@@ -896,8 +896,6 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		initEOperation(getDynamicSourceElement__GetMapping(), theMappingPackage.getMapping(), "getMapping", 1, 1, !IS_UNIQUE, IS_ORDERED);
 
 		initEClass(localDynamicSourceElementEClass, LocalDynamicSourceElement.class, "LocalDynamicSourceElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		g1 = createEGenericType(localDynamicSourceElementEClass_R);
-		initEReference(getLocalDynamicSourceElement_ReferenceMatchSpec(), g1, null, "referenceMatchSpec", null, 0, -1, LocalDynamicSourceElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = initEOperation(getLocalDynamicSourceElement__ValidateSourceAttributeMatchesSectionOrContainedSection__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateSourceAttributeMatchesSectionOrContainedSection", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -1122,12 +1120,6 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		   source, 
 		   new String[] {
 			 "body", "if(this.getMapping() == null || this.source == null || this.getMapping().getSourceSection() == null\r\n\t\t\t\t|| !(this.source.getContainingSection() instanceof <%pamtram.structure.source.SourceSection%>)) {\r\n\treturn true;\r\n}\r\n\r\nSourceSection sourceSection = this.getMapping().getSourceSection();\r\nSourceSection containingSourceSection = (SourceSection) this.source.getContainingSection();\r\n\r\nboolean result = sourceSection == containingSourceSection \r\n\t\t|| sourceSection.getExtend().parallelStream().filter(e -> e.equals(containingSourceSection)).findAny().isPresent()\r\n\t\t|| sourceSection.getExtend().parallelStream().filter(e -> containingSourceSection.isReferencedBy(e, null)).findAny().isPresent()\r\n\t\t|| containingSourceSection.isReferencedBy(sourceSection, null);\r\n\r\nif (!result && diagnostics != null) {\r\n\t\r\n\tString errorMessage = \"The source attribute \'\" +\r\n\t\t\t this.source.getName() + \"\' is not referenced by the source section of the parent mapping \'\" +\r\n\t\t\t sourceSection.getName() + \"\' or in one of its extended sections/sub-sections!\'\";\r\n\t\r\n\tdiagnostics.add\r\n\t\t(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t <%pamtram.structure.util.StructureValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t StructureValidator.LOCAL_DYNAMIC_SOURCE_ELEMENT__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION,\r\n\t\t\t errorMessage,\r\n\t\t\t new Object [] { this, <%pamtram.structure.StructurePackage%>.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE }));\r\n\t}\r\n\r\nreturn result;"
-		   });	
-		addAnnotation
-		  (getLocalDynamicSourceElement_ReferenceMatchSpec(), 
-		   source, 
-		   new String[] {
-			 "documentation", "In case of SourceSections referencing itself via a CrossReference, it may be necessary to further restrict the determined values that are used for the calculation (e.g. do not use the \'own\' attribute value but only attribute values of \'referenced\' elements. Therefore, this allows to specify a list of References describing a path how to get to the relevant attribute instances based on the root element of the Section."
 		   });	
 		addAnnotation
 		  (externalDynamicSourceElementEClass, 

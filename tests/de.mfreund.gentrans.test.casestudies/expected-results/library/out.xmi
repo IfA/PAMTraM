@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mm4:Library
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:mm4="http://mm4">
+  <members name="member1"
+      loans="//@mediums.0 //@mediums.1 //@mediums.3"/>
+  <members name="member2"
+      loans="//@mediums.2"/>
+  <mediums name="book1"
+      type="Book"/>
+  <mediums name="book2"
+      type="Book"/>
+  <mediums name="book3"
+      type="Book"/>
+  <mediums name="film1"
+      type="Film"/>
+</mm4:Library>

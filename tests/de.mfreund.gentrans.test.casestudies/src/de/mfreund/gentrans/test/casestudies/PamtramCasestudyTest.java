@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
@@ -41,36 +40,6 @@ public abstract class PamtramCasestudyTest {
 	protected static final String resultsFolderPath = "de.mfreund.gentrans.test.casestudies/results";
 
 	/**
-	 * Prepares the 'results' directory by creating it if necessary and deleting all files in it.
-	 *
-	 */
-	@BeforeClass
-	public static void cleanupResultsDirectory() {
-
-		System.out.println("Cleanup Results Directory...");
-
-		URI resultsFolderURI = URI.createPlatformResourceURI(PamtramCasestudyTest.resultsFolderPath, true);
-		IContainer resultsFolder = ResourceHelper.getContainerForURI(resultsFolderURI);
-
-		Assert.assertTrue("Failed to retrieve results folder!", resultsFolder instanceof IFolder);
-
-		ResourceHelper.refresh(resultsFolder.getParent());
-
-		try {
-			ResourceHelper.createFolder((IFolder) resultsFolder);
-		} catch (CoreException e) {
-			Assertions.fail("Failed to create results folder!", e);
-		}
-
-		ResourceHelper.deleteFilesInFolder(
-				new File(ResourceHelper.convertPlatformToFileURI(resultsFolderURI).toFileString()));
-
-		ResourceHelper.refresh(resultsFolder);
-
-		System.out.println("...finished.");
-	}
-
-	/**
 	 * Creates the output directory for each casestudy.
 	 */
 	@Before
@@ -89,6 +58,9 @@ public abstract class PamtramCasestudyTest {
 		} catch (CoreException e) {
 			Assertions.fail("Failed to create AutoProBe results folder!", e);
 		}
+
+		ResourceHelper
+				.deleteFilesInFolder(new File(ResourceHelper.convertPlatformToFileURI(resultsPathURI).toFileString()));
 
 		ResourceHelper.refresh(resultsPathFolder);
 

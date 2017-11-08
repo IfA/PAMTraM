@@ -380,7 +380,8 @@ public class TargetSectionRegistry extends CancelableElement {
 
 		// collect all sub-packages
 		//
-		Set<EPackage> packagesToScan = EPackageHelper.collectEPackages(rootEPackage, true, true, Optional.empty());
+		Set<EPackage> packagesToScan = EPackageHelper.collectEPackages(rootEPackage, true, true, true,
+				Optional.empty());
 
 		// scan all packages
 		//

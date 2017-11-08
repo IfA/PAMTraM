@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clientdata:TechnicalDataPerspective xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:clientdata="http://stefan-hennig.de/movisa/clientdata" xmlns:modbustcp="http://stefan-hennig.de/movisa/clientdata/perspective/technical/modbustcp">
+  <OwnedServer xsi:type="modbustcp:ModbusTcpServer">
+    <OwnedModbusTcpItem Name="LH1" ReferenceAddress="152" Type="BOOL"/>
+    <OwnedModbusTcpItem Name="LH2" ReferenceAddress="154" Type="BOOL"/>
+    <OwnedModbusTcpItem Name="LH3" ReferenceAddress="156" Type="BOOL"/>
+    <OwnedModbusTcpItem Name="LL1" ReferenceAddress="151" Type="BOOL"/>
+    <OwnedModbusTcpItem Name="LL2" ReferenceAddress="153" Type="BOOL"/>
+    <OwnedModbusTcpItem Name="LL3" ReferenceAddress="155" Type="BOOL"/>
+    <OwnedModbusTcpItem Name="M" ReferenceAddress="17" Type="BOOL"/>
+    <OwnedModbusTcpItem Name="P1" ReferenceAddress="15" Type="BOOL"/>
+    <OwnedModbusTcpItem Name="P2" ReferenceAddress="16" Type="BOOL"/>
+    <OwnedModbusTcpItem Name="Schritt1" ReferenceAddress="100" Type="BOOL"/>
+    <OwnedModbusTcpItem Name="Schritt2" ReferenceAddress="101" Type="BOOL"/>
+    <OwnedModbusTcpItem Name="Schritt3" ReferenceAddress="102" Type="BOOL"/>
+    <OwnedModbusTcpItem Name="Schritt4" ReferenceAddress="103" Type="BOOL"/>
+    <OwnedModbusTcpItem Name="Schritt5" ReferenceAddress="104" Type="BOOL"/>
+    <OwnedModbusTcpItem Name="Schritt6" ReferenceAddress="105" Type="BOOL"/>
+    <OwnedModbusTcpItem Name="W" ReferenceAddress="18" Type="BOOL"/>
+    <OwnedModbusTcpItem Name="Y1" ReferenceAddress="1" Type="BOOL"/>
+    <OwnedModbusTcpItem Name="Y2" ReferenceAddress="2" Type="BOOL"/>
+    <OwnedModbusTcpItem Name="Y3" ReferenceAddress="5" Type="BOOL"/>
+    <OwnedModbusTcpItem Name="Y4" ReferenceAddress="6" Type="BOOL"/>
+    <OwnedModbusTcpItem Name="Y5" ReferenceAddress="9" Type="BOOL"/>
+    <OwnedModbusTcpItem Name="Y6" ReferenceAddress="10" Type="BOOL"/>
+    <OwnedModbusTcpItem Name="Y7" ReferenceAddress="13" Type="BOOL"/>
+  </OwnedServer>
+</clientdata:TechnicalDataPerspective>

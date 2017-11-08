@@ -179,11 +179,10 @@ public class ConditionHandler {
 			return CondResult.TRUE;
 		}
 
-		// First, we check if that condition already has been checked. In case
-		// we are dealing with a 'global'
-		// condition, we may reuse this result.
+		// First, we check if that condition already has been checked. In case we are dealing with a 'global' condition,
+		// we may reuse this result.
 		//
-		if (this.conditionRepository.get(complexCondition) != null && !complexCondition.isLocalCondition()) {
+		if (this.conditionRepository.get(complexCondition) != null && complexCondition.isGlobalCondition()) {
 			return this.conditionRepository.get(complexCondition);
 		}
 
@@ -649,7 +648,7 @@ public class ConditionHandler {
 	/**
 	 * Store the given {@link CondResult} for the given {@link ComplexCondition} in the {@link #conditionRepository}.
 	 * <p />
-	 * Note: Result will only be stored in case of {@link ComplexCondition#isLocalCondition() global} conditions.
+	 * Note: Result will only be stored in case of {@link ComplexCondition#isGlobalCondition() global} conditions.
 	 *
 	 * @param condition
 	 *            The {@link ComplexCondition} for that the result shall be stored.
@@ -659,7 +658,7 @@ public class ConditionHandler {
 	private void storeConditionResult(ComplexCondition condition, CondResult result) {
 
 		// only store results for 'global' conditions
-		if (!condition.isLocalCondition()) {
+		if (condition.isGlobalCondition()) {
 			this.conditionRepository.put(condition, result);
 		}
 	}

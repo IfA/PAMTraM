@@ -47,7 +47,7 @@ public abstract class PamtramCasestudyTest {
 
 		System.out.println("Create Output Directory for casestudy '" + this.getCaseStudyName() + "'...");
 
-		String resultsPath = PamtramCasestudyTest.resultsFolderPath + "/autoprobe";
+		String resultsPath = PamtramCasestudyTest.resultsFolderPath + "/" + this.getCaseStudyName();
 		URI resultsPathURI = URI.createPlatformResourceURI(resultsPath, true);
 		IContainer resultsPathFolder = ResourceHelper.getContainerForURI(resultsPathURI);
 

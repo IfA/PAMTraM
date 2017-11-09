@@ -12,6 +12,7 @@ import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 
 import de.mfreund.gentrans.transformation.ITransformationRunner.TransformationResult;
+import de.mfreund.gentrans.transformation.TransformationConfiguration;
 
 /**
  * An abstract base class for all basic {@link PamtramCasestudyTest PamtramCasestudyTests} that are based on the
@@ -198,6 +199,12 @@ public abstract class W3CAUICasestudyBasedBasicTest extends PamtramCasestudyTest
 		protected String getCaseStudyIdentifier() {
 
 			return "14_ignoreUnmatchedElements";
+		}
+
+		@Override
+		protected TransformationConfiguration getTransformationConfig() {
+
+			return super.getTransformationConfig().withMaxPathLength(0);
 		}
 
 	}

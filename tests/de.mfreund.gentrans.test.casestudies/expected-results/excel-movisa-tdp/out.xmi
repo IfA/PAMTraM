@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<clientdata:TechnicalDataPerspective xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:clientdata="http://stefan-hennig.de/movisa/clientdata" xmlns:modbustcp="http://stefan-hennig.de/movisa/clientdata/perspective/technical/modbustcp">
+<clientdata:TechnicalDataPerspective xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:clientdata="http://stefan-hennig.de/movisa/clientdata" xmlns:modbustcp="http://stefan-hennig.de/movisa/clientdata/perspective/technical/modbustcp" xmlns:opcxmlda="http://stefan-hennig.de/movisa/clientdata/perspective/technical/opcxmlda">
   <OwnedServer xsi:type="modbustcp:ModbusTcpServer">
     <OwnedModbusTcpItem Name="LH1" ReferenceAddress="152" Type="BOOL"/>
     <OwnedModbusTcpItem Name="LH2" ReferenceAddress="154" Type="BOOL"/>
@@ -24,5 +24,104 @@
     <OwnedModbusTcpItem Name="Y5" ReferenceAddress="9" Type="BOOL"/>
     <OwnedModbusTcpItem Name="Y6" ReferenceAddress="10" Type="BOOL"/>
     <OwnedModbusTcpItem Name="Y7" ReferenceAddress="13" Type="BOOL"/>
+    <OwnedModbusTcpItem Name="Auto_Durchfl_FL" BaseType="DiscreteInput" ReferenceAddress="1008" Type="BOOL"/>
+    <OwnedModbusTcpItem Name="Auto_Fuellst_FL" BaseType="DiscreteInput" ReferenceAddress="1009" Type="BOOL"/>
+    <OwnedModbusTcpItem Name="Auto_Temp_FL" BaseType="DiscreteInput" ReferenceAddress="1010" Type="BOOL"/>
+    <OwnedModbusTcpItem Name="Start_Ablassen_FL" BaseType="DiscreteInput" ReferenceAddress="1002" Type="BOOL"/>
+    <OwnedModbusTcpItem Name="Start_Demo_FL" BaseType="DiscreteInput" ReferenceAddress="1001" Type="BOOL"/>
+    <OwnedModbusTcpItem Name="Start_Dosieren_FL" BaseType="DiscreteInput" ReferenceAddress="1004" Type="BOOL"/>
+    <OwnedModbusTcpItem Name="Start_Durchfluss_FL" BaseType="DiscreteInput" ReferenceAddress="1007" Type="BOOL"/>
+    <OwnedModbusTcpItem Name="Start_Fuellstand_FL" BaseType="DiscreteInput" ReferenceAddress="1006" Type="BOOL"/>
+    <OwnedModbusTcpItem Name="Start_Temperatur_FL" BaseType="DiscreteInput" ReferenceAddress="1005" Type="BOOL"/>
+    <OwnedModbusTcpItem Name="Start_Umpumpen_FL" BaseType="DiscreteInput" ReferenceAddress="1003" Type="BOOL"/>
+    <OwnedModbusTcpItem Name="Y_MAN_FL" BaseType="DiscreteInput" ReferenceAddress="1011" Type="BOOL"/>
+    <OwnedModbusTcpItem Name="Durchfluss1_Ist" BaseType="HoldingRegister" ReferenceAddress="400276" Type="REAL"/>
+    <OwnedModbusTcpItem Name="Durchfluss2_Ist" BaseType="HoldingRegister" ReferenceAddress="400308" Type="REAL"/>
+    <OwnedModbusTcpItem Name="Fuellstand1_Ist" BaseType="HoldingRegister" ReferenceAddress="400244" Type="REAL"/>
+    <OwnedModbusTcpItem Name="Fuellstand2_Ist" BaseType="HoldingRegister" ReferenceAddress="400180" Type="REAL"/>
+    <OwnedModbusTcpItem Name="Fuellstand3_Ist" BaseType="HoldingRegister" ReferenceAddress="400212" Type="REAL"/>
+    <OwnedModbusTcpItem Name="P3" BaseType="HoldingRegister" ReferenceAddress="400100" Type="INT"/>
+    <OwnedModbusTcpItem Name="Temperatur_Ist" BaseType="HoldingRegister" ReferenceAddress="400340" Type="REAL"/>
+    <OwnedModbusTcpItem Name="V1" BaseType="HoldingRegister" ReferenceAddress="400116" Type="REAL"/>
+    <OwnedModbusTcpItem Name="V2" BaseType="HoldingRegister" ReferenceAddress="400148" Type="REAL"/>
+    <OwnedModbusTcpItem Name="Volumen1" BaseType="HoldingRegister" ReferenceAddress="400372" Type="REAL"/>
+    <OwnedModbusTcpItem Name="Volumen2" BaseType="HoldingRegister" ReferenceAddress="400404" Type="REAL"/>
+    <OwnedModbusTcpItem Name="BehaelterDurch_FL" BaseType="InputRegister" ReferenceAddress="401692" Type="INT"/>
+    <OwnedModbusTcpItem Name="BehaelterFuell_FL" BaseType="InputRegister" ReferenceAddress="401708" Type="INT"/>
+    <OwnedModbusTcpItem Name="Behaelter_A_FL" BaseType="InputRegister" ReferenceAddress="401112" Type="INT"/>
+    <OwnedModbusTcpItem Name="Behaelter_B_FL" BaseType="InputRegister" ReferenceAddress="401128" Type="INT"/>
+    <OwnedModbusTcpItem Name="Durchfluss_Soll_FL" BaseType="InputRegister" ReferenceAddress="401464" Type="REAL"/>
+    <OwnedModbusTcpItem Name="Fuellstand_Soll_FL" BaseType="InputRegister" ReferenceAddress="401500" Type="INT"/>
+    <OwnedModbusTcpItem Name="P3_FL" BaseType="InputRegister" ReferenceAddress="401032" Type="INT"/>
+    <OwnedModbusTcpItem Name="Temperatur_Soll_FL" BaseType="InputRegister" ReferenceAddress="401628" Type="INT"/>
+    <OwnedModbusTcpItem Name="Tn_FL" BaseType="InputRegister" ReferenceAddress="401332" Type="REAL"/>
+    <OwnedModbusTcpItem Name="Tv_FL" BaseType="InputRegister" ReferenceAddress="401364" Type="REAL"/>
+    <OwnedModbusTcpItem Name="V1_FL" BaseType="InputRegister" ReferenceAddress="401160" Type="INT"/>
+    <OwnedModbusTcpItem Name="V2_FL" BaseType="InputRegister" ReferenceAddress="401192" Type="INT"/>
+    <OwnedModbusTcpItem Name="VolumenB1_FL" BaseType="InputRegister" ReferenceAddress="401724" Type="REAL"/>
+    <OwnedModbusTcpItem Name="VolumenB2_FL" BaseType="InputRegister" ReferenceAddress="401756" Type="REAL"/>
+    <OwnedModbusTcpItem Name="Vr_FL" BaseType="InputRegister" ReferenceAddress="401300" Type="REAL"/>
+  </OwnedServer>
+  <OwnedServer xsi:type="opcxmlda:OpcXmlDaServer" LocaleId="de-DE">
+    <OwnedXmlDaItem Name="LH1" ItemName="LH1" ItemPath="Schneider/LH1" ItemType="boolean"/>
+    <OwnedXmlDaItem Name="LH2" ItemName="LH2" ItemPath="Schneider/LH2" ItemType="boolean"/>
+    <OwnedXmlDaItem Name="LH3" ItemName="LH3" ItemPath="Schneider/LH3" ItemType="boolean"/>
+    <OwnedXmlDaItem Name="LL1" ItemName="LL1" ItemPath="Schneider/LL1" ItemType="boolean"/>
+    <OwnedXmlDaItem Name="LL2" ItemName="LL2" ItemPath="Schneider/LL2" ItemType="boolean"/>
+    <OwnedXmlDaItem Name="LL3" ItemName="LL3" ItemPath="Schneider/LL3" ItemType="boolean"/>
+    <OwnedXmlDaItem Name="M" ItemName="M" ItemPath="Schneider/M" ItemType="boolean"/>
+    <OwnedXmlDaItem Name="P1" ItemName="P1" ItemPath="Schneider/P1" ItemType="boolean"/>
+    <OwnedXmlDaItem Name="P2" ItemName="P2" ItemPath="Schneider/P2" ItemType="boolean"/>
+    <OwnedXmlDaItem Name="Schritt1" ItemName="Schritt1" ItemPath="Schneider/Schritt1" ItemType="boolean"/>
+    <OwnedXmlDaItem Name="Schritt2" ItemName="Schritt2" ItemPath="Schneider/Schritt2" ItemType="boolean"/>
+    <OwnedXmlDaItem Name="Schritt3" ItemName="Schritt3" ItemPath="Schneider/Schritt3" ItemType="boolean"/>
+    <OwnedXmlDaItem Name="Schritt4" ItemName="Schritt4" ItemPath="Schneider/Schritt4" ItemType="boolean"/>
+    <OwnedXmlDaItem Name="Schritt5" ItemName="Schritt5" ItemPath="Schneider/Schritt5" ItemType="boolean"/>
+    <OwnedXmlDaItem Name="Schritt6" ItemName="Schritt6" ItemPath="Schneider/Schritt6" ItemType="boolean"/>
+    <OwnedXmlDaItem Name="W" ItemName="W" ItemPath="Schneider/W" ItemType="boolean"/>
+    <OwnedXmlDaItem Name="Y1" ItemName="Y1" ItemPath="Schneider/Y1" ItemType="boolean"/>
+    <OwnedXmlDaItem Name="Y2" ItemName="Y2" ItemPath="Schneider/Y2" ItemType="boolean"/>
+    <OwnedXmlDaItem Name="Y3" ItemName="Y3" ItemPath="Schneider/Y3" ItemType="boolean"/>
+    <OwnedXmlDaItem Name="Y4" ItemName="Y4" ItemPath="Schneider/Y4" ItemType="boolean"/>
+    <OwnedXmlDaItem Name="Y5" ItemName="Y5" ItemPath="Schneider/Y5" ItemType="boolean"/>
+    <OwnedXmlDaItem Name="Y6" ItemName="Y6" ItemPath="Schneider/Y6" ItemType="boolean"/>
+    <OwnedXmlDaItem Name="Y7" ItemName="Y7" ItemPath="Schneider/Y7" ItemType="boolean"/>
+    <OwnedXmlDaItem Name="Auto_Durchfl_FL" ItemName="Auto_Durchfl_FL" ItemPath="Schneider/Auto_Durchfl_FL" ItemType="boolean"/>
+    <OwnedXmlDaItem Name="Auto_Fuellst_FL" ItemName="Auto_Fuellst_FL" ItemPath="Schneider/Auto_Fuellst_FL" ItemType="boolean"/>
+    <OwnedXmlDaItem Name="Auto_Temp_FL" ItemName="Auto_Temp_FL" ItemPath="Schneider/Auto_Temp_FL" ItemType="boolean"/>
+    <OwnedXmlDaItem Name="Start_Ablassen_FL" ItemName="Start_Ablassen_FL" ItemPath="Schneider/Start_Ablassen_FL" ItemType="boolean"/>
+    <OwnedXmlDaItem Name="Start_Demo_FL" ItemName="Start_Demo_FL" ItemPath="Schneider/Start_Demo_FL" ItemType="boolean"/>
+    <OwnedXmlDaItem Name="Start_Dosieren_FL" ItemName="Start_Dosieren_FL" ItemPath="Schneider/Start_Dosieren_FL" ItemType="boolean"/>
+    <OwnedXmlDaItem Name="Start_Durchfluss_FL" ItemName="Start_Durchfluss_FL" ItemPath="Schneider/Start_Durchfluss_FL" ItemType="boolean"/>
+    <OwnedXmlDaItem Name="Start_Fuellstand_FL" ItemName="Start_Fuellstand_FL" ItemPath="Schneider/Start_Fuellstand_FL" ItemType="boolean"/>
+    <OwnedXmlDaItem Name="Start_Temperatur_FL" ItemName="Start_Temperatur_FL" ItemPath="Schneider/Start_Temperatur_FL" ItemType="boolean"/>
+    <OwnedXmlDaItem Name="Start_Umpumpen_FL" ItemName="Start_Umpumpen_FL" ItemPath="Schneider/Start_Umpumpen_FL" ItemType="boolean"/>
+    <OwnedXmlDaItem Name="Y_MAN_FL" ItemName="Y_MAN_FL" ItemPath="Schneider/Y_MAN_FL" ItemType="boolean"/>
+    <OwnedXmlDaItem Name="Durchfluss1_Ist" ItemName="Durchfluss1_Ist" ItemPath="Schneider/Durchfluss1_Ist" ItemType="float"/>
+    <OwnedXmlDaItem Name="Durchfluss2_Ist" ItemName="Durchfluss2_Ist" ItemPath="Schneider/Durchfluss2_Ist" ItemType="float"/>
+    <OwnedXmlDaItem Name="Fuellstand1_Ist" ItemName="Fuellstand1_Ist" ItemPath="Schneider/Fuellstand1_Ist" ItemType="float"/>
+    <OwnedXmlDaItem Name="Fuellstand2_Ist" ItemName="Fuellstand2_Ist" ItemPath="Schneider/Fuellstand2_Ist" ItemType="float"/>
+    <OwnedXmlDaItem Name="Fuellstand3_Ist" ItemName="Fuellstand3_Ist" ItemPath="Schneider/Fuellstand3_Ist" ItemType="float"/>
+    <OwnedXmlDaItem Name="P3" ItemName="P3" ItemPath="Schneider/P3" ItemType="int"/>
+    <OwnedXmlDaItem Name="Temperatur_Ist" ItemName="Temperatur_Ist" ItemPath="Schneider/Temperatur_Ist" ItemType="float"/>
+    <OwnedXmlDaItem Name="V1" ItemName="V1" ItemPath="Schneider/V1" ItemType="float"/>
+    <OwnedXmlDaItem Name="V2" ItemName="V2" ItemPath="Schneider/V2" ItemType="float"/>
+    <OwnedXmlDaItem Name="Volumen1" ItemName="Volumen1" ItemPath="Schneider/Volumen1" ItemType="float"/>
+    <OwnedXmlDaItem Name="Volumen2" ItemName="Volumen2" ItemPath="Schneider/Volumen2" ItemType="float"/>
+    <OwnedXmlDaItem Name="BehaelterDurch_FL" ItemName="BehaelterDurch_FL" ItemPath="Schneider/BehaelterDurch_FL" ItemType="int"/>
+    <OwnedXmlDaItem Name="BehaelterFuell_FL" ItemName="BehaelterFuell_FL" ItemPath="Schneider/BehaelterFuell_FL" ItemType="int"/>
+    <OwnedXmlDaItem Name="Behaelter_A_FL" ItemName="Behaelter_A_FL" ItemPath="Schneider/Behaelter_A_FL" ItemType="int"/>
+    <OwnedXmlDaItem Name="Behaelter_B_FL" ItemName="Behaelter_B_FL" ItemPath="Schneider/Behaelter_B_FL" ItemType="int"/>
+    <OwnedXmlDaItem Name="Durchfluss_Soll_FL" ItemName="Durchfluss_Soll_FL" ItemPath="Schneider/Durchfluss_Soll_FL" ItemType="float"/>
+    <OwnedXmlDaItem Name="Fuellstand_Soll_FL" ItemName="Fuellstand_Soll_FL" ItemPath="Schneider/Fuellstand_Soll_FL" ItemType="int"/>
+    <OwnedXmlDaItem Name="P3_FL" ItemName="P3_FL" ItemPath="Schneider/P3_FL" ItemType="int"/>
+    <OwnedXmlDaItem Name="Temperatur_Soll_FL" ItemName="Temperatur_Soll_FL" ItemPath="Schneider/Temperatur_Soll_FL" ItemType="int"/>
+    <OwnedXmlDaItem Name="Tn_FL" ItemName="Tn_FL" ItemPath="Schneider/Tn_FL" ItemType="float"/>
+    <OwnedXmlDaItem Name="Tv_FL" ItemName="Tv_FL" ItemPath="Schneider/Tv_FL" ItemType="float"/>
+    <OwnedXmlDaItem Name="V1_FL" ItemName="V1_FL" ItemPath="Schneider/V1_FL" ItemType="int"/>
+    <OwnedXmlDaItem Name="V2_FL" ItemName="V2_FL" ItemPath="Schneider/V2_FL" ItemType="int"/>
+    <OwnedXmlDaItem Name="VolumenB1_FL" ItemName="VolumenB1_FL" ItemPath="Schneider/VolumenB1_FL" ItemType="float"/>
+    <OwnedXmlDaItem Name="VolumenB2_FL" ItemName="VolumenB2_FL" ItemPath="Schneider/VolumenB2_FL" ItemType="float"/>
+    <OwnedXmlDaItem Name="Vr_FL" ItemName="Vr_FL" ItemPath="Schneider/Vr_FL" ItemType="float"/>
   </OwnedServer>
 </clientdata:TechnicalDataPerspective>

@@ -1,7 +1,7 @@
 package de.mfreund.gentrans.transformation.resolving;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -26,12 +26,10 @@ import pamtram.structure.target.TargetSectionClass;
 import pamtram.structure.target.TargetSectionCrossReference;
 
 /**
- * This provides support for composing several
- * {@link IAmbiguityResolvingStrategy IAmbiguityResolvingStrategies}.
+ * This provides support for composing several {@link IAmbiguityResolvingStrategy IAmbiguityResolvingStrategies}.
  * <p />
- * Any call to a method defined by the {@link IAmbiguityResolvingStrategy}
- * interface iteratively forwards the call to every of the
- * {@link #composedStrategies} and returns the final result.
+ * Any call to a method defined by the {@link IAmbiguityResolvingStrategy} interface iteratively forwards the call to
+ * every of the {@link #composedStrategies} and returns the final result.
  *
  * @author mfreund
  */
@@ -47,18 +45,17 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 	 * This creates an instance.
 	 *
 	 * @param composedStrategies
-	 *            The list of {@link IAmbiguityResolvingStrategy strategies}
-	 *            that this composes.
+	 *            The list of {@link IAmbiguityResolvingStrategy strategies} that this composes.
 	 */
 	public ComposedAmbiguityResolvingStrategy(List<IAmbiguityResolvingStrategy> composedStrategies) {
+
 		this.composedStrategies = composedStrategies;
 	}
 
 	/**
 	 * This is the getter for the {@link #composedStrategies}.
 	 *
-	 * @return The list of {@link IAmbiguityResolvingStrategy strategies} that
-	 *         this composes.
+	 * @return The list of {@link IAmbiguityResolvingStrategy strategies} that this composes.
 	 */
 	public List<IAmbiguityResolvingStrategy> getComposedStrategies() {
 
@@ -66,8 +63,7 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 	}
 
 	/**
-	 * This adds a new strategy to end of the list of
-	 * {@link #composedStrategies}.
+	 * This adds a new strategy to end of the list of {@link #composedStrategies}.
 	 *
 	 * @param strategyToAdd
 	 *            The {@link IAmbiguityResolvingStrategy strategy} to add.
@@ -304,7 +300,7 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 			Map<ModelConnectionPath, List<EObjectWrapper>> choices, TargetSection section,
 			List<EObjectWrapper> sectionInstances, MappingHintGroupType hintGroup) throws AmbiguityResolvingException {
 
-		Map<ModelConnectionPath, List<EObjectWrapper>> ret = new HashMap<>();
+		Map<ModelConnectionPath, List<EObjectWrapper>> ret = new LinkedHashMap<>();
 		if (choices != null) {
 			for (Entry<ModelConnectionPath, List<EObjectWrapper>> entry : choices.entrySet()) {
 				ret.put(entry.getKey(), new ArrayList<>(entry.getValue()));
@@ -334,7 +330,7 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 			Map<TargetSectionClass, List<EObjectWrapper>> choices, TargetSectionCrossReference reference,
 			MappingHintGroupType hintGroup) throws AmbiguityResolvingException {
 
-		Map<TargetSectionClass, List<EObjectWrapper>> ret = new HashMap<>();
+		Map<TargetSectionClass, List<EObjectWrapper>> ret = new LinkedHashMap<>();
 		if (choices != null) {
 			for (Entry<TargetSectionClass, List<EObjectWrapper>> entry : choices.entrySet()) {
 				ret.put(entry.getKey(), new ArrayList<>(entry.getValue()));
@@ -460,6 +456,7 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 
 	@Override
 	public String toString() {
+
 		StringBuilder builder = new StringBuilder(this.getClass().getSimpleName());
 		builder.append(" (Sub-Strategies: ");
 		builder.append(this.composedStrategies.stream().map(Object::toString).collect(Collectors.joining(", ")));

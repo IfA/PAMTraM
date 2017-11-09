@@ -138,7 +138,7 @@ public class MatchedSectionDescriptor {
 	public Set<EObject> getSourceModelObjectFlat() {
 
 		return this.sourceModelObjetsMapped.entrySet().stream().map(e -> e.getValue()).flatMap(l -> l.stream())
-				.collect(Collectors.toSet());
+				.collect(Collectors.toCollection(LinkedHashSet::new));
 	}
 
 	/**

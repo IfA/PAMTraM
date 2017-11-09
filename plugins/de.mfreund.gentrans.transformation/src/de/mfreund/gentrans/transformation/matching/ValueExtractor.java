@@ -3,6 +3,7 @@ package de.mfreund.gentrans.transformation.matching;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -226,7 +227,7 @@ public abstract class ValueExtractor extends CancelableElement {
 						.filter(s -> MatchSpecHandler.conformsMatchedObject(
 								localDescriptor.getAssociatedSourceModelElement(), s,
 								(MatchSpecElement<?, ?, ?, ?>) mappingHintSourceElement, this.logger))
-						.collect(Collectors.toSet());
+						.collect(Collectors.toCollection(LinkedHashSet::new));
 			}
 		}
 

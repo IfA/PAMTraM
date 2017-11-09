@@ -3,7 +3,6 @@ package de.mfreund.gentrans.transformation.matching;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -12,7 +11,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -211,8 +209,8 @@ public class SourceSectionMatcher extends CancelableElement {
 		this.containmentTree = containmentTree;
 		this.sourceSections = sourceSections;
 
-		this.matchedSections = new HashMap<>();
-		this.matchedContainers = new HashMap<>();
+		this.matchedSections = new LinkedHashMap<>();
+		this.matchedContainers = new LinkedHashMap<>();
 
 		Optional<EObject> element;
 		while ((element = this.containmentTree.getNextElementForMatching()).isPresent()) {
@@ -545,7 +543,7 @@ public class SourceSectionMatcher extends CancelableElement {
 		List<Entry<SourceSection, EObject>> entries = new ArrayList<>(containers.entrySet());
 		// inverse the iterator order so that we start with the root container
 		Collections.reverse(entries);
-		Map<SourceSection, MatchedSectionDescriptor> containerDescriptors = new HashMap<>();
+		Map<SourceSection, MatchedSectionDescriptor> containerDescriptors = new LinkedHashMap<>();
 		for (Entry<SourceSection, EObject> container : entries.stream()
 				.filter(container -> !this.checkObjectWasMapped(container.getKey(), container.getValue()))
 				.collect(Collectors.toList())) {
@@ -775,7 +773,7 @@ public class SourceSectionMatcher extends CancelableElement {
 		// (SourceSectionClasses) for the
 		// current 'sourceSectionClass' and store them in to maps
 		//
-		Map<EReference, List<SourceSectionClass>> classByRefMap = new HashMap<>();
+		Map<EReference, List<SourceSectionClass>> classByRefMap = new LinkedHashMap<>();
 		for (SourceSectionReference reference : sourceSectionClass.getReferences().stream()
 				.filter(r -> r instanceof ActualReference<?, ?, ?, ?>).collect(Collectors.toList())) {
 			List<SourceSectionClass> currentValues = classByRefMap
@@ -786,7 +784,7 @@ public class SourceSectionMatcher extends CancelableElement {
 			classByRefMap.put(((ActualReference<?, ?, ?, ?>) reference).getEReference(), currentValues);
 		}
 
-		Map<VirtualSourceSectionCrossReference, List<SourceSectionClass>> classByVirtualRefMap = new HashMap<>();
+		Map<VirtualSourceSectionCrossReference, List<SourceSectionClass>> classByVirtualRefMap = new LinkedHashMap<>();
 		for (SourceSectionReference reference : sourceSectionClass.getReferences().stream()
 				.filter(r -> r instanceof VirtualSourceSectionCrossReference).collect(Collectors.toList())) {
 			List<SourceSectionClass> currentValues = classByVirtualRefMap.containsKey(reference)
@@ -796,7 +794,8 @@ public class SourceSectionMatcher extends CancelableElement {
 			classByVirtualRefMap.put((VirtualSourceSectionCrossReference) reference, currentValues);
 		}
 
-		Map<SourceSectionClass, SourceSectionReference> refByClassMap = new ConcurrentHashMap<>();
+		Map<SourceSectionClass, SourceSectionReference> refByClassMap = Collections
+				.synchronizedMap(new LinkedHashMap<>());
 		sourceSectionClass.getReferences().stream()
 				.forEach(r -> r.getValuesGeneric().stream().forEach(c -> refByClassMap.put(c, r)));
 

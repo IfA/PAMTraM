@@ -221,7 +221,7 @@ public class TargetSectionRegistry extends CancelableElement {
 
 		if (!this.targetClassInstanceByHintGroupRegistry.containsKey(targetSectionClass)) {
 			this.targetClassInstanceByHintGroupRegistry.put(targetSectionClass,
-					new HashMap<InstantiableMappingHintGroup, List<EObjectWrapper>>());
+					new LinkedHashMap<InstantiableMappingHintGroup, List<EObjectWrapper>>());
 		}
 
 		if (!this.targetClassInstanceByHintGroupRegistry.get(targetSectionClass).containsKey(mappingHintGroup)) {

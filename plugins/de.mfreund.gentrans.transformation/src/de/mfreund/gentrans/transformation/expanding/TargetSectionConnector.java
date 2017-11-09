@@ -3,6 +3,7 @@ package de.mfreund.gentrans.transformation.expanding;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -279,7 +280,7 @@ public class TargetSectionConnector extends CancelableElement {
 			List<EObjectWrapper> unconnectedInstances = this.joinWithoutContainerSelector(rootInstances, section,
 					hintGroup,
 					section.getContainer() != null
-							? Optional.of(new HashSet<>(Arrays.asList(section.getContainer().getEClass())))
+							? Optional.of(Collections.singleton(section.getContainer().getEClass()))
 							: Optional.empty(),
 					containerInstances.isEmpty() ? Optional.empty() : Optional.of(containerInstances));
 
@@ -376,7 +377,7 @@ public class TargetSectionConnector extends CancelableElement {
 			final LinkedList<EObjectWrapper> containerInstances = new LinkedList<>();
 			final List<EObjectWrapper> rootInstances = this.targetSectionRegistry
 					.getPamtramClassInstances(g.getTargetSection()).get(hintGroupImporter);
-			final Set<EClass> containerClasses = new HashSet<>();
+			final Set<EClass> containerClasses = new LinkedHashSet<>();
 			if (g.getTargetSection().getContainer() != null) {
 				containerClasses.add(g.getTargetSection().getContainer().getEClass());
 				containerInstances.addAll(this.targetSectionRegistry
@@ -746,7 +747,7 @@ public class TargetSectionConnector extends CancelableElement {
 			//
 			pathsToConsider.addAll(containerClasses.get().stream().flatMap(
 					c -> this.targetSectionRegistry.getConnections(classToConnect, c, this.maxPathLength).stream())
-					.collect(Collectors.toSet()));
+					.collect(Collectors.toCollection(LinkedHashSet::new)));
 		} else {
 
 			pathsToConsider.addAll(this.targetSectionRegistry.getPaths(classToConnect, this.maxPathLength));
@@ -875,8 +876,8 @@ public class TargetSectionConnector extends CancelableElement {
 
 		// The list of (distinct) container instances represented by the 'connectionChoices'
 		//
-		List<EObjectWrapper> containerInstances = new ArrayList<>(
-				connectionChoices.values().stream().flatMap(List::stream).collect(Collectors.toSet()));
+		List<EObjectWrapper> containerInstances = new ArrayList<>(connectionChoices.values().stream()
+				.flatMap(List::stream).collect(Collectors.toCollection(LinkedHashSet::new)));
 
 		if (containerInstances.size() == rootInstances.size()) {
 			// This is the special case where there is exactly one container instance per root instance -> We connect

@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -280,7 +281,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 			final Collection<MappingHint> hints, final HintValueStorage hintValues,
 			final AttributeMapping oldSelectedHint) {
 
-		Set<AttributeMapping> selectedHints = new HashSet<>();
+		Set<AttributeMapping> selectedHints = new LinkedHashSet<>();
 
 		// check attributes
 		for (final TargetSectionAttribute attr : targetSectionClass.getAttributes()) {
@@ -593,8 +594,8 @@ public class TargetSectionInstantiator extends CancelableElement {
 
 			// Collect the cardinality for each TargetSectionAttribute
 			//
-			for (TargetSectionAttribute targetAttribute : hints.stream().map(a -> a.getTarget())
-					.collect(Collectors.toSet())) {
+			for (TargetSectionAttribute targetAttribute : hints.stream().map(AttributeMapping::getTarget)
+					.collect(Collectors.toCollection(LinkedHashSet::new))) {
 
 				int localAttributeMappingHintCardinality = this.getTargetAttributeCardinality(hintValues, hints,
 						targetAttribute);
@@ -834,7 +835,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 		/*
 		 * we don't need to reference the EObjects, since their order doesn't change while we are using this
 		 */
-		final Map<TargetSectionAttribute, List<String>> attributeValues = new HashMap<>();
+		final Map<TargetSectionAttribute, List<String>> attributeValues = new LinkedHashMap<>();
 
 		EList<TargetSectionAttribute> attributes = targetSectionClass.getAttributes();
 
@@ -998,7 +999,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 					final EAttribute eAttr = ((ActualAttribute<?, ?, ?, ?>) attr).getAttribute();
 
 					if (!secAttrValsForEClass.containsKey(eAttr)) {
-						secAttrValsForEClass.put(eAttr, new HashSet<String>());
+						secAttrValsForEClass.put(eAttr, new LinkedHashSet<String>());
 					} else {
 						attrValUsedInSection = secAttrValsForEClass.get(eAttr).contains(attrValue);
 					}
@@ -1050,8 +1051,8 @@ public class TargetSectionInstantiator extends CancelableElement {
 							 * not part of the targetSectionClass; instead we want to specify the value as 'new value'
 							 * for the affected AttributeParameter
 							 */
-							LibraryEntry specificLibEntry =this.targetSectionRegistry.getLibraryEntryRegistry().get(instance)
-									.getLibraryEntry();
+							LibraryEntry specificLibEntry = this.targetSectionRegistry.getLibraryEntryRegistry()
+									.get(instance).getLibraryEntry();
 							LibraryEntry genericLibEntry = (LibraryEntry) targetSectionClass.eContainer().eContainer();
 							AttributeParameter attrParam = (AttributeParameter) specificLibEntry.getParameters()
 									.get(genericLibEntry.getParameters().indexOf(attr.eContainer()));

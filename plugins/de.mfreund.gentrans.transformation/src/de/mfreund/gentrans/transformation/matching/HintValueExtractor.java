@@ -1,6 +1,7 @@
 package de.mfreund.gentrans.transformation.matching;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -98,7 +99,7 @@ public class HintValueExtractor extends ValueExtractor {
 		super(globalValues, instanceSelectorHandler, attributeValueModifierExecutor, logger, useParallelization);
 
 		this.matchedSections = matchingResult;
-		this.exportedHintGroups = new HashMap<>();
+		this.exportedHintGroups = new LinkedHashMap<>();
 	}
 
 	/**
@@ -239,7 +240,7 @@ public class HintValueExtractor extends ValueExtractor {
 
 			// This keeps track of the extracted hint value parts
 			//
-			Map<MappingHintSourceInterface, AttributeValueRepresentation> hintValueMap = new HashMap<>();
+			Map<MappingHintSourceInterface, AttributeValueRepresentation> hintValueMap = new LinkedHashMap<>();
 
 			// Extract the hint value parts based on the type
 			// (Disregard source elements with negative conditions)
@@ -365,7 +366,7 @@ public class HintValueExtractor extends ValueExtractor {
 		} else {
 			// This keeps track of the extracted hint value parts
 			//
-			Map<MappingHintSourceInterface, AttributeValueRepresentation> hintValue = new HashMap<>();
+			Map<MappingHintSourceInterface, AttributeValueRepresentation> hintValue = new LinkedHashMap<>();
 
 			// Extract the hint value part based on its type
 			//

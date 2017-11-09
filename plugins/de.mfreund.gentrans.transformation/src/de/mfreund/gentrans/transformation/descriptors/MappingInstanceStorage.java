@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -52,7 +52,7 @@ public class MappingInstanceStorage {
 	/**
 	 * Generated EObjects sorted by TargetSectionCLass
 	 */
-	private final ConcurrentHashMap<InstantiableMappingHintGroup, ConcurrentHashMap<TargetSectionClass, List<EObjectWrapper>>> instancesBySection;
+	private final Map<InstantiableMappingHintGroup, Map<TargetSectionClass, List<EObjectWrapper>>> instancesBySection;
 
 	/**
 	 * This contains the hint values that shall be used when instantiating, linking, and expanding the target
@@ -93,7 +93,7 @@ public class MappingInstanceStorage {
 		this.matchedSectionDescriptor = matchedSectionDescriptor;
 		this.matchedSectionDescriptor.setAssociatedMappingInstance(this);
 		this.mapping = null;
-		this.instancesBySection = new ConcurrentHashMap<>();
+		this.instancesBySection = Collections.synchronizedMap(new LinkedHashMap<>());
 		this.hintValues = new HintValueStorage(useParallelization);
 		this.elementsWithNegativeConditions = new HashSet<>();
 		this.useParallelization = useParallelization;
@@ -167,8 +167,7 @@ public class MappingInstanceStorage {
 			final TargetSectionClass targetSectionClass, final Collection<EObjectWrapper> instances) {
 
 		if (!this.instancesBySection.containsKey(mappingHintGroup)) {
-			this.instancesBySection.put(mappingHintGroup,
-					new ConcurrentHashMap<TargetSectionClass, List<EObjectWrapper>>());
+			this.instancesBySection.put(mappingHintGroup, Collections.synchronizedMap(new LinkedHashMap<>()));
 		}
 
 		if (!this.instancesBySection.get(mappingHintGroup).containsKey(targetSectionClass)) {

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -597,7 +598,7 @@ public class ConditionHandler {
 					.flatMap(
 							descriptor -> Optional.ofNullable(descriptor.getSourceModelObjectsMapped().get(owningClass))
 									.orElse(new HashSet<>()).stream())
-					.collect(Collectors.toSet());
+					.collect(Collectors.toCollection(LinkedHashSet::new));
 			correspondEClassInstances = correspondEClassInstances.stream()
 					.filter(instance -> owningElements.stream().anyMatch(owner -> AgteleEcoreUtil
 							.getStructuralFeatureValueAsList(owner, reference.getEReference()).contains(instance)))

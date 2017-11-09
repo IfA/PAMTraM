@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<movisa:AlgorithmModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:movisa="http://stefan-hennig.de/movisa" xmlns:presentation="http://stefan-hennig.de/movisa/presentation">
+  <OwnedElement xsi:type="presentation:TextLabel" Name="Button_aui2"/>
+  <OwnedElement xsi:type="presentation:TextLabel" Name="Button_aui3"/>
+  <OwnedElement xsi:type="presentation:TextLabel" Name="Button_aui4"/>
+  <OwnedElement xsi:type="presentation:Button" Name="Button_aui1"/>
+</movisa:AlgorithmModel>

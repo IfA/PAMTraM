@@ -14,6 +14,27 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
+import de.mfreund.gentrans.test.casestudies.W3CAUICasestudyBasedBasicTest._01_AttributeMappingTest;
+import de.mfreund.gentrans.test.casestudies.W3CAUICasestudyBasedBasicTest._02_ExternalAttributeMappingTest;
+import de.mfreund.gentrans.test.casestudies.W3CAUICasestudyBasedBasicTest._03_multiValuedAttributeMappingTest;
+import de.mfreund.gentrans.test.casestudies.W3CAUICasestudyBasedBasicTest._04_modelConnectionHintTest;
+import de.mfreund.gentrans.test.casestudies.W3CAUICasestudyBasedBasicTest._05_attributeMappingWithExpressionTest;
+import de.mfreund.gentrans.test.casestudies.W3CAUICasestudyBasedBasicTest._06_containerCheckTest;
+import de.mfreund.gentrans.test.casestudies.W3CAUICasestudyBasedBasicTest._07_emptyReferenceTest;
+import de.mfreund.gentrans.test.casestudies.W3CAUICasestudyBasedBasicTest._08_cardinalityMappingTest;
+import de.mfreund.gentrans.test.casestudies.W3CAUICasestudyBasedBasicTest._09_attributeMappingWithFixedValueTest;
+import de.mfreund.gentrans.test.casestudies.W3CAUICasestudyBasedBasicTest._10_applicationDependencyTest;
+import de.mfreund.gentrans.test.casestudies.W3CAUICasestudyBasedBasicTest._11_equivalentSourceSectionsTest;
+import de.mfreund.gentrans.test.casestudies.W3CAUICasestudyBasedBasicTest._12_attributeMappingWithGlobalSourceElementTest;
+import de.mfreund.gentrans.test.casestudies.W3CAUICasestudyBasedBasicTest._13_matchSubTypesTest;
+import de.mfreund.gentrans.test.casestudies.W3CAUICasestudyBasedBasicTest._14_ignoreUnmatchedElementsTest;
+import de.mfreund.gentrans.test.casestudies.W3CAUICasestudyBasedBasicTest._15_virtualSourceSectionAttributeTest;
+import de.mfreund.gentrans.test.casestudies.W3CAUICasestudyBasedBasicTest._16_virtualSourceSectionCrossReferenceTest;
+import de.mfreund.gentrans.test.casestudies.W3CAUICasestudyBasedBasicTest._17_multiplePamtramModelsTest;
+import de.mfreund.gentrans.test.casestudies.W3CAUICasestudyBasedBasicTest._18_modelConnectionHint2Test;
+import de.mfreund.gentrans.test.casestudies.W3CAUICasestudyBasedBasicTest._19_modelConnectionHint3Test;
+import de.mfreund.gentrans.test.casestudies.W3CAUICasestudyBasedBasicTest._20_modelConnectionHint4Test;
+import de.mfreund.gentrans.test.casestudies.W3CAUICasestudyBasedBasicTest._21_cardinalityConditionForReferenceTest;
 import de.tud.et.ifa.agtele.resources.ResourceHelper;
 
 /**
@@ -21,7 +42,29 @@ import de.tud.et.ifa.agtele.resources.ResourceHelper;
  * @author mfreund
  */
 @RunWith(Suite.class)
-@SuiteClasses({ AutoProBeSimplifiedDissTest.class, //
+@SuiteClasses({ //
+		_01_AttributeMappingTest.class, //
+		_02_ExternalAttributeMappingTest.class, //
+		_03_multiValuedAttributeMappingTest.class, //
+		_04_modelConnectionHintTest.class, //
+		_05_attributeMappingWithExpressionTest.class, //
+		_06_containerCheckTest.class, //
+		_07_emptyReferenceTest.class, //
+		_08_cardinalityMappingTest.class, //
+		_09_attributeMappingWithFixedValueTest.class, //
+		_10_applicationDependencyTest.class, //
+		_11_equivalentSourceSectionsTest.class, //
+		_12_attributeMappingWithGlobalSourceElementTest.class, //
+		_13_matchSubTypesTest.class, //
+		_14_ignoreUnmatchedElementsTest.class, //
+		_15_virtualSourceSectionAttributeTest.class, //
+		_16_virtualSourceSectionCrossReferenceTest.class, //
+		_17_multiplePamtramModelsTest.class, //
+		_18_modelConnectionHint2Test.class, //
+		_19_modelConnectionHint3Test.class, //
+		_20_modelConnectionHint4Test.class, //
+		_21_cardinalityConditionForReferenceTest.class, //
+		AutoProBeSimplifiedDissTest.class, //
 		AutoProBeTest.class, //
 		CompanyVizTest.class, //
 		DislMovisaTest.class, //

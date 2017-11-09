@@ -14,6 +14,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
+import de.mfreund.gentrans.test.casestudies.Models2016Test.LibraryMM1ToMM2Test;
+import de.mfreund.gentrans.test.casestudies.Models2016Test.LibraryMM2ToMM1Test;
 import de.mfreund.gentrans.test.casestudies.W3CAUICasestudyBasedBasicTest._01_AttributeMappingTest;
 import de.mfreund.gentrans.test.casestudies.W3CAUICasestudyBasedBasicTest._02_ExternalAttributeMappingTest;
 import de.mfreund.gentrans.test.casestudies.W3CAUICasestudyBasedBasicTest._03_multiValuedAttributeMappingTest;
@@ -70,6 +72,8 @@ import de.tud.et.ifa.agtele.resources.ResourceHelper;
 		DislMovisaTest.class, //
 		ExcelMovisaTdpTest.class, //
 		LibraryTest.class, //
+		LibraryMM1ToMM2Test.class, //
+		LibraryMM2ToMM1Test.class, //
 		VisuPlusTest.class, //
 		W3CAuiMovisaTest.class //
 })

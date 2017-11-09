@@ -43,27 +43,30 @@ import pamtram.structure.source.SourceSection;
 import pamtram.structure.target.TargetSection;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Hint
- * Group Type</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Hint Group Type</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.impl.MappingHintGroupTypeImpl#getTargetSection <em>Target Section</em>}</li>
- *   <li>{@link pamtram.mapping.impl.MappingHintGroupTypeImpl#getMappingHints <em>Mapping Hints</em>}</li>
- *   <li>{@link pamtram.mapping.impl.MappingHintGroupTypeImpl#getExtend <em>Extend</em>}</li>
- *   <li>{@link pamtram.mapping.impl.MappingHintGroupTypeImpl#getAttributeMappings <em>Attribute Mappings</em>}</li>
- *   <li>{@link pamtram.mapping.impl.MappingHintGroupTypeImpl#getCardinalityMappings <em>Cardinality Mappings</em>}</li>
- *   <li>{@link pamtram.mapping.impl.MappingHintGroupTypeImpl#getReferenceTargetSelectors <em>Reference Target Selectors</em>}</li>
- *   <li>{@link pamtram.mapping.impl.MappingHintGroupTypeImpl#getContainerSelectors <em>Container Selectors</em>}</li>
+ * <li>{@link pamtram.mapping.impl.MappingHintGroupTypeImpl#getTargetSection <em>Target Section</em>}</li>
+ * <li>{@link pamtram.mapping.impl.MappingHintGroupTypeImpl#getMappingHints <em>Mapping Hints</em>}</li>
+ * <li>{@link pamtram.mapping.impl.MappingHintGroupTypeImpl#getExtend <em>Extend</em>}</li>
+ * <li>{@link pamtram.mapping.impl.MappingHintGroupTypeImpl#getAttributeMappings <em>Attribute Mappings</em>}</li>
+ * <li>{@link pamtram.mapping.impl.MappingHintGroupTypeImpl#getCardinalityMappings <em>Cardinality Mappings</em>}</li>
+ * <li>{@link pamtram.mapping.impl.MappingHintGroupTypeImpl#getReferenceTargetSelectors <em>Reference Target
+ * Selectors</em>}</li>
+ * <li>{@link pamtram.mapping.impl.MappingHintGroupTypeImpl#getContainerSelectors <em>Container Selectors</em>}</li>
  * </ul>
  *
  * @generated
  */
 public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implements MappingHintGroupType {
+
 	/**
-	 * The cached value of the '{@link #getTargetSection() <em>Target Section</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getTargetSection() <em>Target Section</em>}' reference. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getTargetSection()
 	 * @generated
 	 * @ordered
@@ -71,9 +74,9 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	protected TargetSection targetSection;
 
 	/**
-	 * The cached value of the '{@link #getMappingHints() <em>Mapping Hints</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getMappingHints() <em>Mapping Hints</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getMappingHints()
 	 * @generated
 	 * @ordered
@@ -81,8 +84,9 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	protected EList<MappingHint> mappingHints;
 
 	/**
-	 * The cached value of the '{@link #getExtend() <em>Extend</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getExtend() <em>Extend</em>}' reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getExtend()
 	 * @generated
 	 * @ordered
@@ -91,55 +95,70 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected MappingHintGroupTypeImpl() {
+
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
+
 		return MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public TargetSection getTargetSection() {
-		if (targetSection != null && targetSection.eIsProxy()) {
-			InternalEObject oldTargetSection = (InternalEObject)targetSection;
-			targetSection = (TargetSection)eResolveProxy(oldTargetSection);
-			if (targetSection != oldTargetSection) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MappingPackage.MAPPING_HINT_GROUP_TYPE__TARGET_SECTION, oldTargetSection, targetSection));
+
+		if (this.targetSection != null && this.targetSection.eIsProxy()) {
+			InternalEObject oldTargetSection = (InternalEObject) this.targetSection;
+			this.targetSection = (TargetSection) this.eResolveProxy(oldTargetSection);
+			if (this.targetSection != oldTargetSection) {
+				if (this.eNotificationRequired()) {
+					this.eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							MappingPackage.MAPPING_HINT_GROUP_TYPE__TARGET_SECTION, oldTargetSection,
+							this.targetSection));
+				}
 			}
 		}
-		return targetSection;
+		return this.targetSection;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public TargetSection basicGetTargetSection() {
-		return targetSection;
+
+		return this.targetSection;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setTargetSectionGen(TargetSection newTargetSection) {
-		TargetSection oldTargetSection = targetSection;
-		targetSection = newTargetSection;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP_TYPE__TARGET_SECTION, oldTargetSection, targetSection));
+
+		TargetSection oldTargetSection = this.targetSection;
+		this.targetSection = newTargetSection;
+		if (this.eNotificationRequired()) {
+			this.eNotify(new ENotificationImpl(this, Notification.SET,
+					MappingPackage.MAPPING_HINT_GROUP_TYPE__TARGET_SECTION, oldTargetSection, this.targetSection));
+		}
 	}
 
 	/**
@@ -147,155 +166,178 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	 */
 	@Override
 	public void setTargetSection(TargetSection newTargetMMSection) {
+
 		this.setNameDerived(this.targetSection, newTargetMMSection, null, null);
 		this.setTargetSectionGen(newTargetMMSection);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EList<MappingHint> getMappingHints() {
-		if (mappingHints == null) {
-			mappingHints = new EObjectContainmentEList<MappingHint>(MappingHint.class, this, MappingPackage.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS);
+
+		if (this.mappingHints == null) {
+			this.mappingHints = new EObjectContainmentEList<>(MappingHint.class, this,
+					MappingPackage.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS);
 		}
-		return mappingHints;
+		return this.mappingHints;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EList<MappingHintGroupType> getExtend() {
-		if (extend == null) {
-			extend = new EObjectResolvingEList<MappingHintGroupType>(MappingHintGroupType.class, this, MappingPackage.MAPPING_HINT_GROUP_TYPE__EXTEND);
+
+		if (this.extend == null) {
+			this.extend = new EObjectResolvingEList<>(MappingHintGroupType.class, this,
+					MappingPackage.MAPPING_HINT_GROUP_TYPE__EXTEND);
 		}
-		return extend;
+		return this.extend;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EList<AttributeMapping> getAttributeMappings() {
+
 		List<AttributeMapping> attributeMappings = this.getMappingHints().stream()
-						.filter(hint -> hint instanceof AttributeMapping).map(hint -> (AttributeMapping) hint)
-						.collect(Collectors.toList());
-		return new EcoreEList.UnmodifiableEList<>(this, MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__ATTRIBUTE_MAPPINGS,
-				attributeMappings.size(),attributeMappings.toArray());
-		
+				.filter(hint -> hint instanceof AttributeMapping).map(hint -> (AttributeMapping) hint)
+				.collect(Collectors.toList());
+		return new EcoreEList.UnmodifiableEList<>(this,
+				MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__ATTRIBUTE_MAPPINGS, attributeMappings.size(),
+				attributeMappings.toArray());
+
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EList<CardinalityMapping> getCardinalityMappings() {
+
 		List<CardinalityMapping> cardinalityMappings = this.getMappingHints().stream()
-						.filter(hint -> hint instanceof CardinalityMapping).map(hint -> (CardinalityMapping) hint)
-						.collect(Collectors.toList());
-		return new EcoreEList.UnmodifiableEList<>(this, MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__CARDINALITY_MAPPINGS,
-				cardinalityMappings.size(),cardinalityMappings.toArray());
-		
+				.filter(hint -> hint instanceof CardinalityMapping).map(hint -> (CardinalityMapping) hint)
+				.collect(Collectors.toList());
+		return new EcoreEList.UnmodifiableEList<>(this,
+				MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__CARDINALITY_MAPPINGS, cardinalityMappings.size(),
+				cardinalityMappings.toArray());
+
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EList<ReferenceTargetSelector> getReferenceTargetSelectors() {
+
 		List<ReferenceTargetSelector> referenceTargetSelectors = this.getMappingHints().stream()
-						.filter(hint -> hint instanceof ReferenceTargetSelector).map(hint -> (ReferenceTargetSelector) hint)
-						.collect(Collectors.toList());
-		return new EcoreEList.UnmodifiableEList<>(this, MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__REFERENCE_TARGET_SELECTORS,
-				referenceTargetSelectors.size(),referenceTargetSelectors.toArray());
-		
+				.filter(hint -> hint instanceof ReferenceTargetSelector).map(hint -> (ReferenceTargetSelector) hint)
+				.collect(Collectors.toList());
+		return new EcoreEList.UnmodifiableEList<>(this,
+				MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__REFERENCE_TARGET_SELECTORS,
+				referenceTargetSelectors.size(), referenceTargetSelectors.toArray());
+
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EList<ContainerSelector> getContainerSelectors() {
+
 		List<ContainerSelector> containerSelectors = this.getMappingHints().stream()
-						.filter(hint -> hint instanceof ContainerSelector).map(hint -> (ContainerSelector) hint)
-						.collect(Collectors.toList());
-		return new EcoreEList.UnmodifiableEList<>(this, MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__CONTAINER_SELECTORS,
-				containerSelectors.size(),containerSelectors.toArray());
-		
+				.filter(hint -> hint instanceof ContainerSelector).map(hint -> (ContainerSelector) hint)
+				.collect(Collectors.toList());
+		return new EcoreEList.UnmodifiableEList<>(this,
+				MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__CONTAINER_SELECTORS, containerSelectors.size(),
+				containerSelectors.toArray());
+
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean validateExtendsOnlyValidHintGroups(final DiagnosticChain diagnostics, final Map<?, ?> context) {
-		
+
 		SourceSection sourceSection = ((Mapping) this.eContainer()).getSourceSection();
-		
+
 		if (sourceSection == null) {
 			return true;
 		}
-		
+
 		List<SourceSection> validExtends = new ArrayList<>();
 		validExtends.add(sourceSection);
 		validExtends.addAll(sourceSection.getAllExtend());
-		
+
 		Optional<MappingHintGroupType> result = this.getExtend().stream()
 				.filter(hg -> !validExtends.contains(((Mapping) hg.eContainer()).getSourceSection())).findFirst();
-		
+
 		if (result.isPresent() && diagnostics != null) {
-		
-			String errorMessage = "The MappingHintGroup '" + result.get().getName() + "' may not be extended by this MappingHintGroup because the referenced SourceSections are not compatible!";
-		
-			diagnostics.add(new BasicDiagnostic
-					(Diagnostic.ERROR,
-					MappingValidator.DIAGNOSTIC_SOURCE,
-							MappingValidator.MAPPING_HINT_GROUP_TYPE__VALIDATE_EXTENDS_ONLY_VALID_HINT_GROUPS,
-							errorMessage,
+
+			String errorMessage = "The MappingHintGroup '" + result.get().getName()
+					+ "' may not be extended by this MappingHintGroup because the referenced SourceSections are not compatible!";
+
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, MappingValidator.DIAGNOSTIC_SOURCE,
+					MappingValidator.MAPPING_HINT_GROUP_TYPE__VALIDATE_EXTENDS_ONLY_VALID_HINT_GROUPS, errorMessage,
 					new Object[] { this, MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__EXTEND }));
-		
+
 		}
-		
+
 		return !result.isPresent();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EList<MappingHint> getActiveMappingHints() {
-		Object[] hints = getMappingHints().stream().filter(h -> !h.isDeactivated()).toArray();
+
+		Object[] hints = this.getMappingHints().stream().filter(h -> !h.isDeactivated()).toArray();
 		return new BasicEList.UnmodifiableEList<>(hints.length, hints);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
-	public boolean validateDoNotUseLibraryElementsWithoutLibraryNature(final DiagnosticChain diagnostics, final Map<?, ?> context) {
-		if (!this.getTargetSection().isLibraryEntry()) {
+	public boolean validateDoNotUseLibraryElementsWithoutLibraryNature(final DiagnosticChain diagnostics,
+			final Map<?, ?> context) {
+
+		if (this.getTargetSection() == null || !this.getTargetSection().isLibraryEntry()) {
 			return true;
 		}
-		
+
 		// Check if the 'PAMTraM Library Nature' is set for the project
 		//
 		IFile file = ResourceHelper.getFileForResource(this.eResource());
 		if (file == null || file.getProject() == null) {
 			return true;
 		}
-		
+
 		String errorMessage = "The 'PAMTraM Library Nature' is not activated for this project. Thus, LibraryEntries may not be used as TargetSections! You can activate the nature in the project properties...";
-		
+
 		try {
 			if (!Boolean.parseBoolean(PropertySupplier.getResourceProperty(PropertySupplier.PROP_HAS_LIBRARY_NATURE,
 					file.getProject()))) {
@@ -315,61 +357,69 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+
 		switch (featureID) {
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS:
-				return ((InternalEList<?>)getMappingHints()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>) this.getMappingHints()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+
 		switch (featureID) {
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__TARGET_SECTION:
-				if (resolve) return getTargetSection();
-				return basicGetTargetSection();
+				if (resolve) {
+					return this.getTargetSection();
+				}
+				return this.basicGetTargetSection();
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS:
-				return getMappingHints();
+				return this.getMappingHints();
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__EXTEND:
-				return getExtend();
+				return this.getExtend();
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__ATTRIBUTE_MAPPINGS:
-				return getAttributeMappings();
+				return this.getAttributeMappings();
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__CARDINALITY_MAPPINGS:
-				return getCardinalityMappings();
+				return this.getCardinalityMappings();
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__REFERENCE_TARGET_SELECTORS:
-				return getReferenceTargetSelectors();
+				return this.getReferenceTargetSelectors();
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__CONTAINER_SELECTORS:
-				return getContainerSelectors();
+				return this.getContainerSelectors();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
+
 		switch (featureID) {
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__TARGET_SECTION:
-				setTargetSection((TargetSection)newValue);
+				this.setTargetSection((TargetSection) newValue);
 				return;
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS:
-				getMappingHints().clear();
-				getMappingHints().addAll((Collection<? extends MappingHint>)newValue);
+				this.getMappingHints().clear();
+				this.getMappingHints().addAll((Collection<? extends MappingHint>) newValue);
 				return;
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__EXTEND:
-				getExtend().clear();
-				getExtend().addAll((Collection<? extends MappingHintGroupType>)newValue);
+				this.getExtend().clear();
+				this.getExtend().addAll((Collection<? extends MappingHintGroupType>) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -377,19 +427,21 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
+
 		switch (featureID) {
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__TARGET_SECTION:
-				setTargetSection((TargetSection)null);
+				this.setTargetSection((TargetSection) null);
 				return;
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS:
-				getMappingHints().clear();
+				this.getMappingHints().clear();
 				return;
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__EXTEND:
-				getExtend().clear();
+				this.getExtend().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -397,42 +449,48 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
+
 		switch (featureID) {
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__TARGET_SECTION:
-				return targetSection != null;
+				return this.targetSection != null;
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS:
-				return mappingHints != null && !mappingHints.isEmpty();
+				return this.mappingHints != null && !this.mappingHints.isEmpty();
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__EXTEND:
-				return extend != null && !extend.isEmpty();
+				return this.extend != null && !this.extend.isEmpty();
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__ATTRIBUTE_MAPPINGS:
-				return !getAttributeMappings().isEmpty();
+				return !this.getAttributeMappings().isEmpty();
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__CARDINALITY_MAPPINGS:
-				return !getCardinalityMappings().isEmpty();
+				return !this.getCardinalityMappings().isEmpty();
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__REFERENCE_TARGET_SELECTORS:
-				return !getReferenceTargetSelectors().isEmpty();
+				return !this.getReferenceTargetSelectors().isEmpty();
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__CONTAINER_SELECTORS:
-				return !getContainerSelectors().isEmpty();
+				return !this.getContainerSelectors().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+
 		switch (operationID) {
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE___VALIDATE_EXTENDS_ONLY_VALID_HINT_GROUPS__DIAGNOSTICCHAIN_MAP:
-				return validateExtendsOnlyValidHintGroups((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+				return this.validateExtendsOnlyValidHintGroups((DiagnosticChain) arguments.get(0),
+						(Map<?, ?>) arguments.get(1));
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE___GET_ACTIVE_MAPPING_HINTS:
-				return getActiveMappingHints();
+				return this.getActiveMappingHints();
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE___VALIDATE_DO_NOT_USE_LIBRARY_ELEMENTS_WITHOUT_LIBRARY_NATURE__DIAGNOSTICCHAIN_MAP:
-				return validateDoNotUseLibraryElementsWithoutLibraryNature((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+				return this.validateDoNotUseLibraryElementsWithoutLibraryNature((DiagnosticChain) arguments.get(0),
+						(Map<?, ?>) arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

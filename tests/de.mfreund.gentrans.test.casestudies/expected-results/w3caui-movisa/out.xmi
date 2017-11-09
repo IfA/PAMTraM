@@ -1,0 +1,687 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<movisa:VisualizationApplicationModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:algorithm="http://stefan-hennig.de/movisa/algorithm" xmlns:movisa="http://stefan-hennig.de/movisa" xmlns:opcxmlda="http://stefan-hennig.de/movisa/clientdata/perspective/technical/opcxmlda" xmlns:presentation="http://stefan-hennig.de/movisa/presentation" Name="Visualization Application Model" Author="w3cauitomovisa" Version="1.0">
+  <AlgorithmDomain Name="Algorithm Model" Author="w3cauitomovisa" Version="1.0">
+    <OwnedElement xsi:type="algorithm:BooleanType" Name="Boolean"/>
+    <OwnedElement xsi:type="algorithm:StringType" Name="String"/>
+    <OwnedElement xsi:type="algorithm:IntegerType" Name="Integer"/>
+    <OwnedElement xsi:type="algorithm:SignalCollection" Name="signal collection">
+      <Signal Name="aiu2"/>
+      <Signal Name="aiu1"/>
+      <Signal Name="aiu1_5_ClickedSignal"/>
+      <Signal Name="aiu1_6_ClickedSignal"/>
+      <Signal Name="aiu1_2_ClickedSignal"/>
+      <Signal Name="aiu1_4_ClickedSignal"/>
+      <Signal Name="aiu2_2_ClickedSignal"/>
+      <Signal Name="aiu2_4_ClickedSignal"/>
+      <Signal Name="aiu2_6_ClickedSignal"/>
+    </OwnedElement>
+    <OwnedElement xsi:type="algorithm:RationalType" Name="Rational"/>
+  </AlgorithmDomain>
+  <ClientDataDomain Name="Client Data Model" Author="w3cauitomovisa" Version="1.0">
+    <LogicalDataPerspective>
+      <OwnedDataItem Name="dummyDataItem" Description="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.0" Dimension="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDimension.0" PointsTo="//@ClientDataDomain/@TechnicalDataPerspective/@OwnedServer.0/@OwnedXmlDaItem.0" Type="//@AlgorithmDomain/@OwnedElement.2"/>
+      <OwnedDimension Name="dimension"/>
+    </LogicalDataPerspective>
+    <TechnicalDataPerspective>
+      <OwnedServer xsi:type="opcxmlda:OpcXmlDaServer" Name="dummyServer" Url="http://141.30.119.241:8087/OPC/DA" LocaleId="de-DE">
+        <OwnedXmlDaItem Name="dummyItem" IsAccessedVia="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.0" ItemName="Fuellstand1_Ist" ItemPath="/dummy"/>
+      </OwnedServer>
+    </TechnicalDataPerspective>
+  </ClientDataDomain>
+  <PresentationDomain Name="presentation model" Author="w3cauitomovisa" Version="1.0">
+    <OwnedColorDefinition>
+      <OwnedColorValue xsi:type="presentation:ConstantColor" Name="defaultColor" Color="BLACK"/>
+    </OwnedColorDefinition>
+    <OwnedImageBundle>
+      <OwnedImageResource xsi:type="presentation:FixedImage" Name="aiu1_1" Url="Pump from:"/>
+      <OwnedImageResource xsi:type="presentation:FixedImage" Name="aiu1_3" Url="Pump to:"/>
+      <OwnedImageResource xsi:type="presentation:FixedImage" Name="aiu2_1" Url="V1:"/>
+      <OwnedImageResource xsi:type="presentation:FixedImage" Name="aiu2_3" Url="V2:"/>
+      <OwnedImageResource xsi:type="presentation:FixedImage" Name="aiu2_5" Url="P1:"/>
+    </OwnedImageBundle>
+    <OwnedMultiLingualTextDefinition>
+      <OwnedLanguageDefinition Name="German" LocaleId="de-DE"/>
+      <OwnedTextDefinition Name="dummyTextDef">
+        <TranslatedTextItem Value="dummy" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="aiu1_7">
+        <TranslatedTextItem Value="Konfiguration" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="aiu2_7">
+        <TranslatedTextItem Value="Bestätigung" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="aiu1_5">
+        <TranslatedTextItem Value="Start" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="aiu1_6">
+        <TranslatedTextItem Value="Stop" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="aiu2_2">
+        <TranslatedTextItem Value="100" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="aiu2_4">
+        <TranslatedTextItem Value="100" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="aiu2_6">
+        <TranslatedTextItem Value="100" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="aiu1_1">
+        <TranslatedTextItem Value="Pump from:" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="aiu1_3">
+        <TranslatedTextItem Value="Pump to:" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="aiu2_1">
+        <TranslatedTextItem Value="V1:" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="aiu2_3">
+        <TranslatedTextItem Value="V2:" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="aiu2_5">
+        <TranslatedTextItem Value="P1:" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+    </OwnedMultiLingualTextDefinition>
+    <OwnedNavigationFlow xsi:type="presentation:NewViewNavigationFlow" Source="//@PresentationDomain/@OwnedNavigationRoot" Target="//@PresentationDomain/@OwnedPanel.0"/>
+    <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="aiu2 next" Source="//@PresentationDomain/@OwnedPanel.0" Target="//@PresentationDomain/@OwnedPanel.1" Trigger="//@AlgorithmDomain/@OwnedElement.3/@Signal.0"/>
+    <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="aiu1 next" Source="//@PresentationDomain/@OwnedPanel.1" Target="//@PresentationDomain/@OwnedPanel.0" Trigger="//@AlgorithmDomain/@OwnedElement.3/@Signal.1"/>
+    <OwnedNavigationRoot/>
+    <OwnedPanel Name="aiu1">
+      <OwnedUIComponent xsi:type="presentation:Button" Name="aiu1_7">
+        <Interaction>
+          <CommonTrigger xsi:type="presentation:Click" Name="click" Effect="//@PresentationDomain/@OwnedPanel.0/@OwnedUIComponent.0/@Interaction/@OwnedEffect.0"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="Navigate_to_aiu2" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.0"/>
+        </Interaction>
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.1">
+          <Position Name="position">
+            <X Name="x" Value="24.0"/>
+            <Y Name="y"/>
+            <Z Name="z" Value="1.0"/>
+          </Position>
+          <Size Name="size">
+            <Height Name="height" Value="1.0"/>
+            <Width Name="width" Value="3.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Button" Name="aiu1_5">
+        <Interaction>
+          <CommonTrigger xsi:type="presentation:Click" Effect="//@PresentationDomain/@OwnedPanel.0/@OwnedUIComponent.1/@Interaction/@OwnedEffect.0"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="aiu1_5ButtonClickSignal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.2"/>
+        </Interaction>
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.3">
+          <Position Name="position">
+            <X Name="x" Value="16.0"/>
+            <Y Name="y"/>
+            <Z Name="z"/>
+          </Position>
+          <Size Name="size">
+            <Height Name="height" Value="1.0"/>
+            <Width Name="width" Value="3.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Button" Name="aiu1_6">
+        <Interaction>
+          <CommonTrigger xsi:type="presentation:Click" Effect="//@PresentationDomain/@OwnedPanel.0/@OwnedUIComponent.2/@Interaction/@OwnedEffect.0"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="aiu1_6ButtonClickSignal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.3"/>
+        </Interaction>
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.4">
+          <Position Name="position">
+            <X Name="x" Value="20.0"/>
+            <Y Name="y"/>
+            <Z Name="z"/>
+          </Position>
+          <Size Name="size">
+            <Height Name="height" Value="1.0"/>
+            <Width Name="width" Value="3.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:RadioButtonGroup" Name="aiu1_2">
+        <Representation>
+          <Position Name="RadioButtonGroupPosition">
+            <X Value="4.0"/>
+            <Y/>
+            <Z/>
+          </Position>
+          <Size Name="RadioButtonGroupSize">
+            <Height Name="RadioButtonGroupHeight" Value="5.0"/>
+            <Width Name="RadioButtonGroupWidth" Value="5.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:RadioButtonGroup" Name="aiu1_4">
+        <Representation>
+          <Position Name="RadioButtonGroupPosition">
+            <X Value="12.0"/>
+            <Y/>
+            <Z/>
+          </Position>
+          <Size Name="RadioButtonGroupSize">
+            <Height Name="RadioButtonGroupHeight" Value="5.0"/>
+            <Width Name="RadioButtonGroupWidth" Value="5.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:DropDown" Name="aiu1_2">
+        <Interaction>
+          <CommonTrigger xsi:type="presentation:Click" Effect="//@PresentationDomain/@OwnedPanel.0/@OwnedUIComponent.5/@Interaction/@OwnedEffect.0"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="aiu1_2DropDownClickSignal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.4"/>
+        </Interaction>
+        <Representation>
+          <Position Name="position">
+            <X Name="XPropertyDropDown" Value="4.0"/>
+            <Y Name="y"/>
+            <Z Name="z"/>
+          </Position>
+          <Size Name="size">
+            <Height Name="height" Value="0.5"/>
+            <Width Name="width" Value="3.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:DropDown" Name="aiu1_4">
+        <Interaction>
+          <CommonTrigger xsi:type="presentation:Click" Effect="//@PresentationDomain/@OwnedPanel.0/@OwnedUIComponent.6/@Interaction/@OwnedEffect.0"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="aiu1_4DropDownClickSignal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.5"/>
+        </Interaction>
+        <Representation>
+          <Position Name="position">
+            <X Name="XPropertyDropDown" Value="12.0"/>
+            <Y Name="y"/>
+            <Z Name="z"/>
+          </Position>
+          <Size Name="size">
+            <Height Name="height" Value="0.5"/>
+            <Width Name="width" Value="3.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="aiu1_1">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.8">
+          <Position>
+            <X Name="x"/>
+            <Y/>
+            <Z/>
+          </Position>
+          <Size>
+            <Height Value="1.0"/>
+            <Width Value="3.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="aiu1_3">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.9">
+          <Position>
+            <X Name="x" Value="8.0"/>
+            <Y/>
+            <Z/>
+          </Position>
+          <Size>
+            <Height Value="1.0"/>
+            <Width Value="3.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="aiu1_1">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.0">
+          <Position>
+            <X Name="ImageX"/>
+            <Y Name="ImageY"/>
+            <Z Name="ImageZ"/>
+          </Position>
+          <Size>
+            <Height Value="3.0"/>
+            <Width Value="3.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="aiu1_3">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.1">
+          <Position>
+            <X Name="ImageX" Value="8.0"/>
+            <Y Name="ImageY"/>
+            <Z Name="ImageZ"/>
+          </Position>
+          <Size>
+            <Height Value="3.0"/>
+            <Width Value="3.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Trend" Name="aiu1_1">
+        <Representation>
+          <Position>
+            <X Name="TrendX"/>
+            <Y Name="TrendY"/>
+            <Z Name="TrendZ"/>
+          </Position>
+          <Size>
+            <Height Name="heightTrend" Value="3.5"/>
+            <Width Name="widthTrend" Value="3.5"/>
+          </Size>
+          <Indicator Name="legend" Color="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.0">
+            <OriginX Name="xOriginIndicator"/>
+            <OriginY Name="yOriginIndicator"/>
+            <Width Name="widthIndicator" Value="4.0"/>
+            <Z Name="zValueIndicator"/>
+          </Indicator>
+          <XAxis Color="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.0" Caption="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.0" Location="BELOW" ScaleCaptionEnd="10" ScaleCaptionStep="1" ScaleEnd="10" ScaleStep="1">
+            <OriginX Name="xOriginXAxis"/>
+            <OriginY Name="yOriginXAxis"/>
+            <Z Name="zValueXAxis"/>
+            <Length Name="lengthXAxis" Value="4.0"/>
+          </XAxis>
+          <YAxis Color="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.0" Caption="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.0" ScaleCaptionEnd="10" ScaleCaptionStep="1" ScaleEnd="10" ScaleStep="1">
+            <OriginX Name="xOriginYAxis"/>
+            <OriginY Name="yOriginYAxis"/>
+            <Z Name="zValueYAxis"/>
+            <Length Name="lengthYAxis" Value="5.0"/>
+          </YAxis>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Trend" Name="aiu1_3">
+        <Representation>
+          <Position>
+            <X Name="TrendX" Value="8.0"/>
+            <Y Name="TrendY"/>
+            <Z Name="TrendZ"/>
+          </Position>
+          <Size>
+            <Height Name="heightTrend" Value="3.5"/>
+            <Width Name="widthTrend" Value="3.5"/>
+          </Size>
+          <Indicator Name="legend" Color="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.0">
+            <OriginX Name="xOriginIndicator"/>
+            <OriginY Name="yOriginIndicator"/>
+            <Width Name="widthIndicator" Value="4.0"/>
+            <Z Name="zValueIndicator"/>
+          </Indicator>
+          <XAxis Color="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.0" Caption="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.0" Location="BELOW" ScaleCaptionEnd="10" ScaleCaptionStep="1" ScaleEnd="10" ScaleStep="1">
+            <OriginX Name="xOriginXAxis"/>
+            <OriginY Name="yOriginXAxis"/>
+            <Z Name="zValueXAxis"/>
+            <Length Name="lengthXAxis" Value="4.0"/>
+          </XAxis>
+          <YAxis Color="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.0" Caption="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.0" ScaleCaptionEnd="10" ScaleCaptionStep="1" ScaleEnd="10" ScaleStep="1">
+            <OriginX Name="xOriginYAxis"/>
+            <OriginY Name="yOriginYAxis"/>
+            <Z Name="zValueYAxis"/>
+            <Length Name="lengthYAxis" Value="5.0"/>
+          </YAxis>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Gauge" Name="aiu1_1">
+        <Representation>
+          <Position>
+            <X Name="GaugeX"/>
+            <Y Name="GaugeY"/>
+            <Z Name="GaugeZ"/>
+          </Position>
+          <Size>
+            <Height Name="heightGauge" Value="3.5"/>
+            <Width Name="widthGauge" Value="3.5"/>
+          </Size>
+          <Indicator Name="needle" Color="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.0">
+            <OriginX Name="xOriginIndicator"/>
+            <OriginY Name="yOriginIndicator"/>
+            <Width Name="widthIndicator" Value="4.0"/>
+            <Z Name="zValueIndicator"/>
+            <Length Name="lengthIndicator" Value="4.0"/>
+          </Indicator>
+          <Scale Color="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.0" Caption="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.0" ScaleCaptionEnd="180" ScaleCaptionStep="10" ScaleEnd="180" ScaleStep="10">
+            <OriginX Name="xOriginScale"/>
+            <OriginY Name="yOriginScale"/>
+            <Z Name="zValueScale"/>
+            <Radius Name="radiusScale" Value="2.0"/>
+          </Scale>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Gauge" Name="aiu1_3">
+        <Representation>
+          <Position>
+            <X Name="GaugeX" Value="8.0"/>
+            <Y Name="GaugeY"/>
+            <Z Name="GaugeZ"/>
+          </Position>
+          <Size>
+            <Height Name="heightGauge" Value="3.5"/>
+            <Width Name="widthGauge" Value="3.5"/>
+          </Size>
+          <Indicator Name="needle" Color="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.0">
+            <OriginX Name="xOriginIndicator"/>
+            <OriginY Name="yOriginIndicator"/>
+            <Width Name="widthIndicator" Value="4.0"/>
+            <Z Name="zValueIndicator"/>
+            <Length Name="lengthIndicator" Value="4.0"/>
+          </Indicator>
+          <Scale Color="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.0" Caption="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.0" ScaleCaptionEnd="180" ScaleCaptionStep="10" ScaleEnd="180" ScaleStep="10">
+            <OriginX Name="xOriginScale"/>
+            <OriginY Name="yOriginScale"/>
+            <Z Name="zValueScale"/>
+            <Radius Name="radiusScale" Value="2.0"/>
+          </Scale>
+        </Representation>
+      </OwnedUIComponent>
+    </OwnedPanel>
+    <OwnedPanel Name="aiu2">
+      <OwnedUIComponent xsi:type="presentation:Button" Name="aiu2_7">
+        <Interaction>
+          <CommonTrigger xsi:type="presentation:Click" Name="click" Effect="//@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.0/@Interaction/@OwnedEffect.0"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="Navigate_to_aiu1" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.1"/>
+        </Interaction>
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.2">
+          <Position Name="position">
+            <X Name="x" Value="24.0"/>
+            <Y Name="y"/>
+            <Z Name="z" Value="1.0"/>
+          </Position>
+          <Size Name="size">
+            <Height Name="height" Value="1.0"/>
+            <Width Name="width" Value="3.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Input" Name="aiu2_2">
+        <Interaction>
+          <CommonTrigger xsi:type="presentation:Click" Effect="//@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.1/@Interaction/@OwnedEffect.0"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="aiu2_2InputClick" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.6"/>
+        </Interaction>
+        <Representation MaxLength="10">
+          <Position>
+            <X Name="xPositionInput" Value="4.0"/>
+            <Y Name="yPositionInput"/>
+            <Z Name="zPositionInput"/>
+          </Position>
+          <Size>
+            <Height Name="heightInput" Value="1.0"/>
+            <Width Name="widthInput" Value="3.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Input" Name="aiu2_4">
+        <Interaction>
+          <CommonTrigger xsi:type="presentation:Click" Effect="//@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.2/@Interaction/@OwnedEffect.0"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="aiu2_4InputClick" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.7"/>
+        </Interaction>
+        <Representation MaxLength="10">
+          <Position>
+            <X Name="xPositionInput" Value="12.0"/>
+            <Y Name="yPositionInput"/>
+            <Z Name="zPositionInput"/>
+          </Position>
+          <Size>
+            <Height Name="heightInput" Value="1.0"/>
+            <Width Name="widthInput" Value="3.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Input" Name="aiu2_6">
+        <Interaction>
+          <CommonTrigger xsi:type="presentation:Click" Effect="//@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.3/@Interaction/@OwnedEffect.0"/>
+          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="aiu2_6InputClick" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.8"/>
+        </Interaction>
+        <Representation MaxLength="10">
+          <Position>
+            <X Name="xPositionInput" Value="20.0"/>
+            <Y Name="yPositionInput"/>
+            <Z Name="zPositionInput"/>
+          </Position>
+          <Size>
+            <Height Name="heightInput" Value="1.0"/>
+            <Width Name="widthInput" Value="3.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="aiu2_1">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.10">
+          <Position>
+            <X Name="x"/>
+            <Y/>
+            <Z/>
+          </Position>
+          <Size>
+            <Height Value="1.0"/>
+            <Width Value="3.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="aiu2_3">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.11">
+          <Position>
+            <X Name="x" Value="8.0"/>
+            <Y/>
+            <Z/>
+          </Position>
+          <Size>
+            <Height Value="1.0"/>
+            <Width Value="3.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="aiu2_5">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.12">
+          <Position>
+            <X Name="x" Value="16.0"/>
+            <Y/>
+            <Z/>
+          </Position>
+          <Size>
+            <Height Value="1.0"/>
+            <Width Value="3.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="aiu2_1">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.2">
+          <Position>
+            <X Name="ImageX"/>
+            <Y Name="ImageY"/>
+            <Z Name="ImageZ"/>
+          </Position>
+          <Size>
+            <Height Value="3.0"/>
+            <Width Value="3.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="aiu2_3">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.3">
+          <Position>
+            <X Name="ImageX" Value="8.0"/>
+            <Y Name="ImageY"/>
+            <Z Name="ImageZ"/>
+          </Position>
+          <Size>
+            <Height Value="3.0"/>
+            <Width Value="3.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Image" Name="aiu2_5">
+        <Representation ImageResource="//@PresentationDomain/@OwnedImageBundle/@OwnedImageResource.4">
+          <Position>
+            <X Name="ImageX" Value="16.0"/>
+            <Y Name="ImageY"/>
+            <Z Name="ImageZ"/>
+          </Position>
+          <Size>
+            <Height Value="3.0"/>
+            <Width Value="3.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Trend" Name="aiu2_1">
+        <Representation>
+          <Position>
+            <X Name="TrendX"/>
+            <Y Name="TrendY"/>
+            <Z Name="TrendZ"/>
+          </Position>
+          <Size>
+            <Height Name="heightTrend" Value="3.5"/>
+            <Width Name="widthTrend" Value="3.5"/>
+          </Size>
+          <Indicator Name="legend" Color="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.0">
+            <OriginX Name="xOriginIndicator"/>
+            <OriginY Name="yOriginIndicator"/>
+            <Width Name="widthIndicator" Value="4.0"/>
+            <Z Name="zValueIndicator"/>
+          </Indicator>
+          <XAxis Color="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.0" Caption="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.0" Location="BELOW" ScaleCaptionEnd="10" ScaleCaptionStep="1" ScaleEnd="10" ScaleStep="1">
+            <OriginX Name="xOriginXAxis"/>
+            <OriginY Name="yOriginXAxis"/>
+            <Z Name="zValueXAxis"/>
+            <Length Name="lengthXAxis" Value="4.0"/>
+          </XAxis>
+          <YAxis Color="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.0" Caption="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.0" ScaleCaptionEnd="10" ScaleCaptionStep="1" ScaleEnd="10" ScaleStep="1">
+            <OriginX Name="xOriginYAxis"/>
+            <OriginY Name="yOriginYAxis"/>
+            <Z Name="zValueYAxis"/>
+            <Length Name="lengthYAxis" Value="5.0"/>
+          </YAxis>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Trend" Name="aiu2_3">
+        <Representation>
+          <Position>
+            <X Name="TrendX" Value="8.0"/>
+            <Y Name="TrendY"/>
+            <Z Name="TrendZ"/>
+          </Position>
+          <Size>
+            <Height Name="heightTrend" Value="3.5"/>
+            <Width Name="widthTrend" Value="3.5"/>
+          </Size>
+          <Indicator Name="legend" Color="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.0">
+            <OriginX Name="xOriginIndicator"/>
+            <OriginY Name="yOriginIndicator"/>
+            <Width Name="widthIndicator" Value="4.0"/>
+            <Z Name="zValueIndicator"/>
+          </Indicator>
+          <XAxis Color="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.0" Caption="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.0" Location="BELOW" ScaleCaptionEnd="10" ScaleCaptionStep="1" ScaleEnd="10" ScaleStep="1">
+            <OriginX Name="xOriginXAxis"/>
+            <OriginY Name="yOriginXAxis"/>
+            <Z Name="zValueXAxis"/>
+            <Length Name="lengthXAxis" Value="4.0"/>
+          </XAxis>
+          <YAxis Color="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.0" Caption="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.0" ScaleCaptionEnd="10" ScaleCaptionStep="1" ScaleEnd="10" ScaleStep="1">
+            <OriginX Name="xOriginYAxis"/>
+            <OriginY Name="yOriginYAxis"/>
+            <Z Name="zValueYAxis"/>
+            <Length Name="lengthYAxis" Value="5.0"/>
+          </YAxis>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Trend" Name="aiu2_5">
+        <Representation>
+          <Position>
+            <X Name="TrendX" Value="16.0"/>
+            <Y Name="TrendY"/>
+            <Z Name="TrendZ"/>
+          </Position>
+          <Size>
+            <Height Name="heightTrend" Value="3.5"/>
+            <Width Name="widthTrend" Value="3.5"/>
+          </Size>
+          <Indicator Name="legend" Color="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.0">
+            <OriginX Name="xOriginIndicator"/>
+            <OriginY Name="yOriginIndicator"/>
+            <Width Name="widthIndicator" Value="4.0"/>
+            <Z Name="zValueIndicator"/>
+          </Indicator>
+          <XAxis Color="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.0" Caption="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.0" Location="BELOW" ScaleCaptionEnd="10" ScaleCaptionStep="1" ScaleEnd="10" ScaleStep="1">
+            <OriginX Name="xOriginXAxis"/>
+            <OriginY Name="yOriginXAxis"/>
+            <Z Name="zValueXAxis"/>
+            <Length Name="lengthXAxis" Value="4.0"/>
+          </XAxis>
+          <YAxis Color="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.0" Caption="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.0" ScaleCaptionEnd="10" ScaleCaptionStep="1" ScaleEnd="10" ScaleStep="1">
+            <OriginX Name="xOriginYAxis"/>
+            <OriginY Name="yOriginYAxis"/>
+            <Z Name="zValueYAxis"/>
+            <Length Name="lengthYAxis" Value="5.0"/>
+          </YAxis>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Gauge" Name="aiu2_1">
+        <Representation>
+          <Position>
+            <X Name="GaugeX"/>
+            <Y Name="GaugeY"/>
+            <Z Name="GaugeZ"/>
+          </Position>
+          <Size>
+            <Height Name="heightGauge" Value="3.5"/>
+            <Width Name="widthGauge" Value="3.5"/>
+          </Size>
+          <Indicator Name="needle" Color="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.0">
+            <OriginX Name="xOriginIndicator"/>
+            <OriginY Name="yOriginIndicator"/>
+            <Width Name="widthIndicator" Value="4.0"/>
+            <Z Name="zValueIndicator"/>
+            <Length Name="lengthIndicator" Value="4.0"/>
+          </Indicator>
+          <Scale Color="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.0" Caption="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.0" ScaleCaptionEnd="180" ScaleCaptionStep="10" ScaleEnd="180" ScaleStep="10">
+            <OriginX Name="xOriginScale"/>
+            <OriginY Name="yOriginScale"/>
+            <Z Name="zValueScale"/>
+            <Radius Name="radiusScale" Value="2.0"/>
+          </Scale>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Gauge" Name="aiu2_3">
+        <Representation>
+          <Position>
+            <X Name="GaugeX" Value="8.0"/>
+            <Y Name="GaugeY"/>
+            <Z Name="GaugeZ"/>
+          </Position>
+          <Size>
+            <Height Name="heightGauge" Value="3.5"/>
+            <Width Name="widthGauge" Value="3.5"/>
+          </Size>
+          <Indicator Name="needle" Color="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.0">
+            <OriginX Name="xOriginIndicator"/>
+            <OriginY Name="yOriginIndicator"/>
+            <Width Name="widthIndicator" Value="4.0"/>
+            <Z Name="zValueIndicator"/>
+            <Length Name="lengthIndicator" Value="4.0"/>
+          </Indicator>
+          <Scale Color="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.0" Caption="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.0" ScaleCaptionEnd="180" ScaleCaptionStep="10" ScaleEnd="180" ScaleStep="10">
+            <OriginX Name="xOriginScale"/>
+            <OriginY Name="yOriginScale"/>
+            <Z Name="zValueScale"/>
+            <Radius Name="radiusScale" Value="2.0"/>
+          </Scale>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:Gauge" Name="aiu2_5">
+        <Representation>
+          <Position>
+            <X Name="GaugeX" Value="16.0"/>
+            <Y Name="GaugeY"/>
+            <Z Name="GaugeZ"/>
+          </Position>
+          <Size>
+            <Height Name="heightGauge" Value="3.5"/>
+            <Width Name="widthGauge" Value="3.5"/>
+          </Size>
+          <Indicator Name="needle" Color="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.0">
+            <OriginX Name="xOriginIndicator"/>
+            <OriginY Name="yOriginIndicator"/>
+            <Width Name="widthIndicator" Value="4.0"/>
+            <Z Name="zValueIndicator"/>
+            <Length Name="lengthIndicator" Value="4.0"/>
+          </Indicator>
+          <Scale Color="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.0" Caption="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.0" ScaleCaptionEnd="180" ScaleCaptionStep="10" ScaleEnd="180" ScaleStep="10">
+            <OriginX Name="xOriginScale"/>
+            <OriginY Name="yOriginScale"/>
+            <Z Name="zValueScale"/>
+            <Radius Name="radiusScale" Value="2.0"/>
+          </Scale>
+        </Representation>
+      </OwnedUIComponent>
+    </OwnedPanel>
+  </PresentationDomain>
+</movisa:VisualizationApplicationModel>

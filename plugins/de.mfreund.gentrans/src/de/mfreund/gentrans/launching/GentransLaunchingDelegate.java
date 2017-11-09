@@ -3,7 +3,7 @@ package de.mfreund.gentrans.launching;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
@@ -168,13 +168,13 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		// get the associated files from the launch configuration
 		//
 		final String project = configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PROJECT, "");
-		Set<String> sourceFiles = new HashSet<>();
+		Set<String> sourceFiles = new LinkedHashSet<>();
 		for (String sourceFile : configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_SRC_FILES,
 				new ArrayList<>())) {
 			sourceFiles.add(project + IPath.SEPARATOR + GentransLaunchingDelegate.SOURCE_FOLDER_NAME + IPath.SEPARATOR
 					+ sourceFile);
 		}
-		Set<String> pamtramFiles = new HashSet<>();
+		Set<String> pamtramFiles = new LinkedHashSet<>();
 		for (String pamtramFile : configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_PAMTRAM_FILES,
 				new ArrayList<>())) {
 			pamtramFiles.add(project + IPath.SEPARATOR + GentransLaunchingDelegate.PAMTRAM_FOLDER_NAME + IPath.SEPARATOR

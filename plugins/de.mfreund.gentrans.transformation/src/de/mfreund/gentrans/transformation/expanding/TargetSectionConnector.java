@@ -213,13 +213,13 @@ public class TargetSectionConnector extends CancelableElement {
 			// simply added as root elements to that file
 			//
 			this.addToTargetModelRoot(
-					targetSectionRegistry.getPamtramClassInstances(hintGroup.getTargetSection()).get(hintGroup));
+					this.targetSectionRegistry.getPamtramClassInstances(hintGroup.getTargetSection()).get(hintGroup));
 			return true;
 
 		}
 
-		if (targetSectionRegistry.getPamtramClassInstances(section).keySet().isEmpty()
-				|| targetSectionRegistry.getPamtramClassInstances(section).get(hintGroup) == null) {
+		if (this.targetSectionRegistry.getPamtramClassInstances(section).keySet().isEmpty()
+				|| this.targetSectionRegistry.getPamtramClassInstances(section).get(hintGroup) == null) {
 
 			// nothing to do
 			//
@@ -262,14 +262,14 @@ public class TargetSectionConnector extends CancelableElement {
 
 		} else {
 
-			final List<EObjectWrapper> containerInstances = targetSectionRegistry
+			final List<EObjectWrapper> containerInstances = this.targetSectionRegistry
 					.getFlattenedPamtramClassInstances(section.getContainer());
 
 			/*
 			 * fetch ALL instances created by the MH-Group in question => less user input and possibly shorter
 			 * processing time
 			 */
-			final List<EObjectWrapper> rootInstances = targetSectionRegistry.getPamtramClassInstances(section)
+			final List<EObjectWrapper> rootInstances = this.targetSectionRegistry.getPamtramClassInstances(section)
 					.get(hintGroup);
 
 			// Prevent circular containments
@@ -318,13 +318,14 @@ public class TargetSectionConnector extends CancelableElement {
 			// do not join sections for that a 'file' is specified, those are
 			// simply added as root elements to that file
 			//
-			this.addToTargetModelRoot(targetSectionRegistry.getPamtramClassInstances(section).get(hintGroupImporter));
+			this.addToTargetModelRoot(
+					this.targetSectionRegistry.getPamtramClassInstances(section).get(hintGroupImporter));
 			return true;
 
 		}
 
-		if (targetSectionRegistry.getPamtramClassInstances(section).keySet().isEmpty()
-				|| targetSectionRegistry.getPamtramClassInstances(section).get(hintGroupImporter) == null) {
+		if (this.targetSectionRegistry.getPamtramClassInstances(section).keySet().isEmpty()
+				|| this.targetSectionRegistry.getPamtramClassInstances(section).get(hintGroupImporter) == null) {
 
 			// nothing to do
 			//
@@ -373,13 +374,13 @@ public class TargetSectionConnector extends CancelableElement {
 			// (target section container == global instance search)
 		} else {
 			final LinkedList<EObjectWrapper> containerInstances = new LinkedList<>();
-			final List<EObjectWrapper> rootInstances = targetSectionRegistry
+			final List<EObjectWrapper> rootInstances = this.targetSectionRegistry
 					.getPamtramClassInstances(g.getTargetSection()).get(hintGroupImporter);
 			final Set<EClass> containerClasses = new HashSet<>();
 			if (g.getTargetSection().getContainer() != null) {
 				containerClasses.add(g.getTargetSection().getContainer().getEClass());
-				containerInstances.addAll(
-						targetSectionRegistry.getFlattenedPamtramClassInstances(g.getTargetSection().getContainer()));
+				containerInstances.addAll(this.targetSectionRegistry
+						.getFlattenedPamtramClassInstances(g.getTargetSection().getContainer()));
 
 			}
 
@@ -476,7 +477,7 @@ public class TargetSectionConnector extends CancelableElement {
 		// Collect all classes that could act as common root for each of the unconnected elements
 		//
 		// TODO Support multiple target models
-		final Set<EClass> common = new HashSet<>();
+		final Set<EClass> common = new LinkedHashSet<>();
 
 		for (final EClass possibleRoot : this.targetSectionRegistry.getMetaModelClasses().stream()
 				.filter(e -> !e.isAbstract()).collect(Collectors.toList())) {

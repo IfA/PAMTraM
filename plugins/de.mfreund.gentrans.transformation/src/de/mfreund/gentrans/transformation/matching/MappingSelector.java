@@ -100,7 +100,7 @@ public class MappingSelector extends CancelableElement {
 
 	/**
 	 * This creates an instance.
-	 * 
+	 *
 	 * @param selectedMappingRegistry
 	 *            The {@link SelectedMappingRegistry} where all selected Mappings (the result of the
 	 *            {@link #selectMappings(MatchedSectionRegistry, List)} step) will be stored.
@@ -185,6 +185,7 @@ public class MappingSelector extends CancelableElement {
 				.collect(Collectors.toList());
 
 		activeMappings.stream().forEach(m -> localRegistry.put(m, new ArrayList<>()));
+		activeMappings.stream().forEach(m -> this.selectedMappings.put(m, new ArrayList<>()));
 
 		// First, we need to filter mapping models with conditions that evaluate
 		// to 'false'
@@ -212,11 +213,8 @@ public class MappingSelector extends CancelableElement {
 					return conditionParts.anyMatch(c -> c instanceof ApplicationDependency);
 				}).collect(Collectors.toList()));
 
-		// Select a mapping for each matched section and each descriptor
-		// instance.
-		// In the first run, we 'defer' those sections that are associated with
-		// a Mapping that contains a
-		// 'MappingDependency'.
+		// Select a mapping for each matched section and each descriptor instance. In the first run, we 'defer' those
+		// sections that are associated with a Mapping that contains a 'MappingDependency'.
 		//
 		List<MappingInstanceStorage> mappingInstances = (this.useParallelization
 				? matchedSections.entrySet().parallelStream()
@@ -225,9 +223,9 @@ public class MappingSelector extends CancelableElement {
 						.flatMap(Collection::stream).collect(Collectors.toList());
 
 		localRegistry.add(mappingInstances);
+		this.selectedMappings.add(mappingInstances);
 
-		// Now, do the same stuff for the 'deferred' sections as we are now able
-		// to evaluate the
+		// Now, do the same stuff for the 'deferred' sections as we are now able to evaluate the
 		// 'ApplicationDependencies'.
 		//
 		List<MappingInstanceStorage> deferredInstances = (this.useParallelization
@@ -237,8 +235,7 @@ public class MappingSelector extends CancelableElement {
 						.flatMap(Collection::stream).collect(Collectors.toList());
 
 		localRegistry.add(deferredInstances);
-
-		this.selectedMappings.addAll(localRegistry);
+		this.selectedMappings.add(deferredInstances);
 
 		return localRegistry;
 	}

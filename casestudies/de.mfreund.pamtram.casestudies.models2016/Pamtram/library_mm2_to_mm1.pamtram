@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:extended="http://mfreund.de/pamtram/mapping/extended" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:target="http://mfreund.de/pamtram/structure/target">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:condition="http://mfreund.de/pamtram/condition" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint" xmlns:extended="http://mfreund.de/pamtram/mapping/extended" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:target="http://mfreund.de/pamtram/structure/target">
   <sourceSectionModels>
     <metaModelPackage href="http://mm2#/"/>
     <sections xsi:type="source:SourceSection" name="Library">
@@ -21,6 +21,9 @@
       <eClass href="http://mm2#//Medium"/>
       <attributes xsi:type="source:ActualSourceSectionAttribute" name="name">
         <attribute href="http://mm2#//Medium/name"/>
+      </attributes>
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="type">
+        <attribute href="http://mm2#//Medium/type"/>
       </attributes>
     </sections>
   </sourceSectionModels>
@@ -81,6 +84,9 @@
       </mappingHintGroups>
     </mappings>
     <mappings name="BookMapping" sourceSection="//@sourceSectionModels.0/@sections.2">
+      <localCondition xsi:type="condition:AttributeCondition" name="isBook" target="//@sourceSectionModels.0/@sections.2/@attributes.1">
+        <valueConstraints xsi:type="constraint:EqualityConstraint" expression="Book"/>
+      </localCondition>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Book" targetSection="//@targetSectionModels.0/@sections.2">
         <mappingHints xsi:type="extended:AttributeMapping" name="nameMapping" target="//@targetSectionModels.0/@sections.2/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="name" source="//@sourceSectionModels.0/@sections.2/@attributes.0"/>
@@ -88,6 +94,9 @@
       </mappingHintGroups>
     </mappings>
     <mappings name="FilmMapping" sourceSection="//@sourceSectionModels.0/@sections.2">
+      <localCondition xsi:type="condition:AttributeCondition" name="isFilm" target="//@sourceSectionModels.0/@sections.2/@attributes.1">
+        <valueConstraints xsi:type="constraint:EqualityConstraint" expression="Film"/>
+      </localCondition>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Film" targetSection="//@targetSectionModels.0/@sections.3">
         <mappingHints xsi:type="extended:AttributeMapping" name="nameMapping" target="//@targetSectionModels.0/@sections.3/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="name" source="//@sourceSectionModels.0/@sections.2/@attributes.0"/>

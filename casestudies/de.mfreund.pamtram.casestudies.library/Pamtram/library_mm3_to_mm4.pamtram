@@ -43,9 +43,6 @@
       <references xsi:type="target:TargetSectionCrossReference" name="loans" value="//@targetSectionModels.0/@sections.2">
         <eReference href="http://mm4#//Member/loans"/>
       </references>
-      <references xsi:type="target:TargetSectionCrossReference" name="loans" value="//@targetSectionModels.0/@sections.2">
-        <eReference href="http://mm4#//Member/loans"/>
-      </references>
       <attributes xsi:type="target:ActualTargetSectionAttribute" name="name">
         <attribute href="http://mm4#//Member/name"/>
       </attributes>
@@ -65,7 +62,7 @@
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Library" targetSection="//@targetSectionModels.0/@sections.0"/>
     </mappings>
     <mappings name="MemberMapping" sourceSection="//@sourceSectionModels.0/@sections.1">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Member" targetSection="//@targetSectionModels.0/@sections.1" deactivated="true">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Member" targetSection="//@targetSectionModels.0/@sections.1">
         <mappingHints xsi:type="extended:AttributeMapping" name="nameMapping" target="//@targetSectionModels.0/@sections.1/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="name" source="//@sourceSectionModels.0/@sections.1/@attributes.0"/>
         </mappingHints>
@@ -76,7 +73,7 @@
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="name" source="//@sourceSectionModels.0/@sections.3/@attributes.0"/>
         </mappingHints>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Member" targetSection="//@targetSectionModels.0/@sections.1">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Member" targetSection="//@targetSectionModels.0/@sections.1" deactivated="true">
         <mappingHints xsi:type="extended:AttributeMapping" name="nameMapping" target="//@targetSectionModels.0/@sections.1/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="name" source="//@sourceSectionModels.0/@sections.1/@attributes.0"/>
         </mappingHints>

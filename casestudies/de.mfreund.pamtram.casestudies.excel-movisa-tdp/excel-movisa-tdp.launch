@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="de.mfreund.gentrans.launchConfigurationType.gentrans">
 <booleanAttribute key="enableHistory" value="false"/>
+<booleanAttribute key="enableStatistics" value="false"/>
 <booleanAttribute key="enableUser" value="true"/>
 <booleanAttribute key="handleExpanding" value="false"/>
+<listAttribute key="libraryPaths"/>
+<stringAttribute key="logLevel" value="INFO"/>
 <intAttribute key="maxPathLength" value="-1"/>
+<booleanAttribute key="openTargetModelOnCompletion" value="true"/>
 <stringAttribute key="pamtramFile" value="excel-movisa-tdp.pamtram"/>
+<listAttribute key="pamtramFiles">
+<listEntry value="excel-movisa-tdp.pamtram"/>
+</listAttribute>
 <stringAttribute key="project" value="de.mfreund.pamtram.casestudies.excel-movisa-tdp"/>
 <booleanAttribute key="rememberAmbiguousMappingChoice" value="true"/>
 <listAttribute key="srcFiles">
@@ -17,4 +24,6 @@
 <stringAttribute key="targetLibParser" value=""/>
 <stringAttribute key="targetLibPath" value=""/>
 <stringAttribute key="transformationModel" value=""/>
+<booleanAttribute key="useParallelization" value="false"/>
+<intAttribute key="weightingFactor" value="50"/>
 </launchConfiguration>

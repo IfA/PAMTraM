@@ -55,8 +55,11 @@
         <valueConstraints xsi:type="constraint:EqualityConstraint" name="grouping" expression="grouping"/>
         <attribute href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/role"/>
       </attributes>
-      <attributes xsi:type="source:ActualSourceSectionAttribute" name="id">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="radioButtonGroupId">
         <attribute href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/id"/>
+      </attributes>
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="name">
+        <attribute href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/name"/>
       </attributes>
     </sections>
     <sections xsi:type="source:SourceSection" name="RadioButton">
@@ -102,7 +105,7 @@
         <valueConstraints xsi:type="constraint:EqualityConstraint" name=""/>
         <attribute href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/role"/>
       </attributes>
-      <attributes xsi:type="source:ActualSourceSectionAttribute" name="id">
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="radioButtonId">
         <attribute href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/id"/>
       </attributes>
     </sections>
@@ -367,6 +370,9 @@
   </targetSectionModels>
   <mappingModels>
     <mappings name="RadioButtonGroupMapping" sourceSection="//@sourceSectionModels.0/@sections.0">
+      <localCondition xsi:type="condition:AttributeCondition" target="//@sourceSectionModels.0/@sections.0/@attributes.2">
+        <valueConstraints xsi:type="constraint:StringConstraint" expression="RadioButtonGroup" operatorType="MATCH_BEGINNING"/>
+      </localCondition>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="RadioButtonGroup" targetSection="//@targetSectionModels.0/@sections.0">
         <mappingHints xsi:type="extended:AttributeMapping" name="RadioButtonGroupNameMapping" target="//@targetSectionModels.0/@sections.0/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" source="//@sourceSectionModels.0/@sections.0/@attributes.1"/>
@@ -380,6 +386,9 @@
       </mappingHintGroups>
     </mappings>
     <mappings name="DropDownMapping" sourceSection="//@sourceSectionModels.0/@sections.0">
+      <localCondition xsi:type="condition:AttributeCondition" name="" target="//@sourceSectionModels.0/@sections.0/@attributes.2">
+        <valueConstraints xsi:type="constraint:StringConstraint" expression="DropDown" operatorType="MATCH_BEGINNING"/>
+      </localCondition>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="DropDown" targetSection="//@targetSectionModels.0/@sections.1">
         <mappingHints xsi:type="extended:AttributeMapping" name="DropDownNameMapping" target="//@targetSectionModels.0/@sections.1/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" source="//@sourceSectionModels.0/@sections.0/@attributes.1"/>
@@ -399,9 +408,9 @@
       </mappingHintGroups>
     </mappings>
     <mappings name="RadioButtonMapping" sourceSection="//@sourceSectionModels.0/@sections.1">
-      <localCondition xsi:type="condition:ApplicationDependency" target="//@mappingModels.0/@mappings.0">
+      <localCondition xsi:type="condition:ApplicationDependency" name="wasRadioButtonGroupSelected" target="//@mappingModels.0/@mappings.0">
         <instanceSelectors referenceAttribute="//@sourceSectionModels.0/@sections.0/@attributes.1" targetClass="//@sourceSectionModels.0/@sections.1">
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.13" source="//@sourceSectionModels.0/@sections.1/@attributes.1"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="radioButtonId" modifiers="//@mappingModels.0/@modifierSets.13" source="//@sourceSectionModels.0/@sections.1/@attributes.1"/>
         </instanceSelectors>
       </localCondition>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="RadioButton" targetSection="//@targetSectionModels.0/@sections.2">
@@ -426,9 +435,9 @@
       </mappingHintGroups>
     </mappings>
     <mappings name="DropDownElementMapping" sourceSection="//@sourceSectionModels.0/@sections.1">
-      <localCondition xsi:type="condition:ApplicationDependency" target="//@mappingModels.0/@mappings.1">
+      <localCondition xsi:type="condition:ApplicationDependency" name="wasDropDownSelected" target="//@mappingModels.0/@mappings.1">
         <instanceSelectors referenceAttribute="//@sourceSectionModels.0/@sections.0/@attributes.1" targetClass="//@sourceSectionModels.0/@sections.1">
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.13" source="//@sourceSectionModels.0/@sections.1/@attributes.1"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="radioButtonId" modifiers="//@mappingModels.0/@modifierSets.13" source="//@sourceSectionModels.0/@sections.1/@attributes.1"/>
         </instanceSelectors>
       </localCondition>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="DropDownOption" targetSection="//@targetSectionModels.0/@sections.3">

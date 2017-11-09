@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="ASCII"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:extended="http://mfreund.de/pamtram/mapping/extended" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:extended="http://mfreund.de/pamtram/mapping/extended" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target">
   <sourceSectionModels>
-    <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/0"/>
+    <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/"/>
     <sections xsi:type="source:SourceSection" name="AbstractInteractionUnit">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <attributes xsi:type="source:VirtualSourceSectionAttribute" name="derived id" derivation="self.eContainer().oclAsType(w3caui::AbstractUserInterfaceModel).abstractInteractionUnit->collect(i | i.id)"/>
+      <eClass href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit"/>
+      <attributes xsi:type="source:VirtualSourceSectionAttribute" name="derived id" derivation="self.oclAsType(ecore::EObject).eContainer().oclAsType(w3caui::AbstractUserInterfaceModel).abstractInteractionUnit->collect(i | i.id)"/>
     </sections>
   </sourceSectionModels>
   <targetSectionModels>

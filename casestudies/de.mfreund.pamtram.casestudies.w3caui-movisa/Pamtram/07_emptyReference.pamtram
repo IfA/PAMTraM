@@ -1,51 +1,35 @@
 <?xml version="1.0" encoding="ASCII"?>
-<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:extended="http://mfreund.de/pamtram/mapping/extended" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint">
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target">
   <sourceSectionModels>
-    <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/0"/>
-    <sections 
-xsi:type="source:SourceSection" name="Confirmation">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractUserInterfaceModel"/>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="abstractInteractionUnit">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractUserInterfaceModel/abstractInteractionUnit"/>
-      </references>
-    </sections>
-    <sections 
-xsi:type="source:SourceSection" name="AbstractInteractionUnit">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
-      <references 
-xsi:type="source:SourceSectionCompositeReference" name="aggregatedIn">
-        <eReference href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/aggregatedIn"/>
+    <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/"/>
+    <sections xsi:type="source:SourceSection" name="AbstractInteractionUnit">
+      <eClass href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit"/>
+      <references xsi:type="source:SourceSectionCompositeReference" name="aggregatedIn">
+        <eReference href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/aggregatedIn"/>
       </references>
     </sections>
   </sourceSectionModels>
   <targetSectionModels>
     <metaModelPackage href="http://stefan-hennig.de/movisa#/"/>
-    <sections xsi:type="target:TargetSection" name="VisualizationApplicationModel">
-      <eClass href="http://stefan-hennig.de/movisa#//VisualizationApplicationModel"/>
-      <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name" value="VisAppModel">
+    <sections xsi:type="target:TargetSection" name="Button">
+      <eClass href="http://stefan-hennig.de/movisa#//presentation/Button"/>
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name" value="Button">
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </sections>
   </targetSectionModels>
   <mappingModels>
-    <mappings name="ConfirmationButtonMapping" sourceSection="//@sourceSectionModels.0/@sections.0">
+    <mappings name="AbstractInteractionUnitMapping" sourceSection="//@sourceSectionModels.0/@sections.0">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetSection="//@targetSectionModels.0/@sections.0"/>
     </mappings>
-    <mappings name="AbstractInteractionUnitMapping" sourceSection="//@sourceSectionModels.0/@sections.1">
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="VisualizationApplicationModel" targetSection="//@targetSectionModels.0/@sections.0"/>
-    </mappings>
     <modifierSets name="getNumber">
-      
-<modifiers xsi:type="modifier:SubstringReplacer" name="getNumber" regex="[^0-9]+" replacement=""/>
+      <modifiers xsi:type="modifier:SubstringReplacer" name="getNumber" regex="[^0-9]+" replacement=""/>
     </modifierSets>
     <modifierSets name="prependButton">
-      
-<modifiers xsi:type="modifier:StringPrepender" name="NextButton" string="Button_"/>
+      <modifiers xsi:type="modifier:StringPrepender" name="NextButton" string="Button_"/>
     </modifierSets>
     <modifierSets name="add one">
-      
-<modifiers xsi:type="modifier:SubstringReplacer" regex=":%s/$/\*/g" replacement=""/>
+      <modifiers xsi:type="modifier:SubstringReplacer" regex=":%s/$/\*/g" replacement=""/>
     </modifierSets>
   </mappingModels>
 </pamtram:PAMTraM>

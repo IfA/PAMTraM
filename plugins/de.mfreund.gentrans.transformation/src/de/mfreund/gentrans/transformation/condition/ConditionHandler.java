@@ -182,7 +182,7 @@ public class ConditionHandler {
 		// First, we check if that condition already has been checked. In case we are dealing with a 'global' condition,
 		// we may reuse this result.
 		//
-		if (this.conditionRepository.get(complexCondition) != null && complexCondition.isGlobalCondition()) {
+		if (this.conditionRepository.get(complexCondition) != null) {
 			return this.conditionRepository.get(complexCondition);
 		}
 
@@ -472,32 +472,6 @@ public class ConditionHandler {
 			//
 			List<MappingInstanceStorage> storageInstances = this.selectedMappingRegistry
 					.get((Mapping) applicationDependency.getTarget());
-
-			// no instance pointers
-			if (applicationDependency.getInstanceSelectors().isEmpty()) {
-
-				// check Cardinality of the condition (e.g. the condition have
-				// to be at least 5 times true)
-				boolean cardinalityRes = this.checkCardinality(applicationDependency.getValue(),
-						storageInstances.size(), applicationDependency.getComparator());
-
-				// return Result of this condition (and store result if its
-				// referred model objects already were marked
-				// as 'matched'
-				if (cardinalityRes) {
-
-					this.storeConditionResult(applicationDependency, CondResult.TRUE);
-					return CondResult.TRUE;
-
-				} else {
-
-					this.storeConditionResult(applicationDependency, CondResult.FALSE);
-					return CondResult.FALSE;
-
-				}
-			}
-
-			// instance pointers
 
 			List<EObject> instancesToConsider = this.getInstancesToConsider(applicationDependency,
 					matchedSectionDescriptor);

@@ -110,7 +110,10 @@ public class VisuPlusTest extends PamtramCasestudyTest {
 		String expectedContent = "";
 		try {
 			expectedScanner = new Scanner(new File(expected));
-			expectedContent = expectedScanner.useDelimiter("\\A").next();
+			expectedScanner.useDelimiter("\\A");
+			while (expectedScanner.hasNextLine()) {
+				expectedContent += expectedScanner.nextLine().trim();
+			}
 		} catch (FileNotFoundException e) {
 			Assertions.fail(e);
 		} finally {
@@ -121,7 +124,10 @@ public class VisuPlusTest extends PamtramCasestudyTest {
 		String resultContent = "";
 		try {
 			resultScanner = new Scanner(new File(result));
-			resultContent = resultScanner.useDelimiter("\\A").next();
+			resultScanner.useDelimiter("\\A");
+			while (resultScanner.hasNextLine()) {
+				resultContent += resultScanner.nextLine().trim();
+			}
 		} catch (FileNotFoundException e) {
 			Assertions.fail(e);
 		} finally {
@@ -130,7 +136,7 @@ public class VisuPlusTest extends PamtramCasestudyTest {
 
 		IRangeComparator left = new TokenComparator(expectedContent);
 		IRangeComparator right = new TokenComparator(resultContent);
-		RangeDifference[] diffs = RangeDifferencer.findRanges(left, right);
+		RangeDifference[] diffs = RangeDifferencer.findDifferences(left, right);
 
 		Assert.assertTrue(
 				"Comparing expected file '" + new File(expected).getName() + "' and actual result '"

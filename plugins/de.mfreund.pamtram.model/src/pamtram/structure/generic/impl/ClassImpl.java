@@ -60,7 +60,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	/**
 	 * The cached value of the '{@link #getEClass() <em>EClass</em>}' reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
+	 *
 	 * @see #getEClass()
 	 * @generated
 	 * @ordered
@@ -70,7 +70,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	/**
 	 * The default value of the '{@link #getCardinality() <em>Cardinality</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
+	 *
 	 * @see #getCardinality()
 	 * @generated
 	 * @ordered
@@ -80,7 +80,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	/**
 	 * The cached value of the '{@link #getCardinality() <em>Cardinality</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
+	 *
 	 * @see #getCardinality()
 	 * @generated
 	 * @ordered
@@ -100,7 +100,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	/**
 	 * The cached value of the '{@link #getContainer() <em>Container</em>}' reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
+	 *
 	 * @see #getContainer()
 	 * @generated
 	 * @ordered
@@ -119,7 +119,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected ClassImpl() {
@@ -129,7 +129,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -140,7 +140,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -161,7 +161,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public EClass basicGetEClass() {
@@ -171,7 +171,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public void setEClassGen(EClass newEClass) {
@@ -196,7 +196,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -207,7 +207,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -223,7 +223,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -238,7 +238,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -260,12 +260,18 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public C getContainer() {
 
 		C container = this.getContainerGen();
-		if (container == null && !(this instanceof Section)) {
-			return this.getOwningContainmentReference().getOwningClass();
+		if (container == null) {
+			if (this instanceof Section) {
+				return ((Section<S, C, R, A>) this).getExtend().stream().filter(s -> s.getContainer() != null)
+						.map(Section::getContainer).findFirst().orElse(null);
+			} else {
+				return this.getOwningContainmentReference().getOwningClass();
+			}
 		} else {
 			return container;
 		}
@@ -273,7 +279,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public C basicGetContainer() {
@@ -283,7 +289,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -299,7 +305,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -314,7 +320,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -345,7 +351,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -361,7 +367,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -377,7 +383,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -393,7 +399,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -409,7 +415,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -440,7 +446,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -483,7 +489,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -542,7 +548,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -577,7 +583,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -613,7 +619,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -655,7 +661,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -675,7 +681,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -692,7 +698,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -731,7 +737,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -762,7 +768,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -790,7 +796,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -823,7 +829,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -853,7 +859,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override

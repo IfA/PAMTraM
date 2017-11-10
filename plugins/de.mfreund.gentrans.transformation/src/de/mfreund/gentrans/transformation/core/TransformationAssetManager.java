@@ -261,7 +261,7 @@ class TransformationAssetManager extends CancelableElement {
 	 */
 	protected void initMatchedSectionRegistry() {
 
-		this.matchedSectionRegistry = new MatchedSectionRegistry();
+		this.matchedSectionRegistry = new MatchedSectionRegistry(this.getLogger());
 	}
 
 	/**

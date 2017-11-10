@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ASCII"?>
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:extended="http://mfreund.de/pamtram/mapping/extended" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target">
+  <sourceSectionModels>
+    <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/"/>
+    <sections xsi:type="source:SourceSection" name="AbstractUserInterfaceModel" cardinality="ONE__INFINITY">
+      <eClass href="http://www.w3.org/2013/mbui-aui#//AbstractUserInterfaceModel"/>
+      <references xsi:type="source:SourceSectionCrossReference" name="abstractInteractionUnit" value="//@sourceSectionModels.0/@sections.1">
+        <eReference href="http://www.w3.org/2013/mbui-aui#//AbstractUserInterfaceModel/abstractInteractionUnit"/>
+      </references>
+    </sections>
+    <sections xsi:type="source:SourceSection" name="AbstractInteractionUnit" cardinality="ONE__INFINITY" container="//@sourceSectionModels.0/@sections.0">
+      <eClass href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit"/>
+      <references xsi:type="source:SourceSectionCrossReference" name="aggregatedIn" value="//@sourceSectionModels.0/@sections.2">
+        <eReference href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/aggregatedIn"/>
+      </references>
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
+        <attribute href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/role"/>
+      </attributes>
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="id">
+        <attribute href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/id"/>
+      </attributes>
+    </sections>
+    <sections xsi:type="source:SourceSection" name="Composition" cardinality="ONE__INFINITY" container="//@sourceSectionModels.0/@sections.1">
+      <eClass href="http://www.w3.org/2013/mbui-aui#//Composition"/>
+    </sections>
+  </sourceSectionModels>
+  <targetSectionModels>
+    <metaModelPackage href="http://stefan-hennig.de/movisa#/"/>
+    <sections xsi:type="target:TargetSection" name="Button">
+      <eClass href="http://stefan-hennig.de/movisa#//presentation/Button"/>
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name">
+        <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+      </attributes>
+    </sections>
+  </targetSectionModels>
+  <mappingModels>
+    <mappings name="ButtonMapping" sourceSection="//@sourceSectionModels.0/@sections.1">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetSection="//@targetSectionModels.0/@sections.0">
+        <mappingHints xsi:type="extended:AttributeMapping" name="NameMapping" target="//@targetSectionModels.0/@sections.0/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.1" source="//@sourceSectionModels.0/@sections.1/@attributes.1"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mappings>
+    <modifierSets name="getNumber">
+      <modifiers xsi:type="modifier:SubstringReplacer" name="getNumber" regex="[^0-9]+" replacement=""/>
+    </modifierSets>
+    <modifierSets name="prependButton">
+      <modifiers xsi:type="modifier:StringPrepender" name="NextButton" string="Button_"/>
+    </modifierSets>
+    <modifierSets name="add one">
+      <modifiers xsi:type="modifier:SubstringReplacer" regex=":%s/$/\*/g" replacement=""/>
+    </modifierSets>
+  </mappingModels>
+</pamtram:PAMTraM>

@@ -286,4 +286,14 @@ public abstract class W3CAUICasestudyBasedBasicTest extends PamtramCasestudyTest
 		}
 
 	}
+
+	public static class _22_crossReferenceTest extends W3CAUICasestudyBasedBasicTest {
+
+		@Override
+		protected String getCaseStudyIdentifier() {
+
+			return "22_crossReference";
+		}
+
+	}
 }

@@ -1,34 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<presentation:Panel
-    xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:presentation="http://stefan-hennig.de/movisa/presentation">
-  <OwnedUIComponent
-      xsi:type="presentation:Button"
-      Name="Button_inside_Panel"/>
-  <OwnedUIComponent
-      xsi:type="presentation:Button"
-      Name="Button_inside_Panel"/>
-  <OwnedUIComponent
-      xsi:type="presentation:Button"
-      Name="Button_by_Attribute_Cardinality"/>
-  <OwnedUIComponent
-      xsi:type="presentation:Button"
-      Name="Button_by_Attribute_Cardinality"/>
-  <OwnedUIComponent
-      xsi:type="presentation:Button"
-      Name="Button_by_Attribute_Cardinality"/>
-  <OwnedUIComponent
-      xsi:type="presentation:Button"
-      Name="Button_by_Attribute_Cardinality"/>
-  <OwnedUIComponent
-      xsi:type="presentation:Button"
-      Name="Button_by_Source_Elements_Cardinality"/>
-  <OwnedUIComponent
-      xsi:type="presentation:Button"
-      Name="Button_by_Source_Elements_Cardinality"/>
-  <OwnedUIComponent
-      xsi:type="presentation:Button"
-      Name="Button_by_Source_Elements_Cardinality"/>
+<presentation:Panel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:presentation="http://stefan-hennig.de/movisa/presentation">
+  <OwnedUIComponent xsi:type="presentation:Button" Name="Button_inside_Panel"/>
+  <OwnedUIComponent xsi:type="presentation:Button" Name="Button_inside_Panel"/>
+  <OwnedUIComponent xsi:type="presentation:Button" Name="Button_by_Attribute_Cardinality"/>
+  <OwnedUIComponent xsi:type="presentation:Button" Name="Button_by_Attribute_Cardinality"/>
+  <OwnedUIComponent xsi:type="presentation:Button" Name="Button_by_Attribute_Cardinality"/>
+  <OwnedUIComponent xsi:type="presentation:Button" Name="Button_by_Attribute_Cardinality"/>
+  <OwnedUIComponent xsi:type="presentation:Button" Name="Button_by_Source_Elements_Cardinality"/>
+  <OwnedUIComponent xsi:type="presentation:Button" Name="Button_by_Source_Elements_Cardinality"/>
+  <OwnedUIComponent xsi:type="presentation:Button" Name="Button_by_Source_Elements_Cardinality"/>
+  <OwnedUIComponent xsi:type="presentation:Button" Name="Button_by_Source_Elements_Cardinality"/>
+  <OwnedUIComponent xsi:type="presentation:Button" Name="Button_by_Source_Elements_Cardinality"/>
+  <OwnedUIComponent xsi:type="presentation:Button" Name="Button_by_Source_Elements_Cardinality"/>
+  <OwnedUIComponent xsi:type="presentation:Button" Name="Button_by_Source_Elements_Cardinality"/>
+  <OwnedUIComponent xsi:type="presentation:Button" Name="Button_by_Source_Elements_Cardinality"/>
+  <OwnedUIComponent xsi:type="presentation:Button" Name="Button_by_Source_Elements_Cardinality"/>
+  <OwnedUIComponent xsi:type="presentation:Button" Name="Button_by_Source_Elements_Cardinality"/>
+  <OwnedUIComponent xsi:type="presentation:Button" Name="Button_by_Source_Elements_Cardinality"/>
+  <OwnedUIComponent xsi:type="presentation:Button" Name="Button_by_Source_Elements_Cardinality"/>
 </presentation:Panel>

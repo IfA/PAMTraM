@@ -3,6 +3,8 @@
  */
 package de.mfreund.gentrans.test.casestudies;
 
+import java.io.File;
+
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
@@ -88,7 +90,7 @@ public class AllCasestudyTests {
 	@BeforeClass
 	public static void createResultsDirectory() {
 
-		System.out.println("Create Results Directory...");
+		System.out.println("Prepare Results Directory...");
 
 		URI resultsFolderURI = URI.createPlatformResourceURI(AllCasestudyTests.resultsFolderPath, true);
 		IContainer resultsFolder = ResourceHelper.getContainerForURI(resultsFolderURI);
@@ -102,6 +104,9 @@ public class AllCasestudyTests {
 		} catch (CoreException e) {
 			Assertions.fail("Failed to create results folder!", e);
 		}
+
+		ResourceHelper.deleteFilesInFolder(
+				new File(ResourceHelper.convertPlatformToFileURI(resultsFolderURI).toFileString()));
 
 		ResourceHelper.refresh(resultsFolder);
 

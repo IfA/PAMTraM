@@ -3,7 +3,6 @@
  */
 package de.mfreund.gentrans.test.casestudies;
 
-import java.io.File;
 import java.util.Set;
 import java.util.logging.Level;
 
@@ -58,9 +57,6 @@ public abstract class PamtramCasestudyTest {
 		} catch (CoreException e) {
 			Assertions.fail("Failed to create AutoProBe results folder!", e);
 		}
-
-		ResourceHelper
-				.deleteFilesInFolder(new File(ResourceHelper.convertPlatformToFileURI(resultsPathURI).toFileString()));
 
 		ResourceHelper.refresh(resultsPathFolder);
 

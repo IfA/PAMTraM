@@ -204,6 +204,8 @@
           <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/generic/Class/virtualAttributes"/>
           <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/generic/Class/actualReferences"/>
           <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/generic/Class/virtualReferences"/>
+          <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/generic/Class/allAttributes"/>
+          <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/generic/Class/allReferences"/>
           <genOperations ecoreOperation="pamtram.ecore#//structure/generic/Class/isContainerFor">
             <genParameters ecoreParameter="pamtram.ecore#//structure/generic/Class/isContainerFor/containedClass"/>
           </genOperations>

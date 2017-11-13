@@ -25,33 +25,27 @@ public abstract class ComplexConditionImpl extends NamedElementImpl implements C
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ComplexConditionImpl() {
-
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-
 		return ConditionPackage.Literals.COMPLEX_CONDITION;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean isLocalCondition() {
-
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -59,12 +53,10 @@ public abstract class ComplexConditionImpl extends NamedElementImpl implements C
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean isExternalCondition() {
-
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -72,12 +64,10 @@ public abstract class ComplexConditionImpl extends NamedElementImpl implements C
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean isGlobalCondition() {
-
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -85,24 +75,20 @@ public abstract class ComplexConditionImpl extends NamedElementImpl implements C
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean isMappingCondition() {
-
-		return this.getRootCondition().eContainer() instanceof Mapping;
+		return getRootCondition().eContainer() instanceof Mapping;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean isConditionModelCondition() {
-
-		return this.getRootCondition().eContainer() instanceof ConditionModel;
+		return getRootCondition().eContainer() instanceof ConditionModel;
 	}
 
 	/**
@@ -136,25 +122,23 @@ public abstract class ComplexConditionImpl extends NamedElementImpl implements C
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-
 		switch (operationID) {
 			case ConditionPackage.COMPLEX_CONDITION___IS_LOCAL_CONDITION:
-				return this.isLocalCondition();
+				return isLocalCondition();
 			case ConditionPackage.COMPLEX_CONDITION___IS_EXTERNAL_CONDITION:
-				return this.isExternalCondition();
+				return isExternalCondition();
 			case ConditionPackage.COMPLEX_CONDITION___IS_GLOBAL_CONDITION:
-				return this.isGlobalCondition();
+				return isGlobalCondition();
 			case ConditionPackage.COMPLEX_CONDITION___IS_MAPPING_CONDITION:
-				return this.isMappingCondition();
+				return isMappingCondition();
 			case ConditionPackage.COMPLEX_CONDITION___IS_CONDITION_MODEL_CONDITION:
-				return this.isConditionModelCondition();
+				return isConditionModelCondition();
 			case ConditionPackage.COMPLEX_CONDITION___GET_CONDITION_PARTS_FLAT:
-				return this.getConditionPartsFlat();
+				return getConditionPartsFlat();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

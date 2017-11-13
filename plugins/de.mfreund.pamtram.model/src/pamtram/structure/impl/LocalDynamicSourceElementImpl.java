@@ -11,8 +11,8 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
 import pamtram.MatchSpecElement;
 import pamtram.PamtramPackage;
 import pamtram.structure.LocalDynamicSourceElement;
@@ -24,8 +24,8 @@ import pamtram.structure.source.SourceSection;
 import pamtram.structure.util.StructureValidator;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Local
- * Modified Attribute Element Type</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Local Modified Attribute Element
+ * Type</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -37,10 +37,11 @@ import pamtram.structure.util.StructureValidator;
  */
 public abstract class LocalDynamicSourceElementImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>>
 		extends DynamicSourceElementImpl<S, C, R, A> implements LocalDynamicSourceElement<S, C, R, A> {
+
 	/**
-	 * The cached value of the '{@link #getReferenceMatchSpec() <em>Reference Match Spec</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getReferenceMatchSpec() <em>Reference Match Spec</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getReferenceMatchSpec()
 	 * @generated
 	 * @ordered
@@ -65,10 +66,10 @@ public abstract class LocalDynamicSourceElementImpl<S extends Section<S, C, R, A
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<R> getReferenceMatchSpec() {
 		if (referenceMatchSpec == null) {
 			referenceMatchSpec = new EObjectResolvingEList<R>(Reference.class, this, StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT__REFERENCE_MATCH_SPEC);
@@ -92,8 +93,8 @@ public abstract class LocalDynamicSourceElementImpl<S extends Section<S, C, R, A
 		SourceSection containingSourceSection = (SourceSection) this.source.getContainingSection();
 		
 		boolean result = sourceSection == containingSourceSection 
-				|| sourceSection.getExtend().parallelStream().filter(e -> e.equals(containingSourceSection)).findAny().isPresent()
-				|| sourceSection.getExtend().parallelStream().filter(e -> containingSourceSection.isReferencedBy(e, null)).findAny().isPresent()
+				|| sourceSection.getAllExtend().parallelStream().filter(e -> e.equals(containingSourceSection)).findAny().isPresent()
+				|| sourceSection.getAllExtend().parallelStream().filter(e -> containingSourceSection.isReferencedBy(e, null)).findAny().isPresent()
 				|| containingSourceSection.isReferencedBy(sourceSection, null);
 		
 		if (!result && diagnostics != null) {
@@ -115,8 +116,7 @@ public abstract class LocalDynamicSourceElementImpl<S extends Section<S, C, R, A
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -129,8 +129,7 @@ public abstract class LocalDynamicSourceElementImpl<S extends Section<S, C, R, A
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -146,8 +145,7 @@ public abstract class LocalDynamicSourceElementImpl<S extends Section<S, C, R, A
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -161,8 +159,7 @@ public abstract class LocalDynamicSourceElementImpl<S extends Section<S, C, R, A
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -175,8 +172,7 @@ public abstract class LocalDynamicSourceElementImpl<S extends Section<S, C, R, A
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -191,8 +187,7 @@ public abstract class LocalDynamicSourceElementImpl<S extends Section<S, C, R, A
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

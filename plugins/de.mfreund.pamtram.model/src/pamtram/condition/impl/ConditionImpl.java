@@ -37,10 +37,10 @@ import pamtram.structure.source.SourceSectionClass;
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link pamtram.condition.impl.ConditionImpl#getValue <em>Value</em>}</li>
- * <li>{@link pamtram.condition.impl.ConditionImpl#getComparator <em>Comparator</em>}</li>
- * <li>{@link pamtram.condition.impl.ConditionImpl#getTarget <em>Target</em>}</li>
- * <li>{@link pamtram.condition.impl.ConditionImpl#getInstanceSelectors <em>Instance Selectors</em>}</li>
+ *   <li>{@link pamtram.condition.impl.ConditionImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link pamtram.condition.impl.ConditionImpl#getComparator <em>Comparator</em>}</li>
+ *   <li>{@link pamtram.condition.impl.ConditionImpl#getTarget <em>Target</em>}</li>
+ *   <li>{@link pamtram.condition.impl.ConditionImpl#getInstanceSelectors <em>Instance Selectors</em>}</li>
  * </ul>
  *
  * @generated
@@ -48,9 +48,9 @@ import pamtram.structure.source.SourceSectionClass;
 public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl implements Condition<TargetType> {
 
 	/**
-	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 *
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
@@ -65,12 +65,12 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 	 * @generated
 	 * @ordered
 	 */
-	protected int value = ConditionImpl.VALUE_EDEFAULT;
+	protected int value = VALUE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getComparator() <em>Comparator</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getComparator() <em>Comparator</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 *
 	 * @see #getComparator()
 	 * @generated
 	 * @ordered
@@ -78,19 +78,19 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 	protected static final ComparatorEnum COMPARATOR_EDEFAULT = ComparatorEnum.EQ;
 
 	/**
-	 * The cached value of the '{@link #getComparator() <em>Comparator</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getComparator() <em>Comparator</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 *
 	 * @see #getComparator()
 	 * @generated
 	 * @ordered
 	 */
-	protected ComparatorEnum comparator = ConditionImpl.COMPARATOR_EDEFAULT;
+	protected ComparatorEnum comparator = COMPARATOR_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 *
 	 * @see #getTarget()
 	 * @generated
 	 * @ordered
@@ -100,7 +100,6 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 	/**
 	 * The cached value of the '{@link #getInstanceSelectors() <em>Instance Selectors</em>}' containment reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @see #getInstanceSelectors()
 	 * @generated
 	 * @ordered
@@ -109,123 +108,98 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected ConditionImpl() {
-
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-
 		return ConditionPackage.Literals.CONDITION;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public EList<SourceInstanceSelector> getInstanceSelectors() {
-
-		if (this.instanceSelectors == null) {
-			this.instanceSelectors = new EObjectContainmentEList<>(SourceInstanceSelector.class, this,
-					ConditionPackage.CONDITION__INSTANCE_SELECTORS);
+		if (instanceSelectors == null) {
+			instanceSelectors = new EObjectContainmentEList<SourceInstanceSelector>(SourceInstanceSelector.class, this, ConditionPackage.CONDITION__INSTANCE_SELECTORS);
 		}
-		return this.instanceSelectors;
+		return instanceSelectors;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public ComparatorEnum getComparator() {
-
-		return this.comparator;
+		return comparator;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setComparator(ComparatorEnum newComparator) {
-
-		ComparatorEnum oldComparator = this.comparator;
-		this.comparator = newComparator == null ? ConditionImpl.COMPARATOR_EDEFAULT : newComparator;
-		if (this.eNotificationRequired()) {
-			this.eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.CONDITION__COMPARATOR,
-					oldComparator, this.comparator));
-		}
+		ComparatorEnum oldComparator = comparator;
+		comparator = newComparator == null ? COMPARATOR_EDEFAULT : newComparator;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.CONDITION__COMPARATOR, oldComparator, comparator));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public TargetType getTarget() {
-
-		if (this.target != null && ((EObject) this.target).eIsProxy()) {
-			InternalEObject oldTarget = (InternalEObject) this.target;
-			this.target = (TargetType) this.eResolveProxy(oldTarget);
-			if (this.target != oldTarget) {
-				if (this.eNotificationRequired()) {
-					this.eNotify(new ENotificationImpl(this, Notification.RESOLVE, ConditionPackage.CONDITION__TARGET,
-							oldTarget, this.target));
-				}
+		if (target != null && ((EObject)target).eIsProxy()) {
+			InternalEObject oldTarget = (InternalEObject)target;
+			target = (TargetType)eResolveProxy(oldTarget);
+			if (target != oldTarget) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ConditionPackage.CONDITION__TARGET, oldTarget, target));
 			}
 		}
-		return this.target;
+		return target;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public TargetType basicGetTarget() {
-
-		return this.target;
+		return target;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setTarget(TargetType newTarget) {
-
-		TargetType oldTarget = this.target;
-		this.target = newTarget;
-		if (this.eNotificationRequired()) {
-			this.eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.CONDITION__TARGET, oldTarget,
-					this.target));
-		}
+		TargetType oldTarget = target;
+		target = newTarget;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.CONDITION__TARGET, oldTarget, target));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean checkCondition(ComplexCondition condition) {
-
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -233,92 +207,78 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-
 		switch (featureID) {
 			case ConditionPackage.CONDITION__INSTANCE_SELECTORS:
-				return ((InternalEList<?>) this.getInstanceSelectors()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getInstanceSelectors()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public int getValue() {
-
-		return this.value;
+		return value;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setValue(int newValue) {
-
-		int oldValue = this.value;
-		this.value = newValue;
-		if (this.eNotificationRequired()) {
-			this.eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.CONDITION__VALUE, oldValue,
-					this.value));
-		}
+		int oldValue = value;
+		value = newValue;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.CONDITION__VALUE, oldValue, value));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-
 		switch (featureID) {
 			case ConditionPackage.CONDITION__VALUE:
-				return this.getValue();
+				return getValue();
 			case ConditionPackage.CONDITION__COMPARATOR:
-				return this.getComparator();
+				return getComparator();
 			case ConditionPackage.CONDITION__TARGET:
-				if (resolve) {
-					return this.getTarget();
-				}
-				return this.basicGetTarget();
+				if (resolve) return getTarget();
+				return basicGetTarget();
 			case ConditionPackage.CONDITION__INSTANCE_SELECTORS:
-				return this.getInstanceSelectors();
+				return getInstanceSelectors();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-
 		switch (featureID) {
 			case ConditionPackage.CONDITION__VALUE:
-				this.setValue((Integer) newValue);
+				setValue((Integer)newValue);
 				return;
 			case ConditionPackage.CONDITION__COMPARATOR:
-				this.setComparator((ComparatorEnum) newValue);
+				setComparator((ComparatorEnum)newValue);
 				return;
 			case ConditionPackage.CONDITION__TARGET:
-				this.setTarget((TargetType) newValue);
+				setTarget((TargetType)newValue);
 				return;
 			case ConditionPackage.CONDITION__INSTANCE_SELECTORS:
-				this.getInstanceSelectors().clear();
-				this.getInstanceSelectors().addAll((Collection<? extends SourceInstanceSelector>) newValue);
+				getInstanceSelectors().clear();
+				getInstanceSelectors().addAll((Collection<? extends SourceInstanceSelector>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -326,24 +286,22 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-
 		switch (featureID) {
 			case ConditionPackage.CONDITION__VALUE:
-				this.setValue(ConditionImpl.VALUE_EDEFAULT);
+				setValue(VALUE_EDEFAULT);
 				return;
 			case ConditionPackage.CONDITION__COMPARATOR:
-				this.setComparator(ConditionImpl.COMPARATOR_EDEFAULT);
+				setComparator(COMPARATOR_EDEFAULT);
 				return;
 			case ConditionPackage.CONDITION__TARGET:
-				this.setTarget((TargetType) null);
+				setTarget((TargetType)null);
 				return;
 			case ConditionPackage.CONDITION__INSTANCE_SELECTORS:
-				this.getInstanceSelectors().clear();
+				getInstanceSelectors().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -351,57 +309,49 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-
 		switch (featureID) {
 			case ConditionPackage.CONDITION__VALUE:
-				return this.value != ConditionImpl.VALUE_EDEFAULT;
+				return value != VALUE_EDEFAULT;
 			case ConditionPackage.CONDITION__COMPARATOR:
-				return this.comparator != ConditionImpl.COMPARATOR_EDEFAULT;
+				return comparator != COMPARATOR_EDEFAULT;
 			case ConditionPackage.CONDITION__TARGET:
-				return this.target != null;
+				return target != null;
 			case ConditionPackage.CONDITION__INSTANCE_SELECTORS:
-				return this.instanceSelectors != null && !this.instanceSelectors.isEmpty();
+				return instanceSelectors != null && !instanceSelectors.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-
 		switch (operationID) {
 			case ConditionPackage.CONDITION___CHECK_CONDITION__COMPLEXCONDITION:
-				return this.checkCondition((ComplexCondition) arguments.get(0));
+				return checkCondition((ComplexCondition)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-
-		if (this.eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (value: ");
-		result.append(this.value);
+		result.append(value);
 		result.append(", comparator: ");
-		result.append(this.comparator);
+		result.append(comparator);
 		result.append(')');
 		return result.toString();
 	}

@@ -396,6 +396,24 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getClass_AllAttributes() {
+		return (EReference)classEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getClass_AllReferences() {
+		return (EReference)classEClass.getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getClass__IsContainerFor__Class() {
 		return classEClass.getEOperations().get(0);
 	}
@@ -750,6 +768,8 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		createEReference(classEClass, CLASS__VIRTUAL_ATTRIBUTES);
 		createEReference(classEClass, CLASS__ACTUAL_REFERENCES);
 		createEReference(classEClass, CLASS__VIRTUAL_REFERENCES);
+		createEReference(classEClass, CLASS__ALL_ATTRIBUTES);
+		createEReference(classEClass, CLASS__ALL_REFERENCES);
 		createEOperation(classEClass, CLASS___IS_CONTAINER_FOR__CLASS);
 		createEOperation(classEClass, CLASS___IS_CONTAINED_IN__CLASS);
 		createEOperation(classEClass, CLASS___GET_OWNING_CONTAINMENT_REFERENCE);
@@ -1455,6 +1475,10 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		initEReference(getClass_ActualReferences(), g1, null, "actualReferences", null, 0, -1, pamtram.structure.generic.Class.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		g1 = createEGenericType(classEClass_R);
 		initEReference(getClass_VirtualReferences(), g1, null, "virtualReferences", null, 0, -1, pamtram.structure.generic.Class.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		g1 = createEGenericType(classEClass_A);
+		initEReference(getClass_AllAttributes(), g1, null, "allAttributes", null, 0, -1, pamtram.structure.generic.Class.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		g1 = createEGenericType(classEClass_R);
+		initEReference(getClass_AllReferences(), g1, null, "allReferences", null, 0, -1, pamtram.structure.generic.Class.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		op = initEOperation(getClass__IsContainerFor__Class(), ecorePackage.getEBoolean(), "isContainerFor", 1, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(classEClass_C);
@@ -1794,6 +1818,30 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		   source, 
 		   new String[] {
 			 "documentation", "The subset of the \'references\' that are of type VirtualReference."
+		   });	
+		addAnnotation
+		  (getClass_AllAttributes(), 
+		   source, 
+		   new String[] {
+			 "get", "List<Object> ret = new ArrayList<>();\r\n\r\nret.addAll(this.getAttributes());\r\n\r\nif(this instanceof Section<?,?,?,?>) {\r\n\tret.addAll(((Section<?, ?, ?, ?>) this).getAllExtend().stream().flatMap(s -> s.getAttributes().stream()).collect(<%java.util.stream.Collectors%>.toList()));\r\n}\r\n\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.structure.generic.GenericPackage%>.Literals.CLASS__ALL_ATTRIBUTES,\r\n\t\tret.size(), ret.toArray());"
+		   });	
+		addAnnotation
+		  (getClass_AllAttributes(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of Attributes (if this is a Section, including those of extended Sections)."
+		   });	
+		addAnnotation
+		  (getClass_AllReferences(), 
+		   source, 
+		   new String[] {
+			 "get", "List<Object> ret = new ArrayList<>();\r\n\r\tret.addAll(this.getReferences());\r\n\r\tif (this instanceof Section<?, ?, ?, ?>) {\r\n\t\t\tret.addAll(((Section<?, ?, ?, ?>) this).getAllExtend().stream().flatMap(s -> s.getReferences().stream())\r\n\t\t\t\t\t.collect(<%java.util.stream.Collectors%>.toList()));\r\n\t\t}\r\n\r\treturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.structure.generic.GenericPackage%>.Literals.CLASS__ALL_REFERENCES, ret.size(),\r\n\t\t\t\tret.toArray());"
+		   });	
+		addAnnotation
+		  (getClass_AllReferences(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of References (if this is a Section, including those of extended Sections)."
 		   });	
 		addAnnotation
 		  (sectionEClass, 

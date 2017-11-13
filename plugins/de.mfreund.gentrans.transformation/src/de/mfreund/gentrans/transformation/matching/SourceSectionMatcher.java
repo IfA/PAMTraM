@@ -685,11 +685,15 @@ public class SourceSectionMatcher extends CancelableElement {
 	private boolean checkReferences(final EObject srcModelObject, final boolean usedOkay,
 			final SourceSectionClass sourceSectionClass, final MatchedSectionDescriptor descriptor) {
 
+		// All references defined by the class (and extended Sections)
+		//
+		EList<SourceSectionReference> classReferences = sourceSectionClass.getAllReferences();
+
 		// Collect the modeled references and reference targets (SourceSectionClasses) for the current
 		// 'sourceSectionClass' and store them in to maps
 		//
 		Map<EReference, List<SourceSectionClass>> classByRefMap = new LinkedHashMap<>();
-		for (SourceSectionReference reference : sourceSectionClass.getReferences().stream()
+		for (SourceSectionReference reference : classReferences.stream()
 				.filter(r -> r instanceof ActualReference<?, ?, ?, ?>).collect(Collectors.toList())) {
 			List<SourceSectionClass> currentValues = classByRefMap
 					.containsKey(((ActualReference<?, ?, ?, ?>) reference).getEReference())
@@ -700,7 +704,7 @@ public class SourceSectionMatcher extends CancelableElement {
 		}
 
 		Map<VirtualSourceSectionCrossReference, List<SourceSectionClass>> classByVirtualRefMap = new LinkedHashMap<>();
-		for (SourceSectionReference reference : sourceSectionClass.getReferences().stream()
+		for (SourceSectionReference reference : classReferences.stream()
 				.filter(r -> r instanceof VirtualSourceSectionCrossReference).collect(Collectors.toList())) {
 			List<SourceSectionClass> currentValues = classByVirtualRefMap.containsKey(reference)
 					? classByVirtualRefMap.get(reference)
@@ -711,8 +715,7 @@ public class SourceSectionMatcher extends CancelableElement {
 
 		Map<SourceSectionClass, SourceSectionReference> refByClassMap = Collections
 				.synchronizedMap(new LinkedHashMap<>());
-		sourceSectionClass.getReferences().stream()
-				.forEach(r -> r.getValuesGeneric().stream().forEach(c -> refByClassMap.put(c, r)));
+		classReferences.stream().forEach(r -> r.getValuesGeneric().stream().forEach(c -> refByClassMap.put(c, r)));
 
 		// now, iterate through all the modeled references (and reference targets) and check if they can be matched for
 		// the current 'srcModelObject'
@@ -738,7 +741,7 @@ public class SourceSectionMatcher extends CancelableElement {
 				 */
 				if (reference.isMany() && !((EList<EObject>) srcModelObject.eGet(reference)).isEmpty()
 						|| !reference.isMany() && srcModelObject.eGet(reference) != null) {
-					return sourceSectionClass.getReferences().parallelStream()
+					return classReferences.parallelStream()
 							.filter(r -> r instanceof ActualReference<?, ?, ?, ?>
 									&& ((ActualReference<?, ?, ?, ?>) r).getEReference().equals(reference))
 							.anyMatch(SourceSectionReference::isIgnoreUnmatchedElements);
@@ -1240,21 +1243,22 @@ public class SourceSectionMatcher extends CancelableElement {
 	 */
 	private boolean checkAttributes(final EObject srcModelObject, final SourceSectionClass sourceSectionClass) {
 
-		sourceSectionClass.getAttributes().parallelStream().filter(
+		sourceSectionClass.getAllAttributes().parallelStream().filter(
 				at -> !(at instanceof ActualSourceSectionAttribute) && !(at instanceof VirtualSourceSectionAttribute))
 				.forEach(at -> this.logger.severe(() -> "SourceSectionAttributes of type '" + at.eClass().getName()
 						+ "' are not yet supported!"));
 
 		// Check if all the constraints are satisfied for every attribute value.
 		//
-		return sourceSectionClass.getAttributes().stream().filter(a -> !a.getValueConstraints().isEmpty()).allMatch(at -> {
-			List<Object> values = ValueExtractor.getAttributeValueAsList(srcModelObject, at, this.logger);
-			/*
-			 * Check if all the constraints are satisfied for every attribute value.
-			 */
-			return !values.isEmpty() && values.parallelStream()
-					.allMatch(srcAttrValue -> this.checkAttributeValueConstraints(at, srcAttrValue));
-		});
+		return sourceSectionClass.getAllAttributes().stream().filter(a -> !a.getValueConstraints().isEmpty())
+				.allMatch(at -> {
+					List<Object> values = ValueExtractor.getAttributeValueAsList(srcModelObject, at, this.logger);
+					/*
+					 * Check if all the constraints are satisfied for every attribute value.
+					 */
+					return !values.isEmpty() && values.parallelStream()
+							.allMatch(srcAttrValue -> this.checkAttributeValueConstraints(at, srcAttrValue));
+				});
 	}
 
 	/**

@@ -233,7 +233,7 @@ public class SourceSectionMatcher extends CancelableElement {
 	private void registerDescriptor(MatchedSectionDescriptor descriptor) {
 
 		this.matchedSectionRegistry.register(descriptor);
-		this.containmentTree.markAsMatched(descriptor.getSourceModelObjectFlat());
+		this.containmentTree.markAsMatched(descriptor.getMatchedSourceModelObjectFlat());
 	}
 
 	/**
@@ -290,10 +290,10 @@ public class SourceSectionMatcher extends CancelableElement {
 		int maxMatchedElements = 0;
 		for (MatchedSectionDescriptor match : matches.values()) {
 
-			if (match.getSourceModelObjectFlat().size() >= maxMatchedElements) {
+			if (match.getMatchedSourceModelObjectFlat().size() >= maxMatchedElements) {
 
-				if (match.getSourceModelObjectFlat().size() > maxMatchedElements) {
-					maxMatchedElements = match.getSourceModelObjectFlat().size();
+				if (match.getMatchedSourceModelObjectFlat().size() > maxMatchedElements) {
+					maxMatchedElements = match.getMatchedSourceModelObjectFlat().size();
 					matchesWithMaximumElements.clear();
 				}
 
@@ -415,7 +415,7 @@ public class SourceSectionMatcher extends CancelableElement {
 
 		Set<MatchedSectionDescriptor> containerDescriptors = this.matchedSectionRegistry
 				.get(section.getContainer().getContainingSection()).parallelStream()
-				.filter(d -> d.getSourceModelObjectFlat().contains(element.eContainer())).collect(Collectors.toSet());
+				.filter(d -> d.getMatchedSourceModelObjectFlat().contains(element.eContainer())).collect(Collectors.toSet());
 
 		assert containerDescriptors.size() == 1;
 
@@ -600,7 +600,7 @@ public class SourceSectionMatcher extends CancelableElement {
 			// set the list of source model objects that have been mapped.
 			// first, add all mapped objects from 'changedRefsAndHints' ...
 			if (parentDescriptor != null && reference.isPresent() && reference.get().isContainment()) {
-				existingDescriptor.get().addSourceModelObjectsMapped(parentDescriptor.getSourceModelObjectsMapped());
+				existingDescriptor.get().add(parentDescriptor);
 				existingDescriptor.get().setContainerDescriptor(parentDescriptor);
 			}
 
@@ -618,7 +618,7 @@ public class SourceSectionMatcher extends CancelableElement {
 		// set the list of source model objects that have been mapped.
 		// first, add all mapped objects from 'changedRefsAndHints' ...
 		if (parentDescriptor != null && reference.isPresent() && reference.get().isContainment()) {
-			descriptor.addSourceModelObjectsMapped(parentDescriptor.getSourceModelObjectsMapped());
+			descriptor.add(parentDescriptor);
 		}
 		// ..., then add the current srcModelObject
 		descriptor.addSourceModelObjectMapped(srcModelObject, srcSection);

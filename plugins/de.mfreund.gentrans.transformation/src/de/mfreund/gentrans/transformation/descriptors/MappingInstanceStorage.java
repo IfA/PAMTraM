@@ -366,13 +366,16 @@ public class MappingInstanceStorage {
 	/**
 	 * This returns the {@link EObject elements} of the source model - sorted by their {@link SourceSectionClass} - that
 	 * are associated with this mapping instance (resp. the associated {@link #matchedSectionDescriptor}).
+	 * <p />
+	 * Note: This just redirects to {@link MatchedSectionDescriptor#getMatchedSourceModelObjects()} of the
+	 * {@link #matchedSectionDescriptor}.
 	 *
 	 * @return The {@link EObject elements} of the source model - sorted by their {@link SourceSectionClass} - that are
 	 *         associated with this mapping instance.
 	 */
-	public Map<SourceSectionClass, Set<EObject>> getSourceModelObjectsMapped() {
+	public Map<SourceSectionClass, Set<EObject>> getMatchedSourceModelObjects() {
 
-		return this.matchedSectionDescriptor.getSourceModelObjectsMapped();
+		return this.matchedSectionDescriptor.getMatchedSourceModelObjects();
 	}
 
 	/**

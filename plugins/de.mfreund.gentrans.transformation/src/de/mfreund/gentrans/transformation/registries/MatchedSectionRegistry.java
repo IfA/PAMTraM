@@ -59,7 +59,7 @@ public class MatchedSectionRegistry extends LinkedHashMap<SourceSection, List<Ma
 
 		return element == null || sourceSection == null || !this.containsKey(sourceSection) ? Optional.empty()
 				: this.get(sourceSection).parallelStream()
-						.filter(msd -> msd.getSourceModelObjectFlat().contains(element)).findAny();
+						.filter(msd -> msd.getMatchedSourceModelObjectFlat().contains(element)).findAny();
 	}
 
 	/**
@@ -89,7 +89,7 @@ public class MatchedSectionRegistry extends LinkedHashMap<SourceSection, List<Ma
 	public boolean contains(EObject element) {
 
 		return this.values().parallelStream().flatMap(List::stream)
-				.anyMatch(msd -> msd.getSourceModelObjectFlat().contains(element));
+				.anyMatch(msd -> msd.getMatchedSourceModelObjectFlat().contains(element));
 	}
 
 	/**

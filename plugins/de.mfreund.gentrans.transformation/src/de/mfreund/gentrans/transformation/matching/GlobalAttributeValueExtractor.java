@@ -19,6 +19,7 @@ import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
 import pamtram.MappingModel;
 import pamtram.PAMTraM;
 import pamtram.mapping.GlobalAttribute;
+import pamtram.structure.source.SourceSectionClass;
 
 /**
  * This class can be used to extract values of {@link GlobalAttribute GlobalAttributes} from source model elements for a
@@ -109,8 +110,8 @@ public class GlobalAttributeValueExtractor extends ValueExtractor {
 					+ "'." + " This is not supported. Only the first element is used!");
 		}
 
-		Set<EObject> sourceElements = matchedSectionDescriptor.getSourceModelObjectsMapped()
-				.get(globalAttribute.getSource().eContainer());
+		Set<EObject> sourceElements = matchedSectionDescriptor
+				.getMatchedSourceModelElementsFor((SourceSectionClass) globalAttribute.getSource().eContainer());
 
 		if (sourceElements == null) {
 			this.logger.severe(() -> "Value of global attribute '" + globalAttribute.getName() + "' not found!");

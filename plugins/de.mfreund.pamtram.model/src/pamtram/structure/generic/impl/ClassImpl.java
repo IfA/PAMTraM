@@ -418,7 +418,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 				} else if (this.equals(container)) {
 					return true;
 					// one of the extended sections is the container
-				} else if (container instanceof Section && ((Section) container).getExtend().contains(this)) {
+				} else if (container instanceof Section && ((Section) container).getAllExtend().contains(this)) {
 					return true;
 					// this was not the container, so iterate up in the containment hierarchy
 				} else {
@@ -432,38 +432,12 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 */
 	@Override
 	public boolean isContainedIn(final C containerClass) {
-		EList<C> containedClasses = new BasicEList<>();
-		
-		// collect all classes that are referenced by containment references
-		BasicEList<R> refs = new BasicEList<>(containerClass.getReferences());
-		if(containerClass instanceof Section) {
-			EList<Section> sections = ((Section) containerClass).getExtend(); 
-			for (Section s : sections) {
-				refs.addAll(s.getReferences());
-			}
-		}
-		
-		for (R ref : containerClass.getReferences()) {
-			if(!(ref instanceof ActualReference<?, ?, ?, ?>) || !(((ActualReference<?, ?, ?, ?>) ref).getEReference().isContainment())) {
-				continue;
-			}
-			if(ref instanceof CompositeReference<?,?,?,?>){
-				containedClasses.addAll(((CompositeReference<S,C,R,A>) ref).getValue());
-			} else if(ref instanceof CrossReference) {
-				containedClasses.addAll((Collection<? extends C>) ((CrossReference) ref).getValue());
-			}
-		}
-			
-		// recursively iterate over all contained classes
-		boolean found = false;
-		for (C containedClass : containedClasses) {
-			if(containedClass.equals(this) || isContainedIn(containedClass)) {
-				found = true;
-				break;
-			}
-		}
-		
-		return found;
+		// recursively collect all classes that are referenced by containment references and check if any matches this class
+				//
+				return containerClass.getAllReferences().stream()
+						.filter(r -> r instanceof ActualReference<?, ?, ?, ?>
+								&& ((ActualReference<?, ?, ?, ?>) r).getEReference().isContainment())
+						.flatMap(r -> r.getValuesGeneric().stream()).anyMatch(c -> c.equals(this) || this.isContainedIn(c));
 	}
 
 	/**

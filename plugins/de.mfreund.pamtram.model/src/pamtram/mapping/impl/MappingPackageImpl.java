@@ -405,6 +405,33 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getMappingHintGroupType_AllMappingHints() {
+		return (EReference)mappingHintGroupTypeEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMappingHintGroupType_AllExtend() {
+		return (EReference)mappingHintGroupTypeEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMappingHintGroupType_AllExtending() {
+		return (EReference)mappingHintGroupTypeEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getMappingHintGroupType__ValidateExtendsOnlyValidHintGroups__DiagnosticChain_Map() {
 		return mappingHintGroupTypeEClass.getEOperations().get(0);
 	}
@@ -567,6 +594,9 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		createEReference(mappingHintGroupTypeEClass, MAPPING_HINT_GROUP_TYPE__CARDINALITY_MAPPINGS);
 		createEReference(mappingHintGroupTypeEClass, MAPPING_HINT_GROUP_TYPE__REFERENCE_TARGET_SELECTORS);
 		createEReference(mappingHintGroupTypeEClass, MAPPING_HINT_GROUP_TYPE__CONTAINER_SELECTORS);
+		createEReference(mappingHintGroupTypeEClass, MAPPING_HINT_GROUP_TYPE__ALL_MAPPING_HINTS);
+		createEReference(mappingHintGroupTypeEClass, MAPPING_HINT_GROUP_TYPE__ALL_EXTEND);
+		createEReference(mappingHintGroupTypeEClass, MAPPING_HINT_GROUP_TYPE__ALL_EXTENDING);
 		createEOperation(mappingHintGroupTypeEClass, MAPPING_HINT_GROUP_TYPE___VALIDATE_EXTENDS_ONLY_VALID_HINT_GROUPS__DIAGNOSTICCHAIN_MAP);
 		createEOperation(mappingHintGroupTypeEClass, MAPPING_HINT_GROUP_TYPE___GET_ACTIVE_MAPPING_HINTS);
 		createEOperation(mappingHintGroupTypeEClass, MAPPING_HINT_GROUP_TYPE___VALIDATE_DO_NOT_USE_LIBRARY_ELEMENTS_WITHOUT_LIBRARY_NATURE__DIAGNOSTICCHAIN_MAP);
@@ -700,6 +730,9 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEReference(getMappingHintGroupType_CardinalityMappings(), theExtendedPackage.getCardinalityMapping(), null, "cardinalityMappings", null, 0, -1, MappingHintGroupType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getMappingHintGroupType_ReferenceTargetSelectors(), theExtendedPackage.getReferenceTargetSelector(), null, "referenceTargetSelectors", null, 0, -1, MappingHintGroupType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getMappingHintGroupType_ContainerSelectors(), theExtendedPackage.getContainerSelector(), null, "containerSelectors", null, 0, -1, MappingHintGroupType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getMappingHintGroupType_AllMappingHints(), theExtendedPackage.getMappingHint(), null, "allMappingHints", null, 0, -1, MappingHintGroupType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getMappingHintGroupType_AllExtend(), this.getMappingHintGroupType(), null, "allExtend", null, 0, -1, MappingHintGroupType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getMappingHintGroupType_AllExtending(), this.getMappingHintGroupType(), null, "allExtending", null, 0, -1, MappingHintGroupType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		op = initEOperation(getMappingHintGroupType__ValidateExtendsOnlyValidHintGroups__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateExtendsOnlyValidHintGroups", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -896,7 +929,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (getMappingHintGroupType__GetActiveMappingHints(), 
 		   source, 
 		   new String[] {
-			 "body", "Object[] hints = getMappingHints().stream().filter(h -> !h.isDeactivated()).toArray();\r\nreturn new <%org.eclipse.emf.common.util.BasicEList%>.UnmodifiableEList<>(hints.length, hints);"
+			 "body", "Object[] hints = getAllMappingHints().stream().filter(h -> !h.isDeactivated()).toArray();\r\nreturn new <%org.eclipse.emf.common.util.BasicEList%>.UnmodifiableEList<>(hints.length, hints);"
 		   });	
 		addAnnotation
 		  (getMappingHintGroupType__ValidateDoNotUseLibraryElementsWithoutLibraryNature__DiagnosticChain_Map(), 
@@ -926,7 +959,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (getMappingHintGroupType_AttributeMappings(), 
 		   source, 
 		   new String[] {
-			 "get", "<%java.util.List%><<%pamtram.mapping.extended.AttributeMapping%>> attributeMappings = this.getMappingHints().stream()\r\n\t\t\t\t.filter(hint -> hint instanceof AttributeMapping).map(hint -> (AttributeMapping) hint)\r\n\t\t\t\t.collect(<%java.util.stream.Collectors%>.toList());\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__ATTRIBUTE_MAPPINGS,\r\n\t\tattributeMappings.size(),attributeMappings.toArray());\r\n"
+			 "get", "List<<%pamtram.mapping.extended.AttributeMapping%>> attributeMappings = this.getAllMappingHints().stream()\r\n\t\t\t\t.filter(hint -> hint instanceof <%pamtram.mapping.extended.AttributeMapping%>).map(hint -> (<%pamtram.mapping.extended.AttributeMapping%>) hint)\r\n\t\t\t\t.collect(<%java.util.stream.Collectors%>.toList());\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__ATTRIBUTE_MAPPINGS,\r\n\t\tattributeMappings.size(),attributeMappings.toArray());"
 		   });	
 		addAnnotation
 		  (getMappingHintGroupType_AttributeMappings(), 
@@ -938,7 +971,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (getMappingHintGroupType_CardinalityMappings(), 
 		   source, 
 		   new String[] {
-			 "get", "<%java.util.List%><<%pamtram.mapping.extended.CardinalityMapping%>> cardinalityMappings = this.getMappingHints().stream()\r\n\t\t\t\t.filter(hint -> hint instanceof CardinalityMapping).map(hint -> (CardinalityMapping) hint)\r\n\t\t\t\t.collect(<%java.util.stream.Collectors%>.toList());\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__CARDINALITY_MAPPINGS,\r\n\t\tcardinalityMappings.size(),cardinalityMappings.toArray());\r\n"
+			 "get", "List<<%pamtram.mapping.extended.CardinalityMapping%>> cardinalityMappings = this.getAllMappingHints().stream()\r\n\t\t\t\t.filter(hint -> hint instanceof <%pamtram.mapping.extended.CardinalityMapping%>).map(hint -> (<%pamtram.mapping.extended.CardinalityMapping%>) hint)\r\n\t\t\t\t.collect(<%java.util.stream.Collectors%>.toList());\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__CARDINALITY_MAPPINGS,\r\n\t\tcardinalityMappings.size(),cardinalityMappings.toArray());"
 		   });	
 		addAnnotation
 		  (getMappingHintGroupType_CardinalityMappings(), 
@@ -950,7 +983,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (getMappingHintGroupType_ReferenceTargetSelectors(), 
 		   source, 
 		   new String[] {
-			 "get", "<%java.util.List%><<%pamtram.mapping.extended.ReferenceTargetSelector%>> referenceTargetSelectors = this.getMappingHints().stream()\r\n\t\t\t\t.filter(hint -> hint instanceof ReferenceTargetSelector).map(hint -> (ReferenceTargetSelector) hint)\r\n\t\t\t\t.collect(<%java.util.stream.Collectors%>.toList());\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__REFERENCE_TARGET_SELECTORS,\r\n\t\treferenceTargetSelectors.size(),referenceTargetSelectors.toArray());\r\n"
+			 "get", "List<<%pamtram.mapping.extended.ReferenceTargetSelector%>> referenceTargetSelectors = this.getAllMappingHints().stream()\r\n\t\t\t\t.filter(hint -> hint instanceof <%pamtram.mapping.extended.ReferenceTargetSelector%>).map(hint -> (<%pamtram.mapping.extended.ReferenceTargetSelector%>) hint)\r\n\t\t\t\t.collect(<%java.util.stream.Collectors%>.toList());\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__REFERENCE_TARGET_SELECTORS,\r\n\t\treferenceTargetSelectors.size(),referenceTargetSelectors.toArray());"
 		   });	
 		addAnnotation
 		  (getMappingHintGroupType_ReferenceTargetSelectors(), 
@@ -962,13 +995,49 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (getMappingHintGroupType_ContainerSelectors(), 
 		   source, 
 		   new String[] {
-			 "get", "<%java.util.List%><<%pamtram.mapping.extended.ContainerSelector%>> containerSelectors = this.getMappingHints().stream()\r\n\t\t\t\t.filter(hint -> hint instanceof ContainerSelector).map(hint -> (ContainerSelector) hint)\r\n\t\t\t\t.collect(<%java.util.stream.Collectors%>.toList());\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__CONTAINER_SELECTORS,\r\n\t\tcontainerSelectors.size(),containerSelectors.toArray());\r\n"
+			 "get", "List<<%pamtram.mapping.extended.ContainerSelector%>> containerSelectors = this.getAllMappingHints().stream()\r\n\t\t\t\t.filter(hint -> hint instanceof <%pamtram.mapping.extended.ContainerSelector%>).map(hint -> (<%pamtram.mapping.extended.ContainerSelector%>) hint)\r\n\t\t\t\t.collect(<%java.util.stream.Collectors%>.toList());\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__CONTAINER_SELECTORS,\r\n\t\tcontainerSelectors.size(),containerSelectors.toArray());"
 		   });	
 		addAnnotation
 		  (getMappingHintGroupType_ContainerSelectors(), 
 		   source, 
 		   new String[] {
 			 "documentation", "The subset of the \'mappingHints\' that are of type ContainerSelector."
+		   });	
+		addAnnotation
+		  (getMappingHintGroupType_AllMappingHints(), 
+		   source, 
+		   new String[] {
+			 "get", "Set<<%pamtram.mapping.extended.MappingHint%>> ret = new LinkedHashSet<>();\r\n\r\tret.addAll(this.getMappingHints());\r\n\r\tret.addAll(this.getAllExtend().stream().flatMap(s -> s.getMappingHints().stream())\r\n\t\t\t\t\t.collect(<%java.util.stream.Collectors%>.toList()));\r\n\r\t// Filter those MappingHints that are overridden by more concrete hints\r\n\t\t//\r\n\t\tSet<<%pamtram.mapping.extended.MappingHint%>> overridenHints = ret.parallelStream().filter(h -> h.getOverwrite() != null).map(MappingHint::getOverwrite).collect(<%java.util.stream.Collectors%>.toSet());\r\n\t\tret.removeAll(overridenHints);\r\n\r\t\treturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this,\r\n\t\t\t\t\t\t<%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__ALL_MAPPING_HINTS, ret.size(), ret.toArray());"
+		   });	
+		addAnnotation
+		  (getMappingHintGroupType_AllMappingHints(), 
+		   source, 
+		   new String[] {
+			 "documentation", "All \'mappingHints\' (including those defined by potential extended Mappings)."
+		   });	
+		addAnnotation
+		  (getMappingHintGroupType_AllExtend(), 
+		   source, 
+		   new String[] {
+			 "get", "Set<Object> ret = new HashSet<>();\r\n\r\nList<<%pamtram.mapping.MappingHintGroupType%>> toCheck = new ArrayList<>();\r\n\ttoCheck.add(this);\r\n\r\nwhile (!toCheck.isEmpty()) {\r\n\t<%pamtram.mapping.MappingHintGroupType%> next = toCheck.remove(0);\r\n\r\n\tList<<%pamtram.mapping.MappingHintGroupType%>> localToCheck = next.getExtend().stream().filter(e -> !ret.contains(e))\r\n\t\t\t\t.collect(<%java.util.stream.Collectors%>.toList());\r\n\t\tret.addAll(localToCheck);\r\n\t\ttoCheck.addAll(localToCheck);\r\n\t}\r\n\r\nret.addAll(this.getExtend().stream().flatMap(s -> s.getAllExtend().stream()).collect(<%java.util.stream.Collectors%>.toList()));\r\n\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__ALL_EXTEND, ret.size(),\r\n\t\t\tret.toArray());"
+		   });	
+		addAnnotation
+		  (getMappingHintGroupType_AllExtend(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of recursively collected extended MappingHintGroups."
+		   });	
+		addAnnotation
+		  (getMappingHintGroupType_AllExtending(), 
+		   source, 
+		   new String[] {
+			 "get", "Set<Object> extendingSections = new HashSet<>();\r\n\t\tIterator<<%org.eclipse.emf.common.notify.Notifier%>> it = this.eResource().getResourceSet().getAllContents();\r\n\t\twhile (it.hasNext()) {\r\n\t\t\t<%org.eclipse.emf.common.notify.Notifier%> next = it.next();\r\n\t\t\tif (next instanceof <%pamtram.mapping.MappingHintGroupType%> && ((<%pamtram.mapping.MappingHintGroupType%>) next).getAllExtend().contains(this)) {\r\n\t\t\t\textendingSections.add(next);\r\n\t\t\t}\r\n\t\t}\r\n\r\treturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__ALL_EXTENDING,\r\n\t\t\t\textendingSections.size(), extendingSections.toArray());"
+		   });	
+		addAnnotation
+		  (getMappingHintGroupType_AllExtending(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of recursively collected MappingHintGroups extending this MappingHintGroup."
 		   });	
 		addAnnotation
 		  (instantiableMappingHintGroupEClass, 

@@ -4,7 +4,9 @@ package pamtram.mapping.extended.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.command.Command;
@@ -34,37 +36,39 @@ import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.provider.DeactivatableElementItemProvider;
 
 /**
- * This is the item provider adapter for a {@link pamtram.mapping.extended.MappingHint} object.
- * <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link pamtram.mapping.extended.MappingHint} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class MappingHintItemProvider extends MappingHintTypeItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public MappingHintItemProvider(AdapterFactory adapterFactory) {
+
 		super(adapterFactory);
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addSharedConditionPropertyDescriptor(object);
-			addDeactivatedPropertyDescriptor(object);
-			addOverwritePropertyDescriptor(object);
+			this.addSharedConditionPropertyDescriptor(object);
+			this.addDeactivatedPropertyDescriptor(object);
+			this.addOverwritePropertyDescriptor(object);
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
@@ -99,30 +103,24 @@ public class MappingHintItemProvider extends MappingHintTypeItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Deactivated feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Deactivated feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addDeactivatedPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_DeactivatableElement_deactivated_feature"),
-				 getString("_UI_DeactivatableElement_deactivated_description"),
-				 PamtramPackage.Literals.DEACTIVATABLE_ELEMENT__DEACTIVATED,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 getString("_UI_ExtendedPropertyCategory"),
-				 null));
+
+		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+				this.getString("_UI_DeactivatableElement_deactivated_feature"),
+				this.getString("_UI_DeactivatableElement_deactivated_description"),
+				PamtramPackage.Literals.DEACTIVATABLE_ELEMENT__DEACTIVATED, true, false, false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, this.getString("_UI_ExtendedPropertyCategory"), null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Overwrite feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
-	 * @generated NOT
+	 * @generated
 	 */
 	protected void addOverwritePropertyDescriptor(Object object) {
 
@@ -145,9 +143,10 @@ public class MappingHintItemProvider extends MappingHintTypeItemProvider {
 						return new ArrayList<>();
 					}
 
-					List<MappingHint> possibleOverwrites = ((MappingHintGroupType) hint.eContainer()).getExtend()
-							.stream().flatMap(h -> h.getMappingHints().stream())
-							.filter(h -> hint.eClass().equals(h.eClass())).collect(Collectors.toList());
+					Set<MappingHint> possibleOverwrites = ((MappingHintGroupType) hint.eContainer()).getExtend()
+							.stream().flatMap(h -> h.getAllMappingHints().stream())
+							.filter(h -> hint.eClass().equals(h.eClass()))
+							.collect(Collectors.toCollection(LinkedHashSet::new));
 
 					if (hint instanceof AttributeMapping) {
 						AttributeMapping attributeMapping = (AttributeMapping) hint;
@@ -177,6 +176,8 @@ public class MappingHintItemProvider extends MappingHintTypeItemProvider {
 											.equals(rts.getAffectedReference()))
 									.collect(Collectors.toList());
 						}
+					} else if (hint instanceof ContainerSelector) {
+						return new ArrayList<>(possibleOverwrites);
 					} else {
 						return new ArrayList<>();
 					}
@@ -188,22 +189,24 @@ public class MappingHintItemProvider extends MappingHintTypeItemProvider {
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+
+		if (this.childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION);
+			this.childrenFeatures.add(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION);
 		}
-		return childrenFeatures;
+		return this.childrenFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -215,13 +218,14 @@ public class MappingHintItemProvider extends MappingHintTypeItemProvider {
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+
+		return ((StyledString) this.getStyledText(object)).getString();
 	}
 
 	/**
@@ -254,58 +258,48 @@ public class MappingHintItemProvider extends MappingHintTypeItemProvider {
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+
+		this.updateChildren(notification);
 
 		switch (notification.getFeatureID(MappingHint.class)) {
 			case ExtendedPackage.MAPPING_HINT__DEACTIVATED:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case ExtendedPackage.MAPPING_HINT__LOCAL_CONDITION:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
-				 ConditionFactory.eINSTANCE.createAnd()));
+		newChildDescriptors.add(this.createChildParameter(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
+				ConditionFactory.eINSTANCE.createAnd()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
-				 ConditionFactory.eINSTANCE.createOr()));
+		newChildDescriptors.add(this.createChildParameter(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
+				ConditionFactory.eINSTANCE.createOr()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
-				 ConditionFactory.eINSTANCE.createNot()));
+		newChildDescriptors.add(this.createChildParameter(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
+				ConditionFactory.eINSTANCE.createNot()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
-				 ConditionFactory.eINSTANCE.createAttributeCondition()));
+		newChildDescriptors.add(this.createChildParameter(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
+				ConditionFactory.eINSTANCE.createAttributeCondition()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
-				 ConditionFactory.eINSTANCE.createCardinalityCondition()));
+		newChildDescriptors.add(this.createChildParameter(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
+				ConditionFactory.eINSTANCE.createCardinalityCondition()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
-				 ConditionFactory.eINSTANCE.createApplicationDependency()));
+		newChildDescriptors.add(this.createChildParameter(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
+				ConditionFactory.eINSTANCE.createApplicationDependency()));
 	}
 
 	@Override

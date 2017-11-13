@@ -629,6 +629,9 @@
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupType/cardinalityMappings"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupType/referenceTargetSelectors"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupType/containerSelectors"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupType/allMappingHints"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupType/allExtend"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupType/allExtending"/>
         <genOperations ecoreOperation="pamtram.ecore#//mapping/MappingHintGroupType/validateExtendsOnlyValidHintGroups">
           <genParameters ecoreParameter="pamtram.ecore#//mapping/MappingHintGroupType/validateExtendsOnlyValidHintGroups/diagnostics"/>
           <genParameters ecoreParameter="pamtram.ecore#//mapping/MappingHintGroupType/validateExtendsOnlyValidHintGroups/context"/>

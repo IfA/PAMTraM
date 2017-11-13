@@ -375,13 +375,40 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_HINT_GROUP_TYPE__CONTAINER_SELECTORS = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
+	 * The feature id for the '<em><b>All Mapping Hints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP_TYPE__ALL_MAPPING_HINTS = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
+	 * The feature id for the '<em><b>All Extend</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP_TYPE__ALL_EXTEND = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 8;
+
+	/**
+	 * The feature id for the '<em><b>All Extending</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP_TYPE__ALL_EXTENDING = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 9;
+
+	/**
 	 * The number of structural features of the '<em>Hint Group Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_GROUP_TYPE_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 7;
+	int MAPPING_HINT_GROUP_TYPE_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * The operation id for the '<em>Validate Extends Only Valid Hint Groups</em>' operation.
@@ -582,6 +609,33 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int MAPPING_HINT_GROUP__CONTAINER_SELECTORS = MAPPING_HINT_GROUP_TYPE__CONTAINER_SELECTORS;
+
+	/**
+	 * The feature id for the '<em><b>All Mapping Hints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP__ALL_MAPPING_HINTS = MAPPING_HINT_GROUP_TYPE__ALL_MAPPING_HINTS;
+
+	/**
+	 * The feature id for the '<em><b>All Extend</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP__ALL_EXTEND = MAPPING_HINT_GROUP_TYPE__ALL_EXTEND;
+
+	/**
+	 * The feature id for the '<em><b>All Extending</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP__ALL_EXTENDING = MAPPING_HINT_GROUP_TYPE__ALL_EXTENDING;
 
 	/**
 	 * The feature id for the '<em><b>Deactivated</b></em>' attribute.
@@ -882,6 +936,33 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXPORTED_MAPPING_HINT_GROUP__CONTAINER_SELECTORS = MAPPING_HINT_GROUP_TYPE__CONTAINER_SELECTORS;
+
+	/**
+	 * The feature id for the '<em><b>All Mapping Hints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPORTED_MAPPING_HINT_GROUP__ALL_MAPPING_HINTS = MAPPING_HINT_GROUP_TYPE__ALL_MAPPING_HINTS;
+
+	/**
+	 * The feature id for the '<em><b>All Extend</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPORTED_MAPPING_HINT_GROUP__ALL_EXTEND = MAPPING_HINT_GROUP_TYPE__ALL_EXTEND;
+
+	/**
+	 * The feature id for the '<em><b>All Extending</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPORTED_MAPPING_HINT_GROUP__ALL_EXTENDING = MAPPING_HINT_GROUP_TYPE__ALL_EXTENDING;
 
 	/**
 	 * The number of structural features of the '<em>Exported Mapping Hint Group</em>' class.
@@ -1202,6 +1283,39 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getMappingHintGroupType_ContainerSelectors();
+
+	/**
+	 * Returns the meta object for the reference list '{@link pamtram.mapping.MappingHintGroupType#getAllMappingHints <em>All Mapping Hints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>All Mapping Hints</em>'.
+	 * @see pamtram.mapping.MappingHintGroupType#getAllMappingHints()
+	 * @see #getMappingHintGroupType()
+	 * @generated
+	 */
+	EReference getMappingHintGroupType_AllMappingHints();
+
+	/**
+	 * Returns the meta object for the reference list '{@link pamtram.mapping.MappingHintGroupType#getAllExtend <em>All Extend</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>All Extend</em>'.
+	 * @see pamtram.mapping.MappingHintGroupType#getAllExtend()
+	 * @see #getMappingHintGroupType()
+	 * @generated
+	 */
+	EReference getMappingHintGroupType_AllExtend();
+
+	/**
+	 * Returns the meta object for the reference list '{@link pamtram.mapping.MappingHintGroupType#getAllExtending <em>All Extending</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>All Extending</em>'.
+	 * @see pamtram.mapping.MappingHintGroupType#getAllExtending()
+	 * @see #getMappingHintGroupType()
+	 * @generated
+	 */
+	EReference getMappingHintGroupType_AllExtending();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.mapping.MappingHintGroupType#validateExtendsOnlyValidHintGroups(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Extends Only Valid Hint Groups</em>}' operation.
@@ -1535,6 +1649,30 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MAPPING_HINT_GROUP_TYPE__CONTAINER_SELECTORS = eINSTANCE.getMappingHintGroupType_ContainerSelectors();
+
+		/**
+		 * The meta object literal for the '<em><b>All Mapping Hints</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MAPPING_HINT_GROUP_TYPE__ALL_MAPPING_HINTS = eINSTANCE.getMappingHintGroupType_AllMappingHints();
+
+		/**
+		 * The meta object literal for the '<em><b>All Extend</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MAPPING_HINT_GROUP_TYPE__ALL_EXTEND = eINSTANCE.getMappingHintGroupType_AllExtend();
+
+		/**
+		 * The meta object literal for the '<em><b>All Extending</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MAPPING_HINT_GROUP_TYPE__ALL_EXTENDING = eINSTANCE.getMappingHintGroupType_AllExtending();
 
 		/**
 		 * The meta object literal for the '<em><b>Validate Extends Only Valid Hint Groups</b></em>' operation.

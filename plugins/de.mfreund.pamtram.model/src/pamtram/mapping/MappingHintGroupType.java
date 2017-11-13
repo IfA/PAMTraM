@@ -34,6 +34,9 @@ import pamtram.structure.target.TargetSection;
  *   <li>{@link pamtram.mapping.MappingHintGroupType#getCardinalityMappings <em>Cardinality Mappings</em>}</li>
  *   <li>{@link pamtram.mapping.MappingHintGroupType#getReferenceTargetSelectors <em>Reference Target Selectors</em>}</li>
  *   <li>{@link pamtram.mapping.MappingHintGroupType#getContainerSelectors <em>Container Selectors</em>}</li>
+ *   <li>{@link pamtram.mapping.MappingHintGroupType#getAllMappingHints <em>All Mapping Hints</em>}</li>
+ *   <li>{@link pamtram.mapping.MappingHintGroupType#getAllExtend <em>All Extend</em>}</li>
+ *   <li>{@link pamtram.mapping.MappingHintGroupType#getAllExtending <em>All Extending</em>}</li>
  * </ul>
  *
  * @see pamtram.mapping.MappingPackage#getMappingHintGroupType()
@@ -126,7 +129,7 @@ public interface MappingHintGroupType extends NamedElement {
 	 * @return the value of the '<em>Attribute Mappings</em>' reference list.
 	 * @see pamtram.mapping.MappingPackage#getMappingHintGroupType_AttributeMappings()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='&lt;%java.util.List%&gt;&lt;&lt;%pamtram.mapping.extended.AttributeMapping%&gt;&gt; attributeMappings = this.getMappingHints().stream()\r\n\t\t\t\t.filter(hint -&gt; hint instanceof AttributeMapping).map(hint -&gt; (AttributeMapping) hint)\r\n\t\t\t\t.collect(&lt;%java.util.stream.Collectors%&gt;.toList());\r\nreturn new &lt;%org.eclipse.emf.ecore.util.EcoreEList%&gt;.UnmodifiableEList&lt;&gt;(this, &lt;%pamtram.mapping.MappingPackage%&gt;.Literals.MAPPING_HINT_GROUP_TYPE__ATTRIBUTE_MAPPINGS,\r\n\t\tattributeMappings.size(),attributeMappings.toArray());\r\n'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='List&lt;&lt;%pamtram.mapping.extended.AttributeMapping%&gt;&gt; attributeMappings = this.getAllMappingHints().stream()\r\n\t\t\t\t.filter(hint -&gt; hint instanceof &lt;%pamtram.mapping.extended.AttributeMapping%&gt;).map(hint -&gt; (&lt;%pamtram.mapping.extended.AttributeMapping%&gt;) hint)\r\n\t\t\t\t.collect(&lt;%java.util.stream.Collectors%&gt;.toList());\r\nreturn new &lt;%org.eclipse.emf.ecore.util.EcoreEList%&gt;.UnmodifiableEList&lt;&gt;(this, &lt;%pamtram.mapping.MappingPackage%&gt;.Literals.MAPPING_HINT_GROUP_TYPE__ATTRIBUTE_MAPPINGS,\r\n\t\tattributeMappings.size(),attributeMappings.toArray());'"
 	 * @generated
 	 */
 	EList<AttributeMapping> getAttributeMappings();
@@ -143,7 +146,7 @@ public interface MappingHintGroupType extends NamedElement {
 	 * @return the value of the '<em>Cardinality Mappings</em>' reference list.
 	 * @see pamtram.mapping.MappingPackage#getMappingHintGroupType_CardinalityMappings()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='&lt;%java.util.List%&gt;&lt;&lt;%pamtram.mapping.extended.CardinalityMapping%&gt;&gt; cardinalityMappings = this.getMappingHints().stream()\r\n\t\t\t\t.filter(hint -&gt; hint instanceof CardinalityMapping).map(hint -&gt; (CardinalityMapping) hint)\r\n\t\t\t\t.collect(&lt;%java.util.stream.Collectors%&gt;.toList());\r\nreturn new &lt;%org.eclipse.emf.ecore.util.EcoreEList%&gt;.UnmodifiableEList&lt;&gt;(this, &lt;%pamtram.mapping.MappingPackage%&gt;.Literals.MAPPING_HINT_GROUP_TYPE__CARDINALITY_MAPPINGS,\r\n\t\tcardinalityMappings.size(),cardinalityMappings.toArray());\r\n'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='List&lt;&lt;%pamtram.mapping.extended.CardinalityMapping%&gt;&gt; cardinalityMappings = this.getAllMappingHints().stream()\r\n\t\t\t\t.filter(hint -&gt; hint instanceof &lt;%pamtram.mapping.extended.CardinalityMapping%&gt;).map(hint -&gt; (&lt;%pamtram.mapping.extended.CardinalityMapping%&gt;) hint)\r\n\t\t\t\t.collect(&lt;%java.util.stream.Collectors%&gt;.toList());\r\nreturn new &lt;%org.eclipse.emf.ecore.util.EcoreEList%&gt;.UnmodifiableEList&lt;&gt;(this, &lt;%pamtram.mapping.MappingPackage%&gt;.Literals.MAPPING_HINT_GROUP_TYPE__CARDINALITY_MAPPINGS,\r\n\t\tcardinalityMappings.size(),cardinalityMappings.toArray());'"
 	 * @generated
 	 */
 	EList<CardinalityMapping> getCardinalityMappings();
@@ -160,7 +163,7 @@ public interface MappingHintGroupType extends NamedElement {
 	 * @return the value of the '<em>Reference Target Selectors</em>' reference list.
 	 * @see pamtram.mapping.MappingPackage#getMappingHintGroupType_ReferenceTargetSelectors()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='&lt;%java.util.List%&gt;&lt;&lt;%pamtram.mapping.extended.ReferenceTargetSelector%&gt;&gt; referenceTargetSelectors = this.getMappingHints().stream()\r\n\t\t\t\t.filter(hint -&gt; hint instanceof ReferenceTargetSelector).map(hint -&gt; (ReferenceTargetSelector) hint)\r\n\t\t\t\t.collect(&lt;%java.util.stream.Collectors%&gt;.toList());\r\nreturn new &lt;%org.eclipse.emf.ecore.util.EcoreEList%&gt;.UnmodifiableEList&lt;&gt;(this, &lt;%pamtram.mapping.MappingPackage%&gt;.Literals.MAPPING_HINT_GROUP_TYPE__REFERENCE_TARGET_SELECTORS,\r\n\t\treferenceTargetSelectors.size(),referenceTargetSelectors.toArray());\r\n'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='List&lt;&lt;%pamtram.mapping.extended.ReferenceTargetSelector%&gt;&gt; referenceTargetSelectors = this.getAllMappingHints().stream()\r\n\t\t\t\t.filter(hint -&gt; hint instanceof &lt;%pamtram.mapping.extended.ReferenceTargetSelector%&gt;).map(hint -&gt; (&lt;%pamtram.mapping.extended.ReferenceTargetSelector%&gt;) hint)\r\n\t\t\t\t.collect(&lt;%java.util.stream.Collectors%&gt;.toList());\r\nreturn new &lt;%org.eclipse.emf.ecore.util.EcoreEList%&gt;.UnmodifiableEList&lt;&gt;(this, &lt;%pamtram.mapping.MappingPackage%&gt;.Literals.MAPPING_HINT_GROUP_TYPE__REFERENCE_TARGET_SELECTORS,\r\n\t\treferenceTargetSelectors.size(),referenceTargetSelectors.toArray());'"
 	 * @generated
 	 */
 	EList<ReferenceTargetSelector> getReferenceTargetSelectors();
@@ -177,10 +180,61 @@ public interface MappingHintGroupType extends NamedElement {
 	 * @return the value of the '<em>Container Selectors</em>' reference list.
 	 * @see pamtram.mapping.MappingPackage#getMappingHintGroupType_ContainerSelectors()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='&lt;%java.util.List%&gt;&lt;&lt;%pamtram.mapping.extended.ContainerSelector%&gt;&gt; containerSelectors = this.getMappingHints().stream()\r\n\t\t\t\t.filter(hint -&gt; hint instanceof ContainerSelector).map(hint -&gt; (ContainerSelector) hint)\r\n\t\t\t\t.collect(&lt;%java.util.stream.Collectors%&gt;.toList());\r\nreturn new &lt;%org.eclipse.emf.ecore.util.EcoreEList%&gt;.UnmodifiableEList&lt;&gt;(this, &lt;%pamtram.mapping.MappingPackage%&gt;.Literals.MAPPING_HINT_GROUP_TYPE__CONTAINER_SELECTORS,\r\n\t\tcontainerSelectors.size(),containerSelectors.toArray());\r\n'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='List&lt;&lt;%pamtram.mapping.extended.ContainerSelector%&gt;&gt; containerSelectors = this.getAllMappingHints().stream()\r\n\t\t\t\t.filter(hint -&gt; hint instanceof &lt;%pamtram.mapping.extended.ContainerSelector%&gt;).map(hint -&gt; (&lt;%pamtram.mapping.extended.ContainerSelector%&gt;) hint)\r\n\t\t\t\t.collect(&lt;%java.util.stream.Collectors%&gt;.toList());\r\nreturn new &lt;%org.eclipse.emf.ecore.util.EcoreEList%&gt;.UnmodifiableEList&lt;&gt;(this, &lt;%pamtram.mapping.MappingPackage%&gt;.Literals.MAPPING_HINT_GROUP_TYPE__CONTAINER_SELECTORS,\r\n\t\tcontainerSelectors.size(),containerSelectors.toArray());'"
 	 * @generated
 	 */
 	EList<ContainerSelector> getContainerSelectors();
+
+	/**
+	 * Returns the value of the '<em><b>All Mapping Hints</b></em>' reference list.
+	 * The list contents are of type {@link pamtram.mapping.extended.MappingHint}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>All Mapping Hints</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>All Mapping Hints</em>' reference list.
+	 * @see pamtram.mapping.MappingPackage#getMappingHintGroupType_AllMappingHints()
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='Set&lt;&lt;%pamtram.mapping.extended.MappingHint%&gt;&gt; ret = new LinkedHashSet&lt;&gt;();\r\n\r\tret.addAll(this.getMappingHints());\r\n\r\tret.addAll(this.getAllExtend().stream().flatMap(s -&gt; s.getMappingHints().stream())\r\n\t\t\t\t\t.collect(&lt;%java.util.stream.Collectors%&gt;.toList()));\r\n\r\t// Filter those MappingHints that are overridden by more concrete hints\r\n\t\t//\r\n\t\tSet&lt;&lt;%pamtram.mapping.extended.MappingHint%&gt;&gt; overridenHints = ret.parallelStream().filter(h -&gt; h.getOverwrite() != null).map(MappingHint::getOverwrite).collect(&lt;%java.util.stream.Collectors%&gt;.toSet());\r\n\t\tret.removeAll(overridenHints);\r\n\r\t\treturn new &lt;%org.eclipse.emf.ecore.util.EcoreEList%&gt;.UnmodifiableEList&lt;&gt;(this,\r\n\t\t\t\t\t\t&lt;%pamtram.mapping.MappingPackage%&gt;.Literals.MAPPING_HINT_GROUP_TYPE__ALL_MAPPING_HINTS, ret.size(), ret.toArray());'"
+	 * @generated
+	 */
+	EList<MappingHint> getAllMappingHints();
+
+	/**
+	 * Returns the value of the '<em><b>All Extend</b></em>' reference list.
+	 * The list contents are of type {@link pamtram.mapping.MappingHintGroupType}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>All Extend</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>All Extend</em>' reference list.
+	 * @see pamtram.mapping.MappingPackage#getMappingHintGroupType_AllExtend()
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='Set&lt;Object&gt; ret = new HashSet&lt;&gt;();\r\n\r\nList&lt;&lt;%pamtram.mapping.MappingHintGroupType%&gt;&gt; toCheck = new ArrayList&lt;&gt;();\r\n\ttoCheck.add(this);\r\n\r\nwhile (!toCheck.isEmpty()) {\r\n\t&lt;%pamtram.mapping.MappingHintGroupType%&gt; next = toCheck.remove(0);\r\n\r\n\tList&lt;&lt;%pamtram.mapping.MappingHintGroupType%&gt;&gt; localToCheck = next.getExtend().stream().filter(e -&gt; !ret.contains(e))\r\n\t\t\t\t.collect(&lt;%java.util.stream.Collectors%&gt;.toList());\r\n\t\tret.addAll(localToCheck);\r\n\t\ttoCheck.addAll(localToCheck);\r\n\t}\r\n\r\nret.addAll(this.getExtend().stream().flatMap(s -&gt; s.getAllExtend().stream()).collect(&lt;%java.util.stream.Collectors%&gt;.toList()));\r\n\r\nreturn new &lt;%org.eclipse.emf.ecore.util.EcoreEList%&gt;.UnmodifiableEList&lt;&gt;(this, &lt;%pamtram.mapping.MappingPackage%&gt;.Literals.MAPPING_HINT_GROUP_TYPE__ALL_EXTEND, ret.size(),\r\n\t\t\tret.toArray());'"
+	 * @generated
+	 */
+	EList<MappingHintGroupType> getAllExtend();
+
+	/**
+	 * Returns the value of the '<em><b>All Extending</b></em>' reference list.
+	 * The list contents are of type {@link pamtram.mapping.MappingHintGroupType}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>All Extending</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>All Extending</em>' reference list.
+	 * @see pamtram.mapping.MappingPackage#getMappingHintGroupType_AllExtending()
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='Set&lt;Object&gt; extendingSections = new HashSet&lt;&gt;();\r\n\t\tIterator&lt;&lt;%org.eclipse.emf.common.notify.Notifier%&gt;&gt; it = this.eResource().getResourceSet().getAllContents();\r\n\t\twhile (it.hasNext()) {\r\n\t\t\t&lt;%org.eclipse.emf.common.notify.Notifier%&gt; next = it.next();\r\n\t\t\tif (next instanceof &lt;%pamtram.mapping.MappingHintGroupType%&gt; &amp;&amp; ((&lt;%pamtram.mapping.MappingHintGroupType%&gt;) next).getAllExtend().contains(this)) {\r\n\t\t\t\textendingSections.add(next);\r\n\t\t\t}\r\n\t\t}\r\n\r\treturn new &lt;%org.eclipse.emf.ecore.util.EcoreEList%&gt;.UnmodifiableEList&lt;&gt;(this, &lt;%pamtram.mapping.MappingPackage%&gt;.Literals.MAPPING_HINT_GROUP_TYPE__ALL_EXTENDING,\r\n\t\t\t\textendingSections.size(), extendingSections.toArray());'"
+	 * @generated
+	 */
+	EList<MappingHintGroupType> getAllExtending();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -194,7 +248,7 @@ public interface MappingHintGroupType extends NamedElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='Object[] hints = getMappingHints().stream().filter(h -&gt; !h.isDeactivated()).toArray();\r\nreturn new &lt;%org.eclipse.emf.common.util.BasicEList%&gt;.UnmodifiableEList&lt;&gt;(hints.length, hints);'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='Object[] hints = getAllMappingHints().stream().filter(h -&gt; !h.isDeactivated()).toArray();\r\nreturn new &lt;%org.eclipse.emf.common.util.BasicEList%&gt;.UnmodifiableEList&lt;&gt;(hints.length, hints);'"
 	 * @generated
 	 */
 	EList<MappingHint> getActiveMappingHints();

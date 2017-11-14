@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -218,7 +219,8 @@ public class MappingInstanceStorage {
 			final TargetSectionClass targetSectionClass) {
 
 		Map<TargetSectionClass, List<EObjectWrapper>> instanceMap = this.instancesBySection
-				.get(instantiableMappingHintGroup);
+				.containsKey(instantiableMappingHintGroup) ? this.instancesBySection.get(instantiableMappingHintGroup)
+						: new HashMap<>();
 
 		if (instanceMap.isEmpty()) {
 			return new ArrayList<>();

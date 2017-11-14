@@ -285,7 +285,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 		Set<AttributeMapping> selectedHints = new LinkedHashSet<>();
 
 		// check attributes
-		for (final TargetSectionAttribute attr : targetSectionClass.getAttributes()) {
+		for (final TargetSectionAttribute attr : targetSectionClass.getAllAttributes()) {
 
 			for (final MappingHint hint : hints) {
 				if (hint instanceof AttributeMapping && ((AttributeMapping) hint).getTarget().equals(attr)) {
@@ -569,7 +569,8 @@ public class TargetSectionInstantiator extends CancelableElement {
 
 			final MappingHintGroup mhGrp = (MappingHintGroup) mappingGroup;
 
-			if (!mhGrp.getContainerSelectors().isEmpty() && mhGrp.getTargetSection().equals(targetSectionClass)) {
+			if (!mhGrp.getContainerSelectors().isEmpty() && (mhGrp.getTargetSection().equals(targetSectionClass)
+					|| mhGrp.getTargetSection().getAllExtending().contains(targetSectionClass))) {
 
 				hintFound = true;
 

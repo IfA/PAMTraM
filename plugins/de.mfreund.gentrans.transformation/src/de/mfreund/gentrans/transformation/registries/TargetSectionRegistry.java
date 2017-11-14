@@ -1,6 +1,7 @@
 package de.mfreund.gentrans.transformation.registries;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -25,6 +26,7 @@ import de.mfreund.gentrans.transformation.library.LibraryEntryInstantiator;
 import de.mfreund.gentrans.transformation.util.CancelableElement;
 import de.tud.et.ifa.agtele.emf.EPackageHelper;
 import pamtram.mapping.InstantiableMappingHintGroup;
+import pamtram.structure.generic.Section;
 import pamtram.structure.library.LibraryEntry;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionClass;
@@ -465,6 +467,9 @@ public class TargetSectionRegistry extends CancelableElement {
 	/**
 	 * For a given {@link TargetSectionClass}, this returns all created {@link EObjectWrapper instances} that have been
 	 * registered to this registry.
+	 * <p />
+	 * Note: If the given {@link TargetSectionClass} is an {@link Section#isAbstract() abstract} {@link TargetSection},
+	 * this returns the instances created for all concrete extending {@link TargetSection TargetSections} instead.
 	 *
 	 * @param targetSectionClass
 	 *            The {@link TargetSectionClass} for that all instances shall be returned.
@@ -472,12 +477,18 @@ public class TargetSectionRegistry extends CancelableElement {
 	 */
 	public List<EObjectWrapper> getFlattenedPamtramClassInstances(TargetSectionClass targetSectionClass) {
 
-		if (!this.targetClassInstanceByHintGroupRegistry.containsKey(targetSectionClass)) {
-			return new ArrayList<>();
+		List<TargetSectionClass> classesToConsider;
+
+		if (targetSectionClass instanceof TargetSection && ((TargetSection) targetSectionClass).isAbstract()) {
+			classesToConsider = ((TargetSection) targetSectionClass).getAllExtending().stream()
+					.filter(s -> !s.isAbstract()).collect(Collectors.toList());
+		} else {
+			classesToConsider = Arrays.asList(targetSectionClass);
 		}
 
-		return this.targetClassInstanceByHintGroupRegistry.get(targetSectionClass).values().stream()
-				.flatMap(Collection::stream).collect(Collectors.toList());
+		return classesToConsider.stream().filter(this.targetClassInstanceByHintGroupRegistry::containsKey).flatMap(
+				c -> this.targetClassInstanceByHintGroupRegistry.get(c).values().stream().flatMap(Collection::stream))
+				.collect(Collectors.toList());
 
 	}
 

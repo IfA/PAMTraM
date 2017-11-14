@@ -32,13 +32,10 @@ import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.
 import de.mfreund.gentrans.transformation.util.CancelableElement;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractExternalReferenceParameter;
-import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
-import pamtram.mapping.extended.MappingHint;
-import pamtram.mapping.extended.MappingHintType;
 import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.structure.library.ExternalReferenceParameter;
 import pamtram.structure.library.LibraryEntry;
@@ -134,130 +131,44 @@ public class TargetSectionLinker extends CancelableElement {
 
 		// Link 'local' hint groups
 		//
-		if (!mappingInstance.getMappingHintGroups().stream()
-				.allMatch(g -> this.linkTargetSection(mappingInstance, g))) {
-
-			return false;
-		}
+		mappingInstance.getMappingHintGroups().stream().filter(hg -> hg instanceof InstantiableMappingHintGroup)
+				.forEach(g -> this.linkTargetSection((InstantiableMappingHintGroup) g, mappingInstance));
 
 		// Link 'imported' hint groups
 		//
-		if (!mappingInstance.getMappingHintGroupImporters().stream()
-				.allMatch(g -> this.linkTargetSection(mappingInstance, g))) {
-
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
-	 * Link the {@link TargetSection TargetSections} created by the given <em>hintGroupImporter</em> of the given
-	 * {@link MappingInstanceStorage}, i.e. find target elements for the various {@link TargetSectionCrossReference
-	 * TargetSectionCrossReferences} of the associated TargetSection.
-	 *
-	 * @param mappingInstance
-	 *            The {@link MappingInstanceStorage mapping instance} to link.
-	 * @param hintGroupImporter
-	 *            The {@link MappingHintGroupImporter} that lead to the instantiation of the given
-	 *            <em>mappingInstance</em>.
-	 * @return '<em><b>true</b></em>' if all instances of the TargetSection were joined successfully;
-	 *         '<em><b>false</b></em>' otherwise
-	 */
-	private boolean linkTargetSection(final MappingInstanceStorage mappingInstance,
-			final MappingHintGroupImporter hintGroupImporter) {
-
-		this.checkCanceled();
-
-		final ExportedMappingHintGroup expGrp = hintGroupImporter.getHintGroup();
-		if (expGrp.getTargetSection() != null) {
-			if (mappingInstance.getInstancesBySection(hintGroupImporter) != null) {
-				final List<MappingHint> hints = new LinkedList<>();
-				hints.addAll(mappingInstance.getMappingHints(expGrp));
-				for (final MappingHintType h : mappingInstance.getMappingHints(hintGroupImporter)) {
-
-					if (h instanceof MappingHint) {
-						hints.add((MappingHint) h);
-					} // TODO else if ...??-> should have already been
-						// done during 1st pass
-				}
-
-				this.linkTargetSection(expGrp.getTargetSection(), hintGroupImporter, hints,
-						mappingInstance.getHintValues(), mappingInstance.getInstancesBySection(hintGroupImporter));
-
-			}
-		}
-
-		return true;
-	}
-
-	/**
-	 * Link the {@link TargetSection TargetSections} created by the given <em>hintGroup</em> of the given
-	 * {@link MappingInstanceStorage}, i.e. find target elements for the various {@link TargetSectionCrossReference
-	 * TargetSectionCrossReferences} of the associated TargetSection.
-	 *
-	 * @param mappingInstance
-	 *            The {@link MappingInstanceStorage mapping instance} to link.
-	 * @param hintGroup
-	 *            The {@link MappingHintGroupType} that lead to the instantiation of the given <em>mappingInstance</em>.
-	 * @return '<em><b>true</b></em>' if all instances of the TargetSection were joined successfully;
-	 *         '<em><b>false</b></em>' otherwise
-	 */
-	private boolean linkTargetSection(final MappingInstanceStorage mappingInstance,
-			final MappingHintGroupType hintGroup) {
-
-		this.checkCanceled();
-
-		if (hintGroup.getTargetSection() != null && hintGroup instanceof MappingHintGroup) {
-
-			if (mappingInstance.getInstancesBySection((MappingHintGroup) hintGroup) != null) {
-
-				this.linkTargetSection(hintGroup.getTargetSection(), (MappingHintGroup) hintGroup,
-						mappingInstance.getMappingHints(hintGroup), mappingInstance.getHintValues(),
-						mappingInstance.getInstancesBySection((MappingHintGroup) hintGroup));
-
-			}
-		}
+		mappingInstance.getMappingHintGroupImporters().stream()
+				.forEach(g -> this.linkTargetSection(g, mappingInstance));
 
 		return true;
 	}
 
 	/**
 	 * Link the {@link TargetSection TargetSections} created by the given <em>hintGroup</em> using the specified
-	 * {@link HintValueStorage hint values}.
+	 * {@link MappingInstanceStorage mappingInstance}.
 	 *
-	 * @param targetSection
-	 *            The {@link TargetSection} to link.
-	 * @param mappingGroup
-	 *            The {@link InstantiableMappingHintGroup} based on which the TargetSection gets instantiated.
-	 * @param mappingHints
-	 *            The list of {@link MappingHint MappingHints} to take into account (in case we are dealing with an
-	 *            {@link MappingHintGroupImporter}, this needs to cover <em>local</em> hints as well as
-	 *            {@link ExportedMappingHintGroup imported hints}).
-	 * @param hintValues
-	 *            The {@link HintValueStorage hint values} to take into account.
-	 * @param instancesBySection
-	 *            The registry for {@link EObjectWrapper instances} created during the first pass of the instantiation.
+	 * @param hintGroup
+	 *            The {@link InstantiableMappingHintGroup} of which the created {@link TargetSection TargetSections}
+	 *            shall be linked.
+	 * @param mappingInstance
+	 *            The {@link MappingInstanceStorage mapping instance} to link.
 	 */
-	private void linkTargetSection(final TargetSection targetSection, final InstantiableMappingHintGroup mappingGroup,
-			final List<MappingHint> mappingHints, final HintValueStorage hintValues,
-			final Map<TargetSectionClass, List<EObjectWrapper>> instancesBySection) {
+	private void linkTargetSection(InstantiableMappingHintGroup hintGroup, MappingInstanceStorage mappingInstance) {
 
 		// Only go on if any instances of this section were created
 		//
-		if (instancesBySection.get(targetSection) == null) {
+		if (mappingInstance.getInstances(hintGroup, hintGroup.getTargetMMSectionGeneric()).isEmpty()) {
 			return;
 		}
 
 		// The list of CrossReferences for that we need to find target elements
 		//
 		List<TargetSectionCrossReference> nonContainmentReferences = this
-				.collectCrossReferencesRecursively(targetSection);
+				.collectCrossReferencesRecursively(hintGroup.getTargetMMSectionGeneric());
 
 		// Link all found CrossReferences
 		//
-		nonContainmentReferences.stream().forEach(ref -> this.linkTargetSectionReference(mappingGroup, mappingHints,
-				hintValues, instancesBySection, ref));
+		nonContainmentReferences.stream()
+				.forEach(ref -> this.linkTargetSectionReference(hintGroup, mappingInstance, ref));
 
 	}
 
@@ -295,14 +206,14 @@ public class TargetSectionLinker extends CancelableElement {
 
 		// All CrossReferences defined as direct children of the given 'targetSectionClass'
 		//
-		List<TargetSectionCrossReference> crossReferences = targetSectionClass.getReferences().stream()
+		List<TargetSectionCrossReference> crossReferences = targetSectionClass.getAllReferences().stream()
 				.filter(ref -> ref instanceof TargetSectionCrossReference).map(ref -> (TargetSectionCrossReference) ref)
 				.collect(Collectors.toList());
 
 		// Now, iterate further downward in the containment hierarchy defined by the 'CompositeReferences' of the given
 		// 'targetSectionClass' and collect the contained 'CrossReferences'
 		//
-		List<TargetSectionClass> containedClasses = targetSectionClass.getReferences().stream()
+		List<TargetSectionClass> containedClasses = targetSectionClass.getAllReferences().stream()
 				.filter(ref -> ref instanceof TargetSectionCompositeReference)
 				.flatMap(ref -> ((TargetSectionCompositeReference) ref).getValue().stream())
 				.collect(Collectors.toList());
@@ -318,32 +229,25 @@ public class TargetSectionLinker extends CancelableElement {
 	 * Link the given {@link TargetSectionCrossReference}, i.e. find target elements for the various target model
 	 * elements created by the given <em>hintGroup</em> of the given {@link MappingInstanceStorage}.
 	 *
-	 * @param mappingGroup
-	 *            The {@link InstantiableMappingHintGroup} based on which the TargetSection gets instantiated.
-	 * @param mappingHints
-	 *            The list of {@link MappingHint MappingHints} to take into account (in case we are dealing with an
-	 *            {@link MappingHintGroupImporter}, this needs to cover <em>local</em> hints as well as
-	 *            {@link ExportedMappingHintGroup imported hints}).
-	 * @param hintValues
-	 *            The {@link HintValueStorage hint values} to take into account.
-	 * @param instancesBySection
-	 *            The registry for {@link EObjectWrapper instances} created during the first pass of the instantiation.
+	 * @param hintGroup
+	 *            The {@link InstantiableMappingHintGroup} of which the created {@link TargetSection TargetSections}
+	 *            shall be linked.
+	 * @param mappingInstance
+	 *            The {@link MappingInstanceStorage mapping instance} to link.
 	 * @param ref
 	 *            The {@link TargetSectionCrossReference} for that the target elements shall be determined.
 	 */
-	private void linkTargetSectionReference(final InstantiableMappingHintGroup mappingGroup,
-			final List<MappingHint> mappingHints, final HintValueStorage hintValues,
-			final Map<TargetSectionClass, List<EObjectWrapper>> instancesBySection,
-			final TargetSectionCrossReference ref) {
+	private void linkTargetSectionReference(InstantiableMappingHintGroup hintGroup,
+			MappingInstanceStorage mappingInstance, TargetSectionCrossReference ref) {
 
 		// We are searching for target elements for instances of this class
 		//
 		final TargetSectionClass targetSectionClass = !ref.isLibraryEntry() ? (TargetSectionClass) ref.eContainer()
 				: ref.getContainingSection();
 
-		if (!instancesBySection.containsKey(targetSectionClass)
-				|| instancesBySection.get(targetSectionClass).isEmpty()) {
+		List<EObjectWrapper> instancesToLink = mappingInstance.getInstances(hintGroup, targetSectionClass);
 
+		if (instancesToLink.isEmpty()) {
 			// Nothing to be done
 			//
 			return;
@@ -351,7 +255,8 @@ public class TargetSectionLinker extends CancelableElement {
 
 		// Collect ReferenceTargetSelectors that affect the current reference
 		//
-		List<ReferenceTargetSelector> referenceTargetSelectorsToConcider = mappingHints.parallelStream()
+		List<ReferenceTargetSelector> referenceTargetSelectorsToConcider = mappingInstance.getMappingHints(hintGroup)
+				.parallelStream()
 				.filter(h -> h instanceof ReferenceTargetSelector
 						&& ((ReferenceTargetSelector) h).getAffectedReference().equals(ref))
 				.map(h -> (ReferenceTargetSelector) h).collect(Collectors.toList());
@@ -362,15 +267,15 @@ public class TargetSectionLinker extends CancelableElement {
 			//
 			for (ReferenceTargetSelector referenceTargetSelector : referenceTargetSelectorsToConcider) {
 
-				this.linkWithReferenceTargetSelector(mappingGroup, hintValues,
-						instancesBySection.get(targetSectionClass), ref, referenceTargetSelector);
+				this.linkWithReferenceTargetSelector(hintGroup, mappingInstance.getHintValues(), instancesToLink, ref,
+						referenceTargetSelector);
 			}
 
 		} else {
 
 			// Link the created instances using the 'value' of the reference or no hint at all
 			//
-			this.linkWithoutReferenceTargetSelector(mappingGroup, instancesBySection.get(targetSectionClass), ref);
+			this.linkWithoutReferenceTargetSelector(hintGroup, instancesToLink, ref);
 		}
 
 	}
@@ -555,6 +460,12 @@ public class TargetSectionLinker extends CancelableElement {
 	private void selectAndInstantiateConnections(final List<EObjectWrapper> sourceInstances,
 			List<EObjectWrapper> targetInstances, final TargetSectionCrossReference reference,
 			final InstantiableMappingHintGroup mappingGroup) {
+
+		if (targetInstances.isEmpty()) {
+			// Nothing to connect
+			//
+			return;
+		}
 
 		// This will be used in the end to instantiate the connections
 		//

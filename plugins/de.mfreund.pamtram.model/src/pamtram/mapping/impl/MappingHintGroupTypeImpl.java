@@ -245,10 +245,10 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	public EList<MappingHint> getAllMappingHints() {
 		Set<MappingHint> ret = new LinkedHashSet<>();
 		
-			ret.addAll(this.getMappingHints());
+		ret.addAll(this.getAllExtend().stream().flatMap(s -> s.getMappingHints().stream())
+				.collect(Collectors.toList()));
 		
-			ret.addAll(this.getAllExtend().stream().flatMap(s -> s.getMappingHints().stream())
-							.collect(Collectors.toList()));
+			ret.addAll(this.getMappingHints());
 		
 			// Filter those MappingHints that are overridden by more concrete hints
 				//

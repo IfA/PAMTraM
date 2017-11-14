@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -152,11 +151,7 @@ public class HintValueExtractor extends ValueExtractor {
 
 		// First, we collect all hints of all hint groups
 		//
-		List<MappingHint> mappingHints = (this.useParallelization
-				? mappingInstance.getMappingHintGroups().parallelStream()
-				: mappingInstance.getMappingHintGroups().stream())
-						.flatMap(hintGroup -> mappingInstance.getMappingHints(hintGroup).stream())
-						.collect(Collectors.toList());
+		Set<MappingHint> mappingHints = mappingInstance.getMappingHints();
 
 		// Now, we need to initialize the corresponding maps to store hint
 		// values

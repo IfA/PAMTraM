@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -309,6 +310,22 @@ public class MappingInstanceStorage {
 		return (this.useParallelization ? this.getMapping().getActiveImportedMappingHintGroups().parallelStream()
 				: this.getMapping().getActiveImportedMappingHintGroups().stream())
 						.filter(hg -> !this.isElementWithNegativeCondition(hg)).collect(Collectors.toList());
+	}
+
+	/**
+	 * This returns the {@link DeactivatableElement#isDeactivated() active} hints for all {@link #getMappingHintGroups()
+	 * normal} and {@link #getMappingHintGroupImporters() imported} {@link InstantiableMappingHintGroup hintGroups} for
+	 * that the condition has not been determined as {@link #isElementWithNegativeCondition(ConditionalElement) false}.
+	 *
+	 * @return The set of valid {@link MappingHint hints} for the given {@link InstantiableMappingHintGroup}.
+	 */
+	public Set<MappingHint> getMappingHints() {
+
+		return Stream
+				.concat(this.getMappingHintGroups().stream().flatMap(hg -> this.getMappingHints(hg).stream()),
+						this.getMappingHintGroupImporters().stream().flatMap(hg -> this.getMappingHints(hg).stream()))
+				.collect(Collectors.toCollection(LinkedHashSet::new));
+
 	}
 
 	/**

@@ -147,4 +147,12 @@ public interface Mapping extends MappingType, ConditionalElement {
 	 */
 	boolean validateSourceSectionIsActive(DiagnosticChain diagnostics, Map<?, ?> context);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='boolean result = this.getSourceSection() == null || this.isAbstract() || !this.getSourceSection().isAbstract();\r\n\r\nif (!result &amp;&amp; diagnostics != null) {\r\n\r\n\tString errorMessage = \"Only abstract Mappings may reference abstract SourceSections!\";\r\n\r\n\tdiagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%&gt;\r\n\t\t\t(&lt;%org.eclipse.emf.common.util.Diagnostic%&gt;.ERROR,\r\n\t\t\t&lt;%pamtram.mapping.util.MappingValidator%&gt;.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\t&lt;%pamtram.mapping.util.MappingValidator%&gt;.MAPPING__VALIDATE_SOURCE_SECTION_IS_NOT_ABSTRACT,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, &lt;%pamtram.mapping.MappingPackage%&gt;.Literals.MAPPING_TYPE__SOURCE_SECTION }));\r\n\r\n}\r\n\r\nreturn result;'"
+	 * @generated
+	 */
+	boolean validateSourceSectionIsNotAbstract(DiagnosticChain diagnostics, Map<?, ?> context);
+
 } // Mapping

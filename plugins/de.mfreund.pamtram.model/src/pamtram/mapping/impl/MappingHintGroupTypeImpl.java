@@ -392,6 +392,36 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	 * @generated
 	 */
 	@Override
+	public boolean validateTargetSectionIsNotAbstract(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		if(!(this.eContainer() instanceof Mapping)) {
+			return true;
+		}
+		
+		Mapping mapping = (Mapping) this.eContainer();
+		
+		boolean result = this.getTargetSection() == null || mapping.isAbstract() || !this.getTargetSection().isAbstract();
+		
+		if (!result && diagnostics != null) {
+		
+			String errorMessage = "Only MappingHintGroups in abstract Mappings may reference abstract TargetSections!";
+		
+			diagnostics.add(new BasicDiagnostic
+					(Diagnostic.ERROR,
+					MappingValidator.DIAGNOSTIC_SOURCE,
+							MappingValidator.MAPPING_HINT_GROUP_TYPE__VALIDATE_TARGET_SECTION_IS_NOT_ABSTRACT,
+							errorMessage,
+					new Object[] { this, MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__TARGET_SECTION }));
+		
+		}
+		
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS:
@@ -519,6 +549,8 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 				return getActiveMappingHints();
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE___VALIDATE_DO_NOT_USE_LIBRARY_ELEMENTS_WITHOUT_LIBRARY_NATURE__DIAGNOSTICCHAIN_MAP:
 				return validateDoNotUseLibraryElementsWithoutLibraryNature((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case MappingPackage.MAPPING_HINT_GROUP_TYPE___VALIDATE_TARGET_SECTION_IS_NOT_ABSTRACT__DIAGNOSTICCHAIN_MAP:
+				return validateTargetSectionIsNotAbstract((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

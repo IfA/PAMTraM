@@ -261,4 +261,12 @@ public interface MappingHintGroupType extends NamedElement {
 	 */
 	boolean validateDoNotUseLibraryElementsWithoutLibraryNature(DiagnosticChain diagnostics, Map<?, ?> context);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='if(!(this.eContainer() instanceof &lt;%pamtram.mapping.Mapping%&gt;)) {\r\n\treturn true;\r\n}\r\n\r\n&lt;%pamtram.mapping.Mapping%&gt; mapping = (&lt;%pamtram.mapping.Mapping%&gt;) this.eContainer();\r\n\r\nboolean result = this.getTargetSection() == null || mapping.isAbstract() || !this.getTargetSection().isAbstract();\r\n\r\nif (!result &amp;&amp; diagnostics != null) {\r\n\r\n\tString errorMessage = \"Only MappingHintGroups in abstract Mappings may reference abstract TargetSections!\";\r\n\r\n\tdiagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%&gt;\r\n\t\t\t(&lt;%org.eclipse.emf.common.util.Diagnostic%&gt;.ERROR,\r\n\t\t\t&lt;%pamtram.mapping.util.MappingValidator%&gt;.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\t&lt;%pamtram.mapping.util.MappingValidator%&gt;.MAPPING_HINT_GROUP_TYPE__VALIDATE_TARGET_SECTION_IS_NOT_ABSTRACT,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, &lt;%pamtram.mapping.MappingPackage%&gt;.Literals.MAPPING_HINT_GROUP_TYPE__TARGET_SECTION }));\r\n\r\n}\r\n\r\nreturn result;'"
+	 * @generated
+	 */
+	boolean validateTargetSectionIsNotAbstract(DiagnosticChain diagnostics, Map<?, ?> context);
+
 } // MappingHintGroupType

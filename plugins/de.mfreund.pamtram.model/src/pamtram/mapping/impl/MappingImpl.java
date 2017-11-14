@@ -6,6 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Map;
 import java.util.stream.Collectors;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicDiagnostic;
@@ -34,8 +35,7 @@ import pamtram.mapping.util.MappingValidator;
 import pamtram.util.PamtramValidator;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object
- * '<em><b>Mapping</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Mapping</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -51,10 +51,11 @@ import pamtram.util.PamtramValidator;
  * @generated
  */
 public class MappingImpl extends MappingTypeImpl implements Mapping {
+
 	/**
-	 * The cached value of the '{@link #getLocalCondition() <em>Local Condition</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getLocalCondition() <em>Local Condition</em>}' containment reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @see #getLocalCondition()
 	 * @generated
 	 * @ordered
@@ -63,7 +64,8 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 
 	/**
 	 * The cached value of the '{@link #getSharedCondition() <em>Shared Condition</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @see #getSharedCondition()
 	 * @generated
 	 * @ordered
@@ -72,8 +74,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 
 	/**
 	 * The cached value of the '{@link #getMappingHintGroups() <em>Mapping Hint Groups</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getMappingHintGroups()
 	 * @generated
 	 * @ordered
@@ -81,10 +82,8 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	protected EList<MappingHintGroupType> mappingHintGroups;
 
 	/**
-	 * The cached value of the '{@link #getImportedMappingHintGroups()
-	 * <em>Imported Mapping Hint Groups</em>}' containment reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The cached value of the '{@link #getImportedMappingHintGroups() <em>Imported Mapping Hint Groups</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getImportedMappingHintGroups()
 	 * @generated
 	 * @ordered
@@ -93,7 +92,8 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 
 	/**
 	 * The default value of the '{@link #isAbstract() <em>Abstract</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #isAbstract()
 	 * @generated
 	 * @ordered
@@ -102,7 +102,8 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 
 	/**
 	 * The cached value of the '{@link #isAbstract() <em>Abstract</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #isAbstract()
 	 * @generated
 	 * @ordered
@@ -206,10 +207,10 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ComplexCondition> getAllConditions() {
 		java.util.Set<Object> ret = new java.util.LinkedHashSet<>();
 		
@@ -281,9 +282,8 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> This returns the active mappingHintGroups (the
-	 * subset of the defined {@link #mappingHintGroups} for that
-	 * {@link InstantiableMappingHintGroup#isDeactivated()}) returns
+	 * <!-- begin-user-doc --> This returns the active mappingHintGroups (the subset of the defined
+	 * {@link #mappingHintGroups} for that {@link InstantiableMappingHintGroup#isDeactivated()}) returns
 	 * '<em>false</em>'. <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -372,6 +372,30 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 							MappingValidator.MAPPING__VALIDATE_SOURCE_SECTION_IS_ACTIVE,
 							errorMessage,
 					new Object[] { this, MappingPackage.Literals.MAPPING }));
+		
+		}
+		
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean validateSourceSectionIsNotAbstract(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		boolean result = this.getSourceSection() == null || this.isAbstract() || !this.getSourceSection().isAbstract();
+		
+		if (!result && diagnostics != null) {
+		
+			String errorMessage = "Only abstract Mappings may reference abstract SourceSections!";
+		
+			diagnostics.add(new BasicDiagnostic
+					(Diagnostic.ERROR,
+					MappingValidator.DIAGNOSTIC_SOURCE,
+							MappingValidator.MAPPING__VALIDATE_SOURCE_SECTION_IS_NOT_ABSTRACT,
+							errorMessage,
+					new Object[] { this, MappingPackage.Literals.MAPPING_TYPE__SOURCE_SECTION }));
 		
 		}
 		
@@ -590,6 +614,8 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 				return validateContainsDeactivatedHintGroups((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case MappingPackage.MAPPING___VALIDATE_SOURCE_SECTION_IS_ACTIVE__DIAGNOSTICCHAIN_MAP:
 				return validateSourceSectionIsActive((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case MappingPackage.MAPPING___VALIDATE_SOURCE_SECTION_IS_NOT_ABSTRACT__DIAGNOSTICCHAIN_MAP:
+				return validateSourceSectionIsNotAbstract((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case MappingPackage.MAPPING___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP:
 				return validateReferenceOnlyConditionsFromConditionModel((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}

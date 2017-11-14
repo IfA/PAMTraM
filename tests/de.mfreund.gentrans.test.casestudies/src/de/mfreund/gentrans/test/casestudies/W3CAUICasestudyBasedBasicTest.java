@@ -305,5 +305,11 @@ public abstract class W3CAUICasestudyBasedBasicTest extends PamtramCasestudyTest
 			return "23_multipleExtends";
 		}
 
+		@Override
+		protected TransformationConfiguration getTransformationConfig() {
+
+			return super.getTransformationConfig().withMaxPathLength(0);
+		}
+
 	}
 }

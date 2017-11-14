@@ -276,7 +276,6 @@ public class StructureValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(instanceSelectorSourceInterface, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(instanceSelectorSourceInterface, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(instanceSelectorSourceInterface, diagnostics, context);
-		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(instanceSelectorSourceInterface, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(instanceSelectorSourceInterface, diagnostics, context);
 		return result;
 	}
@@ -300,7 +299,6 @@ public class StructureValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateLocalDynamicSourceElement_validateSourceAttributeMatchesSectionOrContainedSection(instanceSelectorSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(instanceSelectorSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(instanceSelectorSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(instanceSelectorSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(instanceSelectorSourceElement, diagnostics, context);
 		return result;
 	}
@@ -324,7 +322,6 @@ public class StructureValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateExternalDynamicSourceElement_validateSourceAttributeMatchesContainerSection(instanceSelectorExternalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(instanceSelectorExternalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(instanceSelectorExternalSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(instanceSelectorExternalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(instanceSelectorExternalSourceElement, diagnostics, context);
 		return result;
 	}
@@ -346,7 +343,6 @@ public class StructureValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(instanceSelectorGlobalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(instanceSelectorGlobalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(instanceSelectorGlobalSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(instanceSelectorGlobalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(instanceSelectorGlobalSourceElement, diagnostics, context);
 		return result;
 	}

@@ -600,8 +600,8 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getConditionalElement__ValidateEitherModelOrReferCondition__DiagnosticChain_Map() {
-		return conditionalElementEClass.getEOperations().get(0);
+	public EReference getConditionalElement_AllConditions() {
+		return (EReference)conditionalElementEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -610,7 +610,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * @generated
 	 */
 	public EOperation getConditionalElement__ValidateReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map() {
-		return conditionalElementEClass.getEOperations().get(1);
+		return conditionalElementEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -776,7 +776,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		conditionalElementEClass = createEClass(CONDITIONAL_ELEMENT);
 		createEReference(conditionalElementEClass, CONDITIONAL_ELEMENT__LOCAL_CONDITION);
 		createEReference(conditionalElementEClass, CONDITIONAL_ELEMENT__SHARED_CONDITION);
-		createEOperation(conditionalElementEClass, CONDITIONAL_ELEMENT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP);
+		createEReference(conditionalElementEClass, CONDITIONAL_ELEMENT__ALL_CONDITIONS);
 		createEOperation(conditionalElementEClass, CONDITIONAL_ELEMENT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP);
 
 		conditionModelEClass = createEClass(CONDITION_MODEL);
@@ -1011,17 +1011,9 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		initEClass(conditionalElementEClass, ConditionalElement.class, "ConditionalElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConditionalElement_LocalCondition(), theConditionPackage.getComplexCondition(), null, "localCondition", null, 0, 1, ConditionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConditionalElement_SharedCondition(), theConditionPackage.getComplexCondition(), null, "sharedCondition", null, 0, 1, ConditionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConditionalElement_AllConditions(), theConditionPackage.getComplexCondition(), null, "allConditions", null, 0, -1, ConditionalElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
-		EOperation op = initEOperation(getConditionalElement__ValidateEitherModelOrReferCondition__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateEitherModelOrReferCondition", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getConditionalElement__ValidateReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateReferenceOnlyConditionsFromConditionModel", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = initEOperation(getConditionalElement__ValidateReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateReferenceOnlyConditionsFromConditionModel", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType();
@@ -1354,12 +1346,6 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 			 "documentation", "A ConditionalElement is an element that can be attached with a Condition which restrains its applicability during the course of a transformation. This can e.g. be used to specify a platform condition which ensures that the element will only be evaluated if a certain scree size is available."
 		   });	
 		addAnnotation
-		  (getConditionalElement__ValidateEitherModelOrReferCondition__DiagnosticChain_Map(), 
-		   source, 
-		   new String[] {
-			 "body", "\r\nboolean result = !(this.getLocalCondition() != null && this.getSharedCondition() != null);\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"Please specify at most one (local or shared) condition!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\tPamtramValidator.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\t<%pamtram.util.PamtramValidator%>.CONDITIONAL_ELEMENT__VALIDATE_EITHER_MODEL_OR_REFER_CONDITION,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, PamtramPackage.Literals.CONDITIONAL_ELEMENT }));\r\n\r\n}\r\n\r\nreturn result;"
-		   });	
-		addAnnotation
 		  (getConditionalElement__ValidateReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map(), 
 		   source, 
 		   new String[] {
@@ -1376,6 +1362,18 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		   source, 
 		   new String[] {
 			 "documentation", "The (globally defined) referenced Condition which restrains the applicability of this element during the course of a transformation.\r\n<br />\r\nThis can e.g. be used to specify a platform condition which ensures that the element will only be evaluated if a certain scree size is available.\r\n<br />\r\nNote: Only one of \'localCondition\' or \'sharedCondition\' may be set for each element!"
+		   });	
+		addAnnotation
+		  (getConditionalElement_AllConditions(), 
+		   source, 
+		   new String[] {
+			 "get", "java.util.Set<Object> ret = new java.util.LinkedHashSet<>();\r\n\r\n\tif (this.getLocalCondition() != null) {\r\n\t\t\tret.add(this.getLocalCondition());\r\n\t\t}\r\n\t\tif (this.getSharedCondition() != null) {\r\n\t\t\tret.add(this.getSharedCondition());\r\n\t\t}\r\n\r\n\tif (this instanceof <%pamtram.mapping.MappingHintGroup%>) {\r\n\t\t\t// Add Conditions of the Mappings of extended MappingHintGroups\r\n\t\t\t//\r\n\t\t\tret.addAll(((<%pamtram.mapping.MappingHintGroup%>) this).getExtend().stream().filter(hg -> hg.eContainer() instanceof pamtram.mapping.Mapping).flatMap(hg -> ((pamtram.mapping.Mapping) hg.eContainer()).getAllConditions().stream()).collect(<%java.util.stream.Collectors%>.toSet()));\r\n\t\t\t// Add Conditions of extended MappingHintGroups\r\n\t\t\t//\r\n\t\t\tret.addAll(((<%pamtram.mapping.MappingHintGroup%>) this).getExtend().stream().filter(mhg -> mhg instanceof <%pamtram.ConditionalElement%>)\r\n\t\t\t\t\t.flatMap(mhg -> ((<%pamtram.ConditionalElement%>) mhg).getAllConditions().stream())\r\n\t\t\t\t\t.collect(<%java.util.stream.Collectors%>.toSet()));\r\n\t\t}\r\n\r\n\treturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.PamtramPackage%>.Literals.CONDITIONAL_ELEMENT__ALL_CONDITIONS,\r\n\t\t\t\tret.size(), ret.toArray());"
+		   });	
+		addAnnotation
+		  (getConditionalElement_AllConditions(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The \'local\' and \'shared\' conditions of this element and (in case of MappingHintGroups) potential extended elements."
 		   });	
 		addAnnotation
 		  (conditionModelEClass, 

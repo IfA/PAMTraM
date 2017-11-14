@@ -297,15 +297,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getMapping__ValidateNoConditionForAbstractMapping__DiagnosticChain_Map() {
-		return mappingEClass.getEOperations().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getMappingType() {
 		return mappingTypeEClass;
 	}
@@ -584,7 +575,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		createEOperation(mappingEClass, MAPPING___VALIDATE_CONTAINS_HINT_GROUPS__DIAGNOSTICCHAIN_MAP);
 		createEOperation(mappingEClass, MAPPING___VALIDATE_CONTAINS_DEACTIVATED_HINT_GROUPS__DIAGNOSTICCHAIN_MAP);
 		createEOperation(mappingEClass, MAPPING___VALIDATE_SOURCE_SECTION_IS_ACTIVE__DIAGNOSTICCHAIN_MAP);
-		createEOperation(mappingEClass, MAPPING___VALIDATE_NO_CONDITION_FOR_ABSTRACT_MAPPING__DIAGNOSTICCHAIN_MAP);
 
 		mappingHintGroupTypeEClass = createEClass(MAPPING_HINT_GROUP_TYPE);
 		createEReference(mappingHintGroupTypeEClass, MAPPING_HINT_GROUP_TYPE__TARGET_SECTION);
@@ -705,15 +695,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = initEOperation(getMapping__ValidateSourceSectionIsActive__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateSourceSectionIsActive", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getMapping__ValidateNoConditionForAbstractMapping__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateNoConditionForAbstractMapping", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType();
@@ -888,12 +869,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		   source, 
 		   new String[] {
 			 "body", "\r\nboolean result = this.getSourceSection() == null || !this.getSourceSection().isDeactivated();\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The mapping is based on a deactivated SourceSection and will not be used in a transformation!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.WARNING,\r\n\t\t\t<%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tMappingValidator.MAPPING__VALIDATE_SOURCE_SECTION_IS_ACTIVE,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.MappingPackage%>.Literals.MAPPING }));\r\n\r\n}\r\n\r\nreturn result;"
-		   });	
-		addAnnotation
-		  (getMapping__ValidateNoConditionForAbstractMapping__DiagnosticChain_Map(), 
-		   source, 
-		   new String[] {
-			 "body", "boolean result = !this.isAbstract() || this.getLocalCondition() == null && this.getSharedCondition() == null;\r\n\r\tif (!result && diagnostics != null) {\r\n\r\t\tString errorMessage = \"Conditions are not supported for abstract Mappings! Consider moving the condition to the contained MappingHintGroup(s).\";\r\n\r\t\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR, <%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\t<%pamtram.mapping.util.MappingValidator%>.MAPPING__VALIDATE_NO_CONDITION_FOR_ABSTRACT_MAPPING, errorMessage,\r\n\t\t\t\t\tnew Object[] { this,\r\n\t\t\t\t\t\t\tthis.getLocalCondition() != null\r\n\t\t\t\t\t\t\t\t\t? <%pamtram.PamtramPackage%>.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION\r\n\t\t\t\t\t\t\t\t\t: <%pamtram.PamtramPackage%>.Literals.CONDITIONAL_ELEMENT__SHARED_CONDITION }));\r\n\t\t}\r\n\r\treturn result;"
 		   });	
 		addAnnotation
 		  (getMapping_MappingHintGroups(), 

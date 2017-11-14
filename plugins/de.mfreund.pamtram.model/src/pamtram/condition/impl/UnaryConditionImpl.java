@@ -3,14 +3,12 @@
 package pamtram.condition.impl;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
@@ -295,13 +293,6 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 
 		return subCondition == null ? false
 				: !this.isLocalCondition() && !this.isExternalCondition() && subCondition.isGlobalCondition();
-	}
-
-	@Override
-	public EList<ComplexCondition> getConditionPartsFlat() {
-
-		return new BasicEList<>(Arrays.asList(this,
-				this.getLocalCondPart() != null ? this.getLocalCondPart() : this.getSharedCondPart()));
 	}
 
 } // SingleConditionOperatorImpl

@@ -66,6 +66,7 @@
       <genFeatures notify="false" createChild="false" propertyCategory="Extended"
           propertyDescription="A shared condition (defined in a ConditionModel) restraining the applicability of this element."
           propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//ConditionalElement/sharedCondition"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//ConditionalElement/allConditions"/>
       <genOperations ecoreOperation="pamtram.ecore#//ConditionalElement/validateEitherModelOrReferCondition">
         <genParameters ecoreParameter="pamtram.ecore#//ConditionalElement/validateEitherModelOrReferCondition/diagnostics"/>
         <genParameters ecoreParameter="pamtram.ecore#//ConditionalElement/validateEitherModelOrReferCondition/context"/>
@@ -612,10 +613,6 @@
         <genOperations ecoreOperation="pamtram.ecore#//mapping/Mapping/validateSourceSectionIsActive">
           <genParameters ecoreParameter="pamtram.ecore#//mapping/Mapping/validateSourceSectionIsActive/diagnostics"/>
           <genParameters ecoreParameter="pamtram.ecore#//mapping/Mapping/validateSourceSectionIsActive/context"/>
-        </genOperations>
-        <genOperations ecoreOperation="pamtram.ecore#//mapping/Mapping/validateNoConditionForAbstractMapping">
-          <genParameters ecoreParameter="pamtram.ecore#//mapping/Mapping/validateNoConditionForAbstractMapping/diagnostics"/>
-          <genParameters ecoreParameter="pamtram.ecore#//mapping/Mapping/validateNoConditionForAbstractMapping/context"/>
         </genOperations>
       </genClasses>
       <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/MappingHintGroupType">

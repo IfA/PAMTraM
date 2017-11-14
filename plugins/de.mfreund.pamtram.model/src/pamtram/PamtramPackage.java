@@ -555,13 +555,22 @@ public interface PamtramPackage extends EPackage {
 	int MAPPING_MODEL__SHARED_CONDITION = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>All Conditions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_MODEL__ALL_CONDITIONS = NAMED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
 	 * The feature id for the '<em><b>Mappings</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_MODEL__MAPPINGS = NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int MAPPING_MODEL__MAPPINGS = NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Modifier Sets</b></em>' containment reference list.
@@ -570,7 +579,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_MODEL__MODIFIER_SETS = NAMED_ELEMENT_FEATURE_COUNT + 4;
+	int MAPPING_MODEL__MODIFIER_SETS = NAMED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Global Values</b></em>' containment reference list.
@@ -579,7 +588,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_MODEL__GLOBAL_VALUES = NAMED_ELEMENT_FEATURE_COUNT + 5;
+	int MAPPING_MODEL__GLOBAL_VALUES = NAMED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Active Mappings</b></em>' reference list.
@@ -588,7 +597,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_MODEL__ACTIVE_MAPPINGS = NAMED_ELEMENT_FEATURE_COUNT + 6;
+	int MAPPING_MODEL__ACTIVE_MAPPINGS = NAMED_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Global Attributes</b></em>' containment reference list.
@@ -597,7 +606,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_MODEL__GLOBAL_ATTRIBUTES = NAMED_ELEMENT_FEATURE_COUNT + 7;
+	int MAPPING_MODEL__GLOBAL_ATTRIBUTES = NAMED_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The number of structural features of the '<em>Mapping Model</em>' class.
@@ -606,16 +615,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_MODEL_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 8;
-
-	/**
-	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAPPING_MODEL___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int MAPPING_MODEL_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
@@ -624,7 +624,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_MODEL___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 1;
+	int MAPPING_MODEL___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Mapping Model</em>' class.
@@ -633,7 +633,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_MODEL_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 2;
+	int MAPPING_MODEL_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.impl.ConditionalElementImpl <em>Conditional Element</em>}' class.
@@ -664,22 +664,22 @@ public interface PamtramPackage extends EPackage {
 	int CONDITIONAL_ELEMENT__SHARED_CONDITION = 1;
 
 	/**
+	 * The feature id for the '<em><b>All Conditions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITIONAL_ELEMENT__ALL_CONDITIONS = 2;
+
+	/**
 	 * The number of structural features of the '<em>Conditional Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITIONAL_ELEMENT_FEATURE_COUNT = 2;
-
-	/**
-	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITIONAL_ELEMENT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = 0;
+	int CONDITIONAL_ELEMENT_FEATURE_COUNT = 3;
 
 	/**
 	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
@@ -688,7 +688,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITIONAL_ELEMENT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = 1;
+	int CONDITIONAL_ELEMENT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = 0;
 
 	/**
 	 * The number of operations of the '<em>Conditional Element</em>' class.
@@ -697,7 +697,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITIONAL_ELEMENT_OPERATION_COUNT = 2;
+	int CONDITIONAL_ELEMENT_OPERATION_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.impl.ConditionModelImpl <em>Condition Model</em>}' class.
@@ -894,13 +894,22 @@ public interface PamtramPackage extends EPackage {
 	int FIXED_VALUE__SHARED_CONDITION = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>All Conditions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_VALUE__ALL_CONDITIONS = NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FIXED_VALUE__VALUE = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int FIXED_VALUE__VALUE = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Fixed Value</em>' class.
@@ -909,16 +918,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FIXED_VALUE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
-	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FIXED_VALUE___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int FIXED_VALUE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
@@ -927,7 +927,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FIXED_VALUE___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 1;
+	int FIXED_VALUE___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Fixed Value</em>' class.
@@ -936,7 +936,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FIXED_VALUE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 2;
+	int FIXED_VALUE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.NamedElement <em>Named Element</em>}'.
@@ -1346,14 +1346,15 @@ public interface PamtramPackage extends EPackage {
 	EReference getConditionalElement_SharedCondition();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.ConditionalElement#validateEitherModelOrReferCondition(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Either Model Or Refer Condition</em>}' operation.
+	 * Returns the meta object for the reference list '{@link pamtram.ConditionalElement#getAllConditions <em>All Conditions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Either Model Or Refer Condition</em>' operation.
-	 * @see pamtram.ConditionalElement#validateEitherModelOrReferCondition(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @return the meta object for the reference list '<em>All Conditions</em>'.
+	 * @see pamtram.ConditionalElement#getAllConditions()
+	 * @see #getConditionalElement()
 	 * @generated
 	 */
-	EOperation getConditionalElement__ValidateEitherModelOrReferCondition__DiagnosticChain_Map();
+	EReference getConditionalElement_AllConditions();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.ConditionalElement#validateReferenceOnlyConditionsFromConditionModel(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Reference Only Conditions From Condition Model</em>}' operation.
@@ -1814,12 +1815,12 @@ public interface PamtramPackage extends EPackage {
 		EReference CONDITIONAL_ELEMENT__SHARED_CONDITION = eINSTANCE.getConditionalElement_SharedCondition();
 
 		/**
-		 * The meta object literal for the '<em><b>Validate Either Model Or Refer Condition</b></em>' operation.
+		 * The meta object literal for the '<em><b>All Conditions</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation CONDITIONAL_ELEMENT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = eINSTANCE.getConditionalElement__ValidateEitherModelOrReferCondition__DiagnosticChain_Map();
+		EReference CONDITIONAL_ELEMENT__ALL_CONDITIONS = eINSTANCE.getConditionalElement_AllConditions();
 
 		/**
 		 * The meta object literal for the '<em><b>Validate Reference Only Conditions From Condition Model</b></em>' operation.

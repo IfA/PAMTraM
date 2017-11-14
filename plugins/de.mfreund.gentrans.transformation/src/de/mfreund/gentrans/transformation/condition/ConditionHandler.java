@@ -550,10 +550,11 @@ public class ConditionHandler {
 			// use the corresponding 'container descriptors' instead of the
 			// determined 'descriptors' themselves
 			//
-
 			MatchedSectionDescriptor descriptorToConsider = matchedSectionDescriptor;
 			while (!descriptorToConsider.getAssociatedSourceSectionClass().getContainingSection()
-					.equals(affectedSection)) {
+					.equals(affectedSection)
+					&& !descriptorToConsider.getAssociatedSourceSectionClass().getContainingSection().getAllExtend()
+							.contains(affectedSection)) {
 
 				if (descriptorToConsider.getContainerDescriptor() == null) {
 					this.logger.severe(() -> "Internal error while evaluating condition '" + condition.getName()

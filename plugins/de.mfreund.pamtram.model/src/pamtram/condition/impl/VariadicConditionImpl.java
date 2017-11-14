@@ -5,7 +5,6 @@ package pamtram.condition.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Map;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -264,16 +263,6 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 				&& Stream.concat(this.getLocalCondParts().stream(), this.getSharedCondParts().stream())
 						.allMatch(ComplexCondition::isGlobalCondition);
 
-	}
-
-	@Override
-	public EList<ComplexCondition> getConditionPartsFlat() {
-
-		EList<ComplexCondition> ret = new BasicEList<>();
-		ret.add(this);
-		ret.addAll(Stream.concat(this.getLocalCondParts().stream(), this.getSharedCondParts().stream())
-				.collect(Collectors.toList()));
-		return ret;
 	}
 
 } // MultipleConditionOperatorImpl

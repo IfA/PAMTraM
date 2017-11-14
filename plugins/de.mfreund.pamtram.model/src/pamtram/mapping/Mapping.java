@@ -147,12 +147,4 @@ public interface Mapping extends MappingType, ConditionalElement {
 	 */
 	boolean validateSourceSectionIsActive(DiagnosticChain diagnostics, Map<?, ?> context);
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='boolean result = !this.isAbstract() || this.getLocalCondition() == null &amp;&amp; this.getSharedCondition() == null;\r\n\r\tif (!result &amp;&amp; diagnostics != null) {\r\n\r\t\tString errorMessage = \"Conditions are not supported for abstract Mappings! Consider moving the condition to the contained MappingHintGroup(s).\";\r\n\r\t\tdiagnostics.add(new BasicDiagnostic(&lt;%org.eclipse.emf.common.util.Diagnostic%&gt;.ERROR, &lt;%pamtram.mapping.util.MappingValidator%&gt;.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\t&lt;%pamtram.mapping.util.MappingValidator%&gt;.MAPPING__VALIDATE_NO_CONDITION_FOR_ABSTRACT_MAPPING, errorMessage,\r\n\t\t\t\t\tnew Object[] { this,\r\n\t\t\t\t\t\t\tthis.getLocalCondition() != null\r\n\t\t\t\t\t\t\t\t\t? &lt;%pamtram.PamtramPackage%&gt;.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION\r\n\t\t\t\t\t\t\t\t\t: &lt;%pamtram.PamtramPackage%&gt;.Literals.CONDITIONAL_ELEMENT__SHARED_CONDITION }));\r\n\t\t}\r\n\r\treturn result;'"
-	 * @generated
-	 */
-	boolean validateNoConditionForAbstractMapping(DiagnosticChain diagnostics, Map<?, ?> context);
-
 } // Mapping

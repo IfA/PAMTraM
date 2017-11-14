@@ -3,7 +3,10 @@
 package pamtram.condition.impl;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -12,6 +15,8 @@ import org.eclipse.emf.ecore.EClass;
 import pamtram.ConditionModel;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
+import pamtram.condition.UnaryCondition;
+import pamtram.condition.VariadicCondition;
 import pamtram.impl.NamedElementImpl;
 import pamtram.mapping.Mapping;
 
@@ -99,7 +104,24 @@ public abstract class ComplexConditionImpl extends NamedElementImpl implements C
 	@Override
 	public EList<ComplexCondition> getConditionPartsFlat() {
 
-		return new BasicEList<>(Arrays.asList(this));
+		Set<ComplexCondition> ret = new LinkedHashSet<>();
+		ret.add(this);
+
+		Set<ComplexCondition> subConditions = new LinkedHashSet<>();
+		if (this instanceof UnaryCondition) {
+			UnaryCondition condition = (UnaryCondition) this;
+			Optional.ofNullable(condition.getLocalCondPart()).ifPresent((c) -> subConditions.add(c));
+			Optional.ofNullable(condition.getSharedCondPart()).ifPresent((c) -> subConditions.add(c));
+		} else if (this instanceof VariadicCondition) {
+			VariadicCondition condition = (VariadicCondition) this;
+			subConditions.addAll(condition.getLocalCondParts());
+			subConditions.addAll(condition.getSharedCondParts());
+		}
+
+		ret.addAll(subConditions.stream().flatMap(c -> c.getConditionPartsFlat().stream())
+				.collect(Collectors.toCollection(LinkedHashSet::new)));
+
+		return new BasicEList<>(ret);
 	}
 
 	/**

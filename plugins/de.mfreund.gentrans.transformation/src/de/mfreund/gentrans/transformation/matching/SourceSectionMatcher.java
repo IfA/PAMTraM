@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -415,7 +416,8 @@ public class SourceSectionMatcher extends CancelableElement {
 
 		Set<MatchedSectionDescriptor> containerDescriptors = this.matchedSectionRegistry
 				.get(section.getContainer().getContainingSection()).parallelStream()
-				.filter(d -> d.getMatchedSourceModelObjectFlat().contains(element.eContainer())).collect(Collectors.toSet());
+				.filter(d -> d.getMatchedSourceModelObjectFlat().contains(element.eContainer()))
+				.collect(Collectors.toSet());
 
 		assert containerDescriptors.size() == 1;
 
@@ -465,17 +467,38 @@ public class SourceSectionMatcher extends CancelableElement {
 				.filter(container -> !this.matchedSectionRegistry.contains(container.getValue(), container.getKey()))
 				.collect(Collectors.toList())) {
 
-			Optional<MatchedSectionDescriptor> containerDescriptor = this.checkClass(container.getValue(),
-					Optional.empty(), container.getKey(), null);
+			List<SourceSection> sectionsToConsider = new ArrayList<>();
+			if (sourceSection.isAbstract()) {
+				sectionsToConsider.addAll(sourceSection.getAllExtend());
+			} else {
+				sectionsToConsider.add(sourceSection);
+			}
 
-			if (!containerDescriptor.isPresent()) {
+			List<MatchedSectionDescriptor> applicableDescriptors = sectionsToConsider.stream()
+					.filter(s -> !s.isAbstract())
+					.map(s -> this.checkClass(container.getValue(), Optional.empty(), s, null))
+					.filter(Optional::isPresent).map(Optional::get).collect(Collectors.toList());
+
+			if (!applicableDescriptors.isEmpty()) {
 				// one of the containers could not be matched so we return
 				// without registering other potential descriptors
 				//
 				return false;
 			}
 
-			containerDescriptors.put(container.getKey(), containerDescriptor.get());
+			// If there are multiple matches, select the one section to actually
+			// apply.
+			//
+			MatchedSectionDescriptor containerDescriptor = this.selectApplicableSection(container.getValue(),
+					applicableDescriptors.stream()
+							.collect(Collectors.toMap(d -> (SourceSection) d.getAssociatedSourceSectionClass(),
+									Function.identity(), (oldValue, newValue) -> oldValue, LinkedHashMap::new)));
+
+			if (containerDescriptor == null) {
+				return false;
+			}
+
+			containerDescriptors.put(container.getKey(), containerDescriptor);
 		}
 
 		// Register the created container descriptor in the

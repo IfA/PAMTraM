@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="ASCII"?>
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:condition="http://mfreund.de/pamtram/condition" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint" xmlns:extended="http://mfreund.de/pamtram/mapping/extended" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target">
+  <sourceSectionModels>
+    <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/"/>
+    <sections xsi:type="source:SourceSection" name="AbstractUserInterfaceModel" cardinality="ONE__INFINITY">
+      <eClass href="http://www.w3.org/2013/mbui-aui#//AbstractUserInterfaceModel"/>
+    </sections>
+    <sections xsi:type="source:SourceSection" name="AbstractInteractionUnit (abstract)" cardinality="ONE__INFINITY" abstract="true">
+      <eClass href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit"/>
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
+        <valueConstraints xsi:type="constraint:EqualityConstraint" expression="confirmation"/>
+        <attribute href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/role"/>
+      </attributes>
+    </sections>
+    <sections xsi:type="source:SourceSection" name="AbstractInteractionUnit (abstract2)" cardinality="ONE__INFINITY" abstract="true">
+      <eClass href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit"/>
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="frequency">
+        <attribute href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/frequency"/>
+      </attributes>
+    </sections>
+    <sections xsi:type="source:SourceSection" name="AbstractInteractionUnit (still abstract)" cardinality="ONE__INFINITY" abstract="true" extend="//@sourceSectionModels.0/@sections.1 //@sourceSectionModels.0/@sections.2">
+      <eClass href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit"/>
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="id">
+        <attribute href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/id"/>
+      </attributes>
+    </sections>
+    <sections xsi:type="source:SourceSection" name="AbstractInteractionUnit" cardinality="ONE__INFINITY" extend="//@sourceSectionModels.0/@sections.3">
+      <eClass href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit"/>
+    </sections>
+    <sections xsi:type="source:SourceSection" name="Confirmation (abstract)" container="//@sourceSectionModels.0/@sections.4" abstract="true">
+      <eClass href="http://www.w3.org/2013/mbui-aui#//Composition"/>
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="id">
+        <attribute href="http://www.w3.org/2013/mbui-aui#//Composition/id"/>
+      </attributes>
+    </sections>
+    <sections xsi:type="source:SourceSection" name="Confirmation (still abstract)" abstract="true" extend="//@sourceSectionModels.0/@sections.5">
+      <eClass href="http://www.w3.org/2013/mbui-aui#//Composition"/>
+    </sections>
+    <sections xsi:type="source:SourceSection" name="Confirmation" extend="//@sourceSectionModels.0/@sections.6">
+      <eClass href="http://www.w3.org/2013/mbui-aui#//Composition"/>
+    </sections>
+  </sourceSectionModels>
+  <targetSectionModels>
+    <metaModelPackage href="http://stefan-hennig.de/movisa#/"/>
+    <sections xsi:type="target:TargetSection" name="Panel" cardinality="ONE__INFINITY">
+      <eClass href="http://stefan-hennig.de/movisa#//presentation/Panel"/>
+    </sections>
+    <sections xsi:type="target:TargetSection" name="SimpleContainer (abstract)" cardinality="ONE__INFINITY" container="//@targetSectionModels.0/@sections.0" abstract="true">
+      <eClass href="http://stefan-hennig.de/movisa#//presentation/SimpleContainer"/>
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name">
+        <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+      </attributes>
+    </sections>
+    <sections xsi:type="target:TargetSection" name="SimpleContainer (still abstract)" cardinality="ONE__INFINITY" abstract="true" extend="//@targetSectionModels.0/@sections.1">
+      <eClass href="http://stefan-hennig.de/movisa#//presentation/SimpleContainer"/>
+    </sections>
+    <sections xsi:type="target:TargetSection" name="SimpleContainer" cardinality="ONE__INFINITY" extend="//@targetSectionModels.0/@sections.2">
+      <eClass href="http://stefan-hennig.de/movisa#//presentation/SimpleContainer"/>
+    </sections>
+    <sections xsi:type="target:TargetSection" name="Button (abstract)" cardinality="ONE__INFINITY" container="//@targetSectionModels.0/@sections.1" abstract="true">
+      <eClass href="http://stefan-hennig.de/movisa#//presentation/Button"/>
+      <references xsi:type="target:TargetSectionCrossReference" name="ClonedComponent" value="//@targetSectionModels.0/@sections.5">
+        <eReference href="http://stefan-hennig.de/movisa#//presentation/UIComponent/ClonedComponent"/>
+      </references>
+    </sections>
+    <sections xsi:type="target:TargetSection" name="Button (abstract2)" cardinality="ONE__INFINITY" abstract="true">
+      <eClass href="http://stefan-hennig.de/movisa#//presentation/Button"/>
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name">
+        <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+      </attributes>
+    </sections>
+    <sections xsi:type="target:TargetSection" name="Button (still abstract)" cardinality="ONE__INFINITY" abstract="true" extend="//@targetSectionModels.0/@sections.5 //@targetSectionModels.0/@sections.4">
+      <eClass href="http://stefan-hennig.de/movisa#//presentation/Button"/>
+    </sections>
+    <sections xsi:type="target:TargetSection" name="Button" cardinality="ONE__INFINITY" extend="//@targetSectionModels.0/@sections.6">
+      <eClass href="http://stefan-hennig.de/movisa#//presentation/Button"/>
+    </sections>
+  </targetSectionModels>
+  <mappingModels>
+    <mappings name="AbstractUserInterfaceModelMapping" sourceSection="//@sourceSectionModels.0/@sections.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Panel" targetSection="//@targetSectionModels.0/@sections.0"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SimpleContainer" targetSection="//@targetSectionModels.0/@sections.3">
+        <mappingHints xsi:type="extended:AttributeMapping" name="NameMapping" target="//@targetSectionModels.0/@sections.1/@attributes.0">
+          <sourceElements xsi:type="pamtram:FixedValue" name="container1" value="container1"/>
+        </mappingHints>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="SimpleContainer2" targetSection="//@targetSectionModels.0/@sections.3">
+        <mappingHints xsi:type="extended:AttributeMapping" name="NameMapping" target="//@targetSectionModels.0/@sections.1/@attributes.0">
+          <sourceElements xsi:type="pamtram:FixedValue" name="container2" value="container2"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mappings>
+    <mappings name="ButtonMapping" sourceSection="//@sourceSectionModels.0/@sections.7" abstract="true">
+      <localCondition xsi:type="condition:AttributeCondition" name="abstractConditionInMappingThatIsTrue" target="//@sourceSectionModels.0/@sections.2/@attributes.0">
+        <valueConstraints xsi:type="constraint:EqualityConstraint" expression="1.3">
+          <sourceElements xsi:type="constraint:ValueConstraintExternalSourceElement" name="frequency" source="//@sourceSectionModels.0/@sections.2/@attributes.0"/>
+        </valueConstraints>
+      </localCondition>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button (abstract)" targetSection="//@targetSectionModels.0/@sections.5">
+        <mappingHints xsi:type="extended:AttributeMapping" name="NameMapping" target="//@targetSectionModels.0/@sections.5/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="aiuID" source="//@sourceSectionModels.0/@sections.3/@attributes.0"/>
+          <sourceElements xsi:type="pamtram:FixedValue" name="_" value="_"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="compID" source="//@sourceSectionModels.0/@sections.5/@attributes.0"/>
+        </mappingHints>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ButtonWithNegativeCondition (abstract)" targetSection="//@targetSectionModels.0/@sections.5">
+        <mappingHints xsi:type="extended:AttributeMapping" name="NameMapping" target="//@targetSectionModels.0/@sections.5/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="aiuID" source="//@sourceSectionModels.0/@sections.3/@attributes.0"/>
+          <sourceElements xsi:type="pamtram:FixedValue" name="_" value="_"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="compID" source="//@sourceSectionModels.0/@sections.5/@attributes.0"/>
+        </mappingHints>
+        <localCondition xsi:type="condition:AttributeCondition" name="abstractConditionInMappingHintGroupThatIsFalse" target="//@sourceSectionModels.0/@sections.2/@attributes.0">
+          <valueConstraints xsi:type="constraint:EqualityConstraint" expression="1.4">
+            <sourceElements xsi:type="constraint:ValueConstraintExternalSourceElement" name="frequency" source="//@sourceSectionModels.0/@sections.2/@attributes.0"/>
+          </valueConstraints>
+        </localCondition>
+      </mappingHintGroups>
+    </mappings>
+    <mappings name="ButtonMappingWithNegativeCondition" sourceSection="//@sourceSectionModels.0/@sections.7" abstract="true">
+      <localCondition xsi:type="condition:AttributeCondition" name="abstractConditionInMappingThatIsFalse" target="//@sourceSectionModels.0/@sections.2/@attributes.0">
+        <valueConstraints xsi:type="constraint:EqualityConstraint" expression="1.4">
+          <sourceElements xsi:type="constraint:ValueConstraintExternalSourceElement" name="frequency" source="//@sourceSectionModels.0/@sections.2/@attributes.0"/>
+        </valueConstraints>
+      </localCondition>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ButtonInMappingWithNegativeCondition (abstract)" targetSection="//@targetSectionModels.0/@sections.5">
+        <mappingHints xsi:type="extended:AttributeMapping" name="NameMapping" target="//@targetSectionModels.0/@sections.5/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="aiuID" source="//@sourceSectionModels.0/@sections.3/@attributes.0"/>
+          <sourceElements xsi:type="pamtram:FixedValue" name="_" value="_"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="compID" source="//@sourceSectionModels.0/@sections.5/@attributes.0"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mappings>
+    <mappings name="ButtonMapping" sourceSection="//@sourceSectionModels.0/@sections.7" abstract="true">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button (still abstract)" targetSection="//@targetSectionModels.0/@sections.5" extend="//@mappingModels.0/@mappings.1/@mappingHintGroups.0"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ButtonWithNegativeConditon (still abstract)" targetSection="//@targetSectionModels.0/@sections.5" extend="//@mappingModels.0/@mappings.1/@mappingHintGroups.1"/>
+    </mappings>
+    <mappings name="ButtonMapping" sourceSection="//@sourceSectionModels.0/@sections.7">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetSection="//@targetSectionModels.0/@sections.7" extend="//@mappingModels.0/@mappings.3/@mappingHintGroups.0">
+        <mappingHints xsi:type="extended:AttributeMapping" name="NameMapping" target="//@targetSectionModels.0/@sections.5/@attributes.0">
+          <sourceElements xsi:type="pamtram:FixedValue" name="AdditionalButton" value="AdditionalButton"/>
+        </mappingHints>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetSection="//@targetSectionModels.0/@sections.7" extend="//@mappingModels.0/@mappings.3/@mappingHintGroups.1"/>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetSection="//@targetSectionModels.0/@sections.7" extend="//@mappingModels.0/@mappings.2/@mappingHintGroups.0"/>
+    </mappings>
+    <mappings name="OverridingButtonMapping" sourceSection="//@sourceSectionModels.0/@sections.7">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OverridingButton" targetSection="//@targetSectionModels.0/@sections.7" extend="//@mappingModels.0/@mappings.3/@mappingHintGroups.0">
+        <mappingHints xsi:type="extended:AttributeMapping" name="NameMapping" overwrite="//@mappingModels.0/@mappings.1/@mappingHintGroups.0/@mappingHints.0" target="//@targetSectionModels.0/@sections.5/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="aiuID" source="//@sourceSectionModels.0/@sections.3/@attributes.0"/>
+          <sourceElements xsi:type="pamtram:FixedValue" name="_" value="_"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="compID" source="//@sourceSectionModels.0/@sections.5/@attributes.0"/>
+          <sourceElements xsi:type="pamtram:FixedValue" name=" (overridden)" value=" (overridden)"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="ClonedComponent" referenceAttribute="//@targetSectionModels.0/@sections.5/@attributes.0" targetClass="//@targetSectionModels.0/@sections.5" affectedReference="//@targetSectionModels.0/@sections.4/@references.0">
+          <sourceElements xsi:type="pamtram:FixedValue" name="aui1_aui1comp (overridden)" value="aui1_aui1comp (overridden)"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.0/@sections.1/@attributes.0" targetClass="//@targetSectionModels.0/@sections.1">
+          <sourceElements xsi:type="pamtram:FixedValue" name="container2" value="container2"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mappings>
+    <modifierSets name="getNumber">
+      <modifiers xsi:type="modifier:SubstringReplacer" name="getNumber" regex="[^0-9]+" replacement=""/>
+    </modifierSets>
+    <modifierSets name="prependButton">
+      <modifiers xsi:type="modifier:StringPrepender" name="NextButton" string="Button_"/>
+    </modifierSets>
+    <modifierSets name="add one">
+      <modifiers xsi:type="modifier:SubstringReplacer" regex=":%s/$/\*/g" replacement=""/>
+    </modifierSets>
+  </mappingModels>
+</pamtram:PAMTraM>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<presentation:Panel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:presentation="http://stefan-hennig.de/movisa/presentation">
+  <OwnedUIComponent xsi:type="presentation:SimpleContainer" Name="container1">
+    <AggregatedComponent xsi:type="presentation:Button" Name="AdditionalButton" ClonedComponent="//@OwnedUIComponent.0/@AggregatedComponent.0"/>
+  </OwnedUIComponent>
+  <OwnedUIComponent xsi:type="presentation:SimpleContainer" Name="container2">
+    <AggregatedComponent xsi:type="presentation:Button" Name="aui1_aui1comp (overridden)" ClonedComponent="//@OwnedUIComponent.1/@AggregatedComponent.0"/>
+  </OwnedUIComponent>
+</presentation:Panel>

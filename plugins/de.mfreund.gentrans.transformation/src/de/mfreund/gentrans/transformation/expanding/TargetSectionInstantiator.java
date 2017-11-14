@@ -837,7 +837,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 		 */
 		final Map<TargetSectionAttribute, List<String>> attributeValues = new LinkedHashMap<>();
 
-		EList<TargetSectionAttribute> attributes = targetSectionClass.getAttributes();
+		EList<TargetSectionAttribute> attributes = targetSectionClass.getAllAttributes();
 
 		if (targetSectionClass.isLibraryEntry()) {
 			// the metamodelsection is a library entry, thus there must not be
@@ -1120,8 +1120,8 @@ public class TargetSectionInstantiator extends CancelableElement {
 		// collect all containment references
 		//
 		List<TargetSectionCompositeReference> containmentReferences = (this.useParallelization
-				? targetSectionClass.getReferences().parallelStream()
-				: targetSectionClass.getReferences().stream())
+				? targetSectionClass.getAllReferences().parallelStream()
+				: targetSectionClass.getAllReferences().stream())
 						.filter(ref -> ref instanceof TargetSectionCompositeReference)
 						.map(ref -> (TargetSectionCompositeReference) ref).collect(Collectors.toList());
 

@@ -1,12 +1,11 @@
 package pamtram.presentation;
 
-import java.util.AbstractCollection;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.LinkedList;
+import java.util.Collection;
 import java.util.List;
-import java.util.Set;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.EList;
@@ -18,6 +17,7 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
@@ -39,6 +39,7 @@ import de.mfreund.pamtram.wizards.ImportLibraryElementWizard;
 import de.mfreund.pamtram.wizards.ImportSharedModelWizard;
 import de.tud.et.ifa.agtele.resources.BundleContentHelper;
 import de.tud.et.ifa.agtele.ui.interfaces.IPersistable;
+import de.tud.et.ifa.agtele.ui.interfaces.ISelectionProviderWrapper;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
 import de.tud.et.ifa.agtele.ui.widgets.MinimizableSashForm;
@@ -48,11 +49,11 @@ import de.tud.et.ifa.agtele.ui.widgets.TreeViewerGroup.TreeViewerGroupOption;
 import de.tud.et.ifa.agtele.ui.widgets.TreeViewerGroup.TreeViewerGroupToolbarAddButtonOption;
 import de.tud.et.ifa.agtele.ui.widgets.TreeViewerGroup.TreeViewerGroupToolbarCollapseAllButtonOption;
 import de.tud.et.ifa.agtele.ui.widgets.TreeViewerGroup.TreeViewerGroupToolbarOption;
+import pamtram.ConditionalElement;
 import pamtram.PAMTraM;
 import pamtram.SectionModel;
-import pamtram.condition.AttributeCondition;
-import pamtram.condition.CardinalityCondition;
 import pamtram.condition.ComplexCondition;
+import pamtram.condition.Condition;
 import pamtram.condition.UnaryCondition;
 import pamtram.condition.VariadicCondition;
 import pamtram.contentadapter.DeactivationListenerAdapter;
@@ -66,15 +67,13 @@ import pamtram.contentprovider.TargetSectionContentProvider;
 import pamtram.listeners.SetViewerMouseListener;
 import pamtram.listeners.SetViewerSelectionListener;
 import pamtram.mapping.GlobalAttribute;
-import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.extended.AttributeMapping;
 import pamtram.mapping.extended.AttributeMappingSourceInterface;
-import pamtram.mapping.extended.AttributeMatcher;
 import pamtram.mapping.extended.CardinalityMapping;
-import pamtram.mapping.extended.ContainerSelector;
+import pamtram.mapping.extended.CardinalityMappingSourceInterface;
 import pamtram.mapping.extended.ExpandableHint;
 import pamtram.mapping.extended.ExternalMappedAttributeValueExpander;
 import pamtram.mapping.extended.GlobalAttributeImporter;
@@ -85,13 +84,11 @@ import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.SourceInstanceSelector;
-import pamtram.structure.generic.Attribute;
-import pamtram.structure.library.ContainerParameter;
+import pamtram.structure.TargetInstanceSelector;
 import pamtram.structure.library.LibraryEntry;
 import pamtram.structure.source.SourceSectionAttribute;
 import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.source.SourceSectionCrossReference;
-import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.target.TargetSectionClass;
 import pamtram.structure.target.TargetSectionCrossReference;
 import pamtram.util.SharedModelUtil.SharedModelType;
@@ -101,7 +98,7 @@ import pamtram.util.SharedModelUtil.SharedModelType;
  *
  * @author mfreund
  */
-public class PamtramEditorMainPage extends SashForm implements IPersistable {
+public class PamtramEditorMainPage extends SashForm implements IPersistable, ISelectionProviderWrapper {
 
 	/**
 	 * This is the editor that this view is hosted in.
@@ -438,8 +435,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 	}
 
 	/**
-	 * A {@link SourceViewerSelectionListener} that handles selections in the
-	 * {@link PamtramEditorMainPage#sourceViewer}.
+	 * A {@link SetViewerSelectionListener} that handles selections in the {@link PamtramEditorMainPage#sourceViewer}.
 	 * <p />
 	 * It automatically expands referenced {@link SourceSectionClass SourceSectionClasses} if a
 	 * {@link SectionCrossReference} is selected.
@@ -458,17 +454,14 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 			super.widgetSelected(e);
 
-			// if a non containment reference has been selected while holding
-			// down the
-			// control key, jump to the referenced class
+			// if a non containment reference has been selected while holding down the control key, jump to the
+			// referenced class
+			//
 			if (((TreeItem) e.item).getData() instanceof SourceSectionCrossReference && e.stateMask == SWT.CTRL) {
 
 				SourceSectionCrossReference reference = (SourceSectionCrossReference) ((TreeItem) e.item).getData();
 
-				EList<SourceSectionClass> referencedElements = reference.getValue();
-
-				PamtramEditorMainPage.this.sourceViewer
-						.setSelection(new StructuredSelection(referencedElements.toArray()));
+				PamtramEditorMainPage.this.editor.setSelection(new StructuredSelection(reference.getValue()));
 			}
 		}
 	}
@@ -484,12 +477,6 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 	 */
 	private final class MappingViewerSelectionListener extends SetViewerSelectionListener {
 
-		/**
-		 * This keeps track of the mapping that is currently selected. It is used to determine if the 'expanded' state
-		 * of a mapping is to be reset (in case a elements from a different mapping are selected).
-		 */
-		private Mapping currentMapping;
-
 		private MappingViewerSelectionListener(TreeViewer viewer) {
 
 			super(PamtramEditorMainPage.this.editor, viewer);
@@ -500,400 +487,210 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 			super.widgetSelected(e);
 
-			TreeItem item = (TreeItem) e.item;
+			if (e.item == null || e.item.getData() == null) {
+				return;
+			}
 
-			if (item.getData() instanceof Mapping || item.getData() instanceof MappingHintGroupType
-					|| item.getData() instanceof MappingHintGroupImporter || item.getData() instanceof GlobalAttribute
-					|| item.getData() instanceof ComplexCondition) {
+			Object selected = e.item.getData();
 
-				/*
-				 * This keeps track of the elements to be expanded in the mapping viewer.
-				 */
-				LinkedList<Object> expanded = new LinkedList<>(
-						Arrays.asList(PamtramEditorMainPage.this.mappingViewer.getExpandedElements()));
+			// The elements that will be selected in the various viewers
+			//
+			List<Object> toSelect = new ArrayList<>();
 
-				/*
-				 * This keeps track of the (parent) mapping of the currently selected element.
-				 */
-				Mapping mapping = null;
+			toSelect.add(selected);
 
-				/*
-				 * This keeps track of the element in the source viewer that corresponds to the currently selected
-				 * element.
-				 */
-				Object source = null;
+			if (selected instanceof ConditionalElement) {
+				toSelect.add(((ConditionalElement) selected).getSharedCondition());
+			}
 
-				/*
-				 * This keeps track of the elements in the condition viewer that correspond to the currently selected
-				 * elements.
-				 */
-				Set<Object> conditions = new HashSet<>();
+			/*
+			 * If a MappingHintGroup is selected, expand the hint group itself and the parent Mapping. Additionally,
+			 * select corresponding source and target sections and the referenced condition.
+			 */
+			if (selected instanceof MappingHintGroupType) {
 
-				/*
-				 * This keeps track of the elements in the target viewer that correspond to the currently selected
-				 * element.
-				 */
-				LinkedList<pamtram.structure.generic.Class<?, ?, ?, ?>> targets = new LinkedList<>();
+				MappingHintGroupType hintGroup = (MappingHintGroupType) selected;
+				Mapping mapping = (Mapping) hintGroup.eContainer();
+
+				toSelect.add(mapping.getSourceSection());
+				toSelect.add(hintGroup.getTargetSection());
 
 				/*
-				 * This keeps track of the elements in the library target viewer that correspond to the currently
-				 * selected element.
+				 * If a MappingHintGroup is selected, expand the importer itself and the parent mapping. Additionally,
+				 * select corresponding source and target sections of the importer/of the imported hint group.
 				 */
-				ArrayList<Object> libraryTargets = new ArrayList<>();
+			} else if (selected instanceof MappingHintGroupImporter) {
 
-				/*
-				 * If a MappingHintGroup is selected, expand the hint group itself and the parent Mapping. Additionally,
-				 * select corresponding source and target sections and the referenced condition.
-				 */
-				if (item.getData() instanceof MappingHintGroupType) {
-					MappingHintGroupType hintGroup = (MappingHintGroupType) item.getData();
-					mapping = (Mapping) hintGroup.eContainer();
-					source = mapping.getSourceSection();
-					TargetSectionClass target = hintGroup.getTargetSection();
-					if (target != null) {
-						if (target.eContainer() instanceof ContainerParameter) {
-							libraryTargets.add(target);
-						} else {
-							targets.add(target);
-						}
-					}
-					if (hintGroup instanceof InstantiableMappingHintGroup
-							&& ((InstantiableMappingHintGroup) hintGroup).getSharedCondition() != null) {
-						conditions.add(((InstantiableMappingHintGroup) hintGroup).getSharedCondition());
-					}
-					// expanded.add(mapping);
-					// expanded.add(hintGroup);
+				MappingHintGroupImporter hintGroupImporter = (MappingHintGroupImporter) selected;
+				Mapping mapping = (Mapping) hintGroupImporter.eContainer();
 
-					/*
-					 * If a MappingHintGroup is selected, expand the importer itself and the parent mapping.
-					 * Additionally, select corresponding source and target sections of the importer/of the imported
-					 * hint group.
-					 */
-				} else if (item.getData() instanceof MappingHintGroupImporter) {
-					MappingHintGroupImporter hintGroupImporter = (MappingHintGroupImporter) item.getData();
-					mapping = (Mapping) hintGroupImporter.eContainer();
-					source = mapping.getSourceSection();
-					if (hintGroupImporter.getHintGroup() != null) {
-						TargetSectionClass target = hintGroupImporter.getHintGroup().getTargetSection();
-						if (target != null) {
-							if (target.eContainer() instanceof ContainerParameter) {
-								libraryTargets.add(target);
-							} else {
-								targets.add(target);
-							}
-						}
-					}
-					if (hintGroupImporter.getSharedCondition() != null) {
-						conditions.add(hintGroupImporter.getSharedCondition());
-					}
-					// expanded.add(mapping);
-					// expanded.add(hintGroupImporter);
-
-					/*
-					 * If a GlobalAttribute is selected, expand the attribute itself and the parent mapping.
-					 * Additionally, select the corresponding source attribute.
-					 */
-				} else if (item.getData() instanceof GlobalAttribute) {
-					GlobalAttribute g = (GlobalAttribute) item.getData();
-					source = g.getSource();
-					// expanded.add(mapping);
-					// expanded.add(g);
-
-					/*
-					 * If a ComplexCondition is selected, expand referenced conditions, sections, and/or attributes.
-					 */
-				} else if (item.getData() instanceof ComplexCondition) {
-					ComplexCondition condition = (ComplexCondition) item.getData();
-
-					if (condition instanceof UnaryCondition
-							&& ((UnaryCondition) condition).getSharedCondPart() != null) {
-						conditions.add(((UnaryCondition) condition).getSharedCondPart());
-					} else if (condition instanceof VariadicCondition
-							&& ((VariadicCondition) condition).getSharedCondParts() != null) {
-						conditions.addAll(((VariadicCondition) condition).getSharedCondParts());
-					} else if (condition instanceof AttributeCondition) {
-						source = ((AttributeCondition) condition).getTarget();
-					} else if (condition instanceof CardinalityCondition) {
-						source = ((CardinalityCondition) condition).getTarget();
-					}
-
-					/*
-					 * If a Mapping is selected, expand the mapping itself. Additionally, select the source of the
-					 * mapping and the targets of the hint groups.
-					 */
-				} else if (item.getData() instanceof Mapping) {
-					mapping = (Mapping) item.getData();
-					source = mapping.getSourceSection();
-					if (mapping.getSharedCondition() != null) {
-						conditions.add(mapping.getSharedCondition());
-					}
-					// expanded.add(mapping);
-					for (MappingHintGroupType group : mapping.getMappingHintGroups()) {
-						if (group.getTargetSection() != null) {
-							TargetSectionClass target = group.getTargetSection();
-							if (target.eContainer() instanceof ContainerParameter) {
-								libraryTargets.add(target);
-							} else {
-								targets.add(target);
-							}
-						}
-					}
-
+				toSelect.add(mapping.getSourceSection());
+				if (hintGroupImporter.getHintGroup() != null) {
+					toSelect.add(hintGroupImporter.getHintGroup().getTargetSection());
 				}
 
-				// Expand the mapping in the mapping tree viewer.
-				PamtramEditorMainPage.this.mappingViewer.setExpandedElements(expanded.toArray());
+				/*
+				 * If a ComplexCondition is selected, expand referenced conditions, sections, and/or attributes.
+				 */
+			} else if (selected instanceof ComplexCondition) {
 
-				// Select and expand the source and target items associated with
-				// the selected mapping.
-				if (source == null) {
-					PamtramEditorMainPage.this.sourceViewer.setSelection(new StructuredSelection());
-				} else {
-					PamtramEditorMainPage.this.sourceViewer.setSelection(new StructuredSelection(source));
-					if (mapping != this.currentMapping) {
-						ArrayList<Object> newExpansion = new ArrayList<>(
-								Arrays.asList(PamtramEditorMainPage.this.sourceViewer.getExpandedElements()));
-						newExpansion.add(source);
-						PamtramEditorMainPage.this.sourceViewer.setExpandedElements(newExpansion.toArray());
-					}
+				ComplexCondition condition = (ComplexCondition) selected;
+
+				if (condition instanceof UnaryCondition) {
+					toSelect.add(((UnaryCondition) condition).getSharedCondPart());
+				} else if (condition instanceof VariadicCondition) {
+					toSelect.addAll(((VariadicCondition) condition).getSharedCondParts());
+				} else if (condition instanceof Condition) {
+					toSelect.add(((Condition<?>) condition).getTarget());
 				}
-				if (conditions.isEmpty()) {
-					PamtramEditorMainPage.this.conditionViewer.setSelection(new StructuredSelection());
-				} else {
-					PamtramEditorMainPage.this.conditionViewer
-							.setSelection(new StructuredSelection(conditions.toArray()));
-				}
-				if (targets.isEmpty()) {
-					PamtramEditorMainPage.this.targetViewer.setSelection(new StructuredSelection());
-				} else {
-					PamtramEditorMainPage.this.targetViewer.setSelection(new StructuredSelection(targets));
-					if (mapping != this.currentMapping) {
-						ArrayList<Object> newExpansion = new ArrayList<>(
-								Arrays.asList(PamtramEditorMainPage.this.targetViewer.getExpandedElements()));
-						newExpansion.addAll(targets);
-						PamtramEditorMainPage.this.targetViewer.setExpandedElements(newExpansion.toArray());
-					}
-				}
-				if (libraryTargets.isEmpty()) {
-					PamtramEditorMainPage.this.libTargetViewer.setSelection(new StructuredSelection());
-				} else {
-					PamtramEditorMainPage.this.libTargetViewer.setSelection(new StructuredSelection(libraryTargets));
-					if (mapping != this.currentMapping) {
-						ArrayList<Object> newExpansion = new ArrayList<>(
-								Arrays.asList(PamtramEditorMainPage.this.libTargetViewer.getExpandedElements()));
-						newExpansion.addAll(libraryTargets);
-						PamtramEditorMainPage.this.libTargetViewer.setExpandedElements(newExpansion.toArray());
-						/*
-						 * this second selection is a quirk that is necessary because of the virtual
-						 * 'ParameterDescription' that prevents the expansion to work at the first try
-						 */
-						PamtramEditorMainPage.this.libTargetViewer
-								.setSelection(new StructuredSelection(libraryTargets));
-					}
-				}
-				// Update the currently selected mapping.
-				this.currentMapping = mapping;
+
+				/*
+				 * If a Mapping is selected, expand the mapping itself. Additionally, select the source of the mapping
+				 * and the targets of the hint groups.
+				 */
+			} else if (selected instanceof Mapping) {
+
+				Mapping mapping = (Mapping) selected;
+
+				toSelect.add(mapping.getSourceSection());
+				toSelect.addAll(mapping.getMappingHintGroups().stream().map(hg -> hg.getTargetSection())
+						.collect(Collectors.toSet()));
 
 				/*
 				 * If a DynamicSourceElement is selected, select the source attribute that it represents and the target
 				 * attribute of a possible parent AttributeMapping.
 				 */
-			} else if (item.getData() instanceof DynamicSourceElement<?, ?, ?, ?>) {
-				DynamicSourceElement<?, ?, ?, ?> modifiedAttribute = (DynamicSourceElement<?, ?, ?, ?>) item.getData();
+			} else if (selected instanceof DynamicSourceElement<?, ?, ?, ?>) {
 
-				Attribute<?, ?, ?, ?> target = null;
+				DynamicSourceElement<?, ?, ?, ?> modifiedAttribute = (DynamicSourceElement<?, ?, ?, ?>) selected;
+
+				toSelect.add(modifiedAttribute.getSource());
+
 				if (modifiedAttribute.eContainer() instanceof AttributeMapping) {
-					target = ((AttributeMapping) modifiedAttribute.eContainer()).getTarget();
+					toSelect.add(((AttributeMapping) modifiedAttribute.eContainer()).getTarget());
+				} else if (modifiedAttribute.eContainer() instanceof CardinalityMapping) {
+					toSelect.add(((CardinalityMapping) modifiedAttribute.eContainer()).getTarget());
+				} else if (modifiedAttribute.eContainer() instanceof TargetInstanceSelector) {
+					toSelect.add(((TargetInstanceSelector) modifiedAttribute.eContainer()).getReferenceAttribute());
+					toSelect.add(((TargetInstanceSelector) modifiedAttribute.eContainer()).getTargetClass());
+					if (modifiedAttribute.eContainer() instanceof ReferenceTargetSelector) {
+						toSelect.add(((ReferenceTargetSelector) modifiedAttribute.eContainer()).getAffectedReference());
+					}
+				} else if (modifiedAttribute.eContainer() instanceof SourceInstanceSelector) {
+					toSelect.add(((SourceInstanceSelector) modifiedAttribute.eContainer()).getReferenceAttribute());
 				}
-
-				Attribute<?, ?, ?, ?> source = modifiedAttribute.getSource();
-
-				this.setSourceTargetViewerSelections(source, target);
 
 				/*
 				 * If a GlobalAttributeImporter is selected, select the source attribute that it imports and the target
 				 * attribute of a possible parent AttributeMapping.
 				 */
-			} else if (item.getData() instanceof GlobalAttributeImporter) {
-				GlobalAttributeImporter importer = (GlobalAttributeImporter) item.getData();
-				Attribute<?, ?, ?, ?> target = null;
-				if (importer.eContainer() instanceof AttributeMapping) {
-					target = ((AttributeMapping) importer.eContainer()).getTarget();
-				} else if (importer.eContainer() instanceof AttributeMatcher) {
-					target = ((AttributeMatcher) importer.eContainer()).getTarget();
-				} else if (importer.eContainer() instanceof ContainerSelector) {
-					target = ((ContainerSelector) importer.eContainer()).getReferenceAttribute();
-				} else if (importer.eContainer() instanceof SourceInstanceSelector) {
-					target = ((SourceInstanceSelector) importer.eContainer()).getReferenceAttribute();
-				}
-				Attribute<?, ?, ?, ?> source = importer.getGlobalAttribute() == null ? null
-						: importer.getGlobalAttribute().getSource();
+			} else if (selected instanceof GlobalAttributeImporter) {
 
-				this.setSourceTargetViewerSelections(source, target);
+				GlobalAttributeImporter importer = (GlobalAttributeImporter) selected;
+
+				toSelect.add(importer.getGlobalAttribute());
+
+				if (importer.eContainer() instanceof AttributeMapping) {
+					toSelect.add(((AttributeMapping) importer.eContainer()).getTarget());
+				} else if (importer.eContainer() instanceof CardinalityMapping) {
+					toSelect.add(((CardinalityMapping) importer.eContainer()).getTarget());
+				} else if (importer.eContainer() instanceof TargetInstanceSelector) {
+					toSelect.add(((TargetInstanceSelector) importer.eContainer()).getReferenceAttribute());
+					toSelect.add(((TargetInstanceSelector) importer.eContainer()).getTargetClass());
+					if (importer.eContainer() instanceof ReferenceTargetSelector) {
+						toSelect.add(((ReferenceTargetSelector) importer.eContainer()).getAffectedReference());
+					}
+				} else if (importer.eContainer() instanceof SourceInstanceSelector) {
+					toSelect.add(((SourceInstanceSelector) importer.eContainer()).getReferenceAttribute());
+				}
 
 				/*
 				 * If an AttributeMapping is selected, select all source attributes and the target attribute.
 				 */
-			} else if (item.getData() instanceof AttributeMapping) {
-				AttributeMapping mapping = (AttributeMapping) item.getData();
-				Attribute<?, ?, ?, ?> target = mapping.getTarget();
+			} else if (selected instanceof AttributeMapping) {
 
-				List<Object> sources = new LinkedList<>();
+				AttributeMapping mapping = (AttributeMapping) selected;
+
+				toSelect.add(mapping.getTarget());
+
 				for (AttributeMappingSourceInterface c : mapping.getSourceElements()) {
 					if (c instanceof DynamicSourceElement<?, ?, ?, ?>) {
-						sources.add(((DynamicSourceElement<?, ?, ?, ?>) c).getSource());
+						toSelect.add(((DynamicSourceElement<?, ?, ?, ?>) c).getSource());
 					}
 				}
-				if (mapping.getSharedCondition() != null) {
-					sources.add(mapping.getSharedCondition());
-				}
-
-				this.setSourceTargetViewerSelections(sources, target);
 
 				/*
 				 * If a CardinalityMapping is selected, select its source and target classes.
 				 */
-			} else if (item.getData() instanceof CardinalityMapping) {
+			} else if (selected instanceof CardinalityMapping) {
 
-				CardinalityMapping mapping = (CardinalityMapping) item.getData();
+				CardinalityMapping mapping = (CardinalityMapping) selected;
 
-				List<Object> sources = new LinkedList<>();
-				sources.add(mapping.getSource());
-				pamtram.structure.generic.Class<?, ?, ?, ?> target = mapping.getTarget();
+				toSelect.add(mapping.getSource());
+				toSelect.add(mapping.getTarget());
 
-				if (mapping.getSharedCondition() != null) {
-					sources.add(mapping.getSharedCondition());
+				for (CardinalityMappingSourceInterface c : mapping.getSourceElements()) {
+					if (c instanceof DynamicSourceElement<?, ?, ?, ?>) {
+						toSelect.add(((DynamicSourceElement<?, ?, ?, ?>) c).getSource());
+					}
 				}
 
-				this.setSourceTargetViewerSelections(sources, target);
-
 				/*
-				 * If a MappingInstanceSelector is selected, select the target reference that it points to.
+				 * If a TargetInstanceSelector is selected, select the target elements that it points to.
 				 */
-			} else if (item.getData() instanceof ReferenceTargetSelector) {
+			} else if (selected instanceof TargetInstanceSelector) {
 
-				ReferenceTargetSelector selector = (ReferenceTargetSelector) item.getData();
-
-				List<Object> sources = new LinkedList<>();
-				List<Object> targets = new LinkedList<>();
+				TargetInstanceSelector selector = (TargetInstanceSelector) selected;
 
 				for (InstanceSelectorSourceInterface c : selector.getSourceElements()) {
 					if (c instanceof DynamicSourceElement<?, ?, ?, ?>) {
-						sources.add(((DynamicSourceElement<?, ?, ?, ?>) c).getSource());
-					}
-				}
-				if (selector.getSharedCondition() != null) {
-					sources.add(selector.getSharedCondition());
-				}
-
-				targets.add(selector.getAffectedReference());
-				targets.add(selector.getTargetClass());
-				targets.add(selector.getReferenceAttribute());
-
-				this.setSourceTargetViewerSelections(sources, targets);
-
-				/*
-				 * If an AttributeMatcher is selected, select its source and target attributes.
-				 */
-			} else if (item.getData() instanceof ContainerSelector) {
-
-				ContainerSelector hint = (ContainerSelector) item.getData();
-
-				List<Object> sources = new ArrayList<>();
-				List<Object> targets = new ArrayList<>();
-
-				for (InstanceSelectorSourceInterface sourceElement : hint.getSourceElements()) {
-					if (sourceElement instanceof DynamicSourceElement<?, ?, ?, ?>) {
-						sources.add(((DynamicSourceElement<?, ?, ?, ?>) sourceElement).getSource());
+						toSelect.add(((DynamicSourceElement<?, ?, ?, ?>) c).getSource());
 					}
 				}
 
-				if (hint.getSharedCondition() != null) {
-					sources.add(hint.getSharedCondition());
+				toSelect.add(selector.getTargetClass());
+				toSelect.add(selector.getReferenceAttribute());
+
+				if (selector instanceof ReferenceTargetSelector) {
+					toSelect.add(((ReferenceTargetSelector) selector).getAffectedReference());
 				}
-
-				targets.add(hint.getTargetClass());
-				targets.add(hint.getReferenceAttribute());
-
-				this.setSourceTargetViewerSelections(sources, targets);
 
 				/*
 				 * If a MappedAttributeValueExpander is selected, select ist source attribute and the targets of all
 				 * associated expandable hints.
 				 */
-			} else if (((TreeItem) e.item).getData() instanceof MappedAttributeValueExpander) {
-				MappedAttributeValueExpander exp = (MappedAttributeValueExpander) item.getData();
+			} else if (selected instanceof MappedAttributeValueExpander) {
 
-				List<TargetSectionAttribute> attr = new ArrayList<>();
+				MappedAttributeValueExpander exp = (MappedAttributeValueExpander) selected;
+
 				for (ExpandableHint m : exp.getHintsToExpand()) {
-					if (m instanceof AttributeMapping) {
-						attr.add(((AttributeMapping) m).getTarget());
-					} else if (m instanceof AttributeMatcher) {
-						attr.add(((AttributeMatcher) m).getTarget());
+					if (m.eContainer() instanceof AttributeMapping) {
+						toSelect.add(((AttributeMapping) m.eContainer()).getTarget());
+					} else if (m.eContainer() instanceof CardinalityMapping) {
+						toSelect.add(((CardinalityMapping) m.eContainer()).getTarget());
+					} else if (m.eContainer() instanceof TargetInstanceSelector) {
+						toSelect.add(((TargetInstanceSelector) m.eContainer()).getReferenceAttribute());
+						toSelect.add(((TargetInstanceSelector) m.eContainer()).getTargetClass());
+						if (m.eContainer() instanceof ReferenceTargetSelector) {
+							toSelect.add(((ReferenceTargetSelector) m.eContainer()).getAffectedReference());
+						}
+					} else if (m.eContainer() instanceof SourceInstanceSelector) {
+						toSelect.add(((SourceInstanceSelector) m.eContainer()).getReferenceAttribute());
 					}
 				}
 
 				if (exp instanceof LocalMappedAttributeValueExpander) {
-					this.setSourceTargetViewerSelections(((LocalMappedAttributeValueExpander) exp).getSource(), attr);
+					toSelect.add(((LocalMappedAttributeValueExpander) exp).getSource());
 				} else if (exp instanceof ExternalMappedAttributeValueExpander) {
-					this.setSourceTargetViewerSelections(((ExternalMappedAttributeValueExpander) exp).getSource(),
-							attr);
+					toSelect.add(((ExternalMappedAttributeValueExpander) exp).getSource());
 				}
 
 			}
+
+			PamtramEditorMainPage.this.editor.setSelection(new StructuredSelection(
+					toSelect.stream().filter(Objects::nonNull).collect(Collectors.toSet()).toArray()));
 		}
 
-		/**
-		 * This is a convenience method to select elements in the source viewer and in the target/library target
-		 * {@link TreeViewer}. The method automatically determines if the target element(s) is/are located in the target
-		 * viewer or in the library target viewer and performs the appropriate selection.
-		 *
-		 * @param source
-		 *            The object(s) to be selected in the source (or condition) viewer (or null if nothing is to be
-		 *            selected). This may be a single object or an {@link AbstractCollection} of objects.
-		 * @param target
-		 *            The object(s) to be selected in the target (or library target) viewer (or null if nothing is to be
-		 *            selected). This may be a single object or an {@link AbstractCollection} of objects.
-		 */
-		private void setSourceTargetViewerSelections(Object source, Object target) {
-
-			if (source == null) {
-				PamtramEditorMainPage.this.sourceViewer.setSelection(new StructuredSelection());
-				PamtramEditorMainPage.this.conditionViewer.setSelection(new StructuredSelection());
-			} else {
-				/*
-				 * as the source(s) may either be located in source sections or in conditions, we simply set the
-				 * selection in both viewers (knowing that only one will succeed)
-				 */
-				if (source instanceof AbstractCollection<?>) {
-					PamtramEditorMainPage.this.sourceViewer
-							.setSelection(new StructuredSelection(((AbstractCollection<?>) source).toArray()));
-					PamtramEditorMainPage.this.conditionViewer
-							.setSelection(new StructuredSelection(((AbstractCollection<?>) source).toArray()));
-				} else {
-					PamtramEditorMainPage.this.sourceViewer.setSelection(new StructuredSelection(source));
-					PamtramEditorMainPage.this.conditionViewer.setSelection(new StructuredSelection(source));
-				}
-			}
-			if (target == null) {
-				PamtramEditorMainPage.this.targetViewer.setSelection(new StructuredSelection());
-				PamtramEditorMainPage.this.libTargetViewer.setSelection(new StructuredSelection());
-			} else {
-				/*
-				 * as the target(s) may either be located in target sections or in a library entries, we simply set the
-				 * selection in both viewers (knowing that only one will succeed)
-				 */
-				if (target instanceof AbstractCollection<?>) {
-					PamtramEditorMainPage.this.targetViewer
-							.setSelection(new StructuredSelection(((AbstractCollection<?>) target).toArray()));
-					PamtramEditorMainPage.this.libTargetViewer
-							.setSelection(new StructuredSelection(((AbstractCollection<?>) target).toArray()));
-				} else {
-					PamtramEditorMainPage.this.targetViewer.setSelection(new StructuredSelection(target));
-					PamtramEditorMainPage.this.libTargetViewer.setSelection(new StructuredSelection(target));
-				}
-			}
-		}
 	}
 
 	/**
@@ -919,19 +716,10 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 			TreeItem item = (TreeItem) e.item;
 
-			Object source = null;
-
 			if (item.getData() instanceof GlobalAttribute) {
 
-				source = ((GlobalAttribute) item.getData()).getSource();
-			}
-
-			// Select and expand the source and target items associated with
-			// the selected mapping.
-			if (source == null) {
-				PamtramEditorMainPage.this.sourceViewer.setSelection(new StructuredSelection());
-			} else {
-				PamtramEditorMainPage.this.sourceViewer.setSelection(new StructuredSelection(source));
+				PamtramEditorMainPage.this.editor.setSelection(
+						new StructuredSelection(Arrays.asList(((GlobalAttribute) item.getData()).getSource())));
 			}
 
 		}
@@ -967,8 +755,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 
 				EList<pamtram.structure.target.TargetSectionClass> referencedElements = reference.getValue();
 
-				PamtramEditorMainPage.this.targetViewer
-						.setSelection(new StructuredSelection(referencedElements.toArray()));
+				PamtramEditorMainPage.this.editor.setSelection(new StructuredSelection(referencedElements));
 			}
 		}
 	}
@@ -1330,6 +1117,13 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		if (settings.getSection("LIB_TARGET_VIEWER") != null) {
 			this.libTargetViewerGroup.restore(settings.getSection("LIB_TARGET_VIEWER"));
 		}
+	}
+
+	@Override
+	public Collection<ISelectionProvider> getWrappedProviders() {
+
+		return Arrays.asList(this.sourceViewerGroup, this.conditionViewerGroup, this.mappingViewerGroup,
+				this.globalElementsViewerGroup, this.targetViewerGroup, this.libTargetViewerGroup);
 	}
 
 }

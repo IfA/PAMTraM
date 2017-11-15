@@ -2,6 +2,7 @@ package pamtram.presentation;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -21,6 +22,7 @@ import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
@@ -43,6 +45,7 @@ import de.mfreund.gentrans.transformation.TransformationRunnerWithUIFactory;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
 import de.tud.et.ifa.agtele.ui.interfaces.IPersistable;
+import de.tud.et.ifa.agtele.ui.interfaces.ISelectionProviderWrapper;
 import de.tud.et.ifa.agtele.ui.providers.EObjectTreeContentProvider;
 import de.tud.et.ifa.agtele.ui.widgets.TreeViewerGroup;
 import pamtram.contentprovider.MappingContentProvider;
@@ -59,7 +62,7 @@ import pamtram.structure.source.SourceSectionClass;
  *
  * @author mfreund
  */
-public class PamtramEditorSourceSectionMatcherPage extends SashForm implements IPersistable {
+public class PamtramEditorSourceSectionMatcherPage extends SashForm implements IPersistable, ISelectionProviderWrapper {
 
 	/**
 	 * This is the editor that this view is hosted in.
@@ -537,6 +540,12 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 		if (settings.getSection("MAPPING_VIEWER") != null) {
 			this.mappingViewerGroup.restore(settings.getSection("MAPPING_VIEWER"));
 		}
+	}
+
+	@Override
+	public Collection<ISelectionProvider> getWrappedProviders() {
+
+		return Arrays.asList(this.sourceViewerGroup, this.mappingViewerGroup, this.sourceModelViewer);
 	}
 
 }

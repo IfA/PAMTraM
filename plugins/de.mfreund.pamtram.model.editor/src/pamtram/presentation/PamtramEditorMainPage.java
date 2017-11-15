@@ -3,6 +3,7 @@ package pamtram.presentation;
 import java.util.AbstractCollection;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -18,6 +19,7 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
@@ -39,6 +41,7 @@ import de.mfreund.pamtram.wizards.ImportLibraryElementWizard;
 import de.mfreund.pamtram.wizards.ImportSharedModelWizard;
 import de.tud.et.ifa.agtele.resources.BundleContentHelper;
 import de.tud.et.ifa.agtele.ui.interfaces.IPersistable;
+import de.tud.et.ifa.agtele.ui.interfaces.ISelectionProviderWrapper;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
 import de.tud.et.ifa.agtele.ui.widgets.MinimizableSashForm;
@@ -101,7 +104,7 @@ import pamtram.util.SharedModelUtil.SharedModelType;
  *
  * @author mfreund
  */
-public class PamtramEditorMainPage extends SashForm implements IPersistable {
+public class PamtramEditorMainPage extends SashForm implements IPersistable, ISelectionProviderWrapper {
 
 	/**
 	 * This is the editor that this view is hosted in.
@@ -1330,6 +1333,13 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable {
 		if (settings.getSection("LIB_TARGET_VIEWER") != null) {
 			this.libTargetViewerGroup.restore(settings.getSection("LIB_TARGET_VIEWER"));
 		}
+	}
+
+	@Override
+	public Collection<ISelectionProvider> getWrappedProviders() {
+
+		return Arrays.asList(this.sourceViewerGroup, this.conditionViewerGroup, this.mappingViewerGroup,
+				this.globalElementsViewerGroup, this.targetViewerGroup, this.libTargetViewerGroup);
 	}
 
 }

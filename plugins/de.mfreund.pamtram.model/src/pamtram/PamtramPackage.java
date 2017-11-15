@@ -290,22 +290,13 @@ public interface PamtramPackage extends EPackage {
 	int PAM_TRA_M_FEATURE_COUNT = 15;
 
 	/**
-	 * The operation id for the '<em>Merge Extends</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAM_TRA_M___MERGE_EXTENDS = 0;
-
-	/**
 	 * The operation id for the '<em>Get Active Source Section Models</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M___GET_ACTIVE_SOURCE_SECTION_MODELS = 1;
+	int PAM_TRA_M___GET_ACTIVE_SOURCE_SECTION_MODELS = 0;
 
 	/**
 	 * The operation id for the '<em>Get Active Source Sections</em>' operation.
@@ -314,7 +305,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M___GET_ACTIVE_SOURCE_SECTIONS = 2;
+	int PAM_TRA_M___GET_ACTIVE_SOURCE_SECTIONS = 1;
 
 	/**
 	 * The number of operations of the '<em>PAM Tra M</em>' class.
@@ -323,7 +314,7 @@ public interface PamtramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAM_TRA_M_OPERATION_COUNT = 3;
+	int PAM_TRA_M_OPERATION_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link pamtram.impl.SectionModelImpl <em>Section Model</em>}' class.
@@ -1156,16 +1147,6 @@ public interface PamtramPackage extends EPackage {
 	EReference getPAMTraM_SharedConditionModels();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.PAMTraM#mergeExtends() <em>Merge Extends</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Merge Extends</em>' operation.
-	 * @see pamtram.PAMTraM#mergeExtends()
-	 * @generated
-	 */
-	EOperation getPAMTraM__MergeExtends();
-
-	/**
 	 * Returns the meta object for the '{@link pamtram.PAMTraM#getActiveSourceSectionModels() <em>Get Active Source Section Models</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1659,14 +1640,6 @@ public interface PamtramPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PAM_TRA_M__SHARED_CONDITION_MODELS = eINSTANCE.getPAMTraM_SharedConditionModels();
-
-		/**
-		 * The meta object literal for the '<em><b>Merge Extends</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation PAM_TRA_M___MERGE_EXTENDS = eINSTANCE.getPAMTraM__MergeExtends();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Active Source Section Models</b></em>' operation.

@@ -34,48 +34,56 @@ import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.target.TargetSectionAttribute;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object
- * '<em><b>Attribute Mapping</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Attribute Mapping</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.mapping.extended.impl.AttributeMappingImpl#getExpression <em>Expression</em>}</li>
- *   <li>{@link pamtram.mapping.extended.impl.AttributeMappingImpl#getModifiers <em>Modifiers</em>}</li>
- *   <li>{@link pamtram.mapping.extended.impl.AttributeMappingImpl#getTarget <em>Target</em>}</li>
- *   <li>{@link pamtram.mapping.extended.impl.AttributeMappingImpl#getSourceElements <em>Source Elements</em>}</li>
+ * <li>{@link pamtram.mapping.extended.impl.AttributeMappingImpl#getExpression <em>Expression</em>}</li>
+ * <li>{@link pamtram.mapping.extended.impl.AttributeMappingImpl#getModifiers <em>Modifiers</em>}</li>
+ * <li>{@link pamtram.mapping.extended.impl.AttributeMappingImpl#getTarget <em>Target</em>}</li>
+ * <li>{@link pamtram.mapping.extended.impl.AttributeMappingImpl#getSourceElements <em>Source Elements</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class AttributeMappingImpl extends MappingHintImpl implements AttributeMapping {
+
 	/**
 	 * The default value of the '{@link #getExpression() <em>Expression</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getExpression()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final String EXPRESSION_EDEFAULT = "";
+
 	/**
 	 * The cached value of the '{@link #getExpression() <em>Expression</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getExpression()
 	 * @generated
 	 * @ordered
 	 */
 	protected String expression = EXPRESSION_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getModifiers() <em>Modifiers</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getModifiers()
 	 * @generated
 	 * @ordered
 	 */
 	protected EList<ValueModifierSet> modifiers;
+
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getTarget()
 	 * @generated
 	 * @ordered
@@ -83,9 +91,9 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	protected TargetSectionAttribute target;
 
 	/**
-	 * The cached value of the '{@link #getSourceElements() <em>Source Elements</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getSourceElements() <em>Source Elements</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getSourceElements()
 	 * @generated
 	 * @ordered
@@ -150,6 +158,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	 */
 	@Override
 	public void setTarget(TargetSectionAttribute newTarget) {
+
 		this.setNameDerived(this.target, newTarget, null, "Mapping");
 		this.setTargetGen(newTarget);
 	}
@@ -239,14 +248,13 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	 */
 	@Override
 	public boolean validateTargetAttributeMatchesSection(final DiagnosticChain diagnostics, final Map<?, ?> context) {
-		
 		if(this.getTarget() == null || !(this.eContainer() instanceof MappingHintGroupType) || ((MappingHintGroupType) this.eContainer()).getTargetSection() == null) {
 			return true;
 		}
 		
 		MappingHintGroupType containingHintGroup = ((MappingHintGroupType) this.eContainer());
 		
-		boolean result = this.getTarget().getContainingSection() == containingHintGroup.getTargetSection() || containingHintGroup.getTargetSection().getExtend().contains(this.getTarget().getContainingSection());
+		boolean result = this.getTarget().getContainingSection() == containingHintGroup.getTargetSection() || containingHintGroup.getTargetSection().getAllExtend().contains(this.getTarget().getContainingSection());
 		
 		if (!result && diagnostics != null) {
 		

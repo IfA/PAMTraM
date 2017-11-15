@@ -4,6 +4,7 @@ package pamtram.mapping.extended.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
+import java.util.stream.Collectors;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicDiagnostic;
@@ -15,10 +16,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EcoreEList;
 import pamtram.ConditionModel;
 import pamtram.ConditionalElement;
 import pamtram.PamtramPackage;
 import pamtram.condition.ComplexCondition;
+import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.extended.AttributeMappingGlobalSourceElement;
 import pamtram.mapping.extended.AttributeMappingSourceInterface;
 import pamtram.mapping.extended.ExtendedPackage;
@@ -40,6 +43,7 @@ import pamtram.util.PamtramValidator;
  * <ul>
  *   <li>{@link pamtram.mapping.extended.impl.AttributeMappingGlobalSourceElementImpl#getLocalCondition <em>Local Condition</em>}</li>
  *   <li>{@link pamtram.mapping.extended.impl.AttributeMappingGlobalSourceElementImpl#getSharedCondition <em>Shared Condition</em>}</li>
+ *   <li>{@link pamtram.mapping.extended.impl.AttributeMappingGlobalSourceElementImpl#getAllConditions <em>All Conditions</em>}</li>
  * </ul>
  *
  * @generated
@@ -184,24 +188,29 @@ public class AttributeMappingGlobalSourceElementImpl extends
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateEitherModelOrReferCondition(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+	public EList<ComplexCondition> getAllConditions() {
+		java.util.Set<Object> ret = new java.util.LinkedHashSet<>();
 		
-		boolean result = !(this.getLocalCondition() != null && this.getSharedCondition() != null);
+			if (this.getLocalCondition() != null) {
+					ret.add(this.getLocalCondition());
+				}
+				if (this.getSharedCondition() != null) {
+					ret.add(this.getSharedCondition());
+				}
 		
-		if (!result && diagnostics != null) {
+			if (this instanceof MappingHintGroup) {
+					// Add Conditions of the Mappings of extended MappingHintGroups
+					//
+					ret.addAll(((MappingHintGroup) this).getExtend().stream().filter(hg -> hg.eContainer() instanceof pamtram.mapping.Mapping).flatMap(hg -> ((pamtram.mapping.Mapping) hg.eContainer()).getAllConditions().stream()).collect(Collectors.toSet()));
+					// Add Conditions of extended MappingHintGroups
+					//
+					ret.addAll(((MappingHintGroup) this).getExtend().stream().filter(mhg -> mhg instanceof ConditionalElement)
+							.flatMap(mhg -> ((ConditionalElement) mhg).getAllConditions().stream())
+							.collect(Collectors.toSet()));
+				}
 		
-			String errorMessage = "Please specify at most one (local or shared) condition!";
-		
-			diagnostics.add(new BasicDiagnostic
-					(Diagnostic.ERROR,
-					PamtramValidator.DIAGNOSTIC_SOURCE,
-							PamtramValidator.CONDITIONAL_ELEMENT__VALIDATE_EITHER_MODEL_OR_REFER_CONDITION,
-							errorMessage,
-					new Object[] { this, PamtramPackage.Literals.CONDITIONAL_ELEMENT }));
-		
-		}
-		
-		return result;
+			return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.CONDITIONAL_ELEMENT__ALL_CONDITIONS,
+						ret.size(), ret.toArray());
 	}
 
 	/**
@@ -256,6 +265,8 @@ public class AttributeMappingGlobalSourceElementImpl extends
 			case ExtendedPackage.ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT__SHARED_CONDITION:
 				if (resolve) return getSharedCondition();
 				return basicGetSharedCondition();
+			case ExtendedPackage.ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT__ALL_CONDITIONS:
+				return getAllConditions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -308,6 +319,8 @@ public class AttributeMappingGlobalSourceElementImpl extends
 				return localCondition != null;
 			case ExtendedPackage.ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT__SHARED_CONDITION:
 				return sharedCondition != null;
+			case ExtendedPackage.ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT__ALL_CONDITIONS:
+				return !getAllConditions().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -323,6 +336,7 @@ public class AttributeMappingGlobalSourceElementImpl extends
 			switch (derivedFeatureID) {
 				case ExtendedPackage.ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT__LOCAL_CONDITION: return PamtramPackage.CONDITIONAL_ELEMENT__LOCAL_CONDITION;
 				case ExtendedPackage.ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT__SHARED_CONDITION: return PamtramPackage.CONDITIONAL_ELEMENT__SHARED_CONDITION;
+				case ExtendedPackage.ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT__ALL_CONDITIONS: return PamtramPackage.CONDITIONAL_ELEMENT__ALL_CONDITIONS;
 				default: return -1;
 			}
 		}
@@ -350,6 +364,7 @@ public class AttributeMappingGlobalSourceElementImpl extends
 			switch (baseFeatureID) {
 				case PamtramPackage.CONDITIONAL_ELEMENT__LOCAL_CONDITION: return ExtendedPackage.ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT__LOCAL_CONDITION;
 				case PamtramPackage.CONDITIONAL_ELEMENT__SHARED_CONDITION: return ExtendedPackage.ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT__SHARED_CONDITION;
+				case PamtramPackage.CONDITIONAL_ELEMENT__ALL_CONDITIONS: return ExtendedPackage.ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT__ALL_CONDITIONS;
 				default: return -1;
 			}
 		}
@@ -375,7 +390,6 @@ public class AttributeMappingGlobalSourceElementImpl extends
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == ConditionalElement.class) {
 			switch (baseOperationID) {
-				case PamtramPackage.CONDITIONAL_ELEMENT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP: return ExtendedPackage.ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP;
 				case PamtramPackage.CONDITIONAL_ELEMENT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP: return ExtendedPackage.ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
 				default: return -1;
 			}
@@ -401,8 +415,6 @@ public class AttributeMappingGlobalSourceElementImpl extends
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case ExtendedPackage.ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP:
-				return validateEitherModelOrReferCondition((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case ExtendedPackage.ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP:
 				return validateReferenceOnlyConditionsFromConditionModel((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}

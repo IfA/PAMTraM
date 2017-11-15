@@ -1,9 +1,11 @@
 package de.mfreund.gentrans.transformation.descriptors;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
@@ -44,7 +46,7 @@ public class MatchedSectionDescriptor {
 	 * part of a <em>container</em> nor elements that have been matched as part of the evaluation of a
 	 * {@link SectionCrossReference}.
 	 */
-	private LinkedHashMap<SourceSectionClass, Set<EObject>> sourceModelObjetsMapped;
+	private LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSourceModelObjets;
 
 	/**
 	 * This keeps track of the {@link ValueConstraint AttributeValueConstraints} that need to be checked for the
@@ -70,7 +72,7 @@ public class MatchedSectionDescriptor {
 	 */
 	public MatchedSectionDescriptor() {
 
-		this.sourceModelObjetsMapped = new LinkedHashMap<>();
+		this.matchedSourceModelObjets = new LinkedHashMap<>();
 		this.associatedSourceModelElement = null;
 		this.associatedSourceSectionClass = null;
 		this.attributeValueConstraints = new ArrayList<>();
@@ -122,23 +124,48 @@ public class MatchedSectionDescriptor {
 	 *
 	 * @return map of the source model Objects mapped
 	 */
-	public LinkedHashMap<SourceSectionClass, Set<EObject>> getSourceModelObjectsMapped() {
+	public Map<SourceSectionClass, Set<EObject>> getMatchedSourceModelObjects() {
 
-		return this.sourceModelObjetsMapped;
+		return new LinkedHashMap<>(this.matchedSourceModelObjets);
+	}
+
+	/**
+	 * From the {@link #matchedSourceModelObjets}, return those elements that have been matched against the given
+	 * {@link SourceSectionClass}.
+	 * <p />
+	 * Note: If the given {@link SourceSectionClass} is an abstract {@link SourceSection}, the elements that have been
+	 * matched against the concrete sub-sections are returned instead.
+	 *
+	 * @param sourceSectionClass
+	 *            The {@link SourceSectionClass} for that the matched elements shall be returned.
+	 * @return The matched elements (an empty list is returned if no elements have been matched).
+	 */
+	public Set<EObject> getMatchedSourceModelElementsFor(SourceSectionClass sourceSectionClass) {
+
+		if (sourceSectionClass instanceof SourceSection && ((SourceSection) sourceSectionClass).isAbstract()) {
+			return ((SourceSection) sourceSectionClass).getAllExtending().stream()
+					.filter(s -> !s.isAbstract() && this.matchedSourceModelObjets.containsKey(s))
+					.flatMap(s -> this.matchedSourceModelObjets.get(s).stream())
+					.collect(Collectors.toCollection(LinkedHashSet::new));
+		}
+
+		return this.matchedSourceModelObjets.containsKey(sourceSectionClass)
+				? this.matchedSourceModelObjets.get(sourceSectionClass)
+				: new HashSet<>();
 	}
 
 	/**
 	 * This returns the list of {@link EObject matched elements} represented by this descriptor.
 	 * <p />
-	 * In contrast to {@link #getSourceModelObjectsMapped()}, this does not sort the matched elements by the
+	 * In contrast to {@link #getMatchedSourceModelObjects()}, this does not sort the matched elements by the
 	 * {@link SourceSectionClass} they represent.
 	 *
 	 * @return The list of {@link EObject matched elements} represented by this descriptor.
 	 */
-	public Set<EObject> getSourceModelObjectFlat() {
+	public Set<EObject> getMatchedSourceModelObjectFlat() {
 
-		return this.sourceModelObjetsMapped.entrySet().stream().map(e -> e.getValue()).flatMap(l -> l.stream())
-				.collect(Collectors.toSet());
+		return this.matchedSourceModelObjets.entrySet().stream().map(Entry::getValue).flatMap(Set::stream)
+				.collect(Collectors.toCollection(LinkedHashSet::new));
 	}
 
 	/**
@@ -151,10 +178,10 @@ public class MatchedSectionDescriptor {
 	 */
 	public void addSourceModelObjectMapped(final EObject element, final SourceSectionClass srcSectionClass) {
 
-		if (!this.sourceModelObjetsMapped.containsKey(srcSectionClass)) {
-			this.sourceModelObjetsMapped.put(srcSectionClass, new LinkedHashSet<EObject>());
+		if (!this.matchedSourceModelObjets.containsKey(srcSectionClass)) {
+			this.matchedSourceModelObjets.put(srcSectionClass, new LinkedHashSet<EObject>());
 		}
-		this.sourceModelObjetsMapped.get(srcSectionClass).add(element);
+		this.matchedSourceModelObjets.get(srcSectionClass).add(element);
 
 	}
 
@@ -165,13 +192,13 @@ public class MatchedSectionDescriptor {
 	 *            A map containing {@link SourceSectionClass SourceSectionClasses} and associated {@link EObject
 	 *            elements} to be marked as 'mapped' for this descriptor
 	 */
-	public void addSourceModelObjectsMapped(final LinkedHashMap<SourceSectionClass, Set<EObject>> refs) {
+	public void addSourceModelObjectsMapped(final Map<SourceSectionClass, Set<EObject>> refs) {
 
 		for (final Entry<SourceSectionClass, Set<EObject>> entry : refs.entrySet()) {
-			if (!this.sourceModelObjetsMapped.containsKey(entry.getKey())) {
-				this.sourceModelObjetsMapped.put(entry.getKey(), new LinkedHashSet<EObject>());
+			if (!this.matchedSourceModelObjets.containsKey(entry.getKey())) {
+				this.matchedSourceModelObjets.put(entry.getKey(), new LinkedHashSet<EObject>());
 			}
-			this.sourceModelObjetsMapped.get(entry.getKey()).addAll(entry.getValue());
+			this.matchedSourceModelObjets.get(entry.getKey()).addAll(entry.getValue());
 		}
 	}
 
@@ -184,7 +211,7 @@ public class MatchedSectionDescriptor {
 	 */
 	public boolean containsSourceModelObjectMapped(final EObject element) {
 
-		return this.sourceModelObjetsMapped.values().parallelStream().anyMatch(s -> s.contains(element));
+		return this.matchedSourceModelObjets.values().parallelStream().anyMatch(s -> s.contains(element));
 	}
 
 	/**
@@ -208,7 +235,7 @@ public class MatchedSectionDescriptor {
 	public void add(final MatchedSectionDescriptor otherDescriptor) {
 
 		// combine matched elements
-		this.addSourceModelObjectsMapped(otherDescriptor.getSourceModelObjectsMapped());
+		this.addSourceModelObjectsMapped(otherDescriptor.getMatchedSourceModelObjects());
 
 	}
 
@@ -258,7 +285,7 @@ public class MatchedSectionDescriptor {
 
 	/**
 	 * From the given list of {@link MatchedSectionDescriptor descriptors}, select the one that
-	 * {@link MatchedSectionDescriptor#sourceModelObjetsMapped represents} the given {@link EObject}.
+	 * {@link MatchedSectionDescriptor#matchedSourceModelObjets represents} the given {@link EObject}.
 	 *
 	 * @param element
 	 *            The {@link EObject} for that the corresponding {@link MatchedSectionDescriptor} shall be returned.
@@ -272,7 +299,7 @@ public class MatchedSectionDescriptor {
 			List<MatchedSectionDescriptor> descriptorsToConsider) {
 
 		Optional<MatchedSectionDescriptor> descriptor = descriptorsToConsider.parallelStream()
-				.filter(d -> d.getSourceModelObjectFlat().contains(element)).findAny();
+				.filter(d -> d.getMatchedSourceModelObjectFlat().contains(element)).findAny();
 
 		return descriptor.isPresent() ? descriptor.get() : null;
 	}

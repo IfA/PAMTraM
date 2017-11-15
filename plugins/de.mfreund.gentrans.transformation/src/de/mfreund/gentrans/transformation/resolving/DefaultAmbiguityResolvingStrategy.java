@@ -116,7 +116,7 @@ public class DefaultAmbiguityResolvingStrategy extends AbstractAmbiguityResolvin
 		if (choices == null || choices.isEmpty()) {
 			return new HashMap<>();
 		} else {
-			HashMap<ModelConnectionPath, List<EObjectWrapper>> ret = new HashMap<>();
+			Map<ModelConnectionPath, List<EObjectWrapper>> ret = new HashMap<>();
 			Entry<ModelConnectionPath, List<EObjectWrapper>> firstEntry = choices.entrySet().iterator().next();
 			ArrayList<EObjectWrapper> eObjectList = new ArrayList<>();
 			eObjectList.add(firstEntry.getValue().get(0));
@@ -149,7 +149,7 @@ public class DefaultAmbiguityResolvingStrategy extends AbstractAmbiguityResolvin
 		if (choices == null || choices.isEmpty()) {
 			return new HashMap<>();
 		} else {
-			HashMap<TargetSectionClass, List<EObjectWrapper>> ret = new HashMap<>();
+			Map<TargetSectionClass, List<EObjectWrapper>> ret = new HashMap<>();
 			Entry<TargetSectionClass, List<EObjectWrapper>> firstEntry = choices.entrySet().iterator().next();
 			if (reference.getEReference().isMany()) {
 				ret.put(firstEntry.getKey(), firstEntry.getValue());

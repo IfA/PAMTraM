@@ -3,11 +3,8 @@
 package pamtram.condition.impl;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -247,34 +244,25 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	@Override
 	public boolean isLocalCondition() {
 
-		List<ComplexCondition> subConditions = new ArrayList<>();
-
-		subConditions.addAll(this.getLocalCondParts());
-		subConditions.addAll(this.getSharedCondParts());
-
-		return subConditions.parallelStream().allMatch(ComplexCondition::isLocalCondition);
+		return Stream.concat(this.getLocalCondParts().stream(), this.getSharedCondParts().stream())
+				.allMatch(ComplexCondition::isLocalCondition);
 	}
 
 	@Override
 	public boolean isExternalCondition() {
 
-		List<ComplexCondition> subConditions = new ArrayList<>();
-
-		subConditions.addAll(this.getLocalCondParts());
-		subConditions.addAll(this.getSharedCondParts());
-
 		return !this.isLocalCondition()
-				&& subConditions.parallelStream().allMatch(c -> c.isLocalCondition() || c.isExternalCondition());
+				&& Stream.concat(this.getLocalCondParts().stream(), this.getSharedCondParts().stream())
+						.allMatch(c -> c.isLocalCondition() || c.isExternalCondition());
 	}
 
 	@Override
-	public EList<ComplexCondition> getConditionPartsFlat() {
+	public boolean isGlobalCondition() {
 
-		EList<ComplexCondition> ret = new BasicEList<>();
-		ret.add(this);
-		ret.addAll(Stream.concat(this.getLocalCondParts().stream(), this.getSharedCondParts().stream())
-				.collect(Collectors.toList()));
-		return ret;
+		return !this.isLocalCondition() && !this.isExternalCondition()
+				&& Stream.concat(this.getLocalCondParts().stream(), this.getSharedCondParts().stream())
+						.allMatch(ComplexCondition::isGlobalCondition);
+
 	}
 
 } // MultipleConditionOperatorImpl

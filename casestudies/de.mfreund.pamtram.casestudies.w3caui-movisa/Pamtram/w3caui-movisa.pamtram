@@ -344,7 +344,7 @@
         </value>
         <eReference href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/eventSupport"/>
       </references>
-      <references xsi:type="source:VirtualSourceSectionCrossReference" name="containingRadioButtonGroup" value="//@sourceSectionModels.2/@sections.6" derivation="self.eContainer().oclAsType(w3caui::AbstractUserInterfaceModel).abstractInteractionUnit->select(a|a.oclAsType(w3caui::AbstractInteractionUnit).aggregatedIn.associatedWith->includes(self.id))->asSequence()->first()"/>
+      <references xsi:type="source:VirtualSourceSectionCrossReference" name="containingRadioButtonGroup" value="//@sourceSectionModels.2/@sections.6" derivation="self.oclAsType(ecore::EObject).eContainer().oclAsType(w3caui::AbstractUserInterfaceModel).abstractInteractionUnit->select(a|a.oclAsType(w3caui::AbstractInteractionUnit).aggregatedIn.associatedWith->includes(self.id))->asSequence()->first()"/>
       <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
         <valueConstraints xsi:type="constraint:EqualityConstraint" name=""/>
         <attribute href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/role"/>
@@ -1073,7 +1073,7 @@
         </value>
         <eReference href="http://stefan-hennig.de/movisa#//presentation/TextDefinition/TranslatedTextItem"/>
       </references>
-      <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name">
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name" unique="true">
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </sections>

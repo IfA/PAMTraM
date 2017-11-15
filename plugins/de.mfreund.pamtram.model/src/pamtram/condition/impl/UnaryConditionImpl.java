@@ -3,13 +3,12 @@
 package pamtram.condition.impl;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
 import java.util.Map;
+import java.util.Optional;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
@@ -274,11 +273,7 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	@Override
 	public boolean isLocalCondition() {
 
-		ComplexCondition subCondition = this.getLocalCondPart();
-
-		if (subCondition == null) {
-			subCondition = this.getSharedCondPart();
-		}
+		ComplexCondition subCondition = Optional.ofNullable(this.getLocalCondPart()).orElse(this.getSharedCondPart());
 
 		return subCondition == null ? false : subCondition.isLocalCondition();
 	}
@@ -286,20 +281,18 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	@Override
 	public boolean isExternalCondition() {
 
-		ComplexCondition subCondition = this.getLocalCondPart();
+		ComplexCondition subCondition = Optional.ofNullable(this.getLocalCondPart()).orElse(this.getSharedCondPart());
 
-		if (subCondition == null) {
-			subCondition = this.getSharedCondPart();
-		}
-
-		return subCondition == null ? false : subCondition.isExternalCondition();
+		return subCondition == null ? false : !this.isLocalCondition() && subCondition.isExternalCondition();
 	}
 
 	@Override
-	public EList<ComplexCondition> getConditionPartsFlat() {
+	public boolean isGlobalCondition() {
 
-		return new BasicEList<>(Arrays.asList(this,
-				this.getLocalCondPart() != null ? this.getLocalCondPart() : this.getSharedCondPart()));
+		ComplexCondition subCondition = Optional.ofNullable(this.getLocalCondPart()).orElse(this.getSharedCondPart());
+
+		return subCondition == null ? false
+				: !this.isLocalCondition() && !this.isExternalCondition() && subCondition.isGlobalCondition();
 	}
 
 } // SingleConditionOperatorImpl

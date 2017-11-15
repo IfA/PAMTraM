@@ -1,12 +1,12 @@
 package de.mfreund.gentrans.transformation.matching;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -98,7 +98,7 @@ public class HintValueExtractor extends ValueExtractor {
 		super(globalValues, instanceSelectorHandler, attributeValueModifierExecutor, logger, useParallelization);
 
 		this.matchedSections = matchingResult;
-		this.exportedHintGroups = new HashMap<>();
+		this.exportedHintGroups = new LinkedHashMap<>();
 	}
 
 	/**
@@ -151,11 +151,7 @@ public class HintValueExtractor extends ValueExtractor {
 
 		// First, we collect all hints of all hint groups
 		//
-		List<MappingHint> mappingHints = (this.useParallelization
-				? mappingInstance.getMappingHintGroups().parallelStream()
-				: mappingInstance.getMappingHintGroups().stream())
-						.flatMap(hintGroup -> mappingInstance.getMappingHints(hintGroup).stream())
-						.collect(Collectors.toList());
+		Set<MappingHint> mappingHints = mappingInstance.getMappingHints();
 
 		// Now, we need to initialize the corresponding maps to store hint
 		// values
@@ -239,7 +235,7 @@ public class HintValueExtractor extends ValueExtractor {
 
 			// This keeps track of the extracted hint value parts
 			//
-			Map<MappingHintSourceInterface, AttributeValueRepresentation> hintValueMap = new HashMap<>();
+			Map<MappingHintSourceInterface, AttributeValueRepresentation> hintValueMap = new LinkedHashMap<>();
 
 			// Extract the hint value parts based on the type
 			// (Disregard source elements with negative conditions)
@@ -333,7 +329,7 @@ public class HintValueExtractor extends ValueExtractor {
 				// this class has been matched
 				//
 				SourceSectionClass sourceClass = (SourceSectionClass) cardinalityMapping.getSource();
-				Set<EObject> sourceElements = matchedSectionDescriptor.getSourceModelObjectsMapped().get(sourceClass);
+				Set<EObject> sourceElements = matchedSectionDescriptor.getMatchedSourceModelElementsFor(sourceClass);
 				return sourceElements == null ? null : sourceElements.size();
 
 			} else if (cardinalityMapping.getSource() instanceof SourceSectionAttribute) {
@@ -344,8 +340,8 @@ public class HintValueExtractor extends ValueExtractor {
 				// each of the found matches
 				//
 				SourceSectionAttribute sourceAttribute = (SourceSectionAttribute) cardinalityMapping.getSource();
-				Set<EObject> sourceElements = matchedSectionDescriptor.getSourceModelObjectsMapped()
-						.get(sourceAttribute.getOwningClass());
+				Set<EObject> sourceElements = matchedSectionDescriptor
+						.getMatchedSourceModelElementsFor(sourceAttribute.getOwningClass());
 				return sourceElements == null ? null
 						: sourceElements.parallelStream()
 								.mapToInt(sourceElement -> sourceAttribute instanceof ActualAttribute<?, ?, ?, ?>
@@ -365,7 +361,7 @@ public class HintValueExtractor extends ValueExtractor {
 		} else {
 			// This keeps track of the extracted hint value parts
 			//
-			Map<MappingHintSourceInterface, AttributeValueRepresentation> hintValue = new HashMap<>();
+			Map<MappingHintSourceInterface, AttributeValueRepresentation> hintValue = new LinkedHashMap<>();
 
 			// Extract the hint value part based on its type
 			//

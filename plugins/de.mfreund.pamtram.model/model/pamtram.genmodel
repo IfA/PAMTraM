@@ -66,6 +66,7 @@
       <genFeatures notify="false" createChild="false" propertyCategory="Extended"
           propertyDescription="A shared condition (defined in a ConditionModel) restraining the applicability of this element."
           propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//ConditionalElement/sharedCondition"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//ConditionalElement/allConditions"/>
       <genOperations ecoreOperation="pamtram.ecore#//ConditionalElement/validateEitherModelOrReferCondition">
         <genParameters ecoreParameter="pamtram.ecore#//ConditionalElement/validateEitherModelOrReferCondition/diagnostics"/>
         <genParameters ecoreParameter="pamtram.ecore#//ConditionalElement/validateEitherModelOrReferCondition/context"/>
@@ -204,6 +205,8 @@
           <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/generic/Class/virtualAttributes"/>
           <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/generic/Class/actualReferences"/>
           <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/generic/Class/virtualReferences"/>
+          <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/generic/Class/allAttributes"/>
+          <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/generic/Class/allReferences"/>
           <genOperations ecoreOperation="pamtram.ecore#//structure/generic/Class/isContainerFor">
             <genParameters ecoreParameter="pamtram.ecore#//structure/generic/Class/isContainerFor/containedClass"/>
           </genOperations>
@@ -611,10 +614,6 @@
           <genParameters ecoreParameter="pamtram.ecore#//mapping/Mapping/validateSourceSectionIsActive/diagnostics"/>
           <genParameters ecoreParameter="pamtram.ecore#//mapping/Mapping/validateSourceSectionIsActive/context"/>
         </genOperations>
-        <genOperations ecoreOperation="pamtram.ecore#//mapping/Mapping/validateNoConditionForAbstractMapping">
-          <genParameters ecoreParameter="pamtram.ecore#//mapping/Mapping/validateNoConditionForAbstractMapping/diagnostics"/>
-          <genParameters ecoreParameter="pamtram.ecore#//mapping/Mapping/validateNoConditionForAbstractMapping/context"/>
-        </genOperations>
       </genClasses>
       <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/MappingHintGroupType">
         <genFeatures notify="false" createChild="false" propertyCategory="Basic" propertyDescription="The TargetSection that will be instantiated when the Mapping containing this HintGroup is executed."
@@ -627,6 +626,9 @@
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupType/cardinalityMappings"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupType/referenceTargetSelectors"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupType/containerSelectors"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupType/allMappingHints"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupType/allExtend"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupType/allExtending"/>
         <genOperations ecoreOperation="pamtram.ecore#//mapping/MappingHintGroupType/validateExtendsOnlyValidHintGroups">
           <genParameters ecoreParameter="pamtram.ecore#//mapping/MappingHintGroupType/validateExtendsOnlyValidHintGroups/diagnostics"/>
           <genParameters ecoreParameter="pamtram.ecore#//mapping/MappingHintGroupType/validateExtendsOnlyValidHintGroups/context"/>

@@ -3,7 +3,6 @@ package de.mfreund.gentrans.transformation.matching;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -12,7 +11,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -27,7 +26,6 @@ import de.mfreund.gentrans.transformation.CancelTransformationException;
 import de.mfreund.gentrans.transformation.UserAbortException;
 import de.mfreund.gentrans.transformation.calculation.ValueConstraintReferenceValueCalculator;
 import de.mfreund.gentrans.transformation.descriptors.ContainmentTree;
-import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.maps.SourceSectionMatchingResultsMap;
 import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
@@ -87,19 +85,6 @@ public class SourceSectionMatcher extends CancelableElement {
 	 * The {@link Logger} that shall be used to print messages.
 	 */
 	private Logger logger;
-
-	/**
-	 * Registry for <em>source model elements</em> that have already been matched. The matched elements are stored in a
-	 * map where the key is the corresponding {@link SourceSectionClass} that they have been matched to.
-	 */
-	private Map<SourceSectionClass, Set<EObject>> matchedSections;
-
-	/**
-	 * Registry for <em>source model elements</em> that were not directly matched but indirectly matched as part of a
-	 * container section. The matched objects are stored in a map where the key is the corresponding
-	 * {@link SourceSectionClass container section} that they have been matched to.
-	 */
-	private Map<SourceSectionClass, Set<EObject>> matchedContainers;
 
 	/**
 	 * This {@link ValueConstraintReferenceValueCalculator} will be used for calculating referenceValues that are needed
@@ -211,9 +196,6 @@ public class SourceSectionMatcher extends CancelableElement {
 		this.containmentTree = containmentTree;
 		this.sourceSections = sourceSections;
 
-		this.matchedSections = new HashMap<>();
-		this.matchedContainers = new HashMap<>();
-
 		Optional<EObject> element;
 		while ((element = this.containmentTree.getNextElementForMatching()).isPresent()) {
 
@@ -229,10 +211,9 @@ public class SourceSectionMatcher extends CancelableElement {
 			}
 
 			/*
-			 * Register the created descriptor in the 'sections2Descriptors' map that will be returned in the end
+			 * Register the created descriptor.
 			 */
-			this.registerDescriptor((SourceSection) descriptor.getAssociatedSourceSectionClass(), descriptor, true,
-					false);
+			this.registerDescriptor(descriptor);
 
 		}
 
@@ -243,88 +224,17 @@ public class SourceSectionMatcher extends CancelableElement {
 	}
 
 	/**
-	 * Add the given <em>descriptor</em> to the {@link #matchedSectionReg} map and
-	 * {@link #updateMatchedElements(MatchedSectionDescriptor)} or
-	 * {@link #updateMatchedContainers(MatchedSectionDescriptor)} if required.
-	 *
-	 * @param sourceSection
-	 *            The {@link SourceSection} that the given <em>descriptor</em> represents.
-	 * @param descriptor
-	 *            The {@link MatchedSectionDescriptor} to add.
-	 * @param updateMatchedElements
-	 *            Whether the given <em>descriptor</em> shall be used to
-	 *            {@link #updateMatchedElements(MatchedSectionDescriptor) update the matched elements}. This should be
-	 *            set to <em>true</em> if the given <em>descriptor</em> represents a {@link SourceSection} (no
-	 *            {@link SourceSectionClass}) and was NOT matched during
-	 *            {@link #checkContainerSection(EObject, SourceSection)}.
-	 * @param updateMatchedContainers
-	 *            Whether the given <em>descriptor</em> shall be used to
-	 *            {@link #updateMatchedElements(MatchedSectionDescriptor) update the matched elements}. This should be
-	 *            set to <em>true</em> if the given <em>descriptor</em> represents a {@link SourceSection} (no
-	 *            {@link SourceSectionClass}) and was matched during
-	 *            {@link #checkContainerSection(EObject, SourceSection)}.
-	 */
-	private void registerDescriptor(SourceSection sourceSection, MatchedSectionDescriptor descriptor,
-			boolean updateMatchedElements, boolean updateMatchedContainers) {
-
-		List<MatchedSectionDescriptor> descriptors = this.matchedSectionRegistry.containsKey(sourceSection)
-				? this.matchedSectionRegistry.get(sourceSection)
-				: new ArrayList<>();
-
-		// The descriptor was already registered
-		//
-		if (descriptors.contains(descriptor)) {
-			return;
-		}
-
-		descriptors.add(descriptor);
-		this.matchedSectionRegistry.put(sourceSection, descriptors);
-
-		if (updateMatchedElements) {
-			this.updateMatchedElements(descriptor);
-		}
-
-		if (updateMatchedContainers) {
-			this.updateMatchedContainers(descriptor);
-		}
-	}
-
-	/**
-	 * Update the {@link #matchedSections} and mark matched elements in the {@link ContainmentTree#markAsMatched(Set)
-	 * containmentTree} based on the given '<em>descriptor</em>'.
+	 * {@link MatchedSectionRegistry#register(MatchedSectionDescriptor) Register} the given <em>descriptor</em> in the
+	 * {@link #matchedSectionRegistry} and {@link ContainmentTree#markAsMatched(Set) update the matched elements} in the
+	 * {@link #containmentTree}.
 	 *
 	 * @param descriptor
-	 *            The {@link MatchedSectionDescriptor} describing the matched elements.
+	 *            The {@link MatchedSectionDescriptor} to register.
 	 */
-	private void updateMatchedElements(MatchedSectionDescriptor descriptor) {
+	private void registerDescriptor(MatchedSectionDescriptor descriptor) {
 
-		for (final SourceSectionClass c : descriptor.getSourceModelObjectsMapped().keySet()) {
-
-			if (!this.matchedSections.containsKey(c)) {
-				this.matchedSections.put(c, new LinkedHashSet<EObject>());
-			}
-			this.matchedSections.get(c).addAll(descriptor.getSourceModelObjectsMapped().get(c));
-			this.containmentTree.markAsMatched(descriptor.getSourceModelObjectsMapped().get(c));
-		}
-	}
-
-	/**
-	 * Update the {@link #matchedContainers} and mark matched elements in the {@link ContainmentTree#markAsMatched(Set)
-	 * containmentTree} based on the given '<em>descriptor</em>'.
-	 *
-	 * @param containerDescriptor
-	 *            The {@link MatchedSectionDescriptor} describing the matched container elements.
-	 */
-	private void updateMatchedContainers(MatchedSectionDescriptor containerDescriptor) {
-
-		for (final SourceSectionClass c : containerDescriptor.getSourceModelObjectsMapped().keySet()) {
-
-			if (!this.matchedContainers.containsKey(c)) {
-				this.matchedContainers.put(c, new LinkedHashSet<EObject>());
-			}
-			this.matchedContainers.get(c).addAll(containerDescriptor.getSourceModelObjectsMapped().get(c));
-			this.containmentTree.markAsMatched(containerDescriptor.getSourceModelObjectsMapped().get(c));
-		}
+		this.matchedSectionRegistry.register(descriptor);
+		this.containmentTree.markAsMatched(descriptor.getMatchedSourceModelObjectFlat());
 	}
 
 	/**
@@ -332,23 +242,23 @@ public class SourceSectionMatcher extends CancelableElement {
 	 *
 	 * @param element
 	 *            The element from the source model for that the applicable source sections shall be determined.
-	 * @return A map that contains all applicable mappings and the associated {@link MappingInstanceStorage
-	 *         MappingInstanceStorages}.
+	 * @return A map that contains all applicable {@link SourceSection SourceSections} and the associated
+	 *         {@link MatchedSectionDescriptor} for the given {@link EObject}.
 	 */
 	private Map<SourceSection, MatchedSectionDescriptor> findApplicableSections(final EObject element) {
 
 		/*
-		 * This keeps track of all found possible sections (a MatchedSectionDescriptor is created for every mapping).
+		 * This keeps track of all found possible sections (a MatchedSectionDescriptor is created for every applicable
+		 * Section).
 		 */
-		final Map<SourceSection, MatchedSectionDescriptor> mappingData = new LinkedHashMap<>();
+		final Map<SourceSection, MatchedSectionDescriptor> applicableSections = new LinkedHashMap<>();
 
 		/*
 		 * Now, iterate over all sections and find those that are applicable for the current 'element'.
 		 */
-		this.sourceSections.parallelStream().filter(section -> section.getEClass().isSuperTypeOf(element.eClass()))
-				.sequential().forEach(section -> this.findApplicableSection(element, mappingData, section));
+		this.sourceSections.stream().forEach(section -> this.isApplicable(section, element, applicableSections));
 
-		return mappingData;
+		return applicableSections;
 	}
 
 	/**
@@ -381,10 +291,10 @@ public class SourceSectionMatcher extends CancelableElement {
 		int maxMatchedElements = 0;
 		for (MatchedSectionDescriptor match : matches.values()) {
 
-			if (match.getSourceModelObjectFlat().size() >= maxMatchedElements) {
+			if (match.getMatchedSourceModelObjectFlat().size() >= maxMatchedElements) {
 
-				if (match.getSourceModelObjectFlat().size() > maxMatchedElements) {
-					maxMatchedElements = match.getSourceModelObjectFlat().size();
+				if (match.getMatchedSourceModelObjectFlat().size() > maxMatchedElements) {
+					maxMatchedElements = match.getMatchedSourceModelObjectFlat().size();
 					matchesWithMaximumElements.clear();
 				}
 
@@ -425,38 +335,42 @@ public class SourceSectionMatcher extends CancelableElement {
 	/**
 	 * This checks if the given {@link SourceSection} is applicable for the given source model <em>element</em>.
 	 * Therefore, it first {@link #checkContainerSection(EObject, SourceSection) checks the container} and then the
-	 * {@link #checkSection(EObject, boolean, SourceSectionClass, MatchedSectionDescriptor) section itself.}
+	 * {@link #checkClass(EObject, boolean, SourceSectionClass, MatchedSectionDescriptor) section itself}.
 	 * <p />
-	 * If the section is applicable, this stores the result in the <em>mappingData</em>.
+	 * If the Section is applicable, this stores the result in the <em>applicableSections</em>.
 	 *
+	 * @param section
+	 *            The {@link SourceSection} to check.
 	 * @param element
 	 *            The {@link EObject} from the source model for that the applicability of the source section shall be
 	 *            determined.
-	 * @param mappingData
+	 * @param applicableSections
 	 *            The map where applicable sections are stored.
-	 * @param section
-	 *            The {@link SourceSection} to check.
+	 * @return '<em>true</em>' if the given {@link SourceSection} is applicable for the given {@link EObject} (and a
+	 *         corresponding entry was added to the <em>mappingData</em>); '<em>false</em>' otherwise.
 	 */
-	private void findApplicableSection(final EObject element,
-			final Map<SourceSection, MatchedSectionDescriptor> mappingData, SourceSection section) {
+	private boolean isApplicable(SourceSection section, final EObject element,
+			final Map<SourceSection, MatchedSectionDescriptor> applicableSections) {
+
+		if (!section.getEClass().isSuperTypeOf(element.eClass())) {
+			return false;
+		}
 
 		Optional<MatchedSectionDescriptor> descriptor;
 
 		/*
 		 * check if the section that is referenced as 'container' can be matched
 		 */
-		boolean failed = !this.checkContainerSection(element, section);
-
-		if (failed) {
-			return;
+		if (!this.checkContainerSection(element, section)) {
+			return false;
 		}
 
 		// check if the section itself is applicable
 		//
-		descriptor = this.checkSection(element, Optional.empty(), section, null);
+		descriptor = this.checkClass(element, Optional.empty(), section, null);
 
 		if (!descriptor.isPresent()) {
-			return;
+			return false;
 		}
 
 		// set the associated container descriptor
@@ -465,12 +379,14 @@ public class SourceSectionMatcher extends CancelableElement {
 
 		// all checks were successful -> the section is applicable
 		//
-		mappingData.put(section, descriptor.get());
+		applicableSections.put(section, descriptor.get());
+
+		return true;
 	}
 
 	/**
 	 * For a given {@link MatchedSectionDescriptor}, this extracts the associated '<em>container descriptor</em>' from
-	 * the {@link #matchedSectionReg} map and
+	 * the {@link #matchedSectionRegistry} and
 	 * {@link MatchedSectionDescriptor#setContainerDescriptor(MatchedSectionDescriptor) sets} it in the descriptor.
 	 *
 	 * @param descriptor
@@ -500,7 +416,8 @@ public class SourceSectionMatcher extends CancelableElement {
 
 		Set<MatchedSectionDescriptor> containerDescriptors = this.matchedSectionRegistry
 				.get(section.getContainer().getContainingSection()).parallelStream()
-				.filter(d -> d.getSourceModelObjectFlat().contains(element.eContainer())).collect(Collectors.toSet());
+				.filter(d -> d.getMatchedSourceModelObjectFlat().contains(element.eContainer()))
+				.collect(Collectors.toSet());
 
 		assert containerDescriptors.size() == 1;
 
@@ -545,30 +462,50 @@ public class SourceSectionMatcher extends CancelableElement {
 		List<Entry<SourceSection, EObject>> entries = new ArrayList<>(containers.entrySet());
 		// inverse the iterator order so that we start with the root container
 		Collections.reverse(entries);
-		Map<SourceSection, MatchedSectionDescriptor> containerDescriptors = new HashMap<>();
+		Map<SourceSection, MatchedSectionDescriptor> containerDescriptors = new LinkedHashMap<>();
 		for (Entry<SourceSection, EObject> container : entries.stream()
-				.filter(container -> !this.checkObjectWasMapped(container.getKey(), container.getValue()))
+				.filter(container -> !this.matchedSectionRegistry.contains(container.getValue(), container.getKey()))
 				.collect(Collectors.toList())) {
 
-			Optional<MatchedSectionDescriptor> containerDescriptor = this.checkSection(container.getValue(),
-					Optional.empty(), container.getKey(), null);
+			List<SourceSection> sectionsToConsider = new ArrayList<>();
+			if (sourceSection.isAbstract()) {
+				sectionsToConsider.addAll(sourceSection.getAllExtend());
+			} else {
+				sectionsToConsider.add(sourceSection);
+			}
 
-			if (!containerDescriptor.isPresent()) {
+			List<MatchedSectionDescriptor> applicableDescriptors = sectionsToConsider.stream()
+					.filter(s -> !s.isAbstract())
+					.map(s -> this.checkClass(container.getValue(), Optional.empty(), s, null))
+					.filter(Optional::isPresent).map(Optional::get).collect(Collectors.toList());
+
+			if (!applicableDescriptors.isEmpty()) {
 				// one of the containers could not be matched so we return
 				// without registering other potential descriptors
 				//
 				return false;
 			}
 
-			containerDescriptors.put(container.getKey(), containerDescriptor.get());
+			// If there are multiple matches, select the one section to actually
+			// apply.
+			//
+			MatchedSectionDescriptor containerDescriptor = this.selectApplicableSection(container.getValue(),
+					applicableDescriptors.stream()
+							.collect(Collectors.toMap(d -> (SourceSection) d.getAssociatedSourceSectionClass(),
+									Function.identity(), (oldValue, newValue) -> oldValue, LinkedHashMap::new)));
+
+			if (containerDescriptor == null) {
+				return false;
+			}
+
+			containerDescriptors.put(container.getKey(), containerDescriptor);
 		}
 
 		// Register the created container descriptor in the
 		// 'sections2Descriptors' map that will be returned
 		// in the end
 		//
-		containerDescriptors.entrySet().stream()
-				.forEach(entry -> this.registerDescriptor(entry.getKey(), entry.getValue(), false, true));
+		containerDescriptors.entrySet().stream().forEach(entry -> this.registerDescriptor(entry.getValue()));
 
 		return true;
 
@@ -591,7 +528,7 @@ public class SourceSectionMatcher extends CancelableElement {
 	 */
 	private Map<SourceSection, EObject> collectContainers(final EObject element, final SourceSection sourceSection) {
 
-		final LinkedHashMap<SourceSection, EObject> containers = new LinkedHashMap<>();
+		final Map<SourceSection, EObject> containers = new LinkedHashMap<>();
 
 		SourceSectionClass currentClass = sourceSection;
 		EObject currentElement = element;
@@ -653,9 +590,8 @@ public class SourceSectionMatcher extends CancelableElement {
 	 * @return The {@link MatchedSectionDescriptor} representing the matched section (including all matched child
 	 *         elements).
 	 */
-	private Optional<MatchedSectionDescriptor> checkSection(final EObject srcModelObject,
-			Optional<EReference> reference, final SourceSectionClass srcSection,
-			final MatchedSectionDescriptor parentDescriptor) {
+	private Optional<MatchedSectionDescriptor> checkClass(final EObject srcModelObject, Optional<EReference> reference,
+			final SourceSectionClass srcSection, final MatchedSectionDescriptor parentDescriptor) {
 
 		this.checkCanceled();
 
@@ -678,15 +614,16 @@ public class SourceSectionMatcher extends CancelableElement {
 		// SourceSectionClass. If this is the case, we just reuse the existing
 		// descriptor
 		//
-		Optional<MatchedSectionDescriptor> existingDescriptor = this
-				.getExistingMatchedSectionDescriptor(srcModelObject);
+		Optional<MatchedSectionDescriptor> existingDescriptor = this.matchedSectionRegistry
+				.getMatchedSectionDescriptorFor(srcModelObject, srcSection.getContainingSection());
+
 		if (existingDescriptor.isPresent()
 				&& existingDescriptor.get().getAssociatedSourceSectionClass().equals(srcSection)) {
 
 			// set the list of source model objects that have been mapped.
 			// first, add all mapped objects from 'changedRefsAndHints' ...
 			if (parentDescriptor != null && reference.isPresent() && reference.get().isContainment()) {
-				existingDescriptor.get().addSourceModelObjectsMapped(parentDescriptor.getSourceModelObjectsMapped());
+				existingDescriptor.get().add(parentDescriptor);
 				existingDescriptor.get().setContainerDescriptor(parentDescriptor);
 			}
 
@@ -704,7 +641,7 @@ public class SourceSectionMatcher extends CancelableElement {
 		// set the list of source model objects that have been mapped.
 		// first, add all mapped objects from 'changedRefsAndHints' ...
 		if (parentDescriptor != null && reference.isPresent() && reference.get().isContainment()) {
-			descriptor.addSourceModelObjectsMapped(parentDescriptor.getSourceModelObjectsMapped());
+			descriptor.add(parentDescriptor);
 		}
 		// ..., then add the current srcModelObject
 		descriptor.addSourceModelObjectMapped(srcModelObject, srcSection);
@@ -712,7 +649,7 @@ public class SourceSectionMatcher extends CancelableElement {
 		/*
 		 * check if all attributes are present and valid
 		 */
-		boolean attributesOk = this.checkAttributes(srcModelObject, srcSection, descriptor);
+		boolean attributesOk = this.checkAttributes(srcModelObject, srcSection);
 
 		if (!attributesOk) {
 			return Optional.empty();
@@ -747,7 +684,7 @@ public class SourceSectionMatcher extends CancelableElement {
 	 * checked. <br />
 	 * <b>Note:</b> For every {@link SourceSectionClass class} that is referenced by a modeled
 	 * {@link SourceSectionReference reference}, this calls
-	 * {@link #checkSection(EObject, boolean, SourceSectionClass, MatchedSectionDescriptor)} so that we iteratively go
+	 * {@link #checkClass(EObject, boolean, SourceSectionClass, MatchedSectionDescriptor)} so that we iteratively go
 	 * through the complete hierarchy of the modeled section.
 	 *
 	 * @param srcModelObject
@@ -771,12 +708,15 @@ public class SourceSectionMatcher extends CancelableElement {
 	private boolean checkReferences(final EObject srcModelObject, final boolean usedOkay,
 			final SourceSectionClass sourceSectionClass, final MatchedSectionDescriptor descriptor) {
 
-		// Collect the modeled references and reference targets
-		// (SourceSectionClasses) for the
-		// current 'sourceSectionClass' and store them in to maps
+		// All references defined by the class (and extended Sections)
 		//
-		Map<EReference, List<SourceSectionClass>> classByRefMap = new HashMap<>();
-		for (SourceSectionReference reference : sourceSectionClass.getReferences().stream()
+		EList<SourceSectionReference> classReferences = sourceSectionClass.getAllReferences();
+
+		// Collect the modeled references and reference targets (SourceSectionClasses) for the current
+		// 'sourceSectionClass' and store them in to maps
+		//
+		Map<EReference, List<SourceSectionClass>> classByRefMap = new LinkedHashMap<>();
+		for (SourceSectionReference reference : classReferences.stream()
 				.filter(r -> r instanceof ActualReference<?, ?, ?, ?>).collect(Collectors.toList())) {
 			List<SourceSectionClass> currentValues = classByRefMap
 					.containsKey(((ActualReference<?, ?, ?, ?>) reference).getEReference())
@@ -786,8 +726,8 @@ public class SourceSectionMatcher extends CancelableElement {
 			classByRefMap.put(((ActualReference<?, ?, ?, ?>) reference).getEReference(), currentValues);
 		}
 
-		Map<VirtualSourceSectionCrossReference, List<SourceSectionClass>> classByVirtualRefMap = new HashMap<>();
-		for (SourceSectionReference reference : sourceSectionClass.getReferences().stream()
+		Map<VirtualSourceSectionCrossReference, List<SourceSectionClass>> classByVirtualRefMap = new LinkedHashMap<>();
+		for (SourceSectionReference reference : classReferences.stream()
 				.filter(r -> r instanceof VirtualSourceSectionCrossReference).collect(Collectors.toList())) {
 			List<SourceSectionClass> currentValues = classByVirtualRefMap.containsKey(reference)
 					? classByVirtualRefMap.get(reference)
@@ -796,12 +736,11 @@ public class SourceSectionMatcher extends CancelableElement {
 			classByVirtualRefMap.put((VirtualSourceSectionCrossReference) reference, currentValues);
 		}
 
-		Map<SourceSectionClass, SourceSectionReference> refByClassMap = new ConcurrentHashMap<>();
-		sourceSectionClass.getReferences().stream()
-				.forEach(r -> r.getValuesGeneric().stream().forEach(c -> refByClassMap.put(c, r)));
+		Map<SourceSectionClass, SourceSectionReference> refByClassMap = Collections
+				.synchronizedMap(new LinkedHashMap<>());
+		classReferences.stream().forEach(r -> r.getValuesGeneric().stream().forEach(c -> refByClassMap.put(c, r)));
 
-		// now, iterate through all the modeled references (and reference
-		// targets) and check if they can be matched for
+		// now, iterate through all the modeled references (and reference targets) and check if they can be matched for
 		// the current 'srcModelObject'
 		//
 		for (final Entry<EReference, List<SourceSectionClass>> entry : classByRefMap.entrySet()) {
@@ -825,7 +764,7 @@ public class SourceSectionMatcher extends CancelableElement {
 				 */
 				if (reference.isMany() && !((EList<EObject>) srcModelObject.eGet(reference)).isEmpty()
 						|| !reference.isMany() && srcModelObject.eGet(reference) != null) {
-					return sourceSectionClass.getReferences().parallelStream()
+					return classReferences.parallelStream()
 							.filter(r -> r instanceof ActualReference<?, ?, ?, ?>
 									&& ((ActualReference<?, ?, ?, ?>) r).getEReference().equals(reference))
 							.anyMatch(SourceSectionReference::isIgnoreUnmatchedElements);
@@ -834,8 +773,7 @@ public class SourceSectionMatcher extends CancelableElement {
 				}
 			}
 
-			// get targets of the reference in the source model, then proceed
-			// depending on the cardinality of the
+			// get targets of the reference in the source model, then proceed depending on the cardinality of the
 			// reference
 			//
 			final Object refTarget = srcModelObject.eGet(reference);
@@ -955,7 +893,7 @@ public class SourceSectionMatcher extends CancelableElement {
 	 * reference can be matched for the given {@link MatchedSectionDescriptor} representing the referencing element.
 	 * <p />
 	 * Note: This iterates further downward in the containment hierarchy by calling
-	 * {@link #checkSection(EObject, boolean, SourceSectionClass, MatchedSectionDescriptor)}.
+	 * {@link #checkClass(EObject, boolean, SourceSectionClass, MatchedSectionDescriptor)}.
 	 *
 	 * @param referencedElement
 	 *            The {@link EObject element} to check.
@@ -1018,7 +956,7 @@ public class SourceSectionMatcher extends CancelableElement {
 
 			// iterate further
 			//
-			childDescriptor = this.checkSection(referencedElement, reference, c, descriptor);
+			childDescriptor = this.checkClass(referencedElement, reference, c, descriptor);
 		}
 
 		if (!nonZeroCardSectionFound) {
@@ -1032,7 +970,7 @@ public class SourceSectionMatcher extends CancelableElement {
 
 				// iterate further
 				//
-				childDescriptor = this.checkSection(referencedElement, reference, c, descriptor);
+				childDescriptor = this.checkClass(referencedElement, reference, c, descriptor);
 
 				if (childDescriptor.isPresent()) {
 					break;
@@ -1068,8 +1006,7 @@ public class SourceSectionMatcher extends CancelableElement {
 						.getAssociatedSourceSectionClass()) instanceof VirtualSourceSectionCrossReference)
 				&& childDescriptor.get().getAssociatedSourceSectionClass() instanceof SourceSection) {
 
-			this.registerDescriptor((SourceSection) childDescriptor.get().getAssociatedSourceSectionClass(),
-					childDescriptor.get(), true, false);
+			this.registerDescriptor(childDescriptor.get());
 		}
 
 		return true;
@@ -1081,7 +1018,7 @@ public class SourceSectionMatcher extends CancelableElement {
 	 * element.
 	 * <p />
 	 * Note: This iterates further downward in the containment hierarchy by calling
-	 * {@link #checkSection(EObject, boolean, SourceSectionClass, MatchedSectionDescriptor)}.
+	 * {@link #checkClass(EObject, boolean, SourceSectionClass, MatchedSectionDescriptor)}.
 	 *
 	 * @param referencedElements
 	 *            The {@link EObject elements} to check.
@@ -1137,7 +1074,7 @@ public class SourceSectionMatcher extends CancelableElement {
 
 			for (final SourceSectionClass val : classes) {
 
-				final Optional<MatchedSectionDescriptor> childDescriptor = this.checkSection(rt, reference, val,
+				final Optional<MatchedSectionDescriptor> childDescriptor = this.checkClass(rt, reference, val,
 						descriptor);
 
 				// we found a match
@@ -1218,8 +1155,7 @@ public class SourceSectionMatcher extends CancelableElement {
 					 * the end
 					 */
 					if (srcSectionResult.getAssociatedSourceSectionClass() instanceof SourceSection) {
-						this.registerDescriptor((SourceSection) srcSectionResult.getAssociatedSourceSectionClass(),
-								srcSectionResult, true, false);
+						this.registerDescriptor(srcSectionResult);
 					}
 				}
 
@@ -1282,8 +1218,7 @@ public class SourceSectionMatcher extends CancelableElement {
 					 * the end
 					 */
 					if (srcSectionResult.getAssociatedSourceSectionClass() instanceof SourceSection) {
-						this.registerDescriptor((SourceSection) srcSectionResult.getAssociatedSourceSectionClass(),
-								srcSectionResult, true, false);
+						this.registerDescriptor(srcSectionResult);
 					}
 				}
 
@@ -1324,31 +1259,29 @@ public class SourceSectionMatcher extends CancelableElement {
 	 *
 	 * @param srcModelObject
 	 *            The object to be checked.
-	 * @param srcSection
+	 * @param sourceSectionClass
 	 *            The {@link SourceSectionClass} for which the attributes shall be checked.
-	 * @param descriptor
-	 *            The {@link MatchedSectionDescriptor} for the current matching process.
 	 * @return '<em></b>true</b></em>' if all attributes are present and satisfy the modeled constraints, '
 	 *         <em><b>false</b></em>' otherwise
 	 */
-	private boolean checkAttributes(final EObject srcModelObject, final SourceSectionClass srcSection,
-			final MatchedSectionDescriptor descriptor) {
+	private boolean checkAttributes(final EObject srcModelObject, final SourceSectionClass sourceSectionClass) {
 
-		srcSection.getAttributes().parallelStream().filter(
+		sourceSectionClass.getAllAttributes().parallelStream().filter(
 				at -> !(at instanceof ActualSourceSectionAttribute) && !(at instanceof VirtualSourceSectionAttribute))
 				.forEach(at -> this.logger.severe(() -> "SourceSectionAttributes of type '" + at.eClass().getName()
 						+ "' are not yet supported!"));
 
 		// Check if all the constraints are satisfied for every attribute value.
 		//
-		return srcSection.getAttributes().stream().filter(a -> !a.getValueConstraints().isEmpty()).allMatch(at -> {
-			List<Object> values = ValueExtractor.getAttributeValueAsList(srcModelObject, at, this.logger);
-			/*
-			 * Check if all the constraints are satisfied for every attribute value.
-			 */
-			return !values.isEmpty() && values.parallelStream()
-					.allMatch(srcAttrValue -> this.checkAttributeValueConstraints(at, srcAttrValue));
-		});
+		return sourceSectionClass.getAllAttributes().stream().filter(a -> !a.getValueConstraints().isEmpty())
+				.allMatch(at -> {
+					List<Object> values = ValueExtractor.getAttributeValueAsList(srcModelObject, at, this.logger);
+					/*
+					 * Check if all the constraints are satisfied for every attribute value.
+					 */
+					return !values.isEmpty() && values.parallelStream()
+							.allMatch(srcAttrValue -> this.checkAttributeValueConstraints(at, srcAttrValue));
+				});
 	}
 
 	/**
@@ -1460,27 +1393,6 @@ public class SourceSectionMatcher extends CancelableElement {
 	}
 
 	/**
-	 * This can be used to check if a given '<em>sourceSectionClass</em>' and the corresponding '<em>element</em>' have
-	 * been previously matched (by another section).
-	 *
-	 * @param sourceSectionClass
-	 *            The {@link SourceSectionClass} that shall be checked for previous matching.
-	 * @param element
-	 *            The {@link EObject} that shall be checked for previous matching.
-	 */
-	private boolean checkObjectWasMapped(final SourceSectionClass sourceSectionClass, final EObject element) {
-
-		if (element == null) {
-			return false;
-		}
-
-		return this.matchedSections.containsKey(sourceSectionClass)
-				&& this.matchedSections.get(sourceSectionClass).contains(element)
-				|| this.matchedContainers.containsKey(sourceSectionClass)
-						&& this.matchedContainers.get(sourceSectionClass).contains(element);
-	}
-
-	/**
 	 * Counts how often each {@link EObject source model element} is
 	 * {@link MatchedSectionDescriptor#getAssociatedSourceModelElement() referenced} by each
 	 * {@link MatchedSectionDescriptor} and returns one mapping result for the Object with the lowest count.
@@ -1516,44 +1428,4 @@ public class SourceSectionMatcher extends CancelableElement {
 
 	}
 
-	/**
-	 * From all {@link MatchedSectionDescriptor MatchedSectionDescriptors} contained in {@link #matchedSectionReg}, this
-	 * returns the one instance that represents the given <em>sourceElement</em>.
-	 *
-	 * @param sourceElement
-	 *            The {@link EObject} for which an existing {@link MatchedSectionDescriptor} shall be returned.
-	 * @return The {@link MatchedSectionDescriptor} representing the given <em>sourceElement</em> or an empty Optional
-	 *         if there is no such descriptor.
-	 */
-	private Optional<MatchedSectionDescriptor> getExistingMatchedSectionDescriptor(EObject sourceElement) {
-
-		// First, we check if the given sourceElement has been matched before
-		// and - if yes - by which SourceSectionClass
-		//
-		Optional<SourceSectionClass> sourceSectionClass = this.matchedSections.entrySet().parallelStream()
-				.filter(e -> e.getValue().contains(sourceElement)).map(Entry::getKey).findAny();
-
-		if (sourceSectionClass.isPresent()) {
-
-			// Now that we know the SourceSectionClass we are looking for, we
-			// are able to determine the concrete MatchedSectionDescriptor
-			// representing the given sourceElement
-			//
-			List<MatchedSectionDescriptor> descriptors = this.matchedSectionRegistry.get(sourceSectionClass.get());
-			return descriptors != null
-					? descriptors.stream().filter(d -> d.getAssociatedSourceModelElement().equals(sourceElement))
-							.findAny()
-					: Optional.empty();
-		}
-
-		return Optional.empty();
-	}
-
-	/**
-	 * @return the {@link #matchedSections}
-	 */
-	public Map<SourceSectionClass, Set<EObject>> getMatchedSections() {
-
-		return this.matchedSections;
-	}
 }

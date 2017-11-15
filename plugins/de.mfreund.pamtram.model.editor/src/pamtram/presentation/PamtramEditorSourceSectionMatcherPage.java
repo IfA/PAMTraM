@@ -2,8 +2,10 @@ package pamtram.presentation;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
-import java.util.Set;
+import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.eclipse.core.resources.IProject;
@@ -21,6 +23,7 @@ import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
@@ -34,7 +37,6 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Tree;
-import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.ide.ResourceUtil;
 
 import de.mfreund.gentrans.transformation.ITransformationRunner;
@@ -43,6 +45,7 @@ import de.mfreund.gentrans.transformation.TransformationRunnerWithUIFactory;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
 import de.tud.et.ifa.agtele.ui.interfaces.IPersistable;
+import de.tud.et.ifa.agtele.ui.interfaces.ISelectionProviderWrapper;
 import de.tud.et.ifa.agtele.ui.providers.EObjectTreeContentProvider;
 import de.tud.et.ifa.agtele.ui.widgets.TreeViewerGroup;
 import pamtram.contentprovider.MappingContentProvider;
@@ -51,6 +54,7 @@ import pamtram.listeners.SetViewerMouseListener;
 import pamtram.listeners.SetViewerSelectionListener;
 import pamtram.mapping.MappingType;
 import pamtram.provider.PamtramEditPlugin;
+import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionClass;
 
 /**
@@ -59,7 +63,7 @@ import pamtram.structure.source.SourceSectionClass;
  *
  * @author mfreund
  */
-public class PamtramEditorSourceSectionMatcherPage extends SashForm implements IPersistable {
+public class PamtramEditorSourceSectionMatcherPage extends SashForm implements IPersistable, ISelectionProviderWrapper {
 
 	/**
 	 * This is the editor that this view is hosted in.
@@ -183,7 +187,7 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 		this.sourceViewer = this.sourceViewerGroup.getViewer();
 		this.sourceViewer.setContentProvider(new SourceSectionContentProvider(this.adapterFactory));
 		this.sourceViewer.setInput(this.editor.pamtram);
-		this.sourceTreeSelectionListener = new SetViewerSelectionListener(this.editor, this.sourceViewer);
+		this.sourceTreeSelectionListener = new ViewerSelectionListener(this.sourceViewer);
 		this.sourceViewer.getTree().addSelectionListener(this.sourceTreeSelectionListener);
 		this.sourceViewer.getTree().addMouseListener(new SetViewerMouseListener(this.editor, this.sourceViewer));
 
@@ -206,7 +210,7 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 
 		this.mappingViewer.setContentProvider(new MappingContentProvider(this.adapterFactory));
 		this.mappingViewer.setInput(this.editor.pamtram);
-		this.mappingTreeSelectionListener = new SetViewerSelectionListener(this.editor, this.mappingViewer);
+		this.mappingTreeSelectionListener = new ViewerSelectionListener(this.mappingViewer);
 		this.mappingViewer.getTree().addSelectionListener(this.mappingTreeSelectionListener);
 		this.mappingViewer.getTree().addMouseListener(new SetViewerMouseListener(this.editor, this.mappingViewer));
 
@@ -342,123 +346,74 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 			return;
 		}
 
-		// add a selection listener for the highlighting (overwrite the old one)
-		this.sourceViewer.getTree().removeSelectionListener(this.sourceTreeSelectionListener);
-		this.sourceTreeSelectionListener = new SelectionListener() {
+	}
 
-			@Override
-			public void widgetSelected(SelectionEvent e) {
+	/**
+	 * A {@link SetViewerSelectionListener} that handles selections in the
+	 * {@link PamtramEditorSourceSectionMatcherPage#sourceViewer} or
+	 * {@link PamtramEditorSourceSectionMatcherPage#mappingViewer}.
+	 *
+	 * @author mfreund
+	 */
+	private final class ViewerSelectionListener extends SetViewerSelectionListener {
 
-				SourceSectionClass sourceSectionClass = null;
+		private ViewerSelectionListener(TreeViewer viewer) {
 
-				// get the source section for which the matched elements in the
-				// source
-				// model viewer shall be shown (depending on the users
-				// selection)
+			super(PamtramEditorSourceSectionMatcherPage.this.editor, viewer);
+		}
+
+		@Override
+		public void widgetSelected(SelectionEvent e) {
+
+			super.widgetSelected(e);
+
+			if (e.item == null || e.item.getData() == null) {
+				return;
+			}
+
+			// The elements that will be selected in the various viewers
+			//
+			List<Object> toSelect = new ArrayList<>();
+			toSelect.add(e.item.getData());
+
+			SourceSectionClass sourceSectionClass = null;
+
+			if (e.item.getData() instanceof SourceSectionClass) {
+
+				sourceSectionClass = (SourceSectionClass) e.item.getData();
+
+			} else if (e.item.getData() instanceof MappingType) {
+
+				sourceSectionClass = ((MappingType) e.item.getData()).getSourceSection();
+				toSelect.add(sourceSectionClass);
+			}
+
+			if (sourceSectionClass != null) {
+
+				// If an abstract SourceSection has been selected, show results for (concrete) extending Sections
+				// instead
 				//
-				if (((TreeItem) e.item).getData() instanceof SourceSectionClass) {
-					sourceSectionClass = (SourceSectionClass) ((TreeItem) e.item).getData();
-					// do not select a mapping because multiple mappings could
-					// make use of
-					// this source section
-					PamtramEditorSourceSectionMatcherPage.this.mappingViewer.setSelection(new StructuredSelection());
-				} else {
-					PamtramEditorSourceSectionMatcherPage.this.sourceModelViewer
-							.setSelection(new StructuredSelection());
+				List<?> affectedClasses = sourceSectionClass instanceof SourceSection
+						&& ((SourceSection) sourceSectionClass).isAbstract()
+								? ((SourceSection) sourceSectionClass).getAllExtending()
+								: Arrays.asList(sourceSectionClass);
+
+				toSelect.addAll(affectedClasses);
+
+				if (PamtramEditorSourceSectionMatcherPage.this.matchedSections != null) {
+					toSelect.addAll(affectedClasses.stream()
+							.filter(c -> PamtramEditorSourceSectionMatcherPage.this.matchedSections.containsKey(c))
+							.flatMap(c -> PamtramEditorSourceSectionMatcherPage.this.matchedSections.get(c).stream())
+							.map(MatchedSectionDescriptor::getAssociatedSourceModelElement)
+							.collect(Collectors.toSet()));
 				}
 
-				if (sourceSectionClass != null) {
-					// find the 'matched sections' for the selected source
-					// section
-					for (SourceSectionClass c : PamtramEditorSourceSectionMatcherPage.this.matchedSections.keySet()) {
-						if (EcoreUtil.equals(sourceSectionClass, c)) {
-							// the matched elements that shall be highlighted
-							Set<EObject> matchedEObjects = PamtramEditorSourceSectionMatcherPage.this.matchedSections
-									.get(c).stream().map(MatchedSectionDescriptor::getAssociatedSourceModelElement)
-									.collect(Collectors.toSet());
-
-							if (matchedEObjects == null) {
-								continue;
-							}
-
-							PamtramEditorSourceSectionMatcherPage.this.sourceModelViewer.collapseAll();
-							PamtramEditorSourceSectionMatcherPage.this.sourceModelViewer
-									.setSelection(new StructuredSelection(matchedEObjects.toArray()), true);
-
-							break;
-						}
-					}
-				}
-
-				PamtramEditorSourceSectionMatcherPage.this.editor
-						.setCurrentViewer(PamtramEditorSourceSectionMatcherPage.this.sourceViewer);
 			}
 
-			@Override
-			public void widgetDefaultSelected(SelectionEvent e) {
+			PamtramEditorSourceSectionMatcherPage.this.editor.setSelection(new StructuredSelection(
+					toSelect.stream().filter(Objects::nonNull).collect(Collectors.toSet()).toArray()));
+		}
 
-			}
-		};
-		this.sourceViewer.getTree().addSelectionListener(this.sourceTreeSelectionListener);
-
-		// add a selection listener for the highlighting (overwrite the old one)
-		this.mappingViewer.getTree().removeSelectionListener(this.mappingTreeSelectionListener);
-		this.mappingTreeSelectionListener = new SelectionListener() {
-
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-
-				SourceSectionClass sourceSectionClass = null;
-
-				// get the source section for which the matched elements in the
-				// source
-				// model viewer shall be shown (depending on the users
-				// selection)
-				//
-				if (((TreeItem) e.item).getData() instanceof MappingType) {
-					sourceSectionClass = ((MappingType) ((TreeItem) e.item).getData()).getSourceSection();
-					// select the source section for this mapping (that is used
-					// to find the matched elements
-					PamtramEditorSourceSectionMatcherPage.this.sourceViewer
-							.setSelection(new StructuredSelection(sourceSectionClass), true);
-				} else {
-					PamtramEditorSourceSectionMatcherPage.this.sourceModelViewer
-							.setSelection(new StructuredSelection());
-				}
-
-				if (sourceSectionClass != null) {
-					// find the 'matched sections' for the selected source
-					// section
-					for (SourceSectionClass c : PamtramEditorSourceSectionMatcherPage.this.matchedSections.keySet()) {
-						if (EcoreUtil.equals(sourceSectionClass, c)) {
-							// the matched elements that shall be highlighted
-							Set<EObject> matchedEObjects = PamtramEditorSourceSectionMatcherPage.this.matchedSections
-									.get(c).stream().map(MatchedSectionDescriptor::getAssociatedSourceModelElement)
-									.collect(Collectors.toSet());
-
-							if (matchedEObjects == null) {
-								continue;
-							}
-
-							PamtramEditorSourceSectionMatcherPage.this.sourceModelViewer.collapseAll();
-							PamtramEditorSourceSectionMatcherPage.this.sourceModelViewer
-									.setSelection(new StructuredSelection(matchedEObjects.toArray()), true);
-
-							break;
-						}
-					}
-				}
-
-				PamtramEditorSourceSectionMatcherPage.this.editor
-						.setCurrentViewer(PamtramEditorSourceSectionMatcherPage.this.mappingViewer);
-			}
-
-			@Override
-			public void widgetDefaultSelected(SelectionEvent e) {
-
-			}
-		};
-		this.mappingViewer.getTree().addSelectionListener(this.mappingTreeSelectionListener);
 	}
 
 	@Override
@@ -537,6 +492,12 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 		if (settings.getSection("MAPPING_VIEWER") != null) {
 			this.mappingViewerGroup.restore(settings.getSection("MAPPING_VIEWER"));
 		}
+	}
+
+	@Override
+	public Collection<ISelectionProvider> getWrappedProviders() {
+
+		return Arrays.asList(this.sourceViewerGroup, this.mappingViewerGroup, this.sourceModelViewer);
 	}
 
 }

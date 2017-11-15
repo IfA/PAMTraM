@@ -4,7 +4,6 @@ package pamtram.condition.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -13,17 +12,21 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import pamtram.condition.ComparatorEnum;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.Condition;
 import pamtram.condition.ConditionPackage;
+import pamtram.structure.ExternalDynamicSourceElement;
+import pamtram.structure.LocalDynamicSourceElement;
 import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionClass;
@@ -57,7 +60,7 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 	/**
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
-	 * 
+	 *
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
@@ -356,6 +359,12 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 	@Override
 	public boolean isLocalCondition() {
 
+		// A condition with InstanceSelectors is always treated as not local
+		//
+		if (!this.getInstanceSelectors().isEmpty()) {
+			return false;
+		}
+
 		SourceSection localSection = this.getLocalSection();
 		SourceSection affectedSection;
 		try {
@@ -369,13 +378,6 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 			return false;
 		}
 
-		// Based on the 'affectedSection', we collect all other Sections that are indirectly affected (i.e. extended
-		// sections)
-		//
-		Set<SourceSection> affectedSections = new HashSet<>();
-		affectedSections.add(affectedSection);
-		affectedSections.addAll(affectedSection.getAllExtend());
-
 		// Based on the 'localSection', we collect all other Sections that are indirectly considered as local (e.g.
 		// extended or container sections)
 		//
@@ -384,9 +386,8 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 		localSections.addAll(localSection.getAllExtend());
 
 		// A condition is local if it is based on the same section as the
-		// containing mapping or if this section that is a direct or indirect
-		// container section of the section referenced by the condition
-		if (!Collections.disjoint(localSections, affectedSections)) {
+		// containing mapping or any of the super-sections of this section
+		if (localSections.contains(affectedSection)) {
 			return true;
 		}
 
@@ -402,18 +403,19 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 			e.printStackTrace();
 		}
 
-		// A condition is also 'local' if an InstanceSelector with local SourceAttributes exist
-		//
-		return this.getInstanceSelectors().parallelStream()
-				.flatMap(instancePointer -> instancePointer.getSourceElements().parallelStream()
-						.filter(s -> s instanceof pamtram.structure.InstanceSelectorSourceElement))
-				.findAny().isPresent();
+		return false;
 	}
 
 	@Override
 	public boolean isExternalCondition() {
 
 		if (this.isLocalCondition()) {
+			return false;
+		}
+
+		// A condition with InstanceSelectors is always treated as not external
+		//
+		if (!this.getInstanceSelectors().isEmpty()) {
 			return false;
 		}
 
@@ -445,12 +447,41 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 			return true;
 		}
 
-		// A condition is also 'external' if an InstanceSelector with external SourceAttributes exist
+		// A condition is also external if any of the external sections reference any of the classes affected by the
+		// condition
 		//
-		return this.getInstanceSelectors().parallelStream()
-				.flatMap(instancePointer -> instancePointer.getSourceElements().parallelStream()
-						.filter(s -> s instanceof pamtram.structure.InstanceSelectorExternalSourceElement))
-				.findAny().isPresent();
+		try {
+			List<SourceSectionClass> affectedClasses = this.getAffectedClasses();
+			if (externalSections.stream()
+					.anyMatch(l -> affectedClasses.stream().anyMatch(r -> r.isReferencedBy(l, null)))) {
+				return true;
+			}
+		} catch (ConditionEvaluationException e) {
+			e.printStackTrace();
+		}
+
+		return false;
+	}
+
+	@Override
+	public boolean isGlobalCondition() {
+
+		if (this.isLocalCondition() || this.isExternalCondition()) {
+			return false;
+		}
+
+		// A global condition must not be equipped with local or external source elements (e.g. for ValueConstraints or
+		// InstanceSelectors)
+		//
+		TreeIterator<Object> it = EcoreUtil.getAllContents(this, true);
+		while (it.hasNext()) {
+			Object next = it.next();
+			if (next instanceof LocalDynamicSourceElement<?, ?, ?, ?>
+					|| next instanceof ExternalDynamicSourceElement<?, ?, ?, ?>) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 } // ConditionImpl

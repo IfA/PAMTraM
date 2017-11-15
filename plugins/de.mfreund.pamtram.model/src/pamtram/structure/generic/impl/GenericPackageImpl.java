@@ -396,6 +396,24 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getClass_AllAttributes() {
+		return (EReference)classEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getClass_AllReferences() {
+		return (EReference)classEClass.getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getClass__IsContainerFor__Class() {
 		return classEClass.getEOperations().get(0);
 	}
@@ -750,6 +768,8 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		createEReference(classEClass, CLASS__VIRTUAL_ATTRIBUTES);
 		createEReference(classEClass, CLASS__ACTUAL_REFERENCES);
 		createEReference(classEClass, CLASS__VIRTUAL_REFERENCES);
+		createEReference(classEClass, CLASS__ALL_ATTRIBUTES);
+		createEReference(classEClass, CLASS__ALL_REFERENCES);
 		createEOperation(classEClass, CLASS___IS_CONTAINER_FOR__CLASS);
 		createEOperation(classEClass, CLASS___IS_CONTAINED_IN__CLASS);
 		createEOperation(classEClass, CLASS___GET_OWNING_CONTAINMENT_REFERENCE);
@@ -1455,6 +1475,10 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		initEReference(getClass_ActualReferences(), g1, null, "actualReferences", null, 0, -1, pamtram.structure.generic.Class.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		g1 = createEGenericType(classEClass_R);
 		initEReference(getClass_VirtualReferences(), g1, null, "virtualReferences", null, 0, -1, pamtram.structure.generic.Class.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		g1 = createEGenericType(classEClass_A);
+		initEReference(getClass_AllAttributes(), g1, null, "allAttributes", null, 0, -1, pamtram.structure.generic.Class.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		g1 = createEGenericType(classEClass_R);
+		initEReference(getClass_AllReferences(), g1, null, "allReferences", null, 0, -1, pamtram.structure.generic.Class.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		op = initEOperation(getClass__IsContainerFor__Class(), ecorePackage.getEBoolean(), "isContainerFor", 1, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(classEClass_C);
@@ -1667,13 +1691,13 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		  (getClass__IsContainerFor__Class(), 
 		   source, 
 		   new String[] {
-			 "body", "C container = containedClass.getContainer();\r\n\t\t\r\n\t\t// Prevent stack overflow in case of modeling error\r\n\t\t//\r\n\t\tif(<%org.eclipse.emf.ecore.util.EcoreUtil%>.isAncestor(containedClass, container)) {\r\n\t\t\treturn false;\r\n\t\t}\r\n\r\t// this means that we have reached the top level container for the \'containedClass\'\r\n\t\tif (container == null) {\r\n\t\t\treturn false;\r\n\t\t\t// this is the container\r\n\t\t} else if (this.equals(container)) {\r\n\t\t\treturn true;\r\n\t\t\t// one of the extended sections is the container\r\n\t\t} else if (container instanceof <%pamtram.structure.generic.Section%> && ((<%pamtram.structure.generic.Section%>) container).getExtend().contains(this)) {\r\n\t\t\treturn true;\r\n\t\t\t// this was not the container, so iterate up in the containment hierarchy\r\n\t\t} else {\r\n\t\t\treturn this.isContainerFor(container);\r\n\t\t}"
+			 "body", "C container = containedClass.getContainer();\r\n\t\t\r\n\t\t// Prevent stack overflow in case of modeling error\r\n\t\t//\r\n\t\tif(<%org.eclipse.emf.ecore.util.EcoreUtil%>.isAncestor(containedClass, container)) {\r\n\t\t\treturn false;\r\n\t\t}\r\n\r\n\t// this means that we have reached the top level container for the \'containedClass\'\r\n\t\tif (container == null) {\r\n\t\t\treturn false;\r\n\t\t\t// this is the container\r\n\t\t} else if (this.equals(container)) {\r\n\t\t\treturn true;\r\n\t\t\t// one of the extended sections is the container\r\n\t\t} else if (container instanceof <%pamtram.structure.generic.Section%> && ((<%pamtram.structure.generic.Section%>) container).getAllExtend().contains(this)) {\r\n\t\t\treturn true;\r\n\t\t\t// this was not the container, so iterate up in the containment hierarchy\r\n\t\t} else {\r\n\t\t\treturn this.isContainerFor(container);\r\n\t\t}"
 		   });	
 		addAnnotation
 		  (getClass__IsContainedIn__Class(), 
 		   source, 
 		   new String[] {
-			 "body", "EList<C> containedClasses = new BasicEList<>();\r\n\r\n// collect all classes that are referenced by containment references\r\nBasicEList<R> refs = new BasicEList<>(containerClass.getReferences());\r\nif(containerClass instanceof Section) {\r\n\tEList<Section> sections = ((Section) containerClass).getExtend(); \r\n\tfor (Section s : sections) {\r\n\t\trefs.addAll(s.getReferences());\r\n\t}\r\n}\r\n\r\nfor (R ref : containerClass.getReferences()) {\r\n\tif(!(ref instanceof ActualReference<?, ?, ?, ?>) || !(((ActualReference<?, ?, ?, ?>) ref).getEReference().isContainment())) {\r\n\t\tcontinue;\r\n\t}\r\n\tif(ref instanceof CompositeReference<?,?,?,?>){\r\n\t\tcontainedClasses.addAll(((CompositeReference<S,C,R,A>) ref).getValue());\r\n\t} else if(ref instanceof CrossReference) {\r\n\t\tcontainedClasses.addAll((Collection<? extends C>) ((CrossReference) ref).getValue());\r\n\t}\r\n}\r\n\t\r\n// recursively iterate over all contained classes\r\nboolean found = false;\r\nfor (C containedClass : containedClasses) {\r\n\tif(containedClass.equals(this) || isContainedIn(containedClass)) {\r\n\t\tfound = true;\r\n\t\tbreak;\r\n\t}\r\n}\r\n\r\nreturn found;"
+			 "body", "// recursively collect all classes that are referenced by containment references and check if any matches this class\r\n\t\t//\r\n\t\treturn containerClass.getAllReferences().stream()\r\n\t\t\t\t.filter(r -> r instanceof ActualReference<?, ?, ?, ?>\r\n\t\t\t\t\t\t&& ((ActualReference<?, ?, ?, ?>) r).getEReference().isContainment())\r\n\t\t\t\t.flatMap(r -> r.getValuesGeneric().stream()).anyMatch(c -> c.equals(this) || this.isContainedIn(c));"
 		   });	
 		addAnnotation
 		  (getClass__GetOwningContainmentReference(), 
@@ -1794,6 +1818,30 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		   source, 
 		   new String[] {
 			 "documentation", "The subset of the \'references\' that are of type VirtualReference."
+		   });	
+		addAnnotation
+		  (getClass_AllAttributes(), 
+		   source, 
+		   new String[] {
+			 "get", "List<Object> ret = new ArrayList<>();\r\n\r\nret.addAll(this.getAttributes());\r\n\r\nif(this instanceof Section<?,?,?,?>) {\r\n\tret.addAll(((Section<?, ?, ?, ?>) this).getAllExtend().stream().flatMap(s -> s.getAttributes().stream()).collect(<%java.util.stream.Collectors%>.toList()));\r\n}\r\n\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.structure.generic.GenericPackage%>.Literals.CLASS__ALL_ATTRIBUTES,\r\n\t\tret.size(), ret.toArray());"
+		   });	
+		addAnnotation
+		  (getClass_AllAttributes(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of Attributes (if this is a Section, including those of extended Sections)."
+		   });	
+		addAnnotation
+		  (getClass_AllReferences(), 
+		   source, 
+		   new String[] {
+			 "get", "List<Object> ret = new ArrayList<>();\r\n\r\tret.addAll(this.getReferences());\r\n\r\tif (this instanceof Section<?, ?, ?, ?>) {\r\n\t\t\tret.addAll(((Section<?, ?, ?, ?>) this).getAllExtend().stream().flatMap(s -> s.getReferences().stream())\r\n\t\t\t\t\t.collect(<%java.util.stream.Collectors%>.toList()));\r\n\t\t}\r\n\r\treturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.structure.generic.GenericPackage%>.Literals.CLASS__ALL_REFERENCES, ret.size(),\r\n\t\t\t\tret.toArray());"
+		   });	
+		addAnnotation
+		  (getClass_AllReferences(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of References (if this is a Section, including those of extended Sections)."
 		   });	
 		addAnnotation
 		  (sectionEClass, 

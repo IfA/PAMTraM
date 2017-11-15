@@ -3,6 +3,8 @@ package de.mfreund.gentrans.transformation.matching;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -203,15 +205,15 @@ public abstract class ValueExtractor extends CancelableElement {
 			do {
 				sourceDescriptor = sourceDescriptor.getContainerDescriptor();
 				if (sourceDescriptor == null) {
-					// Error: could not determine hint value
-					return null;
+					break;
 				}
-			} while (!sourceDescriptor.getSourceModelObjectsMapped()
-					.containsKey(mappingHintSourceElement.getSource().eContainer()));
+			} while (sourceDescriptor.getMatchedSourceModelElementsFor(
+					(SourceSectionClass) mappingHintSourceElement.getSource().eContainer()).isEmpty());
 		}
 
-		Set<EObject> sourceElements = sourceDescriptor.getSourceModelObjectsMapped()
-				.get(mappingHintSourceElement.getSource().eContainer());
+		Set<EObject> sourceElements = sourceDescriptor == null ? new HashSet<>()
+				: sourceDescriptor.getMatchedSourceModelElementsFor(
+						(SourceSectionClass) mappingHintSourceElement.getSource().eContainer());
 
 		if (mappingHintSourceElement instanceof LocalDynamicSourceElement<?, ?, ?, ?>) {
 
@@ -226,11 +228,11 @@ public abstract class ValueExtractor extends CancelableElement {
 						.filter(s -> MatchSpecHandler.conformsMatchedObject(
 								localDescriptor.getAssociatedSourceModelElement(), s,
 								(MatchSpecElement<?, ?, ?, ?>) mappingHintSourceElement, this.logger))
-						.collect(Collectors.toSet());
+						.collect(Collectors.toCollection(LinkedHashSet::new));
 			}
 		}
 
-		if (sourceElements == null) {
+		if (sourceElements.isEmpty()) {
 			this.logger.warning(() -> "Hint source value '" + mappingHintSourceElement.getName() + "' not found!");
 			return null;
 		}
@@ -270,8 +272,10 @@ public abstract class ValueExtractor extends CancelableElement {
 		//
 		List<EObject> sourceElements = (useParallelization ? sourceDescriptors.parallelStream()
 				: sourceDescriptors.stream())
-						.flatMap(descriptor -> descriptor.getSourceModelObjectsMapped()
-								.get(mappingHintSourceElement.getSource().eContainer()).stream())
+						.flatMap(descriptor -> descriptor
+								.getMatchedSourceModelElementsFor(
+										(SourceSectionClass) mappingHintSourceElement.getSource().eContainer())
+								.stream())
 						.collect(Collectors.toList());
 
 		// Reduce the list of instances based on modeled InstancePointers

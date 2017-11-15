@@ -132,11 +132,6 @@ public class LocalDynamicSourceElementItemProvider extends DynamicSourceElementI
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
-	/**
-	 * This adds a property descriptor for the Source feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated NOT
-	 */
 	@Override
 	protected void addSourcePropertyDescriptor(Object object) {
 
@@ -150,36 +145,27 @@ public class LocalDynamicSourceElementItemProvider extends DynamicSourceElementI
 					@Override
 					public Collection<?> getChoiceOfValues(Object object) {
 
-						// the parent MappingHintGroup
-						//
-						EObject parent = ((DynamicSourceElement<?, ?, ?, ?>) object).getMappingHintGroup();
-
 						// the parent Mapping
 						//
 						Mapping mapping = ((DynamicSourceElement<?, ?, ?, ?>) object).getMapping();
 
-						Class<?, ?, ?, ?> relevantClass = null;
-
-						if (mapping != null) {
-							relevantClass = mapping.getSourceSection();
-						}
-
-						if (relevantClass == null) {
+						if (mapping == null || mapping.getSourceSection() == null) {
 							return new ArrayList<>();
 						}
 
+						Class<?, ?, ?, ?> relevantClass = mapping.getSourceSection();
+
 						List<Object> choiceOfValues = new ArrayList<>();
 
-						// iterate over all elements and return the attributes
-						// as
-						// possible options
+						// iterate over all elements and return the attributes as possible options
+						//
 						Set<Class<?, ?, ?, ?>> scanned = new HashSet<>();
 						List<Class<?, ?, ?, ?>> sectionsToScan = new ArrayList<>();
 						sectionsToScan.add(relevantClass);
 
 						// also regard abstract sections that this extends
 						if (relevantClass instanceof Section) {
-							sectionsToScan.addAll(((Section<?, ?, ?, ?>) relevantClass).getExtend());
+							sectionsToScan.addAll(((Section<?, ?, ?, ?>) relevantClass).getAllExtend());
 						}
 
 						while (!sectionsToScan.isEmpty()) {

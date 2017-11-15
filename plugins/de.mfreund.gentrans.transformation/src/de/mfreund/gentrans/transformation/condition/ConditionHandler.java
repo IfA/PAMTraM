@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -182,7 +183,7 @@ public class ConditionHandler {
 		// First, we check if that condition already has been checked. In case we are dealing with a 'global' condition,
 		// we may reuse this result.
 		//
-		if (this.conditionRepository.get(complexCondition) != null && complexCondition.isGlobalCondition()) {
+		if (this.conditionRepository.get(complexCondition) != null) {
 			return this.conditionRepository.get(complexCondition);
 		}
 
@@ -473,32 +474,6 @@ public class ConditionHandler {
 			List<MappingInstanceStorage> storageInstances = this.selectedMappingRegistry
 					.get((Mapping) applicationDependency.getTarget());
 
-			// no instance pointers
-			if (applicationDependency.getInstanceSelectors().isEmpty()) {
-
-				// check Cardinality of the condition (e.g. the condition have
-				// to be at least 5 times true)
-				boolean cardinalityRes = this.checkCardinality(applicationDependency.getValue(),
-						storageInstances.size(), applicationDependency.getComparator());
-
-				// return Result of this condition (and store result if its
-				// referred model objects already were marked
-				// as 'matched'
-				if (cardinalityRes) {
-
-					this.storeConditionResult(applicationDependency, CondResult.TRUE);
-					return CondResult.TRUE;
-
-				} else {
-
-					this.storeConditionResult(applicationDependency, CondResult.FALSE);
-					return CondResult.FALSE;
-
-				}
-			}
-
-			// instance pointers
-
 			List<EObject> instancesToConsider = this.getInstancesToConsider(applicationDependency,
 					matchedSectionDescriptor);
 
@@ -575,10 +550,11 @@ public class ConditionHandler {
 			// use the corresponding 'container descriptors' instead of the
 			// determined 'descriptors' themselves
 			//
-
 			MatchedSectionDescriptor descriptorToConsider = matchedSectionDescriptor;
 			while (!descriptorToConsider.getAssociatedSourceSectionClass().getContainingSection()
-					.equals(affectedSection)) {
+					.equals(affectedSection)
+					&& !descriptorToConsider.getAssociatedSourceSectionClass().getContainingSection().getAllExtend()
+							.contains(affectedSection)) {
 
 				if (descriptorToConsider.getContainerDescriptor() == null) {
 					this.logger.severe(() -> "Internal error while evaluating condition '" + condition.getName()
@@ -606,7 +582,7 @@ public class ConditionHandler {
 		List<EObject> correspondEClassInstances = affectedClasses.stream()
 				.flatMap(affectedClass -> descriptorsToConsider.stream()
 						.flatMap(descriptor -> Optional
-								.ofNullable(descriptor.getSourceModelObjectsMapped().get(affectedClass))
+								.ofNullable(descriptor.getMatchedSourceModelElementsFor(affectedClass))
 								.orElse(new HashSet<>()).stream()))
 				.collect(Collectors.toList());
 
@@ -620,10 +596,9 @@ public class ConditionHandler {
 
 			SourceSectionClass owningClass = reference.getOwningClass();
 			Set<EObject> owningElements = descriptorsToConsider.stream()
-					.flatMap(
-							descriptor -> Optional.ofNullable(descriptor.getSourceModelObjectsMapped().get(owningClass))
-									.orElse(new HashSet<>()).stream())
-					.collect(Collectors.toSet());
+					.flatMap(descriptor -> Optional.ofNullable(descriptor.getMatchedSourceModelElementsFor(owningClass))
+							.orElse(new HashSet<>()).stream())
+					.collect(Collectors.toCollection(LinkedHashSet::new));
 			correspondEClassInstances = correspondEClassInstances.stream()
 					.filter(instance -> owningElements.stream().anyMatch(owner -> AgteleEcoreUtil
 							.getStructuralFeatureValueAsList(owner, reference.getEReference()).contains(instance)))

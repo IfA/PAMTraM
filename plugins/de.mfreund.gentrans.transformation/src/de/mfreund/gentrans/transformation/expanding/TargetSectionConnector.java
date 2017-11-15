@@ -3,6 +3,7 @@ package de.mfreund.gentrans.transformation.expanding;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -213,13 +214,13 @@ public class TargetSectionConnector extends CancelableElement {
 			// simply added as root elements to that file
 			//
 			this.addToTargetModelRoot(
-					targetSectionRegistry.getPamtramClassInstances(hintGroup.getTargetSection()).get(hintGroup));
+					this.targetSectionRegistry.getPamtramClassInstances(hintGroup.getTargetSection()).get(hintGroup));
 			return true;
 
 		}
 
-		if (targetSectionRegistry.getPamtramClassInstances(section).keySet().isEmpty()
-				|| targetSectionRegistry.getPamtramClassInstances(section).get(hintGroup) == null) {
+		if (this.targetSectionRegistry.getPamtramClassInstances(section).keySet().isEmpty()
+				|| this.targetSectionRegistry.getPamtramClassInstances(section).get(hintGroup) == null) {
 
 			// nothing to do
 			//
@@ -262,14 +263,14 @@ public class TargetSectionConnector extends CancelableElement {
 
 		} else {
 
-			final List<EObjectWrapper> containerInstances = targetSectionRegistry
+			final List<EObjectWrapper> containerInstances = this.targetSectionRegistry
 					.getFlattenedPamtramClassInstances(section.getContainer());
 
 			/*
 			 * fetch ALL instances created by the MH-Group in question => less user input and possibly shorter
 			 * processing time
 			 */
-			final List<EObjectWrapper> rootInstances = targetSectionRegistry.getPamtramClassInstances(section)
+			final List<EObjectWrapper> rootInstances = this.targetSectionRegistry.getPamtramClassInstances(section)
 					.get(hintGroup);
 
 			// Prevent circular containments
@@ -279,7 +280,7 @@ public class TargetSectionConnector extends CancelableElement {
 			List<EObjectWrapper> unconnectedInstances = this.joinWithoutContainerSelector(rootInstances, section,
 					hintGroup,
 					section.getContainer() != null
-							? Optional.of(new HashSet<>(Arrays.asList(section.getContainer().getEClass())))
+							? Optional.of(Collections.singleton(section.getContainer().getEClass()))
 							: Optional.empty(),
 					containerInstances.isEmpty() ? Optional.empty() : Optional.of(containerInstances));
 
@@ -318,13 +319,14 @@ public class TargetSectionConnector extends CancelableElement {
 			// do not join sections for that a 'file' is specified, those are
 			// simply added as root elements to that file
 			//
-			this.addToTargetModelRoot(targetSectionRegistry.getPamtramClassInstances(section).get(hintGroupImporter));
+			this.addToTargetModelRoot(
+					this.targetSectionRegistry.getPamtramClassInstances(section).get(hintGroupImporter));
 			return true;
 
 		}
 
-		if (targetSectionRegistry.getPamtramClassInstances(section).keySet().isEmpty()
-				|| targetSectionRegistry.getPamtramClassInstances(section).get(hintGroupImporter) == null) {
+		if (this.targetSectionRegistry.getPamtramClassInstances(section).keySet().isEmpty()
+				|| this.targetSectionRegistry.getPamtramClassInstances(section).get(hintGroupImporter) == null) {
 
 			// nothing to do
 			//
@@ -373,13 +375,13 @@ public class TargetSectionConnector extends CancelableElement {
 			// (target section container == global instance search)
 		} else {
 			final LinkedList<EObjectWrapper> containerInstances = new LinkedList<>();
-			final List<EObjectWrapper> rootInstances = targetSectionRegistry
+			final List<EObjectWrapper> rootInstances = this.targetSectionRegistry
 					.getPamtramClassInstances(g.getTargetSection()).get(hintGroupImporter);
-			final Set<EClass> containerClasses = new HashSet<>();
+			final Set<EClass> containerClasses = new LinkedHashSet<>();
 			if (g.getTargetSection().getContainer() != null) {
 				containerClasses.add(g.getTargetSection().getContainer().getEClass());
-				containerInstances.addAll(
-						targetSectionRegistry.getFlattenedPamtramClassInstances(g.getTargetSection().getContainer()));
+				containerInstances.addAll(this.targetSectionRegistry
+						.getFlattenedPamtramClassInstances(g.getTargetSection().getContainer()));
 
 			}
 
@@ -476,12 +478,12 @@ public class TargetSectionConnector extends CancelableElement {
 		// Collect all classes that could act as common root for each of the unconnected elements
 		//
 		// TODO Support multiple target models
-		final Set<EClass> common = new HashSet<>();
+		final Set<EClass> common = new LinkedHashSet<>();
 
 		for (final EClass possibleRoot : this.targetSectionRegistry.getMetaModelClasses().stream()
 				.filter(e -> !e.isAbstract()).collect(Collectors.toList())) {
 
-			if (this.unconnectableElements.keySet().parallelStream().noneMatch(
+			if (this.unconnectableElements.keySet().stream().noneMatch(
 					c -> this.targetSectionRegistry.getConnections(c, possibleRoot, this.maxPathLength).isEmpty())) {
 
 				// There is at least one connection for between 'possibleRoot' and each of the elements (resp. the
@@ -745,7 +747,7 @@ public class TargetSectionConnector extends CancelableElement {
 			//
 			pathsToConsider.addAll(containerClasses.get().stream().flatMap(
 					c -> this.targetSectionRegistry.getConnections(classToConnect, c, this.maxPathLength).stream())
-					.collect(Collectors.toSet()));
+					.collect(Collectors.toCollection(LinkedHashSet::new)));
 		} else {
 
 			pathsToConsider.addAll(this.targetSectionRegistry.getPaths(classToConnect, this.maxPathLength));
@@ -874,8 +876,8 @@ public class TargetSectionConnector extends CancelableElement {
 
 		// The list of (distinct) container instances represented by the 'connectionChoices'
 		//
-		List<EObjectWrapper> containerInstances = new ArrayList<>(
-				connectionChoices.values().stream().flatMap(List::stream).collect(Collectors.toSet()));
+		List<EObjectWrapper> containerInstances = new ArrayList<>(connectionChoices.values().stream()
+				.flatMap(List::stream).collect(Collectors.toCollection(LinkedHashSet::new)));
 
 		if (containerInstances.size() == rootInstances.size()) {
 			// This is the special case where there is exactly one container instance per root instance -> We connect

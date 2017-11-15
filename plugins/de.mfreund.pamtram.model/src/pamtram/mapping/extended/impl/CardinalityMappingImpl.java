@@ -42,8 +42,8 @@ import pamtram.structure.source.SourceSectionReference;
 import pamtram.structure.target.TargetSectionClass;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object
- * '<em><b>Cardinality Mapping</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Cardinality Mapping</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -61,7 +61,8 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 
 	/**
 	 * The default value of the '{@link #getExpression() <em>Expression</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getExpression()
 	 * @generated
 	 * @ordered
@@ -70,7 +71,8 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 
 	/**
 	 * The cached value of the '{@link #getExpression() <em>Expression</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getExpression()
 	 * @generated
 	 * @ordered
@@ -79,7 +81,8 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 
 	/**
 	 * The cached value of the '{@link #getModifiers() <em>Modifiers</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getModifiers()
 	 * @generated
 	 * @ordered
@@ -88,7 +91,8 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 
 	/**
 	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getSource()
 	 * @generated
 	 * @ordered
@@ -97,7 +101,8 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getTarget()
 	 * @generated
 	 * @ordered
@@ -105,9 +110,9 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	protected TargetSectionClass target;
 
 	/**
-	 * The cached value of the '{@link #getSourceElements() <em>Source Elements</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getSourceElements() <em>Source Elements</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @see #getSourceElements()
 	 * @generated
 	 * @ordered
@@ -258,12 +263,13 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 */
 	@Override
 	public boolean validateSourceElementMatchesSection(final DiagnosticChain diagnostics, final Map<?, ?> context) {
-		
 		if(this.getSource() == null || !(this.eContainer().eContainer() instanceof Mapping) || ((Mapping) this.eContainer().eContainer()).getSourceSection() == null) {
 			return true;
 		}
 		
-		boolean result = this.getSource().getContainingSection() == ((Mapping) this.eContainer().eContainer()).getSourceSection();
+		Mapping mapping = (Mapping) this.eContainer().eContainer();
+		
+		boolean result = this.getSource().getContainingSection() == mapping.getSourceSection() || mapping.getSourceSection().getAllExtend().contains(this.getSource().getContainingSection());
 		
 		if (!result && diagnostics != null) {
 		
@@ -287,27 +293,29 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 */
 	@Override
 	public boolean validateTargetClassMatchesSection(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		if (this.getTarget() == null || !(this.eContainer() instanceof MappingHintGroupType)
+						|| ((MappingHintGroupType) this.eContainer()).getTargetSection() == null) {
+					return true;
+				}
+				
+				MappingHintGroupType mappingHintGroup = (MappingHintGroupType) this.eContainer();
 		
-		if(this.getTarget() == null || !(this.eContainer() instanceof MappingHintGroupType) || ((MappingHintGroupType) this.eContainer()).getTargetSection() == null) {
-			return true;
-		}
+			boolean result = this.getTarget().getContainingSection() == mappingHintGroup
+						.getTargetSection() || mappingHintGroup.getAllExtend().contains(this.getTarget().getContainingSection());
 		
-		boolean result = this.getTarget().getContainingSection() == ((MappingHintGroupType) this.eContainer()).getTargetSection();
+			if (!result && diagnostics != null) {
 		
-		if (!result && diagnostics != null) {
+				String errorMessage = "The target class '" + this.getTarget().getName()
+							+ "' is not part of the target section referenced by parent hint group '"
+							+ mappingHintGroup.getName() + "'!";
 		
-			String errorMessage = "The target class '" + this.getTarget().getName() + "' is not part of the target section referenced by parent hint group '" + ((MappingHintGroupType) this.eContainer()).getName() + "'!";
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, ExtendedValidator.DIAGNOSTIC_SOURCE,
+							ExtendedValidator.CARDINALITY_MAPPING__VALIDATE_TARGET_CLASS_MATCHES_SECTION, errorMessage,
+							new Object[] { this, ExtendedPackage.Literals.CARDINALITY_MAPPING__TARGET }));
 		
-			diagnostics.add(new BasicDiagnostic
-					(Diagnostic.ERROR,
-					ExtendedValidator.DIAGNOSTIC_SOURCE,
-							ExtendedValidator.CARDINALITY_MAPPING__VALIDATE_TARGET_CLASS_MATCHES_SECTION,
-							errorMessage,
-					new Object[] { this, ExtendedPackage.Literals.CARDINALITY_MAPPING__TARGET }));
+			}
 		
-		}
-		
-		return result;
+			return result;
 	}
 
 	/**

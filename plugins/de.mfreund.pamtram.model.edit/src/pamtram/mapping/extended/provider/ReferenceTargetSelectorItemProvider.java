@@ -3,16 +3,12 @@
 package pamtram.mapping.extended.provider;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
-
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -28,8 +24,6 @@ import de.tud.et.ifa.agtele.emf.edit.commands.BasicDragAndDropCompoundCommand;
 import pamtram.DeactivatableElement;
 import pamtram.PamtramFactory;
 import pamtram.PamtramPackage;
-import pamtram.mapping.MappingHintGroupImporter;
-import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.extended.ExtendedFactory;
 import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.mapping.extended.ReferenceTargetSelector;
@@ -38,10 +32,8 @@ import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.StructureFactory;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.TargetInstanceSelector;
-import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.target.TargetSectionClass;
-import pamtram.structure.target.TargetSectionCrossReference;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.extended.ReferenceTargetSelector} object. <!--
@@ -125,131 +117,64 @@ public class ReferenceTargetSelectorItemProvider extends MappingHintItemProvider
 	 * This adds a property descriptor for the Reference Attribute feature. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 *
-	 * @generated NOT due to overwriting of 'getChoiceOfValues'
+	 * @generated
 	 */
 	protected void addReferenceAttributePropertyDescriptor(Object object) {
-
-		this.itemPropertyDescriptors.add(new ItemPropertyDescriptor(
-				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
-				this.getString("_UI_TargetInstanceSelector_referenceAttribute_feature"),
-				this.getString("_UI_TargetInstanceSelector_referenceAttribute_description"),
-				StructurePackage.Literals.TARGET_INSTANCE_SELECTOR__REFERENCE_ATTRIBUTE, true, false, true, null,
-				this.getString("_UI_BasicPropertyCategory"), null) {
-
-			@Override
-			public Collection<?> getChoiceOfValues(Object object) {
-
-				Collection<?> choices = super.getChoiceOfValues(object);
-
-				// If a 'targetClass' has already been set for this 'TargetInstanceSelector', allow only those choices
-				// that are part of the same TargetSection as the specified 'targetClass' (or of one of the extended
-				// sections).
-				//
-				if (object instanceof TargetInstanceSelector
-						&& ((TargetInstanceSelector) object).getTargetClass() != null) {
-
-					TargetSection section = ((TargetInstanceSelector) object).getTargetClass().getContainingSection();
-					if (section != null) {
-
-						List<TargetSection> allowedSections = new ArrayList<>(Arrays.asList(section));
-						allowedSections.addAll(section.getAllExtend());
-
-						return choices.stream()
-								.filter(c -> c instanceof TargetSectionAttribute && allowedSections
-										.contains(((TargetSectionAttribute) c).getContainingSection()))
-								.collect(Collectors.toList());
-					}
-
-				}
-
-				return choices;
-			}
-		});
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TargetInstanceSelector_referenceAttribute_feature"),
+				 getString("_UI_TargetInstanceSelector_referenceAttribute_description"),
+				 StructurePackage.Literals.TARGET_INSTANCE_SELECTOR__REFERENCE_ATTRIBUTE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 getString("_UI_BasicPropertyCategory"),
+				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Target Class feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated NOT due to overwriting of 'getChoiceOfValues'
+	 * This adds a property descriptor for the Target Class feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
 	 */
 	protected void addTargetClassPropertyDescriptor(Object object) {
-
-		this.itemPropertyDescriptors.add(
-				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
-						this.getResourceLocator(), this.getString("_UI_TargetInstanceSelector_targetClass_feature"),
-						this.getString("_UI_TargetInstanceSelector_targetClass_description"),
-						StructurePackage.Literals.TARGET_INSTANCE_SELECTOR__TARGET_CLASS, true, false, true, null,
-						this.getString("_UI_BasicPropertyCategory"), null) {
-
-					@Override
-					public Collection<?> getChoiceOfValues(Object object) {
-
-						Collection<?> choices = super.getChoiceOfValues(object);
-
-						// If an 'affectedReference' has already been set for this 'TargetInstanceSelector', allow only
-						// those choices
-						// that are compatible with the selected reference.
-						//
-						if (object instanceof ReferenceTargetSelector
-								&& ((ReferenceTargetSelector) object).getAffectedReference() != null
-								&& ((ReferenceTargetSelector) object).getAffectedReference().getEReference() != null) {
-
-							ReferenceTargetSelector referenceTargetSelector = (ReferenceTargetSelector) object;
-
-							return choices.stream().filter(c -> c instanceof TargetSectionClass)
-									.map(c -> (TargetSectionClass) c)
-									.filter(targetClass -> targetClass.getEClass() != null
-											&& referenceTargetSelector.getAffectedReference().getEReference()
-													.getEReferenceType().isSuperTypeOf(targetClass.getEClass()))
-									.collect(Collectors.toList());
-
-						}
-
-						return super.getChoiceOfValues(object);
-					}
-				});
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TargetInstanceSelector_targetClass_feature"),
+				 getString("_UI_TargetInstanceSelector_targetClass_description"),
+				 StructurePackage.Literals.TARGET_INSTANCE_SELECTOR__TARGET_CLASS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 getString("_UI_BasicPropertyCategory"),
+				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Affected Reference feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated NOT
+	 * This adds a property descriptor for the Affected Reference feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
 	 */
 	protected void addAffectedReferencePropertyDescriptor(Object object) {
-
-		this.itemPropertyDescriptors.add(new ItemPropertyDescriptor(
-				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
-				this.getString("_UI_ReferenceTargetSelector_affectedReference_feature"),
-				this.getString("_UI_ReferenceTargetSelector_affectedReference_description"),
-				ExtendedPackage.Literals.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE, true, false, true, null,
-				this.getString("_UI_BasicPropertyCategory"), null) {
-
-			@Override
-			public Collection<?> getChoiceOfValues(Object object) {
-
-				TargetSectionClass target = null;
-				if (((ReferenceTargetSelector) object).eContainer() instanceof MappingHintGroupType) {
-					target = ((MappingHintGroupType) ((ReferenceTargetSelector) object).eContainer())
-							.getTargetSection();
-				} else if (((ReferenceTargetSelector) object).eContainer() instanceof MappingHintGroupImporter) {
-					target = ((MappingHintGroupImporter) ((ReferenceTargetSelector) object).eContainer()).getHintGroup()
-							.getTargetSection();
-				}
-
-				TreeIterator<EObject> it = target.eAllContents();
-				List<EObject> vals = new ArrayList<>();
-
-				while (it.hasNext()) {
-					EObject next = it.next();
-					if (next instanceof TargetSectionCrossReference) {
-						vals.add(next);
-					}
-				}
-
-				return vals;
-			}
-
-		});
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ReferenceTargetSelector_affectedReference_feature"),
+				 getString("_UI_ReferenceTargetSelector_affectedReference_description"),
+				 ExtendedPackage.Literals.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 getString("_UI_BasicPropertyCategory"),
+				 null));
 	}
 
 	/**

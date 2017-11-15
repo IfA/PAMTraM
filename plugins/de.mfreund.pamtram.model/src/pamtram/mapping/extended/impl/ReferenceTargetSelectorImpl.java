@@ -352,14 +352,13 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	 */
 	@Override
 	public boolean validateAffectedReferenceMatchesSection(final DiagnosticChain diagnostics, final Map<?, ?> context) {
-		
 		if(this.getAffectedReference() == null) {
 			return true;
 		}
 		
 		TargetSection targetSection = this.eContainer() instanceof MappingHintGroupType ? ((MappingHintGroupType) this.eContainer()).getTargetSection() : ((MappingHintGroupImporter) this.eContainer()).getHintGroup().getTargetSection();
 		
-		boolean result = targetSection == null ? true : this.getAffectedReference().getContainingSection() == targetSection || targetSection.getExtend().contains(this.getAffectedReference().getContainingSection());
+		boolean result = targetSection == null ? true : this.getAffectedReference().getContainingSection() == targetSection || targetSection.getAllExtend().contains(this.getAffectedReference().getContainingSection());
 		
 		if (!result && diagnostics != null) {
 		

@@ -10,6 +10,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+
 import pamtram.structure.ExternalDynamicSourceElement;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.Attribute;
@@ -19,16 +20,16 @@ import pamtram.structure.source.SourceSection;
 import pamtram.structure.util.StructureValidator;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>External Modified Attribute Element Type</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>External Modified Attribute Element
+ * Type</b></em>'. <!-- end-user-doc -->
  *
  * @generated
  */
-public abstract class ExternalDynamicSourceElementImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends DynamicSourceElementImpl<S, C, R, A> implements ExternalDynamicSourceElement<S, C, R, A> {
+public abstract class ExternalDynamicSourceElementImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>>
+		extends DynamicSourceElementImpl<S, C, R, A> implements ExternalDynamicSourceElement<S, C, R, A> {
+
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected ExternalDynamicSourceElementImpl() {
@@ -36,8 +37,7 @@ public abstract class ExternalDynamicSourceElementImpl<S extends Section<S, C, R
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -46,39 +46,39 @@ public abstract class ExternalDynamicSourceElementImpl<S extends Section<S, C, R
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public boolean validateSourceAttributeMatchesContainerSection(final DiagnosticChain diagnostics, final Map<?, ?> context) {
-		if(this.getMapping() == null || this.getSource() == null) {
-			return true;
-		}
+	public boolean validateSourceAttributeMatchesContainerSection(final DiagnosticChain diagnostics,
+			final Map<?, ?> context) {
+		if (this.getMapping() == null || this.source == null || this.getMapping().getSourceSection() == null
+						|| !(this.source.getContainingSection() instanceof SourceSection)) {
+					return true;
+				}
 		
-		SourceSection sourceSection = this.getMapping().getSourceSection();
+			SourceSection sourceSection = this.getMapping().getSourceSection();
+				SourceSection containingSection = (SourceSection) this.getSource().getContainingSection();
 		
-		boolean result = sourceSection == null || !(this.getSource().getContainingSection() instanceof SourceSection) ? true : ((SourceSection) this.getSource().getContainingSection()).isContainerFor(sourceSection);
+			boolean result = containingSection.isContainerFor(sourceSection);
 		
-		if (!result && diagnostics != null) {
+			if (!result && diagnostics != null) {
 		
-			String errorMessage = "The source attribute '" + this.getSource().getName() + "' is not part of a container section of the source section of the parent mapping '" + this.getMapping().getSourceSection().getName() + "'!";
+				String errorMessage = "The source attribute '" + this.getSource().getName()
+							+ "' is not part of a container section of the source section of the parent mapping '"
+							+ this.getMapping().getSourceSection().getName() + "'!";
 		
-			diagnostics.add(new BasicDiagnostic
-					(Diagnostic.ERROR,
-					StructureValidator.DIAGNOSTIC_SOURCE,
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, StructureValidator.DIAGNOSTIC_SOURCE,
 							StructureValidator.EXTERNAL_DYNAMIC_SOURCE_ELEMENT__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION,
-							errorMessage,
-					new Object[] { this, StructurePackage.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE }));
+							errorMessage, new Object[] { this, StructurePackage.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE }));
 		
-		}
+			}
 		
-		return result;
+			return result;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -91,4 +91,4 @@ public abstract class ExternalDynamicSourceElementImpl<S extends Section<S, C, R
 		return super.eInvoke(operationID, arguments);
 	}
 
-} //ExternalDynamicSourceElementImpl
+} // ExternalDynamicSourceElementImpl

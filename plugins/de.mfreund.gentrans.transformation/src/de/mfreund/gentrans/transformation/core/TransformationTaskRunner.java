@@ -142,9 +142,9 @@ public class TransformationTaskRunner extends CancelableElement {
 	}
 
 	/**
-	 * Prepare the transformation by {@link TransformationConfiguration#validate() validating} the
-	 * TransformationConfiguration, {@link #validatePamtramModels() validating} the {@link PAMTraM} model, and
-	 * {@link PAMTraM#mergeExtends() merging extends}.
+	 * Prepare the transformation by validating the {@link TransformationConfiguration#validate()
+	 * TransformationConfiguration} and {@link #validatePamtramModels() PAMTraM model(s)} as well as by preparing the
+	 * used {@link TransformationConfiguration#getAmbiguityResolvingStrategy() AmbiguityResolvingStrategy}.
 	 * <p />
 	 * This should be called at least once before starting the actual transformation.
 	 *
@@ -171,22 +171,6 @@ public class TransformationTaskRunner extends CancelableElement {
 		if (!this.validatePamtramModels()) {
 			return false;
 		}
-
-		this.assetManager.getLogger().fine("\nPreparing PAMTraM Models");
-
-		// Before we can use the PAMTraM model, we need merge all extended
-		// HintGroups or Sections.
-		// That way, we get a 'clean' model (without any extensions) that we can
-		// handle in a normal way
-		//
-		try {
-			this.transformationConfig.getPamtramModels().stream().forEach(PAMTraM::mergeExtends);
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new CancelTransformationException("Internal error during prepration of the PAMTraM model!", e);
-		}
-
-		this.assetManager.getLogger().fine("Preparation successful!");
 
 		// Initialize the ambiguity resolving strategy
 		//

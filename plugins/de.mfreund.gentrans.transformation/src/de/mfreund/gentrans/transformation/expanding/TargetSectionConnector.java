@@ -483,7 +483,7 @@ public class TargetSectionConnector extends CancelableElement {
 		for (final EClass possibleRoot : this.targetSectionRegistry.getMetaModelClasses().stream()
 				.filter(e -> !e.isAbstract()).collect(Collectors.toList())) {
 
-			if (this.unconnectableElements.keySet().parallelStream().noneMatch(
+			if (this.unconnectableElements.keySet().stream().noneMatch(
 					c -> this.targetSectionRegistry.getConnections(c, possibleRoot, this.maxPathLength).isEmpty())) {
 
 				// There is at least one connection for between 'possibleRoot' and each of the elements (resp. the

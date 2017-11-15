@@ -14,7 +14,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import de.mfreund.gentrans.transformation.CancelTransformationException;
 import de.mfreund.gentrans.transformation.UserAbortException;
@@ -33,7 +32,6 @@ import pamtram.DeactivatableElement;
 import pamtram.MappingModel;
 import pamtram.PAMTraM;
 import pamtram.condition.ApplicationDependency;
-import pamtram.condition.ComplexCondition;
 import pamtram.condition.Condition;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.extended.AttributeMapping;
@@ -199,19 +197,14 @@ public class MappingSelector extends CancelableElement {
 		activeMappings.removeAll(mappingModelsWithNegativeCondition.stream().flatMap(m -> m.getMappings().stream())
 				.collect(Collectors.toList()));
 
-		// TODO also filter if sub-conditions of type ApplicationDependency
-		this.dependentMappings.addAll(
-				(this.useParallelization ? activeMappings.parallelStream() : activeMappings.stream()).filter(m -> {
-					Stream<ComplexCondition> conditionParts;
-					if (m.getLocalCondition() != null) {
-						conditionParts = m.getLocalCondition().getConditionPartsFlat().stream();
-					} else if (m.getSharedCondition() != null) {
-						conditionParts = m.getSharedCondition().getConditionPartsFlat().stream();
-					} else {
-						conditionParts = Stream.empty();
-					}
-					return conditionParts.anyMatch(c -> c instanceof ApplicationDependency);
-				}).collect(Collectors.toList()));
+		// We consider all Mappings as 'dependent' (on the application of other elements) if they contain any
+		// 'ApplicationDependency'
+		//
+		this.dependentMappings
+				.addAll((this.useParallelization ? activeMappings.parallelStream() : activeMappings.stream()).filter(
+						m -> m.getAllConditions().parallelStream().flatMap(c -> c.getConditionPartsFlat().stream())
+								.anyMatch(c -> c instanceof ApplicationDependency))
+						.collect(Collectors.toList()));
 
 		// Select a mapping for each matched section and each descriptor instance. In the first run, we 'defer' those
 		// sections that are associated with a Mapping that contains a 'MappingDependency'.
@@ -433,8 +426,8 @@ public class MappingSelector extends CancelableElement {
 
 		// check Conditions of the Mapping (Note: no condition modeled = true)
 		//
-		return this.conditionHandler.checkCondition(mapping.getLocalCondition(), descriptor) == CondResult.TRUE
-				&& this.conditionHandler.checkCondition(mapping.getSharedCondition(), descriptor) == CondResult.TRUE;
+		return mapping.getAllConditions().stream()
+				.allMatch(c -> this.conditionHandler.checkCondition(c, descriptor) == CondResult.TRUE);
 
 	}
 
@@ -531,10 +524,10 @@ public class MappingSelector extends CancelableElement {
 	 */
 	private boolean checkCondition(ConditionalElement conditionalElement, MatchedSectionDescriptor descriptor) {
 
-		return !(this.conditionHandler.checkCondition(conditionalElement.getLocalCondition(),
-				descriptor) == CondResult.FALSE
-				|| this.conditionHandler.checkCondition(conditionalElement.getSharedCondition(),
-						descriptor) == CondResult.FALSE);
+		// check Conditions of the ConditionalElement (Note: no condition modeled = true)
+		//
+		return conditionalElement.getAllConditions().stream()
+				.allMatch(c -> this.conditionHandler.checkCondition(c, descriptor) == CondResult.TRUE);
 
 	}
 
@@ -548,8 +541,10 @@ public class MappingSelector extends CancelableElement {
 	 */
 	private boolean checkCondition(MappingModel mappingModel) {
 
-		return !(this.conditionHandler.checkCondition(mappingModel.getLocalCondition(), null) == CondResult.FALSE
-				|| this.conditionHandler.checkCondition(mappingModel.getSharedCondition(), null) == CondResult.FALSE);
+		// check Conditions of the MappingModel (Note: no condition modeled = true)
+		//
+		return mappingModel.getAllConditions().stream()
+				.allMatch(c -> this.conditionHandler.checkCondition(c, null) == CondResult.TRUE);
 
 	}
 

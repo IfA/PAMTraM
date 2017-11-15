@@ -42,6 +42,7 @@ import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
+import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.extended.AttributeMapping;
 import pamtram.mapping.extended.AttributeMappingSourceInterface;
 import pamtram.mapping.extended.CardinalityMapping;
@@ -201,8 +202,8 @@ public class TargetSectionInstantiator extends CancelableElement {
 	private void expandTargetSectionInstance(final MappingInstanceStorage mappingInstance, MappingHintGroup hintGroup) {
 
 		final Map<TargetSectionClass, List<EObjectWrapper>> instancesBySection = this.instantiateTargetSectionFirstPass(
-				hintGroup.getTargetSection(), hintGroup, mappingInstance.getMappingHints(hintGroup),
-				mappingInstance.getHintValues());
+				hintGroup.getTargetSection(), hintGroup,
+				mappingInstance.getMappingHints((MappingHintGroupType) hintGroup), mappingInstance.getHintValues());
 
 		if (instancesBySection == null) {
 			if (hintGroup.getTargetSection().getCardinality() != CardinalityType.ZERO_INFINITY) {// Error
@@ -237,7 +238,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 	private void expandTargetSectionInstance(final MappingInstanceStorage mappingInstance,
 			MappingHintGroupImporter mappingHintGroupImporter) {
 
-		final List<MappingHint> hints = this.getMappingHints(mappingInstance, mappingHintGroupImporter);
+		final List<MappingHint> hints = mappingInstance.getMappingHints(mappingHintGroupImporter);
 
 		final Map<TargetSectionClass, List<EObjectWrapper>> instancesBySection = this.instantiateTargetSectionFirstPass(
 				mappingHintGroupImporter.getHintGroup().getTargetSection(), mappingHintGroupImporter, hints,
@@ -284,7 +285,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 		Set<AttributeMapping> selectedHints = new LinkedHashSet<>();
 
 		// check attributes
-		for (final TargetSectionAttribute attr : targetSectionClass.getAttributes()) {
+		for (final TargetSectionAttribute attr : targetSectionClass.getAllAttributes()) {
 
 			for (final MappingHint hint : hints) {
 				if (hint instanceof AttributeMapping && ((AttributeMapping) hint).getTarget().equals(attr)) {
@@ -568,7 +569,8 @@ public class TargetSectionInstantiator extends CancelableElement {
 
 			final MappingHintGroup mhGrp = (MappingHintGroup) mappingGroup;
 
-			if (!mhGrp.getContainerSelectors().isEmpty() && mhGrp.getTargetSection().equals(targetSectionClass)) {
+			if (!mhGrp.getContainerSelectors().isEmpty() && (mhGrp.getTargetSection().equals(targetSectionClass)
+					|| mhGrp.getTargetSection().getAllExtending().contains(targetSectionClass))) {
 
 				hintFound = true;
 
@@ -837,7 +839,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 		 */
 		final Map<TargetSectionAttribute, List<String>> attributeValues = new LinkedHashMap<>();
 
-		EList<TargetSectionAttribute> attributes = targetSectionClass.getAttributes();
+		EList<TargetSectionAttribute> attributes = targetSectionClass.getAllAttributes();
 
 		if (targetSectionClass.isLibraryEntry()) {
 			// the metamodelsection is a library entry, thus there must not be
@@ -1120,8 +1122,8 @@ public class TargetSectionInstantiator extends CancelableElement {
 		// collect all containment references
 		//
 		List<TargetSectionCompositeReference> containmentReferences = (this.useParallelization
-				? targetSectionClass.getReferences().parallelStream()
-				: targetSectionClass.getReferences().stream())
+				? targetSectionClass.getAllReferences().parallelStream()
+				: targetSectionClass.getAllReferences().stream())
 						.filter(ref -> ref instanceof TargetSectionCompositeReference)
 						.map(ref -> (TargetSectionCompositeReference) ref).collect(Collectors.toList());
 
@@ -1190,33 +1192,6 @@ public class TargetSectionInstantiator extends CancelableElement {
 		}
 
 		return true;
-	}
-
-	/**
-	 * For the given {@link MappingHintGroupImporter}, this collects the <em>local</em> hints as well as the imported
-	 * hints from the referenced {@link ExportedMappingHintGroup} for the given {@link MappingInstanceStorage mapping
-	 * instance}.
-	 *
-	 * @param mappingInstance
-	 *            The {@link MappingInstanceStorage} for that imported hints shall be returned.
-	 * @param hintGroupImporter
-	 *            The {@link MappingHintGroupImporter} to handle.
-	 * @return The imported {@link MappingHint MappingHints}.
-	 */
-	private List<MappingHint> getMappingHints(final MappingInstanceStorage mappingInstance,
-			final MappingHintGroupImporter hintGroupImporter) {
-
-		final ExportedMappingHintGroup exportedHintGroup = hintGroupImporter.getHintGroup();
-
-		final List<MappingHint> hints = (this.useParallelization
-				? mappingInstance.getMappingHints(hintGroupImporter).parallelStream()
-				: mappingInstance.getMappingHints(hintGroupImporter).stream())
-						.filter(hint -> hint instanceof MappingHint).map(hint -> (MappingHint) hint)
-						.collect(Collectors.toList());
-
-		hints.addAll(exportedHintGroup.getActiveMappingHints());
-
-		return hints;
 	}
 
 }

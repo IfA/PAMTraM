@@ -5,6 +5,7 @@ package pamtram.mapping.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -17,6 +18,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import pamtram.ConditionModel;
@@ -25,6 +27,7 @@ import pamtram.PamtramPackage;
 import pamtram.condition.ComplexCondition;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
+import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.MappingPackage;
@@ -32,14 +35,14 @@ import pamtram.mapping.util.MappingValidator;
 import pamtram.util.PamtramValidator;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object
- * '<em><b>Mapping</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Mapping</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.impl.MappingImpl#getLocalCondition <em>Local Condition</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingImpl#getSharedCondition <em>Shared Condition</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.MappingImpl#getAllConditions <em>All Conditions</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingImpl#getMappingHintGroups <em>Mapping Hint Groups</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingImpl#getImportedMappingHintGroups <em>Imported Mapping Hint Groups</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingImpl#isAbstract <em>Abstract</em>}</li>
@@ -48,10 +51,11 @@ import pamtram.util.PamtramValidator;
  * @generated
  */
 public class MappingImpl extends MappingTypeImpl implements Mapping {
+
 	/**
-	 * The cached value of the '{@link #getLocalCondition() <em>Local Condition</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getLocalCondition() <em>Local Condition</em>}' containment reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @see #getLocalCondition()
 	 * @generated
 	 * @ordered
@@ -60,7 +64,8 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 
 	/**
 	 * The cached value of the '{@link #getSharedCondition() <em>Shared Condition</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @see #getSharedCondition()
 	 * @generated
 	 * @ordered
@@ -69,8 +74,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 
 	/**
 	 * The cached value of the '{@link #getMappingHintGroups() <em>Mapping Hint Groups</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getMappingHintGroups()
 	 * @generated
 	 * @ordered
@@ -78,10 +82,8 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	protected EList<MappingHintGroupType> mappingHintGroups;
 
 	/**
-	 * The cached value of the '{@link #getImportedMappingHintGroups()
-	 * <em>Imported Mapping Hint Groups</em>}' containment reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * The cached value of the '{@link #getImportedMappingHintGroups() <em>Imported Mapping Hint Groups</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getImportedMappingHintGroups()
 	 * @generated
 	 * @ordered
@@ -90,7 +92,8 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 
 	/**
 	 * The default value of the '{@link #isAbstract() <em>Abstract</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #isAbstract()
 	 * @generated
 	 * @ordered
@@ -99,7 +102,8 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 
 	/**
 	 * The cached value of the '{@link #isAbstract() <em>Abstract</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #isAbstract()
 	 * @generated
 	 * @ordered
@@ -207,6 +211,36 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 * @generated
 	 */
 	@Override
+	public EList<ComplexCondition> getAllConditions() {
+		java.util.Set<Object> ret = new java.util.LinkedHashSet<>();
+		
+			if (this.getLocalCondition() != null) {
+					ret.add(this.getLocalCondition());
+				}
+				if (this.getSharedCondition() != null) {
+					ret.add(this.getSharedCondition());
+				}
+		
+			if (this instanceof MappingHintGroup) {
+					// Add Conditions of the Mappings of extended MappingHintGroups
+					//
+					ret.addAll(((MappingHintGroup) this).getExtend().stream().filter(hg -> hg.eContainer() instanceof pamtram.mapping.Mapping).flatMap(hg -> ((pamtram.mapping.Mapping) hg.eContainer()).getAllConditions().stream()).collect(Collectors.toSet()));
+					// Add Conditions of extended MappingHintGroups
+					//
+					ret.addAll(((MappingHintGroup) this).getExtend().stream().filter(mhg -> mhg instanceof ConditionalElement)
+							.flatMap(mhg -> ((ConditionalElement) mhg).getAllConditions().stream())
+							.collect(Collectors.toSet()));
+				}
+		
+			return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.CONDITIONAL_ELEMENT__ALL_CONDITIONS,
+						ret.size(), ret.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EList<MappingHintGroupType> getMappingHintGroups() {
 		if (mappingHintGroups == null) {
 			mappingHintGroups = new EObjectContainmentEList<MappingHintGroupType>(MappingHintGroupType.class, this, MappingPackage.MAPPING__MAPPING_HINT_GROUPS);
@@ -248,9 +282,8 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> This returns the active mappingHintGroups (the
-	 * subset of the defined {@link #mappingHintGroups} for that
-	 * {@link InstantiableMappingHintGroup#isDeactivated()}) returns
+	 * <!-- begin-user-doc --> This returns the active mappingHintGroups (the subset of the defined
+	 * {@link #mappingHintGroups} for that {@link InstantiableMappingHintGroup#isDeactivated()}) returns
 	 * '<em>false</em>'. <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -350,43 +383,19 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 * @generated
 	 */
 	@Override
-	public boolean validateNoConditionForAbstractMapping(final DiagnosticChain diagnostics, final Map<?, ?> context) {
-		boolean result = !this.isAbstract() || this.getLocalCondition() == null && this.getSharedCondition() == null;
-		
-			if (!result && diagnostics != null) {
-		
-				String errorMessage = "Conditions are not supported for abstract Mappings! Consider moving the condition to the contained MappingHintGroup(s).";
-		
-				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, MappingValidator.DIAGNOSTIC_SOURCE,
-							MappingValidator.MAPPING__VALIDATE_NO_CONDITION_FOR_ABSTRACT_MAPPING, errorMessage,
-							new Object[] { this,
-									this.getLocalCondition() != null
-											? PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION
-											: PamtramPackage.Literals.CONDITIONAL_ELEMENT__SHARED_CONDITION }));
-				}
-		
-			return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean validateEitherModelOrReferCondition(final DiagnosticChain diagnostics, final Map<?, ?> context) {
-		
-		boolean result = !(this.getLocalCondition() != null && this.getSharedCondition() != null);
+	public boolean validateSourceSectionIsNotAbstract(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		boolean result = this.getSourceSection() == null || this.isAbstract() || !this.getSourceSection().isAbstract();
 		
 		if (!result && diagnostics != null) {
 		
-			String errorMessage = "Please specify at most one (local or shared) condition!";
+			String errorMessage = "Only abstract Mappings may reference abstract SourceSections!";
 		
 			diagnostics.add(new BasicDiagnostic
 					(Diagnostic.ERROR,
-					PamtramValidator.DIAGNOSTIC_SOURCE,
-							PamtramValidator.CONDITIONAL_ELEMENT__VALIDATE_EITHER_MODEL_OR_REFER_CONDITION,
+					MappingValidator.DIAGNOSTIC_SOURCE,
+							MappingValidator.MAPPING__VALIDATE_SOURCE_SECTION_IS_NOT_ABSTRACT,
 							errorMessage,
-					new Object[] { this, PamtramPackage.Literals.CONDITIONAL_ELEMENT }));
+					new Object[] { this, MappingPackage.Literals.MAPPING_TYPE__SOURCE_SECTION }));
 		
 		}
 		
@@ -448,6 +457,8 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 			case MappingPackage.MAPPING__SHARED_CONDITION:
 				if (resolve) return getSharedCondition();
 				return basicGetSharedCondition();
+			case MappingPackage.MAPPING__ALL_CONDITIONS:
+				return getAllConditions();
 			case MappingPackage.MAPPING__MAPPING_HINT_GROUPS:
 				return getMappingHintGroups();
 			case MappingPackage.MAPPING__IMPORTED_MAPPING_HINT_GROUPS:
@@ -524,6 +535,8 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 				return localCondition != null;
 			case MappingPackage.MAPPING__SHARED_CONDITION:
 				return sharedCondition != null;
+			case MappingPackage.MAPPING__ALL_CONDITIONS:
+				return !getAllConditions().isEmpty();
 			case MappingPackage.MAPPING__MAPPING_HINT_GROUPS:
 				return mappingHintGroups != null && !mappingHintGroups.isEmpty();
 			case MappingPackage.MAPPING__IMPORTED_MAPPING_HINT_GROUPS:
@@ -544,6 +557,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 			switch (derivedFeatureID) {
 				case MappingPackage.MAPPING__LOCAL_CONDITION: return PamtramPackage.CONDITIONAL_ELEMENT__LOCAL_CONDITION;
 				case MappingPackage.MAPPING__SHARED_CONDITION: return PamtramPackage.CONDITIONAL_ELEMENT__SHARED_CONDITION;
+				case MappingPackage.MAPPING__ALL_CONDITIONS: return PamtramPackage.CONDITIONAL_ELEMENT__ALL_CONDITIONS;
 				default: return -1;
 			}
 		}
@@ -560,6 +574,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 			switch (baseFeatureID) {
 				case PamtramPackage.CONDITIONAL_ELEMENT__LOCAL_CONDITION: return MappingPackage.MAPPING__LOCAL_CONDITION;
 				case PamtramPackage.CONDITIONAL_ELEMENT__SHARED_CONDITION: return MappingPackage.MAPPING__SHARED_CONDITION;
+				case PamtramPackage.CONDITIONAL_ELEMENT__ALL_CONDITIONS: return MappingPackage.MAPPING__ALL_CONDITIONS;
 				default: return -1;
 			}
 		}
@@ -574,7 +589,6 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == ConditionalElement.class) {
 			switch (baseOperationID) {
-				case PamtramPackage.CONDITIONAL_ELEMENT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP: return MappingPackage.MAPPING___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP;
 				case PamtramPackage.CONDITIONAL_ELEMENT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP: return MappingPackage.MAPPING___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
 				default: return -1;
 			}
@@ -600,10 +614,8 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 				return validateContainsDeactivatedHintGroups((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case MappingPackage.MAPPING___VALIDATE_SOURCE_SECTION_IS_ACTIVE__DIAGNOSTICCHAIN_MAP:
 				return validateSourceSectionIsActive((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
-			case MappingPackage.MAPPING___VALIDATE_NO_CONDITION_FOR_ABSTRACT_MAPPING__DIAGNOSTICCHAIN_MAP:
-				return validateNoConditionForAbstractMapping((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
-			case MappingPackage.MAPPING___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP:
-				return validateEitherModelOrReferCondition((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case MappingPackage.MAPPING___VALIDATE_SOURCE_SECTION_IS_NOT_ABSTRACT__DIAGNOSTICCHAIN_MAP:
+				return validateSourceSectionIsNotAbstract((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case MappingPackage.MAPPING___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP:
 				return validateReferenceOnlyConditionsFromConditionModel((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}

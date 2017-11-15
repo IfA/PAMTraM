@@ -150,9 +150,9 @@ public interface Mapping extends MappingType, ConditionalElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='boolean result = !this.isAbstract() || this.getLocalCondition() == null &amp;&amp; this.getSharedCondition() == null;\r\n\r\tif (!result &amp;&amp; diagnostics != null) {\r\n\r\t\tString errorMessage = \"Conditions are not supported for abstract Mappings! Consider moving the condition to the contained MappingHintGroup(s).\";\r\n\r\t\tdiagnostics.add(new BasicDiagnostic(&lt;%org.eclipse.emf.common.util.Diagnostic%&gt;.ERROR, &lt;%pamtram.mapping.util.MappingValidator%&gt;.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\t&lt;%pamtram.mapping.util.MappingValidator%&gt;.MAPPING__VALIDATE_NO_CONDITION_FOR_ABSTRACT_MAPPING, errorMessage,\r\n\t\t\t\t\tnew Object[] { this,\r\n\t\t\t\t\t\t\tthis.getLocalCondition() != null\r\n\t\t\t\t\t\t\t\t\t? &lt;%pamtram.PamtramPackage%&gt;.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION\r\n\t\t\t\t\t\t\t\t\t: &lt;%pamtram.PamtramPackage%&gt;.Literals.CONDITIONAL_ELEMENT__SHARED_CONDITION }));\r\n\t\t}\r\n\r\treturn result;'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='boolean result = this.getSourceSection() == null || this.isAbstract() || !this.getSourceSection().isAbstract();\r\n\r\nif (!result &amp;&amp; diagnostics != null) {\r\n\r\n\tString errorMessage = \"Only abstract Mappings may reference abstract SourceSections!\";\r\n\r\n\tdiagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%&gt;\r\n\t\t\t(&lt;%org.eclipse.emf.common.util.Diagnostic%&gt;.ERROR,\r\n\t\t\t&lt;%pamtram.mapping.util.MappingValidator%&gt;.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\t&lt;%pamtram.mapping.util.MappingValidator%&gt;.MAPPING__VALIDATE_SOURCE_SECTION_IS_NOT_ABSTRACT,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, &lt;%pamtram.mapping.MappingPackage%&gt;.Literals.MAPPING_TYPE__SOURCE_SECTION }));\r\n\r\n}\r\n\r\nreturn result;'"
 	 * @generated
 	 */
-	boolean validateNoConditionForAbstractMapping(DiagnosticChain diagnostics, Map<?, ?> context);
+	boolean validateSourceSectionIsNotAbstract(DiagnosticChain diagnostics, Map<?, ?> context);
 
 } // Mapping

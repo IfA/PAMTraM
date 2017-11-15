@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -152,11 +151,7 @@ public class HintValueExtractor extends ValueExtractor {
 
 		// First, we collect all hints of all hint groups
 		//
-		List<MappingHint> mappingHints = (this.useParallelization
-				? mappingInstance.getMappingHintGroups().parallelStream()
-				: mappingInstance.getMappingHintGroups().stream())
-						.flatMap(hintGroup -> mappingInstance.getMappingHints(hintGroup).stream())
-						.collect(Collectors.toList());
+		Set<MappingHint> mappingHints = mappingInstance.getMappingHints();
 
 		// Now, we need to initialize the corresponding maps to store hint
 		// values
@@ -334,7 +329,7 @@ public class HintValueExtractor extends ValueExtractor {
 				// this class has been matched
 				//
 				SourceSectionClass sourceClass = (SourceSectionClass) cardinalityMapping.getSource();
-				Set<EObject> sourceElements = matchedSectionDescriptor.getSourceModelObjectsMapped().get(sourceClass);
+				Set<EObject> sourceElements = matchedSectionDescriptor.getMatchedSourceModelElementsFor(sourceClass);
 				return sourceElements == null ? null : sourceElements.size();
 
 			} else if (cardinalityMapping.getSource() instanceof SourceSectionAttribute) {
@@ -345,8 +340,8 @@ public class HintValueExtractor extends ValueExtractor {
 				// each of the found matches
 				//
 				SourceSectionAttribute sourceAttribute = (SourceSectionAttribute) cardinalityMapping.getSource();
-				Set<EObject> sourceElements = matchedSectionDescriptor.getSourceModelObjectsMapped()
-						.get(sourceAttribute.getOwningClass());
+				Set<EObject> sourceElements = matchedSectionDescriptor
+						.getMatchedSourceModelElementsFor(sourceAttribute.getOwningClass());
 				return sourceElements == null ? null
 						: sourceElements.parallelStream()
 								.mapToInt(sourceElement -> sourceAttribute instanceof ActualAttribute<?, ?, ?, ?>

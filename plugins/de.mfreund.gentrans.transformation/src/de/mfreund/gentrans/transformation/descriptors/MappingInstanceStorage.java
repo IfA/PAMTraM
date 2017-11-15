@@ -4,14 +4,18 @@
 package de.mfreund.gentrans.transformation.descriptors;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EObject;
@@ -19,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
 import de.mfreund.gentrans.transformation.matching.MappingSelector;
 import pamtram.ConditionalElement;
 import pamtram.DeactivatableElement;
+import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroup;
@@ -29,7 +34,6 @@ import pamtram.mapping.extended.CardinalityMapping;
 import pamtram.mapping.extended.ContainerSelector;
 import pamtram.mapping.extended.MappingHint;
 import pamtram.mapping.extended.MappingHintSourceInterface;
-import pamtram.mapping.extended.MappingHintType;
 import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.target.TargetSection;
@@ -215,11 +219,28 @@ public class MappingInstanceStorage {
 	public List<EObjectWrapper> getInstances(final InstantiableMappingHintGroup instantiableMappingHintGroup,
 			final TargetSectionClass targetSectionClass) {
 
-		if (this.instancesBySection.containsKey(instantiableMappingHintGroup)) {
-			return new ArrayList<>(this.instancesBySection.get(instantiableMappingHintGroup).get(targetSectionClass));
+		Map<TargetSectionClass, List<EObjectWrapper>> instanceMap = this.instancesBySection
+				.containsKey(instantiableMappingHintGroup) ? this.instancesBySection.get(instantiableMappingHintGroup)
+						: new HashMap<>();
+
+		if (instanceMap.isEmpty()) {
+			return new ArrayList<>();
 		}
 
-		return new ArrayList<>();
+		List<TargetSectionClass> classesToConsider;
+
+		// In case of abstract Sections, we do not consider the given TargetSectionClass but all (concrete) extending
+		// Sections
+		//
+		if (targetSectionClass instanceof TargetSection && ((TargetSection) targetSectionClass).isAbstract()) {
+			classesToConsider = ((TargetSection) targetSectionClass).getAllExtending().stream()
+					.filter(s -> !s.isAbstract()).collect(Collectors.toList());
+		} else {
+			classesToConsider = Arrays.asList(targetSectionClass);
+		}
+
+		return classesToConsider.stream().filter(instanceMap::containsKey).flatMap(c -> instanceMap.get(c).stream())
+				.collect(Collectors.toList());
 	}
 
 	/**
@@ -292,6 +313,41 @@ public class MappingInstanceStorage {
 	}
 
 	/**
+	 * This returns the {@link DeactivatableElement#isDeactivated() active} hints for all {@link #getMappingHintGroups()
+	 * normal} and {@link #getMappingHintGroupImporters() imported} {@link InstantiableMappingHintGroup hintGroups} for
+	 * that the condition has not been determined as {@link #isElementWithNegativeCondition(ConditionalElement) false}.
+	 *
+	 * @return The set of valid {@link MappingHint hints} for the given {@link InstantiableMappingHintGroup}.
+	 */
+	public Set<MappingHint> getMappingHints() {
+
+		return Stream
+				.concat(this.getMappingHintGroups().stream().flatMap(hg -> this.getMappingHints(hg).stream()),
+						this.getMappingHintGroupImporters().stream().flatMap(hg -> this.getMappingHints(hg).stream()))
+				.collect(Collectors.toCollection(LinkedHashSet::new));
+
+	}
+
+	/**
+	 * This returns the {@link DeactivatableElement#isDeactivated() active} hints for the given
+	 * {@link InstantiableMappingHintGroup hintGroup} for that the condition has not been determined as
+	 * {@link #isElementWithNegativeCondition(ConditionalElement) false}.
+	 * <p />
+	 * Note: Depending on the concrete type of {@link InstantiableMappingHintGroup}, this just redirects to either
+	 * {@link #getMappingHints(MappingHintGroupType)} or {@link #getMappingHints(MappingHintGroupImporter)}.
+	 *
+	 * @param hintGroup
+	 *            The {@link InstantiableMappingHintGroup} for that the list of {@link MappingHint MappingHints} shall
+	 *            be returned.
+	 * @return The list of valid {@link MappingHint hints} for the given {@link InstantiableMappingHintGroup}.
+	 */
+	public List<MappingHint> getMappingHints(InstantiableMappingHintGroup hintGroup) {
+
+		return hintGroup instanceof MappingHintGroupType ? this.getMappingHints((MappingHintGroupType) hintGroup)
+				: this.getMappingHints((MappingHintGroupImporter) hintGroup);
+	}
+
+	/**
 	 * This returns the {@link DeactivatableElement#isDeactivated() active} hints for the given
 	 * {@link MappingHintGroupType hintGroup} for that the condition has not been determined as
 	 * {@link #isElementWithNegativeCondition(ConditionalElement) false}.
@@ -344,35 +400,43 @@ public class MappingInstanceStorage {
 	 * This returns the {@link DeactivatableElement#isDeactivated() active} hints for the given
 	 * {@link MappingHintGroupImporter hint group importer} for that the condition has not been determined as
 	 * {@link #isElementWithNegativeCondition(ConditionalElement) false}.
+	 * <p />
+	 * Note: This not only returns those hint defined directly by the given {@link MappingHintGroupImporter} but also
+	 * those defined by the {@link MappingHintGroupImporter#getHintGroup() imported} {@link ExportedMappingHintGroup}.
 	 *
 	 * @param hintGroupImporter
 	 *            The {@link MappingHintGroupImporter} for that the list of {@link MappingHint MappingHints} shall be
 	 *            returned.
 	 * @return The list of valid {@link MappingHint hints} for the given {@link MappingHintGroupImporter}.
 	 */
-	public List<MappingHintType> getMappingHints(MappingHintGroupImporter hintGroupImporter) {
+	public List<MappingHint> getMappingHints(MappingHintGroupImporter hintGroupImporter) {
 
 		if (this.isElementWithNegativeCondition(hintGroupImporter)) {
-			return new BasicEList<>();
+			return new ArrayList<>();
 		}
 
-		return (this.useParallelization ? hintGroupImporter.getActiveMappingHints().parallelStream()
-				: hintGroupImporter.getActiveMappingHints().stream())
-						.filter(h -> !(h instanceof ConditionalElement)
-								|| !this.isElementWithNegativeCondition((ConditionalElement) h))
-						.collect(Collectors.toList());
+		return Stream
+				.concat(hintGroupImporter.getActiveMappingHints().stream(),
+						hintGroupImporter.getHintGroup().getActiveMappingHints().stream())
+				.filter(h -> !(h instanceof ConditionalElement)
+						|| !this.isElementWithNegativeCondition((ConditionalElement) h))
+				.filter(hint -> hint instanceof MappingHint).map(hint -> (MappingHint) hint)
+				.collect(Collectors.toList());
 	}
 
 	/**
 	 * This returns the {@link EObject elements} of the source model - sorted by their {@link SourceSectionClass} - that
 	 * are associated with this mapping instance (resp. the associated {@link #matchedSectionDescriptor}).
+	 * <p />
+	 * Note: This just redirects to {@link MatchedSectionDescriptor#getMatchedSourceModelObjects()} of the
+	 * {@link #matchedSectionDescriptor}.
 	 *
 	 * @return The {@link EObject elements} of the source model - sorted by their {@link SourceSectionClass} - that are
 	 *         associated with this mapping instance.
 	 */
-	public Map<SourceSectionClass, Set<EObject>> getSourceModelObjectsMapped() {
+	public Map<SourceSectionClass, Set<EObject>> getMatchedSourceModelObjects() {
 
-		return this.matchedSectionDescriptor.getSourceModelObjectsMapped();
+		return this.matchedSectionDescriptor.getMatchedSourceModelObjects();
 	}
 
 	/**

@@ -4,7 +4,6 @@
 package de.mfreund.gentrans.transformation.descriptors;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -227,17 +226,10 @@ public class MappingInstanceStorage {
 			return new ArrayList<>();
 		}
 
-		List<TargetSectionClass> classesToConsider;
-
 		// In case of abstract Sections, we do not consider the given TargetSectionClass but all (concrete) extending
 		// Sections
 		//
-		if (targetSectionClass instanceof TargetSection && ((TargetSection) targetSectionClass).isAbstract()) {
-			classesToConsider = ((TargetSection) targetSectionClass).getAllExtending().stream()
-					.filter(s -> !s.isAbstract()).collect(Collectors.toList());
-		} else {
-			classesToConsider = Arrays.asList(targetSectionClass);
-		}
+		List<TargetSectionClass> classesToConsider = targetSectionClass.getAllConcreteExtending();
 
 		return classesToConsider.stream().filter(instanceMap::containsKey).flatMap(c -> instanceMap.get(c).stream())
 				.collect(Collectors.toList());

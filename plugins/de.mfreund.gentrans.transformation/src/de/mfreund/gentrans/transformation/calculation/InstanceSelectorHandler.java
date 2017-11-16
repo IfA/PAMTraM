@@ -3,11 +3,13 @@ package de.mfreund.gentrans.transformation.calculation;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -316,32 +318,38 @@ public class InstanceSelectorHandler {
 	private List<EObjectWrapper> getReferenceAttributeInstancesByTargetInstance(EObjectWrapper targetInstance,
 			TargetInstanceSelector targetInstanceSelector) {
 
-		// The TargetSectionClass representing the given 'targetInstance'
+		// The TargetSectionClasses representing the given 'targetInstance'
 		//
-		TargetSectionClass targetClass = targetInstanceSelector.getTargetClass();
+		EList<TargetSectionClass> targetClasses = targetInstanceSelector.getTargetClass().getAllConcreteExtending();
 
-		// The TargetSectionClass that defines the 'referenceAttribute' of the TargetInstanceSelector. This may either
+		// The TargetSectionClasses that define the 'referenceAttribute' of the TargetInstanceSelector. This may either
 		// be the same as the 'targetClass' or a class that is higher or lower in the containment hierarchy
 		//
-		TargetSectionClass referenceAttributeClass = (TargetSectionClass) targetInstanceSelector.getReferenceAttribute()
-				.eContainer();
+		EList<TargetSectionClass> referenceAttributeClasses = ((TargetSectionClass) targetInstanceSelector
+				.getReferenceAttribute().eContainer()).getAllConcreteExtending();
 
-		if (targetClass.equals(referenceAttributeClass)) {
+		if (!Collections.disjoint(targetClasses, referenceAttributeClasses)) {
 			return Arrays.asList(targetInstance);
 		}
 
 		// The 'referenceAttribute' is located in a TargetSectionClass lower in the containment hierarchy than the
 		// 'targetClass'
 		//
-		if (EcoreUtil.isAncestor(targetClass, referenceAttributeClass)) {
+		Optional<TargetSectionClass> descendantReferenceAttributeClass = referenceAttributeClasses.parallelStream()
+				.filter(c -> EcoreUtil.isAncestor(targetClasses, c)).findAny();
+
+		if (descendantReferenceAttributeClass.isPresent()) {
+
+			TargetSectionClass ancestorTargetClass = targetClasses.stream()
+					.filter(c -> EcoreUtil.isAncestor(c, descendantReferenceAttributeClass.get())).findAny().get();
 
 			// Iterate upwards in the containment hierarchy of the TargetSection and collect all references that need to
 			// be followed to retrieve the instances of 'referenceAttributeClass' based on the 'targetInstance'
 			//
 			List<TargetSectionReference> references = new ArrayList<>();
-			TargetSectionClass currentClass = referenceAttributeClass;
+			TargetSectionClass currentClass = descendantReferenceAttributeClass.get();
 
-			while (targetClass != currentClass) {
+			while (ancestorTargetClass != currentClass) {
 				CompositeReference<?, ?, ?, ?> owningCompositeReference = currentClass.getOwningContainmentReference();
 				if (!(owningCompositeReference instanceof TargetSectionReference)
 						|| !(owningCompositeReference.getOwningClass() instanceof TargetSectionClass)) {
@@ -360,14 +368,20 @@ public class InstanceSelectorHandler {
 		// The 'reference attribute' is located in a TargetSectionClass higher in the containment hierarchy than the
 		// 'referenceAttributeClass'
 		//
-		if (EcoreUtil.isAncestor(referenceAttributeClass, targetClass)) {
+		Optional<TargetSectionClass> descendantTargetClass = targetClasses.parallelStream()
+				.filter(c -> EcoreUtil.isAncestor(referenceAttributeClasses, c)).findAny();
+		if (descendantTargetClass.isPresent()) {
+
+			TargetSectionClass ancestorReferenceAttributeClass = referenceAttributeClasses.stream()
+					.filter(c -> EcoreUtil.isAncestor(c, descendantTargetClass.get())).findAny().get();
 
 			// Iterate upwards in the containment hierarchy to find the (single) instance representing the
 			// 'referenceAttribute'
 			//
 			EObject referenceAttributeInstance = targetInstance.getEObject();
-			TargetSectionClass currentClass = targetClass;
-			while (currentClass != referenceAttributeClass) {
+			TargetSectionClass currentClass = descendantTargetClass.get();
+
+			while (currentClass != ancestorReferenceAttributeClass) {
 				CompositeReference<?, ?, ?, ?> owningCompositeReference = currentClass.getOwningContainmentReference();
 				if (!(owningCompositeReference instanceof TargetSectionReference)
 						|| !(owningCompositeReference.getOwningClass() instanceof TargetSectionClass)) {

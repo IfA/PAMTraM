@@ -633,7 +633,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		notEClass.getESuperTypes().add(this.getUnaryCondition());
 		conditionEClass.getESuperTypes().add(this.getComplexCondition());
 		EGenericType g1 = createEGenericType(this.getCondition());
-		EGenericType g2 = createEGenericType(theSourcePackage.getActualSourceSectionAttribute());
+		EGenericType g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
 		g1.getETypeArguments().add(g2);
 		attributeConditionEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getCondition());

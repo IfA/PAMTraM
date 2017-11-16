@@ -5,7 +5,7 @@ package pamtram.condition;
 import org.eclipse.emf.common.util.EList;
 
 import pamtram.structure.constraint.ValueConstraint;
-import pamtram.structure.source.ActualSourceSectionAttribute;
+import pamtram.structure.source.SourceSectionAttribute;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +27,7 @@ import pamtram.structure.source.ActualSourceSectionAttribute;
  * @model
  * @generated
  */
-public interface AttributeCondition extends Condition<ActualSourceSectionAttribute> {
+public interface AttributeCondition extends Condition<SourceSectionAttribute> {
 	/**
 	 * Returns the value of the '<em><b>Value Constraints</b></em>' containment reference list.
 	 * The list contents are of type {@link pamtram.structure.constraint.ValueConstraint}.

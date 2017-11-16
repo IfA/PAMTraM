@@ -136,7 +136,7 @@ public interface Condition<TargetType> extends ComplexCondition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * 
 	 * @model required="true"
 	 * @generated
 	 */

@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.condition.AttributeCondition;
 import pamtram.condition.ConditionPackage;
 import pamtram.structure.constraint.ValueConstraint;
-import pamtram.structure.source.ActualSourceSectionAttribute;
+import pamtram.structure.source.SourceSectionAttribute;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Attribute Condition</b></em>'. <!--
@@ -28,7 +28,7 @@ import pamtram.structure.source.ActualSourceSectionAttribute;
  *
  * @generated
  */
-public class AttributeConditionImpl extends ConditionImpl<ActualSourceSectionAttribute> implements AttributeCondition {
+public class AttributeConditionImpl extends ConditionImpl<SourceSectionAttribute> implements AttributeCondition {
 
 	/**
 	 * The cached value of the '{@link #getValueConstraints() <em>Value Constraints</em>}' containment reference list.
@@ -57,6 +57,17 @@ public class AttributeConditionImpl extends ConditionImpl<ActualSourceSectionAtt
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * This is specialized for the more specific type known in this context.
+	 * @generated
+	 */
+	@Override
+	public void setTarget(SourceSectionAttribute newTarget) {
+		super.setTarget(newTarget);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -66,17 +77,6 @@ public class AttributeConditionImpl extends ConditionImpl<ActualSourceSectionAtt
 			valueConstraints = new EObjectContainmentEList<ValueConstraint>(ValueConstraint.class, this, ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS);
 		}
 		return valueConstraints;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc --> This is specialized for the more specific type known in this
-	 * context.
-	 *
-	 * @generated
-	 */
-	@Override
-	public void setTarget(ActualSourceSectionAttribute newTarget) {
-		super.setTarget(newTarget);
 	}
 
 	/**

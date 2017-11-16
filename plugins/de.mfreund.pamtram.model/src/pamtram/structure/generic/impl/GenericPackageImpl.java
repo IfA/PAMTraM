@@ -414,6 +414,15 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getClass_AllConcreteExtending() {
+		return (EReference)classEClass.getEStructuralFeatures().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getClass__IsContainerFor__Class() {
 		return classEClass.getEOperations().get(0);
 	}
@@ -770,6 +779,7 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		createEReference(classEClass, CLASS__VIRTUAL_REFERENCES);
 		createEReference(classEClass, CLASS__ALL_ATTRIBUTES);
 		createEReference(classEClass, CLASS__ALL_REFERENCES);
+		createEReference(classEClass, CLASS__ALL_CONCRETE_EXTENDING);
 		createEOperation(classEClass, CLASS___IS_CONTAINER_FOR__CLASS);
 		createEOperation(classEClass, CLASS___IS_CONTAINED_IN__CLASS);
 		createEOperation(classEClass, CLASS___GET_OWNING_CONTAINMENT_REFERENCE);
@@ -1479,6 +1489,8 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		initEReference(getClass_AllAttributes(), g1, null, "allAttributes", null, 0, -1, pamtram.structure.generic.Class.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		g1 = createEGenericType(classEClass_R);
 		initEReference(getClass_AllReferences(), g1, null, "allReferences", null, 0, -1, pamtram.structure.generic.Class.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		g1 = createEGenericType(classEClass_C);
+		initEReference(getClass_AllConcreteExtending(), g1, null, "allConcreteExtending", null, 0, -1, pamtram.structure.generic.Class.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		op = initEOperation(getClass__IsContainerFor__Class(), ecorePackage.getEBoolean(), "isContainerFor", 1, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(classEClass_C);
@@ -1842,6 +1854,18 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		   source, 
 		   new String[] {
 			 "documentation", "The list of References (if this is a Section, including those of extended Sections)."
+		   });	
+		addAnnotation
+		  (getClass_AllConcreteExtending(), 
+		   source, 
+		   new String[] {
+			 "get", "@SuppressWarnings(\"unchecked\")\nList<Object> ret = this instanceof Section<?, ?, ?, ?> && ((S) this).isAbstract()\n\t\t? ((S) this).getAllExtending().stream().filter(s -> !s.isAbstract()).collect(<%java.util.stream.Collectors%>.toList())\n\t\t: <%java.util.Arrays%>.asList(this);\n\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.structure.generic.GenericPackage%>.Literals.CLASS__ALL_CONCRETE_EXTENDING, ret.size(),\n\t\tret.toArray());"
+		   });	
+		addAnnotation
+		  (getClass_AllConcreteExtending(), 
+		   source, 
+		   new String[] {
+			 "documentation", "If this element is a Section, this returns the list of recursively collected Sections extending this Section that are not \'abstract\'. Otherwise, returns a list containing only this element."
 		   });	
 		addAnnotation
 		  (sectionEClass, 

@@ -1054,6 +1054,16 @@
           </eAnnotations>
           <eGenericType eTypeParameter="#//structure/generic/Class/R"/>
         </eStructuralFeatures>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="allConcreteExtending"
+            upperBound="-1" changeable="false" volatile="true" transient="true" derived="true">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="get" value="@SuppressWarnings(&quot;unchecked&quot;)&#xA;List&lt;Object> ret = this instanceof Section&lt;?, ?, ?, ?> &amp;&amp; ((S) this).isAbstract()&#xA;&#x9;&#x9;? ((S) this).getAllExtending().stream().filter(s -> !s.isAbstract()).collect(&lt;%java.util.stream.Collectors%>.toList())&#xA;&#x9;&#x9;: &lt;%java.util.Arrays%>.asList(this);&#xA;&#xA;return new &lt;%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList&lt;>(this, &lt;%pamtram.structure.generic.GenericPackage%>.Literals.CLASS__ALL_CONCRETE_EXTENDING, ret.size(),&#xA;&#x9;&#x9;ret.toArray());"/>
+          </eAnnotations>
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="documentation" value="If this element is a Section, this returns the list of recursively collected Sections extending this Section that are not 'abstract'. Otherwise, returns a list containing only this element."/>
+          </eAnnotations>
+          <eGenericType eTypeParameter="#//structure/generic/Class/C"/>
+        </eStructuralFeatures>
         <eGenericSuperTypes eClassifier="#//structure/generic/MetaModelElement">
           <eTypeArguments eTypeParameter="#//structure/generic/Class/S"/>
           <eTypeArguments eTypeParameter="#//structure/generic/Class/C"/>

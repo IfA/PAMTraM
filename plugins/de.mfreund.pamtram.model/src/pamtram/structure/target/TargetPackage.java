@@ -191,6 +191,15 @@ public interface TargetPackage extends EPackage {
 	int TARGET_SECTION_CLASS__ALL_REFERENCES = GenericPackage.CLASS__ALL_REFERENCES;
 
 	/**
+	 * The feature id for the '<em><b>All Concrete Extending</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_CLASS__ALL_CONCRETE_EXTENDING = GenericPackage.CLASS__ALL_CONCRETE_EXTENDING;
+
+	/**
 	 * The number of structural features of the '<em>Section Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -424,6 +433,15 @@ public interface TargetPackage extends EPackage {
 	 * @ordered
 	 */
 	int TARGET_SECTION__ALL_REFERENCES = TARGET_SECTION_CLASS__ALL_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>All Concrete Extending</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION__ALL_CONCRETE_EXTENDING = TARGET_SECTION_CLASS__ALL_CONCRETE_EXTENDING;
 
 	/**
 	 * The feature id for the '<em><b>Abstract</b></em>' attribute.

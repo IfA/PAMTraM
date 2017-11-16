@@ -190,6 +190,15 @@ public interface SourcePackage extends EPackage {
 	int SOURCE_SECTION_CLASS__ALL_REFERENCES = GenericPackage.CLASS__ALL_REFERENCES;
 
 	/**
+	 * The feature id for the '<em><b>All Concrete Extending</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_CLASS__ALL_CONCRETE_EXTENDING = GenericPackage.CLASS__ALL_CONCRETE_EXTENDING;
+
+	/**
 	 * The feature id for the '<em><b>Include Sub Types</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -432,6 +441,15 @@ public interface SourcePackage extends EPackage {
 	 * @ordered
 	 */
 	int SOURCE_SECTION__ALL_REFERENCES = SOURCE_SECTION_CLASS__ALL_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>All Concrete Extending</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION__ALL_CONCRETE_EXTENDING = SOURCE_SECTION_CLASS__ALL_CONCRETE_EXTENDING;
 
 	/**
 	 * The feature id for the '<em><b>Include Sub Types</b></em>' attribute.

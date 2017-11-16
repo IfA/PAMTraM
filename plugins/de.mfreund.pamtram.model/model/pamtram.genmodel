@@ -37,7 +37,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//PAMTraM/conditionModels"/>
       <genFeatures property="None" children="true" createChild="true" propertySortChoices="true"
           ecoreFeature="ecore:EReference pamtram.ecore#//PAMTraM/sharedConditionModels"/>
-      <genOperations ecoreOperation="pamtram.ecore#//PAMTraM/mergeExtends"/>
       <genOperations ecoreOperation="pamtram.ecore#//PAMTraM/getActiveSourceSectionModels"/>
       <genOperations ecoreOperation="pamtram.ecore#//PAMTraM/getActiveSourceSections"/>
     </genClasses>
@@ -67,10 +66,6 @@
           propertyDescription="A shared condition (defined in a ConditionModel) restraining the applicability of this element."
           propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//ConditionalElement/sharedCondition"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//ConditionalElement/allConditions"/>
-      <genOperations ecoreOperation="pamtram.ecore#//ConditionalElement/validateEitherModelOrReferCondition">
-        <genParameters ecoreParameter="pamtram.ecore#//ConditionalElement/validateEitherModelOrReferCondition/diagnostics"/>
-        <genParameters ecoreParameter="pamtram.ecore#//ConditionalElement/validateEitherModelOrReferCondition/context"/>
-      </genOperations>
       <genOperations ecoreOperation="pamtram.ecore#//ConditionalElement/validateReferenceOnlyConditionsFromConditionModel">
         <genParameters ecoreParameter="pamtram.ecore#//ConditionalElement/validateReferenceOnlyConditionsFromConditionModel/diagnostics"/>
         <genParameters ecoreParameter="pamtram.ecore#//ConditionalElement/validateReferenceOnlyConditionsFromConditionModel/context"/>
@@ -207,6 +202,7 @@
           <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/generic/Class/virtualReferences"/>
           <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/generic/Class/allAttributes"/>
           <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/generic/Class/allReferences"/>
+          <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/generic/Class/allConcreteExtending"/>
           <genOperations ecoreOperation="pamtram.ecore#//structure/generic/Class/isContainerFor">
             <genParameters ecoreParameter="pamtram.ecore#//structure/generic/Class/isContainerFor/containedClass"/>
           </genOperations>
@@ -614,6 +610,10 @@
           <genParameters ecoreParameter="pamtram.ecore#//mapping/Mapping/validateSourceSectionIsActive/diagnostics"/>
           <genParameters ecoreParameter="pamtram.ecore#//mapping/Mapping/validateSourceSectionIsActive/context"/>
         </genOperations>
+        <genOperations ecoreOperation="pamtram.ecore#//mapping/Mapping/validateSourceSectionIsNotAbstract">
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/Mapping/validateSourceSectionIsNotAbstract/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/Mapping/validateSourceSectionIsNotAbstract/context"/>
+        </genOperations>
       </genClasses>
       <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/MappingHintGroupType">
         <genFeatures notify="false" createChild="false" propertyCategory="Basic" propertyDescription="The TargetSection that will be instantiated when the Mapping containing this HintGroup is executed."
@@ -637,6 +637,10 @@
         <genOperations ecoreOperation="pamtram.ecore#//mapping/MappingHintGroupType/validateDoNotUseLibraryElementsWithoutLibraryNature">
           <genParameters ecoreParameter="pamtram.ecore#//mapping/MappingHintGroupType/validateDoNotUseLibraryElementsWithoutLibraryNature/diagnostics"/>
           <genParameters ecoreParameter="pamtram.ecore#//mapping/MappingHintGroupType/validateDoNotUseLibraryElementsWithoutLibraryNature/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="pamtram.ecore#//mapping/MappingHintGroupType/validateTargetSectionIsNotAbstract">
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/MappingHintGroupType/validateTargetSectionIsNotAbstract/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//mapping/MappingHintGroupType/validateTargetSectionIsNotAbstract/context"/>
         </genOperations>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//mapping/InstantiableMappingHintGroup"/>

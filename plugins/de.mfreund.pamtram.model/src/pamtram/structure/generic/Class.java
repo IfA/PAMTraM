@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link pamtram.structure.generic.Class#getVirtualReferences <em>Virtual References</em>}</li>
  *   <li>{@link pamtram.structure.generic.Class#getAllAttributes <em>All Attributes</em>}</li>
  *   <li>{@link pamtram.structure.generic.Class#getAllReferences <em>All References</em>}</li>
+ *   <li>{@link pamtram.structure.generic.Class#getAllConcreteExtending <em>All Concrete Extending</em>}</li>
  * </ul>
  *
  * @see pamtram.structure.generic.GenericPackage#getClass_()
@@ -292,6 +293,22 @@ public interface Class<S extends Section<S, C, R, A>, C extends Class<S, C, R, A
 	 * @generated
 	 */
 	EList<R> getAllReferences();
+
+	/**
+	 * Returns the value of the '<em><b>All Concrete Extending</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>All Concrete Extending</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>All Concrete Extending</em>' reference list.
+	 * @see pamtram.structure.generic.GenericPackage#getClass_AllConcreteExtending()
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='@SuppressWarnings(\"unchecked\")\nList&lt;Object&gt; ret = this instanceof Section&lt;?, ?, ?, ?&gt; &amp;&amp; ((S) this).isAbstract()\n\t\t? ((S) this).getAllExtending().stream().filter(s -&gt; !s.isAbstract()).collect(&lt;%java.util.stream.Collectors%&gt;.toList())\n\t\t: &lt;%java.util.Arrays%&gt;.asList(this);\n\nreturn new &lt;%org.eclipse.emf.ecore.util.EcoreEList%&gt;.UnmodifiableEList&lt;&gt;(this, &lt;%pamtram.structure.generic.GenericPackage%&gt;.Literals.CLASS__ALL_CONCRETE_EXTENDING, ret.size(),\n\t\tret.toArray());'"
+	 * @generated
+	 */
+	EList<C> getAllConcreteExtending();
 
 	/**
 	 * <!-- begin-user-doc -->

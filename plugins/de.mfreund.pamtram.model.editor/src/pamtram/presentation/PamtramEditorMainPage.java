@@ -31,7 +31,6 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
-import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.part.FileEditorInput;
 
 import de.mfreund.pamtram.properties.PropertySupplier;
@@ -454,12 +453,17 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable, ISe
 
 			super.widgetSelected(e);
 
+			if (e.item == null || !(this.viewer.getSelection() instanceof StructuredSelection)
+					|| !((StructuredSelection) this.viewer.getSelection()).isEmpty()) {
+				return;
+			}
+
 			// if a non containment reference has been selected while holding down the control key, jump to the
 			// referenced class
 			//
-			if (((TreeItem) e.item).getData() instanceof SourceSectionCrossReference && e.stateMask == SWT.CTRL) {
+			if (e.item.getData() instanceof SourceSectionCrossReference && e.stateMask == SWT.CTRL) {
 
-				SourceSectionCrossReference reference = (SourceSectionCrossReference) ((TreeItem) e.item).getData();
+				SourceSectionCrossReference reference = (SourceSectionCrossReference) e.item.getData();
 
 				PamtramEditorMainPage.this.editor.setSelection(new StructuredSelection(reference.getValue()));
 			}
@@ -483,15 +487,7 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable, ISe
 		}
 
 		@Override
-		public void widgetSelected(SelectionEvent e) {
-
-			super.widgetSelected(e);
-
-			if (e.item == null || e.item.getData() == null) {
-				return;
-			}
-
-			Object selected = e.item.getData();
+		protected void handleSingleSelection(Object selected, SelectionEvent e) {
 
 			// The elements that will be selected in the various viewers
 			//
@@ -710,16 +706,12 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable, ISe
 		}
 
 		@Override
-		public void widgetSelected(SelectionEvent e) {
+		protected void handleSingleSelection(Object selected, SelectionEvent e) {
 
-			super.widgetSelected(e);
+			if (selected instanceof GlobalAttribute) {
 
-			TreeItem item = (TreeItem) e.item;
-
-			if (item.getData() instanceof GlobalAttribute) {
-
-				PamtramEditorMainPage.this.editor.setSelection(
-						new StructuredSelection(Arrays.asList(((GlobalAttribute) item.getData()).getSource())));
+				PamtramEditorMainPage.this.editor
+						.setSelection(new StructuredSelection(Arrays.asList(((GlobalAttribute) selected).getSource())));
 			}
 
 		}
@@ -742,18 +734,15 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable, ISe
 		}
 
 		@Override
-		public void widgetSelected(SelectionEvent e) {
-
-			super.widgetSelected(e);
+		protected void handleSingleSelection(Object selected, SelectionEvent e) {
 
 			// if a non containment reference has been selected while holding
 			// down the
 			// control key, jump to the referenced class
-			if (((TreeItem) e.item).getData() instanceof TargetSectionCrossReference && e.stateMask == SWT.CTRL) {
+			if (selected instanceof TargetSectionCrossReference && e.stateMask == SWT.CTRL) {
 
-				TargetSectionCrossReference reference = (TargetSectionCrossReference) ((TreeItem) e.item).getData();
-
-				EList<pamtram.structure.target.TargetSectionClass> referencedElements = reference.getValue();
+				EList<pamtram.structure.target.TargetSectionClass> referencedElements = ((TargetSectionCrossReference) selected)
+						.getValue();
 
 				PamtramEditorMainPage.this.editor.setSelection(new StructuredSelection(referencedElements));
 			}

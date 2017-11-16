@@ -363,28 +363,22 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 		}
 
 		@Override
-		public void widgetSelected(SelectionEvent e) {
-
-			super.widgetSelected(e);
-
-			if (e.item == null || e.item.getData() == null) {
-				return;
-			}
+		protected void handleSingleSelection(Object selected, SelectionEvent e) {
 
 			// The elements that will be selected in the various viewers
 			//
 			List<Object> toSelect = new ArrayList<>();
-			toSelect.add(e.item.getData());
+			toSelect.add(selected);
 
 			SourceSectionClass sourceSectionClass = null;
 
-			if (e.item.getData() instanceof SourceSectionClass) {
+			if (selected instanceof SourceSectionClass) {
 
-				sourceSectionClass = (SourceSectionClass) e.item.getData();
+				sourceSectionClass = (SourceSectionClass) selected;
 
-			} else if (e.item.getData() instanceof MappingType) {
+			} else if (selected instanceof MappingType) {
 
-				sourceSectionClass = ((MappingType) e.item.getData()).getSourceSection();
+				sourceSectionClass = ((MappingType) selected).getSourceSection();
 				toSelect.add(sourceSectionClass);
 			}
 

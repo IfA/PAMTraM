@@ -837,10 +837,19 @@ public class TargetSectionConnector extends CancelableElement {
 		Map<ModelConnectionPath, List<EObjectWrapper>> containerInstancesByConnectionPaths = new LinkedHashMap<>();
 		for (ContainerSelector containerSelector : connectionPathsByContainerSelector.keySet()) {
 			for (ModelConnectionPath connectionPath : connectionPathsByContainerSelector.get(containerSelector)) {
+
 				Set<EObjectWrapper> containerInstances = new LinkedHashSet<>(
 						containerInstancesByConnectionPaths.getOrDefault(connectionPath, new ArrayList<>()));
-				containerInstances.addAll(containerInstancesByContainerSelector.get(containerSelector));
-				containerInstancesByConnectionPaths.put(connectionPath, new ArrayList<>(containerInstances));
+
+				// As connection paths starting from different root EClasses may exist in case of ContainerSelectors
+				// based on abstract TargetSections, we need to filter the fitting instances for each path separately
+				//
+				containerInstances.addAll(containerInstancesByContainerSelector.get(containerSelector).stream()
+						.filter(i -> connectionPath.getPathRootClass().equals(i.getEObject().eClass()))
+						.collect(Collectors.toList()));
+				if (!containerInstances.isEmpty()) {
+					containerInstancesByConnectionPaths.put(connectionPath, new ArrayList<>(containerInstances));
+				}
 			}
 		}
 
@@ -1173,12 +1182,17 @@ public class TargetSectionConnector extends CancelableElement {
 		Map<ContainerSelector, List<ModelConnectionPath>> connectionPathsByContainerSelector = new LinkedHashMap<>();
 		for (ContainerSelector containerSelector : containerSelectors) {
 
+			List<TargetSectionClass> potentialTargetSectionClasses = containerSelector.getTargetClass()
+					.getAllConcreteExtending();
+
 			// Check if there are any possible connection paths based on the specified 'targetClass' of the given
-			// container
-			// selector
+			// container selector (or any of the concrete extending TargetSections)
 			//
-			List<ModelConnectionPath> pathsToConsider = this.targetSectionRegistry.getConnections(eClass,
-					containerSelector.getTargetClass().getEClass(), 0);
+			List<ModelConnectionPath> pathsToConsider = potentialTargetSectionClasses.stream()
+					.flatMap(t -> this.targetSectionRegistry.getConnections(eClass, t.getEClass(), 0).stream())
+					.collect(Collectors.toList());
+
+			this.targetSectionRegistry.getConnections(eClass, containerSelector.getTargetClass().getEClass(), 0);
 			if (pathsToConsider.isEmpty()) {
 
 				this.logger.warning(() -> "Could not find a path that leads to the 'targetClass' specified for the "

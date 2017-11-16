@@ -4,7 +4,11 @@ package pamtram.condition;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -26,18 +30,17 @@ import pamtram.structure.source.SourceSectionReference;
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Condition</b></em>'. <!-- end-user-doc -->
  *
- * <!-- begin-model-doc -->
- * The super type for all Condition types that are not only simple logical compositions of sub-conditions.
- * <!-- end-model-doc -->
+ * <!-- begin-model-doc --> The super type for all Condition types that are not only simple logical compositions of
+ * sub-conditions. <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link pamtram.condition.Condition#getValue <em>Value</em>}</li>
- *   <li>{@link pamtram.condition.Condition#getComparator <em>Comparator</em>}</li>
- *   <li>{@link pamtram.condition.Condition#getTarget <em>Target</em>}</li>
- *   <li>{@link pamtram.condition.Condition#getInstanceSelectors <em>Instance Selectors</em>}</li>
+ * <li>{@link pamtram.condition.Condition#getValue <em>Value</em>}</li>
+ * <li>{@link pamtram.condition.Condition#getComparator <em>Comparator</em>}</li>
+ * <li>{@link pamtram.condition.Condition#getTarget <em>Target</em>}</li>
+ * <li>{@link pamtram.condition.Condition#getInstanceSelectors <em>Instance Selectors</em>}</li>
  * </ul>
  *
  * @see pamtram.condition.ConditionPackage#getCondition()
@@ -133,6 +136,7 @@ public interface Condition<TargetType> extends ComplexCondition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @model required="true"
 	 * @generated
 	 */
@@ -236,36 +240,39 @@ public interface Condition<TargetType> extends ComplexCondition {
 	 * @throws ConditionEvaluationException
 	 *             If the condition could not be evaluated.
 	 */
-	public default List<SourceSectionClass> getAffectedClasses() throws ConditionEvaluationException {
+	public default Set<SourceSectionClass> getAffectedClasses() throws ConditionEvaluationException {
 
 		if (this.getTarget() == null) {
-			return new ArrayList<>();
+			return new HashSet<>();
 		}
+
+		List<SourceSectionClass> affectedClasses;
 
 		if (this instanceof CardinalityCondition) {
 			MetaModelElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> conditionTarget = ((CardinalityCondition) this)
 					.getTarget();
 			if (conditionTarget instanceof SourceSectionClass) {
-				return Arrays.asList((SourceSectionClass) conditionTarget);
+				affectedClasses = Arrays.asList((SourceSectionClass) conditionTarget);
 			} else if (conditionTarget instanceof SourceSectionAttribute) {
-				return Arrays.asList((SourceSectionClass) AgteleEcoreUtil.getAncestorOfKind(conditionTarget,
+				affectedClasses = Arrays.asList((SourceSectionClass) AgteleEcoreUtil.getAncestorOfKind(conditionTarget,
 						SourcePackage.Literals.SOURCE_SECTION_CLASS));
 			} else if (conditionTarget instanceof SourceSectionReference) {
-				return new ArrayList<>(((SourceSectionReference) conditionTarget).getValuesGeneric());
+				affectedClasses = new ArrayList<>(((SourceSectionReference) conditionTarget).getValuesGeneric());
 			} else {
 				throw new ConditionEvaluationException("Unsupported type of target for a CardinalityCondition '"
 						+ conditionTarget.eClass().getName() + "' found!");
 			}
 		} else if (this instanceof AttributeCondition) {
-			return Arrays.asList((SourceSectionClass) ((AttributeCondition) this).getTarget().eContainer());
+			affectedClasses = Arrays.asList((SourceSectionClass) ((AttributeCondition) this).getTarget().eContainer());
 		} else if (this instanceof ApplicationDependency) {
 			ConditionalElement conditionalElement = ((ApplicationDependency) this).getTarget();
 			if (conditionalElement instanceof Mapping) {
-				return Arrays.asList(((Mapping) conditionalElement).getSourceSection());
+				affectedClasses = Arrays.asList(((Mapping) conditionalElement).getSourceSection());
 			} else if (conditionalElement instanceof InstantiableMappingHintGroup) {
-				return Arrays.asList(((Mapping) conditionalElement.eContainer()).getSourceSection());
+				affectedClasses = Arrays.asList(((Mapping) conditionalElement.eContainer()).getSourceSection());
 			} else if (conditionalElement instanceof MappingHint) {
-				return Arrays.asList(((Mapping) conditionalElement.eContainer().eContainer()).getSourceSection());
+				affectedClasses = Arrays
+						.asList(((Mapping) conditionalElement.eContainer().eContainer()).getSourceSection());
 			} else {
 				throw new ConditionEvaluationException(
 						"Unknown type of ConditionalElement '" + conditionalElement.eClass().getName() + "' found!");
@@ -273,6 +280,9 @@ public interface Condition<TargetType> extends ComplexCondition {
 		} else {
 			throw new ConditionEvaluationException("Unknown condition type '" + this.eClass().getName() + "' found!");
 		}
+
+		return affectedClasses.stream().flatMap(c -> c.getAllConcreteExtending().stream())
+				.collect(Collectors.toCollection(LinkedHashSet::new));
 
 	}
 

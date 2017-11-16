@@ -722,7 +722,9 @@ public class SourceSectionMatcher extends CancelableElement {
 					.containsKey(((ActualReference<?, ?, ?, ?>) reference).getEReference())
 							? classByRefMap.get(((ActualReference<?, ?, ?, ?>) reference).getEReference())
 							: new ArrayList<>();
-			currentValues.addAll(reference.getValuesGeneric());
+			currentValues
+					.addAll(reference.getValuesGeneric().stream().flatMap(c -> c.getAllConcreteExtending().stream())
+							.collect(Collectors.toCollection(LinkedHashSet::new)));
 			classByRefMap.put(((ActualReference<?, ?, ?, ?>) reference).getEReference(), currentValues);
 		}
 
@@ -732,7 +734,9 @@ public class SourceSectionMatcher extends CancelableElement {
 			List<SourceSectionClass> currentValues = classByVirtualRefMap.containsKey(reference)
 					? classByVirtualRefMap.get(reference)
 					: new ArrayList<>();
-			currentValues.addAll(reference.getValuesGeneric());
+			currentValues
+					.addAll(reference.getValuesGeneric().stream().flatMap(c -> c.getAllConcreteExtending().stream())
+							.collect(Collectors.toCollection(LinkedHashSet::new)));
 			classByVirtualRefMap.put((VirtualSourceSectionCrossReference) reference, currentValues);
 		}
 

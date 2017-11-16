@@ -46,6 +46,7 @@ import pamtram.structure.constraint.EqualityConstraint;
 import pamtram.structure.constraint.SingleReferenceValueConstraint;
 import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.constraint.ValueConstraintType;
+import pamtram.structure.source.ActualSourceSectionAttribute;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.source.SourceSectionCrossReference;
@@ -313,13 +314,15 @@ public class ConditionHandler {
 		 */
 		ArrayList<Boolean> attrBoolResults = new ArrayList<>();
 
-		EAttribute attribute = attrCondition.getTarget().getAttribute();
+		EAttribute attribute = attrCondition.getTarget() instanceof ActualSourceSectionAttribute
+				? ((ActualSourceSectionAttribute) attrCondition.getTarget()).getAttribute()
+				: null;
 
 		for (Object srcAttrValue : srcAttrValues) {
 
 			// convert Attribute value to String
-			final String srcAttrAsString = attribute.getEType().getEPackage().getEFactoryInstance()
-					.convertToString(attribute.getEAttributeType(), srcAttrValue);
+			final String srcAttrAsString = attribute != null ? attribute.getEType().getEPackage().getEFactoryInstance()
+					.convertToString(attribute.getEAttributeType(), srcAttrValue) : srcAttrValue.toString();
 
 			/*
 			 * check AttributeValueConstraints

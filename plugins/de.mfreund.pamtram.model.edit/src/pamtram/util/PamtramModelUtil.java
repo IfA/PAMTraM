@@ -366,13 +366,15 @@ public interface PamtramModelUtil extends EPackageHelper {
 		// try to register the ePackages involved in the pamtram model (if
 		// not already done)
 		//
-		EPackageCheck result = PamtramModelUtil.checkInvolvedEPackages(pamtramModel,
-				ResourcesPlugin.getWorkspace().getRoot().findMember(pamtramUri.toPlatformString(true)).getProject(),
-				ePackageRegistry);
+		IProject project = ResourcesPlugin.getWorkspace().getRoot().findMember(pamtramUri.toPlatformString(true))
+				.getProject();
+		EPackageCheck result = PamtramModelUtil.checkInvolvedEPackages(pamtramModel, project, ePackageRegistry);
 		switch (result) {
 			case ERROR_PACKAGE_NOT_FOUND:
 				throw new ModelLoadException("One or more EPackages are not loaded correctly. Aborting...");
 			case ERROR_METAMODEL_FOLDER_NOT_FOUND:
+				throw new ModelLoadException(
+						"Folder 'metamodel' not found in project '" + project.getName() + "'. Aborting...");
 			case ERROR_PAMTRAM_NOT_FOUND:
 				throw new ModelLoadException("Internal error during EPackage check. Aborting...");
 			case OK_PACKAGES_REGISTERED:

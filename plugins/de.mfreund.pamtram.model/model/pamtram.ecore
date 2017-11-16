@@ -2640,7 +2640,7 @@
         </eAnnotations>
       </eStructuralFeatures>
       <eGenericSuperTypes eClassifier="#//condition/Condition">
-        <eTypeArguments eClassifier="#//structure/source/ActualSourceSectionAttribute"/>
+        <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
       </eGenericSuperTypes>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CardinalityCondition">

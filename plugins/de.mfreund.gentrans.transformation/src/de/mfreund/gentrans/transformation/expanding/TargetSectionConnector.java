@@ -273,6 +273,15 @@ public class TargetSectionConnector extends CancelableElement {
 			final List<EObjectWrapper> rootInstances = this.targetSectionRegistry.getPamtramClassInstances(section)
 					.get(hintGroup);
 
+			if (containerInstances.isEmpty() && section.getContainer() != null) {
+				this.logger.warning(() -> "The TargetSection '" + section.getName() + "' specifies the "
+						+ section.getContainer().eClass().getName() + " '" + section.getContainer().getName()
+						+ "' as container. However, no instances of this " + section.getContainer().eClass().getName()
+						+ " have been created.");
+				this.registerAsUnconnectable(rootInstances, section);
+				return true;
+			}
+
 			// Prevent circular containments
 			//
 			containerInstances.removeAll(rootInstances);
@@ -685,18 +694,7 @@ public class TargetSectionConnector extends CancelableElement {
 		//
 		if (pathsToConsider.isEmpty()) {
 
-			if (!this.unconnectableElements.containsKey(classToConnect)) {
-
-				this.unconnectableElements.put(classToConnect,
-						new LinkedHashMap<TargetSectionClass, List<EObjectWrapper>>());
-			}
-
-			if (!this.unconnectableElements.get(classToConnect).containsKey(section)) {
-
-				this.unconnectableElements.get(classToConnect).put(section, new LinkedList<EObjectWrapper>());
-			}
-
-			this.unconnectableElements.get(classToConnect).get(section).addAll(rootInstances);
+			this.registerAsUnconnectable(rootInstances, section);
 
 			// Although none of the 'rootInstances' have been connected, we do not return them as 'unconnected
 			// instances'. The reason for this is that they will be connected later on when the 'unconnectableElements'
@@ -777,6 +775,31 @@ public class TargetSectionConnector extends CancelableElement {
 		}
 
 		return pathsToConsider;
+	}
+
+	/**
+	 * Registers the given list of elements as {@link #unconnectableElements unconnectable} so that they will be
+	 * regarded by {@link #combineUnlinkedSectionsWithTargetModelRoot()}.
+	 *
+	 * @param unconnectableInstances
+	 *            The list of {@link EObjectWrapper elements} to register.
+	 * @param section
+	 *            The {@link TargetSection} that was responsible for creating the instances.
+	 */
+	private void registerAsUnconnectable(List<EObjectWrapper> unconnectableInstances, TargetSection section) {
+
+		if (!this.unconnectableElements.containsKey(section.getEClass())) {
+
+			this.unconnectableElements.put(section.getEClass(),
+					new LinkedHashMap<TargetSectionClass, List<EObjectWrapper>>());
+		}
+
+		if (!this.unconnectableElements.get(section.getEClass()).containsKey(section)) {
+
+			this.unconnectableElements.get(section.getEClass()).put(section, new LinkedList<EObjectWrapper>());
+		}
+
+		this.unconnectableElements.get(section.getEClass()).get(section).addAll(unconnectableInstances);
 	}
 
 	/**

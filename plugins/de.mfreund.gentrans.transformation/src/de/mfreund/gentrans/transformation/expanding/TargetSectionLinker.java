@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -371,18 +370,23 @@ public class TargetSectionLinker extends CancelableElement {
 		// All potential target elements
 		//
 		Set<EObjectWrapper> potentialTargetInstances = new LinkedHashSet<>();
+
 		if (ref.getValue().isEmpty()) {
 
-			// The user did not model any target classes for the given 'ref'. Thus, we consider all possible classes
+			// The user did neither model a ReferenceTargetSelector nor any TargetSectionClasses as value for the given
+			// CrossReference. Thus, we do not consider this Reference in the linking process...
 			//
-			List<EClass> possibleTargetClasses = new ArrayList<>();
-			possibleTargetClasses.add(ref.getEReference().getEReferenceType());
-			possibleTargetClasses
-					.addAll(this.targetSectionRegistry.getChildClasses(ref.getEReference().getEReferenceType()));
 
-			potentialTargetInstances.addAll(possibleTargetClasses.stream()
-					.flatMap(targetClass -> this.targetSectionRegistry.getTargetClassInstances(targetClass).stream())
-					.collect(Collectors.toList()));
+			// // The user did not model any target classes for the given 'ref'. Thus, we consider all possible classes
+			// //
+			// List<EClass> possibleTargetClasses = new ArrayList<>();
+			// possibleTargetClasses.add(ref.getEReference().getEReferenceType());
+			// possibleTargetClasses
+			// .addAll(this.targetSectionRegistry.getChildClasses(ref.getEReference().getEReferenceType()));
+			//
+			// potentialTargetInstances.addAll(possibleTargetClasses.stream()
+			// .flatMap(targetClass -> this.targetSectionRegistry.getTargetClassInstances(targetClass).stream())
+			// .collect(Collectors.toList()));
 
 		} else {
 

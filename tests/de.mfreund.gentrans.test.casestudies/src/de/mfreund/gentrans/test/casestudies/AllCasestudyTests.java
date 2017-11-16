@@ -75,6 +75,7 @@ import de.tud.et.ifa.agtele.resources.ResourceHelper;
 		AutoProBeSimplifiedDissTest.class, //
 		AutoProBeTest.class, //
 		CompanyVizTest.class, //
+		DFDUMLTest.class, //
 		DislMovisaTest.class, //
 		ExcelMovisaTdpTest.class, //
 		LibraryTest.class, //

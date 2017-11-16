@@ -158,17 +158,21 @@
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="name" source="//@sourceSectionModels.0/@sections.4/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:ReferenceTargetSelector" name="selectSourceDataStoreNode" referenceAttribute="//@targetSectionModels.0/@sections.1/@attributes.0" targetClass="//@targetSectionModels.0/@sections.4" affectedReference="//@targetSectionModels.0/@sections.5/@references.0">
+          <localCondition xsi:type="condition:CardinalityCondition" name="hasFromDataStoreNode" target="//@sourceSectionModels.0/@sections.3" referenceMatchSpec="//@sourceSectionModels.0/@sections.4/@references.0"/>
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="fromDfdElementName" source="//@sourceSectionModels.0/@sections.1/@attributes.0" referenceMatchSpec="//@sourceSectionModels.0/@sections.4/@references.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:ReferenceTargetSelector" name="selectSourceOutputPin" referenceAttribute="//@targetSectionModels.0/@sections.7/@attributes.0" targetClass="//@targetSectionModels.0/@sections.7" affectedReference="//@targetSectionModels.0/@sections.5/@references.0">
+          <localCondition xsi:type="condition:CardinalityCondition" name="hasFromProcess" target="//@sourceSectionModels.0/@sections.2" referenceMatchSpec="//@sourceSectionModels.0/@sections.4/@references.0"/>
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="fromDfdElementName" source="//@sourceSectionModels.0/@sections.1/@attributes.0" referenceMatchSpec="//@sourceSectionModels.0/@sections.4/@references.0"/>
           <sourceElements xsi:type="pamtram:FixedValue" name="_outputPin_" value="_outputPin_"/>
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="dataFlowName" source="//@sourceSectionModels.0/@sections.4/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:ReferenceTargetSelector" name="selectTargetDataStoreNode" referenceAttribute="//@targetSectionModels.0/@sections.1/@attributes.0" targetClass="//@targetSectionModels.0/@sections.4" affectedReference="//@targetSectionModels.0/@sections.5/@references.1">
+          <localCondition xsi:type="condition:CardinalityCondition" name="hasToDataStoreNode" target="//@sourceSectionModels.0/@sections.3" referenceMatchSpec="//@sourceSectionModels.0/@sections.4/@references.1"/>
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="toDfdElementName" source="//@sourceSectionModels.0/@sections.1/@attributes.0" referenceMatchSpec="//@sourceSectionModels.0/@sections.4/@references.1"/>
         </mappingHints>
         <mappingHints xsi:type="extended:ReferenceTargetSelector" name="selectTargetInputPin" referenceAttribute="//@targetSectionModels.0/@sections.6/@attributes.0" targetClass="//@targetSectionModels.0/@sections.6" affectedReference="//@targetSectionModels.0/@sections.5/@references.1">
+          <localCondition xsi:type="condition:CardinalityCondition" name="hasToProcess" target="//@sourceSectionModels.0/@sections.2" referenceMatchSpec="//@sourceSectionModels.0/@sections.4/@references.1"/>
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="toDfdElementName" source="//@sourceSectionModels.0/@sections.1/@attributes.0" referenceMatchSpec="//@sourceSectionModels.0/@sections.4/@references.1"/>
           <sourceElements xsi:type="pamtram:FixedValue" name="_inputPin_" value="_inputPin_"/>
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="dataFlowName" source="//@sourceSectionModels.0/@sections.4/@attributes.0"/>
@@ -178,7 +182,7 @@
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="InputPin" targetSection="//@targetSectionModels.0/@sections.6">
-        <mappingHints xsi:type="extended:AttributeMapping" name="inputPinNameMapping" target="//@targetSectionModels.0/@sections.6/@attributes.0">
+        <mappingHints xsi:type="extended:AttributeMapping" name="inputPinName" target="//@targetSectionModels.0/@sections.6/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="dfdElementName" source="//@sourceSectionModels.0/@sections.1/@attributes.0" referenceMatchSpec="//@sourceSectionModels.0/@sections.4/@references.1"/>
           <sourceElements xsi:type="pamtram:FixedValue" name="_inputPin_" value="_inputPin_"/>
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="name" source="//@sourceSectionModels.0/@sections.4/@attributes.0"/>
@@ -189,7 +193,7 @@
         <localCondition xsi:type="condition:CardinalityCondition" name="hasToProcess" target="//@sourceSectionModels.0/@sections.2" referenceMatchSpec="//@sourceSectionModels.0/@sections.4/@references.1"/>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OutputPin" targetSection="//@targetSectionModels.0/@sections.7">
-        <mappingHints xsi:type="extended:AttributeMapping" name="outputPinNameMapping" target="//@targetSectionModels.0/@sections.7/@attributes.0">
+        <mappingHints xsi:type="extended:AttributeMapping" name="outputPinName" target="//@targetSectionModels.0/@sections.7/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="dfdElementName" source="//@sourceSectionModels.0/@sections.1/@attributes.0" referenceMatchSpec="//@sourceSectionModels.0/@sections.4/@references.0"/>
           <sourceElements xsi:type="pamtram:FixedValue" name="_outputPin_" value="_outputPin_"/>
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="name" source="//@sourceSectionModels.0/@sections.4/@attributes.0"/>
@@ -206,9 +210,11 @@
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="name" source="//@sourceSectionModels.0/@sections.5/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:ReferenceTargetSelector" name="sourceActivityNode.name" referenceAttribute="//@targetSectionModels.0/@sections.1/@attributes.0" targetClass="//@targetSectionModels.0/@sections.1" affectedReference="//@targetSectionModels.0/@sections.8/@references.0">
+          <localCondition xsi:type="condition:CardinalityCondition" name="hasFrom" target="//@sourceSectionModels.0/@sections.5/@references.0"/>
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="fromDfdElementName" source="//@sourceSectionModels.0/@sections.1/@attributes.0" referenceMatchSpec="//@sourceSectionModels.0/@sections.4/@references.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:ReferenceTargetSelector" name="targetActivityNode.name" referenceAttribute="//@targetSectionModels.0/@sections.1/@attributes.0" targetClass="//@targetSectionModels.0/@sections.1" affectedReference="//@targetSectionModels.0/@sections.8/@references.1">
+          <localCondition xsi:type="condition:CardinalityCondition" name="hasTo" target="//@sourceSectionModels.0/@sections.5/@references.1"/>
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="toDfdElementName" source="//@sourceSectionModels.0/@sections.1/@attributes.0" referenceMatchSpec="//@sourceSectionModels.0/@sections.4/@references.1"/>
         </mappingHints>
         <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.0/@sections.0/@attributes.0" targetClass="//@targetSectionModels.0/@sections.0">

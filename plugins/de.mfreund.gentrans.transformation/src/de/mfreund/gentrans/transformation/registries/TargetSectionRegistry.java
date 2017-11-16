@@ -1,8 +1,8 @@
 package de.mfreund.gentrans.transformation.registries;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -477,14 +477,9 @@ public class TargetSectionRegistry extends CancelableElement {
 	 */
 	public List<EObjectWrapper> getFlattenedPamtramClassInstances(TargetSectionClass targetSectionClass) {
 
-		List<TargetSectionClass> classesToConsider;
-
-		if (targetSectionClass instanceof TargetSection && ((TargetSection) targetSectionClass).isAbstract()) {
-			classesToConsider = ((TargetSection) targetSectionClass).getAllExtending().stream()
-					.filter(s -> !s.isAbstract()).collect(Collectors.toList());
-		} else {
-			classesToConsider = Arrays.asList(targetSectionClass);
-		}
+		List<TargetSectionClass> classesToConsider = targetSectionClass != null
+				? targetSectionClass.getAllConcreteExtending()
+				: Collections.emptyList();
 
 		return classesToConsider.stream().filter(this.targetClassInstanceByHintGroupRegistry::containsKey).flatMap(
 				c -> this.targetClassInstanceByHintGroupRegistry.get(c).values().stream().flatMap(Collection::stream))

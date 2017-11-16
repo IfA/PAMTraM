@@ -1,7 +1,6 @@
 package de.mfreund.gentrans.transformation.descriptors;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -142,16 +141,10 @@ public class MatchedSectionDescriptor {
 	 */
 	public Set<EObject> getMatchedSourceModelElementsFor(SourceSectionClass sourceSectionClass) {
 
-		if (sourceSectionClass instanceof SourceSection && ((SourceSection) sourceSectionClass).isAbstract()) {
-			return ((SourceSection) sourceSectionClass).getAllExtending().stream()
-					.filter(s -> !s.isAbstract() && this.matchedSourceModelObjets.containsKey(s))
-					.flatMap(s -> this.matchedSourceModelObjets.get(s).stream())
-					.collect(Collectors.toCollection(LinkedHashSet::new));
-		}
-
-		return this.matchedSourceModelObjets.containsKey(sourceSectionClass)
-				? this.matchedSourceModelObjets.get(sourceSectionClass)
-				: new HashSet<>();
+		return sourceSectionClass.getAllConcreteExtending().stream()
+				.filter(s -> this.matchedSourceModelObjets.containsKey(s))
+				.flatMap(s -> this.matchedSourceModelObjets.get(s).stream())
+				.collect(Collectors.toCollection(LinkedHashSet::new));
 	}
 
 	/**

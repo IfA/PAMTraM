@@ -528,7 +528,7 @@ public class ConditionHandler {
 			MatchedSectionDescriptor matchedSectionDescriptor) {
 
 		SourceSection affectedSection;
-		List<SourceSectionClass> affectedClasses;
+		Set<SourceSectionClass> affectedClasses;
 		try {
 			affectedSection = condition.getAffectedSection();
 			affectedClasses = condition.getAffectedClasses();
@@ -584,7 +584,7 @@ public class ConditionHandler {
 						.flatMap(descriptor -> Optional
 								.ofNullable(descriptor.getMatchedSourceModelElementsFor(affectedClass))
 								.orElse(new HashSet<>()).stream()))
-				.collect(Collectors.toList());
+				.distinct().collect(Collectors.toList());
 
 		// For CardinalityConditions based on SourceSectionCrossReferences, we need to filter some more and only
 		// consider those instances that are reference via the correct reference

@@ -257,13 +257,22 @@ public interface GenericPackage extends EPackage {
 	int CLASS__ALL_REFERENCES = META_MODEL_ELEMENT_FEATURE_COUNT + 11;
 
 	/**
+	 * The feature id for the '<em><b>All Concrete Extending</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__ALL_CONCRETE_EXTENDING = META_MODEL_ELEMENT_FEATURE_COUNT + 12;
+
+	/**
 	 * The number of structural features of the '<em>Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_FEATURE_COUNT = META_MODEL_ELEMENT_FEATURE_COUNT + 12;
+	int CLASS_FEATURE_COUNT = META_MODEL_ELEMENT_FEATURE_COUNT + 13;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -490,6 +499,15 @@ public interface GenericPackage extends EPackage {
 	 * @ordered
 	 */
 	int SECTION__ALL_REFERENCES = CLASS__ALL_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>All Concrete Extending</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SECTION__ALL_CONCRETE_EXTENDING = CLASS__ALL_CONCRETE_EXTENDING;
 
 	/**
 	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
@@ -1594,6 +1612,17 @@ public interface GenericPackage extends EPackage {
 	EReference getClass_AllReferences();
 
 	/**
+	 * Returns the meta object for the reference list '{@link pamtram.structure.generic.Class#getAllConcreteExtending <em>All Concrete Extending</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>All Concrete Extending</em>'.
+	 * @see pamtram.structure.generic.Class#getAllConcreteExtending()
+	 * @see #getClass_()
+	 * @generated
+	 */
+	EReference getClass_AllConcreteExtending();
+
+	/**
 	 * Returns the meta object for the '{@link pamtram.structure.generic.Class#isContainerFor(pamtram.structure.generic.Class) <em>Is Container For</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2115,6 +2144,14 @@ public interface GenericPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CLASS__ALL_REFERENCES = eINSTANCE.getClass_AllReferences();
+
+		/**
+		 * The meta object literal for the '<em><b>All Concrete Extending</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS__ALL_CONCRETE_EXTENDING = eINSTANCE.getClass_AllConcreteExtending();
 
 		/**
 		 * The meta object literal for the '<em><b>Is Container For</b></em>' operation.

@@ -4,6 +4,7 @@ package pamtram.structure.generic.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -52,6 +53,7 @@ import pamtram.structure.generic.util.GenericValidator;
  *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getVirtualReferences <em>Virtual References</em>}</li>
  *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getAllAttributes <em>All Attributes</em>}</li>
  *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getAllReferences <em>All References</em>}</li>
+ *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getAllConcreteExtending <em>All Concrete Extending</em>}</li>
  * </ul>
  *
  * @generated
@@ -402,6 +404,21 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 * @generated
 	 */
 	@Override
+	public EList<C> getAllConcreteExtending() {
+		@SuppressWarnings("unchecked")
+		List<Object> ret = this instanceof Section<?, ?, ?, ?> && ((S) this).isAbstract()
+				? ((S) this).getAllExtending().stream().filter(s -> !s.isAbstract()).collect(Collectors.toList())
+				: Arrays.asList(this);
+		
+		return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.CLASS__ALL_CONCRETE_EXTENDING, ret.size(),
+				ret.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public boolean isContainerFor(final C containedClass) {
 		C container = containedClass.getContainer();
 				
@@ -670,6 +687,8 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 				return getAllAttributes();
 			case GenericPackage.CLASS__ALL_REFERENCES:
 				return getAllReferences();
+			case GenericPackage.CLASS__ALL_CONCRETE_EXTENDING:
+				return getAllConcreteExtending();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -760,6 +779,8 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 				return !getAllAttributes().isEmpty();
 			case GenericPackage.CLASS__ALL_REFERENCES:
 				return !getAllReferences().isEmpty();
+			case GenericPackage.CLASS__ALL_CONCRETE_EXTENDING:
+				return !getAllConcreteExtending().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -37,7 +37,7 @@ import de.mfreund.gentrans.transformation.ITransformationRunner.TransformationRe
 import de.mfreund.gentrans.transformation.TransformationConfiguration;
 import de.mfreund.gentrans.transformation.TransformationRunnerFactory;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
-import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
+import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
 import de.mfreund.gentrans.transformation.expanding.TargetSectionConnector;
 import de.mfreund.gentrans.transformation.expanding.TargetSectionInstantiator;
 import de.mfreund.gentrans.transformation.expanding.TargetSectionLinker;
@@ -550,7 +550,7 @@ public class TransformationTaskRunner extends CancelableElement {
 		// Create the various TransformationMappings and
 		// TransformationMappingHintGroups
 		//
-		for (final MappingInstanceStorage selMap : this.assetManager.getSelectedMappingRegistry()
+		for (final MappingInstanceDescriptor selMap : this.assetManager.getSelectedMappingRegistry()
 				.getMappingInstaces()) {
 
 			/*

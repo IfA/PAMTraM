@@ -62,9 +62,9 @@ public class MatchedSectionDescriptor {
 	private MatchedSectionDescriptor containerDescriptor;
 
 	/**
-	 * This keeps track of the {@link MappingInstanceStorage} that has been associated with this descriptor.
+	 * This keeps track of the {@link MappingInstanceDescriptor} that has been associated with this descriptor.
 	 */
-	private MappingInstanceStorage associatedMappingInstance;
+	private MappingInstanceDescriptor associatedMappingInstance;
 
 	/**
 	 * This constructs an instance.
@@ -258,9 +258,9 @@ public class MatchedSectionDescriptor {
 	/**
 	 * This is the getter for the {@link #associatedMappingInstance}.
 	 *
-	 * @return The {@link MappingInstanceStorage} that has been associated with this descriptor.
+	 * @return The {@link MappingInstanceDescriptor} that has been associated with this descriptor.
 	 */
-	public MappingInstanceStorage getAssociatedMappingInstance() {
+	public MappingInstanceDescriptor getAssociatedMappingInstance() {
 
 		return this.associatedMappingInstance;
 	}
@@ -269,9 +269,9 @@ public class MatchedSectionDescriptor {
 	 * This is the setter for the {@link #associatedMappingInstance}.
 	 *
 	 * @param associatedMappingInstance
-	 *            The {@link MappingInstanceStorage} to be associated with this descriptor.
+	 *            The {@link MappingInstanceDescriptor} to be associated with this descriptor.
 	 */
-	public void setAssociatedMappingInstance(MappingInstanceStorage associatedMappingInstance) {
+	public void setAssociatedMappingInstance(MappingInstanceDescriptor associatedMappingInstance) {
 
 		this.associatedMappingInstance = associatedMappingInstance;
 	}

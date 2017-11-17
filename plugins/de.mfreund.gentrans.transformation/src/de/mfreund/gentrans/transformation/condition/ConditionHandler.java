@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
 import de.mfreund.gentrans.transformation.calculation.MatchSpecHandler;
 import de.mfreund.gentrans.transformation.calculation.ValueConstraintReferenceValueCalculator;
-import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
+import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.matching.ValueExtractor;
 import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
@@ -98,7 +98,7 @@ public class ConditionHandler {
 
 	/**
 	 * The {@link SelectedMappingRegistry} where selected {@link Mapping Mappings} as well as associated
-	 * {@link MappingInstanceStorage Mapping instances} are stored. This registry is consulted when checking
+	 * {@link MappingInstanceDescriptor Mapping instances} are stored. This registry is consulted when checking
 	 * {@link ApplicationDependency ApplicationDependencies}.
 	 */
 	private SelectedMappingRegistry selectedMappingRegistry;
@@ -134,7 +134,7 @@ public class ConditionHandler {
 	 *            MatchedSectionDescriptors} that result from the matching process.
 	 * @param selectedMappings
 	 *            The {@link SelectedMappingRegistry} where selected {@link Mapping Mappings} as well as associated
-	 *            {@link MappingInstanceStorage Mapping instances} are stored. This registry is consulted when checking
+	 *            {@link MappingInstanceDescriptor Mapping instances} are stored. This registry is consulted when checking
 	 *            {@link ApplicationDependency ApplicationDependencies}.
 	 * @param instanceSelectorHandler
 	 *            The {@link InstanceSelectorHandler} used to filter instances by means of {@link InstanceSelector
@@ -474,7 +474,7 @@ public class ConditionHandler {
 
 			// mapping has been applied
 			//
-			List<MappingInstanceStorage> storageInstances = this.selectedMappingRegistry
+			List<MappingInstanceDescriptor> storageInstances = this.selectedMappingRegistry
 					.get((Mapping) applicationDependency.getTarget());
 
 			List<EObject> instancesToConsider = this.getInstancesToConsider(applicationDependency,

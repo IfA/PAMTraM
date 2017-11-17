@@ -26,7 +26,7 @@ import de.mfreund.gentrans.transformation.CancelTransformationException;
 import de.mfreund.gentrans.transformation.UserAbortException;
 import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
-import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
+import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
 import de.mfreund.gentrans.transformation.registries.SelectedMappingRegistry;
 import de.mfreund.gentrans.transformation.registries.TargetModelRegistry;
@@ -144,7 +144,7 @@ public class TargetSectionConnector extends CancelableElement {
 	 * Join the instantiated {@link TargetSection TargetSections}.
 	 *
 	 * @param selectedMappings
-	 *            The {@link SelectedMappingRegistry} providing all the {@link MappingInstanceStorage Mapping instances}
+	 *            The {@link SelectedMappingRegistry} providing all the {@link MappingInstanceDescriptor Mapping instances}
 	 *            whose {@link TargetSection TargetSections} shall be joined.
 	 */
 	public void joinTargetSections(SelectedMappingRegistry selectedMappings) {
@@ -160,11 +160,11 @@ public class TargetSectionConnector extends CancelableElement {
 	 * @param mapping
 	 *            The {@link Mapping} responsible for the creation of the {@link TargetSection TargetSections}
 	 * @param mappingInstances
-	 *            The list of {@link MappingInstanceStorage instances} created based on the given {@link Mapping}.
+	 *            The list of {@link MappingInstanceDescriptor instances} created based on the given {@link Mapping}.
 	 * @return '<em><b>true</b></em>' if all instances of the TargetSection were joined successfully;
 	 *         '<em><b>false</b></em>' otherwise
 	 */
-	public boolean joinTargetSections(final Mapping mapping, final List<MappingInstanceStorage> mappingInstances) {
+	public boolean joinTargetSections(final Mapping mapping, final List<MappingInstanceDescriptor> mappingInstances) {
 
 		// Join 'local' hint groups
 		//
@@ -194,13 +194,13 @@ public class TargetSectionConnector extends CancelableElement {
 	 *            The {@link MappingHintGroupType} responsible for the creation of the {@link TargetSection
 	 *            TargetSections} to join.
 	 * @param mappingInstances
-	 *            The list of {@link MappingInstanceStorage instances} created based on the given {@link Mapping}.
+	 *            The list of {@link MappingInstanceDescriptor instances} created based on the given {@link Mapping}.
 	 * @return '<em><b>true</b></em>' if all instances of the TargetSection were joined successfully;
 	 *         '<em><b>false</b></em>' otherwise
 	 */
 	@SuppressWarnings("unlikely-arg-type")
 	private boolean joinTargetSection(final MappingHintGroupType hintGroup,
-			final List<MappingInstanceStorage> mappingInstances) {
+			final List<MappingInstanceDescriptor> mappingInstances) {
 
 		this.checkCanceled();
 
@@ -233,7 +233,7 @@ public class TargetSectionConnector extends CancelableElement {
 
 			// The 'ContainerSelector(s)' need to be evaluated separately for each Mapping instance...
 			//
-			for (final MappingInstanceStorage mappingInstance : mappingInstances) {
+			for (final MappingInstanceDescriptor mappingInstance : mappingInstances) {
 
 				// The target model elements that need to connected to a
 				// container element
@@ -308,12 +308,12 @@ public class TargetSectionConnector extends CancelableElement {
 	 *            The {@link MappingHintGroupImporter} responsible for the creation of the {@link TargetSection
 	 *            TargetSections} to join.
 	 * @param mappingInstances
-	 *            The list of {@link MappingInstanceStorage instances} created based on the given {@link Mapping}.
+	 *            The list of {@link MappingInstanceDescriptor instances} created based on the given {@link Mapping}.
 	 * @return '<em><b>true</b></em>' if all instances of the TargetSection were joined successfully;
 	 *         '<em><b>false</b></em>' otherwise
 	 */
 	private boolean joinTargetSection(final MappingHintGroupImporter hintGroupImporter,
-			final List<MappingInstanceStorage> mappingInstances) {
+			final List<MappingInstanceDescriptor> mappingInstances) {
 
 		this.checkCanceled();
 
@@ -347,7 +347,7 @@ public class TargetSectionConnector extends CancelableElement {
 		 * mapping Instance
 		 */
 		if (hintGroupImporter.getContainer() != null) {
-			for (final MappingInstanceStorage selMap : mappingInstances) {
+			for (final MappingInstanceDescriptor selMap : mappingInstances) {
 
 				if (g instanceof ConditionalElement && selMap.isElementWithNegativeCondition((ConditionalElement) g)) {
 					continue;
@@ -809,7 +809,7 @@ public class TargetSectionConnector extends CancelableElement {
 	 * This method is used for connecting sections using a given {@link ContainerSelector}.
 	 *
 	 * @param mappingInstance
-	 *            The {@link MappingInstanceStorage} representing the given <em>rootInstances</em>.
+	 *            The {@link MappingInstanceDescriptor} representing the given <em>rootInstances</em>.
 	 * @param rootInstances
 	 *            A list of {@link EObjectWrapper elements} to connect (created based on the given
 	 *            <em>mappingInstance</em>).
@@ -820,7 +820,7 @@ public class TargetSectionConnector extends CancelableElement {
 	 * @return A list of {@link EObjectWrapper instances} that could not be connected (a sub-list of the given
 	 *         <em>rootInstances</em> or an empty list).
 	 */
-	private List<EObjectWrapper> joinWithContainerSelectors(MappingInstanceStorage mappingInstance,
+	private List<EObjectWrapper> joinWithContainerSelectors(MappingInstanceDescriptor mappingInstance,
 			final List<EObjectWrapper> rootInstances, final MappingHintGroupType mappingGroup,
 			List<ContainerSelector> containerSelectors) {
 
@@ -1232,7 +1232,7 @@ public class TargetSectionConnector extends CancelableElement {
 
 	/**
 	 * For each of the given {@link ContainerSelector ContainerSelectors}, determines the list of {@link EObjectWrapper
-	 * container instances} satisfying at least one of the hint values for the given {@link MappingInstanceStorage} (a
+	 * container instances} satisfying at least one of the hint values for the given {@link MappingInstanceDescriptor} (a
 	 * subset of all instantiated elements of the {@link ContainerSelector#getTargetClass() target class} specified by
 	 * the respective ContainerSelector).
 	 * <p />
@@ -1243,13 +1243,13 @@ public class TargetSectionConnector extends CancelableElement {
 	 * @param containerSelectors
 	 *            The list of {@link ContainerSelector ContainerSelectors} to evaluate.
 	 * @param mappingInstance
-	 *            The {@link MappingInstanceStorage} providing the hint values for the given
+	 *            The {@link MappingInstanceDescriptor} providing the hint values for the given
 	 *            <em>containerSelectors</em>.
 	 * @return The list of potential {@link EObjectWrapper container instances} for each of the given
 	 *         {@link ContainerSelector ContainerSelectors}.
 	 */
 	private Map<ContainerSelector, List<EObjectWrapper>> getContainerInstancesByContainerSelector(
-			List<ContainerSelector> containerSelectors, MappingInstanceStorage mappingInstance) {
+			List<ContainerSelector> containerSelectors, MappingInstanceDescriptor mappingInstance) {
 
 		Map<ContainerSelector, List<EObjectWrapper>> containerInstancesByContainerSelector = new LinkedHashMap<>();
 

@@ -24,7 +24,7 @@ import de.mfreund.gentrans.transformation.UserAbortException;
 import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.HintValueStorage;
-import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
+import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
 import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
@@ -45,7 +45,7 @@ import pamtram.structure.target.TargetSectionCompositeReference;
 import pamtram.structure.target.TargetSectionCrossReference;
 
 /**
- * Class for linking target model sections using the hints supplied by {@link MappingInstanceStorage
+ * Class for linking target model sections using the hints supplied by {@link MappingInstanceDescriptor
  * MappingInstanceStorages}.
  *
  * @author mfreund
@@ -104,29 +104,29 @@ public class TargetSectionLinker extends CancelableElement {
 	}
 
 	/**
-	 * Link the {@link TargetSection TargetSections} represented by the given list of {@link MappingInstanceStorage
+	 * Link the {@link TargetSection TargetSections} represented by the given list of {@link MappingInstanceDescriptor
 	 * mapping instances}, i.e. find target elements for the various {@link TargetSectionCrossReference
 	 * TargetSectionCrossReferences} of the TargetSections.
 	 *
 	 * @param mappingInstances
-	 *            The list of {@link MappingInstanceStorage mapping instances} to link.
+	 *            The list of {@link MappingInstanceDescriptor mapping instances} to link.
 	 */
-	public void linkTargetSections(List<MappingInstanceStorage> mappingInstances) {
+	public void linkTargetSections(List<MappingInstanceDescriptor> mappingInstances) {
 
 		mappingInstances.stream().forEach(this::linkTargetSection);
 	}
 
 	/**
 	 * Link the {@link TargetSection TargetSections} represented by the <em>hintGroups</em> of the given
-	 * {@link MappingInstanceStorage}, i.e. find target elements for the various {@link TargetSectionCrossReference
+	 * {@link MappingInstanceDescriptor}, i.e. find target elements for the various {@link TargetSectionCrossReference
 	 * TargetSectionCrossReferences} of the TargetSections.
 	 *
 	 * @param mappingInstance
-	 *            The {@link MappingInstanceStorage mapping instance} to link.
+	 *            The {@link MappingInstanceDescriptor mapping instance} to link.
 	 * @return '<em><b>true</b></em>' if all instances of the linking step completed successfully;
 	 *         '<em><b>false</b></em>' otherwise
 	 */
-	public boolean linkTargetSection(final MappingInstanceStorage mappingInstance) {
+	public boolean linkTargetSection(final MappingInstanceDescriptor mappingInstance) {
 
 		// Link 'local' hint groups
 		//
@@ -143,15 +143,15 @@ public class TargetSectionLinker extends CancelableElement {
 
 	/**
 	 * Link the {@link TargetSection TargetSections} created by the given <em>hintGroup</em> using the specified
-	 * {@link MappingInstanceStorage mappingInstance}.
+	 * {@link MappingInstanceDescriptor mappingInstance}.
 	 *
 	 * @param hintGroup
 	 *            The {@link InstantiableMappingHintGroup} of which the created {@link TargetSection TargetSections}
 	 *            shall be linked.
 	 * @param mappingInstance
-	 *            The {@link MappingInstanceStorage mapping instance} to link.
+	 *            The {@link MappingInstanceDescriptor mapping instance} to link.
 	 */
-	private void linkTargetSection(InstantiableMappingHintGroup hintGroup, MappingInstanceStorage mappingInstance) {
+	private void linkTargetSection(InstantiableMappingHintGroup hintGroup, MappingInstanceDescriptor mappingInstance) {
 
 		// Only go on if any instances of this section were created
 		//
@@ -226,18 +226,18 @@ public class TargetSectionLinker extends CancelableElement {
 
 	/**
 	 * Link the given {@link TargetSectionCrossReference}, i.e. find target elements for the various target model
-	 * elements created by the given <em>hintGroup</em> of the given {@link MappingInstanceStorage}.
+	 * elements created by the given <em>hintGroup</em> of the given {@link MappingInstanceDescriptor}.
 	 *
 	 * @param hintGroup
 	 *            The {@link InstantiableMappingHintGroup} of which the created {@link TargetSection TargetSections}
 	 *            shall be linked.
 	 * @param mappingInstance
-	 *            The {@link MappingInstanceStorage mapping instance} to link.
+	 *            The {@link MappingInstanceDescriptor mapping instance} to link.
 	 * @param ref
 	 *            The {@link TargetSectionCrossReference} for that the target elements shall be determined.
 	 */
 	private void linkTargetSectionReference(InstantiableMappingHintGroup hintGroup,
-			MappingInstanceStorage mappingInstance, TargetSectionCrossReference ref) {
+			MappingInstanceDescriptor mappingInstance, TargetSectionCrossReference ref) {
 
 		// We are searching for target elements for instances of this class
 		//
@@ -282,7 +282,7 @@ public class TargetSectionLinker extends CancelableElement {
 	/**
 	 * Link the given {@link TargetSectionCrossReference} using the given {@link ReferenceTargetSelector}, i.e. find
 	 * target elements for the various target model elements created by the given <em>hintGroup</em> of the given
-	 * {@link MappingInstanceStorage}.
+	 * {@link MappingInstanceDescriptor}.
 	 *
 	 * @param mappingGroup
 	 *            The {@link InstantiableMappingHintGroup} based on which the TargetSection gets instantiated.
@@ -346,7 +346,7 @@ public class TargetSectionLinker extends CancelableElement {
 
 	/**
 	 * Link the given {@link TargetSectionCrossReference}, i.e. find target elements for the various target model
-	 * elements created by the given <em>hintGroup</em> of the given {@link MappingInstanceStorage}.
+	 * elements created by the given <em>hintGroup</em> of the given {@link MappingInstanceDescriptor}.
 	 *
 	 * @param mappingGroup
 	 *            The {@link InstantiableMappingHintGroup} based on which the TargetSection gets instantiated.

@@ -14,12 +14,12 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
+import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
 import pamtram.mapping.Mapping;
 
 /**
  * This class represents a registry for the various selected mappings. Thereby, each selected
- * {@link MappingInstanceStorage Mapping instance} is associated with the corresponding {@link Mapping} that it
+ * {@link MappingInstanceDescriptor Mapping instance} is associated with the corresponding {@link Mapping} that it
  * represents.
  * <p />
  * Note: The map used internally to represent the registry as well as all relevant operations are
@@ -30,7 +30,7 @@ import pamtram.mapping.Mapping;
  */
 public class SelectedMappingRegistry {
 
-	private Map<Mapping, List<MappingInstanceStorage>> internalRegistry;
+	private Map<Mapping, List<MappingInstanceDescriptor>> internalRegistry;
 
 	/**
 	 * This creates an instance.
@@ -42,7 +42,7 @@ public class SelectedMappingRegistry {
 	}
 
 	/**
-	 * Register a new list of {@link MappingInstanceStorage instances} for the given {@link Mapping mapping} by
+	 * Register a new list of {@link MappingInstanceDescriptor instances} for the given {@link Mapping mapping} by
 	 * replacing eventual previously registered instances.
 	 *
 	 * @see #add(Mapping, List)
@@ -50,32 +50,32 @@ public class SelectedMappingRegistry {
 	 * @param mapping
 	 *            The {@link Mapping} for that new instances shall be registered.
 	 * @param instances
-	 *            The list of {@link MappingInstanceStorage instances} to register.
+	 *            The list of {@link MappingInstanceDescriptor instances} to register.
 	 */
-	public synchronized void put(Mapping mapping, List<MappingInstanceStorage> instances) {
+	public synchronized void put(Mapping mapping, List<MappingInstanceDescriptor> instances) {
 
 		this.internalRegistry.put(mapping, instances);
 	}
 
 	/**
-	 * Register a new list of {@link MappingInstanceStorage instances}.
+	 * Register a new list of {@link MappingInstanceDescriptor instances}.
 	 * <p />
-	 * Note: Each of the instances is registered according to its associated {@link MappingInstanceStorage#getMapping()
+	 * Note: Each of the instances is registered according to its associated {@link MappingInstanceDescriptor#getMapping()
 	 * mapping}.
 	 *
 	 * @see #add(Mapping, List)
 	 * @see #addAll(SelectedMappingRegistry)
 	 *
 	 * @param instances
-	 *            The list of {@link MappingInstanceStorage instances} to register.
+	 *            The list of {@link MappingInstanceDescriptor instances} to register.
 	 */
-	public synchronized void add(List<MappingInstanceStorage> instances) {
+	public synchronized void add(List<MappingInstanceDescriptor> instances) {
 
 		instances.stream().forEach(instance -> this.add(instance.getMapping(), Arrays.asList(instance)));
 	}
 
 	/**
-	 * Register a new list of {@link MappingInstanceStorage instances} for the given {@link Mapping mapping} by adding
+	 * Register a new list of {@link MappingInstanceDescriptor instances} for the given {@link Mapping mapping} by adding
 	 * to eventual previously registered instances.
 	 *
 	 * @see #put(Mapping, List)
@@ -84,11 +84,11 @@ public class SelectedMappingRegistry {
 	 * @param mapping
 	 *            The {@link Mapping} for that new instances shall be registered.
 	 * @param instances
-	 *            The list of {@link MappingInstanceStorage instances} to register.
+	 *            The list of {@link MappingInstanceDescriptor instances} to register.
 	 */
-	public synchronized void add(Mapping mapping, List<MappingInstanceStorage> instances) {
+	public synchronized void add(Mapping mapping, List<MappingInstanceDescriptor> instances) {
 
-		List<MappingInstanceStorage> newInstances = new ArrayList<>(this.get(mapping));
+		List<MappingInstanceDescriptor> newInstances = new ArrayList<>(this.get(mapping));
 		newInstances.addAll(instances);
 		this.put(mapping, newInstances);
 	}
@@ -122,17 +122,17 @@ public class SelectedMappingRegistry {
 	}
 
 	/**
-	 * Returns the list of {@link MappingInstanceStorage instances} registered for the given {@link Mapping mapping}.
+	 * Returns the list of {@link MappingInstanceDescriptor instances} registered for the given {@link Mapping mapping}.
 	 * <p />
 	 * Note: This redirects to the {@link #internalRegistry}. However, if there is nothing registered for the given
 	 * mapping, an empty list will be returned instead of <em>null</em>.
 	 *
 	 * @param mapping
 	 *            The {@link Mapping} for which the registered instances shall be returned.
-	 * @return The list of registered {@link MappingInstanceStorage instances} or an empty list if there are no
+	 * @return The list of registered {@link MappingInstanceDescriptor instances} or an empty list if there are no
 	 *         registered instances.
 	 */
-	public synchronized List<MappingInstanceStorage> get(Mapping mapping) {
+	public synchronized List<MappingInstanceDescriptor> get(Mapping mapping) {
 
 		return this.internalRegistry.containsKey(mapping) ? new ArrayList<>(this.internalRegistry.get(mapping))
 				: Collections.emptyList();
@@ -149,11 +149,11 @@ public class SelectedMappingRegistry {
 	}
 
 	/**
-	 * Returns the list of {@link MappingInstanceStorage Mapping instances} currently managed by this registry.
+	 * Returns the list of {@link MappingInstanceDescriptor Mapping instances} currently managed by this registry.
 	 *
-	 * @return The set of {@link MappingInstanceStorage Mapping instances} currently managed by this registry.
+	 * @return The set of {@link MappingInstanceDescriptor Mapping instances} currently managed by this registry.
 	 */
-	public synchronized List<MappingInstanceStorage> getMappingInstaces() {
+	public synchronized List<MappingInstanceDescriptor> getMappingInstaces() {
 
 		return this.internalRegistry.values().stream().flatMap(Collection::stream).collect(Collectors.toList());
 	}

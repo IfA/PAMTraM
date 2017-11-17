@@ -19,7 +19,7 @@ import de.mfreund.gentrans.transformation.CancelTransformationException;
 import de.mfreund.gentrans.transformation.UserAbortException;
 import de.mfreund.gentrans.transformation.condition.ConditionHandler;
 import de.mfreund.gentrans.transformation.condition.ConditionHandler.CondResult;
-import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
+import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
 import de.mfreund.gentrans.transformation.registries.SelectedMappingRegistry;
@@ -209,7 +209,7 @@ public class MappingSelector extends CancelableElement {
 		// Select a mapping for each matched section and each descriptor instance. In the first run, we 'defer' those
 		// sections that are associated with a Mapping that contains a 'MappingDependency'.
 		//
-		List<MappingInstanceStorage> mappingInstances = (this.useParallelization
+		List<MappingInstanceDescriptor> mappingInstances = (this.useParallelization
 				? matchedSections.entrySet().parallelStream()
 				: matchedSections.entrySet().stream())
 						.map(e -> this.selectMapping(e.getKey(), e.getValue(), activeMappings, true))
@@ -221,7 +221,7 @@ public class MappingSelector extends CancelableElement {
 		// Now, do the same stuff for the 'deferred' sections as we are now able to evaluate the
 		// 'ApplicationDependencies'.
 		//
-		List<MappingInstanceStorage> deferredInstances = (this.useParallelization
+		List<MappingInstanceDescriptor> deferredInstances = (this.useParallelization
 				? this.deferredSections.parallelStream()
 				: this.deferredSections.stream())
 						.map(s -> this.selectMapping(s, matchedSections.get(s), activeMappings, false))
@@ -250,18 +250,18 @@ public class MappingSelector extends CancelableElement {
 	 *            This can be used to control whether those sections, for that at least one of the applicable mappings
 	 *            has an {@link ApplicationDependency} shall be 'deferred'. Typically, this should be set to 'true'
 	 *            during the first run (to collect the {@link #deferredSections} and to 'false' during the second run.
-	 * @return A list of {@link MappingInstanceStorage MappingInstanceStorages} (one for each of the given
-	 *         <em>descriptors</em>). Note: The {@link MappingInstanceStorage MappingInstanceStorages} do not yet
+	 * @return A list of {@link MappingInstanceDescriptor MappingInstanceStorages} (one for each of the given
+	 *         <em>descriptors</em>). Note: The {@link MappingInstanceDescriptor MappingInstanceStorages} do not yet
 	 *         contain any calculated hint values.
 	 */
-	private List<MappingInstanceStorage> selectMapping(SourceSection matchedSection,
+	private List<MappingInstanceDescriptor> selectMapping(SourceSection matchedSection,
 			List<MatchedSectionDescriptor> descriptors, List<Mapping> mappings, boolean deferApplicationDependencies) {
 
 		this.checkCanceled();
 
 		// This will be returned in the end
 		//
-		List<MappingInstanceStorage> ret = new ArrayList<>();
+		List<MappingInstanceDescriptor> ret = new ArrayList<>();
 
 		// The mappings with suitable 'sourceMMSections'
 		//
@@ -433,14 +433,14 @@ public class MappingSelector extends CancelableElement {
 
 	/**
 	 * This evaluates the conditions of the {@link ConditionalElement ConditionalElements} contained in the mapping
-	 * represented by the given {@link MappingInstanceStorage}. Elements with conditions that have been evaluated as
-	 * <em>negative</em> are {@link MappingInstanceStorage#addElementWithNegativeCondition(ConditionalElement) stored}
+	 * represented by the given {@link MappingInstanceDescriptor}. Elements with conditions that have been evaluated as
+	 * <em>negative</em> are {@link MappingInstanceDescriptor#addElementWithNegativeCondition(ConditionalElement) stored}
 	 * in the <em>mappingInstance</em>.
 	 *
 	 * @param mappingInstance
-	 *            The {@link MappingInstanceStorage} representing the ConditionalElements to be checked.
+	 *            The {@link MappingInstanceDescriptor} representing the ConditionalElements to be checked.
 	 */
-	private void determineElementsWithNegativeConditions(MappingInstanceStorage mappingInstance) {
+	private void determineElementsWithNegativeConditions(MappingInstanceDescriptor mappingInstance) {
 
 		// check conditions of all corresponding MappingHintGroups
 		//
@@ -492,17 +492,17 @@ public class MappingSelector extends CancelableElement {
 	/**
 	 * Checks the condition of the given {@link ConditionalElement}. If the condition evaluates to
 	 * {@link CondResult#FALSE}, the element is
-	 * {@link MappingInstanceStorage#addElementWithNegativeCondition(ConditionalElement) marked as negative} in the
-	 * given {@link MappingInstanceStorage}.
+	 * {@link MappingInstanceDescriptor#addElementWithNegativeCondition(ConditionalElement) marked as negative} in the
+	 * given {@link MappingInstanceDescriptor}.
 	 *
 	 * @param conditionalElement
 	 *            The {@link ConditionalElement} to check.
 	 * @param mappingInstance
-	 *            The {@link MappingInstanceStorage} associated with the given <em>conditionalElement</em>.
+	 *            The {@link MappingInstanceDescriptor} associated with the given <em>conditionalElement</em>.
 	 * @return '<em><b>true</b></em>' if the condition was evaluated to {@link CondResult#TRUE}; '<em><b>false</b></em>'
 	 *         otherwise.
 	 */
-	private boolean checkCondition(ConditionalElement conditionalElement, MappingInstanceStorage mappingInstance) {
+	private boolean checkCondition(ConditionalElement conditionalElement, MappingInstanceDescriptor mappingInstance) {
 
 		boolean result = this.checkCondition(conditionalElement, mappingInstance.getMatchedSectionDescriptor());
 
@@ -575,17 +575,17 @@ public class MappingSelector extends CancelableElement {
 	}
 
 	/**
-	 * This creates a {@link MappingInstanceStorage} for the given {@link MatchedSectionDescriptor descriptor}.
+	 * This creates a {@link MappingInstanceDescriptor} for the given {@link MatchedSectionDescriptor descriptor}.
 	 *
 	 * @param descriptor
-	 *            The {@link MatchedSectionDescriptor} for that the {@link MappingInstanceStorage} shall be created.
+	 *            The {@link MatchedSectionDescriptor} for that the {@link MappingInstanceDescriptor} shall be created.
 	 * @param mapping
 	 *            The {@link Mapping} that the MappingInstanceStorage shall represent.
-	 * @return The created {@link MappingInstanceStorage}.
+	 * @return The created {@link MappingInstanceDescriptor}.
 	 */
-	private MappingInstanceStorage createMappingInstanceStorage(MatchedSectionDescriptor descriptor, Mapping mapping) {
+	private MappingInstanceDescriptor createMappingInstanceStorage(MatchedSectionDescriptor descriptor, Mapping mapping) {
 
-		MappingInstanceStorage ret = new MappingInstanceStorage(descriptor, this.useParallelization);
+		MappingInstanceDescriptor ret = new MappingInstanceDescriptor(descriptor, this.useParallelization);
 		ret.setMapping(mapping);
 		return ret;
 	}

@@ -19,7 +19,7 @@ import de.mfreund.gentrans.transformation.calculation.ValueCalculator;
 import de.mfreund.gentrans.transformation.calculation.ValueConstraintReferenceValueCalculator;
 import de.mfreund.gentrans.transformation.calculation.ValueModifierExecutor;
 import de.mfreund.gentrans.transformation.condition.ConditionHandler;
-import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
+import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
 import de.mfreund.gentrans.transformation.expanding.TargetSectionConnector;
 import de.mfreund.gentrans.transformation.expanding.TargetSectionInstantiator;
 import de.mfreund.gentrans.transformation.expanding.TargetSectionLinker;
@@ -85,7 +85,7 @@ class TransformationAssetManager extends CancelableElement {
 
 	/**
 	 * The {@link SelectedMappingRegistry} where the various selected {@link Mapping Mappings} as well as the associated
-	 * {@link MappingInstanceStorage Mapping instances} are stored.
+	 * {@link MappingInstanceDescriptor Mapping instances} are stored.
 	 */
 	private SelectedMappingRegistry selectedMappingRegistry;
 

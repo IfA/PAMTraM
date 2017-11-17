@@ -29,7 +29,7 @@ import de.mfreund.gentrans.transformation.calculation.ValueCalculator;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.HintValueStorage;
-import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
+import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
 import de.mfreund.gentrans.transformation.library.LibraryEntryInstantiator;
 import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvedAdapter;
@@ -60,7 +60,7 @@ import pamtram.structure.target.TargetSectionCompositeReference;
 import pamtram.structure.target.TargetSectionReference;
 
 /**
- * Class for instantiating target model sections using the hints supplied by {@link MappingInstanceStorage
+ * Class for instantiating target model sections using the hints supplied by {@link MappingInstanceDescriptor
  * MappingInstanceStorages}.
  *
  * @author mfreund
@@ -136,16 +136,16 @@ public class TargetSectionInstantiator extends CancelableElement {
 
 	/**
 	 * This expands the {@link TargetSection TargetSections} represented by the <em>hintGroups</em> of the given list of
-	 * {@link MappingInstanceStorage MappingInstanceStorages}.
+	 * {@link MappingInstanceDescriptor MappingInstanceStorages}.
 	 * <p />
 	 * Created {@link EObjectWrapper instances} are
-	 * {@link MappingInstanceStorage#addInstances(InstantiableMappingHintGroup, TargetSectionClass, java.util.Collection)
+	 * {@link MappingInstanceDescriptor#addInstances(InstantiableMappingHintGroup, TargetSectionClass, java.util.Collection)
 	 * registered} in the corresponding <em>mappingInstance</em>.
 	 *
 	 * @param mappingInstances
-	 *            The list of {@link MappingInstanceStorage mapping instances} to expand.
+	 *            The list of {@link MappingInstanceDescriptor mapping instances} to expand.
 	 */
-	public void expandTargetSectionInstances(List<MappingInstanceStorage> mappingInstances) {
+	public void expandTargetSectionInstances(List<MappingInstanceDescriptor> mappingInstances) {
 
 		this.logger.info(() -> "Instantiating " + mappingInstances.size() + " TargetSection instances...");
 
@@ -156,16 +156,16 @@ public class TargetSectionInstantiator extends CancelableElement {
 
 	/**
 	 * This expands the {@link TargetSection TargetSections} represented by the <em>hintGroups</em> of the given
-	 * {@link MappingInstanceStorage}.
+	 * {@link MappingInstanceDescriptor}.
 	 * <p />
 	 * Created {@link EObjectWrapper instances} are
-	 * {@link MappingInstanceStorage#addInstances(InstantiableMappingHintGroup, TargetSectionClass, java.util.Collection)
+	 * {@link MappingInstanceDescriptor#addInstances(InstantiableMappingHintGroup, TargetSectionClass, java.util.Collection)
 	 * registered} in the given <em>mappingInstance</em>.
 	 *
 	 * @param mappingInstance
-	 *            The {@link MappingInstanceStorage mapping instance} to expand.
+	 *            The {@link MappingInstanceDescriptor mapping instance} to expand.
 	 */
-	public void expandTargetSectionInstance(MappingInstanceStorage mappingInstance) {
+	public void expandTargetSectionInstance(MappingInstanceDescriptor mappingInstance) {
 
 		/*
 		 * Iterate over all mapping hint groups and expand them
@@ -187,19 +187,19 @@ public class TargetSectionInstantiator extends CancelableElement {
 
 	/**
 	 * This expands the given {@link TargetSection} represented by the given <em>hintGroup</em> for the given
-	 * {@link MappingInstanceStorage} by redirecting to
+	 * {@link MappingInstanceDescriptor} by redirecting to
 	 * {@link TargetSectionInstantiator#instantiateTargetSectionFirstPass(TargetSection, InstantiableMappingHintGroup, List, HintValueStorage)}.
 	 * <p />
 	 * Created {@link EObjectWrapper instances} are
-	 * {@link MappingInstanceStorage#addInstances(InstantiableMappingHintGroup, TargetSectionClass, java.util.Collection)
+	 * {@link MappingInstanceDescriptor#addInstances(InstantiableMappingHintGroup, TargetSectionClass, java.util.Collection)
 	 * registered} in the given <em>mappingInstance</em>.
 	 *
 	 * @param mappingInstance
-	 *            The {@link MappingInstanceStorage mapping instance} to expand.
+	 *            The {@link MappingInstanceDescriptor mapping instance} to expand.
 	 * @param hintGroup
 	 *            The {@link MappingHintGroup} that lead to the instantiation of the given <em>mappingInstance</em>.
 	 */
-	private void expandTargetSectionInstance(final MappingInstanceStorage mappingInstance, MappingHintGroup hintGroup) {
+	private void expandTargetSectionInstance(final MappingInstanceDescriptor mappingInstance, MappingHintGroup hintGroup) {
 
 		final Map<TargetSectionClass, List<EObjectWrapper>> instancesBySection = this.instantiateTargetSectionFirstPass(
 				hintGroup.getTargetSection(), hintGroup,
@@ -222,20 +222,20 @@ public class TargetSectionInstantiator extends CancelableElement {
 
 	/**
 	 * This expands the given {@link TargetSection} represented by the given <em>hintGroup</em> for the given
-	 * {@link MappingInstanceStorage} by redirecting to
+	 * {@link MappingInstanceDescriptor} by redirecting to
 	 * {@link TargetSectionInstantiator#instantiateTargetSectionFirstPass(TargetSection, InstantiableMappingHintGroup, List, HintValueStorage)}.
 	 * <p />
 	 * Created {@link EObjectWrapper instances} are
-	 * {@link MappingInstanceStorage#addInstances(InstantiableMappingHintGroup, TargetSectionClass, java.util.Collection)
+	 * {@link MappingInstanceDescriptor#addInstances(InstantiableMappingHintGroup, TargetSectionClass, java.util.Collection)
 	 * registered} in the given <em>mappingInstance</em>.
 	 *
 	 * @param mappingInstance
-	 *            The {@link MappingInstanceStorage mapping instance} to expand.
+	 *            The {@link MappingInstanceDescriptor mapping instance} to expand.
 	 * @param mappingHintGroupImporter
 	 *            The {@link MappingHintGroupImporter} that lead to the instantiation of the given
 	 *            <em>mappingInstance</em>.
 	 */
-	private void expandTargetSectionInstance(final MappingInstanceStorage mappingInstance,
+	private void expandTargetSectionInstance(final MappingInstanceDescriptor mappingInstance,
 			MappingHintGroupImporter mappingHintGroupImporter) {
 
 		final List<MappingHint> hints = mappingInstance.getMappingHints(mappingHintGroupImporter);

@@ -100,7 +100,7 @@ public class MappingInstanceDescriptor {
 		this.matchedSectionDescriptor.setAssociatedMappingInstance(this);
 		this.mapping = null;
 		this.instancesBySection = Collections.synchronizedMap(new LinkedHashMap<>());
-		this.hintValues = new HintValueStorage(useParallelization);
+		this.hintValues = new HintValueStorage();
 		this.elementsWithNegativeConditions = new HashSet<>();
 		this.useParallelization = useParallelization;
 
@@ -316,7 +316,7 @@ public class MappingInstanceDescriptor {
 	 * @param includeImported
 	 *            Whether the {@link MappingHint MappingHints} that are {@link MappingHintGroupImporter#getHintGroup()
 	 *            imported} by {@link MappingHintGroupImporter MappingHintGroupImporters} shall be returned as well.
-	 * @return The set of valid {@link MappingHint hints} for the given {@link InstantiableMappingHintGroup}.
+	 * @return The set of valid {@link MappingHint hints}.
 	 */
 	public Set<MappingHint> getMappingHints(boolean includeImported) {
 
@@ -326,6 +326,34 @@ public class MappingInstanceDescriptor {
 								.flatMap(hg -> this.getMappingHints(hg, includeImported).stream()))
 				.collect(Collectors.toCollection(LinkedHashSet::new));
 
+	}
+
+	/**
+	 * This returns the {@link DeactivatableElement#isDeactivated() active} {@link ExportedMappingHintGroup
+	 * ExportedMappingHintGroups} of the {@link #mapping} associated with this.
+	 *
+	 * @return The list of active and valid {@link ExportedMappingHintGroup ExportedMappingHintGroups} for this
+	 *         {@link MappingInstanceDescriptor}.
+	 */
+	public List<ExportedMappingHintGroup> getExportedMappingHintGroups() {
+
+		return (this.useParallelization ? this.getMapping().getActiveMappingHintGroups().parallelStream()
+				: this.getMapping().getActiveMappingHintGroups().stream())
+						.filter(hg -> hg instanceof ExportedMappingHintGroup).map(hg -> (ExportedMappingHintGroup) hg)
+						.collect(Collectors.toList());
+	}
+
+	/**
+	 * This returns the {@link DeactivatableElement#isDeactivated() active} hints for all
+	 * {@link ExportedMappingHintGroup ExportedMappingHintGroups} for that the condition has not been determined as
+	 * {@link #isElementWithNegativeCondition(ConditionalElement) false}.
+	 *
+	 * @return The set of valid exported {@link MappingHint hints}.
+	 */
+	public Set<MappingHint> getExportedMappingHints() {
+
+		return this.getMappingHintGroups().stream().filter(hg -> hg instanceof ExportedMappingHintGroup)
+				.flatMap(hg -> this.getMappingHints(hg).stream()).collect(Collectors.toCollection(LinkedHashSet::new));
 	}
 
 	/**

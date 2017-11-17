@@ -1,8 +1,6 @@
 package de.mfreund.gentrans.transformation.matching;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.logging.Logger;
 
 import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
@@ -80,7 +78,7 @@ public class InstanceSelectorValueExtractor extends ValueExtractor {
 
 		// Collect the value parts
 		//
-		Map<InstanceSelectorSourceInterface, AttributeValueRepresentation> valueParts = new LinkedHashMap<>();
+		LinkedHashMap<InstanceSelectorSourceInterface, AttributeValueRepresentation> valueParts = new LinkedHashMap<>();
 
 		// Extract the value part based on its type
 		//
@@ -118,8 +116,8 @@ public class InstanceSelectorValueExtractor extends ValueExtractor {
 		// Assemble the target value based on the value parts and a potential
 		// expression
 		//
-		return this.attributeValueCalculator.calculateValue(new ArrayList<>(instancePointer.getSourceElements()),
-				instancePointer.getExpression(), valueParts, instancePointer.getModifiers());
+		return this.attributeValueCalculator.calculateValue(instancePointer.getExpression(), valueParts,
+				instancePointer.getModifiers());
 
 	}
 

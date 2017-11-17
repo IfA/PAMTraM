@@ -16,7 +16,6 @@ import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentati
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
-import de.mfreund.gentrans.transformation.maps.HintValueMap;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.FixedValue;
 import pamtram.mapping.ExportedMappingHintGroup;
@@ -153,14 +152,6 @@ public class HintValueExtractor extends ValueExtractor {
 		//
 		Set<MappingHint> mappingHints = mappingInstance.getMappingHints(false);
 
-		// Now, we need to initialize the corresponding maps to store hint
-		// values
-		// (Note: Using a parallel stream would for whatever reason result in
-		// exceptions, so we make use of a sequential
-		// stream).
-		//
-		mappingHints.stream().forEach(hint -> this.initializeHintValueMap(hint, mappingInstance));
-
 		// Now, we can extract the hint values for each hint
 		//
 		(this.useParallelization ? mappingHints.parallelStream() : mappingHints.stream())
@@ -189,18 +180,8 @@ public class HintValueExtractor extends ValueExtractor {
 			MappingInstanceDescriptor exported = this.exportedHintGroups.get(exportedHintGroup);
 
 			mappingInstance.getMappingHints(exportedHintGroup).stream().forEach(hint -> {
-				this.initializeHintValueMap(hint, mappingInstance);
 				mappingInstance.getHintValues().addHintValues(hint, exported.getHintValues().getHintValuesCloned(hint));
 			});
-
-			// Now, we need to initialize the corresponding maps to store values
-			// for own hints
-			// (Note: Using a parallel stream would for whatever reason result
-			// in exceptions, so we make use of a
-			// sequential stream).
-			//
-			hintGroupImporter.getMappingHints().stream()
-					.forEach(hint -> this.initializeHintValueMap(hint, mappingInstance));
 
 			// Now, we can extract the hint values for each own hint.
 			// (Note: MappedAttributeValueExpanders that change existing values
@@ -412,29 +393,6 @@ public class HintValueExtractor extends ValueExtractor {
 				matchedSectionDescriptor);
 
 		return attributeValueRepresentation == null ? null : attributeValueRepresentation.getNextValue();
-	}
-
-	/**
-	 * For a given {@link MappingHintBaseType hint}, this {@link HintValueMap#init(EObject) initializes} the
-	 * {@link HintValueMap} in the given {@link MappingInstanceDescriptor}.
-	 *
-	 * @param hint
-	 *            The {@link MappingHintBaseType} for that the map shall be initialized.
-	 * @param mappingInstance
-	 *            The {@link MappingInstanceDescriptor} in that the hint value map shall be initialized.
-	 */
-	@Deprecated
-	private void initializeHintValueMap(MappingHintBaseType hint, MappingInstanceDescriptor mappingInstance) {
-
-		if (hint instanceof AttributeMapping) {
-			mappingInstance.getHintValues().getAttributeMappingHintValues().init((AttributeMapping) hint);
-		} else if (hint instanceof ReferenceTargetSelector) {
-			mappingInstance.getHintValues().getMappingInstanceSelectorHintValues().init((ReferenceTargetSelector) hint);
-		} else if (hint instanceof ContainerSelector) {
-			mappingInstance.getHintValues().getModelConnectionHintValues().init((ContainerSelector) hint);
-		} else if (hint instanceof CardinalityMapping) {
-			mappingInstance.getHintValues().getCardinalityMappingHintValues().init((CardinalityMapping) hint);
-		}
 	}
 
 	/**

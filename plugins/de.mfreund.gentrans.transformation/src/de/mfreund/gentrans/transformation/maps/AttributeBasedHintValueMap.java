@@ -1,7 +1,6 @@
 package de.mfreund.gentrans.transformation.maps;
 
 import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
@@ -39,7 +38,7 @@ public class AttributeBasedHintValueMap<K extends EObject, S extends EObject>
 		 */
 		for (final K h : valueMap.keySet()) {
 			if (!this.containsKey(h)) {
-				this.init(h, false);
+				this.init(h);
 			}
 
 			for (final SourceSectionClass c : valueMap.get(h).keySet()) {
@@ -99,12 +98,6 @@ public class AttributeBasedHintValueMap<K extends EObject, S extends EObject>
 				}
 			}
 		}
-	}
-
-	@Override
-	protected Map<S, AttributeValueRepresentation> createEmptyValue() {
-
-		return new LinkedHashMap<>();
 	}
 
 }

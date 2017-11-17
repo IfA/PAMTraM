@@ -108,8 +108,8 @@ public class HintValueExtractor extends ValueExtractor {
 	 * respective for each {@link MappingInstanceDescriptor}.
 	 *
 	 * @param mappingInstances
-	 *            The list of {@link MappingInstanceDescriptor MappingInstanceStorages} for that the hint values shall be
-	 *            extracted.
+	 *            The list of {@link MappingInstanceDescriptor MappingInstanceStorages} for that the hint values shall
+	 *            be extracted.
 	 */
 	public void extractHintValues(List<MappingInstanceDescriptor> mappingInstances) {
 
@@ -415,7 +415,7 @@ public class HintValueExtractor extends ValueExtractor {
 	}
 
 	/**
-	 * For a given {@link MappingHintBaseType hint}, this {@link HintValueMap#init(EObject, boolean) initializes} the
+	 * For a given {@link MappingHintBaseType hint}, this {@link HintValueMap#init(EObject) initializes} the
 	 * {@link HintValueMap} in the given {@link MappingInstanceDescriptor}.
 	 *
 	 * @param hint
@@ -423,17 +423,17 @@ public class HintValueExtractor extends ValueExtractor {
 	 * @param mappingInstance
 	 *            The {@link MappingInstanceDescriptor} in that the hint value map shall be initialized.
 	 */
+	@Deprecated
 	private void initializeHintValueMap(MappingHintBaseType hint, MappingInstanceDescriptor mappingInstance) {
 
 		if (hint instanceof AttributeMapping) {
-			mappingInstance.getHintValues().getAttributeMappingHintValues().init((AttributeMapping) hint, false);
+			mappingInstance.getHintValues().getAttributeMappingHintValues().init((AttributeMapping) hint);
 		} else if (hint instanceof ReferenceTargetSelector) {
-			mappingInstance.getHintValues().getMappingInstanceSelectorHintValues().init((ReferenceTargetSelector) hint,
-					false);
+			mappingInstance.getHintValues().getMappingInstanceSelectorHintValues().init((ReferenceTargetSelector) hint);
 		} else if (hint instanceof ContainerSelector) {
-			mappingInstance.getHintValues().getModelConnectionHintValues().init((ContainerSelector) hint, false);
+			mappingInstance.getHintValues().getModelConnectionHintValues().init((ContainerSelector) hint);
 		} else if (hint instanceof CardinalityMapping) {
-			mappingInstance.getHintValues().getCardinalityMappingHintValues().init((CardinalityMapping) hint, false);
+			mappingInstance.getHintValues().getCardinalityMappingHintValues().init((CardinalityMapping) hint);
 		}
 	}
 

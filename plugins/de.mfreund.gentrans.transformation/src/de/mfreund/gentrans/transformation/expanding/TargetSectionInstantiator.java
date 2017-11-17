@@ -238,7 +238,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 	private void expandTargetSectionInstance(final MappingInstanceDescriptor mappingInstance,
 			MappingHintGroupImporter mappingHintGroupImporter) {
 
-		final List<MappingHint> hints = mappingInstance.getMappingHints(mappingHintGroupImporter);
+		final List<MappingHint> hints = mappingInstance.getMappingHints(mappingHintGroupImporter, true);
 
 		final Map<TargetSectionClass, List<EObjectWrapper>> instancesBySection = this.instantiateTargetSectionFirstPass(
 				mappingHintGroupImporter.getHintGroup().getTargetSection(), mappingHintGroupImporter, hints,

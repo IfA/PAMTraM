@@ -151,7 +151,7 @@ public class HintValueExtractor extends ValueExtractor {
 
 		// First, we collect all hints of all hint groups
 		//
-		Set<MappingHint> mappingHints = mappingInstance.getMappingHints();
+		Set<MappingHint> mappingHints = mappingInstance.getMappingHints(false);
 
 		// Now, we need to initialize the corresponding maps to store hint
 		// values

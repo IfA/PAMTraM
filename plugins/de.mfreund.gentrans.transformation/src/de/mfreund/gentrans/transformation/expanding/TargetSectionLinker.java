@@ -254,7 +254,7 @@ public class TargetSectionLinker extends CancelableElement {
 
 		// Collect ReferenceTargetSelectors that affect the current reference
 		//
-		List<ReferenceTargetSelector> referenceTargetSelectorsToConcider = mappingInstance.getMappingHints(hintGroup)
+		List<ReferenceTargetSelector> referenceTargetSelectorsToConcider = mappingInstance.getMappingHints(hintGroup, true)
 				.parallelStream()
 				.filter(h -> h instanceof ReferenceTargetSelector
 						&& ((ReferenceTargetSelector) h).getAffectedReference().equals(ref))

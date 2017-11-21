@@ -159,44 +159,25 @@ public class LibraryEntryInstantiator {
 			return false;
 		}
 
-		/*
-		 * Now, we check if a more specific library entry may be used. This is the case if there was an attribute
-		 * mapping for the virtual 'Classpath' attribute that produced a more specific classpath.
-		 */
-		String resultingPath = this.determineResultingClasspath(calculator);
-
 		de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry libEntryToInsert = this.libraryEntry
 				.getOriginalLibraryEntry();
 
-		// we may import a more specialized library entry
+		// As the user might have specified a more specific classpath via the virtual 'Classpath' attribute, we need to
+		// check if there is a more specific library entry that we will use instead
 		//
-		if (!resultingPath.equals(this.libraryEntry.getClasspath().getValue())) {
+		de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry moreSpecificEntry = this.getMoreSpecificEntry(
+				this.libraryEntry, this.libraryEntry.getClasspath().getValue(),
+				this.libraryEntry.getClasspath().getValue(), manager);
 
-			// Check if there is an actual LibraryEntry for the determined
-			// classpath or
-			// move upwards in the classpath hierarchy until an entry is found.
-			//
-			de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry moreSpecificEntry = this.getMoreSpecificEntry(
-					this.libraryEntry, this.libraryEntry.getClasspath().getValue(), resultingPath, manager);
-
-			if (moreSpecificEntry != null) {
-				libEntryToInsert = moreSpecificEntry;
-			}
-
-			// Finally, we can set the final, resulting classpath that we are
-			// going to use
-			// (This has been stored in the libraryEntry by
-			// #getMoreSpecificEntry).
-			//
-			resultingPath = this.libraryEntry.getClasspath().getValue();
-
+		if (moreSpecificEntry != null) {
+			libEntryToInsert = moreSpecificEntry;
 		}
 
 		/*
 		 * Before inserting the library entry, we check if the user provided a custom 'id' that will among others affect
 		 * the names of the elements to be created.
 		 */
-		String id = this.determineID(calculator);
+		String id = this.libraryEntry.getId().getValue();
 
 		if (id != null && !id.isEmpty()) {
 			libEntryToInsert.getParameterDescription().setID(id);
@@ -206,7 +187,7 @@ public class LibraryEntryInstantiator {
 		 * Finally, insert the library entry into the target model as all parameters have been filled out
 		 */
 		de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry insertedEntry = manager
-				.insertIntoTargetModel(targetModel, libEntryToInsert, resultingPath);
+				.insertIntoTargetModel(targetModel, libEntryToInsert, this.libraryEntry.getClasspath().getValue());
 
 		if (insertedEntry == null) {
 			this.logger.severe(() -> "Failed to instantiate library entry '"
@@ -242,8 +223,8 @@ public class LibraryEntryInstantiator {
 						&& ((AttributeMapping) mappingHint).getTarget().eContainer() instanceof LibraryEntry)
 				.map(mappingHint -> (AttributeMapping) mappingHint).findAny();
 
-		return idMapping.isPresent() ? calculator.calculateAttributeValue(this.libraryEntry.getId(), idMapping.get(),
-				this.hintValues.getHintValues(idMapping.get())) : this.libraryEntry.getId().getValue();
+		return idMapping.isPresent() ? this.hintValues.getHintValues(idMapping.get()).get(0)
+				: this.libraryEntry.getId().getValue();
 
 	}
 
@@ -271,8 +252,7 @@ public class LibraryEntryInstantiator {
 		// classpath as denoted in the library entry imported into the pamtram
 		// model
 		//
-		return pathMapping.isPresent() ? calculator.calculateAttributeValue(this.libraryEntry.getClasspath(),
-				pathMapping.get(), this.hintValues.getHintValues(pathMapping.get()))
+		return pathMapping.isPresent() ? this.hintValues.getHintValues(pathMapping.get()).get(0)
 				: this.libraryEntry.getClasspath().getValue();
 	}
 
@@ -364,8 +344,7 @@ public class LibraryEntryInstantiator {
 					.map(mappingHint -> (AttributeMapping) mappingHint).findAny();
 
 			if (resParamMapping.isPresent()) {
-				resParam.getOriginalParameter().setNewPath(calculator.calculateAttributeValue(resParam.getAttribute(),
-						resParamMapping.get(), this.hintValues.getHintValues(resParamMapping.get())));
+				resParam.getOriginalParameter().setNewPath(this.hintValues.getHintValues(resParamMapping.get()).get(0));
 			} else if (resParam.getAttribute().getValue() != null && !resParam.getAttribute().getValue().isEmpty()) {
 				resParam.getOriginalParameter().setNewPath(resParam.getAttribute().getValue());
 			}

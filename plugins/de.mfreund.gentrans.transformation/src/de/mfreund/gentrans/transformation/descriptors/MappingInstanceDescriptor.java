@@ -33,6 +33,7 @@ import pamtram.mapping.extended.CardinalityMapping;
 import pamtram.mapping.extended.ContainerSelector;
 import pamtram.mapping.extended.MappingHint;
 import pamtram.mapping.extended.MappingHintSourceInterface;
+import pamtram.mapping.extended.MappingHintType;
 import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.target.TargetSection;
@@ -99,7 +100,7 @@ public class MappingInstanceDescriptor {
 		this.matchedSectionDescriptor.setAssociatedMappingInstance(this);
 		this.mapping = null;
 		this.instancesBySection = Collections.synchronizedMap(new LinkedHashMap<>());
-		this.hintValues = new HintValueStorage(useParallelization);
+		this.hintValues = new HintValueStorage();
 		this.elementsWithNegativeConditions = new HashSet<>();
 		this.useParallelization = useParallelization;
 
@@ -144,7 +145,8 @@ public class MappingInstanceDescriptor {
 	 * This adds matched source model elements and determined hint values of another MappingInstanceStorage.
 	 *
 	 * @param mappingInstanceStorage
-	 *            The {@link MappingInstanceDescriptor} describing the matched elements and determined hint values to add.
+	 *            The {@link MappingInstanceDescriptor} describing the matched elements and determined hint values to
+	 *            add.
 	 */
 	public void add(final MappingInstanceDescriptor mappingInstanceStorage) {
 
@@ -311,15 +313,47 @@ public class MappingInstanceDescriptor {
 	 * normal} and {@link #getMappingHintGroupImporters() imported} {@link InstantiableMappingHintGroup hintGroups} for
 	 * that the condition has not been determined as {@link #isElementWithNegativeCondition(ConditionalElement) false}.
 	 *
-	 * @return The set of valid {@link MappingHint hints} for the given {@link InstantiableMappingHintGroup}.
+	 * @param includeImported
+	 *            Whether the {@link MappingHint MappingHints} that are {@link MappingHintGroupImporter#getHintGroup()
+	 *            imported} by {@link MappingHintGroupImporter MappingHintGroupImporters} shall be returned as well.
+	 * @return The set of valid {@link MappingHint hints}.
 	 */
-	public Set<MappingHint> getMappingHints() {
+	public Set<MappingHint> getMappingHints(boolean includeImported) {
 
 		return Stream
 				.concat(this.getMappingHintGroups().stream().flatMap(hg -> this.getMappingHints(hg).stream()),
-						this.getMappingHintGroupImporters().stream().flatMap(hg -> this.getMappingHints(hg).stream()))
+						this.getMappingHintGroupImporters().stream()
+								.flatMap(hg -> this.getMappingHints(hg, includeImported).stream()))
 				.collect(Collectors.toCollection(LinkedHashSet::new));
 
+	}
+
+	/**
+	 * This returns the {@link DeactivatableElement#isDeactivated() active} {@link ExportedMappingHintGroup
+	 * ExportedMappingHintGroups} of the {@link #mapping} associated with this.
+	 *
+	 * @return The list of active and valid {@link ExportedMappingHintGroup ExportedMappingHintGroups} for this
+	 *         {@link MappingInstanceDescriptor}.
+	 */
+	public List<ExportedMappingHintGroup> getExportedMappingHintGroups() {
+
+		return (this.useParallelization ? this.getMapping().getActiveMappingHintGroups().parallelStream()
+				: this.getMapping().getActiveMappingHintGroups().stream())
+						.filter(hg -> hg instanceof ExportedMappingHintGroup).map(hg -> (ExportedMappingHintGroup) hg)
+						.collect(Collectors.toList());
+	}
+
+	/**
+	 * This returns the {@link DeactivatableElement#isDeactivated() active} hints for all
+	 * {@link ExportedMappingHintGroup ExportedMappingHintGroups} for that the condition has not been determined as
+	 * {@link #isElementWithNegativeCondition(ConditionalElement) false}.
+	 *
+	 * @return The set of valid exported {@link MappingHint hints}.
+	 */
+	public Set<MappingHint> getExportedMappingHints() {
+
+		return this.getMappingHintGroups().stream().filter(hg -> hg instanceof ExportedMappingHintGroup)
+				.flatMap(hg -> this.getMappingHints(hg).stream()).collect(Collectors.toCollection(LinkedHashSet::new));
 	}
 
 	/**
@@ -328,17 +362,20 @@ public class MappingInstanceDescriptor {
 	 * {@link #isElementWithNegativeCondition(ConditionalElement) false}.
 	 * <p />
 	 * Note: Depending on the concrete type of {@link InstantiableMappingHintGroup}, this just redirects to either
-	 * {@link #getMappingHints(MappingHintGroupType)} or {@link #getMappingHints(MappingHintGroupImporter)}.
+	 * {@link #getMappingHints(MappingHintGroupType)} or {@link #getMappingHints(MappingHintGroupImporter, boolean)}.
 	 *
 	 * @param hintGroup
 	 *            The {@link InstantiableMappingHintGroup} for that the list of {@link MappingHint MappingHints} shall
 	 *            be returned.
+	 * @param includeImported
+	 *            Whether the {@link MappingHint MappingHints} that are {@link MappingHintGroupImporter#getHintGroup()
+	 *            imported} by {@link MappingHintGroupImporter MappingHintGroupImporters} shall be returned as well.
 	 * @return The list of valid {@link MappingHint hints} for the given {@link InstantiableMappingHintGroup}.
 	 */
-	public List<MappingHint> getMappingHints(InstantiableMappingHintGroup hintGroup) {
+	public List<MappingHint> getMappingHints(InstantiableMappingHintGroup hintGroup, boolean includeImported) {
 
 		return hintGroup instanceof MappingHintGroupType ? this.getMappingHints((MappingHintGroupType) hintGroup)
-				: this.getMappingHints((MappingHintGroupImporter) hintGroup);
+				: this.getMappingHints((MappingHintGroupImporter) hintGroup, includeImported);
 	}
 
 	/**
@@ -401,17 +438,24 @@ public class MappingInstanceDescriptor {
 	 * @param hintGroupImporter
 	 *            The {@link MappingHintGroupImporter} for that the list of {@link MappingHint MappingHints} shall be
 	 *            returned.
+	 * @param includeImported
+	 *            Whether the {@link MappingHint MappingHints} that are {@link MappingHintGroupImporter#getHintGroup()
+	 *            imported} by {@link MappingHintGroupImporter MappingHintGroupImporters} shall be returned as well.
 	 * @return The list of valid {@link MappingHint hints} for the given {@link MappingHintGroupImporter}.
 	 */
-	public List<MappingHint> getMappingHints(MappingHintGroupImporter hintGroupImporter) {
+	public List<MappingHint> getMappingHints(MappingHintGroupImporter hintGroupImporter, boolean includeImported) {
 
 		if (this.isElementWithNegativeCondition(hintGroupImporter)) {
 			return new ArrayList<>();
 		}
 
-		return Stream
-				.concat(hintGroupImporter.getActiveMappingHints().stream(),
-						hintGroupImporter.getHintGroup().getActiveMappingHints().stream())
+		Stream<MappingHintType> hints = hintGroupImporter.getActiveMappingHints().stream();
+
+		if (includeImported) {
+			hints = Stream.concat(hints, hintGroupImporter.getHintGroup().getActiveMappingHints().stream());
+		}
+
+		return hints
 				.filter(h -> !(h instanceof ConditionalElement)
 						|| !this.isElementWithNegativeCondition((ConditionalElement) h))
 				.filter(hint -> hint instanceof MappingHint).map(hint -> (MappingHint) hint)

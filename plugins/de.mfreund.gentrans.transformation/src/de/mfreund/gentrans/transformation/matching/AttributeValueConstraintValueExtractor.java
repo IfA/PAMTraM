@@ -1,9 +1,7 @@
 package de.mfreund.gentrans.transformation.matching;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Logger;
 
 import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
@@ -138,7 +136,7 @@ public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 
 		// Collect the value parts
 		//
-		Map<ValueConstraintSourceInterface, AttributeValueRepresentation> valueParts = new HashMap<>();
+		LinkedHashMap<ValueConstraintSourceInterface, AttributeValueRepresentation> valueParts = new LinkedHashMap<>();
 
 		// Extract the value part based on its type
 		//
@@ -175,8 +173,7 @@ public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 		// expression
 		//
 		if (expression == null || expression.isEmpty()) {
-			return this.attributeValueCalculator.calculateValueWithoutExpression(new ArrayList<>(sourceElements),
-					valueParts, resultModifiers);
+			return this.attributeValueCalculator.calculateValueWithoutExpression(valueParts, resultModifiers);
 		} else {
 			return this.attributeValueCalculator.calculateValueWithExpression(valueParts, expression, resultModifiers);
 		}

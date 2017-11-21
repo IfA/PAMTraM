@@ -19,7 +19,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
-import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
@@ -28,9 +27,7 @@ import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
 import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import pamtram.FixedValue;
 import pamtram.mapping.GlobalAttribute;
-import pamtram.mapping.extended.ContainerSelector;
 import pamtram.structure.InstanceSelector;
-import pamtram.structure.InstanceSelectorSourceInterface;
 import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.TargetInstanceSelector;
 import pamtram.structure.generic.CompositeReference;
@@ -66,12 +63,6 @@ public class InstanceSelectorHandler {
 	 * The {@link InstanceSelectorValueExtractor} that is used to extract target values for InstancePointers.
 	 */
 	private InstanceSelectorValueExtractor valueExtractor;
-
-	/**
-	 * The {@link ValueCalculator} that is used to calculate reference values for {@link ContainerSelector
-	 * ContainerSelectors}.
-	 */
-	private final ValueCalculator valueCalculator;
 
 	/**
 	 * The {@link Logger} that shall be used to print messages.
@@ -110,7 +101,6 @@ public class InstanceSelectorHandler {
 
 		this.matchedSectionRegistry = matchedSections;
 		this.targetSectionRegistry = targetSectionRegistry;
-		this.valueCalculator = attributeValueCalculator;
 		this.valueExtractor = new InstanceSelectorValueExtractor(globalValues, this, attributeValueCalculator,
 				ValueModifierExecutor.getInstance(), logger, useParallelization);
 		this.logger = logger;
@@ -243,8 +233,7 @@ public class InstanceSelectorHandler {
 	 *         order of hint values.
 	 */
 	public List<EObjectWrapper> filterTargetInstances(List<EObjectWrapper> potentialTargetInstances,
-			List<Map<InstanceSelectorSourceInterface, AttributeValueRepresentation>> instanceSelectorHintValues,
-			TargetInstanceSelector targetInstanceSelector) {
+			List<String> instanceSelectorHintValues, TargetInstanceSelector targetInstanceSelector) {
 
 		if (potentialTargetInstances == null || potentialTargetInstances.isEmpty()) {
 
@@ -260,16 +249,6 @@ public class InstanceSelectorHandler {
 			return new ArrayList<>(potentialTargetInstances);
 		}
 
-		// The hint values that will be compared to the value of the 'referenceAttribute' (the 'reference values' of
-		// potential target instances). In most cases, there should be only a single hint value. If there are multiple
-		// values, these will be treated as alternative values.
-		//
-		List<String> hintValues = instanceSelectorHintValues.stream()
-				.map(v -> this.valueCalculator.calculateValue(
-						new ArrayList<>(targetInstanceSelector.getSourceElements()),
-						targetInstanceSelector.getExpression(), v, targetInstanceSelector.getModifiers()))
-				.collect(Collectors.toList());
-
 		// The reference value(s) (based on the specified 'referenceAttribute') for each of the potential target
 		// instances. In the following, these will be compared to the list of 'hintValues'.
 		//
@@ -282,10 +261,10 @@ public class InstanceSelectorHandler {
 		// Filter those target instances, whose 'reference values' match one of the given 'hint values' and store them
 		// in a map relating the list of potential target instances for each of the specified hint values
 		//
-		Map<String, List<EObjectWrapper>> targetInstancesByHintValue = hintValues.stream().collect(LinkedHashMap::new,
-				(m, hv) -> m.put(hv, referenceValueByTargetInstance.entrySet().stream()
+		Map<String, List<EObjectWrapper>> targetInstancesByHintValue = instanceSelectorHintValues.stream()
+				.collect(LinkedHashMap::new, (m, hv) -> m.put(hv, referenceValueByTargetInstance.entrySet().stream()
 						.filter(e -> e.getValue().contains(hv)).map(Entry::getKey).collect(Collectors.toList())),
-				Map::putAll);
+						Map::putAll);
 
 		// Return the filtered instances ordered by the hint values
 		//

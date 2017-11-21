@@ -185,24 +185,6 @@ public class TargetSectionLinker extends CancelableElement {
 	 */
 	private List<TargetSectionCrossReference> collectCrossReferencesRecursively(TargetSectionClass targetSectionClass) {
 
-		if (targetSectionClass.isLibraryEntry()) {
-			// The target section class is part of a library entry, thus
-			// there must not be any references as direct children of it.
-			// However, we want to perform the linking for the references
-			// affected by ExternalReferenceParameters.
-			//
-			LibraryEntry libEntry = (LibraryEntry) AgteleEcoreUtil.getAncestorOfKind(targetSectionClass,
-					LibraryPackage.Literals.LIBRARY_ENTRY);
-
-			if (libEntry != null) {
-				return libEntry.getParameters().stream().filter(p -> p instanceof ExternalReferenceParameter)
-						.map(p -> ((ExternalReferenceParameter) p).getReference()).collect(Collectors.toList());
-			} else {
-				this.logger.severe(() -> "Internal error determining parent LibraryEntry for TargetSectionClass '"
-						+ targetSectionClass.getName() + "'!");
-			}
-		}
-
 		// All CrossReferences defined as direct children of the given 'targetSectionClass'
 		//
 		List<TargetSectionCrossReference> crossReferences = targetSectionClass.getAllReferences().stream()
@@ -254,8 +236,8 @@ public class TargetSectionLinker extends CancelableElement {
 
 		// Collect ReferenceTargetSelectors that affect the current reference
 		//
-		List<ReferenceTargetSelector> referenceTargetSelectorsToConcider = mappingInstance.getMappingHints(hintGroup)
-				.parallelStream()
+		List<ReferenceTargetSelector> referenceTargetSelectorsToConcider = mappingInstance
+				.getMappingHints(hintGroup, true).parallelStream()
 				.filter(h -> h instanceof ReferenceTargetSelector
 						&& ((ReferenceTargetSelector) h).getAffectedReference().equals(ref))
 				.map(h -> (ReferenceTargetSelector) h).collect(Collectors.toList());

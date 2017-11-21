@@ -5,7 +5,6 @@ package pamtram.condition;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -282,7 +281,7 @@ public interface Condition<TargetType> extends ComplexCondition {
 		}
 
 		return affectedClasses.stream().flatMap(c -> c.getAllConcreteExtending().stream())
-				.collect(Collectors.toCollection(LinkedHashSet::new));
+				.collect(Collectors.toCollection(java.util.LinkedHashSet::new));
 
 	}
 

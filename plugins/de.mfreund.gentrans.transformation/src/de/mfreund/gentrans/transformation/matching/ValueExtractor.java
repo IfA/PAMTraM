@@ -391,7 +391,7 @@ public abstract class ValueExtractor extends CancelableElement {
 	 *            The {@link Logger} to be used to print message to the user.
 	 * @return The determined values (either an empty list, a list consisting of a single value, or multiple values).
 	 */
-	public static List<Object> getAttributeValueAsList(List<EObject> sourceElements,
+	public static synchronized List<Object> getAttributeValueAsList(List<EObject> sourceElements,
 			SourceSectionAttribute sourceAttribute, Logger logger) {
 
 		return sourceElements.stream()
@@ -420,8 +420,8 @@ public abstract class ValueExtractor extends CancelableElement {
 	 *            The {@link Logger} to be used to print message to the user.
 	 * @return The determined values (either an empty list, a list consisting of a single value, or multiple values).
 	 */
-	public static List<Object> getAttributeValueAsList(EObject sourceElement, SourceSectionAttribute sourceAttribute,
-			Logger logger) {
+	public static synchronized List<Object> getAttributeValueAsList(EObject sourceElement,
+			SourceSectionAttribute sourceAttribute, Logger logger) {
 
 		if (sourceAttribute instanceof ActualSourceSectionAttribute) {
 			EAttribute eAttribute = ((ActualSourceSectionAttribute) sourceAttribute).getAttribute();

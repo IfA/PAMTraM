@@ -42,6 +42,7 @@ import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.constraint.ValueConstraintType;
 import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.CardinalityType;
+import pamtram.structure.generic.CompositeReference;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 import pamtram.structure.generic.VirtualReference;
@@ -623,7 +624,9 @@ public class SourceSectionMatcher extends CancelableElement {
 			// set the list of source model objects that have been mapped.
 			// first, add all mapped objects from 'changedRefsAndHints' ...
 			if (parentDescriptor != null && reference.isPresent() && reference.get().isContainment()) {
-				existingDescriptor.get().add(parentDescriptor);
+				if (reference.get() instanceof CompositeReference<?, ?, ?, ?>) {
+					existingDescriptor.get().add(parentDescriptor);
+				}
 				existingDescriptor.get().setContainerDescriptor(parentDescriptor);
 			}
 
@@ -640,7 +643,8 @@ public class SourceSectionMatcher extends CancelableElement {
 
 		// set the list of source model objects that have been mapped.
 		// first, add all mapped objects from 'changedRefsAndHints' ...
-		if (parentDescriptor != null && reference.isPresent() && reference.get().isContainment()) {
+		if (parentDescriptor != null && reference.isPresent() && reference.get().isContainment()
+				&& reference.get() instanceof CompositeReference<?, ?, ?, ?>) {
 			descriptor.add(parentDescriptor);
 		}
 		// ..., then add the current srcModelObject

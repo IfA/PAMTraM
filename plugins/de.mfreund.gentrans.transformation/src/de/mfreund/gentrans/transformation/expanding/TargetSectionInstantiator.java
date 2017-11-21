@@ -16,7 +16,6 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -26,7 +25,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import de.mfreund.gentrans.transformation.CancelTransformationException;
 import de.mfreund.gentrans.transformation.UserAbortException;
 import de.mfreund.gentrans.transformation.calculation.ValueCalculator;
-import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.HintValueStorage;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
@@ -42,9 +40,7 @@ import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
-import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.extended.AttributeMapping;
-import pamtram.mapping.extended.AttributeMappingSourceInterface;
 import pamtram.mapping.extended.CardinalityMapping;
 import pamtram.mapping.extended.ContainerSelector;
 import pamtram.mapping.extended.MappingHint;
@@ -52,7 +48,6 @@ import pamtram.structure.generic.ActualAttribute;
 import pamtram.structure.generic.CardinalityType;
 import pamtram.structure.library.AttributeParameter;
 import pamtram.structure.library.LibraryEntry;
-import pamtram.structure.library.LibraryParameter;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.target.TargetSectionClass;
@@ -86,11 +81,6 @@ public class TargetSectionInstantiator extends CancelableElement {
 	 * The {@link Logger} that shall be used to print messages.
 	 */
 	private final Logger logger;
-
-	/**
-	 * An instance of {@link ValueCalculator} that is used to calculate attribute values.
-	 */
-	private ValueCalculator calculator;
 
 	/**
 	 * This is the {@link IAmbiguityResolvingStrategy} that shall be used to resolve ambiguities that arise during the
@@ -130,7 +120,6 @@ public class TargetSectionInstantiator extends CancelableElement {
 		this.useParallelization = useParallelzation;
 		this.canceled = false;
 		this.wrongCardinalityContainmentRefs = new HashSet<>();
-		this.calculator = valueCalculator;
 
 	}
 
@@ -199,11 +188,12 @@ public class TargetSectionInstantiator extends CancelableElement {
 	 * @param hintGroup
 	 *            The {@link MappingHintGroup} that lead to the instantiation of the given <em>mappingInstance</em>.
 	 */
-	private void expandTargetSectionInstance(final MappingInstanceDescriptor mappingInstance, MappingHintGroup hintGroup) {
+	private void expandTargetSectionInstance(final MappingInstanceDescriptor mappingInstance,
+			MappingHintGroup hintGroup) {
 
 		final Map<TargetSectionClass, List<EObjectWrapper>> instancesBySection = this.instantiateTargetSectionFirstPass(
-				hintGroup.getTargetSection(), hintGroup,
-				mappingInstance.getMappingHints((MappingHintGroupType) hintGroup), mappingInstance.getHintValues());
+				hintGroup.getTargetSection(), hintGroup, mappingInstance.getMappingHints(hintGroup),
+				mappingInstance.getHintValues());
 
 		if (instancesBySection == null) {
 			if (hintGroup.getTargetSection().getCardinality() != CardinalityType.ZERO_INFINITY) {// Error
@@ -238,7 +228,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 	private void expandTargetSectionInstance(final MappingInstanceDescriptor mappingInstance,
 			MappingHintGroupImporter mappingHintGroupImporter) {
 
-		final List<MappingHint> hints = mappingInstance.getMappingHints(mappingHintGroupImporter);
+		final List<MappingHint> hints = mappingInstance.getMappingHints(mappingHintGroupImporter, true);
 
 		final Map<TargetSectionClass, List<EObjectWrapper>> instancesBySection = this.instantiateTargetSectionFirstPass(
 				mappingHintGroupImporter.getHintGroup().getTargetSection(), mappingHintGroupImporter, hints,
@@ -523,38 +513,25 @@ public class TargetSectionInstantiator extends CancelableElement {
 
 		for (CardinalityMapping cardinalityMapping : cardinalityMappings) {
 
-			if (hintValues.getCardinalityMappingHintValues().containsKey(cardinalityMapping)
+			if (hintValues.containsHint(cardinalityMapping)
 					&& !hintValues.getHintValues(cardinalityMapping).isEmpty()) {
 
-				Object hintVal = hintValues.removeHintValue(cardinalityMapping);
+				String hintVal = hintValues.getNextHintValue(cardinalityMapping);
 
-				if (hintVal instanceof Integer) {
-					cardHintValue = ((Integer) hintVal).intValue();
-				} else if (hintVal instanceof Map<?, ?>) {
-					@SuppressWarnings("unchecked")
-					Map<CardinalityMapping, AttributeValueRepresentation> hintValueParts = (Map<CardinalityMapping, AttributeValueRepresentation>) hintVal;
-					String value = this.calculator.calculateAttributeValue(null, cardinalityMapping, hintValueParts);
-					try {
-						double doubleValue = Double.parseDouble(value);
-						if (doubleValue == Math.floor(doubleValue) && !Double.isInfinite(doubleValue)) {
-							cardHintValue = Double.valueOf(value).intValue();
-						} else {
-							this.logger.severe(
-									() -> "Unable to parse Integer from calculated value for CardinalityMapping '"
-											+ cardinalityMapping.getName() + "! The problematic value was '" + value
-											+ "'.");
-							continue;
-						}
-					} catch (NumberFormatException e) {
+				try {
+					double doubleValue = Double.parseDouble(hintVal);
+					if (doubleValue == Math.floor(doubleValue) && !Double.isInfinite(doubleValue)) {
+						cardHintValue = Double.valueOf(hintVal).intValue();
+					} else {
 						this.logger
 								.severe(() -> "Unable to parse Integer from calculated value for CardinalityMapping '"
-										+ cardinalityMapping.getName() + "! The problematic value was '" + value
+										+ cardinalityMapping.getName() + "! The problematic value was '" + hintVal
 										+ "'.");
 						continue;
 					}
-				} else {
-					this.logger.severe(() -> "Internal Error! Unsupported type of hint value for CardinalityMapping '"
-							+ cardinalityMapping.getName());
+				} catch (NumberFormatException e) {
+					this.logger.severe(() -> "Unable to parse Integer from calculated value for CardinalityMapping '"
+							+ cardinalityMapping.getName() + "! The problematic value was '" + hintVal + "'.");
 					continue;
 				}
 
@@ -711,36 +688,6 @@ public class TargetSectionInstantiator extends CancelableElement {
 
 		int hintCardinality = hintValues.getHintValues(hint).size();
 
-		/*
-		 * Now, we have to check if there are multi-valued attributes that also try to determine the cardinality.
-		 */
-		int multiValuedAttributeCardinality = 1;
-
-		for (Map<AttributeMappingSourceInterface, AttributeValueRepresentation> x : hintValues.getHintValues(hint)) {
-
-			for (AttributeValueRepresentation rep : x.values()) {
-				if (rep.isMany()) {
-
-					if (multiValuedAttributeCardinality == 1) {
-						multiValuedAttributeCardinality = rep.getValues().size();
-					} else if (multiValuedAttributeCardinality != rep.getValues().size()) {
-						throw new RuntimeException(
-								"There are different multi-valued attributes with" + " different cardinalities!");
-					}
-				}
-			}
-		}
-
-		/*
-		 * Check if there are contradictory cardinalities...
-		 */
-		if (hintCardinality > 1 && multiValuedAttributeCardinality > 1) {
-
-			throw new RuntimeException("Failed to determine an unambiguous cardinality for hint " + hint.getName());
-
-		} else if (multiValuedAttributeCardinality > 1) {
-			hintCardinality = multiValuedAttributeCardinality;
-		}
 		return hintCardinality;
 	}
 
@@ -841,22 +788,6 @@ public class TargetSectionInstantiator extends CancelableElement {
 
 		EList<TargetSectionAttribute> attributes = targetSectionClass.getAllAttributes();
 
-		if (targetSectionClass.isLibraryEntry()) {
-			// the metamodelsection is a library entry, thus there must not be
-			// any attributes as direct children of it
-			assert attributes.isEmpty();
-			attributes = new BasicEList<>();
-			// however, we want to perform the calculation of the values
-			// affected by AttributeParameters
-			LibraryEntry libEntry = (LibraryEntry) targetSectionClass.eContainer().eContainer();
-
-			for (LibraryParameter<?> parameter : libEntry.getParameters()) {
-				if (parameter instanceof AttributeParameter) {
-					attributes.add(((AttributeParameter) parameter).getAttribute());
-				}
-			}
-		}
-
 		List<AttributeMapping> attributeMappings = mappingHints.stream().filter(h -> h instanceof AttributeMapping)
 				.map(h -> (AttributeMapping) h).collect(Collectors.toList());
 
@@ -875,8 +806,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 			Map<AttributeMapping, Integer> hintBasedCardinalities = new LinkedHashMap<>();
 			for (final MappingHint hint : attributeMappings) {
 				if (((AttributeMapping) hint).getTarget().equals(attr)) {
-					hintBasedCardinalities.put((AttributeMapping) hint,
-							hintValues.getHintValues((AttributeMapping) hint).size());
+					hintBasedCardinalities.put((AttributeMapping) hint, hintValues.getHintValues(hint).size());
 				}
 			}
 
@@ -891,7 +821,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 				return null;
 			}
 
-			LinkedList<Map<AttributeMappingSourceInterface, AttributeValueRepresentation>> attrHintValues = new LinkedList<>();
+			LinkedList<String> attrHintValues = new LinkedList<>();
 			attributeValues.put(attr, new LinkedList<String>());
 
 			if (!hintBasedCardinalities.isEmpty()) {
@@ -899,33 +829,36 @@ public class TargetSectionInstantiator extends CancelableElement {
 				if (hintBasedCardinalities.size() == 1) {
 					AttributeMapping hint = hintBasedCardinalities.keySet().iterator().next();
 
-					if (hintValues.getHintValues(hint).size() == 1) {
+					int numberOfHintValues = hintValues.getHintValues(hint).size();
+
+					if (numberOfHintValues == 1) {
 
 						// Exactly one hint value found -> reuse for all
 						// instances
 						//
-						attrHintValues = new LinkedList<>();
 						for (int i = 0; i < cardinality; i++) {
-							attrHintValues.add(hintValues.getHintValues(hint).getFirst());
+							attrHintValues.add(hintValues.getNextHintValue(hint));
 						}
 
-					} else if (hintValues.getHintValues(hint).size() < cardinality
-							&& !hintValues.getHintValues(hint).isEmpty()
-							&& cardinality % hintValues.getHintValues(hint).size() == 0) {
+					} else if (numberOfHintValues < cardinality && !hintValues.getHintValues(hint).isEmpty()
+							&& cardinality % numberOfHintValues == 0) {
 
 						// Multiply the hint values to fit the cardinality
 						//
 						attrHintValues = new LinkedList<>();
-						for (int i = 0; i < cardinality / hintValues.getHintValues(hint).size(); i++) {
+						for (int i = 0; i < cardinality / numberOfHintValues; i++) {
 							attrHintValues.addAll(hintValues.getHintValues(hint));
 						}
 
-					} else if (hintValues.getHintValues(hint).size() >= cardinality) {
+					} else if (numberOfHintValues >= cardinality) {
 
 						// As many/more hint values found as/than instances
 						// -> each instance gets its own hint value
 						//
-						attrHintValues = hintValues.getHintValues(hint);
+						for (int i = 0; i < cardinality; i++) {
+							attrHintValues.add(hintValues.getNextHintValue(hint));
+						}
+						// attrHintValues = hintValues.getHintValues(hint);
 
 					} else {
 
@@ -933,7 +866,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 						// should not happen
 						//
 						this.logger.severe(() -> "Cardinality mismatch (expected: " + cardinality + ", got :"
-								+ hintValues.getHintValues(hint).size() + "): " + hint.getName() + " for Mapping "
+								+ numberOfHintValues + "): " + hint.getName() + " for Mapping "
 								+ ((Mapping) mappingGroup.eContainer()).getName() + " (Group: " + mappingGroup.getName()
 								+ ") Maybe check Cardinality of Metamodel section?");
 						return null;
@@ -952,10 +885,12 @@ public class TargetSectionInstantiator extends CancelableElement {
 			for (int i = 0; i < instances.size(); i++) {
 
 				EObjectWrapper instance = instances.get(i);
-				String attrValue = this.calculator.calculateAttributeValue(attr,
-						attrHintValues.isEmpty() ? null
-								: (MappingHint) attrHintValues.getFirst().keySet().iterator().next().eContainer(),
-						attrHintValues.isEmpty() ? null : attrHintValues);
+				String attrValue = null;
+				if (!attrHintValues.isEmpty()) {
+					attrValue = attrHintValues.removeFirst();
+				} else if (attr.getValue() != null && !attr.getValue().isEmpty()) {
+					attrValue = attr.getValue();
+				}
 
 				if (attrValue == null) {
 					/*
@@ -1056,12 +991,21 @@ public class TargetSectionInstantiator extends CancelableElement {
 							LibraryEntry specificLibEntry = this.targetSectionRegistry.getLibraryEntryRegistry()
 									.get(instance).getLibraryEntry();
 							LibraryEntry genericLibEntry = (LibraryEntry) targetSectionClass.eContainer().eContainer();
-							AttributeParameter attrParam = (AttributeParameter) specificLibEntry.getParameters()
-									.get(genericLibEntry.getParameters().indexOf(attr.eContainer()));
-							@SuppressWarnings("unchecked")
-							AbstractAttributeParameter<EObject> originalParam = (AbstractAttributeParameter<EObject>) attrParam
-									.getOriginalParameter();
-							originalParam.setNewValue(setValue);
+							int attParamIndex = genericLibEntry.getParameters().indexOf(attr.eContainer());
+							if (attParamIndex >= 0) {
+								AttributeParameter attrParam = (AttributeParameter) specificLibEntry.getParameters()
+										.get(attParamIndex);
+								@SuppressWarnings("unchecked")
+								AbstractAttributeParameter<EObject> originalParam = (AbstractAttributeParameter<EObject>) attrParam
+										.getOriginalParameter();
+								originalParam.setNewValue(setValue);
+							} else {
+								if (attr.equals(genericLibEntry.getId())) {
+									specificLibEntry.getId().setValue(setValue);
+								} else if (attr.equals(genericLibEntry.getClasspath())) {
+									specificLibEntry.getClasspath().setValue(setValue);
+								}
+							}
 						}
 
 					} catch (final IllegalArgumentException e) {

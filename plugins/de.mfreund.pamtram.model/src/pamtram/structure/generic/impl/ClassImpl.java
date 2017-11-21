@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.CardinalityType;
@@ -34,6 +35,8 @@ import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 import pamtram.structure.generic.util.GenericValidator;
+import pamtram.structure.library.LibraryEntry;
+import pamtram.structure.library.LibraryPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Class</b></em>'. <!-- end-user-doc -->
@@ -372,12 +375,27 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 		
 		ret.addAll(this.getAttributes());
 		
-		if(this instanceof Section<?,?,?,?>) {
-			ret.addAll(((Section<?, ?, ?, ?>) this).getAllExtend().stream().flatMap(s -> s.getAttributes().stream()).collect(Collectors.toList()));
+		if (this instanceof Section<?, ?, ?, ?>) {
+			ret.addAll(((Section<?, ?, ?, ?>) this).getAllExtend().stream().flatMap(s -> s.getAttributes().stream())
+					.collect(Collectors.toList()));
 		}
 		
-		return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.CLASS__ALL_ATTRIBUTES,
-				ret.size(), ret.toArray());
+		if (this.isLibraryEntry()) {
+		
+			LibraryEntry libraryEntry = (LibraryEntry) AgteleEcoreUtil.getAncestorOfKind(this,
+					LibraryPackage.Literals.LIBRARY_ENTRY);
+		
+			if (libraryEntry != null) {
+		
+				ret.add(libraryEntry.getId());
+				ret.add(libraryEntry.getClasspath());
+				ret.addAll(libraryEntry.getParameters().stream().filter(p -> p instanceof pamtram.structure.library.AttributeParameter)
+						.map(p -> ((pamtram.structure.library.AttributeParameter) p).getAttribute()).collect(Collectors.toList()));
+			}
+		}
+		
+		return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.CLASS__ALL_ATTRIBUTES, ret.size(),
+				ret.toArray());
 	}
 
 	/**
@@ -388,15 +406,27 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	public EList<R> getAllReferences() {
 		List<Object> ret = new ArrayList<>();
 		
-			ret.addAll(this.getReferences());
+		ret.addAll(this.getReferences());
 		
-			if (this instanceof Section<?, ?, ?, ?>) {
-					ret.addAll(((Section<?, ?, ?, ?>) this).getAllExtend().stream().flatMap(s -> s.getReferences().stream())
-							.collect(Collectors.toList()));
-				}
+		if (this instanceof Section<?, ?, ?, ?>) {
+			ret.addAll(((Section<?, ?, ?, ?>) this).getAllExtend().stream().flatMap(s -> s.getReferences().stream())
+					.collect(Collectors.toList()));
+		}
 		
-			return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.CLASS__ALL_REFERENCES, ret.size(),
-						ret.toArray());
+		if (this.isLibraryEntry()) {
+		
+			LibraryEntry libraryEntry = (LibraryEntry) AgteleEcoreUtil.getAncestorOfKind(this,
+					LibraryPackage.Literals.LIBRARY_ENTRY);
+		
+			if (libraryEntry != null) {
+		
+				ret.addAll(libraryEntry.getParameters().stream().filter(p -> p instanceof pamtram.structure.library.ExternalReferenceParameter)
+						.map(p -> ((pamtram.structure.library.ExternalReferenceParameter) p).getReference()).collect(Collectors.toList()));
+			}
+		}
+		
+		return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.CLASS__ALL_REFERENCES, ret.size(),
+				ret.toArray());
 	}
 
 	/**

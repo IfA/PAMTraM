@@ -499,9 +499,9 @@ class TransformationAssetManager extends CancelableElement {
 	 */
 	protected void initHintValueExtractor() {
 
-		this.hintValueExtractor = new HintValueExtractor(this.getMatchedSectionRegistry(), this.getGlobalValues(),
-				this.getInstanceSelectorHandler(), this.getValueModifierExecutor(), this.getLogger(),
-				this.transformationConfig.isUseParallelization());
+		this.hintValueExtractor = new HintValueExtractor(this.getMatchedSectionRegistry(), this.getValueCalculator(),
+				this.getGlobalValues(), this.getInstanceSelectorHandler(), this.getValueModifierExecutor(),
+				this.getLogger(), this.transformationConfig.isUseParallelization());
 		this.objectsToCancel.add(this.hintValueExtractor);
 	}
 

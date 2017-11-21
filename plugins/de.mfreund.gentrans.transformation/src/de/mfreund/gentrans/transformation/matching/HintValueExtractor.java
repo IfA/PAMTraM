@@ -1,10 +1,13 @@
 package de.mfreund.gentrans.transformation.matching;
 
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Supplier;
 import java.util.logging.Logger;
+import java.util.stream.Stream;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -106,7 +109,7 @@ public class HintValueExtractor extends ValueExtractor {
 
 		this.valueCalculator = valueCalculator;
 		this.matchedSections = matchingResult;
-		this.exportedHintValues = new LinkedHashMap<>();
+		this.exportedHintValues = Collections.synchronizedMap(new LinkedHashMap<>());
 	}
 
 	/**
@@ -121,19 +124,23 @@ public class HintValueExtractor extends ValueExtractor {
 	 */
 	public void extractHintValues(List<MappingInstanceDescriptor> mappingInstances) {
 
+		Supplier<Stream<MappingInstanceDescriptor>> mappingInstanceSupplier = () -> this.useParallelization
+				? mappingInstances.parallelStream()
+				: mappingInstances.stream();
+
 		// In a first step, we extract the hints of exported hint groups and store them in the 'exportedHintValues' so
 		// that they can be reused by other mapping instances.
 		//
-		mappingInstances.stream().forEach(this::extractExportedHintValues);
+		mappingInstanceSupplier.get().forEach(this::extractExportedHintValues);
 
 		// Now, we extract the hints for hint group importers (as we can now used the hint values of exported hint
 		// groups that have been calculated before).
 		//
-		mappingInstances.stream().forEach(this::extractImportedHintValues);
+		mappingInstanceSupplier.get().forEach(this::extractImportedHintValues);
 
 		// Finally, we extract the 'normal' hint values.
 		//
-		mappingInstances.stream().forEach(this::extractNormalHintValues);
+		mappingInstanceSupplier.get().forEach(this::extractNormalHintValues);
 
 	}
 

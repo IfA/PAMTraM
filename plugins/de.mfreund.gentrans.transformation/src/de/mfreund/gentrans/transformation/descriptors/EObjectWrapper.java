@@ -15,7 +15,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.ecore.util.FeatureMapUtil;
 
 import de.mfreund.gentrans.transformation.registries.AttributeValueRegistry;
@@ -165,6 +164,38 @@ public class EObjectWrapper {
 	}
 
 	/**
+	 * This sets the values of a {@link TargetSectionAttribute} and registers it in the {@link #attrValRegistry}
+	 * registered with this wrapper.
+	 * <p />
+	 * Based on the attribute type, this redirect to {@link #setAttributeValues(ActualAttribute, List)} or to
+	 * {@link #setAttributeValue(VirtualAttribute, String)}.
+	 * <p />
+	 * Note: For {@link VirtualAttribute VirtualAttributes}, only a single value may be set!
+	 *
+	 * @param attr
+	 *            The {@link TargetSectionAttribute} for that the given 'value' shall be set.
+	 * @param values
+	 *            A String representation of the values to be set.
+	 * @throws IllegalArgumentException
+	 */
+	public void setAttributeValues(final TargetSectionAttribute attr, final List<String> values) {
+
+		if (attr instanceof ActualAttribute) {
+			this.setAttributeValues((ActualAttribute<?, ?, ?, ?>) attr, values);
+		} else if (attr instanceof VirtualAttribute) {
+			if (values.isEmpty()) {
+				return;
+			} else if (values.size() == 1) {
+				this.setAttributeValue((VirtualAttribute<?, ?, ?, ?>) attr, values.get(0));
+			} else {
+				throw new IllegalArgumentException("Trying to set multiple values for a VirtualAttribute ('"
+						+ attr.getName() + "'). This is currently not supported!");
+			}
+		}
+
+	}
+
+	/**
 	 * This sets the value of an {@link ActualAttribute}.
 	 * <p />
 	 * <b>Note:</b> The given value will be set in the {@link #eObject} that is wrapped by this.
@@ -177,14 +208,67 @@ public class EObjectWrapper {
 	 * @throws IllegalArgumentException
 	 *             If the given 'value' cannot be converted to the data type defined by 'attr'.
 	 */
-	void setAttributeValue(final ActualAttribute<?, ?, ?, ?> attr, final String value) throws IllegalArgumentException {
+	void setAttributeValue(ActualAttribute<?, ?, ?, ?> attr, String value) throws IllegalArgumentException {
+
+		this.setAttributeValues(attr, Arrays.asList(value));
+
+	}
+
+	/**
+	 * This sets the values of an {@link ActualAttribute}.
+	 * <p />
+	 * <b>Note:</b> The given values will be set in the {@link #eObject} that is wrapped by this.
+	 *
+	 * @param attr
+	 *            The {@link ActualAttribute} for that the given 'value' shall be set.
+	 * @param values
+	 *            A list of String representations of the values to be set. This will be converted to the correct data
+	 *            type defined by 'attr'.
+	 * @throws IllegalArgumentException
+	 *             If the given 'value' cannot be converted to the data type defined by 'attr'.
+	 */
+	void setAttributeValues(ActualAttribute<?, ?, ?, ?> attr, List<String> values) throws IllegalArgumentException {
+
+		List<Object> valueObjects = new ArrayList<>();
+
+		for (String value : values) {
+			valueObjects.add(this.getAttributeValueAsObject(attr.getAttribute(), value));
+
+		}
+
+		if (attr.getAttribute().isMany()) {
+			this.eObject.eSet(attr.getAttribute(), valueObjects);
+		} else if (values.size() == 1) {
+			this.eObject.eSet(attr.getAttribute(), valueObjects.get(0));
+		} else if (values.isEmpty()) {
+			this.eObject.eUnset(attr.getAttribute());
+		} else {
+			throw new IllegalArgumentException("Trying to set multiple value for ActualAttribute '" + attr.getName()
+					+ " that is based on an EAttribute with upper bound 1!");
+		}
+
+		this.attrValRegistry.registerValues(attr, this.eObject.eClass(), values);
+
+	}
+
+	/**
+	 * Convert the string representation of the given <em>value</em> to the data type of the given {@link EAttribute}.
+	 *
+	 * @param attribute
+	 *            The {@link EAttribute} defining the data type to use.
+	 * @param value
+	 *            The value to be converted.
+	 * @return The converted value as instance of the data type of the given attribute.
+	 * @throws IllegalArgumentException
+	 */
+	public Object getAttributeValueAsObject(EAttribute attribute, final String value) throws IllegalArgumentException {
 
 		// convert the string representation of the value to the correct data
 		// type
 		Object valueObject = null;
 		try {
-			valueObject = attr.getAttribute().getEType().getEPackage().getEFactoryInstance()
-					.createFromString(attr.getAttribute().getEAttributeType(), value);
+			valueObject = attribute.getEType().getEPackage().getEFactoryInstance()
+					.createFromString(attribute.getEAttributeType(), value);
 		} catch (Exception e) {
 
 			// if an integer-based value is represented as boolean (e.g. as it
@@ -192,29 +276,19 @@ public class EObjectWrapper {
 			//
 			if (value.endsWith(".0")) {
 				try {
-					valueObject = attr.getAttribute().getEType().getEPackage().getEFactoryInstance()
-							.createFromString(attr.getAttribute().getEAttributeType(), value.replaceFirst(".0$", ""));
+					valueObject = attribute.getEType().getEPackage().getEFactoryInstance()
+							.createFromString(attribute.getEAttributeType(), value.replaceFirst(".0$", ""));
 				} catch (Exception e1) {
 					throw e;
 				}
-			} else if (FeatureMapUtil.isFeatureMap(attr.getAttribute())) {
-				throw new RuntimeException(
+			} else if (FeatureMapUtil.isFeatureMap(attribute)) {
+				throw new IllegalArgumentException(
 						"Setting values of Attributes of type EFeatureMapEntry is currently not supported!", e);
 			} else {
-				throw e;
+				throw new IllegalArgumentException(e);
 			}
 		}
-
-		if (attr.getAttribute().isMany() && !(valueObject instanceof FeatureMap.Entry)) {
-			ArrayList<Object> valueObjectList = new ArrayList<>();
-			valueObjectList.add(valueObject);
-			this.eObject.eSet(attr.getAttribute(), valueObjectList);
-		} else {
-			this.eObject.eSet(attr.getAttribute(), valueObject);
-		}
-
-		this.attrValRegistry.registerValue(attr, this.eObject.eClass(), value);
-
+		return valueObject;
 	}
 
 	/**

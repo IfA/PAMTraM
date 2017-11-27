@@ -46,6 +46,7 @@ import pamtram.mapping.extended.ContainerSelector;
 import pamtram.mapping.extended.MappingHint;
 import pamtram.structure.generic.ActualAttribute;
 import pamtram.structure.generic.CardinalityType;
+import pamtram.structure.generic.VirtualAttribute;
 import pamtram.structure.library.AttributeParameter;
 import pamtram.structure.library.LibraryEntry;
 import pamtram.structure.target.TargetSection;
@@ -882,80 +883,80 @@ public class TargetSectionInstantiator extends CancelableElement {
 			// Create and store the hint values (they will be set later on
 			// after we have check for duplicates)
 			//
+			int numberOfValuesPerInstance = attrHintValues.isEmpty() ? 1 : attrHintValues.size() / instances.size();
 			for (int i = 0; i < instances.size(); i++) {
 
 				EObjectWrapper instance = instances.get(i);
-				String attrValue = null;
-				if (!attrHintValues.isEmpty()) {
-					attrValue = attrHintValues.removeFirst();
-				} else if (attr.getValue() != null && !attr.getValue().isEmpty()) {
-					attrValue = attr.getValue();
-				}
-
-				if (attrValue == null) {
-					/*
-					 * Consult the specified resolving strategy to resolve the ambiguity.
-					 */
-					try {
-						this.logger.fine("\n[Ambiguity] Resolve expanding ambiguity...");
-						List<String> resolved = this.ambiguityResolvingStrategy.instantiatingSelectAttributeValue(
-								Arrays.asList((String) null), attr, instance.getEObject(), mappingGroup);
-						if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
-							((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
-									.instantiatingAttributeValueSelected(Arrays.asList((String) null), resolved.get(0));
+				for (int j = 0; j < numberOfValuesPerInstance; j++) {
+					String attrValue = null;
+					if (!attrHintValues.isEmpty()) {
+						attrValue = attrHintValues.removeFirst();
+					} else if (attr.getValue() != null && !attr.getValue().isEmpty()) {
+						attrValue = attr.getValue();
+					}
+					if (attrValue == null) {
+						/*
+						 * Consult the specified resolving strategy to resolve the ambiguity.
+						 */
+						try {
+							this.logger.fine("\n[Ambiguity] Resolve expanding ambiguity...");
+							List<String> resolved = this.ambiguityResolvingStrategy.instantiatingSelectAttributeValue(
+									Arrays.asList((String) null), attr, instance.getEObject(), mappingGroup);
+							if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
+								((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
+										.instantiatingAttributeValueSelected(Arrays.asList((String) null),
+												resolved.get(0));
+							}
+							this.logger.fine("[Ambiguity] ...finished.");
+							attrValue = resolved.get(0);
+						} catch (AmbiguityResolvingException e) {
+							if (e.getCause() instanceof UserAbortException) {
+								throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
+							} else {
+								this.logger.severe(
+										() -> "The following exception occured during the resolving of an ambiguity concerning an attribute value: "
+												+ e.getMessage());
+								this.logger.severe("Using default value instead...");
+								continue;
+							}
 						}
-						this.logger.fine("[Ambiguity] ...finished.");
-						attrValue = resolved.get(0);
-					} catch (AmbiguityResolvingException e) {
-						if (e.getCause() instanceof UserAbortException) {
-							throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
+					}
+					// Check if value is unique and was already used, mark
+					// instance for deletion if necessary
+					boolean attrValUsedInSection = false;
+					if (!sectionAttributeValues.containsKey(targetSectionClass.getEClass())) {
+
+						sectionAttributeValues.put(targetSectionClass.getEClass(),
+								new HashMap<EAttribute, Set<String>>());
+
+					}
+					final Map<EAttribute, Set<String>> secAttrValsForEClass = sectionAttributeValues
+							.get(targetSectionClass.getEClass());
+					if (attr instanceof ActualAttribute) {
+
+						final EAttribute eAttr = ((ActualAttribute<?, ?, ?, ?>) attr).getAttribute();
+
+						if (!secAttrValsForEClass.containsKey(eAttr)) {
+							secAttrValsForEClass.put(eAttr, new LinkedHashSet<String>());
 						} else {
-							this.logger.severe(
-									() -> "The following exception occured during the resolving of an ambiguity concerning an attribute value: "
-											+ e.getMessage());
-							this.logger.severe("Using default value instead...");
-							continue;
+							attrValUsedInSection = secAttrValsForEClass.get(eAttr).contains(attrValue);
 						}
+
+						secAttrValsForEClass.get(eAttr).add(attrValue);
+
 					}
-				}
+					if (attr.isUnique() && (instance.attributeValueExists(attr, attrValue)
+							|| attributeValues.get(attr).contains(attrValue) || attrValUsedInSection)) {
 
-				// Check if value is unique and was already used, mark
-				// instance for deletion if necessary
-				boolean attrValUsedInSection = false;
-				if (!sectionAttributeValues.containsKey(targetSectionClass.getEClass())) {
+						/*
+						 * we can only delete this at the end, or else the attributeHint values won't fit anymore
+						 */
+						markedForDelete.add(instance);
 
-					sectionAttributeValues.put(targetSectionClass.getEClass(), new HashMap<EAttribute, Set<String>>());
-
-				}
-
-				final Map<EAttribute, Set<String>> secAttrValsForEClass = sectionAttributeValues
-						.get(targetSectionClass.getEClass());
-
-				if (attr instanceof ActualAttribute) {
-
-					final EAttribute eAttr = ((ActualAttribute<?, ?, ?, ?>) attr).getAttribute();
-
-					if (!secAttrValsForEClass.containsKey(eAttr)) {
-						secAttrValsForEClass.put(eAttr, new LinkedHashSet<String>());
-					} else {
-						attrValUsedInSection = secAttrValsForEClass.get(eAttr).contains(attrValue);
 					}
-
-					secAttrValsForEClass.get(eAttr).add(attrValue);
-
+					// save attr value in Map
+					attributeValues.get(attr).add(attrValue);
 				}
-				if (attr.isUnique() && (instance.attributeValueExists(attr, attrValue)
-						|| attributeValues.get(attr).contains(attrValue) || attrValUsedInSection)) {
-
-					/*
-					 * we can only delete this at the end, or else the attributeHint values won't fit anymore
-					 */
-					markedForDelete.add(instance);
-
-				}
-
-				// save attr value in Map
-				attributeValues.get(attr).add(attrValue);
 
 			}
 		}
@@ -970,9 +971,27 @@ public class TargetSectionInstantiator extends CancelableElement {
 
 			for (final TargetSectionAttribute attr : attributeValues.keySet()) {
 
-				if (noDelete) {
+				if (attributeValues.get(attr).isEmpty()) {
+					continue;
+				} else if (attributeValues.get(attr).size() > 1) {
+					if (attr instanceof VirtualAttribute<?, ?, ?, ?>) {
+						this.logger.severe(() -> "Trying to set multiple values for a VirtualAttribute ('"
+								+ attr.getName() + "'). This is currently not supported!");
+						continue;
+					} else if (targetSectionClass.isLibraryEntry()) {
+						this.logger.severe(
+								() -> "Trying to set multiple values for an AttributeParameter of a LibraryEntry ('"
+										+ targetSectionClass.getName() + "'). This is currently not supported!");
+						continue;
+					}
+				}
 
-					final String setValue = attributeValues.get(attr).remove(0);
+				int numberOfValuesPerInstance = attributeValues.get(attr).size() / instances.size();
+
+				List<String> setValues = IntStream.range(0, numberOfValuesPerInstance)
+						.mapToObj(i -> attributeValues.get(attr).remove(0)).collect(Collectors.toList());
+
+				if (noDelete) {
 
 					try {
 
@@ -981,8 +1000,10 @@ public class TargetSectionInstantiator extends CancelableElement {
 							/*
 							 * setting an Attribute causes the value to be saved in the attribute value registry
 							 */
-							instance.setAttributeValue(attr, setValue);
+							instance.setAttributeValues(attr, setValues);
 						} else {
+
+							String setValue = setValues.get(0);
 							/*
 							 * for library entries, we cannot simply set the value as the attribute we are handling is
 							 * not part of the targetSectionClass; instead we want to specify the value as 'new value'
@@ -1012,11 +1033,9 @@ public class TargetSectionInstantiator extends CancelableElement {
 						this.logger.severe(() -> "Could not set Attribute " + attr.getName()
 								+ " of target section Class " + targetSectionClass.getName() + " in target section "
 								+ targetSectionClass.getContainingSection().getName()
-								+ ".\nThe problematic value was: '" + setValue + "'.");
+								+ ".\nThe problematic value(s) was/were: '" + String.join(", ", setValues) + "'.");
 					}
 
-				} else {
-					attributeValues.get(attr).remove(0);
 				}
 			}
 

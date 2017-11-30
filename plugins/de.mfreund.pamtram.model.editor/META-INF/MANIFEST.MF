@@ -32,5 +32,5 @@ Require-Bundle: org.eclipse.core.runtime,
  de.tud.et.ifa.agtele.eclipse.commons;bundle-version="1.0.0",
  de.tud.et.ifa.agtele.eclipse.commons.ui;bundle-version="1.0.1",
  de.mfreund.gentrans.transformation.ui;bundle-version="2.0.0",
- org.eclipse.core.expressions;bundle-version="3.6.0"
+ org.eclipse.core.expressions;bundle-version="3.5.0"
 Bundle-ActivationPolicy: lazy

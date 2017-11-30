@@ -49,6 +49,7 @@ import pamtram.structure.generic.CardinalityType;
 import pamtram.structure.generic.VirtualAttribute;
 import pamtram.structure.library.AttributeParameter;
 import pamtram.structure.library.LibraryEntry;
+import pamtram.structure.target.ActualTargetSectionAttribute;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.target.TargetSectionClass;
@@ -971,9 +972,13 @@ public class TargetSectionInstantiator extends CancelableElement {
 
 			for (final TargetSectionAttribute attr : attributeValues.keySet()) {
 
-				if (attributeValues.get(attr).isEmpty()) {
+				int numberOfValuesPerInstance = attributeValues.get(attr).size() / instances.size();
+
+				if (attributeValues.get(attr).isEmpty() || numberOfValuesPerInstance == 0) {
 					continue;
-				} else if (attributeValues.get(attr).size() > 1) {
+				}
+
+				if (noDelete && numberOfValuesPerInstance > 1) {
 					if (attr instanceof VirtualAttribute<?, ?, ?, ?>) {
 						this.logger.severe(() -> "Trying to set multiple values for a VirtualAttribute ('"
 								+ attr.getName() + "'). This is currently not supported!");
@@ -983,15 +988,26 @@ public class TargetSectionInstantiator extends CancelableElement {
 								() -> "Trying to set multiple values for an AttributeParameter of a LibraryEntry ('"
 										+ targetSectionClass.getName() + "'). This is currently not supported!");
 						continue;
+					} else if (!((ActualAttribute<?, ?, ?, ?>) attr).getAttribute().isMany()) {
+						this.logger.severe(() -> "Trying to set multiple values for an ActualAttribute ('"
+								+ attr.getName() + "') that is based on a single-valued EAttribute!");
+						continue;
 					}
 				}
 
-				int numberOfValuesPerInstance = attributeValues.get(attr).size() / instances.size();
-
-				List<String> setValues = IntStream.range(0, numberOfValuesPerInstance)
-						.mapToObj(i -> attributeValues.get(attr).remove(0)).collect(Collectors.toList());
-
 				if (noDelete) {
+
+					boolean isMany = attr instanceof ActualTargetSectionAttribute
+							&& ((ActualTargetSectionAttribute) attr).getAttribute().isMany();
+
+					// In case we are dealing with a multi-valued attribute, we add to potentially already existing
+					// values (e.g. based on another attribute mapping) instead of overwriting them
+					//
+					List<String> setValues = !isMany ? new ArrayList<>()
+							: new ArrayList<>(this.getCurrentAttributeValues(instance, attr));
+					setValues.addAll(IntStream.range(0, numberOfValuesPerInstance)
+							.mapToObj(i -> attributeValues.get(attr).get(instances.indexOf(instance) + i))
+							.collect(Collectors.toList()));
 
 					try {
 
@@ -1019,6 +1035,7 @@ public class TargetSectionInstantiator extends CancelableElement {
 								@SuppressWarnings("unchecked")
 								AbstractAttributeParameter<EObject> originalParam = (AbstractAttributeParameter<EObject>) attrParam
 										.getOriginalParameter();
+
 								originalParam.setNewValue(setValue);
 							} else {
 								if (attr.equals(genericLibEntry.getId())) {
@@ -1042,6 +1059,50 @@ public class TargetSectionInstantiator extends CancelableElement {
 		}
 
 		return markedForDelete;
+	}
+
+	/**
+	 * Returns the current value(s) of the given {@link TargetSectionAttribute} that is/are set in the given
+	 * {@link EObjectWrapper}.
+	 *
+	 * @param instance
+	 *            The {@link EObjectWrapper} for that the set value(s) is/are to be returned.
+	 * @param attribute
+	 *            The {@link TargetSectionAttribute} whose value(s) is/are to be returned.
+	 * @return The value(s).
+	 */
+	private List<String> getCurrentAttributeValues(final EObjectWrapper instance,
+			final TargetSectionAttribute attribute) {
+
+		if (!attribute.isLibraryEntry()) {
+			return instance.getAttributeValues(attribute);
+		}
+
+		// For LibraryEntries, we need to find the value that was set for the appropriate AttributeParameter
+		//
+		LibraryEntry specificLibEntry = this.targetSectionRegistry.getLibraryEntryRegistry().get(instance)
+				.getLibraryEntry();
+		LibraryEntry genericLibEntry = (LibraryEntry) attribute.getContainingSection().eContainer().eContainer();
+
+		String currentValue = null;
+
+		int attParamIndex = genericLibEntry.getParameters().indexOf(attribute.eContainer());
+		if (attParamIndex >= 0) {
+			AttributeParameter attrParam = (AttributeParameter) specificLibEntry.getParameters().get(attParamIndex);
+			@SuppressWarnings("unchecked")
+			AbstractAttributeParameter<EObject> originalParam = (AbstractAttributeParameter<EObject>) attrParam
+					.getOriginalParameter();
+
+			currentValue = originalParam.getNewValue();
+		} else {
+			if (attribute.equals(genericLibEntry.getId())) {
+				currentValue = specificLibEntry.getId().getValue();
+			} else if (attribute.equals(genericLibEntry.getClasspath())) {
+				currentValue = specificLibEntry.getClasspath().getValue();
+			}
+		}
+
+		return currentValue == null ? new ArrayList<>() : Arrays.asList(currentValue);
 	}
 
 	/**

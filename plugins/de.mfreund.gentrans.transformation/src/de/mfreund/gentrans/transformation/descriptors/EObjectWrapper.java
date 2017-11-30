@@ -5,13 +5,11 @@ package de.mfreund.gentrans.transformation.descriptors;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -111,7 +109,7 @@ public class EObjectWrapper {
 	 * if 'attr' is an {@link VirtualAttribute} the value that is stored in {@link #virtualAttributeValues} is returned.
 	 *
 	 * @param attr
-	 * @return Attribute value as String
+	 * @return Attribute value as String or '<em>null</em>' if no value was set for the given attribute.
 	 */
 	public String getAttributeValue(final TargetSectionAttribute attr) {
 
@@ -122,6 +120,30 @@ public class EObjectWrapper {
 					((ActualAttribute<?, ?, ?, ?>) attr).getAttribute());
 		}
 		return null;
+	}
+
+	/**
+	 * This returns a list of String representations of the values of a {@link TargetSectionAttribute}.
+	 * <p />
+	 * If the given 'attr' is an {@link ActualAttribute} the actual values of the wrapped {@link #eObject} are returned
+	 * - if 'attr' is an {@link VirtualAttribute} a list containing the value that is stored in
+	 * {@link #virtualAttributeValues} is returned.
+	 *
+	 * @param attr
+	 * @return The attribute values as String or an empty list if no value was set for the given attribute.
+	 */
+	public List<String> getAttributeValues(final TargetSectionAttribute attr) {
+
+		if (attr instanceof VirtualAttribute) {
+
+			return this.virtualAttributeValues.containsKey(attr) ? Arrays.asList(this.virtualAttributeValues.get(attr))
+					: new ArrayList<>();
+		} else if (attr instanceof ActualAttribute) {
+
+			return EObjectWrapper.convertAttributeValues(this.eObject,
+					((ActualAttribute<?, ?, ?, ?>) attr).getAttribute());
+		}
+		return new ArrayList<>();
 	}
 
 	/**
@@ -389,35 +411,42 @@ public class EObjectWrapper {
 	 *            The {@link EObject} for that the attribute value shall be returned.
 	 * @param attr
 	 *            The {@link EAttribute} whose value shall be returned.
-	 * @return A String representation of the attribute value.
+	 * @return A String representation of the attribute value or '<em>null</em>' if no value exists.
 	 */
 	private static String convertAttributeValue(final EObject eObject, final EAttribute attr) {
 
-		if (attr == null) {
-			return null;
+		return String.join("; ", EObjectWrapper.convertAttributeValues(eObject, attr));
+
+	}
+
+	/**
+	 * Static helper method for converting the value(s) of an attribute of the given 'eObject' to a list of String
+	 * representations.
+	 *
+	 * @param eObject
+	 *            The {@link EObject} for that the attribute values shall be returned.
+	 * @param attr
+	 *            The {@link EAttribute} whose values shall be returned.
+	 * @return A list of String representations of the attribute value(s) or an empty list if no values exists.
+	 */
+	private static List<String> convertAttributeValues(final EObject eObject, final EAttribute attr) {
+
+		if (attr == null || !eObject.eIsSet(attr)) {
+			return new ArrayList<>();
 		}
 
-		final Object srcAttr = eObject.eGet(attr);
-		try {
-			if (!attr.isMany()) {
-				return attr.getEType().getEPackage().getEFactoryInstance().convertToString(attr.getEAttributeType(),
-						srcAttr);
-			} else {
-				String ret = "";
-				Iterator<?> it = ((EList<?>) srcAttr).iterator();
-				while (it.hasNext()) {
-					ret += attr.getEType().getEPackage().getEFactoryInstance().convertToString(attr.getEAttributeType(),
-							it.next());
-					if (it.hasNext()) {
-						ret += "; ";
-					}
-				}
-				return ret;
+		List<Object> srcAttrValues = AgteleEcoreUtil.getStructuralFeatureValueAsList(eObject, attr);
+		List<String> srcAttrValuesAsString = new ArrayList<>();
+		for (Object srcAttr : srcAttrValues) {
+			try {
+				srcAttrValuesAsString.add(attr.getEType().getEPackage().getEFactoryInstance()
+						.convertToString(attr.getEAttributeType(), srcAttr));
+			} catch (final Exception e) {
+				e.printStackTrace(System.out);
+				return srcAttrValues.stream().map(Object::toString).collect(Collectors.toList());
 			}
-		} catch (final Exception e) {
-			e.printStackTrace(System.out);
-			return srcAttr != null ? srcAttr.toString() : "";
 		}
+		return srcAttrValuesAsString;
 
 	}
 

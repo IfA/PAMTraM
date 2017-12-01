@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -24,7 +23,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import de.mfreund.gentrans.transformation.CancelTransformationException;
 import de.mfreund.gentrans.transformation.UserAbortException;
-import de.mfreund.gentrans.transformation.calculation.ValueCalculator;
+import de.mfreund.gentrans.transformation.core.CancelableTransformationAsset;
+import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.HintValueStorage;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
@@ -33,7 +33,6 @@ import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvedAdapter;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
-import de.mfreund.gentrans.transformation.util.CancelableElement;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractAttributeParameter;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.InstantiableMappingHintGroup;
@@ -62,7 +61,7 @@ import pamtram.structure.target.TargetSectionReference;
  *
  * @author mfreund
  */
-public class TargetSectionInstantiator extends CancelableElement {
+public class TargetSectionInstantiator extends CancelableTransformationAsset {
 
 	private static final String RESOLVE_INSTANTIATING_AMBIGUITY_FINISHED = "[Ambiguity] ...finished.\n";
 
@@ -80,11 +79,6 @@ public class TargetSectionInstantiator extends CancelableElement {
 	private final TargetSectionRegistry targetSectionRegistry;
 
 	/**
-	 * The {@link Logger} that shall be used to print messages.
-	 */
-	private final Logger logger;
-
-	/**
 	 * This is the {@link IAmbiguityResolvingStrategy} that shall be used to resolve ambiguities that arise during the
 	 * execution of the transformation.
 	 */
@@ -99,28 +93,17 @@ public class TargetSectionInstantiator extends CancelableElement {
 	/**
 	 * This creates an instance.
 	 *
-	 * @param targetSectionRegistry
-	 *            target section registry used when instantiating classes
-	 * @param valueCalculator
-	 *            The {@link ValueCalculator} used to calculate values for {@link TargetSectionAttribute
-	 *            TargetSectionAttributes}.
-	 * @param logger
-	 *            The {@link Logger} that shall be used to print messages.
-	 * @param ambiguityResolvingStrategy
-	 *            The {@link IAmbiguityResolvingStrategy} that shall be used to resolve occurring ambiguities.
-	 * @param useParallelzation
-	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
-	 *            that the transformation result (especially the order of lists) varies between executions.
+	 * @param assetManager
+	 *            The {@link TransformationAssetManager} providing access to the various other assets used in the
+	 *            current transformation instance.
 	 */
-	public TargetSectionInstantiator(final TargetSectionRegistry targetSectionRegistry, ValueCalculator valueCalculator,
-			final Logger logger, final IAmbiguityResolvingStrategy ambiguityResolvingStrategy,
-			boolean useParallelzation) {
+	public TargetSectionInstantiator(TransformationAssetManager assetManager) {
 
-		this.targetSectionRegistry = targetSectionRegistry;
-		this.logger = logger;
-		this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
-		this.useParallelization = useParallelzation;
-		this.canceled = false;
+		super(assetManager);
+
+		this.targetSectionRegistry = assetManager.getTargetSectionRegistry();
+		this.ambiguityResolvingStrategy = assetManager.getTransformationConfig().getAmbiguityResolvingStrategy();
+		this.useParallelization = assetManager.getTransformationConfig().isUseParallelization();
 		this.wrongCardinalityContainmentRefs = new HashSet<>();
 
 	}

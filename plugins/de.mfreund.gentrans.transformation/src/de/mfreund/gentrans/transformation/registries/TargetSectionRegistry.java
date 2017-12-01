@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EClass;
@@ -20,11 +19,13 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.ExtendedMetaData;
 
+import de.mfreund.gentrans.transformation.core.CancelableTransformationAsset;
+import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
 import de.mfreund.gentrans.transformation.library.LibraryEntryInstantiator;
-import de.mfreund.gentrans.transformation.util.CancelableElement;
 import de.tud.et.ifa.agtele.emf.EPackageHelper;
+import pamtram.TargetSectionModel;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.structure.generic.Section;
 import pamtram.structure.library.LibraryEntry;
@@ -38,7 +39,7 @@ import pamtram.structure.target.TargetSectionClass;
  * @version 1.0
  *
  */
-public class TargetSectionRegistry extends CancelableElement {
+public class TargetSectionRegistry extends CancelableTransformationAsset {
 
 	/**
 	 * Attribute value registry, needed when applying model connection hints
@@ -93,21 +94,16 @@ public class TargetSectionRegistry extends CancelableElement {
 	private final Map<EReference, Set<EClass>> containmentReferenceSourcesRegistry;
 
 	/**
-	 * The {@link Logger} that shall be used to print messages.
-	 */
-	private final Logger logger;
-
-	/**
-	 * This creates an instance.
+	 * This creates an instance for multiple target meta-models.
 	 *
-	 * @param logger
-	 *            The {@link Logger} that shall be used to print messages.
-	 * @param attrValRegistry
-	 *            The {@link AttributeValueRegistry} that keeps track of already used values for target attributes.
+	 * @param assetManager
+	 *            The {@link TransformationAssetManager} providing access to the various other assets used in the
+	 *            current transformation instance.
 	 */
-	private TargetSectionRegistry(final Logger logger, final AttributeValueRegistry attrValRegistry) {
+	public TargetSectionRegistry(TransformationAssetManager assetManager) {
 
-		this.logger = logger;
+		super(assetManager);
+
 		this.targetClassInstanceRegistry = new LinkedHashMap<>();
 		this.eObjectToEObjectWrapperMap = new HashMap<>();
 		this.targetClassInstanceByHintGroupRegistry = new LinkedHashMap<>();
@@ -116,62 +112,12 @@ public class TargetSectionRegistry extends CancelableElement {
 		this.possibleConnectionsRegistry = new LinkedHashMap<>();
 		this.targetClassReferencesRegistry = new LinkedHashMap<>(); // ==refsToThis
 		this.containmentReferenceSourcesRegistry = new LinkedHashMap<>(); // ==sources
-		this.attrValRegistry = attrValRegistry;
+		this.attrValRegistry = new AttributeValueRegistry();
 		this.libraryEntryRegistry = new LibraryEntryRegistry();
-		this.canceled = false;
-	}
 
-	/**
-	 * This creates an instance for a single target meta-model.
-	 *
-	 * @param logger
-	 *            The {@link Logger} that shall be used to print messages.
-	 * @param attrValRegistry
-	 *            The {@link AttributeValueRegistry} that keeps track of already used values for target attributes.
-	 * @param targetMetaModel
-	 *            The {@link EPackage} representing the target meta-model.
-	 * @deprecated use {@link #TargetSectionRegistry(Logger, Set)} instead.
-	 */
-	@Deprecated
-	public TargetSectionRegistry(final Logger logger, final AttributeValueRegistry attrValRegistry,
-			final EPackage targetMetaModel) {
-
-		this(logger, attrValRegistry);
-
-		this.analyseTargetMetaModel(targetMetaModel);
-	}
-
-	/**
-	 * This creates an instance for multiple target meta-models.
-	 *
-	 * @param logger
-	 *            The {@link Logger} that shall be used to print messages.
-	 * @param attrValRegistry
-	 *            The {@link AttributeValueRegistry} that keeps track of already used values for target attributes.
-	 * @param targetMetaModels
-	 *            The list of {@link EPackage EPackages} representing the target meta-models.
-	 * @deprecated use {@link #TargetSectionRegistry(Logger, Set)} instead.
-	 */
-	@Deprecated
-	public TargetSectionRegistry(final Logger logger, final AttributeValueRegistry attrValRegistry,
-			final Set<EPackage> targetMetaModels) {
-
-		this(logger, attrValRegistry);
-
-		targetMetaModels.stream().forEach(this::analyseTargetMetaModel);
-	}
-
-	/**
-	 * This creates an instance for multiple target meta-models.
-	 *
-	 * @param logger
-	 *            The {@link Logger} that shall be used to print messages.
-	 * @param targetMetaModels
-	 *            The list of {@link EPackage EPackages} representing the target meta-models.
-	 */
-	public TargetSectionRegistry(final Logger logger, final Set<EPackage> targetMetaModels) {
-
-		this(logger, new AttributeValueRegistry());
+		Set<EPackage> targetMetaModels = new LinkedHashSet<>(assetManager.getTransformationConfig().getPamtramModels()
+				.stream().flatMap(p -> p.getTargetSectionModels().stream()).map(TargetSectionModel::getMetaModelPackage)
+				.collect(Collectors.toList()));
 
 		targetMetaModels.stream().forEach(this::analyseTargetMetaModel);
 	}

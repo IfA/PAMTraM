@@ -14,7 +14,6 @@ import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -25,6 +24,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import de.mfreund.gentrans.transformation.CancelTransformationException;
 import de.mfreund.gentrans.transformation.UserAbortException;
 import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
+import de.mfreund.gentrans.transformation.core.CancelableTransformationAsset;
+import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
@@ -34,7 +35,6 @@ import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvedAdapter;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
-import de.mfreund.gentrans.transformation.util.CancelableElement;
 import pamtram.ConditionalElement;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.Mapping;
@@ -51,7 +51,7 @@ import pamtram.structure.target.TargetSectionClass;
  *
  * @author mfreund
  */
-public class TargetSectionConnector extends CancelableElement {
+public class TargetSectionConnector extends CancelableTransformationAsset {
 
 	private static final String RESOLVE_JOINING_AMBIGUITY_ENDED = "[Ambiguity] ...finished.\n";
 
@@ -72,11 +72,6 @@ public class TargetSectionConnector extends CancelableElement {
 	 * The {@link TargetModelRegistry} that is used to manage the various target models and their contents.
 	 */
 	private final TargetModelRegistry targetModelRegistry;
-
-	/**
-	 * The {@link Logger} that is used to print messages to inform the user.
-	 */
-	private final Logger logger;
 
 	/**
 	 * The {@link InstanceSelectorHandler} used to evaluate modeled {@link ContainerSelector ContainerSelectors}.
@@ -106,37 +101,20 @@ public class TargetSectionConnector extends CancelableElement {
 	/**
 	 * This creates an instance.
 	 *
-	 * @param targetSectionRegistry
-	 *            A {@link TargetSectionRegistry} that is necessary for finding instances to which sections can be
-	 *            connected.
-	 * @param instanceSelectorHandler
-	 *            The {@link InstanceSelectorHandler} used to evaluate modeled {@link ContainerSelector
-	 *            ContainerSelectors}.
-	 * @param targetModelRegistry
-	 *            The {@link TargetModelRegistry} that is used to manage the various target models and their contents.
-	 * @param maxPathLength
-	 *            The maximum length for connection paths that shall be considered by this TargetSectionConnector. If
-	 *            'maxPathLength' is set to '-1' or any other value below '0', connection paths of unbounded length are
-	 *            considered.
-	 * @param ambiguityResolvingStrategy
-	 *            The {@link IAmbiguityResolvingStrategy} that shall be used to resolve ambiguities that arise during
-	 *            the execution of the transformation.
-	 * @param logger
-	 *            The {@link Logger} that shall be used to print messages.
+	 * @param assetManager
+	 *            The {@link TransformationAssetManager} providing access to the various other assets used in the
+	 *            current transformation instance.
 	 */
-	public TargetSectionConnector(final TargetSectionRegistry targetSectionRegistry,
-			InstanceSelectorHandler instanceSelectorHandler, final TargetModelRegistry targetModelRegistry,
-			final int maxPathLength, final IAmbiguityResolvingStrategy ambiguityResolvingStrategy,
-			final Logger logger) {
+	public TargetSectionConnector(TransformationAssetManager assetManager) {
+
+		super(assetManager);
 
 		this.standardPaths = new LinkedHashMap<>();
-		this.targetSectionRegistry = targetSectionRegistry;
-		this.targetModelRegistry = targetModelRegistry;
-		this.logger = logger;
-		this.canceled = false;
-		this.instanceSelectorHandler = instanceSelectorHandler;
-		this.maxPathLength = maxPathLength;
-		this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
+		this.targetSectionRegistry = assetManager.getTargetSectionRegistry();
+		this.targetModelRegistry = assetManager.getTargetModelRegistry();
+		this.instanceSelectorHandler = assetManager.getInstanceSelectorHandler();
+		this.maxPathLength = assetManager.getTransformationConfig().getMaxPathLength();
+		this.ambiguityResolvingStrategy = assetManager.getTransformationConfig().getAmbiguityResolvingStrategy();
 		this.unconnectableElements = new LinkedHashMap<>();
 	}
 
@@ -144,8 +122,8 @@ public class TargetSectionConnector extends CancelableElement {
 	 * Join the instantiated {@link TargetSection TargetSections}.
 	 *
 	 * @param selectedMappings
-	 *            The {@link SelectedMappingRegistry} providing all the {@link MappingInstanceDescriptor Mapping instances}
-	 *            whose {@link TargetSection TargetSections} shall be joined.
+	 *            The {@link SelectedMappingRegistry} providing all the {@link MappingInstanceDescriptor Mapping
+	 *            instances} whose {@link TargetSection TargetSections} shall be joined.
 	 */
 	public void joinTargetSections(SelectedMappingRegistry selectedMappings) {
 
@@ -1232,9 +1210,9 @@ public class TargetSectionConnector extends CancelableElement {
 
 	/**
 	 * For each of the given {@link ContainerSelector ContainerSelectors}, determines the list of {@link EObjectWrapper
-	 * container instances} satisfying at least one of the hint values for the given {@link MappingInstanceDescriptor} (a
-	 * subset of all instantiated elements of the {@link ContainerSelector#getTargetClass() target class} specified by
-	 * the respective ContainerSelector).
+	 * container instances} satisfying at least one of the hint values for the given {@link MappingInstanceDescriptor}
+	 * (a subset of all instantiated elements of the {@link ContainerSelector#getTargetClass() target class} specified
+	 * by the respective ContainerSelector).
 	 * <p />
 	 * Note: Those ContainerSelectors for that there is no possible container instance are not represented in the
 	 * returned Map. Put another way, each of the values of the returned map will contain at least one container

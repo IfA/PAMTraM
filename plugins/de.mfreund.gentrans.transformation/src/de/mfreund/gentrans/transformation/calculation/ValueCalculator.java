@@ -8,13 +8,12 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.logging.Logger;
 
+import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import pamtram.ExpressionElement;
-import pamtram.FixedValue;
 import pamtram.ModifiableElement;
 import pamtram.NamedElement;
-import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.extended.AttributeMapping;
 import pamtram.mapping.extended.AttributeMatcher;
 import pamtram.mapping.extended.MappingHint;
@@ -49,20 +48,15 @@ public class ValueCalculator {
 	/**
 	 * This creates an instance.
 	 *
-	 * @param globalValues
-	 *            The {@link GlobalValueMap} providing values of {@link GlobalAttribute GlobalAttributes} and
-	 *            {@link FixedValue FixedValues} that can be used in calculations.
-	 * @param valuemodifierExecutor
-	 *            The {@link ValueModifierExecutor} that shall be used to apply {@link ValueModifierSet
-	 *            AttributeValueModifierSets}.
-	 * @param logger
-	 *            The {@link Logger} that shall be used to print messages to the user.
+	 * @param assetManager
+	 *            The {@link TransformationAssetManager} providing access to the various other assets used in the
+	 *            current transformation instance.
 	 */
-	public ValueCalculator(GlobalValueMap globalValues, ValueModifierExecutor valuemodifierExecutor, Logger logger) {
+	public ValueCalculator(TransformationAssetManager assetManager) {
 
-		this.valuemodifierExecutor = valuemodifierExecutor;
-		this.globalValues = globalValues;
-		this.logger = logger;
+		this.valuemodifierExecutor = assetManager.getValueModifierExecutor();
+		this.globalValues = assetManager.getGlobalValues();
+		this.logger = assetManager.getLogger();
 	}
 
 	/**

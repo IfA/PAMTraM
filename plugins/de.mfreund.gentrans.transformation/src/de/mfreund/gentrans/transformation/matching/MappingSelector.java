@@ -12,13 +12,14 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import de.mfreund.gentrans.transformation.CancelTransformationException;
 import de.mfreund.gentrans.transformation.UserAbortException;
 import de.mfreund.gentrans.transformation.condition.ConditionHandler;
 import de.mfreund.gentrans.transformation.condition.ConditionHandler.CondResult;
+import de.mfreund.gentrans.transformation.core.CancelableTransformationAsset;
+import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
@@ -26,7 +27,6 @@ import de.mfreund.gentrans.transformation.registries.SelectedMappingRegistry;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvedAdapter;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
-import de.mfreund.gentrans.transformation.util.CancelableElement;
 import pamtram.ConditionalElement;
 import pamtram.DeactivatableElement;
 import pamtram.MappingModel;
@@ -50,7 +50,7 @@ import pamtram.structure.source.SourceSection;
  *
  * @author mfreund
  */
-public class MappingSelector extends CancelableElement {
+public class MappingSelector extends CancelableTransformationAsset {
 
 	/**
 	 * The subset of {@link #mappings} that is equipped with one or more {@link ApplicationDependency
@@ -81,11 +81,6 @@ public class MappingSelector extends CancelableElement {
 	private IAmbiguityResolvingStrategy ambiguityResolvingStrategy;
 
 	/**
-	 * The {@link Logger} that shall be used to print messages.
-	 */
-	private final Logger logger;
-
-	/**
 	 * Whether extended parallelization shall be used during the transformation that might lead to the fact that the
 	 * transformation result (especially the order of lists) varies between executions.
 	 */
@@ -99,33 +94,21 @@ public class MappingSelector extends CancelableElement {
 	/**
 	 * This creates an instance.
 	 *
-	 * @param selectedMappingRegistry
-	 *            The {@link SelectedMappingRegistry} where all selected Mappings (the result of the
-	 *            {@link #selectMappings(MatchedSectionRegistry, List)} step) will be stored.
-	 * @param onlyAskOnceOnAmbiguousMappings
-	 *            If ambiguous {@link Mapping Mappings} should be resolved only once or on a per-element basis.
-	 * @param ambiguityResolvingStrategy
-	 *            The {@link IAmbiguityResolvingStrategy} to be used.
-	 * @param conditionHandler
-	 *            The {@link ConditionHandler} used to evaluate {@link Condition Conditions}.
-	 * @param logger
-	 *            The {@link Logger} that shall be used to print messages.
-	 * @param useParallelization
-	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
-	 *            that the transformation result (especially the order of lists) varies between executions.
+	 * @param assetManager
+	 *            The {@link TransformationAssetManager} providing access to the various other assets used in the
+	 *            current transformation instance.
 	 */
-	public MappingSelector(SelectedMappingRegistry selectedMappingRegistry, boolean onlyAskOnceOnAmbiguousMappings,
-			IAmbiguityResolvingStrategy ambiguityResolvingStrategy, ConditionHandler conditionHandler, Logger logger,
-			boolean useParallelization) {
+	public MappingSelector(TransformationAssetManager assetManager) {
+
+		super(assetManager);
 
 		this.dependentMappings = Collections.synchronizedList(new ArrayList<>());
-		this.selectedMappings = selectedMappingRegistry;
+		this.selectedMappings = assetManager.getSelectedMappingRegistry();
 		this.deferredSections = Collections.synchronizedList(new ArrayList<>());
-		this.onlyAskOnceOnAmbiguousMappings = onlyAskOnceOnAmbiguousMappings;
-		this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
-		this.logger = logger;
-		this.useParallelization = useParallelization;
-		this.conditionHandler = conditionHandler;
+		this.onlyAskOnceOnAmbiguousMappings = assetManager.getTransformationConfig().isOnlyAskOnceOnAmbiguousMappings();
+		this.ambiguityResolvingStrategy = assetManager.getTransformationConfig().getAmbiguityResolvingStrategy();
+		this.useParallelization = assetManager.getTransformationConfig().isUseParallelization();
+		this.conditionHandler = assetManager.getConditionHandler();
 	}
 
 	/**
@@ -210,9 +193,9 @@ public class MappingSelector extends CancelableElement {
 		// sections that are associated with a Mapping that contains a 'MappingDependency'.
 		//
 		List<MappingInstanceDescriptor> mappingInstances = (this.useParallelization
-				? matchedSections.entrySet().parallelStream()
-				: matchedSections.entrySet().stream())
-						.map(e -> this.selectMapping(e.getKey(), e.getValue(), activeMappings, true))
+				? matchedSections.keySet().parallelStream()
+				: matchedSections.keySet().stream())
+						.map(k -> this.selectMapping(k, matchedSections.get(k), activeMappings, true))
 						.flatMap(Collection::stream).collect(Collectors.toList());
 
 		localRegistry.add(mappingInstances);
@@ -434,8 +417,8 @@ public class MappingSelector extends CancelableElement {
 	/**
 	 * This evaluates the conditions of the {@link ConditionalElement ConditionalElements} contained in the mapping
 	 * represented by the given {@link MappingInstanceDescriptor}. Elements with conditions that have been evaluated as
-	 * <em>negative</em> are {@link MappingInstanceDescriptor#addElementWithNegativeCondition(ConditionalElement) stored}
-	 * in the <em>mappingInstance</em>.
+	 * <em>negative</em> are {@link MappingInstanceDescriptor#addElementWithNegativeCondition(ConditionalElement)
+	 * stored} in the <em>mappingInstance</em>.
 	 *
 	 * @param mappingInstance
 	 *            The {@link MappingInstanceDescriptor} representing the ConditionalElements to be checked.
@@ -583,7 +566,8 @@ public class MappingSelector extends CancelableElement {
 	 *            The {@link Mapping} that the MappingInstanceStorage shall represent.
 	 * @return The created {@link MappingInstanceDescriptor}.
 	 */
-	private MappingInstanceDescriptor createMappingInstanceStorage(MatchedSectionDescriptor descriptor, Mapping mapping) {
+	private MappingInstanceDescriptor createMappingInstanceStorage(MatchedSectionDescriptor descriptor,
+			Mapping mapping) {
 
 		MappingInstanceDescriptor ret = new MappingInstanceDescriptor(descriptor, this.useParallelization);
 		ret.setMapping(mapping);

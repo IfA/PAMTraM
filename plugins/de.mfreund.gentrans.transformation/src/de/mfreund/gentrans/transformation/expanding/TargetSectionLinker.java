@@ -10,7 +10,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -22,13 +21,14 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import de.mfreund.gentrans.transformation.CancelTransformationException;
 import de.mfreund.gentrans.transformation.UserAbortException;
 import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
+import de.mfreund.gentrans.transformation.core.CancelableTransformationAsset;
+import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.HintValueStorage;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
 import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
-import de.mfreund.gentrans.transformation.util.CancelableElement;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractExternalReferenceParameter;
 import pamtram.mapping.InstantiableMappingHintGroup;
@@ -50,7 +50,7 @@ import pamtram.structure.target.TargetSectionCrossReference;
  *
  * @author mfreund
  */
-public class TargetSectionLinker extends CancelableElement {
+public class TargetSectionLinker extends CancelableTransformationAsset {
 
 	private static final String RESOLVE_LINKING_AMBIGUITY_STARTED = "[Ambiguity] Resolve linking ambiguity...";
 
@@ -60,11 +60,6 @@ public class TargetSectionLinker extends CancelableElement {
 	 * target section registry used when instantiating classes
 	 */
 	private final TargetSectionRegistry targetSectionRegistry;
-
-	/**
-	 * The {@link Logger} that is used to print messages.
-	 */
-	private final Logger logger;
 
 	/**
 	 * The {@link InstanceSelectorHandler} used to evaluate modeled {@link ReferenceTargetSelector
@@ -81,25 +76,17 @@ public class TargetSectionLinker extends CancelableElement {
 	/**
 	 * This creates an instance.
 	 *
-	 * @param targetSectionRegistry
-	 *            target section registry used when instantiating classes
-	 * @param instanceSelectorHandler
-	 *            The {@link InstanceSelectorHandler} used to evaluate modeled {@link ReferenceTargetSelector
-	 *            ReferenceTargetSelectors}.
-	 * @param logger
-	 *            The {@link Logger} that shall be used to print messages.
-	 * @param ambiguityResolvingStrategy
-	 *            The {@link IAmbiguityResolvingStrategy} that shall be used to resolve occurring ambiguities.
+	 * @param assetManager
+	 *            The {@link TransformationAssetManager} providing access to the various other assets used in the
+	 *            current transformation instance.
 	 */
-	public TargetSectionLinker(final TargetSectionRegistry targetSectionRegistry,
-			InstanceSelectorHandler instanceSelectorHandler, final Logger logger,
-			final IAmbiguityResolvingStrategy ambiguityResolvingStrategy) {
+	public TargetSectionLinker(TransformationAssetManager assetManager) {
 
-		this.targetSectionRegistry = targetSectionRegistry;
-		this.instanceSelectorHandler = instanceSelectorHandler;
-		this.logger = logger;
-		this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
-		this.canceled = false;
+		super(assetManager);
+
+		this.targetSectionRegistry = assetManager.getTargetSectionRegistry();
+		this.instanceSelectorHandler = assetManager.getInstanceSelectorHandler();
+		this.ambiguityResolvingStrategy = assetManager.getTransformationConfig().getAmbiguityResolvingStrategy();
 
 	}
 

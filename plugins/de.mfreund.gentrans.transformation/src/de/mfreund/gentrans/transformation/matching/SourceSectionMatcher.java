@@ -12,7 +12,6 @@ import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -25,6 +24,8 @@ import org.eclipse.ocl.ParserException;
 import de.mfreund.gentrans.transformation.CancelTransformationException;
 import de.mfreund.gentrans.transformation.UserAbortException;
 import de.mfreund.gentrans.transformation.calculation.ValueConstraintReferenceValueCalculator;
+import de.mfreund.gentrans.transformation.core.CancelableTransformationAsset;
+import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.ContainmentTree;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.maps.SourceSectionMatchingResultsMap;
@@ -32,7 +33,6 @@ import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvedAdapter;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
-import de.mfreund.gentrans.transformation.util.CancelableElement;
 import pamtram.DeactivatableElement;
 import pamtram.PAMTraM;
 import pamtram.structure.constraint.ChoiceConstraint;
@@ -63,7 +63,7 @@ import pamtram.util.OCLUtil;
  *
  * @author mfreund
  */
-public class SourceSectionMatcher extends CancelableElement {
+public class SourceSectionMatcher extends CancelableTransformationAsset {
 
 	/**
 	 * The {@link ContainmentTree} that represents the list of source models to be matched.
@@ -83,11 +83,6 @@ public class SourceSectionMatcher extends CancelableElement {
 	private IAmbiguityResolvingStrategy ambiguityResolvingStrategy;
 
 	/**
-	 * The {@link Logger} that shall be used to print messages.
-	 */
-	private Logger logger;
-
-	/**
 	 * This {@link ValueConstraintReferenceValueCalculator} will be used for calculating referenceValues that are needed
 	 * for {@link ValueConstraint}
 	 */
@@ -102,28 +97,17 @@ public class SourceSectionMatcher extends CancelableElement {
 	/**
 	 * This creates an instance.
 	 *
-	 * @param matchedSectionRegistry
-	 *            The {@link MatchedSectionRegistry} where matched sections (the result of the matching process) will be
-	 *            stored.
-	 * @param valueConstraintReferenceValueCalculator
-	 *            The {@link ValueConstraintReferenceValueCalculator} that shall be used to used to calculate reference
-	 *            values of {@link ValueConstraint ValueConstraints}.
-	 * @param ambiguityResolvingStrategy
-	 *            The {@link IAmbiguityResolvingStrategy} to be used.
-	 * @param logger
-	 *            The {@link Logger} that shall be used to print messages.
-	 * @param useParallelization
-	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
-	 *            that the transformation result (especially the order of lists) varies between executions.
+	 * @param assetManager
+	 *            The {@link TransformationAssetManager} providing access to the various other assets used in the
+	 *            current transformation instance.
 	 */
-	public SourceSectionMatcher(MatchedSectionRegistry matchedSectionRegistry,
-			ValueConstraintReferenceValueCalculator valueConstraintReferenceValueCalculator,
-			IAmbiguityResolvingStrategy ambiguityResolvingStrategy, Logger logger, boolean useParallelization) {
+	public SourceSectionMatcher(TransformationAssetManager assetManager) {
 
-		this.matchedSectionRegistry = matchedSectionRegistry;
-		this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
-		this.logger = logger;
-		this.refValueCalculator = valueConstraintReferenceValueCalculator;
+		super(assetManager);
+
+		this.matchedSectionRegistry = assetManager.getMatchedSectionRegistry();
+		this.ambiguityResolvingStrategy = assetManager.getTransformationConfig().getAmbiguityResolvingStrategy();
+		this.refValueCalculator = assetManager.getValueConstraintReferenceValueCalculator();
 	}
 
 	/**

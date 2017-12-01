@@ -30,6 +30,9 @@ import pamtram.mapping.Mapping;
  */
 public class SelectedMappingRegistry {
 
+	/**
+	 * The map realizing the actual registry.
+	 */
 	private Map<Mapping, List<MappingInstanceDescriptor>> internalRegistry;
 
 	/**
@@ -60,8 +63,8 @@ public class SelectedMappingRegistry {
 	/**
 	 * Register a new list of {@link MappingInstanceDescriptor instances}.
 	 * <p />
-	 * Note: Each of the instances is registered according to its associated {@link MappingInstanceDescriptor#getMapping()
-	 * mapping}.
+	 * Note: Each of the instances is registered according to its associated
+	 * {@link MappingInstanceDescriptor#getMapping() mapping}.
 	 *
 	 * @see #add(Mapping, List)
 	 * @see #addAll(SelectedMappingRegistry)
@@ -75,8 +78,8 @@ public class SelectedMappingRegistry {
 	}
 
 	/**
-	 * Register a new list of {@link MappingInstanceDescriptor instances} for the given {@link Mapping mapping} by adding
-	 * to eventual previously registered instances.
+	 * Register a new list of {@link MappingInstanceDescriptor instances} for the given {@link Mapping mapping} by
+	 * adding to eventual previously registered instances.
 	 *
 	 * @see #put(Mapping, List)
 	 * @see #addAll(SelectedMappingRegistry)

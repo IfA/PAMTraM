@@ -4,13 +4,17 @@
 package de.mfreund.gentrans.transformation.registries;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import org.eclipse.emf.ecore.EObject;
 
+import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionClass;
@@ -18,15 +22,19 @@ import pamtram.structure.source.SourceSectionClass;
 /**
  * This class represents a registry for the various source model snippets that are matched against {@link SourceSection
  * SourceSections} during a transformation.
+ * <p />
+ * Note: The map used internally to represent the registry as well as all relevant operations are
+ * {@link Collections#synchronizedMap(Map) synchronized} (thread-safe). Consequently, it is safe to operate on this
+ * registry e.g. by means of a parallel stream.
  *
  * @author mfreund
  */
-public class MatchedSectionRegistry extends LinkedHashMap<SourceSection, List<MatchedSectionDescriptor>> {
+public class MatchedSectionRegistry {
 
 	/**
-	 *
+	 * The map realizing the actual registry.
 	 */
-	private static final long serialVersionUID = -3886366599486668256L;
+	protected Map<SourceSection, List<MatchedSectionDescriptor>> internalRegistry;
 
 	/**
 	 * The {@link Logger} that shall be used to log messages.
@@ -36,12 +44,16 @@ public class MatchedSectionRegistry extends LinkedHashMap<SourceSection, List<Ma
 	/**
 	 * This creates an instance.
 	 *
-	 * @param logger
-	 *            The {@link Logger} that shall be used to log messages.
+	 * @param assetManager
+	 *            The {@link TransformationAssetManager} providing access to the various other assets used in the
+	 *            current transformation instance.
 	 */
-	public MatchedSectionRegistry(Logger logger) {
+	public MatchedSectionRegistry(TransformationAssetManager assetManager) {
 
-		this.logger = logger;
+		this.logger = assetManager.getLogger();
+
+		this.internalRegistry = Collections.synchronizedMap(new LinkedHashMap<>());
+
 	}
 
 	/**
@@ -54,11 +66,12 @@ public class MatchedSectionRegistry extends LinkedHashMap<SourceSection, List<Ma
 	 *            The {@link SourceSection} represented by the {@link MatchedSectionDescriptor} to be returned.
 	 * @return The {@link MatchedSectionDescriptor} representing the <em>element</em>.
 	 */
-	public Optional<MatchedSectionDescriptor> getMatchedSectionDescriptorFor(EObject element,
+	public synchronized Optional<MatchedSectionDescriptor> getMatchedSectionDescriptorFor(EObject element,
 			SourceSection sourceSection) {
 
-		return element == null || sourceSection == null || !this.containsKey(sourceSection) ? Optional.empty()
-				: this.get(sourceSection).parallelStream()
+		return element == null || sourceSection == null || !this.internalRegistry.containsKey(sourceSection)
+				? Optional.empty()
+				: this.internalRegistry.get(sourceSection).parallelStream()
 						.filter(msd -> msd.getMatchedSourceModelObjectFlat().contains(element)).findAny();
 	}
 
@@ -73,9 +86,47 @@ public class MatchedSectionRegistry extends LinkedHashMap<SourceSection, List<Ma
 	 * @return '<em>true</em>' if this registry already contains a {@link MatchedSectionDescriptor} representing the
 	 *         given {@link EObject} for the given {@link SourceSection}; '<em>false</em>' otherwise.
 	 */
-	public boolean contains(EObject element, SourceSection sourceSection) {
+	public synchronized boolean contains(EObject element, SourceSection sourceSection) {
 
-		return element == null ? false : this.getMatchedSectionDescriptorFor(element, sourceSection).isPresent();
+		return this.getMatchedSectionDescriptorFor(element, sourceSection).isPresent();
+	}
+
+	/**
+	 * Whether anything is registered in this registry for the given {@link SourceSection}.
+	 *
+	 * @param sourceSection
+	 *            The {@link SourceSection} to check.
+	 * @return '<em>true</em>' if this registry already contains the given {@link SourceSection}; '<em>false</em>'
+	 *         otherwise.
+	 */
+	public synchronized boolean containsKey(SourceSection sourceSection) {
+
+		return this.internalRegistry.containsKey(sourceSection);
+	}
+
+	/**
+	 * Returns the set of {@link SourceSection SourceSections} registered in this registry.
+	 *
+	 * @return The set of {@link SourceSection SourceSections} registered in this registry.
+	 */
+	public synchronized Set<SourceSection> keySet() {
+
+		return this.internalRegistry.keySet();
+	}
+
+	/**
+	 * Return the {@link MatchedSectionDescriptor MatchedSectionDescriptors} registered in this registry for the given
+	 * {@link SourceSection}.
+	 *
+	 * @param sourceSection
+	 *            The {@link SourceSection} to check.
+	 * @return The registered {@link MatchedSectionDescriptor MatchedSectionDescriptors} or an empty list if nothing is
+	 *         registered.
+	 */
+	public synchronized List<MatchedSectionDescriptor> get(SourceSection sourceSection) {
+
+		return this.containsKey(sourceSection) ? new ArrayList<>(this.internalRegistry.get(sourceSection))
+				: new ArrayList<>();
 	}
 
 	/**
@@ -86,9 +137,9 @@ public class MatchedSectionRegistry extends LinkedHashMap<SourceSection, List<Ma
 	 * @return '<em>true</em>' if this registry already contains a {@link MatchedSectionDescriptor} representing the
 	 *         given {@link EObject}; '<em>false</em>' otherwise.
 	 */
-	public boolean contains(EObject element) {
+	public synchronized boolean contains(EObject element) {
 
-		return this.values().parallelStream().flatMap(List::stream)
+		return this.internalRegistry.values().parallelStream().flatMap(List::stream)
 				.anyMatch(msd -> msd.getMatchedSourceModelObjectFlat().contains(element));
 	}
 
@@ -100,10 +151,10 @@ public class MatchedSectionRegistry extends LinkedHashMap<SourceSection, List<Ma
 	 * @return '<em>true</em>' if this registry already contains the given {@link MatchedSectionDescriptor};
 	 *         '<em>false</em>' otherwise.
 	 */
-	public boolean contains(MatchedSectionDescriptor descriptor) {
+	public synchronized boolean contains(MatchedSectionDescriptor descriptor) {
 
 		return descriptor == null ? false
-				: this.values().parallelStream().flatMap(List::stream).anyMatch(d -> d == descriptor);
+				: this.internalRegistry.values().parallelStream().flatMap(List::stream).anyMatch(d -> d == descriptor);
 	}
 
 	/**
@@ -115,7 +166,7 @@ public class MatchedSectionRegistry extends LinkedHashMap<SourceSection, List<Ma
 	 *         contained the descriptor or if the {@link MatchedSectionDescriptor#getAssociatedSourceSectionClass()
 	 *         associated SourceSectionClass} was not a {@link SourceSectionClass}.
 	 */
-	public boolean register(MatchedSectionDescriptor descriptor) {
+	public synchronized boolean register(MatchedSectionDescriptor descriptor) {
 
 		SourceSectionClass section = descriptor.getAssociatedSourceSectionClass();
 
@@ -125,14 +176,16 @@ public class MatchedSectionRegistry extends LinkedHashMap<SourceSection, List<Ma
 			return false;
 		}
 
-		List<MatchedSectionDescriptor> descriptors = this.containsKey(section) ? this.get(section) : new ArrayList<>();
+		List<MatchedSectionDescriptor> descriptors = this.internalRegistry.containsKey(section)
+				? this.internalRegistry.get(section)
+				: new ArrayList<>();
 
 		if (descriptors.contains(descriptor)) {
 			return false;
 		}
 
 		descriptors.add(descriptor);
-		this.put((SourceSection) section, descriptors);
+		this.internalRegistry.put((SourceSection) section, descriptors);
 
 		return true;
 	}

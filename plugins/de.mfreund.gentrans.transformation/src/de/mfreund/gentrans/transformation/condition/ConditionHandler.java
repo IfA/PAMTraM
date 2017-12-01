@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
 import de.mfreund.gentrans.transformation.calculation.MatchSpecHandler;
 import de.mfreund.gentrans.transformation.calculation.ValueConstraintReferenceValueCalculator;
+import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.matching.ValueExtractor;
@@ -121,46 +122,21 @@ public class ConditionHandler {
 	private InstanceSelectorHandler instanceSelectorHandler;
 
 	/**
-	 * Whether extended parallelization shall be used during the transformation that might lead to the fact that the
-	 * transformation result (especially the order of lists) varies between executions.
-	 */
-	private boolean useParallelization;
-
-	/**
 	 * This creates an instance.
 	 *
-	 * @param matchedSections
-	 *            The map of {@link SourceSection SourceSections} and associated {@link MatchedSectionDescriptor
-	 *            MatchedSectionDescriptors} that result from the matching process.
-	 * @param selectedMappings
-	 *            The {@link SelectedMappingRegistry} where selected {@link Mapping Mappings} as well as associated
-	 *            {@link MappingInstanceDescriptor Mapping instances} are stored. This registry is consulted when checking
-	 *            {@link ApplicationDependency ApplicationDependencies}.
-	 * @param instanceSelectorHandler
-	 *            The {@link InstanceSelectorHandler} used to filter instances by means of {@link InstanceSelector
-	 *            InstanceSelectors}.
-	 * @param valueConstraintReferenceValueCalculator
-	 *            The {@link ValueConstraintReferenceValueCalculator} used to calculate reference values for
-	 *            {@link ValueConstraint ValueConstraints}.
-	 * @param logger
-	 *            The {@link Logger} that shall be used to print messages.
-	 * @param useParallelization
-	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
-	 *            that the transformation result (especially the order of lists) varies between executions.
+	 * @param assetManager
+	 *            The {@link TransformationAssetManager} providing access to the various other assets used in the
+	 *            current transformation instance.
 	 */
-	public ConditionHandler(MatchedSectionRegistry matchedSections, SelectedMappingRegistry selectedMappings,
-			InstanceSelectorHandler instanceSelectorHandler,
-			ValueConstraintReferenceValueCalculator valueConstraintReferenceValueCalculator, Logger logger,
-			boolean useParallelization) {
+	public ConditionHandler(TransformationAssetManager assetManager) {
 
-		this.matchedSections = matchedSections;
-		this.selectedMappingRegistry = selectedMappings;
+		this.matchedSections = assetManager.getMatchedSectionRegistry();
+		this.selectedMappingRegistry = assetManager.getSelectedMappingRegistry();
 		this.conditionRepository = new HashMap<>();
 		this.attributeConditionConstraintsWithErrors = new HashSet<>();
-		this.logger = logger;
-		this.useParallelization = useParallelization;
-		this.instanceSelectorHandler = instanceSelectorHandler;
-		this.refValueCalculator = valueConstraintReferenceValueCalculator;
+		this.logger = assetManager.getLogger();
+		this.instanceSelectorHandler = assetManager.getInstanceSelectorHandler();
+		this.refValueCalculator = assetManager.getValueConstraintReferenceValueCalculator();
 	}
 
 	/**
@@ -575,9 +551,7 @@ public class ConditionHandler {
 			// have to consider all 'descriptors' for the SourceSection under
 			// consideration
 			//
-			descriptorsToConsider.addAll(
-					this.matchedSections.containsKey(affectedSection) ? this.matchedSections.get(affectedSection)
-							: new ArrayList<>());
+			descriptorsToConsider.addAll(this.matchedSections.get(affectedSection));
 		}
 
 		// Collect all instances for the selected MatchedSectionDescriptors

@@ -6,20 +6,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Supplier;
-import java.util.logging.Logger;
 import java.util.stream.Stream;
 
 import org.eclipse.emf.ecore.EObject;
 
-import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
 import de.mfreund.gentrans.transformation.calculation.ValueCalculator;
-import de.mfreund.gentrans.transformation.calculation.ValueModifierExecutor;
+import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
-import de.mfreund.gentrans.transformation.maps.ElementIDMap;
-import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.maps.HintValue;
+import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.FixedValue;
 import pamtram.mapping.ExportedMappingHintGroup;
@@ -41,7 +38,6 @@ import pamtram.mapping.extended.MappingHintSourceInterface;
 import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.GlobalDynamicSourceElement;
-import pamtram.structure.InstanceSelector;
 import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.generic.ActualAttribute;
 import pamtram.structure.source.ActualSourceSectionAttribute;
@@ -67,7 +63,7 @@ public class HintValueExtractor extends ValueExtractor {
 	 * Registry for <em>source model objects</em> that have already been matched. The matched objects are stored in a
 	 * map where the key is the corresponding {@link SourceSectionClass} that they have been matched to.
 	 */
-	private Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections;
+	private MatchedSectionRegistry matchedSections;
 
 	/**
 	 * This keeps track of the {@link MappingInstanceDescriptor MappingInstanceStorages} representing
@@ -83,36 +79,16 @@ public class HintValueExtractor extends ValueExtractor {
 	 * <p />
 	 * Note: The extracted hint values are stored in the given <em>mappingInstances</em>.
 	 *
-	 * @param matchingResult
-	 *            The result of the <em>matching</em> step.
-	 * @param valueCalculator
-	 *            The {@link ValueCalculator} that shall be used to create the {@link HintValue HintValues}.
-	 * @param globalValues
-	 *            The <em>global values</em> (values of {@link FixedValue FixedValues} and {@link GlobalAttribute
-	 *            GlobalAttribute}) defined in the PAMTraM model.
-	 * @param elementIDs
-	 *            The {@link ElementIDMap} managing model-unique ids of {@link EObject elements}.
-	 * @param instanceSelectorHandler
-	 *            The {@link InstanceSelectorHandler} that is used to evaluate {@link InstanceSelector InstancePointers}
-	 *            that have been modeled.
-	 * @param attributeValueModifierExecutor
-	 *            The {@link ValueModifierExecutor} that shall be used for modifying attribute values.
-	 * @param logger
-	 *            The {@link Logger} that shall be used to print messages.
-	 * @param useParallelization
-	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
-	 *            that the transformation result (especially the order of lists) varies between executions.
+	 * @param assetManager
+	 *            The {@link TransformationAssetManager} providing access to the various other assets used in the
+	 *            current transformation instance.
 	 */
-	public HintValueExtractor(Map<SourceSection, List<MatchedSectionDescriptor>> matchingResult,
-			ValueCalculator valueCalculator, GlobalValueMap globalValues, ElementIDMap elementIDs,
-			InstanceSelectorHandler instanceSelectorHandler, ValueModifierExecutor attributeValueModifierExecutor,
-			Logger logger, boolean useParallelization) {
+	public HintValueExtractor(TransformationAssetManager assetManager) {
 
-		super(globalValues, elementIDs, instanceSelectorHandler, attributeValueModifierExecutor, logger,
-				useParallelization);
+		super(assetManager);
 
-		this.valueCalculator = valueCalculator;
-		this.matchedSections = matchingResult;
+		this.valueCalculator = assetManager.getValueCalculator();
+		this.matchedSections = assetManager.getMatchedSectionRegistry();
 		this.exportedHintValues = Collections.synchronizedMap(new LinkedHashMap<>());
 	}
 
@@ -128,9 +104,9 @@ public class HintValueExtractor extends ValueExtractor {
 	 */
 	public void extractHintValues(List<MappingInstanceDescriptor> mappingInstances) {
 
-		Supplier<Stream<MappingInstanceDescriptor>> mappingInstanceSupplier = () -> this.useParallelization
-				? mappingInstances.parallelStream()
-				: mappingInstances.stream();
+		Supplier<Stream<MappingInstanceDescriptor>> mappingInstanceSupplier = () -> this.assetManager
+				.getTransformationConfig().isUseParallelization() ? mappingInstances.parallelStream()
+						: mappingInstances.stream();
 
 		// In a first step, we extract the hints of exported hint groups and store them in the 'exportedHintValues' so
 		// that they can be reused by other mapping instances.
@@ -325,7 +301,8 @@ public class HintValueExtractor extends ValueExtractor {
 		if (sourceElement instanceof GlobalDynamicSourceElement<?, ?, ?, ?, ?>) {
 			attributeValueRepresentation = this.extractValue(
 					(GlobalDynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute, SourceInstanceSelector>) sourceElement,
-					this.matchedSections, matchedSectionDescriptor, this.useParallelization);
+					this.matchedSections, matchedSectionDescriptor,
+					this.assetManager.getTransformationConfig().isUseParallelization());
 		} else if (sourceElement instanceof DynamicSourceElement<?, ?, ?, ?>) {
 			attributeValueRepresentation = this.extractValue(
 					(DynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) sourceElement,
@@ -454,94 +431,5 @@ public class HintValueExtractor extends ValueExtractor {
 				matchedSectionDescriptor).getValue();
 
 	}
-
-	// /**
-	// * This stores the given '<em>hintValue</em>' produced by the given {@link MappingHintBaseType} in the given
-	// * {@link MappingInstanceDescriptor}.
-	// * <p />
-	// * Note: If the '<em>hintValue</em>' represents a 'complex', attribute-based hint (i.e. one that is composed of
-	// * multiple source elements like e.g. an 'AttributeMapping), it is consolidated first. By 'consolidated', we mean
-	// * that, if one or more of the source elements returned {@link AttributeValueRepresentation#isMany() multiple
-	// * values}, multiple distinct hint values are created.
-	// *
-	// * @param hintValue
-	// * The object representing the hint value. The type of this is dependent on the concrete
-	// * {@link MappingHintBaseType} represented by the given '<em>hint</em>'.
-	// * @param hint
-	// * The {@link MappingHintBaseType hint} that produced the value.
-	// * @param mappingInstance
-	// * The {@link MappingInstanceDescriptor} where the hint value shall be stored.
-	// */
-	// @SuppressWarnings("unchecked")
-	// private void storeHintValueConsolidated(HintValue hintValue, MappingHintBaseType hint,
-	// MappingInstanceDescriptor mappingInstance) {
-	//
-	// /*
-	// * If we deal with a 'complex' hint (one that is composed of multiple source elements) and one or more of the
-	// * source elements returned multiple values, we need to 'consolidate' the hint values, i.e. create multiple
-	// * distinct hint values.
-	// */
-	// if (hintValue instanceof AttributeBasedHintValue<?>) {
-	//
-	// LinkedHashMap<MappingHintSourceInterface, AttributeValueRepresentation> hintValueMap =
-	// ((AttributeBasedHintValue<MappingHintSourceInterface>) hintValue)
-	// .getInternalValue();
-	//
-	// int maxNumberOfValues = hintValueMap.values().parallelStream().mapToInt(v -> v.getValues().size()).max()
-	// .getAsInt();
-	//
-	// for (AttributeValueRepresentation valueRepresentation : hintValueMap.values()) {
-	// if (maxNumberOfValues % valueRepresentation.getValues().size() > 0) {
-	// this.logger.warning(() -> "The source elements of the mapping hint '" + hint.getName()
-	// + "' produced an " + "inconsistent number of hint values. They are thus skipped...");
-	// return;
-	// }
-	// }
-	//
-	// for (int i = 0; i < maxNumberOfValues; i++) {
-	// LinkedHashMap<MappingHintSourceInterface, AttributeValueRepresentation> newHintValueMap =
-	// (LinkedHashMap<MappingHintSourceInterface, AttributeValueRepresentation>) hintValueMap
-	// .clone();
-	// for (Entry<MappingHintSourceInterface, AttributeValueRepresentation> entry : hintValueMap.entrySet()) {
-	// newHintValueMap.put(entry.getKey(), new AttributeValueRepresentation(
-	// entry.getValue().getAttribute(), entry.getValue().getNextValue()));
-	// }
-	// mappingInstance.getHintValues().addHintValue(hint, new AttributeBasedHintValue<>(newHintValueMap));
-	// }
-	//
-	// /*
-	// * In case we are dealing with a HintImporterMappingHint, we cannot simply store the extracted hint value.
-	// * Instead, we need to update to the existing value.
-	// */
-	// } else if (hint instanceof HintImporterMappingHint) {
-	//
-	// if (!(hint instanceof MappedAttributeValueExpander)) {
-	// this.logger.severe(
-	// () -> "Unknown type of HintImporterMappingHint found: '" + hint.eClass().getName() + "'.");
-	// return;
-	// }
-	//
-	// // Whether the hintValue shall be preprended or appended.
-	// //
-	// boolean prepend = hint instanceof MappedAttributeValuePrepender
-	// || hint instanceof ExternalMappedAttributeValuePrepender;
-	//
-	// (this.useParallelization ? ((MappedAttributeValueExpander) hint).getHintsToExpand().parallelStream()
-	// : ((MappedAttributeValueExpander) hint).getHintsToExpand().stream()).forEach(h -> {
-	// if (!this.exportedHintGroups.containsKey(h)) {
-	// this.logger.severe(() -> "No hint value found for ExpandableHint '" + h + "'!");
-	// return;
-	// }
-	// hintValue.expandHintValue(this.exportedHintGroups.get(h), prepend);
-	// });
-	//
-	// /*
-	// * Otherwise, we can simply store the single hint value in the mapping instance.
-	// */
-	// } else if (hintValue != null) {
-	//
-	// mappingInstance.getHintValues().addHintValue(hint, hintValue);
-	// }
-	// }
 
 }

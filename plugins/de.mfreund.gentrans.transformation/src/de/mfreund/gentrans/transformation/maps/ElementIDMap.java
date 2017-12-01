@@ -36,7 +36,6 @@ public class ElementIDMap {
 
 	/**
 	 * This creates an instance and initializes the {@link #currentElementID} with 0.
-	 *
 	 */
 	public ElementIDMap() {
 

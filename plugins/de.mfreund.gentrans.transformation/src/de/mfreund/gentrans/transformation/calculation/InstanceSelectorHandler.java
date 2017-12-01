@@ -19,22 +19,18 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
-import de.mfreund.gentrans.transformation.maps.ElementIDMap;
-import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.matching.InstanceSelectorValueExtractor;
 import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
 import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
-import pamtram.FixedValue;
-import pamtram.mapping.GlobalAttribute;
 import pamtram.structure.InstanceSelector;
 import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.TargetInstanceSelector;
 import pamtram.structure.generic.CompositeReference;
 import pamtram.structure.generic.VirtualAttribute;
 import pamtram.structure.source.ActualSourceSectionAttribute;
-import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionAttribute;
@@ -79,35 +75,17 @@ public class InstanceSelectorHandler {
 	/**
 	 * This creates an instance.
 	 *
-	 * @param matchedSections
-	 *            A map relating {@link SourceSection SourceSections} and lists of {@link MatchedSectionDescriptor
-	 *            MatchedSectionDescriptors} that have been create for each SourceSection during the <em>matching</em>
-	 *            process.
-	 * @param targetSectionRegistry
-	 *            The {@link TargetSectionRegistry} where instantiated {@link TargetSection TargetSections} are stored.
-	 * @param globalValues
-	 *            The <em>global values</em> (values of {@link FixedValue FixedValues} and {@link GlobalAttribute
-	 *            GlobalAttribute}) defined in the PAMTraM model.
-	 * @param elementIDs
-	 *            The {@link ElementIDMap} managing model-unique ids of {@link EObject elements}.
-	 * @param attributeValueCalculator
-	 *            The {@link ValueCalculator} to use in order to calculate resulting values.
-	 * @param logger
-	 *            The {@link Logger} that shall be used to print messages.
-	 * @param useParallelization
-	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
-	 *            that the transformation result (especially the order of lists) varies between executions.
+	 * @param assetManager
+	 *            The {@link TransformationAssetManager} providing access to the various other assets used in the
+	 *            current transformation instance.
 	 */
-	public InstanceSelectorHandler(MatchedSectionRegistry matchedSections, TargetSectionRegistry targetSectionRegistry,
-			GlobalValueMap globalValues, ElementIDMap elementIDs, ValueCalculator attributeValueCalculator,
-			Logger logger, boolean useParallelization) {
+	public InstanceSelectorHandler(TransformationAssetManager assetManager) {
 
-		this.matchedSectionRegistry = matchedSections;
-		this.targetSectionRegistry = targetSectionRegistry;
-		this.valueExtractor = new InstanceSelectorValueExtractor(globalValues, elementIDs, this,
-				attributeValueCalculator, ValueModifierExecutor.getInstance(), logger, useParallelization);
-		this.logger = logger;
-		this.useParallelization = useParallelization;
+		this.matchedSectionRegistry = assetManager.getMatchedSectionRegistry();
+		this.targetSectionRegistry = assetManager.getTargetSectionRegistry();
+		this.valueExtractor = new InstanceSelectorValueExtractor(assetManager);
+		this.logger = assetManager.getLogger();
+		this.useParallelization = assetManager.getTransformationConfig().isUseParallelization();
 
 	}
 
@@ -130,11 +108,9 @@ public class InstanceSelectorHandler {
 
 		EList<EObject> correspondEclassInstances = new BasicEList<>();
 
-		if (this.matchedSectionRegistry.get(sourceSectionClass.getContainingSection()) != null) {
-			this.matchedSectionRegistry.get(sourceSectionClass.getContainingSection()).stream()
-					.forEach(descriptor -> correspondEclassInstances
-							.addAll(descriptor.getMatchedSourceModelElementsFor(sourceSectionClass)));
-		}
+		this.matchedSectionRegistry.get(sourceSectionClass.getContainingSection()).stream()
+				.forEach(descriptor -> correspondEclassInstances
+						.addAll(descriptor.getMatchedSourceModelElementsFor(sourceSectionClass)));
 
 		return this.getSelectedInstancesByInstanceList(instanceSelector, correspondEclassInstances,
 				matchedSectionDescriptor);

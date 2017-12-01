@@ -39,27 +39,11 @@ public class GlobalValueMap {
 
 	/**
 	 * This creates an empty instance.
-	 *
 	 */
 	public GlobalValueMap() {
 
 		this.fixedValues = new HashMap<>();
 		this.globalAttributes = new HashMap<>();
-
-	}
-
-	/**
-	 * This creates an instance.
-	 *
-	 * @param fixedValues
-	 *            The values of {@link FixedValue FixedValues}.
-	 * @param globalAttributes
-	 *            The values of {@link GlobalAttribute GlobalAttributes}.
-	 */
-	public GlobalValueMap(Map<FixedValue, String> fixedValues, Map<GlobalAttribute, String> globalAttributes) {
-
-		this.fixedValues = fixedValues;
-		this.globalAttributes = globalAttributes;
 
 	}
 

@@ -395,9 +395,9 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 				toSelect.addAll(affectedClasses);
 
 				if (PamtramEditorSourceSectionMatcherPage.this.matchedSections != null) {
-					toSelect.addAll(affectedClasses.stream()
-							.filter(c -> PamtramEditorSourceSectionMatcherPage.this.matchedSections.containsKey(c))
-							.flatMap(c -> PamtramEditorSourceSectionMatcherPage.this.matchedSections.get(c).stream())
+					toSelect.addAll(affectedClasses.stream().filter(c -> c instanceof SourceSection)
+							.flatMap(c -> PamtramEditorSourceSectionMatcherPage.this.matchedSections
+									.get((SourceSection) c).stream())
 							.map(MatchedSectionDescriptor::getAssociatedSourceModelElement)
 							.collect(Collectors.toSet()));
 				}

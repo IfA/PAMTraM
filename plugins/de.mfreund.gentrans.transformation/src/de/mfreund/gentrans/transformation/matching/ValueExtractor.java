@@ -16,19 +16,16 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ParserException;
 
-import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
 import de.mfreund.gentrans.transformation.calculation.MatchSpecHandler;
-import de.mfreund.gentrans.transformation.calculation.ValueModifierExecutor;
+import de.mfreund.gentrans.transformation.core.CancelableTransformationAsset;
+import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
-import de.mfreund.gentrans.transformation.maps.ElementIDMap;
-import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
-import de.mfreund.gentrans.transformation.util.CancelableElement;
+import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.FixedValue;
 import pamtram.MatchSpecElement;
 import pamtram.NamedElement;
-import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.extended.GlobalAttributeImporter;
@@ -52,96 +49,18 @@ import pamtram.util.OCLUtil;
  * @author mfreund
  *
  */
-public abstract class ValueExtractor extends CancelableElement {
-
-	/**
-	 * The {@link ValueModifierExecutor} that shall be used for modifying attribute values.
-	 */
-	protected final ValueModifierExecutor attributeValueModifierExecutor;
-
-	/**
-	 * The {@link InstanceSelectorHandler} used for selecting specific instances when extracting values.
-	 */
-	protected final InstanceSelectorHandler instanceSelectorHandler;
-
-	/**
-	 * The {@link Logger} that shall be used to print messages.
-	 */
-	protected final Logger logger;
-
-	/**
-	 * The {@link GlobalValueMap} that contains the relevant values of {@link GlobalAttribute GlobalAttributes}.
-	 */
-	protected final GlobalValueMap globalValues;
-
-	/**
-	 * The {@link ElementIDMap} managing model-unique ids of {@link EObject elements}.
-	 */
-	protected ElementIDMap elementIDs;
-
-	/**
-	 * Whether extended parallelization shall be used during the transformation that might lead to the fact that the
-	 * transformation result (especially the order of lists) varies between executions.
-	 */
-	protected boolean useParallelization;
+public abstract class ValueExtractor extends CancelableTransformationAsset {
 
 	/**
 	 * This creates an instance for a given list of {@link MatchedSectionDescriptor matchedSectionDescriptors}.
 	 *
-	 * @param attributeValueModifierExecutor
-	 *            The {@link ValueModifierExecutor} that shall be used for modifying attribute values.
-	 * @param instanceSelectorHandler
-	 *            The {@link InstanceSelectorHandler} used for selecting specific instances when extracting values.
-	 * @param logger
-	 *            The {@link Logger} that shall be used to print messages.
-	 * @param useParallelization
-	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
-	 *            that the transformation result (especially the order of lists) varies between executions.
-	 * @deprecated use
-	 *             {@link #ValueExtractor(GlobalValueMap, ElementIDMap, InstanceSelectorHandler, ValueModifierExecutor, Logger, boolean)}
-	 *             instead
+	 * @param assetManager
+	 *            The {@link TransformationAssetManager} providing access to the various other assets used in the
+	 *            current transformation instance.
 	 */
-	@Deprecated
-	public ValueExtractor(ValueModifierExecutor attributeValueModifierExecutor,
-			InstanceSelectorHandler instanceSelectorHandler, Logger logger, boolean useParallelization) {
+	public ValueExtractor(TransformationAssetManager assetManager) {
 
-		this.attributeValueModifierExecutor = attributeValueModifierExecutor;
-		this.instanceSelectorHandler = instanceSelectorHandler;
-		this.logger = logger;
-		this.useParallelization = useParallelization;
-		this.globalValues = new GlobalValueMap();
-		this.elementIDs = new ElementIDMap();
-
-	}
-
-	/**
-	 * This creates an instance for a given list of {@link MatchedSectionDescriptor matchedSectionDescriptors}.
-	 *
-	 * @param globalValues
-	 *            The {@link GlobalValueMap} that contains the relevant values of {@link GlobalAttribute
-	 *            GlobalAttributes}.
-	 * @param elementIDs
-	 *            The {@link ElementIDMap} managing model-unique ids of {@link EObject elements}.
-	 * @param instanceSelectorHandler
-	 *            The {@link InstanceSelectorHandler} used for selecting specific instances when extracting values.
-	 * @param attributeValueModifierExecutor
-	 *            The {@link ValueModifierExecutor} that shall be used for modifying attribute values.
-	 * @param logger
-	 *            The {@link Logger} that shall be used to print messages.
-	 * @param useParallelization
-	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
-	 *            that the transformation result (especially the order of lists) varies between executions.
-	 */
-	public ValueExtractor(GlobalValueMap globalValues, ElementIDMap elementIDs,
-			InstanceSelectorHandler instanceSelectorHandler, ValueModifierExecutor attributeValueModifierExecutor,
-			Logger logger, boolean useParallelization) {
-
-		this.attributeValueModifierExecutor = attributeValueModifierExecutor;
-		this.instanceSelectorHandler = instanceSelectorHandler;
-		this.logger = logger;
-		this.useParallelization = useParallelization;
-		this.globalValues = globalValues;
-		this.elementIDs = elementIDs;
+		super(assetManager);
 	}
 
 	/**
@@ -181,10 +100,11 @@ public abstract class ValueExtractor extends CancelableElement {
 
 		this.checkCanceled();
 
-		return this.globalValues.getGlobalAttributes().containsKey(globaleAttributeImporter.getGlobalAttribute())
-				? new AttributeValueRepresentation(null,
-						this.globalValues.get(globaleAttributeImporter.getGlobalAttribute()))
-				: null;
+		return this.assetManager.getGlobalValues().getGlobalAttributes()
+				.containsKey(globaleAttributeImporter.getGlobalAttribute())
+						? new AttributeValueRepresentation(null,
+								this.assetManager.getGlobalValues().get(globaleAttributeImporter.getGlobalAttribute()))
+						: null;
 	}
 
 	/**
@@ -272,8 +192,8 @@ public abstract class ValueExtractor extends CancelableElement {
 	 */
 	protected AttributeValueRepresentation extractValue(
 			GlobalDynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute, SourceInstanceSelector> mappingHintSourceElement,
-			Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections,
-			MatchedSectionDescriptor matchedSectionDescriptor, boolean useParallelization) {
+			MatchedSectionRegistry matchedSections, MatchedSectionDescriptor matchedSectionDescriptor,
+			boolean useParallelization) {
 
 		this.checkCanceled();
 
@@ -296,8 +216,8 @@ public abstract class ValueExtractor extends CancelableElement {
 
 			for (SourceInstanceSelector instancePointer : mappingHintSourceElement.getInstanceSelectors()) {
 
-				sourceElements = this.instanceSelectorHandler.getSelectedInstancesByInstanceList(instancePointer,
-						sourceElements, matchedSectionDescriptor);
+				sourceElements = this.assetManager.getInstanceSelectorHandler()
+						.getSelectedInstancesByInstanceList(instancePointer, sourceElements, matchedSectionDescriptor);
 			}
 
 		}
@@ -347,7 +267,7 @@ public abstract class ValueExtractor extends CancelableElement {
 
 			for (EObject sourceElement : sourceElements) {
 
-				String val = String.valueOf(this.elementIDs.getIDForElement(sourceElement));
+				String val = String.valueOf(this.assetManager.getElementIDs().getIDForElement(sourceElement));
 
 				// create a new AttributeValueRepresentation or update the existing
 				// one
@@ -369,7 +289,7 @@ public abstract class ValueExtractor extends CancelableElement {
 		// Collect all values of the attribute in all source elements
 		//
 		List<Object> srcAttrValues = ValueExtractor.getAttributeValueAsList(sourceElements,
-				mappingHintSourceElement.getSource(), this.logger);
+				mappingHintSourceElement.getSource(), this.assetManager.getLogger());
 
 		if (srcAttrValues.isEmpty()) {
 			this.logger.warning(() -> "No hint value found for source element '" + mappingHintSourceElement.getName()
@@ -393,8 +313,8 @@ public abstract class ValueExtractor extends CancelableElement {
 						.convertToString(sourceAttribute.getEAttributeType(), srcAttrValue);
 			}
 
-			final String valCopy = this.attributeValueModifierExecutor.applyAttributeValueModifiers(srcAttrAsString,
-					mappingHintSourceElement.getModifiers());
+			final String valCopy = this.assetManager.getValueModifierExecutor()
+					.applyAttributeValueModifiers(srcAttrAsString, mappingHintSourceElement.getModifiers());
 
 			// create a new AttributeValueRepresentation or update the existing
 			// one

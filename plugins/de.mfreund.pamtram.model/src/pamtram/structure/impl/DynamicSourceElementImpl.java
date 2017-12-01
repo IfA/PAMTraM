@@ -38,6 +38,7 @@ import pamtram.mapping.modifier.ValueModifierSet;
  * <ul>
  *   <li>{@link pamtram.structure.impl.DynamicSourceElementImpl#getModifiers <em>Modifiers</em>}</li>
  *   <li>{@link pamtram.structure.impl.DynamicSourceElementImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link pamtram.structure.impl.DynamicSourceElementImpl#isUseElementID <em>Use Element ID</em>}</li>
  * </ul>
  *
  * @generated
@@ -62,6 +63,26 @@ public abstract class DynamicSourceElementImpl<S extends Section<S, C, R, A>, C 
 	 * @ordered
 	 */
 	protected A source;
+
+	/**
+	 * The default value of the '{@link #isUseElementID() <em>Use Element ID</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUseElementID()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean USE_ELEMENT_ID_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isUseElementID() <em>Use Element ID</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUseElementID()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean useElementID = USE_ELEMENT_ID_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -137,6 +158,27 @@ public abstract class DynamicSourceElementImpl<S extends Section<S, C, R, A>, C 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isUseElementID() {
+		return useElementID;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUseElementID(boolean newUseElementID) {
+		boolean oldUseElementID = useElementID;
+		useElementID = newUseElementID;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID, oldUseElementID, useElementID));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public EList<ValueModifierSet> getModifiers() {
 		if (modifiers == null) {
@@ -197,6 +239,8 @@ public abstract class DynamicSourceElementImpl<S extends Section<S, C, R, A>, C 
 			case StructurePackage.DYNAMIC_SOURCE_ELEMENT__SOURCE:
 				if (resolve) return getSource();
 				return basicGetSource();
+			case StructurePackage.DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID:
+				return isUseElementID();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -217,6 +261,9 @@ public abstract class DynamicSourceElementImpl<S extends Section<S, C, R, A>, C 
 			case StructurePackage.DYNAMIC_SOURCE_ELEMENT__SOURCE:
 				setSource((A)newValue);
 				return;
+			case StructurePackage.DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID:
+				setUseElementID((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -235,6 +282,9 @@ public abstract class DynamicSourceElementImpl<S extends Section<S, C, R, A>, C 
 			case StructurePackage.DYNAMIC_SOURCE_ELEMENT__SOURCE:
 				setSource((A)null);
 				return;
+			case StructurePackage.DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID:
+				setUseElementID(USE_ELEMENT_ID_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -251,6 +301,8 @@ public abstract class DynamicSourceElementImpl<S extends Section<S, C, R, A>, C 
 				return modifiers != null && !modifiers.isEmpty();
 			case StructurePackage.DYNAMIC_SOURCE_ELEMENT__SOURCE:
 				return source != null;
+			case StructurePackage.DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID:
+				return useElementID != USE_ELEMENT_ID_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -301,6 +353,22 @@ public abstract class DynamicSourceElementImpl<S extends Section<S, C, R, A>, C 
 				return getMapping();
 		}
 		return super.eInvoke(operationID, arguments);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (useElementID: ");
+		result.append(useElementID);
+		result.append(')');
+		return result.toString();
 	}
 
 } //DynamicSourceElementImpl

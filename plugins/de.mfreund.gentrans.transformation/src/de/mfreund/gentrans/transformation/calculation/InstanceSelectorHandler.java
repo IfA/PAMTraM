@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
+import de.mfreund.gentrans.transformation.maps.ElementIDMap;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.matching.InstanceSelectorValueExtractor;
 import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
@@ -87,6 +88,8 @@ public class InstanceSelectorHandler {
 	 * @param globalValues
 	 *            The <em>global values</em> (values of {@link FixedValue FixedValues} and {@link GlobalAttribute
 	 *            GlobalAttribute}) defined in the PAMTraM model.
+	 * @param elementIDs
+	 *            The {@link ElementIDMap} managing model-unique ids of {@link EObject elements}.
 	 * @param attributeValueCalculator
 	 *            The {@link ValueCalculator} to use in order to calculate resulting values.
 	 * @param logger
@@ -96,13 +99,13 @@ public class InstanceSelectorHandler {
 	 *            that the transformation result (especially the order of lists) varies between executions.
 	 */
 	public InstanceSelectorHandler(MatchedSectionRegistry matchedSections, TargetSectionRegistry targetSectionRegistry,
-			GlobalValueMap globalValues, ValueCalculator attributeValueCalculator, Logger logger,
-			boolean useParallelization) {
+			GlobalValueMap globalValues, ElementIDMap elementIDs, ValueCalculator attributeValueCalculator,
+			Logger logger, boolean useParallelization) {
 
 		this.matchedSectionRegistry = matchedSections;
 		this.targetSectionRegistry = targetSectionRegistry;
-		this.valueExtractor = new InstanceSelectorValueExtractor(globalValues, this, attributeValueCalculator,
-				ValueModifierExecutor.getInstance(), logger, useParallelization);
+		this.valueExtractor = new InstanceSelectorValueExtractor(globalValues, elementIDs, this,
+				attributeValueCalculator, ValueModifierExecutor.getInstance(), logger, useParallelization);
 		this.logger = logger;
 		this.useParallelization = useParallelization;
 

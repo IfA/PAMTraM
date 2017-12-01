@@ -3,6 +3,7 @@
 package pamtram.structure.impl;
 
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.GenLibraryPackage;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
@@ -402,6 +403,15 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getDynamicSourceElement_UseElementID() {
+		return (EAttribute)dynamicSourceElementEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getDynamicSourceElement__GetMappingHintGroup() {
 		return dynamicSourceElementEClass.getEOperations().get(0);
 	}
@@ -522,6 +532,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 
 		dynamicSourceElementEClass = createEClass(DYNAMIC_SOURCE_ELEMENT);
 		createEReference(dynamicSourceElementEClass, DYNAMIC_SOURCE_ELEMENT__SOURCE);
+		createEAttribute(dynamicSourceElementEClass, DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID);
 		createEOperation(dynamicSourceElementEClass, DYNAMIC_SOURCE_ELEMENT___GET_MAPPING_HINT_GROUP);
 		createEOperation(dynamicSourceElementEClass, DYNAMIC_SOURCE_ELEMENT___GET_MAPPING);
 
@@ -890,6 +901,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		initEClass(dynamicSourceElementEClass, DynamicSourceElement.class, "DynamicSourceElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		g1 = createEGenericType(dynamicSourceElementEClass_A);
 		initEReference(getDynamicSourceElement_Source(), g1, null, "source", null, 1, 1, DynamicSourceElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDynamicSourceElement_UseElementID(), ecorePackage.getEBoolean(), "useElementID", null, 0, 1, DynamicSourceElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getDynamicSourceElement__GetMappingHintGroup(), thePamtramPackage.getNamedElement(), "getMappingHintGroup", 1, 1, !IS_UNIQUE, IS_ORDERED);
 
@@ -1111,6 +1123,12 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		   new String[] {
 			 "documentation", "The attribute of a SourceSection based on which the dynamic value(s) is/are calculated.\r\n<br /><br />\r\nThe concrete sub-type of DynamicSourceElement poses additional constraints on the fact which SourceSectionAttributes may be used as \'source\'.",
 			 "propertyDescriptor", "this.itemPropertyDescriptors.add(\n\t\tnew ItemPropertyDescriptor(((<%org.eclipse.emf.edit.provider.ComposeableAdapterFactory%>) this.adapterFactory).getRootAdapterFactory(),\n\t\t\t\tthis.getResourceLocator(), this.getString(\"_UI_DynamicSourceElement_source_feature\"),\n\t\t\t\tthis.getString(\"_UI_DynamicSourceElement_source_description\"),\n\t\t\t\t<%pamtram.structure.StructurePackage%>.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE, true, false, true, null,\n\t\t\t\tthis.getString(\"_UI_BasicPropertyCategory\"), null) {\n\n\t\t\t@Override\n\t\t\tpublic Collection<?> getChoiceOfValues(Object object) {\n\n\t\t\t\t// the parent <%pamtram.mapping.Mapping%>\n\t\t\t\t//\n\t\t\t\t<%pamtram.mapping.Mapping%> mapping = ((DynamicSourceElement<?, ?, ?, ?>) object).getMapping();\n\n\t\t\t\tif (mapping == null || mapping.getSourceSection() == null) {\n\t\t\t\t\treturn new ArrayList<>();\n\t\t\t\t}\n\n\t\t\t\tClass<?, ?, ?, ?> relevantClass = mapping.getSourceSection();\n\n\t\t\t\tList<Object> choiceOfValues = new ArrayList<>();\n\n\t\t\t\t// iterate over all elements and return the attributes as possible options\n\t\t\t\t//\n\t\t\t\tSet<Class<?, ?, ?, ?>> scanned = new HashSet<>();\n\t\t\t\tList<Class<?, ?, ?, ?>> sectionsToScan = new ArrayList<>();\n\t\t\t\tsectionsToScan.add(relevantClass);\n\n\t\t\t\t// also regard abstract sections that this extends\n\t\t\t\tif (relevantClass instanceof <%pamtram.structure.generic.Section%>) {\n\t\t\t\t\tsectionsToScan.addAll(((Section<?, ?, ?, ?>) relevantClass).getAllExtend());\n\t\t\t\t}\n\n\t\t\t\twhile (!sectionsToScan.isEmpty()) {\n\t\t\t\t\tClass<?, ?, ?, ?> classToScan = sectionsToScan.remove(0);\n\t\t\t\t\tscanned.add(classToScan);\n\n\t\t\t\t\tIterator<<%org.eclipse.emf.ecore.EObject%>> it = classToScan.eAllContents();\n\t\t\t\t\twhile (it.hasNext()) {\n\t\t\t\t\t\t<%org.eclipse.emf.ecore.EObject%> next = it.next();\n\t\t\t\t\t\tif (next instanceof pamtram.structure.generic.Attribute) {\n\t\t\t\t\t\t\tchoiceOfValues.add(next);\n\t\t\t\t\t\t} else if (next instanceof <%pamtram.structure.generic.CrossReference%>) {\n\t\t\t\t\t\t\tList<<%pamtram.structure.source.SourceSectionClass%>> vals = new ArrayList<>();\n\t\t\t\t\t\t\tvals.addAll(((<%pamtram.structure.generic.CrossReference%>) next).getValue());\n\t\t\t\t\t\t\tvals.removeAll(scanned);\n\t\t\t\t\t\t\tsectionsToScan.addAll(vals);\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\n\t\t\t\treturn choiceOfValues;\n\t\t\t}\n\t\t});"
+		   });	
+		addAnnotation
+		  (getDynamicSourceElement_UseElementID(), 
+		   source, 
+		   new String[] {
+			 "documentation", "If this is set to \'<em>true</em>\' a (model-unique) numeric identifier instead of the actual value of the source attribute will be used.\r\n<p />\r\nThis can be used to insert identifiers into the target model."
 		   });	
 		addAnnotation
 		  (localDynamicSourceElementEClass, 

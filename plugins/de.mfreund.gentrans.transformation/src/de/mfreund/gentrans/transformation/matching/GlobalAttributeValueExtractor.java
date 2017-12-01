@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
 import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
 import de.mfreund.gentrans.transformation.calculation.ValueModifierExecutor;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
+import de.mfreund.gentrans.transformation.maps.ElementIDMap;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
 import pamtram.MappingModel;
@@ -34,6 +35,8 @@ public class GlobalAttributeValueExtractor extends ValueExtractor {
 	 *
 	 * @param globalValues
 	 *            The {@link GlobalValueMap} where the extracted values are stored.
+	 * @param elementIDs
+	 *            The {@link ElementIDMap} managing model-unique ids of {@link EObject elements}.
 	 * @param instanceSelectorHandler
 	 *            The {@link InstanceSelectorHandler} used for selecting specific instances when extracting values.
 	 * @param attributeValueModifierExecutor
@@ -44,10 +47,12 @@ public class GlobalAttributeValueExtractor extends ValueExtractor {
 	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
 	 *            that the transformation result (especially the order of lists) varies between executions.
 	 */
-	public GlobalAttributeValueExtractor(GlobalValueMap globalValues, InstanceSelectorHandler instanceSelectorHandler,
-			ValueModifierExecutor attributeValueModifierExecutor, Logger logger, boolean useParallelization) {
+	public GlobalAttributeValueExtractor(GlobalValueMap globalValues, ElementIDMap elementIDs,
+			InstanceSelectorHandler instanceSelectorHandler, ValueModifierExecutor attributeValueModifierExecutor,
+			Logger logger, boolean useParallelization) {
 
-		super(globalValues, instanceSelectorHandler, attributeValueModifierExecutor, logger, useParallelization);
+		super(globalValues, elementIDs, instanceSelectorHandler, attributeValueModifierExecutor, logger,
+				useParallelization);
 	}
 
 	/**

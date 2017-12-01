@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 import de.mfreund.gentrans.transformation.TransformationConfiguration;
@@ -23,6 +24,7 @@ import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
 import de.mfreund.gentrans.transformation.expanding.TargetSectionConnector;
 import de.mfreund.gentrans.transformation.expanding.TargetSectionInstantiator;
 import de.mfreund.gentrans.transformation.expanding.TargetSectionLinker;
+import de.mfreund.gentrans.transformation.maps.ElementIDMap;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.matching.GlobalAttributeValueExtractor;
 import de.mfreund.gentrans.transformation.matching.HintValueExtractor;
@@ -76,6 +78,11 @@ class TransformationAssetManager extends CancelableElement {
 	 * {@link GlobalAttribute GlobalAttributes} are stored.
 	 */
 	private GlobalValueMap globalValues;
+
+	/**
+	 * The {@link ElementIDMap} managing model-unique ids of {@link EObject elements}.
+	 */
+	private ElementIDMap elementIDs;
 
 	/**
 	 * The {@link MatchedSectionRegistry} where the various source model snippets that are matched against
@@ -257,6 +264,28 @@ class TransformationAssetManager extends CancelableElement {
 	}
 
 	/**
+	 * This initializes the {@link #elementIDs}.
+	 */
+	protected void initElementIDs() {
+
+		this.elementIDs = new ElementIDMap();
+	}
+
+	/**
+	 * Returns the {@link #elementIDs}.
+	 *
+	 * @return the {@link #elementIDs}}
+	 */
+	public ElementIDMap getElementIDs() {
+
+		if (this.elementIDs == null) {
+			this.initElementIDs();
+		}
+
+		return this.elementIDs;
+	}
+
+	/**
 	 * This initializes the {@link #matchedSectionRegistry}.
 	 */
 	protected void initMatchedSectionRegistry() {
@@ -401,8 +430,8 @@ class TransformationAssetManager extends CancelableElement {
 	protected void initInstanceSelectorHandler() {
 
 		this.instanceSelectorHandler = new InstanceSelectorHandler(this.getMatchedSectionRegistry(),
-				this.getTargetSectionRegistry(), this.getGlobalValues(), this.getValueCalculator(), this.getLogger(),
-				this.transformationConfig.isUseParallelization());
+				this.getTargetSectionRegistry(), this.getGlobalValues(), this.getElementIDs(),
+				this.getValueCalculator(), this.getLogger(), this.transformationConfig.isUseParallelization());
 	}
 
 	/**
@@ -425,8 +454,9 @@ class TransformationAssetManager extends CancelableElement {
 	protected void initValueConstraintReferenceValueCalculator() {
 
 		this.valueConstraintReferenceValueCalculator = new ValueConstraintReferenceValueCalculator(
-				this.getMatchedSectionRegistry(), this.getGlobalValues(), this.getInstanceSelectorHandler(),
-				this.getValueCalculator(), this.getLogger(), this.transformationConfig.isUseParallelization());
+				this.getMatchedSectionRegistry(), this.getGlobalValues(), this.getElementIDs(),
+				this.getInstanceSelectorHandler(), this.getValueCalculator(), this.getLogger(),
+				this.transformationConfig.isUseParallelization());
 	}
 
 	/**
@@ -500,8 +530,8 @@ class TransformationAssetManager extends CancelableElement {
 	protected void initHintValueExtractor() {
 
 		this.hintValueExtractor = new HintValueExtractor(this.getMatchedSectionRegistry(), this.getValueCalculator(),
-				this.getGlobalValues(), this.getInstanceSelectorHandler(), this.getValueModifierExecutor(),
-				this.getLogger(), this.transformationConfig.isUseParallelization());
+				this.getGlobalValues(), this.getElementIDs(), this.getInstanceSelectorHandler(),
+				this.getValueModifierExecutor(), this.getLogger(), this.transformationConfig.isUseParallelization());
 		this.objectsToCancel.add(this.hintValueExtractor);
 	}
 
@@ -525,8 +555,8 @@ class TransformationAssetManager extends CancelableElement {
 	protected void initGlobalAttributeValueExtractor() {
 
 		this.globalAttributeValueExtractor = new GlobalAttributeValueExtractor(this.getGlobalValues(),
-				this.getInstanceSelectorHandler(), this.getValueModifierExecutor(), this.getLogger(),
-				this.transformationConfig.isUseParallelization());
+				this.getElementIDs(), this.getInstanceSelectorHandler(), this.getValueModifierExecutor(),
+				this.getLogger(), this.transformationConfig.isUseParallelization());
 		this.objectsToCancel.add(this.globalAttributeValueExtractor);
 	}
 

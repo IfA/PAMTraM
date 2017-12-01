@@ -747,6 +747,15 @@ public interface ExtendedPackage extends EPackage {
 	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT__SOURCE = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT__SOURCE;
 
 	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT__USE_ELEMENT_ID = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID;
+
+	/**
 	 * The feature id for the '<em><b>Reference Match Spec</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -874,6 +883,15 @@ public interface ExtendedPackage extends EPackage {
 	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT__SOURCE = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT__SOURCE;
 
 	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT__USE_ELEMENT_ID = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID;
+
+	/**
 	 * The feature id for the '<em><b>Local Condition</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -990,6 +1008,15 @@ public interface ExtendedPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT__SOURCE = StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT__USE_ELEMENT_ID = StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID;
 
 	/**
 	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
@@ -1428,6 +1455,15 @@ public interface ExtendedPackage extends EPackage {
 	int CARDINALITY_MAPPING_SOURCE_ELEMENT__SOURCE = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT__SOURCE;
 
 	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_SOURCE_ELEMENT__USE_ELEMENT_ID = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID;
+
+	/**
 	 * The feature id for the '<em><b>Reference Match Spec</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1555,6 +1591,15 @@ public interface ExtendedPackage extends EPackage {
 	int CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT__SOURCE = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT__SOURCE;
 
 	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT__USE_ELEMENT_ID = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID;
+
+	/**
 	 * The feature id for the '<em><b>Local Condition</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1671,6 +1716,15 @@ public interface ExtendedPackage extends EPackage {
 	 * @ordered
 	 */
 	int CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT__SOURCE = StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT__USE_ELEMENT_ID = StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID;
 
 	/**
 	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
@@ -2272,6 +2326,15 @@ public interface ExtendedPackage extends EPackage {
 	int LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__SOURCE = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT__SOURCE;
 
 	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__USE_ELEMENT_ID = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID;
+
+	/**
 	 * The feature id for the '<em><b>Reference Match Spec</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2379,6 +2442,15 @@ public interface ExtendedPackage extends EPackage {
 	 * @ordered
 	 */
 	int MAPPED_ATTRIBUTE_VALUE_PREPENDER__SOURCE = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_PREPENDER__USE_ELEMENT_ID = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__USE_ELEMENT_ID;
 
 	/**
 	 * The feature id for the '<em><b>Reference Match Spec</b></em>' reference list.
@@ -2490,6 +2562,15 @@ public interface ExtendedPackage extends EPackage {
 	int MAPPED_ATTRIBUTE_VALUE_APPENDER__SOURCE = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__SOURCE;
 
 	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_APPENDER__USE_ELEMENT_ID = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__USE_ELEMENT_ID;
+
+	/**
 	 * The feature id for the '<em><b>Reference Match Spec</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2599,6 +2680,15 @@ public interface ExtendedPackage extends EPackage {
 	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__SOURCE = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT__SOURCE;
 
 	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__USE_ELEMENT_ID = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID;
+
+	/**
 	 * The feature id for the '<em><b>Hints To Expand</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2699,6 +2789,15 @@ public interface ExtendedPackage extends EPackage {
 	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER__SOURCE = EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__SOURCE;
 
 	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER__USE_ELEMENT_ID = EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__USE_ELEMENT_ID;
+
+	/**
 	 * The feature id for the '<em><b>Hints To Expand</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2797,6 +2896,15 @@ public interface ExtendedPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER__SOURCE = EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER__USE_ELEMENT_ID = EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__USE_ELEMENT_ID;
 
 	/**
 	 * The feature id for the '<em><b>Hints To Expand</b></em>' reference list.

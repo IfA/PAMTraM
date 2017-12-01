@@ -134,6 +134,8 @@
         <genTypeParameters ecoreTypeParameter="pamtram.ecore#//structure/DynamicSourceElement/A"/>
         <genFeatures notify="false" createChild="false" propertyCategory="Basic" propertyDescription="The Attribute (part of a SourceSection) that is used to determine the value for this source element."
             propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//structure/DynamicSourceElement/source"/>
+        <genFeatures createChild="false" propertyCategory="Extended" propertyDescription="If a model-unique numeric identifier shall be returned instead of the value of the referenced 'source' Attribute."
+            ecoreFeature="ecore:EAttribute pamtram.ecore#//structure/DynamicSourceElement/useElementID"/>
         <genOperations ecoreOperation="pamtram.ecore#//structure/DynamicSourceElement/getMappingHintGroup"/>
         <genOperations ecoreOperation="pamtram.ecore#//structure/DynamicSourceElement/getMapping"/>
       </genClasses>

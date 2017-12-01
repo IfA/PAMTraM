@@ -3,11 +3,14 @@ package de.mfreund.gentrans.transformation.matching;
 import java.util.LinkedHashMap;
 import java.util.logging.Logger;
 
+import org.eclipse.emf.ecore.EObject;
+
 import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
 import de.mfreund.gentrans.transformation.calculation.ValueCalculator;
 import de.mfreund.gentrans.transformation.calculation.ValueModifierExecutor;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
+import de.mfreund.gentrans.transformation.maps.ElementIDMap;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import pamtram.FixedValue;
 import pamtram.mapping.GlobalAttribute;
@@ -39,6 +42,8 @@ public class InstanceSelectorValueExtractor extends ValueExtractor {
 	 * @param globalValues
 	 *            The <em>global values</em> (values of {@link FixedValue FixedValues} and {@link GlobalAttribute
 	 *            GlobalAttribute}) defined in the PAMTraM model.
+	 * @param elementIDs
+	 *            The {@link ElementIDMap} managing model-unique ids of {@link EObject elements}.
 	 * @param instanceSelectorHandler
 	 *            The {@link InstanceSelectorHandler} that is used to evaluate {@link InstanceSelector InstancePointers}
 	 *            that have been modeled.
@@ -52,11 +57,12 @@ public class InstanceSelectorValueExtractor extends ValueExtractor {
 	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
 	 *            that the transformation result (especially the order of lists) varies between executions.
 	 */
-	public InstanceSelectorValueExtractor(GlobalValueMap globalValues, InstanceSelectorHandler instanceSelectorHandler,
-			ValueCalculator attributeValueCalculator, ValueModifierExecutor attributeValueModifierExecutor,
-			Logger logger, boolean useParallelization) {
+	public InstanceSelectorValueExtractor(GlobalValueMap globalValues, ElementIDMap elementIDs,
+			InstanceSelectorHandler instanceSelectorHandler, ValueCalculator attributeValueCalculator,
+			ValueModifierExecutor attributeValueModifierExecutor, Logger logger, boolean useParallelization) {
 
-		super(globalValues, instanceSelectorHandler, attributeValueModifierExecutor, logger, useParallelization);
+		super(globalValues, elementIDs, instanceSelectorHandler, attributeValueModifierExecutor, logger,
+				useParallelization);
 
 		this.attributeValueCalculator = attributeValueCalculator;
 	}

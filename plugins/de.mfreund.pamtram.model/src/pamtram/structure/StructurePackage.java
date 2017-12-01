@@ -2,6 +2,7 @@
  */
 package pamtram.structure;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
@@ -465,13 +466,22 @@ public interface StructurePackage extends EPackage {
 	int DYNAMIC_SOURCE_ELEMENT__SOURCE = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Dynamic Source Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Get Mapping Hint Group</em>' operation.
@@ -536,6 +546,15 @@ public interface StructurePackage extends EPackage {
 	 * @ordered
 	 */
 	int LOCAL_DYNAMIC_SOURCE_ELEMENT__SOURCE = DYNAMIC_SOURCE_ELEMENT__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCAL_DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID = DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID;
 
 	/**
 	 * The feature id for the '<em><b>Reference Match Spec</b></em>' reference list.
@@ -627,6 +646,15 @@ public interface StructurePackage extends EPackage {
 	 * @ordered
 	 */
 	int INSTANCE_SELECTOR_SOURCE_ELEMENT__SOURCE = LOCAL_DYNAMIC_SOURCE_ELEMENT__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_SELECTOR_SOURCE_ELEMENT__USE_ELEMENT_ID = LOCAL_DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID;
 
 	/**
 	 * The feature id for the '<em><b>Reference Match Spec</b></em>' reference list.
@@ -756,6 +784,15 @@ public interface StructurePackage extends EPackage {
 	int EXTERNAL_DYNAMIC_SOURCE_ELEMENT__SOURCE = DYNAMIC_SOURCE_ELEMENT__SOURCE;
 
 	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID = DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID;
+
+	/**
 	 * The number of structural features of the '<em>External Dynamic Source Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -836,6 +873,15 @@ public interface StructurePackage extends EPackage {
 	 * @ordered
 	 */
 	int INSTANCE_SELECTOR_EXTERNAL_SOURCE_ELEMENT__SOURCE = EXTERNAL_DYNAMIC_SOURCE_ELEMENT__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_SELECTOR_EXTERNAL_SOURCE_ELEMENT__USE_ELEMENT_ID = EXTERNAL_DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID;
 
 	/**
 	 * The feature id for the '<em><b>Local Condition</b></em>' containment reference.
@@ -956,6 +1002,15 @@ public interface StructurePackage extends EPackage {
 	int GLOBAL_DYNAMIC_SOURCE_ELEMENT__SOURCE = DYNAMIC_SOURCE_ELEMENT__SOURCE;
 
 	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GLOBAL_DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID = DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID;
+
+	/**
 	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1036,6 +1091,15 @@ public interface StructurePackage extends EPackage {
 	 * @ordered
 	 */
 	int INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT__SOURCE = GLOBAL_DYNAMIC_SOURCE_ELEMENT__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT__USE_ELEMENT_ID = GLOBAL_DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID;
 
 	/**
 	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
@@ -1305,6 +1369,17 @@ public interface StructurePackage extends EPackage {
 	EReference getDynamicSourceElement_Source();
 
 	/**
+	 * Returns the meta object for the attribute '{@link pamtram.structure.DynamicSourceElement#isUseElementID <em>Use Element ID</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Use Element ID</em>'.
+	 * @see pamtram.structure.DynamicSourceElement#isUseElementID()
+	 * @see #getDynamicSourceElement()
+	 * @generated
+	 */
+	EAttribute getDynamicSourceElement_UseElementID();
+
+	/**
 	 * Returns the meta object for the '{@link pamtram.structure.DynamicSourceElement#getMappingHintGroup() <em>Get Mapping Hint Group</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1567,6 +1642,14 @@ public interface StructurePackage extends EPackage {
 		 * @generated
 		 */
 		EReference DYNAMIC_SOURCE_ELEMENT__SOURCE = eINSTANCE.getDynamicSourceElement_Source();
+
+		/**
+		 * The meta object literal for the '<em><b>Use Element ID</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID = eINSTANCE.getDynamicSourceElement_UseElementID();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Mapping Hint Group</b></em>' operation.

@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.ecore.EObject;
 
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
+import de.mfreund.gentrans.transformation.maps.ElementIDMap;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.matching.AttributeValueConstraintValueExtractor;
 import pamtram.FixedValue;
@@ -67,6 +68,8 @@ public class ValueConstraintReferenceValueCalculator {
 	 * @param globalValues
 	 *            The <em>global values</em> (values of {@link FixedValue FixedValues} and {@link GlobalAttribute
 	 *            GlobalAttribute}) defined in the PAMTraM model.
+	 * @param elementIDs
+	 *            The {@link ElementIDMap} managing model-unique ids of {@link EObject elements}.
 	 * @param instancePointerHandler
 	 *            The {@link InstanceSelectorHandler} that is used to evaluate {@link InstanceSelector InstancePointers}
 	 *            that have been modeled.
@@ -79,7 +82,7 @@ public class ValueConstraintReferenceValueCalculator {
 	 *            that the transformation result (especially the order of lists) varies between executions.
 	 */
 	public ValueConstraintReferenceValueCalculator(Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections,
-			GlobalValueMap globalValues, InstanceSelectorHandler instancePointerHandler,
+			GlobalValueMap globalValues, ElementIDMap elementIDs, InstanceSelectorHandler instancePointerHandler,
 			ValueCalculator attributeValueCalculator, Logger logger, boolean useParallelization) {
 
 		// store the matched sections
@@ -92,8 +95,9 @@ public class ValueConstraintReferenceValueCalculator {
 		this.instanceSelectorHandler = instancePointerHandler;
 
 		// create a value extractor
-		this.valueExtractor = new AttributeValueConstraintValueExtractor(globalValues, instancePointerHandler,
-				attributeValueCalculator, ValueModifierExecutor.getInstance(), this.consoleStream, useParallelization);
+		this.valueExtractor = new AttributeValueConstraintValueExtractor(globalValues, elementIDs,
+				instancePointerHandler, attributeValueCalculator, ValueModifierExecutor.getInstance(),
+				this.consoleStream, useParallelization);
 
 	}
 

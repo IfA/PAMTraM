@@ -597,6 +597,11 @@
         </eAnnotations>
         <eGenericType eTypeParameter="#//structure/DynamicSourceElement/A"/>
       </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="useElementID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="If this is set to '&lt;em>true&lt;/em>' a (model-unique) numeric identifier instead of the actual value of the source attribute will be used.&#xD;&#xA;&lt;p />&#xD;&#xA;This can be used to insert identifiers into the target model."/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="LocalDynamicSourceElement" abstract="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">

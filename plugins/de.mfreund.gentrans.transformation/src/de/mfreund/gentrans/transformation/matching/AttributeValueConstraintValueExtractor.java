@@ -4,11 +4,14 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.logging.Logger;
 
+import org.eclipse.emf.ecore.EObject;
+
 import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
 import de.mfreund.gentrans.transformation.calculation.ValueCalculator;
 import de.mfreund.gentrans.transformation.calculation.ValueModifierExecutor;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
+import de.mfreund.gentrans.transformation.maps.ElementIDMap;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import pamtram.FixedValue;
 import pamtram.mapping.GlobalAttribute;
@@ -42,6 +45,8 @@ public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 	 * @param globalValues
 	 *            The {@link GlobalValueMap} that contains the relevant values of {@link GlobalAttribute
 	 *            GlobalAttributes}.
+	 * @param elementIDs
+	 *            The {@link ElementIDMap} managing model-unique ids of {@link EObject elements}.
 	 * @param instanceSelectorHandler
 	 *            The {@link InstanceSelectorHandler} used for selecting specific instances when extracting values.
 	 * @param attributeValueCalculator
@@ -54,11 +59,12 @@ public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
 	 *            that the transformation result (especially the order of lists) varies between executions.
 	 */
-	public AttributeValueConstraintValueExtractor(GlobalValueMap globalValues,
+	public AttributeValueConstraintValueExtractor(GlobalValueMap globalValues, ElementIDMap elementIDs,
 			InstanceSelectorHandler instanceSelectorHandler, ValueCalculator attributeValueCalculator,
 			ValueModifierExecutor attributeValueModifierExecutor, Logger logger, boolean useParallelization) {
 
-		super(globalValues, instanceSelectorHandler, attributeValueModifierExecutor, logger, useParallelization);
+		super(globalValues, elementIDs, instanceSelectorHandler, attributeValueModifierExecutor, logger,
+				useParallelization);
 
 		this.attributeValueCalculator = attributeValueCalculator;
 	}
@@ -78,7 +84,7 @@ public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
 	 *            that the transformation result (especially the order of lists) varies between executions.
 	 * @deprecated use
-	 *             {@link #AttributeValueConstraintValueExtractor(GlobalValueMap, InstanceSelectorHandler, ValueCalculator, ValueModifierExecutor, Logger, boolean)}
+	 *             {@link #AttributeValueConstraintValueExtractor(GlobalValueMap, ElementIDMap, InstanceSelectorHandler, ValueCalculator, ValueModifierExecutor, Logger, boolean)}
 	 *             instead
 	 */
 	@Deprecated
@@ -86,7 +92,7 @@ public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 			ValueModifierExecutor attributeValueModifierExecutor, ValueCalculator attributeValueCalculator,
 			Logger logger, boolean useParallelization) {
 
-		super(new GlobalValueMap(), instanceSelectorHandler, attributeValueModifierExecutor, logger,
+		super(new GlobalValueMap(), new ElementIDMap(), instanceSelectorHandler, attributeValueModifierExecutor, logger,
 				useParallelization);
 
 		this.attributeValueCalculator = attributeValueCalculator;

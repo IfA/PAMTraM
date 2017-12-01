@@ -25,6 +25,7 @@ import pamtram.structure.generic.Section;
  * </p>
  * <ul>
  *   <li>{@link pamtram.structure.DynamicSourceElement#getSource <em>Source</em>}</li>
+ *   <li>{@link pamtram.structure.DynamicSourceElement#isUseElementID <em>Use Element ID</em>}</li>
  * </ul>
  *
  * @see pamtram.structure.StructurePackage#getDynamicSourceElement()
@@ -63,6 +64,33 @@ public interface DynamicSourceElement<S extends Section<S, C, R, A>, C extends p
 	 * @generated
 	 */
 	void setSource(A value);
+
+	/**
+	 * Returns the value of the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * If this is set to '<em>true</em>' a (model-unique) numeric identifier instead of the actual value of the source attribute will be used.
+	 * <p />
+	 * This can be used to insert identifiers into the target model.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Use Element ID</em>' attribute.
+	 * @see #setUseElementID(boolean)
+	 * @see pamtram.structure.StructurePackage#getDynamicSourceElement_UseElementID()
+	 * @model
+	 * @generated
+	 */
+	boolean isUseElementID();
+
+	/**
+	 * Sets the value of the '{@link pamtram.structure.DynamicSourceElement#isUseElementID <em>Use Element ID</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Use Element ID</em>' attribute.
+	 * @see #isUseElementID()
+	 * @generated
+	 */
+	void setUseElementID(boolean value);
 
 	/**
 	 * <!-- begin-user-doc -->

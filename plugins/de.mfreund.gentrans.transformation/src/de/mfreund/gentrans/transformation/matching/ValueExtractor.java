@@ -21,6 +21,7 @@ import de.mfreund.gentrans.transformation.calculation.MatchSpecHandler;
 import de.mfreund.gentrans.transformation.calculation.ValueModifierExecutor;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
+import de.mfreund.gentrans.transformation.maps.ElementIDMap;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.util.CancelableElement;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
@@ -74,6 +75,11 @@ public abstract class ValueExtractor extends CancelableElement {
 	protected final GlobalValueMap globalValues;
 
 	/**
+	 * The {@link ElementIDMap} managing model-unique ids of {@link EObject elements}.
+	 */
+	protected ElementIDMap elementIDs;
+
+	/**
 	 * Whether extended parallelization shall be used during the transformation that might lead to the fact that the
 	 * transformation result (especially the order of lists) varies between executions.
 	 */
@@ -92,7 +98,7 @@ public abstract class ValueExtractor extends CancelableElement {
 	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
 	 *            that the transformation result (especially the order of lists) varies between executions.
 	 * @deprecated use
-	 *             {@link #ValueExtractor(GlobalValueMap, InstanceSelectorHandler, ValueModifierExecutor, Logger, boolean)}
+	 *             {@link #ValueExtractor(GlobalValueMap, ElementIDMap, InstanceSelectorHandler, ValueModifierExecutor, Logger, boolean)}
 	 *             instead
 	 */
 	@Deprecated
@@ -104,6 +110,8 @@ public abstract class ValueExtractor extends CancelableElement {
 		this.logger = logger;
 		this.useParallelization = useParallelization;
 		this.globalValues = new GlobalValueMap();
+		this.elementIDs = new ElementIDMap();
+
 	}
 
 	/**
@@ -112,6 +120,8 @@ public abstract class ValueExtractor extends CancelableElement {
 	 * @param globalValues
 	 *            The {@link GlobalValueMap} that contains the relevant values of {@link GlobalAttribute
 	 *            GlobalAttributes}.
+	 * @param elementIDs
+	 *            The {@link ElementIDMap} managing model-unique ids of {@link EObject elements}.
 	 * @param instanceSelectorHandler
 	 *            The {@link InstanceSelectorHandler} used for selecting specific instances when extracting values.
 	 * @param attributeValueModifierExecutor
@@ -122,14 +132,16 @@ public abstract class ValueExtractor extends CancelableElement {
 	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
 	 *            that the transformation result (especially the order of lists) varies between executions.
 	 */
-	public ValueExtractor(GlobalValueMap globalValues, InstanceSelectorHandler instanceSelectorHandler,
-			ValueModifierExecutor attributeValueModifierExecutor, Logger logger, boolean useParallelization) {
+	public ValueExtractor(GlobalValueMap globalValues, ElementIDMap elementIDs,
+			InstanceSelectorHandler instanceSelectorHandler, ValueModifierExecutor attributeValueModifierExecutor,
+			Logger logger, boolean useParallelization) {
 
 		this.attributeValueModifierExecutor = attributeValueModifierExecutor;
 		this.instanceSelectorHandler = instanceSelectorHandler;
 		this.logger = logger;
 		this.useParallelization = useParallelization;
 		this.globalValues = globalValues;
+		this.elementIDs = elementIDs;
 	}
 
 	/**
@@ -330,6 +342,25 @@ public abstract class ValueExtractor extends CancelableElement {
 		}
 
 		AttributeValueRepresentation hintValue = null;
+
+		if (mappingHintSourceElement.isUseElementID()) {
+
+			for (EObject sourceElement : sourceElements) {
+
+				String val = String.valueOf(this.elementIDs.getIDForElement(sourceElement));
+
+				// create a new AttributeValueRepresentation or update the existing
+				// one
+				if (hintValue == null) {
+					hintValue = new AttributeValueRepresentation(mappingHintSourceElement.getSource(), val);
+				} else {
+					hintValue.addValue(val);
+				}
+			}
+
+			return hintValue;
+
+		}
 
 		EAttribute sourceAttribute = mappingHintSourceElement.getSource() instanceof ActualSourceSectionAttribute
 				? ((ActualSourceSectionAttribute) mappingHintSourceElement.getSource()).getAttribute()

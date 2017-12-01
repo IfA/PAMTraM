@@ -17,6 +17,7 @@ import de.mfreund.gentrans.transformation.calculation.ValueModifierExecutor;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
+import de.mfreund.gentrans.transformation.maps.ElementIDMap;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.maps.HintValue;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
@@ -89,6 +90,8 @@ public class HintValueExtractor extends ValueExtractor {
 	 * @param globalValues
 	 *            The <em>global values</em> (values of {@link FixedValue FixedValues} and {@link GlobalAttribute
 	 *            GlobalAttribute}) defined in the PAMTraM model.
+	 * @param elementIDs
+	 *            The {@link ElementIDMap} managing model-unique ids of {@link EObject elements}.
 	 * @param instanceSelectorHandler
 	 *            The {@link InstanceSelectorHandler} that is used to evaluate {@link InstanceSelector InstancePointers}
 	 *            that have been modeled.
@@ -101,11 +104,12 @@ public class HintValueExtractor extends ValueExtractor {
 	 *            that the transformation result (especially the order of lists) varies between executions.
 	 */
 	public HintValueExtractor(Map<SourceSection, List<MatchedSectionDescriptor>> matchingResult,
-			ValueCalculator valueCalculator, GlobalValueMap globalValues,
+			ValueCalculator valueCalculator, GlobalValueMap globalValues, ElementIDMap elementIDs,
 			InstanceSelectorHandler instanceSelectorHandler, ValueModifierExecutor attributeValueModifierExecutor,
 			Logger logger, boolean useParallelization) {
 
-		super(globalValues, instanceSelectorHandler, attributeValueModifierExecutor, logger, useParallelization);
+		super(globalValues, elementIDs, instanceSelectorHandler, attributeValueModifierExecutor, logger,
+				useParallelization);
 
 		this.valueCalculator = valueCalculator;
 		this.matchedSections = matchingResult;

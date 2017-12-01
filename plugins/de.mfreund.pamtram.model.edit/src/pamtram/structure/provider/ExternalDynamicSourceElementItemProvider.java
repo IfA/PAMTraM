@@ -16,7 +16,6 @@ import org.eclipse.emf.edit.provider.StyledString;
 
 import pamtram.mapping.Mapping;
 import pamtram.structure.DynamicSourceElement;
-import pamtram.structure.ExternalDynamicSourceElement;
 import pamtram.structure.StructurePackage;
 
 /**
@@ -28,51 +27,59 @@ import pamtram.structure.StructurePackage;
 public class ExternalDynamicSourceElementItemProvider extends DynamicSourceElementItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	public ExternalDynamicSourceElementItemProvider(AdapterFactory adapterFactory) {
+
 		super(adapterFactory);
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+
+		return ((StyledString) this.getStyledText(object)).getString();
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
+	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
+	 * @generated NOT due to usage of cumstom label if 'useElementID' is set
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((ExternalDynamicSourceElement<?, ?, ?, ?>)object).getName();
-    	StyledString styledLabel = new StyledString();
-		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_ExternalDynamicSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
+
+		String label = ((DynamicSourceElement<?, ?, ?, ?>) object).getName();
+		StyledString styledLabel = new StyledString();
+		if (((DynamicSourceElement<?, ?, ?, ?>) object).isUseElementID()) {
+			styledLabel.append("External Element ID", StyledString.Style.QUALIFIER_STYLER);
 		} else {
-			styledLabel.append(getString("_UI_ExternalDynamicSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(this.getString("_UI_ExternalDynamicSourceElement_type"),
+					StyledString.Style.QUALIFIER_STYLER);
+		}
+		if (label != null && label.length() > 0) {
+			styledLabel.append(" " + label);
 		}
 		return styledLabel;
 	}
@@ -86,18 +93,20 @@ public class ExternalDynamicSourceElementItemProvider extends DynamicSourceEleme
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+
+		this.updateChildren(notification);
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

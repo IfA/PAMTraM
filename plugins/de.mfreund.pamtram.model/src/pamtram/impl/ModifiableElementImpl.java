@@ -64,6 +64,7 @@ public abstract class ModifiableElementImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	public EList<ValueModifierSet> getModifiers() {
+	
 		if (modifiers == null) {
 			modifiers = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS);
 		}

@@ -104,6 +104,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	 */
 	@Override
 	public boolean isDeactivated() {
+	
 		return deactivated;
 	}
 
@@ -113,10 +114,12 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	 */
 	@Override
 	public void setDeactivated(boolean newDeactivated) {
+	
 		boolean oldDeactivated = deactivated;
 		deactivated = newDeactivated;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP__DEACTIVATED, oldDeactivated, deactivated));
+	
 	}
 
 	/**
@@ -125,6 +128,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	 */
 	@Override
 	public ComplexCondition getLocalCondition() {
+	
 		return localCondition;
 	}
 
@@ -148,6 +152,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	 */
 	@Override
 	public void setLocalCondition(ComplexCondition newLocalCondition) {
+	
 		if (newLocalCondition != localCondition) {
 			NotificationChain msgs = null;
 			if (localCondition != null)
@@ -159,6 +164,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP__LOCAL_CONDITION, newLocalCondition, newLocalCondition));
+	
 	}
 
 	/**
@@ -167,7 +173,8 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	 */
 	@Override
 	public ComplexCondition getSharedCondition() {
-		if (sharedCondition != null && sharedCondition.eIsProxy()) {
+	
+		  if (sharedCondition != null && sharedCondition.eIsProxy()) {
 			InternalEObject oldSharedCondition = (InternalEObject)sharedCondition;
 			sharedCondition = (ComplexCondition)eResolveProxy(oldSharedCondition);
 			if (sharedCondition != oldSharedCondition) {
@@ -192,10 +199,12 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	 */
 	@Override
 	public void setSharedCondition(ComplexCondition newSharedCondition) {
+	
 		ComplexCondition oldSharedCondition = sharedCondition;
 		sharedCondition = newSharedCondition;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP__SHARED_CONDITION, oldSharedCondition, sharedCondition));
+	
 	}
 
 	/**
@@ -204,6 +213,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 	 * @generated
 	 */
 	public EList<ComplexCondition> getAllConditions() {
+	
 		java.util.Set<Object> ret = new java.util.LinkedHashSet<>();
 		
 			if (this.getLocalCondition() != null) {

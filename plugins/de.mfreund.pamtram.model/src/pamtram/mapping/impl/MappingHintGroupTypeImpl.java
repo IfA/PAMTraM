@@ -121,7 +121,8 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	 */
 	@Override
 	public TargetSection getTargetSection() {
-		if (targetSection != null && targetSection.eIsProxy()) {
+	
+		  if (targetSection != null && targetSection.eIsProxy()) {
 			InternalEObject oldTargetSection = (InternalEObject)targetSection;
 			targetSection = (TargetSection)eResolveProxy(oldTargetSection);
 			if (targetSection != oldTargetSection) {
@@ -145,10 +146,12 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	 * @generated
 	 */
 	public void setTargetSectionGen(TargetSection newTargetSection) {
+	
 		TargetSection oldTargetSection = targetSection;
 		targetSection = newTargetSection;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP_TYPE__TARGET_SECTION, oldTargetSection, targetSection));
+	
 	}
 
 	/**
@@ -167,6 +170,7 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	 */
 	@Override
 	public EList<MappingHint> getMappingHints() {
+	
 		if (mappingHints == null) {
 			mappingHints = new EObjectContainmentEList<MappingHint>(MappingHint.class, this, MappingPackage.MAPPING_HINT_GROUP_TYPE__MAPPING_HINTS);
 		}
@@ -179,6 +183,7 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	 */
 	@Override
 	public EList<MappingHintGroupType> getExtend() {
+	
 		if (extend == null) {
 			extend = new EObjectResolvingEList<MappingHintGroupType>(MappingHintGroupType.class, this, MappingPackage.MAPPING_HINT_GROUP_TYPE__EXTEND);
 		}
@@ -191,6 +196,7 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	 */
 	@Override
 	public EList<AttributeMapping> getAttributeMappings() {
+	
 		List<AttributeMapping> attributeMappings = this.getAllMappingHints().stream()
 						.filter(hint -> hint instanceof AttributeMapping).map(hint -> (AttributeMapping) hint)
 						.collect(Collectors.toList());
@@ -204,6 +210,7 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	 */
 	@Override
 	public EList<CardinalityMapping> getCardinalityMappings() {
+	
 		List<CardinalityMapping> cardinalityMappings = this.getAllMappingHints().stream()
 						.filter(hint -> hint instanceof CardinalityMapping).map(hint -> (CardinalityMapping) hint)
 						.collect(Collectors.toList());
@@ -217,6 +224,7 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	 */
 	@Override
 	public EList<ReferenceTargetSelector> getReferenceTargetSelectors() {
+	
 		List<ReferenceTargetSelector> referenceTargetSelectors = this.getAllMappingHints().stream()
 						.filter(hint -> hint instanceof ReferenceTargetSelector).map(hint -> (ReferenceTargetSelector) hint)
 						.collect(Collectors.toList());
@@ -230,6 +238,7 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	 */
 	@Override
 	public EList<ContainerSelector> getContainerSelectors() {
+	
 		List<ContainerSelector> containerSelectors = this.getAllMappingHints().stream()
 						.filter(hint -> hint instanceof ContainerSelector).map(hint -> (ContainerSelector) hint)
 						.collect(Collectors.toList());
@@ -243,6 +252,7 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	 */
 	@Override
 	public EList<MappingHint> getAllMappingHints() {
+	
 		Set<MappingHint> ret = new LinkedHashSet<>();
 		
 		ret.addAll(this.getAllExtend().stream().flatMap(s -> s.getMappingHints().stream())
@@ -265,24 +275,23 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	 */
 	@Override
 	public EList<MappingHintGroupType> getAllExtend() {
-		Set<Object> ret = new HashSet<>();
+	
+		Set<Object> ret = new LinkedHashSet<>();
 		
 		List<MappingHintGroupType> toCheck = new ArrayList<>();
-			toCheck.add(this);
+		toCheck.add(this);
 		
 		while (!toCheck.isEmpty()) {
 			MappingHintGroupType next = toCheck.remove(0);
 		
 			List<MappingHintGroupType> localToCheck = next.getExtend().stream().filter(e -> !ret.contains(e))
-						.collect(Collectors.toList());
-				ret.addAll(localToCheck);
-				toCheck.addAll(localToCheck);
-			}
+					.collect(Collectors.toList());
+			ret.addAll(localToCheck);
+			toCheck.addAll(localToCheck);
+		}
 		
-		ret.addAll(this.getExtend().stream().flatMap(s -> s.getAllExtend().stream()).collect(Collectors.toList()));
-		
-		return new EcoreEList.UnmodifiableEList<>(this, MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__ALL_EXTEND, ret.size(),
-					ret.toArray());
+		return new EcoreEList.UnmodifiableEList<>(this, MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__ALL_EXTEND,
+				ret.size(), ret.toArray());
 	}
 
 	/**
@@ -291,6 +300,7 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	 */
 	@Override
 	public EList<MappingHintGroupType> getAllExtending() {
+	
 		Set<Object> extendingSections = new HashSet<>();
 				Iterator<Notifier> it = this.eResource().getResourceSet().getAllContents();
 				while (it.hasNext()) {
@@ -411,6 +421,30 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 							MappingValidator.MAPPING_HINT_GROUP_TYPE__VALIDATE_TARGET_SECTION_IS_NOT_ABSTRACT,
 							errorMessage,
 					new Object[] { this, MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__TARGET_SECTION }));
+		
+		}
+		
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean validateNotExtendSelf(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		boolean result = !this.getAllExtend().contains(this);
+		
+		if (!result && diagnostics != null) {
+		
+			String errorMessage = "A MappingHintGroup must not extend itself (neither directly nor indirectly)!";
+		
+			diagnostics.add(new BasicDiagnostic
+					(Diagnostic.ERROR, 
+					MappingValidator.DIAGNOSTIC_SOURCE,
+						MappingValidator.MAPPING_HINT_GROUP_TYPE__VALIDATE_NOT_EXTEND_SELF, 
+						errorMessage,
+					new Object[] { this, MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__EXTEND }));
 		
 		}
 		
@@ -551,6 +585,8 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 				return validateDoNotUseLibraryElementsWithoutLibraryNature((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE___VALIDATE_TARGET_SECTION_IS_NOT_ABSTRACT__DIAGNOSTICCHAIN_MAP:
 				return validateTargetSectionIsNotAbstract((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case MappingPackage.MAPPING_HINT_GROUP_TYPE___VALIDATE_NOT_EXTEND_SELF__DIAGNOSTICCHAIN_MAP:
+				return validateNotExtendSelf((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

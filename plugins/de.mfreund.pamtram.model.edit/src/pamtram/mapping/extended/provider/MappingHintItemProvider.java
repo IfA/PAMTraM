@@ -2,8 +2,10 @@
  */
 package pamtram.mapping.extended.provider;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.command.Command;
@@ -23,8 +25,13 @@ import pamtram.DeactivatableElement;
 import pamtram.PamtramPackage;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionFactory;
+import pamtram.mapping.MappingHintGroupType;
+import pamtram.mapping.extended.AttributeMapping;
+import pamtram.mapping.extended.CardinalityMapping;
+import pamtram.mapping.extended.ContainerSelector;
 import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.mapping.extended.MappingHint;
+import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.provider.DeactivatableElementItemProvider;
 
 /**
@@ -119,19 +126,66 @@ public class MappingHintItemProvider extends MappingHintTypeItemProvider {
 	 * @generated
 	 */
 	protected void addOverwritePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_MappingHint_overwrite_feature"),
-				 getString("_UI_MappingHint_overwrite_description"),
-				 ExtendedPackage.Literals.MAPPING_HINT__OVERWRITE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 getString("_UI_ExtendedPropertyCategory"),
-				 null));
+		// ContainerSelectors will always overwrite extended Selectors so they do not need this descriptor
+		//
+		if (!(object instanceof ContainerSelector)) {
+		
+			this.itemPropertyDescriptors.add(new ItemPropertyDescriptor(
+					((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
+					this.getResourceLocator(), this.getString("_UI_MappingHint_overwrite_feature"),
+					this.getString("_UI_MappingHint_overwrite_description"),
+					ExtendedPackage.Literals.MAPPING_HINT__OVERWRITE, true, false, true, null,
+					this.getString("_UI_ExtendedPropertyCategory"), null) {
+		
+				@Override
+				public Collection<?> getChoiceOfValues(Object object) {
+		
+					MappingHint hint = (MappingHint) object;
+					if (!(hint.eContainer() instanceof MappingHintGroupType)) {
+						return new ArrayList<>();
+					}
+		
+					Set<MappingHint> possibleOverwrites = ((MappingHintGroupType) hint.eContainer()).getExtend()
+							.stream().flatMap(h -> h.getAllMappingHints().stream())
+							.filter(h -> hint.eClass().equals(h.eClass()))
+							.collect(Collectors.toCollection(java.util.LinkedHashSet::new));
+		
+					if (hint instanceof AttributeMapping) {
+						AttributeMapping attributeMapping = (AttributeMapping) hint;
+						if (attributeMapping.getTarget() == null) {
+							return new ArrayList<>();
+						} else {
+							return possibleOverwrites.stream().map(h -> (AttributeMapping) h)
+									.filter(am -> attributeMapping.getTarget().equals(am.getTarget()))
+									.collect(Collectors.toList());
+						}
+					} else if (hint instanceof CardinalityMapping) {
+						CardinalityMapping cardinalityMapping = (CardinalityMapping) hint;
+						if (cardinalityMapping.getTarget() == null) {
+							return new ArrayList<>();
+						} else {
+							return possibleOverwrites.stream().map(h -> (CardinalityMapping) h)
+									.filter(cm -> cardinalityMapping.getTarget().equals(cm.getTarget()))
+									.collect(Collectors.toList());
+						}
+					} else if (hint instanceof ReferenceTargetSelector) {
+						ReferenceTargetSelector referenceTargetSelector = (ReferenceTargetSelector) hint;
+						if (referenceTargetSelector.getAffectedReference() == null) {
+							return new ArrayList<>();
+						} else {
+							return possibleOverwrites.stream().map(h -> (ReferenceTargetSelector) h)
+									.filter(rts -> referenceTargetSelector.getAffectedReference()
+											.equals(rts.getAffectedReference()))
+									.collect(Collectors.toList());
+						}
+					} else if (hint instanceof ContainerSelector) {
+						return new ArrayList<>(possibleOverwrites);
+					} else {
+						return new ArrayList<>();
+					}
+				}
+			});
+		}
 	}
 
 	/**

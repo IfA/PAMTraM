@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
@@ -45,9 +46,8 @@ import pamtram.structure.target.TargetSection;
 public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public TargetSectionItemProvider(AdapterFactory adapterFactory) {
@@ -55,9 +55,8 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -73,9 +72,8 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Abstract feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Abstract feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addAbstractPropertyDescriptor(Object object) {
@@ -95,8 +93,7 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Extend feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Extend feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
@@ -117,10 +114,13 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 							return new BasicEList<>();
 						}
 
-						Collection<TargetSection> values = (Collection<TargetSection>) super.getChoiceOfValues(object);
 						Collection<TargetSection> ret = new BasicEList<>();
 
-						for (TargetSection val : values) {
+						for (Object v : super.getChoiceOfValues(object).stream()
+								.filter(e -> !e.equals(object) && !((TargetSection) e).getAllExtend().contains(object))
+								.collect(Collectors.toList())) {
+
+							TargetSection val = (TargetSection) v;
 							// only abstract sections that have a matching
 							// eClass can be used as extended section
 							if (val.isAbstract() && (val.getEClass() == targetSection.getEClass()
@@ -136,7 +136,8 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 
 	/**
 	 * This adds a property descriptor for the Referencing Mapping Hint Groups feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	protected void addReferencingMappingHintGroupsPropertyDescriptor(Object object) {
@@ -166,8 +167,7 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	}
 
 	/**
-	 * This returns TargetSection.gif. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * This returns TargetSection.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
@@ -178,8 +178,7 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
@@ -190,8 +189,7 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
@@ -233,10 +231,10 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 *
 	 * @generated
 	 */
 	public void notifyChangedGen(Notification notification) {
@@ -259,10 +257,9 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing the children that can be created under this object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -276,9 +273,8 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	}
 
 	/**
-	 * This returns the label text for
-	 * {@link org.eclipse.emf.edit.command.CreateChildCommand}. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
@@ -306,8 +302,7 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 			Collection<?> collection, int index) {
 
 		/*
-		 * If a 'FileAttribute' is added, we also need to set the 'file'
-		 * reference.
+		 * If a 'FileAttribute' is added, we also need to set the 'file' reference.
 		 */
 		if (feature == GenericPackage.Literals.CLASS__ATTRIBUTES) {
 			for (Object object : collection) {
@@ -337,8 +332,7 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 	protected Command createSetCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, Object value) {
 
 		/*
-		 * If a 'FileAttribute' is created, we also need to add it to the
-		 * 'attributes' reference.
+		 * If a 'FileAttribute' is created, we also need to add it to the 'attributes' reference.
 		 */
 		if (feature == TargetPackage.Literals.TARGET_SECTION__FILE) {
 			if (value.equals(SetCommand.UNSET_VALUE)) {
@@ -363,8 +357,8 @@ public class TargetSectionItemProvider extends TargetSectionClassItemProvider {
 			int operation, Collection<?> collection) {
 
 		/*
-		 * If a 'FileAttribute' is dragged, we also need to remove the 'file'
-		 * from the old owner and set the 'file' reference in the new owner..
+		 * If a 'FileAttribute' is dragged, we also need to remove the 'file' from the old owner and set the 'file'
+		 * reference in the new owner..
 		 */
 		Collection<Object> collectionWithoutFile = new ArrayList<>();
 		FileAttribute file = null;

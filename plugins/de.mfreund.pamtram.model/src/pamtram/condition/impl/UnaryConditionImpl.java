@@ -79,6 +79,7 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	 */
 	@Override
 	public ComplexCondition getLocalCondPart() {
+	
 		return localCondPart;
 	}
 
@@ -102,6 +103,7 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	 */
 	@Override
 	public void setLocalCondPart(ComplexCondition newLocalCondPart) {
+	
 		if (newLocalCondPart != localCondPart) {
 			NotificationChain msgs = null;
 			if (localCondPart != null)
@@ -113,6 +115,7 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.UNARY_CONDITION__LOCAL_COND_PART, newLocalCondPart, newLocalCondPart));
+	
 	}
 
 	/**
@@ -121,7 +124,8 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	 */
 	@Override
 	public ComplexCondition getSharedCondPart() {
-		if (sharedCondPart != null && sharedCondPart.eIsProxy()) {
+	
+		  if (sharedCondPart != null && sharedCondPart.eIsProxy()) {
 			InternalEObject oldSharedCondPart = (InternalEObject)sharedCondPart;
 			sharedCondPart = (ComplexCondition)eResolveProxy(oldSharedCondPart);
 			if (sharedCondPart != oldSharedCondPart) {
@@ -146,10 +150,12 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	 */
 	@Override
 	public void setSharedCondPart(ComplexCondition newSharedCondPart) {
+	
 		ComplexCondition oldSharedCondPart = sharedCondPart;
 		sharedCondPart = newSharedCondPart;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.UNARY_CONDITION__SHARED_COND_PART, oldSharedCondPart, sharedCondPart));
+	
 	}
 
 	/**

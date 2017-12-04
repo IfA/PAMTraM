@@ -73,6 +73,7 @@ public class AttributeConditionImpl extends ConditionImpl<SourceSectionAttribute
 	 */
 	@Override
 	public EList<ValueConstraint> getValueConstraints() {
+	
 		if (valueConstraints == null) {
 			valueConstraints = new EObjectContainmentEList<ValueConstraint>(ValueConstraint.class, this, ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS);
 		}

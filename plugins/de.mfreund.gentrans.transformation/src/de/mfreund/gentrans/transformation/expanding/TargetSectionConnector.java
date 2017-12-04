@@ -144,6 +144,10 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 	 */
 	public boolean joinTargetSections(final Mapping mapping, final List<MappingInstanceDescriptor> mappingInstances) {
 
+		if (mappingInstances == null || mappingInstances.isEmpty()) {
+			return true;
+		}
+
 		// Join 'local' hint groups
 		//
 		if (!mapping.getActiveMappingHintGroups().stream()
@@ -182,6 +186,10 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 
 		this.checkCanceled();
 
+		if (mappingInstances.isEmpty()) {
+			return true;
+		}
+
 		// The TargetSection of which we want to join created instances
 		//
 		final TargetSection section = hintGroup.getTargetSection();
@@ -191,8 +199,8 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 			// do not join sections for that a 'file' is specified, those are
 			// simply added as root elements to that file
 			//
-			this.addToTargetModelRoot(
-					this.targetSectionRegistry.getPamtramClassInstances(hintGroup.getTargetSection()).get(hintGroup));
+			this.addToTargetModelRoot(this.targetSectionRegistry.getPamtramClassInstances(hintGroup.getTargetSection())
+					.getOrDefault(hintGroup, new ArrayList<>()));
 			return true;
 
 		}
@@ -393,6 +401,10 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 	 *            The list of {@link EObjectWrapper elements} to add.
 	 */
 	private void addToTargetModelRoot(final Collection<EObjectWrapper> elementsToAdd) {
+
+		if (elementsToAdd == null) {
+			return;
+		}
 
 		elementsToAdd.stream().forEach(this::addToTargetModelRoot);
 	}

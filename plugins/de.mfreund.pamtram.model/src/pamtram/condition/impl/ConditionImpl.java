@@ -128,6 +128,7 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 	 */
 	@Override
 	public EList<SourceInstanceSelector> getInstanceSelectors() {
+	
 		if (instanceSelectors == null) {
 			instanceSelectors = new EObjectContainmentEList<SourceInstanceSelector>(SourceInstanceSelector.class, this, ConditionPackage.CONDITION__INSTANCE_SELECTORS);
 		}
@@ -140,6 +141,7 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 	 */
 	@Override
 	public ComparatorEnum getComparator() {
+	
 		return comparator;
 	}
 
@@ -149,10 +151,12 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 	 */
 	@Override
 	public void setComparator(ComparatorEnum newComparator) {
+	
 		ComparatorEnum oldComparator = comparator;
 		comparator = newComparator == null ? COMPARATOR_EDEFAULT : newComparator;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.CONDITION__COMPARATOR, oldComparator, comparator));
+	
 	}
 
 	/**
@@ -162,7 +166,8 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 	@Override
 	@SuppressWarnings("unchecked")
 	public TargetType getTarget() {
-		if (target != null && ((EObject)target).eIsProxy()) {
+	
+		  if (target != null && ((EObject)target).eIsProxy()) {
 			InternalEObject oldTarget = (InternalEObject)target;
 			target = (TargetType)eResolveProxy(oldTarget);
 			if (target != oldTarget) {
@@ -187,10 +192,12 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 	 */
 	@Override
 	public void setTarget(TargetType newTarget) {
+	
 		TargetType oldTarget = target;
 		target = newTarget;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.CONDITION__TARGET, oldTarget, target));
+	
 	}
 
 	/**
@@ -223,6 +230,7 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 	 */
 	@Override
 	public int getValue() {
+	
 		return value;
 	}
 
@@ -232,10 +240,12 @@ public abstract class ConditionImpl<TargetType> extends ComplexConditionImpl imp
 	 */
 	@Override
 	public void setValue(int newValue) {
+	
 		int oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.CONDITION__VALUE, oldValue, value));
+	
 	}
 
 	/**

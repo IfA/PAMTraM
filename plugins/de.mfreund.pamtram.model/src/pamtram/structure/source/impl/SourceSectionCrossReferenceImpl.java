@@ -109,6 +109,7 @@ public class SourceSectionCrossReferenceImpl
 	 */
 	@Override
 	public boolean isIgnoreUnmatchedElements() {
+	
 		return ignoreUnmatchedElements;
 	}
 
@@ -118,10 +119,12 @@ public class SourceSectionCrossReferenceImpl
 	 */
 	@Override
 	public void setIgnoreUnmatchedElements(boolean newIgnoreUnmatchedElements) {
+	
 		boolean oldIgnoreUnmatchedElements = ignoreUnmatchedElements;
 		ignoreUnmatchedElements = newIgnoreUnmatchedElements;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SourcePackage.SOURCE_SECTION_CROSS_REFERENCE__IGNORE_UNMATCHED_ELEMENTS, oldIgnoreUnmatchedElements, ignoreUnmatchedElements));
+	
 	}
 
 	/**
@@ -130,7 +133,8 @@ public class SourceSectionCrossReferenceImpl
 	 */
 	@Override
 	public EReference getEReference() {
-		if (eReference != null && eReference.eIsProxy()) {
+	
+		  if (eReference != null && eReference.eIsProxy()) {
 			InternalEObject oldEReference = (InternalEObject)eReference;
 			eReference = (EReference)eResolveProxy(oldEReference);
 			if (eReference != oldEReference) {
@@ -154,10 +158,12 @@ public class SourceSectionCrossReferenceImpl
 	 * @generated
 	 */
 	public void setEReferenceGen(EReference newEReference) {
+	
 		EReference oldEReference = eReference;
 		eReference = newEReference;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SourcePackage.SOURCE_SECTION_CROSS_REFERENCE__EREFERENCE, oldEReference, eReference));
+	
 	}
 
 	/**

@@ -71,6 +71,7 @@ public abstract class ExpressionElementImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	public String getExpression() {
+	
 		return expression;
 	}
 
@@ -80,10 +81,12 @@ public abstract class ExpressionElementImpl extends MinimalEObjectImpl.Container
 	 * @generated
 	 */
 	public void setExpression(String newExpression) {
+	
 		String oldExpression = expression;
 		expression = newExpression;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PamtramPackage.EXPRESSION_ELEMENT__EXPRESSION, oldExpression, expression));
+	
 	}
 
 	/**

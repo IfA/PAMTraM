@@ -72,6 +72,7 @@ public abstract class NamedElementImpl extends MinimalEObjectImpl.Container impl
 	 */
 	@Override
 	public String getName() {
+	
 		return name;
 	}
 
@@ -82,10 +83,12 @@ public abstract class NamedElementImpl extends MinimalEObjectImpl.Container impl
 	 */
 	@Override
 	public void setName(String newName) {
+	
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PamtramPackage.NAMED_ELEMENT__NAME, oldName, name));
+	
 	}
 
 	/**

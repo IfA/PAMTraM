@@ -86,6 +86,7 @@ public class SubstringReplacerImpl extends StringModifierImpl implements Substri
 	 */
 	@Override
 	public String getRegex() {
+	
 		return regex;
 	}
 
@@ -94,10 +95,12 @@ public class SubstringReplacerImpl extends StringModifierImpl implements Substri
 	 * @generated
 	 */
 	public void setRegexGen(String newRegex) {
+	
 		String oldRegex = regex;
 		regex = newRegex;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModifierPackage.SUBSTRING_REPLACER__REGEX, oldRegex, regex));
+	
 	}
 
 	/**
@@ -117,6 +120,7 @@ public class SubstringReplacerImpl extends StringModifierImpl implements Substri
 	 */
 	@Override
 	public String getReplacement() {
+	
 		return replacement;
 	}
 
@@ -125,10 +129,12 @@ public class SubstringReplacerImpl extends StringModifierImpl implements Substri
 	 * @generated
 	 */
 	public void setReplacementGen(String newReplacement) {
+	
 		String oldReplacement = replacement;
 		replacement = newReplacement;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModifierPackage.SUBSTRING_REPLACER__REPLACEMENT, oldReplacement, replacement));
+	
 	}
 
 	/**

@@ -127,6 +127,7 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 	 */
 	@Override
 	public ComplexCondition getLocalCondition() {
+	
 		return localCondition;
 	}
 
@@ -150,6 +151,7 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 	 */
 	@Override
 	public void setLocalCondition(ComplexCondition newLocalCondition) {
+	
 		if (newLocalCondition != localCondition) {
 			NotificationChain msgs = null;
 			if (localCondition != null)
@@ -161,6 +163,7 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.MAPPING_HINT__LOCAL_CONDITION, newLocalCondition, newLocalCondition));
+	
 	}
 
 	/**
@@ -169,7 +172,8 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 	 */
 	@Override
 	public ComplexCondition getSharedCondition() {
-		if (sharedCondition != null && sharedCondition.eIsProxy()) {
+	
+		  if (sharedCondition != null && sharedCondition.eIsProxy()) {
 			InternalEObject oldSharedCondition = (InternalEObject)sharedCondition;
 			sharedCondition = (ComplexCondition)eResolveProxy(oldSharedCondition);
 			if (sharedCondition != oldSharedCondition) {
@@ -194,10 +198,12 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 	 */
 	@Override
 	public void setSharedCondition(ComplexCondition newSharedCondition) {
+	
 		ComplexCondition oldSharedCondition = sharedCondition;
 		sharedCondition = newSharedCondition;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.MAPPING_HINT__SHARED_CONDITION, oldSharedCondition, sharedCondition));
+	
 	}
 
 	/**
@@ -206,6 +212,7 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 	 */
 	@Override
 	public EList<ComplexCondition> getAllConditions() {
+	
 		java.util.Set<Object> ret = new java.util.LinkedHashSet<>();
 		
 			if (this.getLocalCondition() != null) {
@@ -236,6 +243,7 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 	 */
 	@Override
 	public boolean isDeactivated() {
+	
 		return deactivated;
 	}
 
@@ -245,10 +253,12 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 	 */
 	@Override
 	public void setDeactivated(boolean newDeactivated) {
+	
 		boolean oldDeactivated = deactivated;
 		deactivated = newDeactivated;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.MAPPING_HINT__DEACTIVATED, oldDeactivated, deactivated));
+	
 	}
 
 	/**
@@ -257,7 +267,8 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 	 */
 	@Override
 	public MappingHint getOverwrite() {
-		if (overwrite != null && overwrite.eIsProxy()) {
+	
+		  if (overwrite != null && overwrite.eIsProxy()) {
 			InternalEObject oldOverwrite = (InternalEObject)overwrite;
 			overwrite = (MappingHint)eResolveProxy(oldOverwrite);
 			if (overwrite != oldOverwrite) {
@@ -282,10 +293,12 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 	 */
 	@Override
 	public void setOverwrite(MappingHint newOverwrite) {
+	
 		MappingHint oldOverwrite = overwrite;
 		overwrite = newOverwrite;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.MAPPING_HINT__OVERWRITE, oldOverwrite, overwrite));
+	
 	}
 
 	/**

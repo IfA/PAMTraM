@@ -68,6 +68,7 @@ public class ToLowerCaseConverterImpl extends StringModifierImpl implements ToLo
 	 */
 	@Override
 	public String getRegex() {
+	
 		return regex;
 	}
 
@@ -77,10 +78,12 @@ public class ToLowerCaseConverterImpl extends StringModifierImpl implements ToLo
 	 */
 	@Override
 	public void setRegex(String newRegex) {
+	
 		String oldRegex = regex;
 		regex = newRegex;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModifierPackage.TO_LOWER_CASE_CONVERTER__REGEX, oldRegex, regex));
+	
 	}
 
 	/**

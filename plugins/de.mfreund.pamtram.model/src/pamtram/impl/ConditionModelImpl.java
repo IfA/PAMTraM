@@ -66,6 +66,7 @@ public class ConditionModelImpl extends NamedElementImpl implements ConditionMod
 	 * @generated
 	 */
 	public EList<ComplexCondition> getConditions() {
+	
 		if (conditions == null) {
 			conditions = new EObjectContainmentEList<ComplexCondition>(ComplexCondition.class, this, PamtramPackage.CONDITION_MODEL__CONDITIONS);
 		}

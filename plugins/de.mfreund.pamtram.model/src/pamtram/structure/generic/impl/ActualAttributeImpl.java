@@ -70,7 +70,8 @@ public abstract class ActualAttributeImpl<S extends Section<S, C, R, A>, C exten
 	 * @generated
 	 */
 	public EAttribute getAttribute() {
-		if (attribute != null && attribute.eIsProxy()) {
+	
+		  if (attribute != null && attribute.eIsProxy()) {
 			InternalEObject oldAttribute = (InternalEObject)attribute;
 			attribute = (EAttribute)eResolveProxy(oldAttribute);
 			if (attribute != oldAttribute) {
@@ -96,10 +97,12 @@ public abstract class ActualAttributeImpl<S extends Section<S, C, R, A>, C exten
 	 * @generated
 	 */
 	public void setAttribute(EAttribute newAttribute) {
+	
 		EAttribute oldAttribute = attribute;
 		attribute = newAttribute;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GenericPackage.ACTUAL_ATTRIBUTE__ATTRIBUTE, oldAttribute, attribute));
+	
 	}
 
 	/**

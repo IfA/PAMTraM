@@ -160,6 +160,7 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 */
 	@Override
 	public boolean isDeactivated() {
+	
 		return deactivated;
 	}
 
@@ -170,10 +171,12 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 */
 	@Override
 	public void setDeactivated(boolean newDeactivated) {
+	
 		boolean oldDeactivated = deactivated;
 		deactivated = newDeactivated;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP_IMPORTER__DEACTIVATED, oldDeactivated, deactivated));
+	
 	}
 
 	/**
@@ -183,6 +186,7 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 */
 	@Override
 	public ComplexCondition getLocalCondition() {
+	
 		return localCondition;
 	}
 
@@ -208,6 +212,7 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 */
 	@Override
 	public void setLocalCondition(ComplexCondition newLocalCondition) {
+	
 		if (newLocalCondition != localCondition) {
 			NotificationChain msgs = null;
 			if (localCondition != null)
@@ -219,6 +224,7 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP_IMPORTER__LOCAL_CONDITION, newLocalCondition, newLocalCondition));
+	
 	}
 
 	/**
@@ -228,7 +234,8 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 */
 	@Override
 	public ComplexCondition getSharedCondition() {
-		if (sharedCondition != null && sharedCondition.eIsProxy()) {
+	
+		  if (sharedCondition != null && sharedCondition.eIsProxy()) {
 			InternalEObject oldSharedCondition = (InternalEObject)sharedCondition;
 			sharedCondition = (ComplexCondition)eResolveProxy(oldSharedCondition);
 			if (sharedCondition != oldSharedCondition) {
@@ -255,10 +262,12 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 */
 	@Override
 	public void setSharedCondition(ComplexCondition newSharedCondition) {
+	
 		ComplexCondition oldSharedCondition = sharedCondition;
 		sharedCondition = newSharedCondition;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP_IMPORTER__SHARED_CONDITION, oldSharedCondition, sharedCondition));
+	
 	}
 
 	/**
@@ -267,6 +276,7 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 * @generated
 	 */
 	public EList<ComplexCondition> getAllConditions() {
+	
 		java.util.Set<Object> ret = new java.util.LinkedHashSet<>();
 		
 			if (this.getLocalCondition() != null) {
@@ -298,7 +308,8 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 */
 	@Override
 	public ExportedMappingHintGroup getHintGroup() {
-		if (hintGroup != null && hintGroup.eIsProxy()) {
+	
+		  if (hintGroup != null && hintGroup.eIsProxy()) {
 			InternalEObject oldHintGroup = (InternalEObject)hintGroup;
 			hintGroup = (ExportedMappingHintGroup)eResolveProxy(oldHintGroup);
 			if (hintGroup != oldHintGroup) {
@@ -325,10 +336,12 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 */
 	@Override
 	public void setHintGroup(ExportedMappingHintGroup newHintGroup) {
+	
 		ExportedMappingHintGroup oldHintGroup = hintGroup;
 		hintGroup = newHintGroup;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP, oldHintGroup, hintGroup));
+	
 	}
 
 	/**
@@ -338,7 +351,8 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 */
 	@Override
 	public TargetSectionClass getContainer() {
-		if (container != null && container.eIsProxy()) {
+	
+		  if (container != null && container.eIsProxy()) {
 			InternalEObject oldContainer = (InternalEObject)container;
 			container = (TargetSectionClass)eResolveProxy(oldContainer);
 			if (container != oldContainer) {
@@ -365,12 +379,14 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 */
 	@Override
 	public void setContainer(TargetSectionClass newContainer) {
+	
 		TargetSectionClass oldContainer = container;
 		container = newContainer;
 		boolean oldContainerESet = containerESet;
 		containerESet = true;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONTAINER, oldContainer, container, !oldContainerESet));
+	
 	}
 
 	/**
@@ -405,6 +421,7 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 */
 	@Override
 	public EList<MappingHintType> getMappingHints() {
+	
 		if (mappingHints == null) {
 			mappingHints = new EObjectContainmentEList.Unsettable<MappingHintType>(MappingHintType.class, this, MappingPackage.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS);
 		}

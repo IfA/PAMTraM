@@ -486,6 +486,15 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getClass__ValidateNotSelfContainer__DiagnosticChain_Map() {
+		return classEClass.getEOperations().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSection() {
 		return sectionEClass;
 	}
@@ -542,6 +551,15 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 	 */
 	public EOperation getSection__ValidateExtendsValidSections__DiagnosticChain_Map() {
 		return sectionEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getSection__ValidateNotExtendSelf__DiagnosticChain_Map() {
+		return sectionEClass.getEOperations().get(2);
 	}
 
 	/**
@@ -787,6 +805,7 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		createEOperation(classEClass, CLASS___VALIDATE_ECLASS_MATCHES_PARENT_EREFERENCE__DIAGNOSTICCHAIN_MAP);
 		createEOperation(classEClass, CLASS___VALIDATE_CARDINALITY_IS_VALID__DIAGNOSTICCHAIN_MAP);
 		createEOperation(classEClass, CLASS___VALIDATE_CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP);
+		createEOperation(classEClass, CLASS___VALIDATE_NOT_SELF_CONTAINER__DIAGNOSTICCHAIN_MAP);
 
 		sectionEClass = createEClass(SECTION);
 		createEAttribute(sectionEClass, SECTION__ABSTRACT);
@@ -795,6 +814,7 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		createEReference(sectionEClass, SECTION__ALL_EXTENDING);
 		createEOperation(sectionEClass, SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP);
 		createEOperation(sectionEClass, SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP);
+		createEOperation(sectionEClass, SECTION___VALIDATE_NOT_EXTEND_SELF__DIAGNOSTICCHAIN_MAP);
 
 		referenceEClass = createEClass(REFERENCE);
 		createEReference(referenceEClass, REFERENCE__OWNING_CLASS);
@@ -1545,6 +1565,15 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		op = initEOperation(getClass__ValidateNotSelfContainer__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateNotSelfContainer", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(sectionEClass, Section.class, "Section", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSection_Abstract(), ecorePackage.getEBoolean(), "abstract", "false", 1, 1, Section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		g1 = createEGenericType(sectionEClass_S);
@@ -1564,6 +1593,15 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = initEOperation(getSection__ValidateExtendsValidSections__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateExtendsValidSections", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getSection__ValidateNotExtendSelf__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateNotExtendSelf", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType();
@@ -1742,10 +1780,17 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 			 "body", "boolean result;\r\n\t\tString errorMessage = \"\";\r\n\r\tif (this.getContainer() == null) {\r\n\t\t\t// nothing specified -> no problem as the \'container\' is an optional info\r\n\t\t\t//\r\n\t\t\tresult = true;\r\n\t\t} else if (this instanceof Section<?, ?, ?, ?>) {\r\n\t\t\t// For Sections, the container must point to a Class that can theoretically (according to the metamodel) act\r\n\t\t\t// as container\r\n\t\t\t//\r\n\t\t\tresult = this.getEClass() == null || this.getContainer().getEClass() == null\r\n\t\t\t\t\t|| this.getContainer().getEClass().getEAllContainments().stream().map(org.eclipse.emf.ecore.EReference::getEReferenceType)\r\n\t\t\t\t\t\t\t.anyMatch(e -> e.isSuperTypeOf(this.getEClass()));\r\n\t\t\terrorMessage = \"The \'container\' reference must point to a Class whose type (<%org.eclipse.emf.ecore.EClass%>) owns a suitable containment reference!\";\r\n\t\t} else {\r\n\t\t\t// For normal Class, the container must point to a the containing Class\r\n\t\t\t//\r\n\t\t\tresult = this.getContainer().equals(this.eContainer().eContainer());\r\n\t\t\terrorMessage = \"The \'container\' refrence must point to the containing Class!\";\r\n\t\t}\r\n\r\tif (!result && diagnostics != null) {\r\n\r\t\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR, <%pamtram.structure.generic.util.GenericValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\t<%pamtram.structure.generic.util.GenericValidator%>.CLASS__VALIDATE_CONTAINER_IS_VALID, errorMessage,\r\n\t\t\t\t\tnew Object[] { this, <%pamtram.structure.generic.GenericPackage%>.Literals.CLASS__CONTAINER }));\r\n\r\t}\r\n\r\treturn result;"
 		   });	
 		addAnnotation
+		  (getClass__ValidateNotSelfContainer__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "boolean result = !this.getAllContainer().contains(this);\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"A Class must not specify itself as container (neither directly nor indirectly)!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR, \r\n\t\t\t<%pamtram.structure.generic.util.GenericValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\tGenericValidator.CLASS__VALIDATE_NOT_SELF_CONTAINER, \r\n\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.generic.GenericPackage%>.Literals.CLASS__CONTAINER }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
 		  (getClass_EClass(), 
 		   source, 
 		   new String[] {
-			 "documentation", "The metamodel element (EClass) that this Class represents."
+			 "documentation", "The metamodel element (EClass) that this Class represents.",
+			 "propertyDescriptor", "this.itemPropertyDescriptors.add(\r\n\t\t\t\tnew ItemPropertyDescriptor(((<%org.eclipse.emf.edit.provider.ComposeableAdapterFactory%>) this.adapterFactory).getRootAdapterFactory(),\r\n\t\t\t\t\t\tthis.getResourceLocator(), this.getString(\"_UI_Class_eClass_feature\"),\r\n\t\t\t\t\t\tthis.getString(\"_UI_Class_eClass_description\", \"_UI_Class_eClass_feature\", \"_UI_Class_type\"),\r\n\t\t\t\t\t\t<%pamtram.structure.generic.GenericPackage%>.Literals.CLASS__ECLASS, true, false, true, null,\r\n\t\t\t\t\t\tthis.getString(\"_UI_BasicPropertyCategory\"), null) {\r\n\r\t\t\t\t@Override\r\n\t\t\t\t\tpublic Collection<?> getChoiceOfValues(Object object) {\r\n\r\t\t\t\t\tClass<?, ?, ?, ?> section = ((Class<?, ?, ?, ?>) object).getContainingSection();\r\n\t\t\t\t\t\tSectionModel<?, ?, ?, ?> sectionModel = section.getContainingSectionModel();\r\n\r\t\t\t\t\tList<<%org.eclipse.emf.ecore.EClass%>> choiceOfValues = new LinkedList<>();\r\n\r\t\t\t\t\tif (sectionModel.getMetaModelPackage() == null) {\r\n\t\t\t\t\t\t\t return choiceOfValues;\r\n\t\t\t\t\t\t}\r\n\r\t\t\t\t\t/*\r\n\t\t\t\t\t\t * If we have a container parameter with a specified source, we do not need to scan package\r\n\t\t\t\t\t\t * contents. Instead, the user may only select the eClass of the specified source element.\r\n\t\t\t\t\t\t */\r\n\t\t\t\t\t\tif (section.eContainer() instanceof <%pamtram.structure.library.ContainerParameter%>\r\n\t\t\t\t\t\t\t\t&& ((<%pamtram.structure.library.ContainerParameter%>) section.eContainer()).getSource() != null) {\r\n\t\t\t\t\t\t\tchoiceOfValues.add(((<%pamtram.structure.library.ContainerParameter%>) section.eContainer()).getSource().eClass());\r\n\t\t\t\t\t\t\treturn choiceOfValues;\r\n\t\t\t\t\t\t}\r\n\r\t\t\t\t\tList<<%org.eclipse.emf.ecore.EPackage%>> packagesToScan = new LinkedList<>();\r\n\r\t\t\t\t\tpackagesToScan.add(sectionModel.getMetaModelPackage());\r\n\r\t\t\t\t\t// this should only contain one element but we need to\r\n\t\t\t\t\t\t// implement this in a generic way...\r\n\t\t\t\t\t\t//\r\n\t\t\t\t\t\tList<<%org.eclipse.emf.ecore.EClass%>> documentRoot = new LinkedList<>();\r\n\r\t\t\t\t\twhile (!packagesToScan.isEmpty()) {\r\n\t\t\t\t\t\t\t<%org.eclipse.emf.ecore.EPackage%> pkg = packagesToScan.remove(0);\r\n\t\t\t\t\t\t\t<%org.eclipse.emf.ecore.EClass%> docroot = <%org.eclipse.emf.ecore.util.ExtendedMetaData%>.INSTANCE.getDocumentRoot(pkg);\r\n\t\t\t\t\t\t\tif (docroot != null) {\r\n\t\t\t\t\t\t\t\tdocumentRoot.add(docroot);\r\n\t\t\t\t\t\t\t}\r\n\r\t\t\t\t\t\tpackagesToScan.addAll(pkg.getESubpackages());\r\n\t\t\t\t\t\t\tfor (<%org.eclipse.emf.ecore.EClassifier%> c : pkg.getEClassifiers()) {\r\n\t\t\t\t\t\t\t\tif (c instanceof <%org.eclipse.emf.ecore.EClass%>) {\r\n\t\t\t\t\t\t\t\t\t<%org.eclipse.emf.ecore.EClass%> cl = (<%org.eclipse.emf.ecore.EClass%>) c;\r\n\t\t\t\t\t\t\t\t\tif (!documentRoot.contains(cl)) {\r\n\t\t\t\t\t\t\t\t\t\t// abstract EClasses are only allowed\r\n\t\t\t\t\t\t\t\t\t\t// for SourceSections or abstract\r\n\t\t\t\t\t\t\t\t\t\t// TargetSections\r\n\t\t\t\t\t\t\t\t\t\tif (!cl.isAbstract() || object instanceof <%pamtram.structure.source.SourceSectionClass%>\r\n\t\t\t\t\t\t\t\t\t\t\t\t|| object instanceof <%pamtram.structure.target.TargetSection%>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t&& ((<%pamtram.structure.target.TargetSection%>) object).isAbstract()) {\r\n\t\t\t\t\t\t\t\t\t\t\tchoiceOfValues.add((<%org.eclipse.emf.ecore.EClass%>) c);\r\n\t\t\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t}\r\n\r\t\t\t\t\tif (section.equals(object)) { // top level-section\r\n\t\t\t\t\t\t\treturn choiceOfValues;\r\n\t\t\t\t\t\t} else { // not a top-level section\r\n\t\t\t\t\t\t\tList<<%org.eclipse.emf.ecore.EClass%>> newChoiceOfValues = new LinkedList<>();\r\n\t\t\t\t\t\t\tReference<?, ?, ?, ?> ref = (Reference<?, ?, ?, ?>) ((Class<?, ?, ?, ?>) object)\r\n\t\t\t\t\t\t\t\t\t.eContainer();\r\n\t\t\t\t\t\t\tif (ref instanceof ActualReference<?, ?, ?, ?>\r\n\t\t\t\t\t\t\t\t\t&& ((ActualReference<?, ?, ?, ?>) ref).getEReference() != null) {\r\n\t\t\t\t\t\t\t\tif (!(((ActualReference<?, ?, ?, ?>) ref).getEReference()\r\n\t\t\t\t\t\t\t\t\t\t.getEType() instanceof <%org.eclipse.emf.ecore.EClass%>)) {\r\n\t\t\t\t\t\t\t\t\tthrow new RuntimeException(\r\n\t\t\t\t\t\t\t\t\t\t\t\"Type checks can only be performed for instances of type \'EClass\'\");\r\n\t\t\t\t\t\t\t\t} else {\r\n\t\t\t\t\t\t\t\t\t<%org.eclipse.emf.ecore.EClass%> refClass = (<%org.eclipse.emf.ecore.EClass%>) ((ActualReference<?, ?, ?, ?>) ref).getEReference()\r\n\t\t\t\t\t\t\t\t\t\t\t.getEType();\r\n\r\t\t\t\t\t\t\t\tfor (<%org.eclipse.emf.ecore.EClass%> c : choiceOfValues) {\r\n\t\t\t\t\t\t\t\t\t\tif (refClass.isSuperTypeOf(c)) {\r\n\t\t\t\t\t\t\t\t\t\t\tnewChoiceOfValues.add(c);\r\n\t\t\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t\t\treturn newChoiceOfValues;\r\n\r\t\t\t\t\t\t\t}\r\n\r\t\t\t\t\t\t}\r\n\r\t\t\t\t\t}\r\n\t\t\t\t\t\treturn super.getChoiceOfValues(object);\r\n\t\t\t\t\t}\r\n\r\t\t\t});"
 		   });	
 		addAnnotation
 		  (getClass_Cardinality(), 
@@ -1763,7 +1808,8 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		  (getClass_Container(), 
 		   source, 
 		   new String[] {
-			 "documentation", "This can be used to specify additional constraints on the containment structure of the current element structure.\r\n<br />\r\nFor SourceSections: By setting the \'container\' reference, SourceSections will only be matched if the specified container Class can also be matched in the source model.\r\n<br />\r\nFor TargetSections: Created target structures will automatically connected to (contained by) an instance of the specified container Class."
+			 "documentation", "This can be used to specify additional constraints on the containment structure of the current element structure.\r\n<br />\r\nFor SourceSections: By setting the \'container\' reference, SourceSections will only be matched if the specified container Class can also be matched in the source model.\r\n<br />\r\nFor TargetSections: Created target structures will automatically connected to (contained by) an instance of the specified container Class.",
+			 "propertyDescriptor", "this.itemPropertyDescriptors.add(new ItemPropertyDescriptor(\r\n\t\t\t\t((<%org.eclipse.emf.edit.provider.ComposeableAdapterFactory%>) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),\r\n\t\t\t\tthis.getString(\"_UI_Class_container_feature\"),\r\n\t\t\t\tobject instanceof <%pamtram.structure.source.SourceSectionClass%> ? this.getString(\"_UI_SourceSectionClass_container_description\")\r\n\t\t\t\t\t\t: this.getString(\"_UI_TargetSectionClass_container_description\"),\r\n\t\t\t\t<%pamtram.structure.generic.GenericPackage%>.Literals.CLASS__CONTAINER, true, false, true, null,\r\n\t\t\t\tthis.getString(\"_UI_ExtendedPropertyCategory\"), null) {\r\n\r\n\t\t@Override\r\n\t\t\tpublic <%java.util.Collection%><?> getChoiceOfValues(Object object) {\r\n\r\n\t\t\t<%java.util.List%><Object> ret = new <%java.util.ArrayList%><>();\r\n\r\n\t\t\tif (object instanceof <%pamtram.structure.generic.Section%><?, ?, ?, ?>) {\r\n\t\t\t\t\tret = super.getChoiceOfValues(object).stream()\r\n\t\t\t\t\t\t\t.filter(o -> o instanceof pamtram.structure.generic.Class<?, ?, ?, ?>)\r\n\t\t\t\t\t\t\t.map(o -> (pamtram.structure.generic.Class<?, ?, ?, ?>) o)\r\n\t\t\t\t\t\t\t.filter(o -> o.getEClass().getEAllContainments().stream().anyMatch(\r\n\t\t\t\t\t\t\t\t\tc -> c.getEReferenceType().isSuperTypeOf(((<%pamtram.structure.generic.Class%><?, ?, ?, ?>) object).getEClass())))\r\n\t\t\t\t\t\t\t.filter(o -> !o.getAllContainer().contains(object)).collect(<%java.util.stream.Collectors%>.toList());\r\n\t\t\t\t} else {\r\n\r\n\t\t\t\t// For normal \'Classes\', the container property is not relevant to the\r\n\t\t\t\t\t// user. If it is set, it has to point to the containing \'Class\'...\r\n\t\t\t\t\t//\r\n\t\t\t\t\tif (((<%org.eclipse.emf.ecore.EObject%>) object).eContainer().eContainer() instanceof <%pamtram.structure.generic.Class%><?, ?, ?, ?>) {\r\n\t\t\t\t\t\tret.add(((<%org.eclipse.emf.ecore.EObject%>) object).eContainer().eContainer());\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\r\n\t\t\treturn ret;\r\n\r\n\t\t}\r\n\t\t});"
 		   });	
 		addAnnotation
 		  (getClass_Attributes(), 
@@ -1883,7 +1929,13 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		  (getSection__ValidateExtendsValidSections__DiagnosticChain_Map(), 
 		   source, 
 		   new String[] {
-			 "body", "\r\nif(this.getEClass() == null) {\r\n\treturn true;\r\n}\r\n\r\nboolean result = this.getExtend().parallelStream().noneMatch(e -> !e.isAbstract() || e.getEClass() != null\r\n\t\t&& this.getEClass() != e.getEClass() && !this.getEClass().getEAllSuperTypes().contains(e.getEClass()));\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The section extends a section that is either not abstract or that references an EClass of a different (super-)type!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.structure.generic.util.GenericValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tGenericValidator.SECTION__VALIDATE_EXTENDS_VALID_SECTIONS,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.generic.GenericPackage%>.Literals.SECTION__EXTEND }));\r\n\r\n}\r\n\r\nreturn result;"
+			 "body", "\r\nif(this.getEClass() == null) {\r\n\treturn true;\r\n}\r\n\r\nboolean result = this.getExtend().parallelStream().noneMatch(e -> !e.isAbstract() || e.getEClass() != null\r\n\t\t&& this.getEClass() != e.getEClass() && !this.getEClass().getEAllSuperTypes().contains(e.getEClass()));\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The Section extends a Section that is either not abstract or that references an EClass of a different (super-)type!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.structure.generic.util.GenericValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tGenericValidator.SECTION__VALIDATE_EXTENDS_VALID_SECTIONS,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.generic.GenericPackage%>.Literals.SECTION__EXTEND }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getSection__ValidateNotExtendSelf__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "boolean result = !this.getAllExtend().contains(this);\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"A Section must not extend itself (neither directly nor indirectly)!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR, \r\n\t\t\t<%pamtram.structure.generic.util.GenericValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\tGenericValidator.SECTION__VALIDATE_NOT_EXTEND_SELF, \r\n\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.generic.GenericPackage%>.Literals.SECTION__EXTEND }));\r\n\r\n}\r\n\r\nreturn result;"
 		   });	
 		addAnnotation
 		  (getSection_Abstract(), 
@@ -1895,13 +1947,14 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		  (getSection_Extend(), 
 		   source, 
 		   new String[] {
-			 "documentation", "The list of (abstract) Sections that this Section extends.\r\n<br /><br />\r\nThis Section will recursively inherit the structure specified by all extended Sections (all contained Attributes, References and Classes)."
+			 "documentation", "The list of (abstract) Sections that this Section extends.\r\n<br /><br />\r\nThis Section will recursively inherit the structure specified by all extended Sections (all contained Attributes, References and Classes).",
+			 "propertyDescriptor", "itemPropertyDescriptors.add\r\n\t(new <%org.eclipse.emf.edit.provider.ItemPropertyDescriptor%>\r\n\t\t(((<%org.eclipse.emf.edit.provider.ComposeableAdapterFactory%>)adapterFactory).getRootAdapterFactory(),\r\n\t\t getResourceLocator(),\r\n\t\t getString(\"_UI_Section_extend_feature\"),\r\n\t\t getString(\"_UI_Section_extend_description\"),\r\n\t\t <%pamtram.structure.generic.GenericPackage%>.Literals.SECTION__EXTEND,\r\n\t\t true,\r\n\t\t false,\r\n\t\t true,\r\n\t\t null,\r\n\t\t getString(\"_UI_ExtendedPropertyCategory\"),\r\n\t\t null) {\r\n\t\t\r\n\t\t@Override\r\n\t\tpublic <%java.util.Collection%><?> getChoiceOfValues(Object object) {\r\n\t\t\r\n\t\t\treturn super.getChoiceOfValues(object).stream().filter(e -> !e.equals(object) && !((<%pamtram.structure.generic.Section%><?, ?, ?, ?>) e).getAllExtend().contains(object)).collect(<%java.util.stream.Collectors%>.toList());\r\n\t\t}\r\n\t});"
 		   });	
 		addAnnotation
 		  (getSection_AllExtend(), 
 		   source, 
 		   new String[] {
-			 "get", "<%java.util.Set%><Object> ret = new <%java.util.HashSet%><>();\r\n\r\tList<Section<?, ?, ?, ?>> toCheck = new ArrayList<>();\r\n\t\ttoCheck.add(this);\r\n\r\twhile (!toCheck.isEmpty()) {\r\n\t\t\tSection<?, ?, ?, ?> next = toCheck.remove(0);\r\n\r\t\tList<Section<?, ?, ?, ?>> localToCheck = next.getExtend().stream().filter(e -> !ret.contains(e))\r\n\t\t\t\t\t.collect(<%java.util.stream.Collectors%>.toList());\r\n\t\t\tret.addAll(localToCheck);\r\n\t\t\ttoCheck.addAll(localToCheck);\r\n\t\t}\r\n\r\tret.addAll(this.getExtend().stream().flatMap(s -> s.getAllExtend().stream()).collect(<%java.util.stream.Collectors%>.toList()));\r\n\r\treturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.structure.generic.GenericPackage%>.Literals.SECTION__ALL_EXTEND, ret.size(),\r\n\t\t\t\tret.toArray());"
+			 "get", "<%java.util.Set%><Object> ret = new <%java.util.LinkedHashSet%><>();\r\n\r\n<%java.util.List%><Section<?, ?, ?, ?>> toCheck = new <%java.util.ArrayList%><>();\r\ntoCheck.add(this);\r\n\r\nwhile (!toCheck.isEmpty()) {\r\n\tSection<?, ?, ?, ?> next = toCheck.remove(0);\r\n\r\n\tList<Section<?, ?, ?, ?>> localToCheck = next.getExtend().stream().filter(e -> !ret.contains(e))\r\n\t\t\t.collect(<%java.util.stream.Collectors%>.toList());\r\n\tret.addAll(localToCheck);\r\n\ttoCheck.addAll(localToCheck);\r\n}\r\n\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.structure.generic.GenericPackage%>.Literals.SECTION__ALL_EXTEND, ret.size(),\r\n\t\tret.toArray());"
 		   });	
 		addAnnotation
 		  (getSection_AllExtend(), 

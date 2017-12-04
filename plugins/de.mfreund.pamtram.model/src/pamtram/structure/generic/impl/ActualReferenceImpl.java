@@ -70,7 +70,8 @@ public abstract class ActualReferenceImpl<S extends Section<S, C, R, A>, C exten
 	 * @generated
 	 */
 	public EReference getEReference() {
-		if (eReference != null && eReference.eIsProxy()) {
+	
+		  if (eReference != null && eReference.eIsProxy()) {
 			InternalEObject oldEReference = (InternalEObject)eReference;
 			eReference = (EReference)eResolveProxy(oldEReference);
 			if (eReference != oldEReference) {
@@ -96,10 +97,12 @@ public abstract class ActualReferenceImpl<S extends Section<S, C, R, A>, C exten
 	 * @generated
 	 */
 	public void setEReference(EReference newEReference) {
+	
 		EReference oldEReference = eReference;
 		eReference = newEReference;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GenericPackage.ACTUAL_REFERENCE__EREFERENCE, oldEReference, eReference));
+	
 	}
 
 	/**

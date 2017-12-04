@@ -66,6 +66,7 @@ public abstract class SourceSectionAttributeImpl extends AttributeImpl<SourceSec
 	 * @generated
 	 */
 	public EList<ValueConstraint> getValueConstraints() {
+	
 		if (valueConstraints == null) {
 			valueConstraints = new EObjectContainmentEList<ValueConstraint>(ValueConstraint.class, this, SourcePackage.SOURCE_SECTION_ATTRIBUTE__VALUE_CONSTRAINTS);
 		}

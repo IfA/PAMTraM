@@ -68,6 +68,7 @@ public abstract class CrossReferenceImpl<S extends Section<S, C, R, A>, C extend
 	 */
 	@Override
 	public EList<C> getValue() {
+	
 		if (value == null) {
 			value = new EObjectResolvingEList<C>(pamtram.structure.generic.Class.class, this, GenericPackage.CROSS_REFERENCE__VALUE);
 		}

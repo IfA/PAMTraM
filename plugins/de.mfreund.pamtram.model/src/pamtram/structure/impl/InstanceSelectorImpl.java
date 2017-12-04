@@ -89,6 +89,7 @@ public abstract class InstanceSelectorImpl extends ExpressionElementImpl impleme
 	 */
 	@Override
 	public EList<ValueModifierSet> getModifiers() {
+	
 		if (modifiers == null) {
 			modifiers = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, StructurePackage.INSTANCE_SELECTOR__MODIFIERS);
 		}
@@ -101,6 +102,7 @@ public abstract class InstanceSelectorImpl extends ExpressionElementImpl impleme
 	 */
 	@Override
 	public EList<InstanceSelectorSourceInterface> getSourceElements() {
+	
 		if (sourceElements == null) {
 			sourceElements = new EObjectContainmentEList<InstanceSelectorSourceInterface>(InstanceSelectorSourceInterface.class, this, StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS);
 		}

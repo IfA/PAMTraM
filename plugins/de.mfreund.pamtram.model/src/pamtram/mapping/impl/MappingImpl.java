@@ -133,6 +133,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 */
 	@Override
 	public ComplexCondition getLocalCondition() {
+	
 		return localCondition;
 	}
 
@@ -156,6 +157,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 */
 	@Override
 	public void setLocalCondition(ComplexCondition newLocalCondition) {
+	
 		if (newLocalCondition != localCondition) {
 			NotificationChain msgs = null;
 			if (localCondition != null)
@@ -167,6 +169,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING__LOCAL_CONDITION, newLocalCondition, newLocalCondition));
+	
 	}
 
 	/**
@@ -175,7 +178,8 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 */
 	@Override
 	public ComplexCondition getSharedCondition() {
-		if (sharedCondition != null && sharedCondition.eIsProxy()) {
+	
+		  if (sharedCondition != null && sharedCondition.eIsProxy()) {
 			InternalEObject oldSharedCondition = (InternalEObject)sharedCondition;
 			sharedCondition = (ComplexCondition)eResolveProxy(oldSharedCondition);
 			if (sharedCondition != oldSharedCondition) {
@@ -200,10 +204,12 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 */
 	@Override
 	public void setSharedCondition(ComplexCondition newSharedCondition) {
+	
 		ComplexCondition oldSharedCondition = sharedCondition;
 		sharedCondition = newSharedCondition;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING__SHARED_CONDITION, oldSharedCondition, sharedCondition));
+	
 	}
 
 	/**
@@ -212,6 +218,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 */
 	@Override
 	public EList<ComplexCondition> getAllConditions() {
+	
 		java.util.Set<Object> ret = new java.util.LinkedHashSet<>();
 		
 			if (this.getLocalCondition() != null) {
@@ -242,6 +249,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 */
 	@Override
 	public EList<MappingHintGroupType> getMappingHintGroups() {
+	
 		if (mappingHintGroups == null) {
 			mappingHintGroups = new EObjectContainmentEList<MappingHintGroupType>(MappingHintGroupType.class, this, MappingPackage.MAPPING__MAPPING_HINT_GROUPS);
 		}
@@ -254,6 +262,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 */
 	@Override
 	public EList<MappingHintGroupImporter> getImportedMappingHintGroups() {
+	
 		if (importedMappingHintGroups == null) {
 			importedMappingHintGroups = new EObjectContainmentEList<MappingHintGroupImporter>(MappingHintGroupImporter.class, this, MappingPackage.MAPPING__IMPORTED_MAPPING_HINT_GROUPS);
 		}
@@ -266,6 +275,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 */
 	@Override
 	public boolean isAbstract() {
+	
 		return abstract_;
 	}
 
@@ -275,10 +285,12 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	 */
 	@Override
 	public void setAbstract(boolean newAbstract) {
+	
 		boolean oldAbstract = abstract_;
 		abstract_ = newAbstract;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING__ABSTRACT, oldAbstract, abstract_));
+	
 	}
 
 	/**

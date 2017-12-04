@@ -65,6 +65,7 @@ public class StringPrependerImpl extends StringModifierImpl implements StringPre
 	 */
 	@Override
 	public String getString() {
+	
 		return string;
 	}
 
@@ -73,10 +74,12 @@ public class StringPrependerImpl extends StringModifierImpl implements StringPre
 	 * @generated
 	 */
 	public void setStringGen(String newString) {
+	
 		String oldString = string;
 		string = newString;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModifierPackage.STRING_PREPENDER__STRING, oldString, string));
+	
 	}
 
 	/**

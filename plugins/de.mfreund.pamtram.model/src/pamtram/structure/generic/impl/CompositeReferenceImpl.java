@@ -74,6 +74,7 @@ public abstract class CompositeReferenceImpl<S extends Section<S, C, R, A>, C ex
 	 */
 	@Override
 	public EList<C> getValue() {
+	
 		if (value == null) {
 			value = new EObjectContainmentEList<C>(pamtram.structure.generic.Class.class, this, GenericPackage.COMPOSITE_REFERENCE__VALUE);
 		}

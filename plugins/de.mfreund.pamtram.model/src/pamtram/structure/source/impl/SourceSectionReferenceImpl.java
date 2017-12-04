@@ -70,6 +70,7 @@ public abstract class SourceSectionReferenceImpl
 	 * @generated
 	 */
 	public boolean isIgnoreUnmatchedElements() {
+	
 		return ignoreUnmatchedElements;
 	}
 
@@ -79,10 +80,12 @@ public abstract class SourceSectionReferenceImpl
 	 * @generated
 	 */
 	public void setIgnoreUnmatchedElements(boolean newIgnoreUnmatchedElements) {
+	
 		boolean oldIgnoreUnmatchedElements = ignoreUnmatchedElements;
 		ignoreUnmatchedElements = newIgnoreUnmatchedElements;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SourcePackage.SOURCE_SECTION_REFERENCE__IGNORE_UNMATCHED_ELEMENTS, oldIgnoreUnmatchedElements, ignoreUnmatchedElements));
+	
 	}
 
 	/**

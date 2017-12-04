@@ -100,6 +100,7 @@ public class GlobalAttributeImporterImpl extends NamedElementImpl implements Glo
 	 * @generated
 	 */
 	public ComplexCondition getLocalCondition() {
+	
 		return localCondition;
 	}
 
@@ -124,6 +125,7 @@ public class GlobalAttributeImporterImpl extends NamedElementImpl implements Glo
 	 * @generated
 	 */
 	public void setLocalCondition(ComplexCondition newLocalCondition) {
+	
 		if (newLocalCondition != localCondition) {
 			NotificationChain msgs = null;
 			if (localCondition != null)
@@ -135,6 +137,7 @@ public class GlobalAttributeImporterImpl extends NamedElementImpl implements Glo
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.GLOBAL_ATTRIBUTE_IMPORTER__LOCAL_CONDITION, newLocalCondition, newLocalCondition));
+	
 	}
 
 	/**
@@ -143,7 +146,8 @@ public class GlobalAttributeImporterImpl extends NamedElementImpl implements Glo
 	 * @generated
 	 */
 	public ComplexCondition getSharedCondition() {
-		if (sharedCondition != null && sharedCondition.eIsProxy()) {
+	
+		  if (sharedCondition != null && sharedCondition.eIsProxy()) {
 			InternalEObject oldSharedCondition = (InternalEObject)sharedCondition;
 			sharedCondition = (ComplexCondition)eResolveProxy(oldSharedCondition);
 			if (sharedCondition != oldSharedCondition) {
@@ -169,10 +173,12 @@ public class GlobalAttributeImporterImpl extends NamedElementImpl implements Glo
 	 * @generated
 	 */
 	public void setSharedCondition(ComplexCondition newSharedCondition) {
+	
 		ComplexCondition oldSharedCondition = sharedCondition;
 		sharedCondition = newSharedCondition;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.GLOBAL_ATTRIBUTE_IMPORTER__SHARED_CONDITION, oldSharedCondition, sharedCondition));
+	
 	}
 
 	/**
@@ -181,6 +187,7 @@ public class GlobalAttributeImporterImpl extends NamedElementImpl implements Glo
 	 * @generated
 	 */
 	public EList<ComplexCondition> getAllConditions() {
+	
 		java.util.Set<Object> ret = new java.util.LinkedHashSet<>();
 		
 			if (this.getLocalCondition() != null) {
@@ -211,7 +218,8 @@ public class GlobalAttributeImporterImpl extends NamedElementImpl implements Glo
 	 * @generated
 	 */
 	public GlobalAttribute getGlobalAttribute() {
-		if (globalAttribute != null && globalAttribute.eIsProxy()) {
+	
+		  if (globalAttribute != null && globalAttribute.eIsProxy()) {
 			InternalEObject oldGlobalAttribute = (InternalEObject)globalAttribute;
 			globalAttribute = (GlobalAttribute)eResolveProxy(oldGlobalAttribute);
 			if (globalAttribute != oldGlobalAttribute) {
@@ -237,10 +245,12 @@ public class GlobalAttributeImporterImpl extends NamedElementImpl implements Glo
 	 * @generated
 	 */
 	public void setGlobalAttributeGen(GlobalAttribute newGlobalAttribute) {
+	
 		GlobalAttribute oldGlobalAttribute = globalAttribute;
 		globalAttribute = newGlobalAttribute;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.GLOBAL_ATTRIBUTE_IMPORTER__GLOBAL_ATTRIBUTE, oldGlobalAttribute, globalAttribute));
+	
 	}
 	
 	

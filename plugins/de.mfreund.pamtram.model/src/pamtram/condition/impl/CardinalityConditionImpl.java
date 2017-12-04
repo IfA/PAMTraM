@@ -79,6 +79,7 @@ public class CardinalityConditionImpl extends
 	 */
 	@Override
 	public EList<SourceSectionReference> getReferenceMatchSpec() {
+	
 		if (referenceMatchSpec == null) {
 			referenceMatchSpec = new EObjectResolvingEList<SourceSectionReference>(SourceSectionReference.class, this, ConditionPackage.CARDINALITY_CONDITION__REFERENCE_MATCH_SPEC);
 		}

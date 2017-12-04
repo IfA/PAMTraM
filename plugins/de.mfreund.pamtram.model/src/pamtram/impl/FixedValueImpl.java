@@ -108,6 +108,7 @@ public class FixedValueImpl extends NamedElementImpl implements FixedValue {
 	 * @generated
 	 */
 	public ComplexCondition getLocalCondition() {
+	
 		return localCondition;
 	}
 
@@ -132,6 +133,7 @@ public class FixedValueImpl extends NamedElementImpl implements FixedValue {
 	 * @generated
 	 */
 	public void setLocalCondition(ComplexCondition newLocalCondition) {
+	
 		if (newLocalCondition != localCondition) {
 			NotificationChain msgs = null;
 			if (localCondition != null)
@@ -143,6 +145,7 @@ public class FixedValueImpl extends NamedElementImpl implements FixedValue {
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PamtramPackage.FIXED_VALUE__LOCAL_CONDITION, newLocalCondition, newLocalCondition));
+	
 	}
 
 	/**
@@ -151,7 +154,8 @@ public class FixedValueImpl extends NamedElementImpl implements FixedValue {
 	 * @generated
 	 */
 	public ComplexCondition getSharedCondition() {
-		if (sharedCondition != null && sharedCondition.eIsProxy()) {
+	
+		  if (sharedCondition != null && sharedCondition.eIsProxy()) {
 			InternalEObject oldSharedCondition = (InternalEObject)sharedCondition;
 			sharedCondition = (ComplexCondition)eResolveProxy(oldSharedCondition);
 			if (sharedCondition != oldSharedCondition) {
@@ -177,10 +181,12 @@ public class FixedValueImpl extends NamedElementImpl implements FixedValue {
 	 * @generated
 	 */
 	public void setSharedCondition(ComplexCondition newSharedCondition) {
+	
 		ComplexCondition oldSharedCondition = sharedCondition;
 		sharedCondition = newSharedCondition;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PamtramPackage.FIXED_VALUE__SHARED_CONDITION, oldSharedCondition, sharedCondition));
+	
 	}
 
 	/**
@@ -189,6 +195,7 @@ public class FixedValueImpl extends NamedElementImpl implements FixedValue {
 	 * @generated
 	 */
 	public EList<ComplexCondition> getAllConditions() {
+	
 		java.util.Set<Object> ret = new java.util.LinkedHashSet<>();
 		
 			if (this.getLocalCondition() != null) {
@@ -219,6 +226,7 @@ public class FixedValueImpl extends NamedElementImpl implements FixedValue {
 	 */
 	@Override
 	public String getValue() {
+	
 		return value;
 	}
 
@@ -227,10 +235,12 @@ public class FixedValueImpl extends NamedElementImpl implements FixedValue {
 	 * @generated
 	 */
 	public void setValueGen(String newValue) {
+	
 		String oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PamtramPackage.FIXED_VALUE__VALUE, oldValue, value));
+	
 	}
 
 	/**

@@ -72,7 +72,8 @@ public class SourceInstanceSelectorImpl extends InstanceSelectorImpl implements 
 	 * @generated
 	 */
 	public SourceSectionAttribute getReferenceAttribute() {
-		if (referenceAttribute != null && referenceAttribute.eIsProxy()) {
+	
+		  if (referenceAttribute != null && referenceAttribute.eIsProxy()) {
 			InternalEObject oldReferenceAttribute = (InternalEObject)referenceAttribute;
 			referenceAttribute = (SourceSectionAttribute)eResolveProxy(oldReferenceAttribute);
 			if (referenceAttribute != oldReferenceAttribute) {
@@ -99,10 +100,12 @@ public class SourceInstanceSelectorImpl extends InstanceSelectorImpl implements 
 	 */
 	@Override
 	public void setReferenceAttribute(SourceSectionAttribute newReferenceAttribute) {
+	
 		SourceSectionAttribute oldReferenceAttribute = referenceAttribute;
 		referenceAttribute = newReferenceAttribute;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.SOURCE_INSTANCE_SELECTOR__REFERENCE_ATTRIBUTE, oldReferenceAttribute, referenceAttribute));
+	
 	}
 
 	/**
@@ -111,7 +114,8 @@ public class SourceInstanceSelectorImpl extends InstanceSelectorImpl implements 
 	 * @generated
 	 */
 	public SourceSectionClass getTargetClass() {
-		if (targetClass != null && targetClass.eIsProxy()) {
+	
+		  if (targetClass != null && targetClass.eIsProxy()) {
 			InternalEObject oldTargetClass = (InternalEObject)targetClass;
 			targetClass = (SourceSectionClass)eResolveProxy(oldTargetClass);
 			if (targetClass != oldTargetClass) {
@@ -137,10 +141,12 @@ public class SourceInstanceSelectorImpl extends InstanceSelectorImpl implements 
 	 * @generated
 	 */
 	public void setTargetClass(SourceSectionClass newTargetClass) {
+	
 		SourceSectionClass oldTargetClass = targetClass;
 		targetClass = newTargetClass;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.SOURCE_INSTANCE_SELECTOR__TARGET_CLASS, oldTargetClass, targetClass));
+	
 	}
 
 	/**

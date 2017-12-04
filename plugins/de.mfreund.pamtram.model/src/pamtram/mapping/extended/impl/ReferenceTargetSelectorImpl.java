@@ -161,6 +161,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	 */
 	@Override
 	public String getExpression() {
+	
 		return expression;
 	}
 
@@ -170,10 +171,12 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	 */
 	@Override
 	public void setExpression(String newExpression) {
+	
 		String oldExpression = expression;
 		expression = newExpression;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.REFERENCE_TARGET_SELECTOR__EXPRESSION, oldExpression, expression));
+	
 	}
 
 	/**
@@ -182,6 +185,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	 */
 	@Override
 	public EList<ValueModifierSet> getModifiers() {
+	
 		if (modifiers == null) {
 			modifiers = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, ExtendedPackage.REFERENCE_TARGET_SELECTOR__MODIFIERS);
 		}
@@ -194,6 +198,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	 */
 	@Override
 	public EList<InstanceSelectorSourceInterface> getSourceElements() {
+	
 		if (sourceElements == null) {
 			sourceElements = new EObjectContainmentEList<InstanceSelectorSourceInterface>(InstanceSelectorSourceInterface.class, this, ExtendedPackage.REFERENCE_TARGET_SELECTOR__SOURCE_ELEMENTS);
 		}
@@ -206,7 +211,8 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	 */
 	@Override
 	public TargetSectionAttribute getReferenceAttribute() {
-		if (referenceAttribute != null && referenceAttribute.eIsProxy()) {
+	
+		  if (referenceAttribute != null && referenceAttribute.eIsProxy()) {
 			InternalEObject oldReferenceAttribute = (InternalEObject)referenceAttribute;
 			referenceAttribute = (TargetSectionAttribute)eResolveProxy(oldReferenceAttribute);
 			if (referenceAttribute != oldReferenceAttribute) {
@@ -231,10 +237,12 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	 */
 	@Override
 	public void setReferenceAttribute(TargetSectionAttribute newReferenceAttribute) {
+	
 		TargetSectionAttribute oldReferenceAttribute = referenceAttribute;
 		referenceAttribute = newReferenceAttribute;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.REFERENCE_TARGET_SELECTOR__REFERENCE_ATTRIBUTE, oldReferenceAttribute, referenceAttribute));
+	
 	}
 
 	/**
@@ -243,7 +251,8 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	 */
 	@Override
 	public TargetSectionClass getTargetClass() {
-		if (targetClass != null && targetClass.eIsProxy()) {
+	
+		  if (targetClass != null && targetClass.eIsProxy()) {
 			InternalEObject oldTargetClass = (InternalEObject)targetClass;
 			targetClass = (TargetSectionClass)eResolveProxy(oldTargetClass);
 			if (targetClass != oldTargetClass) {
@@ -268,10 +277,12 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	 */
 	@Override
 	public void setTargetClass(TargetSectionClass newTargetClass) {
+	
 		TargetSectionClass oldTargetClass = targetClass;
 		targetClass = newTargetClass;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.REFERENCE_TARGET_SELECTOR__TARGET_CLASS, oldTargetClass, targetClass));
+	
 	}
 
 	/**
@@ -280,7 +291,8 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	 */
 	@Override
 	public TargetSectionCrossReference getAffectedReference() {
-		if (affectedReference != null && affectedReference.eIsProxy()) {
+	
+		  if (affectedReference != null && affectedReference.eIsProxy()) {
 			InternalEObject oldAffectedReference = (InternalEObject)affectedReference;
 			affectedReference = (TargetSectionCrossReference)eResolveProxy(oldAffectedReference);
 			if (affectedReference != oldAffectedReference) {
@@ -304,10 +316,12 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	 * @generated
 	 */
 	public void setAffectedReferenceGen(TargetSectionCrossReference newAffectedReference) {
+	
 		TargetSectionCrossReference oldAffectedReference = affectedReference;
 		affectedReference = newAffectedReference;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE, oldAffectedReference, affectedReference));
+	
 	}
 
 	/**

@@ -83,6 +83,7 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	 */
 	@Override
 	public EList<ComplexCondition> getLocalCondParts() {
+	
 		if (localCondParts == null) {
 			localCondParts = new EObjectContainmentEList<ComplexCondition>(ComplexCondition.class, this, ConditionPackage.VARIADIC_CONDITION__LOCAL_COND_PARTS);
 		}
@@ -95,6 +96,7 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	 */
 	@Override
 	public EList<ComplexCondition> getSharedCondParts() {
+	
 		if (sharedCondParts == null) {
 			sharedCondParts = new EObjectResolvingEList<ComplexCondition>(ComplexCondition.class, this, ConditionPackage.VARIADIC_CONDITION__SHARED_COND_PARTS);
 		}

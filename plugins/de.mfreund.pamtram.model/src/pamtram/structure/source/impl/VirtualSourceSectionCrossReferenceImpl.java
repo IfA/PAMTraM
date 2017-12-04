@@ -117,6 +117,7 @@ public class VirtualSourceSectionCrossReferenceImpl
 	 */
 	@Override
 	public boolean isIgnoreUnmatchedElements() {
+	
 		return ignoreUnmatchedElements;
 	}
 
@@ -126,10 +127,12 @@ public class VirtualSourceSectionCrossReferenceImpl
 	 */
 	@Override
 	public void setIgnoreUnmatchedElements(boolean newIgnoreUnmatchedElements) {
+	
 		boolean oldIgnoreUnmatchedElements = ignoreUnmatchedElements;
 		ignoreUnmatchedElements = newIgnoreUnmatchedElements;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SourcePackage.VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE__IGNORE_UNMATCHED_ELEMENTS, oldIgnoreUnmatchedElements, ignoreUnmatchedElements));
+	
 	}
 
 	/**
@@ -138,6 +141,7 @@ public class VirtualSourceSectionCrossReferenceImpl
 	 */
 	@Override
 	public String getDerivation() {
+	
 		return derivation;
 	}
 
@@ -147,10 +151,12 @@ public class VirtualSourceSectionCrossReferenceImpl
 	 */
 	@Override
 	public void setDerivation(String newDerivation) {
+	
 		String oldDerivation = derivation;
 		derivation = newDerivation;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SourcePackage.VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE__DERIVATION, oldDerivation, derivation));
+	
 	}
 
 	/**

@@ -123,7 +123,8 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	 */
 	@Override
 	public TargetSectionAttribute getTarget() {
-		if (target != null && target.eIsProxy()) {
+	
+		  if (target != null && target.eIsProxy()) {
 			InternalEObject oldTarget = (InternalEObject)target;
 			target = (TargetSectionAttribute)eResolveProxy(oldTarget);
 			if (target != oldTarget) {
@@ -147,10 +148,12 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	 * @generated
 	 */
 	public void setTargetGen(TargetSectionAttribute newTarget) {
+	
 		TargetSectionAttribute oldTarget = target;
 		target = newTarget;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.ATTRIBUTE_MAPPING__TARGET, oldTarget, target));
+	
 	}
 
 	/**
@@ -169,6 +172,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	 */
 	@Override
 	public EList<AttributeMappingSourceInterface> getSourceElements() {
+	
 		if (sourceElements == null) {
 			sourceElements = new EObjectContainmentEList<AttributeMappingSourceInterface>(AttributeMappingSourceInterface.class, this, ExtendedPackage.ATTRIBUTE_MAPPING__SOURCE_ELEMENTS);
 		}
@@ -181,6 +185,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	 */
 	@Override
 	public String getExpression() {
+	
 		return expression;
 	}
 
@@ -190,10 +195,12 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	 */
 	@Override
 	public void setExpression(String newExpression) {
+	
 		String oldExpression = expression;
 		expression = newExpression;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.ATTRIBUTE_MAPPING__EXPRESSION, oldExpression, expression));
+	
 	}
 
 	/**
@@ -202,6 +209,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 	 */
 	@Override
 	public EList<ValueModifierSet> getModifiers() {
+	
 		if (modifiers == null) {
 			modifiers = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, ExtendedPackage.ATTRIBUTE_MAPPING__MODIFIERS);
 		}

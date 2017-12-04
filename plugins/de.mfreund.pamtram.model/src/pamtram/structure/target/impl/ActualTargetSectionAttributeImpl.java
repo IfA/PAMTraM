@@ -68,7 +68,8 @@ public class ActualTargetSectionAttributeImpl extends TargetSectionAttributeImpl
 	 */
 	@Override
 	public EAttribute getAttribute() {
-		if (attribute != null && attribute.eIsProxy()) {
+	
+		  if (attribute != null && attribute.eIsProxy()) {
 			InternalEObject oldAttribute = (InternalEObject)attribute;
 			attribute = (EAttribute)eResolveProxy(oldAttribute);
 			if (attribute != oldAttribute) {
@@ -92,10 +93,12 @@ public class ActualTargetSectionAttributeImpl extends TargetSectionAttributeImpl
 	 * @generated
 	 */
 	public void setAttributeGen(EAttribute newAttribute) {
+	
 		EAttribute oldAttribute = attribute;
 		attribute = newAttribute;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, TargetPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE__ATTRIBUTE, oldAttribute, attribute));
+	
 	}
 
 	/**

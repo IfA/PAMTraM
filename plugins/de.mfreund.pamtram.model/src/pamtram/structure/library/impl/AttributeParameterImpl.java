@@ -72,6 +72,7 @@ public class AttributeParameterImpl extends LibraryParameterImpl<AbstractAttribu
 	 */
 	@Override
 	public ActualTargetSectionAttribute getAttribute() {
+	
 		return attribute;
 	}
 
@@ -95,6 +96,7 @@ public class AttributeParameterImpl extends LibraryParameterImpl<AbstractAttribu
 	 */
 	@Override
 	public void setAttribute(ActualTargetSectionAttribute newAttribute) {
+	
 		if (newAttribute != attribute) {
 			NotificationChain msgs = null;
 			if (attribute != null)
@@ -106,6 +108,7 @@ public class AttributeParameterImpl extends LibraryParameterImpl<AbstractAttribu
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.ATTRIBUTE_PARAMETER__ATTRIBUTE, newAttribute, newAttribute));
+	
 	}
 
 	/**

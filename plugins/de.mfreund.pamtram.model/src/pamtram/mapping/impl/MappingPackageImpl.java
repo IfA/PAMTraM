@@ -468,6 +468,15 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getMappingHintGroupType__ValidateNotExtendSelf__DiagnosticChain_Map() {
+		return mappingHintGroupTypeEClass.getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getInstantiableMappingHintGroup() {
 		return instantiableMappingHintGroupEClass;
 	}
@@ -610,6 +619,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		createEOperation(mappingHintGroupTypeEClass, MAPPING_HINT_GROUP_TYPE___GET_ACTIVE_MAPPING_HINTS);
 		createEOperation(mappingHintGroupTypeEClass, MAPPING_HINT_GROUP_TYPE___VALIDATE_DO_NOT_USE_LIBRARY_ELEMENTS_WITHOUT_LIBRARY_NATURE__DIAGNOSTICCHAIN_MAP);
 		createEOperation(mappingHintGroupTypeEClass, MAPPING_HINT_GROUP_TYPE___VALIDATE_TARGET_SECTION_IS_NOT_ABSTRACT__DIAGNOSTICCHAIN_MAP);
+		createEOperation(mappingHintGroupTypeEClass, MAPPING_HINT_GROUP_TYPE___VALIDATE_NOT_EXTEND_SELF__DIAGNOSTICCHAIN_MAP);
 
 		instantiableMappingHintGroupEClass = createEClass(INSTANTIABLE_MAPPING_HINT_GROUP);
 
@@ -765,6 +775,15 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = initEOperation(getMappingHintGroupType__ValidateTargetSectionIsNotAbstract__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateTargetSectionIsNotAbstract", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getMappingHintGroupType__ValidateNotExtendSelf__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateNotExtendSelf", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType();
@@ -963,6 +982,12 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 			 "body", "if(!(this.eContainer() instanceof <%pamtram.mapping.Mapping%>)) {\r\n\treturn true;\r\n}\r\n\r\n<%pamtram.mapping.Mapping%> mapping = (<%pamtram.mapping.Mapping%>) this.eContainer();\r\n\r\nboolean result = this.getTargetSection() == null || mapping.isAbstract() || !this.getTargetSection().isAbstract();\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"Only MappingHintGroups in abstract Mappings may reference abstract TargetSections!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\t<%pamtram.mapping.util.MappingValidator%>.MAPPING_HINT_GROUP_TYPE__VALIDATE_TARGET_SECTION_IS_NOT_ABSTRACT,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__TARGET_SECTION }));\r\n\r\n}\r\n\r\nreturn result;"
 		   });	
 		addAnnotation
+		  (getMappingHintGroupType__ValidateNotExtendSelf__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "boolean result = !this.getAllExtend().contains(this);\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"A MappingHintGroup must not extend itself (neither directly nor indirectly)!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR, \r\n\t\t\t<%pamtram.mapping.util.MappingValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\tMappingValidator.MAPPING_HINT_GROUP_TYPE__VALIDATE_NOT_EXTEND_SELF, \r\n\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__EXTEND }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
 		  (getMappingHintGroupType_TargetSection(), 
 		   source, 
 		   new String[] {
@@ -978,7 +1003,8 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (getMappingHintGroupType_Extend(), 
 		   source, 
 		   new String[] {
-			 "documentation", "One or multiple MappingHintGroups (that are part of an \'abstract\' Mapping) which shall be extended by this MappingHintGroup.\r\n<br />\r\nAll MappingHints that are defined in extended MappingHintGroups will be added to the MappingHints defined locally in this Group.\r\n<br /><br />\r\nNote: If an extended Group defines a MappingHint that is \'overwritten\' by a MappingHint defined locally, it will not be added."
+			 "documentation", "One or multiple MappingHintGroups (that are part of an \'abstract\' Mapping) which shall be extended by this MappingHintGroup.\r\n<br />\r\nAll MappingHints that are defined in extended MappingHintGroups will be added to the MappingHints defined locally in this Group.\r\n<br /><br />\r\nNote: If an extended Group defines a MappingHint that is \'overwritten\' by a MappingHint defined locally, it will not be added.",
+			 "propertyDescriptor", "this.itemPropertyDescriptors.add(\r\n\t\t\t\tnew ItemPropertyDescriptor(((<%org.eclipse.emf.edit.provider.ComposeableAdapterFactory%>) this.adapterFactory).getRootAdapterFactory(),\r\n\t\t\t\t\t\tthis.getResourceLocator(), this.getString(\"_UI_MappingHintGroupType_extend_feature\"),\r\n\t\t\t\t\t\tthis.getString(\"_UI_MappingHintGroupType_extend_description\"),\r\n\t\t\t\t\t\t<%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__EXTEND, true, false, true, null,\r\n\t\t\t\t\t\tthis.getString(\"_UI_ExtendedPropertyCategory\"), null) {\r\n\r\t\t\t\t@Override\r\n\t\t\t\t\tpublic <%java.util.Collection%><?> getChoiceOfValues(Object object) {\r\n\r\t\t\t\t\t<%pamtram.mapping.MappingHintGroupType%> mhg = (<%pamtram.mapping.MappingHintGroupType%>) object;\r\n\r\t\t\t\t\tif (mhg.getTargetSection() == null) {\r\n\t\t\t\t\t\t\treturn new <%org.eclipse.emf.common.util.BasicEList%><>();\r\n\t\t\t\t\t\t}\r\n\r\t\t\t\t\t<%java.util.Collection%><<%pamtram.mapping.MappingHintGroupType%>> ret = new <%org.eclipse.emf.common.util.BasicEList%><>();\r\n\r\t\t\t\t\t<%pamtram.mapping.Mapping%> mhgMapping = (<%pamtram.mapping.Mapping%>) mhg.eContainer();\r\n\t\t\t\t\t\tfor (Object choice : super.getChoiceOfValues(object)) {\r\n\r\t\t\t\t\t\t<%pamtram.mapping.MappingHintGroupType%> val = (<%pamtram.mapping.MappingHintGroupType%>) choice;\r\n\r\t\t\t\t\t\t<%pamtram.mapping.Mapping%> abstractMapping = (<%pamtram.mapping.Mapping%>) val.eContainer();\r\n\r\t\t\t\t\t\t// only hint groups that do not extend this hint group can be used\r\n\t\t\t\t\t\t\t//\r\n\t\t\t\t\t\t\tif (val.getAllExtend().contains(mhg)) {\r\n\t\t\t\t\t\t\t\tcontinue;\r\n\t\t\t\t\t\t\t}\r\n\r\t\t\t\t\t\t// only hint groups from other mappings can be used\r\n\t\t\t\t\t\t\t// for extension\r\n\t\t\t\t\t\t\tif (mhgMapping.equals(abstractMapping)) {\r\n\t\t\t\t\t\t\t\tcontinue;\r\n\t\t\t\t\t\t\t}\r\n\r\t\t\t\t\t\t// only hint groups in abstract mappings can be used\r\n\t\t\t\t\t\t\tif (!abstractMapping.isAbstract()) {\r\n\t\t\t\t\t\t\t\tcontinue;\r\n\t\t\t\t\t\t\t}\r\n\r\t\t\t\t\t\t// additionally, the source section need to match or\r\n\t\t\t\t\t\t\t// be connected via an \'extend\' reference\r\n\t\t\t\t\t\t\tif (!(mhgMapping.getSourceSection().equals(abstractMapping.getSourceSection()) || mhgMapping\r\n\t\t\t\t\t\t\t\t\t.getSourceSection().getExtend().contains(abstractMapping.getSourceSection()))) {\r\n\t\t\t\t\t\t\t\tcontinue;\r\n\t\t\t\t\t\t\t}\r\n\r\t\t\t\t\t\t// finally, the target sections of the hint groups\r\n\t\t\t\t\t\t\t// need to \'extend\', too\r\n\t\t\t\t\t\t\tif (mhg.getTargetSection().equals(val.getTargetSection())\r\n\t\t\t\t\t\t\t\t\t|| mhg.getTargetSection().getExtend().contains(val.getTargetSection())) {\r\n\t\t\t\t\t\t\t\tret.add(val);\r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t}\r\n\r\t\t\t\t\treturn ret;\r\n\t\t\t\t\t}\r\n\t\t\t\t});"
 		   });	
 		addAnnotation
 		  (getMappingHintGroupType_AttributeMappings(), 
@@ -1044,7 +1070,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		  (getMappingHintGroupType_AllExtend(), 
 		   source, 
 		   new String[] {
-			 "get", "Set<Object> ret = new HashSet<>();\r\n\r\nList<<%pamtram.mapping.MappingHintGroupType%>> toCheck = new ArrayList<>();\r\n\ttoCheck.add(this);\r\n\r\nwhile (!toCheck.isEmpty()) {\r\n\t<%pamtram.mapping.MappingHintGroupType%> next = toCheck.remove(0);\r\n\r\n\tList<<%pamtram.mapping.MappingHintGroupType%>> localToCheck = next.getExtend().stream().filter(e -> !ret.contains(e))\r\n\t\t\t\t.collect(<%java.util.stream.Collectors%>.toList());\r\n\t\tret.addAll(localToCheck);\r\n\t\ttoCheck.addAll(localToCheck);\r\n\t}\r\n\r\nret.addAll(this.getExtend().stream().flatMap(s -> s.getAllExtend().stream()).collect(<%java.util.stream.Collectors%>.toList()));\r\n\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__ALL_EXTEND, ret.size(),\r\n\t\t\tret.toArray());"
+			 "get", "<%java.util.Set%><Object> ret = new <%java.util.LinkedHashSet%><>();\r\n\r\n<%java.util.List%><<%pamtram.mapping.MappingHintGroupType%>> toCheck = new <%java.util.ArrayList%><>();\r\ntoCheck.add(this);\r\n\r\nwhile (!toCheck.isEmpty()) {\r\n\t<%pamtram.mapping.MappingHintGroupType%> next = toCheck.remove(0);\r\n\r\n\tList<<%pamtram.mapping.MappingHintGroupType%>> localToCheck = next.getExtend().stream().filter(e -> !ret.contains(e))\r\n\t\t\t.collect(<%java.util.stream.Collectors%>.toList());\r\n\tret.addAll(localToCheck);\r\n\ttoCheck.addAll(localToCheck);\r\n}\r\n\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.mapping.MappingPackage%>.Literals.MAPPING_HINT_GROUP_TYPE__ALL_EXTEND,\r\n\t\tret.size(), ret.toArray());"
 		   });	
 		addAnnotation
 		  (getMappingHintGroupType_AllExtend(), 

@@ -71,6 +71,7 @@ public abstract class LocalDynamicSourceElementImpl<S extends Section<S, C, R, A
 	 */
 	@Override
 	public EList<R> getReferenceMatchSpec() {
+	
 		if (referenceMatchSpec == null) {
 			referenceMatchSpec = new EObjectResolvingEList<R>(Reference.class, this, StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT__REFERENCE_MATCH_SPEC);
 		}

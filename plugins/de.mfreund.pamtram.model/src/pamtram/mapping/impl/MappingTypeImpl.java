@@ -83,6 +83,7 @@ public abstract class MappingTypeImpl extends NamedElementImpl implements Mappin
 	 */
 	@Override
 	public boolean isDeactivated() {
+	
 		return deactivated;
 	}
 
@@ -93,10 +94,12 @@ public abstract class MappingTypeImpl extends NamedElementImpl implements Mappin
 	 */
 	@Override
 	public void setDeactivated(boolean newDeactivated) {
+	
 		boolean oldDeactivated = deactivated;
 		deactivated = newDeactivated;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_TYPE__DEACTIVATED, oldDeactivated, deactivated));
+	
 	}
 
 	/**
@@ -106,7 +109,8 @@ public abstract class MappingTypeImpl extends NamedElementImpl implements Mappin
 	 */
 	@Override
 	public SourceSection getSourceSection() {
-		if (sourceSection != null && sourceSection.eIsProxy()) {
+	
+		  if (sourceSection != null && sourceSection.eIsProxy()) {
 			InternalEObject oldSourceSection = (InternalEObject)sourceSection;
 			sourceSection = (SourceSection)eResolveProxy(oldSourceSection);
 			if (sourceSection != oldSourceSection) {
@@ -132,10 +136,12 @@ public abstract class MappingTypeImpl extends NamedElementImpl implements Mappin
 	 * @generated
 	 */
 	public void setSourceSectionGen(SourceSection newSourceSection) {
+	
 		SourceSection oldSourceSection = sourceSection;
 		sourceSection = newSourceSection;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_TYPE__SOURCE_SECTION, oldSourceSection, sourceSection));
+	
 	}
 
 	/**

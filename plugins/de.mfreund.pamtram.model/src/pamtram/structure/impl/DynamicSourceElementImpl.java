@@ -111,7 +111,8 @@ public abstract class DynamicSourceElementImpl<S extends Section<S, C, R, A>, C 
 	@Override
 	@SuppressWarnings("unchecked")
 	public A getSource() {
-		if (source != null && source.eIsProxy()) {
+	
+		  if (source != null && source.eIsProxy()) {
 			InternalEObject oldSource = (InternalEObject)source;
 			source = (A)eResolveProxy(oldSource);
 			if (source != oldSource) {
@@ -137,10 +138,12 @@ public abstract class DynamicSourceElementImpl<S extends Section<S, C, R, A>, C 
 	 * @generated
 	 */
 	public void setSourceGen(A newSource) {
+	
 		A oldSource = source;
 		source = newSource;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.DYNAMIC_SOURCE_ELEMENT__SOURCE, oldSource, source));
+	
 	}
 
 	/**
@@ -159,6 +162,7 @@ public abstract class DynamicSourceElementImpl<S extends Section<S, C, R, A>, C 
 	 * @generated
 	 */
 	public boolean isUseElementID() {
+	
 		return useElementID;
 	}
 
@@ -168,10 +172,12 @@ public abstract class DynamicSourceElementImpl<S extends Section<S, C, R, A>, C 
 	 * @generated
 	 */
 	public void setUseElementID(boolean newUseElementID) {
+	
 		boolean oldUseElementID = useElementID;
 		useElementID = newUseElementID;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID, oldUseElementID, useElementID));
+	
 	}
 
 	/**
@@ -181,6 +187,7 @@ public abstract class DynamicSourceElementImpl<S extends Section<S, C, R, A>, C 
 	 */
 	@Override
 	public EList<ValueModifierSet> getModifiers() {
+	
 		if (modifiers == null) {
 			modifiers = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, StructurePackage.DYNAMIC_SOURCE_ELEMENT__MODIFIERS);
 		}

@@ -107,6 +107,7 @@ public class InstanceSelectorGlobalSourceElementImpl extends GlobalDynamicSource
 	 * @generated
 	 */
 	public ComplexCondition getLocalCondition() {
+	
 		return localCondition;
 	}
 
@@ -131,6 +132,7 @@ public class InstanceSelectorGlobalSourceElementImpl extends GlobalDynamicSource
 	 * @generated
 	 */
 	public void setLocalCondition(ComplexCondition newLocalCondition) {
+	
 		if (newLocalCondition != localCondition) {
 			NotificationChain msgs = null;
 			if (localCondition != null)
@@ -142,6 +144,7 @@ public class InstanceSelectorGlobalSourceElementImpl extends GlobalDynamicSource
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT__LOCAL_CONDITION, newLocalCondition, newLocalCondition));
+	
 	}
 
 	/**
@@ -150,7 +153,8 @@ public class InstanceSelectorGlobalSourceElementImpl extends GlobalDynamicSource
 	 * @generated
 	 */
 	public ComplexCondition getSharedCondition() {
-		if (sharedCondition != null && sharedCondition.eIsProxy()) {
+	
+		  if (sharedCondition != null && sharedCondition.eIsProxy()) {
 			InternalEObject oldSharedCondition = (InternalEObject)sharedCondition;
 			sharedCondition = (ComplexCondition)eResolveProxy(oldSharedCondition);
 			if (sharedCondition != oldSharedCondition) {
@@ -176,10 +180,12 @@ public class InstanceSelectorGlobalSourceElementImpl extends GlobalDynamicSource
 	 * @generated
 	 */
 	public void setSharedCondition(ComplexCondition newSharedCondition) {
+	
 		ComplexCondition oldSharedCondition = sharedCondition;
 		sharedCondition = newSharedCondition;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT__SHARED_CONDITION, oldSharedCondition, sharedCondition));
+	
 	}
 
 	/**
@@ -188,6 +194,7 @@ public class InstanceSelectorGlobalSourceElementImpl extends GlobalDynamicSource
 	 * @generated
 	 */
 	public EList<ComplexCondition> getAllConditions() {
+	
 		java.util.Set<Object> ret = new java.util.LinkedHashSet<>();
 		
 			if (this.getLocalCondition() != null) {

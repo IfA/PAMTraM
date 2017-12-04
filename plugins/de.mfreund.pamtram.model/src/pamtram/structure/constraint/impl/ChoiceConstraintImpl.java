@@ -102,6 +102,7 @@ public class ChoiceConstraintImpl extends NamedElementImpl implements ChoiceCons
 	 */
 	@Override
 	public ValueConstraintType getType() {
+	
 		return type;
 	}
 
@@ -111,10 +112,12 @@ public class ChoiceConstraintImpl extends NamedElementImpl implements ChoiceCons
 	 */
 	@Override
 	public void setType(ValueConstraintType newType) {
+	
 		ValueConstraintType oldType = type;
 		type = newType == null ? TYPE_EDEFAULT : newType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ConstraintPackage.CHOICE_CONSTRAINT__TYPE, oldType, type));
+	
 	}
 
 	/**
@@ -123,6 +126,7 @@ public class ChoiceConstraintImpl extends NamedElementImpl implements ChoiceCons
 	 */
 	@Override
 	public EList<EqualityConstraint> getChoices() {
+	
 		if (choices == null) {
 			choices = new EObjectContainmentEList<EqualityConstraint>(EqualityConstraint.class, this, ConstraintPackage.CHOICE_CONSTRAINT__CHOICES);
 		}

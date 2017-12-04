@@ -72,6 +72,7 @@ public class ExpressionModifierImpl extends NumericModifierImpl implements Expre
 	 */
 	@Override
 	public String getExpression() {
+	
 		return expression;
 	}
 
@@ -80,10 +81,12 @@ public class ExpressionModifierImpl extends NumericModifierImpl implements Expre
 	 * @generated
 	 */
 	public void setExpressionGen(String newExpression) {
+	
 		String oldExpression = expression;
 		expression = newExpression;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModifierPackage.EXPRESSION_MODIFIER__EXPRESSION, oldExpression, expression));
+	
 	}
 
 	/**

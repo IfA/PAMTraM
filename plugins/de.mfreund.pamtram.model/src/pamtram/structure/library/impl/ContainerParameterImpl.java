@@ -72,6 +72,7 @@ public class ContainerParameterImpl extends LibraryParameterImpl<AbstractContain
 	 */
 	@Override
 	public TargetSection getClass_() {
+	
 		return class_;
 	}
 
@@ -95,6 +96,7 @@ public class ContainerParameterImpl extends LibraryParameterImpl<AbstractContain
 	 */
 	@Override
 	public void setClass(TargetSection newClass) {
+	
 		if (newClass != class_) {
 			NotificationChain msgs = null;
 			if (class_ != null)
@@ -106,6 +108,7 @@ public class ContainerParameterImpl extends LibraryParameterImpl<AbstractContain
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.CONTAINER_PARAMETER__CLASS, newClass, newClass));
+	
 	}
 
 	/**

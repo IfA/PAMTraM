@@ -82,7 +82,8 @@ public class GlobalAttributeImpl extends NamedElementImpl implements GlobalAttri
 	 */
 	@Override
 	public ActualSourceSectionAttribute getSource() {
-		if (source != null && source.eIsProxy()) {
+	
+		  if (source != null && source.eIsProxy()) {
 			InternalEObject oldSource = (InternalEObject)source;
 			source = (ActualSourceSectionAttribute)eResolveProxy(oldSource);
 			if (source != oldSource) {
@@ -108,10 +109,12 @@ public class GlobalAttributeImpl extends NamedElementImpl implements GlobalAttri
 	 * @generated
 	 */
 	public void setSourceGen(ActualSourceSectionAttribute newSource) {
+	
 		ActualSourceSectionAttribute oldSource = source;
 		source = newSource;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.GLOBAL_ATTRIBUTE__SOURCE, oldSource, source));
+	
 	}
 	
 	/**
@@ -130,6 +133,7 @@ public class GlobalAttributeImpl extends NamedElementImpl implements GlobalAttri
 	 */
 	@Override
 	public EList<ValueModifierSet> getModifiers() {
+	
 		if (modifiers == null) {
 			modifiers = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, MappingPackage.GLOBAL_ATTRIBUTE__MODIFIERS);
 		}

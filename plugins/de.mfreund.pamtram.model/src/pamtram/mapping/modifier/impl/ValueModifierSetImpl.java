@@ -62,6 +62,7 @@ public class ValueModifierSetImpl extends NamedElementImpl implements ValueModif
 	 */
 	@Override
 	public EList<ValueModifier> getModifiers() {
+	
 		if (modifiers == null) {
 			modifiers = new EObjectContainmentEList<ValueModifier>(ValueModifier.class, this, ModifierPackage.VALUE_MODIFIER_SET__MODIFIERS);
 		}

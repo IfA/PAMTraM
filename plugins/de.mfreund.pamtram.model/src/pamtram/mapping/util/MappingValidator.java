@@ -93,12 +93,20 @@ public class MappingValidator extends EObjectValidator {
 	public static final int MAPPING_HINT_GROUP_TYPE__VALIDATE_TARGET_SECTION_IS_NOT_ABSTRACT = 7;
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Not Extend Self' of 'Hint Group Type'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int MAPPING_HINT_GROUP_TYPE__VALIDATE_NOT_EXTEND_SELF = 8;
+
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Source Attribute Has Upper Bound One' of 'Global Attribute'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int GLOBAL_ATTRIBUTE__VALIDATE_SOURCE_ATTRIBUTE_HAS_UPPER_BOUND_ONE = 8;
+	public static final int GLOBAL_ATTRIBUTE__VALIDATE_SOURCE_ATTRIBUTE_HAS_UPPER_BOUND_ONE = 9;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -106,7 +114,7 @@ public class MappingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 8;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 9;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -326,6 +334,7 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateMappingHintGroupType_validateExtendsOnlyValidHintGroups(mappingHintGroupType, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMappingHintGroupType_validateDoNotUseLibraryElementsWithoutLibraryNature(mappingHintGroupType, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMappingHintGroupType_validateTargetSectionIsNotAbstract(mappingHintGroupType, diagnostics, context);
+		if (result || diagnostics != null) result &= validateMappingHintGroupType_validateNotExtendSelf(mappingHintGroupType, diagnostics, context);
 		return result;
 	}
 
@@ -357,6 +366,16 @@ public class MappingValidator extends EObjectValidator {
 	 */
 	public boolean validateMappingHintGroupType_validateTargetSectionIsNotAbstract(MappingHintGroupType mappingHintGroupType, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return mappingHintGroupType.validateTargetSectionIsNotAbstract(diagnostics, context);
+	}
+
+	/**
+	 * Validates the validateNotExtendSelf constraint of '<em>Hint Group Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMappingHintGroupType_validateNotExtendSelf(MappingHintGroupType mappingHintGroupType, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return mappingHintGroupType.validateNotExtendSelf(diagnostics, context);
 	}
 
 	/**
@@ -398,6 +417,7 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateMappingHintGroupType_validateExtendsOnlyValidHintGroups(mappingHintGroup, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMappingHintGroupType_validateDoNotUseLibraryElementsWithoutLibraryNature(mappingHintGroup, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMappingHintGroupType_validateTargetSectionIsNotAbstract(mappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validateMappingHintGroupType_validateNotExtendSelf(mappingHintGroup, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(mappingHintGroup, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(mappingHintGroup, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(mappingHintGroup, diagnostics, context);
@@ -443,6 +463,7 @@ public class MappingValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateMappingHintGroupType_validateExtendsOnlyValidHintGroups(exportedMappingHintGroup, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMappingHintGroupType_validateDoNotUseLibraryElementsWithoutLibraryNature(exportedMappingHintGroup, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMappingHintGroupType_validateTargetSectionIsNotAbstract(exportedMappingHintGroup, diagnostics, context);
+		if (result || diagnostics != null) result &= validateMappingHintGroupType_validateNotExtendSelf(exportedMappingHintGroup, diagnostics, context);
 		return result;
 	}
 

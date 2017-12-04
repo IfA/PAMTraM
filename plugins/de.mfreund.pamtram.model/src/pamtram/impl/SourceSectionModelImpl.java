@@ -87,6 +87,7 @@ public class SourceSectionModelImpl extends SectionModelImpl<SourceSection, Sour
 	 * @generated
 	 */
 	public boolean isDeactivated() {
+	
 		return deactivated;
 	}
 
@@ -96,10 +97,12 @@ public class SourceSectionModelImpl extends SectionModelImpl<SourceSection, Sour
 	 * @generated
 	 */
 	public void setDeactivated(boolean newDeactivated) {
+	
 		boolean oldDeactivated = deactivated;
 		deactivated = newDeactivated;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PamtramPackage.SOURCE_SECTION_MODEL__DEACTIVATED, oldDeactivated, deactivated));
+	
 	}
 
 	/**

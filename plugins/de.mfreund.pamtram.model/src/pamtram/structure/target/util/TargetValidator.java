@@ -167,10 +167,12 @@ public class TargetValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= genericValidator.validateClass_validateEClassMatchesParentEReference(targetSection, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateClass_validateCardinalityIsValid(targetSection, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateClass_validateContainerIsValid(targetSection, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateClass_validateNotSelfContainer(targetSection, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateSection_extendsValidSections(targetSection, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateSection_containerMatchesExtendContainer(targetSection, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateSection_validateContainerMatchesExtendContainer(targetSection, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateSection_validateExtendsValidSections(targetSection, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateSection_validateNotExtendSelf(targetSection, diagnostics, context);
 		if (result || diagnostics != null) result &= validateTargetSection_isReferencedByMappingHintGroup(targetSection, diagnostics, context);
 		if (result || diagnostics != null) result &= validateTargetSection_validateIsReferencedByMappingHintGroup(targetSection, diagnostics, context);
 		if (result || diagnostics != null) result &= validateTargetSection_validateCardinality(targetSection, diagnostics, context);
@@ -255,6 +257,7 @@ public class TargetValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= genericValidator.validateClass_validateEClassMatchesParentEReference(targetSectionClass, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateClass_validateCardinalityIsValid(targetSectionClass, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateClass_validateContainerIsValid(targetSectionClass, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateClass_validateNotSelfContainer(targetSectionClass, diagnostics, context);
 		return result;
 	}
 

@@ -365,13 +365,22 @@ public interface GenericPackage extends EPackage {
 	int CLASS___VALIDATE_CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP = META_MODEL_ELEMENT_OPERATION_COUNT + 6;
 
 	/**
+	 * The operation id for the '<em>Validate Not Self Container</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS___VALIDATE_NOT_SELF_CONTAINER__DIAGNOSTICCHAIN_MAP = META_MODEL_ELEMENT_OPERATION_COUNT + 7;
+
+	/**
 	 * The number of operations of the '<em>Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_OPERATION_COUNT = META_MODEL_ELEMENT_OPERATION_COUNT + 7;
+	int CLASS_OPERATION_COUNT = META_MODEL_ELEMENT_OPERATION_COUNT + 8;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.generic.impl.SectionImpl <em>Section</em>}' class.
@@ -645,6 +654,15 @@ public interface GenericPackage extends EPackage {
 	int SECTION___VALIDATE_CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP;
 
 	/**
+	 * The operation id for the '<em>Validate Not Self Container</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SECTION___VALIDATE_NOT_SELF_CONTAINER__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_NOT_SELF_CONTAINER__DIAGNOSTICCHAIN_MAP;
+
+	/**
 	 * The operation id for the '<em>Validate Container Matches Extend Container</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -663,13 +681,22 @@ public interface GenericPackage extends EPackage {
 	int SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP = CLASS_OPERATION_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Validate Not Extend Self</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SECTION___VALIDATE_NOT_EXTEND_SELF__DIAGNOSTICCHAIN_MAP = CLASS_OPERATION_COUNT + 2;
+
+	/**
 	 * The number of operations of the '<em>Section</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION_OPERATION_COUNT = CLASS_OPERATION_COUNT + 2;
+	int SECTION_OPERATION_COUNT = CLASS_OPERATION_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.generic.impl.ReferenceImpl <em>Reference</em>}' class.
@@ -1693,6 +1720,16 @@ public interface GenericPackage extends EPackage {
 	EOperation getClass__ValidateContainerIsValid__DiagnosticChain_Map();
 
 	/**
+	 * Returns the meta object for the '{@link pamtram.structure.generic.Class#validateNotSelfContainer(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Not Self Container</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Not Self Container</em>' operation.
+	 * @see pamtram.structure.generic.Class#validateNotSelfContainer(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getClass__ValidateNotSelfContainer__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.structure.generic.Section <em>Section</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1765,6 +1802,16 @@ public interface GenericPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getSection__ValidateExtendsValidSections__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.structure.generic.Section#validateNotExtendSelf(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Not Extend Self</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Not Extend Self</em>' operation.
+	 * @see pamtram.structure.generic.Section#validateNotExtendSelf(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getSection__ValidateNotExtendSelf__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.structure.generic.Reference <em>Reference</em>}'.
@@ -2210,6 +2257,14 @@ public interface GenericPackage extends EPackage {
 		EOperation CLASS___VALIDATE_CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP = eINSTANCE.getClass__ValidateContainerIsValid__DiagnosticChain_Map();
 
 		/**
+		 * The meta object literal for the '<em><b>Validate Not Self Container</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CLASS___VALIDATE_NOT_SELF_CONTAINER__DIAGNOSTICCHAIN_MAP = eINSTANCE.getClass__ValidateNotSelfContainer__DiagnosticChain_Map();
+
+		/**
 		 * The meta object literal for the '{@link pamtram.structure.generic.impl.SectionImpl <em>Section</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2266,6 +2321,14 @@ public interface GenericPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getSection__ValidateExtendsValidSections__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Not Extend Self</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation SECTION___VALIDATE_NOT_EXTEND_SELF__DIAGNOSTICCHAIN_MAP = eINSTANCE.getSection__ValidateNotExtendSelf__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.structure.generic.impl.ReferenceImpl <em>Reference</em>}' class.

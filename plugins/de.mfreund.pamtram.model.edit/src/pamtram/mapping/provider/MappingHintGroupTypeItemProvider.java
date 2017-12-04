@@ -10,7 +10,6 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -81,66 +80,71 @@ public class MappingHintGroupTypeItemProvider extends NamedElementItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Extend feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated NOT
+	 * This adds a property descriptor for the Extend feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
 	 */
 	protected void addExtendPropertyDescriptor(Object object) {
-
 		this.itemPropertyDescriptors.add(
-				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
-						this.getResourceLocator(), this.getString("_UI_MappingHintGroupType_extend_feature"),
-						this.getString("_UI_MappingHintGroupType_extend_description"),
-						MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__EXTEND, true, false, true, null,
-						this.getString("_UI_ExtendedPropertyCategory"), null) {
-
-					@Override
-					public Collection<?> getChoiceOfValues(Object object) {
-
-						MappingHintGroupType mhg = (MappingHintGroupType) object;
-
-						if (mhg.getTargetSection() == null) {
-							return new BasicEList<EObject>();
-						}
-
-						Collection<MappingHintGroupType> values = (Collection<MappingHintGroupType>) super.getChoiceOfValues(
-								object);
-						Collection<MappingHintGroupType> ret = new BasicEList<>();
-
-						Mapping mhgMapping = (Mapping) mhg.eContainer();
-						for (MappingHintGroupType val : values) {
-
-							Mapping abstractMapping = (Mapping) val.eContainer();
-
-							// only hint groups from other mappings can be used
-							// for extension
-							if (mhgMapping.equals(abstractMapping)) {
-								continue;
+						new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
+								this.getResourceLocator(), this.getString("_UI_MappingHintGroupType_extend_feature"),
+								this.getString("_UI_MappingHintGroupType_extend_description"),
+								MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE__EXTEND, true, false, true, null,
+								this.getString("_UI_ExtendedPropertyCategory"), null) {
+		
+						@Override
+							public Collection<?> getChoiceOfValues(Object object) {
+		
+							MappingHintGroupType mhg = (MappingHintGroupType) object;
+		
+							if (mhg.getTargetSection() == null) {
+									return new BasicEList<>();
+								}
+		
+							Collection<MappingHintGroupType> ret = new BasicEList<>();
+		
+							Mapping mhgMapping = (Mapping) mhg.eContainer();
+								for (Object choice : super.getChoiceOfValues(object)) {
+		
+								MappingHintGroupType val = (MappingHintGroupType) choice;
+		
+								Mapping abstractMapping = (Mapping) val.eContainer();
+		
+								// only hint groups that do not extend this hint group can be used
+									//
+									if (val.getAllExtend().contains(mhg)) {
+										continue;
+									}
+		
+								// only hint groups from other mappings can be used
+									// for extension
+									if (mhgMapping.equals(abstractMapping)) {
+										continue;
+									}
+		
+								// only hint groups in abstract mappings can be used
+									if (!abstractMapping.isAbstract()) {
+										continue;
+									}
+		
+								// additionally, the source section need to match or
+									// be connected via an 'extend' reference
+									if (!(mhgMapping.getSourceSection().equals(abstractMapping.getSourceSection()) || mhgMapping
+											.getSourceSection().getExtend().contains(abstractMapping.getSourceSection()))) {
+										continue;
+									}
+		
+								// finally, the target sections of the hint groups
+									// need to 'extend', too
+									if (mhg.getTargetSection().equals(val.getTargetSection())
+											|| mhg.getTargetSection().getExtend().contains(val.getTargetSection())) {
+										ret.add(val);
+									}
+								}
+		
+							return ret;
 							}
-
-							// only hint groups in abstract mappings can be used
-							if (!abstractMapping.isAbstract()) {
-								continue;
-							}
-
-							// additionally, the source section need to match or
-							// be connected via an 'extend' reference
-							if (!(mhgMapping.getSourceSection().equals(abstractMapping.getSourceSection()) || mhgMapping
-									.getSourceSection().getExtend().contains(abstractMapping.getSourceSection()))) {
-								continue;
-							}
-
-							// finally, the target sections of the hint groups
-							// need to 'extend', too
-							if (mhg.getTargetSection().equals(val.getTargetSection())
-									|| mhg.getTargetSection().getExtend().contains(val.getTargetSection())) {
-								ret.add(val);
-							}
-						}
-
-						return ret;
-					}
-				});
+						});
 	}
 
 	/**

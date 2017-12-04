@@ -55,6 +55,7 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 	@Override
 	@SuppressWarnings("unchecked")
 	public C getOwningClass() {
+	
 		if (eContainerFeatureID() != GenericPackage.REFERENCE__OWNING_CLASS) return null;
 		return (C)eInternalContainer();
 	}

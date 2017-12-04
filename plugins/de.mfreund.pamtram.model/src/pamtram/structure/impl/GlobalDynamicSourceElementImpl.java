@@ -65,6 +65,7 @@ public abstract class GlobalDynamicSourceElementImpl<S extends Section<S, C, R, 
 	 * @generated
 	 */
 	public EList<InstanceSelectorType> getInstanceSelectors() {
+	
 		if (instanceSelectors == null) {
 			instanceSelectors = new EObjectContainmentEList<InstanceSelectorType>(InstanceSelector.class, this, StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT__INSTANCE_SELECTORS);
 		}

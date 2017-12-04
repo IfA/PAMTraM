@@ -110,6 +110,7 @@ public class NumericConstraintImpl extends SingleReferenceValueConstraintImpl im
 	 */
 	@Override
 	public NumericConstraintOperatorType getOperatorType() {
+	
 		return operatorType;
 	}
 
@@ -119,10 +120,12 @@ public class NumericConstraintImpl extends SingleReferenceValueConstraintImpl im
 	 */
 	@Override
 	public void setOperatorType(NumericConstraintOperatorType newOperatorType) {
+	
 		NumericConstraintOperatorType oldOperatorType = operatorType;
 		operatorType = newOperatorType == null ? OPERATOR_TYPE_EDEFAULT : newOperatorType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ConstraintPackage.NUMERIC_CONSTRAINT__OPERATOR_TYPE, oldOperatorType, operatorType));
+	
 	}
 
 	/**

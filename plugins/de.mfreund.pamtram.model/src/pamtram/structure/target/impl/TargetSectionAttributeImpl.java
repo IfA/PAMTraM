@@ -90,6 +90,7 @@ public abstract class TargetSectionAttributeImpl extends AttributeImpl<TargetSec
 	 * @generated
 	 */
 	public boolean isUnique() {
+	
 		return unique;
 	}
 
@@ -99,10 +100,12 @@ public abstract class TargetSectionAttributeImpl extends AttributeImpl<TargetSec
 	 * @generated
 	 */
 	public void setUnique(boolean newUnique) {
+	
 		boolean oldUnique = unique;
 		unique = newUnique;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, TargetPackage.TARGET_SECTION_ATTRIBUTE__UNIQUE, oldUnique, unique));
+	
 	}
 
 	/**
@@ -111,6 +114,7 @@ public abstract class TargetSectionAttributeImpl extends AttributeImpl<TargetSec
 	 * @generated
 	 */
 	public String getValue() {
+	
 		return value;
 	}
 
@@ -120,10 +124,12 @@ public abstract class TargetSectionAttributeImpl extends AttributeImpl<TargetSec
 	 * @generated
 	 */
 	public void setValue(String newValue) {
+	
 		String oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, TargetPackage.TARGET_SECTION_ATTRIBUTE__VALUE, oldValue, value));
+	
 	}
 
 	/**

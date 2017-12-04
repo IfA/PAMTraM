@@ -158,6 +158,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 */
 	@Override
 	public ValueConstraintType getType() {
+	
 		return type;
 	}
 
@@ -167,10 +168,12 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 */
 	@Override
 	public void setType(ValueConstraintType newType) {
+	
 		ValueConstraintType oldType = type;
 		type = newType == null ? TYPE_EDEFAULT : newType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__TYPE, oldType, type));
+	
 	}
 
 	/**
@@ -179,6 +182,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 */
 	@Override
 	public String getExpression() {
+	
 		return expression;
 	}
 
@@ -188,10 +192,12 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 */
 	@Override
 	public void setExpression(String newExpression) {
+	
 		String oldExpression = expression;
 		expression = newExpression;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION, oldExpression, expression));
+	
 	}
 
 	/**
@@ -200,6 +206,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 */
 	@Override
 	public EList<ValueModifierSet> getModifiers() {
+	
 		if (modifiers == null) {
 			modifiers = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__MODIFIERS);
 		}
@@ -212,6 +219,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 */
 	@Override
 	public EList<SourceInstanceSelector> getInstanceSelectors() {
+	
 		if (instanceSelectors == null) {
 			instanceSelectors = new EObjectContainmentEList<SourceInstanceSelector>(SourceInstanceSelector.class, this, ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS);
 		}
@@ -224,6 +232,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 */
 	@Override
 	public EList<ValueConstraintSourceInterface> getSourceElements() {
+	
 		if (sourceElements == null) {
 			sourceElements = new EObjectContainmentEList<ValueConstraintSourceInterface>(ValueConstraintSourceInterface.class, this, ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS);
 		}

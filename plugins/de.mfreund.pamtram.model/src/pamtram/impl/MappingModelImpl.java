@@ -154,6 +154,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	 */
 	@Override
 	public boolean isDeactivated() {
+	
 		return deactivated;
 	}
 
@@ -163,10 +164,12 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	 */
 	@Override
 	public void setDeactivated(boolean newDeactivated) {
+	
 		boolean oldDeactivated = deactivated;
 		deactivated = newDeactivated;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PamtramPackage.MAPPING_MODEL__DEACTIVATED, oldDeactivated, deactivated));
+	
 	}
 
 	/**
@@ -175,6 +178,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	 */
 	@Override
 	public ComplexCondition getLocalCondition() {
+	
 		return localCondition;
 	}
 
@@ -198,6 +202,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	 */
 	@Override
 	public void setLocalCondition(ComplexCondition newLocalCondition) {
+	
 		if (newLocalCondition != localCondition) {
 			NotificationChain msgs = null;
 			if (localCondition != null)
@@ -209,6 +214,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PamtramPackage.MAPPING_MODEL__LOCAL_CONDITION, newLocalCondition, newLocalCondition));
+	
 	}
 
 	/**
@@ -217,7 +223,8 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	 */
 	@Override
 	public ComplexCondition getSharedCondition() {
-		if (sharedCondition != null && sharedCondition.eIsProxy()) {
+	
+		  if (sharedCondition != null && sharedCondition.eIsProxy()) {
 			InternalEObject oldSharedCondition = (InternalEObject)sharedCondition;
 			sharedCondition = (ComplexCondition)eResolveProxy(oldSharedCondition);
 			if (sharedCondition != oldSharedCondition) {
@@ -242,10 +249,12 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	 */
 	@Override
 	public void setSharedCondition(ComplexCondition newSharedCondition) {
+	
 		ComplexCondition oldSharedCondition = sharedCondition;
 		sharedCondition = newSharedCondition;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PamtramPackage.MAPPING_MODEL__SHARED_CONDITION, oldSharedCondition, sharedCondition));
+	
 	}
 
 	/**
@@ -254,6 +263,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	 * @generated
 	 */
 	public EList<ComplexCondition> getAllConditions() {
+	
 		java.util.Set<Object> ret = new java.util.LinkedHashSet<>();
 		
 			if (this.getLocalCondition() != null) {
@@ -284,6 +294,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	 */
 	@Override
 	public EList<Mapping> getMappings() {
+	
 		if (mappings == null) {
 			mappings = new EObjectContainmentEList<Mapping>(Mapping.class, this, PamtramPackage.MAPPING_MODEL__MAPPINGS);
 		}
@@ -296,6 +307,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	 */
 	@Override
 	public EList<ValueModifierSet> getModifierSets() {
+	
 		if (modifierSets == null) {
 			modifierSets = new EObjectContainmentEList<ValueModifierSet>(ValueModifierSet.class, this, PamtramPackage.MAPPING_MODEL__MODIFIER_SETS);
 		}
@@ -308,6 +320,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	 */
 	@Override
 	public EList<FixedValue> getGlobalValues() {
+	
 		if (globalValues == null) {
 			globalValues = new EObjectContainmentEList<FixedValue>(FixedValue.class, this, PamtramPackage.MAPPING_MODEL__GLOBAL_VALUES);
 		}
@@ -323,6 +336,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	 */
 	@Override
 	public EList<Mapping> getActiveMappings() {
+	
 		List<Mapping> mappings = this.getMappings().stream().filter(m -> !m.isDeactivated() && !m.isAbstract()).collect(Collectors.toList());
 		return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.MAPPING_MODEL__ACTIVE_MAPPINGS,
 				mappings.size(), mappings.toArray());
@@ -334,6 +348,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	 */
 	@Override
 	public EList<GlobalAttribute> getGlobalAttributes() {
+	
 		if (globalAttributes == null) {
 			globalAttributes = new EObjectContainmentEList<GlobalAttribute>(GlobalAttribute.class, this, PamtramPackage.MAPPING_MODEL__GLOBAL_ATTRIBUTES);
 		}

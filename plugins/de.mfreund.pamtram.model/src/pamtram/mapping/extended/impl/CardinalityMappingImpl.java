@@ -142,6 +142,7 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 */
 	@Override
 	public String getExpression() {
+	
 		return expression;
 	}
 
@@ -151,10 +152,12 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 */
 	@Override
 	public void setExpression(String newExpression) {
+	
 		String oldExpression = expression;
 		expression = newExpression;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.CARDINALITY_MAPPING__EXPRESSION, oldExpression, expression));
+	
 	}
 
 	/**
@@ -163,6 +166,7 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 */
 	@Override
 	public EList<ValueModifierSet> getModifiers() {
+	
 		if (modifiers == null) {
 			modifiers = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, ExtendedPackage.CARDINALITY_MAPPING__MODIFIERS);
 		}
@@ -176,7 +180,8 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	@SuppressWarnings("unchecked")
 	@Override
 	public MetaModelElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> getSource() {
-		if (source != null && source.eIsProxy()) {
+	
+		  if (source != null && source.eIsProxy()) {
 			InternalEObject oldSource = (InternalEObject)source;
 			source = (MetaModelElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>)eResolveProxy(oldSource);
 			if (source != oldSource) {
@@ -202,10 +207,12 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	@Override
 	public void setSource(
 			MetaModelElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> newSource) {
+	
 		MetaModelElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> oldSource = source;
 		source = newSource;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.CARDINALITY_MAPPING__SOURCE, oldSource, source));
+	
 	}
 
 	/**
@@ -214,7 +221,8 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 */
 	@Override
 	public TargetSectionClass getTarget() {
-		if (target != null && target.eIsProxy()) {
+	
+		  if (target != null && target.eIsProxy()) {
 			InternalEObject oldTarget = (InternalEObject)target;
 			target = (TargetSectionClass)eResolveProxy(oldTarget);
 			if (target != oldTarget) {
@@ -239,10 +247,12 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 */
 	@Override
 	public void setTarget(TargetSectionClass newTarget) {
+	
 		TargetSectionClass oldTarget = target;
 		target = newTarget;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.CARDINALITY_MAPPING__TARGET, oldTarget, target));
+	
 	}
 
 	/**
@@ -251,6 +261,7 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 */
 	@Override
 	public EList<CardinalityMappingSourceInterface> getSourceElements() {
+	
 		if (sourceElements == null) {
 			sourceElements = new EObjectContainmentEList<CardinalityMappingSourceInterface>(CardinalityMappingSourceInterface.class, this, ExtendedPackage.CARDINALITY_MAPPING__SOURCE_ELEMENTS);
 		}

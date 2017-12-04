@@ -109,6 +109,7 @@ public abstract class InstantiableMappingHintGroupImpl extends NamedElementImpl 
 	 */
 	@Override
 	public boolean isDeactivated() {
+	
 		return deactivated;
 	}
 
@@ -119,10 +120,12 @@ public abstract class InstantiableMappingHintGroupImpl extends NamedElementImpl 
 	 */
 	@Override
 	public void setDeactivated(boolean newDeactivated) {
+	
 		boolean oldDeactivated = deactivated;
 		deactivated = newDeactivated;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.INSTANTIABLE_MAPPING_HINT_GROUP__DEACTIVATED, oldDeactivated, deactivated));
+	
 	}
 
 	/**
@@ -132,6 +135,7 @@ public abstract class InstantiableMappingHintGroupImpl extends NamedElementImpl 
 	 */
 	@Override
 	public ComplexCondition getLocalCondition() {
+	
 		return localCondition;
 	}
 
@@ -157,6 +161,7 @@ public abstract class InstantiableMappingHintGroupImpl extends NamedElementImpl 
 	 */
 	@Override
 	public void setLocalCondition(ComplexCondition newLocalCondition) {
+	
 		if (newLocalCondition != localCondition) {
 			NotificationChain msgs = null;
 			if (localCondition != null)
@@ -168,6 +173,7 @@ public abstract class InstantiableMappingHintGroupImpl extends NamedElementImpl 
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.INSTANTIABLE_MAPPING_HINT_GROUP__LOCAL_CONDITION, newLocalCondition, newLocalCondition));
+	
 	}
 
 	/**
@@ -177,7 +183,8 @@ public abstract class InstantiableMappingHintGroupImpl extends NamedElementImpl 
 	 */
 	@Override
 	public ComplexCondition getSharedCondition() {
-		if (sharedCondition != null && sharedCondition.eIsProxy()) {
+	
+		  if (sharedCondition != null && sharedCondition.eIsProxy()) {
 			InternalEObject oldSharedCondition = (InternalEObject)sharedCondition;
 			sharedCondition = (ComplexCondition)eResolveProxy(oldSharedCondition);
 			if (sharedCondition != oldSharedCondition) {
@@ -204,10 +211,12 @@ public abstract class InstantiableMappingHintGroupImpl extends NamedElementImpl 
 	 */
 	@Override
 	public void setSharedCondition(ComplexCondition newSharedCondition) {
+	
 		ComplexCondition oldSharedCondition = sharedCondition;
 		sharedCondition = newSharedCondition;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.INSTANTIABLE_MAPPING_HINT_GROUP__SHARED_CONDITION, oldSharedCondition, sharedCondition));
+	
 	}
 
 	/**
@@ -216,6 +225,7 @@ public abstract class InstantiableMappingHintGroupImpl extends NamedElementImpl 
 	 * @generated
 	 */
 	public EList<ComplexCondition> getAllConditions() {
+	
 		java.util.Set<Object> ret = new java.util.LinkedHashSet<>();
 		
 			if (this.getLocalCondition() != null) {

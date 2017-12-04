@@ -68,6 +68,7 @@ public abstract class MatchSpecElementImpl<S extends Section<S, C, R, A>, C exte
 	 * @generated
 	 */
 	public EList<R> getReferenceMatchSpec() {
+	
 		if (referenceMatchSpec == null) {
 			referenceMatchSpec = new EObjectResolvingEList<R>(Reference.class, this, PamtramPackage.MATCH_SPEC_ELEMENT__REFERENCE_MATCH_SPEC);
 		}

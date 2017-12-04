@@ -165,10 +165,12 @@ public class SourceValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= genericValidator.validateClass_validateEClassMatchesParentEReference(sourceSection, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateClass_validateCardinalityIsValid(sourceSection, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateClass_validateContainerIsValid(sourceSection, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateClass_validateNotSelfContainer(sourceSection, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateSection_extendsValidSections(sourceSection, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateSection_containerMatchesExtendContainer(sourceSection, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateSection_validateContainerMatchesExtendContainer(sourceSection, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateSection_validateExtendsValidSections(sourceSection, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateSection_validateNotExtendSelf(sourceSection, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSourceSection_isReferencedByMapping(sourceSection, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSourceSection_validateIsReferencedByMapping(sourceSection, diagnostics, context);
 		return result;
@@ -233,6 +235,7 @@ public class SourceValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= genericValidator.validateClass_validateEClassMatchesParentEReference(sourceSectionClass, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateClass_validateCardinalityIsValid(sourceSectionClass, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateClass_validateContainerIsValid(sourceSectionClass, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateClass_validateNotSelfContainer(sourceSectionClass, diagnostics, context);
 		return result;
 	}
 

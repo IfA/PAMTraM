@@ -146,6 +146,7 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	 */
 	@Override
 	public String getExpression() {
+	
 		return expression;
 	}
 
@@ -155,10 +156,12 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	 */
 	@Override
 	public void setExpression(String newExpression) {
+	
 		String oldExpression = expression;
 		expression = newExpression;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.CONTAINER_SELECTOR__EXPRESSION, oldExpression, expression));
+	
 	}
 
 	/**
@@ -167,6 +170,7 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	 */
 	@Override
 	public EList<ValueModifierSet> getModifiers() {
+	
 		if (modifiers == null) {
 			modifiers = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, ExtendedPackage.CONTAINER_SELECTOR__MODIFIERS);
 		}
@@ -205,6 +209,7 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	 */
 	@Override
 	public EList<InstanceSelectorSourceInterface> getSourceElements() {
+	
 		if (sourceElements == null) {
 			sourceElements = new EObjectContainmentEList<InstanceSelectorSourceInterface>(InstanceSelectorSourceInterface.class, this, ExtendedPackage.CONTAINER_SELECTOR__SOURCE_ELEMENTS);
 		}
@@ -217,7 +222,8 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	 */
 	@Override
 	public TargetSectionAttribute getReferenceAttribute() {
-		if (referenceAttribute != null && referenceAttribute.eIsProxy()) {
+	
+		  if (referenceAttribute != null && referenceAttribute.eIsProxy()) {
 			InternalEObject oldReferenceAttribute = (InternalEObject)referenceAttribute;
 			referenceAttribute = (TargetSectionAttribute)eResolveProxy(oldReferenceAttribute);
 			if (referenceAttribute != oldReferenceAttribute) {
@@ -242,10 +248,12 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	 */
 	@Override
 	public void setReferenceAttribute(TargetSectionAttribute newReferenceAttribute) {
+	
 		TargetSectionAttribute oldReferenceAttribute = referenceAttribute;
 		referenceAttribute = newReferenceAttribute;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.CONTAINER_SELECTOR__REFERENCE_ATTRIBUTE, oldReferenceAttribute, referenceAttribute));
+	
 	}
 
 	/**
@@ -254,7 +262,8 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	 */
 	@Override
 	public TargetSectionClass getTargetClass() {
-		if (targetClass != null && targetClass.eIsProxy()) {
+	
+		  if (targetClass != null && targetClass.eIsProxy()) {
 			InternalEObject oldTargetClass = (InternalEObject)targetClass;
 			targetClass = (TargetSectionClass)eResolveProxy(oldTargetClass);
 			if (targetClass != oldTargetClass) {
@@ -279,10 +288,12 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	 */
 	@Override
 	public void setTargetClass(TargetSectionClass newTargetClass) {
+	
 		TargetSectionClass oldTargetClass = targetClass;
 		targetClass = newTargetClass;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.CONTAINER_SELECTOR__TARGET_CLASS, oldTargetClass, targetClass));
+	
 	}
 
 	/**

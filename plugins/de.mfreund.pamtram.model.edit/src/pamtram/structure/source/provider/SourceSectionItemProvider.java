@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -36,9 +37,8 @@ import pamtram.structure.source.SourceSection;
 public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public SourceSectionItemProvider(AdapterFactory adapterFactory) {
@@ -46,9 +46,8 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -65,9 +64,8 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Abstract feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This adds a property descriptor for the Abstract feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addAbstractPropertyDescriptor(Object object) {
@@ -87,8 +85,7 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Extend feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Extend feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
@@ -111,10 +108,13 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 							return new BasicEList<>();
 						}
 
-						Collection<SourceSection> values = (Collection<SourceSection>) super.getChoiceOfValues(object);
 						Collection<SourceSection> ret = new BasicEList<>();
 
-						for (SourceSection val : values) {
+						for (Object v : super.getChoiceOfValues(object).stream()
+								.filter(e -> !e.equals(object) && !((SourceSection) e).getAllExtend().contains(object))
+								.collect(Collectors.toList())) {
+
+							SourceSection val = (SourceSection) v;
 							// only abstract sections that have a matching
 							// eClass can be used as extended section
 							if (val.isAbstract() && (val.getEClass() == sourceSection.getEClass()
@@ -129,9 +129,8 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Deactivated feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This adds a property descriptor for the Deactivated feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addDeactivatedPropertyDescriptor(Object object) {
@@ -151,8 +150,9 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Referencing Mappings feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Referencing Mappings feature. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 *
 	 * @generated
 	 */
 	protected void addReferencingMappingsPropertyDescriptor(Object object) {
@@ -182,8 +182,7 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 	}
 
 	/**
-	 * This returns SourceSection.gif. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * This returns SourceSection.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
@@ -195,8 +194,7 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 
 	/**
 	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -205,8 +203,7 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
@@ -249,10 +246,10 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 *
 	 * @generated
 	 */
 	public void notifyChangedGen(Notification notification) {
@@ -275,10 +272,9 @@ public class SourceSectionItemProvider extends SourceSectionClassItemProvider {
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing the children that can be created under this object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

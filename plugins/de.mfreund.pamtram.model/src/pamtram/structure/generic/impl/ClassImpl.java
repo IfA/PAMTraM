@@ -147,7 +147,8 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 */
 	@Override
 	public EClass getEClass() {
-		if (eClass != null && eClass.eIsProxy()) {
+	
+		  if (eClass != null && eClass.eIsProxy()) {
 			InternalEObject oldEClass = (InternalEObject)eClass;
 			eClass = (EClass)eResolveProxy(oldEClass);
 			if (eClass != oldEClass) {
@@ -171,10 +172,12 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 * @generated
 	 */
 	public void setEClassGen(EClass newEClass) {
+	
 		EClass oldEClass = eClass;
 		eClass = newEClass;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GenericPackage.CLASS__ECLASS, oldEClass, eClass));
+	
 	}
 
 	/**
@@ -193,6 +196,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 */
 	@Override
 	public CardinalityType getCardinality() {
+	
 		return cardinality;
 	}
 
@@ -202,10 +206,12 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 */
 	@Override
 	public void setCardinality(CardinalityType newCardinality) {
+	
 		CardinalityType oldCardinality = cardinality;
 		cardinality = newCardinality == null ? CARDINALITY_EDEFAULT : newCardinality;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GenericPackage.CLASS__CARDINALITY, oldCardinality, cardinality));
+	
 	}
 
 	/**
@@ -214,6 +220,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 */
 	@Override
 	public EList<R> getReferences() {
+	
 		if (references == null) {
 			references = new EObjectContainmentWithInverseEList<R>(Reference.class, this, GenericPackage.CLASS__REFERENCES, GenericPackage.REFERENCE__OWNING_CLASS);
 		}
@@ -226,7 +233,8 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 */
 	@SuppressWarnings("unchecked")
 	public C getContainerGen() {
-		if (container != null && container.eIsProxy()) {
+	
+		  if (container != null && container.eIsProxy()) {
 			InternalEObject oldContainer = (InternalEObject)container;
 			container = (C)eResolveProxy(oldContainer);
 			if (container != oldContainer) {
@@ -247,8 +255,9 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 		C container = this.getContainerGen();
 		if (container == null) {
 			if (this instanceof Section) {
-				return ((Section<S, C, R, A>) this).getExtend().stream().filter(s -> s.getContainer() != null)
-						.map(Section::getContainer).findFirst().orElse(null);
+				return ((Section<S, C, R, A>) this).getExtend().stream()
+						.filter(s -> !this.equals(s) && s.getContainer() != null).map(Section::getContainer).findFirst()
+						.orElse(null);
 			} else {
 				return this.getOwningContainmentReference().getOwningClass();
 			}
@@ -271,10 +280,12 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 */
 	@Override
 	public void setContainer(C newContainer) {
+	
 		C oldContainer = container;
 		container = newContainer;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GenericPackage.CLASS__CONTAINER, oldContainer, container));
+	
 	}
 
 	/**
@@ -283,6 +294,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 */
 	@Override
 	public EList<A> getAttributes() {
+	
 		if (attributes == null) {
 			attributes = new EObjectContainmentWithInverseEList<A>(Attribute.class, this, GenericPackage.CLASS__ATTRIBUTES, GenericPackage.ATTRIBUTE__OWNING_CLASS);
 		}
@@ -295,6 +307,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 */
 	@Override
 	public EList<C> getAllContainer() {
+	
 		List<Object> ret = new ArrayList<>();
 		if(this.getContainer() != null) {
 		
@@ -323,6 +336,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 */
 	@Override
 	public EList<A> getActualAttributes() {
+	
 		List<Object> ret = this.getAttributes().stream().filter(a -> a instanceof pamtram.structure.generic.ActualAttribute<?, ?, ?, ?>).collect(Collectors.toList());
 		
 		return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.CLASS__ACTUAL_ATTRIBUTES,
@@ -335,6 +349,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 */
 	@Override
 	public EList<A> getVirtualAttributes() {
+	
 		List<Object> ret = this.getAttributes().stream().filter(a -> a instanceof pamtram.structure.generic.VirtualAttribute<?, ?, ?, ?>).collect(Collectors.toList());
 		
 		return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.CLASS__ACTUAL_ATTRIBUTES,
@@ -347,6 +362,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 */
 	@Override
 	public EList<R> getActualReferences() {
+	
 		List<Object> ret = this.getReferences().stream().filter(a -> a instanceof pamtram.structure.generic.ActualReference<?, ?, ?, ?>).collect(Collectors.toList());
 		
 		return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.CLASS__ACTUAL_REFERENCES,
@@ -359,6 +375,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 */
 	@Override
 	public EList<R> getVirtualReferences() {
+	
 		List<Object> ret = this.getReferences().stream().filter(a -> a instanceof pamtram.structure.generic.VirtualReference<?, ?, ?, ?>).collect(Collectors.toList());
 		
 		return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.CLASS__VIRTUAL_REFERENCES,
@@ -371,6 +388,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 */
 	@Override
 	public EList<A> getAllAttributes() {
+	
 		List<Object> ret = new ArrayList<>();
 		
 		ret.addAll(this.getAttributes());
@@ -404,6 +422,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 */
 	@Override
 	public EList<R> getAllReferences() {
+	
 		List<Object> ret = new ArrayList<>();
 		
 		ret.addAll(this.getReferences());
@@ -435,6 +454,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 */
 	@Override
 	public EList<C> getAllConcreteExtending() {
+	
 		@SuppressWarnings("unchecked")
 		List<Object> ret = this instanceof Section<?, ?, ?, ?> && ((S) this).isAbstract()
 				? ((S) this).getAllExtending().stream().filter(s -> !s.isAbstract()).collect(Collectors.toList())
@@ -657,6 +677,30 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public boolean validateNotSelfContainer(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		boolean result = !this.getAllContainer().contains(this);
+		
+		if (!result && diagnostics != null) {
+		
+			String errorMessage = "A Class must not specify itself as container (neither directly nor indirectly)!";
+		
+			diagnostics.add(new BasicDiagnostic
+					(Diagnostic.ERROR, 
+					GenericValidator.DIAGNOSTIC_SOURCE,
+						GenericValidator.CLASS__VALIDATE_NOT_SELF_CONTAINER, 
+						errorMessage,
+					new Object[] { this, GenericPackage.Literals.CLASS__CONTAINER }));
+		
+		}
+		
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -837,6 +881,8 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 				return validateCardinalityIsValid((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case GenericPackage.CLASS___VALIDATE_CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP:
 				return validateContainerIsValid((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case GenericPackage.CLASS___VALIDATE_NOT_SELF_CONTAINER__DIAGNOSTICCHAIN_MAP:
+				return validateNotSelfContainer((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

@@ -16,8 +16,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
@@ -340,8 +338,8 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 		/*
 		 * Now, perform the first-run instantiation.
 		 */
-		if (this.instantiateTargetSectionFirstPass(targetSection, mappingGroup, mappingHints, hintValues, instBySection,
-				new HashMap<EClass, Map<EAttribute, Set<String>>>()) != null) {
+		if (this.instantiateTargetSectionFirstPass(targetSection, mappingGroup, mappingHints, hintValues,
+				instBySection) != null) {
 
 			return instBySection;
 		} else {
@@ -368,15 +366,12 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 	 *            The {@link HintValueStorage hint values} to take into account.
 	 * @param createdInstancesByTargetSectionClass
 	 *            The map where all created {@link EObjectWrapper instances} are registered.
-	 * @param sectionAttributeValues
-	 *            These are used to determine if an attribute value was used higher up in the section hierarchy.
 	 * @return The list of created {@link EObjectWrapper instances} or '<em>null</em>' if an error occurred.
 	 */
 	private List<EObjectWrapper> instantiateTargetSectionFirstPass(final TargetSectionClass targetSectionClass,
 			final InstantiableMappingHintGroup mappingGroup, final List<MappingHint> mappingHints,
 			final HintValueStorage hintValues,
-			final Map<TargetSectionClass, List<EObjectWrapper>> createdInstancesByTargetSectionClass,
-			final Map<EClass, Map<EAttribute, Set<String>>> sectionAttributeValues) {
+			final Map<TargetSectionClass, List<EObjectWrapper>> createdInstancesByTargetSectionClass) {
 
 		// Determine the cardinality based on Attribute- and CardinalityMappings
 		//
@@ -413,7 +408,7 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 		// create attributes
 		//
 		final List<EObjectWrapper> markedForDelete = this.instantiateTargetSectionAttributes(targetSectionClass,
-				mappingGroup, mappingHints, hintValues, sectionAttributeValues, cardinality, instances);
+				mappingGroup, mappingHints, hintValues, cardinality, instances);
 
 		if (markedForDelete == null) {
 			return null;
@@ -422,8 +417,7 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 		// create containment references
 		//
 		boolean result = this.instantiateTargetSectionContainmentReferences(targetSectionClass, mappingGroup,
-				mappingHints, hintValues, createdInstancesByTargetSectionClass, sectionAttributeValues, instances,
-				markedForDelete);
+				mappingHints, hintValues, createdInstancesByTargetSectionClass, instances, markedForDelete);
 
 		if (!result) {
 			return null;
@@ -748,8 +742,6 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 	 *            {@link ExportedMappingHintGroup imported hints}).
 	 * @param hintValues
 	 *            The {@link HintValueStorage hint values} to take into account.
-	 * @param sectionAttributeValues
-	 *            These are used to determine if an attribute value was used higher up in the section hierarchy.
 	 * @param cardinality
 	 * @param instances
 	 * @return markedForDelete The list of instances to be deleted or '<em>null</em>' if an internal error occurred and
@@ -757,8 +749,7 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 	 */
 	private List<EObjectWrapper> instantiateTargetSectionAttributes(final TargetSectionClass targetSectionClass,
 			final InstantiableMappingHintGroup mappingGroup, final List<MappingHint> mappingHints,
-			final HintValueStorage hintValues, final Map<EClass, Map<EAttribute, Set<String>>> sectionAttributeValues,
-			int cardinality, final List<EObjectWrapper> instances) {
+			final HintValueStorage hintValues, int cardinality, final List<EObjectWrapper> instances) {
 
 		// This keeps track of the instances that need to be deleted due to
 		// duplicate attribute values
@@ -905,32 +896,9 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 							}
 						}
 					}
-					// Check if value is unique and was already used, mark
-					// instance for deletion if necessary
-					boolean attrValUsedInSection = false;
-					if (!sectionAttributeValues.containsKey(targetSectionClass.getEClass())) {
 
-						sectionAttributeValues.put(targetSectionClass.getEClass(),
-								new HashMap<EAttribute, Set<String>>());
-
-					}
-					final Map<EAttribute, Set<String>> secAttrValsForEClass = sectionAttributeValues
-							.get(targetSectionClass.getEClass());
-					if (attr instanceof ActualAttribute) {
-
-						final EAttribute eAttr = ((ActualAttribute<?, ?, ?, ?>) attr).getAttribute();
-
-						if (!secAttrValsForEClass.containsKey(eAttr)) {
-							secAttrValsForEClass.put(eAttr, new LinkedHashSet<String>());
-						} else {
-							attrValUsedInSection = secAttrValsForEClass.get(eAttr).contains(attrValue);
-						}
-
-						secAttrValsForEClass.get(eAttr).add(attrValue);
-
-					}
-					if (attr.isUnique() && (instance.attributeValueExists(attr, attrValue)
-							|| attributeValues.get(attr).contains(attrValue) || attrValUsedInSection)) {
+					if (attr.isUnique() && this.targetSectionRegistry.getAttrValRegistry().attributeValueExists(attr,
+							attrValue)) {
 
 						/*
 						 * we can only delete this at the end, or else the attributeHint values won't fit anymore
@@ -951,8 +919,6 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 		 */
 		for (final EObjectWrapper instance : instances) {
 
-			final boolean noDelete = !markedForDelete.contains(instance);
-
 			for (final TargetSectionAttribute attr : attributeValues.keySet()) {
 
 				int numberOfValuesPerInstance = attributeValues.get(attr).size() / instances.size();
@@ -961,7 +927,7 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 					continue;
 				}
 
-				if (noDelete && numberOfValuesPerInstance > 1) {
+				if (numberOfValuesPerInstance > 1) {
 					if (attr instanceof VirtualAttribute<?, ?, ?, ?>) {
 						this.logger.severe(() -> "Trying to set multiple values for a VirtualAttribute ('"
 								+ attr.getName() + "'). This is currently not supported!");
@@ -978,65 +944,62 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 					}
 				}
 
-				if (noDelete) {
+				boolean isMany = attr instanceof ActualTargetSectionAttribute
+						&& ((ActualTargetSectionAttribute) attr).getAttribute().isMany();
 
-					boolean isMany = attr instanceof ActualTargetSectionAttribute
-							&& ((ActualTargetSectionAttribute) attr).getAttribute().isMany();
+				// In case we are dealing with a multi-valued attribute, we add to potentially already existing
+				// values (e.g. based on another attribute mapping) instead of overwriting them
+				//
+				List<String> setValues = !isMany ? new ArrayList<>()
+						: new ArrayList<>(this.getCurrentAttributeValues(instance, attr));
+				setValues.addAll(IntStream.range(0, numberOfValuesPerInstance)
+						.mapToObj(i -> attributeValues.get(attr).get(instances.indexOf(instance) + i))
+						.collect(Collectors.toList()));
 
-					// In case we are dealing with a multi-valued attribute, we add to potentially already existing
-					// values (e.g. based on another attribute mapping) instead of overwriting them
-					//
-					List<String> setValues = !isMany ? new ArrayList<>()
-							: new ArrayList<>(this.getCurrentAttributeValues(instance, attr));
-					setValues.addAll(IntStream.range(0, numberOfValuesPerInstance)
-							.mapToObj(i -> attributeValues.get(attr).get(instances.indexOf(instance) + i))
-							.collect(Collectors.toList()));
+				try {
 
-					try {
+					// finally, we can set the value of the attribute
+					if (!targetSectionClass.isLibraryEntry()) {
+						/*
+						 * setting an Attribute causes the value to be saved in the attribute value registry
+						 */
+						instance.setAttributeValues(attr, setValues);
+					} else {
 
-						// finally, we can set the value of the attribute
-						if (!targetSectionClass.isLibraryEntry()) {
-							/*
-							 * setting an Attribute causes the value to be saved in the attribute value registry
-							 */
-							instance.setAttributeValues(attr, setValues);
+						String setValue = setValues.get(0);
+						/*
+						 * for library entries, we cannot simply set the value as the attribute we are handling is not
+						 * part of the targetSectionClass; instead we want to specify the value as 'new value' for the
+						 * affected AttributeParameter
+						 */
+						LibraryEntry specificLibEntry = this.targetSectionRegistry.getLibraryEntryRegistry()
+								.get(instance).getLibraryEntry();
+						LibraryEntry genericLibEntry = (LibraryEntry) targetSectionClass.eContainer().eContainer();
+						int attParamIndex = genericLibEntry.getParameters().indexOf(attr.eContainer());
+						if (attParamIndex >= 0) {
+							AttributeParameter attrParam = (AttributeParameter) specificLibEntry.getParameters()
+									.get(attParamIndex);
+							@SuppressWarnings("unchecked")
+							AbstractAttributeParameter<EObject> originalParam = (AbstractAttributeParameter<EObject>) attrParam
+									.getOriginalParameter();
+
+							originalParam.setNewValue(setValue);
 						} else {
-
-							String setValue = setValues.get(0);
-							/*
-							 * for library entries, we cannot simply set the value as the attribute we are handling is
-							 * not part of the targetSectionClass; instead we want to specify the value as 'new value'
-							 * for the affected AttributeParameter
-							 */
-							LibraryEntry specificLibEntry = this.targetSectionRegistry.getLibraryEntryRegistry()
-									.get(instance).getLibraryEntry();
-							LibraryEntry genericLibEntry = (LibraryEntry) targetSectionClass.eContainer().eContainer();
-							int attParamIndex = genericLibEntry.getParameters().indexOf(attr.eContainer());
-							if (attParamIndex >= 0) {
-								AttributeParameter attrParam = (AttributeParameter) specificLibEntry.getParameters()
-										.get(attParamIndex);
-								@SuppressWarnings("unchecked")
-								AbstractAttributeParameter<EObject> originalParam = (AbstractAttributeParameter<EObject>) attrParam
-										.getOriginalParameter();
-
-								originalParam.setNewValue(setValue);
-							} else {
-								if (attr.equals(genericLibEntry.getId())) {
-									specificLibEntry.getId().setValue(setValue);
-								} else if (attr.equals(genericLibEntry.getClasspath())) {
-									specificLibEntry.getClasspath().setValue(setValue);
-								}
+							if (attr.equals(genericLibEntry.getId())) {
+								specificLibEntry.getId().setValue(setValue);
+							} else if (attr.equals(genericLibEntry.getClasspath())) {
+								specificLibEntry.getClasspath().setValue(setValue);
 							}
 						}
-
-					} catch (final IllegalArgumentException e) {
-						this.logger.severe(() -> "Could not set Attribute " + attr.getName()
-								+ " of target section Class " + targetSectionClass.getName() + " in target section "
-								+ targetSectionClass.getContainingSection().getName()
-								+ ".\nThe problematic value(s) was/were: '" + String.join(", ", setValues) + "'.");
 					}
 
+				} catch (final IllegalArgumentException e) {
+					this.logger.severe(() -> "Could not set Attribute " + attr.getName() + " of target section Class "
+							+ targetSectionClass.getName() + " in target section "
+							+ targetSectionClass.getContainingSection().getName()
+							+ ".\nThe problematic value(s) was/were: '" + String.join(", ", setValues) + "'.");
 				}
+
 			}
 
 		}
@@ -1108,8 +1071,6 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 	 *            The {@link HintValueStorage hint values} to take into account.
 	 * @param createdInstancesByTargetSectionClass
 	 *            The registry where created {@link EObjectWrapper instances} shall be stored.
-	 * @param sectionAttributeValues
-	 *            These are used to determine if an attribute value was used higher up in the section hierarchy.
 	 * @param instances
 	 *            The list of {@link EObjectWrapper instances} that have been created for the given
 	 *            {@link TargetSectionClass}. The references need to be created for each of these instances unless they
@@ -1123,7 +1084,6 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 			final InstantiableMappingHintGroup mappingGroup, final List<MappingHint> mappingHints,
 			final HintValueStorage hintValues,
 			final Map<TargetSectionClass, List<EObjectWrapper>> createdInstancesByTargetSectionClass,
-			final Map<EClass, Map<EAttribute, Set<String>>> sectionAttributeValues,
 			final List<EObjectWrapper> instances, final List<EObjectWrapper> markedForDelete) {
 
 		// collect all containment references
@@ -1147,7 +1107,7 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 				for (final TargetSectionClass val : ref.getValue()) {
 
 					final List<EObjectWrapper> children = this.instantiateTargetSectionFirstPass(val, mappingGroup,
-							mappingHints, hintValues, createdInstancesByTargetSectionClass, sectionAttributeValues);
+							mappingHints, hintValues, createdInstancesByTargetSectionClass);
 
 					if (children != null) { // error? //TODO also delete
 						// here?

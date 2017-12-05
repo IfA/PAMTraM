@@ -3,19 +3,17 @@ package de.mfreund.gentrans.transformation.expanding;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
@@ -52,6 +50,7 @@ import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.target.TargetSectionClass;
 import pamtram.structure.target.TargetSectionCompositeReference;
 import pamtram.structure.target.TargetSectionReference;
+import pamtram.structure.target.VirtualTargetSectionAttribute;
 
 /**
  * Class for instantiating target model sections using the hints supplied by {@link MappingInstanceDescriptor
@@ -408,7 +407,7 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 		// create attributes
 		//
 		final List<EObjectWrapper> markedForDelete = this.instantiateTargetSectionAttributes(targetSectionClass,
-				mappingGroup, mappingHints, hintValues, cardinality, instances);
+				mappingGroup, mappingHints, hintValues, instances);
 
 		if (markedForDelete == null) {
 			return null;
@@ -631,12 +630,19 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 	}
 
 	/**
-	 *
+	 * This just sums up the cardinalities contributed by each {@link AttributeMapping} (resp. the corresponding hint
+	 * values) for the given {@link TargetSectionAttribute}. I.e, if there are two AttributeMappings for the given
+	 * Attribute, this will return the sum of the cardinalities resulting from each of those two AttributeMappings.
 	 *
 	 * @param hintValues
+	 *            The {@link HintValueStorage} providing the hint values based on which the cardinalities are
+	 *            calculated.
 	 * @param hints
+	 *            The list of potential {@link AttributeMapping AttributeMappings} (only the subset pointing to the
+	 *            given <em>targetAttribute</em> are evaluated by this method).
 	 * @param targetAttribute
-	 * @return
+	 *            The {@link TargetSectionAttribute} for which the cardinality shall be determined.
+	 * @return The determined cardinality.
 	 */
 	private int getTargetAttributeCardinality(final HintValueStorage hintValues, List<AttributeMapping> hints,
 			TargetSectionAttribute targetAttribute) {
@@ -648,26 +654,12 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 		for (AttributeMapping hint : hints.stream().filter(a -> a.getTarget().equals(targetAttribute))
 				.collect(Collectors.toList())) {
 
-			int hintCardinality = this.getAttributeMappingCardinality(hintValues, hint);
+			int hintCardinality = hintValues.getHintValues(hint).size();
 
 			localAttributeMappingHintCardinality += hintCardinality;
 
 		}
 		return localAttributeMappingHintCardinality;
-	}
-
-	/**
-	 *
-	 *
-	 * @param hintValues
-	 * @param hint
-	 * @return
-	 */
-	private int getAttributeMappingCardinality(final HintValueStorage hintValues, AttributeMapping hint) {
-
-		int hintCardinality = hintValues.getHintValues(hint).size();
-
-		return hintCardinality;
 	}
 
 	/**
@@ -742,14 +734,15 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 	 *            {@link ExportedMappingHintGroup imported hints}).
 	 * @param hintValues
 	 *            The {@link HintValueStorage hint values} to take into account.
-	 * @param cardinality
 	 * @param instances
+	 *            The {@link EObjectWrapper instances} created based on the given {@link TargetSectionClass} for which
+	 *            the {@link TargetSectionAttribute TargetSectionAttributes} shall be instantiated.
 	 * @return markedForDelete The list of instances to be deleted or '<em>null</em>' if an internal error occurred and
 	 *         the transformation should abort.
 	 */
 	private List<EObjectWrapper> instantiateTargetSectionAttributes(final TargetSectionClass targetSectionClass,
 			final InstantiableMappingHintGroup mappingGroup, final List<MappingHint> mappingHints,
-			final HintValueStorage hintValues, int cardinality, final List<EObjectWrapper> instances) {
+			final HintValueStorage hintValues, final List<EObjectWrapper> instances) {
 
 		// This keeps track of the instances that need to be deleted due to
 		// duplicate attribute values
@@ -762,114 +755,28 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 		 */
 		final Map<TargetSectionAttribute, List<String>> attributeValues = new LinkedHashMap<>();
 
-		EList<TargetSectionAttribute> attributes = targetSectionClass.getAllAttributes();
-
 		List<AttributeMapping> attributeMappings = mappingHints.stream().filter(h -> h instanceof AttributeMapping)
 				.map(h -> (AttributeMapping) h).collect(Collectors.toList());
 
-		// The cardinalities for each attribute as defined by the associated mapping hints
-		//
-		Map<TargetSectionAttribute, Integer> attributeBasedCardinalities = new HashMap<>();
-		for (final TargetSectionAttribute attr : attributes) {
-			attributeBasedCardinalities.put(attr,
-					this.getTargetAttributeCardinality(hintValues, attributeMappings, attr));
-		}
+		for (final TargetSectionAttribute attr : targetSectionClass.getAllAttributes()) {
 
-		for (final TargetSectionAttribute attr : attributes) {
-
-			// The cardinality added by each hint
-			//
-			Map<AttributeMapping, Integer> hintBasedCardinalities = new LinkedHashMap<>();
-			for (final MappingHint hint : attributeMappings) {
-				if (((AttributeMapping) hint).getTarget().equals(attr)) {
-					hintBasedCardinalities.put((AttributeMapping) hint, hintValues.getHintValues(hint).size());
-				}
-			}
-
-			// If there are multiple hints for one TargetAttribute and the combined cardinality does not match the
-			// expected cardinality, more complex algorithms are necessary. Currently, we do not support this...
-			//
-			if (hintBasedCardinalities.size() > 1 && hintBasedCardinalities.values().stream()
-					.mapToInt(Integer::intValue).sum() != attributeBasedCardinalities.get(attr)) {
-				this.logger.severe(
-						() -> "Internal error during calculation. Inappropriate combination of AttributeMappings found for one TargetSectionAttribute ('"
-								+ attr.getName() + "')!");
-				return null;
-			}
-
-			LinkedList<String> attrHintValues = new LinkedList<>();
 			attributeValues.put(attr, new LinkedList<String>());
 
-			if (!hintBasedCardinalities.isEmpty()) {
-
-				if (hintBasedCardinalities.size() == 1) {
-					AttributeMapping hint = hintBasedCardinalities.keySet().iterator().next();
-
-					int numberOfHintValues = hintValues.getHintValues(hint).size();
-
-					if (numberOfHintValues == 1) {
-
-						// Exactly one hint value found -> reuse for all
-						// instances
-						//
-						for (int i = 0; i < cardinality; i++) {
-							attrHintValues.add(hintValues.getNextHintValue(hint));
-						}
-
-					} else if (numberOfHintValues < cardinality && !hintValues.getHintValues(hint).isEmpty()
-							&& cardinality % numberOfHintValues == 0) {
-
-						// Multiply the hint values to fit the cardinality
-						//
-						attrHintValues = new LinkedList<>();
-						for (int i = 0; i < cardinality / numberOfHintValues; i++) {
-							attrHintValues.addAll(hintValues.getHintValues(hint));
-						}
-
-					} else if (numberOfHintValues >= cardinality) {
-
-						// As many/more hint values found as/than instances
-						// -> each instance gets its own hint value
-						//
-						for (int i = 0; i < cardinality; i++) {
-							attrHintValues.add(hintValues.getNextHintValue(hint));
-						}
-						// attrHintValues = hintValues.getHintValues(hint);
-
-					} else {
-
-						// Less hint values found than instance -> This
-						// should not happen
-						//
-						this.logger.severe(() -> "Cardinality mismatch (expected: " + cardinality + ", got :"
-								+ numberOfHintValues + "): " + hint.getName() + " for Mapping "
-								+ ((Mapping) mappingGroup.eContainer()).getName() + " (Group: " + mappingGroup.getName()
-								+ ") Maybe check Cardinality of Metamodel section?");
-						return null;
-					}
-				} else {
-					attrHintValues = new LinkedList<>();
-					for (Entry<AttributeMapping, Integer> entry : hintBasedCardinalities.entrySet()) {
-						attrHintValues.addAll(hintValues.getHintValues(entry.getKey()));
-					}
-				}
-			}
-
-			// Create and store the hint values (they will be set later on
-			// after we have check for duplicates)
+			// Get a useful number of hint values
 			//
-			int numberOfValuesPerInstance = attrHintValues.isEmpty() ? 1 : attrHintValues.size() / instances.size();
-			for (int i = 0; i < instances.size(); i++) {
+			LinkedList<String> attrHintValues = new LinkedList<>(
+					this.harmonizeHintValues(attr, instances.size(), hintValues, attributeMappings));
 
-				EObjectWrapper instance = instances.get(i);
-				for (int j = 0; j < numberOfValuesPerInstance; j++) {
-					String attrValue = null;
-					if (!attrHintValues.isEmpty()) {
-						attrValue = attrHintValues.removeFirst();
-					} else if (attr.getValue() != null && !attr.getValue().isEmpty()) {
-						attrValue = attr.getValue();
-					}
-					if (attrValue == null) {
+			// No hint values are present, so we either use the default value (if present) are ask the
+			// AmbiguityResolvingStrategy for a value to use
+			//
+			if (attrHintValues.isEmpty()) {
+
+				for (EObjectWrapper instance : instances) {
+
+					if (attr.getValue() != null && !attr.getValue().isEmpty()) {
+						attrHintValues.add(attr.getValue());
+					} else {
 						/*
 						 * Consult the specified resolving strategy to resolve the ambiguity.
 						 */
@@ -883,7 +790,7 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 												resolved.get(0));
 							}
 							this.logger.fine("[Ambiguity] ...finished.");
-							attrValue = resolved.get(0);
+							attrHintValues.add(resolved.get(0));
 						} catch (AmbiguityResolvingException e) {
 							if (e.getCause() instanceof UserAbortException) {
 								throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
@@ -897,8 +804,29 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 						}
 					}
 
-					if (attr.isUnique() && this.targetSectionRegistry.getAttrValRegistry().attributeValueExists(attr,
-							attrValue)) {
+				}
+			}
+
+			// Always create at least one value so that we are able to used the default value for the attribute (if
+			// present) or use the AmbiguityResolvingStrategy
+			//
+			int numberOfValuesPerInstance = attrHintValues.size() / instances.size();
+
+			// Create and store the hint values (they will be set later on
+			// after we have check for duplicates)
+			//
+			for (int i = 0; i < instances.size(); i++) {
+
+				EObjectWrapper instance = instances.get(i);
+				List<String> hintValuesForInstance = attrHintValues.subList(i * numberOfValuesPerInstance,
+						(i + 1) * numberOfValuesPerInstance);
+
+				for (int j = 0; j < numberOfValuesPerInstance; j++) {
+
+					String attrValue = hintValuesForInstance.get(j);
+
+					if (attr.isUnique() && (attributeValues.get(attr).contains(attrValue)
+							|| this.targetSectionRegistry.getAttrValRegistry().attributeValueExists(attr, attrValue))) {
 
 						/*
 						 * we can only delete this at the end, or else the attributeHint values won't fit anymore
@@ -906,7 +834,9 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 						markedForDelete.add(instance);
 
 					}
+
 					// save attr value in Map
+					//
 					attributeValues.get(attr).add(attrValue);
 				}
 
@@ -1005,6 +935,137 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 		}
 
 		return markedForDelete;
+	}
+
+	/**
+	 * This harmonizes the actual extracted hint values for the given {@link TargetSectionAttribute} with the expected
+	 * number of values. For example, if only a single value has been extracted but 3 values are expected, this will
+	 * just duplicate the single hint value three times.
+	 * <p />
+	 * Note: If no hint values could be determined (e.g. because there are no {@link AttributeMapping AttributeMappings}
+	 * corresponding to the given {@link TargetSectionAttribute}) or if anything goes wrong during the harmonization, an
+	 * empty list will be returned.
+	 * <p />
+	 * Note: If the given {@link TargetSectionAttribute} is not {@link EAttribute#isMany() many-valued}, the size of the
+	 * returned list will always match the given <em>expected</em> number. If it is {@link EAttribute#isMany()
+	 * many-valued}, the size of the returned list will always be a multiple thereof.
+	 *
+	 * @param attribute
+	 *            The {@link TargetSectionAttribute} for which the hint values shall be harmonized.
+	 * @param expected
+	 *            The expected number of hint values.
+	 * @param hintValues
+	 *            The {@link HintValueStorage} providing the extracted hint values.
+	 * @param attributeMappings
+	 *            The list of potential {@link AttributeMapping AttributeMappings} providing values for the given
+	 *            <em>attribute</em> (only the subset of those actually pointing to the given
+	 *            {@link TargetSectionAttribute} are evaluated)
+	 * @return The harmonized hint values.
+	 */
+	private List<String> harmonizeHintValues(final TargetSectionAttribute attribute, int expected,
+			final HintValueStorage hintValues, List<AttributeMapping> attributeMappings) {
+
+		List<String> attrHintValues = new ArrayList<>();
+
+		// The subset of the given AttributeMappings that point to the given attribute
+		//
+		List<AttributeMapping> attributeMappingsForAttribute = attributeMappings.stream()
+				.filter(am -> am.getTarget().equals(attribute)).collect(Collectors.toList());
+
+		if (expected == 0 || attributeMappingsForAttribute.isEmpty()) {
+
+			return attrHintValues;
+
+		} else if (attributeMappingsForAttribute.size() == 1) {
+
+			AttributeMapping hint = attributeMappingsForAttribute.get(0);
+
+			int numberOfHintValues = hintValues.getHintValues(hint).size();
+
+			if (numberOfHintValues == 1) {
+
+				// Exactly one hint value found -> reuse for all
+				// instances
+				//
+				String value = hintValues.getNextHintValue(hint);
+				attrHintValues.addAll(IntStream.range(0, expected).mapToObj(i -> value).collect(Collectors.toList()));
+
+			} else if (numberOfHintValues > 0 && numberOfHintValues < expected && expected % numberOfHintValues == 0) {
+
+				// Multiply the hint values to fit the cardinality
+				//
+				for (int i = 0; i < expected / numberOfHintValues; i++) {
+					attrHintValues.addAll(hintValues.getHintValues(hint));
+				}
+
+			} else if (numberOfHintValues >= expected) {
+
+				// As many/more hint values found as/than instances
+				// -> each instance gets its own hint value
+				//
+				for (int i = 0; i < expected; i++) {
+					// Note: Using '#getNextHintValue' ensures that the correct sub-list of hint values are used even if
+					// the same HintValueStorage is used for multiple TargetSectionClasses
+					//
+					attrHintValues.add(hintValues.getNextHintValue(hint));
+				}
+
+			} else {
+
+				// Less hint values found than instances -> This should not happen
+				//
+				this.logger.severe(() -> "Cardinality mismatch (expected number of hint values: " + expected + ", got :"
+						+ numberOfHintValues + ") for " + hint.printInfo()
+						+ ". Maybe check Cardinality of Metamodel section?");
+				return new ArrayList<>();
+			}
+		} else {
+
+			// Multiple AttributeMappings found -> just add all the hint values
+			//
+			for (AttributeMapping attribtueMapping : attributeMappingsForAttribute) {
+				attrHintValues.addAll(hintValues.getHintValues(attribtueMapping));
+			}
+		}
+
+		if (attrHintValues.size() < expected) {
+
+			// Less hint values found than instances -> This should not happen
+			//
+			this.logger.severe(() -> "Cardinality mismatch (expected number of hint values: " + expected + ", got :"
+					+ attrHintValues.size() + ") for TargetSectionAttribute " + attribute.getName()
+					+ ". Maybe check Cardinality of Metamodel section?");
+			return new ArrayList<>();
+		}
+
+		if (attribute instanceof ActualTargetSectionAttribute
+				&& ((ActualTargetSectionAttribute) attribute).getAttribute().isMany()) {
+
+			// For many-valued attributes, return a multitude of the expected number of values
+			//
+			return attrHintValues.subList(0, expected * (attrHintValues.size() / expected));
+
+		} else {
+
+			if (attrHintValues.size() / expected > 1) {
+				if (attribute instanceof VirtualTargetSectionAttribute) {
+					this.logger.severe(() -> "Trying to set multiple values for a VirtualAttribute ('"
+							+ attribute.getName() + "'). This is currently not supported!");
+				} else if (attribute.isLibraryEntry()) {
+					this.logger
+							.severe(() -> "Trying to set multiple values for an AttributeParameter of a LibraryEntry ('"
+									+ attribute.getContainingSection().getName()
+									+ "'). This is currently not supported!");
+				} else {
+					this.logger.severe(() -> "Trying to set multiple values for an ActualAttribute ('"
+							+ attribute.getName() + "') that is based on a single-valued EAttribute!");
+				}
+			}
+
+			// For single-valued attributes, return exactly as many values as expected
+			//
+			return attrHintValues.subList(0, expected);
+		}
 	}
 
 	/**

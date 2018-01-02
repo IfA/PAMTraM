@@ -41,6 +41,7 @@ import de.mfreund.gentrans.test.casestudies.W3CAUICasestudyBasedBasicTest._20_mo
 import de.mfreund.gentrans.test.casestudies.W3CAUICasestudyBasedBasicTest._21_cardinalityConditionForReferenceTest;
 import de.mfreund.gentrans.test.casestudies.W3CAUICasestudyBasedBasicTest._22_crossReferenceTest;
 import de.mfreund.gentrans.test.casestudies.W3CAUICasestudyBasedBasicTest._23_multipleExtendsTest;
+import de.mfreund.gentrans.test.casestudies.W3CAUICasestudyBasedBasicTest._24_uniqueAttributesTest;
 import de.tud.et.ifa.agtele.resources.ResourceHelper;
 
 /**
@@ -72,6 +73,7 @@ import de.tud.et.ifa.agtele.resources.ResourceHelper;
 		_21_cardinalityConditionForReferenceTest.class, //
 		_22_crossReferenceTest.class, //
 		_23_multipleExtendsTest.class, //
+		_24_uniqueAttributesTest.class, //
 		AutoProBeSimplifiedDissTest.class, //
 		AutoProBeTest.class, //
 		CompanyVizTest.class, //

@@ -106,7 +106,7 @@ public abstract class CompositeReferenceImpl<S extends Section<S, C, R, A>, C ex
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

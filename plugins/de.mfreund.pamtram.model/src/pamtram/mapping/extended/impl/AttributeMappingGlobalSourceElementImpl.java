@@ -242,7 +242,7 @@ public class AttributeMappingGlobalSourceElementImpl extends
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

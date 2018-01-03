@@ -212,7 +212,7 @@ public abstract class DynamicSourceElementImpl<S extends Section<S, C, R, A>, C 
 				return null;
 			}
 		}
-		return (NamedElement) ret;
+		return (NamedElement) ret;	
 	}
 
 	/**
@@ -229,7 +229,7 @@ public abstract class DynamicSourceElementImpl<S extends Section<S, C, R, A>, C 
 				return null;
 			}
 		}
-		return (Mapping) ret;
+		return (Mapping) ret;	
 	}
 
 	/**

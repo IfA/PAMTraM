@@ -85,7 +85,7 @@ public abstract class MappedAttributeValueExpanderImpl extends HintImporterMappi
 			return ((ExternalMappedAttributeValueExpander) this).getSource();
 		} else {
 			return null;
-		}
+		}	
 	}
 
 	/**

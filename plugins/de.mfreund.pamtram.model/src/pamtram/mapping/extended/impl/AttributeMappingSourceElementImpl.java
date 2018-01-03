@@ -240,7 +240,7 @@ public class AttributeMappingSourceElementImpl extends
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

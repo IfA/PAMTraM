@@ -242,7 +242,7 @@ public class CardinalityMappingGlobalSourceElementImpl extends
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

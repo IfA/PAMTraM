@@ -228,7 +228,7 @@ public class ValueConstraintGlobalSourceElementImpl extends ExternalDynamicSourc
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

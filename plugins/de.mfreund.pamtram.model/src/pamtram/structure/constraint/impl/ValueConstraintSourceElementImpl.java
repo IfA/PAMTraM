@@ -240,7 +240,7 @@ public class ValueConstraintSourceElementImpl extends
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

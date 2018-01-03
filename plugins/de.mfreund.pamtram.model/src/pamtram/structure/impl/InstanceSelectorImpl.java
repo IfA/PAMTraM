@@ -132,7 +132,7 @@ public abstract class InstanceSelectorImpl extends ExpressionElementImpl impleme
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -143,7 +143,7 @@ public abstract class InstanceSelectorImpl extends ExpressionElementImpl impleme
 	public EList<InstanceSelectorSourceElement> getLocalSourceElements() {
 		return new BasicEList<>(
 				this.getSourceElements().stream().filter(i -> i instanceof InstanceSelectorSourceElement)
-						.map(i -> (InstanceSelectorSourceElement) i).collect(Collectors.toList()));
+						.map(i -> (InstanceSelectorSourceElement) i).collect(Collectors.toList()));	
 	}
 
 	/**
@@ -154,7 +154,7 @@ public abstract class InstanceSelectorImpl extends ExpressionElementImpl impleme
 	public EList<InstanceSelectorExternalSourceElement> getExternalSourceElements() {
 		return new BasicEList<>(
 				this.getSourceElements().stream().filter(i -> i instanceof InstanceSelectorExternalSourceElement)
-						.map(i -> (InstanceSelectorExternalSourceElement) i).collect(Collectors.toList()));
+						.map(i -> (InstanceSelectorExternalSourceElement) i).collect(Collectors.toList()));	
 	}
 
 	/**

@@ -230,7 +230,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 					}
 				}
 				
-				return elements;
+				return elements;	
 	}
 
 	/**
@@ -247,7 +247,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 			}
 		}
 		
-		return elements;
+		return elements;	
 	}
 
 	/**
@@ -277,7 +277,7 @@ public class AttributeMappingImpl extends MappingHintImpl implements AttributeMa
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

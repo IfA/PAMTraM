@@ -3,24 +3,33 @@
 package pamtram.structure.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import pamtram.MatchSpecElement;
 import pamtram.PamtramPackage;
+import pamtram.mapping.Mapping;
 import pamtram.structure.LocalDynamicSourceElement;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.CrossReference;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 import pamtram.structure.source.SourceSection;
+import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.util.StructureValidator;
 
 /**
@@ -41,7 +50,7 @@ public abstract class LocalDynamicSourceElementImpl<S extends Section<S, C, R, A
 	/**
 	 * The cached value of the '{@link #getReferenceMatchSpec() <em>Reference Match Spec</em>}' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @see #getReferenceMatchSpec()
 	 * @generated
 	 * @ordered
@@ -85,35 +94,60 @@ public abstract class LocalDynamicSourceElementImpl<S extends Section<S, C, R, A
 	@Override
 	public boolean validateSourceAttributeMatchesSectionOrContainedSection(final DiagnosticChain diagnostics,
 			final Map<?, ?> context) {
-		if(this.getMapping() == null || this.source == null || this.getMapping().getSourceSection() == null
-						|| !(this.source.getContainingSection() instanceof SourceSection)) {
+		
+		if (this.getMapping() == null || this.source == null || this.getMapping().getSourceSection() == null
+				|| !(this.source.getContainingSection() instanceof SourceSection)) {
 			return true;
 		}
 		
+		Mapping mapping = this.getMapping();
 		SourceSection sourceSection = this.getMapping().getSourceSection();
-		SourceSection containingSourceSection = (SourceSection) this.source.getContainingSection();
 		
-		boolean result = sourceSection == containingSourceSection 
-				|| sourceSection.getAllExtend().parallelStream().filter(e -> e.equals(containingSourceSection)).findAny().isPresent()
-				|| sourceSection.getAllExtend().parallelStream().filter(e -> containingSourceSection.isReferencedBy(e, null)).findAny().isPresent()
-				|| containingSourceSection.isReferencedBy(sourceSection, null);
+		boolean result = false;
+		
+		pamtram.structure.generic.Class<?, ?, ?, ?> relevantClass = mapping.getSourceSection();
+		
+		// iterate over all elements and return the attributes as possible options
+		//
+		Set<pamtram.structure.generic.Class<?, ?, ?, ?>> scanned = new HashSet<>();
+		List<pamtram.structure.generic.Class<?, ?, ?, ?>> sectionsToScan = new ArrayList<>();
+		sectionsToScan.add(relevantClass);
+		
+		// also regard abstract sections that this extends
+		if (relevantClass instanceof Section) {
+			sectionsToScan.addAll(((Section<?, ?, ?, ?>) relevantClass).getAllExtend());
+		}
+		
+		while (!sectionsToScan.isEmpty()) {
+			pamtram.structure.generic.Class<?, ?, ?, ?> classToScan = sectionsToScan.remove(0);
+			scanned.add(classToScan);
+		
+			Iterator<EObject> it = classToScan.eAllContents();
+			while (it.hasNext()) {
+				EObject next = it.next();
+				if (next instanceof pamtram.structure.generic.Attribute) {
+					result = true;
+				} else if (next instanceof CrossReference) {
+					List<SourceSectionClass> vals = new ArrayList<>();
+					vals.addAll(((CrossReference) next).getValue());
+					vals.removeAll(scanned);
+					sectionsToScan.addAll(vals);
+				}
+			}
+		}
 		
 		if (!result && diagnostics != null) {
-			
-			String errorMessage = "The source attribute '" +
-					 this.source.getName() + "' is not referenced by the source section of the parent mapping '" +
-					 sourceSection.getName() + "' or in one of its extended sections/sub-sections!'";
-			
-			diagnostics.add
-				(new BasicDiagnostic
-					(Diagnostic.ERROR,
-					 StructureValidator.DIAGNOSTIC_SOURCE,
-					 StructureValidator.LOCAL_DYNAMIC_SOURCE_ELEMENT__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION,
-					 errorMessage,
-					 new Object [] { this, StructurePackage.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE }));
-			}
 		
-		return result;
+			String errorMessage = "The source attribute '" + this.source.getName()
+					+ "' is not referenced by the source section of the parent mapping '" + sourceSection.getName()
+					+ "' or in one of its extended sections/sub-sections!'";
+		
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, StructureValidator.DIAGNOSTIC_SOURCE,
+					StructureValidator.LOCAL_DYNAMIC_SOURCE_ELEMENT__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION,
+					errorMessage, new Object[] { this, StructurePackage.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE }));
+		}
+		
+		return result;	
 	}
 
 	/**

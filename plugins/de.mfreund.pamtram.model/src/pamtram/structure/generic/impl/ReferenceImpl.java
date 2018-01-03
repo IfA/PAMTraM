@@ -68,7 +68,7 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 	public EList<C> getValuesGeneric() {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		throw new UnsupportedOperationException();	
 	}
 
 	/**
@@ -79,7 +79,7 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 	public void addValuesGeneric(EList<C> values) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		throw new UnsupportedOperationException();	
 	}
 
 	/**

@@ -102,7 +102,7 @@ public abstract class CrossReferenceImpl<S extends Section<S, C, R, A>, C extend
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

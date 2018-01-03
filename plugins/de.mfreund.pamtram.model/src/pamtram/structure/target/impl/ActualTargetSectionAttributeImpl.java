@@ -139,7 +139,7 @@ public class ActualTargetSectionAttributeImpl extends TargetSectionAttributeImpl
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

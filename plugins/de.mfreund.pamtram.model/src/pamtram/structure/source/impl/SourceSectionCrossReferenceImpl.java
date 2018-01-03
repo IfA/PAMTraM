@@ -204,7 +204,7 @@ public class SourceSectionCrossReferenceImpl
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

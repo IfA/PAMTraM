@@ -347,7 +347,7 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 		
 		}
 		
-		return !result.isPresent();
+		return !result.isPresent();	
 	}
 
 	/**
@@ -357,7 +357,7 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	@Override
 	public EList<MappingHint> getActiveMappingHints() {
 		Object[] hints = getAllMappingHints().stream().filter(h -> !h.isDeactivated()).toArray();
-		return new BasicEList.UnmodifiableEList<>(hints.length, hints);
+		return new BasicEList.UnmodifiableEList<>(hints.length, hints);	
 	}
 
 	/**
@@ -394,7 +394,7 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 		} catch (CoreException e) {
 			e.printStackTrace();
 		}
-		return true;
+		return true;	
 	}
 
 	/**
@@ -424,7 +424,7 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -448,7 +448,7 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

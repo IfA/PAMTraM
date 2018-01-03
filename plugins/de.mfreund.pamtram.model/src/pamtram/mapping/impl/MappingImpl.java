@@ -302,7 +302,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	@Override
 	public EList<MappingHintGroupType> getActiveMappingHintGroups() {
 		Object[] hintGroups = getMappingHintGroups().stream().filter(h -> !(h instanceof InstantiableMappingHintGroup) ||  !((InstantiableMappingHintGroup) h).isDeactivated()).toArray();
-		return new BasicEList.UnmodifiableEList<>(hintGroups.length, hintGroups);
+		return new BasicEList.UnmodifiableEList<>(hintGroups.length, hintGroups);	
 	}
 
 	/**
@@ -312,7 +312,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 	@Override
 	public EList<MappingHintGroupImporter> getActiveImportedMappingHintGroups() {
 		Object[] importedHintGroups = getImportedMappingHintGroups().stream().filter(h -> !h.isDeactivated()).toArray();
-		return new BasicEList.UnmodifiableEList<>(importedHintGroups.length, importedHintGroups);
+		return new BasicEList.UnmodifiableEList<>(importedHintGroups.length, importedHintGroups);	
 	}
 
 	/**
@@ -337,7 +337,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -362,7 +362,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -387,7 +387,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -411,7 +411,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -437,7 +437,7 @@ public class MappingImpl extends MappingTypeImpl implements Mapping {
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

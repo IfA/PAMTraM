@@ -133,7 +133,7 @@ public abstract class ActualReferenceImpl<S extends Section<S, C, R, A>, C exten
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

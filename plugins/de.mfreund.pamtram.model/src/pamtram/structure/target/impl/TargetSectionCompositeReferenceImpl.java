@@ -160,7 +160,7 @@ public class TargetSectionCompositeReferenceImpl extends
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

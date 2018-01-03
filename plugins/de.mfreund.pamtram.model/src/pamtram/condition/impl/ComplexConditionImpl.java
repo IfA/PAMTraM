@@ -53,7 +53,7 @@ public abstract class ComplexConditionImpl extends NamedElementImpl implements C
 	public boolean isLocalCondition() {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		throw new UnsupportedOperationException();	
 	}
 
 	/**
@@ -64,7 +64,7 @@ public abstract class ComplexConditionImpl extends NamedElementImpl implements C
 	public boolean isExternalCondition() {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		throw new UnsupportedOperationException();	
 	}
 
 	/**
@@ -75,7 +75,7 @@ public abstract class ComplexConditionImpl extends NamedElementImpl implements C
 	public boolean isGlobalCondition() {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		throw new UnsupportedOperationException();	
 	}
 
 	/**
@@ -84,7 +84,7 @@ public abstract class ComplexConditionImpl extends NamedElementImpl implements C
 	 */
 	@Override
 	public boolean isMappingCondition() {
-		return getRootCondition().eContainer() instanceof Mapping;
+		return getRootCondition().eContainer() instanceof Mapping;	
 	}
 
 	/**
@@ -93,7 +93,7 @@ public abstract class ComplexConditionImpl extends NamedElementImpl implements C
 	 */
 	@Override
 	public boolean isConditionModelCondition() {
-		return getRootCondition().eContainer() instanceof ConditionModel;
+		return getRootCondition().eContainer() instanceof ConditionModel;	
 	}
 
 	/**

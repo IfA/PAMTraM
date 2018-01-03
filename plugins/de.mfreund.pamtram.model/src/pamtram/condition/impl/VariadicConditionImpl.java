@@ -119,7 +119,7 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 				return false;
 			}
 		}
-		return true;
+		return true;	
 	}
 
 	/**
@@ -144,7 +144,7 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

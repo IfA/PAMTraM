@@ -240,7 +240,7 @@ public class CardinalityMappingSourceElementImpl extends
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

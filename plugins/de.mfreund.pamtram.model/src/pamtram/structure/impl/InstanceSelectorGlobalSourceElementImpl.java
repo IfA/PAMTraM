@@ -241,7 +241,7 @@ public class InstanceSelectorGlobalSourceElementImpl extends GlobalDynamicSource
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

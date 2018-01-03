@@ -280,7 +280,7 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -304,7 +304,7 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -333,7 +333,7 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 					 new Object [] { this, GenericPackage.Literals.SECTION__EXTEND }));
 			}
 		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -363,7 +363,7 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -387,7 +387,7 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

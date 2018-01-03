@@ -139,7 +139,7 @@ public class ChoiceConstraintImpl extends NamedElementImpl implements ChoiceCons
 	 */
 	@Override
 	public boolean checkConstraint(final String attrValue, final EList<String> refValue) {
-		return refValue.stream().anyMatch(r -> r.equals(attrValue));
+		return refValue.stream().anyMatch(r -> r.equals(attrValue));	
 	}
 
 	/**
@@ -191,7 +191,7 @@ public class ChoiceConstraintImpl extends NamedElementImpl implements ChoiceCons
 				.flatMap(instanceSelector -> instanceSelector.getSourceElements().parallelStream()
 						.filter(s -> s instanceof InstanceSelectorSourceElement
 								|| s instanceof InstanceSelectorExternalSourceElement))
-				.findAny().isPresent();
+				.findAny().isPresent();	
 	}
 
 	/**

@@ -106,7 +106,7 @@ public abstract class LocalMappedAttributeValueExpanderImpl extends LocalDynamic
 			return ((ExternalMappedAttributeValueExpander) this).getSource();
 		} else {
 			return null;
-		}
+		}	
 	}
 
 	/**

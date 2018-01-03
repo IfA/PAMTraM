@@ -455,7 +455,7 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 */
 	public EList<MappingHintType> getActiveMappingHints() {
 		Object[] hints = getMappingHints().stream().filter(h -> !(h instanceof DeactivatableElement) || !((DeactivatableElement) h).isDeactivated()).toArray();
-		return new BasicEList.UnmodifiableEList<>(hints.length, hints);
+		return new BasicEList.UnmodifiableEList<>(hints.length, hints);	
 	}
 
 	/**
@@ -480,7 +480,7 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

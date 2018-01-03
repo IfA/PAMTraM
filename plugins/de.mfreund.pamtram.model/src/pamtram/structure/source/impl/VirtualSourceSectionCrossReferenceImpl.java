@@ -196,7 +196,7 @@ public class VirtualSourceSectionCrossReferenceImpl
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

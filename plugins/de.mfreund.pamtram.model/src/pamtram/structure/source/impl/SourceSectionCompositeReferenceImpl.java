@@ -204,7 +204,7 @@ public class SourceSectionCompositeReferenceImpl extends
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

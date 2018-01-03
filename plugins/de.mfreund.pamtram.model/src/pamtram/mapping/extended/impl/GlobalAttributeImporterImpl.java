@@ -285,7 +285,7 @@ public class GlobalAttributeImporterImpl extends NamedElementImpl implements Glo
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

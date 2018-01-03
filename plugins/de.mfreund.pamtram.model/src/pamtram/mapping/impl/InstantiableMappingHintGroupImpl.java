@@ -272,7 +272,7 @@ public abstract class InstantiableMappingHintGroupImpl extends NamedElementImpl 
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

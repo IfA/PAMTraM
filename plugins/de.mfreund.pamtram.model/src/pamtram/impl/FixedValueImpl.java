@@ -275,7 +275,7 @@ public class FixedValueImpl extends NamedElementImpl implements FixedValue {
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

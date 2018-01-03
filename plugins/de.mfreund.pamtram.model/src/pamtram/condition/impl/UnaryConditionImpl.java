@@ -180,7 +180,7 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

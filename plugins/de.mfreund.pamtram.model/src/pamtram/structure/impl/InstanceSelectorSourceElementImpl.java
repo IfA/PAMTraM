@@ -239,7 +239,7 @@ public class InstanceSelectorSourceElementImpl extends LocalDynamicSourceElement
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

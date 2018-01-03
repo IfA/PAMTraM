@@ -155,7 +155,7 @@ public class TargetSectionCrossReferenceImpl
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -186,7 +186,7 @@ public class TargetSectionCrossReferenceImpl
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

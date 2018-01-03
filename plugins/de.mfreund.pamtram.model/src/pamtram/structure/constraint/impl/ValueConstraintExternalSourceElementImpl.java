@@ -225,7 +225,7 @@ public class ValueConstraintExternalSourceElementImpl extends
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

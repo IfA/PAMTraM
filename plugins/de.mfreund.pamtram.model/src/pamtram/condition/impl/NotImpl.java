@@ -71,7 +71,7 @@ public class NotImpl extends UnaryConditionImpl implements Not {
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

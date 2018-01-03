@@ -93,7 +93,7 @@ public abstract class ExternalMappedAttributeValueExpanderImpl extends ExternalD
 			return ((ExternalMappedAttributeValueExpander) this).getSource();
 		} else {
 			return null;
-		}
+		}	
 	}
 
 	/**

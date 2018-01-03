@@ -200,7 +200,7 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -354,7 +354,7 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 		
 			}
 		
-			return result;
+			return result;	
 	}
 
 	@Override
@@ -398,7 +398,7 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	public EList<InstanceSelectorSourceElement> getLocalSourceElements() {
 		return new BasicEList<>(
 				this.getSourceElements().stream().filter(i -> i instanceof InstanceSelectorSourceElement)
-						.map(i -> (InstanceSelectorSourceElement) i).collect(Collectors.toList()));
+						.map(i -> (InstanceSelectorSourceElement) i).collect(Collectors.toList()));	
 	}
 
 	/**
@@ -409,7 +409,7 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	public EList<InstanceSelectorExternalSourceElement> getExternalSourceElements() {
 		return new BasicEList<>(
 				this.getSourceElements().stream().filter(i -> i instanceof InstanceSelectorExternalSourceElement)
-						.map(i -> (InstanceSelectorExternalSourceElement) i).collect(Collectors.toList()));
+						.map(i -> (InstanceSelectorExternalSourceElement) i).collect(Collectors.toList()));	
 	}
 
 	/**

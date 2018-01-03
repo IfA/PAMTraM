@@ -346,7 +346,7 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 							new Object[] { this, ExtendedPackage.Literals.MAPPING_HINT__OVERWRITE }));
 				}
 		
-			return ret;
+			return ret;	
 	}
 
 	/**
@@ -405,7 +405,7 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 							new Object[] { this, ExtendedPackage.Literals.MAPPING_HINT__OVERWRITE }));
 				}
 		
-			return false;
+			return false;	
 	}
 
 	/**
@@ -431,7 +431,7 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

@@ -378,7 +378,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

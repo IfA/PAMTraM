@@ -162,7 +162,7 @@ public class GlobalAttributeImpl extends NamedElementImpl implements GlobalAttri
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

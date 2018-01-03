@@ -261,7 +261,7 @@ public class MappingHintGroupImpl extends MappingHintGroupTypeImpl implements Ma
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

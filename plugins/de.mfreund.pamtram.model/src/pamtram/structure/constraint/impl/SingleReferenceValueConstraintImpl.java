@@ -247,7 +247,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	public boolean checkConstraint(String attrValue, String refValue) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		throw new UnsupportedOperationException();	
 	}
 
 	/**
@@ -277,7 +277,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 					 new Object [] { this,  ConstraintPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS }));
 			}
 		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -314,7 +314,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 					 new Object [] { this,  ConstraintPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS }));
 			}
 		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -366,7 +366,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 				.flatMap(instanceSelector -> instanceSelector.getSourceElements().parallelStream()
 						.filter(s -> s instanceof InstanceSelectorSourceElement
 								|| s instanceof InstanceSelectorExternalSourceElement))
-				.findAny().isPresent();
+				.findAny().isPresent();	
 	}
 
 	/**

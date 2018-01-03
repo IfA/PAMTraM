@@ -225,7 +225,7 @@ public class CardinalityMappingExternalSourceElementImpl extends
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

@@ -360,7 +360,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	@Override
 	public EList<SourceSectionModel> getActiveSourceSectionModels() {
 		Object[] sourceSectionModels = Stream.concat(this.getSourceSectionModels().stream(), this.getSharedSourceSectionModels().stream()).filter(s -> !s.isDeactivated()).toArray();
-		return new BasicEList.UnmodifiableEList<>(sourceSectionModels.length, sourceSectionModels);
+		return new BasicEList.UnmodifiableEList<>(sourceSectionModels.length, sourceSectionModels);	
 	}
 
 	/**
@@ -370,7 +370,7 @@ public class PAMTraMImpl extends MinimalEObjectImpl.Container implements PAMTraM
 	@Override
 	public EList<SourceSection> getActiveSourceSections() {
 		Object[] sourceSections = getActiveSourceSectionModels().stream().flatMap(s -> s.getSections().stream()).filter(s -> !s.isDeactivated()).toArray();
-		return new BasicEList.UnmodifiableEList<>(sourceSections.length, sourceSections);
+		return new BasicEList.UnmodifiableEList<>(sourceSections.length, sourceSections);	
 	}
 
 	/**

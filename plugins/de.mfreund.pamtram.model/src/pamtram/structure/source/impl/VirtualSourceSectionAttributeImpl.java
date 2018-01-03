@@ -130,7 +130,7 @@ public class VirtualSourceSectionAttributeImpl extends SourceSectionAttributeImp
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

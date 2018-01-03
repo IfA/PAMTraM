@@ -273,7 +273,7 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -302,7 +302,7 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 					 new Object [] { this, GenericPackage.Literals.SECTION__EXTEND }));
 			}
 		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -332,7 +332,7 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -356,7 +356,7 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

@@ -490,7 +490,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 					// this was not the container, so iterate up in the containment hierarchy
 				} else {
 					return this.isContainerFor(container);
-				}
+				}	
 	}
 
 	/**
@@ -504,7 +504,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 				return containerClass.getAllReferences().stream()
 						.filter(r -> r instanceof ActualReference<?, ?, ?, ?>
 								&& ((ActualReference<?, ?, ?, ?>) r).getEReference().isContainment())
-						.flatMap(r -> r.getValuesGeneric().stream()).anyMatch(c -> c.equals(this) || this.isContainedIn(c));
+						.flatMap(r -> r.getValuesGeneric().stream()).anyMatch(c -> c.equals(this) || this.isContainedIn(c));	
 	}
 
 	/**
@@ -518,7 +518,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 			return (CompositeReference<S,C,R,A>) this.eContainer();
 		} else {
 			return null;
-		}
+		}	
 	}
 
 	/**
@@ -596,7 +596,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -631,7 +631,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -670,7 +670,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 		
 			}
 		
-			return result;
+			return result;	
 	}
 
 	/**
@@ -694,7 +694,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

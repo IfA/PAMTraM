@@ -202,7 +202,7 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 					 new Object [] { this, GenericPackage.Literals.SECTION__EXTEND }));
 			}
 		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -232,7 +232,7 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -256,7 +256,7 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

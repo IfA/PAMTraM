@@ -5,12 +5,14 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.tud.et.ifa.agtele.resources.ResourceHelper;
@@ -213,7 +215,8 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 		}
 
 		if (sourceModels == null || sourceModels.isEmpty()) {
-			throw new TransformationConfiguration().new InitializationException("No source model was loaded!");
+			throw new TransformationConfiguration().new InitializationException(
+					"The loaded source model(s) was/were empty!");
 		}
 
 		return TransformationConfiguration.createInstanceFromSourceModels(sourceModels, pamtramModels, targetBasePath);
@@ -388,17 +391,37 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 
 			// the URI of the source resource
 			final URI sourceUri = ResourceHelper.getURIForPathString(sourceFilePath);
+			final IFile sourceFile = ResourceHelper.getFileForURI(sourceUri);
 
-			if (sourceFilePath.endsWith(".xml")) {
-				// add file extension to registry
-				Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xml",
-						new GenericXMLResourceFactoryImpl());
+			if (sourceFile == null) {
+				throw new RuntimeException("Unable to load source model '" + sourceFilePath + "!");
+			}
+
+			// Manually register the (unkown) file extension
+			//
+			if (!Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap()
+					.containsKey(sourceFile.getFileExtension())) {
+
+				if (sourceFile.getFileExtension().equals("xml")) {
+					// the file should be an XML file
+					//
+					Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xml",
+							new GenericXMLResourceFactoryImpl());
+
+				} else {
+					// by default, we assume an XMI file
+					//
+					Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(sourceFile.getFileExtension(),
+							new XMIResourceFactoryImpl());
+				}
 			}
 
 			// try to load source model
 			Resource sourceResource = resourceSet.getResource(sourceUri, true);
 
-			sourceModels.add(sourceResource.getContents().get(0));
+			if (!sourceResource.getContents().isEmpty()) {
+				sourceModels.add(sourceResource.getContents().get(0));
+			}
 
 		}
 

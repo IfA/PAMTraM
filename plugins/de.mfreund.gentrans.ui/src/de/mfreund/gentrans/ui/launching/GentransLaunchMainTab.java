@@ -402,9 +402,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 		try {
 			for (IResource r1 : GentransLaunchMainTab.this.workspaceRoot.getProject(projectName)
 					.getFolder(GentransLaunchMainTab.SOURCE_FOLDER).members()) {
-				if (r1.getName().endsWith(".xmi") || r1.getName().endsWith(".xml")) {
-					this.srcList.addSelectableItem(r1.getName());
-				}
+				this.srcList.addSelectableItem(r1.getName());
 			}
 			this.srcList.select(oldSrcFile);
 			this.srcList.setEnabled(true);
@@ -626,9 +624,8 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 			return false;
 		}
 		for (String sourceFile : this.srcList.getSelectedItems()) {
-			if (!(this.workspaceRoot.getProject(this.projectCombo.getText())
-					.getFolder(GentransLaunchMainTab.SOURCE_FOLDER).getFile(sourceFile).exists()
-					&& (sourceFile.endsWith(".xmi") || sourceFile.endsWith(".xml")))) {
+			if (!this.workspaceRoot.getProject(this.projectCombo.getText())
+					.getFolder(GentransLaunchMainTab.SOURCE_FOLDER).getFile(sourceFile).exists()) {
 				return false;
 			}
 		}

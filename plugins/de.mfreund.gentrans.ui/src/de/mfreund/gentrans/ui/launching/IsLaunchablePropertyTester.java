@@ -12,8 +12,7 @@ import de.tud.et.ifa.agtele.ui.util.UIHelper;
 import pamtram.provider.PamtramEditPlugin;
 
 /**
- * A {@link PropertyTester} that can be used to test if the 'Run as -> Gentrans'
- * menu item should be currently active.
+ * A {@link PropertyTester} that can be used to test if the 'Run as -> Gentrans' menu item should be currently active.
  *
  * @author mfreund
  */
@@ -32,6 +31,7 @@ public class IsLaunchablePropertyTester extends PropertyTester {
 	/**
 	 */
 	public IsLaunchablePropertyTester() {
+
 	}
 
 	@Override
@@ -45,12 +45,10 @@ public class IsLaunchablePropertyTester extends PropertyTester {
 	}
 
 	/**
-	 * Test if the current selection is suitable to be launched as a GenTrans
-	 * transformation.
+	 * Test if the current selection is suitable to be launched as a GenTrans transformation.
 	 *
-	 * @return '<em>True</em>' if the selection is either a suitable pamtram
-	 *         project, a suitable pamtram file, or a suitable source file;
-	 *         '<em>false</em>' otherwise.
+	 * @return '<em>True</em>' if the selection is either a suitable pamtram project, a suitable pamtram file, or a
+	 *         suitable source file; '<em>false</em>' otherwise.
 	 */
 	private boolean testIsLaunchableSelection() {
 
@@ -75,11 +73,11 @@ public class IsLaunchablePropertyTester extends PropertyTester {
 	}
 
 	/**
-	 * Test if the current active editor (respectively the edited file) is
-	 * suitable to be launched as a GenTrans transformation.
+	 * Test if the current active editor (respectively the edited file) is suitable to be launched as a GenTrans
+	 * transformation.
 	 *
-	 * @return '<em>True</em>' if the edited file is a suitable pamtram file or
-	 *         a suitable source file; '<em>false</em>' otherwise.
+	 * @return '<em>True</em>' if the edited file is a suitable pamtram file or a suitable source file; '<em>false</em>'
+	 *         otherwise.
 	 */
 	private boolean testIsLaunchableEditor() {
 
@@ -105,20 +103,16 @@ public class IsLaunchablePropertyTester extends PropertyTester {
 	}
 
 	/**
-	 * The if the given {@link IFile} is an xml/xmi file located in the source
-	 * folder of a pamtram project.
+	 * The if the given {@link IFile} is located in the source folder of a pamtram project.
 	 *
 	 * @param file
-	 * @return If the given {@link IFile} is an xml/xmi file located in the
-	 *         source folder of a pamtram project.
+	 * @return If the given {@link IFile} is located in the source folder of a pamtram project.
 	 */
 	public static boolean isLaunchableSourceFile(IFile file) {
 
-		// The file is launchable if it is an xml/xmi
-		// file and if it is located in a launchable pamtram project
+		// The file is launchable if it is located in a launchable pamtram project
 		//
-		return (file.getName().endsWith(".xmi") || file.getName().endsWith(".xml"))
-				&& file.getParent().getName().equals(PamtramEditPlugin.INSTANCE.getString("SOURCE_FOLDER_NAME"))
+		return file.getParent().getName().equals(PamtramEditPlugin.INSTANCE.getString("SOURCE_FOLDER_NAME"))
 				&& IsLaunchablePropertyTester.isLaunchablePamtramProject(file.getProject());
 	}
 
@@ -145,6 +139,7 @@ public class IsLaunchablePropertyTester extends PropertyTester {
 	 * @return If the given {@link IProject} is a pamtram project.
 	 */
 	public static boolean isLaunchablePamtramProject(IProject project) {
+
 		try {
 			// The project is launchable if it is equipped with the pamtram
 			// nature

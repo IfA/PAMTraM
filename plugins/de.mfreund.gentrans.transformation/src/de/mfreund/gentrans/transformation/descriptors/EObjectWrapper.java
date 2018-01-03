@@ -256,15 +256,20 @@ public class EObjectWrapper {
 		List<Object> valueObjects = new ArrayList<>();
 
 		for (String value : values) {
-			valueObjects.add(this.getAttributeValueAsObject(attr.getAttribute(), value));
+
+			Object valueObject = this.getAttributeValueAsObject(attr.getAttribute(), value);
+
+			if (attr.getAttribute().getEAttributeType().isInstance(valueObject)) {
+				valueObjects.add(valueObject);
+			}
 
 		}
 
 		if (attr.getAttribute().isMany()) {
 			this.eObject.eSet(attr.getAttribute(), valueObjects);
-		} else if (values.size() == 1) {
+		} else if (valueObjects.size() == 1) {
 			this.eObject.eSet(attr.getAttribute(), valueObjects.get(0));
-		} else if (values.isEmpty()) {
+		} else if (valueObjects.isEmpty()) {
 			this.eObject.eUnset(attr.getAttribute());
 		} else {
 			throw new IllegalArgumentException("Trying to set multiple value for ActualAttribute '" + attr.getName()
@@ -294,6 +299,10 @@ public class EObjectWrapper {
 			valueObject = attribute.getEType().getEPackage().getEFactoryInstance()
 					.createFromString(attribute.getEAttributeType(), value);
 		} catch (Exception e) {
+
+			if (value == null) {
+				return null;
+			}
 
 			// if an integer-based value is represented as boolean (e.g. as it
 			// was used by an 'expression'), try to set this instead

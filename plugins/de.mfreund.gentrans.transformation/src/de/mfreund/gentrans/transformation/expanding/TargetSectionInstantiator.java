@@ -976,6 +976,8 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 
 			return attrHintValues;
 
+			// A single AttributeMapping provides all hint values
+			//
 		} else if (attributeMappingsForAttribute.size() == 1) {
 
 			AttributeMapping hint = attributeMappingsForAttribute.get(0);
@@ -1019,12 +1021,55 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 						+ ". Maybe check Cardinality of Metamodel section?");
 				return new ArrayList<>();
 			}
+
+			// Multiple AttributeMappings provide (possibly different numbers of) hint values
+			//
 		} else {
 
-			// Multiple AttributeMappings found -> just add all the hint values
-			//
-			for (AttributeMapping attribtueMapping : attributeMappingsForAttribute) {
-				attrHintValues.addAll(hintValues.getHintValues(attribtueMapping));
+			int numberOfHintValues = attributeMappingsForAttribute.stream()
+					.mapToInt(am -> hintValues.getHintValues(am).size()).sum();
+
+			boolean allHintsProvideEqualNumberOfValues = attributeMappingsForAttribute.stream()
+					.map(hintValues::getHintValues).collect(Collectors.toSet()).size() == 1;
+
+			if (numberOfHintValues == expected) {
+
+				// Just add all the hint values
+				//
+				for (AttributeMapping attribtueMapping : attributeMappingsForAttribute) {
+					attrHintValues.addAll(hintValues.getHintValues(attribtueMapping));
+				}
+
+			} else if (allHintsProvideEqualNumberOfValues && numberOfHintValues > 0 && numberOfHintValues < expected
+					&& expected % numberOfHintValues == 0) {
+
+				// Multiply the hint values to fit the cardinality
+				//
+				for (int i = 0; i < expected / numberOfHintValues; i++) {
+					for (AttributeMapping attribtueMapping : attributeMappingsForAttribute) {
+						attrHintValues.addAll(hintValues.getHintValues(attribtueMapping));
+					}
+				}
+			} else if (numberOfHintValues >= expected) {
+
+				// As many/more hint values found as/than instances
+				// -> each instance gets its own hint value
+				//
+				for (AttributeMapping attribtueMapping : attributeMappingsForAttribute) {
+					attrHintValues.addAll(hintValues.getHintValues(attribtueMapping));
+				}
+				attrHintValues.subList(expected, attrHintValues.size()).clear();
+
+			} else {
+
+				// Less hint values found than instances -> This should not happen
+				//
+				this.logger.severe(() -> "Cardinality mismatch (expected number of hint values: " + expected + ", got :"
+						+ numberOfHintValues + ") for the following AttributeMappings: "
+						+ String.join(", ", attributeMappingsForAttribute.stream().map(MappingHint::printInfo)
+								.collect(Collectors.toList()).toArray(new String[] {}))
+						+ ".");
+				return new ArrayList<>();
 			}
 		}
 

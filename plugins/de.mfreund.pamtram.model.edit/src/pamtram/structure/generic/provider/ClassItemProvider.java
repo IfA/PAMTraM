@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 import org.eclipse.emf.ecore.util.ExtendedMetaData;
 import org.eclipse.emf.edit.command.SetCommand;
@@ -32,6 +33,10 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
+import de.tud.et.ifa.agtele.emf.EPackageHelper;
+import pamtram.PAMTraM;
+import pamtram.PamtramPackage;
 import pamtram.SectionModel;
 import pamtram.structure.generic.ActualAttribute;
 import pamtram.structure.generic.ActualReference;
@@ -41,6 +46,7 @@ import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 import pamtram.structure.library.ContainerParameter;
 import pamtram.structure.source.SourceFactory;
+import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.target.FileAttribute;
 import pamtram.structure.target.TargetFactory;
@@ -48,171 +54,66 @@ import pamtram.structure.target.TargetPackage;
 import pamtram.structure.target.TargetSection;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.generic.Class} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link pamtram.structure.generic.Class} object.
+ * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class ClassItemProvider extends MetaModelElementItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ClassItemProvider(AdapterFactory adapterFactory) {
-
 		super(adapterFactory);
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-
-		if (this.itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			this.addEClassPropertyDescriptor(object);
-			this.addCardinalityPropertyDescriptor(object);
-			this.addContainerPropertyDescriptor(object);
+			addEClassPropertyDescriptor(object);
+			addCardinalityPropertyDescriptor(object);
+			addContainerPropertyDescriptor(object);
 		}
-		return this.itemPropertyDescriptors;
+		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the EClass feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void addEClassPropertyDescriptorGen(Object object) {
-
-		this.itemPropertyDescriptors.add(
-				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
-						this.getResourceLocator(), this.getString("_UI_Class_eClass_feature"),
-						this.getString("_UI_Class_eClass_description", "_UI_Class_eClass_feature", "_UI_Class_type"),
-						GenericPackage.Literals.CLASS__ECLASS, true, false, true, null,
-						this.getString("_UI_BasicPropertyCategory"), null) {
-
-					@Override
-					public Collection<?> getChoiceOfValues(Object object) {
-
-						Class<?, ?, ?, ?> section = ((Class<?, ?, ?, ?>) object).getContainingSection();
-						SectionModel<?, ?, ?, ?> sectionModel = section.getContainingSectionModel();
-
-						List<EClass> choiceOfValues = new LinkedList<>();
-
-						if (sectionModel.getMetaModelPackage() == null) {
-							return choiceOfValues;
-						}
-
-						/*
-						 * If we have a container parameter with a specified source, we do not need to scan package
-						 * contents. Instead, the user may only select the eClass of the specified source element.
-						 */
-						if (section.eContainer() instanceof ContainerParameter
-								&& ((ContainerParameter) section.eContainer()).getSource() != null) {
-							choiceOfValues.add(((ContainerParameter) section.eContainer()).getSource().eClass());
-							return choiceOfValues;
-						}
-
-						List<EPackage> packagesToScan = new LinkedList<>();
-
-						packagesToScan.add(sectionModel.getMetaModelPackage());
-
-						// this should only contain one element but we need to
-						// implement this in a generic way...
-						//
-						List<EClass> documentRoot = new LinkedList<>();
-
-						while (!packagesToScan.isEmpty()) {
-							EPackage pkg = packagesToScan.remove(0);
-							EClass docroot = ExtendedMetaData.INSTANCE.getDocumentRoot(pkg);
-							if (docroot != null) {
-								documentRoot.add(docroot);
-							}
-
-							packagesToScan.addAll(pkg.getESubpackages());
-							for (EClassifier c : pkg.getEClassifiers()) {
-								if (c instanceof EClass) {
-									EClass cl = (EClass) c;
-									if (!documentRoot.contains(cl)) {
-										// abstract EClasses are only allowed
-										// for SourceSections or abstract
-										// TargetSections
-										if (!cl.isAbstract() || object instanceof SourceSectionClass
-												|| object instanceof TargetSection
-														&& ((TargetSection) object).isAbstract()) {
-											choiceOfValues.add((EClass) c);
-										}
-									}
-								}
-							}
-						}
-
-						if (section.equals(object)) { // top level-section
-							return choiceOfValues;
-						} else { // not a top-level section
-							List<EClass> newChoiceOfValues = new LinkedList<>();
-							Reference<?, ?, ?, ?> ref = (Reference<?, ?, ?, ?>) ((Class<?, ?, ?, ?>) object)
-									.eContainer();
-							if (ref instanceof ActualReference<?, ?, ?, ?>
-									&& ((ActualReference<?, ?, ?, ?>) ref).getEReference() != null) {
-								if (!(((ActualReference<?, ?, ?, ?>) ref).getEReference()
-										.getEType() instanceof EClass)) {
-									throw new RuntimeException(
-											"Type checks can only be performed for instances of type 'EClass'");
-								} else {
-									EClass refClass = (EClass) ((ActualReference<?, ?, ?, ?>) ref).getEReference()
-											.getEType();
-
-									for (EClass c : choiceOfValues) {
-										if (refClass.isSuperTypeOf(c)) {
-											newChoiceOfValues.add(c);
-										}
-									}
-									return newChoiceOfValues;
-
-								}
-
-							}
-
-						}
-						return super.getChoiceOfValues(object);
-					}
-
-				});
-	}
-
-	/**
-	 * This adds a property descriptor for the EClass feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the EClass feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addEClassPropertyDescriptor(Object object) {
-
+		
 		this.itemPropertyDescriptors.add(
 				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
 						this.getResourceLocator(), this.getString("_UI_Class_eClass_feature"),
 						this.getString("_UI_Class_eClass_description", "_UI_Class_eClass_feature", "_UI_Class_type"),
 						GenericPackage.Literals.CLASS__ECLASS, true, false, true, null,
 						this.getString("_UI_BasicPropertyCategory"), null) {
-
+		
 					@Override
 					public Collection<?> getChoiceOfValues(Object object) {
-
-						Class<?, ?, ?, ?> section = ((Class<?, ?, ?, ?>) object).getContainingSection();
+		
+						pamtram.structure.generic.Class<?, ?, ?, ?> section = ((pamtram.structure.generic.Class<?, ?, ?, ?>) object)
+								.getContainingSection();
 						SectionModel<?, ?, ?, ?> sectionModel = section.getContainingSectionModel();
-
+		
 						List<EClass> choiceOfValues = new LinkedList<>();
-
+		
 						if (sectionModel.getMetaModelPackage() == null) {
 							return choiceOfValues;
 						}
-
+		
 						/*
 						 * If we have a container parameter with a specified source, we do not need to scan package
 						 * contents. Instead, the user may only select the eClass of the specified source element.
@@ -222,24 +123,37 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 							choiceOfValues.add(((ContainerParameter) section.eContainer()).getSource().eClass());
 							return choiceOfValues;
 						}
-
-						List<EPackage> packagesToScan = new LinkedList<>();
-
-						packagesToScan.add(sectionModel.getMetaModelPackage());
-
+		
+						List<SectionModel<?, ?, ?, ?>> sectionModels = new ArrayList<>();
+						if (AgteleEcoreUtil.hasAncestorOfKind(section, PamtramPackage.Literals.PAM_TRA_M)) {
+							if (section instanceof SourceSection) {
+								sectionModels.addAll(((PAMTraM) AgteleEcoreUtil.getAncestorOfKind(section,
+										PamtramPackage.Literals.PAM_TRA_M)).getSourceSectionModels());
+							} else if (section instanceof TargetSection) {
+								sectionModels.addAll(((PAMTraM) AgteleEcoreUtil.getAncestorOfKind(section,
+										PamtramPackage.Literals.PAM_TRA_M)).getTargetSectionModels());
+							}
+						} else {
+							sectionModels.add((SectionModel<?, ?, ?, ?>) AgteleEcoreUtil.getAncestorOfKind(section,
+									PamtramPackage.Literals.SECTION_MODEL));
+						}
+		
+						List<EPackage> packagesToScan = new ArrayList<>(EPackageHelper.collectEPackages(sectionModels
+								.stream().map(SectionModel::getMetaModelPackage).collect(Collectors.toSet()), true,
+								true, true, Optional.empty()));
+		
 						// this should only contain one element but we need to
 						// implement this in a generic way...
 						//
 						List<EClass> documentRoot = new LinkedList<>();
-
+		
 						while (!packagesToScan.isEmpty()) {
 							EPackage pkg = packagesToScan.remove(0);
 							EClass docroot = ExtendedMetaData.INSTANCE.getDocumentRoot(pkg);
 							if (docroot != null) {
 								documentRoot.add(docroot);
 							}
-
-							packagesToScan.addAll(pkg.getESubpackages());
+		
 							for (EClassifier c : pkg.getEClassifiers()) {
 								if (c instanceof EClass) {
 									EClass cl = (EClass) c;
@@ -256,7 +170,7 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 								}
 							}
 						}
-
+		
 						if (section.equals(object)) { // top level-section
 							return choiceOfValues;
 						} else { // not a top-level section
@@ -270,24 +184,36 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 									throw new RuntimeException(
 											"Type checks can only be performed for instances of type 'EClass'");
 								} else {
-									EClass refClass = (EClass) ((ActualReference<?, ?, ?, ?>) ref).getEReference()
-											.getEType();
-
-									for (EClass c : choiceOfValues) {
-										if (refClass.isSuperTypeOf(c)) {
-											newChoiceOfValues.add(c);
+									EClass refClass = null;
+		
+									try {
+										refClass = (EClass) ((ActualReference<?, ?, ?, ?>) ref).getEReference()
+												.getEGenericType().getERawType();
+									} catch (Exception e) {
+										refClass = (EClass) ((ActualReference<?, ?, ?, ?>) ref).getEReference()
+												.getEType();
+									}
+		
+									if (EcorePackage.Literals.EOBJECT.equals(refClass)) {
+										newChoiceOfValues.addAll(choiceOfValues);
+									} else if (refClass != null) {
+		
+										for (EClass c : choiceOfValues) {
+											if (refClass.isSuperTypeOf(c)) {
+												newChoiceOfValues.add(c);
+											}
 										}
 									}
 									return newChoiceOfValues;
-
+		
 								}
-
+		
 							}
-
+		
 						}
 						return super.getChoiceOfValues(object);
 					}
-
+		
 				});
 	}
 
@@ -308,70 +234,67 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Container feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Container feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addContainerPropertyDescriptor(Object object) {
-
 		this.itemPropertyDescriptors.add(new ItemPropertyDescriptor(
-				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
-				this.getString("_UI_Class_container_feature"),
-				object instanceof SourceSectionClass ? this.getString("_UI_SourceSectionClass_container_description")
-						: this.getString("_UI_TargetSectionClass_container_description"),
-				GenericPackage.Literals.CLASS__CONTAINER, true, false, true, null,
-				this.getString("_UI_ExtendedPropertyCategory"), null) {
-
-			@Override
-			public Collection<?> getChoiceOfValues(Object object) {
-
-				List<Object> ret = new ArrayList<>();
-
-				if (object instanceof Section<?, ?, ?, ?>) {
-					ret = super.getChoiceOfValues(object).stream()
-							.filter(o -> o instanceof pamtram.structure.generic.Class<?, ?, ?, ?>)
-							.map(o -> (pamtram.structure.generic.Class<?, ?, ?, ?>) o)
-							.filter(o -> o.getEClass().getEAllContainments().stream().anyMatch(
-									c -> c.getEReferenceType().isSuperTypeOf(((Class<?, ?, ?, ?>) object).getEClass())))
-							.filter(o -> !o.getAllContainer().contains(object)).collect(Collectors.toList());
-				} else {
-
-					// For normal 'Classes', the container property is not relevant to the
-					// user. If it is set, it has to point to the containing 'Class'...
-					//
-					if (((EObject) object).eContainer().eContainer() instanceof Class<?, ?, ?, ?>) {
-						ret.add(((EObject) object).eContainer().eContainer());
-					}
+						((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+						this.getString("_UI_Class_container_feature"),
+						object instanceof SourceSectionClass ? this.getString("_UI_SourceSectionClass_container_description")
+								: this.getString("_UI_TargetSectionClass_container_description"),
+						GenericPackage.Literals.CLASS__CONTAINER, true, false, true, null,
+						this.getString("_UI_ExtendedPropertyCategory"), null) {
+		
+				@Override
+					public Collection<?> getChoiceOfValues(Object object) {
+		
+					List<Object> ret = new ArrayList<>();
+		
+					if (object instanceof Section<?, ?, ?, ?>) {
+							ret = super.getChoiceOfValues(object).stream()
+									.filter(o -> o instanceof pamtram.structure.generic.Class<?, ?, ?, ?>)
+									.map(o -> (pamtram.structure.generic.Class<?, ?, ?, ?>) o)
+									.filter(o -> o.getEClass().getEAllContainments().stream().anyMatch(
+											c -> c.getEReferenceType().isSuperTypeOf(((pamtram.structure.generic.Class<?, ?, ?, ?>) object).getEClass())))
+									.filter(o -> !o.getAllContainer().contains(object)).collect(Collectors.toList());
+						} else {
+		
+						// For normal 'Classes', the container property is not relevant to the
+							// user. If it is set, it has to point to the containing 'Class'...
+							//
+							if (((EObject) object).eContainer().eContainer() instanceof pamtram.structure.generic.Class<?, ?, ?, ?>) {
+								ret.add(((EObject) object).eContainer().eContainer());
+							}
+						}
+		
+					return ret;
+		
 				}
-
-				return ret;
-
-			}
-		});
+				});
 	}
 
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-
-		if (this.childrenFeatures == null) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			this.childrenFeatures.add(GenericPackage.Literals.CLASS__REFERENCES);
-			this.childrenFeatures.add(GenericPackage.Literals.CLASS__ATTRIBUTES);
+			childrenFeatures.add(GenericPackage.Literals.CLASS__REFERENCES);
+			childrenFeatures.add(GenericPackage.Literals.CLASS__ATTRIBUTES);
 		}
-		return this.childrenFeatures;
+		return childrenFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -427,14 +350,13 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-
-		return ((StyledString) this.getStyledText(object)).getString();
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
@@ -476,16 +398,15 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-
-		this.updateChildren(notification);
+		updateChildren(notification);
 
 		switch (notification.getFeatureID(pamtram.structure.generic.Class.class)) {
 			case GenericPackage.CLASS__CARDINALITY:
-				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case GenericPackage.CLASS__REFERENCES:
 			case GenericPackage.CLASS__ATTRIBUTES:
-				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);

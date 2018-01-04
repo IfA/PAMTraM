@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
@@ -571,27 +572,27 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	@Override
 	public boolean validateEClassMatchesParentEReference(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
-		if(this == this.getContainingSection() || this.getEClass() == null || !(this.eContainer() instanceof ActualReference<?, ?, ?, ?>)) {
+		if (this == this.getContainingSection() || this.getEClass() == null
+				|| !(this.eContainer() instanceof ActualReference<?, ?, ?, ?>)) {
 			return true;
 		}
 		
 		ActualReference<?, ?, ?, ?> parentReference = (ActualReference<?, ?, ?, ?>) this.eContainer();
 		
-		if(parentReference.getEReference() == null) {
+		if (parentReference.getEReference() == null) {
 			return true;
 		}
 		
-		boolean result = parentReference.getEReference().getEReferenceType().isSuperTypeOf(this.getEClass());
+		boolean result = EcorePackage.Literals.EOBJECT.equals(parentReference.getEReference().getEReferenceType())
+				|| parentReference.getEReference().getEReferenceType().isSuperTypeOf(this.getEClass());
 		
 		if (!result && diagnostics != null) {
 		
-			String errorMessage = "The eClass '" + this.eClass().getName() + "' is not allowed by the containing reference!";
+			String errorMessage = "The eClass '" + this.eClass().getName()
+					+ "' is not allowed by the containing reference!";
 		
-			diagnostics.add(new BasicDiagnostic
-					(Diagnostic.ERROR,
-					GenericValidator.DIAGNOSTIC_SOURCE,
-							GenericValidator.CLASS__VALIDATE_ECLASS_MATCHES_PARENT_EREFERENCE,
-							errorMessage,
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, GenericValidator.DIAGNOSTIC_SOURCE,
+					GenericValidator.CLASS__VALIDATE_ECLASS_MATCHES_PARENT_EREFERENCE, errorMessage,
 					new Object[] { this, GenericPackage.Literals.CLASS__ECLASS }));
 		
 		}

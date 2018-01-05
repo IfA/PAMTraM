@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import pamtram.structure.target.*;
 import pamtram.structure.target.ActualTargetSectionAttribute;
 import pamtram.structure.target.FileAttribute;
 import pamtram.structure.target.FileType;
@@ -65,7 +66,9 @@ public class TargetFactoryImpl extends EFactoryImpl implements TargetFactory {
 			case TargetPackage.FILE_ATTRIBUTE: return createFileAttribute();
 			case TargetPackage.TARGET_SECTION_CLASS: return createTargetSectionClass();
 			case TargetPackage.TARGET_SECTION_COMPOSITE_REFERENCE: return createTargetSectionCompositeReference();
+			case TargetPackage.TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE: return createTargetSectionAnyContentCompositeReference();
 			case TargetPackage.TARGET_SECTION_CROSS_REFERENCE: return createTargetSectionCrossReference();
+			case TargetPackage.TARGET_SECTION_ANY_CONTENT_CROSS_REFERENCE: return createTargetSectionAnyContentCrossReference();
 			case TargetPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE: return createActualTargetSectionAttribute();
 			case TargetPackage.VIRTUAL_TARGET_SECTION_ATTRIBUTE: return createVirtualTargetSectionAttribute();
 			default:
@@ -142,6 +145,16 @@ public class TargetFactoryImpl extends EFactoryImpl implements TargetFactory {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TargetSectionAnyContentCompositeReference createTargetSectionAnyContentCompositeReference() {
+		TargetSectionAnyContentCompositeReferenceImpl targetSectionAnyContentCompositeReference = new TargetSectionAnyContentCompositeReferenceImpl();
+		return targetSectionAnyContentCompositeReference;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -149,6 +162,16 @@ public class TargetFactoryImpl extends EFactoryImpl implements TargetFactory {
 	public TargetSectionCrossReference createTargetSectionCrossReference() {
 		TargetSectionCrossReferenceImpl targetSectionCrossReference = new TargetSectionCrossReferenceImpl();
 		return targetSectionCrossReference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TargetSectionAnyContentCrossReference createTargetSectionAnyContentCrossReference() {
+		TargetSectionAnyContentCrossReferenceImpl targetSectionAnyContentCrossReference = new TargetSectionAnyContentCrossReferenceImpl();
+		return targetSectionAnyContentCrossReference;
 	}
 
 	/**

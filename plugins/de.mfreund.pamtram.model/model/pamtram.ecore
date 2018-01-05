@@ -2255,6 +2255,36 @@
           <eTypeArguments eClassifier="#//structure/target/TargetSectionAttribute"/>
         </eGenericSuperTypes>
       </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TargetSectionAnyContentCompositeReference">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This represents a virtual reference for elements that are based on an XSD with 'xs:any' specified as content. CompositeReferences can be used to describe the tree that is the basis of an element structure.&#xD;&#xA;&lt;br />&#xD;&#xA;In order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the 'value' reference."/>
+        </eAnnotations>
+        <eOperations name="validateIsAllowed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="&#xD;&#xA;if (!(this.eContainer() instanceof pamtram.structure.generic.Class)) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&lt;%org.eclipse.emf.ecore.EClass%> parentEClass = ((pamtram.structure.generic.Class&lt;?, ?, ?, ?>) this.eContainer()).getEClass();&#xD;&#xA;&#xD;&#xA;boolean result = parentEClass == null ? true : &lt;%pamtram.util.ExtendedMetaDataUtil%>.allowsAnyContent(parentEClass);&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The containing Class does not allow 'any' content!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new BasicDiagnostic(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR, &lt;%pamtram.structure.target.util.TargetValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;TargetValidator.TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE__VALIDATE_IS_ALLOWED, errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.structure.target.TargetPackage%>.Literals.TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+          </eAnnotations>
+          <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+          <eParameters name="context">
+            <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+              <eTypeArguments/>
+              <eTypeArguments/>
+            </eGenericType>
+          </eParameters>
+        </eOperations>
+        <eGenericSuperTypes eClassifier="#//structure/generic/CompositeReference">
+          <eTypeArguments eClassifier="#//structure/target/TargetSection"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionAttribute"/>
+        </eGenericSuperTypes>
+        <eGenericSuperTypes eClassifier="#//structure/target/TargetSectionReference"/>
+        <eGenericSuperTypes eClassifier="#//structure/generic/VirtualReference">
+          <eTypeArguments eClassifier="#//structure/target/TargetSection"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionAttribute"/>
+        </eGenericSuperTypes>
+      </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="TargetSectionCrossReference">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="This represents a reference (as an instance of an EReference) of an element structure to be created in a target model. CrossReferences can be used to describe references to other element structures or to other elements of this structure.&#xD;&#xA;&lt;br />&#xD;&#xA;In order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the 'value' reference."/>
@@ -2279,6 +2309,36 @@
         </eGenericSuperTypes>
         <eGenericSuperTypes eClassifier="#//structure/target/TargetSectionReference"/>
         <eGenericSuperTypes eClassifier="#//structure/generic/ActualReference">
+          <eTypeArguments eClassifier="#//structure/target/TargetSection"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionAttribute"/>
+        </eGenericSuperTypes>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="TargetSectionAnyContentCrossReference">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This represents a virtual reference for elements that are based on an XSD with 'xs:any' specified as content. It can be used to reference any other element structure to be created in a target model. CrossReferences can be used to describe references to other element structures or to other elements of this structure.&#xD;&#xA;&lt;br />&#xD;&#xA;In order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the 'value' reference."/>
+        </eAnnotations>
+        <eOperations name="validateIsAllowed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+          <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+            <details key="body" value="&#xD;&#xA;if (!(this.eContainer() instanceof pamtram.structure.generic.Class)) {&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&lt;%org.eclipse.emf.ecore.EClass%> parentEClass = ((pamtram.structure.generic.Class&lt;?, ?, ?, ?>) this.eContainer()).getEClass();&#xD;&#xA;&#xD;&#xA;boolean result = parentEClass == null ? true : &lt;%pamtram.util.ExtendedMetaDataUtil%>.allowsAnyContent(parentEClass);&#xD;&#xA;&#xD;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#xA;&#x9;String errorMessage = &quot;The containing Class does not allow 'any' content!&quot;;&#xD;&#xA;&#xD;&#xA;&#x9;diagnostics.add(new BasicDiagnostic(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR, &lt;%pamtram.structure.target.util.TargetValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;TargetValidator.TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE__VALIDATE_IS_ALLOWED, errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%pamtram.structure.target.TargetPackage%>.Literals.TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE }));&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return result;"/>
+          </eAnnotations>
+          <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+          <eParameters name="context">
+            <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+              <eTypeArguments/>
+              <eTypeArguments/>
+            </eGenericType>
+          </eParameters>
+        </eOperations>
+        <eGenericSuperTypes eClassifier="#//structure/generic/CrossReference">
+          <eTypeArguments eClassifier="#//structure/target/TargetSection"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/target/TargetSectionAttribute"/>
+        </eGenericSuperTypes>
+        <eGenericSuperTypes eClassifier="#//structure/target/TargetSectionReference"/>
+        <eGenericSuperTypes eClassifier="#//structure/generic/VirtualReference">
           <eTypeArguments eClassifier="#//structure/target/TargetSection"/>
           <eTypeArguments eClassifier="#//structure/target/TargetSectionClass"/>
           <eTypeArguments eClassifier="#//structure/target/TargetSectionReference"/>

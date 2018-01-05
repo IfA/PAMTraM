@@ -13,10 +13,12 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.ExtendedMetaData;
 
 import de.mfreund.gentrans.transformation.core.CancelableTransformationAsset;
@@ -31,6 +33,7 @@ import pamtram.structure.generic.Section;
 import pamtram.structure.library.LibraryEntry;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionClass;
+import pamtram.util.ExtendedMetaDataUtil;
 
 /**
  * Registry for instances of targetMetamodelSections and certain structural features of the target MetaModel
@@ -93,6 +96,8 @@ public class TargetSectionRegistry extends CancelableTransformationAsset {
 	 */
 	private final Map<EReference, Set<EClass>> containmentReferenceSourcesRegistry;
 
+	private final List<EClass> classesWithAnyContent;
+
 	/**
 	 * This creates an instance for multiple target meta-models.
 	 *
@@ -114,12 +119,13 @@ public class TargetSectionRegistry extends CancelableTransformationAsset {
 		this.containmentReferenceSourcesRegistry = new LinkedHashMap<>(); // ==sources
 		this.attrValRegistry = new AttributeValueRegistry();
 		this.libraryEntryRegistry = new LibraryEntryRegistry();
+		this.classesWithAnyContent = new ArrayList<>();
 
 		Set<EPackage> targetMetaModels = new LinkedHashSet<>(assetManager.getTransformationConfig().getPamtramModels()
 				.stream().flatMap(p -> p.getTargetSectionModels().stream()).map(TargetSectionModel::getMetaModelPackage)
 				.collect(Collectors.toList()));
 
-		targetMetaModels.stream().forEach(this::analyseTargetMetaModel);
+		this.analyseTargetMetaModels(targetMetaModels);
 	}
 
 	/**
@@ -225,6 +231,44 @@ public class TargetSectionRegistry extends CancelableTransformationAsset {
 			this.possiblePathsRegistry.put(eClass, new LinkedHashSet<ModelConnectionPath>());
 		}
 		this.possiblePathsRegistry.get(eClass).add(modelConnectionPath);
+
+	}
+
+	/**
+	 * Build various maps that describe structural features of the given <em>targetMetaModels</em>. Also, check if there
+	 * are any 'xs:any'-based elements and prepare the metamodel if necessary.
+	 *
+	 * @param targetMetaModel
+	 *            The {@link EPackage} representing the target meta-model to be analyzed.
+	 */
+	private void analyseTargetMetaModels(Set<EPackage> targetMetaModels) {
+
+		targetMetaModels.stream().forEach(this::analyseTargetMetaModel);
+
+		List<EClass> allClasses = EPackageHelper.collectEPackages(targetMetaModels, true, true, true, Optional.empty())
+				.stream().flatMap(p -> p.getEClassifiers().stream()).filter(c -> c instanceof EClass)
+				.map(c -> (EClass) c).collect(Collectors.toList());
+
+		// Collect all attributes that represent an 'xs:any' element
+		//
+		List<EAttribute> allAnyAttributes = allClasses.parallelStream().flatMap(c -> c.getEAttributes().stream())
+				.filter(a -> "any".equals(a.getName())
+						&& a.getEAttributeType().equals(EcorePackage.Literals.EFEATURE_MAP))
+				.collect(Collectors.toList());
+
+		this.classesWithAnyContent.addAll(allAnyAttributes.stream().map(a -> (EClass) a.eContainer())
+				.collect(Collectors.toCollection(LinkedHashSet::new)));
+
+		if (!allAnyAttributes.isEmpty()) {
+
+			// Create additional (virtual) references for each 'xs:any' attribute.
+			//
+			Set<EReference> allVirtualReferences = allClasses.stream()
+					.map(c -> ExtendedMetaDataUtil.createVirtualReference(c.eClass()))
+					.collect(Collectors.toCollection(LinkedHashSet::new));
+
+			//
+		}
 
 	}
 

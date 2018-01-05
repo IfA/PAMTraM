@@ -511,33 +511,6 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 		}
 		newChildDescriptors.add(this.createChildParameter(GenericPackage.Literals.CLASS__REFERENCES, ref));
 
-		newChildDescriptors.add(this.createChildParameter(GenericPackage.Literals.CLASS__REFERENCES,
-				SourceFactory.eINSTANCE.createVirtualSourceSectionCrossReference()));
-
-		newChildDescriptors.add(this.createChildParameter(GenericPackage.Literals.CLASS__ATTRIBUTES,
-				TargetFactory.eINSTANCE.createVirtualTargetSectionAttribute()));
-
-		newChildDescriptors.add(this.createChildParameter(GenericPackage.Literals.CLASS__ATTRIBUTES,
-				SourceFactory.eINSTANCE.createVirtualSourceSectionAttribute()));
-
-		/*
-		 * A 'TargetSectionAnyContent' reference must only be added as child of an appropriate 'TargetSectionClass'
-		 */
-		TargetSectionAnyContentCompositeReference anyContentCompositeRef = TargetFactory.eINSTANCE
-				.createTargetSectionAnyContentCompositeReference();
-		TargetSectionAnyContentCrossReference anyContentCrossRef = TargetFactory.eINSTANCE
-				.createTargetSectionAnyContentCrossReference();
-		if (eClass != null && object instanceof TargetSectionClass) {
-
-			if (ExtendedMetaDataUtil.allowsAnyContent(((TargetSectionClass) object).getEClass())) {
-				newChildDescriptors.add(
-						this.createChildParameter(GenericPackage.Literals.CLASS__REFERENCES, anyContentCompositeRef));
-				newChildDescriptors
-						.add(this.createChildParameter(GenericPackage.Literals.CLASS__REFERENCES, anyContentCrossRef));
-			}
-
-		}
-
 		/*
 		 * A 'FileAttribute' must only be added as child of a 'TargetSection'
 		 */
@@ -579,6 +552,34 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 
 		}
 		newChildDescriptors.add(this.createChildParameter(GenericPackage.Literals.CLASS__ATTRIBUTES, att));
+
+		newChildDescriptors.add(this.createChildParameter(GenericPackage.Literals.CLASS__REFERENCES,
+				SourceFactory.eINSTANCE.createVirtualSourceSectionCrossReference()));
+
+		newChildDescriptors.add(this.createChildParameter(GenericPackage.Literals.CLASS__ATTRIBUTES,
+				TargetFactory.eINSTANCE.createVirtualTargetSectionAttribute()));
+
+		newChildDescriptors.add(this.createChildParameter(GenericPackage.Literals.CLASS__ATTRIBUTES,
+				SourceFactory.eINSTANCE.createVirtualSourceSectionAttribute()));
+
+		/*
+		 * A 'TargetSectionAnyContent' reference must only be added as child of an appropriate 'TargetSectionClass'
+		 */
+		TargetSectionAnyContentCompositeReference anyContentCompositeRef = TargetFactory.eINSTANCE
+				.createTargetSectionAnyContentCompositeReference();
+		TargetSectionAnyContentCrossReference anyContentCrossRef = TargetFactory.eINSTANCE
+				.createTargetSectionAnyContentCrossReference();
+		if (eClass != null && object instanceof TargetSectionClass) {
+
+			if (ExtendedMetaDataUtil.allowsAnyContent(((TargetSectionClass) object).getEClass())) {
+				newChildDescriptors.add(
+						this.createChildParameter(GenericPackage.Literals.CLASS__REFERENCES, anyContentCompositeRef));
+				newChildDescriptors
+						.add(this.createChildParameter(GenericPackage.Literals.CLASS__REFERENCES, anyContentCrossRef));
+			}
+
+		}
+
 	}
 
 	@Override

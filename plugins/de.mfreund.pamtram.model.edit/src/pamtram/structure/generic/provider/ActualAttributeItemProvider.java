@@ -2,17 +2,22 @@
  */
 package pamtram.structure.generic.provider;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
 import pamtram.structure.generic.ActualAttribute;
 import pamtram.structure.generic.GenericPackage;
+import pamtram.structure.library.AttributeParameter;
 
 /**
  * This is the item provider adapter for a {@link pamtram.structure.generic.ActualAttribute} object.
@@ -52,19 +57,40 @@ public class ActualAttributeItemProvider extends AttributeItemProvider {
 	 * @generated
 	 */
 	protected void addAttributePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ActualAttribute_attribute_feature"),
-				 getString("_UI_ActualAttribute_attribute_description"),
-				 GenericPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 getString("_UI_BasicPropertyCategory"),
-				 null));
+		
+		this.itemPropertyDescriptors.add(
+				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(), this.getString("_UI_ActualAttribute_attribute_feature"),
+						this.getString("_UI_ActualAttribute_attribute_description"),
+						GenericPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE, true, false, true, null,
+						this.getString("_UI_BasicPropertyCategory"), null) {
+		
+					@Override
+					public Collection<?> getChoiceOfValues(Object object) {
+		
+						ActualAttribute<?, ?, ?, ?> att = (ActualAttribute<?, ?, ?, ?>) object;
+		
+						List<EAttribute> attributes = new ArrayList<>();
+		
+						// in case of a 'normal' TargetSectionClass, the
+						// attribute of this class can be chosen
+						if (att.getOwningClass() != null) {
+							attributes.addAll(att.getOwningClass().getEClass().getEAllAttributes());
+							// in case of an AttributeParameter, the attribute
+							// of its source can be chosen
+						} else if (att.eContainer() instanceof AttributeParameter
+								&& ((AttributeParameter) att.eContainer()).getSource() != null) {
+							attributes.addAll(
+									((AttributeParameter) att.eContainer()).getSource().eClass().getEAllAttributes());
+						}
+		
+						// Do not allow 'xs:any'-content attributes
+						//
+						return attributes.stream()
+								.filter(a -> !pamtram.util.ExtendedMetaDataUtil.isAnyContentAttribute(a))
+								.collect(Collectors.toList());
+					}
+				});
 	}
 
 	/**
@@ -98,7 +124,7 @@ public class ActualAttributeItemProvider extends AttributeItemProvider {
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
 	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override

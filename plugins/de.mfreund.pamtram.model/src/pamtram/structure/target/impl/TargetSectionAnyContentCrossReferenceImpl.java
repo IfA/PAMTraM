@@ -34,7 +34,7 @@ public class TargetSectionAnyContentCrossReferenceImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected TargetSectionAnyContentCrossReferenceImpl() {
@@ -44,7 +44,7 @@ public class TargetSectionAnyContentCrossReferenceImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -56,7 +56,7 @@ public class TargetSectionAnyContentCrossReferenceImpl
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc --> This is specialized for the more specific element type known in
 	 * this context.
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -69,9 +69,15 @@ public class TargetSectionAnyContentCrossReferenceImpl
 		return this.value;
 	}
 
+	@Override
+	public EList<TargetSectionClass> getValuesGeneric() {
+
+		return this.getValue();
+	}
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -100,7 +106,7 @@ public class TargetSectionAnyContentCrossReferenceImpl
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override

@@ -5,20 +5,22 @@ package pamtram.structure.source.provider;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
-import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.ActualAttribute;
 import pamtram.structure.generic.GenericPackage;
+import pamtram.structure.library.AttributeParameter;
 
 /**
- * This is the item provider adapter for a
- * {@link pamtram.structure.source.ActualSourceSectionAttribute} object. <!--
+ * This is the item provider adapter for a {@link pamtram.structure.source.ActualSourceSectionAttribute} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  *
  * @generated
@@ -26,9 +28,8 @@ import pamtram.structure.generic.GenericPackage;
 public class ActualSourceSectionAttributeItemProvider extends SourceSectionAttributeItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ActualSourceSectionAttributeItemProvider(AdapterFactory adapterFactory) {
@@ -36,9 +37,8 @@ public class ActualSourceSectionAttributeItemProvider extends SourceSectionAttri
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -52,38 +52,50 @@ public class ActualSourceSectionAttributeItemProvider extends SourceSectionAttri
 	}
 
 	/**
-	 * This adds a property descriptor for the Attribute feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
+	 * This adds a property descriptor for the Attribute feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
 	 */
 	protected void addAttributePropertyDescriptor(Object object) {
-
+		
 		this.itemPropertyDescriptors.add(
 				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
-						this.getResourceLocator(), this.getString("_UI_SourceSectionAttribute_attribute_feature"),
+						this.getResourceLocator(), this.getString("_UI_ActualAttribute_attribute_feature"),
 						this.getString("_UI_ActualAttribute_attribute_description"),
 						GenericPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE, true, false, true, null,
 						this.getString("_UI_BasicPropertyCategory"), null) {
-
+		
 					@Override
 					public Collection<?> getChoiceOfValues(Object object) {
-
-						pamtram.structure.generic.Class owner = (pamtram.structure.generic.Class) ((Attribute) object)
-								.eContainer();
-						if (owner.getEClass() != null) {
-							return owner.getEClass().getEAllAttributes();
-						} else {
-							return new ArrayList<>();
+		
+						ActualAttribute<?, ?, ?, ?> att = (ActualAttribute<?, ?, ?, ?>) object;
+		
+						List<EAttribute> attributes = new ArrayList<>();
+		
+						// in case of a 'normal' TargetSectionClass, the
+						// attribute of this class can be chosen
+						if (att.getOwningClass() != null) {
+							attributes.addAll(att.getOwningClass().getEClass().getEAllAttributes());
+							// in case of an AttributeParameter, the attribute
+							// of its source can be chosen
+						} else if (att.eContainer() instanceof AttributeParameter
+								&& ((AttributeParameter) att.eContainer()).getSource() != null) {
+							attributes.addAll(
+									((AttributeParameter) att.eContainer()).getSource().eClass().getEAllAttributes());
 						}
+		
+						// Do not allow 'xs:any'-content attributes
+						//
+						return attributes.stream()
+								.filter(a -> !pamtram.util.ExtendedMetaDataUtil.isAnyContentAttribute(a))
+								.collect(Collectors.toList());
 					}
 				});
 	}
 
 	/**
 	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -92,8 +104,7 @@ public class ActualSourceSectionAttributeItemProvider extends SourceSectionAttri
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
@@ -104,10 +115,10 @@ public class ActualSourceSectionAttributeItemProvider extends SourceSectionAttri
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -117,10 +128,9 @@ public class ActualSourceSectionAttributeItemProvider extends SourceSectionAttri
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing the children that can be created under this object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

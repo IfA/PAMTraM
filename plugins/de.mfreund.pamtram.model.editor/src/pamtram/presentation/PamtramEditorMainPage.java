@@ -566,14 +566,6 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable, ISe
 					toSelect.add(((AttributeMapping) modifiedAttribute.eContainer()).getTarget());
 				} else if (modifiedAttribute.eContainer() instanceof CardinalityMapping) {
 					toSelect.add(((CardinalityMapping) modifiedAttribute.eContainer()).getTarget());
-				} else if (modifiedAttribute.eContainer() instanceof TargetInstanceSelector) {
-					toSelect.add(((TargetInstanceSelector) modifiedAttribute.eContainer()).getReferenceAttribute());
-					toSelect.add(((TargetInstanceSelector) modifiedAttribute.eContainer()).getTargetClass());
-					if (modifiedAttribute.eContainer() instanceof ReferenceTargetSelector) {
-						toSelect.add(((ReferenceTargetSelector) modifiedAttribute.eContainer()).getAffectedReference());
-					}
-				} else if (modifiedAttribute.eContainer() instanceof SourceInstanceSelector) {
-					toSelect.add(((SourceInstanceSelector) modifiedAttribute.eContainer()).getReferenceAttribute());
 				}
 
 				/*
@@ -629,6 +621,26 @@ public class PamtramEditorMainPage extends SashForm implements IPersistable, ISe
 					if (c instanceof DynamicSourceElement<?, ?, ?, ?>) {
 						toSelect.add(((DynamicSourceElement<?, ?, ?, ?>) c).getSource());
 					}
+				}
+
+				/*
+				 * If a SourceInstanceSelector is selected, select the target elements that it points to.
+				 */
+			} else if (selected instanceof SourceInstanceSelector) {
+
+				SourceInstanceSelector selector = (SourceInstanceSelector) selected;
+
+				for (InstanceSelectorSourceInterface c : selector.getSourceElements()) {
+					if (c instanceof DynamicSourceElement<?, ?, ?, ?>) {
+						toSelect.add(((DynamicSourceElement<?, ?, ?, ?>) c).getSource());
+					}
+				}
+
+				toSelect.add(selector.getTargetClass());
+				toSelect.add(selector.getReferenceAttribute());
+
+				if (selector instanceof ReferenceTargetSelector) {
+					toSelect.add(((ReferenceTargetSelector) selector).getAffectedReference());
 				}
 
 				/*

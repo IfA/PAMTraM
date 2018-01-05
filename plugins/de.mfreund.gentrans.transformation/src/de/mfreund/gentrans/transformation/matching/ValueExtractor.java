@@ -269,12 +269,17 @@ public abstract class ValueExtractor extends CancelableTransformationAsset {
 
 				String val = String.valueOf(this.assetManager.getElementIDs().getIDForElement(sourceElement));
 
+				// Apply ValueModifierSets
+				//
+				final String valCopy = this.assetManager.getValueModifierExecutor().applyAttributeValueModifiers(val,
+						mappingHintSourceElement.getModifiers());
+
 				// create a new AttributeValueRepresentation or update the existing
 				// one
 				if (hintValue == null) {
-					hintValue = new AttributeValueRepresentation(mappingHintSourceElement.getSource(), val);
+					hintValue = new AttributeValueRepresentation(mappingHintSourceElement.getSource(), valCopy);
 				} else {
-					hintValue.addValue(val);
+					hintValue.addValue(valCopy);
 				}
 			}
 
@@ -313,6 +318,8 @@ public abstract class ValueExtractor extends CancelableTransformationAsset {
 						.convertToString(sourceAttribute.getEAttributeType(), srcAttrValue);
 			}
 
+			// Apply ValueModifierSets
+			//
 			final String valCopy = this.assetManager.getValueModifierExecutor()
 					.applyAttributeValueModifiers(srcAttrAsString, mappingHintSourceElement.getModifiers());
 

@@ -3,6 +3,10 @@
  */
 package pamtram.util;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Optional;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -59,8 +63,69 @@ public class ExtendedMetaDataUtil {
 	 */
 	public static boolean allowsAnyContent(EClass parentClass) {
 
-		return parentClass.getEAttributes().stream().anyMatch(a -> "any".equals(a.getName())
-				&& a.getEAttributeType().equals(EcorePackage.Literals.EFEATURE_MAP_ENTRY));
+		return parentClass.getEAttributes().stream().anyMatch(ExtendedMetaDataUtil::isAnyContentAttribute);
+	}
+
+	/**
+	 * Returns whether the given {@link EAttribute} is based on an XSD element with 'xs:any'-content.
+	 *
+	 * @param eAttribute
+	 *            The {@link EAttribute} to check.
+	 * @return '<em>true</em>' if equipped with 'xs:any'-content.
+	 */
+	public static boolean isAnyContentAttribute(EAttribute eAttribute) {
+
+		return "any".equals(eAttribute.getName())
+				&& eAttribute.getEAttributeType().equals(EcorePackage.Literals.EFEATURE_MAP_ENTRY);
+	}
+
+	/**
+	 * This allows to add the given <em>childElement</em> as child of the given <em>parentElement</em> that represents
+	 * an 'xs:any' element.
+	 * <p />
+	 * Therefore, a new (virtual) reference is created on the fly.
+	 * <p />
+	 * Note: A suitable {@link #isAnyContentAttribute(EAttribute) 'any-content attribute'} is determined automatically
+	 * before redirecting to {@link #addAnyConent(EObject, EAttribute, EObject)}.
+	 *
+	 * @param parentElement
+	 *            The parent {@link EObject}.
+	 * @param childElement
+	 *            The child {@link EObject} to add.
+	 * @return '<em>true</em>' if the element was successfully added; '<em>false</em>' otherwise.
+	 */
+	public static boolean addAnyConent(EObject parentElement, EObject childElement) {
+
+		return ExtendedMetaDataUtil.addAnyConent(parentElement, Arrays.asList(childElement));
+
+	}
+
+	/**
+	 * This allows to add the given <em>childElements</em> as children of the given <em>parentElement</em> that
+	 * represents an 'xs:any' element.
+	 * <p />
+	 * Therefore, a new (virtual) reference is created on the fly.
+	 * <p />
+	 * Note: A suitable {@link #isAnyContentAttribute(EAttribute) 'any-content attribute'} is determined automatically
+	 * before redirecting to {@link #addAnyConent(EObject, EAttribute, EObject)}.
+	 *
+	 * @param parentElement
+	 *            The parent {@link EObject}.
+	 * @param childElements
+	 *            The child {@link EObject EObjects} to add.
+	 * @return '<em>true</em>' if the elements were successfully added; '<em>false</em>' otherwise.
+	 */
+	public static boolean addAnyConent(EObject parentElement, Collection<EObject> childElements) {
+
+		Optional<EAttribute> anyContentAttribute = parentElement.eClass().getEAllAttributes().stream()
+				.filter(ExtendedMetaDataUtil::isAnyContentAttribute).findAny();
+
+		if (!anyContentAttribute.isPresent()) {
+			return false;
+		} else {
+			return ExtendedMetaDataUtil.addAnyConent(parentElement, anyContentAttribute.get(), childElements);
+		}
+
 	}
 
 	/**
@@ -75,19 +140,46 @@ public class ExtendedMetaDataUtil {
 	 *            The {@link EAttribute} representing the 'xs:any' element.
 	 * @param childElement
 	 *            The child {@link EObject} to add.
-	 * @return The new virtual reference via that the child element has been added.
+	 * @return '<em>true</em>' if the element was successfully added; '<em>false</em>' otherwise.
 	 */
-	public static EReference addAnyConent(EObject parentElement, EAttribute anyFeature, EObject childElement) {
+	public static boolean addAnyConent(EObject parentElement, EAttribute anyFeature, EObject childElement) {
 
-		EReference virtualReference = ExtendedMetaDataUtil.createVirtualReference(childElement.eClass());
+		return ExtendedMetaDataUtil.addAnyConent(parentElement, anyFeature, Arrays.asList(childElement));
+	}
 
-		Internal featureMapEntry = FeatureMapUtil.createRawEntry(virtualReference, childElement);
+	/**
+	 * This allows to add the given <em>childElements</em> as children of the given <em>parentElement</em> via the given
+	 * {@link EAttribute} that represents a {@link FeatureMap} created based on an 'xs:any' element.
+	 * <p />
+	 * Therefore, a new (virtual) reference is created on the fly
+	 *
+	 * @param parentElement
+	 *            The parent {@link EObject}.
+	 * @param anyFeature
+	 *            The {@link EAttribute} representing the 'xs:any' element.
+	 * @param childElements
+	 *            The child {@link EObject EObjects} to add.
+	 * @return '<em>true</em>' if the elements were successfully added; '<em>false</em>' otherwise.
+	 */
+	public static boolean addAnyConent(EObject parentElement, EAttribute anyFeature,
+			Collection<EObject> childElements) {
+
+		if (!ExtendedMetaDataUtil.isAnyContentAttribute(anyFeature)) {
+			return false;
+		}
 
 		FeatureMap rootMixed = (FeatureMap) parentElement.eGet(anyFeature);
 
-		rootMixed.add(anyFeature, featureMapEntry);
+		for (EObject childElement : childElements) {
 
-		return virtualReference;
+			EReference virtualReference = ExtendedMetaDataUtil.createVirtualReference(childElement.eClass());
+
+			Internal featureMapEntry = FeatureMapUtil.createRawEntry(virtualReference, childElement);
+
+			rootMixed.add(anyFeature, featureMapEntry);
+		}
+
+		return true;
 	}
 
 	/**

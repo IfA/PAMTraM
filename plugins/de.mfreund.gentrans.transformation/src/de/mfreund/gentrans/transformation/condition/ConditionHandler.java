@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 
 import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
@@ -47,7 +46,6 @@ import pamtram.structure.constraint.EqualityConstraint;
 import pamtram.structure.constraint.SingleReferenceValueConstraint;
 import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.constraint.ValueConstraintType;
-import pamtram.structure.source.ActualSourceSectionAttribute;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.source.SourceSectionCrossReference;
@@ -282,7 +280,7 @@ public class ConditionHandler {
 
 		// Collect the values of the referenced EAttribute for each instance
 		//
-		List<Object> srcAttrValues = ValueExtractor.getAttributeValueAsList(correspondEClassInstances,
+		List<String> srcAttrValues = ValueExtractor.getAttributeValueAsStringList(correspondEClassInstances,
 				attrCondition.getTarget(), this.logger);
 
 		/*
@@ -290,15 +288,7 @@ public class ConditionHandler {
 		 */
 		ArrayList<Boolean> attrBoolResults = new ArrayList<>();
 
-		EAttribute attribute = attrCondition.getTarget() instanceof ActualSourceSectionAttribute
-				? ((ActualSourceSectionAttribute) attrCondition.getTarget()).getAttribute()
-				: null;
-
-		for (Object srcAttrValue : srcAttrValues) {
-
-			// convert Attribute value to String
-			final String srcAttrAsString = attribute != null ? attribute.getEType().getEPackage().getEFactoryInstance()
-					.convertToString(attribute.getEAttributeType(), srcAttrValue) : srcAttrValue.toString();
+		for (String srcAttrAsString : srcAttrValues) {
 
 			/*
 			 * check AttributeValueConstraints

@@ -337,6 +337,29 @@ public abstract class ValueExtractor extends CancelableTransformationAsset {
 
 	/**
 	 * For the given list of {@link EObject EObjects}, this returns the
+	 * {@link EObject#eGet(org.eclipse.emf.ecore.EStructuralFeature) value or values} of the given {@link EAttribute} as
+	 * String. Therefore, the values returned by
+	 * {@link ValueExtractor#getAttributeValueAsList(List, SourceSectionAttribute, Logger)} are converted to a String
+	 * representation.
+	 *
+	 * @param sourceElements
+	 *            The list of {@link EObject EObjects} for that the values shall be returned.
+	 * @param sourceAttribute
+	 *            The {@link EAttribute} for that the values shall be returned.
+	 * @param logger
+	 *            The {@link Logger} to be used to print message to the user.
+	 * @return The determined values (either an empty list, a list consisting of a single value, or multiple values).
+	 */
+	public static synchronized List<String> getAttributeValueAsStringList(List<EObject> sourceElements,
+			SourceSectionAttribute sourceAttribute, Logger logger) {
+
+		return sourceElements.stream()
+				.flatMap(e -> ValueExtractor.getAttributeValueAsStringList(e, sourceAttribute, logger).stream())
+				.collect(Collectors.toList());
+	}
+
+	/**
+	 * For the given list of {@link EObject EObjects}, this returns the
 	 * {@link EObject#eGet(org.eclipse.emf.ecore.EStructuralFeature) value or values} of the given {@link EAttribute} by
 	 * collecting the values returned by
 	 * {@link ValueExtractor#getAttributeValueAsList(EObject, SourceSectionAttribute, Logger)} for every element.
@@ -355,6 +378,42 @@ public abstract class ValueExtractor extends CancelableTransformationAsset {
 		return sourceElements.stream()
 				.flatMap(e -> ValueExtractor.getAttributeValueAsList(e, sourceAttribute, logger).stream())
 				.collect(Collectors.toList());
+	}
+
+	/**
+	 * For the given {@link EObject}, this returns the {@link EObject#eGet(org.eclipse.emf.ecore.EStructuralFeature)
+	 * value or values} of the given {@link EAttribute} as String. Therefore, the values returned by
+	 * {@link ValueExtractor#getAttributeValueAsList(EObject, SourceSectionAttribute, Logger)} are converted to a String
+	 * representation.
+	 *
+	 * @param sourceElement
+	 *            The list of {@link EObject EObjects} for that the values shall be returned.
+	 * @param sourceAttribute
+	 *            The {@link EAttribute} for that the values shall be returned.
+	 * @param logger
+	 *            The {@link Logger} to be used to print message to the user.
+	 * @return The determined values (either an empty list, a list consisting of a single value, or multiple values).
+	 */
+	public static synchronized List<String> getAttributeValueAsStringList(EObject sourceElement,
+			SourceSectionAttribute sourceAttribute, Logger logger) {
+
+		List<Object> srcAttrValues = ValueExtractor.getAttributeValueAsList(sourceElement, sourceAttribute, logger);
+
+		EAttribute attribute = sourceAttribute instanceof ActualSourceSectionAttribute
+				? ((ActualSourceSectionAttribute) sourceAttribute).getAttribute()
+				: null;
+
+		List<String> srcAttrValuesAsString = new ArrayList<>();
+
+		for (Object srcAttrValue : srcAttrValues) {
+
+			// convert Attribute value to String
+			String srcAttrAsString = attribute != null ? attribute.getEType().getEPackage().getEFactoryInstance()
+					.convertToString(attribute.getEAttributeType(), srcAttrValue) : srcAttrValue.toString();
+			srcAttrValuesAsString.add(srcAttrAsString);
+		}
+
+		return srcAttrValuesAsString;
 	}
 
 	/**

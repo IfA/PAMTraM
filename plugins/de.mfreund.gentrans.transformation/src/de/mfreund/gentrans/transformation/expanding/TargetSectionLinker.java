@@ -36,13 +36,16 @@ import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.extended.ReferenceTargetSelector;
+import pamtram.structure.generic.CrossReference;
 import pamtram.structure.library.ExternalReferenceParameter;
 import pamtram.structure.library.LibraryEntry;
 import pamtram.structure.library.LibraryPackage;
 import pamtram.structure.target.TargetSection;
+import pamtram.structure.target.TargetSectionAnyContentCrossReference;
 import pamtram.structure.target.TargetSectionClass;
 import pamtram.structure.target.TargetSectionCompositeReference;
 import pamtram.structure.target.TargetSectionCrossReference;
+import pamtram.util.ExtendedMetaDataUtil;
 
 /**
  * Class for linking target model sections using the hints supplied by {@link MappingInstanceDescriptor
@@ -148,7 +151,7 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 
 		// The list of CrossReferences for that we need to find target elements
 		//
-		List<TargetSectionCrossReference> nonContainmentReferences = this
+		List<CrossReference<?, ?, ?, ?>> nonContainmentReferences = this
 				.collectCrossReferencesRecursively(hintGroup.getTargetMMSectionGeneric());
 
 		// Link all found CrossReferences
@@ -159,23 +162,23 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 	}
 
 	/**
-	 * Recursively collect all {@link TargetSectionCrossReference TargetSectionCrossReferences} that are defined as part
-	 * of the given {@link TargetSectionClass}.
+	 * Recursively collect all {@link CrossReference TargetSectionCrossReferences} that are defined as part of the given
+	 * {@link TargetSectionClass}.
 	 * <p />
 	 * Note: This also collects the CrossReferences that are part of an {@link ExternalReferenceParameter} if the given
 	 * <em>targetSectionClass</em> is a {@link TargetSection#isLibraryEntry() library entry}.
 	 *
 	 * @param targetSectionClass
 	 *            The {@link TargetSectionClass} for that the CrossReferences shall be collected.
-	 * @return The list of {@link TargetSectionCrossReference TargetSectionCrossReferences} defined as part of the given
+	 * @return The list of {@link CrossReference TargetSectionCrossReferences} defined as part of the given
 	 *         <em>targetSectionClass</em> or any contained TargetSectionClass.
 	 */
-	private List<TargetSectionCrossReference> collectCrossReferencesRecursively(TargetSectionClass targetSectionClass) {
+	private List<CrossReference<?, ?, ?, ?>> collectCrossReferencesRecursively(TargetSectionClass targetSectionClass) {
 
 		// All CrossReferences defined as direct children of the given 'targetSectionClass'
 		//
-		List<TargetSectionCrossReference> crossReferences = targetSectionClass.getAllReferences().stream()
-				.filter(ref -> ref instanceof TargetSectionCrossReference).map(ref -> (TargetSectionCrossReference) ref)
+		List<CrossReference<?, ?, ?, ?>> crossReferences = targetSectionClass.getAllReferences().stream()
+				.filter(ref -> ref instanceof CrossReference<?, ?, ?, ?>).map(ref -> (CrossReference<?, ?, ?, ?>) ref)
 				.collect(Collectors.toList());
 
 		// Now, iterate further downward in the containment hierarchy defined by the 'CompositeReferences' of the given
@@ -206,12 +209,12 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 	 *            The {@link TargetSectionCrossReference} for that the target elements shall be determined.
 	 */
 	private void linkTargetSectionReference(InstantiableMappingHintGroup hintGroup,
-			MappingInstanceDescriptor mappingInstance, TargetSectionCrossReference ref) {
+			MappingInstanceDescriptor mappingInstance, CrossReference<?, ?, ?, ?> ref) {
 
 		// We are searching for target elements for instances of this class
 		//
 		final TargetSectionClass targetSectionClass = !ref.isLibraryEntry() ? (TargetSectionClass) ref.eContainer()
-				: ref.getContainingSection();
+				: (TargetSectionClass) ref.getContainingSection();
 
 		List<EObjectWrapper> instancesToLink = mappingInstance.getInstances(hintGroup, targetSectionClass);
 
@@ -267,7 +270,7 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 	 */
 	private void linkWithReferenceTargetSelector(final InstantiableMappingHintGroup mappingGroup,
 			final HintValueStorage hintValues, final List<EObjectWrapper> sourceInstances,
-			final TargetSectionCrossReference ref, ReferenceTargetSelector referenceTargetSelector) {
+			final CrossReference<?, ?, ?, ?> ref, ReferenceTargetSelector referenceTargetSelector) {
 
 		this.checkCanceled();
 
@@ -326,7 +329,7 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 	 *            The {@link TargetSectionCrossReference} for that the target elements shall be determined.
 	 */
 	private void linkWithoutReferenceTargetSelector(final InstantiableMappingHintGroup mappingGroup,
-			final List<EObjectWrapper> sourceInstances, final TargetSectionCrossReference ref) {
+			final List<EObjectWrapper> sourceInstances, final CrossReference<?, ?, ?, ?> ref) {
 
 		this.checkCanceled();
 
@@ -362,8 +365,9 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 			// The user modeled one or multiple allowed target classes. Thus, we only consider instances that have been
 			// created based on theses.
 			//
-			potentialTargetInstances.addAll(ref.getValue().stream().flatMap(
-					targetClass -> this.targetSectionRegistry.getFlattenedPamtramClassInstances(targetClass).stream())
+			potentialTargetInstances.addAll(ref.getValuesGeneric().stream()
+					.flatMap(targetClass -> this.targetSectionRegistry
+							.getFlattenedPamtramClassInstances((TargetSectionClass) targetClass).stream())
 					.collect(Collectors.toList()));
 		}
 
@@ -431,7 +435,7 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 	 *            The {@link MappingHintGroupType} that is used.
 	 */
 	private void selectAndInstantiateConnections(final List<EObjectWrapper> sourceInstances,
-			List<EObjectWrapper> targetInstances, final TargetSectionCrossReference reference,
+			List<EObjectWrapper> targetInstances, final CrossReference<?, ?, ?, ?> reference,
 			final InstantiableMappingHintGroup mappingGroup) {
 
 		if (targetInstances.isEmpty()) {
@@ -461,7 +465,9 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 
 		} else {
 
-			if (reference.getEReference().isMany()) {
+			if (reference instanceof TargetSectionAnyContentCrossReference
+					|| reference instanceof TargetSectionCrossReference
+							&& ((TargetSectionCrossReference) reference).getEReference().isMany()) {
 
 				// Use all target instances as reference target for each source instance
 				//
@@ -476,7 +482,7 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 				try {
 					this.logger.fine(TargetSectionLinker.RESOLVE_LINKING_AMBIGUITY_STARTED);
 					List<EObjectWrapper> resolved = this.ambiguityResolvingStrategy
-							.linkingSelectTargetInstance(targetInstances, reference,
+							.linkingSelectTargetInstance(targetInstances, (TargetSectionCrossReference) reference,
 									mappingGroup instanceof MappingHintGroup ? (MappingHintGroup) mappingGroup
 											: ((MappingHintGroupImporter) mappingGroup).getHintGroup(),
 									null, sourceInstances);
@@ -546,11 +552,11 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 	 * @param source
 	 *            The {@link EObject} being the source of the link to be created.
 	 */
-	private void addValueToReference(final TargetSectionCrossReference ref, final EObject target,
-			final EObject source) {
+	private void addValueToReference(final CrossReference<?, ?, ?, ?> ref, final EObject target, final EObject source) {
 
-		if (ref.getEReference().getUpperBound() == 1) {
-			if (source.eIsSet(ref.getEReference())) {
+		if (ref instanceof TargetSectionCrossReference
+				&& ((TargetSectionCrossReference) ref).getEReference().getUpperBound() == 1) {
+			if (source.eIsSet(((TargetSectionCrossReference) ref).getEReference())) {
 
 				this.logger.warning(
 						() -> "More than one value was supposed to be connected to the TargetSectionNonContainmentReference '"
@@ -558,19 +564,28 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 								+ "Please check your mapping model.");
 
 			} else {
-				source.eSet(ref.getEReference(), target);
+				source.eSet(((TargetSectionCrossReference) ref).getEReference(), target);
 			}
 
 		} else {
 
-			@SuppressWarnings("unchecked")
-			final EList<EObject> oldRefs = (EList<EObject>) source.eGet(ref.getEReference());
-			final LinkedList<EObject> newRefs = new LinkedList<>();
-			if (oldRefs != null) {
-				newRefs.addAll(oldRefs);
+			if (ref instanceof TargetSectionCrossReference) {
+
+				@SuppressWarnings("unchecked")
+				final EList<EObject> oldRefs = (EList<EObject>) source
+						.eGet(((TargetSectionCrossReference) ref).getEReference());
+				final LinkedList<EObject> newRefs = new LinkedList<>();
+				if (oldRefs != null) {
+					newRefs.addAll(oldRefs);
+				}
+				newRefs.add(target);
+				source.eSet(((TargetSectionCrossReference) ref).getEReference(), newRefs);
+
+			} else if (ref instanceof TargetSectionAnyContentCrossReference) {
+				ExtendedMetaDataUtil.addAnyConent(source, target);
+			} else {
+				this.logger.severe(() -> "Unknown type of Reference '" + ref.eClass().getName() + "'!");
 			}
-			newRefs.add(target);
-			source.eSet(ref.getEReference(), newRefs);
 
 		}
 	}
@@ -587,10 +602,11 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 	 * @param source
 	 *            The {@link EObject} being the source of the link to be created.
 	 */
-	private void addValuesToReference(final TargetSectionCrossReference ref, final List<EObject> targets,
+	private void addValuesToReference(final CrossReference<?, ?, ?, ?> ref, final List<EObject> targets,
 			final EObject source) {
 
-		if (ref.getEReference().getUpperBound() == 1) {
+		if (ref instanceof TargetSectionCrossReference
+				&& ((TargetSectionCrossReference) ref).getEReference().getUpperBound() == 1) {
 			if (targets.size() > 1) {
 
 				this.logger.warning(
@@ -609,14 +625,23 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 
 		} else {
 
-			@SuppressWarnings("unchecked")
-			final EList<EObject> oldRefs = (EList<EObject>) source.eGet(ref.getEReference());
-			final LinkedList<EObject> newRefs = new LinkedList<>();
-			if (oldRefs != null) {
-				newRefs.addAll(oldRefs);
+			if (ref instanceof TargetSectionCrossReference) {
+
+				@SuppressWarnings("unchecked")
+				final EList<EObject> oldRefs = (EList<EObject>) source
+						.eGet(((TargetSectionCrossReference) ref).getEReference());
+				final LinkedList<EObject> newRefs = new LinkedList<>();
+				if (oldRefs != null) {
+					newRefs.addAll(oldRefs);
+				}
+				newRefs.addAll(targets);
+				source.eSet(((TargetSectionCrossReference) ref).getEReference(), newRefs);
+
+			} else if (ref instanceof TargetSectionAnyContentCrossReference) {
+				ExtendedMetaDataUtil.addAnyConent(source, targets);
+			} else {
+				this.logger.severe(() -> "Unknown type of Reference '" + ref.eClass().getName() + "'!");
 			}
-			newRefs.addAll(targets);
-			source.eSet(ref.getEReference(), newRefs);
 
 		}
 	}

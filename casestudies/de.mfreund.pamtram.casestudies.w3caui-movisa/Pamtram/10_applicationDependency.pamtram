@@ -409,7 +409,7 @@
     </mappings>
     <mappings name="RadioButtonMapping" sourceSection="//@sourceSectionModels.0/@sections.1">
       <localCondition xsi:type="condition:ApplicationDependency" name="wasRadioButtonGroupSelected" target="//@mappingModels.0/@mappings.0">
-        <instanceSelectors referenceAttribute="//@sourceSectionModels.0/@sections.0/@attributes.1" targetClass="//@sourceSectionModels.0/@sections.1">
+        <instanceSelectors referenceAttribute="//@sourceSectionModels.0/@sections.0/@attributes.1" targetClass="//@sourceSectionModels.0/@sections.0">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="radioButtonId" modifiers="//@mappingModels.0/@modifierSets.13" source="//@sourceSectionModels.0/@sections.1/@attributes.1"/>
         </instanceSelectors>
       </localCondition>
@@ -436,7 +436,7 @@
     </mappings>
     <mappings name="DropDownElementMapping" sourceSection="//@sourceSectionModels.0/@sections.1">
       <localCondition xsi:type="condition:ApplicationDependency" name="wasDropDownSelected" target="//@mappingModels.0/@mappings.1">
-        <instanceSelectors referenceAttribute="//@sourceSectionModels.0/@sections.0/@attributes.1" targetClass="//@sourceSectionModels.0/@sections.1">
+        <instanceSelectors referenceAttribute="//@sourceSectionModels.0/@sections.0/@attributes.1" targetClass="//@sourceSectionModels.0/@sections.0">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="radioButtonId" modifiers="//@mappingModels.0/@modifierSets.13" source="//@sourceSectionModels.0/@sections.1/@attributes.1"/>
         </instanceSelectors>
       </localCondition>

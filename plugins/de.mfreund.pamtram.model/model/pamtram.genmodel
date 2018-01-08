@@ -474,12 +474,14 @@
         <genClasses ecoreClass="pamtram.ecore#//structure/target/TargetSectionClass"/>
         <genClasses image="false" ecoreClass="pamtram.ecore#//structure/target/TargetSectionReference"/>
         <genClasses image="false" ecoreClass="pamtram.ecore#//structure/target/TargetSectionCompositeReference"/>
+        <genClasses image="false" ecoreClass="pamtram.ecore#//structure/target/TargetSectionAnyContentCompositeReference"/>
         <genClasses image="false" ecoreClass="pamtram.ecore#//structure/target/TargetSectionCrossReference">
           <genOperations ecoreOperation="pamtram.ecore#//structure/target/TargetSectionCrossReference/validateEReferenceIsNonContainment">
             <genParameters ecoreParameter="pamtram.ecore#//structure/target/TargetSectionCrossReference/validateEReferenceIsNonContainment/diagnostics"/>
             <genParameters ecoreParameter="pamtram.ecore#//structure/target/TargetSectionCrossReference/validateEReferenceIsNonContainment/context"/>
           </genOperations>
         </genClasses>
+        <genClasses image="false" ecoreClass="pamtram.ecore#//structure/target/TargetSectionAnyContentCrossReference"/>
         <genClasses image="false" ecoreClass="pamtram.ecore#//structure/target/TargetSectionAttribute">
           <genFeatures createChild="false" propertyCategory="Extended" propertyDescription="If set to 'true', no two instances of the containing Class with the same value of this attribute will be created during a transformation."
               ecoreFeature="ecore:EAttribute pamtram.ecore#//structure/target/TargetSectionAttribute/unique"/>

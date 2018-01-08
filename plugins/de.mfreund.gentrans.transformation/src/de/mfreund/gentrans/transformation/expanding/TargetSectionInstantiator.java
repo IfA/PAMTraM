@@ -41,16 +41,19 @@ import pamtram.mapping.extended.ContainerSelector;
 import pamtram.mapping.extended.MappingHint;
 import pamtram.structure.generic.ActualAttribute;
 import pamtram.structure.generic.CardinalityType;
+import pamtram.structure.generic.CompositeReference;
 import pamtram.structure.generic.VirtualAttribute;
 import pamtram.structure.library.AttributeParameter;
 import pamtram.structure.library.LibraryEntry;
 import pamtram.structure.target.ActualTargetSectionAttribute;
 import pamtram.structure.target.TargetSection;
+import pamtram.structure.target.TargetSectionAnyContentCompositeReference;
 import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.target.TargetSectionClass;
 import pamtram.structure.target.TargetSectionCompositeReference;
 import pamtram.structure.target.TargetSectionReference;
 import pamtram.structure.target.VirtualTargetSectionAttribute;
+import pamtram.util.ExtendedMetaDataUtil;
 
 /**
  * Class for instantiating target model sections using the hints supplied by {@link MappingInstanceDescriptor
@@ -1194,15 +1197,15 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 
 		// collect all containment references
 		//
-		List<TargetSectionCompositeReference> containmentReferences = (this.useParallelization
+		List<CompositeReference<?, ?, ?, ?>> containmentReferences = (this.useParallelization
 				? targetSectionClass.getAllReferences().parallelStream()
 				: targetSectionClass.getAllReferences().stream())
-						.filter(ref -> ref instanceof TargetSectionCompositeReference)
-						.map(ref -> (TargetSectionCompositeReference) ref).collect(Collectors.toList());
+						.filter(ref -> ref instanceof CompositeReference<?, ?, ?, ?>)
+						.map(ref -> (CompositeReference<?, ?, ?, ?>) ref).collect(Collectors.toList());
 
 		// recursively instantiate the containment references
 		//
-		for (final TargetSectionCompositeReference ref : containmentReferences) {
+		for (final CompositeReference<?, ?, ?, ?> ref : containmentReferences) {
 
 			// Instantiate the referenced TargetSectionClass for each instance
 			//
@@ -1210,7 +1213,9 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 
 				final LinkedList<EObjectWrapper> childInstances = new LinkedList<>();
 
-				for (final TargetSectionClass val : ref.getValue()) {
+				for (final TargetSectionClass val : ref.getValuesGeneric().stream()
+						.filter(v -> v instanceof TargetSectionClass).map(v -> (TargetSectionClass) v)
+						.collect(Collectors.toList())) {
 
 					final List<EObjectWrapper> children = this.instantiateTargetSectionFirstPass(val, mappingGroup,
 							mappingHints, hintValues, createdInstancesByTargetSectionClass);
@@ -1232,11 +1237,12 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 				// would get problems with the hintValues
 				if (!markedForDelete.contains(instance) && !childInstances.isEmpty()) {
 
-					if (ref.getEReference().getUpperBound() == 1) {
+					if (ref instanceof TargetSectionCompositeReference
+							&& ((TargetSectionCompositeReference) ref).getEReference().getUpperBound() == 1) {
 
 						if (childInstances.size() > 1 && !this.wrongCardinalityContainmentRefs.contains(ref)) {
 
-							this.wrongCardinalityContainmentRefs.add(ref);
+							this.wrongCardinalityContainmentRefs.add((TargetSectionCompositeReference) ref);
 
 							this.logger.severe(() -> "More than one value was supposed to be connected to the "
 									+ "TargetSectionContainmentReference '" + ref.getName()
@@ -1248,7 +1254,8 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 									+ "Please check your mapping model.");
 						}
 
-						instance.getEObject().eSet(ref.getEReference(), childInstances.getFirst().getEObject());
+						instance.getEObject().eSet(((TargetSectionCompositeReference) ref).getEReference(),
+								childInstances.getFirst().getEObject());
 					} else {
 
 						final LinkedList<EObject> childEObjects = new LinkedList<>();
@@ -1257,7 +1264,14 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 							childEObjects.add(o.getEObject());
 						}
 
-						instance.getEObject().eSet(ref.getEReference(), childEObjects);
+						if (ref instanceof TargetSectionCompositeReference) {
+							instance.getEObject().eSet(((TargetSectionCompositeReference) ref).getEReference(),
+									childEObjects);
+						} else if (ref instanceof TargetSectionAnyContentCompositeReference) {
+							ExtendedMetaDataUtil.addAnyConent(instance.getEObject(), childEObjects);
+						} else {
+							this.logger.severe(() -> "Unknown type of Reference '" + ref.eClass().getName() + "'!");
+						}
 					}
 				}
 			}

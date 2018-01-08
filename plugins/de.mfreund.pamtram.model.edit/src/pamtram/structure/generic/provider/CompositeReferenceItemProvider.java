@@ -22,8 +22,7 @@ import pamtram.structure.source.SourceFactory;
 import pamtram.structure.target.TargetFactory;
 
 /**
- * This is the item provider adapter for a
- * {@link pamtram.structure.generic.CompositeReference} object. <!--
+ * This is the item provider adapter for a {@link pamtram.structure.generic.CompositeReference} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  *
  * @generated
@@ -31,48 +30,51 @@ import pamtram.structure.target.TargetFactory;
 public class CompositeReferenceItemProvider extends ReferenceItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
 	public CompositeReferenceItemProvider(AdapterFactory adapterFactory) {
+
 		super(adapterFactory);
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+
+		if (this.itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 		}
-		return itemPropertyDescriptors;
+		return this.itemPropertyDescriptors;
 	}
 
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
+
+		if (this.childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(GenericPackage.Literals.COMPOSITE_REFERENCE__VALUE);
+			this.childrenFeatures.add(GenericPackage.Literals.COMPOSITE_REFERENCE__VALUE);
 		}
-		return childrenFeatures;
+		return this.childrenFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -93,19 +95,18 @@ public class CompositeReferenceItemProvider extends ReferenceItemProvider {
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+
+		return ((StyledString) this.getStyledText(object)).getString();
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
@@ -116,28 +117,28 @@ public class CompositeReferenceItemProvider extends ReferenceItemProvider {
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+
+		this.updateChildren(notification);
 
 		switch (notification.getFeatureID(CompositeReference.class)) {
 			case GenericPackage.COMPOSITE_REFERENCE__VALUE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				this.fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing the children that can be created under this object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
@@ -149,11 +150,12 @@ public class CompositeReferenceItemProvider extends ReferenceItemProvider {
 		Class<?, ?, ?, ?> clazz = SourceFactory.eINSTANCE.createSourceSectionClass();
 
 		EReference ref = object instanceof ActualReference<?, ?, ?, ?>
-				? ((ActualReference<?, ?, ?, ?>) object).getEReference() : null;
+				? ((ActualReference<?, ?, ?, ?>) object).getEReference()
+				: null;
 		if (ref != null) {
-			if(ref.getLowerBound() == 0) {
+			if (ref.getLowerBound() == 0) {
 				clazz.setCardinality(CardinalityType.ZERO_INFINITY);
-			} else if(ref.getUpperBound() < 0) {
+			} else if (ref.getUpperBound() < 0) {
 				clazz.setCardinality(CardinalityType.ONE_INFINITY);
 			}
 		}
@@ -167,8 +169,12 @@ public class CompositeReferenceItemProvider extends ReferenceItemProvider {
 		// StructureFactory.eINSTANCE.createSourceSection()));
 
 		clazz = TargetFactory.eINSTANCE.createTargetSectionClass();
-		if (ref != null && ref.getUpperBound() < 0) {
-			clazz.setCardinality(CardinalityType.ONE_INFINITY);
+		if (ref != null) {
+			if (ref.getLowerBound() == 0) {
+				clazz.setCardinality(CardinalityType.ZERO_INFINITY);
+			} else if (ref.getUpperBound() < 0) {
+				clazz.setCardinality(CardinalityType.ONE_INFINITY);
+			}
 		}
 
 		newChildDescriptors.add(this.createChildParameter(GenericPackage.Literals.COMPOSITE_REFERENCE__VALUE, clazz));

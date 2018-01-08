@@ -29,6 +29,7 @@ import pamtram.NamedElement;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.extended.GlobalAttributeImporter;
+import pamtram.mapping.extended.MappingHint;
 import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.ExternalDynamicSourceElement;
 import pamtram.structure.GlobalDynamicSourceElement;
@@ -165,7 +166,9 @@ public abstract class ValueExtractor extends CancelableTransformationAsset {
 		}
 
 		if (sourceElements.isEmpty()) {
-			this.logger.warning(() -> "Hint source value '" + mappingHintSourceElement.getName() + "' not found!");
+			this.logger
+					.warning(() -> "Hint source value '" + mappingHintSourceElement.getName() + "' (Containing Hint: '"
+							+ ((MappingHint) mappingHintSourceElement.eContainer()).printInfo() + "') not found!");
 			return null;
 		}
 

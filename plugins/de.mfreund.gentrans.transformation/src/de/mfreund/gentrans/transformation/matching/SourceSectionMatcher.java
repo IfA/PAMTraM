@@ -937,8 +937,8 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 
 				// modeling error
 				this.logger.severe(() -> "Modeling error in source section: '"
-						+ sourceSectionClass.getContainer().getName() + "', subsection: '"
-						+ sourceSectionClass.getName() + "'. The Reference '" + refByClassMap.get(c)
+						+ sourceSectionClass.getContainingSection().getName() + "', subsection: '"
+						+ sourceSectionClass.getName() + "'. The Reference '" + refByClassMap.get(c).getName()
 						+ "' points to a metamodel reference, that can only hold one value but in the source section "
 						+ "it references more than one Class with a CardinalityType that is not ZERO_INFINITY.");
 				return false;

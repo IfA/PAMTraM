@@ -312,13 +312,19 @@ public abstract class ValueExtractor extends CancelableTransformationAsset {
 		//
 		for (Object srcAttrValue : srcAttrValues) {
 
-			String srcAttrAsString = srcAttrValue.toString();
+			String srcAttrAsString = null;
 
 			// if the attribute represents an actual EAttribute, we need to
 			// convert the value based on its type
 			if (sourceAttribute != null) {
 				srcAttrAsString = sourceAttribute.getEType().getEPackage().getEFactoryInstance()
 						.convertToString(sourceAttribute.getEAttributeType(), srcAttrValue);
+			} else if (srcAttrValue != null) {
+				srcAttrAsString = srcAttrValue.toString();
+			}
+
+			if (srcAttrAsString == null) {
+				continue;
 			}
 
 			// Apply ValueModifierSets

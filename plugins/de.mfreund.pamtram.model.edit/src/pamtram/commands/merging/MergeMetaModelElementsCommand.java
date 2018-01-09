@@ -149,6 +149,10 @@ public abstract class MergeMetaModelElementsCommand<L extends MetaModelElement<S
 	 */
 	protected static String longestCommonSubstring(String S1, String S2) {
 
+		if (S1 == null || S2 == null) {
+			return "";
+		}
+
 		int Start = 0;
 		int Max = 0;
 		for (int i = 0; i < S1.length(); i++) {

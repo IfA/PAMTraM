@@ -2738,7 +2738,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CardinalityCondition">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="This condition can be used to check the cardinality of a Class (how often the class is present in the matched source model excerpt)."/>
+        <details key="documentation" value="This condition can be used to check the cardinality of an element (a Class, an Attribute, or a Reference inside a SourceSection), i.e. how often this element can be found in the current source model excerpt."/>
       </eAnnotations>
       <eGenericSuperTypes eClassifier="#//condition/Condition">
         <eTypeArguments eClassifier="#//structure/generic/MetaModelElement">

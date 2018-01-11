@@ -659,7 +659,7 @@ public class GentransLaunchMainTab extends AbstractLaunchConfigurationTab {
 	 */
 	private boolean isTargetFileComboValid() {
 
-		return this.targetFileCombo.getText().endsWith(".xmi");
+		return !this.targetFileCombo.getText().isEmpty();
 	}
 
 	/**

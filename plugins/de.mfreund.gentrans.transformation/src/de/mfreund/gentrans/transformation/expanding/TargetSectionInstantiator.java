@@ -1033,7 +1033,7 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 					.mapToInt(am -> hintValues.getHintValues(am).size()).sum();
 
 			boolean allHintsProvideEqualNumberOfValues = attributeMappingsForAttribute.stream()
-					.map(hintValues::getHintValues).collect(Collectors.toSet()).size() == 1;
+					.map(am -> hintValues.getHintValues(am).size()).collect(Collectors.toSet()).size() == 1;
 
 			if (numberOfHintValues == expected) {
 
@@ -1052,6 +1052,16 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 					for (AttributeMapping attribtueMapping : attributeMappingsForAttribute) {
 						attrHintValues.addAll(hintValues.getHintValues(attribtueMapping));
 					}
+				}
+			} else if (allHintsProvideEqualNumberOfValues && numberOfHintValues > 0 && numberOfHintValues > expected
+					&& numberOfHintValues % expected == 0 && attribute instanceof ActualTargetSectionAttribute
+					&& ((ActualTargetSectionAttribute) attribute).getAttribute() != null
+					&& ((ActualTargetSectionAttribute) attribute).getAttribute().isMany()) {
+
+				// Each target instance will receive multiple attribute values
+				//
+				for (AttributeMapping attribtueMapping : attributeMappingsForAttribute) {
+					attrHintValues.addAll(hintValues.getHintValues(attribtueMapping));
 				}
 			} else if (numberOfHintValues >= expected) {
 
@@ -1245,9 +1255,8 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 							this.wrongCardinalityContainmentRefs.add((TargetSectionCompositeReference) ref);
 
 							this.logger.severe(() -> "More than one value was supposed to be connected to the "
-									+ "TargetSectionContainmentReference '" + ref.getName()
-									+ "' in the target section '" + ref.getContainingSection()
-									+ "', instantiated by the Mapping '"
+									+ "CompositeReference '" + ref.getName() + "' in the target section '"
+									+ ref.getContainingSection().getName() + "', instantiated by the Mapping '"
 									+ ((Mapping) mappingGroup.eContainer()).getName() + "' (Group: '"
 									+ mappingGroup.getName() + "'). "
 									+ "Only the first instance will be added to the model, the rest will be discarded. "

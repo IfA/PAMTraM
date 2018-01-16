@@ -213,9 +213,14 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 			return true;
 		}
 
+		// The active ContainerSelectors for this MappingHintGroups
+		//
+		List<ContainerSelector> containerSelectors = hintGroup.getContainerSelectors().stream()
+				.filter(c -> !c.isDeactivated()).collect(Collectors.toList());
+
 		// Join the created instances using the specified 'ContainerSelector(s)'
 		//
-		if (!hintGroup.getContainerSelectors().isEmpty()) { // link using ContainerSelector(s)
+		if (!containerSelectors.isEmpty()) { // link using ContainerSelector(s)
 
 			// The 'ContainerSelector(s)' need to be evaluated separately for each Mapping instance...
 			//
@@ -236,7 +241,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 				// ContainerSelectors and collect the unconnectable instances
 				//
 				instancesToConnect = this.joinWithContainerSelectors(mappingInstance, instancesToConnect, hintGroup,
-						hintGroup.getContainerSelectors());
+						containerSelectors);
 
 				// After evaluation of all ContainerSelectors, if there are
 				// still unconnected instances, we add them as new root elements

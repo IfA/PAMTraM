@@ -1,0 +1,3 @@
+[submodule "casestudies/aml-opc-ua/amlMetaModel"]
+	path = casestudies/aml-opc-ua/amlMetaModel
+	url = https://github.com/amlModeling/amlMetaModel.git

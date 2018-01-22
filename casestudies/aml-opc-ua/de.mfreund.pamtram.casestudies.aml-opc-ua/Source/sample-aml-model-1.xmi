@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<CAEX:CAEXFile xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:CAEX="http://caex" fileName="Topology.aml" schemaVersion="2.15">
+<CAEX:CAEXFile xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:CAEX="http://caex" fileName="ExampleTopology.aml" schemaVersion="2.15">
   <externalReference alias="BaseRoleClassLib" path="Libs/RoleClass Libraries/AutomationMLBaseRoleClassLib.aml"/>
   <externalReference alias="BaseInterfaceClassLib" path="Libs/InterfaceClass Libraries/AutomationMLInterfaceClassLib.aml"/>
   <instanceHierarchy name="ManufacturingSystem">
@@ -11,9 +11,6 @@
     </internalElement>
     <internalElement iD="{19dcf818-4716-4fc1-a85f-28e1938c4c3a}" name="secondScrewdriver" refBaseSystemUnitPath="LibOfCommonTools/ElectricScrewdriver">
       <externalInterface iD="50e10905-ac18-413c-afab-ad8ed1569fff" name="EnergySupply" refBaseClassPath="MyInterfaces/Energy"/>
-      <externalInterface iD="0e2014a2-fb61-44c8-8025-7e3161dfece4" name="PLCopenXMLInterface_instance_1" refBaseClassPath="BaseInterfaceClassLib@AutomationMLInterfaceClassLib/AutomationMLBaseInterface/ExternalDataConnector/PLCopenXMLInterface">
-        <attribute name="refURI" value="file:///OPCopen.xml#ID1&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;" attributeDataType="xs:anyURI"/>
-      </externalInterface>
       <supportedRoleClass refRoleClassPath="ManufacturingRoleClasses/Tool"/>
       <roleRequirements refBaseRoleClassPath="ManufacturingRoleClasses/Tool"/>
     </internalElement>

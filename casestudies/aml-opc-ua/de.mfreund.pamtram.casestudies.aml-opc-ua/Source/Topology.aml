@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="ASCII"?>
-<CAEXFile FileName="ExampleTopology.aml" SchemaVersion="2.15">
+<?xml version="1.0" encoding="ASCII" standalone="no"?><CAEXFile FileName="ExampleTopology.aml" SchemaVersion="2.15">
   <ExternalReference Alias="BaseRoleClassLib" Path="Libs/RoleClass Libraries/AutomationMLBaseRoleClassLib.aml"/>
   <ExternalReference Alias="BaseInterfaceClassLib" Path="Libs/InterfaceClass Libraries/AutomationMLInterfaceClassLib.aml"/>
   <InstanceHierarchy Name="ManufacturingSystem">

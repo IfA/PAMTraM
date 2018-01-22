@@ -40,9 +40,6 @@
     </sections>
     <sections xsi:type="source:SourceSection" name="InstanceHierarchy" cardinality="ONE__INFINITY">
       <eClass href="http://caex#//InstanceHierarchy"/>
-      <references xsi:type="source:SourceSectionCrossReference" name="internalElement" value="//@sourceSectionModels.0/@sections.3">
-        <eReference href="http://caex#//InstanceHierarchy/internalElement"/>
-      </references>
       <attributes xsi:type="source:ActualSourceSectionAttribute" name="name">
         <attribute href="http://caex#//CAEXObject/name"/>
       </attributes>
@@ -50,7 +47,7 @@
         <attribute href="http://caex#//CAEXObject/iD"/>
       </attributes>
     </sections>
-    <sections xsi:type="source:SourceSection" name="InternalElement" cardinality="ONE__INFINITY" container="//@sourceSectionModels.0/@sections.2">
+    <sections xsi:type="source:SourceSection" name="InternalElement" cardinality="ZERO__INFINITY">
       <eClass href="http://caex#//InternalElement"/>
       <references xsi:type="source:SourceSectionCrossReference" name="attribute" value="//@sourceSectionModels.0/@sections.5">
         <eReference href="http://caex#//SystemUnitClass/attribute"/>
@@ -76,6 +73,7 @@
         </value>
         <eReference href="http://caex#//InternalElement/roleRequirements"/>
       </references>
+      <references xsi:type="source:VirtualSourceSectionCrossReference" name="containingInstanceHierarchy" value="//@sourceSectionModels.0/@sections.2" derivation="self.oclAsType(ecore::EObject)->closure(v | if not v.oclIsTypeOf(CAEX::InstanceHierarchy) then v.eContainer() else v endif)->any(v | v.oclIsTypeOf(CAEX::InstanceHierarchy))"/>
       <attributes xsi:type="source:ActualSourceSectionAttribute" name="name">
         <attribute href="http://caex#//CAEXObject/name"/>
       </attributes>
@@ -242,7 +240,7 @@
       </references>
       <attributes xsi:type="target:FileAttribute" value="out.xml" fileType="XML"/>
     </sections>
-    <sections xsi:type="target:TargetSection" name="UAObject" cardinality="ONE__INFINITY">
+    <sections xsi:type="target:TargetSection" name="UAObject" cardinality="ZERO__INFINITY">
       <eClass href="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#//UAObject"/>
       <references xsi:type="target:TargetSectionCompositeReference" name="displayName">
         <value xsi:type="target:TargetSectionClass" name="LocalizedText" cardinality="ONE__INFINITY">
@@ -284,7 +282,7 @@
         <attribute href="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#//UAInstance/parentNodeId"/>
       </attributes>
     </sections>
-    <sections xsi:type="target:TargetSection" name="UAObjectType" cardinality="ONE__INFINITY">
+    <sections xsi:type="target:TargetSection" name="UAObjectType" cardinality="ZERO__INFINITY">
       <eClass href="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#//UAObjectType"/>
       <references xsi:type="target:TargetSectionCompositeReference" name="displayName">
         <value xsi:type="target:TargetSectionClass" name="LocalizedText" cardinality="ONE__INFINITY">
@@ -323,7 +321,7 @@
         <attribute href="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#//UANode/browseName"/>
       </attributes>
     </sections>
-    <sections xsi:type="target:TargetSection" name="Reference" cardinality="ONE__INFINITY">
+    <sections xsi:type="target:TargetSection" name="Reference" cardinality="ZERO__INFINITY">
       <eClass href="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#//Reference"/>
       <attributes xsi:type="target:ActualTargetSectionAttribute" name="value">
         <attribute href="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd#//Reference/value"/>
@@ -743,17 +741,6 @@
           <sourceElements xsi:type="pamtram:FixedValue" name="ns=1;i=5002" value="ns=1;i=5002"/>
         </mappingHints>
       </mappingHintGroups>
-      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="InternalElement2Reference" targetSection="//@targetSectionModels.0/@sections.3">
-        <mappingHints xsi:type="extended:ContainerSelector" name="nodeId" referenceAttribute="//@targetSectionModels.0/@sections.1/@attributes.0" targetClass="//@targetSectionModels.0/@sections.1/@references.1/@value.0">
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="name" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.0/@sections.2/@attributes.0" useElementID="true"/>
-        </mappingHints>
-        <mappingHints xsi:type="extended:AttributeMapping" name="valueMapping" modifiers="//@mappingModels.2/@modifierSets.0" target="//@targetSectionModels.0/@sections.3/@attributes.0">
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="name" source="//@sourceSectionModels.0/@sections.3/@attributes.0" useElementID="true"/>
-        </mappingHints>
-        <mappingHints xsi:type="extended:AttributeMapping" name="referenceTypeMapping" target="//@targetSectionModels.0/@sections.3/@attributes.2">
-          <sourceElements xsi:type="pamtram:FixedValue" name="HasComponent" value="HasComponent"/>
-        </mappingHints>
-      </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ID2Reference" targetSection="//@targetSectionModels.0/@sections.3">
         <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.0/@sections.1/@attributes.0" targetClass="//@targetSectionModels.0/@sections.1/@references.1/@value.0">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="name" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.0/@sections.2/@attributes.0" useElementID="true"/>
@@ -803,6 +790,17 @@
       </mappingHintGroups>
     </mappings>
     <mappings name="InternalElementMapping" sourceSection="//@sourceSectionModels.0/@sections.3">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="InternalElement2Reference" targetSection="//@targetSectionModels.0/@sections.3">
+        <mappingHints xsi:type="extended:ContainerSelector" name="nodeId" referenceAttribute="//@targetSectionModels.0/@sections.1/@attributes.0" targetClass="//@targetSectionModels.0/@sections.1/@references.1/@value.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="name" modifiers="//@mappingModels.2/@modifierSets.0" source="//@sourceSectionModels.0/@sections.2/@attributes.0" useElementID="true"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:AttributeMapping" name="valueMapping" modifiers="//@mappingModels.2/@modifierSets.0" target="//@targetSectionModels.0/@sections.3/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="name" source="//@sourceSectionModels.0/@sections.3/@attributes.0" useElementID="true"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:AttributeMapping" name="referenceTypeMapping" target="//@targetSectionModels.0/@sections.3/@attributes.2">
+          <sourceElements xsi:type="pamtram:FixedValue" name="HasComponent" value="HasComponent"/>
+        </mappingHints>
+      </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="InternalElement2UAObject" targetSection="//@targetSectionModels.0/@sections.1">
         <mappingHints xsi:type="extended:AttributeMapping" name="nodeIdMapping" modifiers="//@mappingModels.2/@modifierSets.0" target="//@targetSectionModels.0/@sections.1/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="name" source="//@sourceSectionModels.0/@sections.3/@attributes.0" useElementID="true"/>
@@ -814,7 +812,7 @@
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="name" source="//@sourceSectionModels.0/@sections.3/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="valueMapping" modifiers="//@mappingModels.2/@modifierSets.0" target="//@targetSectionModels.0/@sections.1/@references.1/@value.0/@references.0/@value.0/@attributes.0">
-          <sourceElements xsi:type="extended:AttributeMappingExternalSourceElement" name="name" source="//@sourceSectionModels.0/@sections.2/@attributes.0" useElementID="true"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="name" source="//@sourceSectionModels.0/@sections.2/@attributes.0" useElementID="true"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="referenceTypeMapping" target="//@targetSectionModels.0/@sections.1/@references.1/@value.0/@references.0/@value.0/@attributes.2">
           <sourceElements xsi:type="pamtram:FixedValue" name="HasComponent" value="HasComponent"/>

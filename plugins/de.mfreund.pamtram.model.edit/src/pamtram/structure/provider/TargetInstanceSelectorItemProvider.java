@@ -174,7 +174,7 @@ public class TargetInstanceSelectorItemProvider extends InstanceSelectorItemProv
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((TargetInstanceSelector)object).getExpression();
+		String label = ((TargetInstanceSelector)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
 			styledLabel.append(getString("_UI_TargetInstanceSelector_type"), StyledString.Style.QUALIFIER_STYLER); 

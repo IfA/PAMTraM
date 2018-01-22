@@ -416,7 +416,7 @@
       <details key="documentation" value="Main package of the PAMTraM (Persistent Ambiguous Mapping and Transformation Model) meta-model containing various structuring and general elements."/>
     </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="InstanceSelector" abstract="true"
-        eSuperTypes="#//ExpressionElement #//ModifiableElement">
+        eSuperTypes="#//NamedElement #//ExpressionElement #//ModifiableElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="noModifiedAttributeElementTypesInConditionModelConditions"/>
       </eAnnotations>

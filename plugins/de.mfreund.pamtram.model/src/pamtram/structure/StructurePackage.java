@@ -75,13 +75,22 @@ public interface StructurePackage extends EPackage {
 	int INSTANCE_SELECTOR = 0;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_SELECTOR__NAME = PamtramPackage.NAMED_ELEMENT__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Expression</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SELECTOR__EXPRESSION = PamtramPackage.EXPRESSION_ELEMENT__EXPRESSION;
+	int INSTANCE_SELECTOR__EXPRESSION = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
@@ -90,7 +99,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SELECTOR__MODIFIERS = PamtramPackage.EXPRESSION_ELEMENT_FEATURE_COUNT + 0;
+	int INSTANCE_SELECTOR__MODIFIERS = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Source Elements</b></em>' containment reference list.
@@ -99,7 +108,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SELECTOR__SOURCE_ELEMENTS = PamtramPackage.EXPRESSION_ELEMENT_FEATURE_COUNT + 1;
+	int INSTANCE_SELECTOR__SOURCE_ELEMENTS = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Instance Selector</em>' class.
@@ -108,7 +117,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SELECTOR_FEATURE_COUNT = PamtramPackage.EXPRESSION_ELEMENT_FEATURE_COUNT + 2;
+	int INSTANCE_SELECTOR_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Validate No Modified Attribute Element Types In Condition Model Conditions</em>' operation.
@@ -117,7 +126,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SELECTOR___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP = PamtramPackage.EXPRESSION_ELEMENT_OPERATION_COUNT + 0;
+	int INSTANCE_SELECTOR___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Local Source Elements</em>' operation.
@@ -126,7 +135,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SELECTOR___GET_LOCAL_SOURCE_ELEMENTS = PamtramPackage.EXPRESSION_ELEMENT_OPERATION_COUNT + 1;
+	int INSTANCE_SELECTOR___GET_LOCAL_SOURCE_ELEMENTS = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get External Source Elements</em>' operation.
@@ -135,7 +144,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS = PamtramPackage.EXPRESSION_ELEMENT_OPERATION_COUNT + 2;
+	int INSTANCE_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Instance Selector</em>' class.
@@ -144,7 +153,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SELECTOR_OPERATION_COUNT = PamtramPackage.EXPRESSION_ELEMENT_OPERATION_COUNT + 3;
+	int INSTANCE_SELECTOR_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.impl.SourceInstanceSelectorImpl <em>Source Instance Selector</em>}' class.
@@ -155,6 +164,15 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 */
 	int SOURCE_INSTANCE_SELECTOR = 1;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_INSTANCE_SELECTOR__NAME = INSTANCE_SELECTOR__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' attribute.
@@ -255,6 +273,15 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 */
 	int TARGET_INSTANCE_SELECTOR = 2;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_INSTANCE_SELECTOR__NAME = INSTANCE_SELECTOR__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' attribute.

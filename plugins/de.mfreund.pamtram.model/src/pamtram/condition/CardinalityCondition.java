@@ -15,7 +15,7 @@ import pamtram.structure.source.SourceSectionReference;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * This condition can be used to check the cardinality of a Class (how often the class is present in the matched source model excerpt).
+ * This condition can be used to check the cardinality of an element (a Class, an Attribute, or a Reference inside a SourceSection), i.e. how often this element can be found in the current source model excerpt.
  * <!-- end-model-doc -->
  *
  *

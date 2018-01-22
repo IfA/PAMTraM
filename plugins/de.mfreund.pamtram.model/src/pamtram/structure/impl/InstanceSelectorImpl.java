@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.BasicEList;
@@ -15,14 +16,20 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
+import pamtram.ExpressionElement;
 import pamtram.ModifiableElement;
 import pamtram.PamtramPackage;
 import pamtram.condition.ComplexCondition;
-import pamtram.impl.ExpressionElementImpl;
+import pamtram.impl.NamedElementImpl;
+import pamtram.mapping.Mapping;
+import pamtram.mapping.MappingHintGroupType;
+import pamtram.mapping.MappingPackage;
 import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.InstanceSelector;
 import pamtram.structure.InstanceSelectorExternalSourceElement;
@@ -44,12 +51,32 @@ import pamtram.structure.util.StructureValidator;
  *
  * @generated
  */
-public abstract class InstanceSelectorImpl extends ExpressionElementImpl implements InstanceSelector {
+public abstract class InstanceSelectorImpl extends NamedElementImpl implements InstanceSelector {
 
 	/**
-	 * The cached value of the '{@link #getModifiers() <em>Modifiers</em>}' reference list.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getExpression() <em>Expression</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
+	 * @see #getExpression()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String EXPRESSION_EDEFAULT = "";
+
+	/**
+	 * The cached value of the '{@link #getExpression() <em>Expression</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @see #getExpression()
+	 * @generated
+	 * @ordered
+	 */
+	protected String expression = InstanceSelectorImpl.EXPRESSION_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getModifiers() <em>Modifiers</em>}' reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getModifiers()
 	 * @generated
 	 * @ordered
@@ -68,138 +95,191 @@ public abstract class InstanceSelectorImpl extends ExpressionElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected InstanceSelectorImpl() {
+
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
+
 		return StructurePackage.Literals.INSTANCE_SELECTOR;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public String getExpression() {
+
+		return this.expression;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public void setExpression(String newExpression) {
+
+		String oldExpression = this.expression;
+		this.expression = newExpression;
+		if (this.eNotificationRequired()) {
+			this.eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.INSTANCE_SELECTOR__EXPRESSION,
+					oldExpression, this.expression));
+		}
+
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EList<ValueModifierSet> getModifiers() {
-	
-		if (modifiers == null) {
-			modifiers = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, StructurePackage.INSTANCE_SELECTOR__MODIFIERS);
+
+		if (this.modifiers == null) {
+			this.modifiers = new EObjectResolvingEList<>(ValueModifierSet.class, this,
+					StructurePackage.INSTANCE_SELECTOR__MODIFIERS);
 		}
-		return modifiers;
+		return this.modifiers;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EList<InstanceSelectorSourceInterface> getSourceElements() {
-	
-		if (sourceElements == null) {
-			sourceElements = new EObjectContainmentEList<InstanceSelectorSourceInterface>(InstanceSelectorSourceInterface.class, this, StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS);
+
+		if (this.sourceElements == null) {
+			this.sourceElements = new EObjectContainmentEList<>(
+					InstanceSelectorSourceInterface.class, this, StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS);
 		}
-		return sourceElements;
+		return this.sourceElements;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean validateNoModifiedAttributeElementTypesInConditionModelConditions(final DiagnosticChain diagnostics,
 			final Map<?, ?> context) {
-		
-		boolean result = this.eContainer() instanceof ComplexCondition && ((ComplexCondition) this.eContainer()).isConditionModelCondition() ? this.getSourceElements().parallelStream().noneMatch(s -> s instanceof pamtram.structure.DynamicSourceElement) : true;
-		
+
+		boolean result = this.eContainer() instanceof ComplexCondition
+				&& ((ComplexCondition) this.eContainer()).isConditionModelCondition()
+						? this.getSourceElements().parallelStream().noneMatch(
+								s -> s instanceof pamtram.structure.DynamicSourceElement)
+						: true;
+
 		if (!result && diagnostics != null) {
-		
+
 			String errorMessage = "ModifiedAttributeElementTypes are not allowed as part of ConditionModelConditions!";
-		
-			diagnostics.add(new BasicDiagnostic
-					(Diagnostic.ERROR,
-					StructureValidator.DIAGNOSTIC_SOURCE,
-							StructureValidator.INSTANCE_SELECTOR__VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS,
-							errorMessage,
-					new Object[] { this, StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS }));
-		
+
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, StructureValidator.DIAGNOSTIC_SOURCE,
+					StructureValidator.INSTANCE_SELECTOR__VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS,
+					errorMessage, new Object[] { this, StructurePackage.Literals.INSTANCE_SELECTOR__SOURCE_ELEMENTS }));
+
 		}
-		
-		return result;	
+
+		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EList<InstanceSelectorSourceElement> getLocalSourceElements() {
+
 		return new BasicEList<>(
 				this.getSourceElements().stream().filter(i -> i instanceof InstanceSelectorSourceElement)
-						.map(i -> (InstanceSelectorSourceElement) i).collect(Collectors.toList()));	
+						.map(i -> (InstanceSelectorSourceElement) i).collect(Collectors.toList()));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EList<InstanceSelectorExternalSourceElement> getExternalSourceElements() {
+
 		return new BasicEList<>(
 				this.getSourceElements().stream().filter(i -> i instanceof InstanceSelectorExternalSourceElement)
-						.map(i -> (InstanceSelectorExternalSourceElement) i).collect(Collectors.toList()));	
+						.map(i -> (InstanceSelectorExternalSourceElement) i).collect(Collectors.toList()));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+
 		switch (featureID) {
 			case StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS:
-				return ((InternalEList<?>)getSourceElements()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>) this.getSourceElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+
 		switch (featureID) {
+			case StructurePackage.INSTANCE_SELECTOR__EXPRESSION:
+				return this.getExpression();
 			case StructurePackage.INSTANCE_SELECTOR__MODIFIERS:
-				return getModifiers();
+				return this.getModifiers();
 			case StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS:
-				return getSourceElements();
+				return this.getSourceElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
+
 		switch (featureID) {
+			case StructurePackage.INSTANCE_SELECTOR__EXPRESSION:
+				this.setExpression((String) newValue);
+				return;
 			case StructurePackage.INSTANCE_SELECTOR__MODIFIERS:
-				getModifiers().clear();
-				getModifiers().addAll((Collection<? extends ValueModifierSet>)newValue);
+				this.getModifiers().clear();
+				this.getModifiers().addAll((Collection<? extends ValueModifierSet>) newValue);
 				return;
 			case StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS:
-				getSourceElements().clear();
-				getSourceElements().addAll((Collection<? extends InstanceSelectorSourceInterface>)newValue);
+				this.getSourceElements().clear();
+				this.getSourceElements().addAll((Collection<? extends InstanceSelectorSourceInterface>) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -207,16 +287,21 @@ public abstract class InstanceSelectorImpl extends ExpressionElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
+
 		switch (featureID) {
+			case StructurePackage.INSTANCE_SELECTOR__EXPRESSION:
+				this.setExpression(InstanceSelectorImpl.EXPRESSION_EDEFAULT);
+				return;
 			case StructurePackage.INSTANCE_SELECTOR__MODIFIERS:
-				getModifiers().clear();
+				this.getModifiers().clear();
 				return;
 			case StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS:
-				getSourceElements().clear();
+				this.getSourceElements().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -224,29 +309,46 @@ public abstract class InstanceSelectorImpl extends ExpressionElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
+
 		switch (featureID) {
+			case StructurePackage.INSTANCE_SELECTOR__EXPRESSION:
+				return InstanceSelectorImpl.EXPRESSION_EDEFAULT == null ? this.expression != null
+						: !InstanceSelectorImpl.EXPRESSION_EDEFAULT.equals(this.expression);
 			case StructurePackage.INSTANCE_SELECTOR__MODIFIERS:
-				return modifiers != null && !modifiers.isEmpty();
+				return this.modifiers != null && !this.modifiers.isEmpty();
 			case StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS:
-				return sourceElements != null && !sourceElements.isEmpty();
+				return this.sourceElements != null && !this.sourceElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+
+		if (baseClass == ExpressionElement.class) {
+			switch (derivedFeatureID) {
+				case StructurePackage.INSTANCE_SELECTOR__EXPRESSION:
+					return PamtramPackage.EXPRESSION_ELEMENT__EXPRESSION;
+				default:
+					return -1;
+			}
+		}
 		if (baseClass == ModifiableElement.class) {
 			switch (derivedFeatureID) {
-				case StructurePackage.INSTANCE_SELECTOR__MODIFIERS: return PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS;
-				default: return -1;
+				case StructurePackage.INSTANCE_SELECTOR__MODIFIERS:
+					return PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS;
+				default:
+					return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -254,14 +356,26 @@ public abstract class InstanceSelectorImpl extends ExpressionElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+
+		if (baseClass == ExpressionElement.class) {
+			switch (baseFeatureID) {
+				case PamtramPackage.EXPRESSION_ELEMENT__EXPRESSION:
+					return StructurePackage.INSTANCE_SELECTOR__EXPRESSION;
+				default:
+					return -1;
+			}
+		}
 		if (baseClass == ModifiableElement.class) {
 			switch (baseFeatureID) {
-				case PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS: return StructurePackage.INSTANCE_SELECTOR__MODIFIERS;
-				default: return -1;
+				case PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS:
+					return StructurePackage.INSTANCE_SELECTOR__MODIFIERS;
+				default:
+					return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -269,20 +383,67 @@ public abstract class InstanceSelectorImpl extends ExpressionElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+
 		switch (operationID) {
 			case StructurePackage.INSTANCE_SELECTOR___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP:
-				return validateNoModifiedAttributeElementTypesInConditionModelConditions((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+				return this.validateNoModifiedAttributeElementTypesInConditionModelConditions(
+						(DiagnosticChain) arguments.get(0), (Map<?, ?>) arguments.get(1));
 			case StructurePackage.INSTANCE_SELECTOR___GET_LOCAL_SOURCE_ELEMENTS:
-				return getLocalSourceElements();
+				return this.getLocalSourceElements();
 			case StructurePackage.INSTANCE_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS:
-				return getExternalSourceElements();
+				return this.getExternalSourceElements();
 		}
 		return super.eInvoke(operationID, arguments);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+
+		if (this.eIsProxy()) {
+			return super.toString();
+		}
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (expression: ");
+		result.append(this.expression);
+		result.append(')');
+		return result.toString();
+	}
+
+	@Override
+	public String printInfo() {
+
+		String instanceSelectorName = this.getName();
+		MappingHintGroupType hintGroup = (MappingHintGroupType) AgteleEcoreUtil.getAncestorOfKind(this,
+				MappingPackage.Literals.MAPPING_HINT_GROUP_TYPE);
+		Mapping mapping = (Mapping) AgteleEcoreUtil.getAncestorOfKind(this, MappingPackage.Literals.MAPPING);
+
+		StringBuilder infoBuilder = new StringBuilder();
+		infoBuilder.append(this.eClass().getName());
+		if (instanceSelectorName != null) {
+			infoBuilder.append(" '").append(instanceSelectorName).append("'");
+		}
+
+		if (hintGroup != null) {
+			infoBuilder.append(" (HintGroup '").append(hintGroup.getName()).append("'");
+		}
+		if (mapping != null) {
+			infoBuilder.append(" in Mapping '").append(mapping.getName()).append("')");
+		} else {
+			infoBuilder.append(")");
+		}
+		return infoBuilder.toString();
 	}
 
 } // InstanceSelectorImpl

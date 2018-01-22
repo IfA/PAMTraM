@@ -770,6 +770,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		globalDynamicSourceElementEClass_InstanceSelectorType.getEBounds().add(g1);
 
 		// Add supertypes to classes
+		instanceSelectorEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		instanceSelectorEClass.getESuperTypes().add(thePamtramPackage.getExpressionElement());
 		instanceSelectorEClass.getESuperTypes().add(thePamtramPackage.getModifiableElement());
 		sourceInstanceSelectorEClass.getESuperTypes().add(this.getInstanceSelector());

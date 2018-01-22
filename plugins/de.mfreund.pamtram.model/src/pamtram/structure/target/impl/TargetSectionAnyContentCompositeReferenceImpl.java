@@ -34,22 +34,18 @@ public class TargetSectionAnyContentCompositeReferenceImpl extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected TargetSectionAnyContentCompositeReferenceImpl() {
-
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
-
 		return TargetPackage.Literals.TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE;
 	}
 
@@ -61,12 +57,10 @@ public class TargetSectionAnyContentCompositeReferenceImpl extends
 	 */
 	@Override
 	public EList<TargetSectionClass> getValue() {
-
-		if (this.value == null) {
-			this.value = new EObjectContainmentEList<>(TargetSectionClass.class, this,
-					TargetPackage.TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE__VALUE);
+		if (value == null) {
+			value = new EObjectContainmentEList<TargetSectionClass>(TargetSectionClass.class, this, TargetPackage.TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE__VALUE);
 		}
-		return this.value;
+		return value;
 	}
 
 	@Override
@@ -77,44 +71,41 @@ public class TargetSectionAnyContentCompositeReferenceImpl extends
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean validateIsAllowed(final DiagnosticChain diagnostics, final Map<?, ?> context) {
-
+		
 		if (!(this.eContainer() instanceof pamtram.structure.generic.Class)) {
 			return true;
 		}
-
+		
 		EClass parentEClass = ((pamtram.structure.generic.Class<?, ?, ?, ?>) this.eContainer()).getEClass();
-
+		
 		boolean result = parentEClass == null ? true : ExtendedMetaDataUtil.allowsAnyContent(parentEClass);
-
+		
 		if (!result && diagnostics != null) {
-
+		
 			String errorMessage = "The containing Class does not allow 'any' content!";
-
+		
 			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, TargetValidator.DIAGNOSTIC_SOURCE,
 					TargetValidator.TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE__VALIDATE_IS_ALLOWED, errorMessage,
 					new Object[] { this, TargetPackage.Literals.TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE }));
-
+		
 		}
-
-		return result;
+		
+		return result;	
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-
 		switch (operationID) {
 			case TargetPackage.TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE___VALIDATE_IS_ALLOWED__DIAGNOSTICCHAIN_MAP:
-				return this.validateIsAllowed((DiagnosticChain) arguments.get(0), (Map<?, ?>) arguments.get(1));
+				return validateIsAllowed((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

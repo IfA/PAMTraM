@@ -8,14 +8,12 @@ import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import de.mfreund.pamtram.preferences.PreferenceSupplier;
 import pamtram.NamedElement;
 import pamtram.PamtramPackage;
-import de.mfreund.pamtram.preferences.PreferenceSupplier;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Named Element</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Named Element</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -26,10 +24,11 @@ import de.mfreund.pamtram.preferences.PreferenceSupplier;
  * @generated
  */
 public abstract class NamedElementImpl extends MinimalEObjectImpl.Container implements NamedElement {
+
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -37,9 +36,9 @@ public abstract class NamedElementImpl extends MinimalEObjectImpl.Container impl
 	protected static final String NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -47,8 +46,7 @@ public abstract class NamedElementImpl extends MinimalEObjectImpl.Container impl
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected NamedElementImpl() {
@@ -56,8 +54,7 @@ public abstract class NamedElementImpl extends MinimalEObjectImpl.Container impl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -66,8 +63,7 @@ public abstract class NamedElementImpl extends MinimalEObjectImpl.Container impl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -77,8 +73,7 @@ public abstract class NamedElementImpl extends MinimalEObjectImpl.Container impl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -92,8 +87,7 @@ public abstract class NamedElementImpl extends MinimalEObjectImpl.Container impl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -106,8 +100,7 @@ public abstract class NamedElementImpl extends MinimalEObjectImpl.Container impl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -121,8 +114,7 @@ public abstract class NamedElementImpl extends MinimalEObjectImpl.Container impl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -136,8 +128,7 @@ public abstract class NamedElementImpl extends MinimalEObjectImpl.Container impl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -150,8 +141,7 @@ public abstract class NamedElementImpl extends MinimalEObjectImpl.Container impl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -164,104 +154,118 @@ public abstract class NamedElementImpl extends MinimalEObjectImpl.Container impl
 		result.append(')');
 		return result.toString();
 	}
-	
+
 	/**
-	 * This sets the {@link NamedElement#Name} feature of the element based on
-	 * the '<em><b>name</b></em>' of an {@link ENamedElement} while prepending/appending a prefix and a suffix.
-	 * This functionality is however only performed if the '<em><b>auto-set-names</b></em>'
-	 * preference is enabled.
+	 * This sets the {@link NamedElement#Name} feature of the element based on the '<em><b>name</b></em>' of an
+	 * {@link ENamedElement} while prepending/appending a prefix and a suffix. This functionality is however only
+	 * performed if the '<em><b>auto-set-names</b></em>' preference is enabled.
 	 */
 	@Override
-	public void setNameDerived(ENamedElement oldNamedElement,
-			ENamedElement newNamedElement, String prefix, String suffix) {
-		
-		if(oldNamedElement == newNamedElement || !PreferenceSupplier.isAutoSetNames()) {
+	public void setNameDerived(ENamedElement oldNamedElement, ENamedElement newNamedElement, String prefix,
+			String suffix) {
+
+		if (oldNamedElement == newNamedElement || !PreferenceSupplier.isAutoSetNames()) {
 			return;
 		}
-		
-		String prefixString = (prefix == null ? "" : prefix);
-		String suffixString = (suffix == null ? "" : suffix);
+
+		String prefixString = prefix == null ? "" : prefix;
+		String suffixString = suffix == null ? "" : suffix;
 
 		// check if the old name has been changed/set by the user
-		String oldNamedElementString = (oldNamedElement == null ? "" : prefixString + oldNamedElement.getName() + suffixString);
-		boolean oldNameIsCustom = !oldNamedElementString.equals(getName() == null ? "" : getName());
-		if(oldNameIsCustom) {
+		String oldNamedElementString = oldNamedElement == null ? ""
+				: prefixString + oldNamedElement.getName() + suffixString;
+		boolean oldNameIsCustom = !oldNamedElementString.equals(this.getName() == null ? "" : this.getName());
+		if (oldNameIsCustom) {
 			// if this is the case, do not change the value
 			return;
 		}
-		
+
 		// this is the new name
-		String newNamedElementString = (newNamedElement == null ? "" : prefixString + newNamedElement.getName() + suffixString);
-		
-		if(!oldNamedElementString.equals(newNamedElementString)) {
-			setName(newNamedElementString);
+		String newNamedElementString = newNamedElement == null ? ""
+				: prefixString + newNamedElement.getName() + suffixString;
+
+		if (!oldNamedElementString.equals(newNamedElementString)) {
+			this.setName(newNamedElementString);
 		}
 	}
-	
+
 	/**
-	 * This sets the {@link NamedElement#Name} feature of the element based on
-	 * the '<em><b>name</b></em>' of an {@link NamedElement} while prepending/appending a prefix and a suffix.
-	 * This functionality is however only performed if the '<em><b>auto-set-names</b></em>'
-	 * preference is enabled.
+	 * This sets the {@link NamedElement#Name} feature of the element based on the '<em><b>name</b></em>' of an
+	 * {@link NamedElement} while prepending/appending a prefix and a suffix. This functionality is however only
+	 * performed if the '<em><b>auto-set-names</b></em>' preference is enabled.
 	 */
 	@Override
-	public void setNameDerived(NamedElement oldNamedElement,
-			NamedElement newNamedElement, String prefix, String suffix) {
-		
-		if(oldNamedElement == newNamedElement || !PreferenceSupplier.isAutoSetNames()) {
+	public void setNameDerived(NamedElement oldNamedElement, NamedElement newNamedElement, String prefix,
+			String suffix) {
+
+		if (oldNamedElement == newNamedElement || !PreferenceSupplier.isAutoSetNames()) {
 			return;
 		}
-		
-		String prefixString = (prefix == null ? "" : prefix);
-		String suffixString = (suffix == null ? "" : suffix);
+
+		String prefixString = prefix == null ? "" : prefix;
+		String suffixString = suffix == null ? "" : suffix;
 
 		// check if the old name has been changed/set by the user
-		String oldNamedElementString = (oldNamedElement == null ? "" : prefixString + oldNamedElement.getName() + suffixString);
-		boolean oldNameIsCustom = !oldNamedElementString.equals(getName() == null ? "" : getName());
-		if(oldNameIsCustom) {
+		String oldNamedElementString = oldNamedElement == null ? ""
+				: prefixString + oldNamedElement.getName() + suffixString;
+		boolean oldNameIsCustom = !oldNamedElementString.equals(this.getName() == null ? "" : this.getName());
+		if (oldNameIsCustom) {
 			// if this is the case, do not change the value
 			return;
 		}
-		
+
 		// this is the new name
-		String newNamedElementString = (newNamedElement == null ? "" : prefixString + newNamedElement.getName() + suffixString);
-		
-		if(!oldNamedElementString.equals(newNamedElementString)) {
-			setName(newNamedElementString);
+		String newNamedElementString = newNamedElement == null ? ""
+				: prefixString + newNamedElement.getName() + suffixString;
+
+		if (!oldNamedElementString.equals(newNamedElementString)) {
+			this.setName(newNamedElementString);
 		}
 	}
-	
+
 	/**
-	 * This sets the {@link NamedElement#Name} feature of the element based on
-	 * another {@link String} while prepending/appending a prefix and a suffix.
-	 * This functionality is however only performed if the '<em><b>auto-set-names</b></em>'
-	 * preference is enabled.
+	 * This sets the {@link NamedElement#Name} feature of the element based on another {@link String} while
+	 * prepending/appending a prefix and a suffix. This functionality is however only performed if the
+	 * '<em><b>auto-set-names</b></em>' preference is enabled.
 	 */
 	@Override
-	public void setNameDerived(String oldString, String newString,
-			String prefix, String suffix) {
-		
-		if(oldString == newString || !PreferenceSupplier.isAutoSetNames()) {
+	public void setNameDerived(String oldString, String newString, String prefix, String suffix) {
+
+		if (oldString == newString || !PreferenceSupplier.isAutoSetNames()) {
 			return;
 		}
-		
-		String prefixString = (prefix == null ? "" : prefix);
-		String suffixString = (suffix == null ? "" : suffix);
+
+		String prefixString = prefix == null ? "" : prefix;
+		String suffixString = suffix == null ? "" : suffix;
 
 		// check if the old name has been changed/set by the user
-		String oldValueBasedString = (oldString == null ? "" : prefixString + oldString + suffixString);
-		boolean oldNameIsCustom = !oldValueBasedString.equals(getName() == null ? "" : getName());
-		if(oldNameIsCustom) {
+		String oldValueBasedString = oldString == null ? "" : prefixString + oldString + suffixString;
+		boolean oldNameIsCustom = !oldValueBasedString.equals(this.getName() == null ? "" : this.getName());
+		if (oldNameIsCustom) {
 			// if this is the case, do not change the value
 			return;
 		}
-		
+
 		// this is the new name
-		String newValueBasedString = (newString == null ? "" : prefixString + newString + suffixString);
-		
-		if(!oldValueBasedString.equals(newValueBasedString)) {
-			setName(newValueBasedString);
+		String newValueBasedString = newString == null ? "" : prefixString + newString + suffixString;
+
+		if (!oldValueBasedString.equals(newValueBasedString)) {
+			this.setName(newValueBasedString);
 		}
 	}
 
-} //NamedElementImpl
+	@Override
+	public String printInfo() {
+
+		String elementName = this.getName();
+
+		StringBuilder infoBuilder = new StringBuilder();
+		infoBuilder.append(this.eClass().getName());
+		if (elementName != null) {
+			infoBuilder.append(" '").append(elementName).append("'");
+		}
+
+		return infoBuilder.toString();
+	}
+
+} // NamedElementImpl

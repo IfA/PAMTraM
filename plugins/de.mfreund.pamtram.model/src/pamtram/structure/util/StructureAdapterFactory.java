@@ -119,16 +119,16 @@ public class StructureAdapterFactory extends AdapterFactoryImpl {
 				return createGlobalDynamicSourceElementAdapter();
 			}
 			@Override
+			public Adapter caseNamedElement(NamedElement object) {
+				return createNamedElementAdapter();
+			}
+			@Override
 			public Adapter caseExpressionElement(ExpressionElement object) {
 				return createExpressionElementAdapter();
 			}
 			@Override
 			public Adapter caseModifiableElement(ModifiableElement object) {
 				return createModifiableElementAdapter();
-			}
-			@Override
-			public Adapter caseNamedElement(NamedElement object) {
-				return createNamedElementAdapter();
 			}
 			@Override
 			public Adapter caseConditionalElement(ConditionalElement object) {

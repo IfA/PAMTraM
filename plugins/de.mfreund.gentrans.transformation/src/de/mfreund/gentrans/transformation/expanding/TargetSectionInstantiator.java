@@ -521,6 +521,12 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 			}
 		}
 
+		// If a CardinalityMapping has been specified, this trumps all other hints implicitly providing a cardinality
+		//
+		if (cardMappingExists) {
+			return cardHintValue;
+		}
+
 		// check for attribute hint
 		boolean hintFound = false;
 		if (mappingGroup instanceof MappingHintGroup) {

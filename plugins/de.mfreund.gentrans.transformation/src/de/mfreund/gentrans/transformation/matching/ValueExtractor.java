@@ -26,10 +26,7 @@ import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.FixedValue;
 import pamtram.MatchSpecElement;
 import pamtram.NamedElement;
-import pamtram.mapping.Mapping;
-import pamtram.mapping.MappingPackage;
 import pamtram.mapping.extended.GlobalAttributeImporter;
-import pamtram.mapping.extended.MappingHint;
 import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.ExternalDynamicSourceElement;
 import pamtram.structure.GlobalDynamicSourceElement;
@@ -166,9 +163,8 @@ public abstract class ValueExtractor extends CancelableTransformationAsset {
 		}
 
 		if (sourceElements.isEmpty()) {
-			this.logger
-					.warning(() -> "Hint source value '" + mappingHintSourceElement.getName() + "' (Containing Hint: '"
-							+ ((MappingHint) mappingHintSourceElement.eContainer()).printInfo() + "') not found!");
+			this.logger.warning(() -> "No hint value found for source element '" + mappingHintSourceElement.getName()
+					+ "' in " + ((NamedElement) mappingHintSourceElement.eContainer()).printInfo() + "')!");
 			return null;
 		}
 
@@ -301,10 +297,7 @@ public abstract class ValueExtractor extends CancelableTransformationAsset {
 
 		if (srcAttrValues.isEmpty()) {
 			this.logger.warning(() -> "No hint value found for source element '" + mappingHintSourceElement.getName()
-					+ "' in mapping hint '" + ((NamedElement) mappingHintSourceElement.eContainer()).getName()
-					+ "' (Mapping '" + ((Mapping) AgteleEcoreUtil.getAncestorOfKind(mappingHintSourceElement,
-							MappingPackage.Literals.MAPPING)).getName()
-					+ "')!");
+					+ "' in " + ((NamedElement) mappingHintSourceElement.eContainer()).printInfo() + "')!");
 			return null;
 		}
 

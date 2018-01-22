@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- CAEX - Computer Aided Engineering Data-Exchange-Metamodel --><!-- Version 2.15, 16.05.2007 --><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
+<!-- CAEX - Computer Aided Engineering Data-Exchange-Metamodel --><!-- Version 2.15, 16.05.2007 -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
 	<xs:simpleType name="ChangeMode">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="state"/>

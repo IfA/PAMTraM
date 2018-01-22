@@ -222,7 +222,8 @@ public abstract class ValueExtractor extends CancelableTransformationAsset {
 		}
 
 		if (sourceElements.isEmpty()) {
-			this.logger.warning(() -> "Hint source value '" + mappingHintSourceElement.getName() + "' not found!");
+			this.logger.warning(() -> "No hint value found for source element '" + mappingHintSourceElement.getName()
+					+ "' in " + ((NamedElement) mappingHintSourceElement.eContainer()).printInfo() + "')!");
 			return null;
 		}
 

@@ -5,11 +5,11 @@ package de.mfreund.gentrans.transformation.calculation;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 import org.eclipse.emf.ecore.EObject;
 
-import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
+import de.mfreund.gentrans.transformation.core.TransformationAsset;
+import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import pamtram.MatchSpecElement;
 import pamtram.impl.MatchSpecElementImpl;
 import pamtram.structure.generic.ActualReference;
@@ -20,7 +20,19 @@ import pamtram.structure.generic.Reference;
  *
  * @author mfreund
  */
-public class MatchSpecHandler {
+public class MatchSpecHandler extends TransformationAsset {
+
+	/**
+	 * This creates an instance.
+	 *
+	 * @param assetManager
+	 *            The {@link TransformationAssetManager} providing access to the various other assets used in the
+	 *            current transformation instance.
+	 */
+	public MatchSpecHandler(TransformationAssetManager assetManager) {
+
+		super(assetManager);
+	}
 
 	/**
 	 * This can be used to check whether the given <em>matchedElement</em> fulfills the
@@ -33,19 +45,17 @@ public class MatchSpecHandler {
 	 *            The {@link EObject} to check.
 	 * @param matchSpecElement
 	 *            The {@link MatchSpecElement} to evaluate.
-	 * @param logger
-	 *            A {@link Logger} that shall be used to report errors.
 	 * @return '<em>true</em>' if the match spec if fulfilled; '<em>false</em>' otherwise.
 	 */
-	public static boolean conformsMatchedObject(EObject root, EObject matchedElement,
-			MatchSpecElement<?, ?, ?, ?> matchSpecElement, Logger logger) {
+	public boolean conformsMatchedObject(EObject root, EObject matchedElement,
+			MatchSpecElement<?, ?, ?, ?> matchSpecElement) {
 
-		return MatchSpecHandler.conformsMatchedObject(root, matchedElement,
-				new ArrayList<>(matchSpecElement.getReferenceMatchSpec()), logger);
+		return this.conformsMatchedObject(root, matchedElement,
+				new ArrayList<>(matchSpecElement.getReferenceMatchSpec()));
 	}
 
-	protected static boolean conformsMatchedObject(EObject root, EObject matchedElement,
-			List<Reference<?, ?, ?, ?>> referenceMatchSpec, Logger logger) {
+	protected boolean conformsMatchedObject(EObject root, EObject matchedElement,
+			List<Reference<?, ?, ?, ?>> referenceMatchSpec) {
 
 		// Create a local copy first
 		//
@@ -57,23 +67,18 @@ public class MatchSpecHandler {
 
 			if (!root.eClass().getEAllReferences()
 					.contains(((ActualReference<?, ?, ?, ?>) firstSegment).getEReference())) {
-				logger.severe("Faulty Reference Match Spec encountered!");
+				this.logger.severe("Faulty Reference Match Spec encountered!");
 				return false;
 			}
-
-			List<Object> values = AgteleEcoreUtil.getStructuralFeatureValueAsList(root,
-					((ActualReference<?, ?, ?, ?>) firstSegment).getEReference());
-			if (localReferenceSegments.isEmpty()) {
-				return values.contains(matchedElement);
-			} else {
-				return !localReferenceSegments.isEmpty()
-						&& values.stream().filter(v -> v instanceof EObject).anyMatch(v -> MatchSpecHandler
-								.conformsMatchedObject((EObject) v, matchedElement, localReferenceSegments, logger));
-			}
-
-		} else {
-			logger.severe("Reference Match Specs based on VirtualReferences are not yet supported!");
-			return false;
 		}
+
+		List<EObject> values = this.assetManager.getModelTraversalUtil().getReferenceValueAsList(root, firstSegment);
+		if (localReferenceSegments.isEmpty()) {
+			return values.contains(matchedElement);
+		} else {
+			return !localReferenceSegments.isEmpty() && values.stream().filter(v -> v instanceof EObject)
+					.anyMatch(v -> this.conformsMatchedObject(v, matchedElement, localReferenceSegments));
+		}
+
 	}
 }

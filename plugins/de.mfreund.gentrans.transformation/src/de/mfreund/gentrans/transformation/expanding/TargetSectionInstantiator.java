@@ -9,6 +9,7 @@ import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -453,6 +454,21 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 	 * specified {@link HintValueStorage hint values}, i.e. how many instances of {@link TargetSectionClass} shall be
 	 * created.
 	 * <p />
+	 * There are the following 5 possibilities to determine a cardinality. After the first successful step, the
+	 * algorithm terminates and returns the result.
+	 * <ol>
+	 * <li>If the TargetSectionClass specifies a cardinality of {@link CardinalityType#ONE}, use '1' as
+	 * cardinality.</li>
+	 * <li>If there are any CardinalityMappings, use the resulting cardinality.</li>
+	 * <li>If there are any AttributeMappings and/or ContainerSelectors, use the maximum cardinality implicitly
+	 * resulting from the available number of associated hint values.</li>
+	 * <li>If there are any ContainerSelectors, use the cardinality implicitly resulting from the available number of
+	 * associated hint values.</li>
+	 * <li>If the TargetSectionClass specifies a cardinality of {@link CardinalityType#ONE_INFINITY}, use '1' as
+	 * cardinality.</li>
+	 * <li>If the TargetSectionClass specifies a cardinality of {@link CardinalityType#ZERO_INFINITY}, use the
+	 * {@link #ambiguityResolvingStrategy} to determine a cardinality.</li>
+	 * </ol>
 	 * Therefore, existing {@link AttributeMapping AttributeMappings} and {@link CardinalityMapping CardinalityMappings}
 	 * are evaluated based on the given {@link HintValueStorage hint values}.
 	 *
@@ -465,15 +481,14 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 	 *            cardinality.
 	 * @param hintValues
 	 *            The {@link HintValueStorage hint values} to take into account.
-	 * @return The cardinality to be used whne instantiating the given {@link TargetSectionClass}.
+	 * @return The cardinality to be used when instantiating the given {@link TargetSectionClass}.
 	 */
 	private int determineCardinality(final TargetSectionClass targetSectionClass,
 			final InstantiableMappingHintGroup mappingGroup, final List<MappingHint> mappingHints,
 			final HintValueStorage hintValues) {
 
-		/*
-		 * ignore attribute hints and cardinality hint, if variableCardinality == false
-		 */
+		// Ignore all mapping hints, if the TargetSectionClass specifies a fixed cardinality
+		//
 		if (targetSectionClass.getCardinality().equals(CardinalityType.ONE)) {
 			return 1;
 		}
@@ -481,10 +496,100 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 		// This will be returned in the end. We start by assuming a cardinality
 		// of '0' or '1' depending on the cardinality of the TargetSectionClass.
 		//
-		int cardinality = targetSectionClass.getCardinality().equals(CardinalityType.ONE_INFINITY) ? 1 : 0;
+		int targetSectionClassLowerBound = targetSectionClass.getCardinality().equals(CardinalityType.ONE_INFINITY) ? 1
+				: 0;
 
-		int cardHintValue = 1;
-		boolean cardMappingExists = false;
+		// Check if there are any CardinalityMapping that tell about the required cardinality
+		//
+		Optional<Integer> cardinalityMappingsBasedCardinality = this
+				.determineCardinalityMappingsBasedCardinality(targetSectionClass, mappingHints, hintValues);
+
+		// If a CardinalityMapping has been specified, this trumps all other hints implicitly providing a cardinality.
+		// However, we have to regard the minimum cardinality specified by the TargetSectionClass.
+		//
+		if (cardinalityMappingsBasedCardinality.isPresent()) {
+			return Math.max(targetSectionClassLowerBound, cardinalityMappingsBasedCardinality.get());
+		}
+
+		// Check if there are any AttributeMappings that can indicate a suitable cardinality
+		//
+		Optional<Integer> attributeMappingsBasedCardinality = this
+				.determineAttributeMappingsBasedCardinality(targetSectionClass, mappingHints, hintValues);
+
+		// Check if there are any ContainerSelectors that can indicate a suitable cardinality
+		//
+		Optional<Integer> containerSelectorsBasedCardinality = this.determineContainerSelectorsBasedCardinality(
+				targetSectionClass, mappingGroup, mappingHints, hintValues);
+
+		// If (at least) one AttributeMapping or ContainerSelector has been specified, we use the cardinality determined
+		// by evaluating it/them.
+		//
+		if (attributeMappingsBasedCardinality.isPresent() || containerSelectorsBasedCardinality.isPresent()) {
+			return Math.max(targetSectionClassLowerBound,
+					Math.max(attributeMappingsBasedCardinality.get(), containerSelectorsBasedCardinality.get()));
+		}
+
+		// No hint whatsoever found that could help us determining a cardinality
+		//
+		if (targetSectionClassLowerBound == 1) {
+			return targetSectionClassLowerBound;
+		}
+
+		/*
+		 * If the TargetSectionClass specified a lower bound of '0', we will consult the specified resolving strategy to
+		 * resolve the ambiguity.
+		 */
+		try {
+			this.logger.fine(TargetSectionInstantiator.RESOLVE_INSTANTIATING_AMBIGUITY_STARTED);
+			List<Integer> resolved = this.ambiguityResolvingStrategy
+					.instantiatingSelectCardinality(Arrays.asList((Integer) null), targetSectionClass, mappingGroup);
+			if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
+				((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
+						.instantiatingCardinalitySelected(Arrays.asList((Integer) null), resolved.get(0));
+			}
+			this.logger.fine(TargetSectionInstantiator.RESOLVE_INSTANTIATING_AMBIGUITY_FINISHED);
+			if (resolved.get(0) != null) {
+				return resolved.get(0);
+			} else {
+				return targetSectionClassLowerBound;
+			}
+		} catch (AmbiguityResolvingException e) {
+
+			if (e.getCause() instanceof UserAbortException) {
+				throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
+			} else {
+				this.logger.severe(
+						() -> "The following exception occured during the resolving of an ambiguity concerning a cardinality: "
+								+ e.getMessage());
+				this.logger.severe("Using default cardinality instead...");
+				return targetSectionClassLowerBound;
+			}
+		}
+
+	}
+
+	/**
+	 * This determines and returns the cardinality when instantiating the given {@link TargetSectionClass} as specified
+	 * by the associated {@link CardinalityMapping CardinalityMapping(s)}, i.e. how many instances of
+	 * {@link TargetSectionClass} shall be created.
+	 * <p />
+	 * Therefore, the relevant {@link CardinalityMapping CardinalityMappings} are evaluated based on the given
+	 * {@link HintValueStorage hint values}.
+	 *
+	 * @param targetSectionClass
+	 *            The {@link TargetSectionClass} for that the cardinality shall be determined.
+	 * @param mappingHints
+	 *            The list of {@link MappingHint MappingHints} to take into account for the determination of the
+	 *            cardinality.
+	 * @param hintValues
+	 *            The {@link HintValueStorage hint values} to take into account.
+	 * @return The cardinality as determined by the CardinalityMapping(s) to be used when instantiating the given
+	 *         {@link TargetSectionClass} or an empty Optional if no appropriate CardinalityMapping could be determined.
+	 */
+	private Optional<Integer> determineCardinalityMappingsBasedCardinality(final TargetSectionClass targetSectionClass,
+			final List<MappingHint> mappingHints, final HintValueStorage hintValues) {
+
+		List<Integer> cardinalityMappingBasedCardinalities = new ArrayList<>();
 
 		// check CardinalityMappings
 		//
@@ -502,7 +607,7 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 				try {
 					double doubleValue = Double.parseDouble(hintVal);
 					if (doubleValue == Math.floor(doubleValue) && !Double.isInfinite(doubleValue)) {
-						cardHintValue = Double.valueOf(hintVal).intValue();
+						cardinalityMappingBasedCardinalities.add(Double.valueOf(hintVal).intValue());
 					} else {
 						this.logger
 								.severe(() -> "Unable to parse Integer from calculated value for CardinalityMapping '"
@@ -516,47 +621,50 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 					continue;
 				}
 
-				cardMappingExists = true;
-
 			}
 		}
 
-		// If a CardinalityMapping has been specified, this trumps all other hints implicitly providing a cardinality
-		//
-		if (cardMappingExists) {
-			return cardHintValue;
+		// TODO find a useful algorithm to handle cases where multiple CardinalityMappings deliver different results
+		if (cardinalityMappingBasedCardinalities.size() > 1
+				&& cardinalityMappingBasedCardinalities.stream().distinct().count() > 1) {
+			this.logger.warning(() -> "Multiple CardinalityMappings providing different cardinalities found for "
+					+ targetSectionClass.printInfo()
+					+ ". This is currently not supported. Instead, only the first determined cardinality ('"
+					+ cardinalityMappingBasedCardinalities.get(0) + "') will be used.");
 		}
+		return cardinalityMappingBasedCardinalities.isEmpty() ? Optional.empty()
+				: Optional.of(cardinalityMappingBasedCardinalities.get(0));
+	}
 
-		// check for attribute hint
-		boolean hintFound = false;
-		if (mappingGroup instanceof MappingHintGroup) {
+	/**
+	 * This determines and returns the cardinality when instantiating the given {@link TargetSectionClass} as deduced
+	 * from associated {@link AttributeMapping AttributeMapping(s)}, i.e. how many instances of
+	 * {@link TargetSectionClass} shall be created.
+	 * <p />
+	 * Therefore, the {@link AttributeMapping AttributeMappings} are evaluated based on the given
+	 * {@link HintValueStorage hint values}.
+	 *
+	 * @param targetSectionClass
+	 *            The {@link TargetSectionClass} for that the cardinality shall be determined.
+	 * @param mappingHints
+	 *            The list of {@link MappingHint MappingHints} to take into account for the determination of the
+	 *            cardinality.
+	 * @param hintValues
+	 *            The {@link HintValueStorage hint values} to take into account.
+	 * @return The cardinality as deduced from the ContainerSelector(s) to be used when instantiating the given
+	 *         {@link TargetSectionClass} or an empty Optional if no ContainerSelector was present.
+	 */
+	private Optional<Integer> determineAttributeMappingsBasedCardinality(final TargetSectionClass targetSectionClass,
+			final List<MappingHint> mappingHints, final HintValueStorage hintValues) {
 
-			final MappingHintGroup mhGrp = (MappingHintGroup) mappingGroup;
-
-			if (!mhGrp.getContainerSelectors().isEmpty() && (mhGrp.getTargetSection().equals(targetSectionClass)
-					|| mhGrp.getTargetSection().getAllExtending().contains(targetSectionClass))) {
-
-				hintFound = true;
-
-				// Use the maximum cardinality provided by one of the
-				// ContainerSelectors
-				//
-				for (ContainerSelector containerSelector : mhGrp.getContainerSelectors()) {
-
-					int containerSelectorCardinality = hintValues.getHintValues(containerSelector).size();
-					if (containerSelectorCardinality > cardinality) {
-						cardinality = containerSelectorCardinality;
-					}
-				}
-			}
-		}
+		int attributeMappingHintCardinality = -1;
 
 		List<AttributeMapping> hints = TargetSectionInstantiator.searchAttributesMapping(targetSectionClass,
 				mappingHints, hintValues, null);
 
 		if (!hints.isEmpty()) {// there was an AttributeHint....
 
-			int attributeMappingHintCardinality = 0;
+			attributeMappingHintCardinality = 0;
 
 			// Collect the cardinality for each TargetSectionAttribute
 			//
@@ -572,70 +680,9 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 
 			}
 
-			if (attributeMappingHintCardinality > cardinality) {
-
-				cardinality = attributeMappingHintCardinality;
-			}
-
-			// Use the hint value of the found CardinalityMapping
-			if (cardMappingExists && cardHintValue > attributeMappingHintCardinality
-					&& cardHintValue % attributeMappingHintCardinality == 0) {
-				cardinality = cardHintValue;
-			}
-
-		} else {// no AttributeHint found
-
-			// mc hint found....only go on if there were no attrMappings
-			//
-			if (hintFound && mappingHints.parallelStream().anyMatch(h -> h instanceof AttributeMapping)) {
-
-				cardinality = 0;
-			}
-
-			// no modelConnaectionHint or AttributeMapping found
-			// or cardinality is still 1
-			// last chance
-			if (cardinality <= 1) {
-
-				if (cardMappingExists) {
-					cardinality = cardHintValue;
-
-				} else {
-					/*
-					 * Consult the specified resolving strategy to resolve the ambiguity.
-					 */
-					try {
-						this.logger.fine(TargetSectionInstantiator.RESOLVE_INSTANTIATING_AMBIGUITY_STARTED);
-						List<Integer> resolved = this.ambiguityResolvingStrategy.instantiatingSelectCardinality(
-								Arrays.asList((Integer) null), targetSectionClass, mappingGroup);
-						if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
-							((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
-									.instantiatingCardinalitySelected(Arrays.asList((Integer) null), resolved.get(0));
-						}
-						this.logger.fine(TargetSectionInstantiator.RESOLVE_INSTANTIATING_AMBIGUITY_FINISHED);
-						if (resolved.get(0) != null) {
-							cardinality = resolved.get(0);
-						} else {
-							cardinality = targetSectionClass.getCardinality() != CardinalityType.ZERO_INFINITY ? 1 : 0;
-						}
-					} catch (AmbiguityResolvingException e) {
-
-						if (e.getCause() instanceof UserAbortException) {
-							throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
-						} else {
-							this.logger.severe(
-									() -> "The following exception occured during the resolving of an ambiguity concerning a cardinality: "
-											+ e.getMessage());
-							this.logger.severe("Using default cardinality instead...");
-							cardinality = targetSectionClass.getCardinality() != CardinalityType.ZERO_INFINITY ? 1 : 0;
-						}
-					}
-				}
-			}
-
 		}
 
-		return cardinality;
+		return attributeMappingHintCardinality == -1 ? Optional.empty() : Optional.of(attributeMappingHintCardinality);
 	}
 
 	/**
@@ -669,6 +716,55 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 
 		}
 		return localAttributeMappingHintCardinality;
+	}
+
+	/**
+	 * This determines and returns the cardinality when instantiating the given {@link TargetSectionClass} as deduced
+	 * from associated {@link ContainerSelector ContainerSelector(s)}, i.e. how many instances of
+	 * {@link TargetSectionClass} shall be created.
+	 * <p />
+	 * Therefore, the {@link ContainerSelector ContainerSelectors} are evaluated based on the given
+	 * {@link HintValueStorage hint values}.
+	 *
+	 * @param targetSectionClass
+	 *            The {@link TargetSectionClass} for that the cardinality shall be determined.
+	 * @param mappingGroup
+	 *            The {@link InstantiableMappingHintGroup} based on which the TargetSection gets instantiated.
+	 * @param mappingHints
+	 *            The list of {@link MappingHint MappingHints} to take into account for the determination of the
+	 *            cardinality.
+	 * @param hintValues
+	 *            The {@link HintValueStorage hint values} to take into account.
+	 * @return The cardinality as deduced from the ContainerSelector(s) to be used when instantiating the given
+	 *         {@link TargetSectionClass} or an empty Optional if no ContainerSelector was present.
+	 */
+	private Optional<Integer> determineContainerSelectorsBasedCardinality(final TargetSectionClass targetSectionClass,
+			final InstantiableMappingHintGroup mappingGroup, final List<MappingHint> mappingHints,
+			final HintValueStorage hintValues) {
+
+		int cardinality = -1;
+
+		if (mappingGroup instanceof MappingHintGroup) {
+
+			final MappingHintGroup mhGrp = (MappingHintGroup) mappingGroup;
+
+			if (!mhGrp.getContainerSelectors().isEmpty() && (mhGrp.getTargetSection().equals(targetSectionClass)
+					|| mhGrp.getTargetSection().getAllExtending().contains(targetSectionClass))) {
+
+				// Use the maximum cardinality provided by one of the
+				// ContainerSelectors
+				//
+				for (ContainerSelector containerSelector : mhGrp.getContainerSelectors()) {
+
+					int containerSelectorCardinality = hintValues.getHintValues(containerSelector).size();
+					if (containerSelectorCardinality > cardinality) {
+						cardinality = containerSelectorCardinality;
+					}
+				}
+			}
+		}
+
+		return cardinality == -1 ? Optional.empty() : Optional.of(cardinality);
 	}
 
 	/**

@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ParserException;
 
-import de.mfreund.gentrans.transformation.calculation.MatchSpecHandler;
 import de.mfreund.gentrans.transformation.core.CancelableTransformationAsset;
 import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
@@ -155,9 +154,9 @@ public abstract class ValueExtractor extends CancelableTransformationAsset {
 
 				MatchedSectionDescriptor localDescriptor = sourceDescriptor;
 				sourceElements = sourceElements.stream()
-						.filter(s -> MatchSpecHandler.conformsMatchedObject(
+						.filter(s -> this.assetManager.getMatchSpecHandler().conformsMatchedObject(
 								localDescriptor.getAssociatedSourceModelElement(), s,
-								(MatchSpecElement<?, ?, ?, ?>) mappingHintSourceElement, this.logger))
+								(MatchSpecElement<?, ?, ?, ?>) mappingHintSourceElement))
 						.collect(Collectors.toCollection(LinkedHashSet::new));
 			}
 		}

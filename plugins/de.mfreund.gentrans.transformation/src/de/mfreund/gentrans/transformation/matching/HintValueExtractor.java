@@ -1,11 +1,13 @@
 package de.mfreund.gentrans.transformation.matching;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.eclipse.emf.ecore.EObject;
@@ -17,7 +19,6 @@ import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.maps.HintValue;
 import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
-import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.FixedValue;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.GlobalAttribute;
@@ -39,7 +40,6 @@ import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.GlobalDynamicSourceElement;
 import pamtram.structure.SourceInstanceSelector;
-import pamtram.structure.generic.ActualAttribute;
 import pamtram.structure.source.ActualSourceSectionAttribute;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
@@ -335,46 +335,62 @@ public class HintValueExtractor extends ValueExtractor {
 
 		if (cardinalityMapping.getSource() != null) {
 
-			if (cardinalityMapping.getSource() instanceof SourceSectionClass) {
+			// Depending on the type of 'source' element specified, we first need to determine the elements whose
+			// cardinality we need to check
+			//
+			List<SourceSectionClass> sourceClasses = new ArrayList<>();
 
-				// If the cardinality mapping specifies a SourceSectionClass as
-				// source, we simply return the number of
-				// times
-				// this class has been matched
+			if (cardinalityMapping.getSource() instanceof SourceSectionClass) {
+				sourceClasses.add((SourceSectionClass) cardinalityMapping.getSource());
+			} else if (cardinalityMapping.getSource() instanceof SourceSectionReference) {
+				sourceClasses.addAll(((SourceSectionReference) cardinalityMapping.getSource()).getValuesGeneric());
+			} else if (cardinalityMapping.getSource() instanceof SourceSectionAttribute) {
+				sourceClasses.add(((SourceSectionAttribute) cardinalityMapping.getSource()).getOwningClass());
+			} else {
+				this.logger.severe(() -> "CardinalityMapping '" + cardinalityMapping.getName()
+						+ "' specifies an unsupported element type as 'source' ('"
+						+ cardinalityMapping.getSource().eClass().getName() + "').");
+				return null;
+			}
+
+			Set<EObject> sourceElements = sourceClasses.stream().flatMap(
+					sourceClass -> matchedSectionDescriptor.getMatchedSourceModelElementsFor(sourceClass).stream())
+					.collect(Collectors.toSet());
+
+			// Evaluate potential ReferenceMatchSpecs
+			//
+			if (!cardinalityMapping.getReferenceMatchSpec().isEmpty()) {
+				sourceElements = sourceElements.stream()
+						.filter(e -> this.assetManager.getMatchSpecHandler().conformsMatchedObject(
+								matchedSectionDescriptor.getAssociatedSourceModelElement(), e, cardinalityMapping))
+						.collect(Collectors.toSet());
+			}
+
+			if (sourceElements.isEmpty()) {
+				return HintValue.create(cardinalityMapping, 0, this.valueCalculator);
+			}
+
+			int resultingCardinality = 0;
+
+			if (cardinalityMapping.getSource() instanceof SourceSectionClass
+					|| cardinalityMapping.getSource() instanceof SourceSectionReference) {
+
+				// The resulting cardinality is simply the number of determined relevant source elements
 				//
-				SourceSectionClass sourceClass = (SourceSectionClass) cardinalityMapping.getSource();
-				Set<EObject> sourceElements = matchedSectionDescriptor.getMatchedSourceModelElementsFor(sourceClass);
-				return sourceElements == null ? null
-						: HintValue.create(cardinalityMapping, sourceElements.size(), this.valueCalculator);
+				resultingCardinality = sourceElements.size();
 
 			} else if (cardinalityMapping.getSource() instanceof SourceSectionAttribute) {
 
-				// If the cardinality mapping specifies a SourceSectionAttribute
-				// as source, we first collect all matches
-				// of this attribute and then return the sum of the values for
-				// each of the found matches
+				// We have to determine the number of attribute values for the relevant source elements (there
+				// may be more than one attribute value per source element)
 				//
 				SourceSectionAttribute sourceAttribute = (SourceSectionAttribute) cardinalityMapping.getSource();
-				Set<EObject> sourceElements = matchedSectionDescriptor
-						.getMatchedSourceModelElementsFor(sourceAttribute.getOwningClass());
-				return sourceElements == null ? null
-						: HintValue.create(cardinalityMapping,
-								sourceElements.parallelStream()
-										.mapToInt(
-												sourceElement -> sourceAttribute instanceof ActualAttribute<?, ?, ?, ?>
-														? AgteleEcoreUtil.getStructuralFeatureValueAsList(sourceElement,
-																((ActualAttribute<?, ?, ?, ?>) sourceAttribute)
-																		.getAttribute())
-																.size()
-														: 1)
-										.sum(),
-								this.valueCalculator);
+				resultingCardinality = sourceElements.stream().mapToInt(sourceElement -> this.assetManager
+						.getModelTraversalUtil().getAttributeValueAsList(sourceElement, sourceAttribute).size()).sum();
 
-			} else {
-				this.logger.severe(() -> "CardinalityMapping '" + cardinalityMapping.getName()
-						+ "' specifies an unsupported element type as 'source'. Only SourceSectionClasses and SourceSectionAttributes are supported!");
-				return null;
 			}
+
+			return HintValue.create(cardinalityMapping, resultingCardinality, this.valueCalculator);
 
 		} else {
 			// This keeps track of the extracted hint value parts

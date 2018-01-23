@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import de.mfreund.gentrans.transformation.TransformationConfiguration;
 import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
+import de.mfreund.gentrans.transformation.calculation.MatchSpecHandler;
 import de.mfreund.gentrans.transformation.calculation.ValueCalculator;
 import de.mfreund.gentrans.transformation.calculation.ValueConstraintReferenceValueCalculator;
 import de.mfreund.gentrans.transformation.calculation.ValueModifierExecutor;
@@ -27,6 +28,7 @@ import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.matching.GlobalAttributeValueExtractor;
 import de.mfreund.gentrans.transformation.matching.HintValueExtractor;
 import de.mfreund.gentrans.transformation.matching.MappingSelector;
+import de.mfreund.gentrans.transformation.matching.ModelTraversalUtil;
 import de.mfreund.gentrans.transformation.matching.SourceSectionMatcher;
 import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
 import de.mfreund.gentrans.transformation.registries.SelectedMappingRegistry;
@@ -36,6 +38,7 @@ import de.mfreund.gentrans.transformation.util.CancelableElement;
 import de.mfreund.gentrans.transformation.util.ICancelable;
 import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryPlugin;
 import pamtram.FixedValue;
+import pamtram.MatchSpecElement;
 import pamtram.condition.Condition;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.Mapping;
@@ -43,6 +46,8 @@ import pamtram.mapping.extended.MappingHint;
 import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.InstanceSelector;
 import pamtram.structure.constraint.ValueConstraint;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.Reference;
 import pamtram.structure.library.LibraryEntry;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.target.TargetSection;
@@ -107,6 +112,17 @@ public class TransformationAssetManager extends CancelableElement {
 	 * The {@link TransformationConfiguration} that this operates on.
 	 */
 	private TransformationConfiguration transformationConfig;
+
+	/**
+	 * The {@link ModelTraversalUtil} used to evaluate {@link Reference References} and {@link Attribute Attributes}.
+	 */
+	private ModelTraversalUtil modelTraversalUtil;
+
+	/**
+	 * The {@link MatchSpecHandler} used to evaluate {@link MatchSpecElement#getReferenceMatchSpec()
+	 * <em>referenceMatchSpecs</em>} of {@link MatchSpecElement MatchSpecElements}.
+	 */
+	private MatchSpecHandler matchSpecHandler;
 
 	/**
 	 * The {@link ValueModifierExecutor} used to apply {@link ValueModifierSet ValueModifierSets}.
@@ -281,7 +297,7 @@ public class TransformationAssetManager extends CancelableElement {
 	/**
 	 * Returns the {@link #elementIDs}.
 	 *
-	 * @return the {@link #elementIDs}}
+	 * @return the {@link #elementIDs}
 	 */
 	public ElementIDMap getElementIDs() {
 
@@ -290,6 +306,50 @@ public class TransformationAssetManager extends CancelableElement {
 		}
 
 		return this.elementIDs;
+	}
+
+	/**
+	 * This initializes the {@link #modelTraversalUtil}.
+	 */
+	protected void initModelTraversalUtil() {
+
+		this.modelTraversalUtil = new ModelTraversalUtil(this);
+	}
+
+	/**
+	 * Returns the {@link #modelTraversalUtil}.
+	 *
+	 * @return the {@link #modelTraversalUtil}
+	 */
+	public ModelTraversalUtil getModelTraversalUtil() {
+
+		if (this.modelTraversalUtil == null) {
+			this.initModelTraversalUtil();
+		}
+
+		return this.modelTraversalUtil;
+	}
+
+	/**
+	 * This initializes the {@link #matchSpecHandler}.
+	 */
+	protected void initMatchSpecHandler() {
+
+		this.matchSpecHandler = new MatchSpecHandler(this);
+	}
+
+	/**
+	 * Returns the {@link #matchSpecHandler}.
+	 *
+	 * @return the {@link #matchSpecHandler}
+	 */
+	public MatchSpecHandler getMatchSpecHandler() {
+
+		if (this.matchSpecHandler == null) {
+			this.initMatchSpecHandler();
+		}
+
+		return this.matchSpecHandler;
 	}
 
 	/**

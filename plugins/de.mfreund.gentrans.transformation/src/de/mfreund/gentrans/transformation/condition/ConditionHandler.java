@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -17,8 +16,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
-import de.mfreund.gentrans.transformation.calculation.MatchSpecHandler;
 import de.mfreund.gentrans.transformation.calculation.ValueConstraintReferenceValueCalculator;
+import de.mfreund.gentrans.transformation.core.TransformationAsset;
 import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
@@ -56,7 +55,7 @@ import pamtram.structure.source.SourceSectionCrossReference;
  * @author gkoltun
  */
 
-public class ConditionHandler {
+public class ConditionHandler extends TransformationAsset {
 
 	/**
 	 * A String that is reused whenever something goes wrong.
@@ -83,11 +82,6 @@ public class ConditionHandler {
 	 * Registry for values of checked conditions
 	 */
 	private final Map<ComplexCondition, CondResult> conditionRepository;
-
-	/**
-	 * The {@link Logger} be used to print messages.
-	 */
-	private Logger logger;
 
 	/**
 	 * Registry for <em>source model objects</em> that have already been matched. The matched objects are stored in a
@@ -128,11 +122,12 @@ public class ConditionHandler {
 	 */
 	public ConditionHandler(TransformationAssetManager assetManager) {
 
+		super(assetManager);
+
 		this.matchedSections = assetManager.getMatchedSectionRegistry();
 		this.selectedMappingRegistry = assetManager.getSelectedMappingRegistry();
 		this.conditionRepository = new HashMap<>();
 		this.attributeConditionConstraintsWithErrors = new HashSet<>();
-		this.logger = assetManager.getLogger();
 		this.instanceSelectorHandler = assetManager.getInstanceSelectorHandler();
 		this.refValueCalculator = assetManager.getValueConstraintReferenceValueCalculator();
 	}
@@ -238,9 +233,8 @@ public class ConditionHandler {
 		if (!sectionCondition.getReferenceMatchSpec().isEmpty()) {
 
 			correspondEClassInstances = correspondEClassInstances.stream()
-					.filter(s -> MatchSpecHandler.conformsMatchedObject(
-							matchedSectionDescriptor.getAssociatedSourceModelElement(), s, sectionCondition,
-							this.logger))
+					.filter(s -> this.assetManager.getMatchSpecHandler().conformsMatchedObject(
+							matchedSectionDescriptor.getAssociatedSourceModelElement(), s, sectionCondition))
 					.collect(Collectors.toList());
 		}
 

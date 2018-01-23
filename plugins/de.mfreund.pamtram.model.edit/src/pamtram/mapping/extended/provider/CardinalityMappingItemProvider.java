@@ -35,8 +35,7 @@ import pamtram.structure.generic.CrossReference;
 import pamtram.structure.source.SourceSectionClass;
 
 /**
- * This is the item provider adapter for a
- * {@link pamtram.mapping.extended.CardinalityMapping} object. <!--
+ * This is the item provider adapter for a {@link pamtram.mapping.extended.CardinalityMapping} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  *
  * @generated
@@ -44,9 +43,8 @@ import pamtram.structure.source.SourceSectionClass;
 public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public CardinalityMappingItemProvider(AdapterFactory adapterFactory) {
@@ -54,9 +52,8 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -66,6 +63,7 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 
 			addExpressionPropertyDescriptor(object);
 			addModifiersPropertyDescriptor(object);
+			addReferenceMatchSpecPropertyDescriptor(object);
 			addSourcePropertyDescriptor(object);
 			addTargetPropertyDescriptor(object);
 		}
@@ -73,12 +71,12 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Expression feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Expression feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
 	protected void addExpressionPropertyDescriptor(Object object) {
+
 		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
 				this.getString("_UI_ExpressionElement_expression_feature"),
@@ -88,12 +86,12 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Modifiers feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Modifiers feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
 	protected void addModifiersPropertyDescriptor(Object object) {
+
 		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
 				this.getString("_UI_ModifiableElement_modifiers_feature"),
@@ -103,9 +101,30 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Source feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This adds a property descriptor for the Reference Match Spec feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addReferenceMatchSpecPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_MatchSpecElement_referenceMatchSpec_feature"),
+				 getString("_UI_MatchSpecElement_referenceMatchSpec_description"),
+				 PamtramPackage.Literals.MATCH_SPEC_ELEMENT__REFERENCE_MATCH_SPEC,
+				 true,
+				 false,
+				 true,
+				 null,
+				 getString("_UI_ExtendedPropertyCategory"),
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Source feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addSourcePropertyDescriptorGen(Object object) {
@@ -125,8 +144,7 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Source feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Source feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 */
 	protected void addSourcePropertyDescriptor(Object object) {
 
@@ -170,6 +188,7 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 								choiceOfValues.add(classToScan);
 							}
 							choiceOfValues.addAll(classToScan.getAttributes());
+							choiceOfValues.addAll(classToScan.getReferences());
 
 							Iterator<EObject> it = classToScan.eAllContents();
 							while (it.hasNext()) {
@@ -179,6 +198,7 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 										choiceOfValues.add(next);
 									}
 									choiceOfValues.addAll(((SourceSectionClass) next).getAttributes());
+									choiceOfValues.addAll(((SourceSectionClass) next).getReferences());
 								} else if (next instanceof CrossReference) {
 									List<SourceSectionClass> vals = new ArrayList<>();
 									vals.addAll(((CrossReference) next).getValue());
@@ -194,9 +214,8 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Target feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This adds a property descriptor for the Target feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addTargetPropertyDescriptorGen(Object object) {
@@ -216,8 +235,7 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Target feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Target feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 */
 	protected void addTargetPropertyDescriptor(Object object) {
 
@@ -270,7 +288,8 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -296,8 +315,7 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 
 	/**
 	 * This returns CardinalityMapping.gif.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -307,8 +325,7 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 
 	/**
 	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -317,8 +334,7 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
@@ -344,10 +360,10 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -366,10 +382,9 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing the children that can be created under this object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

@@ -214,6 +214,7 @@ public class ExtendedSwitch<T> extends Switch<T> {
 				if (result == null) result = caseMappingHint(cardinalityMapping);
 				if (result == null) result = caseExpressionElement(cardinalityMapping);
 				if (result == null) result = caseModifiableElement(cardinalityMapping);
+				if (result == null) result = caseMatchSpecElement(cardinalityMapping);
 				if (result == null) result = caseMappingHintType(cardinalityMapping);
 				if (result == null) result = caseConditionalElement(cardinalityMapping);
 				if (result == null) result = caseDeactivatableElement(cardinalityMapping);

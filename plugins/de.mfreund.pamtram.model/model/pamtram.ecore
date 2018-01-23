@@ -3366,7 +3366,7 @@
         </eGenericSuperTypes>
         <eGenericSuperTypes eClassifier="#//mapping/extended/AttributeMappingSourceInterface"/>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="CardinalityMapping" eSuperTypes="#//mapping/extended/MappingHint #//ExpressionElement #//ModifiableElement">
+      <eClassifiers xsi:type="ecore:EClass" name="CardinalityMapping">
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="sourceClassMatchesSection sourceClassIsVariableCardinality targetClassMatchesSection targetClassIsVariableCardinality noCardinalityMappingForSourceSectionRoot"/>
         </eAnnotations>
@@ -3505,6 +3505,15 @@
             <details key="documentation" value="The (optional) list of 'sourceElements' based on which the cardinality of the 'target' Class is determined."/>
           </eAnnotations>
         </eStructuralFeatures>
+        <eGenericSuperTypes eClassifier="#//mapping/extended/MappingHint"/>
+        <eGenericSuperTypes eClassifier="#//ExpressionElement"/>
+        <eGenericSuperTypes eClassifier="#//ModifiableElement"/>
+        <eGenericSuperTypes eClassifier="#//MatchSpecElement">
+          <eTypeArguments eClassifier="#//structure/source/SourceSection"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionClass"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionReference"/>
+          <eTypeArguments eClassifier="#//structure/source/SourceSectionAttribute"/>
+        </eGenericSuperTypes>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="CardinalityMappingSourceInterface"
           abstract="true" interface="true" eSuperTypes="#//mapping/extended/MappingHintSourceInterface">

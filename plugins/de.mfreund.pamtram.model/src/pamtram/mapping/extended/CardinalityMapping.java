@@ -7,6 +7,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 
 import org.eclipse.emf.common.util.EList;
 import pamtram.ExpressionElement;
+import pamtram.MatchSpecElement;
 import pamtram.ModifiableElement;
 import pamtram.structure.generic.MetaModelElement;
 import pamtram.structure.source.SourceSection;
@@ -50,7 +51,7 @@ import pamtram.structure.target.TargetSectionClass;
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='sourceClassMatchesSection sourceClassIsVariableCardinality targetClassMatchesSection targetClassIsVariableCardinality noCardinalityMappingForSourceSectionRoot'"
  * @generated
  */
-public interface CardinalityMapping extends MappingHint, ExpressionElement, ModifiableElement {
+public interface CardinalityMapping extends MappingHint, ExpressionElement, ModifiableElement, MatchSpecElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> {
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->

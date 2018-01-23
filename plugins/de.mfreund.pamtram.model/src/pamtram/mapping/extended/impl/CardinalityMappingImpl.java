@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import pamtram.ExpressionElement;
+import pamtram.MatchSpecElement;
 import pamtram.ModifiableElement;
 import pamtram.PamtramPackage;
 import pamtram.mapping.Mapping;
@@ -58,6 +59,7 @@ import pamtram.structure.target.TargetSectionClass;
  * <ul>
  *   <li>{@link pamtram.mapping.extended.impl.CardinalityMappingImpl#getExpression <em>Expression</em>}</li>
  *   <li>{@link pamtram.mapping.extended.impl.CardinalityMappingImpl#getModifiers <em>Modifiers</em>}</li>
+ *   <li>{@link pamtram.mapping.extended.impl.CardinalityMappingImpl#getReferenceMatchSpec <em>Reference Match Spec</em>}</li>
  *   <li>{@link pamtram.mapping.extended.impl.CardinalityMappingImpl#getSource <em>Source</em>}</li>
  *   <li>{@link pamtram.mapping.extended.impl.CardinalityMappingImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link pamtram.mapping.extended.impl.CardinalityMappingImpl#getSourceElements <em>Source Elements</em>}</li>
@@ -96,6 +98,16 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 * @ordered
 	 */
 	protected EList<ValueModifierSet> modifiers;
+
+	/**
+	 * The cached value of the '{@link #getReferenceMatchSpec() <em>Reference Match Spec</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReferenceMatchSpec()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<SourceSectionReference> referenceMatchSpec;
 
 	/**
 	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
@@ -179,6 +191,19 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 			modifiers = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, ExtendedPackage.CARDINALITY_MAPPING__MODIFIERS);
 		}
 		return modifiers;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<SourceSectionReference> getReferenceMatchSpec() {
+	
+		if (referenceMatchSpec == null) {
+			referenceMatchSpec = new EObjectResolvingEList<SourceSectionReference>(SourceSectionReference.class, this, ExtendedPackage.CARDINALITY_MAPPING__REFERENCE_MATCH_SPEC);
+		}
+		return referenceMatchSpec;
 	}
 
 	/**
@@ -565,6 +590,8 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 				return getExpression();
 			case ExtendedPackage.CARDINALITY_MAPPING__MODIFIERS:
 				return getModifiers();
+			case ExtendedPackage.CARDINALITY_MAPPING__REFERENCE_MATCH_SPEC:
+				return getReferenceMatchSpec();
 			case ExtendedPackage.CARDINALITY_MAPPING__SOURCE:
 				if (resolve) return getSource();
 				return basicGetSource();
@@ -591,6 +618,10 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 			case ExtendedPackage.CARDINALITY_MAPPING__MODIFIERS:
 				getModifiers().clear();
 				getModifiers().addAll((Collection<? extends ValueModifierSet>)newValue);
+				return;
+			case ExtendedPackage.CARDINALITY_MAPPING__REFERENCE_MATCH_SPEC:
+				getReferenceMatchSpec().clear();
+				getReferenceMatchSpec().addAll((Collection<? extends SourceSectionReference>)newValue);
 				return;
 			case ExtendedPackage.CARDINALITY_MAPPING__SOURCE:
 				setSource((MetaModelElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>)newValue);
@@ -619,6 +650,9 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 			case ExtendedPackage.CARDINALITY_MAPPING__MODIFIERS:
 				getModifiers().clear();
 				return;
+			case ExtendedPackage.CARDINALITY_MAPPING__REFERENCE_MATCH_SPEC:
+				getReferenceMatchSpec().clear();
+				return;
 			case ExtendedPackage.CARDINALITY_MAPPING__SOURCE:
 				setSource((MetaModelElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>)null);
 				return;
@@ -643,6 +677,8 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 				return EXPRESSION_EDEFAULT == null ? expression != null : !EXPRESSION_EDEFAULT.equals(expression);
 			case ExtendedPackage.CARDINALITY_MAPPING__MODIFIERS:
 				return modifiers != null && !modifiers.isEmpty();
+			case ExtendedPackage.CARDINALITY_MAPPING__REFERENCE_MATCH_SPEC:
+				return referenceMatchSpec != null && !referenceMatchSpec.isEmpty();
 			case ExtendedPackage.CARDINALITY_MAPPING__SOURCE:
 				return source != null;
 			case ExtendedPackage.CARDINALITY_MAPPING__TARGET:
@@ -671,6 +707,12 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 				default: return -1;
 			}
 		}
+		if (baseClass == MatchSpecElement.class) {
+			switch (derivedFeatureID) {
+				case ExtendedPackage.CARDINALITY_MAPPING__REFERENCE_MATCH_SPEC: return PamtramPackage.MATCH_SPEC_ELEMENT__REFERENCE_MATCH_SPEC;
+				default: return -1;
+			}
+		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
@@ -689,6 +731,12 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 		if (baseClass == ModifiableElement.class) {
 			switch (baseFeatureID) {
 				case PamtramPackage.MODIFIABLE_ELEMENT__MODIFIERS: return ExtendedPackage.CARDINALITY_MAPPING__MODIFIERS;
+				default: return -1;
+			}
+		}
+		if (baseClass == MatchSpecElement.class) {
+			switch (baseFeatureID) {
+				case PamtramPackage.MATCH_SPEC_ELEMENT__REFERENCE_MATCH_SPEC: return ExtendedPackage.CARDINALITY_MAPPING__REFERENCE_MATCH_SPEC;
 				default: return -1;
 			}
 		}

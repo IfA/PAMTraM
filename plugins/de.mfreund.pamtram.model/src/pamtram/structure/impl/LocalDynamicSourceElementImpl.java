@@ -125,8 +125,9 @@ public abstract class LocalDynamicSourceElementImpl<S extends Section<S, C, R, A
 			Iterator<EObject> it = classToScan.eAllContents();
 			while (it.hasNext()) {
 				EObject next = it.next();
-				if (next instanceof pamtram.structure.generic.Attribute) {
+				if (next instanceof pamtram.structure.generic.Attribute && next.equals(this.source)) {
 					result = true;
+					break;
 				} else if (next instanceof CrossReference) {
 					List<SourceSectionClass> vals = new ArrayList<>();
 					vals.addAll(((CrossReference) next).getValue());

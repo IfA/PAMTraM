@@ -525,8 +525,9 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 		// by evaluating it/them.
 		//
 		if (attributeMappingsBasedCardinality.isPresent() || containerSelectorsBasedCardinality.isPresent()) {
-			return Math.max(targetSectionClassLowerBound,
-					Math.max(attributeMappingsBasedCardinality.get(), containerSelectorsBasedCardinality.get()));
+			return Math.max(targetSectionClassLowerBound, Math.max(
+					attributeMappingsBasedCardinality.isPresent() ? attributeMappingsBasedCardinality.get() : 0,
+					containerSelectorsBasedCardinality.isPresent() ? containerSelectorsBasedCardinality.get() : 0));
 		}
 
 		// No hint whatsoever found that could help us determining a cardinality

@@ -578,11 +578,21 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	private Optional<MatchedSectionDescriptor> checkClass(final EObject srcModelObject, Optional<EReference> reference,
 			final SourceSectionClass srcSection, final MatchedSectionDescriptor parentDescriptor) {
 
-		this.checkCanceled();
-
 		// This will be returned in the end
 		//
 		MatchedSectionDescriptor descriptor;
+
+		// This prevents endless recursion in case of (direct or indirect) cyclic references between Sections
+		//
+		if (parentDescriptor != null && parentDescriptor.containsSourceModelObjectMapped(srcModelObject)) {
+			descriptor = new MatchedSectionDescriptor();
+			descriptor.setAssociatedSourceModelElement(srcModelObject);
+			descriptor.setAssociatedSourceSectionClass(srcSection);
+			descriptor.setContainerDescriptor(parentDescriptor);
+			return Optional.of(descriptor);
+		}
+
+		this.checkCanceled();
 
 		// First, we check if the 'EClass' of the given srcModelObject is
 		// compatible with the srcSection
@@ -933,9 +943,11 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 
 		for (final SourceSectionClass c : nonZeroClasses) {
 
-			if (nonZeroCardSectionFound) {
+			if (nonZeroCardSectionFound && refByClassMap.containsKey(c)) {
 
-				// modeling error
+				// modeling error: Multiple concrete target SourceSectionClasses with a lower bound of 'ONE' defined for
+				// a reference that can hold only one value
+				//
 				this.logger.severe(() -> "Modeling error in source section: '"
 						+ sourceSectionClass.getContainingSection().getName() + "', subsection: '"
 						+ sourceSectionClass.getName() + "'. The Reference '" + refByClassMap.get(c).getName()
@@ -949,6 +961,10 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 			// iterate further
 			//
 			childDescriptor = this.checkClass(referencedElement, reference, c, descriptor);
+
+			if (childDescriptor.isPresent()) {
+				break;
+			}
 		}
 
 		if (!nonZeroCardSectionFound) {

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -387,19 +388,26 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 				// If an abstract SourceSection has been selected, show results for (concrete) extending Sections
 				// instead
 				//
-				List<?> affectedClasses = sourceSectionClass instanceof SourceSection
-						&& ((SourceSection) sourceSectionClass).isAbstract()
+				List<SourceSectionClass> affectedClasses = new ArrayList<>(
+						sourceSectionClass instanceof SourceSection && ((SourceSection) sourceSectionClass).isAbstract()
 								? ((SourceSection) sourceSectionClass).getAllExtending()
-								: Arrays.asList(sourceSectionClass);
+								: Arrays.asList(sourceSectionClass));
 
 				toSelect.addAll(affectedClasses);
 
 				if (PamtramEditorSourceSectionMatcherPage.this.matchedSections != null) {
-					toSelect.addAll(affectedClasses.stream().filter(c -> c instanceof SourceSection)
-							.flatMap(c -> PamtramEditorSourceSectionMatcherPage.this.matchedSections
-									.get((SourceSection) c).stream())
-							.map(MatchedSectionDescriptor::getAssociatedSourceModelElement)
-							.collect(Collectors.toSet()));
+
+					// Determine the source model objects matched against the 'affectedClass' based on the
+					// 'matchedSectionRegistry'
+					//
+					for (SourceSectionClass affectedClass : affectedClasses) {
+						List<MatchedSectionDescriptor> potentialDescriptors = PamtramEditorSourceSectionMatcherPage.this.matchedSections
+								.get(affectedClass.getContainingSection());
+						for (MatchedSectionDescriptor potentialDescriptor : potentialDescriptors) {
+							toSelect.addAll(potentialDescriptor.getMatchedSourceModelObjects()
+									.getOrDefault(affectedClass, new HashSet<>()));
+						}
+					}
 				}
 
 			}

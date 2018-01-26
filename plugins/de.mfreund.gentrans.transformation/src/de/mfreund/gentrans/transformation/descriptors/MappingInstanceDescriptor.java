@@ -141,22 +141,22 @@ public class MappingInstanceDescriptor {
 		return this.elementsWithNegativeConditions.contains(element);
 	}
 
-	/**
-	 * This adds matched source model elements and determined hint values of another MappingInstanceStorage.
-	 *
-	 * @param mappingInstanceStorage
-	 *            The {@link MappingInstanceDescriptor} describing the matched elements and determined hint values to
-	 *            add.
-	 */
-	public void add(final MappingInstanceDescriptor mappingInstanceStorage) {
-
-		// add matched source model elements
-		this.matchedSectionDescriptor.add(mappingInstanceStorage.getMatchedSectionDescriptor());
-
-		// add hint values
-		this.hintValues.addHintValues(mappingInstanceStorage.getHintValues());
-
-	}
+	// /**
+	// * This adds matched source model elements and determined hint values of another MappingInstanceStorage.
+	// *
+	// * @param mappingInstanceStorage
+	// * The {@link MappingInstanceDescriptor} describing the matched elements and determined hint values to
+	// * add.
+	// */
+	// public void add(final MappingInstanceDescriptor mappingInstanceStorage) {
+	//
+	// // add matched source model elements
+	// this.matchedSectionDescriptor.add(mappingInstanceStorage.getMatchedSectionDescriptor());
+	//
+	// // add hint values
+	// this.hintValues.addHintValues(mappingInstanceStorage.getHintValues());
+	//
+	// }
 
 	/**
 	 * Register several new target model instances.

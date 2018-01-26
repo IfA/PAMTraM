@@ -206,6 +206,8 @@
           <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/generic/Class/allAttributes"/>
           <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/generic/Class/allReferences"/>
           <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/generic/Class/allConcreteExtending"/>
+          <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/generic/Class/allCompositeReferences"/>
+          <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//structure/generic/Class/allCrossReferences"/>
           <genOperations ecoreOperation="pamtram.ecore#//structure/generic/Class/isContainerFor">
             <genParameters ecoreParameter="pamtram.ecore#//structure/generic/Class/isContainerFor/containedClass"/>
           </genOperations>
@@ -474,14 +476,24 @@
         <genClasses ecoreClass="pamtram.ecore#//structure/target/TargetSectionClass"/>
         <genClasses image="false" ecoreClass="pamtram.ecore#//structure/target/TargetSectionReference"/>
         <genClasses image="false" ecoreClass="pamtram.ecore#//structure/target/TargetSectionCompositeReference"/>
-        <genClasses image="false" ecoreClass="pamtram.ecore#//structure/target/TargetSectionAnyContentCompositeReference"/>
+        <genClasses image="false" ecoreClass="pamtram.ecore#//structure/target/TargetSectionAnyContentCompositeReference">
+          <genOperations ecoreOperation="pamtram.ecore#//structure/target/TargetSectionAnyContentCompositeReference/validateIsAllowed">
+            <genParameters ecoreParameter="pamtram.ecore#//structure/target/TargetSectionAnyContentCompositeReference/validateIsAllowed/diagnostics"/>
+            <genParameters ecoreParameter="pamtram.ecore#//structure/target/TargetSectionAnyContentCompositeReference/validateIsAllowed/context"/>
+          </genOperations>
+        </genClasses>
         <genClasses image="false" ecoreClass="pamtram.ecore#//structure/target/TargetSectionCrossReference">
           <genOperations ecoreOperation="pamtram.ecore#//structure/target/TargetSectionCrossReference/validateEReferenceIsNonContainment">
             <genParameters ecoreParameter="pamtram.ecore#//structure/target/TargetSectionCrossReference/validateEReferenceIsNonContainment/diagnostics"/>
             <genParameters ecoreParameter="pamtram.ecore#//structure/target/TargetSectionCrossReference/validateEReferenceIsNonContainment/context"/>
           </genOperations>
         </genClasses>
-        <genClasses image="false" ecoreClass="pamtram.ecore#//structure/target/TargetSectionAnyContentCrossReference"/>
+        <genClasses image="false" ecoreClass="pamtram.ecore#//structure/target/TargetSectionAnyContentCrossReference">
+          <genOperations ecoreOperation="pamtram.ecore#//structure/target/TargetSectionAnyContentCrossReference/validateIsAllowed">
+            <genParameters ecoreParameter="pamtram.ecore#//structure/target/TargetSectionAnyContentCrossReference/validateIsAllowed/diagnostics"/>
+            <genParameters ecoreParameter="pamtram.ecore#//structure/target/TargetSectionAnyContentCrossReference/validateIsAllowed/context"/>
+          </genOperations>
+        </genClasses>
         <genClasses image="false" ecoreClass="pamtram.ecore#//structure/target/TargetSectionAttribute">
           <genFeatures createChild="false" propertyCategory="Extended" propertyDescription="If set to 'true', no two instances of the containing Class with the same value of this attribute will be created during a transformation."
               ecoreFeature="ecore:EAttribute pamtram.ecore#//structure/target/TargetSectionAttribute/unique"/>
@@ -766,9 +778,9 @@
               propertyDescription="The target Class whose cardinality (how often it shall be instantiated during the execution of the mapping) shall be determined by this CardinalityMapping."
               propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/extended/CardinalityMapping/target"/>
           <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/extended/CardinalityMapping/sourceElements"/>
-          <genOperations ecoreOperation="pamtram.ecore#//mapping/extended/CardinalityMapping/validateSourceElementMatchesSection">
-            <genParameters ecoreParameter="pamtram.ecore#//mapping/extended/CardinalityMapping/validateSourceElementMatchesSection/diagnostics"/>
-            <genParameters ecoreParameter="pamtram.ecore#//mapping/extended/CardinalityMapping/validateSourceElementMatchesSection/context"/>
+          <genOperations ecoreOperation="pamtram.ecore#//mapping/extended/CardinalityMapping/validateSourceElementMatchesSectionOrContainedSection">
+            <genParameters ecoreParameter="pamtram.ecore#//mapping/extended/CardinalityMapping/validateSourceElementMatchesSectionOrContainedSection/diagnostics"/>
+            <genParameters ecoreParameter="pamtram.ecore#//mapping/extended/CardinalityMapping/validateSourceElementMatchesSectionOrContainedSection/context"/>
           </genOperations>
           <genOperations ecoreOperation="pamtram.ecore#//mapping/extended/CardinalityMapping/validateTargetClassMatchesSection">
             <genParameters ecoreParameter="pamtram.ecore#//mapping/extended/CardinalityMapping/validateTargetClassMatchesSection/diagnostics"/>

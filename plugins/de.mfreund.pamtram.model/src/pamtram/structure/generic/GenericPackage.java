@@ -266,13 +266,31 @@ public interface GenericPackage extends EPackage {
 	int CLASS__ALL_CONCRETE_EXTENDING = META_MODEL_ELEMENT_FEATURE_COUNT + 12;
 
 	/**
+	 * The feature id for the '<em><b>All Composite References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__ALL_COMPOSITE_REFERENCES = META_MODEL_ELEMENT_FEATURE_COUNT + 13;
+
+	/**
+	 * The feature id for the '<em><b>All Cross References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__ALL_CROSS_REFERENCES = META_MODEL_ELEMENT_FEATURE_COUNT + 14;
+
+	/**
 	 * The number of structural features of the '<em>Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_FEATURE_COUNT = META_MODEL_ELEMENT_FEATURE_COUNT + 13;
+	int CLASS_FEATURE_COUNT = META_MODEL_ELEMENT_FEATURE_COUNT + 15;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -517,6 +535,24 @@ public interface GenericPackage extends EPackage {
 	 * @ordered
 	 */
 	int SECTION__ALL_CONCRETE_EXTENDING = CLASS__ALL_CONCRETE_EXTENDING;
+
+	/**
+	 * The feature id for the '<em><b>All Composite References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SECTION__ALL_COMPOSITE_REFERENCES = CLASS__ALL_COMPOSITE_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>All Cross References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SECTION__ALL_CROSS_REFERENCES = CLASS__ALL_CROSS_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
@@ -1650,6 +1686,28 @@ public interface GenericPackage extends EPackage {
 	EReference getClass_AllConcreteExtending();
 
 	/**
+	 * Returns the meta object for the reference list '{@link pamtram.structure.generic.Class#getAllCompositeReferences <em>All Composite References</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>All Composite References</em>'.
+	 * @see pamtram.structure.generic.Class#getAllCompositeReferences()
+	 * @see #getClass_()
+	 * @generated
+	 */
+	EReference getClass_AllCompositeReferences();
+
+	/**
+	 * Returns the meta object for the reference list '{@link pamtram.structure.generic.Class#getAllCrossReferences <em>All Cross References</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>All Cross References</em>'.
+	 * @see pamtram.structure.generic.Class#getAllCrossReferences()
+	 * @see #getClass_()
+	 * @generated
+	 */
+	EReference getClass_AllCrossReferences();
+
+	/**
 	 * Returns the meta object for the '{@link pamtram.structure.generic.Class#isContainerFor(pamtram.structure.generic.Class) <em>Is Container For</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2199,6 +2257,22 @@ public interface GenericPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CLASS__ALL_CONCRETE_EXTENDING = eINSTANCE.getClass_AllConcreteExtending();
+
+		/**
+		 * The meta object literal for the '<em><b>All Composite References</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS__ALL_COMPOSITE_REFERENCES = eINSTANCE.getClass_AllCompositeReferences();
+
+		/**
+		 * The meta object literal for the '<em><b>All Cross References</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS__ALL_CROSS_REFERENCES = eINSTANCE.getClass_AllCrossReferences();
 
 		/**
 		 * The meta object literal for the '<em><b>Is Container For</b></em>' operation.

@@ -35,6 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link pamtram.structure.generic.Class#getAllAttributes <em>All Attributes</em>}</li>
  *   <li>{@link pamtram.structure.generic.Class#getAllReferences <em>All References</em>}</li>
  *   <li>{@link pamtram.structure.generic.Class#getAllConcreteExtending <em>All Concrete Extending</em>}</li>
+ *   <li>{@link pamtram.structure.generic.Class#getAllCompositeReferences <em>All Composite References</em>}</li>
+ *   <li>{@link pamtram.structure.generic.Class#getAllCrossReferences <em>All Cross References</em>}</li>
  * </ul>
  *
  * @see pamtram.structure.generic.GenericPackage#getClass_()
@@ -310,6 +312,40 @@ public interface Class<S extends Section<S, C, R, A>, C extends Class<S, C, R, A
 	 * @generated
 	 */
 	EList<C> getAllConcreteExtending();
+
+	/**
+	 * Returns the value of the '<em><b>All Composite References</b></em>' reference list.
+	 * The list contents are of type {@link pamtram.structure.generic.CompositeReference}&lt;S, C, R, A>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>All Composite References</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>All Composite References</em>' reference list.
+	 * @see pamtram.structure.generic.GenericPackage#getClass_AllCompositeReferences()
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='\r\n&lt;%java.util.List%&gt;&lt;Object&gt; ret = this.getAllReferences().stream().filter(r -&gt; r instanceof &lt;%pamtram.structure.generic.CompositeReference%&gt;&lt;?, ?, ?, ?&gt;)\r\n\t\t.map(r -&gt; (CompositeReference&lt;?, ?, ?, ?&gt;) r).collect(&lt;%java.util.stream.Collectors%&gt;.toList());\r\n\r\nreturn new &lt;%org.eclipse.emf.ecore.util.EcoreEList%&gt;.UnmodifiableEList&lt;&gt;(this, &lt;%pamtram.structure.generic.GenericPackage%&gt;.Literals.CLASS__ALL_COMPOSITE_REFERENCES,\r\n\t\tret.size(), ret.toArray());'"
+	 * @generated
+	 */
+	EList<CompositeReference<S, C, R, A>> getAllCompositeReferences();
+
+	/**
+	 * Returns the value of the '<em><b>All Cross References</b></em>' reference list.
+	 * The list contents are of type {@link pamtram.structure.generic.CrossReference}&lt;S, C, R, A>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>All Cross References</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>All Cross References</em>' reference list.
+	 * @see pamtram.structure.generic.GenericPackage#getClass_AllCrossReferences()
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='\r\n&lt;%java.util.List%&gt;&lt;Object&gt; ret = this.getAllReferences().stream().filter(r -&gt; r instanceof &lt;%pamtram.structure.generic.CrossReference%&gt;&lt;?, ?, ?, ?&gt;)\r\n\t\t.map(r -&gt; (CrossReference&lt;?, ?, ?, ?&gt;) r).collect(&lt;%java.util.stream.Collectors%&gt;.toList());\r\n\r\nreturn new &lt;%org.eclipse.emf.ecore.util.EcoreEList%&gt;.UnmodifiableEList&lt;&gt;(this, &lt;%pamtram.structure.generic.GenericPackage%&gt;.Literals.CLASS__ALL_CROSS_REFERENCES, ret.size(),\r\n\t\tret.toArray());'"
+	 * @generated
+	 */
+	EList<CrossReference<S, C, R, A>> getAllCrossReferences();
 
 	/**
 	 * <!-- begin-user-doc -->

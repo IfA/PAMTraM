@@ -58,6 +58,8 @@ import pamtram.structure.library.LibraryPackage;
  *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getAllAttributes <em>All Attributes</em>}</li>
  *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getAllReferences <em>All References</em>}</li>
  *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getAllConcreteExtending <em>All Concrete Extending</em>}</li>
+ *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getAllCompositeReferences <em>All Composite References</em>}</li>
+ *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getAllCrossReferences <em>All Cross References</em>}</li>
  * </ul>
  *
  * @generated
@@ -470,6 +472,36 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 * @generated
 	 */
 	@Override
+	public EList<CompositeReference<S, C, R, A>> getAllCompositeReferences() {
+	
+		
+		List<Object> ret = this.getAllReferences().stream().filter(r -> r instanceof CompositeReference<?, ?, ?, ?>)
+				.map(r -> (CompositeReference<?, ?, ?, ?>) r).collect(Collectors.toList());
+		
+		return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.CLASS__ALL_COMPOSITE_REFERENCES,
+				ret.size(), ret.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<CrossReference<S, C, R, A>> getAllCrossReferences() {
+	
+		
+		List<Object> ret = this.getAllReferences().stream().filter(r -> r instanceof CrossReference<?, ?, ?, ?>)
+				.map(r -> (CrossReference<?, ?, ?, ?>) r).collect(Collectors.toList());
+		
+		return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.CLASS__ALL_CROSS_REFERENCES, ret.size(),
+				ret.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public boolean isContainerFor(final C containedClass) {
 		C container = containedClass.getContainer();
 				
@@ -764,6 +796,10 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 				return getAllReferences();
 			case GenericPackage.CLASS__ALL_CONCRETE_EXTENDING:
 				return getAllConcreteExtending();
+			case GenericPackage.CLASS__ALL_COMPOSITE_REFERENCES:
+				return getAllCompositeReferences();
+			case GenericPackage.CLASS__ALL_CROSS_REFERENCES:
+				return getAllCrossReferences();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -856,6 +892,10 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 				return !getAllReferences().isEmpty();
 			case GenericPackage.CLASS__ALL_CONCRETE_EXTENDING:
 				return !getAllConcreteExtending().isEmpty();
+			case GenericPackage.CLASS__ALL_COMPOSITE_REFERENCES:
+				return !getAllCompositeReferences().isEmpty();
+			case GenericPackage.CLASS__ALL_CROSS_REFERENCES:
+				return !getAllCrossReferences().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

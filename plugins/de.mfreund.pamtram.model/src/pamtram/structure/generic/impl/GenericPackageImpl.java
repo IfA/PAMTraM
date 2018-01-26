@@ -423,6 +423,24 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getClass_AllCompositeReferences() {
+		return (EReference)classEClass.getEStructuralFeatures().get(13);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getClass_AllCrossReferences() {
+		return (EReference)classEClass.getEStructuralFeatures().get(14);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getClass__IsContainerFor__Class() {
 		return classEClass.getEOperations().get(0);
 	}
@@ -798,6 +816,8 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		createEReference(classEClass, CLASS__ALL_ATTRIBUTES);
 		createEReference(classEClass, CLASS__ALL_REFERENCES);
 		createEReference(classEClass, CLASS__ALL_CONCRETE_EXTENDING);
+		createEReference(classEClass, CLASS__ALL_COMPOSITE_REFERENCES);
+		createEReference(classEClass, CLASS__ALL_CROSS_REFERENCES);
 		createEOperation(classEClass, CLASS___IS_CONTAINER_FOR__CLASS);
 		createEOperation(classEClass, CLASS___IS_CONTAINED_IN__CLASS);
 		createEOperation(classEClass, CLASS___GET_OWNING_CONTAINMENT_REFERENCE);
@@ -1511,6 +1531,26 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		initEReference(getClass_AllReferences(), g1, null, "allReferences", null, 0, -1, pamtram.structure.generic.Class.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		g1 = createEGenericType(classEClass_C);
 		initEReference(getClass_AllConcreteExtending(), g1, null, "allConcreteExtending", null, 0, -1, pamtram.structure.generic.Class.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		g1 = createEGenericType(this.getCompositeReference());
+		g2 = createEGenericType(classEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(classEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(classEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(classEClass_A);
+		g1.getETypeArguments().add(g2);
+		initEReference(getClass_AllCompositeReferences(), g1, null, "allCompositeReferences", null, 0, -1, pamtram.structure.generic.Class.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		g1 = createEGenericType(this.getCrossReference());
+		g2 = createEGenericType(classEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(classEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(classEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(classEClass_A);
+		g1.getETypeArguments().add(g2);
+		initEReference(getClass_AllCrossReferences(), g1, null, "allCrossReferences", null, 0, -1, pamtram.structure.generic.Class.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		op = initEOperation(getClass__IsContainerFor__Class(), ecorePackage.getEBoolean(), "isContainerFor", 1, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(classEClass_C);
@@ -1912,6 +1952,30 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		   source, 
 		   new String[] {
 			 "documentation", "If this element is a Section, this returns the list of recursively collected Sections extending this Section that are not \'abstract\'. Otherwise, returns a list containing only this element."
+		   });	
+		addAnnotation
+		  (getClass_AllCompositeReferences(), 
+		   source, 
+		   new String[] {
+			 "get", "\r\n<%java.util.List%><Object> ret = this.getAllReferences().stream().filter(r -> r instanceof <%pamtram.structure.generic.CompositeReference%><?, ?, ?, ?>)\r\n\t\t.map(r -> (CompositeReference<?, ?, ?, ?>) r).collect(<%java.util.stream.Collectors%>.toList());\r\n\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.structure.generic.GenericPackage%>.Literals.CLASS__ALL_COMPOSITE_REFERENCES,\r\n\t\tret.size(), ret.toArray());"
+		   });	
+		addAnnotation
+		  (getClass_AllCompositeReferences(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of CompositeReferences (if this is a Section, including those of extended Sections)."
+		   });	
+		addAnnotation
+		  (getClass_AllCrossReferences(), 
+		   source, 
+		   new String[] {
+			 "get", "\r\n<%java.util.List%><Object> ret = this.getAllReferences().stream().filter(r -> r instanceof <%pamtram.structure.generic.CrossReference%><?, ?, ?, ?>)\r\n\t\t.map(r -> (CrossReference<?, ?, ?, ?>) r).collect(<%java.util.stream.Collectors%>.toList());\r\n\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.structure.generic.GenericPackage%>.Literals.CLASS__ALL_CROSS_REFERENCES, ret.size(),\r\n\t\tret.toArray());"
+		   });	
+		addAnnotation
+		  (getClass_AllCrossReferences(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The list of CrossReferences (if this is a Section, including those of extended Sections)."
 		   });	
 		addAnnotation
 		  (sectionEClass, 

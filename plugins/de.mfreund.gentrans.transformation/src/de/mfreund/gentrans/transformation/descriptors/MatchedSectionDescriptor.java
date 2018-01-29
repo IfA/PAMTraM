@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 
+import de.mfreund.gentrans.transformation.matching.dependencies.MatchingDependency;
 import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionClass;
@@ -67,6 +68,12 @@ public class MatchedSectionDescriptor {
 	private MappingInstanceDescriptor associatedMappingInstance;
 
 	/**
+	 * The list of {@link MatchingDependency MatchingDependencies} that need to be resolved for this descriptor to be
+	 * applicable.
+	 */
+	private final List<MatchingDependency> matchingDependencies;
+
+	/**
 	 * This constructs an instance.
 	 */
 	public MatchedSectionDescriptor() {
@@ -75,6 +82,7 @@ public class MatchedSectionDescriptor {
 		this.associatedSourceModelElement = null;
 		this.associatedSourceSectionClass = null;
 		this.attributeValueConstraints = new ArrayList<>();
+		this.matchingDependencies = new ArrayList<>();
 	}
 
 	/**
@@ -274,6 +282,18 @@ public class MatchedSectionDescriptor {
 	public void setAssociatedMappingInstance(MappingInstanceDescriptor associatedMappingInstance) {
 
 		this.associatedMappingInstance = associatedMappingInstance;
+	}
+
+	/**
+	 * This adds another {@link MatchingDependency} to the list of {@link #matchingDependencies} that need to be
+	 * resolved for this descriptor to be applicable.
+	 *
+	 * @param dependencyToAdd
+	 *            The {@link MatchingDependency} to add.
+	 */
+	public void addMatchingDependency(MatchingDependency dependencyToAdd) {
+
+		this.matchingDependencies.add(dependencyToAdd);
 	}
 
 	/**

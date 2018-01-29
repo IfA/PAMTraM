@@ -1,9 +1,10 @@
 package de.mfreund.gentrans.transformation.matching;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -13,13 +14,12 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.ocl.ParserException;
 
 import de.mfreund.gentrans.transformation.CancelTransformationException;
 import de.mfreund.gentrans.transformation.UserAbortException;
@@ -28,7 +28,8 @@ import de.mfreund.gentrans.transformation.core.CancelableTransformationAsset;
 import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.ContainmentTree;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
-import de.mfreund.gentrans.transformation.maps.SourceSectionMatchingResultsMap;
+import de.mfreund.gentrans.transformation.matching.dependencies.ContainerDependency;
+import de.mfreund.gentrans.transformation.matching.dependencies.CrossReferenceDependency;
 import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvedAdapter;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
@@ -43,19 +44,17 @@ import pamtram.structure.constraint.ValueConstraintType;
 import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.CardinalityType;
 import pamtram.structure.generic.CompositeReference;
-import pamtram.structure.generic.Reference;
+import pamtram.structure.generic.CrossReference;
 import pamtram.structure.generic.Section;
 import pamtram.structure.generic.VirtualReference;
 import pamtram.structure.source.ActualSourceSectionAttribute;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
 import pamtram.structure.source.SourceSectionClass;
-import pamtram.structure.source.SourceSectionCrossReference;
+import pamtram.structure.source.SourceSectionCompositeReference;
 import pamtram.structure.source.SourceSectionReference;
 import pamtram.structure.source.VirtualSourceSectionAttribute;
-import pamtram.structure.source.VirtualSourceSectionCrossReference;
 import pamtram.util.NullComparator;
-import pamtram.util.OCLUtil;
 
 /**
  * This class can be used to match a list of {@link #sourceSections} against a {@link #containmentTree}.
@@ -181,24 +180,32 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 		this.containmentTree = containmentTree;
 		this.sourceSections = sourceSections;
 
+		Map<EObject, List<MatchedSectionDescriptor>> potentialMatches = new LinkedHashMap<>();
+
 		Optional<EObject> element;
 		while ((element = this.containmentTree.getNextElementForMatching()).isPresent()) {
 
-			Map<SourceSection, MatchedSectionDescriptor> matches = this.findApplicableSections(element.get());
-
-			// If there are multiple matches, select the one section to actually
-			// apply.
+			// Get all 'potential' matches for the current element (they are only 'potential' because they may depend on
+			// one or more 'MatchingDependencies'
 			//
-			MatchedSectionDescriptor descriptor = this.selectApplicableSection(element.get(), matches);
-
-			if (descriptor == null) {
-				continue;
+			Map<SourceSection, MatchedSectionDescriptor> elementMatches = this.findApplicableSections(element.get());
+			if (!elementMatches.isEmpty()) {
+				potentialMatches.put(element.get(), new ArrayList<>(elementMatches.values()));
 			}
 
-			/*
-			 * Register the created descriptor.
-			 */
-			this.registerDescriptor(descriptor);
+			// // If there are multiple matches, select the one section to actually
+			// // apply.
+			// //
+			// MatchedSectionDescriptor descriptor = this.selectApplicableSection(element.get(), matches);
+			//
+			// if (descriptor == null) {
+			// continue;
+			// }
+			//
+			// /*
+			// * Register the created descriptor.
+			// */
+			// this.registerDescriptor(descriptor);
 
 		}
 
@@ -343,12 +350,12 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 
 		Optional<MatchedSectionDescriptor> descriptor;
 
-		/*
-		 * check if the section that is referenced as 'container' can be matched
-		 */
-		if (!this.checkContainerSection(element, section)) {
-			return false;
-		}
+		// /*
+		// * check if the section that is referenced as 'container' can be matched
+		// */
+		// if (!this.checkContainerSection(element, section)) {
+		// return false;
+		// }
 
 		// check if the section itself is applicable
 		//
@@ -358,9 +365,22 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 			return false;
 		}
 
-		// set the associated container descriptor
-		//
-		this.setContainerDescriptor(descriptor.get());
+		if (section.getContainer() != null) {
+
+			if (element.eContainer() == null) {
+				return false;
+			}
+
+			ContainerDependency containerDependency = new ContainerDependency();
+			containerDependency.setDependencySource(descriptor.get());
+			containerDependency.setSourceModelElements(Arrays.asList(element.eContainer()));
+			containerDependency.setSourceSectionClasses(Arrays.asList(section.getContainer()));
+			descriptor.get().addMatchingDependency(containerDependency);
+		}
+
+		// // set the associated container descriptor
+		// //
+		// this.setContainerDescriptor(descriptor.get());
 
 		// all checks were successful -> the section is applicable
 		//
@@ -582,15 +602,15 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 		//
 		MatchedSectionDescriptor descriptor;
 
-		// This prevents endless recursion in case of (direct or indirect) cyclic references between Sections
-		//
-		if (parentDescriptor != null && parentDescriptor.containsSourceModelObjectMapped(srcModelObject)) {
-			descriptor = new MatchedSectionDescriptor();
-			descriptor.setAssociatedSourceModelElement(srcModelObject);
-			descriptor.setAssociatedSourceSectionClass(srcSection);
-			descriptor.setContainerDescriptor(parentDescriptor);
-			return Optional.of(descriptor);
-		}
+		// // This prevents endless recursion in case of (direct or indirect) cyclic references between Sections
+		// //
+		// if (parentDescriptor != null && parentDescriptor.containsSourceModelObjectMapped(srcModelObject)) {
+		// descriptor = new MatchedSectionDescriptor();
+		// descriptor.setAssociatedSourceModelElement(srcModelObject);
+		// descriptor.setAssociatedSourceSectionClass(srcSection);
+		// descriptor.setContainerDescriptor(parentDescriptor);
+		// return Optional.of(descriptor);
+		// }
 
 		this.checkCanceled();
 
@@ -605,27 +625,27 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 			return Optional.empty();
 		}
 
-		// Check if the element was already matched previously for the same
-		// SourceSectionClass. If this is the case, we just reuse the existing
-		// descriptor
+		// // Check if the element was already matched previously for the same
+		// // SourceSectionClass. If this is the case, we just reuse the existing
+		// // descriptor
+		// //
+		// Optional<MatchedSectionDescriptor> existingDescriptor = this.matchedSectionRegistry
+		// .getMatchedSectionDescriptorFor(srcModelObject, srcSection.getContainingSection());
 		//
-		Optional<MatchedSectionDescriptor> existingDescriptor = this.matchedSectionRegistry
-				.getMatchedSectionDescriptorFor(srcModelObject, srcSection.getContainingSection());
-
-		if (existingDescriptor.isPresent()
-				&& existingDescriptor.get().getAssociatedSourceSectionClass().equals(srcSection)) {
-
-			// set the list of source model objects that have been mapped.
-			// first, add all mapped objects from 'changedRefsAndHints' ...
-			if (parentDescriptor != null && reference.isPresent() && reference.get().isContainment()) {
-				if (reference.get() instanceof CompositeReference<?, ?, ?, ?>) {
-					existingDescriptor.get().add(parentDescriptor);
-				}
-				existingDescriptor.get().setContainerDescriptor(parentDescriptor);
-			}
-
-			return existingDescriptor;
-		}
+		// if (existingDescriptor.isPresent()
+		// && existingDescriptor.get().getAssociatedSourceSectionClass().equals(srcSection)) {
+		//
+		// // set the list of source model objects that have been mapped.
+		// // first, add all mapped objects from 'changedRefsAndHints' ...
+		// if (parentDescriptor != null && reference.isPresent() && reference.get().isContainment()) {
+		// if (reference.get() instanceof CompositeReference<?, ?, ?, ?>) {
+		// existingDescriptor.get().add(parentDescriptor);
+		// }
+		// existingDescriptor.get().setContainerDescriptor(parentDescriptor);
+		// }
+		//
+		// return existingDescriptor;
+		// }
 
 		// this is the 'MatchedSectionDescriptor' that we will return this in
 		// case we find the mapping to be applicable
@@ -657,8 +677,7 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 		 * check if all modeled references can be matched; this will also iterate further down the hierarchy (and
 		 * thereby call 'checkMapping', 'checkAttributes' and 'checkReferences' multiple times)
 		 */
-		boolean referencesOk = this.checkReferences(srcModelObject,
-				!reference.isPresent() || !reference.get().isContainment(), srcSection, descriptor);
+		boolean referencesOk = this.checkReferences(srcModelObject, srcSection, descriptor);
 
 		if (!referencesOk) {
 			return Optional.empty();
@@ -687,11 +706,6 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	 *
 	 * @param srcModelObject
 	 *            The object to be checked.
-	 * @param usedOkay
-	 *            Whether elements already contained in <em>descriptor<em> can be matched again. This needs to be set to
-	 *            '<em>true</em> when
-	 *            {@link #checkReferences(EObject, boolean, SourceSectionClass, MatchedSectionDescriptor)
-	 *            checkReferences()} is called for elements referenced by a non-containment reference.
 	 * @param sourceSectionClass
 	 *            The {@link SourceSectionClass} for which the references shall be checked. The
 	 *            {@link MatchedSectionDescriptor} for the {@link SourceSection} to be evaluated. Note: The same
@@ -702,192 +716,87 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	 *            A map that collects all {@link SourceSectionReference SourceSectionReferences} and the
 	 *            {@link SourceSectionClass} that they are contained in.
 	 */
-	@SuppressWarnings("unchecked")
-	private boolean checkReferences(final EObject srcModelObject, final boolean usedOkay,
-			final SourceSectionClass sourceSectionClass, final MatchedSectionDescriptor descriptor) {
+	private boolean checkReferences(final EObject srcModelObject, final SourceSectionClass sourceSectionClass,
+			final MatchedSectionDescriptor descriptor) {
 
-		// All references defined by the class (and extended Sections)
+		// All CompositeReferences defined by the class (and extended Sections)
 		//
-		EList<SourceSectionReference> classReferences = sourceSectionClass.getAllReferences();
+		List<SourceSectionCompositeReference> compositeReferences = sourceSectionClass.getAllCompositeReferences()
+				.stream().filter(r -> r instanceof SourceSectionCompositeReference)
+				.map(r -> (SourceSectionCompositeReference) r).filter(r -> r.getEReference() != null)
+				.collect(Collectors.toList());
 
-		// Collect the modeled references and reference targets (SourceSectionClasses) for the current
-		// 'sourceSectionClass' and store them in to maps
+		// All CrossReferences defined by the class (and extended Sections)
 		//
-		Map<EReference, List<SourceSectionClass>> classByRefMap = new LinkedHashMap<>();
-		for (SourceSectionReference reference : classReferences.stream()
-				.filter(r -> r instanceof ActualReference<?, ?, ?, ?>).collect(Collectors.toList())) {
-			List<SourceSectionClass> currentValues = classByRefMap
-					.containsKey(((ActualReference<?, ?, ?, ?>) reference).getEReference())
-							? classByRefMap.get(((ActualReference<?, ?, ?, ?>) reference).getEReference())
-							: new ArrayList<>();
-			currentValues
-					.addAll(reference.getValuesGeneric().stream().flatMap(c -> c.getAllConcreteExtending().stream())
-							.collect(Collectors.toCollection(LinkedHashSet::new)));
-			classByRefMap.put(((ActualReference<?, ?, ?, ?>) reference).getEReference(), currentValues);
+		List<CrossReference<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>> crossReferences = sourceSectionClass
+				.getAllCrossReferences();
+
+		// This map keeps track of all CrossReferences that 'complement' a CompositeReference, i.e. that represents the
+		// same 'EReference'
+		//
+		Map<SourceSectionCompositeReference, CrossReference<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>> complementingReferences = new HashMap<>();
+		for (SourceSectionCompositeReference compositeReference : compositeReferences) {
+
+			Optional<CrossReference<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>> complementingCrossReference = crossReferences
+					.stream().filter(r -> r instanceof ActualReference<?, ?, ?, ?>).filter(r -> compositeReference
+							.getEReference().equals(((ActualReference<?, ?, ?, ?>) r).getEReference()))
+					.findAny();
+			complementingCrossReference.ifPresent(r -> complementingReferences.put(compositeReference, r));
 		}
 
-		Map<VirtualSourceSectionCrossReference, List<SourceSectionClass>> classByVirtualRefMap = new LinkedHashMap<>();
-		for (SourceSectionReference reference : classReferences.stream()
-				.filter(r -> r instanceof VirtualSourceSectionCrossReference).collect(Collectors.toList())) {
-			List<SourceSectionClass> currentValues = classByVirtualRefMap.containsKey(reference)
-					? classByVirtualRefMap.get(reference)
-					: new ArrayList<>();
-			currentValues
-					.addAll(reference.getValuesGeneric().stream().flatMap(c -> c.getAllConcreteExtending().stream())
-							.collect(Collectors.toCollection(LinkedHashSet::new)));
-			classByVirtualRefMap.put((VirtualSourceSectionCrossReference) reference, currentValues);
-		}
+		Map<CrossReference<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, List<EObject>> complementingReferenceMatchingRequirements = new HashMap<>();
 
-		Map<SourceSectionClass, SourceSectionReference> refByClassMap = Collections
-				.synchronizedMap(new LinkedHashMap<>());
-		classReferences.stream().forEach(r -> r.getValuesGeneric().stream().forEach(c -> refByClassMap.put(c, r)));
-
-		// now, iterate through all the modeled references (and reference targets) and check if they can be matched for
-		// the current 'srcModelObject'
+		// First, we try to match all CompositeReferences (resp. the modeled Values). After that, the CrossReferences
+		// are checked based on the remaining (unmatched) model elements.
 		//
-		for (final Entry<EReference, List<SourceSectionClass>> entry : classByRefMap.entrySet()) {
+		for (SourceSectionCompositeReference compositeReference : compositeReferences) {
 
-			// the reference that we are currently checking
+			// The list of elements referenced via the current reference
 			//
-			EReference reference = entry.getKey();
+			List<EObject> referencedElements = this.assetManager.getModelTraversalUtil()
+					.getReferenceValueAsList(srcModelObject, compositeReference);
 
-			// the SourceSectionClasses that have been modeled for the
-			// 'reference' in the pamtram model
+			// Check if the elements referenced in the source model can be matched against one of the target classes
+			// defined for the reference
 			//
-			List<SourceSectionClass> classes = entry.getValue();
-
-			if (classes.isEmpty()) {
-
-				/*
-				 * if no target SourceSectionClass has been specified, this means that there must be NO target element
-				 * in the source model (unless there is a reference with 'ignoreUnmatchedElements' set to 'true'); if
-				 * this is not the case (meaning that there is a target element for the reference), the mapping is not
-				 * applicable
-				 */
-				if (reference.isMany() && !((EList<EObject>) srcModelObject.eGet(reference)).isEmpty()
-						|| !reference.isMany() && srcModelObject.eGet(reference) != null) {
-					return classReferences.parallelStream()
-							.filter(r -> r instanceof ActualReference<?, ?, ?, ?>
-									&& ((ActualReference<?, ?, ?, ?>) r).getEReference().equals(reference))
-							.anyMatch(SourceSectionReference::isIgnoreUnmatchedElements);
-				} else {
-					continue;
-				}
+			if (!this.checkCompositeReference(srcModelObject, sourceSectionClass, descriptor, compositeReference,
+					referencedElements)) {
+				return false;
 			}
 
-			// get targets of the reference in the source model, then proceed depending on the cardinality of the
-			// reference
-			//
-			final Object refTarget = srcModelObject.eGet(reference);
+			List<EObject> remainingReferencedElements = new ArrayList<>(referencedElements);
 
-			if (!this.checkReference(refTarget, Optional.of(reference), sourceSectionClass, descriptor, refByClassMap,
-					classes)) {
-				return false;
+			if (complementingReferences.containsKey(compositeReference)) {
+
+				complementingReferenceMatchingRequirements.put(complementingReferences.get(compositeReference),
+						remainingReferencedElements);
 			}
 
 		}
 
-		// Finally, also check all modeled VirtualReferences (and reference
-		// targets) and check if they can be matched for
-		// the current 'srcModelObject'
+		// Do not match the CrossReferences directly, instead generate corresponding 'MatchingDependencies' that will be
+		// checked later
 		//
-		for (final Entry<VirtualSourceSectionCrossReference, List<SourceSectionClass>> entry : classByVirtualRefMap
-				.entrySet()) {
+		for (CrossReference<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> crossReference : crossReferences) {
 
-			// the reference that we are currently checking
+			// The elements that need to be matched against the CrossReference. If this CrossReference complements a
+			// CompositeReference, we must not match all referenced elements but only those that could not be matched
+			// against the CompositeReference
 			//
-			VirtualSourceSectionCrossReference virtualReference = entry.getKey();
+			List<EObject> referencedElements = complementingReferenceMatchingRequirements.containsKey(crossReference)
+					? complementingReferenceMatchingRequirements.get(crossReference)
+					: this.assetManager.getModelTraversalUtil().getReferenceValueAsList(srcModelObject, crossReference);
 
-			Object value;
-			try {
-				value = OCLUtil.evaluteQuery(virtualReference.getDerivation(), srcModelObject);
-			} catch (ParserException e) {
-				this.logger.severe(() -> "Unable to evaluate OCL query '" + virtualReference.getDerivation()
-						+ "' for SourceSectionCrossReference '" + virtualReference.getName() + "'!");
-				this.logger.severe(() -> "The following error occurred: " + e.getMessage());
-				e.printStackTrace();
+			// Check if the elements referenced in the source model can be matched against one of the target classes
+			// defined for the reference
+			//
+			if (!this.checkCrossReference(srcModelObject, sourceSectionClass, descriptor, crossReference,
+					referencedElements)) {
 				return false;
 			}
-
-			// the SourceSectionClasses that have been modeled for the
-			// 'reference' in the pamtram model
-			//
-			List<SourceSectionClass> classes = entry.getValue();
-
-			if (classes.isEmpty()) {
-
-				/*
-				 * if no target SourceSectionClass has been specified, this means that there must be NO target element
-				 * in the source model (unless there is a reference with 'ignoreUnmatchedElements' set to 'true'); if
-				 * this is not the case (meaning that there is a target element for the reference), the mapping is not
-				 * applicable
-				 */
-
-				if (!(value == null || value instanceof Collection<?> && ((Collection<?>) value).isEmpty())) {
-					return virtualReference.isIgnoreUnmatchedElements();
-				} else {
-					continue;
-				}
-			}
-
-			// get targets of the reference in the source model, then proceed
-			// depending on the cardinality of the
-			// reference
-			//
-			final Object refTarget = value;
-
-			if (!this.checkReference(refTarget, Optional.empty(), sourceSectionClass, descriptor, refByClassMap,
-					classes)) {
-				return false;
-			}
-
 		}
 
 		return true;
-	}
-
-	/**
-	 * This checks if the given <em>referenceValue</em> that is referenced by a {@link Reference} can be matched for the
-	 * given {@link MatchedSectionDescriptor} representing the referencing element.
-	 *
-	 * @param referenceValue
-	 *            The value or values referenced via the {@link Reference} to be checked.
-	 * @param reference
-	 *            If this is called as part of the check for another {@link SourceSectionClass}, this holds the
-	 *            {@link EReference} referencing the given <em>srcModelObject</em>. This will be an empty optional if
-	 *            this is either the <em>root</em> call to <em>checkSection</em> or if called for a
-	 *            {@link VirtualReference}.
-	 * @param sourceSectionClass
-	 *            The parent {@link SourceSectionClass} holding the reference currently checked.
-	 * @param parentDescriptor
-	 *            The {@link MatchedSectionDescriptor} representing the {@link EObject} that references the given
-	 *            <em>referenceValue</em> (either via a containment or a non-containment reference).
-	 * @param refByClassMap
-	 *            A map that collects all {@link SourceSectionClass SourceSectionClasses} and the
-	 *            {@link SourceSectionReference} that they are referenced by.
-	 * @param classes
-	 *            The list of {@link SourceSectionClass SourceSectionClasses} that have been modeled as target for the
-	 *            current reference to be checked (these are the potential matches for the given <em>refTargetObj</em>).
-	 */
-	@SuppressWarnings("unchecked")
-	private boolean checkReference(final Object referenceValue, Optional<EReference> reference,
-			final SourceSectionClass sourceSectionClass, final MatchedSectionDescriptor parentDescriptor,
-			Map<SourceSectionClass, SourceSectionReference> refByClassMap, List<SourceSectionClass> classes) {
-
-		if (!(referenceValue instanceof Collection<?>)) {
-
-			// check the single-valued reference
-			//
-			return this.checkSingleValuedReference((EObject) referenceValue, parentDescriptor, classes, refByClassMap,
-					reference, sourceSectionClass);
-
-		} else {
-
-			// check the multi-valued reference
-			//
-			return this.checkManyValuedReference(new ArrayList<>((Collection<EObject>) referenceValue),
-					parentDescriptor, classes, refByClassMap, reference);
-		}
 	}
 
 	/**
@@ -909,353 +818,170 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	 *            A map that collects all {@link SourceSectionClass SourceSectionClasses} and the
 	 *            {@link SourceSectionReference} that they are referenced by.
 	 * @param reference
-	 *            If this is called as part of the check for another {@link SourceSectionClass}, this holds the
-	 *            {@link EReference} referencing the given <em>srcModelObject</em>. This will be an empty optional if
-	 *            this is either the <em>root</em> call to <em>checkSection</em> or if called for a
-	 *            {@link VirtualReference}.
+	 *            The {@link SourceSectionReference} to check.
 	 * @param sourceSectionClass
 	 *            The parent {@link SourceSectionClass} for which the references shall be checked.
 	 * @return '<em><b>true</b></em>' if the check succeeded; '<em><b>false</b></em>' otherwise.
 	 */
-	private boolean checkSingleValuedReference(final EObject referencedElement,
-			final MatchedSectionDescriptor descriptor, List<SourceSectionClass> classes,
-			final Map<SourceSectionClass, SourceSectionReference> refByClassMap, Optional<EReference> reference,
-			final SourceSectionClass sourceSectionClass) {
+	private boolean basicCheckReference(final EObject parentElement, final SourceSectionClass parentSourceSectionClass,
+			final MatchedSectionDescriptor descriptor, final SourceSectionReference reference,
+			final List<EObject> referencedElements) {
 
-		if (referencedElement == null) {
+		// The list of SourceSectionClasses that the 'referenceElements' need to be matched against
+		//
+		List<SourceSectionClass> targetClasses = reference.getValuesGeneric();
+
+		// The reference has a lower bound of 0
+		//
+		boolean referenceIsOptional = !(reference instanceof ActualReference<?, ?, ?, ?>)
+				|| ((ActualReference<?, ?, ?, ?>) reference).getEReference().getLowerBound() == 0;
+
+		// The reference can hold multiple target values (upper bound < 1)
+		//
+		boolean referenceIsMany = !(reference instanceof ActualReference<?, ?, ?, ?>)
+				|| ((ActualReference<?, ?, ?, ?>) reference).getEReference().getUpperBound() < 0;
+
+		assert referenceIsMany || referencedElements.size() <= 1;
+
+		if (referencedElements.isEmpty()) {
+
 			// This is not a problem if the given 'reference' is an optional reference (lower bound of 0) and all
 			// modeled child Classes have an optional cardinality (ZERO_INFINITY).
 			//
-			return reference.isPresent() && reference.get().getLowerBound() == 0
-					&& classes.stream().allMatch(c -> c.getCardinality().equals(CardinalityType.ZERO_INFINITY));
+			return referenceIsOptional
+					&& targetClasses.stream().allMatch(c -> c.getCardinality().equals(CardinalityType.ZERO_INFINITY));
 		}
 
-		Optional<MatchedSectionDescriptor> childDescriptor = null;
-		boolean nonZeroCardSectionFound = false;
+		if (targetClasses.isEmpty()) {
 
-		// check non-zero classes (classes with a lower bound != ZERO) first; it
-		// doesn't make sense in this case to
-		// model ZERO_INFINITY sections, if there is one section with a minimum
-		// cardinality of 1, but it can be handled
+			// If no target SourceSectionClass has been specified, this means that there must be NO target element
+			// in the source model (unless there is a reference with 'ignoreUnmatchedElements' set to 'true').
+			//
+			return reference.isIgnoreUnmatchedElements();
+		}
+
+		// The list of necessary/required target classes (classes with a lower bound != ZERO). These NEED TO be matched
+		// for the section to be applicable.
 		//
-		List<SourceSectionClass> nonZeroClasses = classes.stream()
+		List<SourceSectionClass> necessaryTargetClasses = targetClasses.stream()
 				.filter(c -> !c.getCardinality().equals(CardinalityType.ZERO_INFINITY)).collect(Collectors.toList());
 
-		for (final SourceSectionClass c : nonZeroClasses) {
-
-			if (nonZeroCardSectionFound && refByClassMap.containsKey(c)) {
-
-				// modeling error: Multiple concrete target SourceSectionClasses with a lower bound of 'ONE' defined for
-				// a reference that can hold only one value
-				//
-				this.logger.severe(() -> "Modeling error in source section: '"
-						+ sourceSectionClass.getContainingSection().getName() + "', subsection: '"
-						+ sourceSectionClass.getName() + "'. The Reference '" + refByClassMap.get(c).getName()
-						+ "' points to a metamodel reference, that can only hold one value but in the source section "
-						+ "it references more than one Class with a CardinalityType that is not ZERO_INFINITY.");
-				return false;
-			}
-
-			nonZeroCardSectionFound = true;
-
-			// iterate further
+		if (necessaryTargetClasses.size() > 1 && !referenceIsMany) {
+			// modeling error: Multiple concrete target SourceSectionClasses with a lower bound of 'ONE' defined for
+			// a reference that can hold only one value
 			//
-			childDescriptor = this.checkClass(referencedElement, reference, c, descriptor);
-
-			if (childDescriptor.isPresent()) {
-				break;
-			}
+			this.logger.severe(() -> "Modeling error in source section: '"
+					+ parentSourceSectionClass.getContainingSection().getName() + "', subsection: '"
+					+ parentSourceSectionClass.getName() + "'. The Reference '" + reference.getName()
+					+ "' points to a metamodel reference that can only hold one value but references more "
+					+ "than one SourceSectionClass with a CardinalityType that is not ZERO_INFINITY as 'value'.");
+			return false;
 		}
 
-		if (!nonZeroCardSectionFound) {
-
-			// if no non-zero class has been found, try to match classes with a
-			// lower bound of ZERO
-			//
-			List<SourceSectionClass> zeroClasses = classes.stream()
-					.filter(c -> c.getCardinality().equals(CardinalityType.ZERO_INFINITY)).collect(Collectors.toList());
-			for (final SourceSectionClass c : zeroClasses) {
-
-				// iterate further
-				//
-				childDescriptor = this.checkClass(referencedElement, reference, c, descriptor);
-
-				if (childDescriptor.isPresent()) {
-					break;
-				}
-			}
-		}
-
-		// none of the given classes was a match for the given source model
-		// element; this is not allowed unless there is
-		// a reference with 'ignoreUnmatchedElements' set to 'true'
-		//
-		if (!childDescriptor.isPresent()) {
-			return sourceSectionClass.getReferences().parallelStream()
-					.filter(r -> r instanceof ActualReference<?, ?, ?, ?> && ((ActualReference<?, ?, ?, ?>) r)
-							.getEReference().getEReferenceType().isSuperTypeOf(referencedElement.eClass()))
-					.anyMatch(SourceSectionReference::isIgnoreUnmatchedElements);
-		}
-
-		// one of the classes could be matched, so we update the given parent
-		// descriptor
-		//
-		if (descriptor != null) {
-			descriptor.add(childDescriptor.get());
-		}
-
-		// if the given descriptor was retrieved via a
-		// MetaModelSectionReference, we need to register this descriptor in
-		// the 'sections2Descriptors' map that will be returned in the end
-		//
-		if ((refByClassMap
-				.get(childDescriptor.get().getAssociatedSourceSectionClass()) instanceof SourceSectionCrossReference
-				|| refByClassMap.get(childDescriptor.get()
-						.getAssociatedSourceSectionClass()) instanceof VirtualSourceSectionCrossReference)
-				&& childDescriptor.get().getAssociatedSourceSectionClass() instanceof SourceSection) {
-
-			this.registerDescriptor(childDescriptor.get());
+		if (necessaryTargetClasses.size() > referencedElements.size()) {
+			return false;
 		}
 
 		return true;
+
 	}
 
 	/**
-	 * This checks if the given list of <em>referencedElements</em> that are referenced by a {@link EReference#isMany()
-	 * many-valued} reference can be matched for the given {@link MatchedSectionDescriptor} representing the referencing
-	 * element.
-	 * <p />
-	 * Note: This iterates further downward in the containment hierarchy by calling
-	 * {@link #checkClass(EObject, boolean, SourceSectionClass, MatchedSectionDescriptor)}.
 	 *
-	 * @param referencedElements
-	 *            The {@link EObject elements} to check.
-	 * @param descriptor
-	 *            The {@link MatchedSectionDescriptor} representing the {@link EObject} that references the given
-	 *            <em>referencedElements</em>.
-	 * @param classes
-	 *            The list of {@link SourceSectionClass SourceSectionClasses} that have been modeled as target for the
-	 *            current reference to be checked (these are the potential matches for the given
-	 *            <em>referencedElements</em>).
-	 * @param refByClassMap
-	 *            A map that collects all {@link SourceSectionClass SourceSectionClasses} and the
-	 *            {@link SourceSectionReference} that they are referenced by.
-	 * @param reference
-	 *            If this is called as part of the check for another {@link SourceSectionClass}, this holds the
-	 *            {@link EReference} referencing the given <em>srcModelObject</em>. This will be an empty optional if
-	 *            this is either the <em>root</em> call to <em>checkSection</em> or if called for a
-	 *            {@link VirtualReference}.
 	 *
-	 * @return '<em><b>true</b></em>' if the check succeeded; '<em><b>false</b></em>' otherwise.
+	 * ${tags}
 	 */
-	private boolean checkManyValuedReference(final List<EObject> referencedElements,
-			final MatchedSectionDescriptor descriptor, List<SourceSectionClass> classes,
-			final Map<SourceSectionClass, SourceSectionReference> refByClassMap, Optional<EReference> reference) {
+	private boolean checkCompositeReference(final EObject parentElement,
+			final SourceSectionClass parentSourceSectionClass, final MatchedSectionDescriptor descriptor,
+			final SourceSectionCompositeReference reference, final List<EObject> referencedElements) {
 
-		/*
-		 * this is a little more complicated: now we need to find ONE possible way to map our referenceTargets to the
-		 * source sections
-		 *
-		 * To do this we need to find out first which MMSections are applicable to which srcModel sections.
-		 *
-		 * Then we try to find a way to map one srcModelSection to each MMSection
-		 */
-
-		// Map to store possible srcModelSections to MMSections (non-vc)
-		//
-		final SourceSectionMatchingResultsMap possibleSrcModelElementsNoVC = new SourceSectionMatchingResultsMap();
-		classes.stream().filter(val -> val.getCardinality().equals(CardinalityType.ONE))
-				.forEach(possibleSrcModelElementsNoVC::init);
-
-		// Map to store possible srcModelSections to MMSections (vc)
-		//
-		final SourceSectionMatchingResultsMap possibleSrcModelElementsVC = new SourceSectionMatchingResultsMap();
-		classes.stream().filter(val -> !val.getCardinality().equals(CardinalityType.ONE))
-				.forEach(possibleSrcModelElementsVC::init);
-
-		final LinkedHashSet<EObject> elementsUsableForVC = new LinkedHashSet<>();
-
-		// First, find all possible matches for all referenced elements
-		//
-		for (final EObject rt : referencedElements) {
-			boolean foundMapping = false;
-
-			for (final SourceSectionClass val : classes) {
-
-				final Optional<MatchedSectionDescriptor> childDescriptor = this.checkClass(rt, reference, val,
-						descriptor);
-
-				// we found a match
-				//
-				if (childDescriptor.isPresent()) {
-					foundMapping = true;
-
-					if (!val.getCardinality().equals(CardinalityType.ONE)) {
-						possibleSrcModelElementsVC.get(val).add(childDescriptor.get());
-						elementsUsableForVC.add(rt);
-
-					} else {
-						possibleSrcModelElementsNoVC.get(val).add(childDescriptor.get());
-					}
-				}
-			}
-
-			if (!foundMapping && !refByClassMap.get(classes.iterator().next()).isIgnoreUnmatchedElements()) {
-				// we need to find a mapping for every srcModelElement if the
-				// reference Type was modeled in the
-				// srcMMSection (and if we are not allowed to
-				// 'ignoreUnmatchedElements')
-				//
-				return false;
-			}
-		}
-
-		final List<EObject> allElementsMapped = new ArrayList<>();
-
-		// Now, try to satisfy the SourceSectionClasses with a fixed cardinality
-		// (no-vc)
-		//
-		while (!possibleSrcModelElementsNoVC.keySet().isEmpty()) {
-
-			final SourceSectionClass smallestKey = possibleSrcModelElementsNoVC
-					.getKeyForValueWithSmallestCollectionSize();
-
-			if (!possibleSrcModelElementsNoVC.get(smallestKey).isEmpty()) {
-
-				MatchedSectionDescriptor srcSectionResult;
-
-				// we need to filter a little more
-				//
-				if (possibleSrcModelElementsNoVC.get(smallestKey).size() > 1) {
-
-					List<MatchedSectionDescriptor> possibleElements = new ArrayList<>();
-					possibleElements.addAll(possibleSrcModelElementsNoVC.get(smallestKey));
-
-					// filter elements that can be used for a vc-section
-					final List<MatchedSectionDescriptor> allVCIncompatible = new ArrayList<>();
-
-					allVCIncompatible.addAll(possibleElements.stream()
-							.filter(s -> !elementsUsableForVC.contains(s.getAssociatedSourceModelElement()))
-							.collect(Collectors.toList()));
-
-					if (!allVCIncompatible.isEmpty()) {
-						possibleElements = allVCIncompatible;
-					}
-
-					srcSectionResult = SourceSectionMatcher.getResultForLeastUsedSrcModelElement(possibleElements);
-
-				} else {
-					srcSectionResult = possibleSrcModelElementsNoVC.get(smallestKey).getFirst();
-				}
-
-				// remember mapping
-				//
-				if (descriptor != null) {
-					descriptor.add(srcSectionResult);
-				}
-
-				if (refByClassMap
-						.get(srcSectionResult.getAssociatedSourceSectionClass()) instanceof SourceSectionCrossReference
-						|| refByClassMap.get(srcSectionResult
-								.getAssociatedSourceSectionClass()) instanceof VirtualSourceSectionCrossReference) {
-					/*
-					 * Register the created child descriptor in the 'sections2Descriptors' map that will be returned in
-					 * the end
-					 */
-					if (srcSectionResult.getAssociatedSourceSectionClass() instanceof SourceSection) {
-						this.registerDescriptor(srcSectionResult);
-					}
-				}
-
-				allElementsMapped.add(srcSectionResult.getAssociatedSourceModelElement());
-				// remove srcModel element from possibility lists of
-				// MMSections
-				possibleSrcModelElementsNoVC.removeResultsForElement(srcSectionResult);
-				possibleSrcModelElementsVC.removeResultsForElement(srcSectionResult);
-				possibleSrcModelElementsNoVC.remove(smallestKey);
-				/*
-				 * successfully mapped mmSection from list
-				 */
-
-			} else {
-				// all non-vc-elements need to be mapped exactly once
-				//
-				return false;
-			}
-		}
-
-		// Now, we can match the SourceSectionClasses with a variable
-		// cardinality (vc)
-		//
-
-		// for counting cardinality
-		//
-		final HashSet<SourceSectionClass> usedKeys = new HashSet<>();
-
-		while (!possibleSrcModelElementsVC.keySet().isEmpty()) {
-
-			final SourceSectionClass smallestKey = possibleSrcModelElementsVC
-					.getKeyForValueWithSmallestCollectionSize();
-			if (!possibleSrcModelElementsVC.get(smallestKey).isEmpty()) {
-
-				usedKeys.add(smallestKey);
-				MatchedSectionDescriptor srcSectionResult;
-
-				// we need to filter a little more
-				//
-				if (possibleSrcModelElementsVC.get(smallestKey).size() > 1) {
-
-					srcSectionResult = SourceSectionMatcher
-							.getResultForLeastUsedSrcModelElement(possibleSrcModelElementsVC.get(smallestKey));
-
-				} else {
-					srcSectionResult = possibleSrcModelElementsVC.get(smallestKey).getFirst();
-				}
-
-				// remember mapping
-				if (descriptor != null) {
-					descriptor.add(srcSectionResult);
-				}
-
-				if (refByClassMap
-						.get(srcSectionResult.getAssociatedSourceSectionClass()) instanceof SourceSectionCrossReference
-						|| refByClassMap.get(srcSectionResult
-								.getAssociatedSourceSectionClass()) instanceof VirtualSourceSectionCrossReference) {
-					/*
-					 * Register the created child descriptor in the 'sections2Descriptors' map that will be returned in
-					 * the end
-					 */
-					if (srcSectionResult.getAssociatedSourceSectionClass() instanceof SourceSection) {
-						this.registerDescriptor(srcSectionResult);
-					}
-				}
-
-				allElementsMapped.add(srcSectionResult.getAssociatedSourceModelElement());
-
-				// remove srcModel element from possibility lists of
-				// MMSections
-				possibleSrcModelElementsVC.removeResultsForElement(srcSectionResult);
-
-			} else if (usedKeys.contains(smallestKey)
-					|| smallestKey.getCardinality().equals(CardinalityType.ZERO_INFINITY)) {
-				// remove mmSection from list
-				possibleSrcModelElementsVC.remove(smallestKey);
-			} else {
-				// the fact that samllestKey is not in the collection
-				// means that no mapping was found at all
-				return false;
-			}
-		}
-
-		// check if all refTargets where mapped (and if we are not allowed to
-		// 'ignoreUnmatchedElements')
-		referencedElements.removeAll(allElementsMapped);
-		if (!referencedElements.isEmpty()
-				&& !refByClassMap.get(classes.iterator().next()).isIgnoreUnmatchedElements()) {
-
-			this.logger.warning("Not everything could be mapped");
+		if (!this.basicCheckReference(parentElement, parentSourceSectionClass, descriptor, reference,
+				referencedElements)) {
 			return false;
 		}
+
+		List<SourceSectionClass> targetClasses = reference.getValuesGeneric();
+
+		// The list of necessary/required target classes (classes with a lower bound != ZERO). These NEED TO be matched
+		// for the section to be applicable.
+		//
+		List<SourceSectionClass> necessaryTargetClasses = targetClasses.stream()
+				.filter(c -> !c.getCardinality().equals(CardinalityType.ZERO_INFINITY)).collect(Collectors.toList());
+
+		// The list of optional target classes (classes with a lower bound != ZERO). These DO NOT NEED TO be matched
+		// for the section to be applicable.
+		//
+		List<SourceSectionClass> optionalTargetClasses = targetClasses.stream()
+				.filter(c -> c.getCardinality().equals(CardinalityType.ZERO_INFINITY)).collect(Collectors.toList());
+
+		// First, try to match all of the necessary target classes. If any unmatched elements remain after this,
+		// try to match the optional target classes.
+		//
+		List<MatchedSectionDescriptor> childDescriptors = new ArrayList<>();
+		List<EObject> remainingReferencedElements = new ArrayList<>(referencedElements);
+
+		for (SourceSectionClass targetClass : Stream
+				.concat(necessaryTargetClasses.stream(), optionalTargetClasses.stream()).collect(Collectors.toList())) {
+
+			boolean targetClassMatched = false;
+
+			Iterator<EObject> it = remainingReferencedElements.iterator();
+			while (it.hasNext()) {
+
+				EObject referencedElement = it.next();
+
+				// iterate further
+				//
+				Optional<MatchedSectionDescriptor> childDescriptor = this.checkClass(referencedElement,
+						Optional.of(reference.getEReference()), targetClass, descriptor);
+
+				if (childDescriptor.isPresent()) {
+					childDescriptors.add(childDescriptor.get());
+					remainingReferencedElements.remove(referencedElement);
+					targetClassMatched = true;
+				}
+			}
+
+			// A necessary target class (cardinality of ONE or ONE_INFINITY) could not be matched -> abort
+			//
+			if (!targetClassMatched && necessaryTargetClasses.contains(targetClass)) {
+				return false;
+			}
+		}
+
+		for (MatchedSectionDescriptor childDescriptor : childDescriptors) {
+			// Update the given parent descriptor
+			//
+			descriptor.add(childDescriptor);
+		}
+
+		// Update the list of referenced elements that need to be matched via another SourceSecitonReference
+		//
+		referencedElements.clear();
+		referencedElements.addAll(remainingReferencedElements);
+
+		return remainingReferencedElements.isEmpty() || reference.isIgnoreUnmatchedElements();
+	}
+
+	private boolean checkCrossReference(final EObject parentElement, final SourceSectionClass parentSourceSectionClass,
+			final MatchedSectionDescriptor descriptor,
+			final CrossReference<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> reference,
+			final List<EObject> referencedElements) {
+
+		if (!this.basicCheckReference(parentElement, parentSourceSectionClass, descriptor,
+				(SourceSectionReference) reference, referencedElements)) {
+			return false;
+		}
+
+		// We do not check the reference directly, instead generate a suitable 'MatchingDependency' that will be checked
+		// later
+		//
+		CrossReferenceDependency dependency = new CrossReferenceDependency();
+		dependency.setDependencySource(descriptor);
+		dependency.setSourceModelElements(referencedElements);
+		dependency.setSourceSectionClasses(reference.getValue());
+
+		descriptor.addMatchingDependency(dependency);
 
 		return true;
 	}

@@ -12,10 +12,15 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 
+import de.mfreund.gentrans.transformation.matching.dependencies.ContainerDependency;
+import de.mfreund.gentrans.transformation.matching.dependencies.CrossReferenceDependency;
 import de.mfreund.gentrans.transformation.matching.dependencies.MatchingDependency;
 import pamtram.structure.constraint.ValueConstraint;
+import pamtram.structure.generic.CrossReference;
 import pamtram.structure.source.SourceSection;
+import pamtram.structure.source.SourceSectionAttribute;
 import pamtram.structure.source.SourceSectionClass;
+import pamtram.structure.source.SourceSectionReference;
 
 /**
  * Class for storing matched a part of a source model that has been matched against a {@link SourceSection}.
@@ -63,6 +68,14 @@ public class MatchedSectionDescriptor {
 	private MatchedSectionDescriptor containerDescriptor;
 
 	/**
+	 * This keeps track of the {@link MatchedSectionDescriptor descriptors} that represent the elements referenced via
+	 * {@link CrossReference CrossReferences}.
+	 * <p />
+	 * This can be used to determine 'external hint values'.
+	 */
+	private Map<CrossReference<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, MatchedSectionDescriptor> referencedDescriptors;
+
+	/**
 	 * This keeps track of the {@link MappingInstanceDescriptor} that has been associated with this descriptor.
 	 */
 	private MappingInstanceDescriptor associatedMappingInstance;
@@ -83,6 +96,7 @@ public class MatchedSectionDescriptor {
 		this.associatedSourceSectionClass = null;
 		this.attributeValueConstraints = new ArrayList<>();
 		this.matchingDependencies = new ArrayList<>();
+		this.referencedDescriptors = new LinkedHashMap<>();
 	}
 
 	/**
@@ -294,6 +308,58 @@ public class MatchedSectionDescriptor {
 	public void addMatchingDependency(MatchingDependency dependencyToAdd) {
 
 		this.matchingDependencies.add(dependencyToAdd);
+	}
+
+	/**
+	 * This removes a {@link MatchingDependency} from the list of {@link #matchingDependencies} .
+	 *
+	 * @param dependencyToRemove
+	 *            The {@link MatchingDependency} to remove.
+	 * @return '<em>true</em>' if this list contained the specified element
+	 */
+	public boolean removeMatchingDependency(MatchingDependency dependencyToRemove) {
+
+		return this.matchingDependencies.remove(dependencyToRemove);
+	}
+
+	/**
+	 * Marks the given {@link MatchingDependency} as resolved by:
+	 * <ol>
+	 * <li>removing it from the {@link #matchingDependencies} and</li>
+	 * <li>adding it to the list of {@link #referencedDescriptors} or setting it as {@link #containerDescriptor}</li>
+	 * </ol>
+	 *
+	 *
+	 * ${tags}
+	 */
+	public boolean markAsResolved(MatchingDependency resolvedDependency, MatchedSectionDescriptor resolvedBy) {
+
+		boolean success = this.matchingDependencies.remove(resolvedDependency);
+		if (success) {
+			if (resolvedDependency instanceof ContainerDependency) {
+				this.setContainerDescriptor(resolvedBy);
+			} else if (resolvedDependency instanceof CrossReferenceDependency) {
+				this.referencedDescriptors.put(((CrossReferenceDependency) resolvedDependency).getReference(),
+						resolvedBy);
+			} else {
+				throw new RuntimeException("Unsupported type of MatchingDependency '"
+						+ resolvedDependency.getClass().getName() + "' encountered!");
+			}
+		}
+		return success;
+	}
+
+	/**
+	 * Returns the list of {@link #matchingDependencies}.
+	 * <p />
+	 * Note: This will return a view of the {@link #matchingDependencies} so modifying the returned list will not affect
+	 * this.
+	 *
+	 * @return the {@link #matchingDependencies}.
+	 */
+	public List<MatchingDependency> getMatchingDependencies() {
+
+		return new ArrayList<>(this.matchingDependencies);
 	}
 
 	/**

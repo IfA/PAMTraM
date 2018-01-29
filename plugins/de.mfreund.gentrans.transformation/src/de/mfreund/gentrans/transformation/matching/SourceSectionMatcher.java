@@ -2,8 +2,8 @@ package de.mfreund.gentrans.transformation.matching;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -12,12 +12,10 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 
@@ -46,7 +44,6 @@ import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.CardinalityType;
 import pamtram.structure.generic.CompositeReference;
 import pamtram.structure.generic.CrossReference;
-import pamtram.structure.generic.Section;
 import pamtram.structure.generic.VirtualReference;
 import pamtram.structure.source.ActualSourceSectionAttribute;
 import pamtram.structure.source.SourceSection;
@@ -64,17 +61,6 @@ import pamtram.util.NullComparator;
  * @author mfreund
  */
 public class SourceSectionMatcher extends CancelableTransformationAsset {
-
-	/**
-	 * The {@link ContainmentTree} that represents the list of source models to be matched.
-	 */
-	private ContainmentTree containmentTree;
-
-	/**
-	 * The list of {@link SourceSection SourceSections} that this matcher operates on. These are matched against the
-	 * {@link #containmentTree} in the course of the matching process.
-	 */
-	private List<SourceSection> sourceSections;
 
 	/**
 	 * This is the {@link IAmbiguityResolvingStrategy} that shall be used to resolve ambiguities that arise during the
@@ -178,37 +164,10 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	 */
 	private void matchSections(ContainmentTree containmentTree, List<SourceSection> sourceSections) {
 
-		this.containmentTree = containmentTree;
-		this.sourceSections = sourceSections;
-
-		Map<EObject, List<MatchedSectionDescriptor>> potentialMatches = new LinkedHashMap<>();
-
-		// TODO this should now be parallelizable
-		for (EObject element : this.containmentTree.getElements()) {
-
-			// Get all 'potential' matches for the current element (they are only 'potential' because they may depend on
-			// one or more 'MatchingDependencies'
-			//
-			Map<SourceSection, MatchedSectionDescriptor> potentialElementMatches = this.findApplicableSections(element);
-			if (!potentialElementMatches.isEmpty()) {
-				potentialMatches.put(element, new ArrayList<>(potentialElementMatches.values()));
-			}
-
-			// // If there are multiple matches, select the one section to actually
-			// // apply.
-			// //
-			// MatchedSectionDescriptor descriptor = this.selectApplicableSection(element.get(), matches);
-			//
-			// if (descriptor == null) {
-			// continue;
-			// }
-			//
-			// /*
-			// * Register the created descriptor.
-			// */
-			// this.registerDescriptor(descriptor);
-
-		}
+		// Determine the potential matches (these may still be ambiguous and can be equipped with MatchingDependencies)
+		//
+		Map<EObject, List<MatchedSectionDescriptor>> potentialMatches = this
+				.findPotentialApplicableSections(containmentTree.getElements(), sourceSections);
 
 		// Now that we know each potential match, we need to check the determined 'MatchingDependencies' and resolve
 		// ambiguous matches, i.e. select the resulting matches for the next steps of the transformation. Therefore, we
@@ -216,7 +175,8 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 		//
 		for (Entry<EObject, List<MatchedSectionDescriptor>> match : potentialMatches.entrySet()) {
 
-			// For each potential descriptors, build the 'local registry', i.e. the collection of snippets that would be matched if the descriptor would be used as match
+			// For each potential descriptors, build the 'local registry', i.e. the collection of snippets that would be
+			// matched if the descriptor would be used as match
 			//
 			Map<MatchedSectionDescriptor, MatchedSectionRegistry> localRegistries = new LinkedHashMap<>();
 
@@ -229,7 +189,7 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 
 					for (EObject dependencyElement : dependency.getSourceModelElements()) {
 
-						matchedSectionRegistry.
+						// matchedSectionRegistry.
 
 						// TODO check if each of the elements can be matched against one of the required classes
 					}
@@ -239,16 +199,24 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 				localRegistries.put(potentialDescriptor, localRegistry);
 			}
 
-			 // If there are multiple matches, select the one section to actually apply.
-			 //
-			 MatchedSectionDescriptor descriptor = this.selectApplicableSection(match.getKey(), new ArrayList<>(localRegistries.keySet()));
+			// If there are multiple matches, select the one section to actually apply.
+			//
+			MatchedSectionDescriptor descriptor = this.selectApplicableSection(match.getKey(),
+					new ArrayList<>(localRegistries.keySet()));
 
-			 if(descriptor != null) {
-				 List<MatchedSectionDescriptor> failedDescriptors = this.matchedSectionRegistry.register(localRegistries.get(descriptor));
-				 if(!failedDescriptors.isEmpty()) {
-					 this.logger.severe(() -> "Internal error: Some MatchedSectionDescriptors could not be registered in the global registry!");
-				 }
-			 }
+			// Now, register everything that is associated with the chosen descriptor, i.e. everything represented in
+			// the 'localRegistry'
+			//
+			if (descriptor != null) {
+
+				MatchedSectionRegistry chosenRegistry = localRegistries.get(descriptor);
+				List<MatchedSectionDescriptor> failedDescriptors = this.matchedSectionRegistry.register(chosenRegistry);
+				if (!failedDescriptors.isEmpty()) {
+					this.logger.severe(
+							() -> "Internal error: Some MatchedSectionDescriptors could not be registered in the global registry!");
+				}
+				containmentTree.markAsMatched(new HashSet<>(chosenRegistry.getRegisteredElements()));
+			}
 		}
 
 		this.logger.info(() -> "Summary:\tAvailable Elements:\t" + containmentTree.getNumberOfElements());
@@ -258,17 +226,29 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	}
 
 	/**
-	 * {@link MatchedSectionRegistry#register(MatchedSectionDescriptor) Register} the given <em>descriptor</em> in the
-	 * {@link #matchedSectionRegistry} and {@link ContainmentTree#markAsMatched(Set) update the matched elements} in the
-	 * {@link #containmentTree}.
 	 *
-	 * @param descriptor
-	 *            The {@link MatchedSectionDescriptor} to register.
+	 *
+	 * ${tags}
 	 */
-	private void registerDescriptor(MatchedSectionDescriptor descriptor) {
+	private Map<EObject, List<MatchedSectionDescriptor>> findPotentialApplicableSections(List<EObject> elements,
+			List<SourceSection> sourceSections) {
 
-		this.matchedSectionRegistry.register(descriptor);
-		this.containmentTree.markAsMatched(descriptor.getMatchedSourceModelObjectFlat());
+		Map<EObject, List<MatchedSectionDescriptor>> potentialMatches = new LinkedHashMap<>();
+
+		// TODO this should now be parallelizable
+		for (EObject element : elements) {
+
+			// Get all 'potential' matches for the current element (they are only 'potential' because they may depend on
+			// one or more 'MatchingDependencies'
+			//
+			Map<SourceSection, MatchedSectionDescriptor> potentialElementMatches = this
+					.findPotentialApplicableSections(element, sourceSections);
+			if (!potentialElementMatches.isEmpty()) {
+				potentialMatches.put(element, new ArrayList<>(potentialElementMatches.values()));
+			}
+
+		}
+		return potentialMatches;
 	}
 
 	/**
@@ -276,10 +256,13 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	 *
 	 * @param element
 	 *            The element from the source model for that the applicable source sections shall be determined.
+	 * @param sourceSections
+	 *            The list of {@link SourceSection SourceSections} that the <em>element</em> shall be matched against.
 	 * @return A map that contains all applicable {@link SourceSection SourceSections} and the associated
 	 *         {@link MatchedSectionDescriptor} for the given {@link EObject}.
 	 */
-	private Map<SourceSection, MatchedSectionDescriptor> findApplicableSections(final EObject element) {
+	private Map<SourceSection, MatchedSectionDescriptor> findPotentialApplicableSections(final EObject element,
+			final List<SourceSection> sourceSections) {
 
 		/*
 		 * This keeps track of all found possible sections (a MatchedSectionDescriptor is created for every applicable
@@ -290,7 +273,7 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 		/*
 		 * Now, iterate over all sections and find those that are applicable for the current 'element'.
 		 */
-		this.sourceSections.stream().forEach(section -> this.isApplicable(section, element, applicableSections));
+		sourceSections.stream().forEach(section -> this.isApplicable(section, element, applicableSections));
 
 		return applicableSections;
 	}
@@ -471,151 +454,6 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 		descriptor.setContainerDescriptor(containerDescriptors.iterator().next());
 
 		return true;
-	}
-
-	/**
-	 * Check if the container section referenced by the {@link SourceSection SourceSection's}
-	 * {@link Section#getContainer()} can be matched for the given element.
-	 *
-	 * @param element
-	 *            The {@link EObject element} for that the container shall be checked.
-	 * @param sourceSection
-	 *            The {@link SourceSection} that specifies the container to be checked.
-	 * @return '<em>true</em>' if the {@link Section#getContainer() container} of the SourceSection has not been set or
-	 *         if a fitting container instance exists; '<em>false</em>' otherwise
-	 */
-	@Deprecated
-	private boolean checkContainerSection(final EObject element, final SourceSection sourceSection) {
-
-		if (sourceSection.getContainer() == null) {
-
-			// this part is easy
-			return true;
-		}
-
-		/*
-		 * Step 1: Identify all container sections and the corresponding elements (and check if these elements match the
-		 * EClass specified by the respective container section).
-		 */
-		final Map<SourceSection, EObject> containers = this.collectContainers(element, sourceSection);
-
-		if (containers == null) {
-			return false;
-		}
-
-		/*
-		 * Step 2: Check if each container section (that has not already been matched) can be matched, starting from the
-		 * highest
-		 */
-		List<Entry<SourceSection, EObject>> entries = new ArrayList<>(containers.entrySet());
-		// inverse the iterator order so that we start with the root container
-		Collections.reverse(entries);
-		Map<SourceSection, MatchedSectionDescriptor> containerDescriptors = new LinkedHashMap<>();
-		for (Entry<SourceSection, EObject> container : entries.stream()
-				.filter(container -> !this.matchedSectionRegistry.contains(container.getValue(), container.getKey()))
-				.collect(Collectors.toList())) {
-
-			List<SourceSection> sectionsToConsider = new ArrayList<>();
-			if (sourceSection.isAbstract()) {
-				sectionsToConsider.addAll(sourceSection.getAllExtend());
-			} else {
-				sectionsToConsider.add(sourceSection);
-			}
-
-			List<MatchedSectionDescriptor> applicableDescriptors = sectionsToConsider.stream()
-					.filter(s -> !s.isAbstract())
-					.map(s -> this.checkClass(container.getValue(), Optional.empty(), s, null))
-					.filter(Optional::isPresent).map(Optional::get).collect(Collectors.toList());
-
-			if (!applicableDescriptors.isEmpty()) {
-				// one of the containers could not be matched so we return
-				// without registering other potential descriptors
-				//
-				return false;
-			}
-
-			// If there are multiple matches, select the one section to actually
-			// apply.
-			//
-			MatchedSectionDescriptor containerDescriptor = this.selectApplicableSection(container.getValue(),
-					applicableDescriptors.stream()
-							.collect(Collectors.toMap(d -> (SourceSection) d.getAssociatedSourceSectionClass(),
-									Function.identity(), (oldValue, newValue) -> oldValue, LinkedHashMap::new)));
-
-			if (containerDescriptor == null) {
-				return false;
-			}
-
-			containerDescriptors.put(container.getKey(), containerDescriptor);
-		}
-
-		// Register the created container descriptor in the
-		// 'sections2Descriptors' map that will be returned
-		// in the end
-		//
-		containerDescriptors.entrySet().stream().forEach(entry -> this.registerDescriptor(entry.getValue()));
-
-		return true;
-
-	}
-
-	/**
-	 * For a given {@link SourceSection} and an {@link EObject element}, identify, check, and collect all container
-	 * {@link SourceSections} and the corresponding {@link EObject elements} for a given combination.
-	 *
-	 * Note: This does not collect all elements all the way up but only those SourceSectionClasses for that
-	 * 'isSection()' returns 'true'.
-	 *
-	 * @param element
-	 *            The {@link EObject element} for that the containers shall be identified and checked.
-	 * @param sourceSection
-	 *            The {@link SourceSection} for that the containers shall be identified and checked.
-	 * @return A map of identified {@link SourceSection SourceSections} and associated {@link EObject elements} or
-	 *         '<em><b>null</b></em>' if at least one identified container {@link EObject element} was not of the
-	 *         {@link EClass} specified by the associated {@link SourceSection}.
-	 */
-	@Deprecated
-	private Map<SourceSection, EObject> collectContainers(final EObject element, final SourceSection sourceSection) {
-
-		final Map<SourceSection, EObject> containers = new LinkedHashMap<>();
-
-		SourceSectionClass currentClass = sourceSection;
-		EObject currentElement = element;
-
-		while (currentClass.getContainer() != null) {
-
-			if (currentElement.eContainer() == null) {
-				return null;
-			}
-
-			currentElement = currentElement.eContainer();
-			currentClass = currentClass.getContainer();
-
-			/*
-			 * scan all levels of source section until we are at a top level again
-			 *
-			 * we do not concern ourselves with mapping of the elements at this point, all we need are the container
-			 * sections
-			 */
-			while (!currentClass.getContainingSection().equals(currentClass)) {
-
-				if (currentElement.eContainer() == null) {
-					return null;
-				}
-
-				currentElement = currentElement.eContainer();
-				currentClass = currentClass.getOwningContainmentReference().getOwningClass();
-			}
-
-			assert currentClass instanceof SourceSection;
-
-			// we found a container class (and its matching element)
-			//
-			containers.put((SourceSection) currentClass, currentElement);
-
-		}
-
-		return containers;
 	}
 
 	/**

@@ -4,6 +4,7 @@
 package de.mfreund.gentrans.transformation.registries;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -22,6 +24,9 @@ import pamtram.structure.source.SourceSectionClass;
 /**
  * This class represents a registry for the various source model snippets that are matched against {@link SourceSection
  * SourceSections} during a transformation.
+ * <p />
+ * Note: Each {@link EObject} may be registered to a registry only once, i.e. as part of only one
+ * {@link MatchedSectionDescriptor}!
  * <p />
  * Note: The map used internally to represent the registry as well as all relevant operations are
  * {@link Collections#synchronizedMap(Map) synchronized} (thread-safe). Consequently, it is safe to operate on this
@@ -57,6 +62,27 @@ public class MatchedSectionRegistry {
 	}
 
 	/**
+	 * Return all {@link MatchedSectionDescriptor MatchedSectionDescriptors} that are registered in this registry.
+	 *
+	 * @return The registered {@link MatchedSectionDescriptor MatchedSectionDescriptors}.
+	 */
+	public synchronized List<MatchedSectionDescriptor> getRegisteredDescriptors() {
+
+		return this.internalRegistry.values().stream().flatMap(Collection::stream).collect(Collectors.toList());
+	}
+
+	/**
+	 * Return all {@link MatchedSectionDescriptor MatchedSectionDescriptors} that are registered in this registry.
+	 *
+	 * @return The registered {@link MatchedSectionDescriptor MatchedSectionDescriptors}.
+	 */
+	public synchronized List<EObject> getRegisteredElements() {
+
+		return this.getRegisteredDescriptors().stream().flatMap(d -> d.getMatchedSourceModelObjectFlat().stream())
+				.collect(Collectors.toList());
+	}
+
+	/**
 	 * Return the one {@link MatchedSectionDescriptor} registered in this registry that represents the given combination
 	 * of {@link EObject source model element} and {@link SourceSection}.
 	 *
@@ -66,12 +92,27 @@ public class MatchedSectionRegistry {
 	 *            The {@link SourceSection} represented by the {@link MatchedSectionDescriptor} to be returned.
 	 * @return The {@link MatchedSectionDescriptor} representing the <em>element</em>.
 	 */
-	public synchronized Optional<MatchedSectionDescriptor> getMatchedSectionDescriptorFor(EObject element,
+	public synchronized Optional<MatchedSectionDescriptor> getRegisteredDescriptorFor(EObject element,
 			SourceSection sourceSection) {
 
 		return element == null || sourceSection == null || !this.internalRegistry.containsKey(sourceSection)
 				? Optional.empty()
 				: this.internalRegistry.get(sourceSection).parallelStream()
+						.filter(msd -> msd.getMatchedSourceModelObjectFlat().contains(element)).findAny();
+	}
+
+	/**
+	 * Return the one {@link MatchedSectionDescriptor} registered in this registry that represents the given
+	 * {@link EObject source model element} and {@link SourceSection}.
+	 *
+	 * @param element
+	 *            The {@link EObject} for that a {@link MatchedSectionDescriptor} shall be returned.
+	 * @return The {@link MatchedSectionDescriptor} representing the <em>element</em>.
+	 */
+	public synchronized Optional<MatchedSectionDescriptor> getRegisteredDescriptorFor(EObject element) {
+
+		return element == null ? Optional.empty()
+				: this.getRegisteredDescriptors().parallelStream()
 						.filter(msd -> msd.getMatchedSourceModelObjectFlat().contains(element)).findAny();
 	}
 
@@ -88,7 +129,7 @@ public class MatchedSectionRegistry {
 	 */
 	public synchronized boolean contains(EObject element, SourceSection sourceSection) {
 
-		return this.getMatchedSectionDescriptorFor(element, sourceSection).isPresent();
+		return this.getRegisteredDescriptorFor(element, sourceSection).isPresent();
 	}
 
 	/**
@@ -159,12 +200,16 @@ public class MatchedSectionRegistry {
 
 	/**
 	 * Register a new {@link MatchedSectionDescriptor} in this registry.
+	 * <p />
+	 * Note: Each {@link EObject} may be registered to a registry only once, i.e. as part of only one
+	 * {@link MatchedSectionDescriptor}!
 	 *
 	 * @param descriptor
 	 *            The {@link MatchedSectionDescriptor} to register.
 	 * @return '<em>true</em>' if the descriptor was successfully registered; '<em>false</em>' if the registry already
-	 *         contained the descriptor or if the {@link MatchedSectionDescriptor#getAssociatedSourceSectionClass()
-	 *         associated SourceSectionClass} was not a {@link SourceSectionClass}.
+	 *         contained the descriptor or one of its elements or if the
+	 *         {@link MatchedSectionDescriptor#getAssociatedSourceSectionClass() associated SourceSectionClass} was not
+	 *         a {@link SourceSectionClass}.
 	 */
 	public synchronized boolean register(MatchedSectionDescriptor descriptor) {
 
@@ -173,6 +218,12 @@ public class MatchedSectionRegistry {
 		if (!(section instanceof SourceSection)) {
 			this.logger.severe(() -> "Internal Error: Unable to register the MatchedSectionDescriptor '" + descriptor
 					+ "' as it does not represent a SourceSection!");
+			return false;
+		}
+
+		if (descriptor.getMatchedSourceModelObjectFlat().stream().anyMatch(this::contains)) {
+			this.logger.severe(() -> "Internal Error: Unable to register the MatchedSectionDescriptor '" + descriptor
+					+ "' as at least one of the represented elements is already registered in this registry!");
 			return false;
 		}
 
@@ -188,5 +239,31 @@ public class MatchedSectionRegistry {
 		this.internalRegistry.put((SourceSection) section, descriptors);
 
 		return true;
+	}
+
+	/**
+	 * Register all {@link MatchedSectionDescriptor descriptors} registered in the given <em>other</em> registry in this
+	 * registry.
+	 * <p />
+	 * Note: Each {@link EObject} may be registered to a registry only once, i.e. as part of only one
+	 * {@link MatchedSectionDescriptor}!
+	 *
+	 * @param otherRegistry
+	 *            The {@link MatchedSectionRegistry} to register.
+	 * @return A list of descriptors that could not be registered because {@link #register(MatchedSectionDescriptor)}
+	 *         returned '<em>false</em>'.
+	 */
+	public synchronized List<MatchedSectionDescriptor> register(MatchedSectionRegistry otherRegistry) {
+
+		List<MatchedSectionDescriptor> descriptorsToRegister = otherRegistry.getRegisteredDescriptors();
+		List<MatchedSectionDescriptor> failedDescriptors = new ArrayList<>();
+
+		for (MatchedSectionDescriptor descriptorToRegister : descriptorsToRegister) {
+			if (!this.register(descriptorToRegister)) {
+				failedDescriptors.add(descriptorToRegister);
+			}
+		}
+
+		return failedDescriptors;
 	}
 }

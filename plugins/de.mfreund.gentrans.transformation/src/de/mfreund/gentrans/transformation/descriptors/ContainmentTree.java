@@ -10,11 +10,10 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * This represents the containment tree of a given {@link EObject source model}
- * and keeps track of unmatched and matched elements in the tree.
+ * This represents the containment tree of a given {@link EObject source model} and keeps track of unmatched and matched
+ * elements in the tree.
  * <p />
- * Note: Instances are created via the static factory method
- * {@link #build(List)}.
+ * Note: Instances are created via the static factory method {@link #build(List)}.
  *
  * @author mfreund
  *
@@ -22,33 +21,28 @@ import org.eclipse.emf.ecore.EObject;
 public class ContainmentTree {
 
 	/**
-	 * The {@link EObject root elements} of the source models that this
-	 * represents.
+	 * The {@link EObject root elements} of the source models that this represents.
 	 */
 	private final List<EObject> sourceModels;
 
 	/**
-	 * This list of {@link EObject EObjects} represents the containment tree of
-	 * the source model. It therefore stores the elements of the source model in
-	 * hierarchical order.
+	 * This list of {@link EObject EObjects} represents the containment tree of the source model. It therefore stores
+	 * the elements of the source model in hierarchical order.
 	 */
 	private final List<EObject> elements;
 
 	/**
-	 * This list keeps track of those of the {@link #elements} that are still
-	 * available for matching.
+	 * This list keeps track of those of the {@link #elements} that are still available for matching.
 	 */
 	private final List<EObject> availableElements;
 
 	/**
-	 * This list keeps track of those of the {@link #elements} that have already
-	 * been matched.
+	 * This list keeps track of those of the {@link #elements} that have already been matched.
 	 */
 	private final Set<EObject> matchedElements;
 
 	/**
-	 * This list keeps track of those of the {@link #elements} that could not be
-	 * matched.
+	 * This list keeps track of those of the {@link #elements} that could not be matched.
 	 */
 	private final List<EObject> unmatchedElements;
 
@@ -61,6 +55,7 @@ public class ContainmentTree {
 	 * This constructs an instance.
 	 */
 	private ContainmentTree() {
+
 		this.sourceModels = new ArrayList<>();
 		this.elements = new ArrayList<>();
 		this.availableElements = new ArrayList<>();
@@ -70,12 +65,11 @@ public class ContainmentTree {
 	}
 
 	/**
-	 * This creates a new instance based on a given {@link EObject sourceModels}
-	 * and returns it.
+	 * This creates a new instance based on a given {@link EObject sourceModels} and returns it.
 	 *
 	 * @param sourceModels
-	 *            The list of {@link EObject EObjects} representing the source
-	 *            models for which the containment tree shall be built.
+	 *            The list of {@link EObject EObjects} representing the source models for which the containment tree
+	 *            shall be built.
 	 * @return The created {@link ContainmentTree}.
 	 */
 	public static ContainmentTree build(List<EObject> sourceModels) {
@@ -96,12 +90,11 @@ public class ContainmentTree {
 	}
 
 	/**
-	 * This method recursively builds the containment tree by iterating over all
-	 * child elements of the given <em>modelElement</em>.
+	 * This method recursively builds the containment tree by iterating over all child elements of the given
+	 * <em>modelElement</em>.
 	 *
 	 * @param modelElement
-	 *            The model element for that the containment tree shall be
-	 *            built.
+	 *            The model element for that the containment tree shall be built.
 	 */
 	private void buildContainmentTree(final EObject modelElement) {
 
@@ -111,6 +104,25 @@ public class ContainmentTree {
 			this.buildContainmentTree(childElement);
 		}
 
+	}
+
+	/**
+	 * Reset the current 'matching' status, i.e. clear the {@link #availableElements}, the {@link #matchedElements}, and
+	 * the {@link #unmatchedElements} and the {@link #currentElement}.
+	 * <p />
+	 * Note: This should be called before restarting/repeating the {@link #getNextElementForMatching() iteration
+	 * process}.
+	 * <p />
+	 * Note: This will neither change the available {@link #sourceModels} nor {@link #buildContainmentTree(EObject)
+	 * rebuild} the list of {@link #availableElements}.
+	 */
+	public void reset() {
+
+		this.availableElements.clear();
+		this.availableElements.addAll(this.elements);
+		this.matchedElements.clear();
+		this.unmatchedElements.clear();
+		this.currentElement = null;
 	}
 
 	/**
@@ -134,18 +146,17 @@ public class ContainmentTree {
 	}
 
 	/**
-	 * This returns the number of elements in the containment tree that are
-	 * still available for matching.
+	 * This returns the number of elements in the containment tree that are still available for matching.
 	 *
 	 * @return The number of elements that are still available for matching.
 	 */
 	public int getNumberOfAvailableElements() {
+
 		if (this.availableElements.isEmpty() && this.currentElement != null) {
 			/*
-			 * If this function is called and there are no available elements
-			 * left, we assume that we have arrived at the end of the matching
-			 * process. Consequently, the 'current element' should be marked as
-			 * unmatched if necessary.
+			 * If this function is called and there are no available elements left, we assume that we have arrived at
+			 * the end of the matching process. Consequently, the 'current element' should be marked as unmatched if
+			 * necessary.
 			 */
 			this.unmatchedElements.add(this.currentElement);
 			this.currentElement = null;
@@ -154,18 +165,17 @@ public class ContainmentTree {
 	}
 
 	/**
-	 * This returns the number of elements in the containment tree that have
-	 * already been matched.
+	 * This returns the number of elements in the containment tree that have already been matched.
 	 *
 	 * @return The number of elements that have already been matched.
 	 */
 	public int getNumberOfMatchedElements() {
+
 		return this.matchedElements.size();
 	}
 
 	/**
-	 * This returns the number of elements in the containment tree that could
-	 * not be matched.
+	 * This returns the number of elements in the containment tree that could not be matched.
 	 *
 	 * @return The number of elements that could not be matched.
 	 */
@@ -177,11 +187,10 @@ public class ContainmentTree {
 	/**
 	 * This returns the next element that is still available for matching.
 	 * <p />
-	 * Note: Every element will be returned only once. Consequently, calling
-	 * this twice will return different elements.
+	 * Note: Every element will be returned only once. Consequently, calling this twice will return different elements.
 	 *
-	 * @return The next element that is still available for matching (the
-	 *         returned optional will be empty if there is no next element).
+	 * @return The next element that is still available for matching (the returned optional will be empty if there is no
+	 *         next element).
 	 */
 	public Optional<EObject> getNextElementForMatching() {
 
@@ -190,9 +199,8 @@ public class ContainmentTree {
 		}
 
 		/*
-		 * if the element that was evaluated for matching has not been marked as
-		 * matched (and is thus still be marked as 'currentElement'), we assume
-		 * that it could not be matched
+		 * if the element that was evaluated for matching has not been marked as matched (and is thus still be marked as
+		 * 'currentElement'), we assume that it could not be matched
 		 */
 		if (this.currentElement != null) {
 			this.unmatchedElements.add(this.currentElement);
@@ -203,24 +211,25 @@ public class ContainmentTree {
 	}
 
 	/**
-	 * This marks the given element as '<em>matched</em>' and thus adds it to
-	 * the list of {@link #matchedElements}.
+	 * This marks the given element as '<em>matched</em>' and thus adds it to the list of {@link #matchedElements}.
 	 *
 	 * @param element
 	 *            The element to be marked as '<em>matched</em>'.
 	 */
 	public void markAsMatched(EObject element) {
+
 		this.markAsMatched(new HashSet<>(Arrays.asList(element)));
 	}
 
 	/**
-	 * This marks the given set of elements as '<em>matched</em>' and thus adds
-	 * them to the list of {@link #matchedElements}.
+	 * This marks the given set of elements as '<em>matched</em>' and thus adds them to the list of
+	 * {@link #matchedElements}.
 	 *
 	 * @param elements
 	 *            The list of elements to be marked as '<em>matched</em>'.
 	 */
 	public void markAsMatched(Set<EObject> elements) {
+
 		this.matchedElements.addAll(elements);
 		this.availableElements.removeAll(elements);
 		if (elements.contains(this.currentElement)) {

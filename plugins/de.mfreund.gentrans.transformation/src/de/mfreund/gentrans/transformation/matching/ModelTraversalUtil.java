@@ -67,7 +67,7 @@ public class ModelTraversalUtil extends TransformationAsset {
 	 *            The {@link Reference} for that the values shall be returned.
 	 * @return The determined values (either an empty list, a list consisting of a single value, or multiple values).
 	 */
-	public List<EObject> getReferenceValueAsList(EObject eObject, Reference<?, ?, ?, ?> reference) {
+	public synchronized List<EObject> getReferenceValueAsList(EObject eObject, Reference<?, ?, ?, ?> reference) {
 
 		List<Object> ret = new ArrayList<>();
 
@@ -133,7 +133,7 @@ public class ModelTraversalUtil extends TransformationAsset {
 	 *            The {@link Attribute} for that the values shall be returned.
 	 * @return The determined values (either an empty list, a list consisting of a single value, or multiple values).
 	 */
-	public List<Object> getAttributeValueAsList(EObject eObject, Attribute<?, ?, ?, ?> attribute) {
+	public synchronized List<Object> getAttributeValueAsList(EObject eObject, Attribute<?, ?, ?, ?> attribute) {
 
 		if (attribute instanceof ActualAttribute<?, ?, ?, ?>) {
 

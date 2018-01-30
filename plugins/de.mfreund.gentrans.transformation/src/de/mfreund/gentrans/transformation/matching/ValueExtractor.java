@@ -3,7 +3,6 @@ package de.mfreund.gentrans.transformation.matching;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -126,25 +125,40 @@ public abstract class ValueExtractor extends CancelableTransformationAsset {
 
 		MatchedSectionDescriptor sourceDescriptor = matchedSectionDescriptor;
 
-		// In case we are dealing with an external source element, we first need
-		// to determine the correct
-		// 'container descriptor' that represents the source element
-		//
+		Set<EObject> sourceElements = new LinkedHashSet<>();
+
 		if (mappingHintSourceElement instanceof ExternalDynamicSourceElement<?, ?, ?, ?>) {
+
+			SourceSection mappingHintSourceElementProvidingSection = mappingHintSourceElement.getSource()
+					.getContainingSection();
+
+			// In case we are dealing with an external source element, we first need
+			// to determine the correct 'container descriptor' that represents the source element
+			//
 			do {
 				sourceDescriptor = sourceDescriptor.getContainerDescriptor();
+
 				if (sourceDescriptor == null) {
 					break;
 				}
-			} while (sourceDescriptor.getMatchedSourceModelElementsFor(
-					(SourceSectionClass) mappingHintSourceElement.getSource().eContainer()).isEmpty());
-		}
 
-		Set<EObject> sourceElements = sourceDescriptor == null ? new HashSet<>()
-				: sourceDescriptor.getMatchedSourceModelElementsFor(
-						(SourceSectionClass) mappingHintSourceElement.getSource().eContainer());
+			} while (!(sourceDescriptor.getAssociatedSourceSectionClass()
+					.equals(mappingHintSourceElementProvidingSection)
+					|| sourceDescriptor.getAssociatedSourceSectionClass().getContainingSection().getAllExtend()
+							.contains(mappingHintSourceElementProvidingSection)));
 
-		if (mappingHintSourceElement instanceof LocalDynamicSourceElement<?, ?, ?, ?>) {
+			if (sourceDescriptor != null) {
+				sourceElements = sourceDescriptor
+						.getMatchedSourceModelElementsFor(mappingHintSourceElement.getSource().getOwningClass(), false);
+			}
+
+		} else if (mappingHintSourceElement instanceof LocalDynamicSourceElement<?, ?, ?, ?>) {
+
+			// In case we are dealing with a local source element, we need to collect all elements of the given
+			// descriptor and of all descriptors (directly or indirectly) referenced by this descriptor
+			//
+			sourceElements = sourceDescriptor
+					.getMatchedSourceModelElementsFor(mappingHintSourceElement.getSource().getOwningClass(), true);
 
 			// If the user specified an additional 'referenceMatchSpec', use
 			// only that subset of the determined source elements corresponding
@@ -163,7 +177,7 @@ public abstract class ValueExtractor extends CancelableTransformationAsset {
 
 		if (sourceElements.isEmpty()) {
 			this.logger.warning(() -> "No hint value found for source element '" + mappingHintSourceElement.getName()
-					+ "' in " + ((NamedElement) mappingHintSourceElement.eContainer()).printInfo() + "')!");
+					+ "' in " + ((NamedElement) mappingHintSourceElement.eContainer()).printInfo() + "!");
 			return null;
 		}
 
@@ -204,7 +218,7 @@ public abstract class ValueExtractor extends CancelableTransformationAsset {
 				: sourceDescriptors.stream())
 						.flatMap(descriptor -> descriptor
 								.getMatchedSourceModelElementsFor(
-										(SourceSectionClass) mappingHintSourceElement.getSource().eContainer())
+										(SourceSectionClass) mappingHintSourceElement.getSource().eContainer(), false)
 								.stream())
 						.collect(Collectors.toList());
 

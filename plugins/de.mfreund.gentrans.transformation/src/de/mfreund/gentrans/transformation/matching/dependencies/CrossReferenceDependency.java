@@ -3,6 +3,9 @@
  */
 package de.mfreund.gentrans.transformation.matching.dependencies;
 
+import java.util.List;
+
+import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import pamtram.structure.generic.CrossReference;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
@@ -39,5 +42,22 @@ public class CrossReferenceDependency extends MatchingDependency {
 			CrossReference<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> reference) {
 
 		this.reference = reference;
+	}
+
+	/**
+	 * Resolves this dependency by updating the {@link MatchedSectionDescriptor#getReferencedDescriptors()
+	 * referencedDescriptors} of the {@link #getDependencySource() dependencySource}.
+	 */
+	@Override
+	public boolean resolve(List<MatchedSectionDescriptor> resolvedBy) {
+
+		boolean ret = super.resolve(resolvedBy);
+
+		if (ret) {
+			resolvedBy.stream().forEach(d -> this.getDependencySource().addReferencedDescriptor(this.reference, d));
+		}
+
+		return ret;
+
 	}
 }

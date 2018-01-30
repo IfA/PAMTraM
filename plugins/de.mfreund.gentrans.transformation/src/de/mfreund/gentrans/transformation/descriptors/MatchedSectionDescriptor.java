@@ -1,21 +1,23 @@
 package de.mfreund.gentrans.transformation.descriptors;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 
-import de.mfreund.gentrans.transformation.matching.dependencies.ContainerDependency;
-import de.mfreund.gentrans.transformation.matching.dependencies.CrossReferenceDependency;
 import de.mfreund.gentrans.transformation.matching.dependencies.MatchingDependency;
-import pamtram.structure.constraint.ValueConstraint;
+import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
 import pamtram.structure.generic.CrossReference;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
@@ -34,13 +36,13 @@ public class MatchedSectionDescriptor {
 	/**
 	 * The root {@link SourceSectionClass} that is associated with this descriptor.
 	 */
-	private SourceSectionClass associatedSourceSectionClass;
+	protected SourceSectionClass associatedSourceSectionClass;
 
 	/**
 	 * The root {@link EObject} that is associated with this descriptor. This is an instance of the
 	 * {@link #associatedSourceSectionClass}.
 	 */
-	private EObject associatedSourceModelElement;
+	protected EObject associatedSourceModelElement;
 
 	/**
 	 * The {@link EObject elements} of the source model that are matched by this mapping instance associated with their
@@ -51,13 +53,7 @@ public class MatchedSectionDescriptor {
 	 * part of a <em>container</em> nor elements that have been matched as part of the evaluation of a
 	 * {@link SectionCrossReference}.
 	 */
-	private LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSourceModelObjets;
-
-	/**
-	 * This keeps track of the {@link ValueConstraint AttributeValueConstraints} that need to be checked for the
-	 * elements represented by this descriptor.
-	 */
-	private List<ValueConstraint> attributeValueConstraints;
+	protected LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSourceModelObjets;
 
 	/**
 	 * This keeps track of the {@link MatchedSectionDescriptor} that represents the {@link EObject#eContainer()} of the
@@ -65,7 +61,7 @@ public class MatchedSectionDescriptor {
 	 * <p />
 	 * This can be used to determine 'external hint values'.
 	 */
-	private MatchedSectionDescriptor containerDescriptor;
+	protected MatchedSectionDescriptor containerDescriptor;
 
 	/**
 	 * This keeps track of the {@link MatchedSectionDescriptor descriptors} that represent the elements referenced via
@@ -73,30 +69,29 @@ public class MatchedSectionDescriptor {
 	 * <p />
 	 * This can be used to determine 'external hint values'.
 	 */
-	private Map<CrossReference<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, MatchedSectionDescriptor> referencedDescriptors;
+	protected Map<CrossReference<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, List<MatchedSectionDescriptor>> referencedDescriptors;
 
 	/**
 	 * This keeps track of the {@link MappingInstanceDescriptor} that has been associated with this descriptor.
 	 */
-	private MappingInstanceDescriptor associatedMappingInstance;
+	protected MappingInstanceDescriptor associatedMappingInstance;
 
 	/**
 	 * The list of {@link MatchingDependency MatchingDependencies} that need to be resolved for this descriptor to be
 	 * applicable.
 	 */
-	private final List<MatchingDependency> matchingDependencies;
+	protected List<MatchingDependency> matchingDependencies;
 
 	/**
-	 * This constructs an instance.
+	 * This creates an instance.
 	 */
 	public MatchedSectionDescriptor() {
 
 		this.matchedSourceModelObjets = new LinkedHashMap<>();
 		this.associatedSourceModelElement = null;
 		this.associatedSourceSectionClass = null;
-		this.attributeValueConstraints = new ArrayList<>();
-		this.matchingDependencies = new ArrayList<>();
 		this.referencedDescriptors = new LinkedHashMap<>();
+		this.matchingDependencies = new ArrayList<>();
 	}
 
 	/**
@@ -142,12 +137,29 @@ public class MatchedSectionDescriptor {
 	}
 
 	/**
+	 * This returns the {@link #matchedSourceModelObjets}.
 	 *
+	 * @param includeReferenced
+	 *            If this is set to '<em>true</em>', the returned map will also contain the matched elements of all
+	 *            {@link #getReferencedDescriptorsRecursive() directly or indirectly referenced} descriptors.
 	 * @return map of the source model Objects mapped
 	 */
-	public Map<SourceSectionClass, Set<EObject>> getMatchedSourceModelObjects() {
+	public Map<SourceSectionClass, Set<EObject>> getMatchedSourceModelObjects(boolean includeReferenced) {
 
-		return new LinkedHashMap<>(this.matchedSourceModelObjets);
+		if (!includeReferenced) {
+			return new LinkedHashMap<>(this.matchedSourceModelObjets);
+		}
+
+		List<MatchedSectionDescriptor> descriptorsToConsider = new ArrayList<>(Arrays.asList(this));
+		descriptorsToConsider.addAll(this.getReferencedDescriptorsRecursive());
+
+		// Merge and return the maps returned by calling 'getMatchedSourceModelObjects' for each of the descriptors
+		//
+		return descriptorsToConsider.stream().flatMap(d -> d.getMatchedSourceModelObjects(false).entrySet().stream())
+				.collect(Collectors.toMap(Entry::getKey, Entry::getValue, (v1, v2) -> {
+					v1.addAll(v2);
+					return v1;
+				}, LinkedHashMap::new));
 	}
 
 	/**
@@ -159,28 +171,37 @@ public class MatchedSectionDescriptor {
 	 *
 	 * @param sourceSectionClass
 	 *            The {@link SourceSectionClass} for that the matched elements shall be returned.
+	 * @param includeReferenced
+	 *            If this is set to '<em>true</em>', the returned list will also contain the matched elements of all
+	 *            {@link #getReferencedDescriptorsRecursive() directly or indirectly referenced} descriptors.
 	 * @return The matched elements (an empty list is returned if no elements have been matched).
 	 */
-	public Set<EObject> getMatchedSourceModelElementsFor(SourceSectionClass sourceSectionClass) {
+	public Set<EObject> getMatchedSourceModelElementsFor(SourceSectionClass sourceSectionClass,
+			boolean includeReferenced) {
+
+		Map<SourceSectionClass, Set<EObject>> matchesToConsider = this.getMatchedSourceModelObjects(includeReferenced);
 
 		return sourceSectionClass.getAllConcreteExtending().stream()
-				.filter(s -> this.matchedSourceModelObjets.containsKey(s))
-				.flatMap(s -> this.matchedSourceModelObjets.get(s).stream())
+				.flatMap(s -> matchesToConsider.getOrDefault(s, new HashSet<>()).stream())
 				.collect(Collectors.toCollection(LinkedHashSet::new));
 	}
 
 	/**
 	 * This returns the list of {@link EObject matched elements} represented by this descriptor.
 	 * <p />
-	 * In contrast to {@link #getMatchedSourceModelObjects()}, this does not sort the matched elements by the
+	 * In contrast to {@link #getMatchedSourceModelObjects(boolean)}, this does not sort the matched elements by the
 	 * {@link SourceSectionClass} they represent.
+	 *
+	 * @param includeReferenced
+	 *            If this is set to '<em>true</em>', the returned list will also contain the matched elements of all
+	 *            {@link #getReferencedDescriptorsRecursive() directly or indirectly referenced} descriptors.
 	 *
 	 * @return The list of {@link EObject matched elements} represented by this descriptor.
 	 */
-	public Set<EObject> getMatchedSourceModelObjectFlat() {
+	public Set<EObject> getMatchedSourceModelObjectFlat(boolean includeReferenced) {
 
-		return this.matchedSourceModelObjets.entrySet().stream().map(Entry::getValue).flatMap(Set::stream)
-				.collect(Collectors.toCollection(LinkedHashSet::new));
+		return this.getMatchedSourceModelObjects(includeReferenced).entrySet().stream().map(Entry::getValue)
+				.flatMap(Set::stream).collect(Collectors.toCollection(LinkedHashSet::new));
 	}
 
 	/**
@@ -230,31 +251,6 @@ public class MatchedSectionDescriptor {
 	}
 
 	/**
-	 * Add to the list of {@link #attributeValueConstraints}.
-	 *
-	 * @param attributeValueConstraints
-	 *            The list of {@link ValueConstraint AttributeValueConstraints} to add to the
-	 *            {@link #attributeValueConstraints}.
-	 */
-	public void addAttributeValueConstraints(List<ValueConstraint> attributeValueConstraints) {
-
-		this.attributeValueConstraints.addAll(attributeValueConstraints);
-	}
-
-	/**
-	 * Add matched source model elements from another {@link MatchedSectionDescriptor}.
-	 *
-	 * @param otherDescriptor
-	 *            The {@link MatchedSectionDescriptor} from that matched elements shall be added.
-	 */
-	public void add(final MatchedSectionDescriptor otherDescriptor) {
-
-		// combine matched elements
-		this.addSourceModelObjectsMapped(otherDescriptor.getMatchedSourceModelObjects());
-
-	}
-
-	/**
 	 * This returns the {@link #containerDescriptor}.
 	 *
 	 * @return The {@link MatchedSectionDescriptor} that represents the {@link EObject#eContainer()} of the
@@ -275,6 +271,64 @@ public class MatchedSectionDescriptor {
 	public void setContainerDescriptor(MatchedSectionDescriptor containerDescriptor) {
 
 		this.containerDescriptor = containerDescriptor;
+	}
+
+	/**
+	 * @return the {@link #referencedDescriptors}
+	 */
+	public Map<CrossReference<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, List<MatchedSectionDescriptor>> getReferencedDescriptors() {
+
+		return this.referencedDescriptors;
+	}
+
+	/**
+	 * Recursively collect the {@link MatchedSectionDescriptor descriptors} directly and indirectly referenced by this.
+	 *
+	 * @return the {@link #referencedDescriptors}
+	 */
+	public List<MatchedSectionDescriptor> getReferencedDescriptorsRecursive() {
+
+		List<MatchedSectionDescriptor> descriptors = new ArrayList<>();
+
+		this.getReferencedDescriptorsRecursive(descriptors);
+
+		return descriptors;
+	}
+
+	/**
+	 * Recursively collect the {@link MatchedSectionDescriptor descriptors} directly and indirectly referenced by this
+	 * and add them to the given list.
+	 *
+	 * @param descriptors
+	 *            the list where collected descriptors are stored
+	 */
+	protected void getReferencedDescriptorsRecursive(List<MatchedSectionDescriptor> descriptors) {
+
+		List<MatchedSectionDescriptor> descriptorsToAdd = this.getReferencedDescriptors().values().stream()
+				.flatMap(Collection::stream).filter(d -> !descriptors.contains(d)).collect(Collectors.toList());
+
+		descriptors.addAll(descriptorsToAdd);
+
+		descriptorsToAdd.stream().forEach(d -> d.getReferencedDescriptorsRecursive(descriptors));
+
+	}
+
+	/**
+	 * Add the given <em>descriptorToAdd</em> to the list of {@link #referencedDescriptors}.
+	 *
+	 * @param reference
+	 *            The {@link CrossReference} via that the given <em>descriptorToAdd<em> is referenced.
+	 * @param descriptorToAdd
+	 *            The {@link MatchedSectionDescriptor} to add.
+	 */
+	public void addReferencedDescriptor(
+			CrossReference<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> reference,
+			MatchedSectionDescriptor descriptorToAdd) {
+
+		List<MatchedSectionDescriptor> descriptors = this.referencedDescriptors.getOrDefault(reference,
+				new ArrayList<>());
+		descriptors.add(descriptorToAdd);
+		this.referencedDescriptors.put(reference, descriptors);
 	}
 
 	/**
@@ -299,67 +353,16 @@ public class MatchedSectionDescriptor {
 	}
 
 	/**
-	 * This adds another {@link MatchingDependency} to the list of {@link #matchingDependencies} that need to be
-	 * resolved for this descriptor to be applicable.
+	 * Add matched source model elements from another {@link MatchedSectionDescriptor}.
 	 *
-	 * @param dependencyToAdd
-	 *            The {@link MatchingDependency} to add.
+	 * @param otherDescriptor
+	 *            The {@link MatchedSectionDescriptor} from that matched elements shall be added.
 	 */
-	public void addMatchingDependency(MatchingDependency dependencyToAdd) {
+	public void add(final MatchedSectionDescriptor otherDescriptor) {
 
-		this.matchingDependencies.add(dependencyToAdd);
-	}
+		// combine matched elements
+		this.addSourceModelObjectsMapped(otherDescriptor.getMatchedSourceModelObjects(false));
 
-	/**
-	 * This removes a {@link MatchingDependency} from the list of {@link #matchingDependencies} .
-	 *
-	 * @param dependencyToRemove
-	 *            The {@link MatchingDependency} to remove.
-	 * @return '<em>true</em>' if this list contained the specified element
-	 */
-	public boolean removeMatchingDependency(MatchingDependency dependencyToRemove) {
-
-		return this.matchingDependencies.remove(dependencyToRemove);
-	}
-
-	/**
-	 * Marks the given {@link MatchingDependency} as resolved by:
-	 * <ol>
-	 * <li>removing it from the {@link #matchingDependencies} and</li>
-	 * <li>adding it to the list of {@link #referencedDescriptors} or setting it as {@link #containerDescriptor}</li>
-	 * </ol>
-	 *
-	 *
-	 * ${tags}
-	 */
-	public boolean markAsResolved(MatchingDependency resolvedDependency, MatchedSectionDescriptor resolvedBy) {
-
-		boolean success = this.matchingDependencies.remove(resolvedDependency);
-		if (success) {
-			if (resolvedDependency instanceof ContainerDependency) {
-				this.setContainerDescriptor(resolvedBy);
-			} else if (resolvedDependency instanceof CrossReferenceDependency) {
-				this.referencedDescriptors.put(((CrossReferenceDependency) resolvedDependency).getReference(),
-						resolvedBy);
-			} else {
-				throw new RuntimeException("Unsupported type of MatchingDependency '"
-						+ resolvedDependency.getClass().getName() + "' encountered!");
-			}
-		}
-		return success;
-	}
-
-	/**
-	 * Returns the list of {@link #matchingDependencies}.
-	 * <p />
-	 * Note: This will return a view of the {@link #matchingDependencies} so modifying the returned list will not affect
-	 * this.
-	 *
-	 * @return the {@link #matchingDependencies}.
-	 */
-	public List<MatchingDependency> getMatchingDependencies() {
-
-		return new ArrayList<>(this.matchingDependencies);
 	}
 
 	/**
@@ -378,7 +381,7 @@ public class MatchedSectionDescriptor {
 			List<MatchedSectionDescriptor> descriptorsToConsider) {
 
 		Optional<MatchedSectionDescriptor> descriptor = descriptorsToConsider.parallelStream()
-				.filter(d -> d.getMatchedSourceModelObjectFlat().contains(element)).findAny();
+				.filter(d -> d.getMatchedSourceModelObjectFlat(false).contains(element)).findAny();
 
 		return descriptor.isPresent() ? descriptor.get() : null;
 	}
@@ -389,5 +392,85 @@ public class MatchedSectionDescriptor {
 		return new StringBuilder("MatchedSectionDescriptor : (\n").append("\tassociatedSourceSectionClass: ")
 				.append(this.associatedSourceSectionClass).append("\n\tassociatedSourceModelElement: ")
 				.append(this.associatedSourceModelElement).append("\n)").toString();
+	}
+
+	/**
+	 * Returns the list of {@link #matchingDependencies}.
+	 * <p />
+	 * Note: This will return a view of the {@link #matchingDependencies} so modifying the returned list will not affect
+	 * this.
+	 *
+	 * @return the {@link #matchingDependencies}.
+	 */
+	public List<MatchingDependency> getMatchingDependencies() {
+
+		return new ArrayList<>(this.matchingDependencies);
+	}
+
+	/**
+	 * This adds another {@link MatchingDependency} to the list of {@link #matchingDependencies} that need to be
+	 * resolved for this descriptor to be applicable.
+	 *
+	 * @param dependencyToAdd
+	 *            The {@link MatchingDependency} to add.
+	 */
+	public void addMatchingDependency(MatchingDependency dependencyToAdd) {
+
+		this.matchingDependencies.add(dependencyToAdd);
+	}
+
+	/**
+	 * This resolves a {@link MatchingDependency} by - depending on the concrete type of dependency - either setting the
+	 * {@link #setContainerDescriptor(MatchedSectionDescriptor) ContainerDescriptor} or adding a
+	 * {@link #addReferencedDescriptor(CrossReference, MatchedSectionDescriptor) ReferencedDescriptor} and removing it
+	 * from the list of {@link #matchingDependencies}.
+	 *
+	 * @param dependencyToResolve
+	 *            The {@link MatchingDependency} to resolve.
+	 * @param registryToUseForDependencyResolution
+	 *            The {@link MatchedSectionRegistry} that shall be used to retrieve the descriptors that resolve the
+	 *            {@link MatchedSectionDescriptor#getMatchingDependencies() dependencies} of this preliminary
+	 *            descriptor.
+	 * @return '<em>true</em>' if the dependency was successfully resolved; '<em>false</em>' if the dependency could not
+	 *         be resolved or was not part of the {@link #matchingDependencies} defined by this descriptor.
+	 */
+	public boolean resolveMatchingDependency(MatchingDependency dependencyToResolve,
+			MatchedSectionRegistry registryToUseForDependencyResolution) {
+
+		if (!this.matchingDependencies.contains(dependencyToResolve)) {
+			return false;
+		}
+
+		List<MatchedSectionDescriptor> resolvingDescriptors = dependencyToResolve.getSourceModelElements().stream()
+				.map(e -> registryToUseForDependencyResolution.getRegisteredDescriptorFor(e).orElse(null))
+				.collect(Collectors.toList());
+
+		if (resolvingDescriptors.stream().anyMatch(Objects::isNull)) {
+			return false;
+		}
+
+		if (!dependencyToResolve.resolve(resolvingDescriptors)) {
+			return false;
+		}
+
+		return this.matchingDependencies.remove(dependencyToResolve);
+	}
+
+	/**
+	 * Resolve all {@link MatchedSectionDescriptor#getMatchingDependencies() dependencies} that this is based on.
+	 *
+	 * @param registryToUseForDependencyResolution
+	 *            The {@link MatchedSectionRegistry} that shall be used to retrieve the descriptors that resolve the
+	 *            {@link MatchedSectionDescriptor#getMatchingDependencies() dependencies} of this preliminary
+	 *            descriptor.
+	 * @return The list of dependencies that could not be
+	 *         {@link #resolveMatchingDependency(MatchingDependency, MatchedSectionRegistry) resolved}.
+	 */
+	public List<MatchingDependency> resolveMatchingDependencies(
+			MatchedSectionRegistry registryToUseForDependencyResolution) {
+
+		return this.getMatchingDependencies().stream()
+				.filter(d -> !this.resolveMatchingDependency(d, registryToUseForDependencyResolution))
+				.collect(Collectors.toList());
 	}
 }

@@ -23,8 +23,13 @@ import pamtram.structure.source.SourceSectionClass;
 public abstract class MatchingDependency {
 
 	/**
-	 * The {@link MatchedSectionDescriptor} that is the source for this dependency, i.e. that is only valid if this
-	 * dependency is resolved.
+	 * Whether this dependency has already been {@link #resolve(List) resolved}.
+	 */
+	protected boolean resolved = false;
+
+	/**
+	 * The {@link Preliminary preliminary MatchedSectionDescriptor} that is the source for this dependency, i.e. that is
+	 * only valid if this dependency is resolved.
 	 */
 	protected MatchedSectionDescriptor dependencySource;
 
@@ -38,6 +43,14 @@ public abstract class MatchingDependency {
 	 * need to be matched against.
 	 */
 	protected List<SourceSectionClass> sourceSectionClasses;
+
+	/**
+	 * @return the {@link #resolved}
+	 */
+	public boolean isResolved() {
+
+		return this.resolved;
+	}
 
 	/**
 	 * @return the {@link #dependencySource}
@@ -90,4 +103,25 @@ public abstract class MatchingDependency {
 		this.sourceSectionClasses = sourceSectionClasses;
 	}
 
+	/**
+	 * Resolves this dependency.
+	 * <p />
+	 * Note: This base implementation simply updates the {@link #resolved} status.
+	 *
+	 * @param resolvedBy
+	 *            The list of {@link MatchedSectionDescriptor MatchedSectionDescriptors} that represent the resolution
+	 *            of the given dependency, i.e. how the {@link MatchingDependency#getSourceModelElements()} were matched
+	 *            against the {@link MatchingDependency#getSourceSectionClasses()}.
+	 * @return '<em>true</em>' if the dependency was successfully marked as resolved; '<em>false</em>' otherwise.
+	 */
+	public boolean resolve(List<MatchedSectionDescriptor> resolvedBy) {
+
+		if (this.sourceModelElements.size() != resolvedBy.size()) {
+			throw new RuntimeException("Internal error while resolving a '" + this.getClass().getName()
+					+ "': The given number of descriptors does not match the numbers of elements representing the dependency!");
+		}
+
+		this.resolved = true;
+		return this.resolved;
+	}
 }

@@ -232,7 +232,7 @@ public class ValueConstraintReferenceValueCalculator {
 		// Collect all instances for the selected MatchedSectionDescriptors
 		//
 		List<EObject> correspondEClassInstances = descriptorsToConsider.parallelStream()
-				.flatMap(descriptor -> descriptor.getMatchedSourceModelElementsFor(affectedSection.get()).stream())
+				.flatMap(descriptor -> descriptor.getMatchedSourceModelElementsFor(affectedSection.get(), false).stream())
 				.collect(Collectors.toList());
 
 		// Reduce the list of instances based on modeled InstancePointers

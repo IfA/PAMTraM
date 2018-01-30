@@ -111,7 +111,7 @@ public class InstanceSelectorHandler {
 
 		this.matchedSectionRegistry.get(sourceSectionClass.getContainingSection()).stream()
 				.forEach(descriptor -> correspondEclassInstances
-						.addAll(descriptor.getMatchedSourceModelElementsFor(sourceSectionClass)));
+						.addAll(descriptor.getMatchedSourceModelElementsFor(sourceSectionClass, false)));
 
 		return this.getSelectedInstancesByInstanceList(instanceSelector, correspondEclassInstances,
 				matchedSectionDescriptor);

@@ -37,6 +37,12 @@ import pamtram.structure.source.SourceSectionClass;
 public class MatchedSectionRegistry {
 
 	/**
+	 * The {@link TransformationAssetManager} providing access to the various other assets used in the current
+	 * transformation instance.
+	 */
+	protected TransformationAssetManager assetManager;
+
+	/**
 	 * The map realizing the actual registry.
 	 */
 	protected Map<SourceSection, List<MatchedSectionDescriptor>> internalRegistry;
@@ -55,6 +61,7 @@ public class MatchedSectionRegistry {
 	 */
 	public MatchedSectionRegistry(TransformationAssetManager assetManager) {
 
+		this.assetManager = assetManager;
 		this.logger = assetManager.getLogger();
 
 		this.internalRegistry = Collections.synchronizedMap(new LinkedHashMap<>());
@@ -78,7 +85,7 @@ public class MatchedSectionRegistry {
 	 */
 	public synchronized List<EObject> getRegisteredElements() {
 
-		return this.getRegisteredDescriptors().stream().flatMap(d -> d.getMatchedSourceModelObjectFlat().stream())
+		return this.getRegisteredDescriptors().stream().flatMap(d -> d.getMatchedSourceModelObjectFlat(false).stream())
 				.collect(Collectors.toList());
 	}
 
@@ -98,7 +105,7 @@ public class MatchedSectionRegistry {
 		return element == null || sourceSection == null || !this.internalRegistry.containsKey(sourceSection)
 				? Optional.empty()
 				: this.internalRegistry.get(sourceSection).parallelStream()
-						.filter(msd -> msd.getMatchedSourceModelObjectFlat().contains(element)).findAny();
+						.filter(msd -> msd.getMatchedSourceModelObjectFlat(false).contains(element)).findAny();
 	}
 
 	/**
@@ -113,7 +120,7 @@ public class MatchedSectionRegistry {
 
 		return element == null ? Optional.empty()
 				: this.getRegisteredDescriptors().parallelStream()
-						.filter(msd -> msd.getMatchedSourceModelObjectFlat().contains(element)).findAny();
+						.filter(msd -> msd.getMatchedSourceModelObjectFlat(false).contains(element)).findAny();
 	}
 
 	/**
@@ -181,7 +188,7 @@ public class MatchedSectionRegistry {
 	public synchronized boolean contains(EObject element) {
 
 		return this.internalRegistry.values().parallelStream().flatMap(List::stream)
-				.anyMatch(msd -> msd.getMatchedSourceModelObjectFlat().contains(element));
+				.anyMatch(msd -> msd.getMatchedSourceModelObjectFlat(false).contains(element));
 	}
 
 	/**
@@ -206,8 +213,8 @@ public class MatchedSectionRegistry {
 	 *
 	 * @param descriptor
 	 *            The {@link MatchedSectionDescriptor} to register.
-	 * @return '<em>true</em>' if the descriptor was successfully registered; '<em>false</em>' if the registry already
-	 *         contained the descriptor or one of its elements or if the
+	 * @return '<em>true</em>' if the descriptor was successfully registered (or if it was registered before);
+	 *         '<em>false</em>' if the registry already contained the descriptor or one of its elements or if the
 	 *         {@link MatchedSectionDescriptor#getAssociatedSourceSectionClass() associated SourceSectionClass} was not
 	 *         a {@link SourceSectionClass}.
 	 */
@@ -221,7 +228,13 @@ public class MatchedSectionRegistry {
 			return false;
 		}
 
-		if (descriptor.getMatchedSourceModelObjectFlat().stream().anyMatch(this::contains)) {
+		if (this.get((SourceSection) descriptor.getAssociatedSourceSectionClass()).contains(descriptor)) {
+			// The descriptor was already registered
+			//
+			return true;
+		}
+
+		if (descriptor.getMatchedSourceModelObjectFlat(false).stream().anyMatch(this::contains)) {
 			this.logger.severe(() -> "Internal Error: Unable to register the MatchedSectionDescriptor '" + descriptor
 					+ "' as at least one of the represented elements is already registered in this registry!");
 			return false;
@@ -245,6 +258,9 @@ public class MatchedSectionRegistry {
 	 * Register all {@link MatchedSectionDescriptor descriptors} registered in the given <em>other</em> registry in this
 	 * registry.
 	 * <p />
+	 * Note: {@link MatchedSectionDescriptor descriptors} that are already registered to this registry are simply
+	 * skipped.
+	 * <p />
 	 * Note: Each {@link EObject} may be registered to a registry only once, i.e. as part of only one
 	 * {@link MatchedSectionDescriptor}!
 	 *
@@ -266,4 +282,17 @@ public class MatchedSectionRegistry {
 
 		return failedDescriptors;
 	}
+
+	/**
+	 * Create a clone of this {@link MatchedSectionRegistry registry} that operates on the same {@link #assetManager}
+	 * and a clone of the {@link #internalRegistry}.
+	 */
+	@Override
+	public MatchedSectionRegistry clone() {
+
+		MatchedSectionRegistry clone = new MatchedSectionRegistry(this.assetManager);
+		clone.register(this);
+		return clone;
+	}
+
 }

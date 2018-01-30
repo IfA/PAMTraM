@@ -404,7 +404,7 @@ public class PamtramEditorSourceSectionMatcherPage extends SashForm implements I
 						List<MatchedSectionDescriptor> potentialDescriptors = PamtramEditorSourceSectionMatcherPage.this.matchedSections
 								.get(affectedClass.getContainingSection());
 						for (MatchedSectionDescriptor potentialDescriptor : potentialDescriptors) {
-							toSelect.addAll(potentialDescriptor.getMatchedSourceModelObjects()
+							toSelect.addAll(potentialDescriptor.getMatchedSourceModelObjects(false)
 									.getOrDefault(affectedClass, new HashSet<>()));
 						}
 					}

@@ -466,7 +466,7 @@ public class MappingInstanceDescriptor {
 	 * This returns the {@link EObject elements} of the source model - sorted by their {@link SourceSectionClass} - that
 	 * are associated with this mapping instance (resp. the associated {@link #matchedSectionDescriptor}).
 	 * <p />
-	 * Note: This just redirects to {@link MatchedSectionDescriptor#getMatchedSourceModelObjects()} of the
+	 * Note: This just redirects to {@link MatchedSectionDescriptor#getMatchedSourceModelObjects(boolean)} of the
 	 * {@link #matchedSectionDescriptor}.
 	 *
 	 * @return The {@link EObject elements} of the source model - sorted by their {@link SourceSectionClass} - that are
@@ -474,7 +474,7 @@ public class MappingInstanceDescriptor {
 	 */
 	public Map<SourceSectionClass, Set<EObject>> getMatchedSourceModelObjects() {
 
-		return this.matchedSectionDescriptor.getMatchedSourceModelObjects();
+		return this.matchedSectionDescriptor.getMatchedSourceModelObjects(false);
 	}
 
 	/**

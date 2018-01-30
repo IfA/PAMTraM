@@ -542,8 +542,8 @@ public class ConditionHandler extends TransformationAsset {
 		//
 		List<EObject> correspondEClassInstances = affectedClasses.stream()
 				.flatMap(affectedClass -> descriptorsToConsider.stream()
-						.flatMap(descriptor -> Optional
-								.ofNullable(descriptor.getMatchedSourceModelElementsFor(affectedClass))
+						.flatMap(descriptor -> Optional.ofNullable(descriptor
+								.getMatchedSourceModelElementsFor(affectedClass, condition.isLocalCondition()))
 								.orElse(new HashSet<>()).stream()))
 				.distinct().collect(Collectors.toList());
 
@@ -556,10 +556,9 @@ public class ConditionHandler extends TransformationAsset {
 					.getTarget();
 
 			SourceSectionClass owningClass = reference.getOwningClass();
-			Set<EObject> owningElements = descriptorsToConsider.stream()
-					.flatMap(descriptor -> Optional.ofNullable(descriptor.getMatchedSourceModelElementsFor(owningClass))
-							.orElse(new HashSet<>()).stream())
-					.collect(Collectors.toCollection(LinkedHashSet::new));
+			Set<EObject> owningElements = descriptorsToConsider.stream().flatMap(descriptor -> Optional
+					.ofNullable(descriptor.getMatchedSourceModelElementsFor(owningClass, condition.isLocalCondition()))
+					.orElse(new HashSet<>()).stream()).collect(Collectors.toCollection(LinkedHashSet::new));
 			correspondEClassInstances = correspondEClassInstances.stream()
 					.filter(instance -> owningElements.stream().anyMatch(owner -> AgteleEcoreUtil
 							.getStructuralFeatureValueAsList(owner, reference.getEReference()).contains(instance)))

@@ -2,6 +2,7 @@ package de.mfreund.gentrans.transformation.matching;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -9,7 +10,6 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -55,8 +55,8 @@ import pamtram.structure.source.VirtualSourceSectionAttribute;
 import pamtram.util.NullComparator;
 
 /**
- * This class can be used to match a list of {@link #sourceSections} against a {@link #containmentTree}.
- *
+ * This class can be used to match a list of {@link EObject source models} against a list of {@link SourceSection
+ * SourceSections}.
  *
  * @author mfreund
  */
@@ -151,10 +151,9 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	}
 
 	/**
-	 * This iterates through the given {@link ContainmentTree} representing one or multiple source models and tries to
-	 * match each of the given {@link SourceSection SourceSections} against the elements represented in the tree. The
-	 * result of this process is a list of {@link MatchedSectionDescriptor MatchedSectionDescriptors} that is stored in
-	 * the {@link #matchedSectionRegistry}.
+	 * This iterates through the given {@link ContainmentTree} and tries to match each of the given {@link SourceSection
+	 * SourceSections} against the elements represented in the tree. The result of this process is a list of
+	 * {@link MatchedSectionDescriptor MatchedSectionDescriptors} that is stored in the {@link #matchedSectionRegistry}.
 	 *
 	 * @param containmentTree
 	 *            The {@link ContainmentTree} representing the source models to be matched.
@@ -164,59 +163,89 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	 */
 	private void matchSections(ContainmentTree containmentTree, List<SourceSection> sourceSections) {
 
-		// Determine the potential matches (these may still be ambiguous and can be equipped with MatchingDependencies)
+		// Determine the potential matches. These may still be ambiguous (multiple matches for one EObject) and can be
+		// equipped with MatchingDependencies (as this first step only matches the direct contents of the given Sections
+		// and not any CrossReferences to other Sections).
 		//
 		Map<EObject, List<MatchedSectionDescriptor>> potentialMatches = this
 				.findPotentialApplicableSections(containmentTree.getElements(), sourceSections);
 
 		// Now that we know each potential match, we need to check the determined 'MatchingDependencies' and resolve
-		// ambiguous matches, i.e. select the resulting matches for the next steps of the transformation. Therefore, we
-		// once again iterate through the potential source model elements starting with the first potential match...
+		// ambiguous matches, i.e. select the resulting matches for the next steps of the transformation. As each
+		// EObject may only be used for one descriptor, we iterate over the ContainmentTree and make use of its
+		// 'getNextElementForMatching' feature that will not return any elements that have already been marked as
+		// 'matched'.
 		//
-		for (Entry<EObject, List<MatchedSectionDescriptor>> match : potentialMatches.entrySet()) {
+		containmentTree.reset();
+		Optional<EObject> element;
 
-			// For each potential descriptors, build the 'local registry', i.e. the collection of snippets that would be
-			// matched if the descriptor would be used as match
+		while ((element = containmentTree.getNextElementForMatching()).isPresent()) {
+
+			if (!potentialMatches.containsKey(element.get())) {
+				continue;
+			}
+
+			// For each of the potential descriptors, check if the matching dependencies can be resolved (recursively).
+			// The result is a list of descriptors that are really applicable (for that all dependencies can be
+			// resolved) as well as associated registries that represent all descriptors that have to be applied if
+			// the associated potential descriptor would be applied.
 			//
-			Map<MatchedSectionDescriptor, MatchedSectionRegistry> localRegistries = new LinkedHashMap<>();
+			Map<MatchedSectionDescriptor, MatchedSectionRegistry> localRegistries = this
+					.checkPotentialDescriptorDependencies(element.get(), potentialMatches,
+							this.matchedSectionRegistry.clone());
 
-			for (MatchedSectionDescriptor potentialDescriptor : match.getValue()) {
-
-				MatchedSectionRegistry localRegistry = new MatchedSectionRegistry(this.assetManager);
-				localRegistry.register(potentialDescriptor);
-
-				for (MatchingDependency dependency : potentialDescriptor.getMatchingDependencies()) {
-
-					for (EObject dependencyElement : dependency.getSourceModelElements()) {
-
-						// matchedSectionRegistry.
-
-						// TODO check if each of the elements can be matched against one of the required classes
-					}
-
-				}
-
-				localRegistries.put(potentialDescriptor, localRegistry);
+			if (localRegistries.isEmpty()) {
+				// None of the potential descriptors was really applicable
+				//
+				continue;
 			}
 
 			// If there are multiple matches, select the one section to actually apply.
 			//
-			MatchedSectionDescriptor descriptor = this.selectApplicableSection(match.getKey(),
+			MatchedSectionDescriptor descriptor = this.selectSectionToApply(element.get(),
 					new ArrayList<>(localRegistries.keySet()));
 
-			// Now, register everything that is associated with the chosen descriptor, i.e. everything represented in
-			// the 'localRegistry'
-			//
-			if (descriptor != null) {
-
-				MatchedSectionRegistry chosenRegistry = localRegistries.get(descriptor);
-				List<MatchedSectionDescriptor> failedDescriptors = this.matchedSectionRegistry.register(chosenRegistry);
-				if (!failedDescriptors.isEmpty()) {
-					this.logger.severe(
-							() -> "Internal error: Some MatchedSectionDescriptors could not be registered in the global registry!");
-				}
-				containmentTree.markAsMatched(new HashSet<>(chosenRegistry.getRegisteredElements()));
+			if (descriptor == null) {
+				continue;
 			}
+
+			MatchedSectionRegistry selectedLocalRegistry = localRegistries.get(descriptor);
+
+			if (selectedLocalRegistry == null) {
+				this.logger.severe(() -> "Internal error while matching the source model element '"
+						+ descriptor.getAssociatedSourceModelElement().toString() + "' against the SourceSection '"
+						+ descriptor.getAssociatedSourceSectionClass().getName() + "'!");
+				continue;
+			}
+
+			// Now, register everything that is associated with the chosen descriptor (i.e. everything represented in
+			// the 'localRegistry') to the global registry
+			//
+			List<MatchedSectionDescriptor> failedDescriptors = this.matchedSectionRegistry
+					.register(selectedLocalRegistry);
+
+			if (!failedDescriptors.isEmpty()) {
+				this.logger.severe(
+						() -> "Internal error: Some MatchedSectionDescriptors could not be registered in the global "
+								+ "registry! Aborting matching process...");
+				break;
+			}
+
+			// As all descriptors related to the chosen descriptor are now registered in the global registry, we can
+			// also formally resolve all collected MatchingDependencies of these descriptors
+			//
+			List<MatchingDependency> failedDependencies = selectedLocalRegistry.getRegisteredDescriptors().stream()
+					.flatMap(d -> d.resolveMatchingDependencies(this.matchedSectionRegistry).stream())
+					.collect(Collectors.toList());
+
+			if (!failedDependencies.isEmpty()) {
+				this.logger.severe(() -> "Internal error: Some MatchingDependencies could not be resolved Properly!"
+						+ " Aborting matching process...");
+				break;
+			}
+
+			containmentTree.markAsMatched(new HashSet<>(selectedLocalRegistry.getRegisteredElements()));
+
 		}
 
 		this.logger.info(() -> "Summary:\tAvailable Elements:\t" + containmentTree.getNumberOfElements());
@@ -226,16 +255,26 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	}
 
 	/**
+	 * For each of the given {@link EObject elements}, determine those of the given {@link SourceSection sourceSections}
+	 * that are <em>potentially</em> applicable (can be matched against the element).
+	 * <p />
+	 * Note: <em>Potentially</em> applicable in this case means that the applicability of a SourceSection may be
+	 * {@link MatchingDependency dependent} on the applicability of one or multiple other combinations of elements and
+	 * SourceSections: This only checks the applicability of the direct content of the given {@link SourceSection} and
+	 * not the applicability of any other SourceSections referenced via {@link CrossReference CrossReferences}
 	 *
-	 *
-	 * ${tags}
+	 * @param elements
+	 *            The list of {@link EObject EObjects} for that the applicability of the given <em>sourceSection</em>
+	 *            shall be checked.
+	 * @param sourceSections
+	 *            The list of {@link SourceSection SourceSections} to consider as potentially applicable.
+	 * @return A
 	 */
 	private Map<EObject, List<MatchedSectionDescriptor>> findPotentialApplicableSections(List<EObject> elements,
 			List<SourceSection> sourceSections) {
 
 		Map<EObject, List<MatchedSectionDescriptor>> potentialMatches = new LinkedHashMap<>();
 
-		// TODO this should now be parallelizable
 		for (EObject element : elements) {
 
 			// Get all 'potential' matches for the current element (they are only 'potential' because they may depend on
@@ -291,8 +330,7 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	 * @return The {@link MatchedSectionDescriptor} representing the selected {@link SourceSection} or '<em>null</em>'
 	 *         if no descriptor was selected.
 	 */
-	private MatchedSectionDescriptor selectApplicableSection(EObject element,
-			List<MatchedSectionDescriptor> descriptors) {
+	private MatchedSectionDescriptor selectSectionToApply(EObject element, List<MatchedSectionDescriptor> descriptors) {
 
 		if (descriptors.isEmpty()) {
 			return null;
@@ -308,10 +346,10 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 		int maxMatchedElements = 0;
 		for (MatchedSectionDescriptor match : descriptors) {
 
-			if (match.getMatchedSourceModelObjectFlat().size() >= maxMatchedElements) {
+			if (match.getMatchedSourceModelObjectFlat(false).size() >= maxMatchedElements) {
 
-				if (match.getMatchedSourceModelObjectFlat().size() > maxMatchedElements) {
-					maxMatchedElements = match.getMatchedSourceModelObjectFlat().size();
+				if (match.getMatchedSourceModelObjectFlat(false).size() > maxMatchedElements) {
+					maxMatchedElements = match.getMatchedSourceModelObjectFlat(false).size();
 					matchesWithMaximumElements.clear();
 				}
 
@@ -350,6 +388,184 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	}
 
 	/**
+	 * For each of the {@link MatchedSectionDescriptor descriptors} that are potentially applicable for the given
+	 * {@link EObject source model element}, check if the associated
+	 * {@link MatchedSectionDescriptor#getMatchingDependencies() MatchingDependencies} can be resolved.
+	 * <p />
+	 * Note: This check is performed recursively, i.e. not only for each of the given element but also for each of the
+	 * elements (resp. the corresponding descriptors) that is determined as resolution for one of the dependencies (and
+	 * so on).
+	 *
+	 * @param element
+	 *            The {@link EObject source model element} for which the applicability of the given potential
+	 *            descriptors shall be checked.
+	 * @param allPotentialMatches
+	 *            The potential {@link MatchedSectionDescriptor matches} for each of the elements of the source model.
+	 *            This is consulted to get potentially applicable descriptors for the given <em>element</em> as well as
+	 *            to determine possible solutions for each dependency.
+	 * @param localRegistry
+	 *            A {@link MatchedSectionRegistry} containing those {@link MatchedSectionDescriptor descriptors} that
+	 *            have already been registered (this is required to prevent endless recursion in case of cyclic cross
+	 *            references between Sections).
+	 * @return A list of {@link MatchedSectionDescriptor descriptors} that are applicable (for that each dependency
+	 *         could successfully be resolved) as well as associated {@link MatchedSectionRegistry
+	 *         MatchedSectionRegistrys} that represent all descriptors that have to be applied if the associated
+	 *         potential descriptor would be applied.
+	 */
+	private Map<MatchedSectionDescriptor, MatchedSectionRegistry> checkPotentialDescriptorDependencies(EObject element,
+			Map<EObject, List<MatchedSectionDescriptor>> allPotentialMatches, MatchedSectionRegistry localRegistry) {
+
+		// All of the potential MatchedSectionDescriptors that we need to consider. As we must not only consider those
+		// descriptors specifying the given element as their 'associatedSourceModelElement' but also all descriptors
+		// that represent the given element further downwards in the containment hierarchy, we cannot simply use the
+		// result for 'allPotentialMatches.get(element)'
+		//
+		List<MatchedSectionDescriptor> potentialDescriptors = allPotentialMatches.values().stream()
+				.flatMap(Collection::stream).filter(d -> d.containsSourceModelObjectMapped(element))
+				.collect(Collectors.toList());
+
+		// For each potential descriptors, build the resulting 'local registry' variation, i.e. the collection of
+		// snippets that would be matched if the descriptor is used as match
+		//
+		Map<MatchedSectionDescriptor, MatchedSectionRegistry> localRegistryVariations = new LinkedHashMap<>();
+
+		for (MatchedSectionDescriptor potentialDescriptor : potentialDescriptors) {
+
+			Optional<MatchedSectionRegistry> updatedLocalRegistryClone = this
+					.checkPotentialDescriptorDependencies(potentialDescriptor, allPotentialMatches, localRegistry);
+
+			if (updatedLocalRegistryClone.isPresent()) {
+
+				// Everything could be resolved successfully so we store the resulting registry as one possible
+				// solution.
+				//
+				localRegistryVariations.put(potentialDescriptor, updatedLocalRegistryClone.get());
+			}
+
+		}
+
+		return localRegistryVariations;
+	}
+
+	/**
+	 * Check if the {@link MatchedSectionDescriptor#getMatchingDependencies() MatchingDependencies} associated with the
+	 * given {@link MatchedSectionDescriptor potentialDescriptor} can be resolved.
+	 * <p />
+	 * Note: This check is performed recursively, i.e. not only for each of the given descriptors but also for each of
+	 * the descriptors that is determined as resolution for one of the dependencies (and so on).
+	 *
+	 * @param potentialDescriptor
+	 *            The potential {@link MatchedSectionDescriptor MatchedSectionDescriptors} for that the
+	 *            {@link MatchedSectionDescriptor#getMatchingDependencies() dependencies} shall be checked.
+	 * @param allPotentialMatches
+	 *            The potential {@link MatchedSectionDescriptor matches} for each of the elements of the source model.
+	 *            This is consulted to determine possible solutions for each dependency.
+	 * @param localRegistry
+	 *            A {@link MatchedSectionRegistry} containing those {@link MatchedSectionDescriptor descriptors} that
+	 *            have already been registered (this is required to prevent endless recursion in case of cyclic cross
+	 *            references between Sections).
+	 * @return A {@link MatchedSectionRegistry MatchedSectionRegistrys} that represents all descriptors that have to be
+	 *         applied if the given {@link MatchedSectionDescriptor potentialDescriptor} would be applied or an empty
+	 *         Optional if the given {@link MatchedSectionDescriptor potentialDescriptor} is not applicable.
+	 */
+	private Optional<MatchedSectionRegistry> checkPotentialDescriptorDependencies(
+			MatchedSectionDescriptor potentialDescriptor, Map<EObject, List<MatchedSectionDescriptor>> potentialMatches,
+			MatchedSectionRegistry localRegistry) {
+
+		// We need to create a clone of the localRegistry so that we are able to throw away
+		// preliminary (assuming) registrations that in later steps of the resolution process turn out to be erroneous
+		// (if the registered descriptor turned out to rely on unresolvable dependencies)
+		//
+		MatchedSectionRegistry localRegistryClone = localRegistry.clone();
+		localRegistryClone.register(potentialDescriptor);
+
+		for (MatchingDependency dependency : potentialDescriptor.getMatchingDependencies()) {
+
+			boolean resolved = this.checkDependency(dependency, potentialMatches, localRegistryClone);
+
+			if (!resolved) {
+				return Optional.empty();
+			}
+		}
+
+		return Optional.of(localRegistryClone);
+	}
+
+	/**
+	 * Check if the given {@link MatchingDependency dependency} can be resolved.
+	 * <p />
+	 * Note: This check is performed recursively, i.e. not only for the given dependency but also for each of the
+	 * dependencies of the descriptors that is determined as resolution this dependency (and so on).
+	 *
+	 * @param dependency
+	 *            The {@link MatchingDependency} to check.
+	 * @param allPotentialMatches
+	 *            The potential {@link MatchedSectionDescriptor matches} for each of the elements of the source model.
+	 *            This is consulted to determine possible solutions for the dependency.
+	 * @param localRegistry
+	 *            A {@link MatchedSectionRegistry} containing those {@link MatchedSectionDescriptor descriptors} that
+	 *            have already been registered (this is required to prevent endless recursion in case of cyclic cross
+	 *            references between Sections).
+	 * @return A {@link MatchedSectionRegistry MatchedSectionRegistrys} that represents all descriptors that have to be
+	 *         applied if the given {@link MatchedSectionDescriptor potentialDescriptor} would be applied or an empty
+	 *         Optional if the given {@link MatchedSectionDescriptor potentialDescriptor} is not applicable.
+	 */
+	private boolean checkDependency(MatchingDependency dependency,
+			Map<EObject, List<MatchedSectionDescriptor>> potentialMatches, MatchedSectionRegistry localRegistry) {
+
+		// This will be updated during the course of checking the various 'dependency elements'. If all checks are
+		// successful, we will update the given 'local registry' with this.
+		//
+		MatchedSectionRegistry currentLocalRegistry = localRegistry;
+
+		for (EObject dependencyElement : dependency.getSourceModelElements()) {
+
+			// In order to prevent endless recursion, we need to check if the element was already registered in the
+			// given registry.
+			//
+			Optional<MatchedSectionDescriptor> localDescriptor = currentLocalRegistry
+					.getRegisteredDescriptorFor(dependencyElement);
+
+			if (localDescriptor.isPresent()) {
+
+				if (dependency.getSourceSectionClasses().stream().anyMatch(c -> localDescriptor.get()
+						.getMatchedSourceModelElementsFor(c, false).contains(dependencyElement))) {
+
+					continue;
+				} else {
+
+					return false;
+				}
+			}
+
+			// Try to resolve the matching dependencies for each of the potential descriptors. The result is a list of
+			// descriptors that are really applicable as well as an associated registry.
+			//
+			Map<MatchedSectionDescriptor, MatchedSectionRegistry> localRegistries = this
+					.checkPotentialDescriptorDependencies(dependencyElement, potentialMatches, currentLocalRegistry);
+
+			// If there are multiple matches, select the one section to actually apply.
+			//
+			MatchedSectionDescriptor descriptor = this.selectSectionToApply(dependencyElement,
+					new ArrayList<>(localRegistries.keySet()));
+
+			if (descriptor != null) {
+				currentLocalRegistry = localRegistries.get(descriptor);
+			} else {
+
+				// The dependency could not be resolved for the current element
+				//
+				return false;
+			}
+
+		}
+
+		localRegistry.register(currentLocalRegistry);
+
+		return true;
+	}
+
+	/**
 	 * This checks if the given {@link SourceSection} is applicable for the given source model <em>element</em>.
 	 * Therefore, it first {@link #checkContainerSection(EObject, SourceSection) checks the container} and then the
 	 * {@link #checkClass(EObject, boolean, SourceSectionClass, MatchedSectionDescriptor) section itself}.
@@ -375,13 +591,6 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 
 		Optional<MatchedSectionDescriptor> descriptor;
 
-		// /*
-		// * check if the section that is referenced as 'container' can be matched
-		// */
-		// if (!this.checkContainerSection(element, section)) {
-		// return false;
-		// }
-
 		// check if the section itself is applicable
 		//
 		descriptor = this.checkClass(element, Optional.empty(), section, null);
@@ -403,55 +612,9 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 			descriptor.get().addMatchingDependency(containerDependency);
 		}
 
-		// // set the associated container descriptor
-		// //
-		// this.setContainerDescriptor(descriptor.get());
-
 		// all checks were successful -> the section is applicable
 		//
 		applicableSections.put(section, descriptor.get());
-
-		return true;
-	}
-
-	/**
-	 * For a given {@link MatchedSectionDescriptor}, this extracts the associated '<em>container descriptor</em>' from
-	 * the {@link #matchedSectionRegistry} and
-	 * {@link MatchedSectionDescriptor#setContainerDescriptor(MatchedSectionDescriptor) sets} it in the descriptor.
-	 *
-	 * @param descriptor
-	 *            The {@link MatchedSectionDescriptor} for that the container shall be determined and set.
-	 * @return '<em><b>true</b></em>' if either the given '<em>descriptor</em>' does not represent a SourceSection but a
-	 *         SourceSectionClass, if the {@link SourceSection} represented by the given '<em>descriptor</em>' does not
-	 *         specify a {@link SourceSection#getContainer() container}, if the container descriptor has already been
-	 *         set, or if the container descriptor was set successfully; '<em><b>false</b></em>' otherwise.
-	 */
-	private boolean setContainerDescriptor(MatchedSectionDescriptor descriptor) {
-
-		if (!(descriptor.getAssociatedSourceSectionClass() instanceof SourceSection)) {
-			return true;
-		}
-
-		EObject element = descriptor.getAssociatedSourceModelElement();
-
-		SourceSection section = (SourceSection) descriptor.getAssociatedSourceSectionClass();
-
-		if (section.getContainer() == null || descriptor.getContainerDescriptor() != null) {
-			return true;
-		}
-
-		if (!this.matchedSectionRegistry.containsKey(section.getContainer().getContainingSection())) {
-			return false;
-		}
-
-		Set<MatchedSectionDescriptor> containerDescriptors = this.matchedSectionRegistry
-				.get(section.getContainer().getContainingSection()).parallelStream()
-				.filter(d -> d.getMatchedSourceModelObjectFlat().contains(element.eContainer()))
-				.collect(Collectors.toSet());
-
-		assert containerDescriptors.size() == 1;
-
-		descriptor.setContainerDescriptor(containerDescriptors.iterator().next());
 
 		return true;
 	}
@@ -484,16 +647,6 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 		//
 		MatchedSectionDescriptor descriptor;
 
-		// // This prevents endless recursion in case of (direct or indirect) cyclic references between Sections
-		// //
-		// if (parentDescriptor != null && parentDescriptor.containsSourceModelObjectMapped(srcModelObject)) {
-		// descriptor = new MatchedSectionDescriptor();
-		// descriptor.setAssociatedSourceModelElement(srcModelObject);
-		// descriptor.setAssociatedSourceSectionClass(srcSection);
-		// descriptor.setContainerDescriptor(parentDescriptor);
-		// return Optional.of(descriptor);
-		// }
-
 		this.checkCanceled();
 
 		// First, we check if the 'EClass' of the given srcModelObject is
@@ -506,28 +659,6 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 		if (!classFits) {
 			return Optional.empty();
 		}
-
-		// // Check if the element was already matched previously for the same
-		// // SourceSectionClass. If this is the case, we just reuse the existing
-		// // descriptor
-		// //
-		// Optional<MatchedSectionDescriptor> existingDescriptor = this.matchedSectionRegistry
-		// .getMatchedSectionDescriptorFor(srcModelObject, srcSection.getContainingSection());
-		//
-		// if (existingDescriptor.isPresent()
-		// && existingDescriptor.get().getAssociatedSourceSectionClass().equals(srcSection)) {
-		//
-		// // set the list of source model objects that have been mapped.
-		// // first, add all mapped objects from 'changedRefsAndHints' ...
-		// if (parentDescriptor != null && reference.isPresent() && reference.get().isContainment()) {
-		// if (reference.get() instanceof CompositeReference<?, ?, ?, ?>) {
-		// existingDescriptor.get().add(parentDescriptor);
-		// }
-		// existingDescriptor.get().setContainerDescriptor(parentDescriptor);
-		// }
-		//
-		// return existingDescriptor;
-		// }
 
 		// this is the 'MatchedSectionDescriptor' that we will return this in
 		// case we find the mapping to be applicable
@@ -727,14 +858,13 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 
 		if (referencedElements.isEmpty()) {
 
-			// This is not a problem if the given 'reference' is an optional reference (lower bound of 0) and all
-			// modeled child Classes have an optional cardinality (ZERO_INFINITY).
+			// This is not a problem if the user explicitly specified no child Classes or if the given 'reference' is an
+			// optional reference (lower bound of 0) and all modeled child Classes have an optional cardinality
+			// (ZERO_INFINITY).
 			//
-			return referenceIsOptional
+			return targetClasses.isEmpty() || referenceIsOptional
 					&& targetClasses.stream().allMatch(c -> c.getCardinality().equals(CardinalityType.ZERO_INFINITY));
-		}
-
-		if (targetClasses.isEmpty()) {
+		} else if (targetClasses.isEmpty()) {
 
 			// If no target SourceSectionClass has been specified, this means that there must be NO target element
 			// in the source model (unless there is a reference with 'ignoreUnmatchedElements' set to 'true').
@@ -807,10 +937,16 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 
 			boolean targetClassMatched = false;
 
-			Iterator<EObject> it = remainingReferencedElements.iterator();
+			Iterator<EObject> it = new ArrayList<>(remainingReferencedElements).iterator();
 			while (it.hasNext()) {
 
 				EObject referencedElement = it.next();
+
+				if (!remainingReferencedElements.contains(referencedElement)) {
+					// The element was matched in the meantime and thus removed from the list of remaining elements
+					//
+					continue;
+				}
 
 				// iterate further
 				//
@@ -821,6 +957,12 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 					childDescriptors.add(childDescriptor.get());
 					remainingReferencedElements.remove(referencedElement);
 					targetClassMatched = true;
+
+					if (targetClass.getCardinality().equals(CardinalityType.ONE)) {
+						// We must match this target class only once
+						//
+						break;
+					}
 				}
 			}
 
@@ -1009,40 +1151,40 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 		return constraintVal;
 	}
 
-	/**
-	 * Counts how often each {@link EObject source model element} is
-	 * {@link MatchedSectionDescriptor#getAssociatedSourceModelElement() referenced} by each
-	 * {@link MatchedSectionDescriptor} and returns one mapping result for the Object with the lowest count.
-	 *
-	 * @param possibleElements
-	 *            The list of possible {@link MatchedSectionDescriptor MatchedSectionDescriptors} to evaluate.
-	 * @return The chosen {@link MatchedSectionDescriptor}.
-	 */
-	private static MatchedSectionDescriptor getResultForLeastUsedSrcModelElement(
-			final List<MatchedSectionDescriptor> possibleElements) {
-
-		// count how often a sourceModel Element is mapped
-		//
-		final Map<EObject, Integer> usages = possibleElements.stream()
-				.map(MatchedSectionDescriptor::getAssociatedSourceModelElement)
-				.collect(Collectors.toConcurrentMap(element -> element, element -> 1, (i, j) -> i + j));
-
-		Optional<Integer> leastUsage = usages.values().parallelStream().sorted().findFirst();
-
-		if (!leastUsage.isPresent()) {
-			return null;
-		}
-
-		// return the FIRST of the possible MatchedSectionDescriptors that
-		// represents one of the least used elements (we
-		// need to ensure a correct order at this point to match according to
-		// the order of the modeled
-		// SourceSectionClasses)
-		//
-		return possibleElements.stream()
-				.filter(e -> usages.get(e.getAssociatedSourceModelElement()).intValue() == leastUsage.get()).findFirst()
-				.orElseGet(null);
-
-	}
+	// /**
+	// * Counts how often each {@link EObject source model element} is
+	// * {@link MatchedSectionDescriptor#getAssociatedSourceModelElement() referenced} by each
+	// * {@link MatchedSectionDescriptor} and returns one mapping result for the Object with the lowest count.
+	// *
+	// * @param possibleElements
+	// * The list of possible {@link MatchedSectionDescriptor MatchedSectionDescriptors} to evaluate.
+	// * @return The chosen {@link MatchedSectionDescriptor}.
+	// */
+	// private static MatchedSectionDescriptor getResultForLeastUsedSrcModelElement(
+	// final List<MatchedSectionDescriptor> possibleElements) {
+	//
+	// // count how often a sourceModel Element is mapped
+	// //
+	// final Map<EObject, Integer> usages = possibleElements.stream()
+	// .map(MatchedSectionDescriptor::getAssociatedSourceModelElement)
+	// .collect(Collectors.toConcurrentMap(element -> element, element -> 1, (i, j) -> i + j));
+	//
+	// Optional<Integer> leastUsage = usages.values().parallelStream().sorted().findFirst();
+	//
+	// if (!leastUsage.isPresent()) {
+	// return null;
+	// }
+	//
+	// // return the FIRST of the possible MatchedSectionDescriptors that
+	// // represents one of the least used elements (we
+	// // need to ensure a correct order at this point to match according to
+	// // the order of the modeled
+	// // SourceSectionClasses)
+	// //
+	// return possibleElements.stream()
+	// .filter(e -> usages.get(e.getAssociatedSourceModelElement()).intValue() == leastUsage.get()).findFirst()
+	// .orElseGet(null);
+	//
+	// }
 
 }

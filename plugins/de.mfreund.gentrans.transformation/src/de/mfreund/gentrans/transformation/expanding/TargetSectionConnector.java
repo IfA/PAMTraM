@@ -871,6 +871,12 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 			}
 		}
 
+		if (containerInstancesByConnectionPaths.isEmpty()) {
+			// No suitable container instances could be determined for any of the potential connection paths
+			//
+			return rootInstances;
+		}
+
 		return this.selectAndInstantiateConnections(rootInstances, containerInstancesByConnectionPaths, mappingGroup);
 	}
 

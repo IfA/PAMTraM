@@ -48,20 +48,28 @@ public class ConditionValidator extends EObjectValidator {
 	public static final int VARIADIC_CONDITION__VALIDATE_MINIMAL_NUMBER_OF_ARGS = 1;
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Reference Only Conditions From Condition Model' of 'Variadic Condition'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int VARIADIC_CONDITION__VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL = 2;
+
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Exactly One Arg' of 'Unary Condition'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int UNARY_CONDITION__VALIDATE_EXACTLY_ONE_ARG = 2;
+	public static final int UNARY_CONDITION__VALIDATE_EXACTLY_ONE_ARG = 3;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Reference Only Conditions From Condition Model Or From Conditional Elements' of 'Not'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Reference Only Conditions From Condition Model' of 'Unary Condition'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int NOT__VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS = 3;
+	public static final int UNARY_CONDITION__VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL = 4;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -69,7 +77,7 @@ public class ConditionValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 3;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 4;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -171,6 +179,7 @@ public class ConditionValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(variadicCondition, diagnostics, context);
 		if (result || diagnostics != null) result &= validateVariadicCondition_minimalNumberOfArgs(variadicCondition, diagnostics, context);
 		if (result || diagnostics != null) result &= validateVariadicCondition_validateMinimalNumberOfArgs(variadicCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validateVariadicCondition_validateReferenceOnlyConditionsFromConditionModel(variadicCondition, diagnostics, context);
 		return result;
 	}
 
@@ -213,6 +222,16 @@ public class ConditionValidator extends EObjectValidator {
 	}
 
 	/**
+	 * Validates the validateReferenceOnlyConditionsFromConditionModel constraint of '<em>Variadic Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateVariadicCondition_validateReferenceOnlyConditionsFromConditionModel(VariadicCondition variadicCondition, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return variadicCondition.validateReferenceOnlyConditionsFromConditionModel(diagnostics, context);
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -229,6 +248,7 @@ public class ConditionValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(and, diagnostics, context);
 		if (result || diagnostics != null) result &= validateVariadicCondition_minimalNumberOfArgs(and, diagnostics, context);
 		if (result || diagnostics != null) result &= validateVariadicCondition_validateMinimalNumberOfArgs(and, diagnostics, context);
+		if (result || diagnostics != null) result &= validateVariadicCondition_validateReferenceOnlyConditionsFromConditionModel(and, diagnostics, context);
 		return result;
 	}
 
@@ -249,6 +269,7 @@ public class ConditionValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(or, diagnostics, context);
 		if (result || diagnostics != null) result &= validateVariadicCondition_minimalNumberOfArgs(or, diagnostics, context);
 		if (result || diagnostics != null) result &= validateVariadicCondition_validateMinimalNumberOfArgs(or, diagnostics, context);
+		if (result || diagnostics != null) result &= validateVariadicCondition_validateReferenceOnlyConditionsFromConditionModel(or, diagnostics, context);
 		return result;
 	}
 
@@ -269,6 +290,7 @@ public class ConditionValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(unaryCondition, diagnostics, context);
 		if (result || diagnostics != null) result &= validateUnaryCondition_exactlyOneArg(unaryCondition, diagnostics, context);
 		if (result || diagnostics != null) result &= validateUnaryCondition_validateExactlyOneArg(unaryCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validateUnaryCondition_validateReferenceOnlyConditionsFromConditionModel(unaryCondition, diagnostics, context);
 		return result;
 	}
 
@@ -311,6 +333,16 @@ public class ConditionValidator extends EObjectValidator {
 	}
 
 	/**
+	 * Validates the validateReferenceOnlyConditionsFromConditionModel constraint of '<em>Unary Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateUnaryCondition_validateReferenceOnlyConditionsFromConditionModel(UnaryCondition unaryCondition, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return unaryCondition.validateReferenceOnlyConditionsFromConditionModel(diagnostics, context);
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -327,8 +359,8 @@ public class ConditionValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(not, diagnostics, context);
 		if (result || diagnostics != null) result &= validateUnaryCondition_exactlyOneArg(not, diagnostics, context);
 		if (result || diagnostics != null) result &= validateUnaryCondition_validateExactlyOneArg(not, diagnostics, context);
+		if (result || diagnostics != null) result &= validateUnaryCondition_validateReferenceOnlyConditionsFromConditionModel(not, diagnostics, context);
 		if (result || diagnostics != null) result &= validateNot_referenceOnlyConditionsFromConditionModelOrFromConditionalElements(not, diagnostics, context);
-		if (result || diagnostics != null) result &= validateNot_validateReferenceOnlyConditionsFromConditionModelOrFromConditionalElements(not, diagnostics, context);
 		return result;
 	}
 
@@ -358,16 +390,6 @@ public class ConditionValidator extends EObjectValidator {
 			return false;
 		}
 		return true;
-	}
-
-	/**
-	 * Validates the validateReferenceOnlyConditionsFromConditionModelOrFromConditionalElements constraint of '<em>Not</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateNot_validateReferenceOnlyConditionsFromConditionModelOrFromConditionalElements(Not not, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return not.validateReferenceOnlyConditionsFromConditionModelOrFromConditionalElements(diagnostics, context);
 	}
 
 	/**

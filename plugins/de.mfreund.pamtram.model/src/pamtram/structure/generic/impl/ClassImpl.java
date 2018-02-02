@@ -6,6 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -18,6 +19,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -734,6 +736,52 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public boolean validateOnlyComplementingActualReferences(final DiagnosticChain diagnostics,
+			final Map<?, ?> context) {
+		
+		List<EReference> actualCompositeReferences = this.getActualReferences().stream()
+				.filter(r -> r instanceof CompositeReference<?, ?, ?, ?>)
+				.map(r -> ((ActualReference<?, ?, ?, ?>) r).getEReference()).collect(Collectors.toList());
+		
+		boolean noCompositeDuplicates = actualCompositeReferences.size() == new HashSet<>(actualCompositeReferences)
+				.size();
+		
+		if (!noCompositeDuplicates && diagnostics != null) {
+		
+			String errorMessage = "A Class must not specify two CompositeReferences that represent the same EReference!";
+		
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, GenericValidator.DIAGNOSTIC_SOURCE,
+					GenericValidator.CLASS__VALIDATE_ONLY_COMPLEMENTING_ACTUAL_REFERENCES, errorMessage,
+					new Object[] { this, GenericPackage.Literals.CLASS__REFERENCES }));
+		
+			return false;
+		}
+		
+		List<EReference> actualCrossReferences = this.getActualReferences().stream()
+				.filter(r -> r instanceof CrossReference<?, ?, ?, ?>)
+				.map(r -> ((ActualReference<?, ?, ?, ?>) r).getEReference()).collect(Collectors.toList());
+		
+		boolean noCrossDuplicates = actualCrossReferences.size() == new HashSet<>(actualCrossReferences).size();
+		
+		if (!noCrossDuplicates && diagnostics != null) {
+		
+			String errorMessage = "A Class must not specify two CrossReferences that represent the same EReference!";
+		
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, GenericValidator.DIAGNOSTIC_SOURCE,
+					GenericValidator.CLASS__VALIDATE_ONLY_COMPLEMENTING_ACTUAL_REFERENCES, errorMessage,
+					new Object[] { this, GenericPackage.Literals.CLASS__REFERENCES }));
+		
+			return false;
+		}
+		
+		return true;	
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -924,6 +972,8 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 				return validateContainerIsValid((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case GenericPackage.CLASS___VALIDATE_NOT_SELF_CONTAINER__DIAGNOSTICCHAIN_MAP:
 				return validateNotSelfContainer((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case GenericPackage.CLASS___VALIDATE_ONLY_COMPLEMENTING_ACTUAL_REFERENCES__DIAGNOSTICCHAIN_MAP:
+				return validateOnlyComplementingActualReferences((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

@@ -396,6 +396,15 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getVariadicCondition__ValidateReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map() {
+		return variadicConditionEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getCondition_Value() {
 		return (EAttribute)conditionEClass.getEStructuralFeatures().get(0);
 	}
@@ -459,8 +468,8 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getNot() {
-		return notEClass;
+	public EOperation getUnaryCondition__ValidateReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map() {
+		return unaryConditionEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -468,8 +477,8 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getNot__ValidateReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map() {
-		return notEClass.getEOperations().get(0);
+	public EClass getNot() {
+		return notEClass;
 	}
 
 	/**
@@ -558,6 +567,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		createEReference(variadicConditionEClass, VARIADIC_CONDITION__SHARED_COND_PARTS);
 		createEOperation(variadicConditionEClass, VARIADIC_CONDITION___REFERENCES_ONLY_VALID_CONDITIONS);
 		createEOperation(variadicConditionEClass, VARIADIC_CONDITION___VALIDATE_MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP);
+		createEOperation(variadicConditionEClass, VARIADIC_CONDITION___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP);
 
 		andEClass = createEClass(AND);
 
@@ -567,9 +577,9 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		createEReference(unaryConditionEClass, UNARY_CONDITION__LOCAL_COND_PART);
 		createEReference(unaryConditionEClass, UNARY_CONDITION__SHARED_COND_PART);
 		createEOperation(unaryConditionEClass, UNARY_CONDITION___VALIDATE_EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP);
+		createEOperation(unaryConditionEClass, UNARY_CONDITION___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP);
 
 		notEClass = createEClass(NOT);
-		createEOperation(notEClass, NOT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP);
 
 		conditionEClass = createEClass(CONDITION);
 		createEAttribute(conditionEClass, CONDITION__VALUE);
@@ -693,6 +703,15 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		op = initEOperation(getVariadicCondition__ValidateReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateReferenceOnlyConditionsFromConditionModel", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(andEClass, And.class, "And", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(orEClass, Or.class, "Or", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -710,9 +729,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(notEClass, Not.class, "Not", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		op = initEOperation(getNot__ValidateReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateReferenceOnlyConditionsFromConditionModelOrFromConditionalElements", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getUnaryCondition__ValidateReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateReferenceOnlyConditionsFromConditionModel", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType();
@@ -720,6 +737,8 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		g2 = createEGenericType();
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(notEClass, Not.class, "Not", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(conditionEClass, Condition.class, "Condition", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCondition_Value(), ecorePackage.getEInt(), "value", "1", 0, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -851,6 +870,12 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 			 "body", "\r\nboolean result = this.getLocalCondParts().size() + this.getSharedCondParts().size() > 1;\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"At least two (local or shared) condition parts need to be specified!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.condition.util.ConditionValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tConditionValidator.VARIADIC_CONDITION__VALIDATE_MINIMAL_NUMBER_OF_ARGS,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.condition.ConditionPackage%>.Literals.VARIADIC_CONDITION }));\r\n\r\n}\r\n\r\nreturn result;"
 		   });	
 		addAnnotation
+		  (getVariadicCondition__ValidateReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nif (this.getSharedCondParts() == null) {\r\n\treturn true;\r\n}\r\n\r\nboolean result = this.getSharedCondParts().stream().allMatch(c -> c.eContainer() instanceof <%pamtram.ConditionModel%>);\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"Reference only Conditions that are placed inside a ConditionModel!\";\r\n\r\n\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR, <%pamtram.condition.util.ConditionValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\tConditionValidator.VARIADIC_CONDITION__VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL,\r\n\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.condition.ConditionPackage%>.Literals.VARIADIC_CONDITION__SHARED_COND_PARTS }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
 		  (getVariadicCondition_LocalCondParts(), 
 		   source, 
 		   new String[] {
@@ -860,7 +885,8 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		  (getVariadicCondition_SharedCondParts(), 
 		   source, 
 		   new String[] {
-			 "documentation", "The list of globally specified sub-conditions."
+			 "documentation", "The list of globally specified sub-conditions.",
+			 "propertyDescriptor", "\r\nitemPropertyDescriptors\r\n\t\t.add(new ItemPropertyDescriptor(((<%org.eclipse.emf.edit.provider.ComposeableAdapterFactory%>) adapterFactory).getRootAdapterFactory(),\r\n\t\t\t\tgetResourceLocator(), getString(\"_UI_VariadicCondition_sharedCondParts_feature\"),\r\n\t\t\t\tgetString(\"_UI_VariadicCondition_sharedCondParts_description\"),\r\n\t\t\t\t<%pamtram.condition.ConditionPackage%>.Literals.VARIADIC_CONDITION__SHARED_COND_PARTS, true, false, true, null,\r\n\t\t\t\tgetString(\"_UI_ExtendedPropertyCategory\"), null) {\r\n\r\n\t\t\tpublic <%java.util.Collection%><?> getChoiceOfValues(Object object) {\r\n\r\n\t\t\t\t<%java.util.List%><Object> choiceOfValues = new <%java.util.ArrayList%><>();\r\n\t\t\t\tchoiceOfValues.addAll(super.getChoiceOfValues(object));\r\n\t\t\t\tfor (<%java.util.Iterator%><Object> element = choiceOfValues.iterator(); element.hasNext();) {\r\n\t\t\t\t\t<%org.eclipse.emf.ecore.EObject%> choiceValue = (EObject) element.next();\r\n\t\t\t\t\tif (choiceValue == null) {\r\n\t\t\t\t\t\tcontinue;\r\n\t\t\t\t\t}\r\n\t\t\t\t\tif (!(choiceValue.eContainer() instanceof <%pamtram.ConditionModel%>)) {\r\n\t\t\t\t\t\telement.remove();\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\r\n\t\t\t\treturn choiceOfValues;\r\n\t\t\t}\r\n\t\t});"
 		   });	
 		addAnnotation
 		  (andEClass, 
@@ -887,6 +913,12 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 			 "body", "\r\nboolean result = this.getLocalCondPart() != null ^ this.getSharedCondPart() != null;\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"Please specify exactly one (local or shared) condition part!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.condition.util.ConditionValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tConditionValidator.UNARY_CONDITION__VALIDATE_EXACTLY_ONE_ARG,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.condition.ConditionPackage%>.Literals.UNARY_CONDITION }));\r\n\r\n}\r\n\r\nreturn result;"
 		   });	
 		addAnnotation
+		  (getUnaryCondition__ValidateReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nif(this.sharedCondPart == null) {\r\n\treturn true;\r\n}\r\n\r\n<%org.eclipse.emf.ecore.EObject%> sharedCondPartContainer = this.sharedCondPart.eContainer();\r\n\r\nboolean result = sharedCondPartContainer instanceof <%pamtram.ConditionModel%>;\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"Reference only Conditions that are placed inside a ConditionModel!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.condition.util.ConditionValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tConditionValidator.UNARY_CONDITION__VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.condition.ConditionPackage%>.Literals.UNARY_CONDITION__SHARED_COND_PART }));\r\n\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
 		  (getUnaryCondition_LocalCondPart(), 
 		   source, 
 		   new String[] {
@@ -896,19 +928,14 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		  (getUnaryCondition_SharedCondPart(), 
 		   source, 
 		   new String[] {
-			 "documentation", "The globally specified sub-condition.\r\n<br /><br />\r\nNote: Only one of \'localCondPart\' or \'sharedCondPart\' may be set!"
+			 "documentation", "The globally specified sub-condition.\r\n<br /><br />\r\nNote: Only one of \'localCondPart\' or \'sharedCondPart\' may be set!",
+			 "propertyDescriptor", "\r\nthis.itemPropertyDescriptors.add(\r\n\t\tnew ItemPropertyDescriptor(((<%org.eclipse.emf.edit.provider.ComposeableAdapterFactory%>) this.adapterFactory).getRootAdapterFactory(),\r\n\t\t\t\tthis.getResourceLocator(), this.getString(\"_UI_UnaryCondition_sharedCondPart_feature\"),\r\n\t\t\t\tthis.getString(\"_UI_UnaryCondition_sharedCondPart_description\"),\r\n\t\t\t\t<%pamtram.condition.ConditionPackage%>.Literals.UNARY_CONDITION__SHARED_COND_PART, true, false, true, null,\r\n\t\t\t\tthis.getString(\"_UI_ExtendedPropertyCategory\"), null) {\r\n\r\n\t\t\t@Override\r\n\t\t\tpublic <%java.util.Collection%><?> getChoiceOfValues(Object object) {\r\n\r\n\t\t\t\t<%java.util.List%><Object> choiceOfValues = new <%java.util.ArrayList%><>();\r\n\t\t\t\tchoiceOfValues.addAll(super.getChoiceOfValues(object));\r\n\t\t\t\tfor (<%java.util.Iterator%><Object> element = choiceOfValues.iterator(); element.hasNext();) {\r\n\t\t\t\t\t<%org.eclipse.emf.ecore.EObject%> choiceValue = (EObject) element.next();\r\n\t\t\t\t\tif (choiceValue == null) {\r\n\t\t\t\t\t\tcontinue;\r\n\t\t\t\t\t}\r\n\t\t\t\t\tif (!(choiceValue.eContainer() instanceof <%pamtram.ConditionModel%>)) {\r\n\t\t\t\t\t\telement.remove();\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\r\n\t\t\t\treturn choiceOfValues;\r\n\t\t\t}\r\n\t\t});"
 		   });	
 		addAnnotation
 		  (notEClass, 
 		   source, 
 		   new String[] {
 			 "documentation", "A Condition that evaluates to \'true\' if the specified sub-condition evaluates to \'false\'.\r\n<br />\r\nThe sub-condition can be specified locally (via the \'localCondPart\' reference) or globally (specified via the \'sharedCondPart\' reference)."
-		   });	
-		addAnnotation
-		  (getNot__ValidateReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map(), 
-		   source, 
-		   new String[] {
-			 "body", "\r\nif(this.sharedCondPart == null) {\r\n\treturn true;\r\n}\r\n\r\n<%org.eclipse.emf.ecore.EObject%> sharedCondPartContainer = this.sharedCondPart.eContainer();\r\n\r\nboolean result = sharedCondPartContainer instanceof <%pamtram.ConditionModel%> || sharedCondPartContainer instanceof ConditionalElement;\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"Reference only Conditions that are placed inside ConditionModel or where the Container is a ConditionalElement!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.condition.util.ConditionValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tConditionValidator.NOT__VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.condition.ConditionPackage%>.Literals.UNARY_CONDITION__SHARED_COND_PART }));\r\n\r\n}\r\n\r\nreturn result;"
 		   });	
 		addAnnotation
 		  (conditionEClass, 

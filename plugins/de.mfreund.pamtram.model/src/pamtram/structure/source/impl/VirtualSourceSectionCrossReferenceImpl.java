@@ -3,20 +3,26 @@
 package pamtram.structure.source.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 import java.util.Map;
 
+import java.util.stream.Collectors;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.ocl.ParserException;
 
+import pamtram.structure.generic.ActualReference;
+import pamtram.structure.generic.CompositeReference;
 import pamtram.structure.generic.VirtualReference;
 import pamtram.structure.generic.impl.CrossReferenceImpl;
+import pamtram.structure.generic.util.GenericValidator;
 import pamtram.structure.source.SourcePackage;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
@@ -200,6 +206,39 @@ public class VirtualSourceSectionCrossReferenceImpl
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateIsIgnoreUnmatchedIfIsComplemented(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		
+		if (!(this instanceof ActualReference<?, ?, ?, ?> && this instanceof CompositeReference<?, ?, ?, ?>)) {
+			return true;
+		}
+		
+		List<EReference> actualCrossReferences = this.getOwningClass().getAllCrossReferences().stream()
+				.filter(r -> r instanceof ActualReference<?, ?, ?, ?>)
+				.map(r -> ((ActualReference<?, ?, ?, ?>) r).getEReference()).collect(Collectors.toList());
+		
+		boolean isComplemented = actualCrossReferences.stream()
+				.anyMatch(r -> r != null && r.equals(((ActualReference<?, ?, ?, ?>) this).getEReference()));
+		
+		boolean result = !isComplemented || this.isIgnoreUnmatchedElements();
+		
+		if (!result && diagnostics != null) {
+		
+			String errorMessage = "This reference is complemented by a CrossReference that represents the same EReference. Hence, 'ignoreUmatchedElements' needs to be set to 'true'!";
+		
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, GenericValidator.DIAGNOSTIC_SOURCE,
+					SourceValidator.SOURCE_SECTION_REFERENCE__VALIDATE_IS_IGNORE_UNMATCHED_IF_IS_COMPLEMENTED,
+					errorMessage, new Object[] { this, SourcePackage.Literals.SOURCE_SECTION_REFERENCE }));
+		
+		}
+		
+		return result;	
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -304,6 +343,27 @@ public class VirtualSourceSectionCrossReferenceImpl
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == SourceSectionReference.class) {
+			switch (baseOperationID) {
+				case SourcePackage.SOURCE_SECTION_REFERENCE___VALIDATE_IS_IGNORE_UNMATCHED_IF_IS_COMPLEMENTED__DIAGNOSTICCHAIN_MAP: return SourcePackage.VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE___VALIDATE_IS_IGNORE_UNMATCHED_IF_IS_COMPLEMENTED__DIAGNOSTICCHAIN_MAP;
+				default: return -1;
+			}
+		}
+		if (baseClass == VirtualReference.class) {
+			switch (baseOperationID) {
+				default: return -1;
+			}
+		}
+		return super.eDerivedOperationID(baseOperationID, baseClass);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -312,6 +372,8 @@ public class VirtualSourceSectionCrossReferenceImpl
 		switch (operationID) {
 			case SourcePackage.VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE___VALIDATE_DERIVATION__DIAGNOSTICCHAIN_MAP:
 				return validateDerivation((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case SourcePackage.VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE___VALIDATE_IS_IGNORE_UNMATCHED_IF_IS_COMPLEMENTED__DIAGNOSTICCHAIN_MAP:
+				return validateIsIgnoreUnmatchedIfIsComplemented((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

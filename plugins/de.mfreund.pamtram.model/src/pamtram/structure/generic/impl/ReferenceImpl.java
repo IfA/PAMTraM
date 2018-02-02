@@ -3,22 +3,25 @@
 package pamtram.structure.generic.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object
- * '<em><b>Reference</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Reference</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -80,6 +83,64 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();	
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isExtended() {
+		
+		// We consider a reference as 'extended' if:
+		// 1. the reference is directly contained in an abstract Section,
+		// 2. the reference is an ActualReference (i.e. it represents a metamodel reference), and
+		// 3. there is another reference further downward in the extension hierarchy that represents the same metamodel
+		// reference
+		//
+		if (!(this instanceof ActualReference<?, ?, ?, ?> && this.getOwningClass() instanceof Section<?, ?, ?, ?>
+				&& ((Section<?, ?, ?, ?>) this.getOwningClass()).isAbstract())) {
+			return false;
+		}
+		
+		EReference eReference = ((ActualReference<?, ?, ?, ?>) this).getEReference();
+		
+		if (eReference == null) {
+			return false;
+		}
+		
+		return ((Section<?, ?, ?, ?>) this.getOwningClass()).getAllExtending().stream()
+				.flatMap(s -> s.getActualReferences().stream()).anyMatch(r -> r.eClass().equals(this.eClass())
+						&& eReference.equals(((ActualReference<?, ?, ?, ?>) r).getEReference()));	
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public EList<C> getValuesIncludingExtended() {
+		
+		EList<C> values = new BasicEList<>(this.getValuesGeneric());
+		
+		// Only ActualReferences directly contained in Sections can extend other references
+		//
+		if (this.getOwningClass() instanceof Section<?, ?, ?, ?> && this instanceof ActualReference<?, ?, ?, ?>
+				&& ((ActualReference<?, ?, ?, ?>) this).getEReference() != null) {
+		
+			EReference eReference = ((ActualReference<?, ?, ?, ?>) this).getEReference();
+		
+			List<Reference<?, ?, ?, ?>> extendedReferences = ((Section<?, ?, ?, ?>) this.getOwningClass())
+					.getAllExtend().stream().flatMap(s -> s.getActualReferences().stream())
+					.filter(r -> eReference.equals(((ActualReference<?, ?, ?, ?>) r).getEReference()))
+					.collect(Collectors.toList());
+		
+			values.addAll((Collection<? extends C>) extendedReferences.stream()
+					.flatMap(r -> r.getValuesGeneric().stream()).collect(Collectors.toList()));
+		}
+		
+		return values;	
 	}
 
 	/**
@@ -163,6 +224,10 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 			case GenericPackage.REFERENCE___ADD_VALUES_GENERIC__ELIST:
 				addValuesGeneric((EList<C>)arguments.get(0));
 				return null;
+			case GenericPackage.REFERENCE___IS_EXTENDED:
+				return isExtended();
+			case GenericPackage.REFERENCE___GET_VALUES_INCLUDING_EXTENDED:
+				return getValuesIncludingExtended();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

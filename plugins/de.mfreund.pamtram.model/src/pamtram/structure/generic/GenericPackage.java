@@ -392,13 +392,22 @@ public interface GenericPackage extends EPackage {
 	int CLASS___VALIDATE_NOT_SELF_CONTAINER__DIAGNOSTICCHAIN_MAP = META_MODEL_ELEMENT_OPERATION_COUNT + 7;
 
 	/**
+	 * The operation id for the '<em>Validate Only Complementing Actual References</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS___VALIDATE_ONLY_COMPLEMENTING_ACTUAL_REFERENCES__DIAGNOSTICCHAIN_MAP = META_MODEL_ELEMENT_OPERATION_COUNT + 8;
+
+	/**
 	 * The number of operations of the '<em>Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_OPERATION_COUNT = META_MODEL_ELEMENT_OPERATION_COUNT + 8;
+	int CLASS_OPERATION_COUNT = META_MODEL_ELEMENT_OPERATION_COUNT + 9;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.generic.impl.SectionImpl <em>Section</em>}' class.
@@ -699,6 +708,15 @@ public interface GenericPackage extends EPackage {
 	int SECTION___VALIDATE_NOT_SELF_CONTAINER__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_NOT_SELF_CONTAINER__DIAGNOSTICCHAIN_MAP;
 
 	/**
+	 * The operation id for the '<em>Validate Only Complementing Actual References</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SECTION___VALIDATE_ONLY_COMPLEMENTING_ACTUAL_REFERENCES__DIAGNOSTICCHAIN_MAP = CLASS___VALIDATE_ONLY_COMPLEMENTING_ACTUAL_REFERENCES__DIAGNOSTICCHAIN_MAP;
+
+	/**
 	 * The operation id for the '<em>Validate Container Matches Extend Container</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -817,13 +835,31 @@ public interface GenericPackage extends EPackage {
 	int REFERENCE___ADD_VALUES_GENERIC__ELIST = META_MODEL_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Is Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE___IS_EXTENDED = META_MODEL_ELEMENT_OPERATION_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Get Values Including Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE___GET_VALUES_INCLUDING_EXTENDED = META_MODEL_ELEMENT_OPERATION_COUNT + 3;
+
+	/**
 	 * The number of operations of the '<em>Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_OPERATION_COUNT = META_MODEL_ELEMENT_OPERATION_COUNT + 2;
+	int REFERENCE_OPERATION_COUNT = META_MODEL_ELEMENT_OPERATION_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.generic.impl.ActualReferenceImpl <em>Actual Reference</em>}' class.
@@ -915,6 +951,24 @@ public interface GenericPackage extends EPackage {
 	 * @ordered
 	 */
 	int ACTUAL_REFERENCE___ADD_VALUES_GENERIC__ELIST = REFERENCE___ADD_VALUES_GENERIC__ELIST;
+
+	/**
+	 * The operation id for the '<em>Is Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTUAL_REFERENCE___IS_EXTENDED = REFERENCE___IS_EXTENDED;
+
+	/**
+	 * The operation id for the '<em>Get Values Including Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTUAL_REFERENCE___GET_VALUES_INCLUDING_EXTENDED = REFERENCE___GET_VALUES_INCLUDING_EXTENDED;
 
 	/**
 	 * The operation id for the '<em>Validate EReference Matches Parent EClass</em>' operation.
@@ -1017,6 +1071,24 @@ public interface GenericPackage extends EPackage {
 	int VIRTUAL_REFERENCE___ADD_VALUES_GENERIC__ELIST = REFERENCE___ADD_VALUES_GENERIC__ELIST;
 
 	/**
+	 * The operation id for the '<em>Is Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_REFERENCE___IS_EXTENDED = REFERENCE___IS_EXTENDED;
+
+	/**
+	 * The operation id for the '<em>Get Values Including Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_REFERENCE___GET_VALUES_INCLUDING_EXTENDED = REFERENCE___GET_VALUES_INCLUDING_EXTENDED;
+
+	/**
 	 * The number of operations of the '<em>Virtual Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1115,6 +1187,24 @@ public interface GenericPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPOSITE_REFERENCE___ADD_VALUES_GENERIC__ELIST = REFERENCE___ADD_VALUES_GENERIC__ELIST;
+
+	/**
+	 * The operation id for the '<em>Is Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_REFERENCE___IS_EXTENDED = REFERENCE___IS_EXTENDED;
+
+	/**
+	 * The operation id for the '<em>Get Values Including Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_REFERENCE___GET_VALUES_INCLUDING_EXTENDED = REFERENCE___GET_VALUES_INCLUDING_EXTENDED;
 
 	/**
 	 * The operation id for the '<em>Validate EReference Is Containment</em>' operation.
@@ -1224,6 +1314,24 @@ public interface GenericPackage extends EPackage {
 	 * @ordered
 	 */
 	int CROSS_REFERENCE___ADD_VALUES_GENERIC__ELIST = REFERENCE___ADD_VALUES_GENERIC__ELIST;
+
+	/**
+	 * The operation id for the '<em>Is Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CROSS_REFERENCE___IS_EXTENDED = REFERENCE___IS_EXTENDED;
+
+	/**
+	 * The operation id for the '<em>Get Values Including Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CROSS_REFERENCE___GET_VALUES_INCLUDING_EXTENDED = REFERENCE___GET_VALUES_INCLUDING_EXTENDED;
 
 	/**
 	 * The operation id for the '<em>Validate Values Match Reference Type</em>' operation.
@@ -1788,6 +1896,16 @@ public interface GenericPackage extends EPackage {
 	EOperation getClass__ValidateNotSelfContainer__DiagnosticChain_Map();
 
 	/**
+	 * Returns the meta object for the '{@link pamtram.structure.generic.Class#validateOnlyComplementingActualReferences(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Only Complementing Actual References</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Only Complementing Actual References</em>' operation.
+	 * @see pamtram.structure.generic.Class#validateOnlyComplementingActualReferences(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getClass__ValidateOnlyComplementingActualReferences__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.structure.generic.Section <em>Section</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1911,6 +2029,26 @@ public interface GenericPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getReference__AddValuesGeneric__EList();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.structure.generic.Reference#isExtended() <em>Is Extended</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Extended</em>' operation.
+	 * @see pamtram.structure.generic.Reference#isExtended()
+	 * @generated
+	 */
+	EOperation getReference__IsExtended();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.structure.generic.Reference#getValuesIncludingExtended() <em>Get Values Including Extended</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Values Including Extended</em>' operation.
+	 * @see pamtram.structure.generic.Reference#getValuesIncludingExtended()
+	 * @generated
+	 */
+	EOperation getReference__GetValuesIncludingExtended();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.structure.generic.ActualReference <em>Actual Reference</em>}'.
@@ -2339,6 +2477,14 @@ public interface GenericPackage extends EPackage {
 		EOperation CLASS___VALIDATE_NOT_SELF_CONTAINER__DIAGNOSTICCHAIN_MAP = eINSTANCE.getClass__ValidateNotSelfContainer__DiagnosticChain_Map();
 
 		/**
+		 * The meta object literal for the '<em><b>Validate Only Complementing Actual References</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CLASS___VALIDATE_ONLY_COMPLEMENTING_ACTUAL_REFERENCES__DIAGNOSTICCHAIN_MAP = eINSTANCE.getClass__ValidateOnlyComplementingActualReferences__DiagnosticChain_Map();
+
+		/**
 		 * The meta object literal for the '{@link pamtram.structure.generic.impl.SectionImpl <em>Section</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2437,6 +2583,22 @@ public interface GenericPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation REFERENCE___ADD_VALUES_GENERIC__ELIST = eINSTANCE.getReference__AddValuesGeneric__EList();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Extended</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation REFERENCE___IS_EXTENDED = eINSTANCE.getReference__IsExtended();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Values Including Extended</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation REFERENCE___GET_VALUES_INCLUDING_EXTENDED = eINSTANCE.getReference__GetValuesIncludingExtended();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.structure.generic.impl.ActualReferenceImpl <em>Actual Reference</em>}' class.

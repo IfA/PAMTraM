@@ -3,8 +3,10 @@
 package pamtram.structure.source.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 import java.util.Map;
 
+import java.util.stream.Collectors;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -17,6 +19,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import pamtram.structure.generic.ActualReference;
+import pamtram.structure.generic.CompositeReference;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.impl.CrossReferenceImpl;
 import pamtram.structure.generic.util.GenericValidator;
@@ -26,6 +29,7 @@ import pamtram.structure.source.SourceSectionAttribute;
 import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.source.SourceSectionCrossReference;
 import pamtram.structure.source.SourceSectionReference;
+import pamtram.structure.source.util.SourceValidator;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Meta
@@ -208,6 +212,39 @@ public class SourceSectionCrossReferenceImpl
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateIsIgnoreUnmatchedIfIsComplemented(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		
+		if (!(this instanceof ActualReference<?, ?, ?, ?> && this instanceof CompositeReference<?, ?, ?, ?>)) {
+			return true;
+		}
+		
+		List<EReference> actualCrossReferences = this.getOwningClass().getAllCrossReferences().stream()
+				.filter(r -> r instanceof ActualReference<?, ?, ?, ?>)
+				.map(r -> ((ActualReference<?, ?, ?, ?>) r).getEReference()).collect(Collectors.toList());
+		
+		boolean isComplemented = actualCrossReferences.stream()
+				.anyMatch(r -> r != null && r.equals(((ActualReference<?, ?, ?, ?>) this).getEReference()));
+		
+		boolean result = !isComplemented || this.isIgnoreUnmatchedElements();
+		
+		if (!result && diagnostics != null) {
+		
+			String errorMessage = "This reference is complemented by a CrossReference that represents the same EReference. Hence, 'ignoreUmatchedElements' needs to be set to 'true'!";
+		
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, GenericValidator.DIAGNOSTIC_SOURCE,
+					SourceValidator.SOURCE_SECTION_REFERENCE__VALIDATE_IS_IGNORE_UNMATCHED_IF_IS_COMPLEMENTED,
+					errorMessage, new Object[] { this, SourcePackage.Literals.SOURCE_SECTION_REFERENCE }));
+		
+		}
+		
+		return result;	
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -322,6 +359,7 @@ public class SourceSectionCrossReferenceImpl
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == SourceSectionReference.class) {
 			switch (baseOperationID) {
+				case SourcePackage.SOURCE_SECTION_REFERENCE___VALIDATE_IS_IGNORE_UNMATCHED_IF_IS_COMPLEMENTED__DIAGNOSTICCHAIN_MAP: return SourcePackage.SOURCE_SECTION_CROSS_REFERENCE___VALIDATE_IS_IGNORE_UNMATCHED_IF_IS_COMPLEMENTED__DIAGNOSTICCHAIN_MAP;
 				default: return -1;
 			}
 		}
@@ -343,6 +381,8 @@ public class SourceSectionCrossReferenceImpl
 		switch (operationID) {
 			case SourcePackage.SOURCE_SECTION_CROSS_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP:
 				return validateEReferenceMatchesParentEClass((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case SourcePackage.SOURCE_SECTION_CROSS_REFERENCE___VALIDATE_IS_IGNORE_UNMATCHED_IF_IS_COMPLEMENTED__DIAGNOSTICCHAIN_MAP:
+				return validateIsIgnoreUnmatchedIfIsComplemented((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

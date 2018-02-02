@@ -138,6 +138,9 @@ public class MatchedSectionDescriptor {
 
 	/**
 	 * This returns the {@link #matchedSourceModelObjets}.
+	 * <p />
+	 * Note: The returned map is a clone of the {@link #matchedSourceModelObjets} so that changes to this map will not
+	 * affect the {@link #matchedSourceModelObjets}.
 	 *
 	 * @param includeReferenced
 	 *            If this is set to '<em>true</em>', the returned map will also contain the matched elements of all
@@ -146,17 +149,16 @@ public class MatchedSectionDescriptor {
 	 */
 	public Map<SourceSectionClass, Set<EObject>> getMatchedSourceModelObjects(boolean includeReferenced) {
 
-		if (!includeReferenced) {
-			return new LinkedHashMap<>(this.matchedSourceModelObjets);
-		}
-
 		List<MatchedSectionDescriptor> descriptorsToConsider = new ArrayList<>(Arrays.asList(this));
-		descriptorsToConsider.addAll(this.getReferencedDescriptorsRecursive());
+
+		if (includeReferenced) {
+			descriptorsToConsider.addAll(this.getReferencedDescriptorsRecursive());
+		}
 
 		// Merge and return the maps returned by calling 'getMatchedSourceModelObjects' for each of the descriptors
 		//
-		return descriptorsToConsider.stream().flatMap(d -> d.getMatchedSourceModelObjects(false).entrySet().stream())
-				.collect(Collectors.toMap(Entry::getKey, Entry::getValue, (v1, v2) -> {
+		return descriptorsToConsider.stream().flatMap(d -> d.matchedSourceModelObjets.entrySet().stream())
+				.collect(Collectors.toMap(Entry::getKey, e -> new LinkedHashSet<>(e.getValue()), (v1, v2) -> {
 					v1.addAll(v2);
 					return v1;
 				}, LinkedHashMap::new));
@@ -184,6 +186,7 @@ public class MatchedSectionDescriptor {
 		return sourceSectionClass.getAllConcreteExtending().stream()
 				.flatMap(s -> matchesToConsider.getOrDefault(s, new HashSet<>()).stream())
 				.collect(Collectors.toCollection(LinkedHashSet::new));
+
 	}
 
 	/**
@@ -231,6 +234,7 @@ public class MatchedSectionDescriptor {
 	public void addSourceModelObjectsMapped(final Map<SourceSectionClass, Set<EObject>> refs) {
 
 		for (final Entry<SourceSectionClass, Set<EObject>> entry : refs.entrySet()) {
+
 			if (!this.matchedSourceModelObjets.containsKey(entry.getKey())) {
 				this.matchedSourceModelObjets.put(entry.getKey(), new LinkedHashSet<EObject>());
 			}

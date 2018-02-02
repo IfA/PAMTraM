@@ -732,32 +732,31 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	private boolean checkReferences(final EObject srcModelObject, final SourceSectionClass sourceSectionClass,
 			final MatchedSectionDescriptor descriptor) {
 
-		// All CompositeReferences defined by the class (and extended Sections)
+		// Collect the CompositeReferences defined by the class (and extended Sections). However, we do only consider
+		// references that are not 'extended' by other references as these are considered identical during the
+		// matching process.
+		// Note: The values (target classes) of an extended reference are regarded during the matching of the
+		// extending reference inside 'checkComposite/CrossReference'.
 		//
 		List<SourceSectionCompositeReference> compositeReferences = sourceSectionClass.getAllCompositeReferences()
 				.stream().filter(r -> r instanceof SourceSectionCompositeReference)
 				.map(r -> (SourceSectionCompositeReference) r).filter(r -> r.getEReference() != null)
-				.collect(Collectors.toList());
+				.filter(r -> !r.isExtended()).collect(Collectors.toList());
 
-		// All CrossReferences defined by the class (and extended Sections)
+		// All CrossReferences defined by the class (and extended Sections). However, we do only consider
+		// references that are not 'extended' by other references as these are considered identical during the
+		// matching process.
+		// Note: The values (target classes) of an extended reference are regarded during the matching of the
+		// extending reference inside 'checkComposite/CrossReference'.
 		//
 		List<CrossReference<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>> crossReferences = sourceSectionClass
-				.getAllCrossReferences();
+				.getAllCrossReferences().stream().filter(r -> !r.isExtended()).collect(Collectors.toList());
 
-		// This map keeps track of all CrossReferences that 'complement' a CompositeReference, i.e. that represents the
-		// same 'EReference'
+		// There may be multiple references representing the same 'EReference'. In order to not match elements
+		// twice in such cases, this map keeps track of the remaining elements elements that have not been matched for
+		// previous references.
 		//
-		Map<SourceSectionCompositeReference, CrossReference<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>> complementingReferences = new HashMap<>();
-		for (SourceSectionCompositeReference compositeReference : compositeReferences) {
-
-			Optional<CrossReference<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>> complementingCrossReference = crossReferences
-					.stream().filter(r -> r instanceof ActualReference<?, ?, ?, ?>).filter(r -> compositeReference
-							.getEReference().equals(((ActualReference<?, ?, ?, ?>) r).getEReference()))
-					.findAny();
-			complementingCrossReference.ifPresent(r -> complementingReferences.put(compositeReference, r));
-		}
-
-		Map<CrossReference<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, List<EObject>> complementingReferenceMatchingRequirements = new HashMap<>();
+		Map<EReference, List<EObject>> remainingElements = new HashMap<>();
 
 		// First, we try to match all CompositeReferences (resp. the modeled Values). After that, the CrossReferences
 		// are checked based on the remaining (unmatched) model elements.
@@ -777,13 +776,7 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 				return false;
 			}
 
-			List<EObject> remainingReferencedElements = new ArrayList<>(referencedElements);
-
-			if (complementingReferences.containsKey(compositeReference)) {
-
-				complementingReferenceMatchingRequirements.put(complementingReferences.get(compositeReference),
-						remainingReferencedElements);
-			}
+			remainingElements.put(compositeReference.getEReference(), new ArrayList<>(referencedElements));
 
 		}
 
@@ -796,9 +789,11 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 			// CompositeReference, we must not match all referenced elements but only those that could not be matched
 			// against the CompositeReference
 			//
-			List<EObject> referencedElements = complementingReferenceMatchingRequirements.containsKey(crossReference)
-					? complementingReferenceMatchingRequirements.get(crossReference)
-					: this.assetManager.getModelTraversalUtil().getReferenceValueAsList(srcModelObject, crossReference);
+			List<EObject> referencedElements = crossReference instanceof ActualReference<?, ?, ?, ?>
+					&& remainingElements.containsKey(((ActualReference<?, ?, ?, ?>) crossReference).getEReference())
+							? remainingElements.get(((ActualReference<?, ?, ?, ?>) crossReference).getEReference())
+							: this.assetManager.getModelTraversalUtil().getReferenceValueAsList(srcModelObject,
+									crossReference);
 
 			// Check if the elements referenced in the source model can be matched against one of the target classes
 			// defined for the reference
@@ -842,7 +837,7 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 
 		// The list of SourceSectionClasses that the 'referenceElements' need to be matched against
 		//
-		List<SourceSectionClass> targetClasses = reference.getValuesGeneric();
+		List<SourceSectionClass> targetClasses = reference.getValuesIncludingExtended();
 
 		// The reference has a lower bound of 0
 		//
@@ -912,7 +907,7 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 			return false;
 		}
 
-		List<SourceSectionClass> targetClasses = reference.getValuesGeneric();
+		List<SourceSectionClass> targetClasses = reference.getValuesIncludingExtended();
 
 		// The list of necessary/required target classes (classes with a lower bound != ZERO). These NEED TO be matched
 		// for the section to be applicable.
@@ -1003,7 +998,7 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 		CrossReferenceDependency dependency = new CrossReferenceDependency();
 		dependency.setDependencySource(descriptor);
 		dependency.setSourceModelElements(referencedElements);
-		dependency.setSourceSectionClasses(reference.getValue());
+		dependency.setSourceSectionClasses(reference.getValuesIncludingExtended());
 		dependency.setReference(reference);
 
 		descriptor.addMatchingDependency(dependency);

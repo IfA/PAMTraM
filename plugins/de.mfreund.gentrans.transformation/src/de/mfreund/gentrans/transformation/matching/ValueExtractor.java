@@ -148,6 +148,8 @@ public abstract class ValueExtractor extends CancelableTransformationAsset {
 							.contains(mappingHintSourceElementProvidingSection)));
 
 			if (sourceDescriptor != null) {
+				// Now that we found the correct descriptor, we can determine the suitable source elements
+				//
 				sourceElements = sourceDescriptor
 						.getMatchedSourceModelElementsFor(mappingHintSourceElement.getSource().getOwningClass(), false);
 			}

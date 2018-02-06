@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -43,9 +42,7 @@ import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.constraint.ValueConstraintType;
 import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.CardinalityType;
-import pamtram.structure.generic.CompositeReference;
 import pamtram.structure.generic.CrossReference;
-import pamtram.structure.generic.VirtualReference;
 import pamtram.structure.source.ActualSourceSectionAttribute;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
@@ -247,9 +244,6 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 
 			containmentTree.markAsMatched(new HashSet<>(selectedLocalRegistry.getRegisteredElements()));
 
-			System.out.println(selectedLocalRegistry.getRegisteredElements().size());
-			System.out.println(containmentTree.getNumberOfAvailableElements());
-
 		}
 
 		this.logger.info(() -> "Summary:\tAvailable Elements:\t" + containmentTree.getNumberOfElements());
@@ -284,10 +278,11 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 			// Get all 'potential' matches for the current element (they are only 'potential' because they may depend on
 			// one or more 'MatchingDependencies'
 			//
-			Map<SourceSection, MatchedSectionDescriptor> potentialElementMatches = this
-					.findPotentialApplicableSections(element, sourceSections);
-			if (!potentialElementMatches.isEmpty()) {
-				potentialMatches.put(element, new ArrayList<>(potentialElementMatches.values()));
+			List<MatchedSectionDescriptor> applicableSections = this.findPotentialApplicableSections(element,
+					sourceSections);
+
+			if (!applicableSections.isEmpty()) {
+				potentialMatches.put(element, applicableSections);
 			}
 
 		}
@@ -301,17 +296,16 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	 *            The element from the source model for that the applicable source sections shall be determined.
 	 * @param sourceSections
 	 *            The list of {@link SourceSection SourceSections} that the <em>element</em> shall be matched against.
-	 * @return A map that contains all applicable {@link SourceSection SourceSections} and the associated
-	 *         {@link MatchedSectionDescriptor} for the given {@link EObject}.
+	 * @return A list of {@link MatchedSectionDescriptor MatchedSectionDescriptors} representing all
+	 *         {@link SourceSection SourceSections} that are applicable for the given {@link EObject}.
 	 */
-	private Map<SourceSection, MatchedSectionDescriptor> findPotentialApplicableSections(final EObject element,
+	private List<MatchedSectionDescriptor> findPotentialApplicableSections(final EObject element,
 			final List<SourceSection> sourceSections) {
 
 		// Iterate over all sections and find those that are applicable for the current 'element'.
 		//
 		return sourceSections.stream().map(section -> this.isApplicable(section, element)).filter(Optional::isPresent)
-				.map(Optional::get).collect(Collectors.toMap(d -> (SourceSection) d.getAssociatedSourceSectionClass(),
-						Function.identity(), (oldEntry, newEntry) -> oldEntry, LinkedHashMap::new));
+				.map(Optional::get).collect(Collectors.toList());
 
 	}
 
@@ -601,7 +595,7 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	/**
 	 * This checks if the given {@link SourceSection} is applicable for the given source model <em>element</em>.
 	 * Therefore, it first {@link #checkContainerSection(EObject, SourceSection) checks the container} and then the
-	 * {@link #checkClass(EObject, boolean, SourceSectionClass, MatchedSectionDescriptor) section itself}.
+	 * {@link #checkClass(EObject, SourceSectionClass, MatchedSectionDescriptor) section itself}.
 	 *
 	 * @param section
 	 *            The {@link SourceSection} to check.
@@ -619,26 +613,30 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 			return Optional.empty();
 		}
 
-		Optional<MatchedSectionDescriptor> descriptor;
+		// This is the 'MatchedSectionDescriptor' that we will return in case we find the Section to be applicable
+		//
+		MatchedSectionDescriptor descriptor = new MatchedSectionDescriptor();
+		descriptor.setAssociatedSourceModelElement(element);
+		descriptor.setAssociatedSourceSectionClass(section);
 
 		// check if the section itself is applicable
 		//
-		descriptor = this.checkClass(element, Optional.empty(), section, null);
+		boolean result = this.checkClass(element, section, descriptor);
 
-		if (descriptor.isPresent() && section.getContainer() != null) {
+		if (result && section.getContainer() != null) {
 
 			if (element.eContainer() == null) {
 				return Optional.empty();
 			}
 
 			ContainerDependency containerDependency = new ContainerDependency();
-			containerDependency.setDependencySource(descriptor.get());
+			containerDependency.setDependencySource(descriptor);
 			containerDependency.setSourceModelElements(Arrays.asList(element.eContainer()));
 			containerDependency.setSourceSectionClasses(Arrays.asList(section.getContainer()));
-			descriptor.get().addMatchingDependency(containerDependency);
+			descriptor.addMatchingDependency(containerDependency);
 		}
 
-		return descriptor;
+		return result ? Optional.of(descriptor) : Optional.empty();
 	}
 
 	/**
@@ -648,26 +646,16 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	 *
 	 * @param srcModelObject
 	 *            The element of the source model that is currently evaluated for applicability.
-	 * @param reference
-	 *            If this is called as part of the check for another {@link SourceSectionClass}, this holds the
-	 *            {@link EReference} referencing the given <em>srcModelObject</em>. This will be an empty optional if
-	 *            this is either the <em>root</em> call to <em>checkSection</em> or if called for a
-	 *            {@link VirtualReference}.
 	 * @param srcSection
 	 *            The {@link SourceSectionClass} (either the sourceMMSection itself or a direct or indirect child of it)
 	 *            that is currently checked.
 	 * @param descriptor
-	 *            The {@link MatchedSectionDescriptor} for the parent {@link SourceSectionClass element}.
-	 *
+	 *            The {@link MatchedSectionDescriptor} representing the current matching step.
 	 * @return The {@link MatchedSectionDescriptor} representing the matched section (including all matched child
 	 *         elements).
 	 */
-	private Optional<MatchedSectionDescriptor> checkClass(final EObject srcModelObject, Optional<EReference> reference,
-			final SourceSectionClass srcSection, final MatchedSectionDescriptor parentDescriptor) {
-
-		// This will be returned in the end
-		//
-		MatchedSectionDescriptor descriptor;
+	private boolean checkClass(final EObject srcModelObject, final SourceSectionClass srcSection,
+			final MatchedSectionDescriptor descriptor) {
 
 		this.checkCanceled();
 
@@ -679,26 +667,8 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 				: NullComparator.compare(srcSection.getEClass(), srcModelObject.eClass());
 
 		if (!classFits) {
-			return Optional.empty();
+			return false;
 		}
-
-		// this is the 'MatchedSectionDescriptor' that we will return this in
-		// case we find the mapping to be applicable
-		// else we return null
-		//
-		descriptor = new MatchedSectionDescriptor();
-		descriptor.setAssociatedSourceModelElement(srcModelObject);
-		descriptor.setAssociatedSourceSectionClass(srcSection);
-
-		// set the list of source model objects that have been mapped.
-		// first, add all mapped objects from 'changedRefsAndHints' ...
-		// FIXME we do not need this any longer, do we?
-		if (parentDescriptor != null && reference.isPresent() && reference.get().isContainment()
-				&& reference.get() instanceof CompositeReference<?, ?, ?, ?>) {
-			descriptor.add(parentDescriptor);
-		}
-		// ..., then add the current srcModelObject
-		descriptor.addSourceModelObjectMapped(srcModelObject, srcSection);
 
 		/*
 		 * check if all attributes are present and valid
@@ -706,7 +676,7 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 		boolean attributesOk = this.checkAttributes(srcModelObject, srcSection);
 
 		if (!attributesOk) {
-			return Optional.empty();
+			return false;
 		}
 
 		/*
@@ -715,23 +685,10 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 		 */
 		boolean referencesOk = this.checkReferences(srcModelObject, srcSection, descriptor);
 
-		if (!referencesOk) {
-			return Optional.empty();
-		}
+		// ..., then add the current srcModelObject
+		descriptor.addSourceModelObjectMapped(srcModelObject, srcSection);
 
-		// set the associated container descriptor if the element is checked as
-		// part of a containment reference check
-		//
-		if (parentDescriptor != null && reference.isPresent() && reference.get().isContainment()) {
-			// FIXME we do not need this any longer, do we?
-			descriptor.setContainerDescriptor(parentDescriptor);
-		}
-
-		if (parentDescriptor != null) {
-			descriptor.getMatchingDependencies().stream().forEach(parentDescriptor::addMatchingDependency);
-		}
-
-		return Optional.of(descriptor);
+		return referencesOk;
 
 	}
 
@@ -742,8 +699,8 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	 * checked. <br />
 	 * <b>Note:</b> For every {@link SourceSectionClass class} that is referenced by a modeled
 	 * {@link SourceSectionReference reference}, this calls
-	 * {@link #checkClass(EObject, boolean, SourceSectionClass, MatchedSectionDescriptor)} so that we iteratively go
-	 * through the complete hierarchy of the modeled section.
+	 * {@link #checkClass(EObject, SourceSectionClass, MatchedSectionDescriptor)} so that we iteratively go through the
+	 * complete hierarchy of the modeled section.
 	 *
 	 * @param srcModelObject
 	 *            The object to be checked.
@@ -752,7 +709,7 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	 *            {@link MatchedSectionDescriptor} for the {@link SourceSection} to be evaluated. Note: The same
 	 *            instance will be used for the SourceSection and all child SourceSectionClasses.
 	 * @param descriptor
-	 *            The {@link MatchedSectionDescriptor} for the {@link SourceSectionClass} to be evaluated.
+	 *            The {@link MatchedSectionDescriptor} representing the current matching step.
 	 * @param refByClassMap
 	 *            A map that collects all {@link SourceSectionReference SourceSectionReferences} and the
 	 *            {@link SourceSectionClass} that they are contained in.
@@ -840,7 +797,7 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	 * reference can be matched for the given {@link MatchedSectionDescriptor} representing the referencing element.
 	 * <p />
 	 * Note: This iterates further downward in the containment hierarchy by calling
-	 * {@link #checkClass(EObject, boolean, SourceSectionClass, MatchedSectionDescriptor)}.
+	 * {@link #checkClass(EObject, SourceSectionClass, MatchedSectionDescriptor)}.
 	 *
 	 * @param referencedElement
 	 *            The {@link EObject element} to check.
@@ -913,11 +870,7 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 			return false;
 		}
 
-		if (necessaryTargetClasses.size() > referencedElements.size()) {
-			return false;
-		}
-
-		return true;
+		return necessaryTargetClasses.size() <= referencedElements.size();
 
 	}
 
@@ -952,7 +905,6 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 		// First, try to match all of the necessary target classes. If any unmatched elements remain after this,
 		// try to match the optional target classes.
 		//
-		List<MatchedSectionDescriptor> childDescriptors = new ArrayList<>();
 		List<EObject> remainingReferencedElements = new ArrayList<>(referencedElements);
 
 		for (SourceSectionClass targetClass : Stream
@@ -973,11 +925,9 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 
 				// iterate further
 				//
-				Optional<MatchedSectionDescriptor> childDescriptor = this.checkClass(referencedElement,
-						Optional.of(reference.getEReference()), targetClass, descriptor);
+				boolean result = this.checkClass(referencedElement, targetClass, descriptor);
 
-				if (childDescriptor.isPresent()) {
-					childDescriptors.add(childDescriptor.get());
+				if (result) {
 					remainingReferencedElements.remove(referencedElement);
 					targetClassMatched = true;
 
@@ -994,12 +944,6 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 			if (!targetClassMatched && necessaryTargetClasses.contains(targetClass)) {
 				return false;
 			}
-		}
-
-		for (MatchedSectionDescriptor childDescriptor : childDescriptors) {
-			// Update the given parent descriptor
-			//
-			descriptor.add(childDescriptor);
 		}
 
 		// Update the list of referenced elements that need to be matched via another SourceSecitonReference

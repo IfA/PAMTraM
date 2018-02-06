@@ -215,7 +215,7 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 			if (selectedLocalRegistry == null) {
 				this.logger.severe(() -> "Internal error while matching the source model element '"
 						+ descriptor.getAssociatedSourceModelElement().toString() + "' against the SourceSection '"
-						+ descriptor.getAssociatedSourceSectionClass().getName() + "'!");
+						+ descriptor.getAssociatedSourceSection().getName() + "'!");
 				continue;
 			}
 

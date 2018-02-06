@@ -25,22 +25,22 @@ import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.source.SourceSectionReference;
 
 /**
- * Class for storing matched a part of a source model that has been matched against a {@link SourceSection}.
- * <p>
- * Objects of this class can be seen as instances of a source sections.
+ * Instances of this class represent a part of a source model that has been matched against a {@link SourceSection}.
+ * Thus, each instance represents an application point for/instance of a mapping (in later stages of a transformation,
+ * this is reflected by a specified {@link #associatedMappingInstance}.
  *
  * @author mfreund
  */
 public class MatchedSectionDescriptor {
 
 	/**
-	 * The root {@link SourceSectionClass} that is associated with this descriptor.
+	 * The {@link SourceSection} that is associated with this descriptor.
 	 */
-	protected SourceSectionClass associatedSourceSectionClass;
+	protected SourceSection associatedSourceSection;
 
 	/**
 	 * The root {@link EObject} that is associated with this descriptor. This is an instance of the
-	 * {@link #associatedSourceSectionClass}.
+	 * {@link #associatedSourceSection}.
 	 */
 	protected EObject associatedSourceModelElement;
 
@@ -49,11 +49,11 @@ public class MatchedSectionDescriptor {
 	 * {@link SourceSectionClass}.
 	 * <p />
 	 * Note: This contains only the elements that have been matched <em>directly</em> as part of the
-	 * {@link #associatedSourceSectionClass}. This means that this contains neither elements that have been matched as
-	 * part of a <em>container</em> nor elements that have been matched as part of the evaluation of a
-	 * {@link SectionCrossReference}.
+	 * {@link #associatedSourceSection}. This means that this contains neither elements that have been matched as part
+	 * of a {@link SourceSection#getContainer() container} nor elements that have been matched as part of the evaluation
+	 * of a {@link SectionCrossReference}.
 	 */
-	protected LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSourceModelObjets;
+	protected LinkedHashMap<SourceSectionClass, Set<EObject>> matchedSourceModelObjects;
 
 	/**
 	 * This keeps track of the {@link MatchedSectionDescriptor} that represents the {@link EObject#eContainer()} of the
@@ -87,32 +87,32 @@ public class MatchedSectionDescriptor {
 	 */
 	public MatchedSectionDescriptor() {
 
-		this.matchedSourceModelObjets = new LinkedHashMap<>();
+		this.matchedSourceModelObjects = new LinkedHashMap<>();
 		this.associatedSourceModelElement = null;
-		this.associatedSourceSectionClass = null;
+		this.associatedSourceSection = null;
 		this.referencedDescriptors = new LinkedHashMap<>();
 		this.matchingDependencies = new ArrayList<>();
 	}
 
 	/**
-	 * This sets the {@link #associatedSourceSectionClass}.
+	 * This sets the {@link #associatedSourceSection}.
 	 *
-	 * @param associatedSourceSectionClass
+	 * @param associatedSourceSection
 	 *            The {@link SourceSectionClass} that is associated with this descriptor.
 	 */
-	public void setAssociatedSourceSectionClass(SourceSectionClass associatedSourceSectionClass) {
+	public void setAssociatedSourceSectionClass(SourceSection associatedSourceSection) {
 
-		this.associatedSourceSectionClass = associatedSourceSectionClass;
+		this.associatedSourceSection = associatedSourceSection;
 	}
 
 	/**
-	 * This returns the {@link #associatedSourceSectionClass}.
+	 * This returns the {@link #associatedSourceSection}.
 	 *
 	 * @return The {@link SourceSectionClass} that is associated with this descriptor.
 	 */
-	public SourceSectionClass getAssociatedSourceSectionClass() {
+	public SourceSection getAssociatedSourceSection() {
 
-		return this.associatedSourceSectionClass;
+		return this.associatedSourceSection;
 	}
 
 	/**
@@ -137,10 +137,10 @@ public class MatchedSectionDescriptor {
 	}
 
 	/**
-	 * This returns the {@link #matchedSourceModelObjets}.
+	 * This returns the {@link #matchedSourceModelObjects}.
 	 * <p />
-	 * Note: The returned map is a clone of the {@link #matchedSourceModelObjets} so that changes to this map will not
-	 * affect the {@link #matchedSourceModelObjets}.
+	 * Note: The returned map is a clone of the {@link #matchedSourceModelObjects} so that changes to this map will not
+	 * affect the {@link #matchedSourceModelObjects}.
 	 *
 	 * @param includeReferenced
 	 *            If this is set to '<em>true</em>', the returned map will also contain the matched elements of all
@@ -157,7 +157,7 @@ public class MatchedSectionDescriptor {
 
 		// Merge and return the maps returned by calling 'getMatchedSourceModelObjects' for each of the descriptors
 		//
-		return descriptorsToConsider.stream().flatMap(d -> d.matchedSourceModelObjets.entrySet().stream())
+		return descriptorsToConsider.stream().flatMap(d -> d.matchedSourceModelObjects.entrySet().stream())
 				.collect(Collectors.toMap(Entry::getKey, e -> new LinkedHashSet<>(e.getValue()), (v1, v2) -> {
 					v1.addAll(v2);
 					return v1;
@@ -165,7 +165,7 @@ public class MatchedSectionDescriptor {
 	}
 
 	/**
-	 * From the {@link #matchedSourceModelObjets}, return those elements that have been matched against the given
+	 * From the {@link #matchedSourceModelObjects}, return those elements that have been matched against the given
 	 * {@link SourceSectionClass}.
 	 * <p />
 	 * Note: If the given {@link SourceSectionClass} is an abstract {@link SourceSection}, the elements that have been
@@ -217,10 +217,10 @@ public class MatchedSectionDescriptor {
 	 */
 	public void addSourceModelObjectMapped(final EObject element, final SourceSectionClass srcSectionClass) {
 
-		if (!this.matchedSourceModelObjets.containsKey(srcSectionClass)) {
-			this.matchedSourceModelObjets.put(srcSectionClass, new LinkedHashSet<EObject>());
+		if (!this.matchedSourceModelObjects.containsKey(srcSectionClass)) {
+			this.matchedSourceModelObjects.put(srcSectionClass, new LinkedHashSet<EObject>());
 		}
-		this.matchedSourceModelObjets.get(srcSectionClass).add(element);
+		this.matchedSourceModelObjects.get(srcSectionClass).add(element);
 
 	}
 
@@ -235,10 +235,10 @@ public class MatchedSectionDescriptor {
 
 		for (final Entry<SourceSectionClass, Set<EObject>> entry : refs.entrySet()) {
 
-			if (!this.matchedSourceModelObjets.containsKey(entry.getKey())) {
-				this.matchedSourceModelObjets.put(entry.getKey(), new LinkedHashSet<EObject>());
+			if (!this.matchedSourceModelObjects.containsKey(entry.getKey())) {
+				this.matchedSourceModelObjects.put(entry.getKey(), new LinkedHashSet<EObject>());
 			}
-			this.matchedSourceModelObjets.get(entry.getKey()).addAll(entry.getValue());
+			this.matchedSourceModelObjects.get(entry.getKey()).addAll(entry.getValue());
 		}
 	}
 
@@ -251,7 +251,7 @@ public class MatchedSectionDescriptor {
 	 */
 	public boolean containsSourceModelObjectMapped(final EObject element) {
 
-		return this.matchedSourceModelObjets.values().parallelStream().anyMatch(s -> s.contains(element));
+		return this.matchedSourceModelObjects.values().parallelStream().anyMatch(s -> s.contains(element));
 	}
 
 	/**
@@ -371,7 +371,7 @@ public class MatchedSectionDescriptor {
 
 	/**
 	 * From the given list of {@link MatchedSectionDescriptor descriptors}, select the one that
-	 * {@link MatchedSectionDescriptor#matchedSourceModelObjets represents} the given {@link EObject}.
+	 * {@link MatchedSectionDescriptor#matchedSourceModelObjects represents} the given {@link EObject}.
 	 *
 	 * @param element
 	 *            The {@link EObject} for that the corresponding {@link MatchedSectionDescriptor} shall be returned.
@@ -394,7 +394,7 @@ public class MatchedSectionDescriptor {
 	public String toString() {
 
 		return new StringBuilder("MatchedSectionDescriptor : (\n").append("\tassociatedSourceSectionClass: ")
-				.append(this.associatedSourceSectionClass).append("\n\tassociatedSourceModelElement: ")
+				.append(this.associatedSourceSection).append("\n\tassociatedSourceModelElement: ")
 				.append(this.associatedSourceModelElement).append("\n)").toString();
 	}
 

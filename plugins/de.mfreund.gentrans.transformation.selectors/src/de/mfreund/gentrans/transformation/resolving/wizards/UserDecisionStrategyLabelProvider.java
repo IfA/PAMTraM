@@ -24,7 +24,7 @@ public class UserDecisionStrategyLabelProvider extends LabelProvider {
 	public String getText(Object element) {
 
 		if (element instanceof MatchedSectionDescriptor) {
-			return ((MatchedSectionDescriptor) element).getAssociatedSourceSectionClass().getName();
+			return ((MatchedSectionDescriptor) element).getAssociatedSourceSection().getName();
 		} else if (element instanceof Mapping) {
 			return ((Mapping) element).getName();
 		} else if (element instanceof EClass) {

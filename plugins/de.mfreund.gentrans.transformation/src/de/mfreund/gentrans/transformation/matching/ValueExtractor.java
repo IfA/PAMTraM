@@ -142,9 +142,9 @@ public abstract class ValueExtractor extends CancelableTransformationAsset {
 					break;
 				}
 
-			} while (!(sourceDescriptor.getAssociatedSourceSectionClass()
+			} while (!(sourceDescriptor.getAssociatedSourceSection()
 					.equals(mappingHintSourceElementProvidingSection)
-					|| sourceDescriptor.getAssociatedSourceSectionClass().getContainingSection().getAllExtend()
+					|| sourceDescriptor.getAssociatedSourceSection().getContainingSection().getAllExtend()
 							.contains(mappingHintSourceElementProvidingSection)));
 
 			if (sourceDescriptor != null) {

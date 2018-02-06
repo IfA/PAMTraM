@@ -121,7 +121,7 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 		// We use the concatenated names of all sections in the list of choices
 		// as key
 		//
-		String key = String.join(";", choices.parallelStream().map(m -> m.getAssociatedSourceSectionClass().getName())
+		String key = String.join(";", choices.parallelStream().map(m -> m.getAssociatedSourceSection().getName())
 				.sorted().collect(Collectors.toList()));
 
 		IDialogSettings choicesSection = DialogSettings.getOrCreateSection(this.mappingSection, key);
@@ -131,8 +131,8 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 		//
 		return choices.parallelStream()
 				.sorted((o1, o2) -> StatisticsResolvingStrategy.this
-						.getCount(choicesSection, o2.getAssociatedSourceSectionClass().getName())
-						.compareTo(this.getCount(choicesSection, o1.getAssociatedSourceSectionClass().getName())))
+						.getCount(choicesSection, o2.getAssociatedSourceSection().getName())
+						.compareTo(this.getCount(choicesSection, o1.getAssociatedSourceSection().getName())))
 				.collect(Collectors.toList());
 
 	}
@@ -143,16 +143,16 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 		// We use the concatenated names of all sections in the list of choices
 		// as key
 		//
-		String key = String.join(";", choices.parallelStream().map(m -> m.getAssociatedSourceSectionClass().getName())
+		String key = String.join(";", choices.parallelStream().map(m -> m.getAssociatedSourceSection().getName())
 				.sorted().collect(Collectors.toList()));
 
 		IDialogSettings choicesSection = DialogSettings.getOrCreateSection(this.mappingSection, key);
 
 		// The previous count for the given selected choice
 		//
-		int count = this.getCount(choicesSection, resolved.getAssociatedSourceSectionClass().getName());
+		int count = this.getCount(choicesSection, resolved.getAssociatedSourceSection().getName());
 
-		choicesSection.put(resolved.getAssociatedSourceSectionClass().getName(), ++count);
+		choicesSection.put(resolved.getAssociatedSourceSection().getName(), ++count);
 
 	}
 

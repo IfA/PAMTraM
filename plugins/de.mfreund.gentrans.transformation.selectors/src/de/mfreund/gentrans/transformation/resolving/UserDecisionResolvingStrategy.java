@@ -83,7 +83,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 
 		MatchedSectionDescriptor result = DialogFactory.createAndExecuteSearchingSelectSectionDialog(choices, element);
 
-		this.printMessage(result.getAssociatedSourceSectionClass().getName(),
+		this.printMessage(result.getAssociatedSourceSection().getName(),
 				UserDecisionResolvingStrategy.userDecisionPrefix);
 
 		return Arrays.asList(result);

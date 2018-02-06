@@ -514,9 +514,9 @@ public class ConditionHandler extends TransformationAsset {
 			// determined 'descriptors' themselves
 			//
 			MatchedSectionDescriptor descriptorToConsider = matchedSectionDescriptor;
-			while (!descriptorToConsider.getAssociatedSourceSectionClass().getContainingSection()
+			while (!descriptorToConsider.getAssociatedSourceSection().getContainingSection()
 					.equals(affectedSection)
-					&& !descriptorToConsider.getAssociatedSourceSectionClass().getContainingSection().getAllExtend()
+					&& !descriptorToConsider.getAssociatedSourceSection().getContainingSection().getAllExtend()
 							.contains(affectedSection)) {
 
 				if (descriptorToConsider.getContainerDescriptor() == null) {

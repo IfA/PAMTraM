@@ -215,12 +215,12 @@ public class MatchedSectionRegistry {
 	 *            The {@link MatchedSectionDescriptor} to register.
 	 * @return '<em>true</em>' if the descriptor was successfully registered (or if it was registered before);
 	 *         '<em>false</em>' if the registry already contained the descriptor or one of its elements or if the
-	 *         {@link MatchedSectionDescriptor#getAssociatedSourceSectionClass() associated SourceSectionClass} was not
+	 *         {@link MatchedSectionDescriptor#getAssociatedSourceSection() associated SourceSectionClass} was not
 	 *         a {@link SourceSectionClass}.
 	 */
 	public synchronized boolean register(MatchedSectionDescriptor descriptor) {
 
-		SourceSectionClass section = descriptor.getAssociatedSourceSectionClass();
+		SourceSectionClass section = descriptor.getAssociatedSourceSection();
 
 		if (!(section instanceof SourceSection)) {
 			this.logger.severe(() -> "Internal Error: Unable to register the MatchedSectionDescriptor '" + descriptor
@@ -228,7 +228,7 @@ public class MatchedSectionRegistry {
 			return false;
 		}
 
-		if (this.get((SourceSection) descriptor.getAssociatedSourceSectionClass()).contains(descriptor)) {
+		if (this.get((SourceSection) descriptor.getAssociatedSourceSection()).contains(descriptor)) {
 			// The descriptor was already registered
 			//
 			return true;

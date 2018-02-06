@@ -193,7 +193,7 @@ public class MappingInstanceDescriptor {
 	 */
 	public SourceSectionClass getAssociatedSourceClass() {
 
-		return this.matchedSectionDescriptor.getAssociatedSourceSectionClass();
+		return this.matchedSectionDescriptor.getAssociatedSourceSection();
 	}
 
 	/**
@@ -512,7 +512,7 @@ public class MappingInstanceDescriptor {
 
 		return new StringBuilder("MappingInstanceStorage : (\n").append("\tmapping: ").append(this.mapping)
 				.append("\n\tassociatedSourceSectionClass: ")
-				.append(this.matchedSectionDescriptor.getAssociatedSourceSectionClass())
+				.append(this.matchedSectionDescriptor.getAssociatedSourceSection())
 				.append("\n\tassociatedSourceModelElement: ")
 				.append(this.matchedSectionDescriptor.getAssociatedSourceModelElement()).append("\n)").toString();
 	}

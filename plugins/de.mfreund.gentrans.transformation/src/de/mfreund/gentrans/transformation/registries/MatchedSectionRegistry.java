@@ -235,6 +235,7 @@ public class MatchedSectionRegistry {
 		}
 
 		if (descriptor.getMatchedSourceModelObjectFlat(false).stream().anyMatch(this::contains)) {
+
 			this.logger.severe(() -> "Internal Error: Unable to register the MatchedSectionDescriptor '" + descriptor
 					+ "' as at least one of the represented elements is already registered in this registry!");
 			return false;

@@ -192,7 +192,7 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 			//
 			Map<MatchedSectionDescriptor, MatchedSectionRegistry> localRegistries = this
 					.checkPotentialDescriptorDependencies(element.get(), potentialMatches,
-							this.matchedSectionRegistry.clone());
+							new MatchedSectionRegistry(this.assetManager));
 
 			if (localRegistries.isEmpty()) {
 				// None of the potential descriptors was really applicable
@@ -245,6 +245,9 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 			}
 
 			containmentTree.markAsMatched(new HashSet<>(selectedLocalRegistry.getRegisteredElements()));
+
+			System.out.println(selectedLocalRegistry.getRegisteredElements().size());
+			System.out.println(containmentTree.getNumberOfAvailableElements());
 
 		}
 
@@ -302,6 +305,8 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	 */
 	private Map<SourceSection, MatchedSectionDescriptor> findPotentialApplicableSections(final EObject element,
 			final List<SourceSection> sourceSections) {
+
+		this.checkCanceled();
 
 		/*
 		 * This keeps track of all found possible sections (a MatchedSectionDescriptor is created for every applicable
@@ -405,8 +410,9 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	 *            to determine possible solutions for each dependency.
 	 * @param localRegistry
 	 *            A {@link MatchedSectionRegistry} containing those {@link MatchedSectionDescriptor descriptors} that
-	 *            have already been registered (this is required to prevent endless recursion in case of cyclic cross
-	 *            references between Sections).
+	 *            have already been registered in the current recursive check (this is required to prevent endless
+	 *            recursion in case of cyclic cross references between Sections). This may be an empty registry if this
+	 *            is called for the root element of a dependency check.
 	 * @return A list of {@link MatchedSectionDescriptor descriptors} that are applicable (for that each dependency
 	 *         could successfully be resolved) as well as associated {@link MatchedSectionRegistry
 	 *         MatchedSectionRegistrys} that represent all descriptors that have to be applied if the associated
@@ -414,6 +420,8 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	 */
 	private Map<MatchedSectionDescriptor, MatchedSectionRegistry> checkPotentialDescriptorDependencies(EObject element,
 			Map<EObject, List<MatchedSectionDescriptor>> allPotentialMatches, MatchedSectionRegistry localRegistry) {
+
+		this.checkCanceled();
 
 		// All of the potential MatchedSectionDescriptors that we need to consider. As we must not only consider those
 		// descriptors specifying the given element as their 'associatedSourceModelElement' but also all descriptors
@@ -440,6 +448,11 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 				// solution.
 				//
 				localRegistryVariations.put(potentialDescriptor, updatedLocalRegistryClone.get());
+			} else {
+
+				// We can delete the descriptor from the list of potential matches as it is not applicable
+				//
+				allPotentialMatches.get(element).remove(potentialDescriptor);
 			}
 
 		}
@@ -462,8 +475,9 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	 *            This is consulted to determine possible solutions for each dependency.
 	 * @param localRegistry
 	 *            A {@link MatchedSectionRegistry} containing those {@link MatchedSectionDescriptor descriptors} that
-	 *            have already been registered (this is required to prevent endless recursion in case of cyclic cross
-	 *            references between Sections).
+	 *            have already been registered in the current recursive check (this is required to prevent endless
+	 *            recursion in case of cyclic cross references between Sections). This may be an empty registry if this
+	 *            is called for the root element of a dependency check.
 	 * @return A {@link MatchedSectionRegistry MatchedSectionRegistrys} that represents all descriptors that have to be
 	 *         applied if the given {@link MatchedSectionDescriptor potentialDescriptor} would be applied or an empty
 	 *         Optional if the given {@link MatchedSectionDescriptor potentialDescriptor} is not applicable.
@@ -471,6 +485,15 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	private Optional<MatchedSectionRegistry> checkPotentialDescriptorDependencies(
 			MatchedSectionDescriptor potentialDescriptor, Map<EObject, List<MatchedSectionDescriptor>> potentialMatches,
 			MatchedSectionRegistry localRegistry) {
+
+		// Check if any of the elements represented by the given potential descriptor is already registered (as part of
+		// another descriptor) either in the global or in the local registry. As we must not register elements multiple
+		// times, we cannot use the potential descriptor in such cases,
+		//
+		if (potentialDescriptor.getMatchedSourceModelObjectFlat(false).stream()
+				.anyMatch(e -> localRegistry.contains(e) || this.matchedSectionRegistry.contains(e))) {
+			return Optional.empty();
+		}
 
 		// We need to create a clone of the localRegistry so that we are able to throw away
 		// preliminary (assuming) registrations that in later steps of the resolution process turn out to be erroneous
@@ -519,6 +542,23 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 		MatchedSectionRegistry currentLocalRegistry = localRegistry;
 
 		for (EObject dependencyElement : dependency.getSourceModelElements()) {
+
+			// Check if the element was already registered in the global registry.
+			//
+			Optional<MatchedSectionDescriptor> globalDescriptor = this.matchedSectionRegistry
+					.getRegisteredDescriptorFor(dependencyElement);
+
+			if (globalDescriptor.isPresent()) {
+
+				if (dependency.getSourceSectionClasses().stream().anyMatch(c -> globalDescriptor.get()
+						.getMatchedSourceModelElementsFor(c, false).contains(dependencyElement))) {
+
+					continue;
+				} else {
+
+					return false;
+				}
+			}
 
 			// In order to prevent endless recursion, we need to check if the element was already registered in the
 			// given registry.
@@ -670,6 +710,7 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 
 		// set the list of source model objects that have been mapped.
 		// first, add all mapped objects from 'changedRefsAndHints' ...
+		// FIXME we do not need this any longer, do we?
 		if (parentDescriptor != null && reference.isPresent() && reference.get().isContainment()
 				&& reference.get() instanceof CompositeReference<?, ?, ?, ?>) {
 			descriptor.add(parentDescriptor);
@@ -700,7 +741,12 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 		// part of a containment reference check
 		//
 		if (parentDescriptor != null && reference.isPresent() && reference.get().isContainment()) {
+			// FIXME we do not need this any longer, do we?
 			descriptor.setContainerDescriptor(parentDescriptor);
+		}
+
+		if (parentDescriptor != null) {
+			descriptor.getMatchingDependencies().stream().forEach(parentDescriptor::addMatchingDependency);
 		}
 
 		return Optional.of(descriptor);

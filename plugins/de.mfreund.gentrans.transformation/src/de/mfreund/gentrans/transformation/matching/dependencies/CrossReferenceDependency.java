@@ -54,6 +54,8 @@ public class CrossReferenceDependency extends MatchingDependency {
 		boolean ret = super.resolve(resolvedBy);
 
 		if (ret) {
+			// FIXME 'getDependecySource' does not return the correct descriptor if the dependency is not based on the
+			// root element of a source section
 			resolvedBy.stream().forEach(d -> this.getDependencySource().addReferencedDescriptor(this.reference, d));
 		}
 

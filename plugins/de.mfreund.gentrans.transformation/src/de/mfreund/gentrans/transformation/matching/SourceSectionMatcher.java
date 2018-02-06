@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -306,20 +307,12 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	private Map<SourceSection, MatchedSectionDescriptor> findPotentialApplicableSections(final EObject element,
 			final List<SourceSection> sourceSections) {
 
-		this.checkCanceled();
+		// Iterate over all sections and find those that are applicable for the current 'element'.
+		//
+		return sourceSections.stream().map(section -> this.isApplicable(section, element)).filter(Optional::isPresent)
+				.map(Optional::get).collect(Collectors.toMap(d -> (SourceSection) d.getAssociatedSourceSectionClass(),
+						Function.identity(), (oldEntry, newEntry) -> oldEntry, LinkedHashMap::new));
 
-		/*
-		 * This keeps track of all found possible sections (a MatchedSectionDescriptor is created for every applicable
-		 * Section).
-		 */
-		final Map<SourceSection, MatchedSectionDescriptor> applicableSections = new LinkedHashMap<>();
-
-		/*
-		 * Now, iterate over all sections and find those that are applicable for the current 'element'.
-		 */
-		sourceSections.stream().forEach(section -> this.isApplicable(section, element, applicableSections));
-
-		return applicableSections;
 	}
 
 	/**
@@ -609,24 +602,21 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	 * This checks if the given {@link SourceSection} is applicable for the given source model <em>element</em>.
 	 * Therefore, it first {@link #checkContainerSection(EObject, SourceSection) checks the container} and then the
 	 * {@link #checkClass(EObject, boolean, SourceSectionClass, MatchedSectionDescriptor) section itself}.
-	 * <p />
-	 * If the Section is applicable, this stores the result in the <em>applicableSections</em>.
 	 *
 	 * @param section
 	 *            The {@link SourceSection} to check.
 	 * @param element
 	 *            The {@link EObject} from the source model for that the applicability of the source section shall be
 	 *            determined.
-	 * @param applicableSections
-	 *            The map where applicable sections are stored.
-	 * @return '<em>true</em>' if the given {@link SourceSection} is applicable for the given {@link EObject} (and a
-	 *         corresponding entry was added to the <em>mappingData</em>); '<em>false</em>' otherwise.
+	 * @return An suitable preliminary {@link MatchedSectionDescriptor} if the given {@link SourceSection} is applicable
+	 *         for the given {@link EObject} or an empty optional if the given SourceSection was not applicable.
 	 */
-	private boolean isApplicable(SourceSection section, final EObject element,
-			final Map<SourceSection, MatchedSectionDescriptor> applicableSections) {
+	private Optional<MatchedSectionDescriptor> isApplicable(SourceSection section, final EObject element) {
+
+		this.checkCanceled();
 
 		if (!section.getEClass().isSuperTypeOf(element.eClass())) {
-			return false;
+			return Optional.empty();
 		}
 
 		Optional<MatchedSectionDescriptor> descriptor;
@@ -635,14 +625,10 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 		//
 		descriptor = this.checkClass(element, Optional.empty(), section, null);
 
-		if (!descriptor.isPresent()) {
-			return false;
-		}
-
-		if (section.getContainer() != null) {
+		if (descriptor.isPresent() && section.getContainer() != null) {
 
 			if (element.eContainer() == null) {
-				return false;
+				return Optional.empty();
 			}
 
 			ContainerDependency containerDependency = new ContainerDependency();
@@ -652,11 +638,7 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 			descriptor.get().addMatchingDependency(containerDependency);
 		}
 
-		// all checks were successful -> the section is applicable
-		//
-		applicableSections.put(section, descriptor.get());
-
-		return true;
+		return descriptor;
 	}
 
 	/**

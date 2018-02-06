@@ -107,14 +107,13 @@ public class ContainmentTree {
 	}
 
 	/**
-	 * Reset the current 'matching' status, i.e. clear the {@link #availableElements}, the {@link #matchedElements}, and
-	 * the {@link #unmatchedElements} and the {@link #currentElement}.
-	 * <p />
-	 * Note: This should be called before restarting/repeating the {@link #getNextElementForMatching() iteration
-	 * process}.
+	 * Reset this tree, i.e. clear the {@link #availableElements}, the {@link #matchedElements}, and the
+	 * {@link #unmatchedElements} and {@link #restartIteration() restart} the iteration process. process}.
 	 * <p />
 	 * Note: This will neither change the available {@link #sourceModels} nor {@link #buildContainmentTree(EObject)
 	 * rebuild} the list of {@link #availableElements}.
+	 *
+	 * @see #restartIteration()
 	 */
 	public void reset() {
 
@@ -122,6 +121,24 @@ public class ContainmentTree {
 		this.availableElements.addAll(this.elements);
 		this.matchedElements.clear();
 		this.unmatchedElements.clear();
+
+		this.restartIteration();
+	}
+
+	/**
+	 * Reset the current iteration status, i.e. clear the {@link #currentElement} so that the next call to
+	 * {@link #getNextElementForMatching()} will return the first element {@link #availableElements available} for
+	 * matching.
+	 * <p />
+	 * Note: This should be called before restarting/repeating the {@link #getNextElementForMatching() iteration
+	 * process}.
+	 * <p />
+	 * Note: This will not reset the {@link #matchedElements matched} and {@link #unmatchedElements unmatched} elements.
+	 *
+	 * @see #reset()
+	 */
+	public void restartIteration() {
+
 		this.currentElement = null;
 	}
 
@@ -152,15 +169,6 @@ public class ContainmentTree {
 	 */
 	public int getNumberOfAvailableElements() {
 
-		if (this.availableElements.isEmpty() && this.currentElement != null) {
-			/*
-			 * If this function is called and there are no available elements left, we assume that we have arrived at
-			 * the end of the matching process. Consequently, the 'current element' should be marked as unmatched if
-			 * necessary.
-			 */
-			this.unmatchedElements.add(this.currentElement);
-			this.currentElement = null;
-		}
 		return this.availableElements.size();
 	}
 
@@ -188,6 +196,9 @@ public class ContainmentTree {
 	 * This returns the next element that is still available for matching.
 	 * <p />
 	 * Note: Every element will be returned only once. Consequently, calling this twice will return different elements.
+	 *
+	 * @see #reset()
+	 * @see #restartIteration()
 	 *
 	 * @return The next element that is still available for matching (the returned optional will be empty if there is no
 	 *         next element).

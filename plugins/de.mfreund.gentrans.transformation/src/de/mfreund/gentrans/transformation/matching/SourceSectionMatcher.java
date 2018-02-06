@@ -1,5 +1,6 @@
 package de.mfreund.gentrans.transformation.matching;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -10,8 +11,10 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -174,12 +177,12 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 		// 'getNextElementForMatching' feature that will not return any elements that have already been marked as
 		// 'matched'.
 		//
-		containmentTree.reset();
+		containmentTree.restartIteration();
 		Optional<EObject> element;
 
 		while ((element = containmentTree.getNextElementForMatching()).isPresent()) {
 
-			if (!potentialMatches.containsKey(element.get())) {
+			if (potentialMatches.getOrDefault(element.get(), new ArrayList<>()).isEmpty()) {
 				continue;
 			}
 
@@ -266,27 +269,19 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	 *            shall be checked.
 	 * @param sourceSections
 	 *            The list of {@link SourceSection SourceSections} to consider as potentially applicable.
-	 * @return A
+	 * @return A map relating the elements of the source model with a list of potentially applicable
+	 *         {@link MatchedSectionDescriptor MatchedSectionDescriptors}. Note: Elements for that no applicable
+	 *         {@link MatchedSectionDescriptor MatchedSectionDescriptors} could be determined will be represented in the
+	 *         map by means of an empty list of descriptors!
 	 */
 	private Map<EObject, List<MatchedSectionDescriptor>> findPotentialApplicableSections(List<EObject> elements,
 			List<SourceSection> sourceSections) {
 
-		Map<EObject, List<MatchedSectionDescriptor>> potentialMatches = new LinkedHashMap<>();
+		return elements.parallelStream()
+				.map(e -> new AbstractMap.SimpleEntry<>(e, this.findPotentialApplicableSections(e, sourceSections)))
+				.filter(e -> !e.getValue().isEmpty()).collect(Collectors.toConcurrentMap(Entry::getKey, Entry::getValue,
+						(v1, v2) -> v2, ConcurrentHashMap::new));
 
-		for (EObject element : elements) {
-
-			// Get all 'potential' matches for the current element (they are only 'potential' because they may depend on
-			// one or more 'MatchingDependencies'
-			//
-			List<MatchedSectionDescriptor> applicableSections = this.findPotentialApplicableSections(element,
-					sourceSections);
-
-			if (!applicableSections.isEmpty()) {
-				potentialMatches.put(element, applicableSections);
-			}
-
-		}
-		return potentialMatches;
 	}
 
 	/**

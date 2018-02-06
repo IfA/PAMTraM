@@ -352,9 +352,6 @@
                       <references xsi:type="target:TargetSectionCrossReference" name="IncomingTransition" value="//@targetSectionModels.0/@sections.0/@references.0/@value.0/@references.0/@value.7/@references.0/@value.0/@references.0/@value.0">
                         <eReference href="http://stefan-hennig.de/movisa#//algorithm/Vertex/IncomingTransition"/>
                       </references>
-                      <references xsi:type="target:TargetSectionCrossReference" name="IncomingTransition" value="//@targetSectionModels.0/@sections.0/@references.0/@value.0/@references.0/@value.7/@references.0/@value.0/@references.0/@value.2">
-                        <eReference href="http://stefan-hennig.de/movisa#//algorithm/Vertex/IncomingTransition"/>
-                      </references>
                       <references xsi:type="target:TargetSectionCrossReference" name="OutgoingTransition" value="//@targetSectionModels.0/@sections.0/@references.0/@value.0/@references.0/@value.7/@references.0/@value.0/@references.0/@value.1">
                         <eReference href="http://stefan-hennig.de/movisa#//algorithm/Vertex/OutgoingTransition"/>
                       </references>

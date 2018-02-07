@@ -51,6 +51,7 @@ import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
 import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.source.SourceSectionCompositeReference;
+import pamtram.structure.source.SourceSectionCrossReference;
 import pamtram.structure.source.SourceSectionReference;
 import pamtram.structure.source.VirtualSourceSectionAttribute;
 import pamtram.util.NullComparator;
@@ -285,22 +286,30 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	}
 
 	/**
-	 * This determines and returns all applicable source sections for the given source model <em>element</em>.
+	 * This determines all {@link SourceSection SourceSections} that are <em> potentially</em> applicable for the given
+	 * source model <em>element</em>.
+	 * <p />
+	 * Note: <em>Potentially</em> applicable in this case means that the applicability of a SourceSection may be
+	 * {@link MatchingDependency dependent} on the applicability of one or multiple other combinations of elements and
+	 * SourceSections: This only checks the applicability of the direct content of the given {@link SourceSection} and
+	 * not the applicability of any other SourceSections referenced via {@link CrossReference CrossReferences}
 	 *
 	 * @param element
-	 *            The element from the source model for that the applicable source sections shall be determined.
+	 *            The {@link EObject element} from the source model for that the applicable {@link SourceSection
+	 *            SourceSections} shall be determined.
 	 * @param sourceSections
 	 *            The list of {@link SourceSection SourceSections} that the <em>element</em> shall be matched against.
 	 * @return A list of {@link MatchedSectionDescriptor MatchedSectionDescriptors} representing all
-	 *         {@link SourceSection SourceSections} that are applicable for the given {@link EObject}.
+	 *         {@link SourceSection SourceSections} that are applicable for the given {@link EObject} (one descriptor
+	 *         per applicable SourceSection).
 	 */
 	private List<MatchedSectionDescriptor> findPotentialApplicableSections(final EObject element,
 			final List<SourceSection> sourceSections) {
 
 		// Iterate over all sections and find those that are applicable for the current 'element'.
 		//
-		return sourceSections.stream().map(section -> this.isApplicable(section, element)).filter(Optional::isPresent)
-				.map(Optional::get).collect(Collectors.toList());
+		return sourceSections.stream().map(section -> this.isPotentiallyApplicable(section, element))
+				.filter(Optional::isPresent).map(Optional::get).collect(Collectors.toList());
 
 	}
 
@@ -411,7 +420,7 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 		// result for 'allPotentialMatches.get(element)'
 		//
 		List<MatchedSectionDescriptor> potentialDescriptors = allPotentialMatches.values().stream()
-				.flatMap(Collection::stream).filter(d -> d.containsSourceModelObjectMapped(element))
+				.flatMap(Collection::stream).filter(d -> d.containsSourceModelObject(element, false))
 				.collect(Collectors.toList());
 
 		// For each potential descriptors, build the resulting 'local registry' variation, i.e. the collection of
@@ -501,6 +510,9 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	 * <p />
 	 * Note: This check is performed recursively, i.e. not only for the given dependency but also for each of the
 	 * dependencies of the descriptors that is determined as resolution this dependency (and so on).
+	 * <p />
+	 * Note: All descriptors that have to be applied for the given dependency to be resolved are registered to the given
+	 * {@link MatchedSectionRegistry}.
 	 *
 	 * @param dependency
 	 *            The {@link MatchingDependency} to check.
@@ -511,9 +523,7 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	 *            A {@link MatchedSectionRegistry} containing those {@link MatchedSectionDescriptor descriptors} that
 	 *            have already been registered (this is required to prevent endless recursion in case of cyclic cross
 	 *            references between Sections).
-	 * @return A {@link MatchedSectionRegistry MatchedSectionRegistrys} that represents all descriptors that have to be
-	 *         applied if the given {@link MatchedSectionDescriptor potentialDescriptor} would be applied or an empty
-	 *         Optional if the given {@link MatchedSectionDescriptor potentialDescriptor} is not applicable.
+	 * @return '<em>true</em>' if the given dependency could be resolved; '<em>false</em> otherwise.
 	 */
 	private boolean checkDependency(MatchingDependency dependency,
 			Map<EObject, List<MatchedSectionDescriptor>> potentialMatches, MatchedSectionRegistry localRegistry) {
@@ -588,19 +598,23 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	}
 
 	/**
-	 * This checks if the given {@link SourceSection} is applicable for the given source model <em>element</em>.
-	 * Therefore, it first {@link #checkContainerSection(EObject, SourceSection) checks the container} and then the
-	 * {@link #checkClass(EObject, SourceSectionClass, MatchedSectionDescriptor) section itself}.
+	 * This checks if the given {@link SourceSection} is <em> potentially</em> applicable for the given source model
+	 * <em>element</em>.
+	 * <p />
+	 * Note: <em>Potentially</em> applicable in this case means that the applicability of a SourceSection may be
+	 * {@link MatchingDependency dependent} on the applicability of one or multiple other combinations of elements and
+	 * SourceSections: This only checks the applicability of the direct content of the given {@link SourceSection} and
+	 * not the applicability of any other SourceSections referenced via {@link CrossReference CrossReferences}
 	 *
 	 * @param section
 	 *            The {@link SourceSection} to check.
 	 * @param element
 	 *            The {@link EObject} from the source model for that the applicability of the source section shall be
 	 *            determined.
-	 * @return An suitable preliminary {@link MatchedSectionDescriptor} if the given {@link SourceSection} is applicable
+	 * @return A suitable preliminary {@link MatchedSectionDescriptor} if the given {@link SourceSection} is applicable
 	 *         for the given {@link EObject} or an empty optional if the given SourceSection was not applicable.
 	 */
-	private Optional<MatchedSectionDescriptor> isApplicable(SourceSection section, final EObject element) {
+	private Optional<MatchedSectionDescriptor> isPotentiallyApplicable(SourceSection section, final EObject element) {
 
 		this.checkCanceled();
 
@@ -635,9 +649,12 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	}
 
 	/**
-	 * This recursively checks if a {@link SourceSectionClass} is applicable for a certain part of the source model.
-	 * Therefore, it iterates downward in the containment hierarchy of the source section and checks if every element
-	 * can be matched to a part of the source model.
+	 * This recursively checks if a {@link SourceSectionClass} and all its direct and indirect contents are applicable
+	 * for a certain part of the source model. Therefore, it iterates downward in the containment hierarchy of the
+	 * {@link SourceSection} and checks if every element can be matched to a part of the source model.
+	 * <p />
+	 * For all {@link CrossReference CrossReferences} encountered during the iteration process, a suitable
+	 * {@link CrossReferenceDependency} is added to the <em>descriptor</em>.
 	 *
 	 * @param srcModelObject
 	 *            The element of the source model that is currently evaluated for applicability.
@@ -691,11 +708,9 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	 * This checks if all {@link SourceSectionReference references} that have been defined for a given
 	 * {@link SourceSectionClass} can be matched for the given '<em>srcModelObject</em>'. Therefore, all
 	 * {@link SourceSectionClass#getCardinality() cardinalities} of referenced {@link SourceSectionClass classes} are
-	 * checked. <br />
-	 * <b>Note:</b> For every {@link SourceSectionClass class} that is referenced by a modeled
-	 * {@link SourceSectionReference reference}, this calls
-	 * {@link #checkClass(EObject, SourceSectionClass, MatchedSectionDescriptor)} so that we iteratively go through the
-	 * complete hierarchy of the modeled section.
+	 * checked by redirecting to
+	 * {@link #checkCompositeReference(EObject, SourceSectionClass, MatchedSectionDescriptor, SourceSectionCompositeReference, List)}
+	 * or {@link #checkCrossReference(EObject, SourceSectionClass, MatchedSectionDescriptor, CrossReference, List)}.
 	 *
 	 * @param srcModelObject
 	 *            The object to be checked.
@@ -705,9 +720,6 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	 *            instance will be used for the SourceSection and all child SourceSectionClasses.
 	 * @param descriptor
 	 *            The {@link MatchedSectionDescriptor} representing the current matching step.
-	 * @param refByClassMap
-	 *            A map that collects all {@link SourceSectionReference SourceSectionReferences} and the
-	 *            {@link SourceSectionClass} that they are contained in.
 	 */
 	private boolean checkReferences(final EObject srcModelObject, final SourceSectionClass sourceSectionClass,
 			final MatchedSectionDescriptor descriptor) {
@@ -751,8 +763,7 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 			// Check if the elements referenced in the source model can be matched against one of the target classes
 			// defined for the reference
 			//
-			if (!this.checkCompositeReference(srcModelObject, sourceSectionClass, descriptor, compositeReference,
-					referencedElements)) {
+			if (!this.checkCompositeReference(descriptor, compositeReference, referencedElements)) {
 				return false;
 			}
 
@@ -778,8 +789,7 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 			// Check if the elements referenced in the source model can be matched against one of the target classes
 			// defined for the reference
 			//
-			if (!this.checkCrossReference(srcModelObject, sourceSectionClass, descriptor, crossReference,
-					referencedElements)) {
+			if (!this.checkCrossReference(descriptor, crossReference, referencedElements)) {
 				return false;
 			}
 		}
@@ -788,31 +798,16 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	}
 
 	/**
-	 * This checks if the given <em>refTargetObj</em> that is referenced by a {@link EReference#isMany() single-valued}
-	 * reference can be matched for the given {@link MatchedSectionDescriptor} representing the referencing element.
-	 * <p />
-	 * Note: This iterates further downward in the containment hierarchy by calling
-	 * {@link #checkClass(EObject, SourceSectionClass, MatchedSectionDescriptor)}.
+	 * This performs basic checks concerning the given list of <em>referencedElements</em> with respect to the
+	 * cardinality requirements of the given {@link SourceSectionReference}.
 	 *
-	 * @param referencedElement
-	 *            The {@link EObject element} to check.
-	 * @param descriptor
-	 *            The {@link MatchedSectionDescriptor} representing the {@link EObject} that references the given
-	 *            <em>refTargetObj</em>.
-	 * @param classes
-	 *            The list of {@link SourceSectionClass SourceSectionClasses} that have been modeled as target for the
-	 *            current reference to be checked (these are the potential matches for the given <em>refTargetObj</em>).
-	 * @param refByClassMap
-	 *            A map that collects all {@link SourceSectionClass SourceSectionClasses} and the
-	 *            {@link SourceSectionReference} that they are referenced by.
 	 * @param reference
 	 *            The {@link SourceSectionReference} to check.
-	 * @param sourceSectionClass
-	 *            The parent {@link SourceSectionClass} for which the references shall be checked.
+	 * @param referencedElements
+	 *            The {@link EObject elements} to check.
 	 * @return '<em><b>true</b></em>' if the check succeeded; '<em><b>false</b></em>' otherwise.
 	 */
-	private boolean basicCheckReference(final EObject parentElement, final SourceSectionClass parentSourceSectionClass,
-			final MatchedSectionDescriptor descriptor, final SourceSectionReference reference,
+	private boolean basicCheckReference(final SourceSectionReference reference,
 			final List<EObject> referencedElements) {
 
 		// The list of SourceSectionClasses that the 'referenceElements' need to be matched against
@@ -857,6 +852,7 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 			// modeling error: Multiple concrete target SourceSectionClasses with a lower bound of 'ONE' defined for
 			// a reference that can hold only one value
 			//
+			SourceSectionClass parentSourceSectionClass = reference.getOwningClass();
 			this.logger.severe(() -> "Modeling error in source section: '"
 					+ parentSourceSectionClass.getContainingSection().getName() + "', subsection: '"
 					+ parentSourceSectionClass.getName() + "'. The Reference '" + reference.getName()
@@ -870,16 +866,25 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	}
 
 	/**
+	 * This checks if the given list of <em>referencedElements</em> can be matched against the given
+	 * {@link SourceSectionCompositeReference}.
+	 * <p />
+	 * Note: During the check, this iterates downward in the containment hierarchy of the {@link SourceSection} and
+	 * checks if every of the given <em>referencedElements</em> can be
+	 * {@link #checkClass(EObject, SourceSectionClass, MatchedSectionDescriptor) matched}.
 	 *
-	 *
-	 * ${tags}
+	 * @param descriptor
+	 *            The {@link MatchedSectionDescriptor} representing the current matching step.
+	 * @param reference
+	 *            The {@link SourceSectionReference} to check.
+	 * @param referencedElements
+	 *            The {@link EObject elements} to check.
+	 * @return '<em><b>true</b></em>' if the check succeeded; '<em><b>false</b></em>' otherwise.
 	 */
-	private boolean checkCompositeReference(final EObject parentElement,
-			final SourceSectionClass parentSourceSectionClass, final MatchedSectionDescriptor descriptor,
+	private boolean checkCompositeReference(final MatchedSectionDescriptor descriptor,
 			final SourceSectionCompositeReference reference, final List<EObject> referencedElements) {
 
-		if (!this.basicCheckReference(parentElement, parentSourceSectionClass, descriptor, reference,
-				referencedElements)) {
+		if (!this.basicCheckReference(reference, referencedElements)) {
 			return false;
 		}
 
@@ -949,13 +954,28 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 		return remainingReferencedElements.isEmpty() || reference.isIgnoreUnmatchedElements();
 	}
 
-	private boolean checkCrossReference(final EObject parentElement, final SourceSectionClass parentSourceSectionClass,
-			final MatchedSectionDescriptor descriptor,
+	/**
+	 * This checks if the given list of <em>referencedElements</em> can be matched against the given
+	 * {@link SourceSectionCrossReference}.
+	 * <p />
+	 * Note: As the first part of the matching process is preliminary and does not try to
+	 * {@link #checkClass(EObject, SourceSectionClass, MatchedSectionDescriptor) match} the elements referenced via
+	 * {@link CrossReference CrossReference} this simply generates a corresponding {@link MatchingDependency} (after
+	 * calling {@link #basicCheckReference(SourceSectionReference, List)}.
+	 *
+	 * @param descriptor
+	 *            The {@link MatchedSectionDescriptor} representing the current matching step.
+	 * @param reference
+	 *            The {@link SourceSectionReference} to check.
+	 * @param referencedElements
+	 *            The {@link EObject elements} to check.
+	 * @return '<em><b>true</b></em>' if the check succeeded; '<em><b>false</b></em>' otherwise.
+	 */
+	private boolean checkCrossReference(final MatchedSectionDescriptor descriptor,
 			final CrossReference<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> reference,
 			final List<EObject> referencedElements) {
 
-		if (!this.basicCheckReference(parentElement, parentSourceSectionClass, descriptor,
-				(SourceSectionReference) reference, referencedElements)) {
+		if (!this.basicCheckReference((SourceSectionReference) reference, referencedElements)) {
 			return false;
 		}
 
@@ -1112,41 +1132,5 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 
 		return constraintVal;
 	}
-
-	// /**
-	// * Counts how often each {@link EObject source model element} is
-	// * {@link MatchedSectionDescriptor#getAssociatedSourceModelElement() referenced} by each
-	// * {@link MatchedSectionDescriptor} and returns one mapping result for the Object with the lowest count.
-	// *
-	// * @param possibleElements
-	// * The list of possible {@link MatchedSectionDescriptor MatchedSectionDescriptors} to evaluate.
-	// * @return The chosen {@link MatchedSectionDescriptor}.
-	// */
-	// private static MatchedSectionDescriptor getResultForLeastUsedSrcModelElement(
-	// final List<MatchedSectionDescriptor> possibleElements) {
-	//
-	// // count how often a sourceModel Element is mapped
-	// //
-	// final Map<EObject, Integer> usages = possibleElements.stream()
-	// .map(MatchedSectionDescriptor::getAssociatedSourceModelElement)
-	// .collect(Collectors.toConcurrentMap(element -> element, element -> 1, (i, j) -> i + j));
-	//
-	// Optional<Integer> leastUsage = usages.values().parallelStream().sorted().findFirst();
-	//
-	// if (!leastUsage.isPresent()) {
-	// return null;
-	// }
-	//
-	// // return the FIRST of the possible MatchedSectionDescriptors that
-	// // represents one of the least used elements (we
-	// // need to ensure a correct order at this point to match according to
-	// // the order of the modeled
-	// // SourceSectionClasses)
-	// //
-	// return possibleElements.stream()
-	// .filter(e -> usages.get(e.getAssociatedSourceModelElement()).intValue() == leastUsage.get()).findFirst()
-	// .orElseGet(null);
-	//
-	// }
 
 }

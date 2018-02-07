@@ -243,15 +243,39 @@ public class MatchedSectionDescriptor {
 	}
 
 	/**
-	 * Check if the given '<em>element</em>' has been mapped as part of this descriptor.
+	 * Check if the given '<em>element</em>' has been matched as part of this descriptor.
 	 *
 	 * @param element
 	 *            The {@link EObject element} that shall be checked.
-	 * @return '<em><b>true</b></em>' if the <em>element</em> has been mapped, ' <em><b>false</b></em>' otherwise.
+	 * @param includeReferenced
+	 *            If this is set to '<em>true</em>', the check will also consider the matched elements of all
+	 *            {@link #getReferencedDescriptorsRecursive() directly or indirectly referenced} descriptors.
+	 * @return '<em><b>true</b></em>' if the <em>element</em> has been matched, '<em><b>false</b></em>' otherwise.
 	 */
-	public boolean containsSourceModelObjectMapped(final EObject element) {
+	public boolean containsSourceModelObject(final EObject element, boolean includeReferenced) {
 
-		return this.matchedSourceModelObjects.values().parallelStream().anyMatch(s -> s.contains(element));
+		return this.getMatchedSourceModelObjectFlat(includeReferenced).contains(element);
+	}
+
+	/**
+	 * Check if the given '<em>element</em>' has been matched as part of this descriptor against any of the given
+	 * {@link SourceSectionClass SourceSectionClasses}.
+	 *
+	 * @param element
+	 *            The {@link EObject element} that shall be checked.
+	 * @param sourceSectionClasses
+	 *            The list of {@link SourceSectionClass SourceSectionClasses} to check. The {@link EObject element} that
+	 *            shall be checked.
+	 * @param includeReferenced
+	 *            If this is set to '<em>true</em>', the check will also consider the matched elements of all
+	 *            {@link #getReferencedDescriptorsRecursive() directly or indirectly referenced} descriptors.
+	 * @return '<em><b>true</b></em>' if the <em>element</em> has been matched, '<em><b>false</b></em>' otherwise.
+	 */
+	public boolean containsSourceModelObject(final EObject element, List<SourceSectionClass> sourceSectionClasses,
+			boolean includeReferenced) {
+
+		return sourceSectionClasses.parallelStream()
+				.anyMatch(c -> this.getMatchedSourceModelElementsFor(c, includeReferenced).contains(element));
 	}
 
 	/**

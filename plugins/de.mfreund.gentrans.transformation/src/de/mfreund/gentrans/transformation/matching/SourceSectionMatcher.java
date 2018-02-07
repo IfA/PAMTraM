@@ -1016,7 +1016,8 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 		//
 		return sourceSectionClass.getAllAttributes().stream().filter(a -> !a.getValueConstraints().isEmpty())
 				.allMatch(at -> {
-					List<Object> values = ValueExtractor.getAttributeValueAsList(srcModelObject, at, this.logger);
+					List<Object> values = this.assetManager.getModelTraversalUtil()
+							.getAttributeValueAsList(srcModelObject, at);
 					/*
 					 * Check if all the constraints are satisfied for every attribute value.
 					 */

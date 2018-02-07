@@ -28,7 +28,7 @@ import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.matching.GlobalAttributeValueExtractor;
 import de.mfreund.gentrans.transformation.matching.HintValueExtractor;
 import de.mfreund.gentrans.transformation.matching.MappingSelector;
-import de.mfreund.gentrans.transformation.matching.ModelTraversalUtil;
+import de.mfreund.gentrans.transformation.matching.ModelAccessUtil;
 import de.mfreund.gentrans.transformation.matching.SourceSectionMatcher;
 import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
 import de.mfreund.gentrans.transformation.registries.SelectedMappingRegistry;
@@ -114,9 +114,9 @@ public class TransformationAssetManager extends CancelableElement {
 	private TransformationConfiguration transformationConfig;
 
 	/**
-	 * The {@link ModelTraversalUtil} used to evaluate {@link Reference References} and {@link Attribute Attributes}.
+	 * The {@link ModelAccessUtil} used to evaluate {@link Reference References} and {@link Attribute Attributes}.
 	 */
-	private ModelTraversalUtil modelTraversalUtil;
+	private ModelAccessUtil modelTraversalUtil;
 
 	/**
 	 * The {@link MatchSpecHandler} used to evaluate {@link MatchSpecElement#getReferenceMatchSpec()
@@ -313,7 +313,7 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	protected void initModelTraversalUtil() {
 
-		this.modelTraversalUtil = new ModelTraversalUtil(this);
+		this.modelTraversalUtil = new ModelAccessUtil(this);
 	}
 
 	/**
@@ -321,7 +321,7 @@ public class TransformationAssetManager extends CancelableElement {
 	 *
 	 * @return the {@link #modelTraversalUtil}
 	 */
-	public ModelTraversalUtil getModelTraversalUtil() {
+	public ModelAccessUtil getModelTraversalUtil() {
 
 		if (this.modelTraversalUtil == null) {
 			this.initModelTraversalUtil();

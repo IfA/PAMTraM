@@ -11,7 +11,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.function.Function;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -19,18 +18,16 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import de.mfreund.gentrans.transformation.core.TransformationAsset;
 import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.matching.InstanceSelectorValueExtractor;
-import de.mfreund.gentrans.transformation.matching.ValueExtractor;
 import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
 import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
-import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.structure.InstanceSelector;
 import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.TargetInstanceSelector;
-import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.CompositeReference;
 import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.source.SourceSectionReference;
@@ -44,7 +41,7 @@ import pamtram.structure.target.TargetSectionReference;
  * SourceSectionMatcher) 2.) By List we extract specific model objects from a delivered list (so this method can be used
  * everywhere inside generic transformation for minimize the number of specific /concretize model objects
  */
-public class InstanceSelectorHandler {
+public class InstanceSelectorHandler extends TransformationAsset {
 
 	/**
 	 * Registry for <em>source model objects</em> that have already been matched. The matched objects are stored in a
@@ -63,11 +60,6 @@ public class InstanceSelectorHandler {
 	private InstanceSelectorValueExtractor valueExtractor;
 
 	/**
-	 * The {@link Logger} that shall be used to print messages.
-	 */
-	private final Logger logger;
-
-	/**
 	 * Whether extended parallelization shall be used during the transformation that might lead to the fact that the
 	 * transformation result (especially the order of lists) varies between executions.
 	 */
@@ -82,10 +74,11 @@ public class InstanceSelectorHandler {
 	 */
 	public InstanceSelectorHandler(TransformationAssetManager assetManager) {
 
+		super(assetManager);
+
 		this.matchedSectionRegistry = assetManager.getMatchedSectionRegistry();
 		this.targetSectionRegistry = assetManager.getTargetSectionRegistry();
 		this.valueExtractor = new InstanceSelectorValueExtractor(assetManager);
-		this.logger = assetManager.getLogger();
 		this.useParallelization = assetManager.getTransformationConfig().isUseParallelization();
 
 	}
@@ -206,11 +199,13 @@ public class InstanceSelectorHandler {
 		// instances. In the following, these will be compared to the list of 'hintValues'.
 		//
 		Map<EObject, List<String>> referenceValueBySourceInstance = potentialSourceInstances.stream()
-				.collect(Collectors.toMap(Function.identity(), c -> this
-						.getReferenceAttributeInstancesBySourceInstance(c, sourceInstanceSelector).stream()
-						.flatMap(r -> ValueExtractor.getAttributeValueAsStringList(r,
-								sourceInstanceSelector.getReferenceAttribute(), this.logger).stream())
-						.collect(Collectors.toList())));
+				.collect(Collectors.toMap(Function.identity(),
+						c -> this.getReferenceAttributeInstancesBySourceInstance(c, sourceInstanceSelector).stream()
+								.flatMap(r -> InstanceSelectorHandler.this.assetManager.getModelTraversalUtil()
+										.getAttributeValueAsStringList(r,
+												sourceInstanceSelector.getReferenceAttribute())
+										.stream())
+								.collect(Collectors.toList())));
 
 		// Filter those target instances, whose 'reference values' match one of the given 'hint values' and store them
 		// in a map relating the list of potential target instances for each of the specified hint values
@@ -424,15 +419,10 @@ public class InstanceSelectorHandler {
 
 		SourceSectionReference firstReference = references.remove(0);
 
-		if (!(firstReference instanceof ActualReference<?, ?, ?, ?>)) {
-			throw new RuntimeException(
-					"Internal Error! Currently, only ActualReferences are supported as part of SourceInstanceSelectors...");
-		}
+		this.assetManager.getModelTraversalUtil().getReferenceValueAsList(sourceInstance, firstReference);
 
-		List<EObject> referencedElements = AgteleEcoreUtil
-				.getStructuralFeatureValueAsList(sourceInstance,
-						((ActualReference<?, ?, ?, ?>) firstReference).getEReference())
-				.stream().filter(e -> e instanceof EObject).map(e -> (EObject) e).collect(Collectors.toList());
+		List<EObject> referencedElements = this.assetManager.getModelTraversalUtil()
+				.getReferenceValueAsList(sourceInstance, firstReference);
 
 		return referencedElements.stream()
 				.flatMap(e -> this.getReferencedElements(e, new ArrayList<>(references)).stream())

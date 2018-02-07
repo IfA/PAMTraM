@@ -21,10 +21,8 @@ import de.mfreund.gentrans.transformation.core.TransformationAsset;
 import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
-import de.mfreund.gentrans.transformation.matching.ValueExtractor;
 import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
 import de.mfreund.gentrans.transformation.registries.SelectedMappingRegistry;
-import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.condition.And;
 import pamtram.condition.ApplicationDependency;
 import pamtram.condition.AttributeCondition;
@@ -45,9 +43,10 @@ import pamtram.structure.constraint.EqualityConstraint;
 import pamtram.structure.constraint.SingleReferenceValueConstraint;
 import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.constraint.ValueConstraintType;
+import pamtram.structure.generic.CrossReference;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionClass;
-import pamtram.structure.source.SourceSectionCrossReference;
+import pamtram.structure.source.SourceSectionReference;
 
 /**
  * This class will be used to evaluate conditions and store their result.
@@ -274,8 +273,8 @@ public class ConditionHandler extends TransformationAsset {
 
 		// Collect the values of the referenced EAttribute for each instance
 		//
-		List<String> srcAttrValues = ValueExtractor.getAttributeValueAsStringList(correspondEClassInstances,
-				attrCondition.getTarget(), this.logger);
+		List<String> srcAttrValues = this.assetManager.getModelTraversalUtil()
+				.getAttributeValueAsStringList(correspondEClassInstances, attrCondition.getTarget());
 
 		/*
 		 * First, we check if all the constraints are satisfied for every attribute value of an AttributeConditon
@@ -514,8 +513,7 @@ public class ConditionHandler extends TransformationAsset {
 			// determined 'descriptors' themselves
 			//
 			MatchedSectionDescriptor descriptorToConsider = matchedSectionDescriptor;
-			while (!descriptorToConsider.getAssociatedSourceSection().getContainingSection()
-					.equals(affectedSection)
+			while (!descriptorToConsider.getAssociatedSourceSection().getContainingSection().equals(affectedSection)
 					&& !descriptorToConsider.getAssociatedSourceSection().getContainingSection().getAllExtend()
 							.contains(affectedSection)) {
 
@@ -551,17 +549,19 @@ public class ConditionHandler extends TransformationAsset {
 		// consider those instances that are reference via the correct reference
 		//
 		if (!correspondEClassInstances.isEmpty() && condition instanceof CardinalityCondition
-				&& ((CardinalityCondition) condition).getTarget() instanceof SourceSectionCrossReference) {
-			SourceSectionCrossReference reference = (SourceSectionCrossReference) ((CardinalityCondition) condition)
-					.getTarget();
+				&& ((CardinalityCondition) condition).getTarget() instanceof CrossReference<?, ?, ?, ?>) {
 
+			SourceSectionReference reference = (SourceSectionReference) ((CardinalityCondition) condition).getTarget();
 			SourceSectionClass owningClass = reference.getOwningClass();
+
 			Set<EObject> owningElements = descriptorsToConsider.stream().flatMap(descriptor -> Optional
 					.ofNullable(descriptor.getMatchedSourceModelElementsFor(owningClass, condition.isLocalCondition()))
 					.orElse(new HashSet<>()).stream()).collect(Collectors.toCollection(LinkedHashSet::new));
+
 			correspondEClassInstances = correspondEClassInstances.stream()
-					.filter(instance -> owningElements.stream().anyMatch(owner -> AgteleEcoreUtil
-							.getStructuralFeatureValueAsList(owner, reference.getEReference()).contains(instance)))
+					.filter(instance -> owningElements.stream()
+							.anyMatch(owner -> this.assetManager.getModelTraversalUtil()
+									.getReferenceValueAsList(owner, reference).contains(instance)))
 					.collect(Collectors.toList());
 		}
 

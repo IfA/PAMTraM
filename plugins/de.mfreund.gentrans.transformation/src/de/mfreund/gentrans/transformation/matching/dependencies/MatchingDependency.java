@@ -53,6 +53,13 @@ public abstract class MatchingDependency {
 	}
 
 	/**
+	 * Whether this is an optional dependency that does not need to be resolved.
+	 *
+	 * @return '<em>true</em>' if this an optional dependency.
+	 */
+	public abstract boolean isOptional();
+
+	/**
 	 * @return the {@link #dependencySource}
 	 */
 	public MatchedSectionDescriptor getDependencySource() {
@@ -116,12 +123,8 @@ public abstract class MatchingDependency {
 	 */
 	public boolean resolve(List<MatchedSectionDescriptor> resolvedBy) {
 
-		if (this.sourceModelElements.size() != resolvedBy.size()) {
-			throw new RuntimeException("Internal error while resolving a '" + this.getClass().getName()
-					+ "': The given number of descriptors does not match the numbers of elements representing the dependency!");
-		}
-
 		this.resolved = true;
+
 		return this.resolved;
 	}
 }

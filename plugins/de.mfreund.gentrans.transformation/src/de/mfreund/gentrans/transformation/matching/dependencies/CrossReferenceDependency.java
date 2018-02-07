@@ -51,15 +51,24 @@ public class CrossReferenceDependency extends MatchingDependency {
 	@Override
 	public boolean resolve(List<MatchedSectionDescriptor> resolvedBy) {
 
-		boolean ret = super.resolve(resolvedBy);
+		boolean ret = false;
+
+		if (this.sourceModelElements.size() == resolvedBy.size() || this.isOptional()) {
+			ret = super.resolve(resolvedBy);
+		}
 
 		if (ret) {
-			// FIXME 'getDependecySource' does not return the correct descriptor if the dependency is not based on the
-			// root element of a source section
 			resolvedBy.stream().forEach(d -> this.getDependencySource().addReferencedDescriptor(this.reference, d));
 		}
 
 		return ret;
 
+	}
+
+	@Override
+	public boolean isOptional() {
+
+		return this instanceof CrossReferenceDependency
+				&& ((SourceSectionReference) this.getReference()).isIgnoreUnmatchedElements();
 	}
 }

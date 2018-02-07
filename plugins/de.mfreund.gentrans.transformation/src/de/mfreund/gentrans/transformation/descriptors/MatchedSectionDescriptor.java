@@ -9,7 +9,6 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -469,12 +468,26 @@ public class MatchedSectionDescriptor {
 			return false;
 		}
 
-		List<MatchedSectionDescriptor> resolvingDescriptors = dependencyToResolve.getSourceModelElements().stream()
-				.map(e -> registryToUseForDependencyResolution.getRegisteredDescriptorFor(e).orElse(null))
-				.collect(Collectors.toList());
+		List<MatchedSectionDescriptor> resolvingDescriptors = new ArrayList<>();
 
-		if (resolvingDescriptors.stream().anyMatch(Objects::isNull)) {
-			return false;
+		for (EObject dependencyElement : dependencyToResolve.getSourceModelElements()) {
+
+			Optional<MatchedSectionDescriptor> descriptor = registryToUseForDependencyResolution
+					.getRegisteredDescriptorFor(dependencyElement);
+
+			if (descriptor.isPresent() && dependencyToResolve.getSourceSectionClasses().stream().anyMatch(
+					c -> descriptor.get().getMatchedSourceModelElementsFor(c, false).contains(dependencyElement))) {
+
+				resolvingDescriptors.add(descriptor.get());
+
+			} else if (dependencyToResolve.isOptional()) {
+
+				continue;
+
+			} else {
+
+				return false;
+			}
 		}
 
 		if (!dependencyToResolve.resolve(resolvingDescriptors)) {

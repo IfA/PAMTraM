@@ -542,8 +542,9 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 
 			if (globalDescriptor.isPresent()) {
 
-				if (dependency.getSourceSectionClasses().stream().anyMatch(c -> globalDescriptor.get()
-						.getMatchedSourceModelElementsFor(c, false).contains(dependencyElement))) {
+				if (dependency.isOptional()
+						|| dependency.getSourceSectionClasses().stream().anyMatch(c -> globalDescriptor.get()
+								.getMatchedSourceModelElementsFor(c, false).contains(dependencyElement))) {
 
 					continue;
 				} else {
@@ -560,8 +561,9 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 
 			if (localDescriptor.isPresent()) {
 
-				if (dependency.getSourceSectionClasses().stream().anyMatch(c -> localDescriptor.get()
-						.getMatchedSourceModelElementsFor(c, false).contains(dependencyElement))) {
+				if (dependency.isOptional()
+						|| dependency.getSourceSectionClasses().stream().anyMatch(c -> localDescriptor.get()
+								.getMatchedSourceModelElementsFor(c, false).contains(dependencyElement))) {
 
 					continue;
 				} else {
@@ -583,6 +585,8 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 
 			if (descriptor != null) {
 				currentLocalRegistry = localRegistries.get(descriptor);
+			} else if (dependency.isOptional()) {
+				continue;
 			} else {
 
 				// The dependency could not be resolved for the current element

@@ -24,7 +24,11 @@ public class ContainerDependency extends MatchingDependency {
 	@Override
 	public boolean resolve(List<MatchedSectionDescriptor> resolvedBy) {
 
-		boolean ret = super.resolve(resolvedBy);
+		boolean ret = false;
+
+		if (this.sourceModelElements.size() == resolvedBy.size()) {
+			ret = super.resolve(resolvedBy);
+		}
 
 		if (ret) {
 			this.getDependencySource().setContainerDescriptor(resolvedBy.get(0));
@@ -32,6 +36,12 @@ public class ContainerDependency extends MatchingDependency {
 
 		return ret;
 
+	}
+
+	@Override
+	public boolean isOptional() {
+
+		return false;
 	}
 
 }

@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 
 import de.mfreund.gentrans.transformation.core.CancelableTransformationAsset;
@@ -222,8 +221,8 @@ public abstract class ValueExtractor extends CancelableTransformationAsset {
 
 			for (SourceInstanceSelector instancePointer : mappingHintSourceElement.getInstanceSelectors()) {
 
-				sourceElements = this.assetManager.getInstanceSelectorHandler()
-						.filterSourceInstances(sourceElements, instancePointer, matchedSectionDescriptor);
+				sourceElements = this.assetManager.getInstanceSelectorHandler().filterSourceInstances(sourceElements,
+						instancePointer, matchedSectionDescriptor);
 			}
 
 		}
@@ -270,38 +269,13 @@ public abstract class ValueExtractor extends CancelableTransformationAsset {
 
 		AttributeValueRepresentation hintValue = null;
 
-		if (mappingHintSourceElement.isUseElementID()) {
-
-			for (EObject sourceElement : sourceElements) {
-
-				String val = String.valueOf(this.assetManager.getElementIDs().getIDForElement(sourceElement));
-
-				// Apply ValueModifierSets
-				//
-				final String valCopy = this.assetManager.getValueModifierExecutor().applyAttributeValueModifiers(val,
-						mappingHintSourceElement.getModifiers());
-
-				// create a new AttributeValueRepresentation or update the existing
-				// one
-				if (hintValue == null) {
-					hintValue = new AttributeValueRepresentation(mappingHintSourceElement.getSource(), valCopy);
-				} else {
-					hintValue.addValue(valCopy);
-				}
-			}
-
-			return hintValue;
-
-		}
-
-		EAttribute sourceAttribute = mappingHintSourceElement.getSource() instanceof ActualSourceSectionAttribute
-				? ((ActualSourceSectionAttribute) mappingHintSourceElement.getSource()).getAttribute()
-				: null;
-
 		// Collect all values of the attribute in all source elements
 		//
-		List<Object> srcAttrValues = this.assetManager.getModelAccessUtil().getAttributeValueAsList(sourceElements,
-				mappingHintSourceElement.getSource());
+		List<String> srcAttrValues = mappingHintSourceElement.isUseElementID()
+				? sourceElements.stream().map(e -> String.valueOf(this.assetManager.getElementIDs().getIDForElement(e)))
+						.collect(Collectors.toList())
+				: this.assetManager.getModelAccessUtil().getAttributeValueAsStringList(sourceElements,
+						mappingHintSourceElement.getSource());
 
 		if (srcAttrValues.isEmpty()) {
 			this.logger.warning(() -> "No hint value found for source element '" + mappingHintSourceElement.getName()
@@ -311,27 +285,12 @@ public abstract class ValueExtractor extends CancelableTransformationAsset {
 
 		// Extract a hint value for each retrieved value
 		//
-		for (Object srcAttrValue : srcAttrValues) {
-
-			String srcAttrAsString = null;
-
-			// if the attribute represents an actual EAttribute, we need to
-			// convert the value based on its type
-			if (sourceAttribute != null) {
-				srcAttrAsString = sourceAttribute.getEType().getEPackage().getEFactoryInstance()
-						.convertToString(sourceAttribute.getEAttributeType(), srcAttrValue);
-			} else if (srcAttrValue != null) {
-				srcAttrAsString = srcAttrValue.toString();
-			}
-
-			if (srcAttrAsString == null) {
-				continue;
-			}
+		for (String srcAttrValue : srcAttrValues) {
 
 			// Apply ValueModifierSets
 			//
 			final String valCopy = this.assetManager.getValueModifierExecutor()
-					.applyAttributeValueModifiers(srcAttrAsString, mappingHintSourceElement.getModifiers());
+					.applyAttributeValueModifiers(srcAttrValue, mappingHintSourceElement.getModifiers());
 
 			// create a new AttributeValueRepresentation or update the existing
 			// one

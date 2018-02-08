@@ -9,10 +9,12 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import pamtram.PamtramPackage;
 import pamtram.condition.AttributeCondition;
 import pamtram.condition.ConditionPackage;
 import pamtram.structure.constraint.ConstraintFactory;
@@ -45,8 +47,31 @@ public class AttributeConditionItemProvider extends ConditionItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addReferenceMatchSpecPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Reference Match Spec feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addReferenceMatchSpecPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_MatchSpecElement_referenceMatchSpec_feature"),
+				 getString("_UI_MatchSpecElement_referenceMatchSpec_description"),
+				 PamtramPackage.Literals.MATCH_SPEC_ELEMENT__REFERENCE_MATCH_SPEC,
+				 true,
+				 false,
+				 true,
+				 null,
+				 getString("_UI_ExtendedPropertyCategory"),
+				 null));
 	}
 
 	/**

@@ -137,6 +137,7 @@ public class ConditionSwitch<T> extends Switch<T> {
 				AttributeCondition attributeCondition = (AttributeCondition)theEObject;
 				T result = caseAttributeCondition(attributeCondition);
 				if (result == null) result = caseCondition(attributeCondition);
+				if (result == null) result = caseMatchSpecElement(attributeCondition);
 				if (result == null) result = caseComplexCondition(attributeCondition);
 				if (result == null) result = caseNamedElement(attributeCondition);
 				if (result == null) result = defaultCase(theEObject);

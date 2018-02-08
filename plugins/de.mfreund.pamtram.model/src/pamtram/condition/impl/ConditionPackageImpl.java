@@ -646,6 +646,16 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		EGenericType g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
 		g1.getETypeArguments().add(g2);
 		attributeConditionEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(thePamtramPackage.getMatchSpecElement());
+		g2 = createEGenericType(theSourcePackage.getSourceSection());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionReference());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		attributeConditionEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getCondition());
 		g2 = createEGenericType(theGenericPackage.getMetaModelElement());
 		g1.getETypeArguments().add(g2);

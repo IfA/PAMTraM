@@ -1008,13 +1008,22 @@ public interface ConditionPackage extends EPackage {
 	int ATTRIBUTE_CONDITION__INSTANCE_SELECTORS = CONDITION__INSTANCE_SELECTORS;
 
 	/**
+	 * The feature id for the '<em><b>Reference Match Spec</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_CONDITION__REFERENCE_MATCH_SPEC = CONDITION_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Value Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS = CONDITION_FEATURE_COUNT + 0;
+	int ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS = CONDITION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Attribute Condition</em>' class.
@@ -1023,7 +1032,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_CONDITION_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 1;
+	int ATTRIBUTE_CONDITION_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Is Local Condition</em>' operation.

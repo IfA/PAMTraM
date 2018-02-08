@@ -4,8 +4,12 @@ package pamtram.condition;
 
 import org.eclipse.emf.common.util.EList;
 
+import pamtram.MatchSpecElement;
 import pamtram.structure.constraint.ValueConstraint;
+import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
+import pamtram.structure.source.SourceSectionClass;
+import pamtram.structure.source.SourceSectionReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +31,7 @@ import pamtram.structure.source.SourceSectionAttribute;
  * @model
  * @generated
  */
-public interface AttributeCondition extends Condition<SourceSectionAttribute> {
+public interface AttributeCondition extends Condition<SourceSectionAttribute>, MatchSpecElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> {
 	/**
 	 * Returns the value of the '<em><b>Value Constraints</b></em>' containment reference list.
 	 * The list contents are of type {@link pamtram.structure.constraint.ValueConstraint}.

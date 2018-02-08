@@ -23,6 +23,7 @@ import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
 import de.mfreund.gentrans.transformation.registries.SelectedMappingRegistry;
+import pamtram.MatchSpecElement;
 import pamtram.condition.And;
 import pamtram.condition.ApplicationDependency;
 import pamtram.condition.AttributeCondition;
@@ -224,18 +225,6 @@ public class ConditionHandler extends TransformationAsset {
 		//
 		List<EObject> correspondEClassInstances = this.getInstancesToConsider(sectionCondition,
 				matchedSectionDescriptor);
-
-		// If the user specified an additional 'referenceMatchSpec', use
-		// only that subset of the determined instances corresponding
-		// to this matching path.
-		//
-		if (!sectionCondition.getReferenceMatchSpec().isEmpty()) {
-
-			correspondEClassInstances = correspondEClassInstances.stream()
-					.filter(s -> this.assetManager.getMatchSpecHandler().conformsMatchedObject(
-							matchedSectionDescriptor.getAssociatedSourceModelElement(), s, sectionCondition))
-					.collect(Collectors.toList());
-		}
 
 		// check Cardinality of the condition (e.g. the condition have to be at
 		// least 5 times true)
@@ -565,14 +554,26 @@ public class ConditionHandler extends TransformationAsset {
 					.collect(Collectors.toList());
 		}
 
+		// Reduce the list of instances based on a modeled 'referenceMatchSpec'.
+		//
+		if (condition instanceof MatchSpecElement<?, ?, ?, ?>
+				&& !((MatchSpecElement<?, ?, ?, ?>) condition).getReferenceMatchSpec().isEmpty()) {
+
+			correspondEClassInstances = correspondEClassInstances.stream()
+					.filter(s -> this.assetManager.getMatchSpecHandler().conformsMatchedObject(
+							matchedSectionDescriptor.getAssociatedSourceModelElement(), s,
+							(MatchSpecElement<?, ?, ?, ?>) condition))
+					.collect(Collectors.toList());
+		}
+
 		// Reduce the list of instances based on modeled InstancePointers
 		//
 		if (!correspondEClassInstances.isEmpty() && !condition.getInstanceSelectors().isEmpty()) {
 
 			for (SourceInstanceSelector instancePointer : condition.getInstanceSelectors()) {
 
-				correspondEClassInstances = this.instanceSelectorHandler.filterSourceInstances(
-						correspondEClassInstances, instancePointer, matchedSectionDescriptor);
+				correspondEClassInstances = this.instanceSelectorHandler
+						.filterSourceInstances(correspondEClassInstances, instancePointer, matchedSectionDescriptor);
 			}
 
 		}

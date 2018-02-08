@@ -528,31 +528,6 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 * @generated
 	 */
 	@Override
-	public boolean validateModifiersOnlyForSourceElements(final DiagnosticChain diagnostics, final Map<?, ?> context) {
-		
-		boolean result = !this.getSourceElements().isEmpty() || this.getModifiers().isEmpty();
-		
-		if (!result && diagnostics != null) {
-		
-			String errorMessage = "A CardinalityMapping must only specify 'modifiers' if it also specifies a set of 'sourceElements'!";
-		
-			diagnostics.add(new BasicDiagnostic
-					(Diagnostic.ERROR,
-					ExtendedValidator.DIAGNOSTIC_SOURCE,
-							ExtendedValidator.CARDINALITY_MAPPING__VALIDATE_MODIFIERS_ONLY_FOR_SOURCE_ELEMENTS,
-							errorMessage,
-					new Object[] { this, ExtendedPackage.Literals.CARDINALITY_MAPPING }));
-		
-		}
-		
-		return result;	
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EList<CardinalityMappingSourceElement> getLocalSourceElements() {
 		return new BasicEList<>(this.getSourceElements().stream().filter(s -> s instanceof CardinalityMappingSourceElement).map(s -> (CardinalityMappingSourceElement) s).collect(Collectors.toList()));	
 	}
@@ -765,8 +740,6 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 				return validateOnlySourceOrSourceElements((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case ExtendedPackage.CARDINALITY_MAPPING___VALIDATE_EXPRESSION_ONLY_FOR_SOURCE_ELEMENTS__DIAGNOSTICCHAIN_MAP:
 				return validateExpressionOnlyForSourceElements((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
-			case ExtendedPackage.CARDINALITY_MAPPING___VALIDATE_MODIFIERS_ONLY_FOR_SOURCE_ELEMENTS__DIAGNOSTICCHAIN_MAP:
-				return validateModifiersOnlyForSourceElements((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case ExtendedPackage.CARDINALITY_MAPPING___GET_LOCAL_SOURCE_ELEMENTS:
 				return getLocalSourceElements();
 			case ExtendedPackage.CARDINALITY_MAPPING___GET_EXTERNAL_SOURCE_ELEMENTS:

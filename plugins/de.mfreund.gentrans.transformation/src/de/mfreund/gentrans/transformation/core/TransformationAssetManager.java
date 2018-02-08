@@ -116,7 +116,7 @@ public class TransformationAssetManager extends CancelableElement {
 	/**
 	 * The {@link ModelAccessUtil} used to evaluate {@link Reference References} and {@link Attribute Attributes}.
 	 */
-	private ModelAccessUtil modelTraversalUtil;
+	private ModelAccessUtil modelAccessUtil;
 
 	/**
 	 * The {@link MatchSpecHandler} used to evaluate {@link MatchSpecElement#getReferenceMatchSpec()
@@ -309,25 +309,25 @@ public class TransformationAssetManager extends CancelableElement {
 	}
 
 	/**
-	 * This initializes the {@link #modelTraversalUtil}.
+	 * This initializes the {@link #modelAccessUtil}.
 	 */
-	protected void initModelTraversalUtil() {
+	protected void initModelAccessUtil() {
 
-		this.modelTraversalUtil = new ModelAccessUtil(this);
+		this.modelAccessUtil = new ModelAccessUtil(this);
 	}
 
 	/**
-	 * Returns the {@link #modelTraversalUtil}.
+	 * Returns the {@link #modelAccessUtil}.
 	 *
-	 * @return the {@link #modelTraversalUtil}
+	 * @return the {@link #modelAccessUtil}
 	 */
-	public ModelAccessUtil getModelTraversalUtil() {
+	public ModelAccessUtil getModelAccessUtil() {
 
-		if (this.modelTraversalUtil == null) {
-			this.initModelTraversalUtil();
+		if (this.modelAccessUtil == null) {
+			this.initModelAccessUtil();
 		}
 
-		return this.modelTraversalUtil;
+		return this.modelAccessUtil;
 	}
 
 	/**

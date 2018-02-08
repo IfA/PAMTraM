@@ -241,8 +241,8 @@ public class ValueConstraintReferenceValueCalculator {
 
 			for (SourceInstanceSelector instancePointer : instancePointers) {
 
-				correspondEClassInstances = this.instanceSelectorHandler.getSelectedInstancesByInstanceList(
-						instancePointer, correspondEClassInstances, matchedSectionDescriptor);
+				correspondEClassInstances = this.instanceSelectorHandler.filterSourceInstances(
+						correspondEClassInstances, instancePointer, matchedSectionDescriptor);
 			}
 
 		}

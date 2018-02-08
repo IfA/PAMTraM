@@ -761,7 +761,7 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 
 			// The list of elements referenced via the current reference
 			//
-			List<EObject> referencedElements = this.assetManager.getModelTraversalUtil()
+			List<EObject> referencedElements = this.assetManager.getModelAccessUtil()
 					.getReferenceValueAsList(srcModelObject, compositeReference);
 
 			// Check if the elements referenced in the source model can be matched against one of the target classes
@@ -787,7 +787,7 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 			List<EObject> referencedElements = crossReference instanceof ActualReference<?, ?, ?, ?>
 					&& remainingElements.containsKey(((ActualReference<?, ?, ?, ?>) crossReference).getEReference())
 							? remainingElements.get(((ActualReference<?, ?, ?, ?>) crossReference).getEReference())
-							: this.assetManager.getModelTraversalUtil().getReferenceValueAsList(srcModelObject,
+							: this.assetManager.getModelAccessUtil().getReferenceValueAsList(srcModelObject,
 									crossReference);
 
 			// Check if the elements referenced in the source model can be matched against one of the target classes
@@ -1020,7 +1020,7 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 		//
 		return sourceSectionClass.getAllAttributes().stream().filter(a -> !a.getValueConstraints().isEmpty())
 				.allMatch(at -> {
-					List<Object> values = this.assetManager.getModelTraversalUtil()
+					List<Object> values = this.assetManager.getModelAccessUtil()
 							.getAttributeValueAsList(srcModelObject, at);
 					/*
 					 * Check if all the constraints are satisfied for every attribute value.

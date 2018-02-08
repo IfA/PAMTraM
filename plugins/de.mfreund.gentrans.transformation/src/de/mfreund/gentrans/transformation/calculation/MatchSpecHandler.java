@@ -72,7 +72,7 @@ public class MatchSpecHandler extends TransformationAsset {
 			}
 		}
 
-		List<EObject> values = this.assetManager.getModelTraversalUtil().getReferenceValueAsList(root, firstSegment);
+		List<EObject> values = this.assetManager.getModelAccessUtil().getReferenceValueAsList(root, firstSegment);
 		if (localReferenceSegments.isEmpty()) {
 			return values.contains(matchedElement);
 		} else {

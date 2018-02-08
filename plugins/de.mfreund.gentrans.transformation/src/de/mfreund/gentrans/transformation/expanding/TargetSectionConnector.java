@@ -1264,7 +1264,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 			// Filter those that satisfy one of the calculated hint values
 			//
 			possibleContainerInstances = this.instanceSelectorHandler.filterTargetInstances(possibleContainerInstances,
-					mappingInstance.getHintValues().getHintValues(containerSelector), containerSelector);
+					containerSelector, mappingInstance.getHintValues().getHintValues(containerSelector));
 
 			if (!possibleContainerInstances.isEmpty()) {
 				containerInstancesByContainerSelector.put(containerSelector, possibleContainerInstances);

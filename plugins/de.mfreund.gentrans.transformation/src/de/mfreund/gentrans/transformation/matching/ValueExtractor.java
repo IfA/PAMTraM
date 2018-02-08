@@ -223,7 +223,7 @@ public abstract class ValueExtractor extends CancelableTransformationAsset {
 			for (SourceInstanceSelector instancePointer : mappingHintSourceElement.getInstanceSelectors()) {
 
 				sourceElements = this.assetManager.getInstanceSelectorHandler()
-						.getSelectedInstancesByInstanceList(instancePointer, sourceElements, matchedSectionDescriptor);
+						.filterSourceInstances(sourceElements, instancePointer, matchedSectionDescriptor);
 			}
 
 		}
@@ -300,7 +300,7 @@ public abstract class ValueExtractor extends CancelableTransformationAsset {
 
 		// Collect all values of the attribute in all source elements
 		//
-		List<Object> srcAttrValues = this.assetManager.getModelTraversalUtil().getAttributeValueAsList(sourceElements,
+		List<Object> srcAttrValues = this.assetManager.getModelAccessUtil().getAttributeValueAsList(sourceElements,
 				mappingHintSourceElement.getSource());
 
 		if (srcAttrValues.isEmpty()) {

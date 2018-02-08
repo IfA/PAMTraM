@@ -47,7 +47,7 @@ public class InstanceSelectorValueExtractor extends ValueExtractor {
 	 * This extracts and returns the required target value for the given {@link InstanceSelector} as specified by its
 	 * {@link InstanceSelector#getSourceElements() source attributes}.
 	 *
-	 * @param instancePointer
+	 * @param instanceSelector
 	 *            The {@link InstanceSelector} for that the target value shall be extracted.
 	 * @param matchedSectionDescriptor
 	 *            The {@link MatchedSectionDescriptor} for that the value shall be extracted.
@@ -55,7 +55,7 @@ public class InstanceSelectorValueExtractor extends ValueExtractor {
 	 *         '<em><b>null</b></em>' if no value could be extracted.
 	 */
 	@SuppressWarnings("unchecked")
-	public String extractRequiredTargetValue(InstanceSelector instancePointer,
+	public String extractRequiredTargetValue(InstanceSelector instanceSelector,
 			MatchedSectionDescriptor matchedSectionDescriptor) {
 
 		// Collect the value parts
@@ -64,42 +64,42 @@ public class InstanceSelectorValueExtractor extends ValueExtractor {
 
 		// Extract the value part based on its type
 		//
-		for (InstanceSelectorSourceInterface instancePointerSourceInterface : instancePointer.getSourceElements()) {
+		for (InstanceSelectorSourceInterface instanceSelectorSourceInterface : instanceSelector.getSourceElements()) {
 
 			AttributeValueRepresentation attributeValueRepresentation = null;
 
-			if (instancePointerSourceInterface instanceof DynamicSourceElement<?, ?, ?, ?>) {
+			if (instanceSelectorSourceInterface instanceof DynamicSourceElement<?, ?, ?, ?>) {
 				attributeValueRepresentation = this.extractValue(
-						(DynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) instancePointerSourceInterface,
+						(DynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) instanceSelectorSourceInterface,
 						matchedSectionDescriptor);
-			} else if (instancePointerSourceInterface instanceof FixedValue) {
-				attributeValueRepresentation = this.extractValue((FixedValue) instancePointerSourceInterface,
+			} else if (instanceSelectorSourceInterface instanceof FixedValue) {
+				attributeValueRepresentation = this.extractValue((FixedValue) instanceSelectorSourceInterface,
 						matchedSectionDescriptor);
-			} else if (instancePointerSourceInterface instanceof GlobalAttributeImporter) {
+			} else if (instanceSelectorSourceInterface instanceof GlobalAttributeImporter) {
 				attributeValueRepresentation = this.extractValue(
-						(GlobalAttributeImporter) instancePointerSourceInterface, matchedSectionDescriptor);
+						(GlobalAttributeImporter) instanceSelectorSourceInterface, matchedSectionDescriptor);
 			} else {
 				this.logger.severe(() -> "Unsupported type of source element for an InstanceSelector found: '"
-						+ instancePointerSourceInterface.eClass().getName() + "'!");
+						+ instanceSelectorSourceInterface.eClass().getName() + "'!");
 			}
 
 			if (attributeValueRepresentation != null) {
 
 				if (attributeValueRepresentation.isMany()) {
 					this.logger.warning(() -> "Multiple values found for the source element '"
-							+ instancePointerSourceInterface.getName()
-							+ "' of an InstanceSelector! This is currently not supported and only the first found value will be used!'");
+							+ instanceSelectorSourceInterface.getName() + "' of " + instanceSelector.printInfo()
+							+ "! This is currently not supported and only the first found value will be used!'");
 				}
 
-				valueParts.put(instancePointerSourceInterface, attributeValueRepresentation);
+				valueParts.put(instanceSelectorSourceInterface, attributeValueRepresentation);
 			}
 		}
 
 		// Assemble the target value based on the value parts and a potential
 		// expression
 		//
-		return this.attributeValueCalculator.calculateValue(instancePointer.getExpression(), valueParts,
-				instancePointer.getModifiers());
+		return this.attributeValueCalculator.calculateValue(instanceSelector.getExpression(), valueParts,
+				instanceSelector.getModifiers());
 
 	}
 

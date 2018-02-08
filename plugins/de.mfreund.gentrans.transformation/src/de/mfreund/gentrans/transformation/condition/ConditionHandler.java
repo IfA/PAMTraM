@@ -273,7 +273,7 @@ public class ConditionHandler extends TransformationAsset {
 
 		// Collect the values of the referenced EAttribute for each instance
 		//
-		List<String> srcAttrValues = this.assetManager.getModelTraversalUtil()
+		List<String> srcAttrValues = this.assetManager.getModelAccessUtil()
 				.getAttributeValueAsStringList(correspondEClassInstances, attrCondition.getTarget());
 
 		/*
@@ -560,7 +560,7 @@ public class ConditionHandler extends TransformationAsset {
 
 			correspondEClassInstances = correspondEClassInstances.stream()
 					.filter(instance -> owningElements.stream()
-							.anyMatch(owner -> this.assetManager.getModelTraversalUtil()
+							.anyMatch(owner -> this.assetManager.getModelAccessUtil()
 									.getReferenceValueAsList(owner, reference).contains(instance)))
 					.collect(Collectors.toList());
 		}
@@ -571,8 +571,8 @@ public class ConditionHandler extends TransformationAsset {
 
 			for (SourceInstanceSelector instancePointer : condition.getInstanceSelectors()) {
 
-				correspondEClassInstances = this.instanceSelectorHandler.getSelectedInstancesByInstanceList(
-						instancePointer, correspondEClassInstances, matchedSectionDescriptor);
+				correspondEClassInstances = this.instanceSelectorHandler.filterSourceInstances(
+						correspondEClassInstances, instancePointer, matchedSectionDescriptor);
 			}
 
 		}

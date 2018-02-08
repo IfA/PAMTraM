@@ -385,7 +385,7 @@ public class HintValueExtractor extends ValueExtractor {
 				//
 				SourceSectionAttribute sourceAttribute = (SourceSectionAttribute) cardinalityMapping.getSource();
 				resultingCardinality = sourceElements.stream().mapToInt(sourceElement -> this.assetManager
-						.getModelTraversalUtil().getAttributeValueAsList(sourceElement, sourceAttribute).size()).sum();
+						.getModelAccessUtil().getAttributeValueAsList(sourceElement, sourceAttribute).size()).sum();
 
 			}
 

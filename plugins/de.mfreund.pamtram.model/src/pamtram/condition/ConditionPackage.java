@@ -1098,13 +1098,22 @@ public interface ConditionPackage extends EPackage {
 	int ATTRIBUTE_CONDITION___CHECK_CONDITION__COMPLEXCONDITION = CONDITION___CHECK_CONDITION__COMPLEXCONDITION;
 
 	/**
+	 * The operation id for the '<em>Validate Reference Match Spec Present In Case Of Ambiguous Source</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_CONDITION___VALIDATE_REFERENCE_MATCH_SPEC_PRESENT_IN_CASE_OF_AMBIGUOUS_SOURCE__DIAGNOSTICCHAIN_MAP = CONDITION_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Attribute Condition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_CONDITION_OPERATION_COUNT = CONDITION_OPERATION_COUNT + 0;
+	int ATTRIBUTE_CONDITION_OPERATION_COUNT = CONDITION_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.condition.impl.CardinalityConditionImpl <em>Cardinality Condition</em>}' class.
@@ -1243,13 +1252,22 @@ public interface ConditionPackage extends EPackage {
 	int CARDINALITY_CONDITION___CHECK_CONDITION__COMPLEXCONDITION = CONDITION___CHECK_CONDITION__COMPLEXCONDITION;
 
 	/**
+	 * The operation id for the '<em>Validate Reference Match Spec Present In Case Of Ambiguous Source</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_CONDITION___VALIDATE_REFERENCE_MATCH_SPEC_PRESENT_IN_CASE_OF_AMBIGUOUS_SOURCE__DIAGNOSTICCHAIN_MAP = CONDITION_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Cardinality Condition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_CONDITION_OPERATION_COUNT = CONDITION_OPERATION_COUNT + 0;
+	int CARDINALITY_CONDITION_OPERATION_COUNT = CONDITION_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.condition.impl.ApplicationDependencyImpl <em>Application Dependency</em>}' class.
@@ -1698,6 +1716,16 @@ public interface ConditionPackage extends EPackage {
 	EReference getAttributeCondition_ValueConstraints();
 
 	/**
+	 * Returns the meta object for the '{@link pamtram.condition.AttributeCondition#validateReferenceMatchSpecPresentInCaseOfAmbiguousSource(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Reference Match Spec Present In Case Of Ambiguous Source</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Reference Match Spec Present In Case Of Ambiguous Source</em>' operation.
+	 * @see pamtram.condition.AttributeCondition#validateReferenceMatchSpecPresentInCaseOfAmbiguousSource(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getAttributeCondition__ValidateReferenceMatchSpecPresentInCaseOfAmbiguousSource__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.condition.CardinalityCondition <em>Cardinality Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1706,6 +1734,16 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getCardinalityCondition();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.condition.CardinalityCondition#validateReferenceMatchSpecPresentInCaseOfAmbiguousSource(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Reference Match Spec Present In Case Of Ambiguous Source</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Reference Match Spec Present In Case Of Ambiguous Source</em>' operation.
+	 * @see pamtram.condition.CardinalityCondition#validateReferenceMatchSpecPresentInCaseOfAmbiguousSource(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getCardinalityCondition__ValidateReferenceMatchSpecPresentInCaseOfAmbiguousSource__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.condition.ApplicationDependency <em>Application Dependency</em>}'.
@@ -1999,6 +2037,14 @@ public interface ConditionPackage extends EPackage {
 		EReference ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS = eINSTANCE.getAttributeCondition_ValueConstraints();
 
 		/**
+		 * The meta object literal for the '<em><b>Validate Reference Match Spec Present In Case Of Ambiguous Source</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ATTRIBUTE_CONDITION___VALIDATE_REFERENCE_MATCH_SPEC_PRESENT_IN_CASE_OF_AMBIGUOUS_SOURCE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getAttributeCondition__ValidateReferenceMatchSpecPresentInCaseOfAmbiguousSource__DiagnosticChain_Map();
+
+		/**
 		 * The meta object literal for the '{@link pamtram.condition.impl.CardinalityConditionImpl <em>Cardinality Condition</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2007,6 +2053,14 @@ public interface ConditionPackage extends EPackage {
 		 * @generated
 		 */
 		EClass CARDINALITY_CONDITION = eINSTANCE.getCardinalityCondition();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Reference Match Spec Present In Case Of Ambiguous Source</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CARDINALITY_CONDITION___VALIDATE_REFERENCE_MATCH_SPEC_PRESENT_IN_CASE_OF_AMBIGUOUS_SOURCE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getCardinalityCondition__ValidateReferenceMatchSpecPresentInCaseOfAmbiguousSource__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.condition.impl.ApplicationDependencyImpl <em>Application Dependency</em>}' class.

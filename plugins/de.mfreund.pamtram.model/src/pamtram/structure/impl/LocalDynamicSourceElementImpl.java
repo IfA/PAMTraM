@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
@@ -156,6 +157,45 @@ public abstract class LocalDynamicSourceElementImpl<S extends Section<S, C, R, A
 	 * @generated
 	 */
 	@Override
+	public boolean validateReferenceMatchSpecPresentInCaseOfAmbiguousSource(final DiagnosticChain diagnostics,
+			final Map<?, ?> context) {
+		
+		if (this.source == null || this.getMapping().getSourceSection() == null
+				|| !this.getReferenceMatchSpec().isEmpty()) {
+			return true;
+		}
+		
+		SourceSection sourceSection = this.getMapping().getSourceSection();
+		
+		boolean result = true;
+		String errorMessage = "";
+		
+		if (!sourceSection.equals(this.source.getContainingSection())) {
+		
+			result = false;
+			errorMessage = "The source Attribute is not part of the SourceSection specified by this Mapping. Consider adding a ReferenceMatchSpec to concretize the matched instances to be used for this MappingHint.";
+		
+		} else if (sourceSection.isReferencedBy(sourceSection, new BasicEList<>())) {
+		
+			result = false;
+			errorMessage = "The specified source Attribute can be matched in multiple ways (either as part of the local SourceSection or referenced via one or multiple CrossReferences). Consider adding a ReferenceMatchSpec to concretize the matched instances to be used for this MappingHint.";
+		}
+		
+		if (!result && diagnostics != null) {
+		
+			diagnostics.add(new BasicDiagnostic(Diagnostic.WARNING, StructureValidator.DIAGNOSTIC_SOURCE,
+					StructureValidator.LOCAL_DYNAMIC_SOURCE_ELEMENT__VALIDATE_REFERENCE_MATCH_SPEC_PRESENT_IN_CASE_OF_AMBIGUOUS_SOURCE,
+					errorMessage, new Object[] { this, StructurePackage.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE }));
+		}
+		
+		return result;	
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT__REFERENCE_MATCH_SPEC:
@@ -247,6 +287,8 @@ public abstract class LocalDynamicSourceElementImpl<S extends Section<S, C, R, A
 		switch (operationID) {
 			case StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP:
 				return validateSourceAttributeMatchesSectionOrContainedSection((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_REFERENCE_MATCH_SPEC_PRESENT_IN_CASE_OF_AMBIGUOUS_SOURCE__DIAGNOSTICCHAIN_MAP:
+				return validateReferenceMatchSpecPresentInCaseOfAmbiguousSource((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

@@ -629,13 +629,22 @@ public interface StructurePackage extends EPackage {
 	int LOCAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP = DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Validate Reference Match Spec Present In Case Of Ambiguous Source</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_REFERENCE_MATCH_SPEC_PRESENT_IN_CASE_OF_AMBIGUOUS_SOURCE__DIAGNOSTICCHAIN_MAP = DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>Local Dynamic Source Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LOCAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT = DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 1;
+	int LOCAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT = DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.impl.InstanceSelectorSourceElementImpl <em>Instance Selector Source Element</em>}' class.
@@ -754,6 +763,15 @@ public interface StructurePackage extends EPackage {
 	 * @ordered
 	 */
 	int INSTANCE_SELECTOR_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP = LOCAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Validate Reference Match Spec Present In Case Of Ambiguous Source</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_SELECTOR_SOURCE_ELEMENT___VALIDATE_REFERENCE_MATCH_SPEC_PRESENT_IN_CASE_OF_AMBIGUOUS_SOURCE__DIAGNOSTICCHAIN_MAP = LOCAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_REFERENCE_MATCH_SPEC_PRESENT_IN_CASE_OF_AMBIGUOUS_SOURCE__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
@@ -1447,6 +1465,16 @@ public interface StructurePackage extends EPackage {
 	EOperation getLocalDynamicSourceElement__ValidateSourceAttributeMatchesSectionOrContainedSection__DiagnosticChain_Map();
 
 	/**
+	 * Returns the meta object for the '{@link pamtram.structure.LocalDynamicSourceElement#validateReferenceMatchSpecPresentInCaseOfAmbiguousSource(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Reference Match Spec Present In Case Of Ambiguous Source</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Reference Match Spec Present In Case Of Ambiguous Source</em>' operation.
+	 * @see pamtram.structure.LocalDynamicSourceElement#validateReferenceMatchSpecPresentInCaseOfAmbiguousSource(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getLocalDynamicSourceElement__ValidateReferenceMatchSpecPresentInCaseOfAmbiguousSource__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.structure.ExternalDynamicSourceElement <em>External Dynamic Source Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1711,6 +1739,14 @@ public interface StructurePackage extends EPackage {
 		 * @generated
 		 */
 		EOperation LOCAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP = eINSTANCE.getLocalDynamicSourceElement__ValidateSourceAttributeMatchesSectionOrContainedSection__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Reference Match Spec Present In Case Of Ambiguous Source</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LOCAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_REFERENCE_MATCH_SPEC_PRESENT_IN_CASE_OF_AMBIGUOUS_SOURCE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getLocalDynamicSourceElement__ValidateReferenceMatchSpecPresentInCaseOfAmbiguousSource__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.structure.impl.ExternalDynamicSourceElementImpl <em>External Dynamic Source Element</em>}' class.

@@ -661,6 +661,15 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getCardinalityMapping__ValidateReferenceMatchSpecPresentInCaseOfAmbiguousSource__DiagnosticChain_Map() {
+		return cardinalityMappingEClass.getEOperations().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCardinalityMappingSourceInterface() {
 		return cardinalityMappingSourceInterfaceEClass;
 	}
@@ -910,6 +919,7 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___VALIDATE_EXPRESSION_ONLY_FOR_SOURCE_ELEMENTS__DIAGNOSTICCHAIN_MAP);
 		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___GET_LOCAL_SOURCE_ELEMENTS);
 		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___GET_EXTERNAL_SOURCE_ELEMENTS);
+		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___VALIDATE_REFERENCE_MATCH_SPEC_PRESENT_IN_CASE_OF_AMBIGUOUS_SOURCE__DIAGNOSTICCHAIN_MAP);
 
 		cardinalityMappingSourceInterfaceEClass = createEClass(CARDINALITY_MAPPING_SOURCE_INTERFACE);
 
@@ -1267,6 +1277,15 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 
 		initEOperation(getCardinalityMapping__GetExternalSourceElements(), this.getCardinalityMappingExternalSourceElement(), "getExternalSourceElements", 0, -1, !IS_UNIQUE, IS_ORDERED);
 
+		op = initEOperation(getCardinalityMapping__ValidateReferenceMatchSpecPresentInCaseOfAmbiguousSource__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateReferenceMatchSpecPresentInCaseOfAmbiguousSource", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(cardinalityMappingSourceInterfaceEClass, CardinalityMappingSourceInterface.class, "CardinalityMappingSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(cardinalityMappingSourceElementEClass, CardinalityMappingSourceElement.class, "CardinalityMappingSourceElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1540,6 +1559,12 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		   source, 
 		   new String[] {
 			 "body", "return new <%org.eclipse.emf.common.util.BasicEList%><>(this.getSourceElements().stream().filter(s -> s instanceof CardinalityMappingExternalSourceElement).map(s -> (CardinalityMappingExternalSourceElement) s).collect(<%java.util.stream.Collectors%>.toList()));"
+		   });	
+		addAnnotation
+		  (getCardinalityMapping__ValidateReferenceMatchSpecPresentInCaseOfAmbiguousSource__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\n<%pamtram.mapping.Mapping%> mapping = (Mapping) <%de.tud.et.ifa.agtele.emf.AgteleEcoreUtil%>.getAncestorOfKind(this, <%pamtram.mapping.MappingPackage%>.Literals.MAPPING);\r\n\r\nif (this.source == null || mapping.getSourceSection() == null || !this.getReferenceMatchSpec().isEmpty()) {\r\n\treturn true;\r\n}\r\n\r\n<%pamtram.structure.source.SourceSection%> sourceSection = mapping.getSourceSection();\r\n\r\nboolean result = true;\r\nString errorMessage = \"\";\r\n\r\nif (!sourceSection.equals(this.source.getContainingSection())) {\r\n\r\n\tresult = false;\r\n\terrorMessage = \"The source Attribute is not part of the SourceSection specified by this Mapping. Consider adding a ReferenceMatchSpec to concretize the matched instances to be used for this MappingHint.\";\r\n\r\n} else if (sourceSection.isReferencedBy(sourceSection, new <%org.eclipse.emf.common.util.BasicEList%><>())) {\r\n\r\n\tresult = false;\r\n\terrorMessage = \"The specified source Attribute can be matched in multiple ways (either as part of the local SourceSection or referenced via one or multiple CrossReferences). Consider adding a ReferenceMatchSpec to concretize the matched instances to be used for this MappingHint.\";\r\n}\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.WARNING, <%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\tExtendedValidator.CARDINALITY_MAPPING__VALIDATE_REFERENCE_MATCH_SPEC_PRESENT_IN_CASE_OF_AMBIGUOUS_SOURCE,\r\n\t\t\terrorMessage, new Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.CARDINALITY_MAPPING__SOURCE }));\r\n}\r\n\r\nreturn result;"
 		   });	
 		addAnnotation
 		  (getCardinalityMapping_Source(), 

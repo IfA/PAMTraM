@@ -27,12 +27,14 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.ExpressionElement;
 import pamtram.MatchSpecElement;
 import pamtram.ModifiableElement;
 import pamtram.PamtramPackage;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
+import pamtram.mapping.MappingPackage;
 import pamtram.mapping.extended.CardinalityMapping;
 import pamtram.mapping.extended.CardinalityMappingExternalSourceElement;
 import pamtram.mapping.extended.CardinalityMappingSourceElement;
@@ -100,9 +102,9 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	protected EList<ValueModifierSet> modifiers;
 
 	/**
-	 * The cached value of the '{@link #getReferenceMatchSpec() <em>Reference Match Spec</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getReferenceMatchSpec() <em>Reference Match Spec</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @see #getReferenceMatchSpec()
 	 * @generated
 	 * @ordered
@@ -194,10 +196,10 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<SourceSectionReference> getReferenceMatchSpec() {
 	
 		if (referenceMatchSpec == null) {
@@ -546,6 +548,46 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 * @generated
 	 */
 	@Override
+	public boolean validateReferenceMatchSpecPresentInCaseOfAmbiguousSource(final DiagnosticChain diagnostics,
+			final Map<?, ?> context) {
+		
+		Mapping mapping = (Mapping) AgteleEcoreUtil.getAncestorOfKind(this, MappingPackage.Literals.MAPPING);
+		
+		if (this.source == null || mapping.getSourceSection() == null || !this.getReferenceMatchSpec().isEmpty()) {
+			return true;
+		}
+		
+		SourceSection sourceSection = mapping.getSourceSection();
+		
+		boolean result = true;
+		String errorMessage = "";
+		
+		if (!sourceSection.equals(this.source.getContainingSection())) {
+		
+			result = false;
+			errorMessage = "The source Attribute is not part of the SourceSection specified by this Mapping. Consider adding a ReferenceMatchSpec to concretize the matched instances to be used for this MappingHint.";
+		
+		} else if (sourceSection.isReferencedBy(sourceSection, new BasicEList<>())) {
+		
+			result = false;
+			errorMessage = "The specified source Attribute can be matched in multiple ways (either as part of the local SourceSection or referenced via one or multiple CrossReferences). Consider adding a ReferenceMatchSpec to concretize the matched instances to be used for this MappingHint.";
+		}
+		
+		if (!result && diagnostics != null) {
+		
+			diagnostics.add(new BasicDiagnostic(Diagnostic.WARNING, ExtendedValidator.DIAGNOSTIC_SOURCE,
+					ExtendedValidator.CARDINALITY_MAPPING__VALIDATE_REFERENCE_MATCH_SPEC_PRESENT_IN_CASE_OF_AMBIGUOUS_SOURCE,
+					errorMessage, new Object[] { this, ExtendedPackage.Literals.CARDINALITY_MAPPING__SOURCE }));
+		}
+		
+		return result;	
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case ExtendedPackage.CARDINALITY_MAPPING__SOURCE_ELEMENTS:
@@ -744,6 +786,8 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 				return getLocalSourceElements();
 			case ExtendedPackage.CARDINALITY_MAPPING___GET_EXTERNAL_SOURCE_ELEMENTS:
 				return getExternalSourceElements();
+			case ExtendedPackage.CARDINALITY_MAPPING___VALIDATE_REFERENCE_MATCH_SPEC_PRESENT_IN_CASE_OF_AMBIGUOUS_SOURCE__DIAGNOSTICCHAIN_MAP:
+				return validateReferenceMatchSpecPresentInCaseOfAmbiguousSource((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

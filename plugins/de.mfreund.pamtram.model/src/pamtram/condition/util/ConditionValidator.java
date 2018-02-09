@@ -72,12 +72,28 @@ public class ConditionValidator extends EObjectValidator {
 	public static final int UNARY_CONDITION__VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL = 4;
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Reference Match Spec Present In Case Of Ambiguous Source' of 'Attribute Condition'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int ATTRIBUTE_CONDITION__VALIDATE_REFERENCE_MATCH_SPEC_PRESENT_IN_CASE_OF_AMBIGUOUS_SOURCE = 5;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Reference Match Spec Present In Case Of Ambiguous Source' of 'Cardinality Condition'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int CARDINALITY_CONDITION__VALIDATE_REFERENCE_MATCH_SPEC_PRESENT_IN_CASE_OF_AMBIGUOUS_SOURCE = 6;
+
+	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 4;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 6;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -398,7 +414,27 @@ public class ConditionValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateAttributeCondition(AttributeCondition attributeCondition, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(attributeCondition, diagnostics, context);
+		if (!validate_NoCircularContainment(attributeCondition, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(attributeCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(attributeCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(attributeCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(attributeCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(attributeCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(attributeCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(attributeCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(attributeCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validateAttributeCondition_validateReferenceMatchSpecPresentInCaseOfAmbiguousSource(attributeCondition, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the validateReferenceMatchSpecPresentInCaseOfAmbiguousSource constraint of '<em>Attribute Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateAttributeCondition_validateReferenceMatchSpecPresentInCaseOfAmbiguousSource(AttributeCondition attributeCondition, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return attributeCondition.validateReferenceMatchSpecPresentInCaseOfAmbiguousSource(diagnostics, context);
 	}
 
 	/**
@@ -407,7 +443,27 @@ public class ConditionValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateCardinalityCondition(CardinalityCondition cardinalityCondition, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(cardinalityCondition, diagnostics, context);
+		if (!validate_NoCircularContainment(cardinalityCondition, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(cardinalityCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(cardinalityCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(cardinalityCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(cardinalityCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(cardinalityCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(cardinalityCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(cardinalityCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(cardinalityCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validateCardinalityCondition_validateReferenceMatchSpecPresentInCaseOfAmbiguousSource(cardinalityCondition, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the validateReferenceMatchSpecPresentInCaseOfAmbiguousSource constraint of '<em>Cardinality Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCardinalityCondition_validateReferenceMatchSpecPresentInCaseOfAmbiguousSource(CardinalityCondition cardinalityCondition, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return cardinalityCondition.validateReferenceMatchSpecPresentInCaseOfAmbiguousSource(diagnostics, context);
 	}
 
 	/**

@@ -2,8 +2,14 @@
  */
 package pamtram.condition.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+import java.util.Map;
 
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
@@ -12,6 +18,8 @@ import pamtram.MatchSpecElement;
 import pamtram.PamtramPackage;
 import pamtram.condition.CardinalityCondition;
 import pamtram.condition.ConditionPackage;
+import pamtram.condition.util.ConditionValidator;
+import pamtram.mapping.Mapping;
 import pamtram.structure.generic.MetaModelElement;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
@@ -84,6 +92,46 @@ public class CardinalityConditionImpl extends
 			referenceMatchSpec = new EObjectResolvingEList<SourceSectionReference>(SourceSectionReference.class, this, ConditionPackage.CARDINALITY_CONDITION__REFERENCE_MATCH_SPEC);
 		}
 		return referenceMatchSpec;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean validateReferenceMatchSpecPresentInCaseOfAmbiguousSource(final DiagnosticChain diagnostics,
+			final Map<?, ?> context) {
+		
+		if (this.target == null || !this.isMappingCondition()
+				|| ((Mapping) this.getRootCondition().eContainer()).getSourceSection() == null
+				|| !this.getReferenceMatchSpec().isEmpty()) {
+			return true;
+		}
+		
+		SourceSection sourceSection = ((Mapping) this.getRootCondition().eContainer()).getSourceSection();
+		
+		boolean result = true;
+		String errorMessage = "";
+		
+		if (!sourceSection.equals(this.target.getContainingSection())) {
+		
+			result = false;
+			errorMessage = "The target Class is not part of the SourceSection specified by this Mapping. Consider adding a ReferenceMatchSpec to concretize the matched instances to be used for this MappingHint.";
+		
+		} else if (sourceSection.isReferencedBy(sourceSection, new BasicEList<>())) {
+		
+			result = false;
+			errorMessage = "The specified target Class can be matched in multiple ways (either as part of the local SourceSection or referenced via one or multiple CrossReferences). Consider adding a ReferenceMatchSpec to concretize the matched instances to be used for this MappingHint.";
+		}
+		
+		if (!result && diagnostics != null) {
+		
+			diagnostics.add(new BasicDiagnostic(Diagnostic.WARNING, ConditionValidator.DIAGNOSTIC_SOURCE,
+					ConditionValidator.CARDINALITY_CONDITION__VALIDATE_REFERENCE_MATCH_SPEC_PRESENT_IN_CASE_OF_AMBIGUOUS_SOURCE,
+					errorMessage, new Object[] { this, ConditionPackage.Literals.CONDITION__TARGET }));
+		}
+		
+		return result;	
 	}
 
 	/**
@@ -170,6 +218,19 @@ public class CardinalityConditionImpl extends
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case ConditionPackage.CARDINALITY_CONDITION___VALIDATE_REFERENCE_MATCH_SPEC_PRESENT_IN_CASE_OF_AMBIGUOUS_SOURCE__DIAGNOSTICCHAIN_MAP:
+				return validateReferenceMatchSpecPresentInCaseOfAmbiguousSource((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } // SectionConditionImpl

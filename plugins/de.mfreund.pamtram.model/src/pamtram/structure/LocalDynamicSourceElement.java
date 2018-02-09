@@ -37,4 +37,12 @@ public interface LocalDynamicSourceElement<S extends Section<S, C, R, A>, C exte
 	 * @generated
 	 */
 	boolean validateSourceAttributeMatchesSectionOrContainedSection(DiagnosticChain diagnostics, Map<?, ?> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nif (this.source == null || this.getMapping().getSourceSection() == null\r\n\t\t|| !this.getReferenceMatchSpec().isEmpty()) {\r\n\treturn true;\r\n}\r\n\r\n&lt;%pamtram.structure.source.SourceSection%&gt; sourceSection = this.getMapping().getSourceSection();\r\n\r\nboolean result = true;\r\nString errorMessage = \"\";\r\n\r\nif (!sourceSection.equals(this.source.getContainingSection())) {\r\n\r\n\tresult = false;\r\n\terrorMessage = \"The source &lt;%pamtram.structure.generic.Attribute%&gt; is not part of the SourceSection specified by this &lt;%pamtram.mapping.Mapping%&gt;. Consider adding a ReferenceMatchSpec to concretize the matched instances to be used for this MappingHint.\";\r\n\r\n} else if (sourceSection.isReferencedBy(sourceSection, new &lt;%org.eclipse.emf.common.util.BasicEList%&gt;&lt;&gt;())) {\r\n\r\n\tresult = false;\r\n\terrorMessage = \"The specified source Attribute can be matched in multiple ways (either as part of the local SourceSection or referenced via one or multiple CrossReferences). Consider adding a ReferenceMatchSpec to concretize the matched instances to be used for this MappingHint.\";\r\n}\r\n\r\nif (!result &amp;&amp; diagnostics != null) {\r\n\r\n\tdiagnostics.add(new BasicDiagnostic(&lt;%org.eclipse.emf.common.util.Diagnostic%&gt;.WARNING, &lt;%pamtram.structure.util.StructureValidator%&gt;.DIAGNOSTIC_SOURCE,\r\n\t\t\tStructureValidator.LOCAL_DYNAMIC_SOURCE_ELEMENT__VALIDATE_REFERENCE_MATCH_SPEC_PRESENT_IN_CASE_OF_AMBIGUOUS_SOURCE,\r\n\t\t\terrorMessage, new Object[] { this, &lt;%pamtram.structure.StructurePackage%&gt;.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE }));\r\n}\r\n\r\nreturn result;'"
+	 * @generated
+	 */
+	boolean validateReferenceMatchSpecPresentInCaseOfAmbiguousSource(DiagnosticChain diagnostics, Map<?, ?> context);
 } // LocalDynamicSourceElement

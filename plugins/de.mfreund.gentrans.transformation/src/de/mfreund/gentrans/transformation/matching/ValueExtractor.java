@@ -272,7 +272,9 @@ public abstract class ValueExtractor extends CancelableTransformationAsset {
 		// Collect all values of the attribute in all source elements
 		//
 		List<String> srcAttrValues = mappingHintSourceElement.isUseElementID()
-				? sourceElements.stream().map(e -> String.valueOf(this.assetManager.getElementIDs().getIDForElement(e)))
+				? sourceElements.stream()
+						.map(e -> String.valueOf(
+								this.assetManager.getElementIDs().getID(e, mappingHintSourceElement.getSource())))
 						.collect(Collectors.toList())
 				: this.assetManager.getModelAccessUtil().getAttributeValueAsStringList(sourceElements,
 						mappingHintSourceElement.getSource());

@@ -150,8 +150,9 @@ public abstract class ValueExtractor extends CancelableTransformationAsset {
 			// In case we are dealing with a local source element, we need to collect all elements of the given
 			// descriptor and of all descriptors (directly or indirectly) referenced by this descriptor
 			//
-			sourceElements = sourceDescriptor
-					.getMatchedSourceModelElementsFor(mappingHintSourceElement.getSource().getOwningClass(), true);
+			sourceElements = sourceDescriptor.getMatchedSourceModelElementsFor(
+					mappingHintSourceElement.getSource().getOwningClass(),
+					((LocalDynamicSourceElement<?, ?, ?, ?>) mappingHintSourceElement).isFollowExternalReferences());
 
 			// If the user specified an additional 'referenceMatchSpec', use
 			// only that subset of the determined source elements corresponding

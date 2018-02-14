@@ -354,7 +354,8 @@ public class HintValueExtractor extends ValueExtractor {
 			}
 
 			Set<EObject> sourceElements = sourceClasses.stream().flatMap(sourceClass -> matchedSectionDescriptor
-					.getMatchedSourceModelElementsFor(sourceClass, true).stream()).collect(Collectors.toSet());
+					.getMatchedSourceModelElementsFor(sourceClass, cardinalityMapping.isFollowExternalReferences())
+					.stream()).collect(Collectors.toSet());
 
 			// Evaluate potential ReferenceMatchSpecs
 			//

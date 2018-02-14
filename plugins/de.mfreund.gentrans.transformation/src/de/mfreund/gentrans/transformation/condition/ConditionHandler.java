@@ -525,12 +525,15 @@ public class ConditionHandler extends TransformationAsset {
 			descriptorsToConsider.addAll(this.matchedSections.get(affectedSection));
 		}
 
+		boolean includeReferenced = condition.isLocalCondition() && condition instanceof MatchSpecElement<?, ?, ?, ?>
+				&& ((MatchSpecElement<?, ?, ?, ?>) condition).isFollowExternalReferences();
+
 		// Collect all instances for the selected MatchedSectionDescriptors
 		//
 		List<EObject> correspondEClassInstances = affectedClasses.stream()
 				.flatMap(affectedClass -> descriptorsToConsider.stream()
 						.flatMap(descriptor -> Optional.ofNullable(descriptor
-								.getMatchedSourceModelElementsFor(affectedClass, condition.isLocalCondition()))
+								.getMatchedSourceModelElementsFor(affectedClass, includeReferenced))
 								.orElse(new HashSet<>()).stream()))
 				.distinct().collect(Collectors.toList());
 

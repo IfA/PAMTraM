@@ -342,10 +342,11 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 		int maxMatchedElements = 0;
 		for (MatchedSectionDescriptor match : descriptors) {
 
-			if (match.getMatchedSourceModelObjectFlat(false).size() >= maxMatchedElements) {
+			Set<EObject> currentMatchedElements = match.getMatchedSourceModelObjectFlat(false);
+			if (currentMatchedElements.size() >= maxMatchedElements) {
 
-				if (match.getMatchedSourceModelObjectFlat(false).size() > maxMatchedElements) {
-					maxMatchedElements = match.getMatchedSourceModelObjectFlat(false).size();
+				if (currentMatchedElements.size() > maxMatchedElements) {
+					maxMatchedElements = currentMatchedElements.size();
 					matchesWithMaximumElements.clear();
 				}
 

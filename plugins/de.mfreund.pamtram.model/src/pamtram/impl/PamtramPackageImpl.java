@@ -681,6 +681,15 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getMatchSpecElement_FollowExternalReferences() {
+		return (EAttribute)matchSpecElementEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getFixedValue() {
 		return fixedValueEClass;
 	}
@@ -780,6 +789,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 
 		matchSpecElementEClass = createEClass(MATCH_SPEC_ELEMENT);
 		createEReference(matchSpecElementEClass, MATCH_SPEC_ELEMENT__REFERENCE_MATCH_SPEC);
+		createEAttribute(matchSpecElementEClass, MATCH_SPEC_ELEMENT__FOLLOW_EXTERNAL_REFERENCES);
 
 		fixedValueEClass = createEClass(FIXED_VALUE);
 		createEAttribute(fixedValueEClass, FIXED_VALUE__VALUE);
@@ -1022,6 +1032,7 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		initEClass(matchSpecElementEClass, MatchSpecElement.class, "MatchSpecElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		g1 = createEGenericType(matchSpecElementEClass_R);
 		initEReference(getMatchSpecElement_ReferenceMatchSpec(), g1, null, "referenceMatchSpec", null, 0, -1, MatchSpecElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMatchSpecElement_FollowExternalReferences(), ecorePackage.getEBoolean(), "followExternalReferences", null, 1, 1, MatchSpecElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(fixedValueEClass, FixedValue.class, "FixedValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFixedValue_Value(), ecorePackage.getEString(), "value", null, 1, 1, FixedValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1404,6 +1415,12 @@ public class PamtramPackageImpl extends EPackageImpl implements PamtramPackage {
 		   source, 
 		   new String[] {
 			 "documentation", "In case of SourceSections referencing itself via a CrossReference, it may be necessary to further restrict the determined values that are used for calculation (e.g. do not use the \'own\' attribute value but only attribute values of \'referenced\' elements. Therefore, this allows to specify a list of References describing a path how to get to the relevant instances based on the root element of the Section."
+		   });	
+		addAnnotation
+		  (getMatchSpecElement_FollowExternalReferences(), 
+		   source, 
+		   new String[] {
+			 "documentation", "In case of Attributes defined in abstract Sections and inherited by multiple concrete Sections, the specified source Attribute might match via various paths (including one or multiple CrossReferences). By default, however, only \'local\' matches (in the current SourceSection) are evaluated. If matches in other Sections shall be used, set this to \'true\' (also consider specifying an additional \'referenceMatchSpec\' elements in such cases)."
 		   });	
 		addAnnotation
 		  (fixedValueEClass, 

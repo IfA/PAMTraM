@@ -372,7 +372,7 @@ public class ConstraintValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(valueConstraintSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= structureValidator.validateLocalDynamicSourceElement_sourceAttributeMatchesSectionOrContainedSection(valueConstraintSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= structureValidator.validateLocalDynamicSourceElement_validateSourceAttributeMatchesSectionOrContainedSection(valueConstraintSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= structureValidator.validateLocalDynamicSourceElement_validateReferenceMatchSpecPresentInCaseOfAmbiguousSource(valueConstraintSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateLocalDynamicSourceElement_validateFollowExternalReferencesTrueIfRequired(valueConstraintSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(valueConstraintSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(valueConstraintSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(valueConstraintSourceElement, diagnostics, context);

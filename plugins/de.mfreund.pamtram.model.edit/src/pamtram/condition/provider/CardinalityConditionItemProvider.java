@@ -9,10 +9,13 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
+import org.eclipse.emf.edit.provider.ViewerNotification;
 import pamtram.PamtramPackage;
 import pamtram.condition.CardinalityCondition;
+import pamtram.condition.ConditionPackage;
 
 /**
  * This is the item provider adapter for a {@link pamtram.condition.CardinalityCondition} object.
@@ -42,6 +45,7 @@ public class CardinalityConditionItemProvider extends ConditionItemProvider {
 			super.getPropertyDescriptors(object);
 
 			addReferenceMatchSpecPropertyDescriptor(object);
+			addFollowExternalReferencesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -64,6 +68,28 @@ public class CardinalityConditionItemProvider extends ConditionItemProvider {
 				 false,
 				 true,
 				 null,
+				 getString("_UI_ExtendedPropertyCategory"),
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Follow External References feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addFollowExternalReferencesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_MatchSpecElement_followExternalReferences_feature"),
+				 getString("_UI_MatchSpecElement_followExternalReferences_description"),
+				 PamtramPackage.Literals.MATCH_SPEC_ELEMENT__FOLLOW_EXTERNAL_REFERENCES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 getString("_UI_ExtendedPropertyCategory"),
 				 null));
 	}
@@ -115,6 +141,12 @@ public class CardinalityConditionItemProvider extends ConditionItemProvider {
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(CardinalityCondition.class)) {
+			case ConditionPackage.CARDINALITY_CONDITION__FOLLOW_EXTERNAL_REFERENCES:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 

@@ -61,12 +61,12 @@ public class StructureValidator extends EObjectValidator {
 	public static final int LOCAL_DYNAMIC_SOURCE_ELEMENT__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION = 3;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Reference Match Spec Present In Case Of Ambiguous Source' of 'Local Dynamic Source Element'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Follow External References True If Required' of 'Local Dynamic Source Element'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int LOCAL_DYNAMIC_SOURCE_ELEMENT__VALIDATE_REFERENCE_MATCH_SPEC_PRESENT_IN_CASE_OF_AMBIGUOUS_SOURCE = 4;
+	public static final int LOCAL_DYNAMIC_SOURCE_ELEMENT__VALIDATE_FOLLOW_EXTERNAL_REFERENCES_TRUE_IF_REQUIRED = 4;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Source Attribute Matches Container Section' of 'External Dynamic Source Element'.
@@ -305,7 +305,7 @@ public class StructureValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(instanceSelectorSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLocalDynamicSourceElement_sourceAttributeMatchesSectionOrContainedSection(instanceSelectorSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLocalDynamicSourceElement_validateSourceAttributeMatchesSectionOrContainedSection(instanceSelectorSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLocalDynamicSourceElement_validateReferenceMatchSpecPresentInCaseOfAmbiguousSource(instanceSelectorSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLocalDynamicSourceElement_validateFollowExternalReferencesTrueIfRequired(instanceSelectorSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(instanceSelectorSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(instanceSelectorSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(instanceSelectorSourceElement, diagnostics, context);
@@ -382,7 +382,7 @@ public class StructureValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(localDynamicSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLocalDynamicSourceElement_sourceAttributeMatchesSectionOrContainedSection(localDynamicSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLocalDynamicSourceElement_validateSourceAttributeMatchesSectionOrContainedSection(localDynamicSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateLocalDynamicSourceElement_validateReferenceMatchSpecPresentInCaseOfAmbiguousSource(localDynamicSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLocalDynamicSourceElement_validateFollowExternalReferencesTrueIfRequired(localDynamicSourceElement, diagnostics, context);
 		return result;
 	}
 
@@ -425,13 +425,13 @@ public class StructureValidator extends EObjectValidator {
 	}
 
 	/**
-	 * Validates the validateReferenceMatchSpecPresentInCaseOfAmbiguousSource constraint of '<em>Local Dynamic Source Element</em>'.
+	 * Validates the validateFollowExternalReferencesTrueIfRequired constraint of '<em>Local Dynamic Source Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateLocalDynamicSourceElement_validateReferenceMatchSpecPresentInCaseOfAmbiguousSource(LocalDynamicSourceElement<?, ?, ?, ?> localDynamicSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return localDynamicSourceElement.validateReferenceMatchSpecPresentInCaseOfAmbiguousSource(diagnostics, context);
+	public boolean validateLocalDynamicSourceElement_validateFollowExternalReferencesTrueIfRequired(LocalDynamicSourceElement<?, ?, ?, ?> localDynamicSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return localDynamicSourceElement.validateFollowExternalReferencesTrueIfRequired(diagnostics, context);
 	}
 
 	/**

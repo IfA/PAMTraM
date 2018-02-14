@@ -6,14 +6,15 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Map;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -37,6 +38,7 @@ import pamtram.structure.source.SourceSectionReference;
  * </p>
  * <ul>
  *   <li>{@link pamtram.condition.impl.AttributeConditionImpl#getReferenceMatchSpec <em>Reference Match Spec</em>}</li>
+ *   <li>{@link pamtram.condition.impl.AttributeConditionImpl#isFollowExternalReferences <em>Follow External References</em>}</li>
  *   <li>{@link pamtram.condition.impl.AttributeConditionImpl#getValueConstraints <em>Value Constraints</em>}</li>
  * </ul>
  *
@@ -53,6 +55,24 @@ public class AttributeConditionImpl extends ConditionImpl<SourceSectionAttribute
 	 * @ordered
 	 */
 	protected EList<SourceSectionReference> referenceMatchSpec;
+
+	/**
+	 * The default value of the '{@link #isFollowExternalReferences() <em>Follow External References</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #isFollowExternalReferences()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean FOLLOW_EXTERNAL_REFERENCES_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isFollowExternalReferences() <em>Follow External References</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #isFollowExternalReferences()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean followExternalReferences = FOLLOW_EXTERNAL_REFERENCES_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getValueConstraints() <em>Value Constraints</em>}' containment reference list.
@@ -109,6 +129,30 @@ public class AttributeConditionImpl extends ConditionImpl<SourceSectionAttribute
 	 * @generated
 	 */
 	@Override
+	public boolean isFollowExternalReferences() {
+	
+		return followExternalReferences;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setFollowExternalReferences(boolean newFollowExternalReferences) {
+	
+		boolean oldFollowExternalReferences = followExternalReferences;
+		followExternalReferences = newFollowExternalReferences;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.ATTRIBUTE_CONDITION__FOLLOW_EXTERNAL_REFERENCES, oldFollowExternalReferences, followExternalReferences));
+	
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EList<ValueConstraint> getValueConstraints() {
 	
 		if (valueConstraints == null) {
@@ -122,7 +166,7 @@ public class AttributeConditionImpl extends ConditionImpl<SourceSectionAttribute
 	 * @generated
 	 */
 	@Override
-	public boolean validateReferenceMatchSpecPresentInCaseOfAmbiguousSource(final DiagnosticChain diagnostics,
+	public boolean validateFollowExternalReferencesTrueIfRequired(final DiagnosticChain diagnostics,
 			final Map<?, ?> context) {
 		
 		if (this.target == null || !this.isMappingCondition()
@@ -136,21 +180,19 @@ public class AttributeConditionImpl extends ConditionImpl<SourceSectionAttribute
 		boolean result = true;
 		String errorMessage = "";
 		
-		if (!sourceSection.equals(this.target.getContainingSection())) {
+		if (this.isLocalCondition() && !this.followExternalReferences
+				&& !sourceSection.equals(this.target.getContainingSection())
+						&& !sourceSection.getAllExtend().contains(this.target.getContainingSection())) {
 		
 			result = false;
-			errorMessage = "The target Attribute is not part of the SourceSection specified by this Mapping. Consider adding a ReferenceMatchSpec to concretize the matched instances to be used for this MappingHint.";
+			errorMessage = "The target Attribute is not part of the SourceSection specified by this Mapping. This is not allowed unless 'followExternalReferences' is set to 'true'.";
 		
-		} else if (sourceSection.isReferencedBy(sourceSection, new BasicEList<>())) {
-		
-			result = false;
-			errorMessage = "The specified target Attribute can be matched in multiple ways (either as part of the local SourceSection or referenced via one or multiple CrossReferences). Consider adding a ReferenceMatchSpec to concretize the matched instances to be used for this MappingHint.";
 		}
 		
 		if (!result && diagnostics != null) {
 		
-			diagnostics.add(new BasicDiagnostic(Diagnostic.WARNING, ConditionValidator.DIAGNOSTIC_SOURCE,
-					ConditionValidator.ATTRIBUTE_CONDITION__VALIDATE_REFERENCE_MATCH_SPEC_PRESENT_IN_CASE_OF_AMBIGUOUS_SOURCE,
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, ConditionValidator.DIAGNOSTIC_SOURCE,
+					ConditionValidator.ATTRIBUTE_CONDITION__VALIDATE_FOLLOW_EXTERNAL_REFERENCES_TRUE_IF_REQUIRED,
 					errorMessage, new Object[] { this, ConditionPackage.Literals.CONDITION__TARGET }));
 		}
 		
@@ -179,6 +221,8 @@ public class AttributeConditionImpl extends ConditionImpl<SourceSectionAttribute
 		switch (featureID) {
 			case ConditionPackage.ATTRIBUTE_CONDITION__REFERENCE_MATCH_SPEC:
 				return getReferenceMatchSpec();
+			case ConditionPackage.ATTRIBUTE_CONDITION__FOLLOW_EXTERNAL_REFERENCES:
+				return isFollowExternalReferences();
 			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
 				return getValueConstraints();
 		}
@@ -196,6 +240,9 @@ public class AttributeConditionImpl extends ConditionImpl<SourceSectionAttribute
 			case ConditionPackage.ATTRIBUTE_CONDITION__REFERENCE_MATCH_SPEC:
 				getReferenceMatchSpec().clear();
 				getReferenceMatchSpec().addAll((Collection<? extends SourceSectionReference>)newValue);
+				return;
+			case ConditionPackage.ATTRIBUTE_CONDITION__FOLLOW_EXTERNAL_REFERENCES:
+				setFollowExternalReferences((Boolean)newValue);
 				return;
 			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
 				getValueConstraints().clear();
@@ -215,6 +262,9 @@ public class AttributeConditionImpl extends ConditionImpl<SourceSectionAttribute
 			case ConditionPackage.ATTRIBUTE_CONDITION__REFERENCE_MATCH_SPEC:
 				getReferenceMatchSpec().clear();
 				return;
+			case ConditionPackage.ATTRIBUTE_CONDITION__FOLLOW_EXTERNAL_REFERENCES:
+				setFollowExternalReferences(FOLLOW_EXTERNAL_REFERENCES_EDEFAULT);
+				return;
 			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
 				getValueConstraints().clear();
 				return;
@@ -231,6 +281,8 @@ public class AttributeConditionImpl extends ConditionImpl<SourceSectionAttribute
 		switch (featureID) {
 			case ConditionPackage.ATTRIBUTE_CONDITION__REFERENCE_MATCH_SPEC:
 				return referenceMatchSpec != null && !referenceMatchSpec.isEmpty();
+			case ConditionPackage.ATTRIBUTE_CONDITION__FOLLOW_EXTERNAL_REFERENCES:
+				return followExternalReferences != FOLLOW_EXTERNAL_REFERENCES_EDEFAULT;
 			case ConditionPackage.ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS:
 				return valueConstraints != null && !valueConstraints.isEmpty();
 		}
@@ -246,6 +298,7 @@ public class AttributeConditionImpl extends ConditionImpl<SourceSectionAttribute
 		if (baseClass == MatchSpecElement.class) {
 			switch (derivedFeatureID) {
 				case ConditionPackage.ATTRIBUTE_CONDITION__REFERENCE_MATCH_SPEC: return PamtramPackage.MATCH_SPEC_ELEMENT__REFERENCE_MATCH_SPEC;
+				case ConditionPackage.ATTRIBUTE_CONDITION__FOLLOW_EXTERNAL_REFERENCES: return PamtramPackage.MATCH_SPEC_ELEMENT__FOLLOW_EXTERNAL_REFERENCES;
 				default: return -1;
 			}
 		}
@@ -261,6 +314,7 @@ public class AttributeConditionImpl extends ConditionImpl<SourceSectionAttribute
 		if (baseClass == MatchSpecElement.class) {
 			switch (baseFeatureID) {
 				case PamtramPackage.MATCH_SPEC_ELEMENT__REFERENCE_MATCH_SPEC: return ConditionPackage.ATTRIBUTE_CONDITION__REFERENCE_MATCH_SPEC;
+				case PamtramPackage.MATCH_SPEC_ELEMENT__FOLLOW_EXTERNAL_REFERENCES: return ConditionPackage.ATTRIBUTE_CONDITION__FOLLOW_EXTERNAL_REFERENCES;
 				default: return -1;
 			}
 		}
@@ -274,10 +328,25 @@ public class AttributeConditionImpl extends ConditionImpl<SourceSectionAttribute
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case ConditionPackage.ATTRIBUTE_CONDITION___VALIDATE_REFERENCE_MATCH_SPEC_PRESENT_IN_CASE_OF_AMBIGUOUS_SOURCE__DIAGNOSTICCHAIN_MAP:
-				return validateReferenceMatchSpecPresentInCaseOfAmbiguousSource((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case ConditionPackage.ATTRIBUTE_CONDITION___VALIDATE_FOLLOW_EXTERNAL_REFERENCES_TRUE_IF_REQUIRED__DIAGNOSTICCHAIN_MAP:
+				return validateFollowExternalReferencesTrueIfRequired((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (followExternalReferences: ");
+		result.append(followExternalReferences);
+		result.append(')');
+		return result.toString();
 	}
 
 } // AttributeConditionImpl

@@ -830,13 +830,22 @@ public interface PamtramPackage extends EPackage {
 	int MATCH_SPEC_ELEMENT__REFERENCE_MATCH_SPEC = 0;
 
 	/**
+	 * The feature id for the '<em><b>Follow External References</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MATCH_SPEC_ELEMENT__FOLLOW_EXTERNAL_REFERENCES = 1;
+
+	/**
 	 * The number of structural features of the '<em>Match Spec Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MATCH_SPEC_ELEMENT_FEATURE_COUNT = 1;
+	int MATCH_SPEC_ELEMENT_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Match Spec Element</em>' class.
@@ -1432,6 +1441,17 @@ public interface PamtramPackage extends EPackage {
 	EReference getMatchSpecElement_ReferenceMatchSpec();
 
 	/**
+	 * Returns the meta object for the attribute '{@link pamtram.MatchSpecElement#isFollowExternalReferences <em>Follow External References</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Follow External References</em>'.
+	 * @see pamtram.MatchSpecElement#isFollowExternalReferences()
+	 * @see #getMatchSpecElement()
+	 * @generated
+	 */
+	EAttribute getMatchSpecElement_FollowExternalReferences();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.FixedValue <em>Fixed Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1874,6 +1894,14 @@ public interface PamtramPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MATCH_SPEC_ELEMENT__REFERENCE_MATCH_SPEC = eINSTANCE.getMatchSpecElement_ReferenceMatchSpec();
+
+		/**
+		 * The meta object literal for the '<em><b>Follow External References</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MATCH_SPEC_ELEMENT__FOLLOW_EXTERNAL_REFERENCES = eINSTANCE.getMatchSpecElement_FollowExternalReferences();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.impl.FixedValueImpl <em>Fixed Value</em>}' class.

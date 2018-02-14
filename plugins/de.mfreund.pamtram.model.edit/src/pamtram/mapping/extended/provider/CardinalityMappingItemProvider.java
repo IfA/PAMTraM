@@ -64,6 +64,7 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 			addExpressionPropertyDescriptor(object);
 			addModifiersPropertyDescriptor(object);
 			addReferenceMatchSpecPropertyDescriptor(object);
+			addFollowExternalReferencesPropertyDescriptor(object);
 			addSourcePropertyDescriptor(object);
 			addTargetPropertyDescriptor(object);
 		}
@@ -118,6 +119,28 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 				 false,
 				 true,
 				 null,
+				 getString("_UI_ExtendedPropertyCategory"),
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Follow External References feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addFollowExternalReferencesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_MatchSpecElement_followExternalReferences_feature"),
+				 getString("_UI_MatchSpecElement_followExternalReferences_description"),
+				 PamtramPackage.Literals.MATCH_SPEC_ELEMENT__FOLLOW_EXTERNAL_REFERENCES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 getString("_UI_ExtendedPropertyCategory"),
 				 null));
 	}
@@ -372,6 +395,7 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 
 		switch (notification.getFeatureID(CardinalityMapping.class)) {
 			case ExtendedPackage.CARDINALITY_MAPPING__EXPRESSION:
+			case ExtendedPackage.CARDINALITY_MAPPING__FOLLOW_EXTERNAL_REFERENCES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case ExtendedPackage.CARDINALITY_MAPPING__SOURCE_ELEMENTS:

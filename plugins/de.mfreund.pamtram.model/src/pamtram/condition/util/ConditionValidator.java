@@ -72,12 +72,12 @@ public class ConditionValidator extends EObjectValidator {
 	public static final int UNARY_CONDITION__VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL = 4;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Reference Match Spec Present In Case Of Ambiguous Source' of 'Attribute Condition'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Follow External References True If Required' of 'Attribute Condition'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ATTRIBUTE_CONDITION__VALIDATE_REFERENCE_MATCH_SPEC_PRESENT_IN_CASE_OF_AMBIGUOUS_SOURCE = 5;
+	public static final int ATTRIBUTE_CONDITION__VALIDATE_FOLLOW_EXTERNAL_REFERENCES_TRUE_IF_REQUIRED = 5;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Reference Match Spec Present In Case Of Ambiguous Source' of 'Cardinality Condition'.
@@ -423,18 +423,18 @@ public class ConditionValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(attributeCondition, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(attributeCondition, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(attributeCondition, diagnostics, context);
-		if (result || diagnostics != null) result &= validateAttributeCondition_validateReferenceMatchSpecPresentInCaseOfAmbiguousSource(attributeCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validateAttributeCondition_validateFollowExternalReferencesTrueIfRequired(attributeCondition, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * Validates the validateReferenceMatchSpecPresentInCaseOfAmbiguousSource constraint of '<em>Attribute Condition</em>'.
+	 * Validates the validateFollowExternalReferencesTrueIfRequired constraint of '<em>Attribute Condition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateAttributeCondition_validateReferenceMatchSpecPresentInCaseOfAmbiguousSource(AttributeCondition attributeCondition, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return attributeCondition.validateReferenceMatchSpecPresentInCaseOfAmbiguousSource(diagnostics, context);
+	public boolean validateAttributeCondition_validateFollowExternalReferencesTrueIfRequired(AttributeCondition attributeCondition, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return attributeCondition.validateFollowExternalReferencesTrueIfRequired(diagnostics, context);
 	}
 
 	/**

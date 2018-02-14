@@ -4,10 +4,12 @@ package pamtram.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
@@ -28,6 +30,7 @@ import pamtram.structure.generic.Section;
  * </p>
  * <ul>
  *   <li>{@link pamtram.impl.MatchSpecElementImpl#getReferenceMatchSpec <em>Reference Match Spec</em>}</li>
+ *   <li>{@link pamtram.impl.MatchSpecElementImpl#isFollowExternalReferences <em>Follow External References</em>}</li>
  * </ul>
  *
  * @generated
@@ -42,6 +45,25 @@ public abstract class MatchSpecElementImpl<S extends Section<S, C, R, A>, C exte
 	 * @ordered
 	 */
 	protected EList<R> referenceMatchSpec;
+
+	/**
+	 * The default value of the '{@link #isFollowExternalReferences() <em>Follow External References</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isFollowExternalReferences()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean FOLLOW_EXTERNAL_REFERENCES_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isFollowExternalReferences() <em>Follow External References</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isFollowExternalReferences()
+	 * @generated
+	 * @ordered
+	 */
+    protected boolean followExternalReferences = FOLLOW_EXTERNAL_REFERENCES_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -80,11 +102,37 @@ public abstract class MatchSpecElementImpl<S extends Section<S, C, R, A>, C exte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isFollowExternalReferences() {
+	
+		return followExternalReferences;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFollowExternalReferences(boolean newFollowExternalReferences) {
+	
+		boolean oldFollowExternalReferences = followExternalReferences;
+		followExternalReferences = newFollowExternalReferences;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PamtramPackage.MATCH_SPEC_ELEMENT__FOLLOW_EXTERNAL_REFERENCES, oldFollowExternalReferences, followExternalReferences));
+	
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case PamtramPackage.MATCH_SPEC_ELEMENT__REFERENCE_MATCH_SPEC:
 				return getReferenceMatchSpec();
+			case PamtramPackage.MATCH_SPEC_ELEMENT__FOLLOW_EXTERNAL_REFERENCES:
+				return isFollowExternalReferences();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -102,6 +150,9 @@ public abstract class MatchSpecElementImpl<S extends Section<S, C, R, A>, C exte
 				getReferenceMatchSpec().clear();
 				getReferenceMatchSpec().addAll((Collection<? extends R>)newValue);
 				return;
+			case PamtramPackage.MATCH_SPEC_ELEMENT__FOLLOW_EXTERNAL_REFERENCES:
+				setFollowExternalReferences((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -117,6 +168,9 @@ public abstract class MatchSpecElementImpl<S extends Section<S, C, R, A>, C exte
 			case PamtramPackage.MATCH_SPEC_ELEMENT__REFERENCE_MATCH_SPEC:
 				getReferenceMatchSpec().clear();
 				return;
+			case PamtramPackage.MATCH_SPEC_ELEMENT__FOLLOW_EXTERNAL_REFERENCES:
+				setFollowExternalReferences(FOLLOW_EXTERNAL_REFERENCES_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -131,8 +185,26 @@ public abstract class MatchSpecElementImpl<S extends Section<S, C, R, A>, C exte
 		switch (featureID) {
 			case PamtramPackage.MATCH_SPEC_ELEMENT__REFERENCE_MATCH_SPEC:
 				return referenceMatchSpec != null && !referenceMatchSpec.isEmpty();
+			case PamtramPackage.MATCH_SPEC_ELEMENT__FOLLOW_EXTERNAL_REFERENCES:
+				return followExternalReferences != FOLLOW_EXTERNAL_REFERENCES_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (followExternalReferences: ");
+		result.append(followExternalReferences);
+		result.append(')');
+		return result.toString();
 	}
 
 } //MatchSpecElementImpl

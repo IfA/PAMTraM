@@ -92,6 +92,8 @@
       <genFeatures notify="false" createChild="false" propertyCategory="Extended"
           propertyDescription="An optional list of References describing a path how to get to the relevant instances based on the root element of the Section. This can be used to prevent ambiguous matches especially in case of self-referencing section definitions."
           propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//MatchSpecElement/referenceMatchSpec"/>
+      <genFeatures createChild="false" propertyCategory="Extended" propertyDescription="If this is set to 'true', the specified source Attribute will also match in other Sections (referenced via CrossReferences)."
+          ecoreFeature="ecore:EAttribute pamtram.ecore#//MatchSpecElement/followExternalReferences"/>
     </genClasses>
     <genClasses ecoreClass="pamtram.ecore#//FixedValue">
       <genFeatures createChild="false" propertyCategory="Basic" propertyDescription="The value that this element represents."
@@ -148,6 +150,10 @@
         <genOperations ecoreOperation="pamtram.ecore#//structure/LocalDynamicSourceElement/validateSourceAttributeMatchesSectionOrContainedSection">
           <genParameters ecoreParameter="pamtram.ecore#//structure/LocalDynamicSourceElement/validateSourceAttributeMatchesSectionOrContainedSection/diagnostics"/>
           <genParameters ecoreParameter="pamtram.ecore#//structure/LocalDynamicSourceElement/validateSourceAttributeMatchesSectionOrContainedSection/context"/>
+        </genOperations>
+        <genOperations ecoreOperation="pamtram.ecore#//structure/LocalDynamicSourceElement/validateReferenceMatchSpecPresentInCaseOfAmbiguousSource">
+          <genParameters ecoreParameter="pamtram.ecore#//structure/LocalDynamicSourceElement/validateReferenceMatchSpecPresentInCaseOfAmbiguousSource/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//structure/LocalDynamicSourceElement/validateReferenceMatchSpecPresentInCaseOfAmbiguousSource/context"/>
         </genOperations>
       </genClasses>
       <genClasses image="false" ecoreClass="pamtram.ecore#//structure/ExternalDynamicSourceElement">
@@ -235,6 +241,10 @@
             <genParameters ecoreParameter="pamtram.ecore#//structure/generic/Class/validateNotSelfContainer/diagnostics"/>
             <genParameters ecoreParameter="pamtram.ecore#//structure/generic/Class/validateNotSelfContainer/context"/>
           </genOperations>
+          <genOperations ecoreOperation="pamtram.ecore#//structure/generic/Class/validateOnlyComplementingActualReferences">
+            <genParameters ecoreParameter="pamtram.ecore#//structure/generic/Class/validateOnlyComplementingActualReferences/diagnostics"/>
+            <genParameters ecoreParameter="pamtram.ecore#//structure/generic/Class/validateOnlyComplementingActualReferences/context"/>
+          </genOperations>
         </genClasses>
         <genClasses image="false" ecoreClass="pamtram.ecore#//structure/generic/Section">
           <genTypeParameters ecoreTypeParameter="pamtram.ecore#//structure/generic/Section/S"/>
@@ -271,6 +281,8 @@
           <genOperations ecoreOperation="pamtram.ecore#//structure/generic/Reference/addValuesGeneric">
             <genParameters ecoreParameter="pamtram.ecore#//structure/generic/Reference/addValuesGeneric/values"/>
           </genOperations>
+          <genOperations ecoreOperation="pamtram.ecore#//structure/generic/Reference/isExtended"/>
+          <genOperations ecoreOperation="pamtram.ecore#//structure/generic/Reference/getValuesIncludingExtended"/>
         </genClasses>
         <genClasses image="false" ecoreClass="pamtram.ecore#//structure/generic/ActualReference">
           <genTypeParameters ecoreTypeParameter="pamtram.ecore#//structure/generic/ActualReference/S"/>
@@ -424,6 +436,10 @@
         <genClasses image="false" ecoreClass="pamtram.ecore#//structure/source/SourceSectionReference">
           <genFeatures createChild="false" propertyCategory="Extended" propertyDescription="If set to 'false', matching this Reference requires all source model elements referenced via this reference to be matched."
               ecoreFeature="ecore:EAttribute pamtram.ecore#//structure/source/SourceSectionReference/ignoreUnmatchedElements"/>
+          <genOperations ecoreOperation="pamtram.ecore#//structure/source/SourceSectionReference/validateIsIgnoreUnmatchedIfIsComplemented">
+            <genParameters ecoreParameter="pamtram.ecore#//structure/source/SourceSectionReference/validateIsIgnoreUnmatchedIfIsComplemented/diagnostics"/>
+            <genParameters ecoreParameter="pamtram.ecore#//structure/source/SourceSectionReference/validateIsIgnoreUnmatchedIfIsComplemented/context"/>
+          </genOperations>
         </genClasses>
         <genClasses image="false" ecoreClass="pamtram.ecore#//structure/source/SourceSectionCompositeReference"/>
         <genClasses image="false" ecoreClass="pamtram.ecore#//structure/source/SourceSectionCrossReference"/>
@@ -569,6 +585,10 @@
           <genParameters ecoreParameter="pamtram.ecore#//condition/VariadicCondition/validateMinimalNumberOfArgs/diagnostics"/>
           <genParameters ecoreParameter="pamtram.ecore#//condition/VariadicCondition/validateMinimalNumberOfArgs/context"/>
         </genOperations>
+        <genOperations ecoreOperation="pamtram.ecore#//condition/VariadicCondition/validateReferenceOnlyConditionsFromConditionModel">
+          <genParameters ecoreParameter="pamtram.ecore#//condition/VariadicCondition/validateReferenceOnlyConditionsFromConditionModel/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//condition/VariadicCondition/validateReferenceOnlyConditionsFromConditionModel/context"/>
+        </genOperations>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//condition/And"/>
       <genClasses ecoreClass="pamtram.ecore#//condition/Or"/>
@@ -581,13 +601,12 @@
           <genParameters ecoreParameter="pamtram.ecore#//condition/UnaryCondition/validateExactlyOneArg/diagnostics"/>
           <genParameters ecoreParameter="pamtram.ecore#//condition/UnaryCondition/validateExactlyOneArg/context"/>
         </genOperations>
-      </genClasses>
-      <genClasses ecoreClass="pamtram.ecore#//condition/Not">
-        <genOperations ecoreOperation="pamtram.ecore#//condition/Not/validateReferenceOnlyConditionsFromConditionModelOrFromConditionalElements">
-          <genParameters ecoreParameter="pamtram.ecore#//condition/Not/validateReferenceOnlyConditionsFromConditionModelOrFromConditionalElements/diagnostics"/>
-          <genParameters ecoreParameter="pamtram.ecore#//condition/Not/validateReferenceOnlyConditionsFromConditionModelOrFromConditionalElements/context"/>
+        <genOperations ecoreOperation="pamtram.ecore#//condition/UnaryCondition/validateReferenceOnlyConditionsFromConditionModel">
+          <genParameters ecoreParameter="pamtram.ecore#//condition/UnaryCondition/validateReferenceOnlyConditionsFromConditionModel/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//condition/UnaryCondition/validateReferenceOnlyConditionsFromConditionModel/context"/>
         </genOperations>
       </genClasses>
+      <genClasses ecoreClass="pamtram.ecore#//condition/Not"/>
       <genClasses ecoreClass="pamtram.ecore#//condition/Condition">
         <genTypeParameters ecoreTypeParameter="pamtram.ecore#//condition/Condition/TargetType"/>
         <genFeatures createChild="false" propertyCategory="Basic" propertyDescription="The reference value for this condition (the expected number of matches)."
@@ -606,8 +625,17 @@
       <genClasses ecoreClass="pamtram.ecore#//condition/AttributeCondition">
         <genFeatures property="None" children="true" createChild="true" propertyCategory=""
             ecoreFeature="ecore:EReference pamtram.ecore#//condition/AttributeCondition/valueConstraints"/>
+        <genOperations ecoreOperation="pamtram.ecore#//condition/AttributeCondition/validateReferenceMatchSpecPresentInCaseOfAmbiguousSource">
+          <genParameters ecoreParameter="pamtram.ecore#//condition/AttributeCondition/validateReferenceMatchSpecPresentInCaseOfAmbiguousSource/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//condition/AttributeCondition/validateReferenceMatchSpecPresentInCaseOfAmbiguousSource/context"/>
+        </genOperations>
       </genClasses>
-      <genClasses ecoreClass="pamtram.ecore#//condition/CardinalityCondition"/>
+      <genClasses ecoreClass="pamtram.ecore#//condition/CardinalityCondition">
+        <genOperations ecoreOperation="pamtram.ecore#//condition/CardinalityCondition/validateReferenceMatchSpecPresentInCaseOfAmbiguousSource">
+          <genParameters ecoreParameter="pamtram.ecore#//condition/CardinalityCondition/validateReferenceMatchSpecPresentInCaseOfAmbiguousSource/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//condition/CardinalityCondition/validateReferenceMatchSpecPresentInCaseOfAmbiguousSource/context"/>
+        </genOperations>
+      </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//condition/ApplicationDependency"/>
     </nestedGenPackages>
     <nestedGenPackages prefix="Mapping" basePackage="pamtram" disposableProviderFactory="true"
@@ -806,12 +834,12 @@
             <genParameters ecoreParameter="pamtram.ecore#//mapping/extended/CardinalityMapping/validateExpressionOnlyForSourceElements/diagnostics"/>
             <genParameters ecoreParameter="pamtram.ecore#//mapping/extended/CardinalityMapping/validateExpressionOnlyForSourceElements/context"/>
           </genOperations>
-          <genOperations ecoreOperation="pamtram.ecore#//mapping/extended/CardinalityMapping/validateModifiersOnlyForSourceElements">
-            <genParameters ecoreParameter="pamtram.ecore#//mapping/extended/CardinalityMapping/validateModifiersOnlyForSourceElements/diagnostics"/>
-            <genParameters ecoreParameter="pamtram.ecore#//mapping/extended/CardinalityMapping/validateModifiersOnlyForSourceElements/context"/>
-          </genOperations>
           <genOperations ecoreOperation="pamtram.ecore#//mapping/extended/CardinalityMapping/getLocalSourceElements"/>
           <genOperations ecoreOperation="pamtram.ecore#//mapping/extended/CardinalityMapping/getExternalSourceElements"/>
+          <genOperations ecoreOperation="pamtram.ecore#//mapping/extended/CardinalityMapping/validateReferenceMatchSpecPresentInCaseOfAmbiguousSource">
+            <genParameters ecoreParameter="pamtram.ecore#//mapping/extended/CardinalityMapping/validateReferenceMatchSpecPresentInCaseOfAmbiguousSource/diagnostics"/>
+            <genParameters ecoreParameter="pamtram.ecore#//mapping/extended/CardinalityMapping/validateReferenceMatchSpecPresentInCaseOfAmbiguousSource/context"/>
+          </genOperations>
         </genClasses>
         <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/extended/CardinalityMappingSourceInterface"/>
         <genClasses ecoreClass="pamtram.ecore#//mapping/extended/CardinalityMappingSourceElement"/>

@@ -6,12 +6,13 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Map;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import pamtram.MatchSpecElement;
@@ -51,6 +52,24 @@ public class CardinalityConditionImpl extends
 	 * @ordered
 	 */
 	protected EList<SourceSectionReference> referenceMatchSpec;
+
+	/**
+	 * The default value of the '{@link #isFollowExternalReferences() <em>Follow External References</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #isFollowExternalReferences()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean FOLLOW_EXTERNAL_REFERENCES_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isFollowExternalReferences() <em>Follow External References</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #isFollowExternalReferences()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean followExternalReferences = FOLLOW_EXTERNAL_REFERENCES_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -99,6 +118,30 @@ public class CardinalityConditionImpl extends
 	 * @generated
 	 */
 	@Override
+	public boolean isFollowExternalReferences() {
+	
+		return followExternalReferences;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setFollowExternalReferences(boolean newFollowExternalReferences) {
+	
+		boolean oldFollowExternalReferences = followExternalReferences;
+		followExternalReferences = newFollowExternalReferences;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ConditionPackage.CARDINALITY_CONDITION__FOLLOW_EXTERNAL_REFERENCES, oldFollowExternalReferences, followExternalReferences));
+	
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public boolean validateReferenceMatchSpecPresentInCaseOfAmbiguousSource(final DiagnosticChain diagnostics,
 			final Map<?, ?> context) {
 		
@@ -113,20 +156,17 @@ public class CardinalityConditionImpl extends
 		boolean result = true;
 		String errorMessage = "";
 		
-		if (!sourceSection.equals(this.target.getContainingSection())) {
+		if (this.isLocalCondition() && !sourceSection.equals(this.target.getContainingSection())
+				&& !sourceSection.getAllExtend().contains(this.target.getContainingSection())) {
 		
 			result = false;
-			errorMessage = "The target Class is not part of the SourceSection specified by this Mapping. Consider adding a ReferenceMatchSpec to concretize the matched instances to be used for this MappingHint.";
+			errorMessage = "The target Class is not part of the SourceSection specified by this Mapping. This is not allowed unless 'followExternalReferences' is set to 'true'.";
 		
-		} else if (sourceSection.isReferencedBy(sourceSection, new BasicEList<>())) {
-		
-			result = false;
-			errorMessage = "The specified target Class can be matched in multiple ways (either as part of the local SourceSection or referenced via one or multiple CrossReferences). Consider adding a ReferenceMatchSpec to concretize the matched instances to be used for this MappingHint.";
 		}
 		
 		if (!result && diagnostics != null) {
 		
-			diagnostics.add(new BasicDiagnostic(Diagnostic.WARNING, ConditionValidator.DIAGNOSTIC_SOURCE,
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, ConditionValidator.DIAGNOSTIC_SOURCE,
 					ConditionValidator.CARDINALITY_CONDITION__VALIDATE_REFERENCE_MATCH_SPEC_PRESENT_IN_CASE_OF_AMBIGUOUS_SOURCE,
 					errorMessage, new Object[] { this, ConditionPackage.Literals.CONDITION__TARGET }));
 		}
@@ -143,6 +183,8 @@ public class CardinalityConditionImpl extends
 		switch (featureID) {
 			case ConditionPackage.CARDINALITY_CONDITION__REFERENCE_MATCH_SPEC:
 				return getReferenceMatchSpec();
+			case ConditionPackage.CARDINALITY_CONDITION__FOLLOW_EXTERNAL_REFERENCES:
+				return isFollowExternalReferences();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -159,6 +201,9 @@ public class CardinalityConditionImpl extends
 				getReferenceMatchSpec().clear();
 				getReferenceMatchSpec().addAll((Collection<? extends SourceSectionReference>)newValue);
 				return;
+			case ConditionPackage.CARDINALITY_CONDITION__FOLLOW_EXTERNAL_REFERENCES:
+				setFollowExternalReferences((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -173,6 +218,9 @@ public class CardinalityConditionImpl extends
 			case ConditionPackage.CARDINALITY_CONDITION__REFERENCE_MATCH_SPEC:
 				getReferenceMatchSpec().clear();
 				return;
+			case ConditionPackage.CARDINALITY_CONDITION__FOLLOW_EXTERNAL_REFERENCES:
+				setFollowExternalReferences(FOLLOW_EXTERNAL_REFERENCES_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -186,6 +234,8 @@ public class CardinalityConditionImpl extends
 		switch (featureID) {
 			case ConditionPackage.CARDINALITY_CONDITION__REFERENCE_MATCH_SPEC:
 				return referenceMatchSpec != null && !referenceMatchSpec.isEmpty();
+			case ConditionPackage.CARDINALITY_CONDITION__FOLLOW_EXTERNAL_REFERENCES:
+				return followExternalReferences != FOLLOW_EXTERNAL_REFERENCES_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -199,6 +249,7 @@ public class CardinalityConditionImpl extends
 		if (baseClass == MatchSpecElement.class) {
 			switch (derivedFeatureID) {
 				case ConditionPackage.CARDINALITY_CONDITION__REFERENCE_MATCH_SPEC: return PamtramPackage.MATCH_SPEC_ELEMENT__REFERENCE_MATCH_SPEC;
+				case ConditionPackage.CARDINALITY_CONDITION__FOLLOW_EXTERNAL_REFERENCES: return PamtramPackage.MATCH_SPEC_ELEMENT__FOLLOW_EXTERNAL_REFERENCES;
 				default: return -1;
 			}
 		}
@@ -214,6 +265,7 @@ public class CardinalityConditionImpl extends
 		if (baseClass == MatchSpecElement.class) {
 			switch (baseFeatureID) {
 				case PamtramPackage.MATCH_SPEC_ELEMENT__REFERENCE_MATCH_SPEC: return ConditionPackage.CARDINALITY_CONDITION__REFERENCE_MATCH_SPEC;
+				case PamtramPackage.MATCH_SPEC_ELEMENT__FOLLOW_EXTERNAL_REFERENCES: return ConditionPackage.CARDINALITY_CONDITION__FOLLOW_EXTERNAL_REFERENCES;
 				default: return -1;
 			}
 		}
@@ -231,6 +283,21 @@ public class CardinalityConditionImpl extends
 				return validateReferenceMatchSpecPresentInCaseOfAmbiguousSource((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (followExternalReferences: ");
+		result.append(followExternalReferences);
+		result.append(')');
+		return result.toString();
 	}
 
 } // SectionConditionImpl

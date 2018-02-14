@@ -24,6 +24,7 @@ import pamtram.structure.generic.Section;
  * </p>
  * <ul>
  *   <li>{@link pamtram.MatchSpecElement#getReferenceMatchSpec <em>Reference Match Spec</em>}</li>
+ *   <li>{@link pamtram.MatchSpecElement#isFollowExternalReferences <em>Follow External References</em>}</li>
  * </ul>
  *
  * @see pamtram.PamtramPackage#getMatchSpecElement()
@@ -44,5 +45,30 @@ public interface MatchSpecElement<S extends Section<S, C, R, A>, C extends pamtr
 	 * @generated
 	 */
 	EList<R> getReferenceMatchSpec();
+
+	/**
+	 * Returns the value of the '<em><b>Follow External References</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * In case of Attributes defined in abstract Sections and inherited by multiple concrete Sections, the specified source Attribute might match via various paths (including one or multiple CrossReferences). By default, however, only 'local' matches (in the current SourceSection) are evaluated. If matches in other Sections shall be used, set this to 'true' (also consider specifying an additional 'referenceMatchSpec' elements in such cases).
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Follow External References</em>' attribute.
+	 * @see #setFollowExternalReferences(boolean)
+	 * @see pamtram.PamtramPackage#getMatchSpecElement_FollowExternalReferences()
+	 * @model required="true"
+	 * @generated
+	 */
+	boolean isFollowExternalReferences();
+
+	/**
+	 * Sets the value of the '{@link pamtram.MatchSpecElement#isFollowExternalReferences <em>Follow External References</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Follow External References</em>' attribute.
+	 * @see #isFollowExternalReferences()
+	 * @generated
+	 */
+	void setFollowExternalReferences(boolean value);
 
 } // MatchSpecElement

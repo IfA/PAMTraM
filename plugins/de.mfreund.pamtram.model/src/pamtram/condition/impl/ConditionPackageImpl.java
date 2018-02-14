@@ -504,7 +504,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getAttributeCondition__ValidateReferenceMatchSpecPresentInCaseOfAmbiguousSource__DiagnosticChain_Map() {
+	public EOperation getAttributeCondition__ValidateFollowExternalReferencesTrueIfRequired__DiagnosticChain_Map() {
 		return attributeConditionEClass.getEOperations().get(0);
 	}
 
@@ -608,7 +608,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 
 		attributeConditionEClass = createEClass(ATTRIBUTE_CONDITION);
 		createEReference(attributeConditionEClass, ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS);
-		createEOperation(attributeConditionEClass, ATTRIBUTE_CONDITION___VALIDATE_REFERENCE_MATCH_SPEC_PRESENT_IN_CASE_OF_AMBIGUOUS_SOURCE__DIAGNOSTICCHAIN_MAP);
+		createEOperation(attributeConditionEClass, ATTRIBUTE_CONDITION___VALIDATE_FOLLOW_EXTERNAL_REFERENCES_TRUE_IF_REQUIRED__DIAGNOSTICCHAIN_MAP);
 
 		cardinalityConditionEClass = createEClass(CARDINALITY_CONDITION);
 		createEOperation(cardinalityConditionEClass, CARDINALITY_CONDITION___VALIDATE_REFERENCE_MATCH_SPEC_PRESENT_IN_CASE_OF_AMBIGUOUS_SOURCE__DIAGNOSTICCHAIN_MAP);
@@ -783,7 +783,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		initEClass(attributeConditionEClass, AttributeCondition.class, "AttributeCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAttributeCondition_ValueConstraints(), theConstraintPackage.getValueConstraint(), null, "valueConstraints", null, 1, -1, AttributeCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getAttributeCondition__ValidateReferenceMatchSpecPresentInCaseOfAmbiguousSource__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateReferenceMatchSpecPresentInCaseOfAmbiguousSource", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getAttributeCondition__ValidateFollowExternalReferencesTrueIfRequired__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateFollowExternalReferencesTrueIfRequired", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType();
@@ -1058,10 +1058,10 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 			 "documentation", "This condition can be used to check the value of an Attribute."
 		   });	
 		addAnnotation
-		  (getAttributeCondition__ValidateReferenceMatchSpecPresentInCaseOfAmbiguousSource__DiagnosticChain_Map(), 
+		  (getAttributeCondition__ValidateFollowExternalReferencesTrueIfRequired__DiagnosticChain_Map(), 
 		   source, 
 		   new String[] {
-			 "body", "\r\nif (this.target == null || !this.isMappingCondition()\r\n\t\t|| ((<%pamtram.mapping.Mapping%>) this.getRootCondition().eContainer()).getSourceSection() == null\r\n\t\t|| !this.getReferenceMatchSpec().isEmpty()) {\r\n\treturn true;\r\n}\r\n\r\n<%pamtram.structure.source.SourceSection%> sourceSection = ((Mapping) this.getRootCondition().eContainer()).getSourceSection();\r\n\r\nboolean result = true;\r\nString errorMessage = \"\";\r\n\r\nif (!sourceSection.equals(this.target.getContainingSection())) {\r\n\r\n\tresult = false;\r\n\terrorMessage = \"The target Attribute is not part of the SourceSection specified by this Mapping. Consider adding a ReferenceMatchSpec to concretize the matched instances to be used for this MappingHint.\";\r\n\r\n} else if (sourceSection.isReferencedBy(sourceSection, new <%org.eclipse.emf.common.util.BasicEList%><>())) {\r\n\r\n\tresult = false;\r\n\terrorMessage = \"The specified target Attribute can be matched in multiple ways (either as part of the local SourceSection or referenced via one or multiple CrossReferences). Consider adding a ReferenceMatchSpec to concretize the matched instances to be used for this MappingHint.\";\r\n}\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.WARNING, <%pamtram.condition.util.ConditionValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\tConditionValidator.ATTRIBUTE_CONDITION__VALIDATE_REFERENCE_MATCH_SPEC_PRESENT_IN_CASE_OF_AMBIGUOUS_SOURCE,\r\n\t\t\terrorMessage, new Object[] { this, <%pamtram.condition.ConditionPackage%>.Literals.CONDITION__TARGET }));\r\n}\r\n\r\nreturn result;"
+			 "body", "\r\nif (this.target == null || !this.isMappingCondition()\r\n\t\t|| ((<%pamtram.mapping.Mapping%>) this.getRootCondition().eContainer()).getSourceSection() == null\r\n\t\t|| !this.getReferenceMatchSpec().isEmpty()) {\r\n\treturn true;\r\n}\r\n\r\n<%pamtram.structure.source.SourceSection%> sourceSection = ((Mapping) this.getRootCondition().eContainer()).getSourceSection();\r\n\r\nboolean result = true;\r\nString errorMessage = \"\";\r\n\r\nif (this.isLocalCondition() && !this.followExternalReferences\r\n\t\t&& !sourceSection.equals(this.target.getContainingSection())\r\n\t\t\t\t&& !sourceSection.getAllExtend().contains(this.target.getContainingSection())) {\r\n\r\n\tresult = false;\r\n\terrorMessage = \"The target Attribute is not part of the SourceSection specified by this Mapping. This is not allowed unless \'followExternalReferences\' is set to \'true\'.\";\r\n\r\n}\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR, <%pamtram.condition.util.ConditionValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\tConditionValidator.ATTRIBUTE_CONDITION__VALIDATE_FOLLOW_EXTERNAL_REFERENCES_TRUE_IF_REQUIRED,\r\n\t\t\terrorMessage, new Object[] { this, <%pamtram.condition.ConditionPackage%>.Literals.CONDITION__TARGET }));\r\n}\r\n\r\nreturn result;"
 		   });	
 		addAnnotation
 		  (getAttributeCondition_ValueConstraints(), 
@@ -1079,7 +1079,7 @@ public class ConditionPackageImpl extends EPackageImpl implements ConditionPacka
 		  (getCardinalityCondition__ValidateReferenceMatchSpecPresentInCaseOfAmbiguousSource__DiagnosticChain_Map(), 
 		   source, 
 		   new String[] {
-			 "body", "\r\nif (this.target == null || !this.isMappingCondition()\r\n\t\t|| ((<%pamtram.mapping.Mapping%>) this.getRootCondition().eContainer()).getSourceSection() == null\r\n\t\t|| !this.getReferenceMatchSpec().isEmpty()) {\r\n\treturn true;\r\n}\r\n\r\n<%pamtram.structure.source.SourceSection%> sourceSection = ((Mapping) this.getRootCondition().eContainer()).getSourceSection();\r\n\r\nboolean result = true;\r\nString errorMessage = \"\";\r\n\r\nif (!sourceSection.equals(this.target.getContainingSection())) {\r\n\r\n\tresult = false;\r\n\terrorMessage = \"The target Class is not part of the SourceSection specified by this Mapping. Consider adding a ReferenceMatchSpec to concretize the matched instances to be used for this MappingHint.\";\r\n\r\n} else if (sourceSection.isReferencedBy(sourceSection, new <%org.eclipse.emf.common.util.BasicEList%><>())) {\r\n\r\n\tresult = false;\r\n\terrorMessage = \"The specified target Class can be matched in multiple ways (either as part of the local SourceSection or referenced via one or multiple CrossReferences). Consider adding a ReferenceMatchSpec to concretize the matched instances to be used for this MappingHint.\";\r\n}\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.WARNING, <%pamtram.condition.util.ConditionValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\tConditionValidator.CARDINALITY_CONDITION__VALIDATE_REFERENCE_MATCH_SPEC_PRESENT_IN_CASE_OF_AMBIGUOUS_SOURCE,\r\n\t\t\terrorMessage, new Object[] { this, <%pamtram.condition.ConditionPackage%>.Literals.CONDITION__TARGET }));\r\n}\r\n\r\nreturn result;"
+			 "body", "\r\nif (this.target == null || !this.isMappingCondition()\r\n\t\t|| ((<%pamtram.mapping.Mapping%>) this.getRootCondition().eContainer()).getSourceSection() == null\r\n\t\t|| !this.getReferenceMatchSpec().isEmpty()) {\r\n\treturn true;\r\n}\r\n\r\n<%pamtram.structure.source.SourceSection%> sourceSection = ((Mapping) this.getRootCondition().eContainer()).getSourceSection();\r\n\r\nboolean result = true;\r\nString errorMessage = \"\";\r\n\r\nif (this.isLocalCondition() && !sourceSection.equals(this.target.getContainingSection())\r\n\t\t&& !sourceSection.getAllExtend().contains(this.target.getContainingSection())) {\r\n\r\n\tresult = false;\r\n\terrorMessage = \"The target Class is not part of the SourceSection specified by this Mapping. This is not allowed unless \'followExternalReferences\' is set to \'true\'.\";\r\n\r\n}\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR, <%pamtram.condition.util.ConditionValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\tConditionValidator.CARDINALITY_CONDITION__VALIDATE_REFERENCE_MATCH_SPEC_PRESENT_IN_CASE_OF_AMBIGUOUS_SOURCE,\r\n\t\t\terrorMessage, new Object[] { this, <%pamtram.condition.ConditionPackage%>.Literals.CONDITION__TARGET }));\r\n}\r\n\r\nreturn result;"
 		   });	
 		addAnnotation
 		  (applicationDependencyEClass, 

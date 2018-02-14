@@ -3548,7 +3548,7 @@
           </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Trigger vo (Double:Out)" referenceAttribute="//@targetSectionModels.4/@sections.0/@attributes.0" targetClass="//@targetSectionModels.4/@sections.0" affectedReference="//@targetSectionModels.1/@sections.4/@references.0/@value.0/@references.0/@value.0/@references.0">
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath" modifiers="//@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.47 //@mappingModels.0/@modifierSets.15">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath" modifiers="//@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.47 //@mappingModels.0/@modifierSets.15" followExternalReferences="true">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#_o0UAZ4KMEeebJtDsk0N1XQ"/>
           </sourceElements>
         </mappingHints>
@@ -3588,7 +3588,7 @@
           </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Trigger repAn" referenceAttribute="//@targetSectionModels.4/@sections.0/@attributes.0" targetClass="//@targetSectionModels.4/@sections.0" affectedReference="//@targetSectionModels.1/@sections.10/@references.0">
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath" modifiers="//@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.47 //@mappingModels.0/@modifierSets.15">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath" modifiers="//@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.47 //@mappingModels.0/@modifierSets.15" followExternalReferences="true">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#_o0UAZ4KMEeebJtDsk0N1XQ"/>
           </sourceElements>
         </mappingHints>
@@ -3654,7 +3654,7 @@
       </localCondition>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel Double:Out" targetSection="//@targetSectionModels.1/@sections.5" extend="//@mappingModels.1/@mappings.0/@mappingHintGroups.0">
         <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Trigger vo" referenceAttribute="//@targetSectionModels.4/@sections.0/@attributes.0" targetClass="//@targetSectionModels.4/@sections.0" affectedReference="//@targetSectionModels.1/@sections.4/@references.0/@value.0/@references.0/@value.0/@references.0">
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath" modifiers="//@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.47 //@mappingModels.0/@modifierSets.15">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath" modifiers="//@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.47 //@mappingModels.0/@modifierSets.15" followExternalReferences="true">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#_o0UAZ4KMEeebJtDsk0N1XQ"/>
           </sourceElements>
         </mappingHints>
@@ -3739,7 +3739,7 @@
       </localCondition>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel Bool:In" targetSection="//@targetSectionModels.1/@sections.5" extend="//@mappingModels.1/@mappings.0/@mappingHintGroups.0">
         <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Trigger vo" referenceAttribute="//@targetSectionModels.4/@sections.0/@attributes.0" targetClass="//@targetSectionModels.4/@sections.0" affectedReference="//@targetSectionModels.1/@sections.4/@references.0/@value.0/@references.0/@value.0/@references.0">
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath" modifiers="//@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.47 //@mappingModels.0/@modifierSets.15">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath" modifiers="//@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.47 //@mappingModels.0/@modifierSets.15" followExternalReferences="true">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#_o0UAZ4KMEeebJtDsk0N1XQ"/>
           </sourceElements>
         </mappingHints>
@@ -3824,7 +3824,7 @@
       </localCondition>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextLabel Double:In" targetSection="//@targetSectionModels.1/@sections.5" extend="//@mappingModels.1/@mappings.0/@mappingHintGroups.0">
         <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Trigger vo" referenceAttribute="//@targetSectionModels.4/@sections.0/@attributes.0" targetClass="//@targetSectionModels.4/@sections.0" affectedReference="//@targetSectionModels.1/@sections.4/@references.0/@value.0/@references.0/@value.0/@references.0">
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath" modifiers="//@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.47 //@mappingModels.0/@modifierSets.15">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueBrowsePath" modifiers="//@mappingModels.0/@modifierSets.2 //@mappingModels.0/@modifierSets.47 //@mappingModels.0/@modifierSets.15" followExternalReferences="true">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#_o0UAZ4KMEeebJtDsk0N1XQ"/>
           </sourceElements>
         </mappingHints>
@@ -3905,17 +3905,17 @@
       <sourceSection href="source/Viobjects.pamtram.source#_o0TZG4KMEeebJtDsk0N1XQ"/>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetSection="//@targetSectionModels.1/@libraryElements.4/@parameters.4/@class">
         <mappingHints xsi:type="extended:ReferenceTargetSelector" name="PointsTo" referenceAttribute="//@targetSectionModels.3/@sections.0/@attributes.2" targetClass="//@targetSectionModels.3/@sections.0" affectedReference="//@targetSectionModels.1/@libraryElements.4/@parameters.5/@reference">
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueActivateChannel" modifiers="//@mappingModels.0/@modifierSets.22 //@mappingModels.0/@modifierSets.2">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueActivateChannel" modifiers="//@mappingModels.0/@modifierSets.22 //@mappingModels.0/@modifierSets.2" followExternalReferences="true">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#_o0UAMIKMEeebJtDsk0N1XQ"/>
           </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:ReferenceTargetSelector" name="PointsTo" referenceAttribute="//@targetSectionModels.3/@sections.0/@attributes.2" targetClass="//@targetSectionModels.3/@sections.0" affectedReference="//@targetSectionModels.1/@libraryElements.4/@parameters.6/@reference">
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueLockedChannel" modifiers="//@mappingModels.0/@modifierSets.22 //@mappingModels.0/@modifierSets.2">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueLockedChannel" modifiers="//@mappingModels.0/@modifierSets.22 //@mappingModels.0/@modifierSets.2" followExternalReferences="true">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#_o0UAKIKMEeebJtDsk0N1XQ"/>
           </sourceElements>
         </mappingHints>
         <mappingHints xsi:type="extended:ReferenceTargetSelector" name="PointsTo" referenceAttribute="//@targetSectionModels.3/@sections.0/@attributes.2" targetClass="//@targetSectionModels.3/@sections.0" affectedReference="//@targetSectionModels.1/@libraryElements.4/@parameters.7/@reference">
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueReturnChannel" modifiers="//@mappingModels.0/@modifierSets.22 //@mappingModels.0/@modifierSets.2">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="valueReturnChannel" modifiers="//@mappingModels.0/@modifierSets.22 //@mappingModels.0/@modifierSets.2" followExternalReferences="true">
             <source xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#_o0UANIKMEeebJtDsk0N1XQ"/>
           </sourceElements>
         </mappingHints>

@@ -76,10 +76,10 @@
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="name" source="//@sourceSectionModels.0/@sections.1/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:ReferenceTargetSelector" name="bookLoans" referenceAttribute="//@targetSectionModels.0/@sections.2/@attributes.0" targetClass="//@targetSectionModels.0/@sections.2" affectedReference="//@targetSectionModels.0/@sections.1/@references.0">
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="name" source="//@sourceSectionModels.0/@sections.2/@attributes.0"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="name" source="//@sourceSectionModels.0/@sections.2/@attributes.0" followExternalReferences="true"/>
         </mappingHints>
         <mappingHints xsi:type="extended:ReferenceTargetSelector" name="filmLoans" referenceAttribute="//@targetSectionModels.0/@sections.3/@attributes.0" targetClass="//@targetSectionModels.0/@sections.3" affectedReference="//@targetSectionModels.0/@sections.1/@references.1">
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="name" source="//@sourceSectionModels.0/@sections.2/@attributes.0"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="name" source="//@sourceSectionModels.0/@sections.2/@attributes.0" followExternalReferences="true"/>
         </mappingHints>
       </mappingHintGroups>
     </mappings>

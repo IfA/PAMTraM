@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="ASCII"?>
 <pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:extended="http://mfreund.de/pamtram/mapping/extended" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target">
   <sourceSectionModels>
-    <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/0"/>
+    <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/"/>
     <sections xsi:type="source:SourceSection" name="AIU" cardinality="ZERO__INFINITY">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit"/>
+      <eClass href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit"/>
       <attributes xsi:type="source:ActualSourceSectionAttribute" name="id">
-        <attribute href="http://www.w3.org/2013/mbui-aui#/0/AbstractInteractionUnit/id"/>
+        <attribute href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/id"/>
       </attributes>
     </sections>
     <sections xsi:type="source:SourceSection" name="AbstractUserInterfaceModel">
-      <eClass href="http://www.w3.org/2013/mbui-aui#/0/AbstractUserInterfaceModel"/>
+      <eClass href="http://www.w3.org/2013/mbui-aui#//AbstractUserInterfaceModel"/>
       <references xsi:type="source:VirtualSourceSectionCrossReference" name="anyButLastAIU" value="//@sourceSectionModels.0/@sections.0" derivation="self.abstractInteractionUnit->excluding(self.abstractInteractionUnit->last())"/>
     </sections>
   </sourceSectionModels>
@@ -26,7 +26,7 @@
     <mappings name="AnyButLastAlUMapping" sourceSection="//@sourceSectionModels.0/@sections.1">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetSection="//@targetSectionModels.0/@sections.0">
         <mappingHints xsi:type="extended:AttributeMapping" name="NameMapping" target="//@targetSectionModels.0/@sections.0/@attributes.0">
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.1" source="//@sourceSectionModels.0/@sections.0/@attributes.0"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.1" source="//@sourceSectionModels.0/@sections.0/@attributes.0" followExternalReferences="true"/>
         </mappingHints>
       </mappingHintGroups>
     </mappings>

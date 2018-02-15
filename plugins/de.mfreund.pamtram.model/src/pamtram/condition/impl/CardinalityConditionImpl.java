@@ -20,7 +20,7 @@ import pamtram.PamtramPackage;
 import pamtram.condition.CardinalityCondition;
 import pamtram.condition.ConditionPackage;
 import pamtram.condition.util.ConditionValidator;
-import pamtram.mapping.Mapping;
+import pamtram.structure.generic.CrossReference;
 import pamtram.structure.generic.MetaModelElement;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
@@ -145,13 +145,11 @@ public class CardinalityConditionImpl extends
 	public boolean validateReferenceMatchSpecPresentInCaseOfAmbiguousSource(final DiagnosticChain diagnostics,
 			final Map<?, ?> context) {
 		
-		if (this.target == null || !this.isMappingCondition()
-				|| ((Mapping) this.getRootCondition().eContainer()).getSourceSection() == null
-				|| this.followExternalReferences) {
+		if (this.target == null || this.getLocalSection() == null || this.followExternalReferences) {
 			return true;
 		}
 		
-		SourceSection sourceSection = ((Mapping) this.getRootCondition().eContainer()).getSourceSection();
+		SourceSection sourceSection = this.getLocalSection();
 		
 		boolean result = true;
 		String errorMessage = "";
@@ -162,8 +160,13 @@ public class CardinalityConditionImpl extends
 			result = false;
 			errorMessage = "The target Class is not part of the SourceSection specified by this Mapping. This is not allowed unless 'followExternalReferences' is set to 'true'.";
 		
+		} else if (this.isLocalCondition() && this.target instanceof CrossReference<?, ?, ?, ?>) {
+		
+			result = false;
+			errorMessage = "The target Reference is a Cross Reference. This is not allowed unless 'followExternalReferences' is set to 'true'.";
+		
 		} else if (this.getReferenceMatchSpec().parallelStream()
-				.anyMatch(r -> !r.getContainingSection().equals(sourceSection))) {
+				.anyMatch(r -> r instanceof CrossReference<?, ?, ?, ?>)) {
 		
 			result = false;
 			errorMessage = "The specified Reference Match Spec contains Cross References. This is not allowed unless 'followExternalReferences' is set to 'true'.";

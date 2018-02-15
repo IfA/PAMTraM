@@ -224,7 +224,7 @@ public abstract class LocalDynamicSourceElementImpl<S extends Section<S, C, R, A
 			errorMessage = "The source Attribute is not part of the SourceSection specified by this Mapping. This is not allowed unless 'followExternalReferences' is set to 'true'.";
 		
 		} else if (this.getReferenceMatchSpec().parallelStream()
-				.anyMatch(r -> !r.getContainingSection().equals(sourceSection))) {
+				.anyMatch(r -> r instanceof CrossReference<?, ?, ?, ?>)) {
 		
 			result = false;
 			severity = Diagnostic.ERROR;

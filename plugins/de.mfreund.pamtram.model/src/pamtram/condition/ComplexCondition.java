@@ -45,7 +45,7 @@ public interface ComplexCondition extends NamedElement {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @model kind="operation" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return getRootCondition().eContainer() instanceof Mapping;'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nreturn &lt;%de.tud.et.ifa.agtele.emf.AgteleEcoreUtil%&gt;.hasAncestorOfKind(this, &lt;%pamtram.mapping.MappingPackage%&gt;.Literals.MAPPING);'"
 	 * @generated
 	 */
 	boolean isMappingCondition();
@@ -53,7 +53,7 @@ public interface ComplexCondition extends NamedElement {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @model kind="operation" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return getRootCondition().eContainer() instanceof ConditionModel;'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nreturn &lt;%de.tud.et.ifa.agtele.emf.AgteleEcoreUtil%&gt;.hasAncestorOfKind(this, &lt;%pamtram.PamtramPackage%&gt;.Literals.CONDITION_MODEL);'"
 	 * @generated
 	 */
 	boolean isConditionModelCondition();

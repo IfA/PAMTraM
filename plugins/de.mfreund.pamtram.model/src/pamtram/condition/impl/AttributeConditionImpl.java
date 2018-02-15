@@ -24,8 +24,8 @@ import pamtram.PamtramPackage;
 import pamtram.condition.AttributeCondition;
 import pamtram.condition.ConditionPackage;
 import pamtram.condition.util.ConditionValidator;
-import pamtram.mapping.Mapping;
 import pamtram.structure.constraint.ValueConstraint;
+import pamtram.structure.generic.CrossReference;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
 import pamtram.structure.source.SourceSectionReference;
@@ -169,13 +169,11 @@ public class AttributeConditionImpl extends ConditionImpl<SourceSectionAttribute
 	public boolean validateFollowExternalReferencesTrueIfRequired(final DiagnosticChain diagnostics,
 			final Map<?, ?> context) {
 		
-		if (this.target == null || !this.isMappingCondition()
-				|| ((Mapping) this.getRootCondition().eContainer()).getSourceSection() == null
-				|| this.followExternalReferences) {
+		if (this.target == null || this.getLocalSection() == null || this.followExternalReferences) {
 			return true;
 		}
 		
-		SourceSection sourceSection = ((Mapping) this.getRootCondition().eContainer()).getSourceSection();
+		SourceSection sourceSection = this.getLocalSection();
 		
 		boolean result = true;
 		String errorMessage = "";
@@ -187,7 +185,7 @@ public class AttributeConditionImpl extends ConditionImpl<SourceSectionAttribute
 			errorMessage = "The target Attribute is not part of the SourceSection specified by this Mapping. This is not allowed unless 'followExternalReferences' is set to 'true'.";
 		
 		} else if (this.getReferenceMatchSpec().parallelStream()
-				.anyMatch(r -> !r.getContainingSection().equals(sourceSection))) {
+				.anyMatch(r -> r instanceof CrossReference<?, ?, ?, ?>)) {
 		
 			result = false;
 			errorMessage = "The specified Reference Match Spec contains Cross References. This is not allowed unless 'followExternalReferences' is set to 'true'.";

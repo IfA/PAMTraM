@@ -12,13 +12,14 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
-import pamtram.ConditionModel;
+import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
+import pamtram.PamtramPackage;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
 import pamtram.condition.UnaryCondition;
 import pamtram.condition.VariadicCondition;
 import pamtram.impl.NamedElementImpl;
-import pamtram.mapping.Mapping;
+import pamtram.mapping.MappingPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Complex Condition</b></em>'. <!-- end-user-doc
@@ -79,12 +80,15 @@ public abstract class ComplexConditionImpl extends NamedElementImpl implements C
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc --> TODO Don't forget to incorporate your manual changes into the Ecore
+	 * metamodel!
+	 *
 	 * @generated
 	 */
 	@Override
 	public boolean isMappingCondition() {
-		return getRootCondition().eContainer() instanceof Mapping;	
+		
+		return AgteleEcoreUtil.hasAncestorOfKind(this, MappingPackage.Literals.MAPPING);	
 	}
 
 	/**
@@ -93,7 +97,8 @@ public abstract class ComplexConditionImpl extends NamedElementImpl implements C
 	 */
 	@Override
 	public boolean isConditionModelCondition() {
-		return getRootCondition().eContainer() instanceof ConditionModel;	
+		
+		return AgteleEcoreUtil.hasAncestorOfKind(this, PamtramPackage.Literals.CONDITION_MODEL);	
 	}
 
 	/**

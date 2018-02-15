@@ -44,6 +44,7 @@ import pamtram.structure.constraint.EqualityConstraint;
 import pamtram.structure.constraint.SingleReferenceValueConstraint;
 import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.constraint.ValueConstraintType;
+import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.CrossReference;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionClass;
@@ -204,31 +205,20 @@ public class ConditionHandler extends TransformationAsset {
 	private CondResult checkCardinalityCondition(CardinalityCondition sectionCondition,
 			MatchedSectionDescriptor matchedSectionDescriptor) {
 
-		// The Section referenced by the CardinalityCondition was not matched in
-		// the source model
-		//
-		if (!this.matchedSections.containsKey(sectionCondition.getTarget().getContainingSection())) {
-
-			// For conditions where the referred Section shouldn't be part of a
-			// model
-			if (sectionCondition.getValue() == 0 && sectionCondition.getComparator() == ComparatorEnum.EQ) {
-
-				return CondResult.TRUE;
-
-			} else {
-
-				return CondResult.FALSE;
-			}
-		}
-
 		// Collect all instances for the selected MatchedSectionDescriptors
 		//
 		List<EObject> correspondEClassInstances = this.getInstancesToConsider(sectionCondition,
 				matchedSectionDescriptor);
 
+		long isValue = sectionCondition.getTarget() instanceof Attribute<?, ?, ?, ?> ? correspondEClassInstances
+				.stream()
+				.flatMap(e -> this.assetManager.getModelAccessUtil()
+						.getAttributeValueAsList(e, (Attribute<?, ?, ?, ?>) sectionCondition.getTarget()).stream())
+				.count() : correspondEClassInstances.size();
+
 		// check Cardinality of the condition (e.g. the condition have to be at
 		// least 5 times true)
-		boolean cardinalityRes = this.checkCardinality(sectionCondition.getValue(), correspondEClassInstances.size(),
+		boolean cardinalityRes = this.checkCardinality(sectionCondition.getValue(), Math.toIntExact(isValue),
 				sectionCondition.getComparator());
 
 		// store and return the result

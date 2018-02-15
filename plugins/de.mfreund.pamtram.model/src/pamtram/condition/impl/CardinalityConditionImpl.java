@@ -147,7 +147,7 @@ public class CardinalityConditionImpl extends
 		
 		if (this.target == null || !this.isMappingCondition()
 				|| ((Mapping) this.getRootCondition().eContainer()).getSourceSection() == null
-				|| !this.getReferenceMatchSpec().isEmpty()) {
+				|| this.followExternalReferences) {
 			return true;
 		}
 		
@@ -161,6 +161,12 @@ public class CardinalityConditionImpl extends
 		
 			result = false;
 			errorMessage = "The target Class is not part of the SourceSection specified by this Mapping. This is not allowed unless 'followExternalReferences' is set to 'true'.";
+		
+		} else if (this.getReferenceMatchSpec().parallelStream()
+				.anyMatch(r -> !r.getContainingSection().equals(sourceSection))) {
+		
+			result = false;
+			errorMessage = "The specified Reference Match Spec contains Cross References. This is not allowed unless 'followExternalReferences' is set to 'true'.";
 		
 		}
 		

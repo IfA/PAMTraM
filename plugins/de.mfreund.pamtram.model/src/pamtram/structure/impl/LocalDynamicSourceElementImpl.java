@@ -204,8 +204,7 @@ public abstract class LocalDynamicSourceElementImpl<S extends Section<S, C, R, A
 	public boolean validateFollowExternalReferencesTrueIfRequired(final DiagnosticChain diagnostics,
 			final Map<?, ?> context) {
 		
-		if (this.source == null || this.getMapping().getSourceSection() == null
-				|| !this.getReferenceMatchSpec().isEmpty()) {
+		if (this.source == null || this.getMapping().getSourceSection() == null || this.followExternalReferences) {
 			return true;
 		}
 		
@@ -218,11 +217,18 @@ public abstract class LocalDynamicSourceElementImpl<S extends Section<S, C, R, A
 		String errorMessage = "";
 		int severity = Diagnostic.OK;
 		
-		if (isExternalSourceElement && !this.followExternalReferences) {
+		if (isExternalSourceElement) {
 		
 			result = false;
 			severity = Diagnostic.ERROR;
 			errorMessage = "The source Attribute is not part of the SourceSection specified by this Mapping. This is not allowed unless 'followExternalReferences' is set to 'true'.";
+		
+		} else if (this.getReferenceMatchSpec().parallelStream()
+				.anyMatch(r -> !r.getContainingSection().equals(sourceSection))) {
+		
+			result = false;
+			severity = Diagnostic.ERROR;
+			errorMessage = "The specified Reference Match Spec contains Cross References. This is not allowed unless 'followExternalReferences' is set to 'true'.";
 		
 		}
 		

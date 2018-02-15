@@ -171,7 +171,7 @@ public class AttributeConditionImpl extends ConditionImpl<SourceSectionAttribute
 		
 		if (this.target == null || !this.isMappingCondition()
 				|| ((Mapping) this.getRootCondition().eContainer()).getSourceSection() == null
-				|| !this.getReferenceMatchSpec().isEmpty()) {
+				|| this.followExternalReferences) {
 			return true;
 		}
 		
@@ -180,12 +180,17 @@ public class AttributeConditionImpl extends ConditionImpl<SourceSectionAttribute
 		boolean result = true;
 		String errorMessage = "";
 		
-		if (this.isLocalCondition() && !this.followExternalReferences
-				&& !sourceSection.equals(this.target.getContainingSection())
-						&& !sourceSection.getAllExtend().contains(this.target.getContainingSection())) {
+		if (this.isLocalCondition() && !sourceSection.equals(this.target.getContainingSection())
+				&& !sourceSection.getAllExtend().contains(this.target.getContainingSection())) {
 		
 			result = false;
 			errorMessage = "The target Attribute is not part of the SourceSection specified by this Mapping. This is not allowed unless 'followExternalReferences' is set to 'true'.";
+		
+		} else if (this.getReferenceMatchSpec().parallelStream()
+				.anyMatch(r -> !r.getContainingSection().equals(sourceSection))) {
+		
+			result = false;
+			errorMessage = "The specified Reference Match Spec contains Cross References. This is not allowed unless 'followExternalReferences' is set to 'true'.";
 		
 		}
 		

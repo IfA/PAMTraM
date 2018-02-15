@@ -525,16 +525,19 @@ public class ConditionHandler extends TransformationAsset {
 			descriptorsToConsider.addAll(this.matchedSections.get(affectedSection));
 		}
 
-		boolean includeReferenced = condition.isLocalCondition() && condition instanceof MatchSpecElement<?, ?, ?, ?>
+		boolean isFollowExternalReferences = condition instanceof MatchSpecElement<?, ?, ?, ?>
 				&& ((MatchSpecElement<?, ?, ?, ?>) condition).isFollowExternalReferences();
+
+		boolean includeReferenced = condition.isLocalCondition() && (affectedClasses.stream()
+				.anyMatch(c -> !c.getContainingSection().equals(matchedSectionDescriptor.getAssociatedSourceSection()))
+				|| isFollowExternalReferences);
 
 		// Collect all instances for the selected MatchedSectionDescriptors
 		//
 		List<EObject> correspondEClassInstances = affectedClasses.stream()
-				.flatMap(affectedClass -> descriptorsToConsider.stream()
-						.flatMap(descriptor -> Optional.ofNullable(descriptor
-								.getMatchedSourceModelElementsFor(affectedClass, includeReferenced))
-								.orElse(new HashSet<>()).stream()))
+				.flatMap(affectedClass -> descriptorsToConsider.stream().flatMap(descriptor -> Optional
+						.ofNullable(descriptor.getMatchedSourceModelElementsFor(affectedClass, includeReferenced))
+						.orElse(new HashSet<>()).stream()))
 				.distinct().collect(Collectors.toList());
 
 		// For CardinalityConditions based on SourceSectionCrossReferences, we need to filter some more and only

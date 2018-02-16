@@ -518,9 +518,12 @@ public class ConditionHandler extends TransformationAsset {
 		boolean isFollowExternalReferences = condition instanceof MatchSpecElement<?, ?, ?, ?>
 				&& ((MatchSpecElement<?, ?, ?, ?>) condition).isFollowExternalReferences();
 
-		boolean includeReferenced = condition.isLocalCondition() && (affectedClasses.stream()
-				.anyMatch(c -> !c.getContainingSection().equals(matchedSectionDescriptor.getAssociatedSourceSection()))
-				|| isFollowExternalReferences);
+		boolean includeReferenced = condition.isLocalCondition()
+				&& (!affectedSection.isAbstract()
+						&& affectedClasses.stream()
+								.anyMatch(c -> !c.getContainingSection()
+										.equals(matchedSectionDescriptor.getAssociatedSourceSection()))
+						|| isFollowExternalReferences);
 
 		// Collect all instances for the selected MatchedSectionDescriptors
 		//

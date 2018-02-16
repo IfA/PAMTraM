@@ -10,6 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicDiagnostic;
@@ -27,7 +28,6 @@ import pamtram.mapping.Mapping;
 import pamtram.structure.LocalDynamicSourceElement;
 import pamtram.structure.StructurePackage;
 import pamtram.structure.generic.Attribute;
-import pamtram.structure.generic.CrossReference;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 import pamtram.structure.source.SourceSection;
@@ -173,9 +173,13 @@ public abstract class LocalDynamicSourceElementImpl<S extends Section<S, C, R, A
 				if (next instanceof pamtram.structure.generic.Attribute && next.equals(this.source)) {
 					result = true;
 					break;
-				} else if (next instanceof CrossReference) {
+				} else if (next instanceof pamtram.structure.generic.CrossReference<?, ?, ?, ?>) {
 					List<SourceSectionClass> vals = new ArrayList<>();
-					vals.addAll(((CrossReference) next).getValue());
+					List<pamtram.structure.generic.Class<?, ?, ?, ?>> values = new ArrayList<>(
+							((pamtram.structure.generic.CrossReference<?, ?, ?, ?>) next).getValue());
+					vals.addAll((Collection<? extends SourceSectionClass>) values);
+					vals.addAll(values.stream().filter(c -> c instanceof SourceSection)
+							.flatMap(c -> ((SourceSection) c).getAllExtend().stream()).collect(Collectors.toList()));
 					vals.removeAll(scanned);
 					sectionsToScan.addAll(vals);
 				}
@@ -224,7 +228,7 @@ public abstract class LocalDynamicSourceElementImpl<S extends Section<S, C, R, A
 			errorMessage = "The source Attribute is not part of the SourceSection specified by this Mapping. This is not allowed unless 'followExternalReferences' is set to 'true'.";
 		
 		} else if (this.getReferenceMatchSpec().parallelStream()
-				.anyMatch(r -> r instanceof CrossReference<?, ?, ?, ?>)) {
+				.anyMatch(r -> r instanceof pamtram.structure.generic.CrossReference<?, ?, ?, ?>)) {
 		
 			result = false;
 			severity = Diagnostic.ERROR;

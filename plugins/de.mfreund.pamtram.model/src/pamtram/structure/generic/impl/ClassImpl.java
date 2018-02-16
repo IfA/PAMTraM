@@ -505,27 +505,30 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 */
 	@Override
 	public boolean isContainerFor(final C containedClass) {
-		C container = containedClass.getContainer();
-				
-				// Prevent stack overflow in case of modeling error
-				//
-				if(EcoreUtil.isAncestor(containedClass, container)) {
-					return false;
-				}
 		
-			// this means that we have reached the top level container for the 'containedClass'
-				if (container == null) {
-					return false;
-					// this is the container
-				} else if (this.equals(container)) {
-					return true;
-					// one of the extended sections is the container
-				} else if (container instanceof Section && ((Section) container).getAllExtend().contains(this)) {
-					return true;
-					// this was not the container, so iterate up in the containment hierarchy
-				} else {
-					return this.isContainerFor(container);
-				}	
+		if (EcoreUtil.isAncestor(this, containedClass)
+				|| this.getContainingSection().getAllExtend().stream().anyMatch(c -> c.isContainerFor(containedClass))
+				|| containedClass.getContainingSection().getAllExtend().stream()
+						.anyMatch(c -> this.isContainerFor((C) c))) {
+			return true;
+		}
+		
+		C container = containedClass.getContainingSection().getContainer();
+		
+		// this means that we have reached the top level container for the 'containedClass'
+		if (container == null) {
+			return false;
+		}
+		
+		// Prevent stack overflow in case of modeling error
+		//
+		if (EcoreUtil.isAncestor(containedClass, container)) {
+			return false;
+		}
+		
+		// this was not the container, so iterate up in the containment hierarchy
+		return this.isContainerFor(container);
+			
 	}
 
 	/**
@@ -534,12 +537,18 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 */
 	@Override
 	public boolean isContainedIn(final C containerClass) {
-		// recursively collect all classes that are referenced by containment references and check if any matches this class
-				//
-				return containerClass.getAllReferences().stream()
-						.filter(r -> r instanceof ActualReference<?, ?, ?, ?>
-								&& ((ActualReference<?, ?, ?, ?>) r).getEReference().isContainment())
-						.flatMap(r -> r.getValuesGeneric().stream()).anyMatch(c -> c.equals(this) || this.isContainedIn(c));	
+		
+		// recursively collect all classes that are referenced by containment references and check if any matches this
+		// class
+		//
+		return containerClass.getAllReferences().stream()
+				.filter(r -> r instanceof ActualReference<?, ?, ?, ?>
+						&& ((ActualReference<?, ?, ?, ?>) r).getEReference().isContainment())
+				.flatMap(r -> r.getValuesGeneric().stream()).anyMatch(
+						c -> c.equals(this)
+								|| c instanceof Section<?, ?, ?, ?>
+										&& ((Section<?, ?, ?, ?>) c).getAllExtending().contains(this)
+								|| this.isContainedIn(c));	
 	}
 
 	/**

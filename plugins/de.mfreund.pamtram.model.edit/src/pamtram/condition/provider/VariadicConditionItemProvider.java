@@ -2,7 +2,6 @@
  */
 package pamtram.condition.provider;
 
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -30,10 +29,10 @@ import pamtram.condition.VariadicCondition;
  * @generated
  */
 public class VariadicConditionItemProvider extends ComplexConditionItemProvider {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public VariadicConditionItemProvider(AdapterFactory adapterFactory) {
@@ -42,8 +41,7 @@ public class VariadicConditionItemProvider extends ComplexConditionItemProvider 
 
 	/**
 	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -58,73 +56,43 @@ public class VariadicConditionItemProvider extends ComplexConditionItemProvider 
 
 	/**
 	 * This adds a property descriptor for the Shared Cond Parts feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addSharedCondPartsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_VariadicCondition_sharedCondParts_feature"),
-				 getString("_UI_VariadicCondition_sharedCondParts_description"),
-				 ConditionPackage.Literals.VARIADIC_CONDITION__SHARED_COND_PARTS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 getString("_UI_ExtendedPropertyCategory"),
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Cond Parts Ref feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	protected void addCondPartsRefPropertyDescriptor(Object object) {
-		this.itemPropertyDescriptors.add
-		(new ItemPropertyDescriptor
-				(((ComposeableAdapterFactory)this.adapterFactory).getRootAdapterFactory(),
-						this.getResourceLocator(),
-						this.getString("_UI_MultipleConditionOperator_condPartsRef_feature"),
-						this.getString("_UI_PropertyDescriptor_description", "_UI_MultipleConditionOperator_condPartsRef_feature", "_UI_MultipleConditionOperator_type"),
-				ConditionPackage.Literals.VARIADIC_CONDITION__SHARED_COND_PARTS,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null)
-		{
-			@Override
-			public Collection<?> getChoiceOfValues(Object object) {
-
-				List<Object> choiceOfValues = new ArrayList<>();
-				choiceOfValues.addAll(super.getChoiceOfValues(object));
-				for(Iterator<Object> element = choiceOfValues.iterator(); element.hasNext();){
-					EObject choiceValue = (EObject) element.next();
-					if(choiceValue==null){
-						continue;
+		
+		itemPropertyDescriptors
+				.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_VariadicCondition_sharedCondParts_feature"),
+						getString("_UI_VariadicCondition_sharedCondParts_description"),
+						ConditionPackage.Literals.VARIADIC_CONDITION__SHARED_COND_PARTS, true, false, true, null,
+						getString("_UI_ExtendedPropertyCategory"), null) {
+		
+					public Collection<?> getChoiceOfValues(Object object) {
+		
+						List<Object> choiceOfValues = new ArrayList<>();
+						choiceOfValues.addAll(super.getChoiceOfValues(object));
+						for (Iterator<Object> element = choiceOfValues.iterator(); element.hasNext();) {
+							EObject choiceValue = (EObject) element.next();
+							if (choiceValue == null) {
+								continue;
+							}
+							if (!(choiceValue.eContainer() instanceof ConditionModel)) {
+								element.remove();
+							}
+						}
+		
+						return choiceOfValues;
 					}
-					if(!(choiceValue.eContainer() instanceof ConditionModel)){
-						element.remove();
-					}
-				}
-
-				return choiceOfValues;
-			}
-		});
+				});
 	}
 
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -137,8 +105,7 @@ public class VariadicConditionItemProvider extends ComplexConditionItemProvider 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -151,8 +118,7 @@ public class VariadicConditionItemProvider extends ComplexConditionItemProvider 
 
 	/**
 	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -162,8 +128,7 @@ public class VariadicConditionItemProvider extends ComplexConditionItemProvider 
 
 	/**
 	 * This returns the label styled text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -179,10 +144,10 @@ public class VariadicConditionItemProvider extends ComplexConditionItemProvider 
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -200,8 +165,7 @@ public class VariadicConditionItemProvider extends ComplexConditionItemProvider 
 	/**
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

@@ -305,6 +305,15 @@ public class SourcePackageImpl extends EPackageImpl implements SourcePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getSourceSectionReference__ValidateIsIgnoreUnmatchedIfIsComplemented__DiagnosticChain_Map() {
+		return sourceSectionReferenceEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSourceSectionCompositeReference() {
 		return sourceSectionCompositeReferenceEClass;
 	}
@@ -436,6 +445,7 @@ public class SourcePackageImpl extends EPackageImpl implements SourcePackage {
 
 		sourceSectionReferenceEClass = createEClass(SOURCE_SECTION_REFERENCE);
 		createEAttribute(sourceSectionReferenceEClass, SOURCE_SECTION_REFERENCE__IGNORE_UNMATCHED_ELEMENTS);
+		createEOperation(sourceSectionReferenceEClass, SOURCE_SECTION_REFERENCE___VALIDATE_IS_IGNORE_UNMATCHED_IF_IS_COMPLEMENTED__DIAGNOSTICCHAIN_MAP);
 
 		sourceSectionCompositeReferenceEClass = createEClass(SOURCE_SECTION_COMPOSITE_REFERENCE);
 
@@ -643,6 +653,15 @@ public class SourcePackageImpl extends EPackageImpl implements SourcePackage {
 		initEClass(sourceSectionReferenceEClass, SourceSectionReference.class, "SourceSectionReference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSourceSectionReference_IgnoreUnmatchedElements(), ecorePackage.getEBoolean(), "ignoreUnmatchedElements", "false", 1, 1, SourceSectionReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		op = initEOperation(getSourceSectionReference__ValidateIsIgnoreUnmatchedIfIsComplemented__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateIsIgnoreUnmatchedIfIsComplemented", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(sourceSectionCompositeReferenceEClass, SourceSectionCompositeReference.class, "SourceSectionCompositeReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(sourceSectionCrossReferenceEClass, SourceSectionCrossReference.class, "SourceSectionCrossReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -738,6 +757,12 @@ public class SourcePackageImpl extends EPackageImpl implements SourcePackage {
 		   source, 
 		   new String[] {
 			 "documentation", "This represents a reference of a source model element structure.\r\n<br />\r\nIn order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the \'value\' reference."
+		   });	
+		addAnnotation
+		  (getSourceSectionReference__ValidateIsIgnoreUnmatchedIfIsComplemented__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nif (!(this instanceof <%pamtram.structure.generic.ActualReference%><?, ?, ?, ?> && this instanceof <%pamtram.structure.generic.CompositeReference%><?, ?, ?, ?>)) {\r\n\treturn true;\r\n}\r\n\r\n<%java.util.List%><<%org.eclipse.emf.ecore.EReference%>> actualCrossReferences = this.getOwningClass().getAllCrossReferences().stream()\r\n\t\t.filter(r -> r instanceof ActualReference<?, ?, ?, ?>)\r\n\t\t.map(r -> ((ActualReference<?, ?, ?, ?>) r).getEReference()).collect(<%java.util.stream.Collectors%>.toList());\r\n\r\nboolean isComplemented = actualCrossReferences.stream()\r\n\t\t.anyMatch(r -> r != null && r.equals(((ActualReference<?, ?, ?, ?>) this).getEReference()));\r\n\r\nboolean result = !isComplemented || this.isIgnoreUnmatchedElements();\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"This reference is complemented by a CrossReference that represents the same EReference. Hence, \'ignoreUmatchedElements\' needs to be set to \'true\'!\";\r\n\r\n\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR, <%pamtram.structure.generic.util.GenericValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t<%pamtram.structure.source.util.SourceValidator%>.SOURCE_SECTION_REFERENCE__VALIDATE_IS_IGNORE_UNMATCHED_IF_IS_COMPLEMENTED,\r\n\t\t\terrorMessage, new Object[] { this, <%pamtram.structure.source.SourcePackage%>.Literals.SOURCE_SECTION_REFERENCE }));\r\n\r\n}\r\n\r\nreturn result;"
 		   });	
 		addAnnotation
 		  (getSourceSectionReference_IgnoreUnmatchedElements(), 

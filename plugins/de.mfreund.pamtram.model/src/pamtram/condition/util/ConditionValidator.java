@@ -48,20 +48,44 @@ public class ConditionValidator extends EObjectValidator {
 	public static final int VARIADIC_CONDITION__VALIDATE_MINIMAL_NUMBER_OF_ARGS = 1;
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Reference Only Conditions From Condition Model' of 'Variadic Condition'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int VARIADIC_CONDITION__VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL = 2;
+
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Exactly One Arg' of 'Unary Condition'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int UNARY_CONDITION__VALIDATE_EXACTLY_ONE_ARG = 2;
+	public static final int UNARY_CONDITION__VALIDATE_EXACTLY_ONE_ARG = 3;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Reference Only Conditions From Condition Model Or From Conditional Elements' of 'Not'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Reference Only Conditions From Condition Model' of 'Unary Condition'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int NOT__VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS = 3;
+	public static final int UNARY_CONDITION__VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL = 4;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Follow External References True If Required' of 'Attribute Condition'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int ATTRIBUTE_CONDITION__VALIDATE_FOLLOW_EXTERNAL_REFERENCES_TRUE_IF_REQUIRED = 5;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Reference Match Spec Present In Case Of Ambiguous Source' of 'Cardinality Condition'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int CARDINALITY_CONDITION__VALIDATE_REFERENCE_MATCH_SPEC_PRESENT_IN_CASE_OF_AMBIGUOUS_SOURCE = 6;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -69,7 +93,7 @@ public class ConditionValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 3;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 6;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -171,6 +195,7 @@ public class ConditionValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(variadicCondition, diagnostics, context);
 		if (result || diagnostics != null) result &= validateVariadicCondition_minimalNumberOfArgs(variadicCondition, diagnostics, context);
 		if (result || diagnostics != null) result &= validateVariadicCondition_validateMinimalNumberOfArgs(variadicCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validateVariadicCondition_validateReferenceOnlyConditionsFromConditionModel(variadicCondition, diagnostics, context);
 		return result;
 	}
 
@@ -213,6 +238,16 @@ public class ConditionValidator extends EObjectValidator {
 	}
 
 	/**
+	 * Validates the validateReferenceOnlyConditionsFromConditionModel constraint of '<em>Variadic Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateVariadicCondition_validateReferenceOnlyConditionsFromConditionModel(VariadicCondition variadicCondition, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return variadicCondition.validateReferenceOnlyConditionsFromConditionModel(diagnostics, context);
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -229,6 +264,7 @@ public class ConditionValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(and, diagnostics, context);
 		if (result || diagnostics != null) result &= validateVariadicCondition_minimalNumberOfArgs(and, diagnostics, context);
 		if (result || diagnostics != null) result &= validateVariadicCondition_validateMinimalNumberOfArgs(and, diagnostics, context);
+		if (result || diagnostics != null) result &= validateVariadicCondition_validateReferenceOnlyConditionsFromConditionModel(and, diagnostics, context);
 		return result;
 	}
 
@@ -249,6 +285,7 @@ public class ConditionValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(or, diagnostics, context);
 		if (result || diagnostics != null) result &= validateVariadicCondition_minimalNumberOfArgs(or, diagnostics, context);
 		if (result || diagnostics != null) result &= validateVariadicCondition_validateMinimalNumberOfArgs(or, diagnostics, context);
+		if (result || diagnostics != null) result &= validateVariadicCondition_validateReferenceOnlyConditionsFromConditionModel(or, diagnostics, context);
 		return result;
 	}
 
@@ -269,6 +306,7 @@ public class ConditionValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(unaryCondition, diagnostics, context);
 		if (result || diagnostics != null) result &= validateUnaryCondition_exactlyOneArg(unaryCondition, diagnostics, context);
 		if (result || diagnostics != null) result &= validateUnaryCondition_validateExactlyOneArg(unaryCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validateUnaryCondition_validateReferenceOnlyConditionsFromConditionModel(unaryCondition, diagnostics, context);
 		return result;
 	}
 
@@ -311,6 +349,16 @@ public class ConditionValidator extends EObjectValidator {
 	}
 
 	/**
+	 * Validates the validateReferenceOnlyConditionsFromConditionModel constraint of '<em>Unary Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateUnaryCondition_validateReferenceOnlyConditionsFromConditionModel(UnaryCondition unaryCondition, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return unaryCondition.validateReferenceOnlyConditionsFromConditionModel(diagnostics, context);
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -327,8 +375,8 @@ public class ConditionValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(not, diagnostics, context);
 		if (result || diagnostics != null) result &= validateUnaryCondition_exactlyOneArg(not, diagnostics, context);
 		if (result || diagnostics != null) result &= validateUnaryCondition_validateExactlyOneArg(not, diagnostics, context);
+		if (result || diagnostics != null) result &= validateUnaryCondition_validateReferenceOnlyConditionsFromConditionModel(not, diagnostics, context);
 		if (result || diagnostics != null) result &= validateNot_referenceOnlyConditionsFromConditionModelOrFromConditionalElements(not, diagnostics, context);
-		if (result || diagnostics != null) result &= validateNot_validateReferenceOnlyConditionsFromConditionModelOrFromConditionalElements(not, diagnostics, context);
 		return result;
 	}
 
@@ -361,22 +409,32 @@ public class ConditionValidator extends EObjectValidator {
 	}
 
 	/**
-	 * Validates the validateReferenceOnlyConditionsFromConditionModelOrFromConditionalElements constraint of '<em>Not</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateNot_validateReferenceOnlyConditionsFromConditionModelOrFromConditionalElements(Not not, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return not.validateReferenceOnlyConditionsFromConditionModelOrFromConditionalElements(diagnostics, context);
-	}
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean validateAttributeCondition(AttributeCondition attributeCondition, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(attributeCondition, diagnostics, context);
+		if (!validate_NoCircularContainment(attributeCondition, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(attributeCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(attributeCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(attributeCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(attributeCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(attributeCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(attributeCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(attributeCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(attributeCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validateAttributeCondition_validateFollowExternalReferencesTrueIfRequired(attributeCondition, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the validateFollowExternalReferencesTrueIfRequired constraint of '<em>Attribute Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateAttributeCondition_validateFollowExternalReferencesTrueIfRequired(AttributeCondition attributeCondition, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return attributeCondition.validateFollowExternalReferencesTrueIfRequired(diagnostics, context);
 	}
 
 	/**
@@ -385,7 +443,27 @@ public class ConditionValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateCardinalityCondition(CardinalityCondition cardinalityCondition, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(cardinalityCondition, diagnostics, context);
+		if (!validate_NoCircularContainment(cardinalityCondition, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(cardinalityCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(cardinalityCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(cardinalityCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(cardinalityCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(cardinalityCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(cardinalityCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(cardinalityCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(cardinalityCondition, diagnostics, context);
+		if (result || diagnostics != null) result &= validateCardinalityCondition_validateReferenceMatchSpecPresentInCaseOfAmbiguousSource(cardinalityCondition, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the validateReferenceMatchSpecPresentInCaseOfAmbiguousSource constraint of '<em>Cardinality Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCardinalityCondition_validateReferenceMatchSpecPresentInCaseOfAmbiguousSource(CardinalityCondition cardinalityCondition, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return cardinalityCondition.validateReferenceMatchSpecPresentInCaseOfAmbiguousSource(diagnostics, context);
 	}
 
 	/**

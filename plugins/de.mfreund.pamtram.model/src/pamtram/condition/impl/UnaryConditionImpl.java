@@ -13,9 +13,11 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import pamtram.ConditionModel;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
 import pamtram.condition.UnaryCondition;
@@ -184,6 +186,37 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateReferenceOnlyConditionsFromConditionModel(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		
+		if(this.sharedCondPart == null) {
+			return true;
+		}
+		
+		EObject sharedCondPartContainer = this.sharedCondPart.eContainer();
+		
+		boolean result = sharedCondPartContainer instanceof ConditionModel;
+		
+		if (!result && diagnostics != null) {
+		
+			String errorMessage = "Reference only Conditions that are placed inside a ConditionModel!";
+		
+			diagnostics.add(new BasicDiagnostic
+					(Diagnostic.ERROR,
+					ConditionValidator.DIAGNOSTIC_SOURCE,
+							ConditionValidator.UNARY_CONDITION__VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL,
+							errorMessage,
+					new Object[] { this, ConditionPackage.Literals.UNARY_CONDITION__SHARED_COND_PART }));
+		
+		}
+		
+		return result;	
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -272,6 +305,8 @@ public abstract class UnaryConditionImpl extends ComplexConditionImpl implements
 		switch (operationID) {
 			case ConditionPackage.UNARY_CONDITION___VALIDATE_EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP:
 				return validateExactlyOneArg((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case ConditionPackage.UNARY_CONDITION___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP:
+				return validateReferenceOnlyConditionsFromConditionModel((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

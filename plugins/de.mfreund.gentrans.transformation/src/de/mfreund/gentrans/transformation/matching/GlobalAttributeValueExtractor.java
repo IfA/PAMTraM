@@ -98,7 +98,7 @@ public class GlobalAttributeValueExtractor extends ValueExtractor {
 		}
 
 		Set<EObject> sourceElements = matchedSectionDescriptor
-				.getMatchedSourceModelElementsFor((SourceSectionClass) globalAttribute.getSource().eContainer());
+				.getMatchedSourceModelElementsFor((SourceSectionClass) globalAttribute.getSource().eContainer(), false);
 
 		if (sourceElements == null) {
 			this.logger.severe(() -> "Value of global attribute '" + globalAttribute.getName() + "' not found!");

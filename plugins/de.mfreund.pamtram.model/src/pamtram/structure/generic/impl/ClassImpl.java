@@ -6,6 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -18,6 +19,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -58,6 +60,8 @@ import pamtram.structure.library.LibraryPackage;
  *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getAllAttributes <em>All Attributes</em>}</li>
  *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getAllReferences <em>All References</em>}</li>
  *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getAllConcreteExtending <em>All Concrete Extending</em>}</li>
+ *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getAllCompositeReferences <em>All Composite References</em>}</li>
+ *   <li>{@link pamtram.structure.generic.impl.ClassImpl#getAllCrossReferences <em>All Cross References</em>}</li>
  * </ul>
  *
  * @generated
@@ -470,28 +474,61 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 * @generated
 	 */
 	@Override
-	public boolean isContainerFor(final C containedClass) {
-		C container = containedClass.getContainer();
-				
-				// Prevent stack overflow in case of modeling error
-				//
-				if(EcoreUtil.isAncestor(containedClass, container)) {
-					return false;
-				}
+	public EList<CompositeReference<S, C, R, A>> getAllCompositeReferences() {
+	
 		
-			// this means that we have reached the top level container for the 'containedClass'
-				if (container == null) {
-					return false;
-					// this is the container
-				} else if (this.equals(container)) {
-					return true;
-					// one of the extended sections is the container
-				} else if (container instanceof Section && ((Section) container).getAllExtend().contains(this)) {
-					return true;
-					// this was not the container, so iterate up in the containment hierarchy
-				} else {
-					return this.isContainerFor(container);
-				}	
+		List<Object> ret = this.getAllReferences().stream().filter(r -> r instanceof CompositeReference<?, ?, ?, ?>)
+				.map(r -> (CompositeReference<?, ?, ?, ?>) r).collect(Collectors.toList());
+		
+		return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.CLASS__ALL_COMPOSITE_REFERENCES,
+				ret.size(), ret.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<CrossReference<S, C, R, A>> getAllCrossReferences() {
+	
+		
+		List<Object> ret = this.getAllReferences().stream().filter(r -> r instanceof CrossReference<?, ?, ?, ?>)
+				.map(r -> (CrossReference<?, ?, ?, ?>) r).collect(Collectors.toList());
+		
+		return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.CLASS__ALL_CROSS_REFERENCES, ret.size(),
+				ret.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isContainerFor(final C containedClass) {
+		
+		if (EcoreUtil.isAncestor(this, containedClass)
+				|| this.getContainingSection().getAllExtend().stream().anyMatch(c -> c.isContainerFor(containedClass))
+				|| containedClass.getContainingSection().getAllExtend().stream()
+						.anyMatch(c -> this.isContainerFor((C) c))) {
+			return true;
+		}
+		
+		C container = containedClass.getContainingSection().getContainer();
+		
+		// this means that we have reached the top level container for the 'containedClass'
+		if (container == null) {
+			return false;
+		}
+		
+		// Prevent stack overflow in case of modeling error
+		//
+		if (EcoreUtil.isAncestor(containedClass, container)) {
+			return false;
+		}
+		
+		// this was not the container, so iterate up in the containment hierarchy
+		return this.isContainerFor(container);
+			
 	}
 
 	/**
@@ -500,12 +537,18 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 */
 	@Override
 	public boolean isContainedIn(final C containerClass) {
-		// recursively collect all classes that are referenced by containment references and check if any matches this class
-				//
-				return containerClass.getAllReferences().stream()
-						.filter(r -> r instanceof ActualReference<?, ?, ?, ?>
-								&& ((ActualReference<?, ?, ?, ?>) r).getEReference().isContainment())
-						.flatMap(r -> r.getValuesGeneric().stream()).anyMatch(c -> c.equals(this) || this.isContainedIn(c));	
+		
+		// recursively collect all classes that are referenced by containment references and check if any matches this
+		// class
+		//
+		return containerClass.getAllReferences().stream()
+				.filter(r -> r instanceof ActualReference<?, ?, ?, ?>
+						&& ((ActualReference<?, ?, ?, ?>) r).getEReference().isContainment())
+				.flatMap(r -> r.getValuesGeneric().stream()).anyMatch(
+						c -> c.equals(this)
+								|| c instanceof Section<?, ?, ?, ?>
+										&& ((Section<?, ?, ?, ?>) c).getAllExtending().contains(this)
+								|| this.isContainedIn(c));	
 	}
 
 	/**
@@ -538,7 +581,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 
 		// collect all classes that are referenced (and all classes that extend these classes)
 		//
-		for (R ref : referencingClass.getReferences()) {
+		for (R ref : referencingClass.getAllReferences()) {
 
 			if (ref instanceof CompositeReference<?, ?, ?, ?>) {
 				classes.addAll(((CompositeReference<S, C, R, A>) ref).getValue());
@@ -702,6 +745,52 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public boolean validateOnlyComplementingActualReferences(final DiagnosticChain diagnostics,
+			final Map<?, ?> context) {
+		
+		List<EReference> actualCompositeReferences = this.getActualReferences().stream()
+				.filter(r -> r instanceof CompositeReference<?, ?, ?, ?>)
+				.map(r -> ((ActualReference<?, ?, ?, ?>) r).getEReference()).collect(Collectors.toList());
+		
+		boolean noCompositeDuplicates = actualCompositeReferences.size() == new HashSet<>(actualCompositeReferences)
+				.size();
+		
+		if (!noCompositeDuplicates && diagnostics != null) {
+		
+			String errorMessage = "A Class must not specify two CompositeReferences that represent the same EReference!";
+		
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, GenericValidator.DIAGNOSTIC_SOURCE,
+					GenericValidator.CLASS__VALIDATE_ONLY_COMPLEMENTING_ACTUAL_REFERENCES, errorMessage,
+					new Object[] { this, GenericPackage.Literals.CLASS__REFERENCES }));
+		
+			return false;
+		}
+		
+		List<EReference> actualCrossReferences = this.getActualReferences().stream()
+				.filter(r -> r instanceof CrossReference<?, ?, ?, ?>)
+				.map(r -> ((ActualReference<?, ?, ?, ?>) r).getEReference()).collect(Collectors.toList());
+		
+		boolean noCrossDuplicates = actualCrossReferences.size() == new HashSet<>(actualCrossReferences).size();
+		
+		if (!noCrossDuplicates && diagnostics != null) {
+		
+			String errorMessage = "A Class must not specify two CrossReferences that represent the same EReference!";
+		
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, GenericValidator.DIAGNOSTIC_SOURCE,
+					GenericValidator.CLASS__VALIDATE_ONLY_COMPLEMENTING_ACTUAL_REFERENCES, errorMessage,
+					new Object[] { this, GenericPackage.Literals.CLASS__REFERENCES }));
+		
+			return false;
+		}
+		
+		return true;	
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -764,6 +853,10 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 				return getAllReferences();
 			case GenericPackage.CLASS__ALL_CONCRETE_EXTENDING:
 				return getAllConcreteExtending();
+			case GenericPackage.CLASS__ALL_COMPOSITE_REFERENCES:
+				return getAllCompositeReferences();
+			case GenericPackage.CLASS__ALL_CROSS_REFERENCES:
+				return getAllCrossReferences();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -856,6 +949,10 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 				return !getAllReferences().isEmpty();
 			case GenericPackage.CLASS__ALL_CONCRETE_EXTENDING:
 				return !getAllConcreteExtending().isEmpty();
+			case GenericPackage.CLASS__ALL_COMPOSITE_REFERENCES:
+				return !getAllCompositeReferences().isEmpty();
+			case GenericPackage.CLASS__ALL_CROSS_REFERENCES:
+				return !getAllCrossReferences().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -884,6 +981,8 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 				return validateContainerIsValid((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case GenericPackage.CLASS___VALIDATE_NOT_SELF_CONTAINER__DIAGNOSTICCHAIN_MAP:
 				return validateNotSelfContainer((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case GenericPackage.CLASS___VALIDATE_ONLY_COMPLEMENTING_ACTUAL_REFERENCES__DIAGNOSTICCHAIN_MAP:
+				return validateOnlyComplementingActualReferences((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

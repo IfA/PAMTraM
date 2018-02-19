@@ -9,28 +9,25 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 
 import pamtram.structure.DynamicSourceElement;
+import pamtram.structure.source.SourceSectionAttribute;
 
 /**
- * This is used to manage the model-unique ids of elements used in case {@link DynamicSourceElement#isUseElementID()} is
- * set to '<em>true/<em>'.
- *
- *
- *
- * If this is set to 'true', the (model-unique) id of the referenced source model element will be used as value for the
- * source element instead of the actual attribute value. This can be used to create element-specific ids in the target
- * model.
+ * This is used to manage the model-unique IDs of element-attribute combinations used in case
+ * {@link DynamicSourceElement#isUseElementID()} is set to '<em>true/<em>'.
+ * <p />
+ * Note: A unique ID is assigned for each combination of {@link EObject} and {@link SourceSectionAttribute}.
  *
  * @author mfreund
  */
 public class ElementIDMap {
 
 	/**
-	 * The internal map storing assigned ids.
+	 * The internal map storing assigned IDs.
 	 */
-	protected Map<EObject, Integer> elementIDMap;
+	protected Map<EObject, Map<SourceSectionAttribute, Integer>> internalMap;
 
 	/**
-	 * The last id that was assigend.
+	 * The last id that was assigned.
 	 */
 	protected int currentElementID;
 
@@ -39,36 +36,41 @@ public class ElementIDMap {
 	 */
 	public ElementIDMap() {
 
-		this.elementIDMap = new HashMap<>();
+		this.internalMap = new HashMap<>();
 		this.currentElementID = 0;
 	}
 
 	/**
-	 * Whether the given {@link EObject} is represented in the #{@link ElementIDMap}.
+	 * Whether the given combination of {@link EObject} and {@link SourceSectionAttribute} is already present in this
+	 * map.
 	 *
 	 * @param element
-	 * @return
+	 * @param attribute
+	 * @return '<em>true</em>' if the combination is present; '<em>false</em>' otherwise.
 	 */
-	public boolean containsElement(EObject element) {
+	public boolean containsID(EObject element, SourceSectionAttribute attribute) {
 
-		return this.elementIDMap.containsKey(element);
+		return this.internalMap.getOrDefault(element, new HashMap<>()).containsKey(attribute);
 	}
 
 	/**
-	 * Returns the id associated with the given {@link EObject element}. If no id has been associated yet, associates a
-	 * new one.
+	 * Returns the ID associated with the given combination of {@link EObject} and {@link SourceSectionAttribute}. If no
+	 * ID has been associated yet, associates a new one.
 	 *
 	 * @param element
-	 * @return
+	 * @param attribute
+	 * @return The (existing or newly assigned) associated ID.
 	 */
-	public int getIDForElement(EObject element) {
+	public int getID(EObject element, SourceSectionAttribute attribute) {
 
-		if (!this.containsElement(element)) {
+		if (!this.containsID(element, attribute)) {
 			this.currentElementID++;
-			this.elementIDMap.put(element, this.currentElementID);
+			Map<SourceSectionAttribute, Integer> elementMap = this.internalMap.getOrDefault(element, new HashMap<>());
+			elementMap.put(attribute, this.currentElementID);
+			this.internalMap.put(element, elementMap);
 		}
 
-		return this.elementIDMap.get(element);
+		return this.internalMap.get(element).get(attribute);
 	}
 
 }

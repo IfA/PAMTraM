@@ -1,27 +1,19 @@
 package de.mfreund.gentrans.transformation.matching;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.ParserException;
 
 import de.mfreund.gentrans.transformation.core.CancelableTransformationAsset;
 import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
-import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.FixedValue;
 import pamtram.MatchSpecElement;
 import pamtram.NamedElement;
@@ -37,7 +29,6 @@ import pamtram.structure.source.SourceSectionAttribute;
 import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.source.SourceSectionReference;
 import pamtram.structure.source.VirtualSourceSectionAttribute;
-import pamtram.util.OCLUtil;
 
 /**
  * This represents an abstract base class that allows to extract {@link AttributeValueRepresentation values} from a list
@@ -126,25 +117,42 @@ public abstract class ValueExtractor extends CancelableTransformationAsset {
 
 		MatchedSectionDescriptor sourceDescriptor = matchedSectionDescriptor;
 
-		// In case we are dealing with an external source element, we first need
-		// to determine the correct
-		// 'container descriptor' that represents the source element
-		//
+		Set<EObject> sourceElements = new LinkedHashSet<>();
+
 		if (mappingHintSourceElement instanceof ExternalDynamicSourceElement<?, ?, ?, ?>) {
+
+			SourceSection mappingHintSourceElementProvidingSection = mappingHintSourceElement.getSource()
+					.getContainingSection();
+
+			// In case we are dealing with an external source element, we first need
+			// to determine the correct 'container descriptor' that represents the source element
+			//
 			do {
 				sourceDescriptor = sourceDescriptor.getContainerDescriptor();
+
 				if (sourceDescriptor == null) {
 					break;
 				}
-			} while (sourceDescriptor.getMatchedSourceModelElementsFor(
-					(SourceSectionClass) mappingHintSourceElement.getSource().eContainer()).isEmpty());
-		}
 
-		Set<EObject> sourceElements = sourceDescriptor == null ? new HashSet<>()
-				: sourceDescriptor.getMatchedSourceModelElementsFor(
-						(SourceSectionClass) mappingHintSourceElement.getSource().eContainer());
+			} while (!(sourceDescriptor.getAssociatedSourceSection().equals(mappingHintSourceElementProvidingSection)
+					|| sourceDescriptor.getAssociatedSourceSection().getContainingSection().getAllExtend()
+							.contains(mappingHintSourceElementProvidingSection)));
 
-		if (mappingHintSourceElement instanceof LocalDynamicSourceElement<?, ?, ?, ?>) {
+			if (sourceDescriptor != null) {
+				// Now that we found the correct descriptor, we can determine the suitable source elements
+				//
+				sourceElements = sourceDescriptor
+						.getMatchedSourceModelElementsFor(mappingHintSourceElement.getSource().getOwningClass(), false);
+			}
+
+		} else if (mappingHintSourceElement instanceof LocalDynamicSourceElement<?, ?, ?, ?>) {
+
+			// In case we are dealing with a local source element, we need to collect all elements of the given
+			// descriptor and of all descriptors (directly or indirectly) referenced by this descriptor
+			//
+			sourceElements = sourceDescriptor.getMatchedSourceModelElementsFor(
+					mappingHintSourceElement.getSource().getOwningClass(),
+					((LocalDynamicSourceElement<?, ?, ?, ?>) mappingHintSourceElement).isFollowExternalReferences());
 
 			// If the user specified an additional 'referenceMatchSpec', use
 			// only that subset of the determined source elements corresponding
@@ -163,7 +171,7 @@ public abstract class ValueExtractor extends CancelableTransformationAsset {
 
 		if (sourceElements.isEmpty()) {
 			this.logger.warning(() -> "No hint value found for source element '" + mappingHintSourceElement.getName()
-					+ "' in " + ((NamedElement) mappingHintSourceElement.eContainer()).printInfo() + "')!");
+					+ "' in " + ((NamedElement) mappingHintSourceElement.eContainer()).printInfo() + "!");
 			return null;
 		}
 
@@ -204,7 +212,7 @@ public abstract class ValueExtractor extends CancelableTransformationAsset {
 				: sourceDescriptors.stream())
 						.flatMap(descriptor -> descriptor
 								.getMatchedSourceModelElementsFor(
-										(SourceSectionClass) mappingHintSourceElement.getSource().eContainer())
+										(SourceSectionClass) mappingHintSourceElement.getSource().eContainer(), false)
 								.stream())
 						.collect(Collectors.toList());
 
@@ -214,8 +222,8 @@ public abstract class ValueExtractor extends CancelableTransformationAsset {
 
 			for (SourceInstanceSelector instancePointer : mappingHintSourceElement.getInstanceSelectors()) {
 
-				sourceElements = this.assetManager.getInstanceSelectorHandler()
-						.getSelectedInstancesByInstanceList(instancePointer, sourceElements, matchedSectionDescriptor);
+				sourceElements = this.assetManager.getInstanceSelectorHandler().filterSourceInstances(sourceElements,
+						instancePointer, matchedSectionDescriptor);
 			}
 
 		}
@@ -262,38 +270,15 @@ public abstract class ValueExtractor extends CancelableTransformationAsset {
 
 		AttributeValueRepresentation hintValue = null;
 
-		if (mappingHintSourceElement.isUseElementID()) {
-
-			for (EObject sourceElement : sourceElements) {
-
-				String val = String.valueOf(this.assetManager.getElementIDs().getIDForElement(sourceElement));
-
-				// Apply ValueModifierSets
-				//
-				final String valCopy = this.assetManager.getValueModifierExecutor().applyAttributeValueModifiers(val,
-						mappingHintSourceElement.getModifiers());
-
-				// create a new AttributeValueRepresentation or update the existing
-				// one
-				if (hintValue == null) {
-					hintValue = new AttributeValueRepresentation(mappingHintSourceElement.getSource(), valCopy);
-				} else {
-					hintValue.addValue(valCopy);
-				}
-			}
-
-			return hintValue;
-
-		}
-
-		EAttribute sourceAttribute = mappingHintSourceElement.getSource() instanceof ActualSourceSectionAttribute
-				? ((ActualSourceSectionAttribute) mappingHintSourceElement.getSource()).getAttribute()
-				: null;
-
 		// Collect all values of the attribute in all source elements
 		//
-		List<Object> srcAttrValues = ValueExtractor.getAttributeValueAsList(sourceElements,
-				mappingHintSourceElement.getSource(), this.assetManager.getLogger());
+		List<String> srcAttrValues = mappingHintSourceElement.isUseElementID()
+				? sourceElements.stream()
+						.map(e -> String.valueOf(
+								this.assetManager.getElementIDs().getID(e, mappingHintSourceElement.getSource())))
+						.collect(Collectors.toList())
+				: this.assetManager.getModelAccessUtil().getAttributeValueAsStringList(sourceElements,
+						mappingHintSourceElement.getSource());
 
 		if (srcAttrValues.isEmpty()) {
 			this.logger.warning(() -> "No hint value found for source element '" + mappingHintSourceElement.getName()
@@ -303,27 +288,12 @@ public abstract class ValueExtractor extends CancelableTransformationAsset {
 
 		// Extract a hint value for each retrieved value
 		//
-		for (Object srcAttrValue : srcAttrValues) {
-
-			String srcAttrAsString = null;
-
-			// if the attribute represents an actual EAttribute, we need to
-			// convert the value based on its type
-			if (sourceAttribute != null) {
-				srcAttrAsString = sourceAttribute.getEType().getEPackage().getEFactoryInstance()
-						.convertToString(sourceAttribute.getEAttributeType(), srcAttrValue);
-			} else if (srcAttrValue != null) {
-				srcAttrAsString = srcAttrValue.toString();
-			}
-
-			if (srcAttrAsString == null) {
-				continue;
-			}
+		for (String srcAttrValue : srcAttrValues) {
 
 			// Apply ValueModifierSets
 			//
 			final String valCopy = this.assetManager.getValueModifierExecutor()
-					.applyAttributeValueModifiers(srcAttrAsString, mappingHintSourceElement.getModifiers());
+					.applyAttributeValueModifiers(srcAttrValue, mappingHintSourceElement.getModifiers());
 
 			// create a new AttributeValueRepresentation or update the existing
 			// one
@@ -335,136 +305,6 @@ public abstract class ValueExtractor extends CancelableTransformationAsset {
 		}
 
 		return hintValue;
-	}
-
-	/**
-	 * For the given list of {@link EObject EObjects}, this returns the
-	 * {@link EObject#eGet(org.eclipse.emf.ecore.EStructuralFeature) value or values} of the given {@link EAttribute} as
-	 * String. Therefore, the values returned by
-	 * {@link ValueExtractor#getAttributeValueAsList(List, SourceSectionAttribute, Logger)} are converted to a String
-	 * representation.
-	 *
-	 * @param sourceElements
-	 *            The list of {@link EObject EObjects} for that the values shall be returned.
-	 * @param sourceAttribute
-	 *            The {@link EAttribute} for that the values shall be returned.
-	 * @param logger
-	 *            The {@link Logger} to be used to print message to the user.
-	 * @return The determined values (either an empty list, a list consisting of a single value, or multiple values).
-	 */
-	public static synchronized List<String> getAttributeValueAsStringList(List<EObject> sourceElements,
-			SourceSectionAttribute sourceAttribute, Logger logger) {
-
-		return sourceElements.stream()
-				.flatMap(e -> ValueExtractor.getAttributeValueAsStringList(e, sourceAttribute, logger).stream())
-				.collect(Collectors.toList());
-	}
-
-	/**
-	 * For the given list of {@link EObject EObjects}, this returns the
-	 * {@link EObject#eGet(org.eclipse.emf.ecore.EStructuralFeature) value or values} of the given {@link EAttribute} by
-	 * collecting the values returned by
-	 * {@link ValueExtractor#getAttributeValueAsList(EObject, SourceSectionAttribute, Logger)} for every element.
-	 *
-	 * @param sourceElements
-	 *            The list of {@link EObject EObjects} for that the values shall be returned.
-	 * @param sourceAttribute
-	 *            The {@link EAttribute} for that the values shall be returned.
-	 * @param logger
-	 *            The {@link Logger} to be used to print message to the user.
-	 * @return The determined values (either an empty list, a list consisting of a single value, or multiple values).
-	 */
-	public static synchronized List<Object> getAttributeValueAsList(List<EObject> sourceElements,
-			SourceSectionAttribute sourceAttribute, Logger logger) {
-
-		return sourceElements.stream()
-				.flatMap(e -> ValueExtractor.getAttributeValueAsList(e, sourceAttribute, logger).stream())
-				.collect(Collectors.toList());
-	}
-
-	/**
-	 * For the given {@link EObject}, this returns the {@link EObject#eGet(org.eclipse.emf.ecore.EStructuralFeature)
-	 * value or values} of the given {@link EAttribute} as String. Therefore, the values returned by
-	 * {@link ValueExtractor#getAttributeValueAsList(EObject, SourceSectionAttribute, Logger)} are converted to a String
-	 * representation.
-	 *
-	 * @param sourceElement
-	 *            The list of {@link EObject EObjects} for that the values shall be returned.
-	 * @param sourceAttribute
-	 *            The {@link EAttribute} for that the values shall be returned.
-	 * @param logger
-	 *            The {@link Logger} to be used to print message to the user.
-	 * @return The determined values (either an empty list, a list consisting of a single value, or multiple values).
-	 */
-	public static synchronized List<String> getAttributeValueAsStringList(EObject sourceElement,
-			SourceSectionAttribute sourceAttribute, Logger logger) {
-
-		List<Object> srcAttrValues = ValueExtractor.getAttributeValueAsList(sourceElement, sourceAttribute, logger);
-
-		EAttribute attribute = sourceAttribute instanceof ActualSourceSectionAttribute
-				? ((ActualSourceSectionAttribute) sourceAttribute).getAttribute()
-				: null;
-
-		List<String> srcAttrValuesAsString = new ArrayList<>();
-
-		for (Object srcAttrValue : srcAttrValues) {
-
-			// convert Attribute value to String
-			String srcAttrAsString = attribute != null ? attribute.getEType().getEPackage().getEFactoryInstance()
-					.convertToString(attribute.getEAttributeType(), srcAttrValue) : srcAttrValue.toString();
-			srcAttrValuesAsString.add(srcAttrAsString);
-		}
-
-		return srcAttrValuesAsString;
-	}
-
-	/**
-	 * For the given {@link EObject}, this returns the value or values of the given {@link SourceSectionAttribute}.
-	 * <p />
-	 * Note: Depending on the concrete type of {@link SourceSectionAttribute}, this will either just redirect to
-	 * {@link AgteleEcoreUtil#getStructuralFeatureValueAsList(EObject, EStructuralFeature)} (in case of
-	 * {@link ActualSourceSectionAttribute ActualSourceSectionAttributes}) or calculate the
-	 * {@link VirtualSourceSectionAttribute#getDerivation() derived} value (in case of
-	 * {@link VirtualSourceSectionAttribute VirtualSourceSectionAttributes}). <br />
-	 * Note: As EAttributes can be {@link EAttribute#isMany() many-valued}, too, this will return either no value, a
-	 * single value, or a list of values. <br />
-	 * Note: The type of the entries inside the list will match the {@link EAttribute#getEAttributeType() type} of the
-	 * given EAttribute for {@link ActualSourceSectionAttribute ActualSourceSectionAttributes}.
-	 *
-	 * @param sourceElement
-	 *            The {@link EObject} for that the values shall be returned.
-	 * @param sourceAttribute
-	 *            The {@link EAttribute} for that the values shall be returned.
-	 * @param logger
-	 *            The {@link Logger} to be used to print message to the user.
-	 * @return The determined values (either an empty list, a list consisting of a single value, or multiple values).
-	 */
-	public static synchronized List<Object> getAttributeValueAsList(EObject sourceElement,
-			SourceSectionAttribute sourceAttribute, Logger logger) {
-
-		if (sourceAttribute instanceof ActualSourceSectionAttribute) {
-			EAttribute eAttribute = ((ActualSourceSectionAttribute) sourceAttribute).getAttribute();
-			return AgteleEcoreUtil.getStructuralFeatureValueAsList(sourceElement, eAttribute);
-		} else {
-
-			Object result;
-
-			try {
-				result = OCLUtil.evaluteQuery(((VirtualSourceSectionAttribute) sourceAttribute).getDerivation(),
-						sourceElement);
-			} catch (ParserException e) {
-				logger.severe(() -> "Unable to evaluate OCL query '"
-						+ ((VirtualSourceSectionAttribute) sourceAttribute).getDerivation()
-						+ "' for SourceSectionAttribute '" + sourceAttribute.getName() + "'!");
-				logger.severe(() -> "The following error occurred: " + e.getMessage());
-				e.printStackTrace();
-				return new ArrayList<>();
-			}
-
-			return result instanceof Collection<?> ? new ArrayList<>((Collection<?>) result)
-					: new ArrayList<>(Arrays.asList(result));
-
-		}
 	}
 
 }

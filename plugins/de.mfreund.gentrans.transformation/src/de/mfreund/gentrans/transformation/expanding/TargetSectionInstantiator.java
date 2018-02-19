@@ -1078,6 +1078,10 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 		List<AttributeMapping> attributeMappingsForAttribute = attributeMappings.stream()
 				.filter(am -> am.getTarget().equals(attribute)).collect(Collectors.toList());
 
+		boolean attributeIsMany = attribute instanceof ActualTargetSectionAttribute
+				&& ((ActualTargetSectionAttribute) attribute).getAttribute() != null
+				&& ((ActualTargetSectionAttribute) attribute).getAttribute().isMany();
+
 		if (expected == 0 || attributeMappingsForAttribute.isEmpty()) {
 
 			return attrHintValues;
@@ -1106,6 +1110,14 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 					attrHintValues.addAll(hintValues.getHintValues(hint));
 				}
 
+			} else if (numberOfHintValues > 0 && numberOfHintValues > expected && numberOfHintValues % expected == 0
+					&& attributeIsMany) {
+
+				// Each target instance will receive multiple attribute values
+				//
+				for (AttributeMapping attribtueMapping : attributeMappingsForAttribute) {
+					attrHintValues.addAll(hintValues.getHintValues(attribtueMapping));
+				}
 			} else if (numberOfHintValues >= expected) {
 
 				// As many/more hint values found as/than instances
@@ -1153,15 +1165,22 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 				//
 				for (int i = 0; i < expected / numberOfHintValues; i++) {
 					for (AttributeMapping attribtueMapping : attributeMappingsForAttribute) {
+
 						attrHintValues.addAll(hintValues.getHintValues(attribtueMapping));
 					}
 				}
 			} else if (allHintsProvideEqualNumberOfValues && numberOfHintValues > 0 && numberOfHintValues > expected
-					&& numberOfHintValues % expected == 0 && attribute instanceof ActualTargetSectionAttribute
-					&& ((ActualTargetSectionAttribute) attribute).getAttribute() != null
-					&& ((ActualTargetSectionAttribute) attribute).getAttribute().isMany()) {
+					&& numberOfHintValues % expected == 0 && attributeIsMany) {
 
 				// Each target instance will receive multiple attribute values
+				//
+				for (AttributeMapping attribtueMapping : attributeMappingsForAttribute) {
+					attrHintValues.addAll(hintValues.getHintValues(attribtueMapping));
+				}
+			} else if (numberOfHintValues > 1 && expected == 1 && attributeIsMany) {
+
+				// Add all values to the single instance as we are dealing with a many-valued attribute
+				//
 				//
 				for (AttributeMapping attribtueMapping : attributeMappingsForAttribute) {
 					attrHintValues.addAll(hintValues.getHintValues(attribtueMapping));

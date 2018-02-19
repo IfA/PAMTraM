@@ -307,46 +307,47 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 	 */
 	@Override
 	public boolean validateOverwritesValidMappingHint(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		
 		if (this.overwrite == null) {
-					return true;
-				}
+			return true;
+		}
 		
-			boolean ret = true;
-				String message = "";
+		boolean ret = true;
+		String message = "";
 		
-			if (this.eClass() != this.overwrite.eClass()) {
-					ret = false;
-					message = "MappingHints must only overwrite MappingHints of the same type!";
-				}
+		if (this.eClass() != this.overwrite.eClass()) {
+			ret = false;
+			message = "MappingHints must only overwrite MappingHints of the same type!";
+		}
 		
-			if (((MappingHintGroupType) this.eContainer()).getExtend().isEmpty()
-						|| ((MappingHintGroupType) this.eContainer()).getExtend().stream()
-								.noneMatch(hg -> hg.getAllMappingHints().contains(this.overwrite))) {
-					ret = false;
-					message = "The overwritten MappingHint is not part of a MappingHintGroup that is extended by the HintGroup containing this MappingHint!";
-				}
+		if (((MappingHintGroupType) this.eContainer()).getAllExtend().isEmpty()
+				|| ((MappingHintGroupType) this.eContainer()).getAllExtend().stream()
+						.noneMatch(hg -> hg.getAllMappingHints().contains(this.overwrite))) {
+			ret = false;
+			message = "The overwritten MappingHint is not part of a MappingHintGroup that is extended by the HintGroup containing this MappingHint!";
+		}
 		
-			if (this instanceof AttributeMapping
-						&& ((AttributeMapping) this).getTarget() != ((AttributeMapping) this.overwrite).getTarget()) {
-					ret = false;
-					message = "An AttributeMapping must only overwrite another AttributeMapping pointing to the same TargetSectionAttribute!";
-				} else if (this instanceof CardinalityMapping
-						&& ((CardinalityMapping) this).getTarget() != ((CardinalityMapping) this.overwrite).getTarget()) {
-					ret = false;
-					message = "A CardinalityMapping must only overwrite another CardinalityMapping pointing to the same TargetSectionClass!";
-				} else if (this instanceof ReferenceTargetSelector && ((ReferenceTargetSelector) this)
-						.getAffectedReference() != ((ReferenceTargetSelector) this.overwrite).getAffectedReference()) {
-					ret = false;
-					message = "A ReferenceTargetSelector must only overwrite another ReferenceTargetSelector pointing to the same TargetSectionReference!";
-				}
+		if (this instanceof AttributeMapping
+				&& ((AttributeMapping) this).getTarget() != ((AttributeMapping) this.overwrite).getTarget()) {
+			ret = false;
+			message = "An AttributeMapping must only overwrite another AttributeMapping pointing to the same TargetSectionAttribute!";
+		} else if (this instanceof CardinalityMapping
+				&& ((CardinalityMapping) this).getTarget() != ((CardinalityMapping) this.overwrite).getTarget()) {
+			ret = false;
+			message = "A CardinalityMapping must only overwrite another CardinalityMapping pointing to the same TargetSectionClass!";
+		} else if (this instanceof ReferenceTargetSelector && ((ReferenceTargetSelector) this)
+				.getAffectedReference() != ((ReferenceTargetSelector) this.overwrite).getAffectedReference()) {
+			ret = false;
+			message = "A ReferenceTargetSelector must only overwrite another ReferenceTargetSelector pointing to the same TargetSectionReference!";
+		}
 		
-			if (!ret && diagnostics != null) {
-					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, ExtendedValidator.DIAGNOSTIC_SOURCE,
-							ExtendedValidator.MAPPING_HINT__VALIDATE_OVERWRITES_VALID_MAPPING_HINT, message,
-							new Object[] { this, ExtendedPackage.Literals.MAPPING_HINT__OVERWRITE }));
-				}
+		if (!ret && diagnostics != null) {
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, ExtendedValidator.DIAGNOSTIC_SOURCE,
+					ExtendedValidator.MAPPING_HINT__VALIDATE_OVERWRITES_VALID_MAPPING_HINT, message,
+					new Object[] { this, ExtendedPackage.Literals.MAPPING_HINT__OVERWRITE }));
+		}
 		
-			return ret;	
+		return ret;	
 	}
 
 	/**
@@ -355,57 +356,58 @@ public abstract class MappingHintImpl extends MappingHintTypeImpl implements Map
 	 */
 	@Override
 	public boolean validateConsiderOverwritingHint(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		
 		if (!(this.eContainer instanceof MappingHintGroupType) || this.overwrite != null) {
-					return true;
-				}
+			return true;
+		}
 		
-			List<MappingHint> hintsOfExtendedHintGroups = ((MappingHintGroupType) this.eContainer()).getExtend().stream()
-						.flatMap(hg -> hg.getMappingHints().stream()).collect(Collectors.toList());
+		List<MappingHint> hintsOfExtendedHintGroups = ((MappingHintGroupType) this.eContainer()).getAllExtend().stream()
+				.flatMap(hg -> hg.getMappingHints().stream()).collect(Collectors.toList());
 		
-			if (hintsOfExtendedHintGroups.isEmpty()) {
-					return true;
-				}
+		if (hintsOfExtendedHintGroups.isEmpty()) {
+			return true;
+		}
 		
-			Optional<MappingHint> hintToConsider = Optional.empty();
+		Optional<MappingHint> hintToConsider = Optional.empty();
 		
-			if (this instanceof AttributeMapping && ((AttributeMapping) this).getTarget() != null) {
+		if (this instanceof AttributeMapping && ((AttributeMapping) this).getTarget() != null) {
 		
-				hintToConsider = hintsOfExtendedHintGroups.stream().filter(h -> h instanceof AttributeMapping)
-							.filter(h -> ((AttributeMapping) this).getTarget().equals(((AttributeMapping) h).getTarget()))
-							.findAny();
+			hintToConsider = hintsOfExtendedHintGroups.stream().filter(h -> h instanceof AttributeMapping)
+					.filter(h -> ((AttributeMapping) this).getTarget().equals(((AttributeMapping) h).getTarget()))
+					.findAny();
 		
-			} else if (this instanceof CardinalityMapping && ((CardinalityMapping) this).getTarget() != null) {
+		} else if (this instanceof CardinalityMapping && ((CardinalityMapping) this).getTarget() != null) {
 		
-				hintToConsider = hintsOfExtendedHintGroups.stream().filter(h -> h instanceof CardinalityMapping)
-							.filter(h -> ((CardinalityMapping) this).getTarget().equals(((CardinalityMapping) h).getTarget()))
-							.findAny();
+			hintToConsider = hintsOfExtendedHintGroups.stream().filter(h -> h instanceof CardinalityMapping)
+					.filter(h -> ((CardinalityMapping) this).getTarget().equals(((CardinalityMapping) h).getTarget()))
+					.findAny();
 		
-			} else if (this instanceof ReferenceTargetSelector
-						&& ((ReferenceTargetSelector) this).getAffectedReference() != null) {
+		} else if (this instanceof ReferenceTargetSelector
+				&& ((ReferenceTargetSelector) this).getAffectedReference() != null) {
 		
-				hintToConsider = hintsOfExtendedHintGroups.stream().filter(h -> h instanceof ReferenceTargetSelector)
-							.filter(h -> ((ReferenceTargetSelector) this).getAffectedReference()
-									.equals(((ReferenceTargetSelector) h).getAffectedReference()))
-							.findAny();
-				}
+			hintToConsider = hintsOfExtendedHintGroups.stream().filter(h -> h instanceof ReferenceTargetSelector)
+					.filter(h -> ((ReferenceTargetSelector) this).getAffectedReference()
+							.equals(((ReferenceTargetSelector) h).getAffectedReference()))
+					.findAny();
+		}
 		
-			if (!hintToConsider.isPresent()) {
-					return true;
-				}
+		if (!hintToConsider.isPresent()) {
+			return true;
+		}
 		
-			String message = "The hint '" + hintToConsider.get().getName() + "' of the extended MappingHintGroup "
-						+ (hintToConsider.get().eContainer() instanceof MappingHintGroupType
-								? "'" + ((MappingHintGroupType) hintToConsider.get().eContainer()).getName() + "' "
-								: "")
-						+ "affects the same target element. Consider overwriting this hint instead of providing additional hint values...";
+		String message = "The hint '" + hintToConsider.get().getName() + "' of the extended MappingHintGroup "
+				+ (hintToConsider.get().eContainer() instanceof MappingHintGroupType
+						? "'" + ((MappingHintGroupType) hintToConsider.get().eContainer()).getName() + "' "
+						: "")
+				+ "affects the same target element. Consider overwriting this hint instead of providing additional hint values...";
 		
-			if (diagnostics != null) {
-					diagnostics.add(new BasicDiagnostic(Diagnostic.WARNING, ExtendedValidator.DIAGNOSTIC_SOURCE,
-							ExtendedValidator.MAPPING_HINT__VALIDATE_CONSIDER_OVERWRITING_HINT, message,
-							new Object[] { this, ExtendedPackage.Literals.MAPPING_HINT__OVERWRITE }));
-				}
+		if (diagnostics != null) {
+			diagnostics.add(new BasicDiagnostic(Diagnostic.WARNING, ExtendedValidator.DIAGNOSTIC_SOURCE,
+					ExtendedValidator.MAPPING_HINT__VALIDATE_CONSIDER_OVERWRITING_HINT, message,
+					new Object[] { this, ExtendedPackage.Literals.MAPPING_HINT__OVERWRITE }));
+		}
 		
-			return false;	
+		return false;	
 	}
 
 	/**

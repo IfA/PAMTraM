@@ -871,6 +871,12 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 			}
 		}
 
+		if (containerInstancesByConnectionPaths.isEmpty()) {
+			// No suitable container instances could be determined for any of the potential connection paths
+			//
+			return rootInstances;
+		}
+
 		return this.selectAndInstantiateConnections(rootInstances, containerInstancesByConnectionPaths, mappingGroup);
 	}
 
@@ -1258,7 +1264,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 			// Filter those that satisfy one of the calculated hint values
 			//
 			possibleContainerInstances = this.instanceSelectorHandler.filterTargetInstances(possibleContainerInstances,
-					mappingInstance.getHintValues().getHintValues(containerSelector), containerSelector);
+					containerSelector, mappingInstance.getHintValues().getHintValues(containerSelector));
 
 			if (!possibleContainerInstances.isEmpty()) {
 				containerInstancesByContainerSelector.put(containerSelector, possibleContainerInstances);

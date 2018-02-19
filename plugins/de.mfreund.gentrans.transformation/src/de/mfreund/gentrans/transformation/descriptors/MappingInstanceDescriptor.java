@@ -193,7 +193,7 @@ public class MappingInstanceDescriptor {
 	 */
 	public SourceSectionClass getAssociatedSourceClass() {
 
-		return this.matchedSectionDescriptor.getAssociatedSourceSectionClass();
+		return this.matchedSectionDescriptor.getAssociatedSourceSection();
 	}
 
 	/**
@@ -466,7 +466,7 @@ public class MappingInstanceDescriptor {
 	 * This returns the {@link EObject elements} of the source model - sorted by their {@link SourceSectionClass} - that
 	 * are associated with this mapping instance (resp. the associated {@link #matchedSectionDescriptor}).
 	 * <p />
-	 * Note: This just redirects to {@link MatchedSectionDescriptor#getMatchedSourceModelObjects()} of the
+	 * Note: This just redirects to {@link MatchedSectionDescriptor#getMatchedSourceModelObjects(boolean)} of the
 	 * {@link #matchedSectionDescriptor}.
 	 *
 	 * @return The {@link EObject elements} of the source model - sorted by their {@link SourceSectionClass} - that are
@@ -474,7 +474,7 @@ public class MappingInstanceDescriptor {
 	 */
 	public Map<SourceSectionClass, Set<EObject>> getMatchedSourceModelObjects() {
 
-		return this.matchedSectionDescriptor.getMatchedSourceModelObjects();
+		return this.matchedSectionDescriptor.getMatchedSourceModelObjects(false);
 	}
 
 	/**
@@ -512,7 +512,7 @@ public class MappingInstanceDescriptor {
 
 		return new StringBuilder("MappingInstanceStorage : (\n").append("\tmapping: ").append(this.mapping)
 				.append("\n\tassociatedSourceSectionClass: ")
-				.append(this.matchedSectionDescriptor.getAssociatedSourceSectionClass())
+				.append(this.matchedSectionDescriptor.getAssociatedSourceSection())
 				.append("\n\tassociatedSourceModelElement: ")
 				.append(this.matchedSectionDescriptor.getAssociatedSourceModelElement()).append("\n)").toString();
 	}

@@ -302,7 +302,7 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 		} else {
 
 			filteredTargetInstances = this.instanceSelectorHandler.filterTargetInstances(potentialTargetInstances,
-					hintValues.getHintValues(referenceTargetSelector), referenceTargetSelector);
+					referenceTargetSelector, hintValues.getHintValues(referenceTargetSelector));
 		}
 
 		if (filteredTargetInstances.isEmpty()) {

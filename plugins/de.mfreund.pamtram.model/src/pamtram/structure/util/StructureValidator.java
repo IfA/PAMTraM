@@ -61,12 +61,20 @@ public class StructureValidator extends EObjectValidator {
 	public static final int LOCAL_DYNAMIC_SOURCE_ELEMENT__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION = 3;
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Follow External References True If Required' of 'Local Dynamic Source Element'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int LOCAL_DYNAMIC_SOURCE_ELEMENT__VALIDATE_FOLLOW_EXTERNAL_REFERENCES_TRUE_IF_REQUIRED = 4;
+
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Source Attribute Matches Container Section' of 'External Dynamic Source Element'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int EXTERNAL_DYNAMIC_SOURCE_ELEMENT__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION = 4;
+	public static final int EXTERNAL_DYNAMIC_SOURCE_ELEMENT__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION = 5;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -74,7 +82,7 @@ public class StructureValidator extends EObjectValidator {
 	 * end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 4;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 5;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -297,6 +305,7 @@ public class StructureValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(instanceSelectorSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLocalDynamicSourceElement_sourceAttributeMatchesSectionOrContainedSection(instanceSelectorSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLocalDynamicSourceElement_validateSourceAttributeMatchesSectionOrContainedSection(instanceSelectorSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLocalDynamicSourceElement_validateFollowExternalReferencesTrueIfRequired(instanceSelectorSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(instanceSelectorSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(instanceSelectorSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(instanceSelectorSourceElement, diagnostics, context);
@@ -373,6 +382,7 @@ public class StructureValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(localDynamicSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLocalDynamicSourceElement_sourceAttributeMatchesSectionOrContainedSection(localDynamicSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validateLocalDynamicSourceElement_validateSourceAttributeMatchesSectionOrContainedSection(localDynamicSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= validateLocalDynamicSourceElement_validateFollowExternalReferencesTrueIfRequired(localDynamicSourceElement, diagnostics, context);
 		return result;
 	}
 
@@ -412,6 +422,16 @@ public class StructureValidator extends EObjectValidator {
 	 */
 	public boolean validateLocalDynamicSourceElement_validateSourceAttributeMatchesSectionOrContainedSection(LocalDynamicSourceElement<?, ?, ?, ?> localDynamicSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return localDynamicSourceElement.validateSourceAttributeMatchesSectionOrContainedSection(diagnostics, context);
+	}
+
+	/**
+	 * Validates the validateFollowExternalReferencesTrueIfRequired constraint of '<em>Local Dynamic Source Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateLocalDynamicSourceElement_validateFollowExternalReferencesTrueIfRequired(LocalDynamicSourceElement<?, ?, ?, ?> localDynamicSourceElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return localDynamicSourceElement.validateFollowExternalReferencesTrueIfRequired(diagnostics, context);
 	}
 
 	/**

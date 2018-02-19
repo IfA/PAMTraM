@@ -152,6 +152,34 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	 * @generated
 	 */
 	@Override
+	public boolean validateReferenceOnlyConditionsFromConditionModel(final DiagnosticChain diagnostics,
+			final Map<?, ?> context) {
+		
+		if (this.getSharedCondParts() == null) {
+			return true;
+		}
+		
+		boolean result = this.getSharedCondParts().stream().allMatch(c -> c.eContainer() instanceof ConditionModel);
+		
+		if (!result && diagnostics != null) {
+		
+			String errorMessage = "Reference only Conditions that are placed inside a ConditionModel!";
+		
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, ConditionValidator.DIAGNOSTIC_SOURCE,
+					ConditionValidator.VARIADIC_CONDITION__VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL,
+					errorMessage,
+					new Object[] { this, ConditionPackage.Literals.VARIADIC_CONDITION__SHARED_COND_PARTS }));
+		
+		}
+		
+		return result;	
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case ConditionPackage.VARIADIC_CONDITION__LOCAL_COND_PARTS:
@@ -239,6 +267,8 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 				return referencesOnlyValidConditions();
 			case ConditionPackage.VARIADIC_CONDITION___VALIDATE_MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP:
 				return validateMinimalNumberOfArgs((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case ConditionPackage.VARIADIC_CONDITION___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP:
+				return validateReferenceOnlyConditionsFromConditionModel((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

@@ -3025,7 +3025,7 @@
     <mappings name="TransitionMapping" sourceSection="//@sourceSectionModels.0/@sections.2">
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="changeViewNavFlowHintGroup" targetSection="//@targetSectionModels.0/@sections.5">
         <mappingHints xsi:type="extended:ReferenceTargetSelector" name="target" referenceAttribute="//@targetSectionModels.0/@sections.1/@attributes.0" targetClass="//@targetSectionModels.0/@sections.1" affectedReference="//@targetSectionModels.0/@sections.5/@references.1">
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="interfaceIdMatcher" source="//@sourceSectionModels.0/@sections.20/@attributes.0"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="interfaceIdMatcher" source="//@sourceSectionModels.0/@sections.20/@attributes.0" followExternalReferences="true"/>
         </mappingHints>
         <mappingHints xsi:type="extended:ReferenceTargetSelector" name="trigger" referenceAttribute="//@targetSectionModels.0/@sections.2/@attributes.0" targetClass="//@targetSectionModels.0/@sections.2" affectedReference="//@targetSectionModels.0/@sections.5/@references.2">
           <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.1" source="//@sourceSectionModels.0/@sections.1/@attributes.0"/>

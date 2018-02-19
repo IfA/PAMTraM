@@ -188,6 +188,7 @@ public class TargetValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= genericValidator.validateClass_validateCardinalityIsValid(targetSection, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateClass_validateContainerIsValid(targetSection, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateClass_validateNotSelfContainer(targetSection, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateClass_validateOnlyComplementingActualReferences(targetSection, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateSection_extendsValidSections(targetSection, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateSection_containerMatchesExtendContainer(targetSection, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateSection_validateContainerMatchesExtendContainer(targetSection, diagnostics, context);
@@ -278,6 +279,7 @@ public class TargetValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= genericValidator.validateClass_validateCardinalityIsValid(targetSectionClass, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateClass_validateContainerIsValid(targetSectionClass, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateClass_validateNotSelfContainer(targetSectionClass, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateClass_validateOnlyComplementingActualReferences(targetSectionClass, diagnostics, context);
 		return result;
 	}
 

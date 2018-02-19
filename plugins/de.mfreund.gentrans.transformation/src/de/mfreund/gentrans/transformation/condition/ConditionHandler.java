@@ -21,10 +21,9 @@ import de.mfreund.gentrans.transformation.core.TransformationAsset;
 import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
-import de.mfreund.gentrans.transformation.matching.ValueExtractor;
 import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
 import de.mfreund.gentrans.transformation.registries.SelectedMappingRegistry;
-import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
+import pamtram.MatchSpecElement;
 import pamtram.condition.And;
 import pamtram.condition.ApplicationDependency;
 import pamtram.condition.AttributeCondition;
@@ -45,9 +44,11 @@ import pamtram.structure.constraint.EqualityConstraint;
 import pamtram.structure.constraint.SingleReferenceValueConstraint;
 import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.constraint.ValueConstraintType;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.CrossReference;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionClass;
-import pamtram.structure.source.SourceSectionCrossReference;
+import pamtram.structure.source.SourceSectionReference;
 
 /**
  * This class will be used to evaluate conditions and store their result.
@@ -204,43 +205,20 @@ public class ConditionHandler extends TransformationAsset {
 	private CondResult checkCardinalityCondition(CardinalityCondition sectionCondition,
 			MatchedSectionDescriptor matchedSectionDescriptor) {
 
-		// The Section referenced by the CardinalityCondition was not matched in
-		// the source model
-		//
-		if (!this.matchedSections.containsKey(sectionCondition.getTarget().getContainingSection())) {
-
-			// For conditions where the referred Section shouldn't be part of a
-			// model
-			if (sectionCondition.getValue() == 0 && sectionCondition.getComparator() == ComparatorEnum.EQ) {
-
-				return CondResult.TRUE;
-
-			} else {
-
-				return CondResult.FALSE;
-			}
-		}
-
 		// Collect all instances for the selected MatchedSectionDescriptors
 		//
 		List<EObject> correspondEClassInstances = this.getInstancesToConsider(sectionCondition,
 				matchedSectionDescriptor);
 
-		// If the user specified an additional 'referenceMatchSpec', use
-		// only that subset of the determined instances corresponding
-		// to this matching path.
-		//
-		if (!sectionCondition.getReferenceMatchSpec().isEmpty()) {
-
-			correspondEClassInstances = correspondEClassInstances.stream()
-					.filter(s -> this.assetManager.getMatchSpecHandler().conformsMatchedObject(
-							matchedSectionDescriptor.getAssociatedSourceModelElement(), s, sectionCondition))
-					.collect(Collectors.toList());
-		}
+		long isValue = sectionCondition.getTarget() instanceof Attribute<?, ?, ?, ?> ? correspondEClassInstances
+				.stream()
+				.flatMap(e -> this.assetManager.getModelAccessUtil()
+						.getAttributeValueAsList(e, (Attribute<?, ?, ?, ?>) sectionCondition.getTarget()).stream())
+				.count() : correspondEClassInstances.size();
 
 		// check Cardinality of the condition (e.g. the condition have to be at
 		// least 5 times true)
-		boolean cardinalityRes = this.checkCardinality(sectionCondition.getValue(), correspondEClassInstances.size(),
+		boolean cardinalityRes = this.checkCardinality(sectionCondition.getValue(), Math.toIntExact(isValue),
 				sectionCondition.getComparator());
 
 		// store and return the result
@@ -274,8 +252,8 @@ public class ConditionHandler extends TransformationAsset {
 
 		// Collect the values of the referenced EAttribute for each instance
 		//
-		List<String> srcAttrValues = ValueExtractor.getAttributeValueAsStringList(correspondEClassInstances,
-				attrCondition.getTarget(), this.logger);
+		List<String> srcAttrValues = this.assetManager.getModelAccessUtil()
+				.getAttributeValueAsStringList(correspondEClassInstances, attrCondition.getTarget());
 
 		/*
 		 * First, we check if all the constraints are satisfied for every attribute value of an AttributeConditon
@@ -514,9 +492,8 @@ public class ConditionHandler extends TransformationAsset {
 			// determined 'descriptors' themselves
 			//
 			MatchedSectionDescriptor descriptorToConsider = matchedSectionDescriptor;
-			while (!descriptorToConsider.getAssociatedSourceSectionClass().getContainingSection()
-					.equals(affectedSection)
-					&& !descriptorToConsider.getAssociatedSourceSectionClass().getContainingSection().getAllExtend()
+			while (!descriptorToConsider.getAssociatedSourceSection().getContainingSection().equals(affectedSection)
+					&& !descriptorToConsider.getAssociatedSourceSection().getContainingSection().getAllExtend()
 							.contains(affectedSection)) {
 
 				if (descriptorToConsider.getContainerDescriptor() == null) {
@@ -538,31 +515,53 @@ public class ConditionHandler extends TransformationAsset {
 			descriptorsToConsider.addAll(this.matchedSections.get(affectedSection));
 		}
 
+		boolean isFollowExternalReferences = condition instanceof MatchSpecElement<?, ?, ?, ?>
+				&& ((MatchSpecElement<?, ?, ?, ?>) condition).isFollowExternalReferences();
+
+		boolean includeReferenced = condition.isLocalCondition()
+				&& (!affectedSection.isAbstract()
+						&& affectedClasses.stream()
+								.anyMatch(c -> !c.getContainingSection()
+										.equals(matchedSectionDescriptor.getAssociatedSourceSection()))
+						|| isFollowExternalReferences);
+
 		// Collect all instances for the selected MatchedSectionDescriptors
 		//
 		List<EObject> correspondEClassInstances = affectedClasses.stream()
-				.flatMap(affectedClass -> descriptorsToConsider.stream()
-						.flatMap(descriptor -> Optional
-								.ofNullable(descriptor.getMatchedSourceModelElementsFor(affectedClass))
-								.orElse(new HashSet<>()).stream()))
+				.flatMap(affectedClass -> descriptorsToConsider.stream().flatMap(descriptor -> Optional
+						.ofNullable(descriptor.getMatchedSourceModelElementsFor(affectedClass, includeReferenced))
+						.orElse(new HashSet<>()).stream()))
 				.distinct().collect(Collectors.toList());
 
 		// For CardinalityConditions based on SourceSectionCrossReferences, we need to filter some more and only
 		// consider those instances that are reference via the correct reference
 		//
 		if (!correspondEClassInstances.isEmpty() && condition instanceof CardinalityCondition
-				&& ((CardinalityCondition) condition).getTarget() instanceof SourceSectionCrossReference) {
-			SourceSectionCrossReference reference = (SourceSectionCrossReference) ((CardinalityCondition) condition)
-					.getTarget();
+				&& ((CardinalityCondition) condition).getTarget() instanceof CrossReference<?, ?, ?, ?>) {
 
+			SourceSectionReference reference = (SourceSectionReference) ((CardinalityCondition) condition).getTarget();
 			SourceSectionClass owningClass = reference.getOwningClass();
-			Set<EObject> owningElements = descriptorsToConsider.stream()
-					.flatMap(descriptor -> Optional.ofNullable(descriptor.getMatchedSourceModelElementsFor(owningClass))
-							.orElse(new HashSet<>()).stream())
-					.collect(Collectors.toCollection(LinkedHashSet::new));
+
+			Set<EObject> owningElements = descriptorsToConsider.stream().flatMap(descriptor -> Optional
+					.ofNullable(descriptor.getMatchedSourceModelElementsFor(owningClass, condition.isLocalCondition()))
+					.orElse(new HashSet<>()).stream()).collect(Collectors.toCollection(LinkedHashSet::new));
+
 			correspondEClassInstances = correspondEClassInstances.stream()
-					.filter(instance -> owningElements.stream().anyMatch(owner -> AgteleEcoreUtil
-							.getStructuralFeatureValueAsList(owner, reference.getEReference()).contains(instance)))
+					.filter(instance -> owningElements.stream()
+							.anyMatch(owner -> this.assetManager.getModelAccessUtil()
+									.getReferenceValueAsList(owner, reference).contains(instance)))
+					.collect(Collectors.toList());
+		}
+
+		// Reduce the list of instances based on a modeled 'referenceMatchSpec'.
+		//
+		if (condition instanceof MatchSpecElement<?, ?, ?, ?>
+				&& !((MatchSpecElement<?, ?, ?, ?>) condition).getReferenceMatchSpec().isEmpty()) {
+
+			correspondEClassInstances = correspondEClassInstances.stream()
+					.filter(s -> this.assetManager.getMatchSpecHandler().conformsMatchedObject(
+							matchedSectionDescriptor.getAssociatedSourceModelElement(), s,
+							(MatchSpecElement<?, ?, ?, ?>) condition))
 					.collect(Collectors.toList());
 		}
 
@@ -572,8 +571,8 @@ public class ConditionHandler extends TransformationAsset {
 
 			for (SourceInstanceSelector instancePointer : condition.getInstanceSelectors()) {
 
-				correspondEClassInstances = this.instanceSelectorHandler.getSelectedInstancesByInstanceList(
-						instancePointer, correspondEClassInstances, matchedSectionDescriptor);
+				correspondEClassInstances = this.instanceSelectorHandler
+						.filterSourceInstances(correspondEClassInstances, instancePointer, matchedSectionDescriptor);
 			}
 
 		}

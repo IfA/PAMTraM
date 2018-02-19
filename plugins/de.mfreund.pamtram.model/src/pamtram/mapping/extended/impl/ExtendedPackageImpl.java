@@ -643,7 +643,7 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getCardinalityMapping__ValidateModifiersOnlyForSourceElements__DiagnosticChain_Map() {
+	public EOperation getCardinalityMapping__GetLocalSourceElements() {
 		return cardinalityMappingEClass.getEOperations().get(7);
 	}
 
@@ -652,7 +652,7 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getCardinalityMapping__GetLocalSourceElements() {
+	public EOperation getCardinalityMapping__GetExternalSourceElements() {
 		return cardinalityMappingEClass.getEOperations().get(8);
 	}
 
@@ -661,7 +661,7 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getCardinalityMapping__GetExternalSourceElements() {
+	public EOperation getCardinalityMapping__ValidateFollowExternalReferencesTrueIfRequired__DiagnosticChain_Map() {
 		return cardinalityMappingEClass.getEOperations().get(9);
 	}
 
@@ -917,9 +917,9 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___VALIDATE_NO_CARDINALITY_MAPPING_FOR_SOURCE_SECTION_ROOT__DIAGNOSTICCHAIN_MAP);
 		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___VALIDATE_ONLY_SOURCE_OR_SOURCE_ELEMENTS__DIAGNOSTICCHAIN_MAP);
 		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___VALIDATE_EXPRESSION_ONLY_FOR_SOURCE_ELEMENTS__DIAGNOSTICCHAIN_MAP);
-		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___VALIDATE_MODIFIERS_ONLY_FOR_SOURCE_ELEMENTS__DIAGNOSTICCHAIN_MAP);
 		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___GET_LOCAL_SOURCE_ELEMENTS);
 		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___GET_EXTERNAL_SOURCE_ELEMENTS);
+		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___VALIDATE_FOLLOW_EXTERNAL_REFERENCES_TRUE_IF_REQUIRED__DIAGNOSTICCHAIN_MAP);
 
 		cardinalityMappingSourceInterfaceEClass = createEClass(CARDINALITY_MAPPING_SOURCE_INTERFACE);
 
@@ -1273,7 +1273,11 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getCardinalityMapping__ValidateModifiersOnlyForSourceElements__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateModifiersOnlyForSourceElements", 0, 1, IS_UNIQUE, IS_ORDERED);
+		initEOperation(getCardinalityMapping__GetLocalSourceElements(), this.getCardinalityMappingSourceElement(), "getLocalSourceElements", 0, -1, !IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getCardinalityMapping__GetExternalSourceElements(), this.getCardinalityMappingExternalSourceElement(), "getExternalSourceElements", 0, -1, !IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getCardinalityMapping__ValidateFollowExternalReferencesTrueIfRequired__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateFollowExternalReferencesTrueIfRequired", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType();
@@ -1281,10 +1285,6 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		g2 = createEGenericType();
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEOperation(getCardinalityMapping__GetLocalSourceElements(), this.getCardinalityMappingSourceElement(), "getLocalSourceElements", 0, -1, !IS_UNIQUE, IS_ORDERED);
-
-		initEOperation(getCardinalityMapping__GetExternalSourceElements(), this.getCardinalityMappingExternalSourceElement(), "getExternalSourceElements", 0, -1, !IS_UNIQUE, IS_ORDERED);
 
 		initEClass(cardinalityMappingSourceInterfaceEClass, CardinalityMappingSourceInterface.class, "CardinalityMappingSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1395,13 +1395,13 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		  (getMappingHint__ValidateOverwritesValidMappingHint__DiagnosticChain_Map(), 
 		   source, 
 		   new String[] {
-			 "body", "if (this.overwrite == null) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\r\n\tboolean ret = true;\r\n\t\tString message = \"\";\r\n\r\n\tif (this.eClass() != this.overwrite.eClass()) {\r\n\t\t\tret = false;\r\n\t\t\tmessage = \"MappingHints must only overwrite MappingHints of the same type!\";\r\n\t\t}\r\n\r\n\tif (((<%pamtram.mapping.MappingHintGroupType%>) this.eContainer()).getExtend().isEmpty()\r\n\t\t\t\t|| ((<%pamtram.mapping.MappingHintGroupType%>) this.eContainer()).getExtend().stream()\r\n\t\t\t\t\t\t.noneMatch(hg -> hg.getAllMappingHints().contains(this.overwrite))) {\r\n\t\t\tret = false;\r\n\t\t\tmessage = \"The overwritten <%pamtram.mapping.extended.MappingHint%> is not part of a MappingHintGroup that is extended by the HintGroup containing this MappingHint!\";\r\n\t\t}\r\n\r\n\tif (this instanceof <%pamtram.mapping.extended.AttributeMapping%>\r\n\t\t\t\t&& ((<%pamtram.mapping.extended.AttributeMapping%>) this).getTarget() != ((<%pamtram.mapping.extended.AttributeMapping%>) this.overwrite).getTarget()) {\r\n\t\t\tret = false;\r\n\t\t\tmessage = \"An <%pamtram.mapping.extended.AttributeMapping%> must only overwrite another <%pamtram.mapping.extended.AttributeMapping%> pointing to the same TargetSectionAttribute!\";\r\n\t\t} else if (this instanceof <%pamtram.mapping.extended.CardinalityMapping%>\r\n\t\t\t\t&& ((<%pamtram.mapping.extended.CardinalityMapping%>) this).getTarget() != ((<%pamtram.mapping.extended.CardinalityMapping%>) this.overwrite).getTarget()) {\r\n\t\t\tret = false;\r\n\t\t\tmessage = \"A <%pamtram.mapping.extended.CardinalityMapping%> must only overwrite another <%pamtram.mapping.extended.CardinalityMapping%> pointing to the same TargetSectionClass!\";\r\n\t\t} else if (this instanceof <%pamtram.mapping.extended.ReferenceTargetSelector%> && ((<%pamtram.mapping.extended.ReferenceTargetSelector%>) this)\r\n\t\t\t\t.getAffectedReference() != ((<%pamtram.mapping.extended.ReferenceTargetSelector%>) this.overwrite).getAffectedReference()) {\r\n\t\t\tret = false;\r\n\t\t\tmessage = \"A <%pamtram.mapping.extended.ReferenceTargetSelector%> must only overwrite another <%pamtram.mapping.extended.ReferenceTargetSelector%> pointing to the same TargetSectionReference!\";\r\n\t\t}\r\n\r\n\tif (!ret && diagnostics != null) {\r\n\t\t\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR, <%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.MAPPING_HINT__VALIDATE_OVERWRITES_VALID_MAPPING_HINT, message,\r\n\t\t\t\t\tnew Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.MAPPING_HINT__OVERWRITE }));\r\n\t\t}\r\n\r\n\treturn ret;"
+			 "body", "\r\nif (this.overwrite == null) {\r\n\treturn true;\r\n}\r\n\r\nboolean ret = true;\r\nString message = \"\";\r\n\r\nif (this.eClass() != this.overwrite.eClass()) {\r\n\tret = false;\r\n\tmessage = \"MappingHints must only overwrite MappingHints of the same type!\";\r\n}\r\n\r\nif (((<%pamtram.mapping.MappingHintGroupType%>) this.eContainer()).getAllExtend().isEmpty()\r\n\t\t|| ((MappingHintGroupType) this.eContainer()).getAllExtend().stream()\r\n\t\t\t\t.noneMatch(hg -> hg.getAllMappingHints().contains(this.overwrite))) {\r\n\tret = false;\r\n\tmessage = \"The overwritten <%pamtram.mapping.extended.MappingHint%> is not part of a <%pamtram.mapping.MappingHintGroup%> that is extended by the HintGroup containing this MappingHint!\";\r\n}\r\n\r\nif (this instanceof <%pamtram.mapping.extended.AttributeMapping%>\r\n\t\t&& ((AttributeMapping) this).getTarget() != ((AttributeMapping) this.overwrite).getTarget()) {\r\n\tret = false;\r\n\tmessage = \"An AttributeMapping must only overwrite another AttributeMapping pointing to the same TargetSectionAttribute!\";\r\n} else if (this instanceof <%pamtram.mapping.extended.CardinalityMapping%>\r\n\t\t&& ((CardinalityMapping) this).getTarget() != ((CardinalityMapping) this.overwrite).getTarget()) {\r\n\tret = false;\r\n\tmessage = \"A CardinalityMapping must only overwrite another CardinalityMapping pointing to the same TargetSectionClass!\";\r\n} else if (this instanceof <%pamtram.mapping.extended.ReferenceTargetSelector%> && ((ReferenceTargetSelector) this)\r\n\t\t.getAffectedReference() != ((ReferenceTargetSelector) this.overwrite).getAffectedReference()) {\r\n\tret = false;\r\n\tmessage = \"A ReferenceTargetSelector must only overwrite another ReferenceTargetSelector pointing to the same TargetSectionReference!\";\r\n}\r\n\r\nif (!ret && diagnostics != null) {\r\n\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR, <%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\tExtendedValidator.MAPPING_HINT__VALIDATE_OVERWRITES_VALID_MAPPING_HINT, message,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.MAPPING_HINT__OVERWRITE }));\r\n}\r\n\r\nreturn ret;"
 		   });	
 		addAnnotation
 		  (getMappingHint__ValidateConsiderOverwritingHint__DiagnosticChain_Map(), 
 		   source, 
 		   new String[] {
-			 "body", "if (!(this.eContainer instanceof <%pamtram.mapping.MappingHintGroupType%>) || this.overwrite != null) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\r\tList<<%pamtram.mapping.extended.MappingHint%>> hintsOfExtendedHintGroups = ((<%pamtram.mapping.MappingHintGroupType%>) this.eContainer()).getExtend().stream()\r\n\t\t\t\t.flatMap(hg -> hg.getMappingHints().stream()).collect(<%java.util.stream.Collectors%>.toList());\r\n\r\tif (hintsOfExtendedHintGroups.isEmpty()) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\r\tOptional<<%pamtram.mapping.extended.MappingHint%>> hintToConsider = <%java.util.Optional%>.empty();\r\n\r\tif (this instanceof <%pamtram.mapping.extended.AttributeMapping%> && ((<%pamtram.mapping.extended.AttributeMapping%>) this).getTarget() != null) {\r\n\r\t\thintToConsider = hintsOfExtendedHintGroups.stream().filter(h -> h instanceof <%pamtram.mapping.extended.AttributeMapping%>)\r\n\t\t\t\t\t.filter(h -> ((<%pamtram.mapping.extended.AttributeMapping%>) this).getTarget().equals(((<%pamtram.mapping.extended.AttributeMapping%>) h).getTarget()))\r\n\t\t\t\t\t.findAny();\r\n\r\t} else if (this instanceof <%pamtram.mapping.extended.CardinalityMapping%> && ((<%pamtram.mapping.extended.CardinalityMapping%>) this).getTarget() != null) {\r\n\r\t\thintToConsider = hintsOfExtendedHintGroups.stream().filter(h -> h instanceof <%pamtram.mapping.extended.CardinalityMapping%>)\r\n\t\t\t\t\t.filter(h -> ((<%pamtram.mapping.extended.CardinalityMapping%>) this).getTarget().equals(((<%pamtram.mapping.extended.CardinalityMapping%>) h).getTarget()))\r\n\t\t\t\t\t.findAny();\r\n\r\t} else if (this instanceof <%pamtram.mapping.extended.ReferenceTargetSelector%>\r\n\t\t\t\t&& ((<%pamtram.mapping.extended.ReferenceTargetSelector%>) this).getAffectedReference() != null) {\r\n\r\t\thintToConsider = hintsOfExtendedHintGroups.stream().filter(h -> h instanceof <%pamtram.mapping.extended.ReferenceTargetSelector%>)\r\n\t\t\t\t\t.filter(h -> ((<%pamtram.mapping.extended.ReferenceTargetSelector%>) this).getAffectedReference()\r\n\t\t\t\t\t\t\t.equals(((<%pamtram.mapping.extended.ReferenceTargetSelector%>) h).getAffectedReference()))\r\n\t\t\t\t\t.findAny();\r\n\t\t}\r\n\r\tif (!hintToConsider.isPresent()) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\r\tString message = \"The hint \'\" + hintToConsider.get().getName() + \"\' of the extended MappingHintGroup \"\r\n\t\t\t\t+ (hintToConsider.get().eContainer() instanceof <%pamtram.mapping.MappingHintGroupType%>\r\n\t\t\t\t\t\t? \"\'\" + ((<%pamtram.mapping.MappingHintGroupType%>) hintToConsider.get().eContainer()).getName() + \"\' \"\r\n\t\t\t\t\t\t: \"\")\r\n\t\t\t\t+ \"affects the same target element. Consider overwriting this hint instead of providing additional hint values...\";\r\n\r\tif (diagnostics != null) {\r\n\t\t\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.WARNING, <%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.MAPPING_HINT__VALIDATE_CONSIDER_OVERWRITING_HINT, message,\r\n\t\t\t\t\tnew Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.MAPPING_HINT__OVERWRITE }));\r\n\t\t}\r\n\r\treturn false;"
+			 "body", "\r\nif (!(this.eContainer instanceof <%pamtram.mapping.MappingHintGroupType%>) || this.overwrite != null) {\r\n\treturn true;\r\n}\r\n\r\n<%java.util.List%><<%pamtram.mapping.extended.MappingHint%>> hintsOfExtendedHintGroups = ((MappingHintGroupType) this.eContainer()).getAllExtend().stream()\r\n\t\t.flatMap(hg -> hg.getMappingHints().stream()).collect(<%java.util.stream.Collectors%>.toList());\r\n\r\nif (hintsOfExtendedHintGroups.isEmpty()) {\r\n\treturn true;\r\n}\r\n\r\n<%java.util.Optional%><MappingHint> hintToConsider = Optional.empty();\r\n\r\nif (this instanceof <%pamtram.mapping.extended.AttributeMapping%> && ((AttributeMapping) this).getTarget() != null) {\r\n\r\n\thintToConsider = hintsOfExtendedHintGroups.stream().filter(h -> h instanceof AttributeMapping)\r\n\t\t\t.filter(h -> ((AttributeMapping) this).getTarget().equals(((AttributeMapping) h).getTarget()))\r\n\t\t\t.findAny();\r\n\r\n} else if (this instanceof <%pamtram.mapping.extended.CardinalityMapping%> && ((CardinalityMapping) this).getTarget() != null) {\r\n\r\n\thintToConsider = hintsOfExtendedHintGroups.stream().filter(h -> h instanceof CardinalityMapping)\r\n\t\t\t.filter(h -> ((CardinalityMapping) this).getTarget().equals(((CardinalityMapping) h).getTarget()))\r\n\t\t\t.findAny();\r\n\r\n} else if (this instanceof <%pamtram.mapping.extended.ReferenceTargetSelector%>\r\n\t\t&& ((ReferenceTargetSelector) this).getAffectedReference() != null) {\r\n\r\n\thintToConsider = hintsOfExtendedHintGroups.stream().filter(h -> h instanceof ReferenceTargetSelector)\r\n\t\t\t.filter(h -> ((ReferenceTargetSelector) this).getAffectedReference()\r\n\t\t\t\t\t.equals(((ReferenceTargetSelector) h).getAffectedReference()))\r\n\t\t\t.findAny();\r\n}\r\n\r\nif (!hintToConsider.isPresent()) {\r\n\treturn true;\r\n}\r\n\r\nString message = \"The hint \'\" + hintToConsider.get().getName() + \"\' of the extended <%pamtram.mapping.MappingHintGroup%> \"\r\n\t\t+ (hintToConsider.get().eContainer() instanceof MappingHintGroupType\r\n\t\t\t\t? \"\'\" + ((MappingHintGroupType) hintToConsider.get().eContainer()).getName() + \"\' \"\r\n\t\t\t\t: \"\")\r\n\t\t+ \"affects the same target element. Consider overwriting this hint instead of providing additional hint values...\";\r\n\r\nif (diagnostics != null) {\r\n\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.WARNING, <%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\tExtendedValidator.MAPPING_HINT__VALIDATE_CONSIDER_OVERWRITING_HINT, message,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.MAPPING_HINT__OVERWRITE }));\r\n}\r\n\r\nreturn false;"
 		   });	
 		addAnnotation
 		  (getMappingHint_Overwrite(), 
@@ -1549,12 +1549,6 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 			 "body", "\r\nboolean result = !this.getSourceElements().isEmpty() || this.expression.isEmpty();\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"A CardinalityMapping must only specify an \'expression\' if it also specifies a set of \'sourceElements\'!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tExtendedValidator.CARDINALITY_MAPPING__VALIDATE_EXPRESSION_ONLY_FOR_SOURCE_ELEMENTS,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.CARDINALITY_MAPPING }));\r\n\r\n}\r\n\r\nreturn result;"
 		   });	
 		addAnnotation
-		  (getCardinalityMapping__ValidateModifiersOnlyForSourceElements__DiagnosticChain_Map(), 
-		   source, 
-		   new String[] {
-			 "body", "\r\nboolean result = !this.getSourceElements().isEmpty() || this.getModifiers().isEmpty();\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"A CardinalityMapping must only specify \'modifiers\' if it also specifies a set of \'sourceElements\'!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tExtendedValidator.CARDINALITY_MAPPING__VALIDATE_MODIFIERS_ONLY_FOR_SOURCE_ELEMENTS,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.CARDINALITY_MAPPING }));\r\n\r\n}\r\n\r\nreturn result;"
-		   });	
-		addAnnotation
 		  (getCardinalityMapping__GetLocalSourceElements(), 
 		   source, 
 		   new String[] {
@@ -1565,6 +1559,12 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		   source, 
 		   new String[] {
 			 "body", "return new <%org.eclipse.emf.common.util.BasicEList%><>(this.getSourceElements().stream().filter(s -> s instanceof CardinalityMappingExternalSourceElement).map(s -> (CardinalityMappingExternalSourceElement) s).collect(<%java.util.stream.Collectors%>.toList()));"
+		   });	
+		addAnnotation
+		  (getCardinalityMapping__ValidateFollowExternalReferencesTrueIfRequired__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\n<%pamtram.mapping.Mapping%> mapping = (Mapping) <%de.tud.et.ifa.agtele.emf.AgteleEcoreUtil%>.getAncestorOfKind(this, <%pamtram.mapping.MappingPackage%>.Literals.MAPPING);\r\n\r\nif (this.source == null || mapping.getSourceSection() == null || !this.getReferenceMatchSpec().isEmpty()) {\r\n\treturn true;\r\n}\r\n\r\n<%pamtram.structure.source.SourceSection%> sourceSection = mapping.getSourceSection();\r\n\r\nboolean result = true;\r\nString errorMessage = \"\";\r\n\r\nif (!this.isFollowExternalReferences() && (!sourceSection.equals(this.source.getContainingSection())\r\n\t\t|| !sourceSection.getAllExtend().contains(this.source.getContainingSection()))) {\r\n\r\n\tresult = false;\r\n\terrorMessage = \"The source Attribute is not part of the SourceSection specified by this Mapping. This is not allowed unless \'followExternalReferences\' is set to \'true\'.\";\r\n\r\n}\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.WARNING, <%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\tExtendedValidator.CARDINALITY_MAPPING__VALIDATE_FOLLOW_EXTERNAL_REFERENCES_TRUE_IF_REQUIRED,\r\n\t\t\terrorMessage, new Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.CARDINALITY_MAPPING__SOURCE }));\r\n}\r\n\r\nreturn result;"
 		   });	
 		addAnnotation
 		  (getCardinalityMapping_Source(), 

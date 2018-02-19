@@ -200,6 +200,24 @@ public interface TargetPackage extends EPackage {
 	int TARGET_SECTION_CLASS__ALL_CONCRETE_EXTENDING = GenericPackage.CLASS__ALL_CONCRETE_EXTENDING;
 
 	/**
+	 * The feature id for the '<em><b>All Composite References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_CLASS__ALL_COMPOSITE_REFERENCES = GenericPackage.CLASS__ALL_COMPOSITE_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>All Cross References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_CLASS__ALL_CROSS_REFERENCES = GenericPackage.CLASS__ALL_CROSS_REFERENCES;
+
+	/**
 	 * The number of structural features of the '<em>Section Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -306,6 +324,15 @@ public interface TargetPackage extends EPackage {
 	 * @ordered
 	 */
 	int TARGET_SECTION_CLASS___VALIDATE_NOT_SELF_CONTAINER__DIAGNOSTICCHAIN_MAP = GenericPackage.CLASS___VALIDATE_NOT_SELF_CONTAINER__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Validate Only Complementing Actual References</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_CLASS___VALIDATE_ONLY_COMPLEMENTING_ACTUAL_REFERENCES__DIAGNOSTICCHAIN_MAP = GenericPackage.CLASS___VALIDATE_ONLY_COMPLEMENTING_ACTUAL_REFERENCES__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Section Class</em>' class.
@@ -451,6 +478,24 @@ public interface TargetPackage extends EPackage {
 	 * @ordered
 	 */
 	int TARGET_SECTION__ALL_CONCRETE_EXTENDING = TARGET_SECTION_CLASS__ALL_CONCRETE_EXTENDING;
+
+	/**
+	 * The feature id for the '<em><b>All Composite References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION__ALL_COMPOSITE_REFERENCES = TARGET_SECTION_CLASS__ALL_COMPOSITE_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>All Cross References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION__ALL_CROSS_REFERENCES = TARGET_SECTION_CLASS__ALL_CROSS_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
@@ -613,6 +658,15 @@ public interface TargetPackage extends EPackage {
 	 * @ordered
 	 */
 	int TARGET_SECTION___VALIDATE_NOT_SELF_CONTAINER__DIAGNOSTICCHAIN_MAP = TARGET_SECTION_CLASS___VALIDATE_NOT_SELF_CONTAINER__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Validate Only Complementing Actual References</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION___VALIDATE_ONLY_COMPLEMENTING_ACTUAL_REFERENCES__DIAGNOSTICCHAIN_MAP = TARGET_SECTION_CLASS___VALIDATE_ONLY_COMPLEMENTING_ACTUAL_REFERENCES__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Validate Container Matches Extend Container</em>' operation.
@@ -1033,6 +1087,24 @@ public interface TargetPackage extends EPackage {
 	int TARGET_SECTION_REFERENCE___ADD_VALUES_GENERIC__ELIST = GenericPackage.REFERENCE___ADD_VALUES_GENERIC__ELIST;
 
 	/**
+	 * The operation id for the '<em>Is Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_REFERENCE___IS_EXTENDED = GenericPackage.REFERENCE___IS_EXTENDED;
+
+	/**
+	 * The operation id for the '<em>Get Values Including Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_REFERENCE___GET_VALUES_INCLUDING_EXTENDED = GenericPackage.REFERENCE___GET_VALUES_INCLUDING_EXTENDED;
+
+	/**
 	 * The number of operations of the '<em>Section Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1140,6 +1212,24 @@ public interface TargetPackage extends EPackage {
 	 * @ordered
 	 */
 	int TARGET_SECTION_COMPOSITE_REFERENCE___ADD_VALUES_GENERIC__ELIST = GenericPackage.COMPOSITE_REFERENCE___ADD_VALUES_GENERIC__ELIST;
+
+	/**
+	 * The operation id for the '<em>Is Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_COMPOSITE_REFERENCE___IS_EXTENDED = GenericPackage.COMPOSITE_REFERENCE___IS_EXTENDED;
+
+	/**
+	 * The operation id for the '<em>Get Values Including Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_COMPOSITE_REFERENCE___GET_VALUES_INCLUDING_EXTENDED = GenericPackage.COMPOSITE_REFERENCE___GET_VALUES_INCLUDING_EXTENDED;
 
 	/**
 	 * The operation id for the '<em>Validate EReference Is Containment</em>' operation.
@@ -1258,6 +1348,24 @@ public interface TargetPackage extends EPackage {
 	 * @ordered
 	 */
 	int TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE___ADD_VALUES_GENERIC__ELIST = GenericPackage.COMPOSITE_REFERENCE___ADD_VALUES_GENERIC__ELIST;
+
+	/**
+	 * The operation id for the '<em>Is Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE___IS_EXTENDED = GenericPackage.COMPOSITE_REFERENCE___IS_EXTENDED;
+
+	/**
+	 * The operation id for the '<em>Get Values Including Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE___GET_VALUES_INCLUDING_EXTENDED = GenericPackage.COMPOSITE_REFERENCE___GET_VALUES_INCLUDING_EXTENDED;
 
 	/**
 	 * The operation id for the '<em>Validate EReference Is Containment</em>' operation.
@@ -1387,6 +1495,24 @@ public interface TargetPackage extends EPackage {
 	int TARGET_SECTION_CROSS_REFERENCE___ADD_VALUES_GENERIC__ELIST = GenericPackage.CROSS_REFERENCE___ADD_VALUES_GENERIC__ELIST;
 
 	/**
+	 * The operation id for the '<em>Is Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_CROSS_REFERENCE___IS_EXTENDED = GenericPackage.CROSS_REFERENCE___IS_EXTENDED;
+
+	/**
+	 * The operation id for the '<em>Get Values Including Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_CROSS_REFERENCE___GET_VALUES_INCLUDING_EXTENDED = GenericPackage.CROSS_REFERENCE___GET_VALUES_INCLUDING_EXTENDED;
+
+	/**
 	 * The operation id for the '<em>Validate Values Match Reference Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1512,6 +1638,24 @@ public interface TargetPackage extends EPackage {
 	 * @ordered
 	 */
 	int TARGET_SECTION_ANY_CONTENT_CROSS_REFERENCE___ADD_VALUES_GENERIC__ELIST = GenericPackage.CROSS_REFERENCE___ADD_VALUES_GENERIC__ELIST;
+
+	/**
+	 * The operation id for the '<em>Is Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ANY_CONTENT_CROSS_REFERENCE___IS_EXTENDED = GenericPackage.CROSS_REFERENCE___IS_EXTENDED;
+
+	/**
+	 * The operation id for the '<em>Get Values Including Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ANY_CONTENT_CROSS_REFERENCE___GET_VALUES_INCLUDING_EXTENDED = GenericPackage.CROSS_REFERENCE___GET_VALUES_INCLUDING_EXTENDED;
 
 	/**
 	 * The operation id for the '<em>Validate Values Match Reference Type</em>' operation.

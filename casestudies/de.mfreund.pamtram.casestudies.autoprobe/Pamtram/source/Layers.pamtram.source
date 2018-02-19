@@ -21,7 +21,7 @@
           </value>
           <eReference href="http://gfai.de/stgml.xsd#//State/initial"/>
         </references>
-        <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_o0SK6YKMEeebJtDsk0N1XQ" name="transition">
+        <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_o0SK6YKMEeebJtDsk0N1XQ" name="transition" ignoreUnmatchedElements="true">
           <value xsi:type="source:SourceSectionClass" xmi:id="_o0SK6oKMEeebJtDsk0N1XQ" name="Transition" cardinality="ZERO__INFINITY">
             <eClass href="http://gfai.de/stgml.xsd#//Transition"/>
             <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_o0SK64KMEeebJtDsk0N1XQ" name="rootStateEvent">
@@ -32,19 +32,12 @@
               <attribute href="http://gfai.de/stgml.xsd#//Transition/target"/>
             </attributes>
           </value>
-          <value xsi:type="source:SourceSectionClass" xmi:id="_o0SK7oKMEeebJtDsk0N1XQ" name="Transition Rest" cardinality="ZERO__INFINITY">
-            <eClass href="http://gfai.de/stgml.xsd#//Transition"/>
-            <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_o0SK74KMEeebJtDsk0N1XQ" name="rootStateEvent">
-              <valueConstraints xsi:type="constraint:EqualityConstraint" xmi:id="_o0SK8IKMEeebJtDsk0N1XQ" name="event !== &quot;BACK&quot;" expression="BACK"/>
-              <attribute href="http://gfai.de/stgml.xsd#//Transition/event"/>
-            </attributes>
-          </value>
           <eReference href="http://gfai.de/stgml.xsd#//State/transition"/>
         </references>
         <references xsi:type="source:SourceSectionCrossReference" xmi:id="_o0SK8YKMEeebJtDsk0N1XQ" name="state" value="_o0SLBoKMEeebJtDsk0N1XQ">
           <eReference href="http://gfai.de/stgml.xsd#//State/state"/>
         </references>
-        <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_o0SK8oKMEeebJtDsk0N1XQ" name="loginState">
+        <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_o0SK8oKMEeebJtDsk0N1XQ" name="loginState" ignoreUnmatchedElements="true">
           <value xsi:type="source:SourceSectionClass" xmi:id="_o0SK84KMEeebJtDsk0N1XQ" name="LoginState" cardinality="ZERO__INFINITY">
             <eClass href="http://gfai.de/stgml.xsd#//State"/>
             <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_o0SK9IKMEeebJtDsk0N1XQ" name="transition">

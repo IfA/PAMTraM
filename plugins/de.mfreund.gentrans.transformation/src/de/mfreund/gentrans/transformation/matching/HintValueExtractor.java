@@ -353,9 +353,9 @@ public class HintValueExtractor extends ValueExtractor {
 				return null;
 			}
 
-			Set<EObject> sourceElements = sourceClasses.stream().flatMap(
-					sourceClass -> matchedSectionDescriptor.getMatchedSourceModelElementsFor(sourceClass).stream())
-					.collect(Collectors.toSet());
+			Set<EObject> sourceElements = sourceClasses.stream().flatMap(sourceClass -> matchedSectionDescriptor
+					.getMatchedSourceModelElementsFor(sourceClass, cardinalityMapping.isFollowExternalReferences())
+					.stream()).collect(Collectors.toSet());
 
 			// Evaluate potential ReferenceMatchSpecs
 			//
@@ -386,7 +386,7 @@ public class HintValueExtractor extends ValueExtractor {
 				//
 				SourceSectionAttribute sourceAttribute = (SourceSectionAttribute) cardinalityMapping.getSource();
 				resultingCardinality = sourceElements.stream().mapToInt(sourceElement -> this.assetManager
-						.getModelTraversalUtil().getAttributeValueAsList(sourceElement, sourceAttribute).size()).sum();
+						.getModelAccessUtil().getAttributeValueAsList(sourceElement, sourceAttribute).size()).sum();
 
 			}
 

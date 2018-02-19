@@ -448,6 +448,15 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getLocalDynamicSourceElement__ValidateFollowExternalReferencesTrueIfRequired__DiagnosticChain_Map() {
+		return localDynamicSourceElementEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getExternalDynamicSourceElement() {
 		return externalDynamicSourceElementEClass;
 	}
@@ -538,6 +547,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 
 		localDynamicSourceElementEClass = createEClass(LOCAL_DYNAMIC_SOURCE_ELEMENT);
 		createEOperation(localDynamicSourceElementEClass, LOCAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP);
+		createEOperation(localDynamicSourceElementEClass, LOCAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_FOLLOW_EXTERNAL_REFERENCES_TRUE_IF_REQUIRED__DIAGNOSTICCHAIN_MAP);
 
 		externalDynamicSourceElementEClass = createEClass(EXTERNAL_DYNAMIC_SOURCE_ELEMENT);
 		createEOperation(externalDynamicSourceElementEClass, EXTERNAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP);
@@ -919,6 +929,15 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		op = initEOperation(getLocalDynamicSourceElement__ValidateFollowExternalReferencesTrueIfRequired__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateFollowExternalReferencesTrueIfRequired", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(externalDynamicSourceElementEClass, ExternalDynamicSourceElement.class, "ExternalDynamicSourceElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		op = initEOperation(getExternalDynamicSourceElement__ValidateSourceAttributeMatchesContainerSection__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateSourceAttributeMatchesContainerSection", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -1141,7 +1160,13 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		  (getLocalDynamicSourceElement__ValidateSourceAttributeMatchesSectionOrContainedSection__DiagnosticChain_Map(), 
 		   source, 
 		   new String[] {
-			 "body", "\r\nif (this.getMapping() == null || this.source == null || this.getMapping().getSourceSection() == null\r\n\t\t|| !(this.source.getContainingSection() instanceof <%pamtram.structure.source.SourceSection%>)) {\r\n\treturn true;\r\n}\r\n\r\n<%pamtram.mapping.Mapping%> mapping = this.getMapping();\r\nSourceSection sourceSection = this.getMapping().getSourceSection();\r\n\r\nboolean result = false;\r\n\r\npamtram.structure.generic.Class<?, ?, ?, ?> relevantClass = mapping.getSourceSection();\r\n\r\n// iterate over all elements and return the attributes as possible options\r\n//\r\n<%java.util.Set%><pamtram.structure.generic.Class<?, ?, ?, ?>> scanned = new <%java.util.HashSet%><>();\r\n<%java.util.List%><pamtram.structure.generic.Class<?, ?, ?, ?>> sectionsToScan = new <%java.util.ArrayList%><>();\r\nsectionsToScan.add(relevantClass);\r\n\r\n// also regard abstract sections that this extends\r\nif (relevantClass instanceof <%pamtram.structure.generic.Section%>) {\r\n\tsectionsToScan.addAll(((Section<?, ?, ?, ?>) relevantClass).getAllExtend());\r\n}\r\n\r\nwhile (!sectionsToScan.isEmpty()) {\r\n\tpamtram.structure.generic.Class<?, ?, ?, ?> classToScan = sectionsToScan.remove(0);\r\n\tscanned.add(classToScan);\r\n\r\n\t<%java.util.Iterator%><<%org.eclipse.emf.ecore.EObject%>> it = classToScan.eAllContents();\r\n\twhile (it.hasNext()) {\r\n\t\tEObject next = it.next();\r\n\t\tif (next instanceof pamtram.structure.generic.Attribute && next.equals(this.source)) {\r\n\t\t\tresult = true;\r\n\t\t\tbreak;\r\n\t\t} else if (next instanceof <%pamtram.structure.generic.CrossReference%>) {\r\n\t\t\tList<<%pamtram.structure.source.SourceSectionClass%>> vals = new ArrayList<>();\r\n\t\t\tvals.addAll(((CrossReference) next).getValue());\r\n\t\t\tvals.removeAll(scanned);\r\n\t\t\tsectionsToScan.addAll(vals);\r\n\t\t}\r\n\t}\r\n}\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The source attribute \'\" + this.source.getName()\r\n\t\t\t+ \"\' is not referenced by the source section of the parent mapping \'\" + sourceSection.getName()\r\n\t\t\t+ \"\' or in one of its extended sections/sub-sections!\'\";\r\n\r\n\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR, <%pamtram.structure.util.StructureValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\tStructureValidator.LOCAL_DYNAMIC_SOURCE_ELEMENT__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION,\r\n\t\t\terrorMessage, new Object[] { this, <%pamtram.structure.StructurePackage%>.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE }));\r\n}\r\n\r\nreturn result;"
+			 "body", "\r\nif (this.getMapping() == null || this.source == null || this.getMapping().getSourceSection() == null\r\n\t\t|| !(this.source.getContainingSection() instanceof <%pamtram.structure.source.SourceSection%>)) {\r\n\treturn true;\r\n}\r\n\r\n<%pamtram.mapping.Mapping%> mapping = this.getMapping();\r\nSourceSection sourceSection = this.getMapping().getSourceSection();\r\n\r\nboolean result = false;\r\n\r\npamtram.structure.generic.Class<?, ?, ?, ?> relevantClass = mapping.getSourceSection();\r\n\r\n// iterate over all elements and return the attributes as possible options\r\n//\r\n<%java.util.Set%><pamtram.structure.generic.Class<?, ?, ?, ?>> scanned = new <%java.util.HashSet%><>();\r\n<%java.util.List%><pamtram.structure.generic.Class<?, ?, ?, ?>> sectionsToScan = new <%java.util.ArrayList%><>();\r\nsectionsToScan.add(relevantClass);\r\n\r\n// also regard abstract sections that this extends\r\nif (relevantClass instanceof <%pamtram.structure.generic.Section%>) {\r\n\tsectionsToScan.addAll(((Section<?, ?, ?, ?>) relevantClass).getAllExtend());\r\n}\r\n\r\nwhile (!sectionsToScan.isEmpty()) {\r\n\tpamtram.structure.generic.Class<?, ?, ?, ?> classToScan = sectionsToScan.remove(0);\r\n\tscanned.add(classToScan);\r\n\r\n\t<%java.util.Iterator%><<%org.eclipse.emf.ecore.EObject%>> it = classToScan.eAllContents();\r\n\twhile (it.hasNext()) {\r\n\t\tEObject next = it.next();\r\n\t\tif (next instanceof pamtram.structure.generic.Attribute && next.equals(this.source)) {\r\n\t\t\tresult = true;\r\n\t\t\tbreak;\r\n\t\t} else if (next instanceof pamtram.structure.generic.CrossReference<?, ?, ?, ?>) {\r\n\t\t\tList<<%pamtram.structure.source.SourceSectionClass%>> vals = new ArrayList<>();\r\n\t\t\tList<pamtram.structure.generic.Class<?, ?, ?, ?>> values = new ArrayList<>(\r\n\t\t\t\t\t((pamtram.structure.generic.CrossReference<?, ?, ?, ?>) next).getValue());\r\n\t\t\tvals.addAll((<%java.util.Collection%><? extends SourceSectionClass>) values);\r\n\t\t\tvals.addAll(values.stream().filter(c -> c instanceof SourceSection)\r\n\t\t\t\t\t.flatMap(c -> ((SourceSection) c).getAllExtend().stream()).collect(<%java.util.stream.Collectors%>.toList()));\r\n\t\t\tvals.removeAll(scanned);\r\n\t\t\tsectionsToScan.addAll(vals);\r\n\t\t}\r\n\t}\r\n}\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The source attribute \'\" + this.source.getName()\r\n\t\t\t+ \"\' is not referenced by the source section of the parent mapping \'\" + sourceSection.getName()\r\n\t\t\t+ \"\' or in one of its extended sections/sub-sections!\'\";\r\n\r\n\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR, <%pamtram.structure.util.StructureValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\tStructureValidator.LOCAL_DYNAMIC_SOURCE_ELEMENT__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION,\r\n\t\t\terrorMessage, new Object[] { this, <%pamtram.structure.StructurePackage%>.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE }));\r\n}\r\n\r\nreturn result;"
+		   });	
+		addAnnotation
+		  (getLocalDynamicSourceElement__ValidateFollowExternalReferencesTrueIfRequired__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\nif (this.source == null || this.getMapping().getSourceSection() == null || this.followExternalReferences) {\r\n\treturn true;\r\n}\r\n\r\n<%pamtram.structure.source.SourceSection%> sourceSection = this.getMapping().getSourceSection();\r\n\r\nboolean isExternalSourceElement = !sourceSection.equals(this.source.getContainingSection())\r\n\t\t&& !sourceSection.getAllExtend().contains(this.source.getContainingSection());\r\n\r\nboolean result = true;\r\nString errorMessage = \"\";\r\nint severity = <%org.eclipse.emf.common.util.Diagnostic%>.OK;\r\n\r\nif (isExternalSourceElement) {\r\n\r\n\tresult = false;\r\n\tseverity = Diagnostic.ERROR;\r\n\terrorMessage = \"The source <%pamtram.structure.generic.Attribute%> is not part of the SourceSection specified by this <%pamtram.mapping.Mapping%>. This is not allowed unless \'followExternalReferences\' is set to \'true\'.\";\r\n\r\n} else if (this.getReferenceMatchSpec().parallelStream()\r\n\t\t.anyMatch(r -> r instanceof pamtram.structure.generic.CrossReference<?, ?, ?, ?>)) {\r\n\r\n\tresult = false;\r\n\tseverity = Diagnostic.ERROR;\r\n\terrorMessage = \"The specified <%pamtram.structure.generic.Reference%> Match Spec contains Cross References. This is not allowed unless \'followExternalReferences\' is set to \'true\'.\";\r\n\r\n}\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tdiagnostics.add(new BasicDiagnostic(severity, <%pamtram.structure.util.StructureValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\tStructureValidator.LOCAL_DYNAMIC_SOURCE_ELEMENT__VALIDATE_FOLLOW_EXTERNAL_REFERENCES_TRUE_IF_REQUIRED,\r\n\t\t\terrorMessage, new Object[] { this, <%pamtram.structure.StructurePackage%>.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE }));\r\n}\r\n\r\nreturn result;"
 		   });	
 		addAnnotation
 		  (externalDynamicSourceElementEClass, 

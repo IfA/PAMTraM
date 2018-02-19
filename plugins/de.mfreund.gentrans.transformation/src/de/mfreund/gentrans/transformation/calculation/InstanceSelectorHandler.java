@@ -11,30 +11,23 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.function.Function;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import de.mfreund.gentrans.transformation.core.TransformationAsset;
 import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.matching.InstanceSelectorValueExtractor;
-import de.mfreund.gentrans.transformation.matching.ValueExtractor;
-import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
-import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
-import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.structure.InstanceSelector;
 import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.TargetInstanceSelector;
-import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.CompositeReference;
 import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.source.SourceSectionReference;
-import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionClass;
 import pamtram.structure.target.TargetSectionReference;
 
@@ -44,28 +37,12 @@ import pamtram.structure.target.TargetSectionReference;
  * SourceSectionMatcher) 2.) By List we extract specific model objects from a delivered list (so this method can be used
  * everywhere inside generic transformation for minimize the number of specific /concretize model objects
  */
-public class InstanceSelectorHandler {
-
-	/**
-	 * Registry for <em>source model objects</em> that have already been matched. The matched objects are stored in a
-	 * map where the key is the corresponding {@link SourceSectionClass} that they have been matched to.
-	 */
-	private MatchedSectionRegistry matchedSectionRegistry;
-
-	/**
-	 * The {@link TargetSectionRegistry} where instantiated {@link TargetSection TargetSections} are stored.
-	 */
-	private TargetSectionRegistry targetSectionRegistry;
+public class InstanceSelectorHandler extends TransformationAsset {
 
 	/**
 	 * The {@link InstanceSelectorValueExtractor} that is used to extract target values for InstancePointers.
 	 */
 	private InstanceSelectorValueExtractor valueExtractor;
-
-	/**
-	 * The {@link Logger} that shall be used to print messages.
-	 */
-	private final Logger logger;
 
 	/**
 	 * Whether extended parallelization shall be used during the transformation that might lead to the fact that the
@@ -82,39 +59,10 @@ public class InstanceSelectorHandler {
 	 */
 	public InstanceSelectorHandler(TransformationAssetManager assetManager) {
 
-		this.matchedSectionRegistry = assetManager.getMatchedSectionRegistry();
-		this.targetSectionRegistry = assetManager.getTargetSectionRegistry();
+		super(assetManager);
+
 		this.valueExtractor = new InstanceSelectorValueExtractor(assetManager);
-		this.logger = assetManager.getLogger();
 		this.useParallelization = assetManager.getTransformationConfig().isUseParallelization();
-
-	}
-
-	/**
-	 * From the given {@link SourceSectionClass}, this first retrieves all instances from the
-	 * {@link #matchedSectionRegistry} and then filters and returns those that satisfy the given
-	 * {@link InstanceSelector}.
-	 *
-	 * @param instanceSelector
-	 *            The {@link InstanceSelector} to evaluate.
-	 * @param sourceSectionClass
-	 *            The {@link SourceSectionClass} for that instances shall be retrieved and filtered.
-	 * @param matchedSectionDescriptor
-	 *            the {@link MatchedSectionDescriptor} for that the instancePointer shall be evaluated.
-	 * @return The subset of <em>instanceList</em> determined based on the given {@link SourceSectionClass} that satisfy
-	 *         the given <em>instancePointer</em>.
-	 */
-	public List<EObject> getSelectedInstancesBySourceSectionClass(SourceInstanceSelector instanceSelector,
-			SourceSectionClass sourceSectionClass, MatchedSectionDescriptor matchedSectionDescriptor) {
-
-		EList<EObject> correspondEclassInstances = new BasicEList<>();
-
-		this.matchedSectionRegistry.get(sourceSectionClass.getContainingSection()).stream()
-				.forEach(descriptor -> correspondEclassInstances
-						.addAll(descriptor.getMatchedSourceModelElementsFor(sourceSectionClass)));
-
-		return this.getSelectedInstancesByInstanceList(instanceSelector, correspondEclassInstances,
-				matchedSectionDescriptor);
 
 	}
 
@@ -122,17 +70,18 @@ public class InstanceSelectorHandler {
 	 * From the given list of {@link EObject elements}, this filters and returns those that satisfy the given
 	 * {@link InstanceSelector}.
 	 *
-	 * @param instanceSelector
-	 *            The {@link InstanceSelector} to evaluate.
 	 * @param instanceList
 	 *            The list of matched {@link EObject elements} to check.
+	 * @param instanceSelector
+	 *            The {@link InstanceSelector} to evaluate.
 	 * @param matchedSectionDescriptor
 	 *            The {@link MatchedSectionDescriptor} for that the instancePointer shall be evaluated (providing the
 	 *            reference value).
+	 *
 	 * @return The subset of the given <em>instanceList</em> that satisfy the given <em>instancePointer</em>.
 	 */
-	public List<EObject> getSelectedInstancesByInstanceList(SourceInstanceSelector instanceSelector,
-			List<EObject> instanceList, MatchedSectionDescriptor matchedSectionDescriptor) {
+	public List<EObject> filterSourceInstances(List<EObject> instanceList, SourceInstanceSelector instanceSelector,
+			MatchedSectionDescriptor matchedSectionDescriptor) {
 
 		if (instanceSelector.getReferenceAttribute() == null) {
 			return new ArrayList<>(instanceList);
@@ -141,7 +90,7 @@ public class InstanceSelectorHandler {
 		String referenceValue = this.valueExtractor.extractRequiredTargetValue(instanceSelector,
 				matchedSectionDescriptor);
 
-		return this.filterSourceInstances(instanceList, Arrays.asList(referenceValue), instanceSelector);
+		return this.filterSourceInstances(instanceList, instanceSelector, Arrays.asList(referenceValue));
 
 	}
 
@@ -149,17 +98,18 @@ public class InstanceSelectorHandler {
 	 * From the given list of {@link EObjectWrapper elements}, this filters and returns those that satisfy the given
 	 * {@link InstanceSelector}.
 	 *
-	 * @param instanceSelector
-	 *            The {@link InstanceSelector} to evaluate.
 	 * @param instanceList
 	 *            The list of created {@link EObjectWrapper elements} to check.
+	 * @param instanceSelector
+	 *            The {@link InstanceSelector} to evaluate.
 	 * @param matchedSectionDescriptor
 	 *            The {@link MatchedSectionDescriptor} for that the instancePointer shall be evaluated (providing the
 	 *            reference value).
+	 *
 	 * @return The subset of the given <em>instanceList</em> that satisfy the given <em>instancePointer</em>.
 	 */
-	public List<EObjectWrapper> getSelectedInstancesByInstanceList(TargetInstanceSelector instanceSelector,
-			List<EObjectWrapper> instanceList, MatchedSectionDescriptor matchedSectionDescriptor) {
+	public List<EObjectWrapper> filterTargetInstances(List<EObjectWrapper> instanceList,
+			TargetInstanceSelector instanceSelector, MatchedSectionDescriptor matchedSectionDescriptor) {
 
 		if (instanceSelector.getReferenceAttribute() == null) {
 			return new ArrayList<>(instanceList);
@@ -168,7 +118,7 @@ public class InstanceSelectorHandler {
 		String referenceValue = this.valueExtractor.extractRequiredTargetValue(instanceSelector,
 				matchedSectionDescriptor);
 
-		return this.filterTargetInstances(instanceList, Arrays.asList(referenceValue), instanceSelector);
+		return this.filterTargetInstances(instanceList, instanceSelector, Arrays.asList(referenceValue));
 
 	}
 
@@ -178,15 +128,15 @@ public class InstanceSelectorHandler {
 	 *
 	 * @param potentialSourceInstances
 	 *            The list of potential {@link EObject source instances} to be filtered.
-	 * @param instanceSelectorHintValues
-	 *            The hint values of the given <em>sourceInstanceSelector</em> to be evaluated.
 	 * @param sourceInstanceSelector
 	 *            The {@link SourceInstanceSelector} to evaluate.
+	 * @param instanceSelectorHintValues
+	 *            The hint values of the given <em>sourceInstanceSelector</em> to be evaluated.
 	 * @return The filtered list of <em>potentialSourceInstances</em>. The order of the instances is determined by the
 	 *         order of hint values.
 	 */
 	public List<EObject> filterSourceInstances(List<EObject> potentialSourceInstances,
-			List<String> instanceSelectorHintValues, SourceInstanceSelector sourceInstanceSelector) {
+			SourceInstanceSelector sourceInstanceSelector, List<String> instanceSelectorHintValues) {
 
 		if (potentialSourceInstances == null || potentialSourceInstances.isEmpty()) {
 
@@ -206,11 +156,13 @@ public class InstanceSelectorHandler {
 		// instances. In the following, these will be compared to the list of 'hintValues'.
 		//
 		Map<EObject, List<String>> referenceValueBySourceInstance = potentialSourceInstances.stream()
-				.collect(Collectors.toMap(Function.identity(), c -> this
-						.getReferenceAttributeInstancesBySourceInstance(c, sourceInstanceSelector).stream()
-						.flatMap(r -> ValueExtractor.getAttributeValueAsStringList(r,
-								sourceInstanceSelector.getReferenceAttribute(), this.logger).stream())
-						.collect(Collectors.toList())));
+				.collect(Collectors.toMap(Function.identity(),
+						c -> this.getReferenceAttributeInstancesBySourceInstance(c, sourceInstanceSelector).stream()
+								.flatMap(r -> InstanceSelectorHandler.this.assetManager.getModelAccessUtil()
+										.getAttributeValueAsStringList(r,
+												sourceInstanceSelector.getReferenceAttribute())
+										.stream())
+								.collect(Collectors.toList())));
 
 		// Filter those target instances, whose 'reference values' match one of the given 'hint values' and store them
 		// in a map relating the list of potential target instances for each of the specified hint values
@@ -233,15 +185,15 @@ public class InstanceSelectorHandler {
 	 *
 	 * @param potentialTargetInstances
 	 *            The list of potential {@link EObjectWrapper target instances} to be filtered.
-	 * @param instanceSelectorHintValues
-	 *            The hint values of the given <em>targetInstanceSelector</em> to be evaluated.
 	 * @param targetInstanceSelector
 	 *            The {@link TargetInstanceSelector} to evaluate.
+	 * @param instanceSelectorHintValues
+	 *            The hint values of the given <em>targetInstanceSelector</em> to be evaluated.
 	 * @return The filtered list of <em>potentialTargetInstances</em>. The order of the instances is determined by the
 	 *         order of hint values.
 	 */
 	public List<EObjectWrapper> filterTargetInstances(List<EObjectWrapper> potentialTargetInstances,
-			List<String> instanceSelectorHintValues, TargetInstanceSelector targetInstanceSelector) {
+			TargetInstanceSelector targetInstanceSelector, List<String> instanceSelectorHintValues) {
 
 		if (potentialTargetInstances == null || potentialTargetInstances.isEmpty()) {
 
@@ -326,77 +278,28 @@ public class InstanceSelectorHandler {
 		// The SourceSectionClasses that define the 'referenceAttribute' of the SourceInstanceSelector. This may either
 		// be the same as the 'targetClass' or a class that is higher or lower in the containment hierarchy
 		//
-		EList<SourceSectionClass> referenceAttributeClasses = ((SourceSectionClass) sourceInstanceSelector
-				.getReferenceAttribute().eContainer()).getAllConcreteExtending();
+		EList<SourceSectionClass> referenceAttributeClasses = sourceInstanceSelector.getReferenceAttribute()
+				.getOwningClass().getAllConcreteExtending();
 
 		if (!Collections.disjoint(sourceClasses, referenceAttributeClasses)) {
 			return Arrays.asList(sourceInstance);
 		}
 
-		// The 'referenceAttribute' is located in a TargetSectionClass lower in the containment hierarchy than the
-		// 'targetClass'
-		//
-		Optional<SourceSectionClass> descendantReferenceAttributeClass = referenceAttributeClasses.parallelStream()
-				.filter(c -> sourceClasses.stream().anyMatch(c::isContainedIn)).findAny();
+		Optional<MatchedSectionDescriptor> descriptor = this.assetManager.getMatchedSectionRegistry()
+				.getRegisteredDescriptorFor(sourceInstance);
 
-		if (descendantReferenceAttributeClass.isPresent()) {
+		if (descriptor.isPresent()) {
 
-			SourceSectionClass ancestorSourceClass = sourceClasses.stream()
-					.filter(c -> descendantReferenceAttributeClass.get().isContainedIn(c)).findAny().get();
+			return referenceAttributeClasses.stream()
+					.flatMap(c -> descriptor.get().getMatchedSourceModelElementsFor(c, true).stream())
+					.collect(Collectors.toList());
+		} else {
 
-			// Iterate upwards in the containment hierarchy of the SourceSection and collect all references that need to
-			// be followed to retrieve the instances of 'referenceAttributeClass' based on the 'sourceInstance'
-			//
-			List<SourceSectionReference> references = new ArrayList<>();
-			SourceSectionClass currentClass = descendantReferenceAttributeClass.get();
-
-			while (ancestorSourceClass != currentClass) {
-				CompositeReference<?, ?, ?, ?> owningCompositeReference = currentClass.getOwningContainmentReference();
-				if (!(owningCompositeReference instanceof SourceSectionReference)
-						|| !(owningCompositeReference.getOwningClass() instanceof SourceSectionClass)) {
-					break; // this should not happen
-				}
-
-				references.add(0, (SourceSectionReference) owningCompositeReference);
-				currentClass = (SourceSectionClass) owningCompositeReference.getOwningClass();
-			}
-
-			// Now, follow the collected references to determine the instances of the 'referenceAttributeClass'
-			//
-			return this.getReferencedElements(sourceInstance, references);
+			this.logger.severe(() -> "Unable to evaluate " + sourceInstanceSelector.printInfo()
+					+ "! No descriptor found for the source model element!");
+			return new ArrayList<>();
 		}
 
-		// The 'reference attribute' is located in a SourceSectionClass higher in the containment hierarchy than the
-		// 'referenceAttributeClass'
-		//
-		Optional<SourceSectionClass> descendantTargetClass = sourceClasses.parallelStream()
-				.filter(c -> referenceAttributeClasses.stream().anyMatch(sc -> sc.isContainerFor(c))).findAny();
-		if (descendantTargetClass.isPresent()) {
-
-			SourceSectionClass ancestorReferenceAttributeClass = referenceAttributeClasses.stream()
-					.filter(c -> c.isContainerFor(descendantTargetClass.get())).findAny().get();
-
-			// Iterate upwards in the containment hierarchy to find the (single) instance representing the
-			// 'referenceAttribute'
-			//
-			EObject referenceAttributeInstance = sourceInstance;
-			SourceSectionClass currentClass = descendantTargetClass.get();
-
-			while (currentClass != ancestorReferenceAttributeClass) {
-				if (currentClass.getContainer() == null) {
-					break; // this should not happen
-				}
-
-				referenceAttributeInstance = referenceAttributeInstance.eContainer();
-				currentClass = currentClass.getContainer();
-			}
-
-			return Arrays.asList(referenceAttributeInstance);
-		}
-
-		this.logger.severe(() -> "Unable to evaluate " + sourceInstanceSelector.eClass().getName() + " '"
-				+ sourceInstanceSelector.toString() + "'! The specified 'reference attribute' is not valid.");
-		return new ArrayList<>();
 	}
 
 	/**
@@ -424,15 +327,10 @@ public class InstanceSelectorHandler {
 
 		SourceSectionReference firstReference = references.remove(0);
 
-		if (!(firstReference instanceof ActualReference<?, ?, ?, ?>)) {
-			throw new RuntimeException(
-					"Internal Error! Currently, only ActualReferences are supported as part of SourceInstanceSelectors...");
-		}
+		this.assetManager.getModelAccessUtil().getReferenceValueAsList(sourceInstance, firstReference);
 
-		List<EObject> referencedElements = AgteleEcoreUtil
-				.getStructuralFeatureValueAsList(sourceInstance,
-						((ActualReference<?, ?, ?, ?>) firstReference).getEReference())
-				.stream().filter(e -> e instanceof EObject).map(e -> (EObject) e).collect(Collectors.toList());
+		List<EObject> referencedElements = this.assetManager.getModelAccessUtil()
+				.getReferenceValueAsList(sourceInstance, firstReference);
 
 		return referencedElements.stream()
 				.flatMap(e -> this.getReferencedElements(e, new ArrayList<>(references)).stream())
@@ -552,11 +450,12 @@ public class InstanceSelectorHandler {
 				currentClass = (TargetSectionClass) owningCompositeReference.getOwningClass();
 			}
 
-			return Arrays.asList(this.targetSectionRegistry.getInstanceWrapper(referenceAttributeInstance));
+			return Arrays.asList(
+					this.assetManager.getTargetSectionRegistry().getInstanceWrapper(referenceAttributeInstance));
 		}
 
-		this.logger.severe(() -> "Unable to evaluate " + targetInstanceSelector.eClass().getName() + " '"
-				+ targetInstanceSelector.toString() + "'! The specified 'reference attribute' is not valid.");
+		this.logger.severe(() -> "Unable to evaluate " + targetInstanceSelector.printInfo()
+				+ "! The specified 'reference attribute' is not valid.");
 		return new ArrayList<>();
 	}
 }

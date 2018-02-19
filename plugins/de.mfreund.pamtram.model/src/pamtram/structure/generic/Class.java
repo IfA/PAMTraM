@@ -35,6 +35,8 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link pamtram.structure.generic.Class#getAllAttributes <em>All Attributes</em>}</li>
  *   <li>{@link pamtram.structure.generic.Class#getAllReferences <em>All References</em>}</li>
  *   <li>{@link pamtram.structure.generic.Class#getAllConcreteExtending <em>All Concrete Extending</em>}</li>
+ *   <li>{@link pamtram.structure.generic.Class#getAllCompositeReferences <em>All Composite References</em>}</li>
+ *   <li>{@link pamtram.structure.generic.Class#getAllCrossReferences <em>All Cross References</em>}</li>
  * </ul>
  *
  * @see pamtram.structure.generic.GenericPackage#getClass_()
@@ -312,10 +314,44 @@ public interface Class<S extends Section<S, C, R, A>, C extends Class<S, C, R, A
 	EList<C> getAllConcreteExtending();
 
 	/**
+	 * Returns the value of the '<em><b>All Composite References</b></em>' reference list.
+	 * The list contents are of type {@link pamtram.structure.generic.CompositeReference}&lt;S, C, R, A>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>All Composite References</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>All Composite References</em>' reference list.
+	 * @see pamtram.structure.generic.GenericPackage#getClass_AllCompositeReferences()
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='\r\n&lt;%java.util.List%&gt;&lt;Object&gt; ret = this.getAllReferences().stream().filter(r -&gt; r instanceof &lt;%pamtram.structure.generic.CompositeReference%&gt;&lt;?, ?, ?, ?&gt;)\r\n\t\t.map(r -&gt; (CompositeReference&lt;?, ?, ?, ?&gt;) r).collect(&lt;%java.util.stream.Collectors%&gt;.toList());\r\n\r\nreturn new &lt;%org.eclipse.emf.ecore.util.EcoreEList%&gt;.UnmodifiableEList&lt;&gt;(this, &lt;%pamtram.structure.generic.GenericPackage%&gt;.Literals.CLASS__ALL_COMPOSITE_REFERENCES,\r\n\t\tret.size(), ret.toArray());'"
+	 * @generated
+	 */
+	EList<CompositeReference<S, C, R, A>> getAllCompositeReferences();
+
+	/**
+	 * Returns the value of the '<em><b>All Cross References</b></em>' reference list.
+	 * The list contents are of type {@link pamtram.structure.generic.CrossReference}&lt;S, C, R, A>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>All Cross References</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>All Cross References</em>' reference list.
+	 * @see pamtram.structure.generic.GenericPackage#getClass_AllCrossReferences()
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='\r\n&lt;%java.util.List%&gt;&lt;Object&gt; ret = this.getAllReferences().stream().filter(r -&gt; r instanceof &lt;%pamtram.structure.generic.CrossReference%&gt;&lt;?, ?, ?, ?&gt;)\r\n\t\t.map(r -&gt; (CrossReference&lt;?, ?, ?, ?&gt;) r).collect(&lt;%java.util.stream.Collectors%&gt;.toList());\r\n\r\nreturn new &lt;%org.eclipse.emf.ecore.util.EcoreEList%&gt;.UnmodifiableEList&lt;&gt;(this, &lt;%pamtram.structure.generic.GenericPackage%&gt;.Literals.CLASS__ALL_CROSS_REFERENCES, ret.size(),\r\n\t\tret.toArray());'"
+	 * @generated
+	 */
+	EList<CrossReference<S, C, R, A>> getAllCrossReferences();
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model required="true" containedClassRequired="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='C container = containedClass.getContainer();\r\n\t\t\r\n\t\t// Prevent stack overflow in case of modeling error\r\n\t\t//\r\n\t\tif(&lt;%org.eclipse.emf.ecore.util.EcoreUtil%&gt;.isAncestor(containedClass, container)) {\r\n\t\t\treturn false;\r\n\t\t}\r\n\r\n\t// this means that we have reached the top level container for the \'containedClass\'\r\n\t\tif (container == null) {\r\n\t\t\treturn false;\r\n\t\t\t// this is the container\r\n\t\t} else if (this.equals(container)) {\r\n\t\t\treturn true;\r\n\t\t\t// one of the extended sections is the container\r\n\t\t} else if (container instanceof &lt;%pamtram.structure.generic.Section%&gt; &amp;&amp; ((&lt;%pamtram.structure.generic.Section%&gt;) container).getAllExtend().contains(this)) {\r\n\t\t\treturn true;\r\n\t\t\t// this was not the container, so iterate up in the containment hierarchy\r\n\t\t} else {\r\n\t\t\treturn this.isContainerFor(container);\r\n\t\t}'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nif (&lt;%org.eclipse.emf.ecore.util.EcoreUtil%&gt;.isAncestor(this, containedClass)\r\n\t\t|| this.getContainingSection().getAllExtend().stream().anyMatch(c -&gt; c.isContainerFor(containedClass))\r\n\t\t|| containedClass.getContainingSection().getAllExtend().stream()\r\n\t\t\t\t.anyMatch(c -&gt; this.isContainerFor((C) c))) {\r\n\treturn true;\r\n}\r\n\r\nC container = containedClass.getContainingSection().getContainer();\r\n\r\n// this means that we have reached the top level container for the \'containedClass\'\r\nif (container == null) {\r\n\treturn false;\r\n}\r\n\r\n// Prevent stack overflow in case of modeling error\r\n//\r\nif (EcoreUtil.isAncestor(containedClass, container)) {\r\n\treturn false;\r\n}\r\n\r\n// this was not the container, so iterate up in the containment hierarchy\r\nreturn this.isContainerFor(container);\r\n'"
 	 * @generated
 	 */
 	boolean isContainerFor(C containedClass);
@@ -324,7 +360,7 @@ public interface Class<S extends Section<S, C, R, A>, C extends Class<S, C, R, A
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model required="true" containerClassRequired="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='// recursively collect all classes that are referenced by containment references and check if any matches this class\r\n\t\t//\r\n\t\treturn containerClass.getAllReferences().stream()\r\n\t\t\t\t.filter(r -&gt; r instanceof ActualReference&lt;?, ?, ?, ?&gt;\r\n\t\t\t\t\t\t&amp;&amp; ((ActualReference&lt;?, ?, ?, ?&gt;) r).getEReference().isContainment())\r\n\t\t\t\t.flatMap(r -&gt; r.getValuesGeneric().stream()).anyMatch(c -&gt; c.equals(this) || this.isContainedIn(c));'"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\n// recursively collect all classes that are referenced by containment references and check if any matches this\r\n// class\r\n//\r\nreturn containerClass.getAllReferences().stream()\r\n\t\t.filter(r -&gt; r instanceof &lt;%pamtram.structure.generic.ActualReference%&gt;&lt;?, ?, ?, ?&gt;\r\n\t\t\t\t&amp;&amp; ((ActualReference&lt;?, ?, ?, ?&gt;) r).getEReference().isContainment())\r\n\t\t.flatMap(r -&gt; r.getValuesGeneric().stream()).anyMatch(\r\n\t\t\t\tc -&gt; c.equals(this)\r\n\t\t\t\t\t\t|| c instanceof &lt;%pamtram.structure.generic.Section%&gt;&lt;?, ?, ?, ?&gt;\r\n\t\t\t\t\t\t\t\t&amp;&amp; ((Section&lt;?, ?, ?, ?&gt;) c).getAllExtending().contains(this)\r\n\t\t\t\t\t\t|| this.isContainedIn(c));'"
 	 * @generated
 	 */
 	boolean isContainedIn(C containerClass);
@@ -378,5 +414,13 @@ public interface Class<S extends Section<S, C, R, A>, C extends Class<S, C, R, A
 	 * @generated
 	 */
 	boolean validateNotSelfContainer(DiagnosticChain diagnostics, Map<?, ?> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\n&lt;%java.util.List%&gt;&lt;&lt;%org.eclipse.emf.ecore.EReference%&gt;&gt; actualCompositeReferences = this.getActualReferences().stream()\r\n\t\t.filter(r -&gt; r instanceof &lt;%pamtram.structure.generic.CompositeReference%&gt;&lt;?, ?, ?, ?&gt;)\r\n\t\t.map(r -&gt; ((&lt;%pamtram.structure.generic.ActualReference%&gt;&lt;?, ?, ?, ?&gt;) r).getEReference()).collect(&lt;%java.util.stream.Collectors%&gt;.toList());\r\n\r\nboolean noCompositeDuplicates = actualCompositeReferences.size() == new &lt;%java.util.HashSet%&gt;&lt;&gt;(actualCompositeReferences)\r\n\t\t.size();\r\n\r\nif (!noCompositeDuplicates &amp;&amp; diagnostics != null) {\r\n\r\n\tString errorMessage = \"A Class must not specify two CompositeReferences that represent the same EReference!\";\r\n\r\n\tdiagnostics.add(new BasicDiagnostic(&lt;%org.eclipse.emf.common.util.Diagnostic%&gt;.ERROR, &lt;%pamtram.structure.generic.util.GenericValidator%&gt;.DIAGNOSTIC_SOURCE,\r\n\t\t\tGenericValidator.CLASS__VALIDATE_ONLY_COMPLEMENTING_ACTUAL_REFERENCES, errorMessage,\r\n\t\t\tnew Object[] { this, &lt;%pamtram.structure.generic.GenericPackage%&gt;.Literals.CLASS__REFERENCES }));\r\n\r\n\treturn false;\r\n}\r\n\r\nList&lt;EReference&gt; actualCrossReferences = this.getActualReferences().stream()\r\n\t\t.filter(r -&gt; r instanceof &lt;%pamtram.structure.generic.CrossReference%&gt;&lt;?, ?, ?, ?&gt;)\r\n\t\t.map(r -&gt; ((ActualReference&lt;?, ?, ?, ?&gt;) r).getEReference()).collect(Collectors.toList());\r\n\r\nboolean noCrossDuplicates = actualCrossReferences.size() == new HashSet&lt;&gt;(actualCrossReferences).size();\r\n\r\nif (!noCrossDuplicates &amp;&amp; diagnostics != null) {\r\n\r\n\tString errorMessage = \"A Class must not specify two CrossReferences that represent the same EReference!\";\r\n\r\n\tdiagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, GenericValidator.DIAGNOSTIC_SOURCE,\r\n\t\t\tGenericValidator.CLASS__VALIDATE_ONLY_COMPLEMENTING_ACTUAL_REFERENCES, errorMessage,\r\n\t\t\tnew Object[] { this, GenericPackage.Literals.CLASS__REFERENCES }));\r\n\r\n\treturn false;\r\n}\r\n\r\nreturn true;'"
+	 * @generated
+	 */
+	boolean validateOnlyComplementingActualReferences(DiagnosticChain diagnostics, Map<?, ?> context);
 
 } // Class

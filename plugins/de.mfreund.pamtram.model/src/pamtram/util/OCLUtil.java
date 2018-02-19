@@ -55,7 +55,7 @@ public class OCLUtil {
 	 * @throws ParserException
 	 *             If the given <em>expression</em> was no valid {@link OCLExpression}.
 	 */
-	public synchronized static Object evaluteQuery(String expression, EObject contextElement) throws ParserException {
+	public static synchronized Object evaluteQuery(String expression, EObject contextElement) throws ParserException {
 
 		OCLHelper<EClassifier, ?, ?, Constraint> helper = OCLUtil.getOclInstance().createOCLHelper();
 		helper.setContext(contextElement.eClass());

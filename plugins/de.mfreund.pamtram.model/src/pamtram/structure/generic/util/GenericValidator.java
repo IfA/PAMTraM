@@ -82,11 +82,19 @@ public class GenericValidator extends EObjectValidator {
 	public static final int CLASS__VALIDATE_NOT_SELF_CONTAINER = 4;
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Only Complementing Actual References' of 'Class'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int CLASS__VALIDATE_ONLY_COMPLEMENTING_ACTUAL_REFERENCES = 5;
+
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Container Matches Extend Container' of 'Section'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int SECTION__VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER = 5;
+	public static final int SECTION__VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER = 6;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for
@@ -95,7 +103,7 @@ public class GenericValidator extends EObjectValidator {
 	 *
 	 * @generated
 	 */
-	public static final int SECTION__VALIDATE_EXTENDS_VALID_SECTIONS = 6;
+	public static final int SECTION__VALIDATE_EXTENDS_VALID_SECTIONS = 7;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Not Extend Self' of 'Section'.
@@ -103,7 +111,7 @@ public class GenericValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int SECTION__VALIDATE_NOT_EXTEND_SELF = 7;
+	public static final int SECTION__VALIDATE_NOT_EXTEND_SELF = 8;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate EReference Matches Parent EClass' of 'Actual Reference'.
@@ -111,7 +119,7 @@ public class GenericValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ACTUAL_REFERENCE__VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS = 8;
+	public static final int ACTUAL_REFERENCE__VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS = 9;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate EReference Is Containment' of 'Composite Reference'.
@@ -119,7 +127,7 @@ public class GenericValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int COMPOSITE_REFERENCE__VALIDATE_EREFERENCE_IS_CONTAINMENT = 9;
+	public static final int COMPOSITE_REFERENCE__VALIDATE_EREFERENCE_IS_CONTAINMENT = 10;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Values Match Reference Type' of 'Cross Reference'.
@@ -127,14 +135,14 @@ public class GenericValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CROSS_REFERENCE__VALIDATE_VALUES_MATCH_REFERENCE_TYPE = 10;
+	public static final int CROSS_REFERENCE__VALIDATE_VALUES_MATCH_REFERENCE_TYPE = 11;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Attribute Matches Parent EClass' of 'Actual Attribute'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ACTUAL_ATTRIBUTE__VALIDATE_ATTRIBUTE_MATCHES_PARENT_ECLASS = 11;
+	public static final int ACTUAL_ATTRIBUTE__VALIDATE_ATTRIBUTE_MATCHES_PARENT_ECLASS = 12;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -142,7 +150,7 @@ public class GenericValidator extends EObjectValidator {
 	 * end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 11;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 12;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -242,6 +250,7 @@ public class GenericValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateClass_validateCardinalityIsValid(class_, diagnostics, context);
 		if (result || diagnostics != null) result &= validateClass_validateContainerIsValid(class_, diagnostics, context);
 		if (result || diagnostics != null) result &= validateClass_validateNotSelfContainer(class_, diagnostics, context);
+		if (result || diagnostics != null) result &= validateClass_validateOnlyComplementingActualReferences(class_, diagnostics, context);
 		return result;
 	}
 
@@ -372,6 +381,16 @@ public class GenericValidator extends EObjectValidator {
 	}
 
 	/**
+	 * Validates the validateOnlyComplementingActualReferences constraint of '<em>Class</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateClass_validateOnlyComplementingActualReferences(pamtram.structure.generic.Class<?, ?, ?, ?> class_, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return class_.validateOnlyComplementingActualReferences(diagnostics, context);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -393,6 +412,7 @@ public class GenericValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateClass_validateCardinalityIsValid(section, diagnostics, context);
 		if (result || diagnostics != null) result &= validateClass_validateContainerIsValid(section, diagnostics, context);
 		if (result || diagnostics != null) result &= validateClass_validateNotSelfContainer(section, diagnostics, context);
+		if (result || diagnostics != null) result &= validateClass_validateOnlyComplementingActualReferences(section, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSection_extendsValidSections(section, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSection_containerMatchesExtendContainer(section, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSection_validateContainerMatchesExtendContainer(section, diagnostics, context);

@@ -415,13 +415,13 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		 */
 		Match sectionMatch = this.getMatch(oldTransformationMapping.getAssociatedMapping().getSourceSection());
 		Optional<MatchedSectionDescriptor> descriptor = choices.parallelStream()
-				.filter(m -> m.getAssociatedSourceSectionClass().equals(sectionMatch.getLeft())).findAny();
+				.filter(m -> m.getAssociatedSourceSection().equals(sectionMatch.getLeft())).findAny();
 
 		if (!descriptor.isPresent()) {
 			return super.searchingSelectSection(choices, element);
 		}
 
-		this.printMessage(descriptor.get().getAssociatedSourceSectionClass().getName(),
+		this.printMessage(descriptor.get().getAssociatedSourceSection().getName(),
 				HistoryResolvingStrategy.historyDecisionPrefix);
 		return Arrays.asList(descriptor.get());
 	}

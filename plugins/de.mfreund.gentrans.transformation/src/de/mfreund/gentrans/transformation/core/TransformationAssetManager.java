@@ -28,7 +28,7 @@ import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.matching.GlobalAttributeValueExtractor;
 import de.mfreund.gentrans.transformation.matching.HintValueExtractor;
 import de.mfreund.gentrans.transformation.matching.MappingSelector;
-import de.mfreund.gentrans.transformation.matching.ModelTraversalUtil;
+import de.mfreund.gentrans.transformation.matching.ModelAccessUtil;
 import de.mfreund.gentrans.transformation.matching.SourceSectionMatcher;
 import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
 import de.mfreund.gentrans.transformation.registries.SelectedMappingRegistry;
@@ -114,9 +114,9 @@ public class TransformationAssetManager extends CancelableElement {
 	private TransformationConfiguration transformationConfig;
 
 	/**
-	 * The {@link ModelTraversalUtil} used to evaluate {@link Reference References} and {@link Attribute Attributes}.
+	 * The {@link ModelAccessUtil} used to evaluate {@link Reference References} and {@link Attribute Attributes}.
 	 */
-	private ModelTraversalUtil modelTraversalUtil;
+	private ModelAccessUtil modelAccessUtil;
 
 	/**
 	 * The {@link MatchSpecHandler} used to evaluate {@link MatchSpecElement#getReferenceMatchSpec()
@@ -309,25 +309,25 @@ public class TransformationAssetManager extends CancelableElement {
 	}
 
 	/**
-	 * This initializes the {@link #modelTraversalUtil}.
+	 * This initializes the {@link #modelAccessUtil}.
 	 */
-	protected void initModelTraversalUtil() {
+	protected void initModelAccessUtil() {
 
-		this.modelTraversalUtil = new ModelTraversalUtil(this);
+		this.modelAccessUtil = new ModelAccessUtil(this);
 	}
 
 	/**
-	 * Returns the {@link #modelTraversalUtil}.
+	 * Returns the {@link #modelAccessUtil}.
 	 *
-	 * @return the {@link #modelTraversalUtil}
+	 * @return the {@link #modelAccessUtil}
 	 */
-	public ModelTraversalUtil getModelTraversalUtil() {
+	public ModelAccessUtil getModelAccessUtil() {
 
-		if (this.modelTraversalUtil == null) {
-			this.initModelTraversalUtil();
+		if (this.modelAccessUtil == null) {
+			this.initModelAccessUtil();
 		}
 
-		return this.modelTraversalUtil;
+		return this.modelAccessUtil;
 	}
 
 	/**

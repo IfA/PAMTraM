@@ -8,6 +8,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
@@ -99,9 +100,9 @@ public class GlobalDynamicSourceElementItemProvider extends DynamicSourceElement
 		String label = ((DynamicSourceElement<?, ?, ?, ?>) object).getName();
 		StyledString styledLabel = new StyledString();
 		if (((DynamicSourceElement<?, ?, ?, ?>) object).isUseElementID()) {
-			styledLabel.append("External Element ID", StyledString.Style.QUALIFIER_STYLER);
+			styledLabel.append("Global Element ID", StyledString.Style.QUALIFIER_STYLER);
 		} else {
-			styledLabel.append(this.getString("_UI_ExternalDynamicSourceElement_type"),
+			styledLabel.append(this.getString("_UI_GlobalDynamicSourceElement_type"),
 					StyledString.Style.QUALIFIER_STYLER);
 		}
 		if (label != null && label.length() > 0) {
@@ -114,7 +115,7 @@ public class GlobalDynamicSourceElementItemProvider extends DynamicSourceElement
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
 	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -158,6 +159,17 @@ public class GlobalDynamicSourceElementItemProvider extends DynamicSourceElement
 			(createChildParameter
 				(StructurePackage.Literals.GLOBAL_DYNAMIC_SOURCE_ELEMENT__INSTANCE_SELECTORS,
 				 ExtendedFactory.eINSTANCE.createContainerSelector()));
+	}
+
+	@Override
+	protected void addSourcePropertyDescriptor(Object object) {
+
+		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+				this.getString("_UI_DynamicSourceElement_source_feature"),
+				this.getString("_UI_DynamicSourceElement_source_description"),
+				StructurePackage.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE, true, false, true, null,
+				this.getString("_UI_BasicPropertyCategory"), null));
 	}
 
 }

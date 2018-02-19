@@ -3031,14 +3031,14 @@
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="StyleType_edit" targetSection="//@targetSectionModels.0/@sections.7">
         <mappingHints xsi:type="extended:AttributeMapping" name="boolFormatMapping" target="//@targetSectionModels.0/@sections.7/@attributes.2">
-          <localCondition xsi:type="condition:AttributeCondition" name="Bool">
+          <localCondition xsi:type="condition:AttributeCondition" name="Bool" followExternalReferences="true">
             <target xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#_FCOB1V5SEeebSvNNZJQHVw"/>
             <valueConstraints xsi:type="constraint:EqualityConstraint" expression="Bool"/>
           </localCondition>
           <sourceElements xsi:type="pamtram:FixedValue" name="x" value="x"/>
         </mappingHints>
         <mappingHints xsi:type="extended:AttributeMapping" name="integerFormatMapping" target="//@targetSectionModels.0/@sections.7/@attributes.2">
-          <localCondition xsi:type="condition:AttributeCondition" name="Integer">
+          <localCondition xsi:type="condition:AttributeCondition" name="Integer" followExternalReferences="true">
             <target xsi:type="source:ActualSourceSectionAttribute" href="source/Extdata.pamtram.source#_FCOB1V5SEeebSvNNZJQHVw"/>
             <valueConstraints xsi:type="constraint:EqualityConstraint" expression="Integer"/>
           </localCondition>

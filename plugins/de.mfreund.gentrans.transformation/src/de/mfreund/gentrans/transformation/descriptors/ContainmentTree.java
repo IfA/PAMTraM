@@ -248,4 +248,20 @@ public class ContainmentTree {
 		}
 	}
 
+	/**
+	 * @return the {@link #matchedElements}
+	 */
+	public Set<EObject> getMatchedElements() {
+
+		return this.matchedElements;
+	}
+
+	/**
+	 * @return the {@link #unmatchedElements}
+	 */
+	public List<EObject> getUnmatchedElements() {
+
+		return this.unmatchedElements;
+	}
+
 }

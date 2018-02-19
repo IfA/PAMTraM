@@ -6,11 +6,13 @@ package de.mfreund.gentrans.transformation.registries;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -76,6 +78,20 @@ public class MatchedSectionRegistry {
 	public synchronized List<MatchedSectionDescriptor> getRegisteredDescriptors() {
 
 		return this.internalRegistry.values().stream().flatMap(Collection::stream).collect(Collectors.toList());
+	}
+
+	/**
+	 * Returns a map relating each of the {@link EObject elements} registered as
+	 * {@link MatchedSectionDescriptor#getAssociatedSourceModelElement() associatedSourceModelElement} of a descriptor
+	 * to the {@link MatchedSectionDescriptor} they are registered against.
+	 *
+	 * @return The registered {@link EObject elements} related to their {@link MatchedSectionDescriptor}.
+	 */
+	public synchronized Map<EObject, MatchedSectionDescriptor> getRegisteredDescriptorByAssociatedSourceModelElementMap() {
+
+		return this.getRegisteredDescriptors().parallelStream()
+				.collect(Collectors.toMap(MatchedSectionDescriptor::getAssociatedSourceModelElement,
+						Function.identity(), (d1, d2) -> d2, HashMap::new));
 	}
 
 	/**
@@ -215,8 +231,8 @@ public class MatchedSectionRegistry {
 	 *            The {@link MatchedSectionDescriptor} to register.
 	 * @return '<em>true</em>' if the descriptor was successfully registered (or if it was registered before);
 	 *         '<em>false</em>' if the registry already contained the descriptor or one of its elements or if the
-	 *         {@link MatchedSectionDescriptor#getAssociatedSourceSection() associated SourceSectionClass} was not
-	 *         a {@link SourceSectionClass}.
+	 *         {@link MatchedSectionDescriptor#getAssociatedSourceSection() associated SourceSectionClass} was not a
+	 *         {@link SourceSectionClass}.
 	 */
 	public synchronized boolean register(MatchedSectionDescriptor descriptor) {
 
@@ -228,7 +244,7 @@ public class MatchedSectionRegistry {
 			return false;
 		}
 
-		if (this.get((SourceSection) descriptor.getAssociatedSourceSection()).contains(descriptor)) {
+		if (this.get(descriptor.getAssociatedSourceSection()).contains(descriptor)) {
 			// The descriptor was already registered
 			//
 			return true;

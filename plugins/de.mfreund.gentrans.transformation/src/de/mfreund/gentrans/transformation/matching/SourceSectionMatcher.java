@@ -80,7 +80,17 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	 * The map of {@link MatchedSectionDescriptor MatchedSectionDescriptors} that represents the result of the matching
 	 * process.
 	 */
-	private final MatchedSectionRegistry matchedSectionRegistry;
+	private MatchedSectionRegistry matchedSectionRegistry;
+
+	/**
+	 * The {@link ContainmentTree} representing the model elements that are currently matched.
+	 */
+	private ContainmentTree tree;
+
+	/**
+	 * The list of {@link SourceSection SourceSections} that are currently matched.
+	 */
+	private List<SourceSection> sourceSections;
 
 	/**
 	 * This creates an instance.
@@ -93,7 +103,6 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 
 		super(assetManager);
 
-		this.matchedSectionRegistry = assetManager.getMatchedSectionRegistry();
 		this.ambiguityResolvingStrategy = assetManager.getTransformationConfig().getAmbiguityResolvingStrategy();
 		this.refValueCalculator = assetManager.getValueConstraintReferenceValueCalculator();
 	}
@@ -102,7 +111,7 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	 * This iterates through the given list of <em>sourceModels</em> and tries to match each of the {@link SourceSection
 	 * SourceSections} defined in the given list of {@link PAMTraM PAMTraM Models} against the elements of the source
 	 * models. The result of this process is a list of {@link MatchedSectionDescriptor MatchedSectionDescriptors} that
-	 * is stored in the {@link #matchedSectionRegistry}.
+	 * is registered in the {@link MatchedSectionRegistry} of the {@link #assetManager}.
 	 * <p />
 	 * Note: {@link DeactivatableElement#isDeactivated() Deactivated} SourceSections and SourceSections in deactivated
 	 * SourceSectionModels are not considered in the matching process.
@@ -128,7 +137,7 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 	 * This iterates through the given list of <em>sourceModels</em> and tries to match each of the given
 	 * {@link SourceSection SourceSections} against the elements of the source models. The result of this process is a
 	 * list of {@link MatchedSectionDescriptor MatchedSectionDescriptors} that is stored in the
-	 * {@link #matchedSectionRegistry}.
+	 * {@link MatchedSectionRegistry} of the {@link #assetManager}.
 	 * <p />
 	 * Note: {@link DeactivatableElement#isDeactivated() Deactivated} SourceSections are not considered in the matching
 	 * process.
@@ -148,40 +157,89 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 		List<SourceSection> activeSourceSections = sourceSections.stream()
 				.filter(s -> !s.isAbstract() && !s.isDeactivated()).collect(Collectors.toList());
 
-		ContainmentTree tree = ContainmentTree.build(sourceModels);
-		this.matchSections(tree, activeSourceSections);
+		this.matchedSectionRegistry = new MatchedSectionRegistry(this.assetManager);
+		this.tree = ContainmentTree.build(sourceModels);
+		this.sourceSections = activeSourceSections;
+
+		this.matchSections();
 	}
 
 	/**
 	 * This iterates through the given {@link ContainmentTree} and tries to match each of the given {@link SourceSection
 	 * SourceSections} against the elements represented in the tree. The result of this process is a list of
-	 * {@link MatchedSectionDescriptor MatchedSectionDescriptors} that is stored in the {@link #matchedSectionRegistry}.
+	 * {@link MatchedSectionDescriptor MatchedSectionDescriptors} that is stored in the {@link MatchedSectionRegistry}
+	 * of the {@link #assetManager}..
 	 *
-	 * @param containmentTree
-	 *            The {@link ContainmentTree} representing the source models to be matched.
 	 * @param sourceSections
 	 *            The list of {@link SourceSection SourceSections} that the ' <em>containmentTree</em>' shall be matched
 	 *            against.
 	 */
-	private void matchSections(ContainmentTree containmentTree, List<SourceSection> sourceSections) {
+	private void matchSections() {
 
 		// Determine the potential matches. These may still be ambiguous (multiple matches for one EObject) and can be
 		// equipped with MatchingDependencies (as this first step only matches the direct contents of the given Sections
 		// and not any CrossReferences to other Sections).
 		//
-		Map<EObject, List<MatchedSectionDescriptor>> potentialMatches = this
-				.findPotentialApplicableSections(containmentTree.getElements(), sourceSections);
+		Map<EObject, List<MatchedSectionDescriptor>> potentialMatches = this.findPotentialApplicableSections();
 
 		// Now that we know each potential match, we need to check the determined 'MatchingDependencies' and resolve
-		// ambiguous matches, i.e. select the resulting matches for the next steps of the transformation. As each
-		// EObject may only be used for one descriptor, we iterate over the ContainmentTree and make use of its
+		// ambiguous matches, i.e. select the resulting matches for the next steps of the transformation.
+		//
+		this.selectApplicableSections(potentialMatches);
+
+		// Finally, register the chosen matches to the 'global' registry of the 'assetManager' associated with this.
+		this.registerSectionsToGlobalRegistry();
+
+		this.logger.info(() -> "Summary:\tAvailable Elements:\t" + this.tree.getNumberOfElements());
+		this.logger.info(() -> "\t\tMatched Elements:\t" + this.tree.getNumberOfMatchedElements());
+		this.logger.info(() -> "\t\tUnmatched Elements:\t" + this.tree.getNumberOfUnmatchedElements());
+
+	}
+
+	/**
+	 * For each of the {@link EObject elements} in the {@link #tree}, determine those of the {@link #sourceSections}
+	 * that are <em>potentially</em> applicable (can be matched against the element).
+	 * <p />
+	 * Note: <em>Potentially</em> applicable in this case means that the applicability of a SourceSection may be
+	 * {@link MatchingDependency dependent} on the applicability of one or multiple other combinations of elements and
+	 * SourceSections: This only checks the applicability of the direct content of the {@link SourceSection} and not the
+	 * applicability of any other SourceSections referenced via {@link CrossReference CrossReferences}
+	 *
+	 * @return A map relating the elements of the source model with a list of potentially applicable
+	 *         {@link MatchedSectionDescriptor MatchedSectionDescriptors}. Note: Elements for that no applicable
+	 *         {@link MatchedSectionDescriptor MatchedSectionDescriptors} could be determined will be represented in the
+	 *         map by means of an empty list of descriptors!
+	 */
+	private Map<EObject, List<MatchedSectionDescriptor>> findPotentialApplicableSections() {
+
+		return this.tree.getElements().parallelStream().map(
+				e -> new AbstractMap.SimpleEntry<>(e, this.findPotentialApplicableSections(e, this.sourceSections)))
+				.filter(e -> !e.getValue().isEmpty()).collect(Collectors.toConcurrentMap(Entry::getKey, Entry::getValue,
+						(v1, v2) -> v2, ConcurrentHashMap::new));
+
+	}
+
+	/**
+	 * Based on the given list of {@link #findPotentialApplicableSections() potentialMatches}, selects those that shall
+	 * in deed be applied for the current matching process.
+	 * <p />
+	 * Therefore, all {@link #checkPotentialDescriptorDependencies(EObject, Map, MatchedSectionRegistry)
+	 * potentialDescriptorDependencies} are checked and resolved. If multiple applicable matches remain, one is
+	 * {@link #selectSectionToApply(EObject, List) selected}. Last, the selected match (and all related matches) are
+	 * registered to the {@link #matchedSectionRegistry}.
+	 *
+	 * @param potentialMatches
+	 *            The result from the {@link #findPotentialApplicableSections() findPotentialApplicableSections} step.
+	 */
+	private void selectApplicableSections(Map<EObject, List<MatchedSectionDescriptor>> potentialMatches) {
+
+		// As each EObject may only be used for one descriptor, we iterate over the ContainmentTree and make use of its
 		// 'getNextElementForMatching' feature that will not return any elements that have already been marked as
 		// 'matched'.
-		//
-		containmentTree.restartIteration();
+		this.tree.restartIteration();
 		Optional<EObject> element;
 
-		while ((element = containmentTree.getNextElementForMatching()).isPresent()) {
+		while ((element = this.tree.getNextElementForMatching()).isPresent()) {
 
 			if (potentialMatches.getOrDefault(element.get(), new ArrayList<>()).isEmpty()) {
 				continue;
@@ -246,43 +304,33 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 				break;
 			}
 
-			containmentTree.markAsMatched(new HashSet<>(selectedLocalRegistry.getRegisteredElements()));
+			this.tree.markAsMatched(new HashSet<>(selectedLocalRegistry.getRegisteredElements()));
 
 		}
-
-		this.logger.info(() -> "Summary:\tAvailable Elements:\t" + containmentTree.getNumberOfElements());
-		this.logger.info(() -> "\t\tMatched Elements:\t" + containmentTree.getNumberOfMatchedElements());
-		this.logger.info(() -> "\t\tUnmatched Elements:\t" + containmentTree.getNumberOfUnmatchedElements());
-
 	}
 
 	/**
-	 * For each of the given {@link EObject elements}, determine those of the given {@link SourceSection sourceSections}
-	 * that are <em>potentially</em> applicable (can be matched against the element).
-	 * <p />
-	 * Note: <em>Potentially</em> applicable in this case means that the applicability of a SourceSection may be
-	 * {@link MatchingDependency dependent} on the applicability of one or multiple other combinations of elements and
-	 * SourceSections: This only checks the applicability of the direct content of the given {@link SourceSection} and
-	 * not the applicability of any other SourceSections referenced via {@link CrossReference CrossReferences}
+	 * This registers all descriptors from the {@link #matchedSectionRegistry} to the '<em>global</em>'
+	 * {@link MatchedSectionRegistry} associated with the {@link #assetManager}.
 	 *
-	 * @param elements
-	 *            The list of {@link EObject EObjects} for that the applicability of the given <em>sourceSection</em>
-	 *            shall be checked.
-	 * @param sourceSections
-	 *            The list of {@link SourceSection SourceSections} to consider as potentially applicable.
-	 * @return A map relating the elements of the source model with a list of potentially applicable
-	 *         {@link MatchedSectionDescriptor MatchedSectionDescriptors}. Note: Elements for that no applicable
-	 *         {@link MatchedSectionDescriptor MatchedSectionDescriptors} could be determined will be represented in the
-	 *         map by means of an empty list of descriptors!
 	 */
-	private Map<EObject, List<MatchedSectionDescriptor>> findPotentialApplicableSections(List<EObject> elements,
-			List<SourceSection> sourceSections) {
+	private void registerSectionsToGlobalRegistry() {
 
-		return elements.parallelStream()
-				.map(e -> new AbstractMap.SimpleEntry<>(e, this.findPotentialApplicableSections(e, sourceSections)))
-				.filter(e -> !e.getValue().isEmpty()).collect(Collectors.toConcurrentMap(Entry::getKey, Entry::getValue,
-						(v1, v2) -> v2, ConcurrentHashMap::new));
+		Map<EObject, MatchedSectionDescriptor> descriptorByEObject = this.matchedSectionRegistry
+				.getRegisteredDescriptorByAssociatedSourceModelElementMap();
 
+		// Due to parallel processes, the selected descriptors can be registered to the internal
+		// 'matchedSectionRegistry' in an arbitrary order. This might be a problem when hint values are extracted
+		// because other algorithms may rely on a reproducible order. In order to get such an order, we
+		// once again iterate over the containment tree and register the associated descriptors step by step.
+		//
+		for (EObject element : this.tree.getElements()) {
+
+			MatchedSectionDescriptor descriptor = descriptorByEObject.get(element);
+			if (descriptor != null && !this.assetManager.getMatchedSectionRegistry().contains(descriptor)) {
+				this.assetManager.getMatchedSectionRegistry().register(descriptor);
+			}
+		}
 	}
 
 	/**
@@ -1021,8 +1069,8 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 		//
 		return sourceSectionClass.getAllAttributes().stream().filter(a -> !a.getValueConstraints().isEmpty())
 				.allMatch(at -> {
-					List<Object> values = this.assetManager.getModelAccessUtil()
-							.getAttributeValueAsList(srcModelObject, at);
+					List<Object> values = this.assetManager.getModelAccessUtil().getAttributeValueAsList(srcModelObject,
+							at);
 					/*
 					 * Check if all the constraints are satisfied for every attribute value.
 					 */

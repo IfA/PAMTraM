@@ -2,7 +2,7 @@
 <launchConfiguration type="de.mfreund.gentrans.launchConfigurationType.gentrans">
 <booleanAttribute key="enableHistory" value="false"/>
 <booleanAttribute key="enableStatistics" value="false"/>
-<booleanAttribute key="enableUser" value="false"/>
+<booleanAttribute key="enableUser" value="true"/>
 <booleanAttribute key="handleExpanding" value="false"/>
 <listAttribute key="libraryPaths"/>
 <stringAttribute key="logLevel" value="INFO"/>

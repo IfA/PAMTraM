@@ -2,7 +2,7 @@
 <launchConfiguration type="de.mfreund.gentrans.launchConfigurationType.gentrans">
 <booleanAttribute key="enableHistory" value="false"/>
 <booleanAttribute key="enableStatistics" value="false"/>
-<booleanAttribute key="enableUser" value="false"/>
+<booleanAttribute key="enableUser" value="true"/>
 <booleanAttribute key="handleExpanding" value="false"/>
 <listAttribute key="libraryPaths"/>
 <stringAttribute key="logLevel" value="INFO"/>
@@ -17,7 +17,7 @@
 <listEntry value="Kleinversuchsanlage_PandIX_AML_Libs.xmi"/>
 </listAttribute>
 <booleanAttribute key="storeTransformation" value="false"/>
-<stringAttribute key="targetFile" value="Topology.xml"/>
+<stringAttribute key="targetFile" value="Kleinversuchsanlage_PandIX_AML_Libs.xml"/>
 <stringAttribute key="transformationModel" value=""/>
 <booleanAttribute key="useParallelization" value="false"/>
 <intAttribute key="weightingFactor" value="50"/>

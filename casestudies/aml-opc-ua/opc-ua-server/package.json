@@ -1,0 +1,15 @@
+{
+  "name": "opcua",
+  "version": "1.0.0",
+  "description": "test server for import xml-Nodeset",
+  "main": "opcua.js",
+  "dependencies": {
+    "node-opcua": "0.1.0-12"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "lebedyk",
+  "license": "ISC"
+}

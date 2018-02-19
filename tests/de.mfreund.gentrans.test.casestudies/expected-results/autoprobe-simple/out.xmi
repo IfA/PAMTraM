@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<movisa:VisualizationApplicationModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:actions="http://stefan-hennig.de/movisa/algorithm/actions" xmlns:algorithm="http://stefan-hennig.de/movisa/algorithm" xmlns:movisa="http://stefan-hennig.de/movisa" xmlns:opcua="http://stefan-hennig.de/movisa/clientdata/perspective/technical/opcua" xmlns:presentation="http://stefan-hennig.de/movisa/presentation" Name="Navigation" Author="AutoProBe" MovisaBuildVersion="@(#)&lt;label> (on: &lt;date>)@" Version="1.0">
+  <AlgorithmDomain Name="Algorithm Model" Author="AutoProBe" MovisaBuildVersion="@(#)&lt;label> (on: &lt;date>)@" Version="1.0">
+    <OwnedElement xsi:type="algorithm:BooleanType" Name="Boolean"/>
+    <OwnedElement xsi:type="algorithm:IntegerType" Name="Integer"/>
+    <OwnedElement xsi:type="algorithm:RationalType" Name="Rational"/>
+    <OwnedElement xsi:type="algorithm:StringType" Name="String"/>
+    <OwnedElement xsi:type="algorithm:SignalCollection" Name="NavigationFlowTriggers"/>
+    <OwnedElement xsi:type="algorithm:SignalCollection" Name="UIComponents"/>
+    <OwnedElement xsi:type="algorithm:SignalCollection" Name="ProcessDataChangedSignals">
+      <Signal Name="PARSIFAL_Devices_CIROS_Model_Objects_RobotGripper_1_Inputs_Close_changed"/>
+    </OwnedElement>
+    <OwnedElement xsi:type="algorithm:Class" Name="FlashController" MovisaRuntimeInstance="true">
+      <OwnedBehavior Name="Owned State Machine">
+        <OwnedTransition Name="initial2notFlashing" Source="//@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.0" Target="//@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.1"/>
+        <OwnedTransition Name="notFlashing2flashing" Source="//@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.1" Target="//@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.2" Trigger="//@AlgorithmDomain/@OwnedElement.9" Guard="this.value != 0"/>
+        <OwnedTransition Name="flashing2notFlashing" Source="//@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.2" Target="//@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.1" Trigger="//@AlgorithmDomain/@OwnedElement.10"/>
+        <StateMachineElement xsi:type="algorithm:PseudoState" Name="initial" OutgoingTransition="//@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@OwnedTransition.0"/>
+        <StateMachineElement xsi:type="algorithm:State" Name="State_NotFlashing" IncomingTransition="//@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@OwnedTransition.0" OutgoingTransition="//@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@OwnedTransition.1">
+          <StateActivityBlock Name="StateActivityBlock">
+            <Edge xsi:type="actions:ObjectFlow" Name="button1" Source="//@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.0/@Result" Target="//@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.2/@Target"/>
+            <Edge xsi:type="actions:ObjectFlow" Name="falseValue" Source="//@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1/@Result" Target="//@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.2/@Argument.0"/>
+            <Action xsi:type="actions:ReadPresentationModelAction" Name="ReadPresentationModelAction">
+              <Result Name="ReadPresentationModelActionResultOutputPin" Multiplicity="1..1" Type="//@PresentationDomain/@OwnedNavigationFlow.0" OutgoingObjectFlow="//@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0"/>
+            </Action>
+            <Action xsi:type="actions:ValueSpecificationAction" Name="ValueSpecificationAction" Value="false">
+              <Result Name="ValueSpecificationActionResultOutputPin" Multiplicity="1..1" Type="//@AlgorithmDomain/@OwnedElement.0" OutgoingObjectFlow="//@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
+            </Action>
+            <Action xsi:type="actions:SendSignalAction" Name="SendSignalAction" Signal="//@AlgorithmDomain/@OwnedElement.8">
+              <Target Name="TargetInputPin" Multiplicity="1..1" Type="//@PresentationDomain/@OwnedNavigationFlow.0" IncomingObjectFlow="//@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0"/>
+              <Argument Name="ArgumentInputPin" Multiplicity="1..1" Type="//@AlgorithmDomain/@OwnedElement.0" IncomingObjectFlow="//@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1" Attribute="//@AlgorithmDomain/@OwnedElement.8/@OwnedAttribute.0"/>
+            </Action>
+          </StateActivityBlock>
+        </StateMachineElement>
+        <StateMachineElement xsi:type="algorithm:State" Name="State_Flashing" IncomingTransition="//@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@OwnedTransition.1" OutgoingTransition="//@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@OwnedTransition.2">
+          <StateActivityBlock Name="StateActivityBlock">
+            <Edge xsi:type="actions:ObjectFlow" Name="button2" Source="//@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.2/@StateActivityBlock/@Action.0/@Result" Target="//@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.2/@StateActivityBlock/@Action.2/@Target"/>
+            <Edge xsi:type="actions:ObjectFlow" Name="trueValue" Source="//@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.2/@StateActivityBlock/@Action.1/@Result" Target="//@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.2/@StateActivityBlock/@Action.2/@Argument.0"/>
+            <Action xsi:type="actions:ReadPresentationModelAction" Name="ReadPresentationModelAction">
+              <Result Name="ReadPresentationModelActionResultOutputPin" Multiplicity="1..1" Type="//@PresentationDomain/@OwnedNavigationFlow.0" OutgoingObjectFlow="//@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.2/@StateActivityBlock/@Edge.0"/>
+            </Action>
+            <Action xsi:type="actions:ValueSpecificationAction" Name="ValueSpecificationAction" Value="true">
+              <Result Name="ValueSpecificationActionResultOutputPin" Multiplicity="1..1" Type="//@AlgorithmDomain/@OwnedElement.0" OutgoingObjectFlow="//@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.2/@StateActivityBlock/@Edge.1"/>
+            </Action>
+            <Action xsi:type="actions:SendSignalAction" Name="SendSignalAction" Signal="//@AlgorithmDomain/@OwnedElement.8">
+              <Target Name="TargetInputPin" Multiplicity="1..1" Type="//@PresentationDomain/@OwnedNavigationFlow.0" IncomingObjectFlow="//@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.2/@StateActivityBlock/@Edge.0"/>
+              <Argument Name="ArgumentInputPin" Multiplicity="1..1" Type="//@AlgorithmDomain/@OwnedElement.0" IncomingObjectFlow="//@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.2/@StateActivityBlock/@Edge.1" Attribute="//@AlgorithmDomain/@OwnedElement.8/@OwnedAttribute.0"/>
+            </Action>
+          </StateActivityBlock>
+        </StateMachineElement>
+      </OwnedBehavior>
+      <OwnedReception Name="Alert_ListEmpty" Signal="//@AlgorithmDomain/@OwnedElement.10"/>
+      <OwnedReception Name="Alert_ListNewEntry" Signal="//@AlgorithmDomain/@OwnedElement.9"/>
+    </OwnedElement>
+    <OwnedElement xsi:type="algorithm:Signal" Name="alertButtonFlash">
+      <OwnedAttribute Name="flash" Multiplicity="1..1" Type="//@AlgorithmDomain/@OwnedElement.0"/>
+    </OwnedElement>
+    <OwnedElement xsi:type="algorithm:Signal" Name="Alert_ListNewEntry"/>
+    <OwnedElement xsi:type="algorithm:Signal" Name="Alert_ListEmpty"/>
+  </AlgorithmDomain>
+  <ClientDataDomain Name="Client Data Model" Author="AutoProBe" MovisaBuildVersion="@(#)&lt;label> (on: &lt;date>)@" Version="1.0">
+    <LogicalDataPerspective>
+      <OwnedDataItem Name="DataItem_PARSIFAL_Devices_CIROS_Model_Objects_RobotGripper_1_Inputs_Close_LP" Description="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.0" Dimension="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDimension.0" MaxAge="1000" PointsTo="//@ClientDataDomain/@TechnicalDataPerspective/@OwnedServer.0/@OwnedUaItem.0" SignalOnChange="//@AlgorithmDomain/@OwnedElement.6/@Signal.0" Type="//@AlgorithmDomain/@OwnedElement.0"/>
+      <OwnedDimension Name="standardBooleanDimension" Unit="Boolean"/>
+      <OwnedDimension Name="standardDoubleDimension" FractionDigits="2" Unit="Double"/>
+      <OwnedDimension Name="standardIntegerDimension" Unit="Integer"/>
+      <OwnedDimension Name="standardStringDimension" Unit="String"/>
+      <OwnedSubscription Name="opcUaDataItemSubscription" PublishingInterval="500">
+        <OwnedMonitoredItem Name="DataItem_PARSIFAL_Devices_CIROS_Model_Objects_RobotGripper_1_Inputs_Close_LP" SamplingRate="800" DataItemToMonitor="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.0"/>
+      </OwnedSubscription>
+    </LogicalDataPerspective>
+    <TechnicalDataPerspective>
+      <OwnedServer xsi:type="opcua:OpcUaServer" Name="cirosUaServer" Url="http://localhost:5001">
+        <OwnedUaItem xsi:type="opcua:DataVariable" Name="DataItem_PARSIFAL_Devices_CIROS_Model_Objects_RobotGripper_1_Inputs_Close_TP" IsAccessedVia="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.0" BrowseName="Close@Bool" BrowsePath="/Objects/Supervision/$PARSIFAL/Devices/CIROS/Model/Objects/RobotGripper_1/Inputs/Close">
+          <DataType xsi:type="opcua:Boolean" Name="Boolean"/>
+        </OwnedUaItem>
+      </OwnedServer>
+    </TechnicalDataPerspective>
+  </ClientDataDomain>
+  <PresentationDomain Name="Presentation Model" Author="AutoProBe" MovisaBuildVersion="@(#)&lt;label> (on: &lt;date>)@" Version="1.0">
+    <OwnedColorDefinition>
+      <OwnedColorValue xsi:type="presentation:ConstantColor" Name="Color_OutputBoolOn" Color="GREEN"/>
+      <OwnedColorValue xsi:type="presentation:ConstantColor" Name="Color_OutputBoolOff" Color="RED"/>
+      <OwnedColorValue xsi:type="presentation:ConstantColor" Name="Color_InputBoolOn" Color="RED"/>
+      <OwnedColorValue xsi:type="presentation:ConstantColor" Name="Color_InputBoolOff" Color="GREEN"/>
+      <OwnedColorValue xsi:type="presentation:ConstantColor" Name="Color_OutputDouble" Color="GREY"/>
+      <OwnedColorValue xsi:type="presentation:ConstantColor" Name="Color_BG" Color="GREY"/>
+      <OwnedColorValue xsi:type="presentation:ConstantColor" Name="Color_FG" Color="BLACK"/>
+      <OwnedColorValue xsi:type="presentation:ConstantColor" Name="Color_CarrierWithoutProductFG" Color="GREY"/>
+      <OwnedColorValue xsi:type="presentation:ConstantColor" Name="Color_CarrierWithoutProductBG" Color="BLACK"/>
+      <OwnedColorValue xsi:type="presentation:ConstantColor" Name="Color_CarrierWithProductFG" Color="BLACK"/>
+      <OwnedColorValue xsi:type="presentation:ConstantColor" Name="Color_CarrierWithProductBG" Color="YELLOW"/>
+      <OwnedColorValue xsi:type="presentation:ConstantColor" Name="Color_CarrierWithProductBG" Transparency="255" Color="WHITE"/>
+      <OwnedColorValue xsi:type="presentation:ConstantColor" Name="Color_ButtonNotFlashing" Color="GREY"/>
+      <OwnedColorValue xsi:type="presentation:ConstantColor" Name="Color_ButtonFlashing" Color="RED"/>
+    </OwnedColorDefinition>
+    <OwnedImageBundle>
+      <OwnedImageResource xsi:type="presentation:FixedImage" Name="conveyorTopDownImage" Url="img/conveyor_top_down.png"/>
+      <OwnedImageResource xsi:type="presentation:FixedImage" Name="conveyorLeftRightImage" Url="img/conveyor_left_right.png"/>
+      <OwnedImageResource xsi:type="presentation:FixedImage" Name="conveyorImage_down_right" Url="img/conveyor_right_down.png"/>
+      <OwnedImageResource xsi:type="presentation:FixedImage" Name="conveyorImage_left_down" Url="img/conveyor_left_down.png"/>
+      <OwnedImageResource xsi:type="presentation:FixedImage" Name="conveyorImage_left_top" Url="img/conveyor_left_top.png"/>
+      <OwnedImageResource xsi:type="presentation:FixedImage" Name="conveyorImage_top_right" Url="img/conveyor_right_top.png"/>
+      <OwnedImageResource xsi:type="presentation:FixedImage" Name="conveyorImage_right_top_down" Url="img/conveyor_right_top_down.png"/>
+      <OwnedImageResource xsi:type="presentation:FixedImage" Name="conveyorImage_left_top_down" Url="img/conveyor_left_top_down.png"/>
+      <OwnedImageResource xsi:type="presentation:FixedImage" Name="conveyorImage_left_right_top" Url="img/conveyor_left_right_top.png"/>
+      <OwnedImageResource xsi:type="presentation:FixedImage" Name="conveyorImage_left_right_down" Url="img/conveyor_left_right_down.png"/>
+      <OwnedImageResource xsi:type="presentation:FixedImage" Name="conveyorLeftRightImage" Url="img/conveyor_left_right.png"/>
+    </OwnedImageBundle>
+    <OwnedMultiLingualTextDefinition>
+      <OwnedLanguageDefinition Name="german" LocaleId="de-DE"/>
+      <OwnedTextDefinition Name="dummyDescription">
+        <TranslatedTextItem Value="someValue" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="text_0_0">
+        <TranslatedTextItem Value="0.0" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="text_Checkbox">
+        <TranslatedTextItem Value="Checkbox" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+      <OwnedTextDefinition Name="text_Close">
+        <TranslatedTextItem Value="Close" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+      </OwnedTextDefinition>
+    </OwnedMultiLingualTextDefinition>
+    <OwnedNavigationFlow xsi:type="presentation:NewViewNavigationFlow" Source="//@PresentationDomain/@OwnedNavigationRoot"/>
+    <OwnedNavigationRoot/>
+    <OwnedPanel Name="NAVTOP">
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="NAVTOP_Close_textLabel" Comment="RoleRestrictionComment TODO">
+        <Animation>
+          <ValueOutputAnimation Trigger="//@AlgorithmDomain/@OwnedElement.6/@Signal.0" ReplaceValue="true"/>
+        </Animation>
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.1">
+          <Alignment Name="Close_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Border Name="Close_border" BorderType="SOLID" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
+            <Padding Name="NAVTOP_Close" Unit="PIXEL" Value="3.5"/>
+            <Width Name="NAVTOP_Close" Unit="PIXEL" Value="1.0"/>
+          </Border>
+          <Color Name="Close_Color" Foreground="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6" Background="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.5"/>
+          <Format Name="Close_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_Close" Unit="POINT" Value="8.0"/>
+          </Format>
+          <Position Name="NAVTOP_Close_pos">
+            <X Name="NAVTOP_pos_x" Unit="PIXEL" Value="10.0"/>
+            <Y Name="NAVTOP_pos_y" Unit="PIXEL" Value="455.0"/>
+            <Z Name="NAVTOP_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="NAVTOP_size">
+            <Height Name="NAVTOP_height" Unit="PIXEL" Value="40.0"/>
+            <Width Name="NAVTOP_width" Unit="PIXEL" Value="112.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="NAVTOP_Close_textLabel_label" Comment="RoleRestrictionComment TODO">
+        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.3">
+          <Alignment Name="Close_alignment" HorizontalAlignment="LEFT" VerticalAlignment="MIDDLE"/>
+          <Border Name="Close_border" BorderType="HIDDEN" LineColor="//@PresentationDomain/@OwnedColorDefinition/@OwnedColorValue.6">
+            <Padding Name="NAVTOP_Close" Unit="PIXEL" Value="3.5"/>
+            <Width Name="NAVTOP_Close" Unit="PIXEL" Value="1.0"/>
+          </Border>
+          <Format Name="Close_format" FontFace="VERDANA" FontStyle="NORMAL" FontWeight="REGULAR">
+            <FontSize Name="NAVTOP_Close" Unit="POINT" Value="8.0"/>
+          </Format>
+          <Position Name="NAVTOP_Close_pos">
+            <X Name="NAVTOP_pos_x" Unit="PIXEL" Value="60.0"/>
+            <Y Name="NAVTOP_pos_y" Unit="PIXEL" Value="455.0"/>
+            <Z Name="NAVTOP_pos_z" Unit="PIXEL"/>
+          </Position>
+          <Size Name="NAVTOP_size">
+            <Height Name="NAVTOP_height" Unit="PIXEL" Value="40.0"/>
+            <Width Name="NAVTOP_width" Unit="PIXEL" Value="112.0"/>
+          </Size>
+        </Representation>
+      </OwnedUIComponent>
+    </OwnedPanel>
+  </PresentationDomain>
+</movisa:VisualizationApplicationModel>

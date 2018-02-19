@@ -75,6 +75,7 @@ import de.tud.et.ifa.agtele.resources.ResourceHelper;
 		_23_multipleExtendsTest.class, //
 		_24_uniqueAttributesTest.class, //
 		AutoProBeSimplifiedDissTest.class, //
+		AutoProBeSimpleTest.class, //
 		AutoProBeTest.class, //
 		CompanyVizTest.class, //
 		DFDUMLTest.class, //

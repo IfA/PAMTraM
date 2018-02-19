@@ -3,10 +3,20 @@
  */
 package de.mfreund.gentrans.test.casestudies;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.logging.Level;
 
+import org.eclipse.compare.contentmergeviewer.TokenComparator;
+import org.eclipse.compare.rangedifferencer.IRangeComparator;
+import org.eclipse.compare.rangedifferencer.RangeDifference;
+import org.eclipse.compare.rangedifferencer.RangeDifferencer;
 import org.eclipse.core.resources.IContainer;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.notify.Notifier;
@@ -26,6 +36,7 @@ import de.mfreund.gentrans.transformation.TransformationConfiguration;
 import de.mfreund.gentrans.transformation.TransformationRunnerWithUIFactory;
 import de.tud.et.ifa.agtele.emf.compare.EMFCompareUtil;
 import de.tud.et.ifa.agtele.resources.ResourceHelper;
+import pamtram.structure.target.FileType;
 
 /**
  * An abstract base class for tests that consist of executing one of the various PAMTraM casestudies.
@@ -88,7 +99,60 @@ public abstract class PamtramCasestudyTest {
 	/**
 	 * Assert that the given {@link TransformationResult} is as expected.
 	 */
-	protected abstract void validateCaseStudyResult(TransformationResult result);
+	protected void validateCaseStudyResult(TransformationResult result) {
+
+		if (!result.getTargetModelRegistry().isPresent()) {
+			Assertions.fail("Execution returned no TargetModelRegistry!");
+			return;
+		}
+
+		URI expectedResultsFolderURI = URI.createPlatformResourceURI(
+				PamtramCasestudyTest.expectedResultsFolderPath + "/" + this.getCaseStudyName(), true);
+		IContainer expectedResultsFolder = ResourceHelper.getContainerForURI(expectedResultsFolderURI);
+
+		Assert.assertTrue("Failed to retrieve results folder!", expectedResultsFolder instanceof IFolder);
+
+		URI resultsFolderURI = URI.createPlatformResourceURI(
+				PamtramCasestudyTest.resultsFolderPath + "/" + this.getCaseStudyName(), true);
+		IContainer resultsFolder = ResourceHelper.getContainerForURI(resultsFolderURI);
+
+		Assert.assertTrue("Failed to retrieve results folder!", resultsFolder instanceof IFolder);
+
+		List<IFile> expectedResultsFiles;
+		List<IFile> resultsFiles;
+		try {
+			expectedResultsFiles = ResourceHelper.getFilesInContainerRecursively(expectedResultsFolder);
+			resultsFiles = ResourceHelper.getFilesInContainerRecursively(resultsFolder);
+		} catch (CoreException e) {
+			Assertions.fail(e);
+			return;
+		}
+
+		Assert.assertTrue("Unexpected number of created target model(s)!",
+				result.getTargetModelRegistry().get().getTargetModels().size() == resultsFiles.size());
+
+		Assert.assertTrue("Unexpected number of stored target model(s)!",
+				expectedResultsFiles.size() == resultsFiles.size());
+
+		for (int i = 0; i < expectedResultsFiles.size(); i++) {
+
+			Assert.assertTrue("Unexpected target model name!",
+					expectedResultsFiles.get(i).getName() == resultsFiles.get(i).getName());
+
+			String expectedFile = ResourceHelper
+					.convertPlatformToFileURI(
+							ResourceHelper.getURIForPathString(expectedResultsFiles.get(i).getFullPath().toString()))
+					.toFileString();
+			String resultFile = ResourceHelper
+					.convertPlatformToFileURI(
+							ResourceHelper.getURIForPathString(resultsFiles.get(i).getFullPath().toString()))
+					.toFileString();
+
+			this.assertResultingModelIsEqualToExpected(expectedFile, resultFile);
+
+		}
+
+	}
 
 	/**
 	 * Get the name of the casestudy to run. This will among others be used to create the sub-folder in the 'results'
@@ -138,45 +202,55 @@ public abstract class PamtramCasestudyTest {
 	}
 
 	/**
-	 * {@link EMFCompareUtil#compare(Notifier, Notifier) Compares} the expected and resulting model identified by
-	 * <em>model</em> and asserts that they are equal.
-	 *
-	 * @see #assertResultingModelIsEqualToExpected(String, String)
-	 *
-	 * @param model
-	 *            The path to the model (relative to the path corresponding to this {@link #getCaseStudyName()} in the
-	 *            {@link #expectedResultsFolderPath} for the <em>expected</em> model and relative to the path
-	 *            corresponding to this {@link #getCaseStudyName()} in the {@link #resultsFolderPath} for the
-	 *            <em>resulting</em> model).
+	 * The type of the created target models (either {@link FileType#XMI} or {@link FileType#XML}).
 	 */
-	protected void assertResultingModelIsEqualToExpected(String model) {
+	protected FileType getTargetModelType() {
 
-		this.assertResultingModelIsEqualToExpected(model, model);
+		return FileType.XMI;
 	}
 
 	/**
 	 * {@link EMFCompareUtil#compare(Notifier, Notifier) Compares} the two models identified by <em>expected</em> and
 	 * <em>result</em> and asserts that they are equal.
-	 *
-	 * @see #assertResultingModelIsEqualToExpected(String)
+	 * <p />
+	 * Note: This will just redirect to either {@link #assertResultingXMIModelIsEqualToExpected(String, String)} or
+	 * {@link #assertResultingXMLModelIsEqualToExpected(String, String)}.
 	 *
 	 * @param expected
-	 *            The path to the expected model (relative to the path corresponding to this {@link #getCaseStudyName()}
-	 *            in the {@link #expectedResultsFolderPath}).
+	 *            The absolute path to the file representing the expected model.
 	 * @param result
-	 *            The path to the result model (relative to the path corresponding to this {@link #getCaseStudyName()}
-	 *            in the {@link #resultsFolderPath}).
+	 *            The absolute path to the file representing the result model.
 	 */
 	protected void assertResultingModelIsEqualToExpected(String expected, String result) {
 
+		if (this.getTargetModelType().equals(FileType.XMI)) {
+
+			this.assertResultingXMIModelIsEqualToExpected(expected, result);
+
+		} else if (this.getTargetModelType().equals(FileType.XML)) {
+
+			this.assertResultingXMLModelIsEqualToExpected(expected, result);
+
+		} else {
+			Assert.fail("Unsupported target model file type: " + this.getTargetModelType().getName());
+		}
+	}
+
+	/**
+	 * {@link EMFCompareUtil#compare(Notifier, Notifier) Compares} the two XMI models identified by <em>expected</em>
+	 * and <em>result</em> and asserts that they are equal.
+	 *
+	 * @param expected
+	 *            The absolute path to the file representing the expected XMI model.
+	 * @param result
+	 *            The absolute path to the file representing the result XMI model.
+	 */
+	protected void assertResultingXMIModelIsEqualToExpected(String expected, String result) {
+
 		ResourceSet rs = new ResourceSetImpl();
-		Resource expectedResultResource = rs.getResource(URI.createPlatformResourceURI(
-				PamtramCasestudyTest.expectedResultsFolderPath + "/" + this.getCaseStudyName() + "/" + expected, true),
-				true);
-		Resource resultResource = rs.getResource(
-				URI.createPlatformResourceURI(
-						PamtramCasestudyTest.resultsFolderPath + "/" + this.getCaseStudyName() + "/" + result, true),
-				true);
+
+		Resource expectedResultResource = rs.getResource(URI.createFileURI(expected), true);
+		Resource resultResource = rs.getResource(URI.createFileURI(result), true);
 
 		Comparison compareResult = EMFCompareUtil.compare(expectedResultResource, resultResource);
 
@@ -189,5 +263,62 @@ public abstract class PamtramCasestudyTest {
 				"Comparing expected file '" + expectedResultResource.getURI().lastSegment() + "' and actual result '"
 						+ resultResource.getURI().lastSegment() + "' resulted in differences!",
 				compareResult.getDifferences().isEmpty());
+	}
+
+	/**
+	 * {@link EMFCompareUtil#compare(Notifier, Notifier) Compares} the two XML models identified by <em>expected</em>
+	 * and <em>result</em> and asserts that they are equal.
+	 *
+	 * @param expected
+	 *            An {@link IFile} representing the expected XMI model.
+	 * @param result
+	 *            An {@link IFile} representing the result XMI model.
+	 */
+	protected void assertResultingXMLModelIsEqualToExpected(String expected, String result) {
+
+		// As the resulting models are plain XML without any namespace declarations, we cannot use the super
+		// implementation that makes use of 'EMFCompare'. Instead, we need to compare on a pure string basis.
+		//
+		Scanner expectedScanner = null;
+		String expectedContent = "";
+		try {
+			expectedScanner = new Scanner(new File(expected));
+			expectedScanner.useDelimiter("\\A");
+			while (expectedScanner.hasNextLine()) {
+				expectedContent += expectedScanner.nextLine().trim();
+			}
+		} catch (FileNotFoundException e) {
+			Assertions.fail(e);
+		} finally {
+			expectedScanner.close();
+		}
+
+		Scanner resultScanner = null;
+		String resultContent = "";
+		try {
+			resultScanner = new Scanner(new File(result));
+			resultScanner.useDelimiter("\\A");
+			while (resultScanner.hasNextLine()) {
+				resultContent += resultScanner.nextLine().trim();
+			}
+		} catch (FileNotFoundException e) {
+			Assertions.fail(e);
+		} finally {
+			resultScanner.close();
+		}
+
+		IRangeComparator left = new TokenComparator(expectedContent);
+		IRangeComparator right = new TokenComparator(resultContent);
+		RangeDifference[] diffs = RangeDifferencer.findDifferences(left, right);
+
+		Assert.assertTrue(
+				"Comparing expected file '" + new File(expected).getName() + "' and actual result '"
+						+ new File(result).getName() + "' resulted in conflicts!",
+				Arrays.asList(diffs).stream().noneMatch(d -> d.kind() == RangeDifference.CONFLICT));
+
+		Assert.assertTrue(
+				"Comparing expected file '" + new File(expected).getName() + "' and actual result '"
+						+ new File(result).getName() + "' resulted in differences!",
+				Arrays.asList(diffs).stream().allMatch(d -> d.kind() == RangeDifference.NOCHANGE));
 	}
 }

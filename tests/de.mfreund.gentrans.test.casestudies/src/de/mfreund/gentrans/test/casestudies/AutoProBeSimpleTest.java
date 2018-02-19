@@ -13,18 +13,18 @@ import de.mfreund.gentrans.transformation.TransformationConfiguration;
  *
  * @author mfreund
  */
-public class AutoProBeTest extends PamtramCasestudyTest {
+public class AutoProBeSimpleTest extends PamtramCasestudyTest {
 
 	@Override
 	protected String getCaseStudyName() {
 
-		return "autoprobe";
+		return "autoprobe-simple";
 	}
 
 	@Override
 	protected Set<String> getSourceModels() {
 
-		return Collections.singleton("/de.mfreund.pamtram.casestudies.autoprobe/Source/beispiel_ver_0_2_3.xml");
+		return Collections.singleton("/de.mfreund.pamtram.casestudies.autoprobe/Source/beispiel_ver_0_2_3_simple.xml");
 	}
 
 	@Override

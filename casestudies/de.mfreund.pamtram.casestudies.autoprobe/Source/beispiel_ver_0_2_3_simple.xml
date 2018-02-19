@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://gfai.de/stgml.xsd" name="Navigation">
+  <datamodel/>
+  <configuration/>
+  <code language="JavaScript"/>
+  <initial>
+    <transition target="root53F7211D12F406B5"/>
+  </initial>
+  <state id="root53F7211D12F406B5">
+    <initial>
+      <transition target="NAVTOP"/>
+    </initial>
+    <state id="NAVTOP">
+      <onexit>
+        
+        <![CDATA[state="NAVTOP";]]>
+      </onexit>
+    </state>
+  </state>
+  <visualization name="Navigation" unitspermeter="100000.0" xmax="32000.0" xmin="0.0"
+      ymax="18000.0" ymin="0.0">
+    <layer name="NAVTOP" visible="false">
+      <viobject ctrltype="Input:Bool" grtype="Rectangle" height="1000.0" label="Close"
+          width="2246.56" x="200.0" y="7900.0">
+        <externaldata>
+          <extdata name="SignalInterface">
+            <extdata name="Hardware" value="OPCUA"/>
+            <extdata name="Protocol" value="AutoProBe_OPC"/>
+            <extdata name="typeID" value="SignalInterface"/>
+            <extdata name="name" value="SignalInterface"/>
+            <extdata name="Signals">
+              <extdata name="Close">
+                <extdata name="Description" value="Input"/>
+                <extdata name="Type" value="Bool"/>
+                <extdata name="typeID" value="Signal"/>
+                <extdata name="name" value="Close"/>
+                <extdata name="DataItems">
+                  <extdata name="OPCItem" value="..LocalHost.$PARSIFAL.Devices.CIROS.Model.Objects.RobotGripper_1.Inputs.Close"/>
+                  <extdata name="Access" value="ReadOnly"/>
+                </extdata>
+              </extdata>
+            </extdata>
+          </extdata>
+        </externaldata>
+      </viobject>
+    </layer>
+  </visualization>
+</scxml>

@@ -1336,7 +1336,6 @@
     <set:DisplayName>IfAHeater</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=286</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">ns=15;i=391</set:Reference>
       <set:Reference IsForward="true" ReferenceType="ns=1;i=4001">ns=12;i=562</set:Reference>
     </set:References>
   </set:UAObject>
@@ -1877,7 +1876,7 @@
     <set:Description>Signal for High Alarm 3</set:Description>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=11;i=79</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=13;i=574</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=582</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="11:HH" NodeId="ns=11;i=673" ParentNodeId="ns=11;i=79">
@@ -1885,7 +1884,7 @@
     <set:Description>Signal for High Alarm 2</set:Description>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=11;i=79</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=13;i=574</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=582</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="11:H" NodeId="ns=11;i=674" ParentNodeId="ns=11;i=79">
@@ -1893,7 +1892,7 @@
     <set:Description>Signal for High Alarm 1</set:Description>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=11;i=79</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=13;i=574</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=582</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="11:L" NodeId="ns=11;i=675" ParentNodeId="ns=11;i=79">
@@ -1901,7 +1900,7 @@
     <set:Description>Signal for Low Alarm 1</set:Description>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=11;i=79</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=13;i=574</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=582</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="11:LL" NodeId="ns=11;i=676" ParentNodeId="ns=11;i=79">
@@ -1909,7 +1908,7 @@
     <set:Description>Signal for Low Alarm 2</set:Description>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=11;i=79</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=13;i=574</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=582</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="11:LLL" NodeId="ns=11;i=677" ParentNodeId="ns=11;i=79">
@@ -1917,7 +1916,7 @@
     <set:Description>Signal for Low Alarm 3</set:Description>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=11;i=79</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=13;i=574</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=582</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="11:VAL" NodeId="ns=11;i=678" ParentNodeId="ns=11;i=95">

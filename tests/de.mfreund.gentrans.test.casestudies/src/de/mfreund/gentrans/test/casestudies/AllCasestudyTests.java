@@ -74,6 +74,8 @@ import de.tud.et.ifa.agtele.resources.ResourceHelper;
 		_22_crossReferenceTest.class, //
 		_23_multipleExtendsTest.class, //
 		_24_uniqueAttributesTest.class, //
+		AMLOPCUASimpleTest.class, //
+		AMLOPCUATest.class, //
 		AutoProBeSimplifiedDissTest.class, //
 		AutoProBeSimpleTest.class, //
 		AutoProBeTest.class, //

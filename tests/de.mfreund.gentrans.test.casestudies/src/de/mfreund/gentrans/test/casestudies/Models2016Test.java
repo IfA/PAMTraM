@@ -6,10 +6,13 @@ package de.mfreund.gentrans.test.casestudies;
 import java.util.Collections;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.URI;
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 
 import de.mfreund.gentrans.transformation.ITransformationRunner.TransformationResult;
+import de.mfreund.gentrans.transformation.TransformationConfiguration;
+import de.tud.et.ifa.agtele.resources.ResourceHelper;
 
 /**
  *
@@ -39,6 +42,12 @@ public abstract class Models2016Test extends PamtramCasestudyTest {
 		}
 
 		@Override
+		protected TransformationConfiguration getTransformationConfig() {
+
+			return super.getTransformationConfig().withDefaultTargetModel("Library_mm2.xmi");
+		}
+
+		@Override
 		protected void validateCaseStudyResult(TransformationResult result) {
 
 			if (!result.getTargetModelRegistry().isPresent()) {
@@ -49,9 +58,19 @@ public abstract class Models2016Test extends PamtramCasestudyTest {
 			Set<String> targetModels = result.getTargetModelRegistry().get().getTargetModels().keySet();
 
 			Assert.assertTrue("Unexpected (number of) target model(s)!",
-					targetModels.size() == 1 && "out.xmi".equals(targetModels.iterator().next()));
+					targetModels.size() == 1 && "Library_mm2.xmi".equals(targetModels.iterator().next()));
 
-			this.assertResultingModelIsEqualToExpected("Library_mm2.xmi", "out.xmi");
+			URI expectedResultURI = URI.createPlatformResourceURI(
+					PamtramCasestudyTest.expectedResultsFolderPath + "/" + this.getCaseStudyName() + "/Library_mm2.xmi",
+					true);
+
+			URI resultURI = URI.createPlatformResourceURI(
+					PamtramCasestudyTest.resultsFolderPath + "/" + this.getCaseStudyName() + "/Library_mm2.xmi", true);
+
+			this.assertResultingModelIsEqualToExpected(
+					ResourceHelper.convertPlatformToFileURI(expectedResultURI).toFileString(),
+					ResourceHelper.convertPlatformToFileURI(resultURI).toFileString());
+
 		}
 
 	}
@@ -72,6 +91,12 @@ public abstract class Models2016Test extends PamtramCasestudyTest {
 		}
 
 		@Override
+		protected TransformationConfiguration getTransformationConfig() {
+
+			return super.getTransformationConfig().withDefaultTargetModel("Library_mm1.xmi");
+		}
+
+		@Override
 		protected void validateCaseStudyResult(TransformationResult result) {
 
 			if (!result.getTargetModelRegistry().isPresent()) {
@@ -82,11 +107,20 @@ public abstract class Models2016Test extends PamtramCasestudyTest {
 			Set<String> targetModels = result.getTargetModelRegistry().get().getTargetModels().keySet();
 
 			Assert.assertTrue("Unexpected (number of) target model(s)!",
-					targetModels.size() == 1 && "out.xmi".equals(targetModels.iterator().next()));
+					targetModels.size() == 1 && "Library_mm1.xmi".equals(targetModels.iterator().next()));
 
-			this.assertResultingModelIsEqualToExpected("Library_mm1.xmi", "out.xmi");
+			URI expectedResultURI = URI.createPlatformResourceURI(
+					PamtramCasestudyTest.expectedResultsFolderPath + "/" + this.getCaseStudyName() + "/Library_mm1.xmi",
+					true);
+
+			URI resultURI = URI.createPlatformResourceURI(
+					PamtramCasestudyTest.resultsFolderPath + "/" + this.getCaseStudyName() + "/Library_mm1.xmi", true);
+
+			this.assertResultingModelIsEqualToExpected(
+					ResourceHelper.convertPlatformToFileURI(expectedResultURI).toFileString(),
+					ResourceHelper.convertPlatformToFileURI(resultURI).toFileString());
+
 		}
-
 	}
 
 }

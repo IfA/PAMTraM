@@ -137,7 +137,7 @@ public abstract class PamtramCasestudyTest {
 		for (int i = 0; i < expectedResultsFiles.size(); i++) {
 
 			Assert.assertTrue("Unexpected target model name!",
-					expectedResultsFiles.get(i).getName() == resultsFiles.get(i).getName());
+					expectedResultsFiles.get(i).getName().equals(resultsFiles.get(i).getName()));
 
 			String expectedFile = ResourceHelper
 					.convertPlatformToFileURI(

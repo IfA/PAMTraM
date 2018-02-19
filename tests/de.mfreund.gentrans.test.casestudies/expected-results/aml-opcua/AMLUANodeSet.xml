@@ -4,25 +4,19 @@
     <set:Uri>http://opcfoundation.org/UA/AML/</set:Uri>
     <set:Uri>http://www.tu-dresden.de/CAEXFile</set:Uri>
     <set:Uri>http://www.tu-dresden.de/AutomationMLBaseRoleClassLib</set:Uri>
-    <set:Uri>http://www.tu-dresden.de/UserDefinedRoleClassLibPandix</set:Uri>
     <set:Uri>http://www.tu-dresden.de/AutomationMLBMIRoleClassLib</set:Uri>
     <set:Uri>http://www.tu-dresden.de/AutomationMLCMIRoleClassLib</set:Uri>
     <set:Uri>http://www.tu-dresden.de/AutomationMLCSRoleClassLib</set:Uri>
     <set:Uri>http://www.tu-dresden.de/AutomationMLDMIRoleClassLib</set:Uri>
     <set:Uri>http://www.tu-dresden.de/AutomationMLExtendedRoleClassLib</set:Uri>
-    <set:Uri>http://www.tu-dresden.de/UserDefinedRoleClassLibPandixPCE</set:Uri>
     <set:Uri>http://www.tu-dresden.de/UserDefinedRoleClassLibCompanySpecificStructure</set:Uri>
     <set:Uri>http://www.tu-dresden.de/UserDefinedRoleClassLibFoodAndBeverage</set:Uri>
+    <set:Uri>http://www.tu-dresden.de/UserDefinedRoleClassLibPandixPCE</set:Uri>
+    <set:Uri>http://www.tu-dresden.de/UserDefinedRoleClassLibPandix</set:Uri>
     <set:Uri>http://www.tu-dresden.de/AutomationMLInterfaceClassLib</set:Uri>
     <set:Uri>http://www.tu-dresden.de/UserDefinedInterfaceClassLibPandIX</set:Uri>
     <set:Uri>http://www.tu-dresden.de/IfAPandIX</set:Uri>
   </set:NamespaceUris>
-  <set:UAObjectType BrowseName="15:IfAKleinversuchsanlage" NodeId="ns=15;i=405">
-    <set:DisplayName>IfAKleinversuchsanlage</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=15;i=425</set:Reference>
-    </set:References>
-  </set:UAObjectType>
   <set:UAObjectType BrowseName="15:IfAFluidVessel" NodeId="ns=15;i=267">
     <set:DisplayName>IfAFluidVessel</set:DisplayName>
     <set:References>
@@ -44,27 +38,6 @@
       <set:Reference IsForward="true" ReferenceType="ns=1;i=4001">ns=12;i=213</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="15:IfAHeater" NodeId="ns=15;i=391">
-    <set:DisplayName>IfAHeater</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=15;i=425</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="ns=1;i=4001">ns=12;i=562</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="15:IfACapacitiveProximitySensor" NodeId="ns=15;i=395">
-    <set:DisplayName>IfACapacitiveProximitySensor</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=15;i=425</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="ns=1;i=4001">ns=11;i=553</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="15:IfAPressureSensor" NodeId="ns=15;i=399">
-    <set:DisplayName>IfAPressureSensor</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=15;i=425</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="ns=1;i=4001">ns=11;i=554</set:Reference>
-    </set:References>
-  </set:UAObjectType>
   <set:UAObjectType BrowseName="15:IfAHandValve" NodeId="ns=15;i=428">
     <set:DisplayName>IfAHandValve</set:DisplayName>
     <set:References>
@@ -79,11 +52,24 @@
       <set:Reference IsForward="true" ReferenceType="ns=1;i=4001">ns=12;i=561</set:Reference>
     </set:References>
   </set:UAObjectType>
+  <set:UAObjectType BrowseName="15:IfAKleinversuchsanlage" NodeId="ns=15;i=405">
+    <set:DisplayName>IfAKleinversuchsanlage</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=15;i=425</set:Reference>
+    </set:References>
+  </set:UAObjectType>
   <set:UAObjectType BrowseName="15:IfAPipe" NodeId="ns=15;i=383">
     <set:DisplayName>IfAPipe</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="Organizes">ns=15;i=425</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="ns=1;i=4001">ns=12;i=452</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="ns=1;i=4001">ns=12;i=553</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="15:IfAHeater" NodeId="ns=15;i=391">
+    <set:DisplayName>IfAHeater</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=15;i=425</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="ns=1;i=4001">ns=12;i=562</set:Reference>
     </set:References>
   </set:UAObjectType>
   <set:UAObjectType BrowseName="15:IfAStirer" NodeId="ns=15;i=429">
@@ -93,94 +79,24 @@
       <set:Reference IsForward="true" ReferenceType="ns=1;i=4001">ns=12;i=563</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="12:IfAFluidVessel" NodeId="ns=12;i=170">
-    <set:DisplayName>IfAFluidVessel</set:DisplayName>
+  <set:UAObjectType BrowseName="15:IfACapacitiveProximitySensor" NodeId="ns=15;i=395">
+    <set:DisplayName>IfACapacitiveProximitySensor</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=12;i=148</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=12;i=148</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=15;i=425</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="ns=1;i=4001">ns=11;i=551</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="12:LVessel" NodeId="ns=12;i=148">
-    <set:DisplayName>LVessel</set:DisplayName>
+  <set:UAObjectType BrowseName="15:IfAPressureSensor" NodeId="ns=15;i=399">
+    <set:DisplayName>IfAPressureSensor</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=12;i=146</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=12;i=146</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="12:Vessel" NodeId="ns=12;i=146">
-    <set:DisplayName>Vessel</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=12;i=107</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=12;i=107</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="12:PPERequest" NodeId="ns=12;i=107">
-    <set:DisplayName>PPERequest</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=12;i=102</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=12;i=102</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="12:ProductChannel" NodeId="ns=12;i=102">
-    <set:DisplayName>ProductChannel</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=12;i=432</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=450</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=15;i=425</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="ns=1;i=4001">ns=11;i=552</set:Reference>
     </set:References>
   </set:UAObjectType>
   <set:UAObjectType BrowseName="3:AutomationMLBaseRole" NodeId="ns=3;i=450">
     <set:DisplayName>AutomationMLBaseRole</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="Organizes">ns=3;i=430</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="12:IfATemperedFluidVessel" NodeId="ns=12;i=159">
-    <set:DisplayName>IfATemperedFluidVessel</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=12;i=451</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=12;i=451</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="12:TemperatedLVessel" NodeId="ns=12;i=451">
-    <set:DisplayName>TemperatedLVessel</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=12;i=148</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=12;i=148</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="12:IfARotatoryPump" NodeId="ns=12;i=213">
-    <set:DisplayName>IfARotatoryPump</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=12;i=207</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=12;i=207</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="12:RotaryPump" NodeId="ns=12;i=207">
-    <set:DisplayName>RotaryPump</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=12;i=195</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=12;i=195</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="12:Pump" NodeId="ns=12;i=195">
-    <set:DisplayName>Pump</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=12;i=107</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=12;i=107</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="12:IfAPipe" NodeId="ns=12;i=452">
-    <set:DisplayName>IfAPipe</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=12;i=109</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=12;i=109</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="12:Pipe" NodeId="ns=12;i=109">
-    <set:DisplayName>Pipe</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=12;i=107</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=12;i=107</set:Reference>
     </set:References>
   </set:UAObjectType>
   <set:UAObjectType BrowseName="3:Group" NodeId="ns=3;i=71">
@@ -190,7 +106,7 @@
       <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=450</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="3:Facet" NodeId="ns=3;i=453">
+  <set:UAObjectType BrowseName="3:Facet" NodeId="ns=3;i=451">
     <set:DisplayName>Facet</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="Organizes">ns=3;i=450</set:Reference>
@@ -204,716 +120,709 @@
       <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=450</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="3:Resource" NodeId="ns=3;i=454">
+  <set:UAObjectType BrowseName="3:Resource" NodeId="ns=3;i=452">
     <set:DisplayName>Resource</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="Organizes">ns=3;i=450</set:Reference>
       <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=450</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="3:Product" NodeId="ns=3;i=455">
+  <set:UAObjectType BrowseName="3:Product" NodeId="ns=3;i=453">
     <set:DisplayName>Product</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="Organizes">ns=3;i=450</set:Reference>
       <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=450</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="3:Process" NodeId="ns=3;i=456">
+  <set:UAObjectType BrowseName="3:Process" NodeId="ns=3;i=454">
     <set:DisplayName>Process</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="Organizes">ns=3;i=450</set:Reference>
       <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=450</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="3:Structure" NodeId="ns=3;i=457">
+  <set:UAObjectType BrowseName="3:Structure" NodeId="ns=3;i=455">
     <set:DisplayName>Structure</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="Organizes">ns=3;i=450</set:Reference>
       <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=450</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="3:ProductStructure" NodeId="ns=3;i=458">
+  <set:UAObjectType BrowseName="3:ProductStructure" NodeId="ns=3;i=456">
     <set:DisplayName>ProductStructure</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=3;i=457</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=457</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=3;i=455</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=455</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="3:ProcessStructure" NodeId="ns=3;i=459">
+  <set:UAObjectType BrowseName="3:ProcessStructure" NodeId="ns=3;i=457">
     <set:DisplayName>ProcessStructure</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=3;i=457</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=457</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=3;i=455</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=455</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="3:ResourceStructure" NodeId="ns=3;i=460">
+  <set:UAObjectType BrowseName="3:ResourceStructure" NodeId="ns=3;i=458">
     <set:DisplayName>ResourceStructure</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=3;i=457</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=457</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=3;i=455</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=455</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="3:PropertySet" NodeId="ns=3;i=461">
+  <set:UAObjectType BrowseName="3:PropertySet" NodeId="ns=3;i=459">
     <set:DisplayName>PropertySet</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="Organizes">ns=3;i=450</set:Reference>
       <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=450</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="3:Frame" NodeId="ns=3;i=462">
+  <set:UAObjectType BrowseName="3:Frame" NodeId="ns=3;i=460">
     <set:DisplayName>Frame</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="Organizes">ns=3;i=450</set:Reference>
       <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=450</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="4:BatchManufacturingEquipment" NodeId="ns=4;i=463">
+  <set:UAObjectType BrowseName="4:BatchManufacturingEquipment" NodeId="ns=4;i=461">
     <set:DisplayName>BatchManufacturingEquipment</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=4;i=434</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=454</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=4;i=432</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=452</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="5:ContManufacturingEquipment" NodeId="ns=5;i=464">
+  <set:UAObjectType BrowseName="5:ContManufacturingEquipment" NodeId="ns=5;i=462">
     <set:DisplayName>ContManufacturingEquipment</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=5;i=436</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=454</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=5;i=434</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=452</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="6:ControlEquipment" NodeId="ns=6;i=465">
+  <set:UAObjectType BrowseName="6:ControlEquipment" NodeId="ns=6;i=463">
     <set:DisplayName>ControlEquipment</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=6;i=438</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=454</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=6;i=436</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=452</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="6:Communication" NodeId="ns=6;i=466">
+  <set:UAObjectType BrowseName="6:Communication" NodeId="ns=6;i=464">
     <set:DisplayName>Communication</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=6;i=465</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=465</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=6;i=463</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=463</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="6:ControlHardware" NodeId="ns=6;i=467">
+  <set:UAObjectType BrowseName="6:ControlHardware" NodeId="ns=6;i=465">
     <set:DisplayName>ControlHardware</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=6;i=465</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=465</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=6;i=463</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=463</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="6:PC" NodeId="ns=6;i=468">
+  <set:UAObjectType BrowseName="6:PC" NodeId="ns=6;i=466">
     <set:DisplayName>PC</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=6;i=467</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=467</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=6;i=465</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=465</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="6:IPC" NodeId="ns=6;i=469">
+  <set:UAObjectType BrowseName="6:IPC" NodeId="ns=6;i=467">
     <set:DisplayName>IPC</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=6;i=467</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=467</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=6;i=465</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=465</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="6:EmbeddedDevice" NodeId="ns=6;i=470">
+  <set:UAObjectType BrowseName="6:EmbeddedDevice" NodeId="ns=6;i=468">
     <set:DisplayName>EmbeddedDevice</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=6;i=467</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=467</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=6;i=465</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=465</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="6:Handheld" NodeId="ns=6;i=471">
+  <set:UAObjectType BrowseName="6:Handheld" NodeId="ns=6;i=469">
     <set:DisplayName>Handheld</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=6;i=467</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=467</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=6;i=465</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=465</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="6:Sensor" NodeId="ns=6;i=472">
+  <set:UAObjectType BrowseName="6:Sensor" NodeId="ns=6;i=470">
     <set:DisplayName>Sensor</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=6;i=465</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=465</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=6;i=463</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=463</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="6:Actuator" NodeId="ns=6;i=473">
+  <set:UAObjectType BrowseName="6:Actuator" NodeId="ns=6;i=471">
     <set:DisplayName>Actuator</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=6;i=465</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=465</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=6;i=463</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=463</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="6:Controller" NodeId="ns=6;i=474">
+  <set:UAObjectType BrowseName="6:Controller" NodeId="ns=6;i=472">
     <set:DisplayName>Controller</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=6;i=465</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=465</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=6;i=463</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=463</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="6:PLC" NodeId="ns=6;i=475">
+  <set:UAObjectType BrowseName="6:PLC" NodeId="ns=6;i=473">
     <set:DisplayName>PLC</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=6;i=474</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=474</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=6;i=472</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=472</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="6:NC" NodeId="ns=6;i=476">
+  <set:UAObjectType BrowseName="6:NC" NodeId="ns=6;i=474">
     <set:DisplayName>NC</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=6;i=474</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=474</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=6;i=472</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=472</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="6:RC" NodeId="ns=6;i=477">
+  <set:UAObjectType BrowseName="6:RC" NodeId="ns=6;i=475">
     <set:DisplayName>RC</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=6;i=474</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=474</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=6;i=472</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=472</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="6:PAC" NodeId="ns=6;i=478">
+  <set:UAObjectType BrowseName="6:PAC" NodeId="ns=6;i=476">
     <set:DisplayName>PAC</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=6;i=474</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=474</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=6;i=472</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=472</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="7:DiscManufacturingEquipment" NodeId="ns=7;i=479">
+  <set:UAObjectType BrowseName="7:DiscManufacturingEquipment" NodeId="ns=7;i=477">
     <set:DisplayName>DiscManufacturingEquipment</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=7;i=440</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=454</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=7;i=438</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=452</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="7:Transport" NodeId="ns=7;i=480">
+  <set:UAObjectType BrowseName="7:Transport" NodeId="ns=7;i=478">
     <set:DisplayName>Transport</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=7;i=479</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=479</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=7;i=477</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=477</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="7:Storage" NodeId="ns=7;i=481">
+  <set:UAObjectType BrowseName="7:Storage" NodeId="ns=7;i=479">
     <set:DisplayName>Storage</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=7;i=479</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=479</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=7;i=477</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=477</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="7:Fixture" NodeId="ns=7;i=482">
+  <set:UAObjectType BrowseName="7:Fixture" NodeId="ns=7;i=480">
     <set:DisplayName>Fixture</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=7;i=479</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=479</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=7;i=477</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=477</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="7:Gate" NodeId="ns=7;i=483">
+  <set:UAObjectType BrowseName="7:Gate" NodeId="ns=7;i=481">
     <set:DisplayName>Gate</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=7;i=479</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=479</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=7;i=477</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=477</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="7:Robot" NodeId="ns=7;i=484">
+  <set:UAObjectType BrowseName="7:Robot" NodeId="ns=7;i=482">
     <set:DisplayName>Robot</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=7;i=479</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=479</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=7;i=477</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=477</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="7:Tool" NodeId="ns=7;i=485">
+  <set:UAObjectType BrowseName="7:Tool" NodeId="ns=7;i=483">
     <set:DisplayName>Tool</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=7;i=479</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=479</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=7;i=477</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=477</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="7:Carrier" NodeId="ns=7;i=486">
+  <set:UAObjectType BrowseName="7:Carrier" NodeId="ns=7;i=484">
     <set:DisplayName>Carrier</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=7;i=479</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=479</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=7;i=477</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=477</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="7:Machine" NodeId="ns=7;i=487">
+  <set:UAObjectType BrowseName="7:Machine" NodeId="ns=7;i=485">
     <set:DisplayName>Machine</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=7;i=479</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=479</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=7;i=477</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=477</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="7:StaticObject" NodeId="ns=7;i=488">
+  <set:UAObjectType BrowseName="7:StaticObject" NodeId="ns=7;i=486">
     <set:DisplayName>StaticObject</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=7;i=479</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=7;i=477</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=477</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="8:PLCFacet" NodeId="ns=8;i=487">
+    <set:DisplayName>PLCFacet</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=440</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=451</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="8:HMIFacet" NodeId="ns=8;i=488">
+    <set:DisplayName>HMIFacet</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=440</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=451</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="8:Enterprise" NodeId="ns=8;i=489">
+    <set:DisplayName>Enterprise</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=440</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=458</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="8:Site" NodeId="ns=8;i=490">
+    <set:DisplayName>Site</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=440</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=458</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="8:Area" NodeId="ns=8;i=491">
+    <set:DisplayName>Area</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=440</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=458</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="8:ProductionLine" NodeId="ns=8;i=492">
+    <set:DisplayName>ProductionLine</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=440</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=458</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="8:WorkCell" NodeId="ns=8;i=493">
+    <set:DisplayName>WorkCell</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=440</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=458</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="8:ProcessCell" NodeId="ns=8;i=494">
+    <set:DisplayName>ProcessCell</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=440</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=458</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="8:Unit" NodeId="ns=8;i=495">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=440</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=458</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="8:ProductionUnit" NodeId="ns=8;i=496">
+    <set:DisplayName>ProductionUnit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=440</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=458</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="8:StorageZone" NodeId="ns=8;i=497">
+    <set:DisplayName>StorageZone</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=440</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=458</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="8:StorageUnit" NodeId="ns=8;i=498">
+    <set:DisplayName>StorageUnit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=440</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=458</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="8:Turntable" NodeId="ns=8;i=499">
+    <set:DisplayName>Turntable</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=440</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=478</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="8:Conveyor" NodeId="ns=8;i=500">
+    <set:DisplayName>Conveyor</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=440</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=478</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="8:BeltConveyor" NodeId="ns=8;i=501">
+    <set:DisplayName>BeltConveyor</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=500</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=8;i=500</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="8:RollConveyor" NodeId="ns=8;i=502">
+    <set:DisplayName>RollConveyor</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=500</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=8;i=500</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="8:ChainConveyor" NodeId="ns=8;i=503">
+    <set:DisplayName>ChainConveyor</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=500</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=8;i=500</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="8:PalletConveyor" NodeId="ns=8;i=504">
+    <set:DisplayName>PalletConveyor</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=500</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=8;i=500</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="8:OverheadConveyor" NodeId="ns=8;i=505">
+    <set:DisplayName>OverheadConveyor</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=500</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=8;i=500</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="8:LiftingTable" NodeId="ns=8;i=506">
+    <set:DisplayName>LiftingTable</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=440</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=478</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="8:AGV" NodeId="ns=8;i=507">
+    <set:DisplayName>AGV</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=440</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=478</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="8:Transposer" NodeId="ns=8;i=508">
+    <set:DisplayName>Transposer</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=440</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=478</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="8:CarrierHandlingSystem" NodeId="ns=8;i=509">
+    <set:DisplayName>CarrierHandlingSystem</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=440</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=478</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="8:BodyStore" NodeId="ns=8;i=510">
+    <set:DisplayName>BodyStore</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=440</set:Reference>
       <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=479</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:PLCFacet" NodeId="ns=8;i=489">
-    <set:DisplayName>PLCFacet</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=442</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=453</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:HMIFacet" NodeId="ns=8;i=490">
-    <set:DisplayName>HMIFacet</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=442</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=453</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:Enterprise" NodeId="ns=8;i=491">
-    <set:DisplayName>Enterprise</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=442</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=460</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:Site" NodeId="ns=8;i=492">
-    <set:DisplayName>Site</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=442</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=460</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:Area" NodeId="ns=8;i=493">
-    <set:DisplayName>Area</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=442</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=460</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:ProductionLine" NodeId="ns=8;i=494">
-    <set:DisplayName>ProductionLine</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=442</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=460</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:WorkCell" NodeId="ns=8;i=495">
-    <set:DisplayName>WorkCell</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=442</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=460</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:ProcessCell" NodeId="ns=8;i=496">
-    <set:DisplayName>ProcessCell</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=442</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=460</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:Unit" NodeId="ns=8;i=497">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=442</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=460</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:ProductionUnit" NodeId="ns=8;i=498">
-    <set:DisplayName>ProductionUnit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=442</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=460</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:StorageZone" NodeId="ns=8;i=499">
-    <set:DisplayName>StorageZone</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=442</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=460</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:StorageUnit" NodeId="ns=8;i=500">
-    <set:DisplayName>StorageUnit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=442</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=460</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:Turntable" NodeId="ns=8;i=501">
-    <set:DisplayName>Turntable</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=442</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=480</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:Conveyor" NodeId="ns=8;i=502">
-    <set:DisplayName>Conveyor</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=442</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=480</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:BeltConveyor" NodeId="ns=8;i=503">
-    <set:DisplayName>BeltConveyor</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=502</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=8;i=502</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:RollConveyor" NodeId="ns=8;i=504">
-    <set:DisplayName>RollConveyor</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=502</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=8;i=502</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:ChainConveyor" NodeId="ns=8;i=505">
-    <set:DisplayName>ChainConveyor</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=502</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=8;i=502</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:PalletConveyor" NodeId="ns=8;i=506">
-    <set:DisplayName>PalletConveyor</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=502</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=8;i=502</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:OverheadConveyor" NodeId="ns=8;i=507">
-    <set:DisplayName>OverheadConveyor</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=502</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=8;i=502</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:LiftingTable" NodeId="ns=8;i=508">
-    <set:DisplayName>LiftingTable</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=442</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=480</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:AGV" NodeId="ns=8;i=509">
-    <set:DisplayName>AGV</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=442</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=480</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:Transposer" NodeId="ns=8;i=510">
-    <set:DisplayName>Transposer</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=442</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=480</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:CarrierHandlingSystem" NodeId="ns=8;i=511">
-    <set:DisplayName>CarrierHandlingSystem</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=442</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=480</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:BodyStore" NodeId="ns=8;i=512">
-    <set:DisplayName>BodyStore</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=442</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=481</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:Lift" NodeId="ns=8;i=513">
+  <set:UAObjectType BrowseName="8:Lift" NodeId="ns=8;i=511">
     <set:DisplayName>Lift</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=442</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=480</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=440</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=478</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:Rollerbed" NodeId="ns=8;i=514">
+  <set:UAObjectType BrowseName="8:Rollerbed" NodeId="ns=8;i=512">
     <set:DisplayName>Rollerbed</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=442</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=480</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=440</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=478</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:StationaryTool" NodeId="ns=8;i=515">
+  <set:UAObjectType BrowseName="8:StationaryTool" NodeId="ns=8;i=513">
     <set:DisplayName>StationaryTool</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=442</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=485</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=440</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=483</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:MovableTool" NodeId="ns=8;i=516">
+  <set:UAObjectType BrowseName="8:MovableTool" NodeId="ns=8;i=514">
     <set:DisplayName>MovableTool</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=442</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=485</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=440</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=483</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:ControlCabinet" NodeId="ns=8;i=517">
+  <set:UAObjectType BrowseName="8:ControlCabinet" NodeId="ns=8;i=515">
     <set:DisplayName>ControlCabinet</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=442</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=465</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=440</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=463</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:IODevice" NodeId="ns=8;i=518">
+  <set:UAObjectType BrowseName="8:IODevice" NodeId="ns=8;i=516">
     <set:DisplayName>IODevice</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=442</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=465</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=440</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=463</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:HMI" NodeId="ns=8;i=519">
+  <set:UAObjectType BrowseName="8:HMI" NodeId="ns=8;i=517">
     <set:DisplayName>HMI</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=442</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=465</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=440</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=463</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:WarningEquipment" NodeId="ns=8;i=520">
+  <set:UAObjectType BrowseName="8:WarningEquipment" NodeId="ns=8;i=518">
     <set:DisplayName>WarningEquipment</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=519</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=8;i=519</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=517</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=8;i=517</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:ActuatingDrive" NodeId="ns=8;i=521">
+  <set:UAObjectType BrowseName="8:ActuatingDrive" NodeId="ns=8;i=519">
     <set:DisplayName>ActuatingDrive</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=442</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=440</set:Reference>
       <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=11;i=98</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="11:Actuator" NodeId="ns=11;i=98">
-    <set:DisplayName>Actuator</set:DisplayName>
+  <set:UAObjectType BrowseName="8:MotionController" NodeId="ns=8;i=520">
+    <set:DisplayName>MotionController</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=11;i=79</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=11;i=79</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=440</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=463</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="8:Panel" NodeId="ns=8;i=521">
+    <set:DisplayName>Panel</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=440</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=465</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="8:MeasuringEquipment" NodeId="ns=8;i=522">
+    <set:DisplayName>MeasuringEquipment</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=440</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=452</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="8:Clamp" NodeId="ns=8;i=523">
+    <set:DisplayName>Clamp</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=440</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=480</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="8:ProcessController" NodeId="ns=8;i=524">
+    <set:DisplayName>ProcessController</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=440</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=472</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="8:Loader" NodeId="ns=8;i=525">
+    <set:DisplayName>Loader</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=440</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=479</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="8:Unloader" NodeId="ns=8;i=526">
+    <set:DisplayName>Unloader</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=440</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=479</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="9:Location" NodeId="ns=9;i=527">
+    <set:DisplayName>Location</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=9;i=442</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=455</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="9:ShopfloorArea" NodeId="ns=9;i=528">
+    <set:DisplayName>ShopfloorArea</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=9;i=442</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=455</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="9:Assembly" NodeId="ns=9;i=529">
+    <set:DisplayName>Assembly</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=9;i=442</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=455</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="9:Component" NodeId="ns=9;i=530">
+    <set:DisplayName>Component</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=9;i=442</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=455</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="9:Station" NodeId="ns=9;i=531">
+    <set:DisplayName>Station</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=9;i=442</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=455</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="9:Line" NodeId="ns=9;i=532">
+    <set:DisplayName>Line</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=9;i=442</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=455</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="9:EmergencyStop" NodeId="ns=9;i=533">
+    <set:DisplayName>EmergencyStop</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=9;i=442</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=455</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="9:PLCArea" NodeId="ns=9;i=534">
+    <set:DisplayName>PLCArea</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=9;i=442</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=455</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="9:SafetyArea" NodeId="ns=9;i=535">
+    <set:DisplayName>SafetyArea</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=9;i=442</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=455</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="10:FoodAndBeverageEquipment" NodeId="ns=10;i=536">
+    <set:DisplayName>FoodAndBeverageEquipment</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=10;i=444</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=452</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="10:FillingMachine" NodeId="ns=10;i=537">
+    <set:DisplayName>FillingMachine</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=10;i=536</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=10;i=536</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="10:PackagingMachine" NodeId="ns=10;i=538">
+    <set:DisplayName>PackagingMachine</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=10;i=536</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=10;i=536</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="10:ClosingMachine" NodeId="ns=10;i=539">
+    <set:DisplayName>ClosingMachine</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=10;i=536</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=10;i=536</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="10:FoodAndBeverageProcesses" NodeId="ns=10;i=540">
+    <set:DisplayName>FoodAndBeverageProcesses</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=10;i=444</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=454</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="10:Fill" NodeId="ns=10;i=541">
+    <set:DisplayName>Fill</set:DisplayName>
+    <set:Description>Fill substance in an entity</set:Description>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=10;i=540</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=10;i=540</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="10:Package" NodeId="ns=10;i=542">
+    <set:DisplayName>Package</set:DisplayName>
+    <set:Description>Cluster primary packages in different packaging constellations</set:Description>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=10;i=540</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=10;i=540</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="10:Close" NodeId="ns=10;i=543">
+    <set:DisplayName>Close</set:DisplayName>
+    <set:Description>Close entity e.g. put lid on jar</set:Description>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=10;i=540</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=10;i=540</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="10:FoodAndBeverageProducts" NodeId="ns=10;i=544">
+    <set:DisplayName>FoodAndBeverageProducts</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=10;i=444</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=453</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="10:InfantFormula" NodeId="ns=10;i=545">
+    <set:DisplayName>InfantFormula</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=10;i=544</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=10;i=544</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="10:BabyFood" NodeId="ns=10;i=546">
+    <set:DisplayName>BabyFood</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=10;i=544</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=10;i=544</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="10:PrimaryPackage" NodeId="ns=10;i=547">
+    <set:DisplayName>PrimaryPackage</set:DisplayName>
+    <set:Description>beverage carton/tetrapack</set:Description>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=10;i=544</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=10;i=544</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="10:SecondaryPackage" NodeId="ns=10;i=548">
+    <set:DisplayName>SecondaryPackage</set:DisplayName>
+    <set:Description>6-pack</set:Description>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=10;i=544</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=10;i=544</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="10:Lid" NodeId="ns=10;i=549">
+    <set:DisplayName>Lid</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=10;i=544</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=10;i=544</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="10:Jar" NodeId="ns=10;i=550">
+    <set:DisplayName>Jar</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=10;i=544</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=10;i=544</set:Reference>
     </set:References>
   </set:UAObjectType>
   <set:UAObjectType BrowseName="11:PCERequest" NodeId="ns=11;i=79">
     <set:DisplayName>PCERequest</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=11;i=444</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=11;i=446</set:Reference>
       <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=450</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:MotionController" NodeId="ns=8;i=522">
-    <set:DisplayName>MotionController</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=442</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=465</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:Panel" NodeId="ns=8;i=523">
-    <set:DisplayName>Panel</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=442</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=467</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:MeasuringEquipment" NodeId="ns=8;i=524">
-    <set:DisplayName>MeasuringEquipment</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=442</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=454</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:Clamp" NodeId="ns=8;i=525">
-    <set:DisplayName>Clamp</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=442</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=482</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:ProcessController" NodeId="ns=8;i=526">
-    <set:DisplayName>ProcessController</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=442</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=474</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:Loader" NodeId="ns=8;i=527">
-    <set:DisplayName>Loader</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=442</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=481</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="8:Unloader" NodeId="ns=8;i=528">
-    <set:DisplayName>Unloader</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=442</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=7;i=481</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="9:Location" NodeId="ns=9;i=529">
-    <set:DisplayName>Location</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=9;i=446</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=457</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="9:ShopfloorArea" NodeId="ns=9;i=530">
-    <set:DisplayName>ShopfloorArea</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=9;i=446</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=457</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="9:Assembly" NodeId="ns=9;i=531">
-    <set:DisplayName>Assembly</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=9;i=446</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=457</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="9:Component" NodeId="ns=9;i=532">
-    <set:DisplayName>Component</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=9;i=446</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=457</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="9:Station" NodeId="ns=9;i=533">
-    <set:DisplayName>Station</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=9;i=446</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=457</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="9:Line" NodeId="ns=9;i=534">
-    <set:DisplayName>Line</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=9;i=446</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=457</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="9:EmergencyStop" NodeId="ns=9;i=535">
-    <set:DisplayName>EmergencyStop</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=9;i=446</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=457</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="9:PLCArea" NodeId="ns=9;i=536">
-    <set:DisplayName>PLCArea</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=9;i=446</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=457</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="9:SafetyArea" NodeId="ns=9;i=537">
-    <set:DisplayName>SafetyArea</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=9;i=446</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=457</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="10:FoodAndBeverageEquipment" NodeId="ns=10;i=538">
-    <set:DisplayName>FoodAndBeverageEquipment</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=10;i=448</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=454</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="10:FillingMachine" NodeId="ns=10;i=539">
-    <set:DisplayName>FillingMachine</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=10;i=538</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=10;i=538</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="10:PackagingMachine" NodeId="ns=10;i=540">
-    <set:DisplayName>PackagingMachine</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=10;i=538</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=10;i=538</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="10:ClosingMachine" NodeId="ns=10;i=541">
-    <set:DisplayName>ClosingMachine</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=10;i=538</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=10;i=538</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="10:FoodAndBeverageProcesses" NodeId="ns=10;i=542">
-    <set:DisplayName>FoodAndBeverageProcesses</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=10;i=448</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=456</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="10:Fill" NodeId="ns=10;i=543">
-    <set:DisplayName>Fill</set:DisplayName>
-    <set:Description>Fill substance in an entity</set:Description>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=10;i=542</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=10;i=542</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="10:Package" NodeId="ns=10;i=544">
-    <set:DisplayName>Package</set:DisplayName>
-    <set:Description>Cluster primary packages in different packaging constellations</set:Description>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=10;i=542</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=10;i=542</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="10:Close" NodeId="ns=10;i=545">
-    <set:DisplayName>Close</set:DisplayName>
-    <set:Description>Close entity e.g. put lid on jar</set:Description>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=10;i=542</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=10;i=542</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="10:FoodAndBeverageProducts" NodeId="ns=10;i=546">
-    <set:DisplayName>FoodAndBeverageProducts</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=10;i=448</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=455</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="10:InfantFormula" NodeId="ns=10;i=547">
-    <set:DisplayName>InfantFormula</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=10;i=546</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=10;i=546</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="10:BabyFood" NodeId="ns=10;i=548">
-    <set:DisplayName>BabyFood</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=10;i=546</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=10;i=546</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="10:PrimaryPackage" NodeId="ns=10;i=549">
-    <set:DisplayName>PrimaryPackage</set:DisplayName>
-    <set:Description>beverage carton/tetrapack</set:Description>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=10;i=546</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=10;i=546</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="10:SecondaryPackage" NodeId="ns=10;i=550">
-    <set:DisplayName>SecondaryPackage</set:DisplayName>
-    <set:Description>6-pack</set:Description>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=10;i=546</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=10;i=546</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="10:Lid" NodeId="ns=10;i=551">
-    <set:DisplayName>Lid</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=10;i=546</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=10;i=546</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="10:Jar" NodeId="ns=10;i=552">
-    <set:DisplayName>Jar</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=10;i=546</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=10;i=546</set:Reference>
     </set:References>
   </set:UAObjectType>
   <set:UAObjectType BrowseName="11:Sensor" NodeId="ns=11;i=95">
@@ -923,18 +832,25 @@
       <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=11;i=79</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="11:IfACapacitiveProximitySensor" NodeId="ns=11;i=553">
+  <set:UAObjectType BrowseName="11:IfACapacitiveProximitySensor" NodeId="ns=11;i=551">
     <set:DisplayName>IfACapacitiveProximitySensor</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="Organizes">ns=11;i=95</set:Reference>
       <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=11;i=95</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="11:IfAPressureSensor" NodeId="ns=11;i=554">
+  <set:UAObjectType BrowseName="11:IfAPressureSensor" NodeId="ns=11;i=552">
     <set:DisplayName>IfAPressureSensor</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="Organizes">ns=11;i=95</set:Reference>
       <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=11;i=95</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="11:Actuator" NodeId="ns=11;i=98">
+    <set:DisplayName>Actuator</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=11;i=79</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=11;i=79</set:Reference>
     </set:References>
   </set:UAObjectType>
   <set:UAObjectType BrowseName="11:ControlFunction" NodeId="ns=11;i=100">
@@ -942,6 +858,34 @@
     <set:References>
       <set:Reference IsForward="false" ReferenceType="Organizes">ns=11;i=79</set:Reference>
       <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=11;i=79</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="12:ProductChannel" NodeId="ns=12;i=102">
+    <set:DisplayName>ProductChannel</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=12;i=448</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=3;i=450</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="12:PPERequest" NodeId="ns=12;i=107">
+    <set:DisplayName>PPERequest</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=12;i=102</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=12;i=102</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="12:Pipe" NodeId="ns=12;i=109">
+    <set:DisplayName>Pipe</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=12;i=107</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=12;i=107</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="12:IfAPipe" NodeId="ns=12;i=553">
+    <set:DisplayName>IfAPipe</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=12;i=109</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=12;i=109</set:Reference>
     </set:References>
   </set:UAObjectType>
   <set:UAObjectType BrowseName="12:PipeDNAdapter" NodeId="ns=12;i=118">
@@ -958,43 +902,85 @@
       <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=12;i=107</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="12:IfABlankFlange" NodeId="ns=12;i=555">
+  <set:UAObjectType BrowseName="12:IfABlankFlange" NodeId="ns=12;i=554">
     <set:DisplayName>IfABlankFlange</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="Organizes">ns=12;i=126</set:Reference>
       <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=12;i=126</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="12:OpenFlange" NodeId="ns=12;i=556">
+  <set:UAObjectType BrowseName="12:OpenFlange" NodeId="ns=12;i=555">
     <set:DisplayName>OpenFlange</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="Organizes">ns=12;i=107</set:Reference>
       <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=12;i=107</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="12:IfAOpenFlange" NodeId="ns=12;i=557">
+  <set:UAObjectType BrowseName="12:IfAOpenFlange" NodeId="ns=12;i=556">
     <set:DisplayName>IfAOpenFlange</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=12;i=556</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=12;i=556</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=12;i=555</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=12;i=555</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="12:PipeJunction" NodeId="ns=12;i=558">
+  <set:UAObjectType BrowseName="12:PipeJunction" NodeId="ns=12;i=557">
     <set:DisplayName>PipeJunction</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="Organizes">ns=12;i=107</set:Reference>
       <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=12;i=107</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="12:IfAPipeJunction" NodeId="ns=12;i=559">
+  <set:UAObjectType BrowseName="12:IfAPipeJunction" NodeId="ns=12;i=558">
     <set:DisplayName>IfAPipeJunction</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=12;i=558</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=12;i=558</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=12;i=557</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=12;i=557</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="12:Vessel" NodeId="ns=12;i=146">
+    <set:DisplayName>Vessel</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=12;i=107</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=12;i=107</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="12:LVessel" NodeId="ns=12;i=148">
+    <set:DisplayName>LVessel</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=12;i=146</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=12;i=146</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="12:TemperatedLVessel" NodeId="ns=12;i=559">
+    <set:DisplayName>TemperatedLVessel</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=12;i=148</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=12;i=148</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="12:IfATemperedFluidVessel" NodeId="ns=12;i=159">
+    <set:DisplayName>IfATemperedFluidVessel</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=12;i=559</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=12;i=559</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="12:IfAFluidVessel" NodeId="ns=12;i=170">
+    <set:DisplayName>IfAFluidVessel</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=12;i=148</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=12;i=148</set:Reference>
     </set:References>
   </set:UAObjectType>
   <set:UAObjectType BrowseName="12:HeatExchanger" NodeId="ns=12;i=181">
     <set:DisplayName>HeatExchanger</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=12;i=107</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=12;i=107</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="12:Pump" NodeId="ns=12;i=195">
+    <set:DisplayName>Pump</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="Organizes">ns=12;i=107</set:Reference>
       <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=12;i=107</set:Reference>
@@ -1005,6 +991,20 @@
     <set:References>
       <set:Reference IsForward="false" ReferenceType="Organizes">ns=12;i=195</set:Reference>
       <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=12;i=195</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="12:RotaryPump" NodeId="ns=12;i=207">
+    <set:DisplayName>RotaryPump</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=12;i=195</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=12;i=195</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="12:IfARotatoryPump" NodeId="ns=12;i=213">
+    <set:DisplayName>IfARotatoryPump</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=12;i=207</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=12;i=207</set:Reference>
     </set:References>
   </set:UAObjectType>
   <set:UAObjectType BrowseName="12:Valve" NodeId="ns=12;i=218">
@@ -1070,73 +1070,45 @@
       <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=12;i=107</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="14:ProductConnectionPoint" NodeId="ns=14;i=568">
-    <set:DisplayName>ProductConnectionPoint</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=14;i=65</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=14;i=65</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="14:ProductInterface" NodeId="ns=14;i=65">
-    <set:DisplayName>ProductInterface</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=14;i=566</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=13;i=569</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="13:AutomationMLBaseInterface" NodeId="ns=13;i=569">
+  <set:UAObjectType BrowseName="13:AutomationMLBaseInterface" NodeId="ns=13;i=568">
     <set:DisplayName>AutomationMLBaseInterface</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="Organizes">ns=13;i=564</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="14:ActuationInputPoint" NodeId="ns=14;i=570">
-    <set:DisplayName>ActuationInputPoint</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=14;i=571</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=14;i=571</set:Reference>
-    </set:References>
-  </set:UAObjectType>
-  <set:UAObjectType BrowseName="14:ProcessControlInterface" NodeId="ns=14;i=571">
-    <set:DisplayName>ProcessControlInterface</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=14;i=566</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=13;i=569</set:Reference>
-    </set:References>
-  </set:UAObjectType>
   <set:UAObjectType BrowseName="13:Order" NodeId="ns=13;i=56">
     <set:DisplayName>Order</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=13;i=569</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=13;i=569</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=13;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=13;i=568</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="13:PortConnector" NodeId="ns=13;i=572">
+  <set:UAObjectType BrowseName="13:PortConnector" NodeId="ns=13;i=569">
     <set:DisplayName>PortConnector</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=13;i=569</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=13;i=569</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=13;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=13;i=568</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="13:InterlockingConnector" NodeId="ns=13;i=573">
+  <set:UAObjectType BrowseName="13:InterlockingConnector" NodeId="ns=13;i=570">
     <set:DisplayName>InterlockingConnector</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=13;i=569</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=13;i=569</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=13;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=13;i=568</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="13:PPRConnector" NodeId="ns=13;i=574">
+  <set:UAObjectType BrowseName="13:PPRConnector" NodeId="ns=13;i=571">
     <set:DisplayName>PPRConnector</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=13;i=569</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=13;i=569</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=13;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=13;i=568</set:Reference>
     </set:References>
   </set:UAObjectType>
   <set:UAObjectType BrowseName="13:ExternalDataConnector" NodeId="ns=13;i=58">
     <set:DisplayName>ExternalDataConnector</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=13;i=569</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=13;i=569</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=13;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=13;i=568</set:Reference>
     </set:References>
   </set:UAObjectType>
   <set:UAObjectType BrowseName="13:COLLADAInterface" NodeId="ns=13;i=60">
@@ -1146,53 +1118,81 @@
       <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=13;i=58</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="13:PLCopenXMLInterface" NodeId="ns=13;i=575">
+  <set:UAObjectType BrowseName="13:PLCopenXMLInterface" NodeId="ns=13;i=572">
     <set:DisplayName>PLCopenXMLInterface</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="Organizes">ns=13;i=58</set:Reference>
       <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=13;i=58</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="13:Communication" NodeId="ns=13;i=576">
+  <set:UAObjectType BrowseName="13:Communication" NodeId="ns=13;i=573">
     <set:DisplayName>Communication</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=13;i=569</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=13;i=569</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=13;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=13;i=568</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="13:SignalInterface" NodeId="ns=13;i=577">
+  <set:UAObjectType BrowseName="13:SignalInterface" NodeId="ns=13;i=574">
     <set:DisplayName>SignalInterface</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=13;i=576</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=13;i=576</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=13;i=573</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=13;i=573</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="13:AttachmentInterface" NodeId="ns=13;i=578">
+  <set:UAObjectType BrowseName="13:AttachmentInterface" NodeId="ns=13;i=575">
     <set:DisplayName>AttachmentInterface</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=13;i=569</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=13;i=569</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=13;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=13;i=568</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="14:SensorProcessInterface" NodeId="ns=14;i=579">
+  <set:UAObjectType BrowseName="14:ProcessControlInterface" NodeId="ns=14;i=576">
+    <set:DisplayName>ProcessControlInterface</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=14;i=566</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=13;i=568</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="14:SensorProcessInterface" NodeId="ns=14;i=577">
     <set:DisplayName>SensorProcessInterface</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=14;i=571</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=14;i=571</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=14;i=576</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=14;i=576</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="14:ActuatorProcessInterface" NodeId="ns=14;i=580">
+  <set:UAObjectType BrowseName="14:ActuatorProcessInterface" NodeId="ns=14;i=578">
     <set:DisplayName>ActuatorProcessInterface</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=14;i=571</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=14;i=571</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=14;i=576</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=14;i=576</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="14:ActuationInputPoint" NodeId="ns=14;i=579">
+    <set:DisplayName>ActuationInputPoint</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=14;i=576</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=14;i=576</set:Reference>
     </set:References>
   </set:UAObjectType>
   <set:UAObjectType BrowseName="14:MeasurementPoint" NodeId="ns=14;i=63">
     <set:DisplayName>MeasurementPoint</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=14;i=571</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=14;i=571</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=14;i=576</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=14;i=576</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="14:ProductInterface" NodeId="ns=14;i=65">
+    <set:DisplayName>ProductInterface</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=14;i=566</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=13;i=568</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="14:ProductConnectionPoint" NodeId="ns=14;i=580">
+    <set:DisplayName>ProductConnectionPoint</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=14;i=65</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=14;i=65</set:Reference>
     </set:References>
   </set:UAObjectType>
   <set:UAObjectType BrowseName="14:ProductEnvironmentPoint" NodeId="ns=14;i=581">
@@ -1206,7 +1206,7 @@
     <set:DisplayName>SignalInterface</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="Organizes">ns=14;i=566</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=13;i=569</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=13;i=568</set:Reference>
     </set:References>
   </set:UAObjectType>
   <set:UAObjectType BrowseName="14:SignalSource" NodeId="ns=14;i=583">
@@ -1323,7 +1323,7 @@
     <set:DisplayName>Pipe_03</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=404</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="ns=1;i=4001">ns=12;i=452</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="ns=1;i=4001">ns=12;i=553</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="15:IfAStirer" NodeId="ns=15;i=413">
@@ -1345,7 +1345,7 @@
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=286</set:Reference>
       <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">ns=15;i=395</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="ns=1;i=4001">ns=11;i=553</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="ns=1;i=4001">ns=11;i=551</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="15:IfACapacitiveProximitySensor_LIAL" NodeId="ns=15;i=311">
@@ -1353,7 +1353,7 @@
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=286</set:Reference>
       <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">ns=15;i=395</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="ns=1;i=4001">ns=11;i=553</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="ns=1;i=4001">ns=11;i=551</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="15:IfAPressureSensor_LIC" NodeId="ns=15;i=315">
@@ -1361,7 +1361,7 @@
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=286</set:Reference>
       <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">ns=15;i=399</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="ns=1;i=4001">ns=11;i=554</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="ns=1;i=4001">ns=11;i=552</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="15:Vessel_B1" NodeId="ns=15;i=348">
@@ -1400,7 +1400,7 @@
     <set:DisplayName>Pipe_03</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=405</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="ns=1;i=4001">ns=12;i=452</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="ns=1;i=4001">ns=12;i=553</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="15:IfAPandIX" NodeId="ns=15;i=425">
@@ -1420,15 +1420,7 @@
       <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">FolderType</set:Reference>
     </set:References>
   </set:UAObject>
-  <set:UAObject BrowseName="12:UserDefinedRoleClassLibPandix" NodeId="ns=12;i=432">
-    <set:DisplayName>UserDefinedRoleClassLibPandix</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=1;i=5005</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=2;i=4</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">FolderType</set:Reference>
-    </set:References>
-  </set:UAObject>
-  <set:UAObject BrowseName="4:AutomationMLBMIRoleClassLib" NodeId="ns=4;i=434">
+  <set:UAObject BrowseName="4:AutomationMLBMIRoleClassLib" NodeId="ns=4;i=432">
     <set:DisplayName>AutomationMLBMIRoleClassLib</set:DisplayName>
     <set:Description>Automation Markup Language Batch Manufacturing Industry Role Class Library</set:Description>
     <set:References>
@@ -1437,7 +1429,7 @@
       <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">FolderType</set:Reference>
     </set:References>
   </set:UAObject>
-  <set:UAObject BrowseName="5:AutomationMLCMIRoleClassLib" NodeId="ns=5;i=436">
+  <set:UAObject BrowseName="5:AutomationMLCMIRoleClassLib" NodeId="ns=5;i=434">
     <set:DisplayName>AutomationMLCMIRoleClassLib</set:DisplayName>
     <set:Description>Automation Markup Language Continuous Manufacturing Industry Role Class Library</set:Description>
     <set:References>
@@ -1446,7 +1438,7 @@
       <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">FolderType</set:Reference>
     </set:References>
   </set:UAObject>
-  <set:UAObject BrowseName="6:AutomationMLCSRoleClassLib" NodeId="ns=6;i=438">
+  <set:UAObject BrowseName="6:AutomationMLCSRoleClassLib" NodeId="ns=6;i=436">
     <set:DisplayName>AutomationMLCSRoleClassLib</set:DisplayName>
     <set:Description>Automation Markup Language Control Industry Role Class Library</set:Description>
     <set:References>
@@ -1455,7 +1447,7 @@
       <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">FolderType</set:Reference>
     </set:References>
   </set:UAObject>
-  <set:UAObject BrowseName="7:AutomationMLDMIRoleClassLib" NodeId="ns=7;i=440">
+  <set:UAObject BrowseName="7:AutomationMLDMIRoleClassLib" NodeId="ns=7;i=438">
     <set:DisplayName>AutomationMLDMIRoleClassLib</set:DisplayName>
     <set:Description>Automation Markup Language  Discrete Manufacturing Industry Role Class Library</set:Description>
     <set:References>
@@ -1464,7 +1456,7 @@
       <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">FolderType</set:Reference>
     </set:References>
   </set:UAObject>
-  <set:UAObject BrowseName="8:AutomationMLExtendedRoleClassLib" NodeId="ns=8;i=442">
+  <set:UAObject BrowseName="8:AutomationMLExtendedRoleClassLib" NodeId="ns=8;i=440">
     <set:DisplayName>AutomationMLExtendedRoleClassLib</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="Organizes">ns=1;i=5005</set:Reference>
@@ -1472,7 +1464,23 @@
       <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">FolderType</set:Reference>
     </set:References>
   </set:UAObject>
-  <set:UAObject BrowseName="11:UserDefinedRoleClassLibPandixPCE" NodeId="ns=11;i=444">
+  <set:UAObject BrowseName="9:UserDefinedRoleClassLibCompanySpecificStructure" NodeId="ns=9;i=442">
+    <set:DisplayName>UserDefinedRoleClassLibCompanySpecificStructure</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=1;i=5005</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=2;i=4</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">FolderType</set:Reference>
+    </set:References>
+  </set:UAObject>
+  <set:UAObject BrowseName="10:UserDefinedRoleClassLibFoodAndBeverage" NodeId="ns=10;i=444">
+    <set:DisplayName>UserDefinedRoleClassLibFoodAndBeverage</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=1;i=5005</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=2;i=4</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">FolderType</set:Reference>
+    </set:References>
+  </set:UAObject>
+  <set:UAObject BrowseName="11:UserDefinedRoleClassLibPandixPCE" NodeId="ns=11;i=446">
     <set:DisplayName>UserDefinedRoleClassLibPandixPCE</set:DisplayName>
     <set:Description>AutomationML Process Industry Role Class Library PandIX PCE</set:Description>
     <set:References>
@@ -1481,16 +1489,8 @@
       <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">FolderType</set:Reference>
     </set:References>
   </set:UAObject>
-  <set:UAObject BrowseName="9:UserDefinedRoleClassLibCompanySpecificStructure" NodeId="ns=9;i=446">
-    <set:DisplayName>UserDefinedRoleClassLibCompanySpecificStructure</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=1;i=5005</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=2;i=4</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">FolderType</set:Reference>
-    </set:References>
-  </set:UAObject>
-  <set:UAObject BrowseName="10:UserDefinedRoleClassLibFoodAndBeverage" NodeId="ns=10;i=448">
-    <set:DisplayName>UserDefinedRoleClassLibFoodAndBeverage</set:DisplayName>
+  <set:UAObject BrowseName="12:UserDefinedRoleClassLibPandix" NodeId="ns=12;i=448">
+    <set:DisplayName>UserDefinedRoleClassLibPandix</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="Organizes">ns=1;i=5005</set:Reference>
       <set:Reference IsForward="false" ReferenceType="Organizes">ns=2;i=4</set:Reference>
@@ -1519,14 +1519,14 @@
     <set:DisplayName>PIn</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=21</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="2:POut" NodeId="ns=2;i=588" ParentNodeId="ns=2;i=21">
     <set:DisplayName>POut</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=21</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
       <set:Reference IsForward="true" ReferenceType="ns=1;i=4003">ns=2;i=596</set:Reference>
     </set:References>
   </set:UAObject>
@@ -1534,35 +1534,35 @@
     <set:DisplayName>PIn</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=49</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="2:POut" NodeId="ns=2;i=592" ParentNodeId="ns=2;i=49">
     <set:DisplayName>POut</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=49</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="2:N" NodeId="ns=2;i=594" ParentNodeId="ns=2;i=49">
     <set:DisplayName>N</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=49</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=570</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=579</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="2:PIn" NodeId="ns=2;i=596" ParentNodeId="ns=2;i=411">
     <set:DisplayName>PIn</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=411</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="2:POut" NodeId="ns=2;i=598" ParentNodeId="ns=2;i=411">
     <set:DisplayName>POut</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=411</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
       <set:Reference IsForward="true" ReferenceType="ns=1;i=4003">ns=2;i=590</set:Reference>
     </set:References>
   </set:UAObject>
@@ -1570,14 +1570,14 @@
     <set:DisplayName>PIn</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=267</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="15:POut" NodeId="ns=15;i=602" ParentNodeId="ns=15;i=267">
     <set:DisplayName>POut</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=267</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="15:LL" NodeId="ns=15;i=280" ParentNodeId="ns=15;i=267">
@@ -1605,14 +1605,14 @@
     <set:DisplayName>PIn</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=286</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="15:POut" NodeId="ns=15;i=609" ParentNodeId="ns=15;i=286">
     <set:DisplayName>POut</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=286</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="15:L" NodeId="ns=15;i=297" ParentNodeId="ns=15;i=286">
@@ -1643,14 +1643,14 @@
     <set:DisplayName>Y-WH</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=303</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=570</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=579</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="15:Y-BK" NodeId="ns=15;i=616" ParentNodeId="ns=15;i=303">
     <set:DisplayName>Y-BK</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=303</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=570</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=579</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="15:VAL" NodeId="ns=15;i=618" ParentNodeId="ns=15;i=307">
@@ -1664,7 +1664,7 @@
     <set:DisplayName>ProcessInterface</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=307</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=579</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=577</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="15:VAL" NodeId="ns=15;i=622" ParentNodeId="ns=15;i=311">
@@ -1678,7 +1678,7 @@
     <set:DisplayName>ProcessInterface</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=311</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=579</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=577</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="15:VAL" NodeId="ns=15;i=626" ParentNodeId="ns=15;i=315">
@@ -1692,77 +1692,77 @@
     <set:DisplayName>ProcessInterface</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=315</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=579</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=577</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="15:PIn" NodeId="ns=15;i=326" ParentNodeId="ns=15;i=319">
     <set:DisplayName>PIn</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=319</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="15:POut" NodeId="ns=15;i=329" ParentNodeId="ns=15;i=319">
     <set:DisplayName>POut</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=319</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="15:N" NodeId="ns=15;i=632" ParentNodeId="ns=15;i=319">
     <set:DisplayName>N</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=319</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=570</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=579</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="15:PIn" NodeId="ns=15;i=332" ParentNodeId="ns=15;i=428">
     <set:DisplayName>PIn</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=428</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="15:POut" NodeId="ns=15;i=335" ParentNodeId="ns=15;i=428">
     <set:DisplayName>POut</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=428</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="15:PIn" NodeId="ns=15;i=342" ParentNodeId="ns=15;i=338">
     <set:DisplayName>PIn</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=338</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="15:POut" NodeId="ns=15;i=345" ParentNodeId="ns=15;i=338">
     <set:DisplayName>POut</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=338</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="15:Y" NodeId="ns=15;i=638" ParentNodeId="ns=15;i=338">
     <set:DisplayName>Y</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=338</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=570</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=579</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="15:PIn" NodeId="ns=15;i=640" ParentNodeId="ns=15;i=348">
     <set:DisplayName>PIn</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=348</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="15:POut" NodeId="ns=15;i=642" ParentNodeId="ns=15;i=348">
     <set:DisplayName>POut</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=348</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
       <set:Reference IsForward="true" ReferenceType="ns=1;i=4003">ns=15;i=650</set:Reference>
     </set:References>
   </set:UAObject>
@@ -1770,35 +1770,35 @@
     <set:DisplayName>PIn</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=376</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="15:POut" NodeId="ns=15;i=646" ParentNodeId="ns=15;i=376">
     <set:DisplayName>POut</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=376</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="15:N" NodeId="ns=15;i=648" ParentNodeId="ns=15;i=376">
     <set:DisplayName>N</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=376</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=570</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=579</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="15:PIn" NodeId="ns=15;i=650" ParentNodeId="ns=15;i=423">
     <set:DisplayName>PIn</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=423</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="15:POut" NodeId="ns=15;i=652" ParentNodeId="ns=15;i=423">
     <set:DisplayName>POut</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=423</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
       <set:Reference IsForward="true" ReferenceType="ns=1;i=4003">ns=15;i=644</set:Reference>
     </set:References>
   </set:UAObject>
@@ -1806,35 +1806,35 @@
     <set:DisplayName>PIn</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=383</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="15:POut" NodeId="ns=15;i=388" ParentNodeId="ns=15;i=383">
     <set:DisplayName>POut</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=383</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="15:Y-WH" NodeId="ns=15;i=656" ParentNodeId="ns=15;i=391">
     <set:DisplayName>Y-WH</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=391</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=570</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=579</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="15:Y-BK" NodeId="ns=15;i=658" ParentNodeId="ns=15;i=391">
     <set:DisplayName>Y-BK</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=391</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=570</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=579</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="15:Y" NodeId="ns=15;i=660" ParentNodeId="ns=15;i=429">
     <set:DisplayName>Y</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=429</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=570</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=579</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="15:VAL" NodeId="ns=15;i=662" ParentNodeId="ns=15;i=395">
@@ -1848,7 +1848,7 @@
     <set:DisplayName>ProcessInterface</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=395</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=579</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=577</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="15:VAL" NodeId="ns=15;i=666" ParentNodeId="ns=15;i=399">
@@ -1862,14 +1862,14 @@
     <set:DisplayName>ProcessInterface</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=399</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=579</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=577</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="3:ConnectionPoint" NodeId="ns=3;i=670" ParentNodeId="ns=3;i=73">
     <set:DisplayName>ConnectionPoint</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=3;i=73</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=13;i=572</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=13;i=569</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="11:HHH" NodeId="ns=11;i=672" ParentNodeId="ns=11;i=79">
@@ -1877,7 +1877,7 @@
     <set:Description>Signal for High Alarm 3</set:Description>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=11;i=79</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=582</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=13;i=574</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="11:HH" NodeId="ns=11;i=673" ParentNodeId="ns=11;i=79">
@@ -1885,7 +1885,7 @@
     <set:Description>Signal for High Alarm 2</set:Description>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=11;i=79</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=582</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=13;i=574</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="11:H" NodeId="ns=11;i=674" ParentNodeId="ns=11;i=79">
@@ -1893,7 +1893,7 @@
     <set:Description>Signal for High Alarm 1</set:Description>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=11;i=79</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=582</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=13;i=574</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="11:L" NodeId="ns=11;i=675" ParentNodeId="ns=11;i=79">
@@ -1901,7 +1901,7 @@
     <set:Description>Signal for Low Alarm 1</set:Description>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=11;i=79</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=582</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=13;i=574</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="11:LL" NodeId="ns=11;i=676" ParentNodeId="ns=11;i=79">
@@ -1909,7 +1909,7 @@
     <set:Description>Signal for Low Alarm 2</set:Description>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=11;i=79</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=582</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=13;i=574</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="11:LLL" NodeId="ns=11;i=677" ParentNodeId="ns=11;i=79">
@@ -1917,7 +1917,7 @@
     <set:Description>Signal for Low Alarm 3</set:Description>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=11;i=79</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=582</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=13;i=574</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="11:VAL" NodeId="ns=11;i=678" ParentNodeId="ns=11;i=95">
@@ -1931,7 +1931,7 @@
     <set:DisplayName>ProcessInterface</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=11;i=95</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=579</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=577</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="11:W" NodeId="ns=11;i=680" ParentNodeId="ns=11;i=98">
@@ -1959,7 +1959,7 @@
     <set:DisplayName>ProcessInterface</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=11;i=98</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=578</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="11:W" NodeId="ns=11;i=684" ParentNodeId="ns=11;i=100">
@@ -2001,98 +2001,98 @@
     <set:DisplayName>PIn</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=109</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="12:POut" NodeId="ns=12;i=115" ParentNodeId="ns=12;i=109">
     <set:DisplayName>POut</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=109</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="12:PIn" NodeId="ns=12;i=120" ParentNodeId="ns=12;i=118">
     <set:DisplayName>PIn</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=118</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="12:POut" NodeId="ns=12;i=123" ParentNodeId="ns=12;i=118">
     <set:DisplayName>POut</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=118</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="12:P1" NodeId="ns=12;i=128" ParentNodeId="ns=12;i=126">
     <set:DisplayName>P1</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=126</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
-  <set:UAObject BrowseName="12:P1" NodeId="ns=12;i=131" ParentNodeId="ns=12;i=556">
+  <set:UAObject BrowseName="12:P1" NodeId="ns=12;i=131" ParentNodeId="ns=12;i=555">
     <set:DisplayName>P1</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=556</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=555</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
-  <set:UAObject BrowseName="12:PEn" NodeId="ns=12;i=134" ParentNodeId="ns=12;i=556">
+  <set:UAObject BrowseName="12:PEn" NodeId="ns=12;i=134" ParentNodeId="ns=12;i=555">
     <set:DisplayName>PEn</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=556</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=555</set:Reference>
       <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=581</set:Reference>
     </set:References>
   </set:UAObject>
-  <set:UAObject BrowseName="12:P1" NodeId="ns=12;i=137" ParentNodeId="ns=12;i=558">
+  <set:UAObject BrowseName="12:P1" NodeId="ns=12;i=137" ParentNodeId="ns=12;i=557">
     <set:DisplayName>P1</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=558</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=557</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
-  <set:UAObject BrowseName="12:P2" NodeId="ns=12;i=140" ParentNodeId="ns=12;i=558">
+  <set:UAObject BrowseName="12:P2" NodeId="ns=12;i=140" ParentNodeId="ns=12;i=557">
     <set:DisplayName>P2</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=558</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=557</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
-  <set:UAObject BrowseName="12:P3" NodeId="ns=12;i=143" ParentNodeId="ns=12;i=558">
+  <set:UAObject BrowseName="12:P3" NodeId="ns=12;i=143" ParentNodeId="ns=12;i=557">
     <set:DisplayName>P3</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=558</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=557</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
-  <set:UAObject BrowseName="12:PTempIn" NodeId="ns=12;i=153" ParentNodeId="ns=12;i=451">
+  <set:UAObject BrowseName="12:PTempIn" NodeId="ns=12;i=153" ParentNodeId="ns=12;i=559">
     <set:DisplayName>PTempIn</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=451</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=559</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
-  <set:UAObject BrowseName="12:PTempOut" NodeId="ns=12;i=156" ParentNodeId="ns=12;i=451">
+  <set:UAObject BrowseName="12:PTempOut" NodeId="ns=12;i=156" ParentNodeId="ns=12;i=559">
     <set:DisplayName>PTempOut</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=451</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=559</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="12:PIn" NodeId="ns=12;i=689" ParentNodeId="ns=12;i=159">
     <set:DisplayName>PIn</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=159</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="12:POut" NodeId="ns=12;i=691" ParentNodeId="ns=12;i=159">
     <set:DisplayName>POut</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=159</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="12:LH" NodeId="ns=12;i=164" ParentNodeId="ns=12;i=159">
@@ -2120,14 +2120,14 @@
     <set:DisplayName>PIn</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=170</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="12:POut" NodeId="ns=12;i=698" ParentNodeId="ns=12;i=170">
     <set:DisplayName>POut</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=170</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="12:LL" NodeId="ns=12;i=175" ParentNodeId="ns=12;i=170">
@@ -2155,133 +2155,133 @@
     <set:DisplayName>PIn</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=181</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="12:POut" NodeId="ns=12;i=186" ParentNodeId="ns=12;i=181">
     <set:DisplayName>POut</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=181</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="12:PTempIn" NodeId="ns=12;i=189" ParentNodeId="ns=12;i=181">
     <set:DisplayName>PTempIn</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=181</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="12:PTempOut" NodeId="ns=12;i=192" ParentNodeId="ns=12;i=181">
     <set:DisplayName>PTempOut</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=181</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="12:PIn" NodeId="ns=12;i=198" ParentNodeId="ns=12;i=195">
     <set:DisplayName>PIn</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=195</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="12:POut" NodeId="ns=12;i=201" ParentNodeId="ns=12;i=195">
     <set:DisplayName>POut</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=195</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="12:N" NodeId="ns=12;i=703" ParentNodeId="ns=12;i=195">
     <set:DisplayName>N</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=195</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=570</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=579</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="12:PIn" NodeId="ns=12;i=223" ParentNodeId="ns=12;i=218">
     <set:DisplayName>PIn</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=218</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="12:POut" NodeId="ns=12;i=226" ParentNodeId="ns=12;i=218">
     <set:DisplayName>POut</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=218</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="12:Y" NodeId="ns=12;i=704" ParentNodeId="ns=12;i=218">
     <set:DisplayName>Y</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=218</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=570</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=579</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="12:PIn" NodeId="ns=12;i=232" ParentNodeId="ns=12;i=229">
     <set:DisplayName>PIn</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=229</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="12:POut1" NodeId="ns=12;i=235" ParentNodeId="ns=12;i=229">
     <set:DisplayName>POut1</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=229</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="12:POut2" NodeId="ns=12;i=238" ParentNodeId="ns=12;i=229">
     <set:DisplayName>POut2</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=229</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="12:Y" NodeId="ns=12;i=705" ParentNodeId="ns=12;i=229">
     <set:DisplayName>Y</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=229</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=570</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=579</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="12:PIn" NodeId="ns=12;i=243" ParentNodeId="ns=12;i=241">
     <set:DisplayName>PIn</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=241</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="12:POut" NodeId="ns=12;i=246" ParentNodeId="ns=12;i=241">
     <set:DisplayName>POut</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=241</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="12:PIn" NodeId="ns=12;i=252" ParentNodeId="ns=12;i=249">
     <set:DisplayName>PIn</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=249</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="12:POut" NodeId="ns=12;i=255" ParentNodeId="ns=12;i=249">
     <set:DisplayName>POut</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=249</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="12:PIn" NodeId="ns=12;i=261" ParentNodeId="ns=12;i=258">
     <set:DisplayName>PIn</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=258</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=568</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=580</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="12:POut" NodeId="ns=12;i=264" ParentNodeId="ns=12;i=258">
@@ -2295,21 +2295,21 @@
     <set:DisplayName>Y-WH</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=562</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=570</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=579</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="12:Y-BK" NodeId="ns=12;i=708" ParentNodeId="ns=12;i=562">
     <set:DisplayName>Y-BK</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=562</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=570</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=579</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAObject BrowseName="12:Y" NodeId="ns=12;i=710" ParentNodeId="ns=12;i=563">
     <set:DisplayName>Y</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=563</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=570</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=14;i=579</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAVariable BrowseName="SchemaVersion" NodeId="ns=2;i=12" ParentNodeId="ns=2;i=11"
@@ -5752,24 +5752,11 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
-  <set:UAVariable BrowseName="12:Version" NodeId="ns=12;i=433" ParentNodeId="ns=12;i=432"
+  <set:UAVariable BrowseName="4:Version" NodeId="ns=4;i=433" ParentNodeId="ns=4;i=432"
       DataType="String">
     <set:DisplayName>Version</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=12;i=432</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>1.0.2</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="4:Version" NodeId="ns=4;i=435" ParentNodeId="ns=4;i=434"
-      DataType="String">
-    <set:DisplayName>Version</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=4;i=434</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=4;i=432</set:Reference>
       <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
     </set:References>
     <set:Value>
@@ -5778,11 +5765,11 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
-  <set:UAVariable BrowseName="5:Version" NodeId="ns=5;i=437" ParentNodeId="ns=5;i=436"
+  <set:UAVariable BrowseName="5:Version" NodeId="ns=5;i=435" ParentNodeId="ns=5;i=434"
       DataType="String">
     <set:DisplayName>Version</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=5;i=436</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=5;i=434</set:Reference>
       <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
     </set:References>
     <set:Value>
@@ -5791,11 +5778,11 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
-  <set:UAVariable BrowseName="6:Version" NodeId="ns=6;i=439" ParentNodeId="ns=6;i=438"
+  <set:UAVariable BrowseName="6:Version" NodeId="ns=6;i=437" ParentNodeId="ns=6;i=436"
       DataType="String">
     <set:DisplayName>Version</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=6;i=438</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=6;i=436</set:Reference>
       <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
     </set:References>
     <set:Value>
@@ -5804,11 +5791,11 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
-  <set:UAVariable BrowseName="7:Version" NodeId="ns=7;i=441" ParentNodeId="ns=7;i=440"
+  <set:UAVariable BrowseName="7:Version" NodeId="ns=7;i=439" ParentNodeId="ns=7;i=438"
       DataType="String">
     <set:DisplayName>Version</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=7;i=440</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=7;i=438</set:Reference>
       <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
     </set:References>
     <set:Value>
@@ -5817,11 +5804,11 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
-  <set:UAVariable BrowseName="8:Version" NodeId="ns=8;i=443" ParentNodeId="ns=8;i=442"
+  <set:UAVariable BrowseName="8:Version" NodeId="ns=8;i=441" ParentNodeId="ns=8;i=440"
       DataType="String">
     <set:DisplayName>Version</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=8;i=442</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=8;i=440</set:Reference>
       <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
     </set:References>
     <set:Value>
@@ -5830,24 +5817,11 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
-  <set:UAVariable BrowseName="11:Version" NodeId="ns=11;i=445" ParentNodeId="ns=11;i=444"
+  <set:UAVariable BrowseName="9:Version" NodeId="ns=9;i=443" ParentNodeId="ns=9;i=442"
       DataType="String">
     <set:DisplayName>Version</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=11;i=444</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>1.1.1</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="9:Version" NodeId="ns=9;i=447" ParentNodeId="ns=9;i=446"
-      DataType="String">
-    <set:DisplayName>Version</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=9;i=446</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=9;i=442</set:Reference>
       <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
     </set:References>
     <set:Value>
@@ -5856,16 +5830,42 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
-  <set:UAVariable BrowseName="10:Version" NodeId="ns=10;i=449" ParentNodeId="ns=10;i=448"
+  <set:UAVariable BrowseName="10:Version" NodeId="ns=10;i=445" ParentNodeId="ns=10;i=444"
       DataType="String">
     <set:DisplayName>Version</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=10;i=448</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=10;i=444</set:Reference>
       <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
     </set:References>
     <set:Value>
       <types:ListOfString>
         <types:String>2.0.0</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
+  <set:UAVariable BrowseName="11:Version" NodeId="ns=11;i=447" ParentNodeId="ns=11;i=446"
+      DataType="String">
+    <set:DisplayName>Version</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=11;i=446</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>1.1.1</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
+  <set:UAVariable BrowseName="12:Version" NodeId="ns=12;i=449" ParentNodeId="ns=12;i=448"
+      DataType="String">
+    <set:DisplayName>Version</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=12;i=448</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>1.0.2</types:String>
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>

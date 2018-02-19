@@ -15,43 +15,43 @@
     <edge xsi:type="uml:ObjectFlow" name="Grenzwert" target="//Messen%20und%20Auswerten%20einer%20Temperatur/teste%20auf%20GW/teste%20auf%20GW_inputPin_Grenzwert" source="//Messen%20und%20Auswerten%20einer%20Temperatur/Grenzwert.3"/>
     <edge xsi:type="uml:ObjectFlow" name="Grenzwert" target="//Messen%20und%20Auswerten%20einer%20Temperatur/Grenzwert.3" source="//Messen%20und%20Auswerten%20einer%20Temperatur/lese%20GW%20ein/lese%20GW%20ein_outputPin_Grenzwert"/>
     <edge xsi:type="uml:ObjectFlow" name="Grenzwert" target="//Messen%20und%20Auswerten%20einer%20Temperatur/lese%20GW%20ein/lese%20GW%20ein_inputPin_Grenzwert"/>
-    <edge xsi:type="uml:ControlFlow" name="Sek.-Takt"/>
-    <edge xsi:type="uml:ControlFlow" name="Start/Ende Messung"/>
-    <edge xsi:type="uml:ControlFlow" name="Fehlerfreier MW"/>
-    <edge xsi:type="uml:ControlFlow" name="Fertig"/>
-    <edge xsi:type="uml:ControlFlow" name="Verfügbar"/>
-    <edge xsi:type="uml:ControlFlow" name="Keine GW-Ueberschreitung"/>
-    <edge xsi:type="uml:ControlFlow" name="Keine GW-Ueberschreitung"/>
-    <edge xsi:type="uml:ControlFlow" name="GW-Ueberschreitung"/>
-    <edge xsi:type="uml:ControlFlow" name="24h-Takt"/>
-    <ownedNode xsi:type="uml:OpaqueAction" name="bilde Mittelwert">
+    <edge xsi:type="uml:ControlFlow" name="Sek.-Takt" target="//Messen%20und%20Auswerten%20einer%20Temperatur/lese%20Messwert"/>
+    <edge xsi:type="uml:ControlFlow" name="Start/Ende Messung" target="//Messen%20und%20Auswerten%20einer%20Temperatur/lese%20Messwert"/>
+    <edge xsi:type="uml:ControlFlow" name="Fehlerfreier MW" target="//Messen%20und%20Auswerten%20einer%20Temperatur/errechne%20Temperatur" source="//Messen%20und%20Auswerten%20einer%20Temperatur/bilde%20Mittelwert"/>
+    <edge xsi:type="uml:ControlFlow" name="Fertig" target="//Messen%20und%20Auswerten%20einer%20Temperatur/teste%20auf%20GW" source="//Messen%20und%20Auswerten%20einer%20Temperatur/errechne%20Temperatur"/>
+    <edge xsi:type="uml:ControlFlow" name="Verfügbar" target="//Messen%20und%20Auswerten%20einer%20Temperatur/teste%20auf%20GW" source="//Messen%20und%20Auswerten%20einer%20Temperatur/lese%20GW%20ein"/>
+    <edge xsi:type="uml:ControlFlow" name="Keine GW-Ueberschreitung" target="//Messen%20und%20Auswerten%20einer%20Temperatur/bilde%20Mittelwert" source="//Messen%20und%20Auswerten%20einer%20Temperatur/teste%20auf%20GW"/>
+    <edge xsi:type="uml:ControlFlow" name="Keine GW-Ueberschreitung" target="//Messen%20und%20Auswerten%20einer%20Temperatur/schreibe%20in%20DB" source="//Messen%20und%20Auswerten%20einer%20Temperatur/teste%20auf%20GW"/>
+    <edge xsi:type="uml:ControlFlow" name="GW-Ueberschreitung" target="//Messen%20und%20Auswerten%20einer%20Temperatur/zeige%20Meldung%20an" source="//Messen%20und%20Auswerten%20einer%20Temperatur/teste%20auf%20GW"/>
+    <edge xsi:type="uml:ControlFlow" name="24h-Takt" target="//Messen%20und%20Auswerten%20einer%20Temperatur/bilde%20Mittelwert"/>
+    <ownedNode xsi:type="uml:OpaqueAction" name="bilde Mittelwert" incoming="//Messen%20und%20Auswerten%20einer%20Temperatur/Keine%20GW-Ueberschreitung //Messen%20und%20Auswerten%20einer%20Temperatur/24h-Takt" outgoing="//Messen%20und%20Auswerten%20einer%20Temperatur/Fehlerfreier%20MW">
       <inputValue name="bilde Mittelwert_inputPin_Alter Mittelwert" incoming="//Messen%20und%20Auswerten%20einer%20Temperatur/Alter%20Mittelwert"/>
       <inputValue name="bilde Mittelwert_inputPin_Geprüfte Temperatur" incoming="//Messen%20und%20Auswerten%20einer%20Temperatur/Geprüfte%20Temperatur //Messen%20und%20Auswerten%20einer%20Temperatur/Geprüfte%20Temperatur.2"/>
       <outputValue name="bilde Mittelwert_outputPin_Neuer Mittelwert" outgoing="//Messen%20und%20Auswerten%20einer%20Temperatur/Neuer%20Mittelwert"/>
     </ownedNode>
-    <ownedNode xsi:type="uml:OpaqueAction" name="errechne Temperatur">
+    <ownedNode xsi:type="uml:OpaqueAction" name="errechne Temperatur" incoming="//Messen%20und%20Auswerten%20einer%20Temperatur/Fehlerfreier%20MW" outgoing="//Messen%20und%20Auswerten%20einer%20Temperatur/Fertig">
       <inputValue name="errechne Temperatur_inputPin_Messwert (als GK-Zahl)" incoming="//Messen%20und%20Auswerten%20einer%20Temperatur/Messwert%20(als%20GK-Zahl)"/>
       <outputValue name="errechne Temperatur_outputPin_Temperatur" outgoing="//Messen%20und%20Auswerten%20einer%20Temperatur/Temperatur"/>
     </ownedNode>
-    <ownedNode xsi:type="uml:OpaqueAction" name="teste auf GW">
+    <ownedNode xsi:type="uml:OpaqueAction" name="teste auf GW" incoming="//Messen%20und%20Auswerten%20einer%20Temperatur/Fertig //Messen%20und%20Auswerten%20einer%20Temperatur/Verfügbar" outgoing="//Messen%20und%20Auswerten%20einer%20Temperatur/Keine%20GW-Ueberschreitung //Messen%20und%20Auswerten%20einer%20Temperatur/Keine%20GW-Ueberschreitung.1 //Messen%20und%20Auswerten%20einer%20Temperatur/GW-Ueberschreitung">
       <inputValue name="teste auf GW_inputPin_Temperatur" incoming="//Messen%20und%20Auswerten%20einer%20Temperatur/Temperatur"/>
       <inputValue name="teste auf GW_inputPin_Grenzwert" incoming="//Messen%20und%20Auswerten%20einer%20Temperatur/Grenzwert"/>
       <outputValue name="teste auf GW_outputPin_Geprüfte Temperatur" outgoing="//Messen%20und%20Auswerten%20einer%20Temperatur/Geprüfte%20Temperatur //Messen%20und%20Auswerten%20einer%20Temperatur/Geprüfte%20Temperatur.1"/>
       <outputValue name="teste auf GW_outputPin_Meldungsdaten" outgoing="//Messen%20und%20Auswerten%20einer%20Temperatur/Meldungsdaten"/>
     </ownedNode>
-    <ownedNode xsi:type="uml:OpaqueAction" name="zeige Meldung an">
+    <ownedNode xsi:type="uml:OpaqueAction" name="zeige Meldung an" incoming="//Messen%20und%20Auswerten%20einer%20Temperatur/GW-Ueberschreitung">
       <inputValue name="zeige Meldung an_inputPin_Meldungsdaten" incoming="//Messen%20und%20Auswerten%20einer%20Temperatur/Meldungsdaten"/>
       <outputValue name="zeige Meldung an_outputPin_Meldung" outgoing="//Messen%20und%20Auswerten%20einer%20Temperatur/Meldung"/>
     </ownedNode>
-    <ownedNode xsi:type="uml:OpaqueAction" name="lese GW ein">
+    <ownedNode xsi:type="uml:OpaqueAction" name="lese GW ein" outgoing="//Messen%20und%20Auswerten%20einer%20Temperatur/Verfügbar">
       <inputValue name="lese GW ein_inputPin_Grenzwert" incoming="//Messen%20und%20Auswerten%20einer%20Temperatur/Grenzwert.2"/>
       <outputValue name="lese GW ein_outputPin_Grenzwert" outgoing="//Messen%20und%20Auswerten%20einer%20Temperatur/Grenzwert.1"/>
     </ownedNode>
-    <ownedNode xsi:type="uml:OpaqueAction" name="schreibe in DB">
+    <ownedNode xsi:type="uml:OpaqueAction" name="schreibe in DB" incoming="//Messen%20und%20Auswerten%20einer%20Temperatur/Keine%20GW-Ueberschreitung.1">
       <inputValue name="schreibe in DB_inputPin_Geprüfte Temperatur" incoming="//Messen%20und%20Auswerten%20einer%20Temperatur/Geprüfte%20Temperatur.1"/>
       <outputValue name="schreibe in DB_outputPin_Geprüfte Temperatur" outgoing="//Messen%20und%20Auswerten%20einer%20Temperatur/Geprüfte%20Temperatur.3"/>
     </ownedNode>
-    <ownedNode xsi:type="uml:CallBehaviorAction" name="lese Messwert" behavior="//lese%20Messwert">
+    <ownedNode xsi:type="uml:CallBehaviorAction" name="lese Messwert" incoming="//Messen%20und%20Auswerten%20einer%20Temperatur/Sek.-Takt //Messen%20und%20Auswerten%20einer%20Temperatur/Start%2FEnde%20Messung" behavior="//lese%20Messwert">
       <argument name="lese Messwert_inputPin_Analoger Messwert" incoming="//Messen%20und%20Auswerten%20einer%20Temperatur/Analoger%20Messwert"/>
       <result name="lese Messwert_outputPin_Messwert (als GK-Zahl)" outgoing="//Messen%20und%20Auswerten%20einer%20Temperatur/Messwert%20(als%20GK-Zahl)"/>
     </ownedNode>

@@ -593,7 +593,7 @@
     <set:DisplayName>ActuatingDrive</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="Organizes">ns=8;i=440</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=11;i=98</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasSubtype">ns=6;i=471</set:Reference>
     </set:References>
   </set:UAObjectType>
   <set:UAObjectType BrowseName="8:MotionController" NodeId="ns=8;i=520">
@@ -1336,6 +1336,7 @@
     <set:DisplayName>IfAHeater</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=286</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">ns=15;i=391</set:Reference>
       <set:Reference IsForward="true" ReferenceType="ns=1;i=4001">ns=12;i=562</set:Reference>
     </set:References>
   </set:UAObject>

@@ -61,11 +61,11 @@
           <StateActivityBlock Name="MainStateSAB">
             <Edge xsi:type="actions:ControlFlow" Name="eBO_5_Confirm_Changed_ControlFlow" Source="//@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.0" Target="//@AlgorithmDomain/@OwnedElement.8/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1"/>
             <Edge xsi:type="actions:ObjectFlow" Name="eBO_5_Confirm_Changed_ObjectFlow" Source="//@AlgorithmDomain/@OwnedElement.8/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.2/@Result" Target="//@AlgorithmDomain/@OwnedElement.8/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1/@Value"/>
-            <Action xsi:type="actions:AcceptEventAction" Name="eBO_5_Confirm_Changed_Action1" Trigger="//@AlgorithmDomain/@OwnedElement.3/@Signal.0"/>
-            <Action xsi:type="actions:WriteDataItemAction" Name="eBO_5_Confirm_Changed_Action2" IncomingControlFlow="//@AlgorithmDomain/@OwnedElement.8/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" DataItem="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.5">
+            <Action xsi:type="actions:AcceptEventAction" Name="eBO_5_Confirm_Changed_Action2" Trigger="//@AlgorithmDomain/@OwnedElement.3/@Signal.0"/>
+            <Action xsi:type="actions:WriteDataItemAction" Name="eBO_5_Confirm_Changed_Action24" IncomingControlFlow="//@AlgorithmDomain/@OwnedElement.8/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" DataItem="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.5">
               <Value Multiplicity="1..1" Type="//@AlgorithmDomain/@OwnedElement.0" IncomingObjectFlow="//@AlgorithmDomain/@OwnedElement.8/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
             </Action>
-            <Action xsi:type="actions:ValueSpecificationAction" Name="eBO_5_Confirm_Changed_Action3" Value="true">
+            <Action xsi:type="actions:ValueSpecificationAction" Name="eBO_5_Confirm_Changed_Action25" Value="true">
               <Result Multiplicity="1..1" Type="//@AlgorithmDomain/@OwnedElement.0" OutgoingObjectFlow="//@AlgorithmDomain/@OwnedElement.8/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
             </Action>
           </StateActivityBlock>
@@ -82,11 +82,11 @@
           <StateActivityBlock Name="MainStateSAB">
             <Edge xsi:type="actions:ControlFlow" Name="eBO_6_Confirm_Changed_ControlFlow" Source="//@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.0" Target="//@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1"/>
             <Edge xsi:type="actions:ObjectFlow" Name="eBO_6_Confirm_Changed_ObjectFlow" Source="//@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.2/@Result" Target="//@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1/@Value"/>
-            <Action xsi:type="actions:AcceptEventAction" Name="eBO_6_Confirm_Changed_Action4" OutgoingControlFlow="//@AlgorithmDomain/@OwnedElement.8/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0 //@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Trigger="//@AlgorithmDomain/@OwnedElement.3/@Signal.1"/>
-            <Action xsi:type="actions:WriteDataItemAction" Name="eBO_6_Confirm_Changed_Action5" IncomingControlFlow="//@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" DataItem="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.5">
+            <Action xsi:type="actions:AcceptEventAction" Name="eBO_6_Confirm_Changed_Action26" OutgoingControlFlow="//@AlgorithmDomain/@OwnedElement.8/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0 //@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Trigger="//@AlgorithmDomain/@OwnedElement.3/@Signal.1"/>
+            <Action xsi:type="actions:WriteDataItemAction" Name="eBO_6_Confirm_Changed_Action27" IncomingControlFlow="//@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" DataItem="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.5">
               <Value Multiplicity="1..1" Type="//@AlgorithmDomain/@OwnedElement.0" IncomingObjectFlow="//@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
             </Action>
-            <Action xsi:type="actions:ValueSpecificationAction" Name="eBO_6_Confirm_Changed_Action6" Value="false">
+            <Action xsi:type="actions:ValueSpecificationAction" Name="eBO_6_Confirm_Changed_Action28" Value="false">
               <Result Multiplicity="1..1" Type="//@AlgorithmDomain/@OwnedElement.0" OutgoingObjectFlow="//@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
             </Action>
           </StateActivityBlock>
@@ -103,11 +103,11 @@
           <StateActivityBlock Name="MainStateSAB">
             <Edge xsi:type="actions:ControlFlow" Name="eBO_2_Select_Option_0_Changed_ControlFlow" Source="//@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.0" Target="//@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1"/>
             <Edge xsi:type="actions:ObjectFlow" Name="eBO_2_Select_Option_0_Changed_ObjectFlow" Source="//@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.2/@Result" Target="//@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1/@Value"/>
-            <Action xsi:type="actions:AcceptEventAction" Name="eBO_2_Select_Option_0_Changed_Action7" OutgoingControlFlow="//@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Trigger="//@AlgorithmDomain/@OwnedElement.3/@Signal.7"/>
-            <Action xsi:type="actions:WriteDataItemAction" Name="eBO_2_Select_Option_0_Changed_Action8" IncomingControlFlow="//@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" DataItem="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.0">
+            <Action xsi:type="actions:AcceptEventAction" Name="eBO_2_Select_Option_0_Changed_Action29" OutgoingControlFlow="//@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Trigger="//@AlgorithmDomain/@OwnedElement.3/@Signal.7"/>
+            <Action xsi:type="actions:WriteDataItemAction" Name="eBO_2_Select_Option_0_Changed_Action30" IncomingControlFlow="//@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" DataItem="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.0">
               <Value Multiplicity="1..1" Type="//@AlgorithmDomain/@OwnedElement.2" IncomingObjectFlow="//@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
             </Action>
-            <Action xsi:type="actions:ValueSpecificationAction" Name="eBO_2_Select_Option_0_Changed_Action9" Value="1">
+            <Action xsi:type="actions:ValueSpecificationAction" Name="eBO_2_Select_Option_0_Changed_Action31" Value="1">
               <Result Multiplicity="1..1" Type="//@AlgorithmDomain/@OwnedElement.2" OutgoingObjectFlow="//@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
             </Action>
           </StateActivityBlock>
@@ -124,11 +124,11 @@
           <StateActivityBlock Name="MainStateSAB">
             <Edge xsi:type="actions:ControlFlow" Name="eBO_2_Select_Option_1_Changed_ControlFlow" Source="//@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.0" Target="//@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1"/>
             <Edge xsi:type="actions:ObjectFlow" Name="eBO_2_Select_Option_1_Changed_ObjectFlow" Source="//@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.2/@Result" Target="//@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1/@Value"/>
-            <Action xsi:type="actions:AcceptEventAction" Name="eBO_2_Select_Option_1_Changed_Action10" OutgoingControlFlow="//@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Trigger="//@AlgorithmDomain/@OwnedElement.3/@Signal.8"/>
-            <Action xsi:type="actions:WriteDataItemAction" Name="eBO_2_Select_Option_1_Changed_Action11" IncomingControlFlow="//@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" DataItem="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.0">
+            <Action xsi:type="actions:AcceptEventAction" Name="eBO_2_Select_Option_1_Changed_Action32" OutgoingControlFlow="//@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Trigger="//@AlgorithmDomain/@OwnedElement.3/@Signal.8"/>
+            <Action xsi:type="actions:WriteDataItemAction" Name="eBO_2_Select_Option_1_Changed_Action33" IncomingControlFlow="//@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" DataItem="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.0">
               <Value Multiplicity="1..1" Type="//@AlgorithmDomain/@OwnedElement.2" IncomingObjectFlow="//@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
             </Action>
-            <Action xsi:type="actions:ValueSpecificationAction" Name="eBO_2_Select_Option_1_Changed_Action12" Value="2">
+            <Action xsi:type="actions:ValueSpecificationAction" Name="eBO_2_Select_Option_1_Changed_Action34" Value="2">
               <Result Multiplicity="1..1" Type="//@AlgorithmDomain/@OwnedElement.2" OutgoingObjectFlow="//@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
             </Action>
           </StateActivityBlock>
@@ -145,11 +145,11 @@
           <StateActivityBlock Name="MainStateSAB">
             <Edge xsi:type="actions:ControlFlow" Name="eBO_2_Select_Option_2_Changed_ControlFlow" Source="//@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.0" Target="//@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1"/>
             <Edge xsi:type="actions:ObjectFlow" Name="eBO_2_Select_Option_2_Changed_ObjectFlow" Source="//@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.2/@Result" Target="//@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1/@Value"/>
-            <Action xsi:type="actions:AcceptEventAction" Name="eBO_2_Select_Option_2_Changed_Action13" OutgoingControlFlow="//@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Trigger="//@AlgorithmDomain/@OwnedElement.3/@Signal.9"/>
-            <Action xsi:type="actions:WriteDataItemAction" Name="eBO_2_Select_Option_2_Changed_Action14" IncomingControlFlow="//@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" DataItem="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.0">
+            <Action xsi:type="actions:AcceptEventAction" Name="eBO_2_Select_Option_2_Changed_Action35" OutgoingControlFlow="//@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Trigger="//@AlgorithmDomain/@OwnedElement.3/@Signal.9"/>
+            <Action xsi:type="actions:WriteDataItemAction" Name="eBO_2_Select_Option_2_Changed_Action36" IncomingControlFlow="//@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" DataItem="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.0">
               <Value Multiplicity="1..1" Type="//@AlgorithmDomain/@OwnedElement.2" IncomingObjectFlow="//@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
             </Action>
-            <Action xsi:type="actions:ValueSpecificationAction" Name="eBO_2_Select_Option_2_Changed_Action15" Value="3">
+            <Action xsi:type="actions:ValueSpecificationAction" Name="eBO_2_Select_Option_2_Changed_Action37" Value="3">
               <Result Multiplicity="1..1" Type="//@AlgorithmDomain/@OwnedElement.2" OutgoingObjectFlow="//@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
             </Action>
           </StateActivityBlock>
@@ -166,11 +166,11 @@
           <StateActivityBlock Name="MainStateSAB">
             <Edge xsi:type="actions:ControlFlow" Name="eBO_4_Select_Option_0_Changed_ControlFlow" Source="//@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.0" Target="//@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1"/>
             <Edge xsi:type="actions:ObjectFlow" Name="eBO_4_Select_Option_0_Changed_ObjectFlow" Source="//@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.2/@Result" Target="//@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1/@Value"/>
-            <Action xsi:type="actions:AcceptEventAction" Name="eBO_4_Select_Option_0_Changed_Action16" OutgoingControlFlow="//@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Trigger="//@AlgorithmDomain/@OwnedElement.3/@Signal.10"/>
-            <Action xsi:type="actions:WriteDataItemAction" Name="eBO_4_Select_Option_0_Changed_Action17" IncomingControlFlow="//@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" DataItem="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.1">
+            <Action xsi:type="actions:AcceptEventAction" Name="eBO_4_Select_Option_0_Changed_Action1" OutgoingControlFlow="//@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Trigger="//@AlgorithmDomain/@OwnedElement.3/@Signal.10"/>
+            <Action xsi:type="actions:WriteDataItemAction" Name="eBO_4_Select_Option_0_Changed_Action2" IncomingControlFlow="//@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" DataItem="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.1">
               <Value Multiplicity="1..1" Type="//@AlgorithmDomain/@OwnedElement.2" IncomingObjectFlow="//@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
             </Action>
-            <Action xsi:type="actions:ValueSpecificationAction" Name="eBO_4_Select_Option_0_Changed_Action18" Value="1">
+            <Action xsi:type="actions:ValueSpecificationAction" Name="eBO_4_Select_Option_0_Changed_Action4" Value="1">
               <Result Multiplicity="1..1" Type="//@AlgorithmDomain/@OwnedElement.2" OutgoingObjectFlow="//@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
             </Action>
           </StateActivityBlock>
@@ -187,11 +187,11 @@
           <StateActivityBlock Name="MainStateSAB">
             <Edge xsi:type="actions:ControlFlow" Name="eBO_4_Select_Option_1_Changed_ControlFlow" Source="//@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.0" Target="//@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1"/>
             <Edge xsi:type="actions:ObjectFlow" Name="eBO_4_Select_Option_1_Changed_ObjectFlow" Source="//@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.2/@Result" Target="//@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1/@Value"/>
-            <Action xsi:type="actions:AcceptEventAction" Name="eBO_4_Select_Option_1_Changed_Action19" OutgoingControlFlow="//@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Trigger="//@AlgorithmDomain/@OwnedElement.3/@Signal.11"/>
-            <Action xsi:type="actions:WriteDataItemAction" Name="eBO_4_Select_Option_1_Changed_Action20" IncomingControlFlow="//@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" DataItem="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.1">
+            <Action xsi:type="actions:AcceptEventAction" Name="eBO_4_Select_Option_1_Changed_Action8" OutgoingControlFlow="//@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Trigger="//@AlgorithmDomain/@OwnedElement.3/@Signal.11"/>
+            <Action xsi:type="actions:WriteDataItemAction" Name="eBO_4_Select_Option_1_Changed_Action9" IncomingControlFlow="//@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" DataItem="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.1">
               <Value Multiplicity="1..1" Type="//@AlgorithmDomain/@OwnedElement.2" IncomingObjectFlow="//@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
             </Action>
-            <Action xsi:type="actions:ValueSpecificationAction" Name="eBO_4_Select_Option_1_Changed_Action21" Value="2">
+            <Action xsi:type="actions:ValueSpecificationAction" Name="eBO_4_Select_Option_1_Changed_Action10" Value="2">
               <Result Multiplicity="1..1" Type="//@AlgorithmDomain/@OwnedElement.2" OutgoingObjectFlow="//@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
             </Action>
           </StateActivityBlock>
@@ -208,11 +208,11 @@
           <StateActivityBlock Name="MainStateSAB">
             <Edge xsi:type="actions:ControlFlow" Name="eBO_4_Select_Option_2_Changed_ControlFlow" Source="//@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.0" Target="//@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1"/>
             <Edge xsi:type="actions:ObjectFlow" Name="eBO_4_Select_Option_2_Changed_ObjectFlow" Source="//@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.2/@Result" Target="//@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1/@Value"/>
-            <Action xsi:type="actions:AcceptEventAction" Name="eBO_4_Select_Option_2_Changed_Action22" OutgoingControlFlow="//@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Trigger="//@AlgorithmDomain/@OwnedElement.3/@Signal.12"/>
-            <Action xsi:type="actions:WriteDataItemAction" Name="eBO_4_Select_Option_2_Changed_Action23" IncomingControlFlow="//@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" DataItem="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.1">
+            <Action xsi:type="actions:AcceptEventAction" Name="eBO_4_Select_Option_2_Changed_Action16" OutgoingControlFlow="//@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Trigger="//@AlgorithmDomain/@OwnedElement.3/@Signal.12"/>
+            <Action xsi:type="actions:WriteDataItemAction" Name="eBO_4_Select_Option_2_Changed_Action17" IncomingControlFlow="//@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" DataItem="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.1">
               <Value Multiplicity="1..1" Type="//@AlgorithmDomain/@OwnedElement.2" IncomingObjectFlow="//@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
             </Action>
-            <Action xsi:type="actions:ValueSpecificationAction" Name="eBO_4_Select_Option_2_Changed_Action24" Value="3">
+            <Action xsi:type="actions:ValueSpecificationAction" Name="eBO_4_Select_Option_2_Changed_Action18" Value="3">
               <Result Multiplicity="1..1" Type="//@AlgorithmDomain/@OwnedElement.2" OutgoingObjectFlow="//@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
             </Action>
           </StateActivityBlock>
@@ -229,12 +229,12 @@
           <StateActivityBlock Name="MainStateSAB">
             <Edge xsi:type="actions:ControlFlow" Name="eBO_2_Input_Changed_ControlFlow" Source="//@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.0" Target="//@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1"/>
             <Edge xsi:type="actions:ObjectFlow" Name="eBO_2_Input_Changed_ObjectFlow" Guard="#property:value" Source="//@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.2/@Result" Target="//@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1/@Value"/>
-            <Action xsi:type="actions:AcceptEventAction" Name="eBO_2_Input_Changed_Action25" OutgoingControlFlow="//@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Context="//@AlgorithmDomain/@OwnedElement.16" Trigger="//@AlgorithmDomain/@OwnedElement.3/@Signal.13"/>
-            <Action xsi:type="actions:WriteDataItemAction" Name="eBO_2_Input_Changed_Action26" IncomingControlFlow="//@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Context="//@AlgorithmDomain/@OwnedElement.16" DataItem="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.2">
-              <Value Name="eBO_2_Input_Changed_Action27" Multiplicity="1..1" Type="//@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.4" IncomingObjectFlow="//@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
+            <Action xsi:type="actions:AcceptEventAction" Name="eBO_2_Input_Changed_Action1" OutgoingControlFlow="//@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Context="//@AlgorithmDomain/@OwnedElement.16" Trigger="//@AlgorithmDomain/@OwnedElement.3/@Signal.13"/>
+            <Action xsi:type="actions:WriteDataItemAction" Name="eBO_2_Input_Changed_Action3" IncomingControlFlow="//@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Context="//@AlgorithmDomain/@OwnedElement.16" DataItem="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.2">
+              <Value Name="eBO_2_Input_Changed_Action5" Multiplicity="1..1" Type="//@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.4" IncomingObjectFlow="//@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
             </Action>
-            <Action xsi:type="actions:ReadPresentationModelAction" Name="eBO_2_Input_Changed_Action28" Context="//@AlgorithmDomain/@OwnedElement.16">
-              <Result Name="eBO_2_Input_Changed_Action29" Multiplicity="1..1" Type="//@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.4" OutgoingObjectFlow="//@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
+            <Action xsi:type="actions:ReadPresentationModelAction" Name="eBO_2_Input_Changed_Action6" Context="//@AlgorithmDomain/@OwnedElement.16">
+              <Result Name="eBO_2_Input_Changed_Action7" Multiplicity="1..1" Type="//@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.4" OutgoingObjectFlow="//@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
             </Action>
           </StateActivityBlock>
         </StateMachineElement>
@@ -250,12 +250,12 @@
           <StateActivityBlock Name="MainStateSAB">
             <Edge xsi:type="actions:ControlFlow" Name="eBO_4_Input_Changed_ControlFlow" Source="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.0" Target="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1"/>
             <Edge xsi:type="actions:ObjectFlow" Name="eBO_4_Input_Changed_ObjectFlow" Guard="#property:value" Source="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.2/@Result" Target="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1/@Value"/>
-            <Action xsi:type="actions:AcceptEventAction" Name="eBO_4_Input_Changed_Action30" OutgoingControlFlow="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Context="//@AlgorithmDomain/@OwnedElement.17" Trigger="//@AlgorithmDomain/@OwnedElement.3/@Signal.14"/>
-            <Action xsi:type="actions:WriteDataItemAction" Name="eBO_4_Input_Changed_Action31" IncomingControlFlow="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Context="//@AlgorithmDomain/@OwnedElement.17" DataItem="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.3">
-              <Value Name="eBO_4_Input_Changed_Action32" Multiplicity="1..1" Type="//@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.5" IncomingObjectFlow="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
+            <Action xsi:type="actions:AcceptEventAction" Name="eBO_4_Input_Changed_Action11" OutgoingControlFlow="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Context="//@AlgorithmDomain/@OwnedElement.17" Trigger="//@AlgorithmDomain/@OwnedElement.3/@Signal.14"/>
+            <Action xsi:type="actions:WriteDataItemAction" Name="eBO_4_Input_Changed_Action12" IncomingControlFlow="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Context="//@AlgorithmDomain/@OwnedElement.17" DataItem="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.3">
+              <Value Name="eBO_4_Input_Changed_Action13" Multiplicity="1..1" Type="//@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.5" IncomingObjectFlow="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
             </Action>
-            <Action xsi:type="actions:ReadPresentationModelAction" Name="eBO_4_Input_Changed_Action33" Context="//@AlgorithmDomain/@OwnedElement.17">
-              <Result Name="eBO_4_Input_Changed_Action34" Multiplicity="1..1" Type="//@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.5" OutgoingObjectFlow="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
+            <Action xsi:type="actions:ReadPresentationModelAction" Name="eBO_4_Input_Changed_Action14" Context="//@AlgorithmDomain/@OwnedElement.17">
+              <Result Name="eBO_4_Input_Changed_Action15" Multiplicity="1..1" Type="//@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.5" OutgoingObjectFlow="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
             </Action>
           </StateActivityBlock>
         </StateMachineElement>
@@ -271,12 +271,12 @@
           <StateActivityBlock Name="MainStateSAB">
             <Edge xsi:type="actions:ControlFlow" Name="eBO_6_Input_Changed_ControlFlow" Source="//@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.0" Target="//@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1"/>
             <Edge xsi:type="actions:ObjectFlow" Name="eBO_6_Input_Changed_ObjectFlow" Guard="#property:value" Source="//@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.2/@Result" Target="//@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1/@Value"/>
-            <Action xsi:type="actions:AcceptEventAction" Name="eBO_6_Input_Changed_Action35" OutgoingControlFlow="//@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Context="//@AlgorithmDomain/@OwnedElement.18" Trigger="//@AlgorithmDomain/@OwnedElement.3/@Signal.15"/>
-            <Action xsi:type="actions:WriteDataItemAction" Name="eBO_6_Input_Changed_Action36" IncomingControlFlow="//@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Context="//@AlgorithmDomain/@OwnedElement.18" DataItem="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.4">
-              <Value Name="eBO_6_Input_Changed_Action37" Multiplicity="1..1" Type="//@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.6" IncomingObjectFlow="//@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
+            <Action xsi:type="actions:AcceptEventAction" Name="eBO_6_Input_Changed_Action19" OutgoingControlFlow="//@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Context="//@AlgorithmDomain/@OwnedElement.18" Trigger="//@AlgorithmDomain/@OwnedElement.3/@Signal.15"/>
+            <Action xsi:type="actions:WriteDataItemAction" Name="eBO_6_Input_Changed_Action20" IncomingControlFlow="//@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Context="//@AlgorithmDomain/@OwnedElement.18" DataItem="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.4">
+              <Value Name="eBO_6_Input_Changed_Action21" Multiplicity="1..1" Type="//@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.6" IncomingObjectFlow="//@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
             </Action>
-            <Action xsi:type="actions:ReadPresentationModelAction" Name="eBO_6_Input_Changed_Action38" Context="//@AlgorithmDomain/@OwnedElement.18">
-              <Result Name="eBO_6_Input_Changed_Action39" Multiplicity="1..1" Type="//@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.6" OutgoingObjectFlow="//@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
+            <Action xsi:type="actions:ReadPresentationModelAction" Name="eBO_6_Input_Changed_Action22" Context="//@AlgorithmDomain/@OwnedElement.18">
+              <Result Name="eBO_6_Input_Changed_Action23" Multiplicity="1..1" Type="//@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.6" OutgoingObjectFlow="//@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
             </Action>
           </StateActivityBlock>
         </StateMachineElement>

@@ -7,23 +7,23 @@
     <set:Uri>http://www.tu-dresden.de/MyInterfaces</set:Uri>
     <set:Uri>http://www.tu-dresden.de/LibOfCommonTools</set:Uri>
   </set:NamespaceUris>
-  <set:UAObjectType BrowseName="5:ElectricScrewdriver" NodeId="ns=5;i=18">
+  <set:UAObjectType BrowseName="5:ElectricScrewdriver" NodeId="ns=5;i=21">
     <set:DisplayName>ElectricScrewdriver</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=5;i=22</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="ns=1;i=4001">ns=3;i=26</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=5;i=20</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="ns=1;i=4001">ns=3;i=31</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="3:Tool" NodeId="ns=3;i=26">
+  <set:UAObjectType BrowseName="3:Tool" NodeId="ns=3;i=31">
     <set:DisplayName>Tool</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=3;i=24</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=3;i=29</set:Reference>
     </set:References>
   </set:UAObjectType>
-  <set:UAObjectType BrowseName="4:Energy" NodeId="ns=4;i=29">
+  <set:UAObjectType BrowseName="4:Energy" NodeId="ns=4;i=39">
     <set:DisplayName>Energy</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="Organizes">ns=4;i=27</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=4;i=37</set:Reference>
     </set:References>
   </set:UAObjectType>
   <set:UAObject BrowseName="2:ExampleTopology.aml" NodeId="ns=2;i=11">
@@ -61,7 +61,7 @@
       <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">FolderType</set:Reference>
     </set:References>
   </set:UAObject>
-  <set:UAObject BrowseName="2:ManufacturingSystem" NodeId="ns=2;i=17">
+  <set:UAObject BrowseName="2:ManufacturingSystem" NodeId="ns=2;i=18">
     <set:DisplayName>ManufacturingSystem</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="Organizes">ns=1;i=5002</set:Reference>
@@ -69,25 +69,25 @@
       <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">FolderType</set:Reference>
     </set:References>
   </set:UAObject>
-  <set:UAObject BrowseName="2:firstScrewdriver" NodeId="ns=2;i=16">
+  <set:UAObject BrowseName="2:firstScrewdriver" NodeId="ns=2;i=19">
     <set:DisplayName>firstScrewdriver</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=17</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">ns=5;i=18</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="ns=1;i=4001">ns=3;i=26</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="ns=1;i=4002">ns=3;i=26</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=18</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">ns=5;i=21</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="ns=1;i=4001">ns=3;i=31</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="ns=1;i=4002">ns=3;i=31</set:Reference>
     </set:References>
   </set:UAObject>
-  <set:UAObject BrowseName="2:secondScrewdriver" NodeId="ns=2;i=20">
+  <set:UAObject BrowseName="2:secondScrewdriver" NodeId="ns=2;i=26">
     <set:DisplayName>secondScrewdriver</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=17</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">ns=5;i=18</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="ns=1;i=4001">ns=3;i=26</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="ns=1;i=4002">ns=3;i=26</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=18</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">ns=5;i=21</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="ns=1;i=4001">ns=3;i=31</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="ns=1;i=4002">ns=3;i=31</set:Reference>
     </set:References>
   </set:UAObject>
-  <set:UAObject BrowseName="5:LibOfCommonTools" NodeId="ns=5;i=22">
+  <set:UAObject BrowseName="5:LibOfCommonTools" NodeId="ns=5;i=20">
     <set:DisplayName>LibOfCommonTools</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="Organizes">ns=1;i=5006</set:Reference>
@@ -95,7 +95,7 @@
       <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">FolderType</set:Reference>
     </set:References>
   </set:UAObject>
-  <set:UAObject BrowseName="3:ManufacturingRoleClasses" NodeId="ns=3;i=24">
+  <set:UAObject BrowseName="3:ManufacturingRoleClasses" NodeId="ns=3;i=29">
     <set:DisplayName>ManufacturingRoleClasses</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="Organizes">ns=1;i=5005</set:Reference>
@@ -103,7 +103,7 @@
       <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">FolderType</set:Reference>
     </set:References>
   </set:UAObject>
-  <set:UAObject BrowseName="4:MyInterfaces" NodeId="ns=4;i=27">
+  <set:UAObject BrowseName="4:MyInterfaces" NodeId="ns=4;i=37">
     <set:DisplayName>MyInterfaces</set:DisplayName>
     <set:References>
       <set:Reference IsForward="false" ReferenceType="Organizes">ns=1;i=5004</set:Reference>
@@ -111,25 +111,25 @@
       <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">FolderType</set:Reference>
     </set:References>
   </set:UAObject>
-  <set:UAObject BrowseName="2:EnergySupply" NodeId="ns=2;i=30" ParentNodeId="ns=2;i=16">
+  <set:UAObject BrowseName="2:EnergySupply" NodeId="ns=2;i=40" ParentNodeId="ns=2;i=19">
     <set:DisplayName>EnergySupply</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=16</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=4;i=29</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=19</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=4;i=39</set:Reference>
     </set:References>
   </set:UAObject>
-  <set:UAObject BrowseName="2:EnergySupply" NodeId="ns=2;i=32" ParentNodeId="ns=2;i=20">
+  <set:UAObject BrowseName="2:EnergySupply" NodeId="ns=2;i=44" ParentNodeId="ns=2;i=26">
     <set:DisplayName>EnergySupply</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=20</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=4;i=29</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=26</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=4;i=39</set:Reference>
     </set:References>
   </set:UAObject>
-  <set:UAObject BrowseName="5:EnergySupply" NodeId="ns=5;i=34" ParentNodeId="ns=5;i=18">
+  <set:UAObject BrowseName="5:EnergySupply" NodeId="ns=5;i=46" ParentNodeId="ns=5;i=21">
     <set:DisplayName>EnergySupply</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=5;i=18</set:Reference>
-      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=4;i=29</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=5;i=21</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=4;i=39</set:Reference>
     </set:References>
   </set:UAObject>
   <set:UAVariable BrowseName="SchemaVersion" NodeId="ns=2;i=12" ParentNodeId="ns=2;i=11"
@@ -145,7 +145,7 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
-  <set:UAVariable BrowseName="2:BaseRoleClassLib" NodeId="ns=2;i=13" ParentNodeId="ns=2;i=11"
+  <set:UAVariable BrowseName="2:BaseRoleClassLib" NodeId="ns=2;i=14" ParentNodeId="ns=2;i=11"
       DataType="String">
     <set:DisplayName>BaseRoleClassLib</set:DisplayName>
     <set:References>
@@ -158,7 +158,7 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
-  <set:UAVariable BrowseName="2:BaseInterfaceClassLib" NodeId="ns=2;i=14" ParentNodeId="ns=2;i=11"
+  <set:UAVariable BrowseName="2:BaseInterfaceClassLib" NodeId="ns=2;i=16" ParentNodeId="ns=2;i=11"
       DataType="String">
     <set:DisplayName>BaseInterfaceClassLib</set:DisplayName>
     <set:References>
@@ -171,18 +171,18 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
-  <set:UAVariable BrowseName="2:New Attribute" NodeId="ns=2;i=15" ParentNodeId="ns=2;i=16">
+  <set:UAVariable BrowseName="2:New Attribute" NodeId="ns=2;i=17" ParentNodeId="ns=2;i=19">
     <set:DisplayName>New Attribute</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=16</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=19</set:Reference>
       <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">ns=1;i=3007</set:Reference>
     </set:References>
     <set:Value/>
   </set:UAVariable>
-  <set:UAVariable BrowseName="2:ID" NodeId="ns=2;i=19" ParentNodeId="ns=2;i=16" DataType="String">
+  <set:UAVariable BrowseName="2:ID" NodeId="ns=2;i=23" ParentNodeId="ns=2;i=19" DataType="String">
     <set:DisplayName>ID</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=2;i=16</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=2;i=19</set:Reference>
       <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
     </set:References>
     <set:Value>
@@ -191,10 +191,10 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
-  <set:UAVariable BrowseName="2:ID" NodeId="ns=2;i=21" ParentNodeId="ns=2;i=20" DataType="String">
+  <set:UAVariable BrowseName="2:ID" NodeId="ns=2;i=27" ParentNodeId="ns=2;i=26" DataType="String">
     <set:DisplayName>ID</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=2;i=20</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=2;i=26</set:Reference>
       <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
     </set:References>
     <set:Value>
@@ -203,11 +203,11 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
-  <set:UAVariable BrowseName="5:Version" NodeId="ns=5;i=23" ParentNodeId="ns=5;i=22"
+  <set:UAVariable BrowseName="5:Version" NodeId="ns=5;i=28" ParentNodeId="ns=5;i=20"
       DataType="String">
     <set:DisplayName>Version</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=5;i=22</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=5;i=20</set:Reference>
       <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
     </set:References>
     <set:Value>
@@ -216,11 +216,11 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
-  <set:UAVariable BrowseName="3:Version" NodeId="ns=3;i=25" ParentNodeId="ns=3;i=24"
+  <set:UAVariable BrowseName="3:Version" NodeId="ns=3;i=30" ParentNodeId="ns=3;i=29"
       DataType="String">
     <set:DisplayName>Version</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=3;i=24</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=3;i=29</set:Reference>
       <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
     </set:References>
     <set:Value>
@@ -229,11 +229,11 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
-  <set:UAVariable BrowseName="4:Version" NodeId="ns=4;i=28" ParentNodeId="ns=4;i=27"
+  <set:UAVariable BrowseName="4:Version" NodeId="ns=4;i=38" ParentNodeId="ns=4;i=37"
       DataType="String">
     <set:DisplayName>Version</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=4;i=27</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=4;i=37</set:Reference>
       <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
     </set:References>
     <set:Value>
@@ -242,10 +242,10 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
-  <set:UAVariable BrowseName="2:ID" NodeId="ns=2;i=31" ParentNodeId="ns=2;i=30" DataType="String">
+  <set:UAVariable BrowseName="2:ID" NodeId="ns=2;i=42" ParentNodeId="ns=2;i=40" DataType="String">
     <set:DisplayName>ID</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=2;i=30</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=2;i=40</set:Reference>
       <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
     </set:References>
     <set:Value>
@@ -254,10 +254,10 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
-  <set:UAVariable BrowseName="2:ID" NodeId="ns=2;i=33" ParentNodeId="ns=2;i=32" DataType="String">
+  <set:UAVariable BrowseName="2:ID" NodeId="ns=2;i=45" ParentNodeId="ns=2;i=44" DataType="String">
     <set:DisplayName>ID</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=2;i=32</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=2;i=44</set:Reference>
       <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
     </set:References>
     <set:Value>
@@ -266,10 +266,10 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
-  <set:UAVariable BrowseName="5:ID" NodeId="ns=5;i=35" ParentNodeId="ns=5;i=34" DataType="String">
+  <set:UAVariable BrowseName="5:ID" NodeId="ns=5;i=47" ParentNodeId="ns=5;i=46" DataType="String">
     <set:DisplayName>ID</set:DisplayName>
     <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=5;i=34</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=5;i=46</set:Reference>
       <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
     </set:References>
     <set:Value>

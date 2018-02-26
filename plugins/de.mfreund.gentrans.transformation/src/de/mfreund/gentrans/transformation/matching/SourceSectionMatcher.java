@@ -329,6 +329,19 @@ public class SourceSectionMatcher extends CancelableTransformationAsset {
 			MatchedSectionDescriptor descriptor = descriptorByEObject.get(element);
 			if (descriptor != null && !this.assetManager.getMatchedSectionRegistry().contains(descriptor)) {
 				this.assetManager.getMatchedSectionRegistry().register(descriptor);
+
+				Map<CrossReference<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, List<MatchedSectionDescriptor>> referencedDescriptors = descriptor
+						.getReferencedDescriptors();
+				for (Entry<CrossReference<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>, List<MatchedSectionDescriptor>> ref : referencedDescriptors
+						.entrySet()) {
+					ref.getValue().sort((d1, d2) -> {
+						int i1 = this.tree.getElements().indexOf(d1.getAssociatedSourceModelElement());
+						int i2 = this.tree.getElements().indexOf(d2.getAssociatedSourceModelElement());
+
+						return ((Integer) i1).compareTo(i2);
+					});
+
+				}
 			}
 		}
 	}

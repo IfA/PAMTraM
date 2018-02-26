@@ -2081,7 +2081,7 @@ public class GenericPackageImpl extends EPackageImpl implements GenericPackage {
 		  (getSection_AllExtending(), 
 		   source, 
 		   new String[] {
-			 "get", "<%java.util.Set%><Object> extendingSections = new <%java.util.HashSet%><>();\r\n<%java.util.Iterator%><<%org.eclipse.emf.common.notify.Notifier%>> it = this.eResource().getResourceSet().getAllContents();\r\nwhile(it.hasNext()) {\r\n\t<%org.eclipse.emf.common.notify.Notifier%> next = it.next();\r\n\tif(next instanceof Section<?, ?, ?, ?> && ((Section<?, ?, ?, ?>) next).getAllExtend().contains(this)) {\r\n\t\textendingSections.add(next);\r\n\t}\r\n}\r\n\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.structure.generic.GenericPackage%>.Literals.SECTION__ALL_EXTENDING,\r\n\t\t\textendingSections.size(), extendingSections.toArray());"
+			 "get", "\r\n<%java.util.Set%><Object> extendingSections = new <%java.util.LinkedHashSet%><>();\r\n<%java.util.Iterator%><<%org.eclipse.emf.common.notify.Notifier%>> it = this.eResource().getResourceSet().getAllContents();\r\nwhile (it.hasNext()) {\r\n\tNotifier next = it.next();\r\n\tif (next instanceof <%pamtram.structure.generic.Section%><?, ?, ?, ?> && ((Section<?, ?, ?, ?>) next).getAllExtend().contains(this)) {\r\n\t\textendingSections.add(next);\r\n\t}\r\n}\r\n\r\nreturn new <%org.eclipse.emf.ecore.util.EcoreEList%>.UnmodifiableEList<>(this, <%pamtram.structure.generic.GenericPackage%>.Literals.SECTION__ALL_EXTENDING,\r\n\t\textendingSections.size(), extendingSections.toArray());"
 		   });	
 		addAnnotation
 		  (getSection_AllExtending(), 

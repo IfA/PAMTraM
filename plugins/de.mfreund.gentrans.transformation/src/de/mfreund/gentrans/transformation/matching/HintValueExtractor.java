@@ -1,8 +1,10 @@
 package de.mfreund.gentrans.transformation.matching;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -17,8 +19,10 @@ import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
+import de.mfreund.gentrans.transformation.maps.ElementIDMap;
 import de.mfreund.gentrans.transformation.maps.HintValue;
 import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
+import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.FixedValue;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.GlobalAttribute;
@@ -40,6 +44,7 @@ import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.GlobalDynamicSourceElement;
 import pamtram.structure.SourceInstanceSelector;
+import pamtram.structure.StructurePackage;
 import pamtram.structure.source.ActualSourceSectionAttribute;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
@@ -104,9 +109,12 @@ public class HintValueExtractor extends ValueExtractor {
 	 */
 	public void extractHintValues(List<MappingInstanceDescriptor> mappingInstances) {
 
-		Supplier<Stream<MappingInstanceDescriptor>> mappingInstanceSupplier = () -> this.assetManager
-				.getTransformationConfig().isUseParallelization() ? mappingInstances.parallelStream()
-						: mappingInstances.stream();
+		Supplier<Stream<MappingInstanceDescriptor>> mappingInstanceSupplier = mappingInstances::parallelStream;
+
+		// As the generated IDs depend on the invocation order, we first initialize all IDs in a serialized way. That
+		// way, we can safely extract the hint values in parallel after this
+		//
+		mappingInstanceSupplier.get().sequential().forEach(this::reserveRequiredElementIDs);
 
 		// In a first step, we extract the hints of exported hint groups and store them in the 'exportedHintValues' so
 		// that they can be reused by other mapping instances.
@@ -122,6 +130,45 @@ public class HintValueExtractor extends ValueExtractor {
 		//
 		mappingInstanceSupplier.get().forEach(this::extractNormalHintValues);
 
+	}
+
+	/**
+	 * This initializes all IDs in the {@link ElementIDMap} that are required for the given <em>mappingInstance</em>.
+	 *
+	 * @param mappingInstance
+	 *            The {@link MappingInstanceDescriptor} for that the IDs shall be reserved.
+	 */
+	private void reserveRequiredElementIDs(MappingInstanceDescriptor mappingInstanceDescriptor) {
+
+		Set<MappingHint> mappingHints = mappingInstanceDescriptor.getMappingHints(true);
+
+		Collection<EObject> dynamicSourceElementsInMappingHints = AgteleEcoreUtil.getAllInstances(
+				StructurePackage.Literals.DYNAMIC_SOURCE_ELEMENT, new ArrayList<EObject>(mappingHints));
+
+		@SuppressWarnings("unchecked")
+		Stream<DynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>> dynamicSourceElementsWithUseElementID = dynamicSourceElementsInMappingHints
+				.stream()
+				.map(d -> (DynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) d)
+				.filter(DynamicSourceElement::isUseElementID);
+
+		Set<SourceSectionAttribute> attributesUsedForIDs = dynamicSourceElementsWithUseElementID
+				.map(DynamicSourceElement::getSource).collect(Collectors.toCollection(LinkedHashSet::new));
+
+		this.reserveRequiredElementIDs(attributesUsedForIDs, mappingInstanceDescriptor.getMatchedSectionDescriptor());
+	}
+
+	private void reserveRequiredElementIDs(Set<SourceSectionAttribute> attributesUsedForIDs,
+			MatchedSectionDescriptor matchedSectionDescriptor) {
+
+		for (SourceSectionAttribute sourceSectionAttribute : attributesUsedForIDs) {
+
+			Set<EObject> eObjectsMatchedAgainstAttribute = matchedSectionDescriptor
+					.getMatchedSourceModelElementsFor(sourceSectionAttribute.getOwningClass(), true);
+
+			for (EObject eObject : eObjectsMatchedAgainstAttribute) {
+				this.assetManager.getElementIDs().getID(eObject, sourceSectionAttribute);
+			}
+		}
 	}
 
 	/**

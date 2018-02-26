@@ -207,8 +207,7 @@ public class ModelAccessUtil extends TransformationAsset {
 	 *            shall be returned.
 	 * @return The determined values (either an empty list, a list consisting of a single value, or multiple values).
 	 */
-	private synchronized List<Object> getFeatureValueAsListBuffered(EObject eObject,
-			MetaModelElement<?, ?, ?, ?> feature) {
+	private List<Object> getFeatureValueAsListBuffered(EObject eObject, MetaModelElement<?, ?, ?, ?> feature) {
 
 		ObjectFeaturePair pair = new ObjectFeaturePair(eObject, feature);
 

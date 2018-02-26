@@ -5,7 +5,6 @@ package pamtram.structure.target.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -180,17 +179,18 @@ public class TargetSectionImpl extends TargetSectionClassImpl implements TargetS
 	 */
 	public EList<TargetSection> getAllExtending() {
 	
-		Set<Object> extendingSections = new HashSet<>();
+		
+		Set<Object> extendingSections = new LinkedHashSet<>();
 		Iterator<Notifier> it = this.eResource().getResourceSet().getAllContents();
-		while(it.hasNext()) {
+		while (it.hasNext()) {
 			Notifier next = it.next();
-			if(next instanceof Section<?, ?, ?, ?> && ((Section<?, ?, ?, ?>) next).getAllExtend().contains(this)) {
+			if (next instanceof Section<?, ?, ?, ?> && ((Section<?, ?, ?, ?>) next).getAllExtend().contains(this)) {
 				extendingSections.add(next);
 			}
 		}
 		
 		return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.SECTION__ALL_EXTENDING,
-					extendingSections.size(), extendingSections.toArray());
+				extendingSections.size(), extendingSections.toArray());
 	}
 
 	/**

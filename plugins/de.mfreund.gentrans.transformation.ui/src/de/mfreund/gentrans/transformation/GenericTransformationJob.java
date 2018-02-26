@@ -68,6 +68,8 @@ public class GenericTransformationJob extends Job {
 			Activator.getDefault().getLog().log(new Status(Status.CANCEL, "de.mfreund.gentrans.transformation.ui",
 					e.getMessage() != null ? e.getMessage() : e.toString(), e));
 			return org.eclipse.core.runtime.Status.CANCEL_STATUS;
+		} finally {
+			this.genTransRunner = null;
 		}
 	}
 

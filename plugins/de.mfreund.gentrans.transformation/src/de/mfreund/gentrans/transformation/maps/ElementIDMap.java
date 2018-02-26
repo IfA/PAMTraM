@@ -3,8 +3,8 @@
  */
 package de.mfreund.gentrans.transformation.maps;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -36,7 +36,7 @@ public class ElementIDMap {
 	 */
 	public ElementIDMap() {
 
-		this.internalMap = new HashMap<>();
+		this.internalMap = new ConcurrentHashMap<>();
 		this.currentElementID = 0;
 	}
 
@@ -50,7 +50,7 @@ public class ElementIDMap {
 	 */
 	public boolean containsID(EObject element, SourceSectionAttribute attribute) {
 
-		return this.internalMap.getOrDefault(element, new HashMap<>()).containsKey(attribute);
+		return this.internalMap.getOrDefault(element, new ConcurrentHashMap<>()).containsKey(attribute);
 	}
 
 	/**
@@ -64,10 +64,12 @@ public class ElementIDMap {
 	public int getID(EObject element, SourceSectionAttribute attribute) {
 
 		if (!this.containsID(element, attribute)) {
-			this.currentElementID++;
-			Map<SourceSectionAttribute, Integer> elementMap = this.internalMap.getOrDefault(element, new HashMap<>());
-			elementMap.put(attribute, this.currentElementID);
-			this.internalMap.put(element, elementMap);
+			synchronized (this) {
+				this.currentElementID++;
+				Map<SourceSectionAttribute, Integer> elementMap = this.internalMap.getOrDefault(element, new ConcurrentHashMap<>());
+				elementMap.put(attribute, this.currentElementID);
+				this.internalMap.put(element, elementMap);
+			}
 		}
 
 		return this.internalMap.get(element).get(attribute);

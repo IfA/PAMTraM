@@ -3,11 +3,8 @@
 package pamtram.condition.impl;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -29,8 +26,8 @@ import pamtram.condition.VariadicCondition;
 import pamtram.condition.util.ConditionValidator;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object
- * '<em><b>Multiple Condition Operator</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Multiple Condition Operator</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -42,10 +39,11 @@ import pamtram.condition.util.ConditionValidator;
  * @generated
  */
 public abstract class VariadicConditionImpl extends ComplexConditionImpl implements VariadicCondition {
+
 	/**
-	 * The cached value of the '{@link #getLocalCondParts() <em>Local Cond Parts</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getLocalCondParts() <em>Local Cond Parts</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @see #getLocalCondParts()
 	 * @generated
 	 * @ordered
@@ -53,10 +51,9 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	protected EList<ComplexCondition> localCondParts;
 
 	/**
-	 * The cached value of the '{@link #getSharedCondParts() <em>Shared Cond
-	 * Parts</em>}' reference list. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
+	 * The cached value of the '{@link #getSharedCondParts() <em>Shared Cond Parts</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @see #getSharedCondParts()
 	 * @generated
 	 * @ordered
@@ -86,6 +83,7 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	 */
 	@Override
 	public EList<ComplexCondition> getLocalCondParts() {
+	
 		if (localCondParts == null) {
 			localCondParts = new EObjectContainmentEList<ComplexCondition>(ComplexCondition.class, this, ConditionPackage.VARIADIC_CONDITION__LOCAL_COND_PARTS);
 		}
@@ -98,6 +96,7 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	 */
 	@Override
 	public EList<ComplexCondition> getSharedCondParts() {
+	
 		if (sharedCondParts == null) {
 			sharedCondParts = new EObjectResolvingEList<ComplexCondition>(ComplexCondition.class, this, ConditionPackage.VARIADIC_CONDITION__SHARED_COND_PARTS);
 		}
@@ -120,7 +119,7 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 				return false;
 			}
 		}
-		return true;
+		return true;	
 	}
 
 	/**
@@ -145,7 +144,35 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 		
 		}
 		
-		return result;
+		return result;	
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean validateReferenceOnlyConditionsFromConditionModel(final DiagnosticChain diagnostics,
+			final Map<?, ?> context) {
+		
+		if (this.getSharedCondParts() == null) {
+			return true;
+		}
+		
+		boolean result = this.getSharedCondParts().stream().allMatch(c -> c.eContainer() instanceof ConditionModel);
+		
+		if (!result && diagnostics != null) {
+		
+			String errorMessage = "Reference only Conditions that are placed inside a ConditionModel!";
+		
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, ConditionValidator.DIAGNOSTIC_SOURCE,
+					ConditionValidator.VARIADIC_CONDITION__VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL,
+					errorMessage,
+					new Object[] { this, ConditionPackage.Literals.VARIADIC_CONDITION__SHARED_COND_PARTS }));
+		
+		}
+		
+		return result;	
 	}
 
 	/**
@@ -240,6 +267,8 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 				return referencesOnlyValidConditions();
 			case ConditionPackage.VARIADIC_CONDITION___VALIDATE_MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP:
 				return validateMinimalNumberOfArgs((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case ConditionPackage.VARIADIC_CONDITION___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP:
+				return validateReferenceOnlyConditionsFromConditionModel((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -247,21 +276,25 @@ public abstract class VariadicConditionImpl extends ComplexConditionImpl impleme
 	@Override
 	public boolean isLocalCondition() {
 
-		List<ComplexCondition> subConditions = new ArrayList<>();
-
-		subConditions.addAll(this.getLocalCondParts());
-		subConditions.addAll(this.getSharedCondParts());
-
-		return subConditions.parallelStream().filter(c -> c.isLocalCondition()).findAny().isPresent();
+		return Stream.concat(this.getLocalCondParts().stream(), this.getSharedCondParts().stream())
+				.allMatch(ComplexCondition::isLocalCondition);
 	}
 
 	@Override
-	public EList<ComplexCondition> getConditionPartsFlat() {
-		EList<ComplexCondition> ret = new BasicEList<>();
-		ret.add(this);
-		ret.addAll(Stream.concat(this.getLocalCondParts().stream(), this.getSharedCondParts().stream())
-				.collect(Collectors.toList()));
-		return ret;
+	public boolean isExternalCondition() {
+
+		return !this.isLocalCondition()
+				&& Stream.concat(this.getLocalCondParts().stream(), this.getSharedCondParts().stream())
+						.allMatch(c -> c.isLocalCondition() || c.isExternalCondition());
+	}
+
+	@Override
+	public boolean isGlobalCondition() {
+
+		return !this.isLocalCondition() && !this.isExternalCondition()
+				&& Stream.concat(this.getLocalCondParts().stream(), this.getSharedCondParts().stream())
+						.allMatch(ComplexCondition::isGlobalCondition);
+
 	}
 
 } // MultipleConditionOperatorImpl

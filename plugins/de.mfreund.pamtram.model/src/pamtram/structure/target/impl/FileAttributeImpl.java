@@ -65,6 +65,7 @@ public class FileAttributeImpl extends VirtualTargetSectionAttributeImpl impleme
 	 */
 	@Override
 	public FileType getFileType() {
+	
 		return fileType;
 	}
 
@@ -74,10 +75,12 @@ public class FileAttributeImpl extends VirtualTargetSectionAttributeImpl impleme
 	 */
 	@Override
 	public void setFileType(FileType newFileType) {
+	
 		FileType oldFileType = fileType;
 		fileType = newFileType == null ? FILE_TYPE_EDEFAULT : newFileType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, TargetPackage.FILE_ATTRIBUTE__FILE_TYPE, oldFileType, fileType));
+	
 	}
 
 	/**

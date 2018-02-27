@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.CompositeReference;
@@ -25,9 +26,8 @@ import pamtram.structure.generic.Section;
 import pamtram.structure.generic.util.GenericValidator;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Containment Reference</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Containment Reference</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -37,7 +37,9 @@ import pamtram.structure.generic.util.GenericValidator;
  *
  * @generated
  */
-public abstract class CompositeReferenceImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends ReferenceImpl<S, C, R, A> implements CompositeReference<S, C, R, A> {
+public abstract class CompositeReferenceImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>>
+		extends ReferenceImpl<S, C, R, A> implements CompositeReference<S, C, R, A> {
+
 	/**
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -49,8 +51,7 @@ public abstract class CompositeReferenceImpl<S extends Section<S, C, R, A>, C ex
 	protected EList<C> value;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected CompositeReferenceImpl() {
@@ -58,8 +59,7 @@ public abstract class CompositeReferenceImpl<S extends Section<S, C, R, A>, C ex
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -68,12 +68,12 @@ public abstract class CompositeReferenceImpl<S extends Section<S, C, R, A>, C ex
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public EList<C> getValue() {
+	
 		if (value == null) {
 			value = new EObjectContainmentEList<C>(pamtram.structure.generic.Class.class, this, GenericPackage.COMPOSITE_REFERENCE__VALUE);
 		}
@@ -81,8 +81,7 @@ public abstract class CompositeReferenceImpl<S extends Section<S, C, R, A>, C ex
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -105,12 +104,11 @@ public abstract class CompositeReferenceImpl<S extends Section<S, C, R, A>, C ex
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -123,8 +121,7 @@ public abstract class CompositeReferenceImpl<S extends Section<S, C, R, A>, C ex
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -137,8 +134,7 @@ public abstract class CompositeReferenceImpl<S extends Section<S, C, R, A>, C ex
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -154,8 +150,7 @@ public abstract class CompositeReferenceImpl<S extends Section<S, C, R, A>, C ex
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -169,8 +164,7 @@ public abstract class CompositeReferenceImpl<S extends Section<S, C, R, A>, C ex
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -183,8 +177,7 @@ public abstract class CompositeReferenceImpl<S extends Section<S, C, R, A>, C ex
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -197,4 +190,4 @@ public abstract class CompositeReferenceImpl<S extends Section<S, C, R, A>, C ex
 		return super.eInvoke(operationID, arguments);
 	}
 
-} //CompositeReferenceImpl
+} // CompositeReferenceImpl

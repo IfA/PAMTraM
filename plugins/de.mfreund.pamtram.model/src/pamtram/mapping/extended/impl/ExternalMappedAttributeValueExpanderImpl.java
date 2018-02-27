@@ -73,6 +73,7 @@ public abstract class ExternalMappedAttributeValueExpanderImpl extends ExternalD
 	 */
 	@Override
 	public EList<ExpandableHint> getHintsToExpand() {
+	
 		if (hintsToExpand == null) {
 			hintsToExpand = new EObjectResolvingEList<ExpandableHint>(ExpandableHint.class, this, ExtendedPackage.EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND);
 		}
@@ -92,7 +93,7 @@ public abstract class ExternalMappedAttributeValueExpanderImpl extends ExternalD
 			return ((ExternalMappedAttributeValueExpander) this).getSource();
 		} else {
 			return null;
-		}
+		}	
 	}
 
 	/**

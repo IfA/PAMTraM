@@ -81,13 +81,13 @@
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Loan" targetSection="//@targetSectionModels.0/@sections.3">
         <mappingHints xsi:type="extended:AttributeMapping" name="loanNameMapping" target="//@targetSectionModels.0/@sections.3/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="loanName" source="//@sourceSectionModels.0/@sections.1/@attributes.0"/>
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="bookName" source="//@sourceSectionModels.0/@sections.2/@attributes.0"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="bookName" source="//@sourceSectionModels.0/@sections.2/@attributes.0" followExternalReferences="true"/>
         </mappingHints>
         <mappingHints xsi:type="extended:ReferenceTargetSelector" name="member" referenceAttribute="//@targetSectionModels.0/@sections.2/@attributes.0" targetClass="//@targetSectionModels.0/@sections.2" affectedReference="//@targetSectionModels.0/@sections.3/@references.0">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="loanName" source="//@sourceSectionModels.0/@sections.1/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:ReferenceTargetSelector" name="book" referenceAttribute="//@targetSectionModels.0/@sections.1/@attributes.0" targetClass="//@targetSectionModels.0/@sections.1" affectedReference="//@targetSectionModels.0/@sections.3/@references.1">
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="loanName" source="//@sourceSectionModels.0/@sections.2/@attributes.0"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="loanName" source="//@sourceSectionModels.0/@sections.2/@attributes.0" followExternalReferences="true"/>
         </mappingHints>
       </mappingHintGroups>
     </mappings>

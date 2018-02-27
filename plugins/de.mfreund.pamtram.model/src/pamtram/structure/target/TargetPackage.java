@@ -173,6 +173,51 @@ public interface TargetPackage extends EPackage {
 	int TARGET_SECTION_CLASS__VIRTUAL_REFERENCES = GenericPackage.CLASS__VIRTUAL_REFERENCES;
 
 	/**
+	 * The feature id for the '<em><b>All Attributes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_CLASS__ALL_ATTRIBUTES = GenericPackage.CLASS__ALL_ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>All References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_CLASS__ALL_REFERENCES = GenericPackage.CLASS__ALL_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>All Concrete Extending</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_CLASS__ALL_CONCRETE_EXTENDING = GenericPackage.CLASS__ALL_CONCRETE_EXTENDING;
+
+	/**
+	 * The feature id for the '<em><b>All Composite References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_CLASS__ALL_COMPOSITE_REFERENCES = GenericPackage.CLASS__ALL_COMPOSITE_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>All Cross References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_CLASS__ALL_CROSS_REFERENCES = GenericPackage.CLASS__ALL_CROSS_REFERENCES;
+
+	/**
 	 * The number of structural features of the '<em>Section Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -270,6 +315,24 @@ public interface TargetPackage extends EPackage {
 	 * @ordered
 	 */
 	int TARGET_SECTION_CLASS___VALIDATE_CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP = GenericPackage.CLASS___VALIDATE_CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Validate Not Self Container</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_CLASS___VALIDATE_NOT_SELF_CONTAINER__DIAGNOSTICCHAIN_MAP = GenericPackage.CLASS___VALIDATE_NOT_SELF_CONTAINER__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Validate Only Complementing Actual References</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_CLASS___VALIDATE_ONLY_COMPLEMENTING_ACTUAL_REFERENCES__DIAGNOSTICCHAIN_MAP = GenericPackage.CLASS___VALIDATE_ONLY_COMPLEMENTING_ACTUAL_REFERENCES__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Section Class</em>' class.
@@ -390,6 +453,51 @@ public interface TargetPackage extends EPackage {
 	int TARGET_SECTION__VIRTUAL_REFERENCES = TARGET_SECTION_CLASS__VIRTUAL_REFERENCES;
 
 	/**
+	 * The feature id for the '<em><b>All Attributes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION__ALL_ATTRIBUTES = TARGET_SECTION_CLASS__ALL_ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>All References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION__ALL_REFERENCES = TARGET_SECTION_CLASS__ALL_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>All Concrete Extending</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION__ALL_CONCRETE_EXTENDING = TARGET_SECTION_CLASS__ALL_CONCRETE_EXTENDING;
+
+	/**
+	 * The feature id for the '<em><b>All Composite References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION__ALL_COMPOSITE_REFERENCES = TARGET_SECTION_CLASS__ALL_COMPOSITE_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>All Cross References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION__ALL_CROSS_REFERENCES = TARGET_SECTION_CLASS__ALL_CROSS_REFERENCES;
+
+	/**
 	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -417,13 +525,22 @@ public interface TargetPackage extends EPackage {
 	int TARGET_SECTION__ALL_EXTEND = TARGET_SECTION_CLASS_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>All Extending</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION__ALL_EXTENDING = TARGET_SECTION_CLASS_FEATURE_COUNT + 3;
+
+	/**
 	 * The feature id for the '<em><b>Referencing Mapping Hint Groups</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS = TARGET_SECTION_CLASS_FEATURE_COUNT + 3;
+	int TARGET_SECTION__REFERENCING_MAPPING_HINT_GROUPS = TARGET_SECTION_CLASS_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>File</b></em>' reference.
@@ -432,7 +549,7 @@ public interface TargetPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION__FILE = TARGET_SECTION_CLASS_FEATURE_COUNT + 4;
+	int TARGET_SECTION__FILE = TARGET_SECTION_CLASS_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Section</em>' class.
@@ -441,7 +558,7 @@ public interface TargetPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_FEATURE_COUNT = TARGET_SECTION_CLASS_FEATURE_COUNT + 5;
+	int TARGET_SECTION_FEATURE_COUNT = TARGET_SECTION_CLASS_FEATURE_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -534,6 +651,24 @@ public interface TargetPackage extends EPackage {
 	int TARGET_SECTION___VALIDATE_CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP = TARGET_SECTION_CLASS___VALIDATE_CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP;
 
 	/**
+	 * The operation id for the '<em>Validate Not Self Container</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION___VALIDATE_NOT_SELF_CONTAINER__DIAGNOSTICCHAIN_MAP = TARGET_SECTION_CLASS___VALIDATE_NOT_SELF_CONTAINER__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Validate Only Complementing Actual References</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION___VALIDATE_ONLY_COMPLEMENTING_ACTUAL_REFERENCES__DIAGNOSTICCHAIN_MAP = TARGET_SECTION_CLASS___VALIDATE_ONLY_COMPLEMENTING_ACTUAL_REFERENCES__DIAGNOSTICCHAIN_MAP;
+
+	/**
 	 * The operation id for the '<em>Validate Container Matches Extend Container</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -552,13 +687,22 @@ public interface TargetPackage extends EPackage {
 	int TARGET_SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP = TARGET_SECTION_CLASS_OPERATION_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Validate Not Extend Self</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION___VALIDATE_NOT_EXTEND_SELF__DIAGNOSTICCHAIN_MAP = TARGET_SECTION_CLASS_OPERATION_COUNT + 2;
+
+	/**
 	 * The operation id for the '<em>Validate Is Referenced By Mapping Hint Group</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION___VALIDATE_IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP = TARGET_SECTION_CLASS_OPERATION_COUNT + 2;
+	int TARGET_SECTION___VALIDATE_IS_REFERENCED_BY_MAPPING_HINT_GROUP__DIAGNOSTICCHAIN_MAP = TARGET_SECTION_CLASS_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Validate Cardinality</em>' operation.
@@ -567,7 +711,7 @@ public interface TargetPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION___VALIDATE_CARDINALITY__DIAGNOSTICCHAIN_MAP = TARGET_SECTION_CLASS_OPERATION_COUNT + 3;
+	int TARGET_SECTION___VALIDATE_CARDINALITY__DIAGNOSTICCHAIN_MAP = TARGET_SECTION_CLASS_OPERATION_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Section</em>' class.
@@ -576,7 +720,7 @@ public interface TargetPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_SECTION_OPERATION_COUNT = TARGET_SECTION_CLASS_OPERATION_COUNT + 4;
+	int TARGET_SECTION_OPERATION_COUNT = TARGET_SECTION_CLASS_OPERATION_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.target.impl.TargetSectionAttributeImpl <em>Section Attribute</em>}' class.
@@ -586,7 +730,7 @@ public interface TargetPackage extends EPackage {
 	 * @see pamtram.structure.target.impl.TargetPackageImpl#getTargetSectionAttribute()
 	 * @generated
 	 */
-	int TARGET_SECTION_ATTRIBUTE = 6;
+	int TARGET_SECTION_ATTRIBUTE = 8;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -677,7 +821,7 @@ public interface TargetPackage extends EPackage {
 	 * @see pamtram.structure.target.impl.TargetPackageImpl#getVirtualTargetSectionAttribute()
 	 * @generated
 	 */
-	int VIRTUAL_TARGET_SECTION_ATTRIBUTE = 8;
+	int VIRTUAL_TARGET_SECTION_ATTRIBUTE = 10;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -943,6 +1087,24 @@ public interface TargetPackage extends EPackage {
 	int TARGET_SECTION_REFERENCE___ADD_VALUES_GENERIC__ELIST = GenericPackage.REFERENCE___ADD_VALUES_GENERIC__ELIST;
 
 	/**
+	 * The operation id for the '<em>Is Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_REFERENCE___IS_EXTENDED = GenericPackage.REFERENCE___IS_EXTENDED;
+
+	/**
+	 * The operation id for the '<em>Get Values Including Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_REFERENCE___GET_VALUES_INCLUDING_EXTENDED = GenericPackage.REFERENCE___GET_VALUES_INCLUDING_EXTENDED;
+
+	/**
 	 * The number of operations of the '<em>Section Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1052,6 +1214,24 @@ public interface TargetPackage extends EPackage {
 	int TARGET_SECTION_COMPOSITE_REFERENCE___ADD_VALUES_GENERIC__ELIST = GenericPackage.COMPOSITE_REFERENCE___ADD_VALUES_GENERIC__ELIST;
 
 	/**
+	 * The operation id for the '<em>Is Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_COMPOSITE_REFERENCE___IS_EXTENDED = GenericPackage.COMPOSITE_REFERENCE___IS_EXTENDED;
+
+	/**
+	 * The operation id for the '<em>Get Values Including Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_COMPOSITE_REFERENCE___GET_VALUES_INCLUDING_EXTENDED = GenericPackage.COMPOSITE_REFERENCE___GET_VALUES_INCLUDING_EXTENDED;
+
+	/**
 	 * The operation id for the '<em>Validate EReference Is Containment</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1079,6 +1259,142 @@ public interface TargetPackage extends EPackage {
 	int TARGET_SECTION_COMPOSITE_REFERENCE_OPERATION_COUNT = GenericPackage.COMPOSITE_REFERENCE_OPERATION_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link pamtram.structure.target.impl.TargetSectionAnyContentCompositeReferenceImpl <em>Section Any Content Composite Reference</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.structure.target.impl.TargetSectionAnyContentCompositeReferenceImpl
+	 * @see pamtram.structure.target.impl.TargetPackageImpl#getTargetSectionAnyContentCompositeReference()
+	 * @generated
+	 */
+	int TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE__NAME = GenericPackage.COMPOSITE_REFERENCE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE__OWNING_CLASS = GenericPackage.COMPOSITE_REFERENCE__OWNING_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE__VALUE = GenericPackage.COMPOSITE_REFERENCE__VALUE;
+
+	/**
+	 * The number of structural features of the '<em>Section Any Content Composite Reference</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE_FEATURE_COUNT = GenericPackage.COMPOSITE_REFERENCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Containing Section</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE___GET_CONTAINING_SECTION = GenericPackage.COMPOSITE_REFERENCE___GET_CONTAINING_SECTION;
+
+	/**
+	 * The operation id for the '<em>Get Containing Section Model</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE___GET_CONTAINING_SECTION_MODEL = GenericPackage.COMPOSITE_REFERENCE___GET_CONTAINING_SECTION_MODEL;
+
+	/**
+	 * The operation id for the '<em>Is Library Entry</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE___IS_LIBRARY_ENTRY = GenericPackage.COMPOSITE_REFERENCE___IS_LIBRARY_ENTRY;
+
+	/**
+	 * The operation id for the '<em>Get Values Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE___GET_VALUES_GENERIC = GenericPackage.COMPOSITE_REFERENCE___GET_VALUES_GENERIC;
+
+	/**
+	 * The operation id for the '<em>Add Values Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE___ADD_VALUES_GENERIC__ELIST = GenericPackage.COMPOSITE_REFERENCE___ADD_VALUES_GENERIC__ELIST;
+
+	/**
+	 * The operation id for the '<em>Is Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE___IS_EXTENDED = GenericPackage.COMPOSITE_REFERENCE___IS_EXTENDED;
+
+	/**
+	 * The operation id for the '<em>Get Values Including Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE___GET_VALUES_INCLUDING_EXTENDED = GenericPackage.COMPOSITE_REFERENCE___GET_VALUES_INCLUDING_EXTENDED;
+
+	/**
+	 * The operation id for the '<em>Validate EReference Is Containment</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP = GenericPackage.COMPOSITE_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Validate Is Allowed</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE___VALIDATE_IS_ALLOWED__DIAGNOSTICCHAIN_MAP = GenericPackage.COMPOSITE_REFERENCE_OPERATION_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Section Any Content Composite Reference</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE_OPERATION_COUNT = GenericPackage.COMPOSITE_REFERENCE_OPERATION_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link pamtram.structure.target.impl.TargetSectionCrossReferenceImpl <em>Section Cross Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1086,7 +1402,7 @@ public interface TargetPackage extends EPackage {
 	 * @see pamtram.structure.target.impl.TargetPackageImpl#getTargetSectionCrossReference()
 	 * @generated
 	 */
-	int TARGET_SECTION_CROSS_REFERENCE = 5;
+	int TARGET_SECTION_CROSS_REFERENCE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1179,6 +1495,24 @@ public interface TargetPackage extends EPackage {
 	int TARGET_SECTION_CROSS_REFERENCE___ADD_VALUES_GENERIC__ELIST = GenericPackage.CROSS_REFERENCE___ADD_VALUES_GENERIC__ELIST;
 
 	/**
+	 * The operation id for the '<em>Is Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_CROSS_REFERENCE___IS_EXTENDED = GenericPackage.CROSS_REFERENCE___IS_EXTENDED;
+
+	/**
+	 * The operation id for the '<em>Get Values Including Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_CROSS_REFERENCE___GET_VALUES_INCLUDING_EXTENDED = GenericPackage.CROSS_REFERENCE___GET_VALUES_INCLUDING_EXTENDED;
+
+	/**
 	 * The operation id for the '<em>Validate Values Match Reference Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1215,6 +1549,142 @@ public interface TargetPackage extends EPackage {
 	int TARGET_SECTION_CROSS_REFERENCE_OPERATION_COUNT = GenericPackage.CROSS_REFERENCE_OPERATION_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link pamtram.structure.target.impl.TargetSectionAnyContentCrossReferenceImpl <em>Section Any Content Cross Reference</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see pamtram.structure.target.impl.TargetSectionAnyContentCrossReferenceImpl
+	 * @see pamtram.structure.target.impl.TargetPackageImpl#getTargetSectionAnyContentCrossReference()
+	 * @generated
+	 */
+	int TARGET_SECTION_ANY_CONTENT_CROSS_REFERENCE = 7;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ANY_CONTENT_CROSS_REFERENCE__NAME = GenericPackage.CROSS_REFERENCE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owning Class</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ANY_CONTENT_CROSS_REFERENCE__OWNING_CLASS = GenericPackage.CROSS_REFERENCE__OWNING_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ANY_CONTENT_CROSS_REFERENCE__VALUE = GenericPackage.CROSS_REFERENCE__VALUE;
+
+	/**
+	 * The number of structural features of the '<em>Section Any Content Cross Reference</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ANY_CONTENT_CROSS_REFERENCE_FEATURE_COUNT = GenericPackage.CROSS_REFERENCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Get Containing Section</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ANY_CONTENT_CROSS_REFERENCE___GET_CONTAINING_SECTION = GenericPackage.CROSS_REFERENCE___GET_CONTAINING_SECTION;
+
+	/**
+	 * The operation id for the '<em>Get Containing Section Model</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ANY_CONTENT_CROSS_REFERENCE___GET_CONTAINING_SECTION_MODEL = GenericPackage.CROSS_REFERENCE___GET_CONTAINING_SECTION_MODEL;
+
+	/**
+	 * The operation id for the '<em>Is Library Entry</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ANY_CONTENT_CROSS_REFERENCE___IS_LIBRARY_ENTRY = GenericPackage.CROSS_REFERENCE___IS_LIBRARY_ENTRY;
+
+	/**
+	 * The operation id for the '<em>Get Values Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ANY_CONTENT_CROSS_REFERENCE___GET_VALUES_GENERIC = GenericPackage.CROSS_REFERENCE___GET_VALUES_GENERIC;
+
+	/**
+	 * The operation id for the '<em>Add Values Generic</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ANY_CONTENT_CROSS_REFERENCE___ADD_VALUES_GENERIC__ELIST = GenericPackage.CROSS_REFERENCE___ADD_VALUES_GENERIC__ELIST;
+
+	/**
+	 * The operation id for the '<em>Is Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ANY_CONTENT_CROSS_REFERENCE___IS_EXTENDED = GenericPackage.CROSS_REFERENCE___IS_EXTENDED;
+
+	/**
+	 * The operation id for the '<em>Get Values Including Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ANY_CONTENT_CROSS_REFERENCE___GET_VALUES_INCLUDING_EXTENDED = GenericPackage.CROSS_REFERENCE___GET_VALUES_INCLUDING_EXTENDED;
+
+	/**
+	 * The operation id for the '<em>Validate Values Match Reference Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ANY_CONTENT_CROSS_REFERENCE___VALIDATE_VALUES_MATCH_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP = GenericPackage.CROSS_REFERENCE___VALIDATE_VALUES_MATCH_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Validate Is Allowed</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ANY_CONTENT_CROSS_REFERENCE___VALIDATE_IS_ALLOWED__DIAGNOSTICCHAIN_MAP = GenericPackage.CROSS_REFERENCE_OPERATION_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Section Any Content Cross Reference</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_SECTION_ANY_CONTENT_CROSS_REFERENCE_OPERATION_COUNT = GenericPackage.CROSS_REFERENCE_OPERATION_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link pamtram.structure.target.impl.ActualTargetSectionAttributeImpl <em>Actual Target Section Attribute</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1222,7 +1692,7 @@ public interface TargetPackage extends EPackage {
 	 * @see pamtram.structure.target.impl.TargetPackageImpl#getActualTargetSectionAttribute()
 	 * @generated
 	 */
-	int ACTUAL_TARGET_SECTION_ATTRIBUTE = 7;
+	int ACTUAL_TARGET_SECTION_ATTRIBUTE = 9;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1331,7 +1801,7 @@ public interface TargetPackage extends EPackage {
 	 * @see pamtram.structure.target.impl.TargetPackageImpl#getFileType()
 	 * @generated
 	 */
-	int FILE_TYPE = 9;
+	int FILE_TYPE = 11;
 
 
 	/**
@@ -1438,6 +1908,26 @@ public interface TargetPackage extends EPackage {
 	EClass getTargetSectionCompositeReference();
 
 	/**
+	 * Returns the meta object for class '{@link pamtram.structure.target.TargetSectionAnyContentCompositeReference <em>Section Any Content Composite Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Section Any Content Composite Reference</em>'.
+	 * @see pamtram.structure.target.TargetSectionAnyContentCompositeReference
+	 * @generated
+	 */
+	EClass getTargetSectionAnyContentCompositeReference();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.structure.target.TargetSectionAnyContentCompositeReference#validateIsAllowed(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Is Allowed</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Is Allowed</em>' operation.
+	 * @see pamtram.structure.target.TargetSectionAnyContentCompositeReference#validateIsAllowed(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getTargetSectionAnyContentCompositeReference__ValidateIsAllowed__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.structure.target.TargetSectionCrossReference <em>Section Cross Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1456,6 +1946,26 @@ public interface TargetPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getTargetSectionCrossReference__ValidateEReferenceIsNonContainment__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for class '{@link pamtram.structure.target.TargetSectionAnyContentCrossReference <em>Section Any Content Cross Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Section Any Content Cross Reference</em>'.
+	 * @see pamtram.structure.target.TargetSectionAnyContentCrossReference
+	 * @generated
+	 */
+	EClass getTargetSectionAnyContentCrossReference();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.structure.target.TargetSectionAnyContentCrossReference#validateIsAllowed(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Is Allowed</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Is Allowed</em>' operation.
+	 * @see pamtram.structure.target.TargetSectionAnyContentCrossReference#validateIsAllowed(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getTargetSectionAnyContentCrossReference__ValidateIsAllowed__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.structure.target.TargetSectionAttribute <em>Section Attribute</em>}'.
@@ -1633,6 +2143,24 @@ public interface TargetPackage extends EPackage {
 		EClass TARGET_SECTION_COMPOSITE_REFERENCE = eINSTANCE.getTargetSectionCompositeReference();
 
 		/**
+		 * The meta object literal for the '{@link pamtram.structure.target.impl.TargetSectionAnyContentCompositeReferenceImpl <em>Section Any Content Composite Reference</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.structure.target.impl.TargetSectionAnyContentCompositeReferenceImpl
+		 * @see pamtram.structure.target.impl.TargetPackageImpl#getTargetSectionAnyContentCompositeReference()
+		 * @generated
+		 */
+		EClass TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE = eINSTANCE.getTargetSectionAnyContentCompositeReference();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Is Allowed</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE___VALIDATE_IS_ALLOWED__DIAGNOSTICCHAIN_MAP = eINSTANCE.getTargetSectionAnyContentCompositeReference__ValidateIsAllowed__DiagnosticChain_Map();
+
+		/**
 		 * The meta object literal for the '{@link pamtram.structure.target.impl.TargetSectionCrossReferenceImpl <em>Section Cross Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1649,6 +2177,24 @@ public interface TargetPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation TARGET_SECTION_CROSS_REFERENCE___VALIDATE_EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP = eINSTANCE.getTargetSectionCrossReference__ValidateEReferenceIsNonContainment__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '{@link pamtram.structure.target.impl.TargetSectionAnyContentCrossReferenceImpl <em>Section Any Content Cross Reference</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see pamtram.structure.target.impl.TargetSectionAnyContentCrossReferenceImpl
+		 * @see pamtram.structure.target.impl.TargetPackageImpl#getTargetSectionAnyContentCrossReference()
+		 * @generated
+		 */
+		EClass TARGET_SECTION_ANY_CONTENT_CROSS_REFERENCE = eINSTANCE.getTargetSectionAnyContentCrossReference();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Is Allowed</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation TARGET_SECTION_ANY_CONTENT_CROSS_REFERENCE___VALIDATE_IS_ALLOWED__DIAGNOSTICCHAIN_MAP = eINSTANCE.getTargetSectionAnyContentCrossReference__ValidateIsAllowed__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.structure.target.impl.TargetSectionAttributeImpl <em>Section Attribute</em>}' class.

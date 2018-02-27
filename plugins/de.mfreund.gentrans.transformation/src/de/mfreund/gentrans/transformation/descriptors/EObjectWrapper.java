@@ -5,17 +5,14 @@ package de.mfreund.gentrans.transformation.descriptors;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.ecore.util.FeatureMapUtil;
 
 import de.mfreund.gentrans.transformation.registries.AttributeValueRegistry;
@@ -24,11 +21,13 @@ import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.structure.generic.ActualAttribute;
 import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.VirtualAttribute;
+import pamtram.structure.target.ActualTargetSectionAttribute;
 import pamtram.structure.target.FileAttribute;
 import pamtram.structure.target.FileType;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.target.TargetSectionReference;
+import pamtram.structure.target.VirtualTargetSectionAttribute;
 
 /**
  * This class provides wrapper functionality for {@link EObject EObjects} that have been created during the
@@ -66,7 +65,7 @@ public class EObjectWrapper {
 	 * As values of {@link VirtualAttribute VirtualAttributes} cannot bestored in the actual {@link #eObject}, they are
 	 * stored in a separate map.
 	 */
-	private final LinkedHashMap<VirtualAttribute<?, ?, ?, ?>, String> virtualAttributeValues;
+	private final LinkedHashMap<VirtualTargetSectionAttribute, String> virtualAttributeValues;
 
 	/**
 	 * This creates an instance that wraps the given 'eObject'.
@@ -112,17 +111,41 @@ public class EObjectWrapper {
 	 * if 'attr' is an {@link VirtualAttribute} the value that is stored in {@link #virtualAttributeValues} is returned.
 	 *
 	 * @param attr
-	 * @return Attribute value as String
+	 * @return Attribute value as String or '<em>null</em>' if no value was set for the given attribute.
 	 */
 	public String getAttributeValue(final TargetSectionAttribute attr) {
 
-		if (attr instanceof VirtualAttribute) {
+		if (attr instanceof VirtualTargetSectionAttribute) {
 			return this.virtualAttributeValues.get(attr);
-		} else if (attr instanceof ActualAttribute) {
+		} else if (attr instanceof ActualTargetSectionAttribute) {
 			return EObjectWrapper.convertAttributeValue(this.eObject,
 					((ActualAttribute<?, ?, ?, ?>) attr).getAttribute());
 		}
 		return null;
+	}
+
+	/**
+	 * This returns a list of String representations of the values of a {@link TargetSectionAttribute}.
+	 * <p />
+	 * If the given 'attr' is an {@link ActualAttribute} the actual values of the wrapped {@link #eObject} are returned
+	 * - if 'attr' is an {@link VirtualAttribute} a list containing the value that is stored in
+	 * {@link #virtualAttributeValues} is returned.
+	 *
+	 * @param attr
+	 * @return The attribute values as String or an empty list if no value was set for the given attribute.
+	 */
+	public List<String> getAttributeValues(final TargetSectionAttribute attr) {
+
+		if (attr instanceof VirtualAttribute) {
+
+			return this.virtualAttributeValues.containsKey(attr) ? Arrays.asList(this.virtualAttributeValues.get(attr))
+					: new ArrayList<>();
+		} else if (attr instanceof ActualAttribute) {
+
+			return EObjectWrapper.convertAttributeValues(this.eObject,
+					((ActualAttribute<?, ?, ?, ?>) attr).getAttribute());
+		}
+		return new ArrayList<>();
 	}
 
 	/**
@@ -138,15 +161,15 @@ public class EObjectWrapper {
 	 */
 	public boolean attributeValueExists(final TargetSectionAttribute attr, final String value) {
 
-		return this.attrValRegistry.attributeValueExists(attr, value, this.eObject.eClass());
+		return this.attrValRegistry.attributeValueExists(attr, value);
 	}
 
 	/**
 	 * This sets the value of a {@link TargetSectionAttribute} and registers it in the {@link #attrValRegistry}
 	 * registered with this wrapper.
 	 * <p />
-	 * Based on the attribute type, this redirect to {@link #setAttributeValue(ActualAttribute, String)} or to
-	 * {@link #setAttributeValue(VirtualAttribute, String)}.
+	 * Based on the attribute type, this redirect to {@link #setAttributeValue(ActualTargetSectionAttribute, String)} or
+	 * to {@link #setAttributeValue(VirtualTargetSectionAttribute, String)}.
 	 *
 	 * @param attr
 	 *            The {@link TargetSectionAttribute} for that the given 'value' shall be set.
@@ -156,10 +179,42 @@ public class EObjectWrapper {
 	 */
 	public void setAttributeValue(final TargetSectionAttribute attr, final String value) {
 
-		if (attr instanceof ActualAttribute) {
-			this.setAttributeValue((ActualAttribute<?, ?, ?, ?>) attr, value);
-		} else if (attr instanceof VirtualAttribute) {
-			this.setAttributeValue((VirtualAttribute<?, ?, ?, ?>) attr, value);
+		if (attr instanceof ActualTargetSectionAttribute) {
+			this.setAttributeValue((ActualTargetSectionAttribute) attr, value);
+		} else if (attr instanceof VirtualTargetSectionAttribute) {
+			this.setAttributeValue((VirtualTargetSectionAttribute) attr, value);
+		}
+
+	}
+
+	/**
+	 * This sets the values of a {@link TargetSectionAttribute} and registers it in the {@link #attrValRegistry}
+	 * registered with this wrapper.
+	 * <p />
+	 * Based on the attribute type, this redirect to {@link #setAttributeValues(ActualTargetSectionAttribute, List)} or
+	 * to {@link #setAttributeValue(VirtualTargetSectionAttribute, String)}.
+	 * <p />
+	 * Note: For {@link VirtualAttribute VirtualAttributes}, only a single value may be set!
+	 *
+	 * @param attr
+	 *            The {@link TargetSectionAttribute} for that the given 'value' shall be set.
+	 * @param values
+	 *            A String representation of the values to be set.
+	 * @throws IllegalArgumentException
+	 */
+	public void setAttributeValues(final TargetSectionAttribute attr, final List<String> values) {
+
+		if (attr instanceof ActualTargetSectionAttribute) {
+			this.setAttributeValues((ActualTargetSectionAttribute) attr, values);
+		} else if (attr instanceof VirtualTargetSectionAttribute) {
+			if (values.isEmpty()) {
+				return;
+			} else if (values.size() == 1) {
+				this.setAttributeValue((VirtualTargetSectionAttribute) attr, values.get(0));
+			} else {
+				throw new IllegalArgumentException("Trying to set multiple values for a VirtualAttribute ('"
+						+ attr.getName() + "'). This is currently not supported!");
+			}
 		}
 
 	}
@@ -177,44 +232,96 @@ public class EObjectWrapper {
 	 * @throws IllegalArgumentException
 	 *             If the given 'value' cannot be converted to the data type defined by 'attr'.
 	 */
-	void setAttributeValue(final ActualAttribute<?, ?, ?, ?> attr, final String value) throws IllegalArgumentException {
+	void setAttributeValue(ActualTargetSectionAttribute attr, String value) throws IllegalArgumentException {
+
+		this.setAttributeValues(attr, Arrays.asList(value));
+
+	}
+
+	/**
+	 * This sets the values of an {@link ActualAttribute}.
+	 * <p />
+	 * <b>Note:</b> The given values will be set in the {@link #eObject} that is wrapped by this.
+	 *
+	 * @param attr
+	 *            The {@link ActualAttribute} for that the given 'value' shall be set.
+	 * @param values
+	 *            A list of String representations of the values to be set. This will be converted to the correct data
+	 *            type defined by 'attr'.
+	 * @throws IllegalArgumentException
+	 *             If the given 'value' cannot be converted to the data type defined by 'attr'.
+	 */
+	void setAttributeValues(ActualTargetSectionAttribute attr, List<String> values) throws IllegalArgumentException {
+
+		List<Object> valueObjects = new ArrayList<>();
+
+		for (String value : values) {
+
+			Object valueObject = this.getAttributeValueAsObject(attr.getAttribute(), value);
+
+			if (attr.getAttribute().getEAttributeType().isInstance(valueObject)) {
+				valueObjects.add(valueObject);
+			}
+
+		}
+
+		if (attr.getAttribute().isMany()) {
+			this.eObject.eSet(attr.getAttribute(), valueObjects);
+		} else if (valueObjects.size() == 1) {
+			this.eObject.eSet(attr.getAttribute(), valueObjects.get(0));
+		} else if (valueObjects.isEmpty()) {
+			this.eObject.eUnset(attr.getAttribute());
+		} else {
+			throw new IllegalArgumentException("Trying to set multiple value for ActualAttribute '" + attr.getName()
+					+ " that is based on an EAttribute with upper bound 1!");
+		}
+
+		this.attrValRegistry.registerValues(attr, values);
+
+	}
+
+	/**
+	 * Convert the string representation of the given <em>value</em> to the data type of the given {@link EAttribute}.
+	 *
+	 * @param attribute
+	 *            The {@link EAttribute} defining the data type to use.
+	 * @param value
+	 *            The value to be converted.
+	 * @return The converted value as instance of the data type of the given attribute.
+	 * @throws IllegalArgumentException
+	 */
+	public Object getAttributeValueAsObject(EAttribute attribute, final String value) throws IllegalArgumentException {
 
 		// convert the string representation of the value to the correct data
 		// type
 		Object valueObject = null;
 		try {
-			valueObject = attr.getAttribute().getEType().getEPackage().getEFactoryInstance()
-					.createFromString(attr.getAttribute().getEAttributeType(), value);
+			valueObject = attribute.getEType().getEPackage().getEFactoryInstance()
+					.createFromString(attribute.getEAttributeType(), value);
 		} catch (Exception e) {
+
+			if (value == null) {
+				return null;
+			}
 
 			// if an integer-based value is represented as boolean (e.g. as it
 			// was used by an 'expression'), try to set this instead
 			//
 			if (value.endsWith(".0")) {
 				try {
-					valueObject = attr.getAttribute().getEType().getEPackage().getEFactoryInstance()
-							.createFromString(attr.getAttribute().getEAttributeType(), value.replaceFirst(".0$", ""));
+					valueObject = attribute.getEType().getEPackage().getEFactoryInstance()
+							.createFromString(attribute.getEAttributeType(), value.replaceFirst(".0$", ""));
 				} catch (Exception e1) {
 					throw e;
 				}
-			} else if (FeatureMapUtil.isFeatureMap(attr.getAttribute())) {
-				throw new RuntimeException(
+			} else if (FeatureMapUtil.isFeatureMap(attribute)) {
+				throw new IllegalArgumentException(
 						"Setting values of Attributes of type EFeatureMapEntry is currently not supported!", e);
 			} else {
-				throw e;
+				throw new IllegalArgumentException(e);
 			}
 		}
-
-		if (attr.getAttribute().isMany() && !(valueObject instanceof FeatureMap.Entry)) {
-			ArrayList<Object> valueObjectList = new ArrayList<>();
-			valueObjectList.add(valueObject);
-			this.eObject.eSet(attr.getAttribute(), valueObjectList);
-		} else {
-			this.eObject.eSet(attr.getAttribute(), valueObject);
-		}
-
-		this.attrValRegistry.registerValue(attr, this.eObject.eClass(), value);
-
+		return valueObject;
 	}
 
 	/**
@@ -225,11 +332,11 @@ public class EObjectWrapper {
 	 * @param value
 	 *            The value to be set.
 	 */
-	void setAttributeValue(final VirtualAttribute<?, ?, ?, ?> attr, final String value) {
+	void setAttributeValue(VirtualTargetSectionAttribute attr, final String value) {
 
 		this.virtualAttributeValues.put(attr, value);
 
-		this.attrValRegistry.registerValue(attr, this.eObject.eClass(), value);
+		this.attrValRegistry.registerValue(attr, value);
 	}
 
 	/**
@@ -284,15 +391,27 @@ public class EObjectWrapper {
 	 */
 	public static String asString(final EObject eObject) {
 
-		String returnString = eObject.eClass().getName() + " (HashCode: " + eObject.hashCode() + ")";
+		return EObjectWrapper.asStringBuilder(eObject).toString();
+	}
+
+	/**
+	 * This creates a String representation of an EObject that includes the values of all {@link ActualAttribute
+	 * ActualAttributes}.
+	 *
+	 * @param eObject
+	 *            The {@link EObject} for that the String representation shall be created.
+	 * @return The String representation as {@link StringBuilder}.
+	 */
+	protected static StringBuilder asStringBuilder(final EObject eObject) {
+
+		StringBuilder returnString = new StringBuilder(eObject.eClass().getName()).append(" (");
 		for (final EAttribute a : eObject.eClass().getEAllAttributes()) {
 			final String val = EObjectWrapper.convertAttributeValue(eObject, a);
 			if (val != null) {
-				returnString += "\n   " + a.getName() + ": " + val;
+				returnString.append("\n    ").append(a.getName()).append(": ").append(val);
 			}
 		}
-		returnString += "\n";
-
+		returnString.append("\n)");
 		return returnString;
 	}
 
@@ -303,35 +422,42 @@ public class EObjectWrapper {
 	 *            The {@link EObject} for that the attribute value shall be returned.
 	 * @param attr
 	 *            The {@link EAttribute} whose value shall be returned.
-	 * @return A String representation of the attribute value.
+	 * @return A String representation of the attribute value or '<em>null</em>' if no value exists.
 	 */
 	private static String convertAttributeValue(final EObject eObject, final EAttribute attr) {
 
-		if (attr == null) {
-			return null;
+		return String.join("; ", EObjectWrapper.convertAttributeValues(eObject, attr));
+
+	}
+
+	/**
+	 * Static helper method for converting the value(s) of an attribute of the given 'eObject' to a list of String
+	 * representations.
+	 *
+	 * @param eObject
+	 *            The {@link EObject} for that the attribute values shall be returned.
+	 * @param attr
+	 *            The {@link EAttribute} whose values shall be returned.
+	 * @return A list of String representations of the attribute value(s) or an empty list if no values exists.
+	 */
+	private static List<String> convertAttributeValues(final EObject eObject, final EAttribute attr) {
+
+		if (attr == null || !eObject.eIsSet(attr)) {
+			return new ArrayList<>();
 		}
 
-		final Object srcAttr = eObject.eGet(attr);
-		try {
-			if (!attr.isMany()) {
-				return attr.getEType().getEPackage().getEFactoryInstance().convertToString(attr.getEAttributeType(),
-						srcAttr);
-			} else {
-				String ret = "";
-				Iterator<?> it = ((EList<?>) srcAttr).iterator();
-				while (it.hasNext()) {
-					ret += attr.getEType().getEPackage().getEFactoryInstance().convertToString(attr.getEAttributeType(),
-							it.next());
-					if (it.hasNext()) {
-						ret += "; ";
-					}
-				}
-				return ret;
+		List<Object> srcAttrValues = AgteleEcoreUtil.getStructuralFeatureValueAsList(eObject, attr);
+		List<String> srcAttrValuesAsString = new ArrayList<>();
+		for (Object srcAttr : srcAttrValues) {
+			try {
+				srcAttrValuesAsString.add(attr.getEType().getEPackage().getEFactoryInstance()
+						.convertToString(attr.getEAttributeType(), srcAttr));
+			} catch (final Exception e) {
+				e.printStackTrace(System.out);
+				return srcAttrValues.stream().map(Object::toString).collect(Collectors.toList());
 			}
-		} catch (final Exception e) {
-			e.printStackTrace(System.out);
-			return srcAttr != null ? srcAttr.toString() : "";
 		}
+		return srcAttrValuesAsString;
 
 	}
 
@@ -343,13 +469,20 @@ public class EObjectWrapper {
 	@Override
 	public String toString() {
 
-		String returnString = EObjectWrapper.asString(this.eObject);
+		StringBuilder returnString = EObjectWrapper.asStringBuilder(this.eObject);
+
+		// Remove the '\n)' at the end of the String
+		//
+		returnString.delete(returnString.lastIndexOf("\n)"), returnString.length());
 
 		for (final VirtualAttribute<?, ?, ?, ?> a : this.virtualAttributeValues.keySet()) {
-			returnString += "\n   " + a.getName() + "(v): " + this.virtualAttributeValues.get(a);
+
+			returnString.append("\n    ").append(a.getName()).append("(v): ")
+					.append(this.virtualAttributeValues.get(a));
 		}
 
-		return returnString;
+		returnString.append("\n)");
+		return returnString.toString();
 	}
 
 	/**
@@ -361,7 +494,7 @@ public class EObjectWrapper {
 	 */
 	public String getFile() {
 
-		for (Entry<VirtualAttribute<?, ?, ?, ?>, String> entry : this.virtualAttributeValues.entrySet()) {
+		for (Entry<VirtualTargetSectionAttribute, String> entry : this.virtualAttributeValues.entrySet()) {
 			if (entry.getKey() instanceof FileAttribute) {
 				return entry.getValue() != null ? entry.getValue() : "";
 			}
@@ -379,7 +512,7 @@ public class EObjectWrapper {
 	 */
 	public FileType getFileType() {
 
-		for (Entry<VirtualAttribute<?, ?, ?, ?>, String> entry : this.virtualAttributeValues.entrySet()) {
+		for (Entry<VirtualTargetSectionAttribute, String> entry : this.virtualAttributeValues.entrySet()) {
 			if (entry.getKey() instanceof FileAttribute) {
 				return ((FileAttribute) entry.getKey()).getFileType() == null ? FileType.XMI
 						: ((FileAttribute) entry.getKey()).getFileType();

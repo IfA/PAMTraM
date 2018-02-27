@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;
 
+import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import pamtram.mapping.modifier.ValueModifier;
 import pamtram.mapping.modifier.ValueModifierSet;
 
@@ -14,11 +15,6 @@ import pamtram.mapping.modifier.ValueModifierSet;
  * @author mfreund
  */
 public class ValueModifierExecutor {
-
-	/**
-	 * This keeps track of the single instance.
-	 */
-	private static ValueModifierExecutor instance;
 
 	/**
 	 * An {@link Logger} for messages. This is used to print error messages when the application of an
@@ -35,55 +31,14 @@ public class ValueModifierExecutor {
 	/**
 	 * This constructs an instance.
 	 *
-	 * @param logger
-	 *            A {@link Logger} that will be used to print error messages when the application of an
-	 *            AttributeValueModifier fails.
+	 * @param assetManager
+	 *            The {@link TransformationAssetManager} providing access to the various other assets used in the
+	 *            current transformation instance.
 	 */
-	private ValueModifierExecutor(final Logger logger) {
+	public ValueModifierExecutor(TransformationAssetManager assetManager) {
 
-		this.logger = logger;
+		this.logger = assetManager.getLogger();
 		this.modifiersWithErrors = new HashSet<>();
-		ValueModifierExecutor.instance = this;
-	}
-
-	/**
-	 * This returns the single {@link #instance}.
-	 * <p />
-	 * Note: This will {@link #init(Logger) initialize} the instance if necessary but without any {@link Logger}. Thus,
-	 * {@link #init(Logger)} should be called once before using this in order to allow for printing messages.
-	 *
-	 * FIXME do not use a singleton pattern to be able to run different transformations at the same time
-	 *
-	 * @return The single {@link #instance}.
-	 */
-	public static ValueModifierExecutor getInstance() {
-
-		if (ValueModifierExecutor.instance == null) {
-			ValueModifierExecutor.init(null);
-		}
-
-		return ValueModifierExecutor.instance;
-	}
-
-	/**
-	 * This initializes and returns the {@link #instance} based on the given {@link Logger}. This should be called once
-	 * before {@link #getInstance()} in order to set the correct {@link Logger} to use.
-	 *
-	 * @param logger
-	 *            The {@link Logger} that shall be used to print messages.
-	 * @return The {@link #instance}.
-	 */
-	public static ValueModifierExecutor init(final Logger logger) {
-
-		// Either create the single instance or only set the consoleStream
-		//
-		if (ValueModifierExecutor.instance == null) {
-			new ValueModifierExecutor(logger);
-		} else {
-			ValueModifierExecutor.instance.logger = logger;
-		}
-
-		return ValueModifierExecutor.instance;
 	}
 
 	/**

@@ -5,13 +5,15 @@ package pamtram.structure.source.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
@@ -21,6 +23,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
+
 import pamtram.DeactivatableElement;
 import pamtram.PamtramPackage;
 import pamtram.mapping.Mapping;
@@ -41,6 +44,7 @@ import pamtram.structure.source.util.SourceValidator;
  *   <li>{@link pamtram.structure.source.impl.SourceSectionImpl#isAbstract <em>Abstract</em>}</li>
  *   <li>{@link pamtram.structure.source.impl.SourceSectionImpl#getExtend <em>Extend</em>}</li>
  *   <li>{@link pamtram.structure.source.impl.SourceSectionImpl#getAllExtend <em>All Extend</em>}</li>
+ *   <li>{@link pamtram.structure.source.impl.SourceSectionImpl#getAllExtending <em>All Extending</em>}</li>
  *   <li>{@link pamtram.structure.source.impl.SourceSectionImpl#isDeactivated <em>Deactivated</em>}</li>
  *   <li>{@link pamtram.structure.source.impl.SourceSectionImpl#getReferencingMappings <em>Referencing Mappings</em>}</li>
  * </ul>
@@ -81,8 +85,8 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 
 	/**
 	 * The default value of the '{@link #isDeactivated() <em>Deactivated</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #isDeactivated()
 	 * @generated
 	 * @ordered
@@ -91,8 +95,8 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 
 	/**
 	 * The cached value of the '{@link #isDeactivated() <em>Deactivated</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #isDeactivated()
 	 * @generated
 	 * @ordered
@@ -122,6 +126,7 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 	 */
 	@Override
 	public boolean isAbstract() {
+	
 		return abstract_;
 	}
 
@@ -131,10 +136,12 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 	 */
 	@Override
 	public void setAbstract(boolean newAbstract) {
+	
 		boolean oldAbstract = abstract_;
 		abstract_ = newAbstract;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SourcePackage.SOURCE_SECTION__ABSTRACT, oldAbstract, abstract_));
+	
 	}
 
 	/**
@@ -143,6 +150,7 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 	 */
 	@Override
 	public EList<SourceSection> getExtend() {
+	
 		if (extend == null) {
 			extend = new EObjectResolvingEList<SourceSection>(SourceSection.class, this, SourcePackage.SOURCE_SECTION__EXTEND);
 		}
@@ -150,50 +158,73 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<SourceSection> getAllExtend() {
-		Set<Object> ret = new HashSet<>();
+	
+		Set<Object> ret = new LinkedHashSet<>();
 		
-			List<Section<?, ?, ?, ?>> toCheck = new ArrayList<>();
-				toCheck.add(this);
+		List<Section<?, ?, ?, ?>> toCheck = new ArrayList<>();
+		toCheck.add(this);
 		
-			while (!toCheck.isEmpty()) {
-					Section<?, ?, ?, ?> next = toCheck.remove(0);
+		while (!toCheck.isEmpty()) {
+			Section<?, ?, ?, ?> next = toCheck.remove(0);
 		
-				List<Section<?, ?, ?, ?>> localToCheck = next.getExtend().stream().filter(e -> !ret.contains(e))
-							.collect(Collectors.toList());
-					ret.addAll(localToCheck);
-					toCheck.addAll(localToCheck);
-				}
+			List<Section<?, ?, ?, ?>> localToCheck = next.getExtend().stream().filter(e -> !ret.contains(e))
+					.collect(Collectors.toList());
+			ret.addAll(localToCheck);
+			toCheck.addAll(localToCheck);
+		}
 		
-			ret.addAll(this.getExtend().stream().flatMap(s -> s.getAllExtend().stream()).collect(Collectors.toList()));
-		
-			return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.SECTION__ALL_EXTEND, ret.size(),
-						ret.toArray());
+		return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.SECTION__ALL_EXTEND, ret.size(),
+				ret.toArray());
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public EList<SourceSection> getAllExtending() {
+	
+		
+		Set<Object> extendingSections = new LinkedHashSet<>();
+		Iterator<Notifier> it = this.eResource().getResourceSet().getAllContents();
+		while (it.hasNext()) {
+			Notifier next = it.next();
+			if (next instanceof Section<?, ?, ?, ?> && ((Section<?, ?, ?, ?>) next).getAllExtend().contains(this)) {
+				extendingSections.add(next);
+			}
+		}
+		
+		return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.SECTION__ALL_EXTENDING,
+				extendingSections.size(), extendingSections.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public boolean isDeactivated() {
+	
 		return deactivated;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDeactivated(boolean newDeactivated) {
+	
 		boolean oldDeactivated = deactivated;
 		deactivated = newDeactivated;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SourcePackage.SOURCE_SECTION__DEACTIVATED, oldDeactivated, deactivated));
+	
 	}
 
 	/**
@@ -202,6 +233,7 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 	 */
 	@Override
 	public EList<MappingType> getReferencingMappings() {
+	
 		
 		List<Mapping> mappings = new ArrayList<>();
 		
@@ -241,7 +273,7 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -270,7 +302,7 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 					 new Object [] { this, GenericPackage.Literals.SECTION__EXTEND }));
 			}
 		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -289,7 +321,7 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 		
 		if (!result && diagnostics != null) {
 		
-			String errorMessage = "The section extends a section that is either not abstract or that references an EClass of a different (super-)type!";
+			String errorMessage = "The Section extends a Section that is either not abstract or that references an EClass of a different (super-)type!";
 		
 			diagnostics.add(new BasicDiagnostic
 					(Diagnostic.ERROR,
@@ -300,7 +332,31 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 		
 		}
 		
-		return result;
+		return result;	
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean validateNotExtendSelf(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		boolean result = !this.getAllExtend().contains(this);
+		
+		if (!result && diagnostics != null) {
+		
+			String errorMessage = "A Section must not extend itself (neither directly nor indirectly)!";
+		
+			diagnostics.add(new BasicDiagnostic
+					(Diagnostic.ERROR, 
+					GenericValidator.DIAGNOSTIC_SOURCE,
+						GenericValidator.SECTION__VALIDATE_NOT_EXTEND_SELF, 
+						errorMessage,
+					new Object[] { this, GenericPackage.Literals.SECTION__EXTEND }));
+		
+		}
+		
+		return result;	
 	}
 
 	/**
@@ -316,6 +372,8 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 				return getExtend();
 			case SourcePackage.SOURCE_SECTION__ALL_EXTEND:
 				return getAllExtend();
+			case SourcePackage.SOURCE_SECTION__ALL_EXTENDING:
+				return getAllExtending();
 			case SourcePackage.SOURCE_SECTION__DEACTIVATED:
 				return isDeactivated();
 			case SourcePackage.SOURCE_SECTION__REFERENCING_MAPPINGS:
@@ -379,6 +437,8 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 				return extend != null && !extend.isEmpty();
 			case SourcePackage.SOURCE_SECTION__ALL_EXTEND:
 				return !getAllExtend().isEmpty();
+			case SourcePackage.SOURCE_SECTION__ALL_EXTENDING:
+				return !getAllExtending().isEmpty();
 			case SourcePackage.SOURCE_SECTION__DEACTIVATED:
 				return deactivated != DEACTIVATED_EDEFAULT;
 			case SourcePackage.SOURCE_SECTION__REFERENCING_MAPPINGS:
@@ -398,6 +458,7 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 				case SourcePackage.SOURCE_SECTION__ABSTRACT: return GenericPackage.SECTION__ABSTRACT;
 				case SourcePackage.SOURCE_SECTION__EXTEND: return GenericPackage.SECTION__EXTEND;
 				case SourcePackage.SOURCE_SECTION__ALL_EXTEND: return GenericPackage.SECTION__ALL_EXTEND;
+				case SourcePackage.SOURCE_SECTION__ALL_EXTENDING: return GenericPackage.SECTION__ALL_EXTENDING;
 				default: return -1;
 			}
 		}
@@ -421,6 +482,7 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 				case GenericPackage.SECTION__ABSTRACT: return SourcePackage.SOURCE_SECTION__ABSTRACT;
 				case GenericPackage.SECTION__EXTEND: return SourcePackage.SOURCE_SECTION__EXTEND;
 				case GenericPackage.SECTION__ALL_EXTEND: return SourcePackage.SOURCE_SECTION__ALL_EXTEND;
+				case GenericPackage.SECTION__ALL_EXTENDING: return SourcePackage.SOURCE_SECTION__ALL_EXTENDING;
 				default: return -1;
 			}
 		}
@@ -443,6 +505,7 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 			switch (baseOperationID) {
 				case GenericPackage.SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP: return SourcePackage.SOURCE_SECTION___VALIDATE_CONTAINER_MATCHES_EXTEND_CONTAINER__DIAGNOSTICCHAIN_MAP;
 				case GenericPackage.SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP: return SourcePackage.SOURCE_SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP;
+				case GenericPackage.SECTION___VALIDATE_NOT_EXTEND_SELF__DIAGNOSTICCHAIN_MAP: return SourcePackage.SOURCE_SECTION___VALIDATE_NOT_EXTEND_SELF__DIAGNOSTICCHAIN_MAP;
 				default: return -1;
 			}
 		}
@@ -468,6 +531,8 @@ public class SourceSectionImpl extends SourceSectionClassImpl implements SourceS
 				return validateContainerMatchesExtendContainer((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case SourcePackage.SOURCE_SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP:
 				return validateExtendsValidSections((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case SourcePackage.SOURCE_SECTION___VALIDATE_NOT_EXTEND_SELF__DIAGNOSTICCHAIN_MAP:
+				return validateNotExtendSelf((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

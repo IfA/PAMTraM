@@ -14,7 +14,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Shell;
 
 import de.mfreund.gentrans.transformation.resolving.UserDecisionResolvingStrategy;
-import de.mfreund.gentrans.transformation.resolving.wizards.GenericSelectionDialogRunner;
+import de.mfreund.gentrans.transformation.resolving.wizards.GenericSelectionDialog;
 import pamtram.PAMTraM;
 import pamtram.PamtramPackage;
 import pamtram.mapping.Mapping;
@@ -30,8 +30,7 @@ import pamtram.structure.target.TargetSection;
  *
  * @author mfreund
  */
-public class JoiningSelectRootElementMappingModelEnhancer
-		extends MappingModelEnhancer<GenericSelectionDialogRunner<EClass>> {
+public class JoiningSelectRootElementMappingModelEnhancer extends MappingModelEnhancer<GenericSelectionDialog<EClass>> {
 
 	/**
 	 * This creates an instance.
@@ -39,6 +38,7 @@ public class JoiningSelectRootElementMappingModelEnhancer
 	 * @param pamtramModel
 	 */
 	public JoiningSelectRootElementMappingModelEnhancer(PAMTraM pamtramModel) {
+
 		super(pamtramModel);
 	}
 
@@ -48,8 +48,8 @@ public class JoiningSelectRootElementMappingModelEnhancer
 		// The TargetSection for the root element
 		//
 		TargetSection rootSection = TargetFactory.eINSTANCE.createTargetSection();
-		rootSection.setEClass(this.dialogRunner.getSingleSelection());
-		rootSection.setName(this.dialogRunner.getSingleSelection().getName() + " (Root)");
+		rootSection.setEClass(this.dialog.getSingleSelection());
+		rootSection.setName(this.dialog.getSingleSelection().getName() + " (Root)");
 
 		// The mapping for the root element TargetSection
 		//

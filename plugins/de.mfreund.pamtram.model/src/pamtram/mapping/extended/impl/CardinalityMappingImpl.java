@@ -3,8 +3,13 @@
 package pamtram.mapping.extended.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -15,17 +20,21 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.ExpressionElement;
+import pamtram.MatchSpecElement;
 import pamtram.ModifiableElement;
 import pamtram.PamtramPackage;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
+import pamtram.mapping.MappingPackage;
 import pamtram.mapping.extended.CardinalityMapping;
 import pamtram.mapping.extended.CardinalityMappingExternalSourceElement;
 import pamtram.mapping.extended.CardinalityMappingSourceElement;
@@ -34,7 +43,9 @@ import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.mapping.extended.util.ExtendedValidator;
 import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.generic.CardinalityType;
+import pamtram.structure.generic.CrossReference;
 import pamtram.structure.generic.MetaModelElement;
+import pamtram.structure.generic.Section;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
 import pamtram.structure.source.SourceSectionClass;
@@ -42,14 +53,16 @@ import pamtram.structure.source.SourceSectionReference;
 import pamtram.structure.target.TargetSectionClass;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object
- * '<em><b>Cardinality Mapping</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Cardinality Mapping</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
  *   <li>{@link pamtram.mapping.extended.impl.CardinalityMappingImpl#getExpression <em>Expression</em>}</li>
  *   <li>{@link pamtram.mapping.extended.impl.CardinalityMappingImpl#getModifiers <em>Modifiers</em>}</li>
+ *   <li>{@link pamtram.mapping.extended.impl.CardinalityMappingImpl#getReferenceMatchSpec <em>Reference Match Spec</em>}</li>
+ *   <li>{@link pamtram.mapping.extended.impl.CardinalityMappingImpl#isFollowExternalReferences <em>Follow External References</em>}</li>
  *   <li>{@link pamtram.mapping.extended.impl.CardinalityMappingImpl#getSource <em>Source</em>}</li>
  *   <li>{@link pamtram.mapping.extended.impl.CardinalityMappingImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link pamtram.mapping.extended.impl.CardinalityMappingImpl#getSourceElements <em>Source Elements</em>}</li>
@@ -61,7 +74,8 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 
 	/**
 	 * The default value of the '{@link #getExpression() <em>Expression</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getExpression()
 	 * @generated
 	 * @ordered
@@ -70,7 +84,8 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 
 	/**
 	 * The cached value of the '{@link #getExpression() <em>Expression</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getExpression()
 	 * @generated
 	 * @ordered
@@ -79,7 +94,8 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 
 	/**
 	 * The cached value of the '{@link #getModifiers() <em>Modifiers</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getModifiers()
 	 * @generated
 	 * @ordered
@@ -87,8 +103,37 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	protected EList<ValueModifierSet> modifiers;
 
 	/**
-	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
+	 * The cached value of the '{@link #getReferenceMatchSpec() <em>Reference Match Spec</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
+	 * @see #getReferenceMatchSpec()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<SourceSectionReference> referenceMatchSpec;
+
+	/**
+	 * The default value of the '{@link #isFollowExternalReferences() <em>Follow External References</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #isFollowExternalReferences()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean FOLLOW_EXTERNAL_REFERENCES_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isFollowExternalReferences() <em>Follow External References</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #isFollowExternalReferences()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean followExternalReferences = FOLLOW_EXTERNAL_REFERENCES_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getSource()
 	 * @generated
 	 * @ordered
@@ -97,7 +142,8 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getTarget()
 	 * @generated
 	 * @ordered
@@ -105,9 +151,9 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	protected TargetSectionClass target;
 
 	/**
-	 * The cached value of the '{@link #getSourceElements() <em>Source Elements</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getSourceElements() <em>Source Elements</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @see #getSourceElements()
 	 * @generated
 	 * @ordered
@@ -137,6 +183,7 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 */
 	@Override
 	public String getExpression() {
+	
 		return expression;
 	}
 
@@ -146,10 +193,12 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 */
 	@Override
 	public void setExpression(String newExpression) {
+	
 		String oldExpression = expression;
 		expression = newExpression;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.CARDINALITY_MAPPING__EXPRESSION, oldExpression, expression));
+	
 	}
 
 	/**
@@ -158,6 +207,7 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 */
 	@Override
 	public EList<ValueModifierSet> getModifiers() {
+	
 		if (modifiers == null) {
 			modifiers = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, ExtendedPackage.CARDINALITY_MAPPING__MODIFIERS);
 		}
@@ -168,10 +218,48 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public EList<SourceSectionReference> getReferenceMatchSpec() {
+	
+		if (referenceMatchSpec == null) {
+			referenceMatchSpec = new EObjectResolvingEList<SourceSectionReference>(SourceSectionReference.class, this, ExtendedPackage.CARDINALITY_MAPPING__REFERENCE_MATCH_SPEC);
+		}
+		return referenceMatchSpec;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isFollowExternalReferences() {
+	
+		return followExternalReferences;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setFollowExternalReferences(boolean newFollowExternalReferences) {
+	
+		boolean oldFollowExternalReferences = followExternalReferences;
+		followExternalReferences = newFollowExternalReferences;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.CARDINALITY_MAPPING__FOLLOW_EXTERNAL_REFERENCES, oldFollowExternalReferences, followExternalReferences));
+	
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public MetaModelElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> getSource() {
-		if (source != null && source.eIsProxy()) {
+	
+		  if (source != null && source.eIsProxy()) {
 			InternalEObject oldSource = (InternalEObject)source;
 			source = (MetaModelElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>)eResolveProxy(oldSource);
 			if (source != oldSource) {
@@ -197,10 +285,12 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	@Override
 	public void setSource(
 			MetaModelElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> newSource) {
+	
 		MetaModelElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> oldSource = source;
 		source = newSource;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.CARDINALITY_MAPPING__SOURCE, oldSource, source));
+	
 	}
 
 	/**
@@ -209,7 +299,8 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 */
 	@Override
 	public TargetSectionClass getTarget() {
-		if (target != null && target.eIsProxy()) {
+	
+		  if (target != null && target.eIsProxy()) {
 			InternalEObject oldTarget = (InternalEObject)target;
 			target = (TargetSectionClass)eResolveProxy(oldTarget);
 			if (target != oldTarget) {
@@ -234,10 +325,12 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 */
 	@Override
 	public void setTarget(TargetSectionClass newTarget) {
+	
 		TargetSectionClass oldTarget = target;
 		target = newTarget;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.CARDINALITY_MAPPING__TARGET, oldTarget, target));
+	
 	}
 
 	/**
@@ -246,6 +339,7 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 */
 	@Override
 	public EList<CardinalityMappingSourceInterface> getSourceElements() {
+	
 		if (sourceElements == null) {
 			sourceElements = new EObjectContainmentEList<CardinalityMappingSourceInterface>(CardinalityMappingSourceInterface.class, this, ExtendedPackage.CARDINALITY_MAPPING__SOURCE_ELEMENTS);
 		}
@@ -257,28 +351,62 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 * @generated
 	 */
 	@Override
-	public boolean validateSourceElementMatchesSection(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+	public boolean validateSourceElementMatchesSectionOrContainedSection(final DiagnosticChain diagnostics,
+			final Map<?, ?> context) {
 		
-		if(this.getSource() == null || !(this.eContainer().eContainer() instanceof Mapping) || ((Mapping) this.eContainer().eContainer()).getSourceSection() == null) {
+		if (this.getSource() == null || !(this.eContainer().eContainer() instanceof Mapping)
+				|| ((Mapping) this.eContainer().eContainer()).getSourceSection() == null) {
 			return true;
 		}
 		
-		boolean result = this.getSource().getContainingSection() == ((Mapping) this.eContainer().eContainer()).getSourceSection();
+		Mapping mapping = (Mapping) this.eContainer().eContainer();
+		
+		boolean result = false;
+		
+		pamtram.structure.generic.Class<?, ?, ?, ?> relevantClass = mapping.getSourceSection();
+		
+		// iterate over all elements and return the attributes as possible options
+		//
+		Set<pamtram.structure.generic.Class<?, ?, ?, ?>> scanned = new HashSet<>();
+		List<pamtram.structure.generic.Class<?, ?, ?, ?>> sectionsToScan = new ArrayList<>();
+		sectionsToScan.add(relevantClass);
+		
+		// also regard abstract sections that this extends
+		if (relevantClass instanceof Section) {
+			sectionsToScan.addAll(((Section<?, ?, ?, ?>) relevantClass).getAllExtend());
+		}
+		
+		while (!sectionsToScan.isEmpty()) {
+			pamtram.structure.generic.Class<?, ?, ?, ?> classToScan = sectionsToScan.remove(0);
+			scanned.add(classToScan);
+		
+			Iterator<EObject> it = classToScan.eAllContents();
+			while (it.hasNext()) {
+				EObject next = it.next();
+				if (this.getSource().equals(next)) {
+					result = true;
+					break;
+				} else if (next instanceof CrossReference) {
+					List<SourceSectionClass> vals = new ArrayList<>();
+					vals.addAll(((CrossReference) next).getValue());
+					vals.removeAll(scanned);
+					sectionsToScan.addAll(vals);
+				}
+			}
+		}
 		
 		if (!result && diagnostics != null) {
 		
-			String errorMessage = "The source element '" + this.getSource().getName() + "' is not part of the source section referenced by parent mapping '" + ((pamtram.mapping.Mapping) this.eContainer().eContainer()).getName() + "'!";
+			String errorMessage = "The source element '" + this.getSource().getName()
+					+ "' is not part of the source section referenced by parent mapping '" + mapping.getName() + "'!";
 		
-			diagnostics.add(new BasicDiagnostic
-					(Diagnostic.ERROR,
-					ExtendedValidator.DIAGNOSTIC_SOURCE,
-							ExtendedValidator.CARDINALITY_MAPPING__VALIDATE_SOURCE_ELEMENT_MATCHES_SECTION,
-							errorMessage,
-					new Object[] { this, ExtendedPackage.Literals.CARDINALITY_MAPPING__SOURCE }));
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, ExtendedValidator.DIAGNOSTIC_SOURCE,
+					ExtendedValidator.CARDINALITY_MAPPING__VALIDATE_SOURCE_ELEMENT_MATCHES_SECTION_OR_CONTAINED_SECTION,
+					errorMessage, new Object[] { this, ExtendedPackage.Literals.CARDINALITY_MAPPING__SOURCE }));
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -287,27 +415,29 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 */
 	@Override
 	public boolean validateTargetClassMatchesSection(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		if (this.getTarget() == null || !(this.eContainer() instanceof MappingHintGroupType)
+						|| ((MappingHintGroupType) this.eContainer()).getTargetSection() == null) {
+					return true;
+				}
+				
+				MappingHintGroupType mappingHintGroup = (MappingHintGroupType) this.eContainer();
 		
-		if(this.getTarget() == null || !(this.eContainer() instanceof MappingHintGroupType) || ((MappingHintGroupType) this.eContainer()).getTargetSection() == null) {
-			return true;
-		}
+			boolean result = this.getTarget().getContainingSection() == mappingHintGroup
+						.getTargetSection() || mappingHintGroup.getAllExtend().contains(this.getTarget().getContainingSection());
 		
-		boolean result = this.getTarget().getContainingSection() == ((MappingHintGroupType) this.eContainer()).getTargetSection();
+			if (!result && diagnostics != null) {
 		
-		if (!result && diagnostics != null) {
+				String errorMessage = "The target class '" + this.getTarget().getName()
+							+ "' is not part of the target section referenced by parent hint group '"
+							+ mappingHintGroup.getName() + "'!";
 		
-			String errorMessage = "The target class '" + this.getTarget().getName() + "' is not part of the target section referenced by parent hint group '" + ((MappingHintGroupType) this.eContainer()).getName() + "'!";
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, ExtendedValidator.DIAGNOSTIC_SOURCE,
+							ExtendedValidator.CARDINALITY_MAPPING__VALIDATE_TARGET_CLASS_MATCHES_SECTION, errorMessage,
+							new Object[] { this, ExtendedPackage.Literals.CARDINALITY_MAPPING__TARGET }));
 		
-			diagnostics.add(new BasicDiagnostic
-					(Diagnostic.ERROR,
-					ExtendedValidator.DIAGNOSTIC_SOURCE,
-							ExtendedValidator.CARDINALITY_MAPPING__VALIDATE_TARGET_CLASS_MATCHES_SECTION,
-							errorMessage,
-					new Object[] { this, ExtendedPackage.Literals.CARDINALITY_MAPPING__TARGET }));
+			}
 		
-		}
-		
-		return result;
+			return result;	
 	}
 
 	/**
@@ -333,7 +463,7 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -359,7 +489,7 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -385,7 +515,7 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -410,7 +540,7 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -435,32 +565,7 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 		
 		}
 		
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean validateModifiersOnlyForSourceElements(final DiagnosticChain diagnostics, final Map<?, ?> context) {
-		
-		boolean result = !this.getSourceElements().isEmpty() || this.getModifiers().isEmpty();
-		
-		if (!result && diagnostics != null) {
-		
-			String errorMessage = "A CardinalityMapping must only specify 'modifiers' if it also specifies a set of 'sourceElements'!";
-		
-			diagnostics.add(new BasicDiagnostic
-					(Diagnostic.ERROR,
-					ExtendedValidator.DIAGNOSTIC_SOURCE,
-							ExtendedValidator.CARDINALITY_MAPPING__VALIDATE_MODIFIERS_ONLY_FOR_SOURCE_ELEMENTS,
-							errorMessage,
-					new Object[] { this, ExtendedPackage.Literals.CARDINALITY_MAPPING }));
-		
-		}
-		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -469,7 +574,7 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 */
 	@Override
 	public EList<CardinalityMappingSourceElement> getLocalSourceElements() {
-		return new BasicEList<>(this.getSourceElements().stream().filter(s -> s instanceof CardinalityMappingSourceElement).map(s -> (CardinalityMappingSourceElement) s).collect(Collectors.toList()));
+		return new BasicEList<>(this.getSourceElements().stream().filter(s -> s instanceof CardinalityMappingSourceElement).map(s -> (CardinalityMappingSourceElement) s).collect(Collectors.toList()));	
 	}
 
 	/**
@@ -478,7 +583,44 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 */
 	@Override
 	public EList<CardinalityMappingExternalSourceElement> getExternalSourceElements() {
-		return new BasicEList<>(this.getSourceElements().stream().filter(s -> s instanceof CardinalityMappingExternalSourceElement).map(s -> (CardinalityMappingExternalSourceElement) s).collect(Collectors.toList()));
+		return new BasicEList<>(this.getSourceElements().stream().filter(s -> s instanceof CardinalityMappingExternalSourceElement).map(s -> (CardinalityMappingExternalSourceElement) s).collect(Collectors.toList()));	
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean validateFollowExternalReferencesTrueIfRequired(final DiagnosticChain diagnostics,
+			final Map<?, ?> context) {
+		
+		Mapping mapping = (Mapping) AgteleEcoreUtil.getAncestorOfKind(this, MappingPackage.Literals.MAPPING);
+		
+		if (this.source == null || mapping.getSourceSection() == null || !this.getReferenceMatchSpec().isEmpty()) {
+			return true;
+		}
+		
+		SourceSection sourceSection = mapping.getSourceSection();
+		
+		boolean result = true;
+		String errorMessage = "";
+		
+		if (!this.isFollowExternalReferences() && (!sourceSection.equals(this.source.getContainingSection())
+				|| !sourceSection.getAllExtend().contains(this.source.getContainingSection()))) {
+		
+			result = false;
+			errorMessage = "The source Attribute is not part of the SourceSection specified by this Mapping. This is not allowed unless 'followExternalReferences' is set to 'true'.";
+		
+		}
+		
+		if (!result && diagnostics != null) {
+		
+			diagnostics.add(new BasicDiagnostic(Diagnostic.WARNING, ExtendedValidator.DIAGNOSTIC_SOURCE,
+					ExtendedValidator.CARDINALITY_MAPPING__VALIDATE_FOLLOW_EXTERNAL_REFERENCES_TRUE_IF_REQUIRED,
+					errorMessage, new Object[] { this, ExtendedPackage.Literals.CARDINALITY_MAPPING__SOURCE }));
+		}
+		
+		return result;	
 	}
 
 	/**
@@ -505,6 +647,10 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 				return getExpression();
 			case ExtendedPackage.CARDINALITY_MAPPING__MODIFIERS:
 				return getModifiers();
+			case ExtendedPackage.CARDINALITY_MAPPING__REFERENCE_MATCH_SPEC:
+				return getReferenceMatchSpec();
+			case ExtendedPackage.CARDINALITY_MAPPING__FOLLOW_EXTERNAL_REFERENCES:
+				return isFollowExternalReferences();
 			case ExtendedPackage.CARDINALITY_MAPPING__SOURCE:
 				if (resolve) return getSource();
 				return basicGetSource();
@@ -531,6 +677,13 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 			case ExtendedPackage.CARDINALITY_MAPPING__MODIFIERS:
 				getModifiers().clear();
 				getModifiers().addAll((Collection<? extends ValueModifierSet>)newValue);
+				return;
+			case ExtendedPackage.CARDINALITY_MAPPING__REFERENCE_MATCH_SPEC:
+				getReferenceMatchSpec().clear();
+				getReferenceMatchSpec().addAll((Collection<? extends SourceSectionReference>)newValue);
+				return;
+			case ExtendedPackage.CARDINALITY_MAPPING__FOLLOW_EXTERNAL_REFERENCES:
+				setFollowExternalReferences((Boolean)newValue);
 				return;
 			case ExtendedPackage.CARDINALITY_MAPPING__SOURCE:
 				setSource((MetaModelElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>)newValue);
@@ -559,6 +712,12 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 			case ExtendedPackage.CARDINALITY_MAPPING__MODIFIERS:
 				getModifiers().clear();
 				return;
+			case ExtendedPackage.CARDINALITY_MAPPING__REFERENCE_MATCH_SPEC:
+				getReferenceMatchSpec().clear();
+				return;
+			case ExtendedPackage.CARDINALITY_MAPPING__FOLLOW_EXTERNAL_REFERENCES:
+				setFollowExternalReferences(FOLLOW_EXTERNAL_REFERENCES_EDEFAULT);
+				return;
 			case ExtendedPackage.CARDINALITY_MAPPING__SOURCE:
 				setSource((MetaModelElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>)null);
 				return;
@@ -583,6 +742,10 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 				return EXPRESSION_EDEFAULT == null ? expression != null : !EXPRESSION_EDEFAULT.equals(expression);
 			case ExtendedPackage.CARDINALITY_MAPPING__MODIFIERS:
 				return modifiers != null && !modifiers.isEmpty();
+			case ExtendedPackage.CARDINALITY_MAPPING__REFERENCE_MATCH_SPEC:
+				return referenceMatchSpec != null && !referenceMatchSpec.isEmpty();
+			case ExtendedPackage.CARDINALITY_MAPPING__FOLLOW_EXTERNAL_REFERENCES:
+				return followExternalReferences != FOLLOW_EXTERNAL_REFERENCES_EDEFAULT;
 			case ExtendedPackage.CARDINALITY_MAPPING__SOURCE:
 				return source != null;
 			case ExtendedPackage.CARDINALITY_MAPPING__TARGET:
@@ -611,6 +774,13 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 				default: return -1;
 			}
 		}
+		if (baseClass == MatchSpecElement.class) {
+			switch (derivedFeatureID) {
+				case ExtendedPackage.CARDINALITY_MAPPING__REFERENCE_MATCH_SPEC: return PamtramPackage.MATCH_SPEC_ELEMENT__REFERENCE_MATCH_SPEC;
+				case ExtendedPackage.CARDINALITY_MAPPING__FOLLOW_EXTERNAL_REFERENCES: return PamtramPackage.MATCH_SPEC_ELEMENT__FOLLOW_EXTERNAL_REFERENCES;
+				default: return -1;
+			}
+		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
@@ -632,6 +802,13 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 				default: return -1;
 			}
 		}
+		if (baseClass == MatchSpecElement.class) {
+			switch (baseFeatureID) {
+				case PamtramPackage.MATCH_SPEC_ELEMENT__REFERENCE_MATCH_SPEC: return ExtendedPackage.CARDINALITY_MAPPING__REFERENCE_MATCH_SPEC;
+				case PamtramPackage.MATCH_SPEC_ELEMENT__FOLLOW_EXTERNAL_REFERENCES: return ExtendedPackage.CARDINALITY_MAPPING__FOLLOW_EXTERNAL_REFERENCES;
+				default: return -1;
+			}
+		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
@@ -643,8 +820,8 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case ExtendedPackage.CARDINALITY_MAPPING___VALIDATE_SOURCE_ELEMENT_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP:
-				return validateSourceElementMatchesSection((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case ExtendedPackage.CARDINALITY_MAPPING___VALIDATE_SOURCE_ELEMENT_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP:
+				return validateSourceElementMatchesSectionOrContainedSection((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case ExtendedPackage.CARDINALITY_MAPPING___VALIDATE_TARGET_CLASS_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP:
 				return validateTargetClassMatchesSection((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case ExtendedPackage.CARDINALITY_MAPPING___VALIDATE_SOURCE_CLASS_IS_VARIABLE_CARDINALITY__DIAGNOSTICCHAIN_MAP:
@@ -657,12 +834,12 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 				return validateOnlySourceOrSourceElements((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case ExtendedPackage.CARDINALITY_MAPPING___VALIDATE_EXPRESSION_ONLY_FOR_SOURCE_ELEMENTS__DIAGNOSTICCHAIN_MAP:
 				return validateExpressionOnlyForSourceElements((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
-			case ExtendedPackage.CARDINALITY_MAPPING___VALIDATE_MODIFIERS_ONLY_FOR_SOURCE_ELEMENTS__DIAGNOSTICCHAIN_MAP:
-				return validateModifiersOnlyForSourceElements((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case ExtendedPackage.CARDINALITY_MAPPING___GET_LOCAL_SOURCE_ELEMENTS:
 				return getLocalSourceElements();
 			case ExtendedPackage.CARDINALITY_MAPPING___GET_EXTERNAL_SOURCE_ELEMENTS:
 				return getExternalSourceElements();
+			case ExtendedPackage.CARDINALITY_MAPPING___VALIDATE_FOLLOW_EXTERNAL_REFERENCES_TRUE_IF_REQUIRED__DIAGNOSTICCHAIN_MAP:
+				return validateFollowExternalReferencesTrueIfRequired((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -678,6 +855,8 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (expression: ");
 		result.append(expression);
+		result.append(", followExternalReferences: ");
+		result.append(followExternalReferences);
 		result.append(')');
 		return result.toString();
 	}

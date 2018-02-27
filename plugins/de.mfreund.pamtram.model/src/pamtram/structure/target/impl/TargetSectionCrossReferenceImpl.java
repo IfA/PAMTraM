@@ -90,7 +90,8 @@ public class TargetSectionCrossReferenceImpl
 	 */
 	@Override
 	public EReference getEReference() {
-		if (eReference != null && eReference.eIsProxy()) {
+	
+		  if (eReference != null && eReference.eIsProxy()) {
 			InternalEObject oldEReference = (InternalEObject)eReference;
 			eReference = (EReference)eResolveProxy(oldEReference);
 			if (eReference != oldEReference) {
@@ -114,10 +115,12 @@ public class TargetSectionCrossReferenceImpl
 	 * @generated
 	 */
 	public void setEReferenceGen(EReference newEReference) {
+	
 		EReference oldEReference = eReference;
 		eReference = newEReference;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, TargetPackage.TARGET_SECTION_CROSS_REFERENCE__EREFERENCE, oldEReference, eReference));
+	
 	}
 
 	/**
@@ -152,7 +155,7 @@ public class TargetSectionCrossReferenceImpl
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -183,7 +186,7 @@ public class TargetSectionCrossReferenceImpl
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

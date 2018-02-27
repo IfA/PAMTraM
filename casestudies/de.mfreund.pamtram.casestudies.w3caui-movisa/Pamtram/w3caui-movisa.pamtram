@@ -344,7 +344,7 @@
         </value>
         <eReference href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/eventSupport"/>
       </references>
-      <references xsi:type="source:VirtualSourceSectionCrossReference" name="containingRadioButtonGroup" value="//@sourceSectionModels.2/@sections.6" derivation="self.eContainer().oclAsType(w3caui::AbstractUserInterfaceModel).abstractInteractionUnit->select(a|a.oclAsType(w3caui::AbstractInteractionUnit).aggregatedIn.associatedWith->includes(self.id))->asSequence()->first()"/>
+      <references xsi:type="source:VirtualSourceSectionCrossReference" name="containingRadioButtonGroup" value="//@sourceSectionModels.2/@sections.6" derivation="self.oclAsType(ecore::EObject).eContainer().oclAsType(w3caui::AbstractUserInterfaceModel).abstractInteractionUnit->select(a|a.oclAsType(w3caui::AbstractInteractionUnit).aggregatedIn.associatedWith->includes(self.id))->asSequence()->first()"/>
       <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
         <valueConstraints xsi:type="constraint:EqualityConstraint" name=""/>
         <attribute href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/role"/>
@@ -1073,7 +1073,7 @@
         </value>
         <eReference href="http://stefan-hennig.de/movisa#//presentation/TextDefinition/TranslatedTextItem"/>
       </references>
-      <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name">
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name" unique="true">
         <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
       </attributes>
     </sections>
@@ -3030,7 +3030,7 @@
     <mappings name="RadioButtonMapping" sourceSection="//@sourceSectionModels.2/@sections.5">
       <localCondition xsi:type="condition:ApplicationDependency" name="RadioButtonGroupWasChosen" target="//@mappingModels.2/@mappings.3">
         <instanceSelectors referenceAttribute="//@sourceSectionModels.2/@sections.6/@attributes.1" targetClass="//@sourceSectionModels.2/@sections.6">
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.2/@sections.6/@attributes.1"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.2/@sections.6/@attributes.1" referenceMatchSpec="//@sourceSectionModels.2/@sections.5/@references.1" followExternalReferences="true"/>
         </instanceSelectors>
       </localCondition>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="RadioButton" targetSection="//@targetSectionModels.2/@sections.6">
@@ -3056,7 +3056,7 @@
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.2" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:ContainerSelector" name="test" referenceAttribute="//@targetSectionModels.2/@sections.4/@attributes.0" targetClass="//@targetSectionModels.2/@sections.4">
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.2/@sections.6/@attributes.1"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.2/@sections.6/@attributes.1" referenceMatchSpec="//@sourceSectionModels.2/@sections.5/@references.1" followExternalReferences="true"/>
         </mappingHints>
       </mappingHintGroups>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDefinition" targetSection="//@targetSectionModels.1/@sections.7" extend="//@mappingModels.2/@mappings.0/@mappingHintGroups.1">
@@ -3118,7 +3118,7 @@
     <mappings name="DropdownOptionMapping" sourceSection="//@sourceSectionModels.2/@sections.5">
       <localCondition xsi:type="condition:ApplicationDependency" name="DropDownWasChosen" target="//@mappingModels.2/@mappings.5">
         <instanceSelectors referenceAttribute="//@sourceSectionModels.2/@sections.6/@attributes.1" targetClass="//@sourceSectionModels.2/@sections.6">
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.2/@sections.6/@attributes.1"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.2/@sections.6/@attributes.1" referenceMatchSpec="//@sourceSectionModels.2/@sections.5/@references.1" followExternalReferences="true"/>
         </instanceSelectors>
       </localCondition>
       <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="TextDefinition" targetSection="//@targetSectionModels.1/@sections.7">
@@ -3133,14 +3133,11 @@
         <mappingHints xsi:type="extended:AttributeMapping" name="ValueMapping" target="//@targetSectionModels.2/@sections.9/@attributes.0">
           <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="defaultValue" source="//@sourceSectionModels.2/@sections.5/@references.0/@value.0/@references.0/@value.0/@attributes.1"/>
         </mappingHints>
-        <mappingHints xsi:type="extended:AttributeMapping" name="ValueMapping2" target="//@targetSectionModels.2/@sections.9/@attributes.0">
-          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="role" source="//@sourceSectionModels.2/@sections.5/@attributes.0"/>
-        </mappingHints>
         <mappingHints xsi:type="extended:ReferenceTargetSelector" name="Label" referenceAttribute="//@targetSectionModels.1/@sections.7/@attributes.0" targetClass="//@targetSectionModels.1/@sections.7" affectedReference="//@targetSectionModels.2/@sections.9/@references.0">
           <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" source="//@sourceSectionModels.1/@sections.0/@attributes.0"/>
         </mappingHints>
         <mappingHints xsi:type="extended:ContainerSelector" referenceAttribute="//@targetSectionModels.2/@sections.7/@references.0/@value.0/@attributes.0" targetClass="//@targetSectionModels.2/@sections.7/@references.0/@value.0">
-          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.6" source="//@sourceSectionModels.2/@sections.6/@attributes.1"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.6" source="//@sourceSectionModels.2/@sections.6/@attributes.1" referenceMatchSpec="//@sourceSectionModels.2/@sections.5/@references.1" followExternalReferences="true"/>
         </mappingHints>
       </mappingHintGroups>
     </mappings>

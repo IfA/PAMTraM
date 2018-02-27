@@ -97,12 +97,4 @@ public interface SingleReferenceValueConstraint extends ValueConstraint, Express
 	 */
 	boolean validateOnlyFixedValuesOrGlobalAttributesInConditionModel(DiagnosticChain diagnostics, Map<?, ?> context);
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='boolean result = this.getModifiers().isEmpty() ||\r\n\t\t!&lt;%de.tud.et.ifa.agtele.emf.AgteleEcoreUtil%&gt;.hasAncestorOfKind(this, &lt;%pamtram.structure.source.SourcePackage%&gt;.eINSTANCE.getActualSourceSectionAttribute());\r\n\r\nif (!result &amp;&amp; diagnostics != null) {\r\n\r\n\tString errorMessage = \"ValueConstraints that are part of a SourceSection must not\"\r\n\t\t\t+ \" specify a Modifier!\'\";\r\n\r\n\tdiagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, &lt;%pamtram.structure.constraint.util.ConstraintValidator%&gt;.DIAGNOSTIC_SOURCE,\r\n\t\t\tConstraintValidator.SINGLE_REFERENCE_VALUE_CONSTRAINT__VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS,\r\n\t\t\terrorMessage, new Object[] { this,\r\n\t\t\t\t\t&lt;%pamtram.PamtramPackage%&gt;.Literals.MODIFIABLE_ELEMENT__MODIFIERS }));\r\n}\r\n\r\nreturn result;'"
-	 * @generated
-	 */
-	boolean validateNoResultModifierInSourceSections(DiagnosticChain diagnostics, Map<?, ?> context);
-
 } // SingleReferenceAttributeValueConstraint

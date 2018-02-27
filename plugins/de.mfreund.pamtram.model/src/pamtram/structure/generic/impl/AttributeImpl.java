@@ -51,6 +51,7 @@ public abstract class AttributeImpl<S extends Section<S, C, R, A>, C extends pam
 	 */
 	@SuppressWarnings("unchecked")
 	public C getOwningClass() {
+	
 		if (eContainerFeatureID() != GenericPackage.ATTRIBUTE__OWNING_CLASS) return null;
 		return (C)eInternalContainer();
 	}

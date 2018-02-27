@@ -65,6 +65,7 @@ public class StringAppenderImpl extends StringModifierImpl implements StringAppe
 	 */
 	@Override
 	public String getString() {
+	
 		return string;
 	}
 
@@ -73,10 +74,12 @@ public class StringAppenderImpl extends StringModifierImpl implements StringAppe
 	 * @generated
 	 */
 	public void setStringGen(String newString) {
+	
 		String oldString = string;
 		string = newString;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModifierPackage.STRING_APPENDER__STRING, oldString, string));
+	
 	}
 
 	/**

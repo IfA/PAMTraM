@@ -46,8 +46,6 @@
     <requirement
         name="org.eclipse.recommenders.snipmatch.rcp.feature.feature.group"/>
     <requirement
-        name="org.eclipse.epp.package.modeling.feature.feature.group"/>
-    <requirement
         name="org.eclipse.wst.xml_ui.feature.feature.group"/>
     <requirement
         name="org.eclipse.ocl.examples.feature.group"
@@ -91,6 +89,78 @@
     <requirement
         name="de.weingardt.mylyn.gitlab.feature.group"
         optional="true"/>
+    <requirement
+        name="epp.package.modeling"/>
+    <requirement
+        name="org.eclipse.platform.feature.group"/>
+    <requirement
+        name="org.eclipse.rcp.feature.group"/>
+    <requirement
+        name="org.eclipse.amalgam.discovery.feature.group"/>
+    <requirement
+        name="org.eclipse.e4.core.tools.feature.feature.group"/>
+    <requirement
+        name="org.eclipse.egit.feature.group"/>
+    <requirement
+        name="org.eclipse.emf.cdo.epp.feature.group"/>
+    <requirement
+        name="org.eclipse.emf.compare.diagram.sirius.source.feature.group"/>
+    <requirement
+        name="org.eclipse.emf.compare.egit.feature.group"/>
+    <requirement
+        name="org.eclipse.emf.compare.ide.ui.source.feature.group"/>
+    <requirement
+        name="org.eclipse.emf.compare.source.feature.group"/>
+    <requirement
+        name="org.eclipse.emf.ecoretools.design.feature.group"/>
+    <requirement
+        name="org.eclipse.emf.ecoretools.explorer.contextual.feature.group"/>
+    <requirement
+        name="org.eclipse.emf.ecp.sdk.feature.feature.group"/>
+    <requirement
+        name="org.eclipse.emf.emfstore.sdk.feature.feature.group"/>
+    <requirement
+        name="org.eclipse.emf.parsley.sdk.feature.group"/>
+    <requirement
+        name="org.eclipse.emf.parsley.sdk.source.feature.group"/>
+    <requirement
+        name="org.eclipse.emf.query.sdk.feature.group"/>
+    <requirement
+        name="org.eclipse.emf.sdk.feature.group"/>
+    <requirement
+        name="org.eclipse.emf.transaction.sdk.feature.group"/>
+    <requirement
+        name="org.eclipse.emf.validation.sdk.feature.group"/>
+    <requirement
+        name="org.eclipse.gef.sdk.feature.group"/>
+    <requirement
+        name="org.eclipse.gmf.runtime.sdk.feature.group"/>
+    <requirement
+        name="org.eclipse.jdt.feature.group"/>
+    <requirement
+        name="org.eclipse.mylyn.bugzilla_feature.feature.group"/>
+    <requirement
+        name="org.eclipse.mylyn.context_feature.feature.group"/>
+    <requirement
+        name="org.eclipse.mylyn.ide_feature.feature.group"/>
+    <requirement
+        name="org.eclipse.mylyn.java_feature.feature.group"/>
+    <requirement
+        name="org.eclipse.mylyn.pde_feature.feature.group"/>
+    <requirement
+        name="org.eclipse.mylyn.wikitext_feature.feature.group"/>
+    <requirement
+        name="org.eclipse.mylyn_feature.feature.group"/>
+    <requirement
+        name="org.eclipse.ocl.all.sdk.feature.group"/>
+    <requirement
+        name="org.eclipse.pde.feature.group"/>
+    <requirement
+        name="org.eclipse.sdk.feature.group"/>
+    <requirement
+        name="org.eclipse.uml2.sdk.feature.group"/>
+    <requirement
+        name="org.eclipse.xsd.sdk.feature.group"/>
     <repository
         url="http://eclipse.sonarlint.org"/>
     <repository
@@ -302,7 +372,8 @@
           xsi:type="git:GitCloneTask"
           id="clone.pamtram"
           location="${clone.location.pamtram.main}"
-          remoteURI="${clone.origin.pamtram}">
+          remoteURI="${clone.origin.pamtram}"
+          recursive="true">
         <configSections
             name="gitflow &quot;prefix&quot;">
           <properties
@@ -417,8 +488,23 @@
           name="gentrans"
           id="workingset.gentrans">
         <predicate
-            xsi:type="predicates:NamePredicate"
-            pattern="de.mfreund.gentrans.*"/>
+            xsi:type="predicates:AndPredicate">
+          <operand
+              xsi:type="predicates:NamePredicate"
+              pattern="de.mfreund.gentrans.*"/>
+          <operand
+              xsi:type="predicates:NotPredicate">
+            <operand
+                xsi:type="predicates:NamePredicate"
+                pattern=".*standalone.*"/>
+          </operand>
+          <operand
+              xsi:type="predicates:NotPredicate">
+            <operand
+                xsi:type="predicates:NamePredicate"
+                pattern=".*test.*"/>
+          </operand>
+        </predicate>
       </workingSet>
       <workingSet
           name="pamtram"
@@ -452,7 +538,7 @@
               pattern="de.mfreund.pamtram.examples"/>
           <operand
               xsi:type="predicates:LocationPredicate"
-              pattern="${clone.location.pamtram.main}\casestudies"/>
+              pattern="${clone.location.pamtram.main/casestudies/.*}"/>
         </predicate>
       </workingSet>
       <workingSet
@@ -521,6 +607,20 @@
               xsi:type="predicates:NamePredicate"
               pattern="de.tud.et.ifa.agtele.eclipse.commons.*"/>
         </predicate>
+      </workingSet>
+      <workingSet
+          name="gentrans.standalone"
+          id="workingset.gentrans.standalone">
+        <predicate
+            xsi:type="predicates:NamePredicate"
+            pattern=".*standalone.*"/>
+      </workingSet>
+      <workingSet
+          name="tests"
+          id="workingset.admin">
+        <predicate
+            xsi:type="predicates:NamePredicate"
+            pattern="de.mfreund.gentrans.test.casestudies"/>
       </workingSet>
       <description>Add projects to working sets.</description>
     </setupTask>

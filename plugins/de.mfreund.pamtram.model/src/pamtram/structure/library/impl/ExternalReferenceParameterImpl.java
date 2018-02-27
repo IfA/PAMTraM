@@ -72,6 +72,7 @@ public class ExternalReferenceParameterImpl extends LibraryParameterImpl<Abstrac
 	 */
 	@Override
 	public TargetSectionCrossReference getReference() {
+	
 		return reference;
 	}
 
@@ -95,6 +96,7 @@ public class ExternalReferenceParameterImpl extends LibraryParameterImpl<Abstrac
 	 */
 	@Override
 	public void setReference(TargetSectionCrossReference newReference) {
+	
 		if (newReference != reference) {
 			NotificationChain msgs = null;
 			if (reference != null)
@@ -106,6 +108,7 @@ public class ExternalReferenceParameterImpl extends LibraryParameterImpl<Abstrac
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.EXTERNAL_REFERENCE_PARAMETER__REFERENCE, newReference, newReference));
+	
 	}
 
 	/**

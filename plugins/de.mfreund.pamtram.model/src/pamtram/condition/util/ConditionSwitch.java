@@ -5,8 +5,12 @@ package pamtram.condition.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import pamtram.MatchSpecElement;
 import pamtram.NamedElement;
 import pamtram.condition.*;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.Reference;
+import pamtram.structure.generic.Section;
 import pamtram.condition.And;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.Condition;
@@ -133,6 +137,7 @@ public class ConditionSwitch<T> extends Switch<T> {
 				AttributeCondition attributeCondition = (AttributeCondition)theEObject;
 				T result = caseAttributeCondition(attributeCondition);
 				if (result == null) result = caseCondition(attributeCondition);
+				if (result == null) result = caseMatchSpecElement(attributeCondition);
 				if (result == null) result = caseComplexCondition(attributeCondition);
 				if (result == null) result = caseNamedElement(attributeCondition);
 				if (result == null) result = defaultCase(theEObject);
@@ -142,6 +147,7 @@ public class ConditionSwitch<T> extends Switch<T> {
 				CardinalityCondition cardinalityCondition = (CardinalityCondition)theEObject;
 				T result = caseCardinalityCondition(cardinalityCondition);
 				if (result == null) result = caseCondition(cardinalityCondition);
+				if (result == null) result = caseMatchSpecElement(cardinalityCondition);
 				if (result == null) result = caseComplexCondition(cardinalityCondition);
 				if (result == null) result = caseNamedElement(cardinalityCondition);
 				if (result == null) result = defaultCase(theEObject);
@@ -322,6 +328,21 @@ public class ConditionSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNamedElement(NamedElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Match Spec Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Match Spec Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseMatchSpecElement(MatchSpecElement<S, C, R, A> object) {
 		return null;
 	}
 

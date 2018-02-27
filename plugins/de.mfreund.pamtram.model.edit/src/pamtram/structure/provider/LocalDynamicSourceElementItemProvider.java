@@ -17,6 +17,8 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 
+import org.eclipse.emf.edit.provider.ViewerNotification;
+import pamtram.PamtramPackage;
 import pamtram.mapping.Mapping;
 import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.LocalDynamicSourceElement;
@@ -54,6 +56,7 @@ public class LocalDynamicSourceElementItemProvider extends DynamicSourceElementI
 			super.getPropertyDescriptors(object);
 
 			addReferenceMatchSpecPropertyDescriptor(object);
+			addFollowExternalReferencesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -61,7 +64,7 @@ public class LocalDynamicSourceElementItemProvider extends DynamicSourceElementI
 	/**
 	 * This adds a property descriptor for the Reference Match Spec feature. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected void addReferenceMatchSpecPropertyDescriptor(Object object) {
@@ -69,13 +72,35 @@ public class LocalDynamicSourceElementItemProvider extends DynamicSourceElementI
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_LocalDynamicSourceElement_referenceMatchSpec_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LocalDynamicSourceElement_referenceMatchSpec_feature", "_UI_LocalDynamicSourceElement_type"),
-				 StructurePackage.Literals.LOCAL_DYNAMIC_SOURCE_ELEMENT__REFERENCE_MATCH_SPEC,
+				 getString("_UI_MatchSpecElement_referenceMatchSpec_feature"),
+				 getString("_UI_MatchSpecElement_referenceMatchSpec_description"),
+				 PamtramPackage.Literals.MATCH_SPEC_ELEMENT__REFERENCE_MATCH_SPEC,
 				 true,
 				 false,
 				 true,
 				 null,
+				 getString("_UI_ExtendedPropertyCategory"),
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Follow External References feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addFollowExternalReferencesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_MatchSpecElement_followExternalReferences_feature"),
+				 getString("_UI_MatchSpecElement_followExternalReferences_description"),
+				 PamtramPackage.Literals.MATCH_SPEC_ELEMENT__FOLLOW_EXTERNAL_REFERENCES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 getString("_UI_ExtendedPropertyCategory"),
 				 null));
 	}
@@ -91,18 +116,23 @@ public class LocalDynamicSourceElementItemProvider extends DynamicSourceElementI
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
+	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT due to usage of cumstom label if 'useElementID' is set
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((LocalDynamicSourceElement<?, ?, ?, ?>)object).getName();
-    	StyledString styledLabel = new StyledString();
-		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_LocalDynamicSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
+
+		String label = ((DynamicSourceElement<?, ?, ?, ?>) object).getName();
+		StyledString styledLabel = new StyledString();
+		if (((DynamicSourceElement<?, ?, ?, ?>) object).isUseElementID()) {
+			styledLabel.append("Local Element ID", StyledString.Style.QUALIFIER_STYLER);
 		} else {
-			styledLabel.append(getString("_UI_LocalDynamicSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(this.getString("_UI_LocalDynamicSourceElement_type"),
+					StyledString.Style.QUALIFIER_STYLER);
+		}
+		if (label != null && label.length() > 0) {
+			styledLabel.append(" " + label);
 		}
 		return styledLabel;
 	}
@@ -111,12 +141,18 @@ public class LocalDynamicSourceElementItemProvider extends DynamicSourceElementI
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
 	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(LocalDynamicSourceElement.class)) {
+			case StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT__FOLLOW_EXTERNAL_REFERENCES:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 
@@ -131,11 +167,6 @@ public class LocalDynamicSourceElementItemProvider extends DynamicSourceElementI
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
-	/**
-	 * This adds a property descriptor for the Source feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated NOT
-	 */
 	@Override
 	protected void addSourcePropertyDescriptor(Object object) {
 
@@ -149,36 +180,27 @@ public class LocalDynamicSourceElementItemProvider extends DynamicSourceElementI
 					@Override
 					public Collection<?> getChoiceOfValues(Object object) {
 
-						// the parent MappingHintGroup
-						//
-						EObject parent = ((DynamicSourceElement<?, ?, ?, ?>) object).getMappingHintGroup();
-
 						// the parent Mapping
 						//
 						Mapping mapping = ((DynamicSourceElement<?, ?, ?, ?>) object).getMapping();
 
-						Class<?, ?, ?, ?> relevantClass = null;
-
-						if (mapping != null) {
-							relevantClass = mapping.getSourceSection();
-						}
-
-						if (relevantClass == null) {
+						if (mapping == null || mapping.getSourceSection() == null) {
 							return new ArrayList<>();
 						}
 
+						Class<?, ?, ?, ?> relevantClass = mapping.getSourceSection();
+
 						List<Object> choiceOfValues = new ArrayList<>();
 
-						// iterate over all elements and return the attributes
-						// as
-						// possible options
+						// iterate over all elements and return the attributes as possible options
+						//
 						Set<Class<?, ?, ?, ?>> scanned = new HashSet<>();
 						List<Class<?, ?, ?, ?>> sectionsToScan = new ArrayList<>();
 						sectionsToScan.add(relevantClass);
 
 						// also regard abstract sections that this extends
 						if (relevantClass instanceof Section) {
-							sectionsToScan.addAll(((Section<?, ?, ?, ?>) relevantClass).getExtend());
+							sectionsToScan.addAll(((Section<?, ?, ?, ?>) relevantClass).getAllExtend());
 						}
 
 						while (!sectionsToScan.isEmpty()) {

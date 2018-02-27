@@ -46,20 +46,12 @@ public class PamtramValidator extends EObjectValidator {
 	public static final String DIAGNOSTIC_SOURCE = "pamtram";
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Either Model Or Refer Condition' of 'Conditional Element'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int CONDITIONAL_ELEMENT__VALIDATE_EITHER_MODEL_OR_REFER_CONDITION = 1;
-
-	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Reference Only Conditions From Condition Model' of 'Conditional Element'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CONDITIONAL_ELEMENT__VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL = 2;
+	public static final int CONDITIONAL_ELEMENT__VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL = 1;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -67,7 +59,7 @@ public class PamtramValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 2;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 1;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -129,6 +121,8 @@ public class PamtramValidator extends EObjectValidator {
 				return validateExpressionElement((ExpressionElement)value, diagnostics, context);
 			case PamtramPackage.MODIFIABLE_ELEMENT:
 				return validateModifiableElement((ModifiableElement)value, diagnostics, context);
+			case PamtramPackage.MATCH_SPEC_ELEMENT:
+				return validateMatchSpecElement((MatchSpecElement<?, ?, ?, ?>)value, diagnostics, context);
 			case PamtramPackage.FIXED_VALUE:
 				return validateFixedValue((FixedValue)value, diagnostics, context);
 			default:
@@ -207,7 +201,6 @@ public class PamtramValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(mappingModel, diagnostics, context);
 		if (result || diagnostics != null) result &= validateConditionalElement_eitherModelOrReferCondition(mappingModel, diagnostics, context);
 		if (result || diagnostics != null) result &= validateConditionalElement_referenceOnlyConditionsFromConditionModel(mappingModel, diagnostics, context);
-		if (result || diagnostics != null) result &= validateConditionalElement_validateEitherModelOrReferCondition(mappingModel, diagnostics, context);
 		if (result || diagnostics != null) result &= validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(mappingModel, diagnostics, context);
 		return result;
 	}
@@ -229,7 +222,6 @@ public class PamtramValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(conditionalElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validateConditionalElement_eitherModelOrReferCondition(conditionalElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validateConditionalElement_referenceOnlyConditionsFromConditionModel(conditionalElement, diagnostics, context);
-		if (result || diagnostics != null) result &= validateConditionalElement_validateEitherModelOrReferCondition(conditionalElement, diagnostics, context);
 		if (result || diagnostics != null) result &= validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(conditionalElement, diagnostics, context);
 		return result;
 	}
@@ -291,16 +283,6 @@ public class PamtramValidator extends EObjectValidator {
 	}
 
 	/**
-	 * Validates the validateEitherModelOrReferCondition constraint of '<em>Conditional Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateConditionalElement_validateEitherModelOrReferCondition(ConditionalElement conditionalElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return conditionalElement.validateEitherModelOrReferCondition(diagnostics, context);
-	}
-
-	/**
 	 * Validates the validateReferenceOnlyConditionsFromConditionModel constraint of '<em>Conditional Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -342,6 +324,15 @@ public class PamtramValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateMatchSpecElement(MatchSpecElement<?, ?, ?, ?> matchSpecElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(matchSpecElement, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateFixedValue(FixedValue fixedValue, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(fixedValue, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(fixedValue, diagnostics, context);
@@ -354,7 +345,6 @@ public class PamtramValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(fixedValue, diagnostics, context);
 		if (result || diagnostics != null) result &= validateConditionalElement_eitherModelOrReferCondition(fixedValue, diagnostics, context);
 		if (result || diagnostics != null) result &= validateConditionalElement_referenceOnlyConditionsFromConditionModel(fixedValue, diagnostics, context);
-		if (result || diagnostics != null) result &= validateConditionalElement_validateEitherModelOrReferCondition(fixedValue, diagnostics, context);
 		if (result || diagnostics != null) result &= validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(fixedValue, diagnostics, context);
 		return result;
 	}

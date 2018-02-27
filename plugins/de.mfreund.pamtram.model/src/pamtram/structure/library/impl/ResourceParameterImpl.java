@@ -72,6 +72,7 @@ public class ResourceParameterImpl extends NamedElementImpl implements ResourceP
 	 */
 	@Override
 	public VirtualTargetSectionAttribute getAttribute() {
+	
 		return attribute;
 	}
 
@@ -95,6 +96,7 @@ public class ResourceParameterImpl extends NamedElementImpl implements ResourceP
 	 */
 	@Override
 	public void setAttribute(VirtualTargetSectionAttribute newAttribute) {
+	
 		if (newAttribute != attribute) {
 			NotificationChain msgs = null;
 			if (attribute != null)
@@ -106,6 +108,7 @@ public class ResourceParameterImpl extends NamedElementImpl implements ResourceP
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.RESOURCE_PARAMETER__ATTRIBUTE, newAttribute, newAttribute));
+	
 	}
 
 	/**
@@ -114,7 +117,8 @@ public class ResourceParameterImpl extends NamedElementImpl implements ResourceP
 	 */
 	@Override
 	public de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ResourceParameter getOriginalParameter() {
-		if (originalParameter != null && originalParameter.eIsProxy()) {
+	
+		  if (originalParameter != null && originalParameter.eIsProxy()) {
 			InternalEObject oldOriginalParameter = (InternalEObject)originalParameter;
 			originalParameter = (de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ResourceParameter)eResolveProxy(oldOriginalParameter);
 			if (originalParameter != oldOriginalParameter) {
@@ -140,10 +144,12 @@ public class ResourceParameterImpl extends NamedElementImpl implements ResourceP
 	@Override
 	public void setOriginalParameter(
 			de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ResourceParameter newOriginalParameter) {
+	
 		de.tud.et.ifa.agtele.genlibrary.model.genlibrary.ResourceParameter oldOriginalParameter = originalParameter;
 		originalParameter = newOriginalParameter;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.RESOURCE_PARAMETER__ORIGINAL_PARAMETER, oldOriginalParameter, originalParameter));
+	
 	}
 
 	/**

@@ -27,15 +27,15 @@ import pamtram.provider.DeactivatableElementItemProvider;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.Mapping} object.
- * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * <!-- begin-user-doc --> <!--
+ * end-user-doc -->
  * @generated
  */
 public class MappingItemProvider extends MappingTypeItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public MappingItemProvider(AdapterFactory adapterFactory) {
@@ -43,9 +43,8 @@ public class MappingItemProvider extends MappingTypeItemProvider {
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -60,12 +59,12 @@ public class MappingItemProvider extends MappingTypeItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Shared Condition feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Shared Condition feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
 	protected void addSharedConditionPropertyDescriptor(Object object) {
+
 		this.itemPropertyDescriptors.add(
 				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
 						this.getResourceLocator(), this.getString("_UI_ConditionalElement_sharedCondition_feature"),
@@ -91,9 +90,8 @@ public class MappingItemProvider extends MappingTypeItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Abstract feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This adds a property descriptor for the Abstract feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addAbstractPropertyDescriptor(Object object) {
@@ -116,7 +114,8 @@ public class MappingItemProvider extends MappingTypeItemProvider {
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -143,9 +142,8 @@ public class MappingItemProvider extends MappingTypeItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Source MM Section feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Source MM Section feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated NOT
 	 */
 	@Override
@@ -181,8 +179,7 @@ public class MappingItemProvider extends MappingTypeItemProvider {
 
 	/**
 	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -191,8 +188,7 @@ public class MappingItemProvider extends MappingTypeItemProvider {
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
@@ -215,10 +211,10 @@ public class MappingItemProvider extends MappingTypeItemProvider {
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -239,60 +235,42 @@ public class MappingItemProvider extends MappingTypeItemProvider {
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing the children that can be created under this object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
-	 * @generated
+	 * @generated NOT due to reordering of descriptors
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
-				 ConditionFactory.eINSTANCE.createAnd()));
+		newChildDescriptors.add(this.createChildParameter(MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS,
+				MappingFactory.eINSTANCE.createMappingHintGroup()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
-				 ConditionFactory.eINSTANCE.createOr()));
+		newChildDescriptors.add(this.createChildParameter(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
+				ConditionFactory.eINSTANCE.createAnd()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
-				 ConditionFactory.eINSTANCE.createNot()));
+		newChildDescriptors.add(this.createChildParameter(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
+				ConditionFactory.eINSTANCE.createOr()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
-				 ConditionFactory.eINSTANCE.createAttributeCondition()));
+		newChildDescriptors.add(this.createChildParameter(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
+				ConditionFactory.eINSTANCE.createNot()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
-				 ConditionFactory.eINSTANCE.createCardinalityCondition()));
+		newChildDescriptors.add(this.createChildParameter(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
+				ConditionFactory.eINSTANCE.createAttributeCondition()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
-				 ConditionFactory.eINSTANCE.createApplicationDependency()));
+		newChildDescriptors.add(this.createChildParameter(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
+				ConditionFactory.eINSTANCE.createCardinalityCondition()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS,
-				 MappingFactory.eINSTANCE.createMappingHintGroup()));
+		newChildDescriptors.add(this.createChildParameter(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
+				ConditionFactory.eINSTANCE.createApplicationDependency()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS,
-				 MappingFactory.eINSTANCE.createExportedMappingHintGroup()));
+		newChildDescriptors.add(this.createChildParameter(MappingPackage.Literals.MAPPING__MAPPING_HINT_GROUPS,
+				MappingFactory.eINSTANCE.createExportedMappingHintGroup()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(MappingPackage.Literals.MAPPING__IMPORTED_MAPPING_HINT_GROUPS,
-				 MappingFactory.eINSTANCE.createMappingHintGroupImporter()));
+		newChildDescriptors.add(this.createChildParameter(MappingPackage.Literals.MAPPING__IMPORTED_MAPPING_HINT_GROUPS,
+				MappingFactory.eINSTANCE.createMappingHintGroupImporter()));
 	}
 
 }

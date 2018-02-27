@@ -1,18 +1,12 @@
 package de.mfreund.gentrans.transformation.matching;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Logger;
+import java.util.LinkedHashMap;
 
-import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
 import de.mfreund.gentrans.transformation.calculation.ValueCalculator;
-import de.mfreund.gentrans.transformation.calculation.ValueModifierExecutor;
+import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
-import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import pamtram.FixedValue;
-import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.extended.GlobalAttributeImporter;
 import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.InstanceSelector;
@@ -38,36 +32,22 @@ public class InstanceSelectorValueExtractor extends ValueExtractor {
 	/**
 	 * This creates an instance for a given list of {@link MatchedSectionDescriptor matchedSectionDescriptors}.
 	 *
-	 * @param globalValues
-	 *            The <em>global values</em> (values of {@link FixedValue FixedValues} and {@link GlobalAttribute
-	 *            GlobalAttribute}) defined in the PAMTraM model.
-	 * @param instanceSelectorHandler
-	 *            The {@link InstanceSelectorHandler} that is used to evaluate {@link InstanceSelector InstancePointers}
-	 *            that have been modeled.
-	 * @param attributeValueCalculator
-	 *            The {@link ValueCalculator} to use in order to calculate resulting values.
-	 * @param attributeValueModifierExecutor
-	 *            The {@link ValueModifierExecutor} that shall be used for modifying attribute values.
-	 * @param logger
-	 *            The {@link Logger} that shall be used to print messages.
-	 * @param useParallelization
-	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
-	 *            that the transformation result (especially the order of lists) varies between executions.
+	 * @param assetManager
+	 *            The {@link TransformationAssetManager} providing access to the various other assets used in the
+	 *            current transformation instance.
 	 */
-	public InstanceSelectorValueExtractor(GlobalValueMap globalValues, InstanceSelectorHandler instanceSelectorHandler,
-			ValueCalculator attributeValueCalculator, ValueModifierExecutor attributeValueModifierExecutor,
-			Logger logger, boolean useParallelization) {
+	public InstanceSelectorValueExtractor(TransformationAssetManager assetManager) {
 
-		super(globalValues, instanceSelectorHandler, attributeValueModifierExecutor, logger, useParallelization);
+		super(assetManager);
 
-		this.attributeValueCalculator = attributeValueCalculator;
+		this.attributeValueCalculator = assetManager.getValueCalculator();
 	}
 
 	/**
 	 * This extracts and returns the required target value for the given {@link InstanceSelector} as specified by its
 	 * {@link InstanceSelector#getSourceElements() source attributes}.
 	 *
-	 * @param instancePointer
+	 * @param instanceSelector
 	 *            The {@link InstanceSelector} for that the target value shall be extracted.
 	 * @param matchedSectionDescriptor
 	 *            The {@link MatchedSectionDescriptor} for that the value shall be extracted.
@@ -75,51 +55,51 @@ public class InstanceSelectorValueExtractor extends ValueExtractor {
 	 *         '<em><b>null</b></em>' if no value could be extracted.
 	 */
 	@SuppressWarnings("unchecked")
-	public String extractRequiredTargetValue(InstanceSelector instancePointer,
+	public String extractRequiredTargetValue(InstanceSelector instanceSelector,
 			MatchedSectionDescriptor matchedSectionDescriptor) {
 
 		// Collect the value parts
 		//
-		Map<InstanceSelectorSourceInterface, AttributeValueRepresentation> valueParts = new HashMap<>();
+		LinkedHashMap<InstanceSelectorSourceInterface, AttributeValueRepresentation> valueParts = new LinkedHashMap<>();
 
 		// Extract the value part based on its type
 		//
-		for (InstanceSelectorSourceInterface instancePointerSourceInterface : instancePointer.getSourceElements()) {
+		for (InstanceSelectorSourceInterface instanceSelectorSourceInterface : instanceSelector.getSourceElements()) {
 
 			AttributeValueRepresentation attributeValueRepresentation = null;
 
-			if (instancePointerSourceInterface instanceof DynamicSourceElement<?, ?, ?, ?>) {
+			if (instanceSelectorSourceInterface instanceof DynamicSourceElement<?, ?, ?, ?>) {
 				attributeValueRepresentation = this.extractValue(
-						(DynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) instancePointerSourceInterface,
+						(DynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) instanceSelectorSourceInterface,
 						matchedSectionDescriptor);
-			} else if (instancePointerSourceInterface instanceof FixedValue) {
-				attributeValueRepresentation = this.extractValue((FixedValue) instancePointerSourceInterface,
+			} else if (instanceSelectorSourceInterface instanceof FixedValue) {
+				attributeValueRepresentation = this.extractValue((FixedValue) instanceSelectorSourceInterface,
 						matchedSectionDescriptor);
-			} else if (instancePointerSourceInterface instanceof GlobalAttributeImporter) {
+			} else if (instanceSelectorSourceInterface instanceof GlobalAttributeImporter) {
 				attributeValueRepresentation = this.extractValue(
-						(GlobalAttributeImporter) instancePointerSourceInterface, matchedSectionDescriptor);
+						(GlobalAttributeImporter) instanceSelectorSourceInterface, matchedSectionDescriptor);
 			} else {
 				this.logger.severe(() -> "Unsupported type of source element for an InstanceSelector found: '"
-						+ instancePointerSourceInterface.eClass().getName() + "'!");
+						+ instanceSelectorSourceInterface.eClass().getName() + "'!");
 			}
 
 			if (attributeValueRepresentation != null) {
 
 				if (attributeValueRepresentation.isMany()) {
 					this.logger.warning(() -> "Multiple values found for the source element '"
-							+ instancePointerSourceInterface.getName()
-							+ "' of an InstanceSelector! This is currently not supported and only the first found value will be used!'");
+							+ instanceSelectorSourceInterface.getName() + "' of " + instanceSelector.printInfo()
+							+ "! This is currently not supported and only the first found value will be used!'");
 				}
 
-				valueParts.put(instancePointerSourceInterface, attributeValueRepresentation);
+				valueParts.put(instanceSelectorSourceInterface, attributeValueRepresentation);
 			}
 		}
 
 		// Assemble the target value based on the value parts and a potential
 		// expression
 		//
-		return this.attributeValueCalculator.calculateValue(new ArrayList<>(instancePointer.getSourceElements()),
-				instancePointer.getExpression(), valueParts, instancePointer.getModifiers());
+		return this.attributeValueCalculator.calculateValue(instanceSelector.getExpression(), valueParts,
+				instanceSelector.getModifiers());
 
 	}
 

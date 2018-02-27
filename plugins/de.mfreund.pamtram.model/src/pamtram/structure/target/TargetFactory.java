@@ -58,6 +58,15 @@ public interface TargetFactory extends EFactory {
 	TargetSectionCompositeReference createTargetSectionCompositeReference();
 
 	/**
+	 * Returns a new object of class '<em>Section Any Content Composite Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Section Any Content Composite Reference</em>'.
+	 * @generated
+	 */
+	TargetSectionAnyContentCompositeReference createTargetSectionAnyContentCompositeReference();
+
+	/**
 	 * Returns a new object of class '<em>Section Cross Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,6 +74,15 @@ public interface TargetFactory extends EFactory {
 	 * @generated
 	 */
 	TargetSectionCrossReference createTargetSectionCrossReference();
+
+	/**
+	 * Returns a new object of class '<em>Section Any Content Cross Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Section Any Content Cross Reference</em>'.
+	 * @generated
+	 */
+	TargetSectionAnyContentCrossReference createTargetSectionAnyContentCrossReference();
 
 	/**
 	 * Returns a new object of class '<em>Actual Target Section Attribute</em>'.

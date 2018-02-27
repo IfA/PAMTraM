@@ -2,7 +2,7 @@
 <feature
       id="de.mfreund.pamtram.examples.feature"
       label="PAMTraM Examples"
-      version="2.0.0.qualifier"
+      version="2.1.0.qualifier"
       provider-name="Matthias Freund, Institute of Automation, TU Dresden">
 
    <description url="http://www.example.com/description">
@@ -44,7 +44,7 @@ These terms will be replaced, once it has been decided, which public license to 
    <requires>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.emf.common.ui" version="2.10.0" match="greaterOrEqual"/>
-      <import feature="de.mfreund.pamtram.feature" version="1.9.0" match="greaterOrEqual"/>
+      <import feature="de.mfreund.pamtram.feature" version="2.1.0" match="greaterOrEqual"/>
       <import feature="org.eclipse.ocl.examples" version="6.3.0.v20170613-1432"/>
    </requires>
 

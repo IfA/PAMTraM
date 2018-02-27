@@ -10,6 +10,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -20,12 +21,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
 
+import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.tud.et.ifa.agtele.resources.ResourceHelper;
 import pamtram.structure.target.FileAttribute;
@@ -82,26 +85,19 @@ public class TargetModelRegistry {
 	/**
 	 * Create a new instance.
 	 *
-	 * @param basePath
-	 *            The {@link #basePath} relative to that all the resources for the {@link #targetModels} will be
-	 *            created.
-	 *            <p />
-	 *            Note: The path must either be absolute or relative to the workspace root (of the form
-	 *            '<em>/project-name/path</em>').
-	 * @param defaultTargetModel
-	 *            The path of the {@link #defaultTargetModel default target model}.
+	 * @param assetManager
+	 *            The {@link TransformationAssetManager} providing access to the various other assets used in the
+	 *            current transformation instance.
 	 * @param resourceSet
 	 *            The {@link ResourceSet} that shall be used to create the resources.
-	 * @param logger
-	 *            A {@link Logger} that can be used to print messages.
 	 */
-	public TargetModelRegistry(String basePath, String defaultTargetModel, ResourceSet resourceSet, Logger logger) {
+	public TargetModelRegistry(TransformationAssetManager assetManager, Optional<ResourceSet> resourceSet) {
 
 		this.targetModels = new LinkedHashMap<>();
-		this.basePath = basePath;
-		this.defaultTargetModel = defaultTargetModel;
-		this.resourceSet = resourceSet;
-		this.logger = logger;
+		this.basePath = assetManager.getTransformationConfig().getTargetBasePath();
+		this.defaultTargetModel = assetManager.getTransformationConfig().getDefaultTargetModel();
+		this.resourceSet = resourceSet.isPresent() ? resourceSet.get() : new ResourceSetImpl();
+		this.logger = assetManager.getLogger();
 	}
 
 	/**

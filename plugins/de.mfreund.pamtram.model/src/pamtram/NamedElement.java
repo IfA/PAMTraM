@@ -5,10 +5,9 @@ package pamtram;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Named Element</b></em>'.
- * @extends IDerivedNameSetter
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Named Element</b></em>'.
+ * 
+ * @extends IDerivedNameSetter <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
  * A NamedElement provides a human-readable name that can be used to identify it, e.g. when working with the model editor.
@@ -26,17 +25,15 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface NamedElement extends EObject, IDerivedNameSetter {
+
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * A human-readable name for this element. This does not necessarilly need to be unique.
-	 * <!-- end-model-doc -->
+	 * <!-- end-user-doc --> <!-- begin-model-doc --> A human-readable name for this element. This does not necessarilly
+	 * need to be unique. <!-- end-model-doc -->
+	 * 
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see pamtram.PamtramPackage#getNamedElement_Name()
@@ -54,5 +51,12 @@ public interface NamedElement extends EObject, IDerivedNameSetter {
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Prints an info about the element that can be used in log messages, etc.
+	 *
+	 * @return the info string for this MappingHint
+	 */
+	String printInfo();
 
 } // NamedElement

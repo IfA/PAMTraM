@@ -5,6 +5,7 @@ package pamtram.mapping.extended.provider;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.command.Command;
@@ -120,35 +121,35 @@ public class MappingHintItemProvider extends MappingHintTypeItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Overwrite feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated NOT
+	 * This adds a property descriptor for the Overwrite feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
 	 */
 	protected void addOverwritePropertyDescriptor(Object object) {
-
 		// ContainerSelectors will always overwrite extended Selectors so they do not need this descriptor
 		//
 		if (!(object instanceof ContainerSelector)) {
-
+		
 			this.itemPropertyDescriptors.add(new ItemPropertyDescriptor(
 					((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
 					this.getResourceLocator(), this.getString("_UI_MappingHint_overwrite_feature"),
 					this.getString("_UI_MappingHint_overwrite_description"),
 					ExtendedPackage.Literals.MAPPING_HINT__OVERWRITE, true, false, true, null,
 					this.getString("_UI_ExtendedPropertyCategory"), null) {
-
+		
 				@Override
 				public Collection<?> getChoiceOfValues(Object object) {
-
+		
 					MappingHint hint = (MappingHint) object;
 					if (!(hint.eContainer() instanceof MappingHintGroupType)) {
 						return new ArrayList<>();
 					}
-
-					List<MappingHint> possibleOverwrites = ((MappingHintGroupType) hint.eContainer()).getExtend()
-							.stream().flatMap(h -> h.getMappingHints().stream())
-							.filter(h -> hint.eClass().equals(h.eClass())).collect(Collectors.toList());
-
+		
+					Set<MappingHint> possibleOverwrites = ((MappingHintGroupType) hint.eContainer()).getExtend()
+							.stream().flatMap(h -> h.getAllMappingHints().stream())
+							.filter(h -> hint.eClass().equals(h.eClass()))
+							.collect(Collectors.toCollection(java.util.LinkedHashSet::new));
+		
 					if (hint instanceof AttributeMapping) {
 						AttributeMapping attributeMapping = (AttributeMapping) hint;
 						if (attributeMapping.getTarget() == null) {
@@ -177,6 +178,8 @@ public class MappingHintItemProvider extends MappingHintTypeItemProvider {
 											.equals(rts.getAffectedReference()))
 									.collect(Collectors.toList());
 						}
+					} else if (hint instanceof ContainerSelector) {
+						return new ArrayList<>(possibleOverwrites);
 					} else {
 						return new ArrayList<>();
 					}

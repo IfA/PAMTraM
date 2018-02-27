@@ -14,7 +14,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Shell;
 
 import de.mfreund.gentrans.transformation.resolving.UserDecisionResolvingStrategy;
-import de.mfreund.gentrans.transformation.resolving.wizards.ValueSpecificationDialogRunner;
+import de.mfreund.gentrans.transformation.resolving.wizards.ValueSpecificationDialog;
 import de.tud.et.ifa.agtele.emf.compare.EMFCompareUtil;
 import pamtram.PAMTraM;
 import pamtram.mapping.InstantiableMappingHintGroup;
@@ -34,7 +34,7 @@ import pamtram.structure.target.TargetSectionAttribute;
  * @author mfreund
  */
 public class InstantiatingSelectAttributeValueMappingModelEnhancer
-		extends MappingModelEnhancer<ValueSpecificationDialogRunner> {
+		extends MappingModelEnhancer<ValueSpecificationDialog> {
 
 	/**
 	 * The {@link TargetSectionAttribute} to be enhanced.
@@ -42,8 +42,7 @@ public class InstantiatingSelectAttributeValueMappingModelEnhancer
 	private TargetSectionAttribute attributeToEnhance;
 
 	/**
-	 * The {@link InstantiableMappingHintGroup} based on which the attribute is
-	 * created.
+	 * The {@link InstantiableMappingHintGroup} based on which the attribute is created.
 	 */
 	private InstantiableMappingHintGroup mappingHintGroup;
 
@@ -54,11 +53,11 @@ public class InstantiatingSelectAttributeValueMappingModelEnhancer
 	 * @param attributeToEnhance
 	 *            The {@link TargetSectionAttribute} to be enhanced.
 	 * @param mappingHintGroup
-	 *            The {@link InstantiableMappingHintGroup} based on which the
-	 *            attribute is created.
+	 *            The {@link InstantiableMappingHintGroup} based on which the attribute is created.
 	 */
 	public InstantiatingSelectAttributeValueMappingModelEnhancer(PAMTraM pamtramModel,
 			TargetSectionAttribute attributeToEnhance, InstantiableMappingHintGroup mappingHintGroup) {
+
 		super(pamtramModel);
 		this.attributeToEnhance = attributeToEnhance;
 		this.mappingHintGroup = mappingHintGroup;

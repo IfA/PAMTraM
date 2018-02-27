@@ -9,6 +9,7 @@ import org.eclipse.emf.common.util.EList;
 
 import pamtram.ExpressionElement;
 import pamtram.ModifiableElement;
+import pamtram.NamedElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Instance Pointer</b></em>'. <!-- end-user-doc
@@ -27,7 +28,7 @@ import pamtram.ModifiableElement;
  *        constraints='noModifiedAttributeElementTypesInConditionModelConditions'"
  * @generated
  */
-public interface InstanceSelector extends ExpressionElement, ModifiableElement {
+public interface InstanceSelector extends NamedElement, ExpressionElement, ModifiableElement {
 	/**
 	 * Returns the value of the '<em><b>Source Elements</b></em>' containment reference list.
 	 * The list contents are of type {@link pamtram.structure.InstanceSelectorSourceInterface}.

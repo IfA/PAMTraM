@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -80,7 +81,7 @@ public class SectionItemProvider extends ClassItemProvider {
 	 */
 	protected void addExtendPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
+			(new ItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_Section_extend_feature"),
@@ -91,7 +92,14 @@ public class SectionItemProvider extends ClassItemProvider {
 				 true,
 				 null,
 				 getString("_UI_ExtendedPropertyCategory"),
-				 null));
+				 null) {
+				
+				@Override
+				public Collection<?> getChoiceOfValues(Object object) {
+				
+					return super.getChoiceOfValues(object).stream().filter(e -> !e.equals(object) && !((Section<?, ?, ?, ?>) e).getAllExtend().contains(object)).collect(Collectors.toList());
+				}
+			});
 	}
 
 	/**
@@ -106,7 +114,7 @@ public class SectionItemProvider extends ClassItemProvider {
 
 	/**
 	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated NOT
 	 */
 	@Override
@@ -148,7 +156,7 @@ public class SectionItemProvider extends ClassItemProvider {
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
 	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override

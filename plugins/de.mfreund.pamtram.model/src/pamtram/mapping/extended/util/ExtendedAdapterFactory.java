@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import pamtram.ConditionalElement;
 import pamtram.DeactivatableElement;
 import pamtram.ExpressionElement;
+import pamtram.MatchSpecElement;
 import pamtram.ModifiableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.extended.*;
@@ -218,6 +219,10 @@ public class ExtendedAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseDynamicSourceElement(DynamicSourceElement<S, C, R, A> object) {
 				return createDynamicSourceElementAdapter();
+			}
+			@Override
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseMatchSpecElement(MatchSpecElement<S, C, R, A> object) {
+				return createMatchSpecElementAdapter();
 			}
 			@Override
 			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseLocalDynamicSourceElement(LocalDynamicSourceElement<S, C, R, A> object) {
@@ -718,6 +723,20 @@ public class ExtendedAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDynamicSourceElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.MatchSpecElement <em>Match Spec Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.MatchSpecElement
+	 * @generated
+	 */
+	public Adapter createMatchSpecElementAdapter() {
 		return null;
 	}
 

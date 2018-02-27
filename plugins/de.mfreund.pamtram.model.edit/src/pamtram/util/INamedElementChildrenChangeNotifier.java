@@ -55,7 +55,7 @@ public interface INamedElementChildrenChangeNotifier extends IChangeNotifier {
 	 */
 	public default void registerNotifyChangedListener(final EObject parent, final NamedElement child) {
 
-		if (parent == null || child == null) {
+		if (parent == null || child == null || parent == child) {
 			return;
 		}
 

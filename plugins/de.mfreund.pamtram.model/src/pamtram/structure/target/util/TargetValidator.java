@@ -59,12 +59,28 @@ public class TargetValidator extends EObjectValidator {
 	public static final int TARGET_SECTION__VALIDATE_CARDINALITY = 2;
 
 	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Is Allowed' of 'Section Any Content Composite Reference'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE__VALIDATE_IS_ALLOWED = 3;
+
+	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate EReference Is Non Containment' of 'Section Cross Reference'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int TARGET_SECTION_CROSS_REFERENCE__VALIDATE_EREFERENCE_IS_NON_CONTAINMENT = 3;
+	public static final int TARGET_SECTION_CROSS_REFERENCE__VALIDATE_EREFERENCE_IS_NON_CONTAINMENT = 4;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate Is Allowed' of 'Section Any Content Cross Reference'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int TARGET_SECTION_ANY_CONTENT_CROSS_REFERENCE__VALIDATE_IS_ALLOWED = 5;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -72,7 +88,7 @@ public class TargetValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 3;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 5;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -131,8 +147,12 @@ public class TargetValidator extends EObjectValidator {
 				return validateTargetSectionReference((TargetSectionReference)value, diagnostics, context);
 			case TargetPackage.TARGET_SECTION_COMPOSITE_REFERENCE:
 				return validateTargetSectionCompositeReference((TargetSectionCompositeReference)value, diagnostics, context);
+			case TargetPackage.TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE:
+				return validateTargetSectionAnyContentCompositeReference((TargetSectionAnyContentCompositeReference)value, diagnostics, context);
 			case TargetPackage.TARGET_SECTION_CROSS_REFERENCE:
 				return validateTargetSectionCrossReference((TargetSectionCrossReference)value, diagnostics, context);
+			case TargetPackage.TARGET_SECTION_ANY_CONTENT_CROSS_REFERENCE:
+				return validateTargetSectionAnyContentCrossReference((TargetSectionAnyContentCrossReference)value, diagnostics, context);
 			case TargetPackage.TARGET_SECTION_ATTRIBUTE:
 				return validateTargetSectionAttribute((TargetSectionAttribute)value, diagnostics, context);
 			case TargetPackage.ACTUAL_TARGET_SECTION_ATTRIBUTE:
@@ -167,10 +187,13 @@ public class TargetValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= genericValidator.validateClass_validateEClassMatchesParentEReference(targetSection, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateClass_validateCardinalityIsValid(targetSection, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateClass_validateContainerIsValid(targetSection, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateClass_validateNotSelfContainer(targetSection, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateClass_validateOnlyComplementingActualReferences(targetSection, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateSection_extendsValidSections(targetSection, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateSection_containerMatchesExtendContainer(targetSection, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateSection_validateContainerMatchesExtendContainer(targetSection, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateSection_validateExtendsValidSections(targetSection, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateSection_validateNotExtendSelf(targetSection, diagnostics, context);
 		if (result || diagnostics != null) result &= validateTargetSection_isReferencedByMappingHintGroup(targetSection, diagnostics, context);
 		if (result || diagnostics != null) result &= validateTargetSection_validateIsReferencedByMappingHintGroup(targetSection, diagnostics, context);
 		if (result || diagnostics != null) result &= validateTargetSection_validateCardinality(targetSection, diagnostics, context);
@@ -255,6 +278,8 @@ public class TargetValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= genericValidator.validateClass_validateEClassMatchesParentEReference(targetSectionClass, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateClass_validateCardinalityIsValid(targetSectionClass, diagnostics, context);
 		if (result || diagnostics != null) result &= genericValidator.validateClass_validateContainerIsValid(targetSectionClass, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateClass_validateNotSelfContainer(targetSectionClass, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateClass_validateOnlyComplementingActualReferences(targetSectionClass, diagnostics, context);
 		return result;
 	}
 
@@ -304,6 +329,38 @@ public class TargetValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateTargetSectionAnyContentCompositeReference(TargetSectionAnyContentCompositeReference targetSectionAnyContentCompositeReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(targetSectionAnyContentCompositeReference, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(targetSectionAnyContentCompositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(targetSectionAnyContentCompositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(targetSectionAnyContentCompositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(targetSectionAnyContentCompositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(targetSectionAnyContentCompositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(targetSectionAnyContentCompositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(targetSectionAnyContentCompositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(targetSectionAnyContentCompositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateReference_eReferenceMatchesParentEClass(targetSectionAnyContentCompositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateCompositeReference_eReferenceIsContainment(targetSectionAnyContentCompositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateCompositeReference_validateEReferenceIsContainment(targetSectionAnyContentCompositeReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTargetSectionAnyContentCompositeReference_validateIsAllowed(targetSectionAnyContentCompositeReference, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the validateIsAllowed constraint of '<em>Section Any Content Composite Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateTargetSectionAnyContentCompositeReference_validateIsAllowed(TargetSectionAnyContentCompositeReference targetSectionAnyContentCompositeReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return targetSectionAnyContentCompositeReference.validateIsAllowed(diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateTargetSectionCrossReference(TargetSectionCrossReference targetSectionCrossReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(targetSectionCrossReference, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(targetSectionCrossReference, diagnostics, context);
@@ -330,6 +387,38 @@ public class TargetValidator extends EObjectValidator {
 	 */
 	public boolean validateTargetSectionCrossReference_validateEReferenceIsNonContainment(TargetSectionCrossReference targetSectionCrossReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return targetSectionCrossReference.validateEReferenceIsNonContainment(diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateTargetSectionAnyContentCrossReference(TargetSectionAnyContentCrossReference targetSectionAnyContentCrossReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(targetSectionAnyContentCrossReference, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(targetSectionAnyContentCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(targetSectionAnyContentCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(targetSectionAnyContentCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(targetSectionAnyContentCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(targetSectionAnyContentCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(targetSectionAnyContentCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(targetSectionAnyContentCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(targetSectionAnyContentCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateReference_eReferenceMatchesParentEClass(targetSectionAnyContentCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateCrossReference_eReferenceIsNonContainment(targetSectionAnyContentCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= genericValidator.validateCrossReference_validateValuesMatchReferenceType(targetSectionAnyContentCrossReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateTargetSectionAnyContentCrossReference_validateIsAllowed(targetSectionAnyContentCrossReference, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the validateIsAllowed constraint of '<em>Section Any Content Cross Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateTargetSectionAnyContentCrossReference_validateIsAllowed(TargetSectionAnyContentCrossReference targetSectionAnyContentCrossReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return targetSectionAnyContentCrossReference.validateIsAllowed(diagnostics, context);
 	}
 
 	/**

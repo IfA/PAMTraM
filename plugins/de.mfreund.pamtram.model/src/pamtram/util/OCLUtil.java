@@ -22,12 +22,12 @@ import org.eclipse.ocl.helper.OCLHelper;
 public class OCLUtil {
 
 	/**
-	 * The singleton instance of {@link OCL} that is used to create and evaluate
-	 * queries.
+	 * The singleton instance of {@link OCL} that is used to create and evaluate queries.
 	 */
 	private static OCL oclInstance;
 
 	private OCLUtil() {
+
 	}
 
 	/**
@@ -36,6 +36,7 @@ public class OCLUtil {
 	 * @return The single {@link #oclInstance}.
 	 */
 	private static OCL getOclInstance() {
+
 		if (OCLUtil.oclInstance == null) {
 			OCLUtil.oclInstance = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
 		}
@@ -43,21 +44,18 @@ public class OCLUtil {
 	}
 
 	/**
-	 * This evaluates the {@link OCLExpression} represented by the given
-	 * <em>expression</em> on the given <em>contextElement</em>.
+	 * This evaluates the {@link OCLExpression} represented by the given <em>expression</em> on the given
+	 * <em>contextElement</em>.
 	 *
 	 * @param expression
-	 *            A String representing the {@link OCLExpression} to be
-	 *            evaluated.
+	 *            A String representing the {@link OCLExpression} to be evaluated.
 	 * @param contextElement
-	 *            The {@link EObject} for which the <em>expression</em> shall be
-	 *            evaluated.
+	 *            The {@link EObject} for which the <em>expression</em> shall be evaluated.
 	 * @return The result of the evaluation.
 	 * @throws ParserException
-	 *             If the given <em>expression</em> was no valid
-	 *             {@link OCLExpression}.
+	 *             If the given <em>expression</em> was no valid {@link OCLExpression}.
 	 */
-	public static Object evaluteQuery(String expression, EObject contextElement) throws ParserException {
+	public static synchronized Object evaluteQuery(String expression, EObject contextElement) throws ParserException {
 
 		OCLHelper<EClassifier, ?, ?, Constraint> helper = OCLUtil.getOclInstance().createOCLHelper();
 		helper.setContext(contextElement.eClass());
@@ -67,22 +65,18 @@ public class OCLUtil {
 	}
 
 	/**
-	 * This validates the {@link OCLExpression} represented by the given
-	 * <em>expression</em>. If the expression is not valid, this will throw a
-	 * {@link ParserException} that contains more information - otherwise, the
-	 * method will just return normally.
+	 * This validates the {@link OCLExpression} represented by the given <em>expression</em>. If the expression is not
+	 * valid, this will throw a {@link ParserException} that contains more information - otherwise, the method will just
+	 * return normally.
 	 *
 	 * @param expression
-	 *            A String representing the {@link OCLExpression} to be
-	 *            validated.
+	 *            A String representing the {@link OCLExpression} to be validated.
 	 * @param contextClass
-	 *            The {@link EClass} representing the context of the
-	 *            <em>expression</em>.
+	 *            The {@link EClass} representing the context of the <em>expression</em>.
 	 * @throws ParserException
-	 *             If the given <em>expression</em> was no valid
-	 *             {@link OCLExpression}.
+	 *             If the given <em>expression</em> was no valid {@link OCLExpression}.
 	 */
-	public static void validateQuery(String expression, EClass contextClass) throws ParserException {
+	public static synchronized void validateQuery(String expression, EClass contextClass) throws ParserException {
 
 		OCLHelper<EClassifier, ?, ?, Constraint> helper = OCLUtil.getOclInstance().createOCLHelper();
 		helper.setContext(contextClass);

@@ -21,17 +21,16 @@ import pamtram.structure.InstanceSelectorExternalSourceElement;
 import pamtram.structure.StructurePackage;
 
 /**
- * This is the item provider adapter for a
- * {@link pamtram.structure.InstanceSelectorExternalSourceElement} object. <!--
+ * This is the item provider adapter for a {@link pamtram.structure.InstanceSelectorExternalSourceElement} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  *
  * @generated
  */
 public class InstanceSelectorExternalSourceElementItemProvider extends ExternalDynamicSourceElementItemProvider {
+
 	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public InstanceSelectorExternalSourceElementItemProvider(AdapterFactory adapterFactory) {
@@ -39,9 +38,8 @@ public class InstanceSelectorExternalSourceElementItemProvider extends ExternalD
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -55,12 +53,12 @@ public class InstanceSelectorExternalSourceElementItemProvider extends ExternalD
 	}
 
 	/**
-	 * This adds a property descriptor for the Shared Condition feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Shared Condition feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
 	protected void addSharedConditionPropertyDescriptor(Object object) {
+
 		this.itemPropertyDescriptors.add(
 				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
 						this.getResourceLocator(), this.getString("_UI_ConditionalElement_sharedCondition_feature"),
@@ -89,7 +87,8 @@ public class InstanceSelectorExternalSourceElementItemProvider extends ExternalD
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -114,9 +113,8 @@ public class InstanceSelectorExternalSourceElementItemProvider extends ExternalD
 	}
 
 	/**
-	 * This returns InstanceSelectorExternalSourceElement.gif. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This returns InstanceSelectorExternalSourceElement.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -126,8 +124,7 @@ public class InstanceSelectorExternalSourceElementItemProvider extends ExternalD
 
 	/**
 	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -136,28 +133,21 @@ public class InstanceSelectorExternalSourceElementItemProvider extends ExternalD
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((InstanceSelectorExternalSourceElement)object).getName();
-    	StyledString styledLabel = new StyledString();
-		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_InstanceSelectorExternalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
-		} else {
-			styledLabel.append(getString("_UI_InstanceSelectorExternalSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
-		}
-		return styledLabel;
+
+		return super.getStyledText(object);
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -173,10 +163,9 @@ public class InstanceSelectorExternalSourceElementItemProvider extends ExternalD
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing the children that can be created under this object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

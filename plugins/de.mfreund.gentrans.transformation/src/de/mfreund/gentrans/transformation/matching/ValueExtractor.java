@@ -1,46 +1,34 @@
 package de.mfreund.gentrans.transformation.matching;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.ParserException;
 
-import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
-import de.mfreund.gentrans.transformation.calculation.ValueModifierExecutor;
+import de.mfreund.gentrans.transformation.core.CancelableTransformationAsset;
+import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
-import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
-import de.mfreund.gentrans.transformation.util.CancelableElement;
-import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
+import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
 import pamtram.FixedValue;
+import pamtram.MatchSpecElement;
 import pamtram.NamedElement;
-import pamtram.mapping.GlobalAttribute;
-import pamtram.mapping.Mapping;
-import pamtram.mapping.MappingPackage;
 import pamtram.mapping.extended.GlobalAttributeImporter;
 import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.ExternalDynamicSourceElement;
 import pamtram.structure.GlobalDynamicSourceElement;
 import pamtram.structure.LocalDynamicSourceElement;
 import pamtram.structure.SourceInstanceSelector;
-import pamtram.structure.generic.ActualReference;
-import pamtram.structure.generic.Reference;
 import pamtram.structure.source.ActualSourceSectionAttribute;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
 import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.source.SourceSectionReference;
 import pamtram.structure.source.VirtualSourceSectionAttribute;
-import pamtram.util.OCLUtil;
 
 /**
  * This represents an abstract base class that allows to extract {@link AttributeValueRepresentation values} from a list
@@ -49,85 +37,18 @@ import pamtram.util.OCLUtil;
  * @author mfreund
  *
  */
-public abstract class ValueExtractor extends CancelableElement {
-
-	/**
-	 * The {@link ValueModifierExecutor} that shall be used for modifying attribute values.
-	 */
-	protected final ValueModifierExecutor attributeValueModifierExecutor;
-
-	/**
-	 * The {@link InstanceSelectorHandler} used for selecting specific instances when extracting values.
-	 */
-	protected final InstanceSelectorHandler instanceSelectorHandler;
-
-	/**
-	 * The {@link Logger} that shall be used to print messages.
-	 */
-	protected final Logger logger;
-
-	/**
-	 * The {@link GlobalValueMap} that contains the relevant values of {@link GlobalAttribute GlobalAttributes}.
-	 */
-	protected final GlobalValueMap globalValues;
-
-	/**
-	 * Whether extended parallelization shall be used during the transformation that might lead to the fact that the
-	 * transformation result (especially the order of lists) varies between executions.
-	 */
-	protected boolean useParallelization;
+public abstract class ValueExtractor extends CancelableTransformationAsset {
 
 	/**
 	 * This creates an instance for a given list of {@link MatchedSectionDescriptor matchedSectionDescriptors}.
 	 *
-	 * @param attributeValueModifierExecutor
-	 *            The {@link ValueModifierExecutor} that shall be used for modifying attribute values.
-	 * @param instanceSelectorHandler
-	 *            The {@link InstanceSelectorHandler} used for selecting specific instances when extracting values.
-	 * @param logger
-	 *            The {@link Logger} that shall be used to print messages.
-	 * @param useParallelization
-	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
-	 *            that the transformation result (especially the order of lists) varies between executions.
-	 * @deprecated use
-	 *             {@link #ValueExtractor(GlobalValueMap, InstanceSelectorHandler, ValueModifierExecutor, Logger, boolean)}
-	 *             instead
+	 * @param assetManager
+	 *            The {@link TransformationAssetManager} providing access to the various other assets used in the
+	 *            current transformation instance.
 	 */
-	@Deprecated
-	public ValueExtractor(ValueModifierExecutor attributeValueModifierExecutor,
-			InstanceSelectorHandler instanceSelectorHandler, Logger logger, boolean useParallelization) {
+	public ValueExtractor(TransformationAssetManager assetManager) {
 
-		this.attributeValueModifierExecutor = attributeValueModifierExecutor;
-		this.instanceSelectorHandler = instanceSelectorHandler;
-		this.logger = logger;
-		this.useParallelization = useParallelization;
-		this.globalValues = new GlobalValueMap();
-	}
-
-	/**
-	 * This creates an instance for a given list of {@link MatchedSectionDescriptor matchedSectionDescriptors}.
-	 *
-	 * @param globalValues
-	 *            The {@link GlobalValueMap} that contains the relevant values of {@link GlobalAttribute
-	 *            GlobalAttributes}.
-	 * @param instanceSelectorHandler
-	 *            The {@link InstanceSelectorHandler} used for selecting specific instances when extracting values.
-	 * @param attributeValueModifierExecutor
-	 *            The {@link ValueModifierExecutor} that shall be used for modifying attribute values.
-	 * @param logger
-	 *            The {@link Logger} that shall be used to print messages.
-	 * @param useParallelization
-	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
-	 *            that the transformation result (especially the order of lists) varies between executions.
-	 */
-	public ValueExtractor(GlobalValueMap globalValues, InstanceSelectorHandler instanceSelectorHandler,
-			ValueModifierExecutor attributeValueModifierExecutor, Logger logger, boolean useParallelization) {
-
-		this.attributeValueModifierExecutor = attributeValueModifierExecutor;
-		this.instanceSelectorHandler = instanceSelectorHandler;
-		this.logger = logger;
-		this.useParallelization = useParallelization;
-		this.globalValues = globalValues;
+		super(assetManager);
 	}
 
 	/**
@@ -167,10 +88,11 @@ public abstract class ValueExtractor extends CancelableElement {
 
 		this.checkCanceled();
 
-		return this.globalValues.getGlobalAttributes().containsKey(globaleAttributeImporter.getGlobalAttribute())
-				? new AttributeValueRepresentation(null,
-						this.globalValues.get(globaleAttributeImporter.getGlobalAttribute()))
-				: null;
+		return this.assetManager.getGlobalValues().getGlobalAttributes()
+				.containsKey(globaleAttributeImporter.getGlobalAttribute())
+						? new AttributeValueRepresentation(null,
+								this.assetManager.getGlobalValues().get(globaleAttributeImporter.getGlobalAttribute()))
+						: null;
 	}
 
 	/**
@@ -195,81 +117,65 @@ public abstract class ValueExtractor extends CancelableElement {
 
 		MatchedSectionDescriptor sourceDescriptor = matchedSectionDescriptor;
 
-		// In case we are dealing with an external source element, we first need
-		// to determine the correct
-		// 'container descriptor' that represents the source element
-		//
+		Set<EObject> sourceElements = new LinkedHashSet<>();
+
 		if (mappingHintSourceElement instanceof ExternalDynamicSourceElement<?, ?, ?, ?>) {
-			while (!sourceDescriptor.getSourceModelObjectsMapped()
-					.containsKey(mappingHintSourceElement.getSource().eContainer())) {
+
+			SourceSection mappingHintSourceElementProvidingSection = mappingHintSourceElement.getSource()
+					.getContainingSection();
+
+			// In case we are dealing with an external source element, we first need
+			// to determine the correct 'container descriptor' that represents the source element
+			//
+			do {
 				sourceDescriptor = sourceDescriptor.getContainerDescriptor();
+
 				if (sourceDescriptor == null) {
-					// Error: could not determine hint value
-					return null;
+					break;
 				}
+
+			} while (!(sourceDescriptor.getAssociatedSourceSection().equals(mappingHintSourceElementProvidingSection)
+					|| sourceDescriptor.getAssociatedSourceSection().getContainingSection().getAllExtend()
+							.contains(mappingHintSourceElementProvidingSection)));
+
+			if (sourceDescriptor != null) {
+				// Now that we found the correct descriptor, we can determine the suitable source elements
+				//
+				sourceElements = sourceDescriptor
+						.getMatchedSourceModelElementsFor(mappingHintSourceElement.getSource().getOwningClass(), false);
 			}
-		}
 
-		Set<EObject> sourceElements = sourceDescriptor.getSourceModelObjectsMapped()
-				.get(mappingHintSourceElement.getSource().eContainer());
+		} else if (mappingHintSourceElement instanceof LocalDynamicSourceElement<?, ?, ?, ?>) {
 
-		if (mappingHintSourceElement instanceof LocalDynamicSourceElement<?, ?, ?, ?>) {
+			// In case we are dealing with a local source element, we need to collect all elements of the given
+			// descriptor and of all descriptors (directly or indirectly) referenced by this descriptor
+			//
+			sourceElements = sourceDescriptor.getMatchedSourceModelElementsFor(
+					mappingHintSourceElement.getSource().getOwningClass(),
+					((LocalDynamicSourceElement<?, ?, ?, ?>) mappingHintSourceElement).isFollowExternalReferences());
 
 			// If the user specified an additional 'referenceMatchSpec', use
 			// only that subset of the determined source elements corresponding
 			// to this matching path.
 			//
-			List<Reference<?, ?, ?, ?>> matchSpec = new ArrayList<>(
-					((LocalDynamicSourceElement<?, ?, ?, ?>) mappingHintSourceElement).getReferenceMatchSpec());
-
-			if (!matchSpec.isEmpty()) {
+			if (!((LocalDynamicSourceElement<?, ?, ?, ?>) mappingHintSourceElement).getReferenceMatchSpec().isEmpty()) {
 
 				MatchedSectionDescriptor localDescriptor = sourceDescriptor;
 				sourceElements = sourceElements.stream()
-						.filter(s -> this.conformsMatchedObjectToMatchingPath(
-								localDescriptor.getAssociatedSourceModelElement(), s, matchSpec))
-						.collect(Collectors.toSet());
+						.filter(s -> this.assetManager.getMatchSpecHandler().conformsMatchedObject(
+								localDescriptor.getAssociatedSourceModelElement(), s,
+								(MatchSpecElement<?, ?, ?, ?>) mappingHintSourceElement))
+						.collect(Collectors.toCollection(LinkedHashSet::new));
 			}
 		}
 
-		if (sourceElements == null) {
-			this.logger.warning(() -> "Hint source value '" + mappingHintSourceElement.getName() + "' not found!");
+		if (sourceElements.isEmpty()) {
+			this.logger.warning(() -> "No hint value found for source element '" + mappingHintSourceElement.getName()
+					+ "' in " + ((NamedElement) mappingHintSourceElement.eContainer()).printInfo() + "!");
 			return null;
 		}
 
 		return this.extractValue(mappingHintSourceElement, new ArrayList<>(sourceElements));
-	}
-
-	private boolean conformsMatchedObjectToMatchingPath(EObject root, EObject element,
-			List<Reference<?, ?, ?, ?>> matchSpec) {
-
-		// Create a local copy first
-		//
-		List<Reference<?, ?, ?, ?>> localReferenceSegments = new ArrayList<>(matchSpec);
-
-		Reference<?, ?, ?, ?> firstSegment = localReferenceSegments.remove(0);
-
-		if (firstSegment instanceof ActualReference<?, ?, ?, ?>) {
-
-			if (!root.eClass().getEAllReferences()
-					.contains(((ActualReference<?, ?, ?, ?>) firstSegment).getEReference())) {
-				this.logger.severe("Faulty Reference Match Spec encountered!");
-				return false;
-			}
-
-			List<Object> values = AgteleEcoreUtil.getStructuralFeatureValueAsList(root,
-					((ActualReference<?, ?, ?, ?>) firstSegment).getEReference());
-			if (localReferenceSegments.isEmpty()) {
-				return values.contains(element);
-			} else {
-				return !localReferenceSegments.isEmpty() && values.stream().filter(v -> v instanceof EObject).anyMatch(
-						v -> this.conformsMatchedObjectToMatchingPath((EObject) v, element, localReferenceSegments));
-			}
-
-		} else {
-			this.logger.severe("Reference Match Specs based on VirtualReferences are not yet supported!");
-			return false;
-		}
 	}
 
 	/**
@@ -292,8 +198,8 @@ public abstract class ValueExtractor extends CancelableElement {
 	 */
 	protected AttributeValueRepresentation extractValue(
 			GlobalDynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute, SourceInstanceSelector> mappingHintSourceElement,
-			Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections,
-			MatchedSectionDescriptor matchedSectionDescriptor, boolean useParallelization) {
+			MatchedSectionRegistry matchedSections, MatchedSectionDescriptor matchedSectionDescriptor,
+			boolean useParallelization) {
 
 		this.checkCanceled();
 
@@ -304,8 +210,10 @@ public abstract class ValueExtractor extends CancelableElement {
 		//
 		List<EObject> sourceElements = (useParallelization ? sourceDescriptors.parallelStream()
 				: sourceDescriptors.stream())
-						.flatMap(descriptor -> descriptor.getSourceModelObjectsMapped()
-								.get(mappingHintSourceElement.getSource().eContainer()).stream())
+						.flatMap(descriptor -> descriptor
+								.getMatchedSourceModelElementsFor(
+										(SourceSectionClass) mappingHintSourceElement.getSource().eContainer(), false)
+								.stream())
 						.collect(Collectors.toList());
 
 		// Reduce the list of instances based on modeled InstancePointers
@@ -314,14 +222,15 @@ public abstract class ValueExtractor extends CancelableElement {
 
 			for (SourceInstanceSelector instancePointer : mappingHintSourceElement.getInstanceSelectors()) {
 
-				sourceElements = this.instanceSelectorHandler.getSelectedInstancesByInstanceList(instancePointer,
-						sourceElements, matchedSectionDescriptor);
+				sourceElements = this.assetManager.getInstanceSelectorHandler().filterSourceInstances(sourceElements,
+						instancePointer, matchedSectionDescriptor);
 			}
 
 		}
 
 		if (sourceElements.isEmpty()) {
-			this.logger.warning(() -> "Hint source value '" + mappingHintSourceElement.getName() + "' not found!");
+			this.logger.warning(() -> "No hint value found for source element '" + mappingHintSourceElement.getName()
+					+ "' in " + ((NamedElement) mappingHintSourceElement.eContainer()).printInfo() + "')!");
 			return null;
 		}
 
@@ -361,39 +270,30 @@ public abstract class ValueExtractor extends CancelableElement {
 
 		AttributeValueRepresentation hintValue = null;
 
-		EAttribute sourceAttribute = mappingHintSourceElement.getSource() instanceof ActualSourceSectionAttribute
-				? ((ActualSourceSectionAttribute) mappingHintSourceElement.getSource()).getAttribute()
-				: null;
-
 		// Collect all values of the attribute in all source elements
 		//
-		List<Object> srcAttrValues = ValueExtractor.getAttributeValueAsList(sourceElements,
-				mappingHintSourceElement.getSource(), this.logger);
+		List<String> srcAttrValues = mappingHintSourceElement.isUseElementID()
+				? sourceElements.stream()
+						.map(e -> String.valueOf(
+								this.assetManager.getElementIDs().getID(e, mappingHintSourceElement.getSource())))
+						.collect(Collectors.toList())
+				: this.assetManager.getModelAccessUtil().getAttributeValueAsStringList(sourceElements,
+						mappingHintSourceElement.getSource());
 
 		if (srcAttrValues.isEmpty()) {
 			this.logger.warning(() -> "No hint value found for source element '" + mappingHintSourceElement.getName()
-					+ "' in mapping hint '" + ((NamedElement) mappingHintSourceElement.eContainer()).getName()
-					+ "' (Mapping '" + ((Mapping) AgteleEcoreUtil.getAncestorOfKind(mappingHintSourceElement,
-							MappingPackage.Literals.MAPPING)).getName()
-					+ "')!");
+					+ "' in " + ((NamedElement) mappingHintSourceElement.eContainer()).printInfo() + "')!");
 			return null;
 		}
 
 		// Extract a hint value for each retrieved value
 		//
-		for (Object srcAttrValue : srcAttrValues) {
+		for (String srcAttrValue : srcAttrValues) {
 
-			String srcAttrAsString = srcAttrValue.toString();
-
-			// if the attribute represents an actual EAttribute, we need to
-			// convert the value based on its type
-			if (sourceAttribute != null) {
-				srcAttrAsString = sourceAttribute.getEType().getEPackage().getEFactoryInstance()
-						.convertToString(sourceAttribute.getEAttributeType(), srcAttrValue);
-			}
-
-			final String valCopy = this.attributeValueModifierExecutor.applyAttributeValueModifiers(srcAttrAsString,
-					mappingHintSourceElement.getModifiers());
+			// Apply ValueModifierSets
+			//
+			final String valCopy = this.assetManager.getValueModifierExecutor()
+					.applyAttributeValueModifiers(srcAttrValue, mappingHintSourceElement.getModifiers());
 
 			// create a new AttributeValueRepresentation or update the existing
 			// one
@@ -405,77 +305,6 @@ public abstract class ValueExtractor extends CancelableElement {
 		}
 
 		return hintValue;
-	}
-
-	/**
-	 * For the given list of {@link EObject EObjects}, this returns the
-	 * {@link EObject#eGet(org.eclipse.emf.ecore.EStructuralFeature) value or values} of the given {@link EAttribute} by
-	 * collecting the values returned by
-	 * {@link ValueExtractor#getAttributeValueAsList(EObject, SourceSectionAttribute, Logger)} for every element.
-	 *
-	 * @param sourceElements
-	 *            The list of {@link EObject EObjects} for that the values shall be returned.
-	 * @param sourceAttribute
-	 *            The {@link EAttribute} for that the values shall be returned.
-	 * @param logger
-	 *            The {@link Logger} to be used to print message to the user.
-	 * @return The determined values (either an empty list, a list consisting of a single value, or multiple values).
-	 */
-	public static List<Object> getAttributeValueAsList(List<EObject> sourceElements,
-			SourceSectionAttribute sourceAttribute, Logger logger) {
-
-		return sourceElements.stream()
-				.flatMap(e -> ValueExtractor.getAttributeValueAsList(e, sourceAttribute, logger).stream())
-				.collect(Collectors.toList());
-	}
-
-	/**
-	 * For the given {@link EObject}, this returns the value or values of the given {@link SourceSectionAttribute}.
-	 * <p />
-	 * Note: Depending on the concrete type of {@link SourceSectionAttribute}, this will either just redirect to
-	 * {@link AgteleEcoreUtil#getStructuralFeatureValueAsList(EObject, EStructuralFeature)} (in case of
-	 * {@link ActualSourceSectionAttribute ActualSourceSectionAttributes}) or calculate the
-	 * {@link VirtualSourceSectionAttribute#getDerivation() derived} value (in case of
-	 * {@link VirtualSourceSectionAttribute VirtualSourceSectionAttributes}). <br />
-	 * Note: As EAttributes can be {@link EAttribute#isMany() many-valued}, too, this will return either no value, a
-	 * single value, or a list of values. <br />
-	 * Note: The type of the entries inside the list will match the {@link EAttribute#getEAttributeType() type} of the
-	 * given EAttribute for {@link ActualSourceSectionAttribute ActualSourceSectionAttributes}.
-	 *
-	 * @param sourceElement
-	 *            The {@link EObject} for that the values shall be returned.
-	 * @param sourceAttribute
-	 *            The {@link EAttribute} for that the values shall be returned.
-	 * @param logger
-	 *            The {@link Logger} to be used to print message to the user.
-	 * @return The determined values (either an empty list, a list consisting of a single value, or multiple values).
-	 */
-	public static List<Object> getAttributeValueAsList(EObject sourceElement, SourceSectionAttribute sourceAttribute,
-			Logger logger) {
-
-		if (sourceAttribute instanceof ActualSourceSectionAttribute) {
-			EAttribute eAttribute = ((ActualSourceSectionAttribute) sourceAttribute).getAttribute();
-			return AgteleEcoreUtil.getStructuralFeatureValueAsList(sourceElement, eAttribute);
-		} else {
-
-			Object result;
-
-			try {
-				result = OCLUtil.evaluteQuery(((VirtualSourceSectionAttribute) sourceAttribute).getDerivation(),
-						sourceElement);
-			} catch (ParserException e) {
-				logger.severe(() -> "Unable to evaluate OCL query '"
-						+ ((VirtualSourceSectionAttribute) sourceAttribute).getDerivation()
-						+ "' for SourceSectionAttribute '" + sourceAttribute.getName() + "'!");
-				logger.severe(() -> "The following error occurred: " + e.getMessage());
-				e.printStackTrace();
-				return new ArrayList<>();
-			}
-
-			return result instanceof Collection<?> ? new ArrayList<>((Collection<?>) result)
-					: new ArrayList<>(Arrays.asList(result));
-
-		}
 	}
 
 }

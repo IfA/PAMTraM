@@ -86,6 +86,7 @@ public abstract class LocalMappedAttributeValueExpanderImpl extends LocalDynamic
 	 */
 	@Override
 	public EList<ExpandableHint> getHintsToExpand() {
+	
 		if (hintsToExpand == null) {
 			hintsToExpand = new EObjectResolvingEList<ExpandableHint>(ExpandableHint.class, this, ExtendedPackage.LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND);
 		}
@@ -105,7 +106,7 @@ public abstract class LocalMappedAttributeValueExpanderImpl extends LocalDynamic
 			return ((ExternalMappedAttributeValueExpander) this).getSource();
 		} else {
 			return null;
-		}
+		}	
 	}
 
 	/**

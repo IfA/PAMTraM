@@ -23,7 +23,7 @@
       <attribute href="http://gfai.de/stgml.xsd#//Viobject/id"/>
     </attributes>
   </sections>
-  <sections xsi:type="source:SourceSection" xmi:id="_FCH7MF5SEeebSvNNZJQHVw" name="viObject with FunctionInterface Base" abstract="true">
+  <sections xsi:type="source:SourceSection" xmi:id="_FCH7MF5SEeebSvNNZJQHVw" name="viObject with FunctionInterface Base" abstract="true" extend="_FCHUIV5SEeebSvNNZJQHVw">
     <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
     <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_FCH7MV5SEeebSvNNZJQHVw" name="externaldata">
       <value xsi:type="source:SourceSectionClass" xmi:id="_FCIiQF5SEeebSvNNZJQHVw" name="extdataType">
@@ -37,7 +37,7 @@
     </references>
     <container xsi:type="source:SourceSection" href="Layers.pamtram.source#_FCGGCV5SEeebSvNNZJQHVw"/>
   </sections>
-  <sections xsi:type="source:SourceSection" xmi:id="_FCJJUV5SEeebSvNNZJQHVw" name="viObject with SignalInterface Base" abstract="true">
+  <sections xsi:type="source:SourceSection" xmi:id="_FCJJUV5SEeebSvNNZJQHVw" name="viObject with SignalInterface Base" abstract="true" extend="_FCHUIV5SEeebSvNNZJQHVw">
     <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
     <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_FCJJUl5SEeebSvNNZJQHVw" name="externalData">
       <value xsi:type="source:SourceSectionClass" xmi:id="_FCJJU15SEeebSvNNZJQHVw" name="ExternalData">
@@ -51,7 +51,7 @@
     </references>
     <container xsi:type="source:SourceSection" href="Layers.pamtram.source#_FCGGCV5SEeebSvNNZJQHVw"/>
   </sections>
-  <sections xsi:type="source:SourceSection" xmi:id="_FCJJVV5SEeebSvNNZJQHVw" name="viObject Input/Output Bool/Double" extend="_FCHUIV5SEeebSvNNZJQHVw _FCJJUV5SEeebSvNNZJQHVw">
+  <sections xsi:type="source:SourceSection" xmi:id="_FCJJVV5SEeebSvNNZJQHVw" name="viObject Input/Output Bool/Double" extend="_FCJJUV5SEeebSvNNZJQHVw">
     <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
     <container xsi:type="source:SourceSection" href="Layers.pamtram.source#_FCGGCV5SEeebSvNNZJQHVw"/>
     <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCJJVl5SEeebSvNNZJQHVw" name="ctrltype">
@@ -74,7 +74,7 @@
       <attribute href="http://gfai.de/stgml.xsd#//Viobject/send"/>
     </attributes>
   </sections>
-  <sections xsi:type="source:SourceSection" xmi:id="_FCJwYF5SEeebSvNNZJQHVw" name="viObject FunctionButton" extend="_FCHUIV5SEeebSvNNZJQHVw _FCH7MF5SEeebSvNNZJQHVw">
+  <sections xsi:type="source:SourceSection" xmi:id="_FCJwYF5SEeebSvNNZJQHVw" name="viObject FunctionButton" extend="_FCH7MF5SEeebSvNNZJQHVw">
     <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
     <container xsi:type="source:SourceSection" href="Layers.pamtram.source#_FCGGCV5SEeebSvNNZJQHVw"/>
     <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCJwYV5SEeebSvNNZJQHVw" name="ctrltype = &quot;FunctionButton&quot;">
@@ -82,7 +82,7 @@
       <attribute href="http://gfai.de/stgml.xsd#//Viobject/ctrltype"/>
     </attributes>
   </sections>
-  <sections xsi:type="source:SourceSection" xmi:id="_FCJwY15SEeebSvNNZJQHVw" name="viObject AlertInterface" extend="_FCHUIV5SEeebSvNNZJQHVw _FCJJUV5SEeebSvNNZJQHVw">
+  <sections xsi:type="source:SourceSection" xmi:id="_FCJwY15SEeebSvNNZJQHVw" name="viObject AlertInterface" extend="_FCJJUV5SEeebSvNNZJQHVw">
     <eClass href="http://gfai.de/stgml.xsd#//Viobject"/>
     <container xsi:type="source:SourceSection" href="Layers.pamtram.source#_FCGGCV5SEeebSvNNZJQHVw"/>
     <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCJwZF5SEeebSvNNZJQHVw" name="ctrltype = &quot;AlertInterface&quot;">

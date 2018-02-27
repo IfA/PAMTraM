@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
@@ -22,7 +23,7 @@ import pamtram.PamtramPackage;
 import pamtram.condition.ComplexCondition;
 import pamtram.condition.ConditionPackage;
 import pamtram.mapping.extended.ExtendedFactory;
-import pamtram.provider.ExpressionElementItemProvider;
+import pamtram.provider.NamedElementItemProvider;
 import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.GlobalDynamicSourceElement;
 import pamtram.structure.InstanceSelector;
@@ -35,7 +36,7 @@ import pamtram.structure.StructurePackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class InstanceSelectorItemProvider extends ExpressionElementItemProvider {
+public class InstanceSelectorItemProvider extends NamedElementItemProvider {
 
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
@@ -58,9 +59,32 @@ public class InstanceSelectorItemProvider extends ExpressionElementItemProvider 
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addExpressionPropertyDescriptor(object);
 			addModifiersPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Expression feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addExpressionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ExpressionElement_expression_feature"),
+				 getString("_UI_ExpressionElement_expression_description"),
+				 PamtramPackage.Literals.EXPRESSION_ELEMENT__EXPRESSION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 getString("_UI_ExtendedPropertyCategory"),
+				 null));
 	}
 
 	/**
@@ -143,7 +167,7 @@ public class InstanceSelectorItemProvider extends ExpressionElementItemProvider 
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((InstanceSelector)object).getExpression();
+		String label = ((InstanceSelector)object).getName();
     	StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
 			styledLabel.append(getString("_UI_InstanceSelector_type"), StyledString.Style.QUALIFIER_STYLER); 
@@ -165,6 +189,9 @@ public class InstanceSelectorItemProvider extends ExpressionElementItemProvider 
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(InstanceSelector.class)) {
+			case StructurePackage.INSTANCE_SELECTOR__EXPRESSION:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case StructurePackage.INSTANCE_SELECTOR__SOURCE_ELEMENTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;

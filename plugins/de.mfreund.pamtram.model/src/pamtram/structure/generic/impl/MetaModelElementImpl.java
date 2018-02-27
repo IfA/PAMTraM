@@ -94,7 +94,7 @@ public abstract class MetaModelElementImpl<S extends Section<S, C, R, A>, C exte
 		} else {
 			// something went wrong
 			return null;
-		}
+		}	
 	}
 
 	/**
@@ -113,7 +113,7 @@ public abstract class MetaModelElementImpl<S extends Section<S, C, R, A>, C exte
 			}
 			container = container.eContainer();
 		}
-		return (SectionModel<S, C, R, A>) container;
+		return (SectionModel<S, C, R, A>) container;	
 	}
 
 	/**
@@ -124,7 +124,7 @@ public abstract class MetaModelElementImpl<S extends Section<S, C, R, A>, C exte
 	 */
 	@Override
 	public boolean isLibraryEntry() {
-		return (this.getContainingSection().eContainer() instanceof ContainerParameter);
+		return (this.getContainingSection().eContainer() instanceof ContainerParameter);	
 	}
 
 	/**

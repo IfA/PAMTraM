@@ -5,7 +5,7 @@
     xmlns:aui="http://www.w3.org/2013/mbui-aui">
   <abstractInteractionUnit
       id="aiu1_2"
-      name="aiu1_2"
+      name="RadioButtonGroup_aiu1_2"
       role="grouping">
     <aggregatedIn
         compositionRole="parallel"
@@ -62,7 +62,7 @@
   </abstractInteractionUnit>
   <abstractInteractionUnit
       id="aiu1_4"
-      name="aiu1_4"
+      name="DropDown_aiu1_4"
       role="grouping">
     <aggregatedIn
         compositionRole="parallel"

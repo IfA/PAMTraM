@@ -4,6 +4,7 @@ package pamtram.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
+import java.util.stream.Collectors;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicDiagnostic;
@@ -14,11 +15,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EcoreEList;
 import pamtram.ConditionModel;
 import pamtram.ConditionalElement;
 import pamtram.FixedValue;
 import pamtram.PamtramPackage;
 import pamtram.condition.ComplexCondition;
+import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.extended.AttributeMappingSourceInterface;
 import pamtram.mapping.extended.CardinalityMappingSourceInterface;
 import pamtram.mapping.extended.MappingHintSourceInterface;
@@ -34,6 +37,7 @@ import pamtram.util.PamtramValidator;
  * <ul>
  *   <li>{@link pamtram.impl.FixedValueImpl#getLocalCondition <em>Local Condition</em>}</li>
  *   <li>{@link pamtram.impl.FixedValueImpl#getSharedCondition <em>Shared Condition</em>}</li>
+ *   <li>{@link pamtram.impl.FixedValueImpl#getAllConditions <em>All Conditions</em>}</li>
  *   <li>{@link pamtram.impl.FixedValueImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
@@ -104,6 +108,7 @@ public class FixedValueImpl extends NamedElementImpl implements FixedValue {
 	 * @generated
 	 */
 	public ComplexCondition getLocalCondition() {
+	
 		return localCondition;
 	}
 
@@ -128,6 +133,7 @@ public class FixedValueImpl extends NamedElementImpl implements FixedValue {
 	 * @generated
 	 */
 	public void setLocalCondition(ComplexCondition newLocalCondition) {
+	
 		if (newLocalCondition != localCondition) {
 			NotificationChain msgs = null;
 			if (localCondition != null)
@@ -139,6 +145,7 @@ public class FixedValueImpl extends NamedElementImpl implements FixedValue {
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PamtramPackage.FIXED_VALUE__LOCAL_CONDITION, newLocalCondition, newLocalCondition));
+	
 	}
 
 	/**
@@ -147,7 +154,8 @@ public class FixedValueImpl extends NamedElementImpl implements FixedValue {
 	 * @generated
 	 */
 	public ComplexCondition getSharedCondition() {
-		if (sharedCondition != null && sharedCondition.eIsProxy()) {
+	
+		  if (sharedCondition != null && sharedCondition.eIsProxy()) {
 			InternalEObject oldSharedCondition = (InternalEObject)sharedCondition;
 			sharedCondition = (ComplexCondition)eResolveProxy(oldSharedCondition);
 			if (sharedCondition != oldSharedCondition) {
@@ -173,10 +181,43 @@ public class FixedValueImpl extends NamedElementImpl implements FixedValue {
 	 * @generated
 	 */
 	public void setSharedCondition(ComplexCondition newSharedCondition) {
+	
 		ComplexCondition oldSharedCondition = sharedCondition;
 		sharedCondition = newSharedCondition;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PamtramPackage.FIXED_VALUE__SHARED_CONDITION, oldSharedCondition, sharedCondition));
+	
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ComplexCondition> getAllConditions() {
+	
+		java.util.Set<Object> ret = new java.util.LinkedHashSet<>();
+		
+			if (this.getLocalCondition() != null) {
+					ret.add(this.getLocalCondition());
+				}
+				if (this.getSharedCondition() != null) {
+					ret.add(this.getSharedCondition());
+				}
+		
+			if (this instanceof MappingHintGroup) {
+					// Add Conditions of the Mappings of extended MappingHintGroups
+					//
+					ret.addAll(((MappingHintGroup) this).getExtend().stream().filter(hg -> hg.eContainer() instanceof pamtram.mapping.Mapping).flatMap(hg -> ((pamtram.mapping.Mapping) hg.eContainer()).getAllConditions().stream()).collect(Collectors.toSet()));
+					// Add Conditions of extended MappingHintGroups
+					//
+					ret.addAll(((MappingHintGroup) this).getExtend().stream().filter(mhg -> mhg instanceof ConditionalElement)
+							.flatMap(mhg -> ((ConditionalElement) mhg).getAllConditions().stream())
+							.collect(Collectors.toSet()));
+				}
+		
+			return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.CONDITIONAL_ELEMENT__ALL_CONDITIONS,
+						ret.size(), ret.toArray());
 	}
 
 	/**
@@ -185,6 +226,7 @@ public class FixedValueImpl extends NamedElementImpl implements FixedValue {
 	 */
 	@Override
 	public String getValue() {
+	
 		return value;
 	}
 
@@ -193,10 +235,12 @@ public class FixedValueImpl extends NamedElementImpl implements FixedValue {
 	 * @generated
 	 */
 	public void setValueGen(String newValue) {
+	
 		String oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PamtramPackage.FIXED_VALUE__VALUE, oldValue, value));
+	
 	}
 
 	/**
@@ -207,31 +251,6 @@ public class FixedValueImpl extends NamedElementImpl implements FixedValue {
 
 		this.setNameDerived(this.value, newValue, null, null);
 		this.setValueGen(newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateEitherModelOrReferCondition(final DiagnosticChain diagnostics, final Map<?, ?> context) {
-		
-		boolean result = !(this.getLocalCondition() != null && this.getSharedCondition() != null);
-		
-		if (!result && diagnostics != null) {
-		
-			String errorMessage = "Please specify at most one (local or shared) condition!";
-		
-			diagnostics.add(new BasicDiagnostic
-					(Diagnostic.ERROR,
-					PamtramValidator.DIAGNOSTIC_SOURCE,
-							PamtramValidator.CONDITIONAL_ELEMENT__VALIDATE_EITHER_MODEL_OR_REFER_CONDITION,
-							errorMessage,
-					new Object[] { this, PamtramPackage.Literals.CONDITIONAL_ELEMENT }));
-		
-		}
-		
-		return result;
 	}
 
 	/**
@@ -256,7 +275,7 @@ public class FixedValueImpl extends NamedElementImpl implements FixedValue {
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -285,6 +304,8 @@ public class FixedValueImpl extends NamedElementImpl implements FixedValue {
 			case PamtramPackage.FIXED_VALUE__SHARED_CONDITION:
 				if (resolve) return getSharedCondition();
 				return basicGetSharedCondition();
+			case PamtramPackage.FIXED_VALUE__ALL_CONDITIONS:
+				return getAllConditions();
 			case PamtramPackage.FIXED_VALUE__VALUE:
 				return getValue();
 		}
@@ -342,6 +363,8 @@ public class FixedValueImpl extends NamedElementImpl implements FixedValue {
 				return localCondition != null;
 			case PamtramPackage.FIXED_VALUE__SHARED_CONDITION:
 				return sharedCondition != null;
+			case PamtramPackage.FIXED_VALUE__ALL_CONDITIONS:
+				return !getAllConditions().isEmpty();
 			case PamtramPackage.FIXED_VALUE__VALUE:
 				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 		}
@@ -359,6 +382,7 @@ public class FixedValueImpl extends NamedElementImpl implements FixedValue {
 			switch (derivedFeatureID) {
 				case PamtramPackage.FIXED_VALUE__LOCAL_CONDITION: return PamtramPackage.CONDITIONAL_ELEMENT__LOCAL_CONDITION;
 				case PamtramPackage.FIXED_VALUE__SHARED_CONDITION: return PamtramPackage.CONDITIONAL_ELEMENT__SHARED_CONDITION;
+				case PamtramPackage.FIXED_VALUE__ALL_CONDITIONS: return PamtramPackage.CONDITIONAL_ELEMENT__ALL_CONDITIONS;
 				default: return -1;
 			}
 		}
@@ -401,6 +425,7 @@ public class FixedValueImpl extends NamedElementImpl implements FixedValue {
 			switch (baseFeatureID) {
 				case PamtramPackage.CONDITIONAL_ELEMENT__LOCAL_CONDITION: return PamtramPackage.FIXED_VALUE__LOCAL_CONDITION;
 				case PamtramPackage.CONDITIONAL_ELEMENT__SHARED_CONDITION: return PamtramPackage.FIXED_VALUE__SHARED_CONDITION;
+				case PamtramPackage.CONDITIONAL_ELEMENT__ALL_CONDITIONS: return PamtramPackage.FIXED_VALUE__ALL_CONDITIONS;
 				default: return -1;
 			}
 		}
@@ -441,7 +466,6 @@ public class FixedValueImpl extends NamedElementImpl implements FixedValue {
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == ConditionalElement.class) {
 			switch (baseOperationID) {
-				case PamtramPackage.CONDITIONAL_ELEMENT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP: return PamtramPackage.FIXED_VALUE___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP;
 				case PamtramPackage.CONDITIONAL_ELEMENT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP: return PamtramPackage.FIXED_VALUE___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
 				default: return -1;
 			}
@@ -482,8 +506,6 @@ public class FixedValueImpl extends NamedElementImpl implements FixedValue {
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case PamtramPackage.FIXED_VALUE___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP:
-				return validateEitherModelOrReferCondition((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case PamtramPackage.FIXED_VALUE___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP:
 				return validateReferenceOnlyConditionsFromConditionModel((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}

@@ -30,6 +30,7 @@ import pamtram.PamtramPackage;
 import pamtram.condition.ComplexCondition;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.Mapping;
+import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.util.PamtramValidator;
 
@@ -43,6 +44,7 @@ import pamtram.util.PamtramValidator;
  *   <li>{@link pamtram.impl.MappingModelImpl#isDeactivated <em>Deactivated</em>}</li>
  *   <li>{@link pamtram.impl.MappingModelImpl#getLocalCondition <em>Local Condition</em>}</li>
  *   <li>{@link pamtram.impl.MappingModelImpl#getSharedCondition <em>Shared Condition</em>}</li>
+ *   <li>{@link pamtram.impl.MappingModelImpl#getAllConditions <em>All Conditions</em>}</li>
  *   <li>{@link pamtram.impl.MappingModelImpl#getMappings <em>Mappings</em>}</li>
  *   <li>{@link pamtram.impl.MappingModelImpl#getModifierSets <em>Modifier Sets</em>}</li>
  *   <li>{@link pamtram.impl.MappingModelImpl#getGlobalValues <em>Global Values</em>}</li>
@@ -152,6 +154,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	 */
 	@Override
 	public boolean isDeactivated() {
+	
 		return deactivated;
 	}
 
@@ -161,10 +164,12 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	 */
 	@Override
 	public void setDeactivated(boolean newDeactivated) {
+	
 		boolean oldDeactivated = deactivated;
 		deactivated = newDeactivated;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PamtramPackage.MAPPING_MODEL__DEACTIVATED, oldDeactivated, deactivated));
+	
 	}
 
 	/**
@@ -173,6 +178,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	 */
 	@Override
 	public ComplexCondition getLocalCondition() {
+	
 		return localCondition;
 	}
 
@@ -196,6 +202,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	 */
 	@Override
 	public void setLocalCondition(ComplexCondition newLocalCondition) {
+	
 		if (newLocalCondition != localCondition) {
 			NotificationChain msgs = null;
 			if (localCondition != null)
@@ -207,6 +214,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PamtramPackage.MAPPING_MODEL__LOCAL_CONDITION, newLocalCondition, newLocalCondition));
+	
 	}
 
 	/**
@@ -215,7 +223,8 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	 */
 	@Override
 	public ComplexCondition getSharedCondition() {
-		if (sharedCondition != null && sharedCondition.eIsProxy()) {
+	
+		  if (sharedCondition != null && sharedCondition.eIsProxy()) {
 			InternalEObject oldSharedCondition = (InternalEObject)sharedCondition;
 			sharedCondition = (ComplexCondition)eResolveProxy(oldSharedCondition);
 			if (sharedCondition != oldSharedCondition) {
@@ -240,10 +249,43 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	 */
 	@Override
 	public void setSharedCondition(ComplexCondition newSharedCondition) {
+	
 		ComplexCondition oldSharedCondition = sharedCondition;
 		sharedCondition = newSharedCondition;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PamtramPackage.MAPPING_MODEL__SHARED_CONDITION, oldSharedCondition, sharedCondition));
+	
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ComplexCondition> getAllConditions() {
+	
+		java.util.Set<Object> ret = new java.util.LinkedHashSet<>();
+		
+			if (this.getLocalCondition() != null) {
+					ret.add(this.getLocalCondition());
+				}
+				if (this.getSharedCondition() != null) {
+					ret.add(this.getSharedCondition());
+				}
+		
+			if (this instanceof MappingHintGroup) {
+					// Add Conditions of the Mappings of extended MappingHintGroups
+					//
+					ret.addAll(((MappingHintGroup) this).getExtend().stream().filter(hg -> hg.eContainer() instanceof pamtram.mapping.Mapping).flatMap(hg -> ((pamtram.mapping.Mapping) hg.eContainer()).getAllConditions().stream()).collect(Collectors.toSet()));
+					// Add Conditions of extended MappingHintGroups
+					//
+					ret.addAll(((MappingHintGroup) this).getExtend().stream().filter(mhg -> mhg instanceof ConditionalElement)
+							.flatMap(mhg -> ((ConditionalElement) mhg).getAllConditions().stream())
+							.collect(Collectors.toSet()));
+				}
+		
+			return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.CONDITIONAL_ELEMENT__ALL_CONDITIONS,
+						ret.size(), ret.toArray());
 	}
 
 	/**
@@ -252,6 +294,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	 */
 	@Override
 	public EList<Mapping> getMappings() {
+	
 		if (mappings == null) {
 			mappings = new EObjectContainmentEList<Mapping>(Mapping.class, this, PamtramPackage.MAPPING_MODEL__MAPPINGS);
 		}
@@ -264,6 +307,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	 */
 	@Override
 	public EList<ValueModifierSet> getModifierSets() {
+	
 		if (modifierSets == null) {
 			modifierSets = new EObjectContainmentEList<ValueModifierSet>(ValueModifierSet.class, this, PamtramPackage.MAPPING_MODEL__MODIFIER_SETS);
 		}
@@ -276,6 +320,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	 */
 	@Override
 	public EList<FixedValue> getGlobalValues() {
+	
 		if (globalValues == null) {
 			globalValues = new EObjectContainmentEList<FixedValue>(FixedValue.class, this, PamtramPackage.MAPPING_MODEL__GLOBAL_VALUES);
 		}
@@ -291,6 +336,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	 */
 	@Override
 	public EList<Mapping> getActiveMappings() {
+	
 		List<Mapping> mappings = this.getMappings().stream().filter(m -> !m.isDeactivated() && !m.isAbstract()).collect(Collectors.toList());
 		return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.MAPPING_MODEL__ACTIVE_MAPPINGS,
 				mappings.size(), mappings.toArray());
@@ -302,35 +348,11 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	 */
 	@Override
 	public EList<GlobalAttribute> getGlobalAttributes() {
+	
 		if (globalAttributes == null) {
 			globalAttributes = new EObjectContainmentEList<GlobalAttribute>(GlobalAttribute.class, this, PamtramPackage.MAPPING_MODEL__GLOBAL_ATTRIBUTES);
 		}
 		return globalAttributes;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean validateEitherModelOrReferCondition(final DiagnosticChain diagnostics, final Map<?, ?> context) {
-		
-		boolean result = !(this.getLocalCondition() != null && this.getSharedCondition() != null);
-		
-		if (!result && diagnostics != null) {
-		
-			String errorMessage = "Please specify at most one (local or shared) condition!";
-		
-			diagnostics.add(new BasicDiagnostic
-					(Diagnostic.ERROR,
-					PamtramValidator.DIAGNOSTIC_SOURCE,
-							PamtramValidator.CONDITIONAL_ELEMENT__VALIDATE_EITHER_MODEL_OR_REFER_CONDITION,
-							errorMessage,
-					new Object[] { this, PamtramPackage.Literals.CONDITIONAL_ELEMENT }));
-		
-		}
-		
-		return result;
 	}
 
 	/**
@@ -356,7 +378,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -394,6 +416,8 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 			case PamtramPackage.MAPPING_MODEL__SHARED_CONDITION:
 				if (resolve) return getSharedCondition();
 				return basicGetSharedCondition();
+			case PamtramPackage.MAPPING_MODEL__ALL_CONDITIONS:
+				return getAllConditions();
 			case PamtramPackage.MAPPING_MODEL__MAPPINGS:
 				return getMappings();
 			case PamtramPackage.MAPPING_MODEL__MODIFIER_SETS:
@@ -490,6 +514,8 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 				return localCondition != null;
 			case PamtramPackage.MAPPING_MODEL__SHARED_CONDITION:
 				return sharedCondition != null;
+			case PamtramPackage.MAPPING_MODEL__ALL_CONDITIONS:
+				return !getAllConditions().isEmpty();
 			case PamtramPackage.MAPPING_MODEL__MAPPINGS:
 				return mappings != null && !mappings.isEmpty();
 			case PamtramPackage.MAPPING_MODEL__MODIFIER_SETS:
@@ -520,6 +546,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 			switch (derivedFeatureID) {
 				case PamtramPackage.MAPPING_MODEL__LOCAL_CONDITION: return PamtramPackage.CONDITIONAL_ELEMENT__LOCAL_CONDITION;
 				case PamtramPackage.MAPPING_MODEL__SHARED_CONDITION: return PamtramPackage.CONDITIONAL_ELEMENT__SHARED_CONDITION;
+				case PamtramPackage.MAPPING_MODEL__ALL_CONDITIONS: return PamtramPackage.CONDITIONAL_ELEMENT__ALL_CONDITIONS;
 				default: return -1;
 			}
 		}
@@ -542,6 +569,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 			switch (baseFeatureID) {
 				case PamtramPackage.CONDITIONAL_ELEMENT__LOCAL_CONDITION: return PamtramPackage.MAPPING_MODEL__LOCAL_CONDITION;
 				case PamtramPackage.CONDITIONAL_ELEMENT__SHARED_CONDITION: return PamtramPackage.MAPPING_MODEL__SHARED_CONDITION;
+				case PamtramPackage.CONDITIONAL_ELEMENT__ALL_CONDITIONS: return PamtramPackage.MAPPING_MODEL__ALL_CONDITIONS;
 				default: return -1;
 			}
 		}
@@ -561,7 +589,6 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 		}
 		if (baseClass == ConditionalElement.class) {
 			switch (baseOperationID) {
-				case PamtramPackage.CONDITIONAL_ELEMENT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP: return PamtramPackage.MAPPING_MODEL___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP;
 				case PamtramPackage.CONDITIONAL_ELEMENT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP: return PamtramPackage.MAPPING_MODEL___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
 				default: return -1;
 			}
@@ -577,8 +604,6 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case PamtramPackage.MAPPING_MODEL___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP:
-				return validateEitherModelOrReferCondition((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case PamtramPackage.MAPPING_MODEL___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP:
 				return validateReferenceOnlyConditionsFromConditionModel((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}

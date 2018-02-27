@@ -117,6 +117,10 @@ public class PamtramAdapterFactory extends AdapterFactoryImpl {
 				return createModifiableElementAdapter();
 			}
 			@Override
+			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseMatchSpecElement(MatchSpecElement<S, C, R, A> object) {
+				return createMatchSpecElementAdapter();
+			}
+			@Override
 			public Adapter caseFixedValue(FixedValue object) {
 				return createFixedValueAdapter();
 			}
@@ -311,6 +315,20 @@ public class PamtramAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createModifiableElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link pamtram.MatchSpecElement <em>Match Spec Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see pamtram.MatchSpecElement
+	 * @generated
+	 */
+	public Adapter createMatchSpecElementAdapter() {
 		return null;
 	}
 

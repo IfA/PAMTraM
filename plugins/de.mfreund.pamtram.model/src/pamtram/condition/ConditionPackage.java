@@ -101,13 +101,31 @@ public interface ConditionPackage extends EPackage {
 	int COMPLEX_CONDITION___IS_LOCAL_CONDITION = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Is External Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_CONDITION___IS_EXTERNAL_CONDITION = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Is Global Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_CONDITION___IS_GLOBAL_CONDITION = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 2;
+
+	/**
 	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_CONDITION___IS_MAPPING_CONDITION = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
+	int COMPLEX_CONDITION___IS_MAPPING_CONDITION = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Is Condition Model Condition</em>' operation.
@@ -116,7 +134,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_CONDITION___IS_CONDITION_MODEL_CONDITION = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 2;
+	int COMPLEX_CONDITION___IS_CONDITION_MODEL_CONDITION = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Get Condition Parts Flat</em>' operation.
@@ -125,7 +143,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_CONDITION___GET_CONDITION_PARTS_FLAT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 3;
+	int COMPLEX_CONDITION___GET_CONDITION_PARTS_FLAT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Complex Condition</em>' class.
@@ -134,7 +152,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLEX_CONDITION_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 4;
+	int COMPLEX_CONDITION_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link pamtram.condition.impl.ConditionImpl <em>Condition</em>}' class.
@@ -202,6 +220,24 @@ public interface ConditionPackage extends EPackage {
 	int VARIADIC_CONDITION___IS_LOCAL_CONDITION = COMPLEX_CONDITION___IS_LOCAL_CONDITION;
 
 	/**
+	 * The operation id for the '<em>Is External Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIADIC_CONDITION___IS_EXTERNAL_CONDITION = COMPLEX_CONDITION___IS_EXTERNAL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Global Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIADIC_CONDITION___IS_GLOBAL_CONDITION = COMPLEX_CONDITION___IS_GLOBAL_CONDITION;
+
+	/**
 	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -247,13 +283,22 @@ public interface ConditionPackage extends EPackage {
 	int VARIADIC_CONDITION___VALIDATE_MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP = COMPLEX_CONDITION_OPERATION_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIADIC_CONDITION___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = COMPLEX_CONDITION_OPERATION_COUNT + 2;
+
+	/**
 	 * The number of operations of the '<em>Variadic Condition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIADIC_CONDITION_OPERATION_COUNT = COMPLEX_CONDITION_OPERATION_COUNT + 2;
+	int VARIADIC_CONDITION_OPERATION_COUNT = COMPLEX_CONDITION_OPERATION_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link pamtram.condition.impl.AndImpl <em>And</em>}' class.
@@ -311,6 +356,24 @@ public interface ConditionPackage extends EPackage {
 	int AND___IS_LOCAL_CONDITION = VARIADIC_CONDITION___IS_LOCAL_CONDITION;
 
 	/**
+	 * The operation id for the '<em>Is External Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND___IS_EXTERNAL_CONDITION = VARIADIC_CONDITION___IS_EXTERNAL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Global Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND___IS_GLOBAL_CONDITION = VARIADIC_CONDITION___IS_GLOBAL_CONDITION;
+
+	/**
 	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -354,6 +417,15 @@ public interface ConditionPackage extends EPackage {
 	 * @ordered
 	 */
 	int AND___VALIDATE_MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP = VARIADIC_CONDITION___VALIDATE_MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AND___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = VARIADIC_CONDITION___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>And</em>' class.
@@ -420,6 +492,24 @@ public interface ConditionPackage extends EPackage {
 	int OR___IS_LOCAL_CONDITION = VARIADIC_CONDITION___IS_LOCAL_CONDITION;
 
 	/**
+	 * The operation id for the '<em>Is External Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OR___IS_EXTERNAL_CONDITION = VARIADIC_CONDITION___IS_EXTERNAL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Global Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OR___IS_GLOBAL_CONDITION = VARIADIC_CONDITION___IS_GLOBAL_CONDITION;
+
+	/**
 	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -463,6 +553,15 @@ public interface ConditionPackage extends EPackage {
 	 * @ordered
 	 */
 	int OR___VALIDATE_MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP = VARIADIC_CONDITION___VALIDATE_MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OR___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = VARIADIC_CONDITION___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Or</em>' class.
@@ -529,6 +628,24 @@ public interface ConditionPackage extends EPackage {
 	int UNARY_CONDITION___IS_LOCAL_CONDITION = COMPLEX_CONDITION___IS_LOCAL_CONDITION;
 
 	/**
+	 * The operation id for the '<em>Is External Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNARY_CONDITION___IS_EXTERNAL_CONDITION = COMPLEX_CONDITION___IS_EXTERNAL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Global Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNARY_CONDITION___IS_GLOBAL_CONDITION = COMPLEX_CONDITION___IS_GLOBAL_CONDITION;
+
+	/**
 	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -565,13 +682,22 @@ public interface ConditionPackage extends EPackage {
 	int UNARY_CONDITION___VALIDATE_EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP = COMPLEX_CONDITION_OPERATION_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNARY_CONDITION___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = COMPLEX_CONDITION_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>Unary Condition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UNARY_CONDITION_OPERATION_COUNT = COMPLEX_CONDITION_OPERATION_COUNT + 1;
+	int UNARY_CONDITION_OPERATION_COUNT = COMPLEX_CONDITION_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link pamtram.condition.impl.NotImpl <em>Not</em>}' class.
@@ -629,6 +755,24 @@ public interface ConditionPackage extends EPackage {
 	int NOT___IS_LOCAL_CONDITION = UNARY_CONDITION___IS_LOCAL_CONDITION;
 
 	/**
+	 * The operation id for the '<em>Is External Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOT___IS_EXTERNAL_CONDITION = UNARY_CONDITION___IS_EXTERNAL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Global Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOT___IS_GLOBAL_CONDITION = UNARY_CONDITION___IS_GLOBAL_CONDITION;
+
+	/**
 	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -665,13 +809,13 @@ public interface ConditionPackage extends EPackage {
 	int NOT___VALIDATE_EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP = UNARY_CONDITION___VALIDATE_EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model Or From Conditional Elements</em>' operation.
+	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NOT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP = UNARY_CONDITION_OPERATION_COUNT + 0;
+	int NOT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = UNARY_CONDITION___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Not</em>' class.
@@ -680,7 +824,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NOT_OPERATION_COUNT = UNARY_CONDITION_OPERATION_COUNT + 1;
+	int NOT_OPERATION_COUNT = UNARY_CONDITION_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -744,6 +888,24 @@ public interface ConditionPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONDITION___IS_LOCAL_CONDITION = COMPLEX_CONDITION___IS_LOCAL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is External Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION___IS_EXTERNAL_CONDITION = COMPLEX_CONDITION___IS_EXTERNAL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Global Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION___IS_GLOBAL_CONDITION = COMPLEX_CONDITION___IS_GLOBAL_CONDITION;
 
 	/**
 	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
@@ -846,13 +1008,31 @@ public interface ConditionPackage extends EPackage {
 	int ATTRIBUTE_CONDITION__INSTANCE_SELECTORS = CONDITION__INSTANCE_SELECTORS;
 
 	/**
+	 * The feature id for the '<em><b>Reference Match Spec</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_CONDITION__REFERENCE_MATCH_SPEC = CONDITION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Follow External References</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_CONDITION__FOLLOW_EXTERNAL_REFERENCES = CONDITION_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Value Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS = CONDITION_FEATURE_COUNT + 0;
+	int ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS = CONDITION_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Attribute Condition</em>' class.
@@ -861,7 +1041,7 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_CONDITION_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 1;
+	int ATTRIBUTE_CONDITION_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Is Local Condition</em>' operation.
@@ -871,6 +1051,24 @@ public interface ConditionPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTRIBUTE_CONDITION___IS_LOCAL_CONDITION = CONDITION___IS_LOCAL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is External Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_CONDITION___IS_EXTERNAL_CONDITION = CONDITION___IS_EXTERNAL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Global Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_CONDITION___IS_GLOBAL_CONDITION = CONDITION___IS_GLOBAL_CONDITION;
 
 	/**
 	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
@@ -909,13 +1107,22 @@ public interface ConditionPackage extends EPackage {
 	int ATTRIBUTE_CONDITION___CHECK_CONDITION__COMPLEXCONDITION = CONDITION___CHECK_CONDITION__COMPLEXCONDITION;
 
 	/**
+	 * The operation id for the '<em>Validate Follow External References True If Required</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_CONDITION___VALIDATE_FOLLOW_EXTERNAL_REFERENCES_TRUE_IF_REQUIRED__DIAGNOSTICCHAIN_MAP = CONDITION_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Attribute Condition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_CONDITION_OPERATION_COUNT = CONDITION_OPERATION_COUNT + 0;
+	int ATTRIBUTE_CONDITION_OPERATION_COUNT = CONDITION_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.condition.impl.CardinalityConditionImpl <em>Cardinality Condition</em>}' class.
@@ -973,13 +1180,31 @@ public interface ConditionPackage extends EPackage {
 	int CARDINALITY_CONDITION__INSTANCE_SELECTORS = CONDITION__INSTANCE_SELECTORS;
 
 	/**
+	 * The feature id for the '<em><b>Reference Match Spec</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_CONDITION__REFERENCE_MATCH_SPEC = CONDITION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Follow External References</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_CONDITION__FOLLOW_EXTERNAL_REFERENCES = CONDITION_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Cardinality Condition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_CONDITION_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 0;
+	int CARDINALITY_CONDITION_FEATURE_COUNT = CONDITION_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Is Local Condition</em>' operation.
@@ -989,6 +1214,24 @@ public interface ConditionPackage extends EPackage {
 	 * @ordered
 	 */
 	int CARDINALITY_CONDITION___IS_LOCAL_CONDITION = CONDITION___IS_LOCAL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is External Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_CONDITION___IS_EXTERNAL_CONDITION = CONDITION___IS_EXTERNAL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Global Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_CONDITION___IS_GLOBAL_CONDITION = CONDITION___IS_GLOBAL_CONDITION;
 
 	/**
 	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
@@ -1027,13 +1270,22 @@ public interface ConditionPackage extends EPackage {
 	int CARDINALITY_CONDITION___CHECK_CONDITION__COMPLEXCONDITION = CONDITION___CHECK_CONDITION__COMPLEXCONDITION;
 
 	/**
+	 * The operation id for the '<em>Validate Reference Match Spec Present In Case Of Ambiguous Source</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_CONDITION___VALIDATE_REFERENCE_MATCH_SPEC_PRESENT_IN_CASE_OF_AMBIGUOUS_SOURCE__DIAGNOSTICCHAIN_MAP = CONDITION_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Cardinality Condition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_CONDITION_OPERATION_COUNT = CONDITION_OPERATION_COUNT + 0;
+	int CARDINALITY_CONDITION_OPERATION_COUNT = CONDITION_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.condition.impl.ApplicationDependencyImpl <em>Application Dependency</em>}' class.
@@ -1107,6 +1359,24 @@ public interface ConditionPackage extends EPackage {
 	 * @ordered
 	 */
 	int APPLICATION_DEPENDENCY___IS_LOCAL_CONDITION = CONDITION___IS_LOCAL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is External Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION_DEPENDENCY___IS_EXTERNAL_CONDITION = CONDITION___IS_EXTERNAL_CONDITION;
+
+	/**
+	 * The operation id for the '<em>Is Global Condition</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION_DEPENDENCY___IS_GLOBAL_CONDITION = CONDITION___IS_GLOBAL_CONDITION;
 
 	/**
 	 * The operation id for the '<em>Is Mapping Condition</em>' operation.
@@ -1183,6 +1453,26 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getComplexCondition__IsLocalCondition();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.condition.ComplexCondition#isExternalCondition() <em>Is External Condition</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is External Condition</em>' operation.
+	 * @see pamtram.condition.ComplexCondition#isExternalCondition()
+	 * @generated
+	 */
+	EOperation getComplexCondition__IsExternalCondition();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.condition.ComplexCondition#isGlobalCondition() <em>Is Global Condition</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Global Condition</em>' operation.
+	 * @see pamtram.condition.ComplexCondition#isGlobalCondition()
+	 * @generated
+	 */
+	EOperation getComplexCondition__IsGlobalCondition();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.condition.ComplexCondition#isMappingCondition() <em>Is Mapping Condition</em>}' operation.
@@ -1320,6 +1610,16 @@ public interface ConditionPackage extends EPackage {
 	EOperation getVariadicCondition__ValidateMinimalNumberOfArgs__DiagnosticChain_Map();
 
 	/**
+	 * Returns the meta object for the '{@link pamtram.condition.VariadicCondition#validateReferenceOnlyConditionsFromConditionModel(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Reference Only Conditions From Condition Model</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
+	 * @see pamtram.condition.VariadicCondition#validateReferenceOnlyConditionsFromConditionModel(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getVariadicCondition__ValidateReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for the attribute '{@link pamtram.condition.Condition#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1393,6 +1693,16 @@ public interface ConditionPackage extends EPackage {
 	EOperation getUnaryCondition__ValidateExactlyOneArg__DiagnosticChain_Map();
 
 	/**
+	 * Returns the meta object for the '{@link pamtram.condition.UnaryCondition#validateReferenceOnlyConditionsFromConditionModel(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Reference Only Conditions From Condition Model</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
+	 * @see pamtram.condition.UnaryCondition#validateReferenceOnlyConditionsFromConditionModel(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getUnaryCondition__ValidateReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.condition.Not <em>Not</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1401,16 +1711,6 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getNot();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.condition.Not#validateReferenceOnlyConditionsFromConditionModelOrFromConditionalElements(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Reference Only Conditions From Condition Model Or From Conditional Elements</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Reference Only Conditions From Condition Model Or From Conditional Elements</em>' operation.
-	 * @see pamtram.condition.Not#validateReferenceOnlyConditionsFromConditionModelOrFromConditionalElements(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getNot__ValidateReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.condition.AttributeCondition <em>Attribute Condition</em>}'.
@@ -1434,6 +1734,16 @@ public interface ConditionPackage extends EPackage {
 	EReference getAttributeCondition_ValueConstraints();
 
 	/**
+	 * Returns the meta object for the '{@link pamtram.condition.AttributeCondition#validateFollowExternalReferencesTrueIfRequired(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Follow External References True If Required</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Follow External References True If Required</em>' operation.
+	 * @see pamtram.condition.AttributeCondition#validateFollowExternalReferencesTrueIfRequired(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getAttributeCondition__ValidateFollowExternalReferencesTrueIfRequired__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.condition.CardinalityCondition <em>Cardinality Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1442,6 +1752,16 @@ public interface ConditionPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getCardinalityCondition();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.condition.CardinalityCondition#validateReferenceMatchSpecPresentInCaseOfAmbiguousSource(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Reference Match Spec Present In Case Of Ambiguous Source</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Reference Match Spec Present In Case Of Ambiguous Source</em>' operation.
+	 * @see pamtram.condition.CardinalityCondition#validateReferenceMatchSpecPresentInCaseOfAmbiguousSource(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getCardinalityCondition__ValidateReferenceMatchSpecPresentInCaseOfAmbiguousSource__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.condition.ApplicationDependency <em>Application Dependency</em>}'.
@@ -1503,6 +1823,22 @@ public interface ConditionPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation COMPLEX_CONDITION___IS_LOCAL_CONDITION = eINSTANCE.getComplexCondition__IsLocalCondition();
+
+		/**
+		 * The meta object literal for the '<em><b>Is External Condition</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation COMPLEX_CONDITION___IS_EXTERNAL_CONDITION = eINSTANCE.getComplexCondition__IsExternalCondition();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Global Condition</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation COMPLEX_CONDITION___IS_GLOBAL_CONDITION = eINSTANCE.getComplexCondition__IsGlobalCondition();
 
 		/**
 		 * The meta object literal for the '<em><b>Is Mapping Condition</b></em>' operation.
@@ -1613,6 +1949,14 @@ public interface ConditionPackage extends EPackage {
 		EOperation VARIADIC_CONDITION___VALIDATE_MINIMAL_NUMBER_OF_ARGS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getVariadicCondition__ValidateMinimalNumberOfArgs__DiagnosticChain_Map();
 
 		/**
+		 * The meta object literal for the '<em><b>Validate Reference Only Conditions From Condition Model</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation VARIADIC_CONDITION___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = eINSTANCE.getVariadicCondition__ValidateReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map();
+
+		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1675,6 +2019,14 @@ public interface ConditionPackage extends EPackage {
 		EOperation UNARY_CONDITION___VALIDATE_EXACTLY_ONE_ARG__DIAGNOSTICCHAIN_MAP = eINSTANCE.getUnaryCondition__ValidateExactlyOneArg__DiagnosticChain_Map();
 
 		/**
+		 * The meta object literal for the '<em><b>Validate Reference Only Conditions From Condition Model</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation UNARY_CONDITION___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = eINSTANCE.getUnaryCondition__ValidateReferenceOnlyConditionsFromConditionModel__DiagnosticChain_Map();
+
+		/**
 		 * The meta object literal for the '{@link pamtram.condition.impl.NotImpl <em>Not</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1683,14 +2035,6 @@ public interface ConditionPackage extends EPackage {
 		 * @generated
 		 */
 		EClass NOT = eINSTANCE.getNot();
-
-		/**
-		 * The meta object literal for the '<em><b>Validate Reference Only Conditions From Condition Model Or From Conditional Elements</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation NOT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL_OR_FROM_CONDITIONAL_ELEMENTS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getNot__ValidateReferenceOnlyConditionsFromConditionModelOrFromConditionalElements__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.condition.impl.AttributeConditionImpl <em>Attribute Condition</em>}' class.
@@ -1711,6 +2055,14 @@ public interface ConditionPackage extends EPackage {
 		EReference ATTRIBUTE_CONDITION__VALUE_CONSTRAINTS = eINSTANCE.getAttributeCondition_ValueConstraints();
 
 		/**
+		 * The meta object literal for the '<em><b>Validate Follow External References True If Required</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ATTRIBUTE_CONDITION___VALIDATE_FOLLOW_EXTERNAL_REFERENCES_TRUE_IF_REQUIRED__DIAGNOSTICCHAIN_MAP = eINSTANCE.getAttributeCondition__ValidateFollowExternalReferencesTrueIfRequired__DiagnosticChain_Map();
+
+		/**
 		 * The meta object literal for the '{@link pamtram.condition.impl.CardinalityConditionImpl <em>Cardinality Condition</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1719,6 +2071,14 @@ public interface ConditionPackage extends EPackage {
 		 * @generated
 		 */
 		EClass CARDINALITY_CONDITION = eINSTANCE.getCardinalityCondition();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Reference Match Spec Present In Case Of Ambiguous Source</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CARDINALITY_CONDITION___VALIDATE_REFERENCE_MATCH_SPEC_PRESENT_IN_CASE_OF_AMBIGUOUS_SOURCE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getCardinalityCondition__ValidateReferenceMatchSpecPresentInCaseOfAmbiguousSource__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.condition.impl.ApplicationDependencyImpl <em>Application Dependency</em>}' class.

@@ -75,6 +75,7 @@ public class VirtualSourceSectionAttributeImpl extends SourceSectionAttributeImp
 	 */
 	@Override
 	public String getDerivation() {
+	
 		return derivation;
 	}
 
@@ -84,10 +85,12 @@ public class VirtualSourceSectionAttributeImpl extends SourceSectionAttributeImp
 	 */
 	@Override
 	public void setDerivation(String newDerivation) {
+	
 		String oldDerivation = derivation;
 		derivation = newDerivation;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SourcePackage.VIRTUAL_SOURCE_SECTION_ATTRIBUTE__DERIVATION, oldDerivation, derivation));
+	
 	}
 
 	/**
@@ -127,7 +130,7 @@ public class VirtualSourceSectionAttributeImpl extends SourceSectionAttributeImp
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

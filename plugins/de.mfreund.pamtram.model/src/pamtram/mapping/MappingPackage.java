@@ -176,13 +176,22 @@ public interface MappingPackage extends EPackage {
 	int MAPPING__SHARED_CONDITION = MAPPING_TYPE_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>All Conditions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING__ALL_CONDITIONS = MAPPING_TYPE_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Mapping Hint Groups</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING__MAPPING_HINT_GROUPS = MAPPING_TYPE_FEATURE_COUNT + 2;
+	int MAPPING__MAPPING_HINT_GROUPS = MAPPING_TYPE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Imported Mapping Hint Groups</b></em>' containment reference list.
@@ -191,7 +200,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING__IMPORTED_MAPPING_HINT_GROUPS = MAPPING_TYPE_FEATURE_COUNT + 3;
+	int MAPPING__IMPORTED_MAPPING_HINT_GROUPS = MAPPING_TYPE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
@@ -200,7 +209,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING__ABSTRACT = MAPPING_TYPE_FEATURE_COUNT + 4;
+	int MAPPING__ABSTRACT = MAPPING_TYPE_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Mapping</em>' class.
@@ -209,16 +218,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_FEATURE_COUNT = MAPPING_TYPE_FEATURE_COUNT + 5;
-
-	/**
-	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAPPING___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = MAPPING_TYPE_OPERATION_COUNT + 0;
+	int MAPPING_FEATURE_COUNT = MAPPING_TYPE_FEATURE_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
@@ -227,7 +227,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = MAPPING_TYPE_OPERATION_COUNT + 1;
+	int MAPPING___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = MAPPING_TYPE_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Active Mapping Hint Groups</em>' operation.
@@ -236,7 +236,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING___GET_ACTIVE_MAPPING_HINT_GROUPS = MAPPING_TYPE_OPERATION_COUNT + 2;
+	int MAPPING___GET_ACTIVE_MAPPING_HINT_GROUPS = MAPPING_TYPE_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get Active Imported Mapping Hint Groups</em>' operation.
@@ -245,7 +245,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING___GET_ACTIVE_IMPORTED_MAPPING_HINT_GROUPS = MAPPING_TYPE_OPERATION_COUNT + 3;
+	int MAPPING___GET_ACTIVE_IMPORTED_MAPPING_HINT_GROUPS = MAPPING_TYPE_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Validate Contains Hint Groups</em>' operation.
@@ -254,7 +254,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING___VALIDATE_CONTAINS_HINT_GROUPS__DIAGNOSTICCHAIN_MAP = MAPPING_TYPE_OPERATION_COUNT + 4;
+	int MAPPING___VALIDATE_CONTAINS_HINT_GROUPS__DIAGNOSTICCHAIN_MAP = MAPPING_TYPE_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Validate Contains Deactivated Hint Groups</em>' operation.
@@ -263,7 +263,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING___VALIDATE_CONTAINS_DEACTIVATED_HINT_GROUPS__DIAGNOSTICCHAIN_MAP = MAPPING_TYPE_OPERATION_COUNT + 5;
+	int MAPPING___VALIDATE_CONTAINS_DEACTIVATED_HINT_GROUPS__DIAGNOSTICCHAIN_MAP = MAPPING_TYPE_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Validate Source Section Is Active</em>' operation.
@@ -272,16 +272,16 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING___VALIDATE_SOURCE_SECTION_IS_ACTIVE__DIAGNOSTICCHAIN_MAP = MAPPING_TYPE_OPERATION_COUNT + 6;
+	int MAPPING___VALIDATE_SOURCE_SECTION_IS_ACTIVE__DIAGNOSTICCHAIN_MAP = MAPPING_TYPE_OPERATION_COUNT + 5;
 
 	/**
-	 * The operation id for the '<em>Validate No Condition For Abstract Mapping</em>' operation.
+	 * The operation id for the '<em>Validate Source Section Is Not Abstract</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING___VALIDATE_NO_CONDITION_FOR_ABSTRACT_MAPPING__DIAGNOSTICCHAIN_MAP = MAPPING_TYPE_OPERATION_COUNT + 7;
+	int MAPPING___VALIDATE_SOURCE_SECTION_IS_NOT_ABSTRACT__DIAGNOSTICCHAIN_MAP = MAPPING_TYPE_OPERATION_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Mapping</em>' class.
@@ -290,7 +290,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_OPERATION_COUNT = MAPPING_TYPE_OPERATION_COUNT + 8;
+	int MAPPING_OPERATION_COUNT = MAPPING_TYPE_OPERATION_COUNT + 7;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MappingHintGroupTypeImpl <em>Hint Group Type</em>}' class.
@@ -375,13 +375,40 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_HINT_GROUP_TYPE__CONTAINER_SELECTORS = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
+	 * The feature id for the '<em><b>All Mapping Hints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP_TYPE__ALL_MAPPING_HINTS = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
+	 * The feature id for the '<em><b>All Extend</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP_TYPE__ALL_EXTEND = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 8;
+
+	/**
+	 * The feature id for the '<em><b>All Extending</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP_TYPE__ALL_EXTENDING = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 9;
+
+	/**
 	 * The number of structural features of the '<em>Hint Group Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_GROUP_TYPE_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 7;
+	int MAPPING_HINT_GROUP_TYPE_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * The operation id for the '<em>Validate Extends Only Valid Hint Groups</em>' operation.
@@ -411,13 +438,31 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_HINT_GROUP_TYPE___VALIDATE_DO_NOT_USE_LIBRARY_ELEMENTS_WITHOUT_LIBRARY_NATURE__DIAGNOSTICCHAIN_MAP = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Validate Target Section Is Not Abstract</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP_TYPE___VALIDATE_TARGET_SECTION_IS_NOT_ABSTRACT__DIAGNOSTICCHAIN_MAP = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Validate Not Extend Self</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP_TYPE___VALIDATE_NOT_EXTEND_SELF__DIAGNOSTICCHAIN_MAP = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 4;
+
+	/**
 	 * The number of operations of the '<em>Hint Group Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_GROUP_TYPE_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 3;
+	int MAPPING_HINT_GROUP_TYPE_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MappingHintGroupImpl <em>Hint Group</em>}' class.
@@ -476,22 +521,22 @@ public interface MappingPackage extends EPackage {
 	int INSTANTIABLE_MAPPING_HINT_GROUP__SHARED_CONDITION = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>All Conditions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANTIABLE_MAPPING_HINT_GROUP__ALL_CONDITIONS = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Instantiable Mapping Hint Group</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANTIABLE_MAPPING_HINT_GROUP_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
-	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANTIABLE_MAPPING_HINT_GROUP___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int INSTANTIABLE_MAPPING_HINT_GROUP_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
@@ -500,7 +545,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANTIABLE_MAPPING_HINT_GROUP___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
+	int INSTANTIABLE_MAPPING_HINT_GROUP___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Instantiable Mapping Hint Group</em>' class.
@@ -509,7 +554,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANTIABLE_MAPPING_HINT_GROUP_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 2;
+	int INSTANTIABLE_MAPPING_HINT_GROUP_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -584,6 +629,33 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_HINT_GROUP__CONTAINER_SELECTORS = MAPPING_HINT_GROUP_TYPE__CONTAINER_SELECTORS;
 
 	/**
+	 * The feature id for the '<em><b>All Mapping Hints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP__ALL_MAPPING_HINTS = MAPPING_HINT_GROUP_TYPE__ALL_MAPPING_HINTS;
+
+	/**
+	 * The feature id for the '<em><b>All Extend</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP__ALL_EXTEND = MAPPING_HINT_GROUP_TYPE__ALL_EXTEND;
+
+	/**
+	 * The feature id for the '<em><b>All Extending</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP__ALL_EXTENDING = MAPPING_HINT_GROUP_TYPE__ALL_EXTENDING;
+
+	/**
 	 * The feature id for the '<em><b>Deactivated</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -611,13 +683,22 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_HINT_GROUP__SHARED_CONDITION = MAPPING_HINT_GROUP_TYPE_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>All Conditions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP__ALL_CONDITIONS = MAPPING_HINT_GROUP_TYPE_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Hint Group</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_GROUP_FEATURE_COUNT = MAPPING_HINT_GROUP_TYPE_FEATURE_COUNT + 3;
+	int MAPPING_HINT_GROUP_FEATURE_COUNT = MAPPING_HINT_GROUP_TYPE_FEATURE_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Validate Extends Only Valid Hint Groups</em>' operation.
@@ -647,13 +728,22 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_HINT_GROUP___VALIDATE_DO_NOT_USE_LIBRARY_ELEMENTS_WITHOUT_LIBRARY_NATURE__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_GROUP_TYPE___VALIDATE_DO_NOT_USE_LIBRARY_ELEMENTS_WITHOUT_LIBRARY_NATURE__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
+	 * The operation id for the '<em>Validate Target Section Is Not Abstract</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_GROUP___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_GROUP_TYPE_OPERATION_COUNT + 0;
+	int MAPPING_HINT_GROUP___VALIDATE_TARGET_SECTION_IS_NOT_ABSTRACT__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_GROUP_TYPE___VALIDATE_TARGET_SECTION_IS_NOT_ABSTRACT__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Validate Not Extend Self</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP___VALIDATE_NOT_EXTEND_SELF__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_GROUP_TYPE___VALIDATE_NOT_EXTEND_SELF__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
@@ -662,7 +752,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_GROUP___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_GROUP_TYPE_OPERATION_COUNT + 1;
+	int MAPPING_HINT_GROUP___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_GROUP_TYPE_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Hint Group</em>' class.
@@ -671,7 +761,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_GROUP_OPERATION_COUNT = MAPPING_HINT_GROUP_TYPE_OPERATION_COUNT + 2;
+	int MAPPING_HINT_GROUP_OPERATION_COUNT = MAPPING_HINT_GROUP_TYPE_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.impl.MappingHintGroupImporterImpl <em>Hint Group Importer</em>}' class.
@@ -740,13 +830,22 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_HINT_GROUP_IMPORTER__SHARED_CONDITION = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>All Conditions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP_IMPORTER__ALL_CONDITIONS = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
 	 * The feature id for the '<em><b>Hint Group</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Container</b></em>' reference.
@@ -755,7 +854,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_GROUP_IMPORTER__CONTAINER = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 4;
+	int MAPPING_HINT_GROUP_IMPORTER__CONTAINER = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Mapping Hints</b></em>' containment reference list.
@@ -764,7 +863,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 5;
+	int MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Hint Group Importer</em>' class.
@@ -773,16 +872,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_GROUP_IMPORTER_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 6;
-
-	/**
-	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAPPING_HINT_GROUP_IMPORTER___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int MAPPING_HINT_GROUP_IMPORTER_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
@@ -791,7 +881,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_GROUP_IMPORTER___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
+	int MAPPING_HINT_GROUP_IMPORTER___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Active Mapping Hints</em>' operation.
@@ -800,7 +890,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_GROUP_IMPORTER___GET_ACTIVE_MAPPING_HINTS = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 2;
+	int MAPPING_HINT_GROUP_IMPORTER___GET_ACTIVE_MAPPING_HINTS = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Hint Group Importer</em>' class.
@@ -809,7 +899,7 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_GROUP_IMPORTER_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 3;
+	int MAPPING_HINT_GROUP_IMPORTER_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -884,6 +974,33 @@ public interface MappingPackage extends EPackage {
 	int EXPORTED_MAPPING_HINT_GROUP__CONTAINER_SELECTORS = MAPPING_HINT_GROUP_TYPE__CONTAINER_SELECTORS;
 
 	/**
+	 * The feature id for the '<em><b>All Mapping Hints</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPORTED_MAPPING_HINT_GROUP__ALL_MAPPING_HINTS = MAPPING_HINT_GROUP_TYPE__ALL_MAPPING_HINTS;
+
+	/**
+	 * The feature id for the '<em><b>All Extend</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPORTED_MAPPING_HINT_GROUP__ALL_EXTEND = MAPPING_HINT_GROUP_TYPE__ALL_EXTEND;
+
+	/**
+	 * The feature id for the '<em><b>All Extending</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPORTED_MAPPING_HINT_GROUP__ALL_EXTENDING = MAPPING_HINT_GROUP_TYPE__ALL_EXTENDING;
+
+	/**
 	 * The number of structural features of the '<em>Exported Mapping Hint Group</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -918,6 +1035,24 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXPORTED_MAPPING_HINT_GROUP___VALIDATE_DO_NOT_USE_LIBRARY_ELEMENTS_WITHOUT_LIBRARY_NATURE__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_GROUP_TYPE___VALIDATE_DO_NOT_USE_LIBRARY_ELEMENTS_WITHOUT_LIBRARY_NATURE__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Validate Target Section Is Not Abstract</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPORTED_MAPPING_HINT_GROUP___VALIDATE_TARGET_SECTION_IS_NOT_ABSTRACT__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_GROUP_TYPE___VALIDATE_TARGET_SECTION_IS_NOT_ABSTRACT__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Validate Not Extend Self</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPORTED_MAPPING_HINT_GROUP___VALIDATE_NOT_EXTEND_SELF__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_GROUP_TYPE___VALIDATE_NOT_EXTEND_SELF__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Exported Mapping Hint Group</em>' class.
@@ -1076,14 +1211,14 @@ public interface MappingPackage extends EPackage {
 	EOperation getMapping__ValidateSourceSectionIsActive__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.Mapping#validateNoConditionForAbstractMapping(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate No Condition For Abstract Mapping</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.mapping.Mapping#validateSourceSectionIsNotAbstract(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Source Section Is Not Abstract</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate No Condition For Abstract Mapping</em>' operation.
-	 * @see pamtram.mapping.Mapping#validateNoConditionForAbstractMapping(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @return the meta object for the '<em>Validate Source Section Is Not Abstract</em>' operation.
+	 * @see pamtram.mapping.Mapping#validateSourceSectionIsNotAbstract(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getMapping__ValidateNoConditionForAbstractMapping__DiagnosticChain_Map();
+	EOperation getMapping__ValidateSourceSectionIsNotAbstract__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.MappingType <em>Type</em>}'.
@@ -1204,6 +1339,39 @@ public interface MappingPackage extends EPackage {
 	EReference getMappingHintGroupType_ContainerSelectors();
 
 	/**
+	 * Returns the meta object for the reference list '{@link pamtram.mapping.MappingHintGroupType#getAllMappingHints <em>All Mapping Hints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>All Mapping Hints</em>'.
+	 * @see pamtram.mapping.MappingHintGroupType#getAllMappingHints()
+	 * @see #getMappingHintGroupType()
+	 * @generated
+	 */
+	EReference getMappingHintGroupType_AllMappingHints();
+
+	/**
+	 * Returns the meta object for the reference list '{@link pamtram.mapping.MappingHintGroupType#getAllExtend <em>All Extend</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>All Extend</em>'.
+	 * @see pamtram.mapping.MappingHintGroupType#getAllExtend()
+	 * @see #getMappingHintGroupType()
+	 * @generated
+	 */
+	EReference getMappingHintGroupType_AllExtend();
+
+	/**
+	 * Returns the meta object for the reference list '{@link pamtram.mapping.MappingHintGroupType#getAllExtending <em>All Extending</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>All Extending</em>'.
+	 * @see pamtram.mapping.MappingHintGroupType#getAllExtending()
+	 * @see #getMappingHintGroupType()
+	 * @generated
+	 */
+	EReference getMappingHintGroupType_AllExtending();
+
+	/**
 	 * Returns the meta object for the '{@link pamtram.mapping.MappingHintGroupType#validateExtendsOnlyValidHintGroups(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Extends Only Valid Hint Groups</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1232,6 +1400,26 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getMappingHintGroupType__ValidateDoNotUseLibraryElementsWithoutLibraryNature__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.MappingHintGroupType#validateTargetSectionIsNotAbstract(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Target Section Is Not Abstract</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Target Section Is Not Abstract</em>' operation.
+	 * @see pamtram.mapping.MappingHintGroupType#validateTargetSectionIsNotAbstract(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getMappingHintGroupType__ValidateTargetSectionIsNotAbstract__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.MappingHintGroupType#validateNotExtendSelf(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Not Extend Self</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Not Extend Self</em>' operation.
+	 * @see pamtram.mapping.MappingHintGroupType#validateNotExtendSelf(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getMappingHintGroupType__ValidateNotExtendSelf__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.InstantiableMappingHintGroup <em>Instantiable Mapping Hint Group</em>}'.
@@ -1435,12 +1623,12 @@ public interface MappingPackage extends EPackage {
 		EOperation MAPPING___VALIDATE_SOURCE_SECTION_IS_ACTIVE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getMapping__ValidateSourceSectionIsActive__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '<em><b>Validate No Condition For Abstract Mapping</b></em>' operation.
+		 * The meta object literal for the '<em><b>Validate Source Section Is Not Abstract</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MAPPING___VALIDATE_NO_CONDITION_FOR_ABSTRACT_MAPPING__DIAGNOSTICCHAIN_MAP = eINSTANCE.getMapping__ValidateNoConditionForAbstractMapping__DiagnosticChain_Map();
+		EOperation MAPPING___VALIDATE_SOURCE_SECTION_IS_NOT_ABSTRACT__DIAGNOSTICCHAIN_MAP = eINSTANCE.getMapping__ValidateSourceSectionIsNotAbstract__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.MappingTypeImpl <em>Type</em>}' class.
@@ -1537,6 +1725,30 @@ public interface MappingPackage extends EPackage {
 		EReference MAPPING_HINT_GROUP_TYPE__CONTAINER_SELECTORS = eINSTANCE.getMappingHintGroupType_ContainerSelectors();
 
 		/**
+		 * The meta object literal for the '<em><b>All Mapping Hints</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MAPPING_HINT_GROUP_TYPE__ALL_MAPPING_HINTS = eINSTANCE.getMappingHintGroupType_AllMappingHints();
+
+		/**
+		 * The meta object literal for the '<em><b>All Extend</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MAPPING_HINT_GROUP_TYPE__ALL_EXTEND = eINSTANCE.getMappingHintGroupType_AllExtend();
+
+		/**
+		 * The meta object literal for the '<em><b>All Extending</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MAPPING_HINT_GROUP_TYPE__ALL_EXTENDING = eINSTANCE.getMappingHintGroupType_AllExtending();
+
+		/**
 		 * The meta object literal for the '<em><b>Validate Extends Only Valid Hint Groups</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1559,6 +1771,22 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation MAPPING_HINT_GROUP_TYPE___VALIDATE_DO_NOT_USE_LIBRARY_ELEMENTS_WITHOUT_LIBRARY_NATURE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getMappingHintGroupType__ValidateDoNotUseLibraryElementsWithoutLibraryNature__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Target Section Is Not Abstract</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MAPPING_HINT_GROUP_TYPE___VALIDATE_TARGET_SECTION_IS_NOT_ABSTRACT__DIAGNOSTICCHAIN_MAP = eINSTANCE.getMappingHintGroupType__ValidateTargetSectionIsNotAbstract__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Not Extend Self</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MAPPING_HINT_GROUP_TYPE___VALIDATE_NOT_EXTEND_SELF__DIAGNOSTICCHAIN_MAP = eINSTANCE.getMappingHintGroupType__ValidateNotExtendSelf__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.impl.InstantiableMappingHintGroupImpl <em>Instantiable Mapping Hint Group</em>}' class.

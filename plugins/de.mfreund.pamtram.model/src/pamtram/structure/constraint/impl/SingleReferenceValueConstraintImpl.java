@@ -158,6 +158,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 */
 	@Override
 	public ValueConstraintType getType() {
+	
 		return type;
 	}
 
@@ -167,10 +168,12 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 */
 	@Override
 	public void setType(ValueConstraintType newType) {
+	
 		ValueConstraintType oldType = type;
 		type = newType == null ? TYPE_EDEFAULT : newType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__TYPE, oldType, type));
+	
 	}
 
 	/**
@@ -179,6 +182,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 */
 	@Override
 	public String getExpression() {
+	
 		return expression;
 	}
 
@@ -188,10 +192,12 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 */
 	@Override
 	public void setExpression(String newExpression) {
+	
 		String oldExpression = expression;
 		expression = newExpression;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__EXPRESSION, oldExpression, expression));
+	
 	}
 
 	/**
@@ -200,6 +206,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 */
 	@Override
 	public EList<ValueModifierSet> getModifiers() {
+	
 		if (modifiers == null) {
 			modifiers = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__MODIFIERS);
 		}
@@ -212,6 +219,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 */
 	@Override
 	public EList<SourceInstanceSelector> getInstanceSelectors() {
+	
 		if (instanceSelectors == null) {
 			instanceSelectors = new EObjectContainmentEList<SourceInstanceSelector>(SourceInstanceSelector.class, this, ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__INSTANCE_SELECTORS);
 		}
@@ -224,6 +232,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	 */
 	@Override
 	public EList<ValueConstraintSourceInterface> getSourceElements() {
+	
 		if (sourceElements == null) {
 			sourceElements = new EObjectContainmentEList<ValueConstraintSourceInterface>(ValueConstraintSourceInterface.class, this, ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS);
 		}
@@ -238,7 +247,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 	public boolean checkConstraint(String attrValue, String refValue) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		throw new UnsupportedOperationException();	
 	}
 
 	/**
@@ -268,7 +277,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 					 new Object [] { this,  ConstraintPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS }));
 			}
 		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -305,31 +314,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 					 new Object [] { this,  ConstraintPackage.Literals.SINGLE_REFERENCE_VALUE_CONSTRAINT__SOURCE_ELEMENTS }));
 			}
 		
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean validateNoResultModifierInSourceSections(final DiagnosticChain diagnostics,
-			final Map<?, ?> context) {
-		boolean result = this.getModifiers().isEmpty() ||
-				!AgteleEcoreUtil.hasAncestorOfKind(this, SourcePackage.eINSTANCE.getActualSourceSectionAttribute());
-		
-		if (!result && diagnostics != null) {
-		
-			String errorMessage = "ValueConstraints that are part of a SourceSection must not"
-					+ " specify a Modifier!'";
-		
-			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, ConstraintValidator.DIAGNOSTIC_SOURCE,
-					ConstraintValidator.SINGLE_REFERENCE_VALUE_CONSTRAINT__VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS,
-					errorMessage, new Object[] { this,
-							PamtramPackage.Literals.MODIFIABLE_ELEMENT__MODIFIERS }));
-		}
-		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -381,7 +366,7 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 				.flatMap(instanceSelector -> instanceSelector.getSourceElements().parallelStream()
 						.filter(s -> s instanceof InstanceSelectorSourceElement
 								|| s instanceof InstanceSelectorExternalSourceElement))
-				.findAny().isPresent();
+				.findAny().isPresent();	
 	}
 
 	/**
@@ -552,8 +537,6 @@ public abstract class SingleReferenceValueConstraintImpl extends NamedElementImp
 				return validateOnlyFixedValuesInSourceSections((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP:
 				return validateOnlyFixedValuesOrGlobalAttributesInConditionModel((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
-			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT___VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS__DIAGNOSTICCHAIN_MAP:
-				return validateNoResultModifierInSourceSections((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case ConstraintPackage.SINGLE_REFERENCE_VALUE_CONSTRAINT___IS_LOCAL_CONSTRAINT:
 				return isLocalConstraint();
 		}

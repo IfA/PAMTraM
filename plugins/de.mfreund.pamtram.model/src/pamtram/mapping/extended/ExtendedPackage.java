@@ -173,13 +173,22 @@ public interface ExtendedPackage extends EPackage {
 	int MAPPING_HINT__SHARED_CONDITION = MAPPING_HINT_TYPE_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>All Conditions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT__ALL_CONDITIONS = MAPPING_HINT_TYPE_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Deactivated</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT__DEACTIVATED = MAPPING_HINT_TYPE_FEATURE_COUNT + 2;
+	int MAPPING_HINT__DEACTIVATED = MAPPING_HINT_TYPE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Overwrite</b></em>' reference.
@@ -188,7 +197,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT__OVERWRITE = MAPPING_HINT_TYPE_FEATURE_COUNT + 3;
+	int MAPPING_HINT__OVERWRITE = MAPPING_HINT_TYPE_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Mapping Hint</em>' class.
@@ -197,16 +206,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_FEATURE_COUNT = MAPPING_HINT_TYPE_FEATURE_COUNT + 4;
-
-	/**
-	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAPPING_HINT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_TYPE_OPERATION_COUNT + 0;
+	int MAPPING_HINT_FEATURE_COUNT = MAPPING_HINT_TYPE_FEATURE_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
@@ -215,7 +215,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_TYPE_OPERATION_COUNT + 1;
+	int MAPPING_HINT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_TYPE_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Validate Overwrites Valid Mapping Hint</em>' operation.
@@ -224,7 +224,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT___VALIDATE_OVERWRITES_VALID_MAPPING_HINT__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_TYPE_OPERATION_COUNT + 2;
+	int MAPPING_HINT___VALIDATE_OVERWRITES_VALID_MAPPING_HINT__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_TYPE_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Validate Consider Overwriting Hint</em>' operation.
@@ -233,7 +233,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT___VALIDATE_CONSIDER_OVERWRITING_HINT__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_TYPE_OPERATION_COUNT + 3;
+	int MAPPING_HINT___VALIDATE_CONSIDER_OVERWRITING_HINT__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_TYPE_OPERATION_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Mapping Hint</em>' class.
@@ -242,7 +242,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_OPERATION_COUNT = MAPPING_HINT_TYPE_OPERATION_COUNT + 4;
+	int MAPPING_HINT_OPERATION_COUNT = MAPPING_HINT_TYPE_OPERATION_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.extended.ExpandableHint <em>Expandable Hint</em>}' class.
@@ -347,22 +347,22 @@ public interface ExtendedPackage extends EPackage {
 	int MAPPING_HINT_SOURCE_INTERFACE__SHARED_CONDITION = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>All Conditions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_SOURCE_INTERFACE__ALL_CONDITIONS = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Mapping Hint Source Interface</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_SOURCE_INTERFACE_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MAPPING_HINT_SOURCE_INTERFACE___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int MAPPING_HINT_SOURCE_INTERFACE_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
@@ -371,7 +371,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_SOURCE_INTERFACE___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
+	int MAPPING_HINT_SOURCE_INTERFACE___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Mapping Hint Source Interface</em>' class.
@@ -380,7 +380,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_SOURCE_INTERFACE_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 2;
+	int MAPPING_HINT_SOURCE_INTERFACE_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.extended.impl.GlobalAttributeImporterImpl <em>Global Attribute Importer</em>}' class.
@@ -420,13 +420,22 @@ public interface ExtendedPackage extends EPackage {
 	int GLOBAL_ATTRIBUTE_IMPORTER__SHARED_CONDITION = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>All Conditions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GLOBAL_ATTRIBUTE_IMPORTER__ALL_CONDITIONS = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Global Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GLOBAL_ATTRIBUTE_IMPORTER__GLOBAL_ATTRIBUTE = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int GLOBAL_ATTRIBUTE_IMPORTER__GLOBAL_ATTRIBUTE = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Global Attribute Importer</em>' class.
@@ -435,16 +444,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GLOBAL_ATTRIBUTE_IMPORTER_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
-	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GLOBAL_ATTRIBUTE_IMPORTER___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int GLOBAL_ATTRIBUTE_IMPORTER_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
@@ -453,7 +453,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GLOBAL_ATTRIBUTE_IMPORTER___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
+	int GLOBAL_ATTRIBUTE_IMPORTER___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Global Attribute Importer</em>' class.
@@ -462,7 +462,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GLOBAL_ATTRIBUTE_IMPORTER_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 2;
+	int GLOBAL_ATTRIBUTE_IMPORTER_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.extended.impl.AttributeMappingImpl <em>Attribute Mapping</em>}' class.
@@ -500,6 +500,15 @@ public interface ExtendedPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTRIBUTE_MAPPING__SHARED_CONDITION = MAPPING_HINT__SHARED_CONDITION;
+
+	/**
+	 * The feature id for the '<em><b>All Conditions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING__ALL_CONDITIONS = MAPPING_HINT__ALL_CONDITIONS;
 
 	/**
 	 * The feature id for the '<em><b>Deactivated</b></em>' attribute.
@@ -563,15 +572,6 @@ public interface ExtendedPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTRIBUTE_MAPPING_FEATURE_COUNT = MAPPING_HINT_FEATURE_COUNT + 4;
-
-	/**
-	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MAPPING___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = MAPPING_HINT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
@@ -674,6 +674,15 @@ public interface ExtendedPackage extends EPackage {
 	int ATTRIBUTE_MAPPING_SOURCE_INTERFACE__SHARED_CONDITION = MAPPING_HINT_SOURCE_INTERFACE__SHARED_CONDITION;
 
 	/**
+	 * The feature id for the '<em><b>All Conditions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING_SOURCE_INTERFACE__ALL_CONDITIONS = MAPPING_HINT_SOURCE_INTERFACE__ALL_CONDITIONS;
+
+	/**
 	 * The number of structural features of the '<em>Attribute Mapping Source Interface</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -681,15 +690,6 @@ public interface ExtendedPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTRIBUTE_MAPPING_SOURCE_INTERFACE_FEATURE_COUNT = MAPPING_HINT_SOURCE_INTERFACE_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MAPPING_SOURCE_INTERFACE___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_SOURCE_INTERFACE___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
@@ -747,6 +747,15 @@ public interface ExtendedPackage extends EPackage {
 	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT__SOURCE = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT__SOURCE;
 
 	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT__USE_ELEMENT_ID = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID;
+
+	/**
 	 * The feature id for the '<em><b>Reference Match Spec</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -754,6 +763,15 @@ public interface ExtendedPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT__REFERENCE_MATCH_SPEC = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT__REFERENCE_MATCH_SPEC;
+
+	/**
+	 * The feature id for the '<em><b>Follow External References</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT__FOLLOW_EXTERNAL_REFERENCES = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT__FOLLOW_EXTERNAL_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Local Condition</b></em>' containment reference.
@@ -774,13 +792,22 @@ public interface ExtendedPackage extends EPackage {
 	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT__SHARED_CONDITION = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>All Conditions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT__ALL_CONDITIONS = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Attribute Mapping Source Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT_FEATURE_COUNT = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 2;
+	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT_FEATURE_COUNT = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Get Mapping Hint Group</em>' operation.
@@ -810,13 +837,13 @@ public interface ExtendedPackage extends EPackage {
 	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
+	 * The operation id for the '<em>Validate Follow External References True If Required</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 0;
+	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT___VALIDATE_FOLLOW_EXTERNAL_REFERENCES_TRUE_IF_REQUIRED__DIAGNOSTICCHAIN_MAP = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_FOLLOW_EXTERNAL_REFERENCES_TRUE_IF_REQUIRED__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
@@ -825,7 +852,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 1;
+	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Attribute Mapping Source Element</em>' class.
@@ -834,7 +861,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT_OPERATION_COUNT = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 2;
+	int ATTRIBUTE_MAPPING_SOURCE_ELEMENT_OPERATION_COUNT = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.extended.impl.AttributeMappingExternalSourceElementImpl <em>Attribute Mapping External Source Element</em>}' class.
@@ -874,6 +901,15 @@ public interface ExtendedPackage extends EPackage {
 	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT__SOURCE = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT__SOURCE;
 
 	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT__USE_ELEMENT_ID = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID;
+
+	/**
 	 * The feature id for the '<em><b>Local Condition</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -892,13 +928,22 @@ public interface ExtendedPackage extends EPackage {
 	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT__SHARED_CONDITION = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>All Conditions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT__ALL_CONDITIONS = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Attribute Mapping External Source Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT_FEATURE_COUNT = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 2;
+	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT_FEATURE_COUNT = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Get Mapping Hint Group</em>' operation.
@@ -928,22 +973,13 @@ public interface ExtendedPackage extends EPackage {
 	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
 	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 1;
+	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Attribute Mapping External Source Element</em>' class.
@@ -952,7 +988,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT_OPERATION_COUNT = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 2;
+	int ATTRIBUTE_MAPPING_EXTERNAL_SOURCE_ELEMENT_OPERATION_COUNT = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.extended.impl.AttributeMappingGlobalSourceElementImpl <em>Attribute Mapping Global Source Element</em>}' class.
@@ -992,6 +1028,15 @@ public interface ExtendedPackage extends EPackage {
 	int ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT__SOURCE = StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT__SOURCE;
 
 	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT__USE_ELEMENT_ID = StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID;
+
+	/**
 	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1019,13 +1064,22 @@ public interface ExtendedPackage extends EPackage {
 	int ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT__SHARED_CONDITION = StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>All Conditions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT__ALL_CONDITIONS = StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Attribute Mapping Global Source Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT_FEATURE_COUNT = StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 2;
+	int ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT_FEATURE_COUNT = StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Get Mapping Hint Group</em>' operation.
@@ -1046,22 +1100,13 @@ public interface ExtendedPackage extends EPackage {
 	int ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT___GET_MAPPING = StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT___GET_MAPPING;
 
 	/**
-	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
 	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 1;
+	int ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Attribute Mapping Global Source Element</em>' class.
@@ -1070,7 +1115,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT_OPERATION_COUNT = StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 2;
+	int ATTRIBUTE_MAPPING_GLOBAL_SOURCE_ELEMENT_OPERATION_COUNT = StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 1;
 
 
 	/**
@@ -1111,6 +1156,15 @@ public interface ExtendedPackage extends EPackage {
 	int CARDINALITY_MAPPING__SHARED_CONDITION = MAPPING_HINT__SHARED_CONDITION;
 
 	/**
+	 * The feature id for the '<em><b>All Conditions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING__ALL_CONDITIONS = MAPPING_HINT__ALL_CONDITIONS;
+
+	/**
 	 * The feature id for the '<em><b>Deactivated</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1147,13 +1201,31 @@ public interface ExtendedPackage extends EPackage {
 	int CARDINALITY_MAPPING__MODIFIERS = MAPPING_HINT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Reference Match Spec</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING__REFERENCE_MATCH_SPEC = MAPPING_HINT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Follow External References</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING__FOLLOW_EXTERNAL_REFERENCES = MAPPING_HINT_FEATURE_COUNT + 3;
+
+	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING__SOURCE = MAPPING_HINT_FEATURE_COUNT + 2;
+	int CARDINALITY_MAPPING__SOURCE = MAPPING_HINT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -1162,7 +1234,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING__TARGET = MAPPING_HINT_FEATURE_COUNT + 3;
+	int CARDINALITY_MAPPING__TARGET = MAPPING_HINT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Source Elements</b></em>' containment reference list.
@@ -1171,7 +1243,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING__SOURCE_ELEMENTS = MAPPING_HINT_FEATURE_COUNT + 4;
+	int CARDINALITY_MAPPING__SOURCE_ELEMENTS = MAPPING_HINT_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Cardinality Mapping</em>' class.
@@ -1180,16 +1252,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING_FEATURE_COUNT = MAPPING_HINT_FEATURE_COUNT + 5;
-
-	/**
-	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CARDINALITY_MAPPING___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = MAPPING_HINT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP;
+	int CARDINALITY_MAPPING_FEATURE_COUNT = MAPPING_HINT_FEATURE_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
@@ -1219,13 +1282,13 @@ public interface ExtendedPackage extends EPackage {
 	int CARDINALITY_MAPPING___VALIDATE_CONSIDER_OVERWRITING_HINT__DIAGNOSTICCHAIN_MAP = MAPPING_HINT___VALIDATE_CONSIDER_OVERWRITING_HINT__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>Validate Source Element Matches Section</em>' operation.
+	 * The operation id for the '<em>Validate Source Element Matches Section Or Contained Section</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING___VALIDATE_SOURCE_ELEMENT_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 0;
+	int CARDINALITY_MAPPING___VALIDATE_SOURCE_ELEMENT_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Validate Target Class Matches Section</em>' operation.
@@ -1282,22 +1345,13 @@ public interface ExtendedPackage extends EPackage {
 	int CARDINALITY_MAPPING___VALIDATE_EXPRESSION_ONLY_FOR_SOURCE_ELEMENTS__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 6;
 
 	/**
-	 * The operation id for the '<em>Validate Modifiers Only For Source Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CARDINALITY_MAPPING___VALIDATE_MODIFIERS_ONLY_FOR_SOURCE_ELEMENTS__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 7;
-
-	/**
 	 * The operation id for the '<em>Get Local Source Elements</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING___GET_LOCAL_SOURCE_ELEMENTS = MAPPING_HINT_OPERATION_COUNT + 8;
+	int CARDINALITY_MAPPING___GET_LOCAL_SOURCE_ELEMENTS = MAPPING_HINT_OPERATION_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Get External Source Elements</em>' operation.
@@ -1306,7 +1360,16 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING___GET_EXTERNAL_SOURCE_ELEMENTS = MAPPING_HINT_OPERATION_COUNT + 9;
+	int CARDINALITY_MAPPING___GET_EXTERNAL_SOURCE_ELEMENTS = MAPPING_HINT_OPERATION_COUNT + 8;
+
+	/**
+	 * The operation id for the '<em>Validate Follow External References True If Required</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING___VALIDATE_FOLLOW_EXTERNAL_REFERENCES_TRUE_IF_REQUIRED__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 9;
 
 	/**
 	 * The number of operations of the '<em>Cardinality Mapping</em>' class.
@@ -1355,6 +1418,15 @@ public interface ExtendedPackage extends EPackage {
 	int CARDINALITY_MAPPING_SOURCE_INTERFACE__SHARED_CONDITION = MAPPING_HINT_SOURCE_INTERFACE__SHARED_CONDITION;
 
 	/**
+	 * The feature id for the '<em><b>All Conditions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_SOURCE_INTERFACE__ALL_CONDITIONS = MAPPING_HINT_SOURCE_INTERFACE__ALL_CONDITIONS;
+
+	/**
 	 * The number of structural features of the '<em>Cardinality Mapping Source Interface</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1362,15 +1434,6 @@ public interface ExtendedPackage extends EPackage {
 	 * @ordered
 	 */
 	int CARDINALITY_MAPPING_SOURCE_INTERFACE_FEATURE_COUNT = MAPPING_HINT_SOURCE_INTERFACE_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CARDINALITY_MAPPING_SOURCE_INTERFACE___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_SOURCE_INTERFACE___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
@@ -1428,6 +1491,15 @@ public interface ExtendedPackage extends EPackage {
 	int CARDINALITY_MAPPING_SOURCE_ELEMENT__SOURCE = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT__SOURCE;
 
 	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_SOURCE_ELEMENT__USE_ELEMENT_ID = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID;
+
+	/**
 	 * The feature id for the '<em><b>Reference Match Spec</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1435,6 +1507,15 @@ public interface ExtendedPackage extends EPackage {
 	 * @ordered
 	 */
 	int CARDINALITY_MAPPING_SOURCE_ELEMENT__REFERENCE_MATCH_SPEC = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT__REFERENCE_MATCH_SPEC;
+
+	/**
+	 * The feature id for the '<em><b>Follow External References</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_SOURCE_ELEMENT__FOLLOW_EXTERNAL_REFERENCES = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT__FOLLOW_EXTERNAL_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Local Condition</b></em>' containment reference.
@@ -1455,13 +1536,22 @@ public interface ExtendedPackage extends EPackage {
 	int CARDINALITY_MAPPING_SOURCE_ELEMENT__SHARED_CONDITION = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>All Conditions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_SOURCE_ELEMENT__ALL_CONDITIONS = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Cardinality Mapping Source Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING_SOURCE_ELEMENT_FEATURE_COUNT = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 2;
+	int CARDINALITY_MAPPING_SOURCE_ELEMENT_FEATURE_COUNT = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Get Mapping Hint Group</em>' operation.
@@ -1491,13 +1581,13 @@ public interface ExtendedPackage extends EPackage {
 	int CARDINALITY_MAPPING_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
+	 * The operation id for the '<em>Validate Follow External References True If Required</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING_SOURCE_ELEMENT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 0;
+	int CARDINALITY_MAPPING_SOURCE_ELEMENT___VALIDATE_FOLLOW_EXTERNAL_REFERENCES_TRUE_IF_REQUIRED__DIAGNOSTICCHAIN_MAP = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_FOLLOW_EXTERNAL_REFERENCES_TRUE_IF_REQUIRED__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
@@ -1506,7 +1596,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING_SOURCE_ELEMENT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 1;
+	int CARDINALITY_MAPPING_SOURCE_ELEMENT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Cardinality Mapping Source Element</em>' class.
@@ -1515,7 +1605,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING_SOURCE_ELEMENT_OPERATION_COUNT = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 2;
+	int CARDINALITY_MAPPING_SOURCE_ELEMENT_OPERATION_COUNT = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.extended.impl.CardinalityMappingExternalSourceElementImpl <em>Cardinality Mapping External Source Element</em>}' class.
@@ -1555,6 +1645,15 @@ public interface ExtendedPackage extends EPackage {
 	int CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT__SOURCE = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT__SOURCE;
 
 	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT__USE_ELEMENT_ID = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID;
+
+	/**
 	 * The feature id for the '<em><b>Local Condition</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1573,13 +1672,22 @@ public interface ExtendedPackage extends EPackage {
 	int CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT__SHARED_CONDITION = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>All Conditions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT__ALL_CONDITIONS = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Cardinality Mapping External Source Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT_FEATURE_COUNT = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 2;
+	int CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT_FEATURE_COUNT = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Get Mapping Hint Group</em>' operation.
@@ -1609,22 +1717,13 @@ public interface ExtendedPackage extends EPackage {
 	int CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
 	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 1;
+	int CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Cardinality Mapping External Source Element</em>' class.
@@ -1633,7 +1732,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT_OPERATION_COUNT = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 2;
+	int CARDINALITY_MAPPING_EXTERNAL_SOURCE_ELEMENT_OPERATION_COUNT = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.extended.impl.CardinalityMappingGlobalSourceElementImpl <em>Cardinality Mapping Global Source Element</em>}' class.
@@ -1673,6 +1772,15 @@ public interface ExtendedPackage extends EPackage {
 	int CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT__SOURCE = StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT__SOURCE;
 
 	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT__USE_ELEMENT_ID = StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID;
+
+	/**
 	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1700,13 +1808,22 @@ public interface ExtendedPackage extends EPackage {
 	int CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT__SHARED_CONDITION = StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>All Conditions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT__ALL_CONDITIONS = StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Cardinality Mapping Global Source Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT_FEATURE_COUNT = StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 2;
+	int CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT_FEATURE_COUNT = StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Get Mapping Hint Group</em>' operation.
@@ -1727,22 +1844,13 @@ public interface ExtendedPackage extends EPackage {
 	int CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT___GET_MAPPING = StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT___GET_MAPPING;
 
 	/**
-	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
 	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 1;
+	int CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Cardinality Mapping Global Source Element</em>' class.
@@ -1751,7 +1859,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT_OPERATION_COUNT = StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 2;
+	int CARDINALITY_MAPPING_GLOBAL_SOURCE_ELEMENT_OPERATION_COUNT = StructurePackage.GLOBAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 1;
 
 
 	/**
@@ -1790,6 +1898,15 @@ public interface ExtendedPackage extends EPackage {
 	 * @ordered
 	 */
 	int REFERENCE_TARGET_SELECTOR__SHARED_CONDITION = MAPPING_HINT__SHARED_CONDITION;
+
+	/**
+	 * The feature id for the '<em><b>All Conditions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_TARGET_SELECTOR__ALL_CONDITIONS = MAPPING_HINT__ALL_CONDITIONS;
 
 	/**
 	 * The feature id for the '<em><b>Deactivated</b></em>' attribute.
@@ -1873,15 +1990,6 @@ public interface ExtendedPackage extends EPackage {
 	int REFERENCE_TARGET_SELECTOR_FEATURE_COUNT = MAPPING_HINT_FEATURE_COUNT + 6;
 
 	/**
-	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_TARGET_SELECTOR___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = MAPPING_HINT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP;
-
-	/**
 	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1936,6 +2044,15 @@ public interface ExtendedPackage extends EPackage {
 	int REFERENCE_TARGET_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS = MAPPING_HINT_OPERATION_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Validate Reference Attribute Is Valid</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_TARGET_SELECTOR___VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 3;
+
+	/**
 	 * The operation id for the '<em>Validate Affected Reference Is Non Containment</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1954,22 +2071,13 @@ public interface ExtendedPackage extends EPackage {
 	int REFERENCE_TARGET_SELECTOR___VALIDATE_AFFECTED_REFERENCE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 5;
 
 	/**
-	 * The operation id for the '<em>Validate Reference Attribute Is Valid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_TARGET_SELECTOR___VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 6;
-
-	/**
 	 * The operation id for the '<em>Validate Target Class</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_TARGET_SELECTOR___VALIDATE_TARGET_CLASS__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 7;
+	int REFERENCE_TARGET_SELECTOR___VALIDATE_TARGET_CLASS__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Reference Target Selector</em>' class.
@@ -1978,7 +2086,7 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_TARGET_SELECTOR_OPERATION_COUNT = MAPPING_HINT_OPERATION_COUNT + 8;
+	int REFERENCE_TARGET_SELECTOR_OPERATION_COUNT = MAPPING_HINT_OPERATION_COUNT + 7;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.extended.impl.ContainerSelectorImpl <em>Container Selector</em>}' class.
@@ -2016,6 +2124,15 @@ public interface ExtendedPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONTAINER_SELECTOR__SHARED_CONDITION = MAPPING_HINT__SHARED_CONDITION;
+
+	/**
+	 * The feature id for the '<em><b>All Conditions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTAINER_SELECTOR__ALL_CONDITIONS = MAPPING_HINT__ALL_CONDITIONS;
 
 	/**
 	 * The feature id for the '<em><b>Deactivated</b></em>' attribute.
@@ -2090,15 +2207,6 @@ public interface ExtendedPackage extends EPackage {
 	int CONTAINER_SELECTOR_FEATURE_COUNT = MAPPING_HINT_FEATURE_COUNT + 5;
 
 	/**
-	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTAINER_SELECTOR___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = MAPPING_HINT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP;
-
-	/**
 	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2153,6 +2261,15 @@ public interface ExtendedPackage extends EPackage {
 	int CONTAINER_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS = MAPPING_HINT_OPERATION_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Validate Reference Attribute Is Valid</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTAINER_SELECTOR___VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 3;
+
+	/**
 	 * The operation id for the '<em>Validate Target Class Matches Possible Container Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2162,31 +2279,13 @@ public interface ExtendedPackage extends EPackage {
 	int CONTAINER_SELECTOR___VALIDATE_TARGET_CLASS_MATCHES_POSSIBLE_CONTAINER_TYPE__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 4;
 
 	/**
-	 * The operation id for the '<em>Validate Reference Attribute</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTAINER_SELECTOR___VALIDATE_REFERENCE_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 5;
-
-	/**
-	 * The operation id for the '<em>Validate Reference Attribute Is Valid</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTAINER_SELECTOR___VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID__DIAGNOSTICCHAIN_MAP = MAPPING_HINT_OPERATION_COUNT + 6;
-
-	/**
 	 * The number of operations of the '<em>Container Selector</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_SELECTOR_OPERATION_COUNT = MAPPING_HINT_OPERATION_COUNT + 7;
+	int CONTAINER_SELECTOR_OPERATION_COUNT = MAPPING_HINT_OPERATION_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link pamtram.mapping.extended.impl.MappedAttributeValueExpanderImpl <em>Mapped Attribute Value Expander</em>}' class.
@@ -2281,6 +2380,15 @@ public interface ExtendedPackage extends EPackage {
 	int LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__SOURCE = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT__SOURCE;
 
 	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__USE_ELEMENT_ID = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID;
+
+	/**
 	 * The feature id for the '<em><b>Reference Match Spec</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2288,6 +2396,15 @@ public interface ExtendedPackage extends EPackage {
 	 * @ordered
 	 */
 	int LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__REFERENCE_MATCH_SPEC = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT__REFERENCE_MATCH_SPEC;
+
+	/**
+	 * The feature id for the '<em><b>Follow External References</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__FOLLOW_EXTERNAL_REFERENCES = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT__FOLLOW_EXTERNAL_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Hints To Expand</b></em>' reference list.
@@ -2333,6 +2450,15 @@ public interface ExtendedPackage extends EPackage {
 	 * @ordered
 	 */
 	int LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Validate Follow External References True If Required</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___VALIDATE_FOLLOW_EXTERNAL_REFERENCES_TRUE_IF_REQUIRED__DIAGNOSTICCHAIN_MAP = StructurePackage.LOCAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_FOLLOW_EXTERNAL_REFERENCES_TRUE_IF_REQUIRED__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Get Source Attribute</em>' operation.
@@ -2390,6 +2516,15 @@ public interface ExtendedPackage extends EPackage {
 	int MAPPED_ATTRIBUTE_VALUE_PREPENDER__SOURCE = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__SOURCE;
 
 	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_PREPENDER__USE_ELEMENT_ID = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__USE_ELEMENT_ID;
+
+	/**
 	 * The feature id for the '<em><b>Reference Match Spec</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2397,6 +2532,15 @@ public interface ExtendedPackage extends EPackage {
 	 * @ordered
 	 */
 	int MAPPED_ATTRIBUTE_VALUE_PREPENDER__REFERENCE_MATCH_SPEC = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__REFERENCE_MATCH_SPEC;
+
+	/**
+	 * The feature id for the '<em><b>Follow External References</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_PREPENDER__FOLLOW_EXTERNAL_REFERENCES = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__FOLLOW_EXTERNAL_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Hints To Expand</b></em>' reference list.
@@ -2442,6 +2586,15 @@ public interface ExtendedPackage extends EPackage {
 	 * @ordered
 	 */
 	int MAPPED_ATTRIBUTE_VALUE_PREPENDER___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Validate Follow External References True If Required</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_PREPENDER___VALIDATE_FOLLOW_EXTERNAL_REFERENCES_TRUE_IF_REQUIRED__DIAGNOSTICCHAIN_MAP = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___VALIDATE_FOLLOW_EXTERNAL_REFERENCES_TRUE_IF_REQUIRED__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Get Source Attribute</em>' operation.
@@ -2499,6 +2652,15 @@ public interface ExtendedPackage extends EPackage {
 	int MAPPED_ATTRIBUTE_VALUE_APPENDER__SOURCE = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__SOURCE;
 
 	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_APPENDER__USE_ELEMENT_ID = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__USE_ELEMENT_ID;
+
+	/**
 	 * The feature id for the '<em><b>Reference Match Spec</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2506,6 +2668,15 @@ public interface ExtendedPackage extends EPackage {
 	 * @ordered
 	 */
 	int MAPPED_ATTRIBUTE_VALUE_APPENDER__REFERENCE_MATCH_SPEC = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__REFERENCE_MATCH_SPEC;
+
+	/**
+	 * The feature id for the '<em><b>Follow External References</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_APPENDER__FOLLOW_EXTERNAL_REFERENCES = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__FOLLOW_EXTERNAL_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Hints To Expand</b></em>' reference list.
@@ -2551,6 +2722,15 @@ public interface ExtendedPackage extends EPackage {
 	 * @ordered
 	 */
 	int MAPPED_ATTRIBUTE_VALUE_APPENDER___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Validate Follow External References True If Required</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPED_ATTRIBUTE_VALUE_APPENDER___VALIDATE_FOLLOW_EXTERNAL_REFERENCES_TRUE_IF_REQUIRED__DIAGNOSTICCHAIN_MAP = LOCAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER___VALIDATE_FOLLOW_EXTERNAL_REFERENCES_TRUE_IF_REQUIRED__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Get Source Attribute</em>' operation.
@@ -2606,6 +2786,15 @@ public interface ExtendedPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__SOURCE = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__USE_ELEMENT_ID = StructurePackage.EXTERNAL_DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID;
 
 	/**
 	 * The feature id for the '<em><b>Hints To Expand</b></em>' reference list.
@@ -2708,6 +2897,15 @@ public interface ExtendedPackage extends EPackage {
 	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER__SOURCE = EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__SOURCE;
 
 	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_PREPENDER__USE_ELEMENT_ID = EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__USE_ELEMENT_ID;
+
+	/**
 	 * The feature id for the '<em><b>Hints To Expand</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2806,6 +3004,15 @@ public interface ExtendedPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER__SOURCE = EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_MAPPED_ATTRIBUTE_VALUE_APPENDER__USE_ELEMENT_ID = EXTERNAL_MAPPED_ATTRIBUTE_VALUE_EXPANDER__USE_ELEMENT_ID;
 
 	/**
 	 * The feature id for the '<em><b>Hints To Expand</b></em>' reference list.
@@ -3129,14 +3336,14 @@ public interface ExtendedPackage extends EPackage {
 	EReference getCardinalityMapping_SourceElements();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.extended.CardinalityMapping#validateSourceElementMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Source Element Matches Section</em>}' operation.
+	 * Returns the meta object for the '{@link pamtram.mapping.extended.CardinalityMapping#validateSourceElementMatchesSectionOrContainedSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Source Element Matches Section Or Contained Section</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Source Element Matches Section</em>' operation.
-	 * @see pamtram.mapping.extended.CardinalityMapping#validateSourceElementMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @return the meta object for the '<em>Validate Source Element Matches Section Or Contained Section</em>' operation.
+	 * @see pamtram.mapping.extended.CardinalityMapping#validateSourceElementMatchesSectionOrContainedSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getCardinalityMapping__ValidateSourceElementMatchesSection__DiagnosticChain_Map();
+	EOperation getCardinalityMapping__ValidateSourceElementMatchesSectionOrContainedSection__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.mapping.extended.CardinalityMapping#validateTargetClassMatchesSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Target Class Matches Section</em>}' operation.
@@ -3199,16 +3406,6 @@ public interface ExtendedPackage extends EPackage {
 	EOperation getCardinalityMapping__ValidateExpressionOnlyForSourceElements__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.extended.CardinalityMapping#validateModifiersOnlyForSourceElements(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Modifiers Only For Source Elements</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Modifiers Only For Source Elements</em>' operation.
-	 * @see pamtram.mapping.extended.CardinalityMapping#validateModifiersOnlyForSourceElements(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getCardinalityMapping__ValidateModifiersOnlyForSourceElements__DiagnosticChain_Map();
-
-	/**
 	 * Returns the meta object for the '{@link pamtram.mapping.extended.CardinalityMapping#getLocalSourceElements() <em>Get Local Source Elements</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3227,6 +3424,16 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getCardinalityMapping__GetExternalSourceElements();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.mapping.extended.CardinalityMapping#validateFollowExternalReferencesTrueIfRequired(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Follow External References True If Required</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Follow External References True If Required</em>' operation.
+	 * @see pamtram.mapping.extended.CardinalityMapping#validateFollowExternalReferencesTrueIfRequired(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getCardinalityMapping__ValidateFollowExternalReferencesTrueIfRequired__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.extended.CardinalityMappingSourceInterface <em>Cardinality Mapping Source Interface</em>}'.
@@ -3310,16 +3517,6 @@ public interface ExtendedPackage extends EPackage {
 	EOperation getReferenceTargetSelector__ValidateAffectedReferenceMatchesSection__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.extended.ReferenceTargetSelector#validateReferenceAttributeIsValid(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Reference Attribute Is Valid</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Reference Attribute Is Valid</em>' operation.
-	 * @see pamtram.mapping.extended.ReferenceTargetSelector#validateReferenceAttributeIsValid(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getReferenceTargetSelector__ValidateReferenceAttributeIsValid__DiagnosticChain_Map();
-
-	/**
 	 * Returns the meta object for the '{@link pamtram.mapping.extended.ReferenceTargetSelector#validateTargetClass(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Target Class</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3348,26 +3545,6 @@ public interface ExtendedPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getContainerSelector__ValidateTargetClassMatchesPossibleContainerType__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.extended.ContainerSelector#validateReferenceAttribute(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Reference Attribute</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Reference Attribute</em>' operation.
-	 * @see pamtram.mapping.extended.ContainerSelector#validateReferenceAttribute(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getContainerSelector__ValidateReferenceAttribute__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link pamtram.mapping.extended.ContainerSelector#validateReferenceAttributeIsValid(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Reference Attribute Is Valid</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Validate Reference Attribute Is Valid</em>' operation.
-	 * @see pamtram.mapping.extended.ContainerSelector#validateReferenceAttributeIsValid(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getContainerSelector__ValidateReferenceAttributeIsValid__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.mapping.extended.MappedAttributeValueExpander <em>Mapped Attribute Value Expander</em>}'.
@@ -3685,12 +3862,12 @@ public interface ExtendedPackage extends EPackage {
 		 */
 		EReference CARDINALITY_MAPPING__SOURCE_ELEMENTS = eINSTANCE.getCardinalityMapping_SourceElements();
 		/**
-		 * The meta object literal for the '<em><b>Validate Source Element Matches Section</b></em>' operation.
+		 * The meta object literal for the '<em><b>Validate Source Element Matches Section Or Contained Section</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation CARDINALITY_MAPPING___VALIDATE_SOURCE_ELEMENT_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP = eINSTANCE.getCardinalityMapping__ValidateSourceElementMatchesSection__DiagnosticChain_Map();
+		EOperation CARDINALITY_MAPPING___VALIDATE_SOURCE_ELEMENT_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP = eINSTANCE.getCardinalityMapping__ValidateSourceElementMatchesSectionOrContainedSection__DiagnosticChain_Map();
 		/**
 		 * The meta object literal for the '<em><b>Validate Target Class Matches Section</b></em>' operation.
 		 * <!-- begin-user-doc -->
@@ -3734,13 +3911,6 @@ public interface ExtendedPackage extends EPackage {
 		 */
 		EOperation CARDINALITY_MAPPING___VALIDATE_EXPRESSION_ONLY_FOR_SOURCE_ELEMENTS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getCardinalityMapping__ValidateExpressionOnlyForSourceElements__DiagnosticChain_Map();
 		/**
-		 * The meta object literal for the '<em><b>Validate Modifiers Only For Source Elements</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation CARDINALITY_MAPPING___VALIDATE_MODIFIERS_ONLY_FOR_SOURCE_ELEMENTS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getCardinalityMapping__ValidateModifiersOnlyForSourceElements__DiagnosticChain_Map();
-		/**
 		 * The meta object literal for the '<em><b>Get Local Source Elements</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3754,6 +3924,13 @@ public interface ExtendedPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation CARDINALITY_MAPPING___GET_EXTERNAL_SOURCE_ELEMENTS = eINSTANCE.getCardinalityMapping__GetExternalSourceElements();
+		/**
+		 * The meta object literal for the '<em><b>Validate Follow External References True If Required</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CARDINALITY_MAPPING___VALIDATE_FOLLOW_EXTERNAL_REFERENCES_TRUE_IF_REQUIRED__DIAGNOSTICCHAIN_MAP = eINSTANCE.getCardinalityMapping__ValidateFollowExternalReferencesTrueIfRequired__DiagnosticChain_Map();
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.extended.CardinalityMappingSourceInterface <em>Cardinality Mapping Source Interface</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -3821,13 +3998,6 @@ public interface ExtendedPackage extends EPackage {
 		 */
 		EOperation REFERENCE_TARGET_SELECTOR___VALIDATE_AFFECTED_REFERENCE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP = eINSTANCE.getReferenceTargetSelector__ValidateAffectedReferenceMatchesSection__DiagnosticChain_Map();
 		/**
-		 * The meta object literal for the '<em><b>Validate Reference Attribute Is Valid</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation REFERENCE_TARGET_SELECTOR___VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID__DIAGNOSTICCHAIN_MAP = eINSTANCE.getReferenceTargetSelector__ValidateReferenceAttributeIsValid__DiagnosticChain_Map();
-		/**
 		 * The meta object literal for the '<em><b>Validate Target Class</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3850,20 +4020,6 @@ public interface ExtendedPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation CONTAINER_SELECTOR___VALIDATE_TARGET_CLASS_MATCHES_POSSIBLE_CONTAINER_TYPE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getContainerSelector__ValidateTargetClassMatchesPossibleContainerType__DiagnosticChain_Map();
-		/**
-		 * The meta object literal for the '<em><b>Validate Reference Attribute</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation CONTAINER_SELECTOR___VALIDATE_REFERENCE_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getContainerSelector__ValidateReferenceAttribute__DiagnosticChain_Map();
-		/**
-		 * The meta object literal for the '<em><b>Validate Reference Attribute Is Valid</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation CONTAINER_SELECTOR___VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID__DIAGNOSTICCHAIN_MAP = eINSTANCE.getContainerSelector__ValidateReferenceAttributeIsValid__DiagnosticChain_Map();
 		/**
 		 * The meta object literal for the '{@link pamtram.mapping.extended.impl.MappedAttributeValueExpanderImpl <em>Mapped Attribute Value Expander</em>}' class.
 		 * <!-- begin-user-doc -->

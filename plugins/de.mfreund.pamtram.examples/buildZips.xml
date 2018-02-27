@@ -9,6 +9,40 @@
 
 	</target>
 	
+	<!-- The files to include in the 'aml-opc-ua' example -->
+	<patternset id="aml-opc-ua.includes"
+		includes="
+			.project,
+			.classpath,
+			build.properties,
+			sample-aml-model-1.launch,
+			sample-aml-model-2.launch,
+			META-INF/**,
+			Topology.launch,
+			metamodel/**,
+			documentation/**,
+			src/**,
+			Pamtram/aml-opc-ua.pamtram,
+			Source/sample-aml-model-1.aml,
+			Source/sample-aml-model-1.xmi,
+			Source/sample-aml-model-2.aml,
+			Source/sample-aml-model-2.xmi,
+			Source/Topology.aml,
+			Source/Topology.xmi,
+			Target/AMLUANodeSet.xml"/>
+	<patternset id="amlMetaModel.includes"
+		includes="
+			.project,
+			README.MD,
+			LICENSE,
+			build.properties,
+			.classpath,
+			src/**,
+			model/**,
+			META-INF/**"/>
+	<patternset id="opc-ua-server.includes"
+		includes="**"/>
+	
 	<!-- The files to include in the 'AutoProBe' example -->
 	<patternset id="autoprobe.includes"
 			includes="
@@ -50,6 +84,16 @@
 				Source/SmartphoneWithoutSoundAndVibration.xmi,
 				Source/SmartphoneWithoutVibration.xmi,
 				Target"/>
+	
+	<!-- The files to include in the 'dfd-uml' example -->
+	<patternset id="dfd-uml.includes"
+		includes="
+			.project,
+			dfd-uml.launch,
+			metamodel/**,
+			Pamtram/dfd-uml.pamtram,
+			Source/Temperaturmessung.xmi,
+			Target/out.xmi"/>
 	
 	<!-- The files to include in the 'disl-movisa' example -->
 	<patternset id="disl-movisa.includes"
@@ -126,6 +170,18 @@
 	<!-- Zip the PAMTraM examples -->
 	<target name="zip.examples" depends="init">
 		
+		<!-- AML-OPC-UA -->
+		<eclipse.convertPath resourcePath="de.mfreund.pamtram.casestudies.aml-opc-ua" property="projectDir"/>
+		<zip destfile="zips/aml-opc-ua/aml-opc-ua.zip" basedir="${projectDir}">
+			<patternset refid="aml-opc-ua.includes" />
+		</zip>
+		<zip destfile="zips/aml-opc-ua/amlMetaModel.zip" basedir="${projectDir}/../amlMetaModel">
+			<patternset refid="amlMetaModel.includes" />
+		</zip>
+		<zip destfile="zips/aml-opc-ua/opc-ua-server.zip" basedir="${projectDir}/../opc-ua-server">
+			<patternset refid="opc-ua-server.includes" />
+		</zip>
+		
 		<!-- AutoProBe -->
 		<eclipse.convertPath resourcePath="de.mfreund.pamtram.casestudies.autoprobe" property="projectDir"/>
 		<zip destfile="zips/autoprobe.zip" basedir="${projectDir}">
@@ -142,6 +198,12 @@
 		<eclipse.convertPath resourcePath="de.mfreund.pamtram.casestudies.ctt-aminolight" property="projectDir"/>
 		<zip destfile="zips/ctt-aminolight.zip" basedir="${projectDir}">
 			<patternset refid="ctt-aminolight.includes"/>
+		</zip>
+		
+		<!-- DFD-UML -->
+		<eclipse.convertPath resourcePath="de.mfreund.pamtram.casestudies.dfd-uml" property="projectDir"/>
+		<zip destfile="zips/dfd-uml.zip" basedir="${projectDir}">
+			<patternset refid="dfd-uml.includes"/>
 		</zip>
 		
 		<!-- Disl-Movisa -->

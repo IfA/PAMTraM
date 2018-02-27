@@ -172,6 +172,51 @@ public interface SourcePackage extends EPackage {
 	int SOURCE_SECTION_CLASS__VIRTUAL_REFERENCES = GenericPackage.CLASS__VIRTUAL_REFERENCES;
 
 	/**
+	 * The feature id for the '<em><b>All Attributes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_CLASS__ALL_ATTRIBUTES = GenericPackage.CLASS__ALL_ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>All References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_CLASS__ALL_REFERENCES = GenericPackage.CLASS__ALL_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>All Concrete Extending</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_CLASS__ALL_CONCRETE_EXTENDING = GenericPackage.CLASS__ALL_CONCRETE_EXTENDING;
+
+	/**
+	 * The feature id for the '<em><b>All Composite References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_CLASS__ALL_COMPOSITE_REFERENCES = GenericPackage.CLASS__ALL_COMPOSITE_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>All Cross References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_CLASS__ALL_CROSS_REFERENCES = GenericPackage.CLASS__ALL_CROSS_REFERENCES;
+
+	/**
 	 * The feature id for the '<em><b>Include Sub Types</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -278,6 +323,24 @@ public interface SourcePackage extends EPackage {
 	 * @ordered
 	 */
 	int SOURCE_SECTION_CLASS___VALIDATE_CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP = GenericPackage.CLASS___VALIDATE_CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Validate Not Self Container</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_CLASS___VALIDATE_NOT_SELF_CONTAINER__DIAGNOSTICCHAIN_MAP = GenericPackage.CLASS___VALIDATE_NOT_SELF_CONTAINER__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Validate Only Complementing Actual References</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_CLASS___VALIDATE_ONLY_COMPLEMENTING_ACTUAL_REFERENCES__DIAGNOSTICCHAIN_MAP = GenericPackage.CLASS___VALIDATE_ONLY_COMPLEMENTING_ACTUAL_REFERENCES__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Section Class</em>' class.
@@ -398,6 +461,51 @@ public interface SourcePackage extends EPackage {
 	int SOURCE_SECTION__VIRTUAL_REFERENCES = SOURCE_SECTION_CLASS__VIRTUAL_REFERENCES;
 
 	/**
+	 * The feature id for the '<em><b>All Attributes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION__ALL_ATTRIBUTES = SOURCE_SECTION_CLASS__ALL_ATTRIBUTES;
+
+	/**
+	 * The feature id for the '<em><b>All References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION__ALL_REFERENCES = SOURCE_SECTION_CLASS__ALL_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>All Concrete Extending</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION__ALL_CONCRETE_EXTENDING = SOURCE_SECTION_CLASS__ALL_CONCRETE_EXTENDING;
+
+	/**
+	 * The feature id for the '<em><b>All Composite References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION__ALL_COMPOSITE_REFERENCES = SOURCE_SECTION_CLASS__ALL_COMPOSITE_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>All Cross References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION__ALL_CROSS_REFERENCES = SOURCE_SECTION_CLASS__ALL_CROSS_REFERENCES;
+
+	/**
 	 * The feature id for the '<em><b>Include Sub Types</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -434,13 +542,22 @@ public interface SourcePackage extends EPackage {
 	int SOURCE_SECTION__ALL_EXTEND = SOURCE_SECTION_CLASS_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>All Extending</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION__ALL_EXTENDING = SOURCE_SECTION_CLASS_FEATURE_COUNT + 3;
+
+	/**
 	 * The feature id for the '<em><b>Deactivated</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION__DEACTIVATED = SOURCE_SECTION_CLASS_FEATURE_COUNT + 3;
+	int SOURCE_SECTION__DEACTIVATED = SOURCE_SECTION_CLASS_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Referencing Mappings</b></em>' reference list.
@@ -449,7 +566,7 @@ public interface SourcePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION__REFERENCING_MAPPINGS = SOURCE_SECTION_CLASS_FEATURE_COUNT + 4;
+	int SOURCE_SECTION__REFERENCING_MAPPINGS = SOURCE_SECTION_CLASS_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Section</em>' class.
@@ -458,7 +575,7 @@ public interface SourcePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_FEATURE_COUNT = SOURCE_SECTION_CLASS_FEATURE_COUNT + 5;
+	int SOURCE_SECTION_FEATURE_COUNT = SOURCE_SECTION_CLASS_FEATURE_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Get Containing Section</em>' operation.
@@ -551,6 +668,24 @@ public interface SourcePackage extends EPackage {
 	int SOURCE_SECTION___VALIDATE_CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP = SOURCE_SECTION_CLASS___VALIDATE_CONTAINER_IS_VALID__DIAGNOSTICCHAIN_MAP;
 
 	/**
+	 * The operation id for the '<em>Validate Not Self Container</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION___VALIDATE_NOT_SELF_CONTAINER__DIAGNOSTICCHAIN_MAP = SOURCE_SECTION_CLASS___VALIDATE_NOT_SELF_CONTAINER__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Validate Only Complementing Actual References</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION___VALIDATE_ONLY_COMPLEMENTING_ACTUAL_REFERENCES__DIAGNOSTICCHAIN_MAP = SOURCE_SECTION_CLASS___VALIDATE_ONLY_COMPLEMENTING_ACTUAL_REFERENCES__DIAGNOSTICCHAIN_MAP;
+
+	/**
 	 * The operation id for the '<em>Validate Container Matches Extend Container</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -569,13 +704,22 @@ public interface SourcePackage extends EPackage {
 	int SOURCE_SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP = SOURCE_SECTION_CLASS_OPERATION_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Validate Not Extend Self</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION___VALIDATE_NOT_EXTEND_SELF__DIAGNOSTICCHAIN_MAP = SOURCE_SECTION_CLASS_OPERATION_COUNT + 2;
+
+	/**
 	 * The operation id for the '<em>Validate Is Referenced By Mapping</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION___VALIDATE_IS_REFERENCED_BY_MAPPING__DIAGNOSTICCHAIN_MAP = SOURCE_SECTION_CLASS_OPERATION_COUNT + 2;
+	int SOURCE_SECTION___VALIDATE_IS_REFERENCED_BY_MAPPING__DIAGNOSTICCHAIN_MAP = SOURCE_SECTION_CLASS_OPERATION_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Section</em>' class.
@@ -584,7 +728,7 @@ public interface SourcePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_OPERATION_COUNT = SOURCE_SECTION_CLASS_OPERATION_COUNT + 3;
+	int SOURCE_SECTION_OPERATION_COUNT = SOURCE_SECTION_CLASS_OPERATION_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.source.impl.SourceSectionReferenceImpl <em>Section Reference</em>}' class.
@@ -678,13 +822,40 @@ public interface SourcePackage extends EPackage {
 	int SOURCE_SECTION_REFERENCE___ADD_VALUES_GENERIC__ELIST = GenericPackage.REFERENCE___ADD_VALUES_GENERIC__ELIST;
 
 	/**
+	 * The operation id for the '<em>Is Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_REFERENCE___IS_EXTENDED = GenericPackage.REFERENCE___IS_EXTENDED;
+
+	/**
+	 * The operation id for the '<em>Get Values Including Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_REFERENCE___GET_VALUES_INCLUDING_EXTENDED = GenericPackage.REFERENCE___GET_VALUES_INCLUDING_EXTENDED;
+
+	/**
+	 * The operation id for the '<em>Validate Is Ignore Unmatched If Is Complemented</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_REFERENCE___VALIDATE_IS_IGNORE_UNMATCHED_IF_IS_COMPLEMENTED__DIAGNOSTICCHAIN_MAP = GenericPackage.REFERENCE_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Section Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_REFERENCE_OPERATION_COUNT = GenericPackage.REFERENCE_OPERATION_COUNT + 0;
+	int SOURCE_SECTION_REFERENCE_OPERATION_COUNT = GenericPackage.REFERENCE_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.source.impl.SourceSectionCompositeReferenceImpl <em>Section Composite Reference</em>}' class.
@@ -796,6 +967,24 @@ public interface SourcePackage extends EPackage {
 	int SOURCE_SECTION_COMPOSITE_REFERENCE___ADD_VALUES_GENERIC__ELIST = GenericPackage.COMPOSITE_REFERENCE___ADD_VALUES_GENERIC__ELIST;
 
 	/**
+	 * The operation id for the '<em>Is Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_COMPOSITE_REFERENCE___IS_EXTENDED = GenericPackage.COMPOSITE_REFERENCE___IS_EXTENDED;
+
+	/**
+	 * The operation id for the '<em>Get Values Including Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_COMPOSITE_REFERENCE___GET_VALUES_INCLUDING_EXTENDED = GenericPackage.COMPOSITE_REFERENCE___GET_VALUES_INCLUDING_EXTENDED;
+
+	/**
 	 * The operation id for the '<em>Validate EReference Is Containment</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -805,13 +994,22 @@ public interface SourcePackage extends EPackage {
 	int SOURCE_SECTION_COMPOSITE_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP = GenericPackage.COMPOSITE_REFERENCE___VALIDATE_EREFERENCE_IS_CONTAINMENT__DIAGNOSTICCHAIN_MAP;
 
 	/**
+	 * The operation id for the '<em>Validate Is Ignore Unmatched If Is Complemented</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_COMPOSITE_REFERENCE___VALIDATE_IS_IGNORE_UNMATCHED_IF_IS_COMPLEMENTED__DIAGNOSTICCHAIN_MAP = GenericPackage.COMPOSITE_REFERENCE_OPERATION_COUNT + 0;
+
+	/**
 	 * The operation id for the '<em>Validate EReference Matches Parent EClass</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_COMPOSITE_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = GenericPackage.COMPOSITE_REFERENCE_OPERATION_COUNT + 0;
+	int SOURCE_SECTION_COMPOSITE_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = GenericPackage.COMPOSITE_REFERENCE_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Section Composite Reference</em>' class.
@@ -820,7 +1018,7 @@ public interface SourcePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_COMPOSITE_REFERENCE_OPERATION_COUNT = GenericPackage.COMPOSITE_REFERENCE_OPERATION_COUNT + 1;
+	int SOURCE_SECTION_COMPOSITE_REFERENCE_OPERATION_COUNT = GenericPackage.COMPOSITE_REFERENCE_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.source.impl.SourceSectionCrossReferenceImpl <em>Section Cross Reference</em>}' class.
@@ -932,6 +1130,24 @@ public interface SourcePackage extends EPackage {
 	int SOURCE_SECTION_CROSS_REFERENCE___ADD_VALUES_GENERIC__ELIST = GenericPackage.CROSS_REFERENCE___ADD_VALUES_GENERIC__ELIST;
 
 	/**
+	 * The operation id for the '<em>Is Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_CROSS_REFERENCE___IS_EXTENDED = GenericPackage.CROSS_REFERENCE___IS_EXTENDED;
+
+	/**
+	 * The operation id for the '<em>Get Values Including Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_CROSS_REFERENCE___GET_VALUES_INCLUDING_EXTENDED = GenericPackage.CROSS_REFERENCE___GET_VALUES_INCLUDING_EXTENDED;
+
+	/**
 	 * The operation id for the '<em>Validate Values Match Reference Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -941,13 +1157,22 @@ public interface SourcePackage extends EPackage {
 	int SOURCE_SECTION_CROSS_REFERENCE___VALIDATE_VALUES_MATCH_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP = GenericPackage.CROSS_REFERENCE___VALIDATE_VALUES_MATCH_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP;
 
 	/**
+	 * The operation id for the '<em>Validate Is Ignore Unmatched If Is Complemented</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_SECTION_CROSS_REFERENCE___VALIDATE_IS_IGNORE_UNMATCHED_IF_IS_COMPLEMENTED__DIAGNOSTICCHAIN_MAP = GenericPackage.CROSS_REFERENCE_OPERATION_COUNT + 0;
+
+	/**
 	 * The operation id for the '<em>Validate EReference Matches Parent EClass</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CROSS_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = GenericPackage.CROSS_REFERENCE_OPERATION_COUNT + 0;
+	int SOURCE_SECTION_CROSS_REFERENCE___VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS__DIAGNOSTICCHAIN_MAP = GenericPackage.CROSS_REFERENCE_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Section Cross Reference</em>' class.
@@ -956,7 +1181,7 @@ public interface SourcePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_SECTION_CROSS_REFERENCE_OPERATION_COUNT = GenericPackage.CROSS_REFERENCE_OPERATION_COUNT + 1;
+	int SOURCE_SECTION_CROSS_REFERENCE_OPERATION_COUNT = GenericPackage.CROSS_REFERENCE_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.source.impl.VirtualSourceSectionCrossReferenceImpl <em>Virtual Source Section Cross Reference</em>}' class.
@@ -1068,6 +1293,24 @@ public interface SourcePackage extends EPackage {
 	int VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE___ADD_VALUES_GENERIC__ELIST = GenericPackage.CROSS_REFERENCE___ADD_VALUES_GENERIC__ELIST;
 
 	/**
+	 * The operation id for the '<em>Is Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE___IS_EXTENDED = GenericPackage.CROSS_REFERENCE___IS_EXTENDED;
+
+	/**
+	 * The operation id for the '<em>Get Values Including Extended</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE___GET_VALUES_INCLUDING_EXTENDED = GenericPackage.CROSS_REFERENCE___GET_VALUES_INCLUDING_EXTENDED;
+
+	/**
 	 * The operation id for the '<em>Validate Values Match Reference Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1077,13 +1320,22 @@ public interface SourcePackage extends EPackage {
 	int VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE___VALIDATE_VALUES_MATCH_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP = GenericPackage.CROSS_REFERENCE___VALIDATE_VALUES_MATCH_REFERENCE_TYPE__DIAGNOSTICCHAIN_MAP;
 
 	/**
+	 * The operation id for the '<em>Validate Is Ignore Unmatched If Is Complemented</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE___VALIDATE_IS_IGNORE_UNMATCHED_IF_IS_COMPLEMENTED__DIAGNOSTICCHAIN_MAP = GenericPackage.CROSS_REFERENCE_OPERATION_COUNT + 0;
+
+	/**
 	 * The operation id for the '<em>Validate Derivation</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE___VALIDATE_DERIVATION__DIAGNOSTICCHAIN_MAP = GenericPackage.CROSS_REFERENCE_OPERATION_COUNT + 0;
+	int VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE___VALIDATE_DERIVATION__DIAGNOSTICCHAIN_MAP = GenericPackage.CROSS_REFERENCE_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Virtual Source Section Cross Reference</em>' class.
@@ -1092,7 +1344,7 @@ public interface SourcePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE_OPERATION_COUNT = GenericPackage.CROSS_REFERENCE_OPERATION_COUNT + 1;
+	int VIRTUAL_SOURCE_SECTION_CROSS_REFERENCE_OPERATION_COUNT = GenericPackage.CROSS_REFERENCE_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.source.impl.SourceSectionAttributeImpl <em>Section Attribute</em>}' class.
@@ -1452,6 +1704,16 @@ public interface SourcePackage extends EPackage {
 	EAttribute getSourceSectionReference_IgnoreUnmatchedElements();
 
 	/**
+	 * Returns the meta object for the '{@link pamtram.structure.source.SourceSectionReference#validateIsIgnoreUnmatchedIfIsComplemented(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Is Ignore Unmatched If Is Complemented</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Is Ignore Unmatched If Is Complemented</em>' operation.
+	 * @see pamtram.structure.source.SourceSectionReference#validateIsIgnoreUnmatchedIfIsComplemented(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getSourceSectionReference__ValidateIsIgnoreUnmatchedIfIsComplemented__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for class '{@link pamtram.structure.source.SourceSectionCompositeReference <em>Section Composite Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1648,6 +1910,14 @@ public interface SourcePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SOURCE_SECTION_REFERENCE__IGNORE_UNMATCHED_ELEMENTS = eINSTANCE.getSourceSectionReference_IgnoreUnmatchedElements();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Is Ignore Unmatched If Is Complemented</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation SOURCE_SECTION_REFERENCE___VALIDATE_IS_IGNORE_UNMATCHED_IF_IS_COMPLEMENTED__DIAGNOSTICCHAIN_MAP = eINSTANCE.getSourceSectionReference__ValidateIsIgnoreUnmatchedIfIsComplemented__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.structure.source.impl.SourceSectionCompositeReferenceImpl <em>Section Composite Reference</em>}' class.

@@ -5,6 +5,7 @@ package pamtram.mapping.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Map;
+import java.util.stream.Collectors;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicDiagnostic;
@@ -16,6 +17,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import pamtram.ConditionModel;
 import pamtram.ConditionalElement;
@@ -25,6 +27,7 @@ import pamtram.condition.ComplexCondition;
 import pamtram.impl.NamedElementImpl;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.InstantiableMappingHintGroup;
+import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingPackage;
 import pamtram.mapping.extended.MappingHintType;
@@ -43,6 +46,7 @@ import pamtram.util.PamtramValidator;
  *   <li>{@link pamtram.mapping.impl.MappingHintGroupImporterImpl#isDeactivated <em>Deactivated</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingHintGroupImporterImpl#getLocalCondition <em>Local Condition</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingHintGroupImporterImpl#getSharedCondition <em>Shared Condition</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.MappingHintGroupImporterImpl#getAllConditions <em>All Conditions</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingHintGroupImporterImpl#getHintGroup <em>Hint Group</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingHintGroupImporterImpl#getContainer <em>Container</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingHintGroupImporterImpl#getMappingHints <em>Mapping Hints</em>}</li>
@@ -156,6 +160,7 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 */
 	@Override
 	public boolean isDeactivated() {
+	
 		return deactivated;
 	}
 
@@ -166,10 +171,12 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 */
 	@Override
 	public void setDeactivated(boolean newDeactivated) {
+	
 		boolean oldDeactivated = deactivated;
 		deactivated = newDeactivated;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP_IMPORTER__DEACTIVATED, oldDeactivated, deactivated));
+	
 	}
 
 	/**
@@ -179,6 +186,7 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 */
 	@Override
 	public ComplexCondition getLocalCondition() {
+	
 		return localCondition;
 	}
 
@@ -204,6 +212,7 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 */
 	@Override
 	public void setLocalCondition(ComplexCondition newLocalCondition) {
+	
 		if (newLocalCondition != localCondition) {
 			NotificationChain msgs = null;
 			if (localCondition != null)
@@ -215,6 +224,7 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP_IMPORTER__LOCAL_CONDITION, newLocalCondition, newLocalCondition));
+	
 	}
 
 	/**
@@ -224,7 +234,8 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 */
 	@Override
 	public ComplexCondition getSharedCondition() {
-		if (sharedCondition != null && sharedCondition.eIsProxy()) {
+	
+		  if (sharedCondition != null && sharedCondition.eIsProxy()) {
 			InternalEObject oldSharedCondition = (InternalEObject)sharedCondition;
 			sharedCondition = (ComplexCondition)eResolveProxy(oldSharedCondition);
 			if (sharedCondition != oldSharedCondition) {
@@ -251,10 +262,43 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 */
 	@Override
 	public void setSharedCondition(ComplexCondition newSharedCondition) {
+	
 		ComplexCondition oldSharedCondition = sharedCondition;
 		sharedCondition = newSharedCondition;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP_IMPORTER__SHARED_CONDITION, oldSharedCondition, sharedCondition));
+	
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ComplexCondition> getAllConditions() {
+	
+		java.util.Set<Object> ret = new java.util.LinkedHashSet<>();
+		
+			if (this.getLocalCondition() != null) {
+					ret.add(this.getLocalCondition());
+				}
+				if (this.getSharedCondition() != null) {
+					ret.add(this.getSharedCondition());
+				}
+		
+			if (this instanceof MappingHintGroup) {
+					// Add Conditions of the Mappings of extended MappingHintGroups
+					//
+					ret.addAll(((MappingHintGroup) this).getExtend().stream().filter(hg -> hg.eContainer() instanceof pamtram.mapping.Mapping).flatMap(hg -> ((pamtram.mapping.Mapping) hg.eContainer()).getAllConditions().stream()).collect(Collectors.toSet()));
+					// Add Conditions of extended MappingHintGroups
+					//
+					ret.addAll(((MappingHintGroup) this).getExtend().stream().filter(mhg -> mhg instanceof ConditionalElement)
+							.flatMap(mhg -> ((ConditionalElement) mhg).getAllConditions().stream())
+							.collect(Collectors.toSet()));
+				}
+		
+			return new EcoreEList.UnmodifiableEList<>(this, PamtramPackage.Literals.CONDITIONAL_ELEMENT__ALL_CONDITIONS,
+						ret.size(), ret.toArray());
 	}
 
 	/**
@@ -264,7 +308,8 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 */
 	@Override
 	public ExportedMappingHintGroup getHintGroup() {
-		if (hintGroup != null && hintGroup.eIsProxy()) {
+	
+		  if (hintGroup != null && hintGroup.eIsProxy()) {
 			InternalEObject oldHintGroup = (InternalEObject)hintGroup;
 			hintGroup = (ExportedMappingHintGroup)eResolveProxy(oldHintGroup);
 			if (hintGroup != oldHintGroup) {
@@ -291,10 +336,12 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 */
 	@Override
 	public void setHintGroup(ExportedMappingHintGroup newHintGroup) {
+	
 		ExportedMappingHintGroup oldHintGroup = hintGroup;
 		hintGroup = newHintGroup;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP, oldHintGroup, hintGroup));
+	
 	}
 
 	/**
@@ -304,7 +351,8 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 */
 	@Override
 	public TargetSectionClass getContainer() {
-		if (container != null && container.eIsProxy()) {
+	
+		  if (container != null && container.eIsProxy()) {
 			InternalEObject oldContainer = (InternalEObject)container;
 			container = (TargetSectionClass)eResolveProxy(oldContainer);
 			if (container != oldContainer) {
@@ -331,12 +379,14 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 */
 	@Override
 	public void setContainer(TargetSectionClass newContainer) {
+	
 		TargetSectionClass oldContainer = container;
 		container = newContainer;
 		boolean oldContainerESet = containerESet;
 		containerESet = true;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONTAINER, oldContainer, container, !oldContainerESet));
+	
 	}
 
 	/**
@@ -371,6 +421,7 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 */
 	@Override
 	public EList<MappingHintType> getMappingHints() {
+	
 		if (mappingHints == null) {
 			mappingHints = new EObjectContainmentEList.Unsettable<MappingHintType>(MappingHintType.class, this, MappingPackage.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS);
 		}
@@ -404,32 +455,7 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 */
 	public EList<MappingHintType> getActiveMappingHints() {
 		Object[] hints = getMappingHints().stream().filter(h -> !(h instanceof DeactivatableElement) || !((DeactivatableElement) h).isDeactivated()).toArray();
-		return new BasicEList.UnmodifiableEList<>(hints.length, hints);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateEitherModelOrReferCondition(final DiagnosticChain diagnostics, final Map<?, ?> context) {
-		
-		boolean result = !(this.getLocalCondition() != null && this.getSharedCondition() != null);
-		
-		if (!result && diagnostics != null) {
-		
-			String errorMessage = "Please specify at most one (local or shared) condition!";
-		
-			diagnostics.add(new BasicDiagnostic
-					(Diagnostic.ERROR,
-					PamtramValidator.DIAGNOSTIC_SOURCE,
-							PamtramValidator.CONDITIONAL_ELEMENT__VALIDATE_EITHER_MODEL_OR_REFER_CONDITION,
-							errorMessage,
-					new Object[] { this, PamtramPackage.Literals.CONDITIONAL_ELEMENT }));
-		
-		}
-		
-		return result;
+		return new BasicEList.UnmodifiableEList<>(hints.length, hints);	
 	}
 
 	/**
@@ -454,7 +480,7 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -488,6 +514,8 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__SHARED_CONDITION:
 				if (resolve) return getSharedCondition();
 				return basicGetSharedCondition();
+			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__ALL_CONDITIONS:
+				return getAllConditions();
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP:
 				if (resolve) return getHintGroup();
 				return basicGetHintGroup();
@@ -576,6 +604,8 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 				return localCondition != null;
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__SHARED_CONDITION:
 				return sharedCondition != null;
+			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__ALL_CONDITIONS:
+				return !getAllConditions().isEmpty();
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP:
 				return hintGroup != null;
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__CONTAINER:
@@ -603,6 +633,7 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 			switch (derivedFeatureID) {
 				case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__LOCAL_CONDITION: return PamtramPackage.CONDITIONAL_ELEMENT__LOCAL_CONDITION;
 				case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__SHARED_CONDITION: return PamtramPackage.CONDITIONAL_ELEMENT__SHARED_CONDITION;
+				case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__ALL_CONDITIONS: return PamtramPackage.CONDITIONAL_ELEMENT__ALL_CONDITIONS;
 				default: return -1;
 			}
 		}
@@ -631,6 +662,7 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 			switch (baseFeatureID) {
 				case PamtramPackage.CONDITIONAL_ELEMENT__LOCAL_CONDITION: return MappingPackage.MAPPING_HINT_GROUP_IMPORTER__LOCAL_CONDITION;
 				case PamtramPackage.CONDITIONAL_ELEMENT__SHARED_CONDITION: return MappingPackage.MAPPING_HINT_GROUP_IMPORTER__SHARED_CONDITION;
+				case PamtramPackage.CONDITIONAL_ELEMENT__ALL_CONDITIONS: return MappingPackage.MAPPING_HINT_GROUP_IMPORTER__ALL_CONDITIONS;
 				default: return -1;
 			}
 		}
@@ -656,7 +688,6 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 		}
 		if (baseClass == ConditionalElement.class) {
 			switch (baseOperationID) {
-				case PamtramPackage.CONDITIONAL_ELEMENT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP: return MappingPackage.MAPPING_HINT_GROUP_IMPORTER___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP;
 				case PamtramPackage.CONDITIONAL_ELEMENT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP: return MappingPackage.MAPPING_HINT_GROUP_IMPORTER___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP;
 				default: return -1;
 			}
@@ -680,8 +711,6 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 		switch (operationID) {
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER___GET_ACTIVE_MAPPING_HINTS:
 				return getActiveMappingHints();
-			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP:
-				return validateEitherModelOrReferCondition((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP:
 				return validateReferenceOnlyConditionsFromConditionModel((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}

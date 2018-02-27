@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="ASCII"?>
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:condition="http://mfreund.de/pamtram/condition" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint" xmlns:extended="http://mfreund.de/pamtram/mapping/extended" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:target="http://mfreund.de/pamtram/structure/target">
+  <sourceSectionModels name="dfd">
+    <metaModelPackage href="http://data-flow-diagram#/"/>
+    <sections xsi:type="source:SourceSection" name="DFD" cardinality="ZERO__INFINITY" includeSubTypes="false">
+      <eClass href="http://data-flow-diagram#//DFD"/>
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="dfdName">
+        <attribute href="http://data-flow-diagram#//NamedElement/name"/>
+      </attributes>
+      <attributes xsi:type="source:VirtualSourceSectionAttribute" name="isRootDFD" derivation="not self.oclAsType(ecore::EObject).eContainer().oclIsTypeOf(dfd::Process)"/>
+    </sections>
+    <sections xsi:type="source:SourceSection" name="DFDElement" cardinality="ZERO__INFINITY" container="//@sourceSectionModels.0/@sections.0" abstract="true">
+      <eClass href="http://data-flow-diagram#//DFDElement"/>
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="dfdElementName">
+        <attribute href="http://data-flow-diagram#//NamedElement/name"/>
+      </attributes>
+    </sections>
+    <sections xsi:type="source:SourceSection" name="Process" cardinality="ZERO__INFINITY" container="//@sourceSectionModels.0/@sections.0" extend="//@sourceSectionModels.0/@sections.1">
+      <eClass href="http://data-flow-diagram#//Process"/>
+      <references xsi:type="source:SourceSectionCrossReference" name="dfd" value="//@sourceSectionModels.0/@sections.0" ignoreUnmatchedElements="true">
+        <eReference href="http://data-flow-diagram#//Process/dfd"/>
+      </references>
+    </sections>
+    <sections xsi:type="source:SourceSection" name="DataStore" cardinality="ZERO__INFINITY" container="//@sourceSectionModels.0/@sections.0" extend="//@sourceSectionModels.0/@sections.1">
+      <eClass href="http://data-flow-diagram#//DataStore"/>
+    </sections>
+    <sections xsi:type="source:SourceSection" name="Flow" cardinality="ZERO__INFINITY" container="//@sourceSectionModels.0/@sections.0" abstract="true">
+      <eClass href="http://data-flow-diagram#//Flow"/>
+      <references xsi:type="source:SourceSectionCrossReference" name="from" value="//@sourceSectionModels.0/@sections.1">
+        <eReference href="http://data-flow-diagram#//Flow/from"/>
+      </references>
+      <references xsi:type="source:SourceSectionCrossReference" name="to" value="//@sourceSectionModels.0/@sections.1">
+        <eReference href="http://data-flow-diagram#//Flow/to"/>
+      </references>
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="name">
+        <attribute href="http://data-flow-diagram#//NamedElement/name"/>
+      </attributes>
+    </sections>
+    <sections xsi:type="source:SourceSection" name="DataFlow" cardinality="ZERO__INFINITY" container="//@sourceSectionModels.0/@sections.0" extend="//@sourceSectionModels.0/@sections.4">
+      <eClass href="http://data-flow-diagram#//DataFlow"/>
+    </sections>
+    <sections xsi:type="source:SourceSection" name="ControlFlow" cardinality="ZERO__INFINITY" container="//@sourceSectionModels.0/@sections.0" extend="//@sourceSectionModels.0/@sections.4">
+      <eClass href="http://data-flow-diagram#//ControlFlow"/>
+    </sections>
+  </sourceSectionModels>
+  <targetSectionModels name="uml">
+    <metaModelPackage href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
+    <sections xsi:type="target:TargetSection" name="Model" cardinality="ONE__INFINITY">
+      <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="modelName">
+        <attribute href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
+      </attributes>
+    </sections>
+    <sections xsi:type="target:TargetSection" name="Activity" cardinality="ONE__INFINITY" container="//@targetSectionModels.0/@sections.0">
+      <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//Activity"/>
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="activityName">
+        <attribute href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
+      </attributes>
+    </sections>
+    <sections xsi:type="target:TargetSection" name="ActivityNode" cardinality="ONE__INFINITY" abstract="true">
+      <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ActivityNode"/>
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="activityNodeName">
+        <attribute href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
+      </attributes>
+    </sections>
+    <sections xsi:type="target:TargetSection" name="OpaqueAction" cardinality="ONE__INFINITY" container="//@targetSectionModels.0/@sections.1" extend="//@targetSectionModels.0/@sections.2">
+      <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//OpaqueAction"/>
+    </sections>
+    <sections xsi:type="target:TargetSection" name="CallBehaviorAction" cardinality="ONE__INFINITY" extend="//@targetSectionModels.0/@sections.2">
+      <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//CallBehaviorAction"/>
+      <references xsi:type="target:TargetSectionCrossReference" name="behavior">
+        <eReference href="http://www.eclipse.org/uml2/5.0.0/UML#//CallBehaviorAction/behavior"/>
+      </references>
+    </sections>
+    <sections xsi:type="target:TargetSection" name="DataStoreNode" cardinality="ONE__INFINITY" extend="//@targetSectionModels.0/@sections.2">
+      <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//DataStoreNode"/>
+    </sections>
+    <sections xsi:type="target:TargetSection" name="ActivityEdge" cardinality="ONE__INFINITY" abstract="true">
+      <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ActivityEdge"/>
+      <references xsi:type="target:TargetSectionCrossReference" name="source">
+        <eReference href="http://www.eclipse.org/uml2/5.0.0/UML#//ActivityEdge/source"/>
+      </references>
+      <references xsi:type="target:TargetSectionCrossReference" name="target">
+        <eReference href="http://www.eclipse.org/uml2/5.0.0/UML#//ActivityEdge/target"/>
+      </references>
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="name">
+        <attribute href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
+      </attributes>
+    </sections>
+    <sections xsi:type="target:TargetSection" name="ObjectFlow" cardinality="ONE__INFINITY" extend="//@targetSectionModels.0/@sections.6">
+      <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ObjectFlow"/>
+    </sections>
+    <sections xsi:type="target:TargetSection" name="InputPin" cardinality="ONE__INFINITY">
+      <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//InputPin"/>
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="inputPinName" unique="true">
+        <attribute href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
+      </attributes>
+    </sections>
+    <sections xsi:type="target:TargetSection" name="OutputPin" cardinality="ONE__INFINITY">
+      <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//OutputPin"/>
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="outputPinName" unique="true">
+        <attribute href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
+      </attributes>
+    </sections>
+    <sections xsi:type="target:TargetSection" name="ControlFlow" cardinality="ONE__INFINITY" extend="//@targetSectionModels.0/@sections.6">
+      <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ControlFlow"/>
+    </sections>
+  </targetSectionModels>
+  <mappingModels name="dfd-uml">
+    <mappings name="DFDMapping" sourceSection="//@sourceSectionModels.0/@sections.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Model" targetSection="//@targetSectionModels.0/@sections.0">
+        <mappingHints xsi:type="extended:AttributeMapping" name="modelNameMapping" target="//@targetSectionModels.0/@sections.0/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="name" source="//@sourceSectionModels.0/@sections.0/@attributes.0"/>
+        </mappingHints>
+        <localCondition xsi:type="condition:AttributeCondition" name="isRootDFD" target="//@sourceSectionModels.0/@sections.0/@attributes.1">
+          <valueConstraints xsi:type="constraint:EqualityConstraint" expression="true"/>
+        </localCondition>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Activity" targetSection="//@targetSectionModels.0/@sections.1">
+        <mappingHints xsi:type="extended:AttributeMapping" name="activityNameMapping" target="//@targetSectionModels.0/@sections.1/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="name" source="//@sourceSectionModels.0/@sections.0/@attributes.0"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mappings>
+    <mappings name="DFDElementMapping" sourceSection="//@sourceSectionModels.0/@sections.1" abstract="true">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ActivityNode" targetSection="//@targetSectionModels.0/@sections.2">
+        <mappingHints xsi:type="extended:AttributeMapping" name="activityNodeNameMapping" target="//@targetSectionModels.0/@sections.2/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="name" source="//@sourceSectionModels.0/@sections.1/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ContainerSelector" name="selectContainingActivity" referenceAttribute="//@targetSectionModels.0/@sections.1/@attributes.0" targetClass="//@targetSectionModels.0/@sections.1">
+          <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="dfdName" source="//@sourceSectionModels.0/@sections.0/@attributes.0"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mappings>
+    <mappings name="ProcessMapping" sourceSection="//@sourceSectionModels.0/@sections.2">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OpaqueAction" targetSection="//@targetSectionModels.0/@sections.3" extend="//@mappingModels.0/@mappings.1/@mappingHintGroups.0">
+        <localCondition xsi:type="condition:CardinalityCondition" name="hasNoDFD" value="0" target="//@sourceSectionModels.0/@sections.2/@references.0" followExternalReferences="true"/>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="CallBehaviorAction" targetSection="//@targetSectionModels.0/@sections.4" extend="//@mappingModels.0/@mappings.1/@mappingHintGroups.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="selectBehavior" referenceAttribute="//@targetSectionModels.0/@sections.1/@attributes.0" targetClass="//@targetSectionModels.0/@sections.1" affectedReference="//@targetSectionModels.0/@sections.4/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="name" source="//@sourceSectionModels.0/@sections.0/@attributes.0" followExternalReferences="true"/>
+        </mappingHints>
+        <localCondition xsi:type="condition:CardinalityCondition" name="hasDFD" target="//@sourceSectionModels.0/@sections.2/@references.0" followExternalReferences="true"/>
+      </mappingHintGroups>
+    </mappings>
+    <mappings name="DataStoreMapping" sourceSection="//@sourceSectionModels.0/@sections.3">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="DataStoreNode" targetSection="//@targetSectionModels.0/@sections.5" extend="//@mappingModels.0/@mappings.1/@mappingHintGroups.0"/>
+    </mappings>
+    <mappings name="FlowMapping" sourceSection="//@sourceSectionModels.0/@sections.4" abstract="true">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ActivityEdge" targetSection="//@targetSectionModels.0/@sections.6">
+        <mappingHints xsi:type="extended:AttributeMapping" name="nameMapping" target="//@targetSectionModels.0/@sections.6/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="name" source="//@sourceSectionModels.0/@sections.4/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ContainerSelector" name="selectContainingActivity" referenceAttribute="//@targetSectionModels.0/@sections.1/@attributes.0" targetClass="//@targetSectionModels.0/@sections.1">
+          <sourceElements xsi:type="structure:InstanceSelectorExternalSourceElement" name="name" source="//@sourceSectionModels.0/@sections.0/@attributes.0"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mappings>
+    <mappings name="DataFlowMapping" sourceSection="//@sourceSectionModels.0/@sections.5">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ObjectFlow" targetSection="//@targetSectionModels.0/@sections.7" extend="//@mappingModels.0/@mappings.4/@mappingHintGroups.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="selectSourceDataStoreNode" referenceAttribute="//@targetSectionModels.0/@sections.2/@attributes.0" targetClass="//@targetSectionModels.0/@sections.5" affectedReference="//@targetSectionModels.0/@sections.6/@references.0">
+          <localCondition xsi:type="condition:CardinalityCondition" name="hasFromDataStoreNode" target="//@sourceSectionModels.0/@sections.3" referenceMatchSpec="//@sourceSectionModels.0/@sections.4/@references.0" followExternalReferences="true"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="fromDfdElementName" source="//@sourceSectionModels.0/@sections.1/@attributes.0" referenceMatchSpec="//@sourceSectionModels.0/@sections.4/@references.0" followExternalReferences="true"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="selectSourceOutputPin" referenceAttribute="//@targetSectionModels.0/@sections.9/@attributes.0" targetClass="//@targetSectionModels.0/@sections.9" affectedReference="//@targetSectionModels.0/@sections.6/@references.0">
+          <localCondition xsi:type="condition:CardinalityCondition" name="hasFromProcess" target="//@sourceSectionModels.0/@sections.2" referenceMatchSpec="//@sourceSectionModels.0/@sections.4/@references.0" followExternalReferences="true"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="fromDfdElementName" source="//@sourceSectionModels.0/@sections.1/@attributes.0" referenceMatchSpec="//@sourceSectionModels.0/@sections.4/@references.0" followExternalReferences="true"/>
+          <sourceElements xsi:type="pamtram:FixedValue" name="_outputPin_" value="_outputPin_"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="dataFlowName" source="//@sourceSectionModels.0/@sections.4/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="selectTargetDataStoreNode" referenceAttribute="//@targetSectionModels.0/@sections.2/@attributes.0" targetClass="//@targetSectionModels.0/@sections.5" affectedReference="//@targetSectionModels.0/@sections.6/@references.1">
+          <localCondition xsi:type="condition:CardinalityCondition" name="hasToDataStoreNode" target="//@sourceSectionModels.0/@sections.3" referenceMatchSpec="//@sourceSectionModels.0/@sections.4/@references.1" followExternalReferences="true"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="toDfdElementName" source="//@sourceSectionModels.0/@sections.1/@attributes.0" referenceMatchSpec="//@sourceSectionModels.0/@sections.4/@references.1" followExternalReferences="true"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="selectTargetInputPin" referenceAttribute="//@targetSectionModels.0/@sections.8/@attributes.0" targetClass="//@targetSectionModels.0/@sections.8" affectedReference="//@targetSectionModels.0/@sections.6/@references.1">
+          <localCondition xsi:type="condition:CardinalityCondition" name="hasToProcess" target="//@sourceSectionModels.0/@sections.2" referenceMatchSpec="//@sourceSectionModels.0/@sections.4/@references.1" followExternalReferences="true"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="toDfdElementName" source="//@sourceSectionModels.0/@sections.1/@attributes.0" referenceMatchSpec="//@sourceSectionModels.0/@sections.4/@references.1" followExternalReferences="true"/>
+          <sourceElements xsi:type="pamtram:FixedValue" name="_inputPin_" value="_inputPin_"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="dataFlowName" source="//@sourceSectionModels.0/@sections.4/@attributes.0"/>
+        </mappingHints>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="InputPin" targetSection="//@targetSectionModels.0/@sections.8">
+        <mappingHints xsi:type="extended:AttributeMapping" name="inputPinNameMapping" target="//@targetSectionModels.0/@sections.8/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="dfdElementName" source="//@sourceSectionModels.0/@sections.1/@attributes.0" referenceMatchSpec="//@sourceSectionModels.0/@sections.4/@references.1" followExternalReferences="true"/>
+          <sourceElements xsi:type="pamtram:FixedValue" name="_inputPin_" value="_inputPin_"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="name" source="//@sourceSectionModels.0/@sections.4/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ContainerSelector" name="selectContainingActivityNode" referenceAttribute="//@targetSectionModels.0/@sections.2/@attributes.0" targetClass="//@targetSectionModels.0/@sections.2">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="toDfdElementName" source="//@sourceSectionModels.0/@sections.1/@attributes.0" referenceMatchSpec="//@sourceSectionModels.0/@sections.4/@references.1" followExternalReferences="true"/>
+        </mappingHints>
+        <localCondition xsi:type="condition:CardinalityCondition" name="hasToProcess" target="//@sourceSectionModels.0/@sections.2" referenceMatchSpec="//@sourceSectionModels.0/@sections.4/@references.1" followExternalReferences="true"/>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="OutputPin" targetSection="//@targetSectionModels.0/@sections.9">
+        <mappingHints xsi:type="extended:AttributeMapping" name="outputPinNameMapping" target="//@targetSectionModels.0/@sections.9/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="dfdElementName" source="//@sourceSectionModels.0/@sections.1/@attributes.0" referenceMatchSpec="//@sourceSectionModels.0/@sections.4/@references.0" followExternalReferences="true"/>
+          <sourceElements xsi:type="pamtram:FixedValue" name="_outputPin_" value="_outputPin_"/>
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="name" source="//@sourceSectionModels.0/@sections.4/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ContainerSelector" name="selectContainingActivityNode" referenceAttribute="//@targetSectionModels.0/@sections.2/@attributes.0" targetClass="//@targetSectionModels.0/@sections.2">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="fromDfdElementName" source="//@sourceSectionModels.0/@sections.1/@attributes.0" referenceMatchSpec="//@sourceSectionModels.0/@sections.4/@references.0" followExternalReferences="true"/>
+        </mappingHints>
+        <localCondition xsi:type="condition:CardinalityCondition" name="hasFromProcess" target="//@sourceSectionModels.0/@sections.2" referenceMatchSpec="//@sourceSectionModels.0/@sections.4/@references.0" followExternalReferences="true"/>
+      </mappingHintGroups>
+    </mappings>
+    <mappings name="ControlFlowMapping" sourceSection="//@sourceSectionModels.0/@sections.6">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="ControlFlow" targetSection="//@targetSectionModels.0/@sections.10" extend="//@mappingModels.0/@mappings.4/@mappingHintGroups.0">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="selectSourceActivityNode" referenceAttribute="//@targetSectionModels.0/@sections.2/@attributes.0" targetClass="//@targetSectionModels.0/@sections.2" affectedReference="//@targetSectionModels.0/@sections.6/@references.0">
+          <localCondition xsi:type="condition:CardinalityCondition" name="hasFrom" target="//@sourceSectionModels.0/@sections.4/@references.0" followExternalReferences="true"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="fromDfdElementName" source="//@sourceSectionModels.0/@sections.1/@attributes.0" referenceMatchSpec="//@sourceSectionModels.0/@sections.4/@references.0" followExternalReferences="true"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="selectTargetActivityNode" referenceAttribute="//@targetSectionModels.0/@sections.2/@attributes.0" targetClass="//@targetSectionModels.0/@sections.2" affectedReference="//@targetSectionModels.0/@sections.6/@references.1">
+          <localCondition xsi:type="condition:CardinalityCondition" name="hasTo" target="//@sourceSectionModels.0/@sections.4/@references.1" followExternalReferences="true"/>
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="toDfdElementName" source="//@sourceSectionModels.0/@sections.1/@attributes.0" referenceMatchSpec="//@sourceSectionModels.0/@sections.4/@references.1" followExternalReferences="true"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mappings>
+  </mappingModels>
+  <conditionModels/>
+</pamtram:PAMTraM>

@@ -58,20 +58,12 @@ public class ConstraintValidator extends EObjectValidator {
 	public static final int SINGLE_REFERENCE_VALUE_CONSTRAINT__VALIDATE_ONLY_FIXED_VALUES_OR_GLOBAL_ATTRIBUTES_IN_CONDITION_MODEL = 2;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Validate No Result Modifier In Source Sections' of 'Single Reference Value Constraint'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int SINGLE_REFERENCE_VALUE_CONSTRAINT__VALIDATE_NO_RESULT_MODIFIER_IN_SOURCE_SECTIONS = 3;
-
-	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 3;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 2;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -188,7 +180,6 @@ public class ConstraintValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_onlyFixedValuesOrGlobalAttributesInConditionModel(stringConstraint, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateOnlyFixedValuesInSourceSections(stringConstraint, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateOnlyFixedValuesOrGlobalAttributesInConditionModel(stringConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateNoResultModifierInSourceSections(stringConstraint, diagnostics, context);
 		return result;
 	}
 
@@ -211,7 +202,6 @@ public class ConstraintValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_onlyFixedValuesOrGlobalAttributesInConditionModel(equalityConstraint, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateOnlyFixedValuesInSourceSections(equalityConstraint, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateOnlyFixedValuesOrGlobalAttributesInConditionModel(equalityConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateNoResultModifierInSourceSections(equalityConstraint, diagnostics, context);
 		return result;
 	}
 
@@ -243,7 +233,6 @@ public class ConstraintValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_onlyFixedValuesOrGlobalAttributesInConditionModel(numericConstraint, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateOnlyFixedValuesInSourceSections(numericConstraint, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateOnlyFixedValuesOrGlobalAttributesInConditionModel(numericConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateNoResultModifierInSourceSections(numericConstraint, diagnostics, context);
 		return result;
 	}
 
@@ -266,7 +255,6 @@ public class ConstraintValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_onlyFixedValuesOrGlobalAttributesInConditionModel(singleReferenceValueConstraint, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateOnlyFixedValuesInSourceSections(singleReferenceValueConstraint, diagnostics, context);
 		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateOnlyFixedValuesOrGlobalAttributesInConditionModel(singleReferenceValueConstraint, diagnostics, context);
-		if (result || diagnostics != null) result &= validateSingleReferenceValueConstraint_validateNoResultModifierInSourceSections(singleReferenceValueConstraint, diagnostics, context);
 		return result;
 	}
 
@@ -347,16 +335,6 @@ public class ConstraintValidator extends EObjectValidator {
 	}
 
 	/**
-	 * Validates the validateNoResultModifierInSourceSections constraint of '<em>Single Reference Value Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateSingleReferenceValueConstraint_validateNoResultModifierInSourceSections(SingleReferenceValueConstraint singleReferenceValueConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return singleReferenceValueConstraint.validateNoResultModifierInSourceSections(diagnostics, context);
-	}
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -373,7 +351,6 @@ public class ConstraintValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(valueConstraintSourceInterface, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(valueConstraintSourceInterface, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(valueConstraintSourceInterface, diagnostics, context);
-		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(valueConstraintSourceInterface, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(valueConstraintSourceInterface, diagnostics, context);
 		return result;
 	}
@@ -395,9 +372,9 @@ public class ConstraintValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(valueConstraintSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= structureValidator.validateLocalDynamicSourceElement_sourceAttributeMatchesSectionOrContainedSection(valueConstraintSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= structureValidator.validateLocalDynamicSourceElement_validateSourceAttributeMatchesSectionOrContainedSection(valueConstraintSourceElement, diagnostics, context);
+		if (result || diagnostics != null) result &= structureValidator.validateLocalDynamicSourceElement_validateFollowExternalReferencesTrueIfRequired(valueConstraintSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(valueConstraintSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(valueConstraintSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(valueConstraintSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(valueConstraintSourceElement, diagnostics, context);
 		return result;
 	}
@@ -421,7 +398,6 @@ public class ConstraintValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= structureValidator.validateExternalDynamicSourceElement_validateSourceAttributeMatchesContainerSection(valueConstraintExternalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(valueConstraintExternalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(valueConstraintExternalSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(valueConstraintExternalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(valueConstraintExternalSourceElement, diagnostics, context);
 		return result;
 	}
@@ -445,7 +421,6 @@ public class ConstraintValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= structureValidator.validateExternalDynamicSourceElement_validateSourceAttributeMatchesContainerSection(valueConstraintGlobalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_eitherModelOrReferCondition(valueConstraintGlobalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_referenceOnlyConditionsFromConditionModel(valueConstraintGlobalSourceElement, diagnostics, context);
-		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateEitherModelOrReferCondition(valueConstraintGlobalSourceElement, diagnostics, context);
 		if (result || diagnostics != null) result &= pamtramValidator.validateConditionalElement_validateReferenceOnlyConditionsFromConditionModel(valueConstraintGlobalSourceElement, diagnostics, context);
 		return result;
 	}

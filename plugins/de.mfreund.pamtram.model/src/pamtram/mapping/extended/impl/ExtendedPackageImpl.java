@@ -580,7 +580,7 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getCardinalityMapping__ValidateSourceElementMatchesSection__DiagnosticChain_Map() {
+	public EOperation getCardinalityMapping__ValidateSourceElementMatchesSectionOrContainedSection__DiagnosticChain_Map() {
 		return cardinalityMappingEClass.getEOperations().get(0);
 	}
 
@@ -643,7 +643,7 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getCardinalityMapping__ValidateModifiersOnlyForSourceElements__DiagnosticChain_Map() {
+	public EOperation getCardinalityMapping__GetLocalSourceElements() {
 		return cardinalityMappingEClass.getEOperations().get(7);
 	}
 
@@ -652,7 +652,7 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getCardinalityMapping__GetLocalSourceElements() {
+	public EOperation getCardinalityMapping__GetExternalSourceElements() {
 		return cardinalityMappingEClass.getEOperations().get(8);
 	}
 
@@ -661,7 +661,7 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getCardinalityMapping__GetExternalSourceElements() {
+	public EOperation getCardinalityMapping__ValidateFollowExternalReferencesTrueIfRequired__DiagnosticChain_Map() {
 		return cardinalityMappingEClass.getEOperations().get(9);
 	}
 
@@ -742,17 +742,8 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getReferenceTargetSelector__ValidateReferenceAttributeIsValid__DiagnosticChain_Map() {
-		return referenceTargetSelectorEClass.getEOperations().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EOperation getReferenceTargetSelector__ValidateTargetClass__DiagnosticChain_Map() {
-		return referenceTargetSelectorEClass.getEOperations().get(3);
+		return referenceTargetSelectorEClass.getEOperations().get(2);
 	}
 
 	/**
@@ -771,24 +762,6 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 	 */
 	public EOperation getContainerSelector__ValidateTargetClassMatchesPossibleContainerType__DiagnosticChain_Map() {
 		return containerSelectorEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getContainerSelector__ValidateReferenceAttribute__DiagnosticChain_Map() {
-		return containerSelectorEClass.getEOperations().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getContainerSelector__ValidateReferenceAttributeIsValid__DiagnosticChain_Map() {
-		return containerSelectorEClass.getEOperations().get(2);
 	}
 
 	/**
@@ -937,16 +910,16 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		createEReference(cardinalityMappingEClass, CARDINALITY_MAPPING__SOURCE);
 		createEReference(cardinalityMappingEClass, CARDINALITY_MAPPING__TARGET);
 		createEReference(cardinalityMappingEClass, CARDINALITY_MAPPING__SOURCE_ELEMENTS);
-		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___VALIDATE_SOURCE_ELEMENT_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP);
+		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___VALIDATE_SOURCE_ELEMENT_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP);
 		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___VALIDATE_TARGET_CLASS_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP);
 		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___VALIDATE_SOURCE_CLASS_IS_VARIABLE_CARDINALITY__DIAGNOSTICCHAIN_MAP);
 		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___VALIDATE_TARGET_CLASS_IS_VARIABLE_CARDINALITY__DIAGNOSTICCHAIN_MAP);
 		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___VALIDATE_NO_CARDINALITY_MAPPING_FOR_SOURCE_SECTION_ROOT__DIAGNOSTICCHAIN_MAP);
 		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___VALIDATE_ONLY_SOURCE_OR_SOURCE_ELEMENTS__DIAGNOSTICCHAIN_MAP);
 		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___VALIDATE_EXPRESSION_ONLY_FOR_SOURCE_ELEMENTS__DIAGNOSTICCHAIN_MAP);
-		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___VALIDATE_MODIFIERS_ONLY_FOR_SOURCE_ELEMENTS__DIAGNOSTICCHAIN_MAP);
 		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___GET_LOCAL_SOURCE_ELEMENTS);
 		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___GET_EXTERNAL_SOURCE_ELEMENTS);
+		createEOperation(cardinalityMappingEClass, CARDINALITY_MAPPING___VALIDATE_FOLLOW_EXTERNAL_REFERENCES_TRUE_IF_REQUIRED__DIAGNOSTICCHAIN_MAP);
 
 		cardinalityMappingSourceInterfaceEClass = createEClass(CARDINALITY_MAPPING_SOURCE_INTERFACE);
 
@@ -960,13 +933,10 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		createEReference(referenceTargetSelectorEClass, REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE);
 		createEOperation(referenceTargetSelectorEClass, REFERENCE_TARGET_SELECTOR___VALIDATE_AFFECTED_REFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP);
 		createEOperation(referenceTargetSelectorEClass, REFERENCE_TARGET_SELECTOR___VALIDATE_AFFECTED_REFERENCE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP);
-		createEOperation(referenceTargetSelectorEClass, REFERENCE_TARGET_SELECTOR___VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID__DIAGNOSTICCHAIN_MAP);
 		createEOperation(referenceTargetSelectorEClass, REFERENCE_TARGET_SELECTOR___VALIDATE_TARGET_CLASS__DIAGNOSTICCHAIN_MAP);
 
 		containerSelectorEClass = createEClass(CONTAINER_SELECTOR);
 		createEOperation(containerSelectorEClass, CONTAINER_SELECTOR___VALIDATE_TARGET_CLASS_MATCHES_POSSIBLE_CONTAINER_TYPE__DIAGNOSTICCHAIN_MAP);
-		createEOperation(containerSelectorEClass, CONTAINER_SELECTOR___VALIDATE_REFERENCE_ATTRIBUTE__DIAGNOSTICCHAIN_MAP);
-		createEOperation(containerSelectorEClass, CONTAINER_SELECTOR___VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID__DIAGNOSTICCHAIN_MAP);
 
 		mappedAttributeValueExpanderEClass = createEClass(MAPPED_ATTRIBUTE_VALUE_EXPANDER);
 		createEReference(mappedAttributeValueExpanderEClass, MAPPED_ATTRIBUTE_VALUE_EXPANDER__HINTS_TO_EXPAND);
@@ -1077,9 +1047,22 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		attributeMappingGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getAttributeMappingSourceInterface());
 		attributeMappingGlobalSourceElementEClass.getEGenericSuperTypes().add(g1);
-		cardinalityMappingEClass.getESuperTypes().add(this.getMappingHint());
-		cardinalityMappingEClass.getESuperTypes().add(thePamtramPackage.getExpressionElement());
-		cardinalityMappingEClass.getESuperTypes().add(thePamtramPackage.getModifiableElement());
+		g1 = createEGenericType(this.getMappingHint());
+		cardinalityMappingEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(thePamtramPackage.getExpressionElement());
+		cardinalityMappingEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(thePamtramPackage.getModifiableElement());
+		cardinalityMappingEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(thePamtramPackage.getMatchSpecElement());
+		g2 = createEGenericType(theSourcePackage.getSourceSection());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionClass());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionReference());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theSourcePackage.getSourceSectionAttribute());
+		g1.getETypeArguments().add(g2);
+		cardinalityMappingEClass.getEGenericSuperTypes().add(g1);
 		cardinalityMappingSourceInterfaceEClass.getESuperTypes().add(this.getMappingHintSourceInterface());
 		g1 = createEGenericType(theStructurePackage.getLocalDynamicSourceElement());
 		g2 = createEGenericType(theSourcePackage.getSourceSection());
@@ -1227,7 +1210,7 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		initEReference(getCardinalityMapping_Target(), theTargetPackage.getTargetSectionClass(), null, "target", null, 1, 1, CardinalityMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCardinalityMapping_SourceElements(), this.getCardinalityMappingSourceInterface(), null, "sourceElements", null, 0, -1, CardinalityMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getCardinalityMapping__ValidateSourceElementMatchesSection__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateSourceElementMatchesSection", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getCardinalityMapping__ValidateSourceElementMatchesSectionOrContainedSection__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateSourceElementMatchesSectionOrContainedSection", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType();
@@ -1290,7 +1273,11 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getCardinalityMapping__ValidateModifiersOnlyForSourceElements__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateModifiersOnlyForSourceElements", 0, 1, IS_UNIQUE, IS_ORDERED);
+		initEOperation(getCardinalityMapping__GetLocalSourceElements(), this.getCardinalityMappingSourceElement(), "getLocalSourceElements", 0, -1, !IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getCardinalityMapping__GetExternalSourceElements(), this.getCardinalityMappingExternalSourceElement(), "getExternalSourceElements", 0, -1, !IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getCardinalityMapping__ValidateFollowExternalReferencesTrueIfRequired__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateFollowExternalReferencesTrueIfRequired", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType();
@@ -1298,10 +1285,6 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		g2 = createEGenericType();
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEOperation(getCardinalityMapping__GetLocalSourceElements(), this.getCardinalityMappingSourceElement(), "getLocalSourceElements", 0, -1, !IS_UNIQUE, IS_ORDERED);
-
-		initEOperation(getCardinalityMapping__GetExternalSourceElements(), this.getCardinalityMappingExternalSourceElement(), "getExternalSourceElements", 0, -1, !IS_UNIQUE, IS_ORDERED);
 
 		initEClass(cardinalityMappingSourceInterfaceEClass, CardinalityMappingSourceInterface.class, "CardinalityMappingSourceInterface", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1332,15 +1315,6 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getReferenceTargetSelector__ValidateReferenceAttributeIsValid__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateReferenceAttributeIsValid", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
 		op = initEOperation(getReferenceTargetSelector__ValidateTargetClass__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateTargetClass", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
@@ -1353,24 +1327,6 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		initEClass(containerSelectorEClass, ContainerSelector.class, "ContainerSelector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		op = initEOperation(getContainerSelector__ValidateTargetClassMatchesPossibleContainerType__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateTargetClassMatchesPossibleContainerType", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getContainerSelector__ValidateReferenceAttribute__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateReferenceAttribute", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getContainerSelector__ValidateReferenceAttributeIsValid__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateReferenceAttributeIsValid", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType();
@@ -1439,19 +1395,20 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		  (getMappingHint__ValidateOverwritesValidMappingHint__DiagnosticChain_Map(), 
 		   source, 
 		   new String[] {
-			 "body", "if (this.overwrite == null) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\r\tboolean ret = true;\r\n\t\tString message = \"\";\r\n\r\tif (this.eClass() != this.overwrite.eClass()) {\r\n\t\t\tret = false;\r\n\t\t\tmessage = \"MappingHints must only overwrite MappingHints of the same type!\";\r\n\t\t}\r\n\r\tif (((<%pamtram.mapping.MappingHintGroupType%>) this.eContainer()).getExtend().isEmpty()\r\n\t\t\t\t|| ((<%pamtram.mapping.MappingHintGroupType%>) this.eContainer()).getExtend().stream()\r\n\t\t\t\t\t\t.noneMatch(hg -> hg.getMappingHints().contains(this.overwrite))) {\r\n\t\t\tret = false;\r\n\t\t\tmessage = \"The overwritten <%pamtram.mapping.extended.MappingHint%> is not part of a MappingHintGroup that is extended by the HintGroup containing this MappingHint!\";\r\n\t\t}\r\n\r\tif (this instanceof <%pamtram.mapping.extended.AttributeMapping%>\r\n\t\t\t\t&& ((<%pamtram.mapping.extended.AttributeMapping%>) this).getTarget() != ((<%pamtram.mapping.extended.AttributeMapping%>) this.overwrite).getTarget()) {\r\n\t\t\tret = false;\r\n\t\t\tmessage = \"An <%pamtram.mapping.extended.AttributeMapping%> must only overwrite another <%pamtram.mapping.extended.AttributeMapping%> pointing to the same TargetSectionAttribute!\";\r\n\t\t} else if (this instanceof <%pamtram.mapping.extended.CardinalityMapping%>\r\n\t\t\t\t&& ((<%pamtram.mapping.extended.CardinalityMapping%>) this).getTarget() != ((<%pamtram.mapping.extended.CardinalityMapping%>) this.overwrite).getTarget()) {\r\n\t\t\tret = false;\r\n\t\t\tmessage = \"A <%pamtram.mapping.extended.CardinalityMapping%> must only overwrite another <%pamtram.mapping.extended.CardinalityMapping%> pointing to the same TargetSectionClass!\";\r\n\t\t} else if (this instanceof <%pamtram.mapping.extended.ReferenceTargetSelector%> && ((<%pamtram.mapping.extended.ReferenceTargetSelector%>) this)\r\n\t\t\t\t.getAffectedReference() != ((<%pamtram.mapping.extended.ReferenceTargetSelector%>) this.overwrite).getAffectedReference()) {\r\n\t\t\tret = false;\r\n\t\t\tmessage = \"A <%pamtram.mapping.extended.ReferenceTargetSelector%> must only overwrite another <%pamtram.mapping.extended.ReferenceTargetSelector%> pointing to the same TargetSectionReference!\";\r\n\t\t}\r\n\r\tif (!ret && diagnostics != null) {\r\n\t\t\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR, <%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.MAPPING_HINT__VALIDATE_OVERWRITES_VALID_MAPPING_HINT, message,\r\n\t\t\t\t\tnew Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.MAPPING_HINT__OVERWRITE }));\r\n\t\t}\r\n\r\treturn ret;"
+			 "body", "\r\nif (this.overwrite == null) {\r\n\treturn true;\r\n}\r\n\r\nboolean ret = true;\r\nString message = \"\";\r\n\r\nif (this.eClass() != this.overwrite.eClass()) {\r\n\tret = false;\r\n\tmessage = \"MappingHints must only overwrite MappingHints of the same type!\";\r\n}\r\n\r\nif (((<%pamtram.mapping.MappingHintGroupType%>) this.eContainer()).getAllExtend().isEmpty()\r\n\t\t|| ((MappingHintGroupType) this.eContainer()).getAllExtend().stream()\r\n\t\t\t\t.noneMatch(hg -> hg.getAllMappingHints().contains(this.overwrite))) {\r\n\tret = false;\r\n\tmessage = \"The overwritten <%pamtram.mapping.extended.MappingHint%> is not part of a <%pamtram.mapping.MappingHintGroup%> that is extended by the HintGroup containing this MappingHint!\";\r\n}\r\n\r\nif (this instanceof <%pamtram.mapping.extended.AttributeMapping%>\r\n\t\t&& ((AttributeMapping) this).getTarget() != ((AttributeMapping) this.overwrite).getTarget()) {\r\n\tret = false;\r\n\tmessage = \"An AttributeMapping must only overwrite another AttributeMapping pointing to the same TargetSectionAttribute!\";\r\n} else if (this instanceof <%pamtram.mapping.extended.CardinalityMapping%>\r\n\t\t&& ((CardinalityMapping) this).getTarget() != ((CardinalityMapping) this.overwrite).getTarget()) {\r\n\tret = false;\r\n\tmessage = \"A CardinalityMapping must only overwrite another CardinalityMapping pointing to the same TargetSectionClass!\";\r\n} else if (this instanceof <%pamtram.mapping.extended.ReferenceTargetSelector%> && ((ReferenceTargetSelector) this)\r\n\t\t.getAffectedReference() != ((ReferenceTargetSelector) this.overwrite).getAffectedReference()) {\r\n\tret = false;\r\n\tmessage = \"A ReferenceTargetSelector must only overwrite another ReferenceTargetSelector pointing to the same TargetSectionReference!\";\r\n}\r\n\r\nif (!ret && diagnostics != null) {\r\n\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR, <%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\tExtendedValidator.MAPPING_HINT__VALIDATE_OVERWRITES_VALID_MAPPING_HINT, message,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.MAPPING_HINT__OVERWRITE }));\r\n}\r\n\r\nreturn ret;"
 		   });	
 		addAnnotation
 		  (getMappingHint__ValidateConsiderOverwritingHint__DiagnosticChain_Map(), 
 		   source, 
 		   new String[] {
-			 "body", "if (!(this.eContainer instanceof <%pamtram.mapping.MappingHintGroupType%>) || this.overwrite != null) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\r\tList<<%pamtram.mapping.extended.MappingHint%>> hintsOfExtendedHintGroups = ((<%pamtram.mapping.MappingHintGroupType%>) this.eContainer()).getExtend().stream()\r\n\t\t\t\t.flatMap(hg -> hg.getMappingHints().stream()).collect(<%java.util.stream.Collectors%>.toList());\r\n\r\tif (hintsOfExtendedHintGroups.isEmpty()) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\r\tOptional<<%pamtram.mapping.extended.MappingHint%>> hintToConsider = <%java.util.Optional%>.empty();\r\n\r\tif (this instanceof <%pamtram.mapping.extended.AttributeMapping%> && ((<%pamtram.mapping.extended.AttributeMapping%>) this).getTarget() != null) {\r\n\r\t\thintToConsider = hintsOfExtendedHintGroups.stream().filter(h -> h instanceof <%pamtram.mapping.extended.AttributeMapping%>)\r\n\t\t\t\t\t.filter(h -> ((<%pamtram.mapping.extended.AttributeMapping%>) this).getTarget().equals(((<%pamtram.mapping.extended.AttributeMapping%>) h).getTarget()))\r\n\t\t\t\t\t.findAny();\r\n\r\t} else if (this instanceof <%pamtram.mapping.extended.CardinalityMapping%> && ((<%pamtram.mapping.extended.CardinalityMapping%>) this).getTarget() != null) {\r\n\r\t\thintToConsider = hintsOfExtendedHintGroups.stream().filter(h -> h instanceof <%pamtram.mapping.extended.CardinalityMapping%>)\r\n\t\t\t\t\t.filter(h -> ((<%pamtram.mapping.extended.CardinalityMapping%>) this).getTarget().equals(((<%pamtram.mapping.extended.CardinalityMapping%>) h).getTarget()))\r\n\t\t\t\t\t.findAny();\r\n\r\t} else if (this instanceof <%pamtram.mapping.extended.ReferenceTargetSelector%>\r\n\t\t\t\t&& ((<%pamtram.mapping.extended.ReferenceTargetSelector%>) this).getAffectedReference() != null) {\r\n\r\t\thintToConsider = hintsOfExtendedHintGroups.stream().filter(h -> h instanceof <%pamtram.mapping.extended.ReferenceTargetSelector%>)\r\n\t\t\t\t\t.filter(h -> ((<%pamtram.mapping.extended.ReferenceTargetSelector%>) this).getAffectedReference()\r\n\t\t\t\t\t\t\t.equals(((<%pamtram.mapping.extended.ReferenceTargetSelector%>) h).getAffectedReference()))\r\n\t\t\t\t\t.findAny();\r\n\t\t}\r\n\r\tif (!hintToConsider.isPresent()) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\r\tString message = \"The hint \'\" + hintToConsider.get().getName() + \"\' of the extended MappingHintGroup \"\r\n\t\t\t\t+ (hintToConsider.get().eContainer() instanceof <%pamtram.mapping.MappingHintGroupType%>\r\n\t\t\t\t\t\t? \"\'\" + ((<%pamtram.mapping.MappingHintGroupType%>) hintToConsider.get().eContainer()).getName() + \"\' \"\r\n\t\t\t\t\t\t: \"\")\r\n\t\t\t\t+ \"affects the same target element. Consider overwriting this hint instead of providing additional hint values...\";\r\n\r\tif (diagnostics != null) {\r\n\t\t\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.WARNING, <%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.MAPPING_HINT__VALIDATE_CONSIDER_OVERWRITING_HINT, message,\r\n\t\t\t\t\tnew Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.MAPPING_HINT__OVERWRITE }));\r\n\t\t}\r\n\r\treturn false;"
+			 "body", "\r\nif (!(this.eContainer instanceof <%pamtram.mapping.MappingHintGroupType%>) || this.overwrite != null) {\r\n\treturn true;\r\n}\r\n\r\n<%java.util.List%><<%pamtram.mapping.extended.MappingHint%>> hintsOfExtendedHintGroups = ((MappingHintGroupType) this.eContainer()).getAllExtend().stream()\r\n\t\t.flatMap(hg -> hg.getMappingHints().stream()).collect(<%java.util.stream.Collectors%>.toList());\r\n\r\nif (hintsOfExtendedHintGroups.isEmpty()) {\r\n\treturn true;\r\n}\r\n\r\n<%java.util.Optional%><MappingHint> hintToConsider = Optional.empty();\r\n\r\nif (this instanceof <%pamtram.mapping.extended.AttributeMapping%> && ((AttributeMapping) this).getTarget() != null) {\r\n\r\n\thintToConsider = hintsOfExtendedHintGroups.stream().filter(h -> h instanceof AttributeMapping)\r\n\t\t\t.filter(h -> ((AttributeMapping) this).getTarget().equals(((AttributeMapping) h).getTarget()))\r\n\t\t\t.findAny();\r\n\r\n} else if (this instanceof <%pamtram.mapping.extended.CardinalityMapping%> && ((CardinalityMapping) this).getTarget() != null) {\r\n\r\n\thintToConsider = hintsOfExtendedHintGroups.stream().filter(h -> h instanceof CardinalityMapping)\r\n\t\t\t.filter(h -> ((CardinalityMapping) this).getTarget().equals(((CardinalityMapping) h).getTarget()))\r\n\t\t\t.findAny();\r\n\r\n} else if (this instanceof <%pamtram.mapping.extended.ReferenceTargetSelector%>\r\n\t\t&& ((ReferenceTargetSelector) this).getAffectedReference() != null) {\r\n\r\n\thintToConsider = hintsOfExtendedHintGroups.stream().filter(h -> h instanceof ReferenceTargetSelector)\r\n\t\t\t.filter(h -> ((ReferenceTargetSelector) this).getAffectedReference()\r\n\t\t\t\t\t.equals(((ReferenceTargetSelector) h).getAffectedReference()))\r\n\t\t\t.findAny();\r\n}\r\n\r\nif (!hintToConsider.isPresent()) {\r\n\treturn true;\r\n}\r\n\r\nString message = \"The hint \'\" + hintToConsider.get().getName() + \"\' of the extended <%pamtram.mapping.MappingHintGroup%> \"\r\n\t\t+ (hintToConsider.get().eContainer() instanceof MappingHintGroupType\r\n\t\t\t\t? \"\'\" + ((MappingHintGroupType) hintToConsider.get().eContainer()).getName() + \"\' \"\r\n\t\t\t\t: \"\")\r\n\t\t+ \"affects the same target element. Consider overwriting this hint instead of providing additional hint values...\";\r\n\r\nif (diagnostics != null) {\r\n\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.WARNING, <%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\tExtendedValidator.MAPPING_HINT__VALIDATE_CONSIDER_OVERWRITING_HINT, message,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.MAPPING_HINT__OVERWRITE }));\r\n}\r\n\r\nreturn false;"
 		   });	
 		addAnnotation
 		  (getMappingHint_Overwrite(), 
 		   source, 
 		   new String[] {
-			 "documentation", "A MappingHint from an extended MappingHintGroup that shall not be added to this MappingHintGroup but be overwritten instead."
+			 "documentation", "A MappingHint from an extended MappingHintGroup that shall not be added to this MappingHintGroup but be overwritten instead.",
+			 "propertyDescriptor", "// ContainerSelectors will always overwrite extended Selectors so they do not need this descriptor\n//\nif (!(object instanceof <%pamtram.mapping.extended.ContainerSelector%>)) {\n\n\tthis.itemPropertyDescriptors.add(new ItemPropertyDescriptor(\n\t\t\t((<%org.eclipse.emf.edit.provider.ComposeableAdapterFactory%>) this.adapterFactory).getRootAdapterFactory(),\n\t\t\tthis.getResourceLocator(), this.getString(\"_UI_MappingHint_overwrite_feature\"),\n\t\t\tthis.getString(\"_UI_MappingHint_overwrite_description\"),\n\t\t\t<%pamtram.mapping.extended.ExtendedPackage%>.Literals.MAPPING_HINT__OVERWRITE, true, false, true, null,\n\t\t\tthis.getString(\"_UI_ExtendedPropertyCategory\"), null) {\n\n\t\t@Override\n\t\tpublic <%java.util.Collection%><?> getChoiceOfValues(Object object) {\n\n\t\t\t<%pamtram.mapping.extended.MappingHint%> hint = (<%pamtram.mapping.extended.MappingHint%>) object;\n\t\t\tif (!(hint.eContainer() instanceof <%pamtram.mapping.MappingHintGroupType%>)) {\n\t\t\t\treturn new <%java.util.ArrayList%><>();\n\t\t\t}\n\n\t\t\t<%java.util.Set%><<%pamtram.mapping.extended.MappingHint%>> possibleOverwrites = ((<%pamtram.mapping.MappingHintGroupType%>) hint.eContainer()).getExtend()\n\t\t\t\t\t.stream().flatMap(h -> h.getAllMappingHints().stream())\n\t\t\t\t\t.filter(h -> hint.eClass().equals(h.eClass()))\n\t\t\t\t\t.collect(<%java.util.stream.Collectors%>.toCollection(java.util.LinkedHashSet::new));\n\n\t\t\tif (hint instanceof <%pamtram.mapping.extended.AttributeMapping%>) {\n\t\t\t\t<%pamtram.mapping.extended.AttributeMapping%> attributeMapping = (<%pamtram.mapping.extended.AttributeMapping%>) hint;\n\t\t\t\tif (attributeMapping.getTarget() == null) {\n\t\t\t\t\treturn new <%java.util.ArrayList%><>();\n\t\t\t\t} else {\n\t\t\t\t\treturn possibleOverwrites.stream().map(h -> (<%pamtram.mapping.extended.AttributeMapping%>) h)\n\t\t\t\t\t\t\t.filter(am -> attributeMapping.getTarget().equals(am.getTarget()))\n\t\t\t\t\t\t\t.collect(<%java.util.stream.Collectors%>.toList());\n\t\t\t\t}\n\t\t\t} else if (hint instanceof <%pamtram.mapping.extended.CardinalityMapping%>) {\n\t\t\t\t<%pamtram.mapping.extended.CardinalityMapping%> cardinalityMapping = (<%pamtram.mapping.extended.CardinalityMapping%>) hint;\n\t\t\t\tif (cardinalityMapping.getTarget() == null) {\n\t\t\t\t\treturn new <%java.util.ArrayList%><>();\n\t\t\t\t} else {\n\t\t\t\t\treturn possibleOverwrites.stream().map(h -> (<%pamtram.mapping.extended.CardinalityMapping%>) h)\n\t\t\t\t\t\t\t.filter(cm -> cardinalityMapping.getTarget().equals(cm.getTarget()))\n\t\t\t\t\t\t\t.collect(<%java.util.stream.Collectors%>.toList());\n\t\t\t\t}\n\t\t\t} else if (hint instanceof <%pamtram.mapping.extended.ReferenceTargetSelector%>) {\n\t\t\t\t<%pamtram.mapping.extended.ReferenceTargetSelector%> referenceTargetSelector = (<%pamtram.mapping.extended.ReferenceTargetSelector%>) hint;\n\t\t\t\tif (referenceTargetSelector.getAffectedReference() == null) {\n\t\t\t\t\treturn new <%java.util.ArrayList%><>();\n\t\t\t\t} else {\n\t\t\t\t\treturn possibleOverwrites.stream().map(h -> (<%pamtram.mapping.extended.ReferenceTargetSelector%>) h)\n\t\t\t\t\t\t\t.filter(rts -> referenceTargetSelector.getAffectedReference()\n\t\t\t\t\t\t\t\t\t.equals(rts.getAffectedReference()))\n\t\t\t\t\t\t\t.collect(<%java.util.stream.Collectors%>.toList());\n\t\t\t\t}\n\t\t\t} else if (hint instanceof <%pamtram.mapping.extended.ContainerSelector%>) {\n\t\t\t\treturn new <%java.util.ArrayList%><>(possibleOverwrites);\n\t\t\t} else {\n\t\t\t\treturn new <%java.util.ArrayList%><>();\n\t\t\t}\n\t\t}\n\t});\n}"
 		   });	
 		addAnnotation
 		  (expandableHintEClass, 
@@ -1505,7 +1462,7 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		  (getAttributeMapping__ValidateTargetAttributeMatchesSection__DiagnosticChain_Map(), 
 		   source, 
 		   new String[] {
-			 "body", "\r\nif(this.getTarget() == null || !(this.eContainer() instanceof <%pamtram.mapping.MappingHintGroupType%>) || ((MappingHintGroupType) this.eContainer()).getTargetSection() == null) {\r\n\treturn true;\r\n}\r\n\r\nMappingHintGroupType containingHintGroup = ((MappingHintGroupType) this.eContainer());\r\n\r\nboolean result = this.getTarget().getContainingSection() == containingHintGroup.getTargetSection() || containingHintGroup.getTargetSection().getExtend().contains(this.getTarget().getContainingSection());\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The target attribute \'\" + this.getTarget().getName() + \"\' is not part of the target section referenced by parent hint group \" + ((MappingHintGroupType) this.eContainer()).getName() + \"!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tExtendedValidator.ATTRIBUTE_MAPPING__VALIDATE_TARGET_ATTRIBUTE_MATCHES_SECTION,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.ATTRIBUTE_MAPPING__TARGET }));\r\n\r\n}\r\n\r\nreturn result;"
+			 "body", "if(this.getTarget() == null || !(this.eContainer() instanceof <%pamtram.mapping.MappingHintGroupType%>) || ((<%pamtram.mapping.MappingHintGroupType%>) this.eContainer()).getTargetSection() == null) {\r\n\treturn true;\r\n}\r\n\r\n<%pamtram.mapping.MappingHintGroupType%> containingHintGroup = ((<%pamtram.mapping.MappingHintGroupType%>) this.eContainer());\r\n\r\nboolean result = this.getTarget().getContainingSection() == containingHintGroup.getTargetSection() || containingHintGroup.getTargetSection().getAllExtend().contains(this.getTarget().getContainingSection());\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The target attribute \'\" + this.getTarget().getName() + \"\' is not part of the target section referenced by parent hint group \" + ((<%pamtram.mapping.MappingHintGroupType%>) this.eContainer()).getName() + \"!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.ATTRIBUTE_MAPPING__VALIDATE_TARGET_ATTRIBUTE_MATCHES_SECTION,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.ATTRIBUTE_MAPPING__TARGET }));\r\n\r\n}\r\n\r\nreturn result;"
 		   });	
 		addAnnotation
 		  (getAttributeMapping_Target(), 
@@ -1550,16 +1507,16 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 			 "documentation", "A MappingHint that tells the transformation algorithm how determine the cardinality of a TargetSectionClass (how often the Class shall be instantiated) in the course of a transformation.\r\n<br /><br />\r\nThe value is thereby determined based on one of two possibilities:\r\n<br />\r\n(1) Based on the list of specified \'sourceElements\' and an optional (mathematical) \'expression\'.\r\n<br />\r\nIf the expression is not present, the values of all specified source elements are treated as Strings and simply concatenated.\r\n<br />\r\nIf an expression is present, this will be used to calculate the value. The expression may thereby reference the (numeric) values of the specified source elements via their name. For example, if a source element named \'x\' is specified, a valid expression to double the value of this element would be \"2*x\".\r\n<br />\r\n(1) Base on the cardinality of the specified \'source\'.\r\n<br /><br />\r\nNote: Only one of \'sourceElements\' or \'source\' may be specified!"
 		   });	
 		addAnnotation
-		  (getCardinalityMapping__ValidateSourceElementMatchesSection__DiagnosticChain_Map(), 
+		  (getCardinalityMapping__ValidateSourceElementMatchesSectionOrContainedSection__DiagnosticChain_Map(), 
 		   source, 
 		   new String[] {
-			 "body", "\r\nif(this.getSource() == null || !(this.eContainer().eContainer() instanceof <%pamtram.mapping.Mapping%>) || ((Mapping) this.eContainer().eContainer()).getSourceSection() == null) {\r\n\treturn true;\r\n}\r\n\r\nboolean result = this.getSource().getContainingSection() == ((Mapping) this.eContainer().eContainer()).getSourceSection();\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The source element \'\" + this.getSource().getName() + \"\' is not part of the source section referenced by parent mapping \'\" + ((pamtram.mapping.Mapping) this.eContainer().eContainer()).getName() + \"\'!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tExtendedValidator.CARDINALITY_MAPPING__VALIDATE_SOURCE_ELEMENT_MATCHES_SECTION,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.CARDINALITY_MAPPING__SOURCE }));\r\n\r\n}\r\n\r\nreturn result;"
+			 "body", "\r\nif (this.getSource() == null || !(this.eContainer().eContainer() instanceof <%pamtram.mapping.Mapping%>)\r\n\t\t|| ((Mapping) this.eContainer().eContainer()).getSourceSection() == null) {\r\n\treturn true;\r\n}\r\n\r\nMapping mapping = (Mapping) this.eContainer().eContainer();\r\n\r\nboolean result = false;\r\n\r\npamtram.structure.generic.Class<?, ?, ?, ?> relevantClass = mapping.getSourceSection();\r\n\r\n// iterate over all elements and return the attributes as possible options\r\n//\r\n<%java.util.Set%><pamtram.structure.generic.Class<?, ?, ?, ?>> scanned = new <%java.util.HashSet%><>();\r\n<%java.util.List%><pamtram.structure.generic.Class<?, ?, ?, ?>> sectionsToScan = new <%java.util.ArrayList%><>();\r\nsectionsToScan.add(relevantClass);\r\n\r\n// also regard abstract sections that this extends\r\nif (relevantClass instanceof <%pamtram.structure.generic.Section%>) {\r\n\tsectionsToScan.addAll(((Section<?, ?, ?, ?>) relevantClass).getAllExtend());\r\n}\r\n\r\nwhile (!sectionsToScan.isEmpty()) {\r\n\tpamtram.structure.generic.Class<?, ?, ?, ?> classToScan = sectionsToScan.remove(0);\r\n\tscanned.add(classToScan);\r\n\r\n\t<%java.util.Iterator%><<%org.eclipse.emf.ecore.EObject%>> it = classToScan.eAllContents();\r\n\twhile (it.hasNext()) {\r\n\t\tEObject next = it.next();\r\n\t\tif (this.getSource().equals(next)) {\r\n\t\t\tresult = true;\r\n\t\t\tbreak;\r\n\t\t} else if (next instanceof <%pamtram.structure.generic.CrossReference%>) {\r\n\t\t\tList<<%pamtram.structure.source.SourceSectionClass%>> vals = new ArrayList<>();\r\n\t\t\tvals.addAll(((CrossReference) next).getValue());\r\n\t\t\tvals.removeAll(scanned);\r\n\t\t\tsectionsToScan.addAll(vals);\r\n\t\t}\r\n\t}\r\n}\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The source element \'\" + this.getSource().getName()\r\n\t\t\t+ \"\' is not part of the source section referenced by parent mapping \'\" + mapping.getName() + \"\'!\";\r\n\r\n\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR, <%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\tExtendedValidator.CARDINALITY_MAPPING__VALIDATE_SOURCE_ELEMENT_MATCHES_SECTION_OR_CONTAINED_SECTION,\r\n\t\t\terrorMessage, new Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.CARDINALITY_MAPPING__SOURCE }));\r\n\r\n}\r\n\r\nreturn result;"
 		   });	
 		addAnnotation
 		  (getCardinalityMapping__ValidateTargetClassMatchesSection__DiagnosticChain_Map(), 
 		   source, 
 		   new String[] {
-			 "body", "\r\nif(this.getTarget() == null || !(this.eContainer() instanceof <%pamtram.mapping.MappingHintGroupType%>) || ((MappingHintGroupType) this.eContainer()).getTargetSection() == null) {\r\n\treturn true;\r\n}\r\n\r\nboolean result = this.getTarget().getContainingSection() == ((MappingHintGroupType) this.eContainer()).getTargetSection();\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The target class \'\" + this.getTarget().getName() + \"\' is not part of the target section referenced by parent hint group \'\" + ((MappingHintGroupType) this.eContainer()).getName() + \"\'!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tExtendedValidator.CARDINALITY_MAPPING__VALIDATE_TARGET_CLASS_MATCHES_SECTION,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.CARDINALITY_MAPPING__TARGET }));\r\n\r\n}\r\n\r\nreturn result;"
+			 "body", "if (this.getTarget() == null || !(this.eContainer() instanceof <%pamtram.mapping.MappingHintGroupType%>)\r\n\t\t\t\t|| ((<%pamtram.mapping.MappingHintGroupType%>) this.eContainer()).getTargetSection() == null) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\t\t\r\n\t\t<%pamtram.mapping.MappingHintGroupType%> mappingHintGroup = (<%pamtram.mapping.MappingHintGroupType%>) this.eContainer();\r\n\r\tboolean result = this.getTarget().getContainingSection() == mappingHintGroup\r\n\t\t\t\t.getTargetSection() || mappingHintGroup.getAllExtend().contains(this.getTarget().getContainingSection());\r\n\r\tif (!result && diagnostics != null) {\r\n\r\t\tString errorMessage = \"The target class \'\" + this.getTarget().getName()\r\n\t\t\t\t\t+ \"\' is not part of the target section referenced by parent hint group \'\"\r\n\t\t\t\t\t+ mappingHintGroup.getName() + \"\'!\";\r\n\r\t\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR, <%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.CARDINALITY_MAPPING__VALIDATE_TARGET_CLASS_MATCHES_SECTION, errorMessage,\r\n\t\t\t\t\tnew Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.CARDINALITY_MAPPING__TARGET }));\r\n\r\t}\r\n\r\treturn result;"
 		   });	
 		addAnnotation
 		  (getCardinalityMapping__ValidateSourceClassIsVariableCardinality__DiagnosticChain_Map(), 
@@ -1592,12 +1549,6 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 			 "body", "\r\nboolean result = !this.getSourceElements().isEmpty() || this.expression.isEmpty();\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"A CardinalityMapping must only specify an \'expression\' if it also specifies a set of \'sourceElements\'!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tExtendedValidator.CARDINALITY_MAPPING__VALIDATE_EXPRESSION_ONLY_FOR_SOURCE_ELEMENTS,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.CARDINALITY_MAPPING }));\r\n\r\n}\r\n\r\nreturn result;"
 		   });	
 		addAnnotation
-		  (getCardinalityMapping__ValidateModifiersOnlyForSourceElements__DiagnosticChain_Map(), 
-		   source, 
-		   new String[] {
-			 "body", "\r\nboolean result = !this.getSourceElements().isEmpty() || this.getModifiers().isEmpty();\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"A CardinalityMapping must only specify \'modifiers\' if it also specifies a set of \'sourceElements\'!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tExtendedValidator.CARDINALITY_MAPPING__VALIDATE_MODIFIERS_ONLY_FOR_SOURCE_ELEMENTS,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.CARDINALITY_MAPPING }));\r\n\r\n}\r\n\r\nreturn result;"
-		   });	
-		addAnnotation
 		  (getCardinalityMapping__GetLocalSourceElements(), 
 		   source, 
 		   new String[] {
@@ -1608,6 +1559,12 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		   source, 
 		   new String[] {
 			 "body", "return new <%org.eclipse.emf.common.util.BasicEList%><>(this.getSourceElements().stream().filter(s -> s instanceof CardinalityMappingExternalSourceElement).map(s -> (CardinalityMappingExternalSourceElement) s).collect(<%java.util.stream.Collectors%>.toList()));"
+		   });	
+		addAnnotation
+		  (getCardinalityMapping__ValidateFollowExternalReferencesTrueIfRequired__DiagnosticChain_Map(), 
+		   source, 
+		   new String[] {
+			 "body", "\r\n<%pamtram.mapping.Mapping%> mapping = (Mapping) <%de.tud.et.ifa.agtele.emf.AgteleEcoreUtil%>.getAncestorOfKind(this, <%pamtram.mapping.MappingPackage%>.Literals.MAPPING);\r\n\r\nif (this.source == null || mapping.getSourceSection() == null || !this.getReferenceMatchSpec().isEmpty()) {\r\n\treturn true;\r\n}\r\n\r\n<%pamtram.structure.source.SourceSection%> sourceSection = mapping.getSourceSection();\r\n\r\nboolean result = true;\r\nString errorMessage = \"\";\r\n\r\nif (!this.isFollowExternalReferences() && (!sourceSection.equals(this.source.getContainingSection())\r\n\t\t|| !sourceSection.getAllExtend().contains(this.source.getContainingSection()))) {\r\n\r\n\tresult = false;\r\n\terrorMessage = \"The source Attribute is not part of the SourceSection specified by this Mapping. This is not allowed unless \'followExternalReferences\' is set to \'true\'.\";\r\n\r\n}\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.WARNING, <%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\tExtendedValidator.CARDINALITY_MAPPING__VALIDATE_FOLLOW_EXTERNAL_REFERENCES_TRUE_IF_REQUIRED,\r\n\t\t\terrorMessage, new Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.CARDINALITY_MAPPING__SOURCE }));\r\n}\r\n\r\nreturn result;"
 		   });	
 		addAnnotation
 		  (getCardinalityMapping_Source(), 
@@ -1667,13 +1624,7 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		  (getReferenceTargetSelector__ValidateAffectedReferenceMatchesSection__DiagnosticChain_Map(), 
 		   source, 
 		   new String[] {
-			 "body", "\r\nif(this.getAffectedReference() == null) {\r\n\treturn true;\r\n}\r\n\r\n<%pamtram.structure.target.TargetSection%> targetSection = this.eContainer() instanceof <%pamtram.mapping.MappingHintGroupType%> ? ((MappingHintGroupType) this.eContainer()).getTargetSection() : ((<%pamtram.mapping.MappingHintGroupImporter%>) this.eContainer()).getHintGroup().getTargetSection();\r\n\r\nboolean result = targetSection == null ? true : this.getAffectedReference().getContainingSection() == targetSection || targetSection.getExtend().contains(this.getAffectedReference().getContainingSection());\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString hintGroupName = this.eContainer() instanceof MappingHintGroupType ? ((MappingHintGroupType) this.eContainer()).getName() : ((MappingHintGroupImporter) this.eContainer()).getHintGroup().getName();\r\n\tString errorMessage = \"The affected reference \'\" + this.getAffectedReference().getName() + \"\' is not part of the target section referenced by parent hint group \'\" + hintGroupName + \"\'!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tExtendedValidator.REFERENCE_TARGET_SELECTOR__VALIDATE_AFFECTED_REFERENCE_MATCHES_SECTION,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE }));\r\n\r\n}\r\n\r\nreturn result;"
-		   });	
-		addAnnotation
-		  (getReferenceTargetSelector__ValidateReferenceAttributeIsValid__DiagnosticChain_Map(), 
-		   source, 
-		   new String[] {
-			 "body", "if (this.referenceAttribute == null || this.targetClass == null\r\n\t\t\t\t|| this.targetClass.getContainingSection() == null) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\r\t// If a \'targetClass\' has already been set for this \'TargetInstanceSelector\', allow only \'referenceAttributes\'\r\n\t\t// that are part of the same <%pamtram.structure.target.TargetSection%> as the specified \'targetClass\' (or of one of the extended\r\n\t\t// sections).\r\n\t\t//\r\n\r\t<%pamtram.structure.target.TargetSection%> section = this.targetClass.getContainingSection();\r\n\r\tList<<%pamtram.structure.target.TargetSection%>> allowedSections = new ArrayList<>(<%java.util.Arrays%>.asList(section));\r\n\t\tallowedSections.addAll(section.getAllExtend());\r\n\r\tboolean result = allowedSections.contains(this.referenceAttribute.getContainingSection());\r\n\r\tif (!result && diagnostics != null) {\r\n\r\t\tString errorMessage = \"The \'referenceAttribute\' must be contained in the same <%pamtram.structure.target.TargetSection%> (or an extended section) as the \'targetClass\'!\";\r\n\r\t\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR, <%pamtram.structure.util.StructureValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\t<%pamtram.structure.util.StructureValidator%>.TARGET_INSTANCE_SELECTOR__VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID, errorMessage,\r\n\t\t\t\t\tnew Object[] { this, <%pamtram.structure.StructurePackage%>.Literals.TARGET_INSTANCE_SELECTOR__REFERENCE_ATTRIBUTE }));\r\n\r\t}\r\n\r\treturn result;"
+			 "body", "if(this.getAffectedReference() == null) {\r\n\treturn true;\r\n}\r\n\r\n<%pamtram.structure.target.TargetSection%> targetSection = this.eContainer() instanceof <%pamtram.mapping.MappingHintGroupType%> ? ((<%pamtram.mapping.MappingHintGroupType%>) this.eContainer()).getTargetSection() : ((<%pamtram.mapping.MappingHintGroupImporter%>) this.eContainer()).getHintGroup().getTargetSection();\r\n\r\nboolean result = targetSection == null ? true : this.getAffectedReference().getContainingSection() == targetSection || targetSection.getAllExtend().contains(this.getAffectedReference().getContainingSection());\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString hintGroupName = this.eContainer() instanceof <%pamtram.mapping.MappingHintGroupType%> ? ((<%pamtram.mapping.MappingHintGroupType%>) this.eContainer()).getName() : ((<%pamtram.mapping.MappingHintGroupImporter%>) this.eContainer()).getHintGroup().getName();\r\n\tString errorMessage = \"The affected reference \'\" + this.getAffectedReference().getName() + \"\' is not part of the target section referenced by parent hint group \'\" + hintGroupName + \"\'!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.REFERENCE_TARGET_SELECTOR__VALIDATE_AFFECTED_REFERENCE_MATCHES_SECTION,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.mapping.extended.ExtendedPackage%>.Literals.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE }));\r\n\r\n}\r\n\r\nreturn result;"
 		   });	
 		addAnnotation
 		  (getReferenceTargetSelector__ValidateTargetClass__DiagnosticChain_Map(), 
@@ -1685,7 +1636,8 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		  (getReferenceTargetSelector_AffectedReference(), 
 		   source, 
 		   new String[] {
-			 "documentation", "The TargetSectionCrossReference whose target values are determined by this ReferenceTargetSelector."
+			 "documentation", "The TargetSectionCrossReference whose target values are determined by this ReferenceTargetSelector.",
+			 "propertyDescriptor", "this.itemPropertyDescriptors.add(new ItemPropertyDescriptor(\n\t\t((<%org.eclipse.emf.edit.provider.ComposeableAdapterFactory%>) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),\n\t\tthis.getString(\"_UI_ReferenceTargetSelector_affectedReference_feature\"),\n\t\tthis.getString(\"_UI_ReferenceTargetSelector_affectedReference_description\"),\n\t\t<%pamtram.mapping.extended.ExtendedPackage%>.Literals.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE, true, false, true, null,\n\t\tthis.getString(\"_UI_BasicPropertyCategory\"), null) {\n\n\t@Override\n\tpublic <%java.util.Collection%><?> getChoiceOfValues(Object object) {\n\n\t\t<%pamtram.structure.target.TargetSection%> target;\n\t\tif (((<%pamtram.mapping.extended.ReferenceTargetSelector%>) object).eContainer() instanceof <%pamtram.mapping.MappingHintGroupType%>) {\n\t\t\ttarget = ((<%pamtram.mapping.MappingHintGroupType%>) ((<%pamtram.mapping.extended.ReferenceTargetSelector%>) object).eContainer())\n\t\t\t\t\t.getTargetSection();\n\t\t} else {\n\t\t\ttarget = ((<%pamtram.mapping.MappingHintGroupImporter%>) ((<%pamtram.mapping.extended.ReferenceTargetSelector%>) object).eContainer()).getHintGroup()\n\t\t\t\t\t.getTargetSection();\n\t\t}\n\n\t\treturn <%java.util.stream.Stream%>.concat(<%java.util.Arrays%>.asList(target).stream(), target.getAllExtend().stream()).flatMap(t -> {\n\n\t\t\t<%java.util.List%><<%org.eclipse.emf.ecore.EObject%>> vals = new <%java.util.ArrayList%><>();\n\t\t\torg.eclipse.emf.common.util.TreeIterator<<%org.eclipse.emf.ecore.EObject%>> it = t.eAllContents();\n\n\t\t\twhile (it.hasNext()) {\n\t\t\t\t<%org.eclipse.emf.ecore.EObject%> next = it.next();\n\t\t\t\tif (next instanceof pamtram.structure.target.TargetSectionCrossReference) {\n\t\t\t\t\tvals.add(next);\n\t\t\t\t}\n\t\t\t}\n\n\t\t\treturn vals.stream();\n\t\t}).collect(<%java.util.stream.Collectors%>.toList());\n\n\t}\n\n});"
 		   });	
 		addAnnotation
 		  (containerSelectorEClass, 
@@ -1697,19 +1649,7 @@ public class ExtendedPackageImpl extends EPackageImpl implements ExtendedPackage
 		  (getContainerSelector__ValidateTargetClassMatchesPossibleContainerType__DiagnosticChain_Map(), 
 		   source, 
 		   new String[] {
-			 "body", "if (!(this.eContainer() instanceof <%pamtram.mapping.MappingHintGroupType%>) || this.getTargetClass() == null) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\r\t<%pamtram.structure.target.TargetSection%> targetSection = ((<%pamtram.mapping.MappingHintGroupType%>) this.eContainer()).getTargetSection();\r\n\r\tboolean result = targetSection == null || targetSection.getEClass() == null ? true\r\n\t\t\t\t: this.getTargetClass().getEClass().getEAllContainments().parallelStream()\r\n\t\t\t\t\t\t.anyMatch(r -> r.getEReferenceType().isSuperTypeOf(targetSection.getEClass()));\r\n\r\tif (!result && diagnostics != null) {\r\n\r\t\tString errorMessage = \"The type of the parent hint group\'s target section (\'\"\r\n\t\t\t\t\t+ targetSection.getEClass().getName()\r\n\t\t\t\t\t+ \"\') cannot be connected to (contained in) the specified target class (\'\"\r\n\t\t\t\t\t+ this.getTargetClass().getName() + \"\')!\";\r\n\r\t\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR, <%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.CONTAINER_SELECTOR__VALIDATE_TARGET_CLASS_MATCHES_POSSIBLE_CONTAINER_TYPE,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\t\t\tnew Object[] { this, <%pamtram.structure.StructurePackage%>.Literals.TARGET_INSTANCE_SELECTOR__TARGET_CLASS }));\r\n\r\t}\r\n\r\treturn result;"
-		   });	
-		addAnnotation
-		  (getContainerSelector__ValidateReferenceAttribute__DiagnosticChain_Map(), 
-		   source, 
-		   new String[] {
-			 "body", "if (!(this.eContainer() instanceof <%pamtram.mapping.MappingHintGroupType%>) || this.getTargetClass() == null) {\r\n\treturn true;\r\n}\r\n\r\n<%pamtram.structure.target.TargetSection%> targetSection = ((<%pamtram.mapping.MappingHintGroupType%>) this.eContainer()).getTargetSection();\r\nboolean result = targetSection == null || targetSection.getEClass() == null ? true\r\n\t\t: this.getTargetClass().getEClass().getEAllContainments().parallelStream()\r\n\t\t\t\t.anyMatch(r -> r.getEReferenceType().isSuperTypeOf(targetSection.getEClass()));\r\nif (!result && diagnostics != null) {\r\n\tString errorMessage = \"The type of the parent hint group\'s target section (\'\"\r\n\t\t\t+ targetSection.getEClass().getName()\r\n\t\t\t+ \"\') cannot be connected to (contained in) the specified target class (\'\"\r\n\t\t\t+ this.getTargetClass().getName() + \"\')!\";\r\n\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR, <%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.CONTAINER_SELECTOR__VALIDATE_TARGET_CLASS_MATCHES_POSSIBLE_CONTAINER_TYPE,\r\n\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.StructurePackage%>.Literals.TARGET_INSTANCE_SELECTOR__TARGET_CLASS }));\r\n\r}\r\n\r\r\nreturn result;"
-		   });	
-		addAnnotation
-		  (getContainerSelector__ValidateReferenceAttributeIsValid__DiagnosticChain_Map(), 
-		   source, 
-		   new String[] {
-			 "body", "if (this.referenceAttribute == null || this.targetClass == null\r\n\t\t\t\t|| this.targetClass.getContainingSection() == null) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\r\t// If a \'targetClass\' has already been set for this \'TargetInstanceSelector\', allow only \'referenceAttributes\'\r\n\t\t// that are part of the same <%pamtram.structure.target.TargetSection%> as the specified \'targetClass\' (or of one of the extended\r\n\t\t// sections).\r\n\t\t//\r\n\r\t<%pamtram.structure.target.TargetSection%> section = this.targetClass.getContainingSection();\r\n\r\tList<<%pamtram.structure.target.TargetSection%>> allowedSections = new ArrayList<>(<%java.util.Arrays%>.asList(section));\r\n\t\tallowedSections.addAll(section.getAllExtend());\r\n\r\tboolean result = allowedSections.contains(this.referenceAttribute.getContainingSection());\r\n\r\tif (!result && diagnostics != null) {\r\n\r\t\tString errorMessage = \"The \'referenceAttribute\' must be contained in the same <%pamtram.structure.target.TargetSection%> (or an extended section) as the \'targetClass\'!\";\r\n\r\t\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR, <%pamtram.structure.util.StructureValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\t<%pamtram.structure.util.StructureValidator%>.TARGET_INSTANCE_SELECTOR__VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID, errorMessage,\r\n\t\t\t\t\tnew Object[] { this, <%pamtram.structure.StructurePackage%>.Literals.TARGET_INSTANCE_SELECTOR__REFERENCE_ATTRIBUTE }));\r\n\r\t}\r\n\r\treturn result;"
+			 "body", "if (!(this.eContainer() instanceof <%pamtram.mapping.MappingHintGroupType%>) || this.getTargetClass() == null) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\r\t<%pamtram.structure.target.TargetSection%> targetSection = ((<%pamtram.mapping.MappingHintGroupType%>) this.eContainer()).getTargetSection();\r\n\r\tif (targetSection == null || targetSection.getEClass() == null) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\r\tboolean result = this.getTargetClass().getEClass().getEAllContainments().parallelStream()\r\n\t\t\t\t.anyMatch(r -> r.getEReferenceType().isSuperTypeOf(targetSection.getEClass()));\r\n\r\tif (!result && diagnostics != null) {\r\n\r\t\tint severity = <%org.eclipse.emf.common.util.Diagnostic%>.ERROR;\r\n\t\t\tString errorMessage = \"The type of the parent hint group\'s target section (\'\"\r\n\t\t\t\t\t+ targetSection.getEClass().getName()\r\n\t\t\t\t\t+ \"\') cannot be connected to (contained in) the specified target class (\'\"\r\n\t\t\t\t\t+ this.getTargetClass().getName() + \"\')!\";\r\n\r\t\t// If the <%pamtram.structure.target.TargetSection%> is abstract, we need to check if there are some concrete sub-Sections that may act\r\n\t\t\t// as container\r\n\t\t\t//\r\n\t\t\tif (this.getTargetClass().getContainingSection().isAbstract()) {\r\n\r\t\t\tList<<%pamtram.structure.target.TargetSection%>> extendingSections = <%org.eclipse.emf.ecore.util.EcoreUtil%>.UsageCrossReferencer\r\n\t\t\t\t\t\t.find(this.getTargetClass().getContainingSection(), this.eResource().getResourceSet())\r\n\t\t\t\t\t\t.parallelStream()\r\n\t\t\t\t\t\t.filter(s -> pamtram.structure.generic.GenericPackage.Literals.SECTION__EXTEND.equals(s.getEStructuralFeature()))\r\n\t\t\t\t\t\t.map(s -> (<%pamtram.structure.target.TargetSection%>) s.getEObject()).collect(<%java.util.stream.Collectors%>.toList());\r\n\r\t\t\tif (extendingSections.stream()\r\n\t\t\t\t\t\t.anyMatch(concreteSection -> concreteSection.getEClass().getEAllContainments().parallelStream()\r\n\t\t\t\t\t\t\t\t.anyMatch(r -> r.getEReferenceType().isSuperTypeOf(targetSection.getEClass())))) {\r\n\t\t\t\t\tseverity = <%org.eclipse.emf.common.util.Diagnostic%>.WARNING;\r\n\t\t\t\t\terrorMessage = \"The type of the parent hint group\'s target section (\'\"\r\n\t\t\t\t\t\t\t+ targetSection.getEClass().getName()\r\n\t\t\t\t\t\t\t+ \"\') cannot be connected to (contained in) the specified target class (\'\"\r\n\t\t\t\t\t\t\t+ this.getTargetClass().getName()\r\n\t\t\t\t\t\t\t+ \"\'). However, there are some concrete sub-classes that are valid containers and will be used instead!\";\r\n\t\t\t\t}\r\n\t\t\t}\r\n\r\t\tdiagnostics.add(new BasicDiagnostic(severity, <%pamtram.mapping.extended.util.ExtendedValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\t<%pamtram.mapping.extended.util.ExtendedValidator%>.CONTAINER_SELECTOR__VALIDATE_TARGET_CLASS_MATCHES_POSSIBLE_CONTAINER_TYPE,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\t\t\tnew Object[] { this, <%pamtram.structure.StructurePackage%>.Literals.TARGET_INSTANCE_SELECTOR__TARGET_CLASS }));\r\n\r\t}\r\n\r\treturn result;"
 		   });	
 		addAnnotation
 		  (mappedAttributeValueExpanderEClass, 

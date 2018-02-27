@@ -1,12 +1,15 @@
 package de.mfreund.gentrans.transformation.resolving.wizards;
 
+import java.util.Optional;
+
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Text;
 
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
@@ -21,47 +24,40 @@ public class ValueSpecificationDialog extends AbstractDialog {
 	/**
 	 * The value entered by the user.
 	 */
-	private String retValue;
+	protected String retValue;
 
 	/**
-	 * Create the dialog.
-	 *
-	 * @param message
-	 *            The message that shall be displayed in the dialog.
+	 * The data type of the value to enter.
 	 */
-	public ValueSpecificationDialog(final String message) {
-
-		super(message);
-	}
+	protected EDataType dataType;
 
 	/**
 	 * Create the dialog.
 	 *
 	 * @param message
 	 *            The message that shall be displayed in the dialog.
+	 * @param dataType
+	 *            The data type of the value to enter.
 	 * @param enhanceMappingModelListener
-	 *            A {@link SelectionListener2} that will be called when the {@link #enhanceMappingModelButton} is
-	 *            clicked.
+	 *            An optional {@link SelectionListener2} that will be called when the <em>EnhanceMappingModelButton</em>
+	 *            is clicked. If no listener is given, the button will be grayed out.
 	 */
-	public ValueSpecificationDialog(final String message, final SelectionListener2 enhanceMappingModelListener) {
+	public ValueSpecificationDialog(String message, EDataType dataType,
+			Optional<SelectionListener2> enhanceMappingModelListener) {
 
 		super(message, enhanceMappingModelListener);
+		this.dataType = dataType;
 	}
 
 	@Override
-	protected void createInnerContents(Shell parent) {
+	protected void createInnerContents(Composite container) {
 
-		// Create the composite that allows to enter a value
-		//
-		Composite valueComposite = new Composite(this.shell, SWT.NONE);
-		valueComposite.setLayout(new GridLayout(2, false));
-		valueComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
+		Group valueGroup = new Group(container, SWT.NONE);
+		GridDataFactory.fillDefaults().grab(true, true).minSize(200, 200).applyTo(valueGroup);
+		valueGroup.setText("Value (DataType: '" + this.dataType.getName() + "'):");
+		GridLayoutFactory.fillDefaults().margins(5, 5).applyTo(valueGroup);
 
-		Label lblValue = new Label(valueComposite, SWT.NONE);
-		lblValue.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
-		lblValue.setText("Value:");
-
-		Text textValue = new Text(valueComposite, SWT.BORDER);
+		Text textValue = new Text(valueGroup, SWT.BORDER);
 		textValue.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		textValue.addModifyListener((ModifyEvent e) -> this.retValue = textValue.getText());
 

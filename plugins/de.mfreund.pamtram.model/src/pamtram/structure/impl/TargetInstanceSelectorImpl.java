@@ -82,7 +82,8 @@ public class TargetInstanceSelectorImpl extends InstanceSelectorImpl implements 
 	 */
 	@Override
 	public TargetSectionAttribute getReferenceAttribute() {
-		if (referenceAttribute != null && referenceAttribute.eIsProxy()) {
+	
+		  if (referenceAttribute != null && referenceAttribute.eIsProxy()) {
 			InternalEObject oldReferenceAttribute = (InternalEObject)referenceAttribute;
 			referenceAttribute = (TargetSectionAttribute)eResolveProxy(oldReferenceAttribute);
 			if (referenceAttribute != oldReferenceAttribute) {
@@ -107,10 +108,12 @@ public class TargetInstanceSelectorImpl extends InstanceSelectorImpl implements 
 	 */
 	@Override
 	public void setReferenceAttribute(TargetSectionAttribute newReferenceAttribute) {
+	
 		TargetSectionAttribute oldReferenceAttribute = referenceAttribute;
 		referenceAttribute = newReferenceAttribute;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.TARGET_INSTANCE_SELECTOR__REFERENCE_ATTRIBUTE, oldReferenceAttribute, referenceAttribute));
+	
 	}
 
 	/**
@@ -119,7 +122,8 @@ public class TargetInstanceSelectorImpl extends InstanceSelectorImpl implements 
 	 */
 	@Override
 	public TargetSectionClass getTargetClass() {
-		if (targetClass != null && targetClass.eIsProxy()) {
+	
+		  if (targetClass != null && targetClass.eIsProxy()) {
 			InternalEObject oldTargetClass = (InternalEObject)targetClass;
 			targetClass = (TargetSectionClass)eResolveProxy(oldTargetClass);
 			if (targetClass != oldTargetClass) {
@@ -144,10 +148,12 @@ public class TargetInstanceSelectorImpl extends InstanceSelectorImpl implements 
 	 */
 	@Override
 	public void setTargetClass(TargetSectionClass newTargetClass) {
+	
 		TargetSectionClass oldTargetClass = targetClass;
 		targetClass = newTargetClass;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, StructurePackage.TARGET_INSTANCE_SELECTOR__TARGET_CLASS, oldTargetClass, targetClass));
+	
 	}
 
 	/**
@@ -183,7 +189,7 @@ public class TargetInstanceSelectorImpl extends InstanceSelectorImpl implements 
 		
 			}
 		
-			return result;
+			return result;	
 	}
 
 	/**

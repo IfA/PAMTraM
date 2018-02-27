@@ -2,31 +2,38 @@ package de.mfreund.gentrans.transformation.registries;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.ExtendedMetaData;
 
+import de.mfreund.gentrans.transformation.core.CancelableTransformationAsset;
+import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
 import de.mfreund.gentrans.transformation.library.LibraryEntryInstantiator;
-import de.mfreund.gentrans.transformation.util.CancelableElement;
 import de.tud.et.ifa.agtele.emf.EPackageHelper;
+import pamtram.TargetSectionModel;
 import pamtram.mapping.InstantiableMappingHintGroup;
+import pamtram.structure.generic.Section;
 import pamtram.structure.library.LibraryEntry;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionClass;
+import pamtram.util.ExtendedMetaDataUtil;
 
 /**
  * Registry for instances of targetMetamodelSections and certain structural features of the target MetaModel
@@ -35,7 +42,7 @@ import pamtram.structure.target.TargetSectionClass;
  * @version 1.0
  *
  */
-public class TargetSectionRegistry extends CancelableElement {
+public class TargetSectionRegistry extends CancelableTransformationAsset {
 
 	/**
 	 * Attribute value registry, needed when applying model connection hints
@@ -89,22 +96,19 @@ public class TargetSectionRegistry extends CancelableElement {
 	 */
 	private final Map<EReference, Set<EClass>> containmentReferenceSourcesRegistry;
 
-	/**
-	 * The {@link Logger} that shall be used to print messages.
-	 */
-	private final Logger logger;
+	private final List<EClass> classesWithAnyContent;
 
 	/**
-	 * This creates an instance.
+	 * This creates an instance for multiple target meta-models.
 	 *
-	 * @param logger
-	 *            The {@link Logger} that shall be used to print messages.
-	 * @param attrValRegistry
-	 *            The {@link AttributeValueRegistry} that keeps track of already used values for target attributes.
+	 * @param assetManager
+	 *            The {@link TransformationAssetManager} providing access to the various other assets used in the
+	 *            current transformation instance.
 	 */
-	private TargetSectionRegistry(final Logger logger, final AttributeValueRegistry attrValRegistry) {
+	public TargetSectionRegistry(TransformationAssetManager assetManager) {
 
-		this.logger = logger;
+		super(assetManager);
+
 		this.targetClassInstanceRegistry = new LinkedHashMap<>();
 		this.eObjectToEObjectWrapperMap = new HashMap<>();
 		this.targetClassInstanceByHintGroupRegistry = new LinkedHashMap<>();
@@ -113,64 +117,15 @@ public class TargetSectionRegistry extends CancelableElement {
 		this.possibleConnectionsRegistry = new LinkedHashMap<>();
 		this.targetClassReferencesRegistry = new LinkedHashMap<>(); // ==refsToThis
 		this.containmentReferenceSourcesRegistry = new LinkedHashMap<>(); // ==sources
-		this.attrValRegistry = attrValRegistry;
+		this.attrValRegistry = new AttributeValueRegistry();
 		this.libraryEntryRegistry = new LibraryEntryRegistry();
-		this.canceled = false;
-	}
+		this.classesWithAnyContent = new ArrayList<>();
 
-	/**
-	 * This creates an instance for a single target meta-model.
-	 *
-	 * @param logger
-	 *            The {@link Logger} that shall be used to print messages.
-	 * @param attrValRegistry
-	 *            The {@link AttributeValueRegistry} that keeps track of already used values for target attributes.
-	 * @param targetMetaModel
-	 *            The {@link EPackage} representing the target meta-model.
-	 * @deprecated use {@link #TargetSectionRegistry(Logger, Set)} instead.
-	 */
-	@Deprecated
-	public TargetSectionRegistry(final Logger logger, final AttributeValueRegistry attrValRegistry,
-			final EPackage targetMetaModel) {
+		Set<EPackage> targetMetaModels = new LinkedHashSet<>(assetManager.getTransformationConfig().getPamtramModels()
+				.stream().flatMap(p -> p.getTargetSectionModels().stream()).map(TargetSectionModel::getMetaModelPackage)
+				.collect(Collectors.toList()));
 
-		this(logger, attrValRegistry);
-
-		this.analyseTargetMetaModel(targetMetaModel);
-	}
-
-	/**
-	 * This creates an instance for multiple target meta-models.
-	 *
-	 * @param logger
-	 *            The {@link Logger} that shall be used to print messages.
-	 * @param attrValRegistry
-	 *            The {@link AttributeValueRegistry} that keeps track of already used values for target attributes.
-	 * @param targetMetaModels
-	 *            The list of {@link EPackage EPackages} representing the target meta-models.
-	 * @deprecated use {@link #TargetSectionRegistry(Logger, Set)} instead.
-	 */
-	@Deprecated
-	public TargetSectionRegistry(final Logger logger, final AttributeValueRegistry attrValRegistry,
-			final Set<EPackage> targetMetaModels) {
-
-		this(logger, attrValRegistry);
-
-		targetMetaModels.stream().forEach(this::analyseTargetMetaModel);
-	}
-
-	/**
-	 * This creates an instance for multiple target meta-models.
-	 *
-	 * @param logger
-	 *            The {@link Logger} that shall be used to print messages.
-	 * @param targetMetaModels
-	 *            The list of {@link EPackage EPackages} representing the target meta-models.
-	 */
-	public TargetSectionRegistry(final Logger logger, final Set<EPackage> targetMetaModels) {
-
-		this(logger, new AttributeValueRegistry());
-
-		targetMetaModels.stream().forEach(this::analyseTargetMetaModel);
+		this.analyseTargetMetaModels(targetMetaModels);
 	}
 
 	/**
@@ -220,7 +175,7 @@ public class TargetSectionRegistry extends CancelableElement {
 
 		if (!this.targetClassInstanceByHintGroupRegistry.containsKey(targetSectionClass)) {
 			this.targetClassInstanceByHintGroupRegistry.put(targetSectionClass,
-					new HashMap<InstantiableMappingHintGroup, List<EObjectWrapper>>());
+					new LinkedHashMap<InstantiableMappingHintGroup, List<EObjectWrapper>>());
 		}
 
 		if (!this.targetClassInstanceByHintGroupRegistry.get(targetSectionClass).containsKey(mappingHintGroup)) {
@@ -276,6 +231,44 @@ public class TargetSectionRegistry extends CancelableElement {
 			this.possiblePathsRegistry.put(eClass, new LinkedHashSet<ModelConnectionPath>());
 		}
 		this.possiblePathsRegistry.get(eClass).add(modelConnectionPath);
+
+	}
+
+	/**
+	 * Build various maps that describe structural features of the given <em>targetMetaModels</em>. Also, check if there
+	 * are any 'xs:any'-based elements and prepare the metamodel if necessary.
+	 *
+	 * @param targetMetaModel
+	 *            The {@link EPackage} representing the target meta-model to be analyzed.
+	 */
+	private void analyseTargetMetaModels(Set<EPackage> targetMetaModels) {
+
+		targetMetaModels.stream().forEach(this::analyseTargetMetaModel);
+
+		List<EClass> allClasses = EPackageHelper.collectEPackages(targetMetaModels, true, true, true, Optional.empty())
+				.stream().flatMap(p -> p.getEClassifiers().stream()).filter(c -> c instanceof EClass)
+				.map(c -> (EClass) c).collect(Collectors.toList());
+
+		// Collect all attributes that represent an 'xs:any' element
+		//
+		List<EAttribute> allAnyAttributes = allClasses.parallelStream().flatMap(c -> c.getEAttributes().stream())
+				.filter(a -> "any".equals(a.getName())
+						&& a.getEAttributeType().equals(EcorePackage.Literals.EFEATURE_MAP))
+				.collect(Collectors.toList());
+
+		this.classesWithAnyContent.addAll(allAnyAttributes.stream().map(a -> (EClass) a.eContainer())
+				.collect(Collectors.toCollection(LinkedHashSet::new)));
+
+		if (!allAnyAttributes.isEmpty()) {
+
+			// Create additional (virtual) references for each 'xs:any' attribute.
+			//
+			Set<EReference> allVirtualReferences = allClasses.stream()
+					.map(c -> ExtendedMetaDataUtil.createVirtualReference(c.eClass()))
+					.collect(Collectors.toCollection(LinkedHashSet::new));
+
+			//
+		}
 
 	}
 
@@ -375,11 +368,12 @@ public class TargetSectionRegistry extends CancelableElement {
 	 */
 	private List<EClass> getClasses(final EPackage rootEPackage) {
 
-		List<EClass> classes = new LinkedList<>();
+		Set<EClass> classes = new LinkedHashSet<>();
 
 		// collect all sub-packages
 		//
-		Set<EPackage> packagesToScan = EPackageHelper.collectEPackages(rootEPackage);
+		Set<EPackage> packagesToScan = EPackageHelper.collectEPackages(rootEPackage, true, true, true,
+				Optional.empty());
 
 		// scan all packages
 		//
@@ -396,14 +390,17 @@ public class TargetSectionRegistry extends CancelableElement {
 				}
 
 				classes.add((EClass) c);
-
-				this.childClassesRegistry.put((EClass) c, new LinkedHashSet<EClass>());
-				this.targetClassReferencesRegistry.put((EClass) c, new LinkedHashSet<EReference>());
 			});
-
 		}
 
-		return classes;
+		// register all found classes
+		//
+		for (EClass c : classes) {
+			this.childClassesRegistry.put(c, new LinkedHashSet<EClass>());
+			this.targetClassReferencesRegistry.put(c, new LinkedHashSet<EReference>());
+		}
+
+		return new ArrayList<>(classes);
 	}
 
 	/**
@@ -460,6 +457,9 @@ public class TargetSectionRegistry extends CancelableElement {
 	/**
 	 * For a given {@link TargetSectionClass}, this returns all created {@link EObjectWrapper instances} that have been
 	 * registered to this registry.
+	 * <p />
+	 * Note: If the given {@link TargetSectionClass} is an {@link Section#isAbstract() abstract} {@link TargetSection},
+	 * this returns the instances created for all concrete extending {@link TargetSection TargetSections} instead.
 	 *
 	 * @param targetSectionClass
 	 *            The {@link TargetSectionClass} for that all instances shall be returned.
@@ -467,12 +467,13 @@ public class TargetSectionRegistry extends CancelableElement {
 	 */
 	public List<EObjectWrapper> getFlattenedPamtramClassInstances(TargetSectionClass targetSectionClass) {
 
-		if (!this.targetClassInstanceByHintGroupRegistry.containsKey(targetSectionClass)) {
-			return new ArrayList<>();
-		}
+		List<TargetSectionClass> classesToConsider = targetSectionClass != null
+				? targetSectionClass.getAllConcreteExtending()
+				: Collections.emptyList();
 
-		return this.targetClassInstanceByHintGroupRegistry.get(targetSectionClass).values().stream()
-				.flatMap(Collection::stream).collect(Collectors.toList());
+		return classesToConsider.stream().filter(this.targetClassInstanceByHintGroupRegistry::containsKey).flatMap(
+				c -> this.targetClassInstanceByHintGroupRegistry.get(c).values().stream().flatMap(Collection::stream))
+				.collect(Collectors.toList());
 
 	}
 

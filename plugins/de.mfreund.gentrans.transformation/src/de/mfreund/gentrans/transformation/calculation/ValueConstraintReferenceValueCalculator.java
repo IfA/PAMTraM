@@ -1,7 +1,6 @@
 package de.mfreund.gentrans.transformation.calculation;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -10,11 +9,10 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 
+import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
-import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import de.mfreund.gentrans.transformation.matching.AttributeValueConstraintValueExtractor;
-import pamtram.FixedValue;
-import pamtram.mapping.GlobalAttribute;
+import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
 import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.InstanceSelector;
 import pamtram.structure.SourceInstanceSelector;
@@ -39,7 +37,7 @@ public class ValueConstraintReferenceValueCalculator {
 	 * Registry for <em>source model objects</em> that have already been matched. The matched objects are stored in a
 	 * map where the key is the corresponding {@link SourceSectionClass} that they have been matched to.
 	 */
-	private Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections;
+	private MatchedSectionRegistry matchedSections;
 
 	/**
 	 * The {@link Logger} to be used to print messages.
@@ -60,40 +58,23 @@ public class ValueConstraintReferenceValueCalculator {
 	/**
 	 * This creates an instance.
 	 *
-	 * @param matchedSections
-	 *            A map relating {@link SourceSection SourceSections} and lists of {@link MatchedSectionDescriptor
-	 *            MatchedSectionDescriptors} that have been create for each SourceSection during the <em>matching</em>
-	 *            process.
-	 * @param globalValues
-	 *            The <em>global values</em> (values of {@link FixedValue FixedValues} and {@link GlobalAttribute
-	 *            GlobalAttribute}) defined in the PAMTraM model.
-	 * @param instancePointerHandler
-	 *            The {@link InstanceSelectorHandler} that is used to evaluate {@link InstanceSelector InstancePointers}
-	 *            that have been modeled.
-	 * @param attributeValueCalculator
-	 *            The {@link ValueCalculator} to use in order to calculate resulting values.
-	 * @param logger
-	 *            The {@link Logger} that shall be used to print messages.
-	 * @param useParallelization
-	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
-	 *            that the transformation result (especially the order of lists) varies between executions.
+	 * @param assetManager
+	 *            The {@link TransformationAssetManager} providing access to the various other assets used in the
+	 *            current transformation instance.
 	 */
-	public ValueConstraintReferenceValueCalculator(Map<SourceSection, List<MatchedSectionDescriptor>> matchedSections,
-			GlobalValueMap globalValues, InstanceSelectorHandler instancePointerHandler,
-			ValueCalculator attributeValueCalculator, Logger logger, boolean useParallelization) {
+	public ValueConstraintReferenceValueCalculator(TransformationAssetManager assetManager) {
 
 		// store the matched sections
-		this.matchedSections = matchedSections;
+		this.matchedSections = assetManager.getMatchedSectionRegistry();
 
 		// store the message stream
-		this.consoleStream = logger;
+		this.consoleStream = assetManager.getLogger();
 
 		// store the 'InstanceSelectorHandler'
-		this.instanceSelectorHandler = instancePointerHandler;
+		this.instanceSelectorHandler = assetManager.getInstanceSelectorHandler();
 
 		// create a value extractor
-		this.valueExtractor = new AttributeValueConstraintValueExtractor(globalValues, instancePointerHandler,
-				attributeValueCalculator, ValueModifierExecutor.getInstance(), this.consoleStream, useParallelization);
+		this.valueExtractor = new AttributeValueConstraintValueExtractor(assetManager);
 
 	}
 
@@ -251,7 +232,7 @@ public class ValueConstraintReferenceValueCalculator {
 		// Collect all instances for the selected MatchedSectionDescriptors
 		//
 		List<EObject> correspondEClassInstances = descriptorsToConsider.parallelStream()
-				.flatMap(descriptor -> descriptor.getSourceModelObjectsMapped().get(affectedSection.get()).stream())
+				.flatMap(descriptor -> descriptor.getMatchedSourceModelElementsFor(affectedSection.get(), false).stream())
 				.collect(Collectors.toList());
 
 		// Reduce the list of instances based on modeled InstancePointers
@@ -260,8 +241,8 @@ public class ValueConstraintReferenceValueCalculator {
 
 			for (SourceInstanceSelector instancePointer : instancePointers) {
 
-				correspondEClassInstances = this.instanceSelectorHandler.getSelectedInstancesByInstanceList(
-						instancePointer, correspondEClassInstances, matchedSectionDescriptor);
+				correspondEClassInstances = this.instanceSelectorHandler.filterSourceInstances(
+						correspondEClassInstances, instancePointer, matchedSectionDescriptor);
 			}
 
 		}

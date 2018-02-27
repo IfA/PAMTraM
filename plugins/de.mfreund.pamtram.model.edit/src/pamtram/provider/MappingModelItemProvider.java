@@ -20,20 +20,21 @@ import pamtram.MappingModel;
 import pamtram.PamtramFactory;
 import pamtram.PamtramPackage;
 import pamtram.condition.ConditionFactory;
+import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingFactory;
 import pamtram.mapping.modifier.ModifierFactory;
 
 /**
  * This is the item provider adapter for a {@link pamtram.MappingModel} object.
- * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * <!-- begin-user-doc --> <!--
+ * end-user-doc -->
  * @generated
  */
 public class MappingModelItemProvider extends NamedElementItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public MappingModelItemProvider(AdapterFactory adapterFactory) {
@@ -41,9 +42,8 @@ public class MappingModelItemProvider extends NamedElementItemProvider {
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -58,9 +58,8 @@ public class MappingModelItemProvider extends NamedElementItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Deactivated feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This adds a property descriptor for the Deactivated feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addDeactivatedPropertyDescriptor(Object object) {
@@ -80,12 +79,12 @@ public class MappingModelItemProvider extends NamedElementItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Shared Condition feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Shared Condition feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
 	protected void addSharedConditionPropertyDescriptor(Object object) {
+
 		this.itemPropertyDescriptors.add(
 				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
 						this.getResourceLocator(), this.getString("_UI_ConditionalElement_sharedCondition_feature"),
@@ -114,7 +113,8 @@ public class MappingModelItemProvider extends NamedElementItemProvider {
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -143,9 +143,8 @@ public class MappingModelItemProvider extends NamedElementItemProvider {
 	}
 
 	/**
-	 * This returns MappingModel.gif. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 *
+	 * This returns MappingModel.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -155,8 +154,7 @@ public class MappingModelItemProvider extends NamedElementItemProvider {
 
 	/**
 	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -165,8 +163,7 @@ public class MappingModelItemProvider extends NamedElementItemProvider {
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
@@ -190,10 +187,10 @@ public class MappingModelItemProvider extends NamedElementItemProvider {
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -216,65 +213,46 @@ public class MappingModelItemProvider extends NamedElementItemProvider {
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing the children that can be created under this object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
-	 * @generated
+	 * @generated NOT due to reordering of descriptors and customization of 'createMapping' child descriptor
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
-				 ConditionFactory.eINSTANCE.createAnd()));
+		Mapping mapping = MappingFactory.eINSTANCE.createMapping();
+		mapping.getMappingHintGroups().add(MappingFactory.eINSTANCE.createMappingHintGroup());
+		newChildDescriptors.add(this.createChildParameter(PamtramPackage.Literals.MAPPING_MODEL__MAPPINGS, mapping));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
-				 ConditionFactory.eINSTANCE.createOr()));
+		newChildDescriptors.add(this.createChildParameter(PamtramPackage.Literals.MAPPING_MODEL__MODIFIER_SETS,
+				ModifierFactory.eINSTANCE.createValueModifierSet()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
-				 ConditionFactory.eINSTANCE.createNot()));
+		newChildDescriptors.add(this.createChildParameter(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
+				ConditionFactory.eINSTANCE.createAnd()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
-				 ConditionFactory.eINSTANCE.createAttributeCondition()));
+		newChildDescriptors.add(this.createChildParameter(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
+				ConditionFactory.eINSTANCE.createOr()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
-				 ConditionFactory.eINSTANCE.createCardinalityCondition()));
+		newChildDescriptors.add(this.createChildParameter(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
+				ConditionFactory.eINSTANCE.createNot()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
-				 ConditionFactory.eINSTANCE.createApplicationDependency()));
+		newChildDescriptors.add(this.createChildParameter(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
+				ConditionFactory.eINSTANCE.createAttributeCondition()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(PamtramPackage.Literals.MAPPING_MODEL__MAPPINGS,
-				 MappingFactory.eINSTANCE.createMapping()));
+		newChildDescriptors.add(this.createChildParameter(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
+				ConditionFactory.eINSTANCE.createCardinalityCondition()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(PamtramPackage.Literals.MAPPING_MODEL__MODIFIER_SETS,
-				 ModifierFactory.eINSTANCE.createValueModifierSet()));
+		newChildDescriptors.add(this.createChildParameter(PamtramPackage.Literals.CONDITIONAL_ELEMENT__LOCAL_CONDITION,
+				ConditionFactory.eINSTANCE.createApplicationDependency()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(PamtramPackage.Literals.MAPPING_MODEL__GLOBAL_VALUES,
-				 PamtramFactory.eINSTANCE.createFixedValue()));
+		newChildDescriptors.add(this.createChildParameter(PamtramPackage.Literals.MAPPING_MODEL__GLOBAL_VALUES,
+				PamtramFactory.eINSTANCE.createFixedValue()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(PamtramPackage.Literals.MAPPING_MODEL__GLOBAL_ATTRIBUTES,
-				 MappingFactory.eINSTANCE.createGlobalAttribute()));
+		newChildDescriptors.add(this.createChildParameter(PamtramPackage.Literals.MAPPING_MODEL__GLOBAL_ATTRIBUTES,
+				MappingFactory.eINSTANCE.createGlobalAttribute()));
 	}
 
 }

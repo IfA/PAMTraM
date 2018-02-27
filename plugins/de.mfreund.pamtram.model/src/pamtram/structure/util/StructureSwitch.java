@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.util.Switch;
 
 import pamtram.ConditionalElement;
 import pamtram.ExpressionElement;
+import pamtram.MatchSpecElement;
 import pamtram.ModifiableElement;
 import pamtram.NamedElement;
 import pamtram.mapping.extended.MappingHintSourceInterface;
@@ -76,6 +77,7 @@ public class StructureSwitch<T> extends Switch<T> {
 			case StructurePackage.INSTANCE_SELECTOR: {
 				InstanceSelector instanceSelector = (InstanceSelector)theEObject;
 				T result = caseInstanceSelector(instanceSelector);
+				if (result == null) result = caseNamedElement(instanceSelector);
 				if (result == null) result = caseExpressionElement(instanceSelector);
 				if (result == null) result = caseModifiableElement(instanceSelector);
 				if (result == null) result = defaultCase(theEObject);
@@ -85,6 +87,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				SourceInstanceSelector sourceInstanceSelector = (SourceInstanceSelector)theEObject;
 				T result = caseSourceInstanceSelector(sourceInstanceSelector);
 				if (result == null) result = caseInstanceSelector(sourceInstanceSelector);
+				if (result == null) result = caseNamedElement(sourceInstanceSelector);
 				if (result == null) result = caseExpressionElement(sourceInstanceSelector);
 				if (result == null) result = caseModifiableElement(sourceInstanceSelector);
 				if (result == null) result = defaultCase(theEObject);
@@ -94,6 +97,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				TargetInstanceSelector targetInstanceSelector = (TargetInstanceSelector)theEObject;
 				T result = caseTargetInstanceSelector(targetInstanceSelector);
 				if (result == null) result = caseInstanceSelector(targetInstanceSelector);
+				if (result == null) result = caseNamedElement(targetInstanceSelector);
 				if (result == null) result = caseExpressionElement(targetInstanceSelector);
 				if (result == null) result = caseModifiableElement(targetInstanceSelector);
 				if (result == null) result = defaultCase(theEObject);
@@ -114,6 +118,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				if (result == null) result = caseLocalDynamicSourceElement(instanceSelectorSourceElement);
 				if (result == null) result = caseInstanceSelectorSourceInterface(instanceSelectorSourceElement);
 				if (result == null) result = caseDynamicSourceElement(instanceSelectorSourceElement);
+				if (result == null) result = caseMatchSpecElement(instanceSelectorSourceElement);
 				if (result == null) result = caseMappingHintSourceInterface(instanceSelectorSourceElement);
 				if (result == null) result = caseNamedElement(instanceSelectorSourceElement);
 				if (result == null) result = caseModifiableElement(instanceSelectorSourceElement);
@@ -159,6 +164,7 @@ public class StructureSwitch<T> extends Switch<T> {
 				LocalDynamicSourceElement<?, ?, ?, ?> localDynamicSourceElement = (LocalDynamicSourceElement<?, ?, ?, ?>)theEObject;
 				T result = caseLocalDynamicSourceElement(localDynamicSourceElement);
 				if (result == null) result = caseDynamicSourceElement(localDynamicSourceElement);
+				if (result == null) result = caseMatchSpecElement(localDynamicSourceElement);
 				if (result == null) result = caseNamedElement(localDynamicSourceElement);
 				if (result == null) result = caseModifiableElement(localDynamicSourceElement);
 				if (result == null) result = defaultCase(theEObject);
@@ -423,6 +429,21 @@ public class StructureSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseMappingHintSourceInterface(MappingHintSourceInterface object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Match Spec Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Match Spec Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseMatchSpecElement(MatchSpecElement<S, C, R, A> object) {
 		return null;
 	}
 

@@ -12,28 +12,26 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import de.mfreund.gentrans.transformation.CancelTransformationException;
 import de.mfreund.gentrans.transformation.UserAbortException;
 import de.mfreund.gentrans.transformation.condition.ConditionHandler;
 import de.mfreund.gentrans.transformation.condition.ConditionHandler.CondResult;
-import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
+import de.mfreund.gentrans.transformation.core.CancelableTransformationAsset;
+import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
+import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
 import de.mfreund.gentrans.transformation.registries.SelectedMappingRegistry;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvedAdapter;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
-import de.mfreund.gentrans.transformation.util.CancelableElement;
 import pamtram.ConditionalElement;
 import pamtram.DeactivatableElement;
 import pamtram.MappingModel;
 import pamtram.PAMTraM;
 import pamtram.condition.ApplicationDependency;
-import pamtram.condition.ComplexCondition;
 import pamtram.condition.Condition;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.extended.AttributeMapping;
@@ -52,7 +50,7 @@ import pamtram.structure.source.SourceSection;
  *
  * @author mfreund
  */
-public class MappingSelector extends CancelableElement {
+public class MappingSelector extends CancelableTransformationAsset {
 
 	/**
 	 * The subset of {@link #mappings} that is equipped with one or more {@link ApplicationDependency
@@ -83,11 +81,6 @@ public class MappingSelector extends CancelableElement {
 	private IAmbiguityResolvingStrategy ambiguityResolvingStrategy;
 
 	/**
-	 * The {@link Logger} that shall be used to print messages.
-	 */
-	private final Logger logger;
-
-	/**
 	 * Whether extended parallelization shall be used during the transformation that might lead to the fact that the
 	 * transformation result (especially the order of lists) varies between executions.
 	 */
@@ -100,34 +93,22 @@ public class MappingSelector extends CancelableElement {
 
 	/**
 	 * This creates an instance.
-	 * 
-	 * @param selectedMappingRegistry
-	 *            The {@link SelectedMappingRegistry} where all selected Mappings (the result of the
-	 *            {@link #selectMappings(MatchedSectionRegistry, List)} step) will be stored.
-	 * @param onlyAskOnceOnAmbiguousMappings
-	 *            If ambiguous {@link Mapping Mappings} should be resolved only once or on a per-element basis.
-	 * @param ambiguityResolvingStrategy
-	 *            The {@link IAmbiguityResolvingStrategy} to be used.
-	 * @param conditionHandler
-	 *            The {@link ConditionHandler} used to evaluate {@link Condition Conditions}.
-	 * @param logger
-	 *            The {@link Logger} that shall be used to print messages.
-	 * @param useParallelization
-	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
-	 *            that the transformation result (especially the order of lists) varies between executions.
+	 *
+	 * @param assetManager
+	 *            The {@link TransformationAssetManager} providing access to the various other assets used in the
+	 *            current transformation instance.
 	 */
-	public MappingSelector(SelectedMappingRegistry selectedMappingRegistry, boolean onlyAskOnceOnAmbiguousMappings,
-			IAmbiguityResolvingStrategy ambiguityResolvingStrategy, ConditionHandler conditionHandler, Logger logger,
-			boolean useParallelization) {
+	public MappingSelector(TransformationAssetManager assetManager) {
+
+		super(assetManager);
 
 		this.dependentMappings = Collections.synchronizedList(new ArrayList<>());
-		this.selectedMappings = selectedMappingRegistry;
+		this.selectedMappings = assetManager.getSelectedMappingRegistry();
 		this.deferredSections = Collections.synchronizedList(new ArrayList<>());
-		this.onlyAskOnceOnAmbiguousMappings = onlyAskOnceOnAmbiguousMappings;
-		this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
-		this.logger = logger;
-		this.useParallelization = useParallelization;
-		this.conditionHandler = conditionHandler;
+		this.onlyAskOnceOnAmbiguousMappings = assetManager.getTransformationConfig().isOnlyAskOnceOnAmbiguousMappings();
+		this.ambiguityResolvingStrategy = assetManager.getTransformationConfig().getAmbiguityResolvingStrategy();
+		this.useParallelization = assetManager.getTransformationConfig().isUseParallelization();
+		this.conditionHandler = assetManager.getConditionHandler();
 	}
 
 	/**
@@ -185,6 +166,7 @@ public class MappingSelector extends CancelableElement {
 				.collect(Collectors.toList());
 
 		activeMappings.stream().forEach(m -> localRegistry.put(m, new ArrayList<>()));
+		activeMappings.stream().forEach(m -> this.selectedMappings.put(m, new ArrayList<>()));
 
 		// First, we need to filter mapping models with conditions that evaluate
 		// to 'false'
@@ -198,47 +180,38 @@ public class MappingSelector extends CancelableElement {
 		activeMappings.removeAll(mappingModelsWithNegativeCondition.stream().flatMap(m -> m.getMappings().stream())
 				.collect(Collectors.toList()));
 
-		// TODO also filter if sub-conditions of type ApplicationDependency
-		this.dependentMappings.addAll(
-				(this.useParallelization ? activeMappings.parallelStream() : activeMappings.stream()).filter(m -> {
-					Stream<ComplexCondition> conditionParts;
-					if (m.getLocalCondition() != null) {
-						conditionParts = m.getLocalCondition().getConditionPartsFlat().stream();
-					} else if (m.getSharedCondition() != null) {
-						conditionParts = m.getSharedCondition().getConditionPartsFlat().stream();
-					} else {
-						conditionParts = Stream.empty();
-					}
-					return conditionParts.anyMatch(c -> c instanceof ApplicationDependency);
-				}).collect(Collectors.toList()));
-
-		// Select a mapping for each matched section and each descriptor
-		// instance.
-		// In the first run, we 'defer' those sections that are associated with
-		// a Mapping that contains a
-		// 'MappingDependency'.
+		// We consider all Mappings as 'dependent' (on the application of other elements) if they contain any
+		// 'ApplicationDependency'
 		//
-		List<MappingInstanceStorage> mappingInstances = (this.useParallelization
-				? matchedSections.entrySet().parallelStream()
-				: matchedSections.entrySet().stream())
-						.map(e -> this.selectMapping(e.getKey(), e.getValue(), activeMappings, true))
+		this.dependentMappings
+				.addAll((this.useParallelization ? activeMappings.parallelStream() : activeMappings.stream()).filter(
+						m -> m.getAllConditions().parallelStream().flatMap(c -> c.getConditionPartsFlat().stream())
+								.anyMatch(c -> c instanceof ApplicationDependency))
+						.collect(Collectors.toList()));
+
+		// Select a mapping for each matched section and each descriptor instance. In the first run, we 'defer' those
+		// sections that are associated with a Mapping that contains a 'MappingDependency'.
+		//
+		List<MappingInstanceDescriptor> mappingInstances = (this.useParallelization
+				? matchedSections.keySet().parallelStream()
+				: matchedSections.keySet().stream())
+						.map(k -> this.selectMapping(k, matchedSections.get(k), activeMappings, true))
 						.flatMap(Collection::stream).collect(Collectors.toList());
 
 		localRegistry.add(mappingInstances);
+		this.selectedMappings.add(mappingInstances);
 
-		// Now, do the same stuff for the 'deferred' sections as we are now able
-		// to evaluate the
+		// Now, do the same stuff for the 'deferred' sections as we are now able to evaluate the
 		// 'ApplicationDependencies'.
 		//
-		List<MappingInstanceStorage> deferredInstances = (this.useParallelization
+		List<MappingInstanceDescriptor> deferredInstances = (this.useParallelization
 				? this.deferredSections.parallelStream()
 				: this.deferredSections.stream())
 						.map(s -> this.selectMapping(s, matchedSections.get(s), activeMappings, false))
 						.flatMap(Collection::stream).collect(Collectors.toList());
 
 		localRegistry.add(deferredInstances);
-
-		this.selectedMappings.addAll(localRegistry);
+		this.selectedMappings.add(deferredInstances);
 
 		return localRegistry;
 	}
@@ -260,18 +233,18 @@ public class MappingSelector extends CancelableElement {
 	 *            This can be used to control whether those sections, for that at least one of the applicable mappings
 	 *            has an {@link ApplicationDependency} shall be 'deferred'. Typically, this should be set to 'true'
 	 *            during the first run (to collect the {@link #deferredSections} and to 'false' during the second run.
-	 * @return A list of {@link MappingInstanceStorage MappingInstanceStorages} (one for each of the given
-	 *         <em>descriptors</em>). Note: The {@link MappingInstanceStorage MappingInstanceStorages} do not yet
+	 * @return A list of {@link MappingInstanceDescriptor MappingInstanceStorages} (one for each of the given
+	 *         <em>descriptors</em>). Note: The {@link MappingInstanceDescriptor MappingInstanceStorages} do not yet
 	 *         contain any calculated hint values.
 	 */
-	private List<MappingInstanceStorage> selectMapping(SourceSection matchedSection,
+	private List<MappingInstanceDescriptor> selectMapping(SourceSection matchedSection,
 			List<MatchedSectionDescriptor> descriptors, List<Mapping> mappings, boolean deferApplicationDependencies) {
 
 		this.checkCanceled();
 
 		// This will be returned in the end
 		//
-		List<MappingInstanceStorage> ret = new ArrayList<>();
+		List<MappingInstanceDescriptor> ret = new ArrayList<>();
 
 		// The mappings with suitable 'sourceMMSections'
 		//
@@ -436,21 +409,21 @@ public class MappingSelector extends CancelableElement {
 
 		// check Conditions of the Mapping (Note: no condition modeled = true)
 		//
-		return this.conditionHandler.checkCondition(mapping.getLocalCondition(), descriptor) == CondResult.TRUE
-				&& this.conditionHandler.checkCondition(mapping.getSharedCondition(), descriptor) == CondResult.TRUE;
+		return mapping.getAllConditions().stream()
+				.allMatch(c -> this.conditionHandler.checkCondition(c, descriptor) == CondResult.TRUE);
 
 	}
 
 	/**
 	 * This evaluates the conditions of the {@link ConditionalElement ConditionalElements} contained in the mapping
-	 * represented by the given {@link MappingInstanceStorage}. Elements with conditions that have been evaluated as
-	 * <em>negative</em> are {@link MappingInstanceStorage#addElementWithNegativeCondition(ConditionalElement) stored}
-	 * in the <em>mappingInstance</em>.
+	 * represented by the given {@link MappingInstanceDescriptor}. Elements with conditions that have been evaluated as
+	 * <em>negative</em> are {@link MappingInstanceDescriptor#addElementWithNegativeCondition(ConditionalElement)
+	 * stored} in the <em>mappingInstance</em>.
 	 *
 	 * @param mappingInstance
-	 *            The {@link MappingInstanceStorage} representing the ConditionalElements to be checked.
+	 *            The {@link MappingInstanceDescriptor} representing the ConditionalElements to be checked.
 	 */
-	private void determineElementsWithNegativeConditions(MappingInstanceStorage mappingInstance) {
+	private void determineElementsWithNegativeConditions(MappingInstanceDescriptor mappingInstance) {
 
 		// check conditions of all corresponding MappingHintGroups
 		//
@@ -502,17 +475,17 @@ public class MappingSelector extends CancelableElement {
 	/**
 	 * Checks the condition of the given {@link ConditionalElement}. If the condition evaluates to
 	 * {@link CondResult#FALSE}, the element is
-	 * {@link MappingInstanceStorage#addElementWithNegativeCondition(ConditionalElement) marked as negative} in the
-	 * given {@link MappingInstanceStorage}.
+	 * {@link MappingInstanceDescriptor#addElementWithNegativeCondition(ConditionalElement) marked as negative} in the
+	 * given {@link MappingInstanceDescriptor}.
 	 *
 	 * @param conditionalElement
 	 *            The {@link ConditionalElement} to check.
 	 * @param mappingInstance
-	 *            The {@link MappingInstanceStorage} associated with the given <em>conditionalElement</em>.
+	 *            The {@link MappingInstanceDescriptor} associated with the given <em>conditionalElement</em>.
 	 * @return '<em><b>true</b></em>' if the condition was evaluated to {@link CondResult#TRUE}; '<em><b>false</b></em>'
 	 *         otherwise.
 	 */
-	private boolean checkCondition(ConditionalElement conditionalElement, MappingInstanceStorage mappingInstance) {
+	private boolean checkCondition(ConditionalElement conditionalElement, MappingInstanceDescriptor mappingInstance) {
 
 		boolean result = this.checkCondition(conditionalElement, mappingInstance.getMatchedSectionDescriptor());
 
@@ -534,10 +507,10 @@ public class MappingSelector extends CancelableElement {
 	 */
 	private boolean checkCondition(ConditionalElement conditionalElement, MatchedSectionDescriptor descriptor) {
 
-		return !(this.conditionHandler.checkCondition(conditionalElement.getLocalCondition(),
-				descriptor) == CondResult.FALSE
-				|| this.conditionHandler.checkCondition(conditionalElement.getSharedCondition(),
-						descriptor) == CondResult.FALSE);
+		// check Conditions of the ConditionalElement (Note: no condition modeled = true)
+		//
+		return conditionalElement.getAllConditions().stream()
+				.allMatch(c -> this.conditionHandler.checkCondition(c, descriptor) == CondResult.TRUE);
 
 	}
 
@@ -551,8 +524,10 @@ public class MappingSelector extends CancelableElement {
 	 */
 	private boolean checkCondition(MappingModel mappingModel) {
 
-		return !(this.conditionHandler.checkCondition(mappingModel.getLocalCondition(), null) == CondResult.FALSE
-				|| this.conditionHandler.checkCondition(mappingModel.getSharedCondition(), null) == CondResult.FALSE);
+		// check Conditions of the MappingModel (Note: no condition modeled = true)
+		//
+		return mappingModel.getAllConditions().stream()
+				.allMatch(c -> this.conditionHandler.checkCondition(c, null) == CondResult.TRUE);
 
 	}
 
@@ -583,17 +558,18 @@ public class MappingSelector extends CancelableElement {
 	}
 
 	/**
-	 * This creates a {@link MappingInstanceStorage} for the given {@link MatchedSectionDescriptor descriptor}.
+	 * This creates a {@link MappingInstanceDescriptor} for the given {@link MatchedSectionDescriptor descriptor}.
 	 *
 	 * @param descriptor
-	 *            The {@link MatchedSectionDescriptor} for that the {@link MappingInstanceStorage} shall be created.
+	 *            The {@link MatchedSectionDescriptor} for that the {@link MappingInstanceDescriptor} shall be created.
 	 * @param mapping
 	 *            The {@link Mapping} that the MappingInstanceStorage shall represent.
-	 * @return The created {@link MappingInstanceStorage}.
+	 * @return The created {@link MappingInstanceDescriptor}.
 	 */
-	private MappingInstanceStorage createMappingInstanceStorage(MatchedSectionDescriptor descriptor, Mapping mapping) {
+	private MappingInstanceDescriptor createMappingInstanceStorage(MatchedSectionDescriptor descriptor,
+			Mapping mapping) {
 
-		MappingInstanceStorage ret = new MappingInstanceStorage(descriptor, this.useParallelization);
+		MappingInstanceDescriptor ret = new MappingInstanceDescriptor(descriptor, this.useParallelization);
 		ret.setMapping(mapping);
 		return ret;
 	}

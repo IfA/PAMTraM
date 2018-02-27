@@ -7,6 +7,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 
 import org.eclipse.emf.common.util.EList;
 import pamtram.ExpressionElement;
+import pamtram.MatchSpecElement;
 import pamtram.ModifiableElement;
 import pamtram.structure.generic.MetaModelElement;
 import pamtram.structure.source.SourceSection;
@@ -50,7 +51,7 @@ import pamtram.structure.target.TargetSectionClass;
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='sourceClassMatchesSection sourceClassIsVariableCardinality targetClassMatchesSection targetClassIsVariableCardinality noCardinalityMappingForSourceSectionRoot'"
  * @generated
  */
-public interface CardinalityMapping extends MappingHint, ExpressionElement, ModifiableElement {
+public interface CardinalityMapping extends MappingHint, ExpressionElement, ModifiableElement, MatchSpecElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute> {
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -131,15 +132,15 @@ public interface CardinalityMapping extends MappingHint, ExpressionElement, Modi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nif(this.getSource() == null || !(this.eContainer().eContainer() instanceof &lt;%pamtram.mapping.Mapping%&gt;) || ((Mapping) this.eContainer().eContainer()).getSourceSection() == null) {\r\n\treturn true;\r\n}\r\n\r\nboolean result = this.getSource().getContainingSection() == ((Mapping) this.eContainer().eContainer()).getSourceSection();\r\n\r\nif (!result &amp;&amp; diagnostics != null) {\r\n\r\n\tString errorMessage = \"The source element \'\" + this.getSource().getName() + \"\' is not part of the source section referenced by parent mapping \'\" + ((pamtram.mapping.Mapping) this.eContainer().eContainer()).getName() + \"\'!\";\r\n\r\n\tdiagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%&gt;\r\n\t\t\t(&lt;%org.eclipse.emf.common.util.Diagnostic%&gt;.ERROR,\r\n\t\t\t&lt;%pamtram.mapping.extended.util.ExtendedValidator%&gt;.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tExtendedValidator.CARDINALITY_MAPPING__VALIDATE_SOURCE_ELEMENT_MATCHES_SECTION,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, &lt;%pamtram.mapping.extended.ExtendedPackage%&gt;.Literals.CARDINALITY_MAPPING__SOURCE }));\r\n\r\n}\r\n\r\nreturn result;'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nif (this.getSource() == null || !(this.eContainer().eContainer() instanceof &lt;%pamtram.mapping.Mapping%&gt;)\r\n\t\t|| ((Mapping) this.eContainer().eContainer()).getSourceSection() == null) {\r\n\treturn true;\r\n}\r\n\r\nMapping mapping = (Mapping) this.eContainer().eContainer();\r\n\r\nboolean result = false;\r\n\r\npamtram.structure.generic.Class&lt;?, ?, ?, ?&gt; relevantClass = mapping.getSourceSection();\r\n\r\n// iterate over all elements and return the attributes as possible options\r\n//\r\n&lt;%java.util.Set%&gt;&lt;pamtram.structure.generic.Class&lt;?, ?, ?, ?&gt;&gt; scanned = new &lt;%java.util.HashSet%&gt;&lt;&gt;();\r\n&lt;%java.util.List%&gt;&lt;pamtram.structure.generic.Class&lt;?, ?, ?, ?&gt;&gt; sectionsToScan = new &lt;%java.util.ArrayList%&gt;&lt;&gt;();\r\nsectionsToScan.add(relevantClass);\r\n\r\n// also regard abstract sections that this extends\r\nif (relevantClass instanceof &lt;%pamtram.structure.generic.Section%&gt;) {\r\n\tsectionsToScan.addAll(((Section&lt;?, ?, ?, ?&gt;) relevantClass).getAllExtend());\r\n}\r\n\r\nwhile (!sectionsToScan.isEmpty()) {\r\n\tpamtram.structure.generic.Class&lt;?, ?, ?, ?&gt; classToScan = sectionsToScan.remove(0);\r\n\tscanned.add(classToScan);\r\n\r\n\t&lt;%java.util.Iterator%&gt;&lt;&lt;%org.eclipse.emf.ecore.EObject%&gt;&gt; it = classToScan.eAllContents();\r\n\twhile (it.hasNext()) {\r\n\t\tEObject next = it.next();\r\n\t\tif (this.getSource().equals(next)) {\r\n\t\t\tresult = true;\r\n\t\t\tbreak;\r\n\t\t} else if (next instanceof &lt;%pamtram.structure.generic.CrossReference%&gt;) {\r\n\t\t\tList&lt;&lt;%pamtram.structure.source.SourceSectionClass%&gt;&gt; vals = new ArrayList&lt;&gt;();\r\n\t\t\tvals.addAll(((CrossReference) next).getValue());\r\n\t\t\tvals.removeAll(scanned);\r\n\t\t\tsectionsToScan.addAll(vals);\r\n\t\t}\r\n\t}\r\n}\r\n\r\nif (!result &amp;&amp; diagnostics != null) {\r\n\r\n\tString errorMessage = \"The source element \'\" + this.getSource().getName()\r\n\t\t\t+ \"\' is not part of the source section referenced by parent mapping \'\" + mapping.getName() + \"\'!\";\r\n\r\n\tdiagnostics.add(new BasicDiagnostic(&lt;%org.eclipse.emf.common.util.Diagnostic%&gt;.ERROR, &lt;%pamtram.mapping.extended.util.ExtendedValidator%&gt;.DIAGNOSTIC_SOURCE,\r\n\t\t\tExtendedValidator.CARDINALITY_MAPPING__VALIDATE_SOURCE_ELEMENT_MATCHES_SECTION_OR_CONTAINED_SECTION,\r\n\t\t\terrorMessage, new Object[] { this, &lt;%pamtram.mapping.extended.ExtendedPackage%&gt;.Literals.CARDINALITY_MAPPING__SOURCE }));\r\n\r\n}\r\n\r\nreturn result;'"
 	 * @generated
 	 */
-	boolean validateSourceElementMatchesSection(DiagnosticChain diagnostics, Map<?, ?> context);
+	boolean validateSourceElementMatchesSectionOrContainedSection(DiagnosticChain diagnostics, Map<?, ?> context);
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nif(this.getTarget() == null || !(this.eContainer() instanceof &lt;%pamtram.mapping.MappingHintGroupType%&gt;) || ((MappingHintGroupType) this.eContainer()).getTargetSection() == null) {\r\n\treturn true;\r\n}\r\n\r\nboolean result = this.getTarget().getContainingSection() == ((MappingHintGroupType) this.eContainer()).getTargetSection();\r\n\r\nif (!result &amp;&amp; diagnostics != null) {\r\n\r\n\tString errorMessage = \"The target class \'\" + this.getTarget().getName() + \"\' is not part of the target section referenced by parent hint group \'\" + ((MappingHintGroupType) this.eContainer()).getName() + \"\'!\";\r\n\r\n\tdiagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%&gt;\r\n\t\t\t(&lt;%org.eclipse.emf.common.util.Diagnostic%&gt;.ERROR,\r\n\t\t\t&lt;%pamtram.mapping.extended.util.ExtendedValidator%&gt;.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tExtendedValidator.CARDINALITY_MAPPING__VALIDATE_TARGET_CLASS_MATCHES_SECTION,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, &lt;%pamtram.mapping.extended.ExtendedPackage%&gt;.Literals.CARDINALITY_MAPPING__TARGET }));\r\n\r\n}\r\n\r\nreturn result;'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='if (this.getTarget() == null || !(this.eContainer() instanceof &lt;%pamtram.mapping.MappingHintGroupType%&gt;)\r\n\t\t\t\t|| ((&lt;%pamtram.mapping.MappingHintGroupType%&gt;) this.eContainer()).getTargetSection() == null) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\t\t\r\n\t\t&lt;%pamtram.mapping.MappingHintGroupType%&gt; mappingHintGroup = (&lt;%pamtram.mapping.MappingHintGroupType%&gt;) this.eContainer();\r\n\r\tboolean result = this.getTarget().getContainingSection() == mappingHintGroup\r\n\t\t\t\t.getTargetSection() || mappingHintGroup.getAllExtend().contains(this.getTarget().getContainingSection());\r\n\r\tif (!result &amp;&amp; diagnostics != null) {\r\n\r\t\tString errorMessage = \"The target class \'\" + this.getTarget().getName()\r\n\t\t\t\t\t+ \"\' is not part of the target section referenced by parent hint group \'\"\r\n\t\t\t\t\t+ mappingHintGroup.getName() + \"\'!\";\r\n\r\t\tdiagnostics.add(new BasicDiagnostic(&lt;%org.eclipse.emf.common.util.Diagnostic%&gt;.ERROR, &lt;%pamtram.mapping.extended.util.ExtendedValidator%&gt;.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\t&lt;%pamtram.mapping.extended.util.ExtendedValidator%&gt;.CARDINALITY_MAPPING__VALIDATE_TARGET_CLASS_MATCHES_SECTION, errorMessage,\r\n\t\t\t\t\tnew Object[] { this, &lt;%pamtram.mapping.extended.ExtendedPackage%&gt;.Literals.CARDINALITY_MAPPING__TARGET }));\r\n\r\t}\r\n\r\treturn result;'"
 	 * @generated
 	 */
 	boolean validateTargetClassMatchesSection(DiagnosticChain diagnostics, Map<?, ?> context);
@@ -187,14 +188,6 @@ public interface CardinalityMapping extends MappingHint, ExpressionElement, Modi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nboolean result = !this.getSourceElements().isEmpty() || this.getModifiers().isEmpty();\r\n\r\nif (!result &amp;&amp; diagnostics != null) {\r\n\r\n\tString errorMessage = \"A CardinalityMapping must only specify \'modifiers\' if it also specifies a set of \'sourceElements\'!\";\r\n\r\n\tdiagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%&gt;\r\n\t\t\t(&lt;%org.eclipse.emf.common.util.Diagnostic%&gt;.ERROR,\r\n\t\t\t&lt;%pamtram.mapping.extended.util.ExtendedValidator%&gt;.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tExtendedValidator.CARDINALITY_MAPPING__VALIDATE_MODIFIERS_ONLY_FOR_SOURCE_ELEMENTS,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, &lt;%pamtram.mapping.extended.ExtendedPackage%&gt;.Literals.CARDINALITY_MAPPING }));\r\n\r\n}\r\n\r\nreturn result;'"
-	 * @generated
-	 */
-	boolean validateModifiersOnlyForSourceElements(DiagnosticChain diagnostics, Map<?, ?> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @model kind="operation" unique="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return new &lt;%org.eclipse.emf.common.util.BasicEList%&gt;&lt;&gt;(this.getSourceElements().stream().filter(s -&gt; s instanceof CardinalityMappingSourceElement).map(s -&gt; (CardinalityMappingSourceElement) s).collect(&lt;%java.util.stream.Collectors%&gt;.toList()));'"
 	 * @generated
@@ -209,5 +202,13 @@ public interface CardinalityMapping extends MappingHint, ExpressionElement, Modi
 	 * @generated
 	 */
 	EList<CardinalityMappingExternalSourceElement> getExternalSourceElements();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\n&lt;%pamtram.mapping.Mapping%&gt; mapping = (Mapping) &lt;%de.tud.et.ifa.agtele.emf.AgteleEcoreUtil%&gt;.getAncestorOfKind(this, &lt;%pamtram.mapping.MappingPackage%&gt;.Literals.MAPPING);\r\n\r\nif (this.source == null || mapping.getSourceSection() == null || !this.getReferenceMatchSpec().isEmpty()) {\r\n\treturn true;\r\n}\r\n\r\n&lt;%pamtram.structure.source.SourceSection%&gt; sourceSection = mapping.getSourceSection();\r\n\r\nboolean result = true;\r\nString errorMessage = \"\";\r\n\r\nif (!this.isFollowExternalReferences() &amp;&amp; (!sourceSection.equals(this.source.getContainingSection())\r\n\t\t|| !sourceSection.getAllExtend().contains(this.source.getContainingSection()))) {\r\n\r\n\tresult = false;\r\n\terrorMessage = \"The source Attribute is not part of the SourceSection specified by this Mapping. This is not allowed unless \'followExternalReferences\' is set to \'true\'.\";\r\n\r\n}\r\n\r\nif (!result &amp;&amp; diagnostics != null) {\r\n\r\n\tdiagnostics.add(new BasicDiagnostic(&lt;%org.eclipse.emf.common.util.Diagnostic%&gt;.WARNING, &lt;%pamtram.mapping.extended.util.ExtendedValidator%&gt;.DIAGNOSTIC_SOURCE,\r\n\t\t\tExtendedValidator.CARDINALITY_MAPPING__VALIDATE_FOLLOW_EXTERNAL_REFERENCES_TRUE_IF_REQUIRED,\r\n\t\t\terrorMessage, new Object[] { this, &lt;%pamtram.mapping.extended.ExtendedPackage%&gt;.Literals.CARDINALITY_MAPPING__SOURCE }));\r\n}\r\n\r\nreturn result;'"
+	 * @generated
+	 */
+	boolean validateFollowExternalReferencesTrueIfRequired(DiagnosticChain diagnostics, Map<?, ?> context);
 
 } // CardinalityMapping

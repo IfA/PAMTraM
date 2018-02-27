@@ -102,6 +102,7 @@ public class ChoiceConstraintImpl extends NamedElementImpl implements ChoiceCons
 	 */
 	@Override
 	public ValueConstraintType getType() {
+	
 		return type;
 	}
 
@@ -111,10 +112,12 @@ public class ChoiceConstraintImpl extends NamedElementImpl implements ChoiceCons
 	 */
 	@Override
 	public void setType(ValueConstraintType newType) {
+	
 		ValueConstraintType oldType = type;
 		type = newType == null ? TYPE_EDEFAULT : newType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ConstraintPackage.CHOICE_CONSTRAINT__TYPE, oldType, type));
+	
 	}
 
 	/**
@@ -123,6 +126,7 @@ public class ChoiceConstraintImpl extends NamedElementImpl implements ChoiceCons
 	 */
 	@Override
 	public EList<EqualityConstraint> getChoices() {
+	
 		if (choices == null) {
 			choices = new EObjectContainmentEList<EqualityConstraint>(EqualityConstraint.class, this, ConstraintPackage.CHOICE_CONSTRAINT__CHOICES);
 		}
@@ -134,10 +138,8 @@ public class ChoiceConstraintImpl extends NamedElementImpl implements ChoiceCons
 	 * @generated
 	 */
 	@Override
-	public boolean checkConstraint(String attrValue, EList<String> refValue) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+	public boolean checkConstraint(final String attrValue, final EList<String> refValue) {
+		return refValue.stream().anyMatch(r -> r.equals(attrValue));	
 	}
 
 	/**
@@ -189,7 +191,7 @@ public class ChoiceConstraintImpl extends NamedElementImpl implements ChoiceCons
 				.flatMap(instanceSelector -> instanceSelector.getSourceElements().parallelStream()
 						.filter(s -> s instanceof InstanceSelectorSourceElement
 								|| s instanceof InstanceSelectorExternalSourceElement))
-				.findAny().isPresent();
+				.findAny().isPresent();	
 	}
 
 	/**

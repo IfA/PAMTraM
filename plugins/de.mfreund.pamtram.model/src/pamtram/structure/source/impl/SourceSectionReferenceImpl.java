@@ -2,15 +2,30 @@
  */
 package pamtram.structure.source.impl;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import pamtram.structure.generic.ActualReference;
+import pamtram.structure.generic.CompositeReference;
 import pamtram.structure.generic.impl.ReferenceImpl;
+import pamtram.structure.generic.util.GenericValidator;
 import pamtram.structure.source.SourcePackage;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionAttribute;
 import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.source.SourceSectionReference;
+import pamtram.structure.source.util.SourceValidator;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Source Section Reference</b></em>'. <!--
@@ -30,17 +45,17 @@ public abstract class SourceSectionReferenceImpl
 
 	/**
 	 * The default value of the '{@link #isIgnoreUnmatchedElements() <em>Ignore Unmatched Elements</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #isIgnoreUnmatchedElements()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean IGNORE_UNMATCHED_ELEMENTS_EDEFAULT = false;
+
 	/**
-	 * The cached value of the '{@link #isIgnoreUnmatchedElements() <em>Ignore Unmatched Elements</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #isIgnoreUnmatchedElements() <em>Ignore Unmatched Elements</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @see #isIgnoreUnmatchedElements()
 	 * @generated
 	 * @ordered
@@ -65,29 +80,65 @@ public abstract class SourceSectionReferenceImpl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIgnoreUnmatchedElements() {
+	
 		return ignoreUnmatchedElements;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIgnoreUnmatchedElements(boolean newIgnoreUnmatchedElements) {
+	
 		boolean oldIgnoreUnmatchedElements = ignoreUnmatchedElements;
 		ignoreUnmatchedElements = newIgnoreUnmatchedElements;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SourcePackage.SOURCE_SECTION_REFERENCE__IGNORE_UNMATCHED_ELEMENTS, oldIgnoreUnmatchedElements, ignoreUnmatchedElements));
+	
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean validateIsIgnoreUnmatchedIfIsComplemented(final DiagnosticChain diagnostics,
+			final Map<?, ?> context) {
+		
+		if (!(this instanceof ActualReference<?, ?, ?, ?> && this instanceof CompositeReference<?, ?, ?, ?>)) {
+			return true;
+		}
+		
+		List<EReference> actualCrossReferences = this.getOwningClass().getAllCrossReferences().stream()
+				.filter(r -> r instanceof ActualReference<?, ?, ?, ?>)
+				.map(r -> ((ActualReference<?, ?, ?, ?>) r).getEReference()).collect(Collectors.toList());
+		
+		boolean isComplemented = actualCrossReferences.stream()
+				.anyMatch(r -> r != null && r.equals(((ActualReference<?, ?, ?, ?>) this).getEReference()));
+		
+		boolean result = !isComplemented || this.isIgnoreUnmatchedElements();
+		
+		if (!result && diagnostics != null) {
+		
+			String errorMessage = "This reference is complemented by a CrossReference that represents the same EReference. Hence, 'ignoreUmatchedElements' needs to be set to 'true'!";
+		
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, GenericValidator.DIAGNOSTIC_SOURCE,
+					SourceValidator.SOURCE_SECTION_REFERENCE__VALIDATE_IS_IGNORE_UNMATCHED_IF_IS_COMPLEMENTED,
+					errorMessage, new Object[] { this, SourcePackage.Literals.SOURCE_SECTION_REFERENCE }));
+		
+		}
+		
+		return result;	
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -100,8 +151,7 @@ public abstract class SourceSectionReferenceImpl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -115,8 +165,7 @@ public abstract class SourceSectionReferenceImpl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -130,8 +179,7 @@ public abstract class SourceSectionReferenceImpl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -144,8 +192,20 @@ public abstract class SourceSectionReferenceImpl
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case SourcePackage.SOURCE_SECTION_REFERENCE___VALIDATE_IS_IGNORE_UNMATCHED_IF_IS_COMPLEMENTED__DIAGNOSTICCHAIN_MAP:
+				return validateIsIgnoreUnmatchedIfIsComplemented((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+		}
+		return super.eInvoke(operationID, arguments);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

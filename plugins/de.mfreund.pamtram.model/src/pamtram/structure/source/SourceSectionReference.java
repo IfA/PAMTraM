@@ -2,6 +2,8 @@
  */
 package pamtram.structure.source;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import pamtram.structure.generic.Reference;
 
 /**
@@ -61,5 +63,13 @@ public interface SourceSectionReference
 	 * @generated
 	 */
 	void setIgnoreUnmatchedElements(boolean value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nif (!(this instanceof &lt;%pamtram.structure.generic.ActualReference%&gt;&lt;?, ?, ?, ?&gt; &amp;&amp; this instanceof &lt;%pamtram.structure.generic.CompositeReference%&gt;&lt;?, ?, ?, ?&gt;)) {\r\n\treturn true;\r\n}\r\n\r\n&lt;%java.util.List%&gt;&lt;&lt;%org.eclipse.emf.ecore.EReference%&gt;&gt; actualCrossReferences = this.getOwningClass().getAllCrossReferences().stream()\r\n\t\t.filter(r -&gt; r instanceof ActualReference&lt;?, ?, ?, ?&gt;)\r\n\t\t.map(r -&gt; ((ActualReference&lt;?, ?, ?, ?&gt;) r).getEReference()).collect(&lt;%java.util.stream.Collectors%&gt;.toList());\r\n\r\nboolean isComplemented = actualCrossReferences.stream()\r\n\t\t.anyMatch(r -&gt; r != null &amp;&amp; r.equals(((ActualReference&lt;?, ?, ?, ?&gt;) this).getEReference()));\r\n\r\nboolean result = !isComplemented || this.isIgnoreUnmatchedElements();\r\n\r\nif (!result &amp;&amp; diagnostics != null) {\r\n\r\n\tString errorMessage = \"This reference is complemented by a CrossReference that represents the same EReference. Hence, \'ignoreUmatchedElements\' needs to be set to \'true\'!\";\r\n\r\n\tdiagnostics.add(new BasicDiagnostic(&lt;%org.eclipse.emf.common.util.Diagnostic%&gt;.ERROR, &lt;%pamtram.structure.generic.util.GenericValidator%&gt;.DIAGNOSTIC_SOURCE,\r\n\t\t\t&lt;%pamtram.structure.source.util.SourceValidator%&gt;.SOURCE_SECTION_REFERENCE__VALIDATE_IS_IGNORE_UNMATCHED_IF_IS_COMPLEMENTED,\r\n\t\t\terrorMessage, new Object[] { this, &lt;%pamtram.structure.source.SourcePackage%&gt;.Literals.SOURCE_SECTION_REFERENCE }));\r\n\r\n}\r\n\r\nreturn result;'"
+	 * @generated
+	 */
+	boolean validateIsIgnoreUnmatchedIfIsComplemented(DiagnosticChain diagnostics, Map<?, ?> context);
 
 } // SourceSectionReference

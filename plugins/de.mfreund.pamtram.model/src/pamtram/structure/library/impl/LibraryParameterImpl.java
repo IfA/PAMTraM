@@ -72,7 +72,8 @@ public abstract class LibraryParameterImpl<ParameterType> extends NamedElementIm
 	 */
 	@SuppressWarnings("unchecked")
 	public EObject getSource() {
-		if (source != null && source.eIsProxy()) {
+	
+		  if (source != null && source.eIsProxy()) {
 			InternalEObject oldSource = (InternalEObject)source;
 			source = eResolveProxy(oldSource);
 			if (source != oldSource) {
@@ -98,10 +99,12 @@ public abstract class LibraryParameterImpl<ParameterType> extends NamedElementIm
 	 * @generated
 	 */
 	public void setSource(EObject newSource) {
+	
 		EObject oldSource = source;
 		source = newSource;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.LIBRARY_PARAMETER__SOURCE, oldSource, source));
+	
 	}
 
 	/**
@@ -111,7 +114,8 @@ public abstract class LibraryParameterImpl<ParameterType> extends NamedElementIm
 	 */
 	@SuppressWarnings("unchecked")
 	public ParameterType getOriginalParameter() {
-		if (originalParameter != null && ((EObject)originalParameter).eIsProxy()) {
+	
+		  if (originalParameter != null && ((EObject)originalParameter).eIsProxy()) {
 			InternalEObject oldOriginalParameter = (InternalEObject)originalParameter;
 			originalParameter = (ParameterType)eResolveProxy(oldOriginalParameter);
 			if (originalParameter != oldOriginalParameter) {
@@ -137,10 +141,12 @@ public abstract class LibraryParameterImpl<ParameterType> extends NamedElementIm
 	 * @generated
 	 */
 	public void setOriginalParameter(ParameterType newOriginalParameter) {
+	
 		ParameterType oldOriginalParameter = originalParameter;
 		originalParameter = newOriginalParameter;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.LIBRARY_PARAMETER__ORIGINAL_PARAMETER, oldOriginalParameter, originalParameter));
+	
 	}
 
 	/**

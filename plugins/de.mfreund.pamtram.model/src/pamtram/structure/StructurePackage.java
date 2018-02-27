@@ -2,6 +2,7 @@
  */
 package pamtram.structure;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
@@ -74,13 +75,22 @@ public interface StructurePackage extends EPackage {
 	int INSTANCE_SELECTOR = 0;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_SELECTOR__NAME = PamtramPackage.NAMED_ELEMENT__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Expression</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SELECTOR__EXPRESSION = PamtramPackage.EXPRESSION_ELEMENT__EXPRESSION;
+	int INSTANCE_SELECTOR__EXPRESSION = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Modifiers</b></em>' reference list.
@@ -89,7 +99,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SELECTOR__MODIFIERS = PamtramPackage.EXPRESSION_ELEMENT_FEATURE_COUNT + 0;
+	int INSTANCE_SELECTOR__MODIFIERS = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Source Elements</b></em>' containment reference list.
@@ -98,7 +108,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SELECTOR__SOURCE_ELEMENTS = PamtramPackage.EXPRESSION_ELEMENT_FEATURE_COUNT + 1;
+	int INSTANCE_SELECTOR__SOURCE_ELEMENTS = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Instance Selector</em>' class.
@@ -107,7 +117,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SELECTOR_FEATURE_COUNT = PamtramPackage.EXPRESSION_ELEMENT_FEATURE_COUNT + 2;
+	int INSTANCE_SELECTOR_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Validate No Modified Attribute Element Types In Condition Model Conditions</em>' operation.
@@ -116,7 +126,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SELECTOR___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP = PamtramPackage.EXPRESSION_ELEMENT_OPERATION_COUNT + 0;
+	int INSTANCE_SELECTOR___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Local Source Elements</em>' operation.
@@ -125,7 +135,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SELECTOR___GET_LOCAL_SOURCE_ELEMENTS = PamtramPackage.EXPRESSION_ELEMENT_OPERATION_COUNT + 1;
+	int INSTANCE_SELECTOR___GET_LOCAL_SOURCE_ELEMENTS = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get External Source Elements</em>' operation.
@@ -134,7 +144,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS = PamtramPackage.EXPRESSION_ELEMENT_OPERATION_COUNT + 2;
+	int INSTANCE_SELECTOR___GET_EXTERNAL_SOURCE_ELEMENTS = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Instance Selector</em>' class.
@@ -143,7 +153,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SELECTOR_OPERATION_COUNT = PamtramPackage.EXPRESSION_ELEMENT_OPERATION_COUNT + 3;
+	int INSTANCE_SELECTOR_OPERATION_COUNT = PamtramPackage.NAMED_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.impl.SourceInstanceSelectorImpl <em>Source Instance Selector</em>}' class.
@@ -154,6 +164,15 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 */
 	int SOURCE_INSTANCE_SELECTOR = 1;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE_INSTANCE_SELECTOR__NAME = INSTANCE_SELECTOR__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' attribute.
@@ -254,6 +273,15 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 */
 	int TARGET_INSTANCE_SELECTOR = 2;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TARGET_INSTANCE_SELECTOR__NAME = INSTANCE_SELECTOR__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' attribute.
@@ -392,6 +420,15 @@ public interface StructurePackage extends EPackage {
 	int INSTANCE_SELECTOR_SOURCE_INTERFACE__SHARED_CONDITION = ExtendedPackage.MAPPING_HINT_SOURCE_INTERFACE__SHARED_CONDITION;
 
 	/**
+	 * The feature id for the '<em><b>All Conditions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_SELECTOR_SOURCE_INTERFACE__ALL_CONDITIONS = ExtendedPackage.MAPPING_HINT_SOURCE_INTERFACE__ALL_CONDITIONS;
+
+	/**
 	 * The number of structural features of the '<em>Instance Selector Source Interface</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -399,15 +436,6 @@ public interface StructurePackage extends EPackage {
 	 * @ordered
 	 */
 	int INSTANCE_SELECTOR_SOURCE_INTERFACE_FEATURE_COUNT = ExtendedPackage.MAPPING_HINT_SOURCE_INTERFACE_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_SELECTOR_SOURCE_INTERFACE___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = ExtendedPackage.MAPPING_HINT_SOURCE_INTERFACE___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
@@ -465,13 +493,22 @@ public interface StructurePackage extends EPackage {
 	int DYNAMIC_SOURCE_ELEMENT__SOURCE = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Dynamic Source Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Get Mapping Hint Group</em>' operation.
@@ -538,6 +575,15 @@ public interface StructurePackage extends EPackage {
 	int LOCAL_DYNAMIC_SOURCE_ELEMENT__SOURCE = DYNAMIC_SOURCE_ELEMENT__SOURCE;
 
 	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCAL_DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID = DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID;
+
+	/**
 	 * The feature id for the '<em><b>Reference Match Spec</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -547,13 +593,22 @@ public interface StructurePackage extends EPackage {
 	int LOCAL_DYNAMIC_SOURCE_ELEMENT__REFERENCE_MATCH_SPEC = DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Follow External References</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCAL_DYNAMIC_SOURCE_ELEMENT__FOLLOW_EXTERNAL_REFERENCES = DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Local Dynamic Source Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LOCAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT = DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 1;
+	int LOCAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT = DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Get Mapping Hint Group</em>' operation.
@@ -583,13 +638,22 @@ public interface StructurePackage extends EPackage {
 	int LOCAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP = DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Validate Follow External References True If Required</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_FOLLOW_EXTERNAL_REFERENCES_TRUE_IF_REQUIRED__DIAGNOSTICCHAIN_MAP = DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>Local Dynamic Source Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LOCAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT = DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 1;
+	int LOCAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT = DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.impl.InstanceSelectorSourceElementImpl <em>Instance Selector Source Element</em>}' class.
@@ -629,6 +693,15 @@ public interface StructurePackage extends EPackage {
 	int INSTANCE_SELECTOR_SOURCE_ELEMENT__SOURCE = LOCAL_DYNAMIC_SOURCE_ELEMENT__SOURCE;
 
 	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_SELECTOR_SOURCE_ELEMENT__USE_ELEMENT_ID = LOCAL_DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID;
+
+	/**
 	 * The feature id for the '<em><b>Reference Match Spec</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -636,6 +709,15 @@ public interface StructurePackage extends EPackage {
 	 * @ordered
 	 */
 	int INSTANCE_SELECTOR_SOURCE_ELEMENT__REFERENCE_MATCH_SPEC = LOCAL_DYNAMIC_SOURCE_ELEMENT__REFERENCE_MATCH_SPEC;
+
+	/**
+	 * The feature id for the '<em><b>Follow External References</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_SELECTOR_SOURCE_ELEMENT__FOLLOW_EXTERNAL_REFERENCES = LOCAL_DYNAMIC_SOURCE_ELEMENT__FOLLOW_EXTERNAL_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Local Condition</b></em>' containment reference.
@@ -656,13 +738,22 @@ public interface StructurePackage extends EPackage {
 	int INSTANCE_SELECTOR_SOURCE_ELEMENT__SHARED_CONDITION = LOCAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>All Conditions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_SELECTOR_SOURCE_ELEMENT__ALL_CONDITIONS = LOCAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Instance Selector Source Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SELECTOR_SOURCE_ELEMENT_FEATURE_COUNT = LOCAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 2;
+	int INSTANCE_SELECTOR_SOURCE_ELEMENT_FEATURE_COUNT = LOCAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Get Mapping Hint Group</em>' operation.
@@ -692,13 +783,13 @@ public interface StructurePackage extends EPackage {
 	int INSTANCE_SELECTOR_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP = LOCAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
+	 * The operation id for the '<em>Validate Follow External References True If Required</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SELECTOR_SOURCE_ELEMENT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = LOCAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 0;
+	int INSTANCE_SELECTOR_SOURCE_ELEMENT___VALIDATE_FOLLOW_EXTERNAL_REFERENCES_TRUE_IF_REQUIRED__DIAGNOSTICCHAIN_MAP = LOCAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_FOLLOW_EXTERNAL_REFERENCES_TRUE_IF_REQUIRED__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
@@ -707,7 +798,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SELECTOR_SOURCE_ELEMENT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = LOCAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 1;
+	int INSTANCE_SELECTOR_SOURCE_ELEMENT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = LOCAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Instance Selector Source Element</em>' class.
@@ -716,7 +807,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SELECTOR_SOURCE_ELEMENT_OPERATION_COUNT = LOCAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 2;
+	int INSTANCE_SELECTOR_SOURCE_ELEMENT_OPERATION_COUNT = LOCAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.impl.ExternalDynamicSourceElementImpl <em>External Dynamic Source Element</em>}' class.
@@ -754,6 +845,15 @@ public interface StructurePackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTERNAL_DYNAMIC_SOURCE_ELEMENT__SOURCE = DYNAMIC_SOURCE_ELEMENT__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID = DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID;
 
 	/**
 	 * The number of structural features of the '<em>External Dynamic Source Element</em>' class.
@@ -838,6 +938,15 @@ public interface StructurePackage extends EPackage {
 	int INSTANCE_SELECTOR_EXTERNAL_SOURCE_ELEMENT__SOURCE = EXTERNAL_DYNAMIC_SOURCE_ELEMENT__SOURCE;
 
 	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_SELECTOR_EXTERNAL_SOURCE_ELEMENT__USE_ELEMENT_ID = EXTERNAL_DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID;
+
+	/**
 	 * The feature id for the '<em><b>Local Condition</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -856,13 +965,22 @@ public interface StructurePackage extends EPackage {
 	int INSTANCE_SELECTOR_EXTERNAL_SOURCE_ELEMENT__SHARED_CONDITION = EXTERNAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>All Conditions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_SELECTOR_EXTERNAL_SOURCE_ELEMENT__ALL_CONDITIONS = EXTERNAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Instance Selector External Source Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SELECTOR_EXTERNAL_SOURCE_ELEMENT_FEATURE_COUNT = EXTERNAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 2;
+	int INSTANCE_SELECTOR_EXTERNAL_SOURCE_ELEMENT_FEATURE_COUNT = EXTERNAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Get Mapping Hint Group</em>' operation.
@@ -892,22 +1010,13 @@ public interface StructurePackage extends EPackage {
 	int INSTANCE_SELECTOR_EXTERNAL_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP = EXTERNAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_SELECTOR_EXTERNAL_SOURCE_ELEMENT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = EXTERNAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
 	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SELECTOR_EXTERNAL_SOURCE_ELEMENT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = EXTERNAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 1;
+	int INSTANCE_SELECTOR_EXTERNAL_SOURCE_ELEMENT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = EXTERNAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Instance Selector External Source Element</em>' class.
@@ -916,7 +1025,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SELECTOR_EXTERNAL_SOURCE_ELEMENT_OPERATION_COUNT = EXTERNAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 2;
+	int INSTANCE_SELECTOR_EXTERNAL_SOURCE_ELEMENT_OPERATION_COUNT = EXTERNAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link pamtram.structure.impl.GlobalDynamicSourceElementImpl <em>Global Dynamic Source Element</em>}' class.
@@ -954,6 +1063,15 @@ public interface StructurePackage extends EPackage {
 	 * @ordered
 	 */
 	int GLOBAL_DYNAMIC_SOURCE_ELEMENT__SOURCE = DYNAMIC_SOURCE_ELEMENT__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GLOBAL_DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID = DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID;
 
 	/**
 	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
@@ -1038,6 +1156,15 @@ public interface StructurePackage extends EPackage {
 	int INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT__SOURCE = GLOBAL_DYNAMIC_SOURCE_ELEMENT__SOURCE;
 
 	/**
+	 * The feature id for the '<em><b>Use Element ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT__USE_ELEMENT_ID = GLOBAL_DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID;
+
+	/**
 	 * The feature id for the '<em><b>Instance Selectors</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1065,13 +1192,22 @@ public interface StructurePackage extends EPackage {
 	int INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT__SHARED_CONDITION = GLOBAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>All Conditions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT__ALL_CONDITIONS = GLOBAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Instance Selector Global Source Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT_FEATURE_COUNT = GLOBAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 2;
+	int INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT_FEATURE_COUNT = GLOBAL_DYNAMIC_SOURCE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Get Mapping Hint Group</em>' operation.
@@ -1092,22 +1228,13 @@ public interface StructurePackage extends EPackage {
 	int INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT___GET_MAPPING = GLOBAL_DYNAMIC_SOURCE_ELEMENT___GET_MAPPING;
 
 	/**
-	 * The operation id for the '<em>Validate Either Model Or Refer Condition</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT___VALIDATE_EITHER_MODEL_OR_REFER_CONDITION__DIAGNOSTICCHAIN_MAP = GLOBAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
 	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = GLOBAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 1;
+	int INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT___VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL__DIAGNOSTICCHAIN_MAP = GLOBAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Instance Selector Global Source Element</em>' class.
@@ -1116,7 +1243,7 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT_OPERATION_COUNT = GLOBAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 2;
+	int INSTANCE_SELECTOR_GLOBAL_SOURCE_ELEMENT_OPERATION_COUNT = GLOBAL_DYNAMIC_SOURCE_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.structure.InstanceSelector <em>Instance Selector</em>}'.
@@ -1305,6 +1432,17 @@ public interface StructurePackage extends EPackage {
 	EReference getDynamicSourceElement_Source();
 
 	/**
+	 * Returns the meta object for the attribute '{@link pamtram.structure.DynamicSourceElement#isUseElementID <em>Use Element ID</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Use Element ID</em>'.
+	 * @see pamtram.structure.DynamicSourceElement#isUseElementID()
+	 * @see #getDynamicSourceElement()
+	 * @generated
+	 */
+	EAttribute getDynamicSourceElement_UseElementID();
+
+	/**
 	 * Returns the meta object for the '{@link pamtram.structure.DynamicSourceElement#getMappingHintGroup() <em>Get Mapping Hint Group</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1335,17 +1473,6 @@ public interface StructurePackage extends EPackage {
 	EClass getLocalDynamicSourceElement();
 
 	/**
-	 * Returns the meta object for the reference list '{@link pamtram.structure.LocalDynamicSourceElement#getReferenceMatchSpec <em>Reference Match Spec</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Reference Match Spec</em>'.
-	 * @see pamtram.structure.LocalDynamicSourceElement#getReferenceMatchSpec()
-	 * @see #getLocalDynamicSourceElement()
-	 * @generated
-	 */
-	EReference getLocalDynamicSourceElement_ReferenceMatchSpec();
-
-	/**
 	 * Returns the meta object for the '{@link pamtram.structure.LocalDynamicSourceElement#validateSourceAttributeMatchesSectionOrContainedSection(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Source Attribute Matches Section Or Contained Section</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1354,6 +1481,16 @@ public interface StructurePackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getLocalDynamicSourceElement__ValidateSourceAttributeMatchesSectionOrContainedSection__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link pamtram.structure.LocalDynamicSourceElement#validateFollowExternalReferencesTrueIfRequired(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Follow External References True If Required</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Validate Follow External References True If Required</em>' operation.
+	 * @see pamtram.structure.LocalDynamicSourceElement#validateFollowExternalReferencesTrueIfRequired(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getLocalDynamicSourceElement__ValidateFollowExternalReferencesTrueIfRequired__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link pamtram.structure.ExternalDynamicSourceElement <em>External Dynamic Source Element</em>}'.
@@ -1580,6 +1717,14 @@ public interface StructurePackage extends EPackage {
 		EReference DYNAMIC_SOURCE_ELEMENT__SOURCE = eINSTANCE.getDynamicSourceElement_Source();
 
 		/**
+		 * The meta object literal for the '<em><b>Use Element ID</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID = eINSTANCE.getDynamicSourceElement_UseElementID();
+
+		/**
 		 * The meta object literal for the '<em><b>Get Mapping Hint Group</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1606,20 +1751,20 @@ public interface StructurePackage extends EPackage {
 		EClass LOCAL_DYNAMIC_SOURCE_ELEMENT = eINSTANCE.getLocalDynamicSourceElement();
 
 		/**
-		 * The meta object literal for the '<em><b>Reference Match Spec</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference LOCAL_DYNAMIC_SOURCE_ELEMENT__REFERENCE_MATCH_SPEC = eINSTANCE.getLocalDynamicSourceElement_ReferenceMatchSpec();
-
-		/**
 		 * The meta object literal for the '<em><b>Validate Source Attribute Matches Section Or Contained Section</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EOperation LOCAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP = eINSTANCE.getLocalDynamicSourceElement__ValidateSourceAttributeMatchesSectionOrContainedSection__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Follow External References True If Required</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation LOCAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_FOLLOW_EXTERNAL_REFERENCES_TRUE_IF_REQUIRED__DIAGNOSTICCHAIN_MAP = eINSTANCE.getLocalDynamicSourceElement__ValidateFollowExternalReferencesTrueIfRequired__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link pamtram.structure.impl.ExternalDynamicSourceElementImpl <em>External Dynamic Source Element</em>}' class.

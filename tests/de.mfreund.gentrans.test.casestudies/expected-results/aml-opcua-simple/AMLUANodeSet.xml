@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<set:UANodeSet xmlns:set="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd" xmlns:types="http://opcfoundation.org/UA/2008/02/Types.xsd">
+  <set:NamespaceUris>
+    <set:Uri>http://opcfoundation.org/UA/AML/</set:Uri>
+    <set:Uri>http://www.tu-dresden.de/CAEXFile</set:Uri>
+    <set:Uri>http://www.tu-dresden.de/ManufacturingRoleClasses</set:Uri>
+    <set:Uri>http://www.tu-dresden.de/MyInterfaces</set:Uri>
+    <set:Uri>http://www.tu-dresden.de/LibOfCommonTools</set:Uri>
+  </set:NamespaceUris>
+  <set:UAObjectType BrowseName="5:ElectricScrewdriver" NodeId="ns=5;i=21">
+    <set:DisplayName>ElectricScrewdriver</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=5;i=20</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="ns=1;i=4001">ns=3;i=31</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="3:Tool" NodeId="ns=3;i=31">
+    <set:DisplayName>Tool</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=3;i=29</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObjectType BrowseName="4:Energy" NodeId="ns=4;i=39">
+    <set:DisplayName>Energy</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=4;i=37</set:Reference>
+    </set:References>
+  </set:UAObjectType>
+  <set:UAObject BrowseName="2:ExampleTopology.aml" NodeId="ns=2;i=11">
+    <set:DisplayName>ExampleTopology.aml</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=1;i=5001</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">ns=1;i=1002</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="Organizes">ns=2;i=2</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="Organizes">ns=2;i=3</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="Organizes">ns=2;i=4</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="Organizes">ns=2;i=5</set:Reference>
+    </set:References>
+  </set:UAObject>
+  <set:UAObject BrowseName="2:InstanceHierarchies" NodeId="ns=2;i=2">
+    <set:DisplayName>InstanceHierarchies</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">FolderType</set:Reference>
+    </set:References>
+  </set:UAObject>
+  <set:UAObject BrowseName="2:SystemUnitClassLibs" NodeId="ns=2;i=3">
+    <set:DisplayName>SystemUnitClassLibs</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">FolderType</set:Reference>
+    </set:References>
+  </set:UAObject>
+  <set:UAObject BrowseName="2:RoleClassLibs" NodeId="ns=2;i=4">
+    <set:DisplayName>RoleClassLibs</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">FolderType</set:Reference>
+    </set:References>
+  </set:UAObject>
+  <set:UAObject BrowseName="2:InterfaceClassLibs" NodeId="ns=2;i=5">
+    <set:DisplayName>InterfaceClassLibs</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">FolderType</set:Reference>
+    </set:References>
+  </set:UAObject>
+  <set:UAObject BrowseName="2:ManufacturingSystem" NodeId="ns=2;i=18">
+    <set:DisplayName>ManufacturingSystem</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=1;i=5002</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=2;i=2</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">FolderType</set:Reference>
+    </set:References>
+  </set:UAObject>
+  <set:UAObject BrowseName="2:firstScrewdriver" NodeId="ns=2;i=19">
+    <set:DisplayName>firstScrewdriver</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=18</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">ns=5;i=21</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="ns=1;i=4001">ns=3;i=31</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="ns=1;i=4002">ns=3;i=31</set:Reference>
+    </set:References>
+  </set:UAObject>
+  <set:UAObject BrowseName="2:secondScrewdriver" NodeId="ns=2;i=26">
+    <set:DisplayName>secondScrewdriver</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=18</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">ns=5;i=21</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="ns=1;i=4001">ns=3;i=31</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="ns=1;i=4002">ns=3;i=31</set:Reference>
+    </set:References>
+  </set:UAObject>
+  <set:UAObject BrowseName="5:LibOfCommonTools" NodeId="ns=5;i=20">
+    <set:DisplayName>LibOfCommonTools</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=1;i=5006</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=2;i=3</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">FolderType</set:Reference>
+    </set:References>
+  </set:UAObject>
+  <set:UAObject BrowseName="3:ManufacturingRoleClasses" NodeId="ns=3;i=29">
+    <set:DisplayName>ManufacturingRoleClasses</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=1;i=5005</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=2;i=4</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">FolderType</set:Reference>
+    </set:References>
+  </set:UAObject>
+  <set:UAObject BrowseName="4:MyInterfaces" NodeId="ns=4;i=37">
+    <set:DisplayName>MyInterfaces</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=1;i=5004</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="Organizes">ns=2;i=5</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">FolderType</set:Reference>
+    </set:References>
+  </set:UAObject>
+  <set:UAObject BrowseName="2:EnergySupply" NodeId="ns=2;i=40" ParentNodeId="ns=2;i=19">
+    <set:DisplayName>EnergySupply</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=19</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=4;i=39</set:Reference>
+    </set:References>
+  </set:UAObject>
+  <set:UAObject BrowseName="2:EnergySupply" NodeId="ns=2;i=44" ParentNodeId="ns=2;i=26">
+    <set:DisplayName>EnergySupply</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=26</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=4;i=39</set:Reference>
+    </set:References>
+  </set:UAObject>
+  <set:UAObject BrowseName="5:EnergySupply" NodeId="ns=5;i=46" ParentNodeId="ns=5;i=21">
+    <set:DisplayName>EnergySupply</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=5;i=21</set:Reference>
+      <set:Reference IsForward="false" ReferenceType="HasTypeDefinition">ns=4;i=39</set:Reference>
+    </set:References>
+  </set:UAObject>
+  <set:UAVariable BrowseName="SchemaVersion" NodeId="ns=2;i=12" ParentNodeId="ns=2;i=11"
+      DataType="String">
+    <set:DisplayName/>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=2;i=11</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>2.15</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
+  <set:UAVariable BrowseName="2:BaseRoleClassLib" NodeId="ns=2;i=14" ParentNodeId="ns=2;i=11"
+      DataType="String">
+    <set:DisplayName>BaseRoleClassLib</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=2;i=11</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">ns=1;i=3002</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>Libs/RoleClass Libraries/AutomationMLBaseRoleClassLib.aml</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
+  <set:UAVariable BrowseName="2:BaseInterfaceClassLib" NodeId="ns=2;i=16" ParentNodeId="ns=2;i=11"
+      DataType="String">
+    <set:DisplayName>BaseInterfaceClassLib</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=2;i=11</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">ns=1;i=3002</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>Libs/InterfaceClass Libraries/AutomationMLInterfaceClassLib.aml</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
+  <set:UAVariable BrowseName="2:New Attribute" NodeId="ns=2;i=17" ParentNodeId="ns=2;i=19">
+    <set:DisplayName>New Attribute</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=19</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">ns=1;i=3007</set:Reference>
+    </set:References>
+    <set:Value/>
+  </set:UAVariable>
+  <set:UAVariable BrowseName="2:ID" NodeId="ns=2;i=23" ParentNodeId="ns=2;i=19" DataType="String">
+    <set:DisplayName>ID</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=2;i=19</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>{788eb291-f103-4fdc-aba0-4893b599f556}</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
+  <set:UAVariable BrowseName="2:ID" NodeId="ns=2;i=27" ParentNodeId="ns=2;i=26" DataType="String">
+    <set:DisplayName>ID</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=2;i=26</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>{19dcf818-4716-4fc1-a85f-28e1938c4c3a}</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
+  <set:UAVariable BrowseName="5:Version" NodeId="ns=5;i=28" ParentNodeId="ns=5;i=20"
+      DataType="String">
+    <set:DisplayName>Version</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=5;i=20</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>1.0</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
+  <set:UAVariable BrowseName="3:Version" NodeId="ns=3;i=30" ParentNodeId="ns=3;i=29"
+      DataType="String">
+    <set:DisplayName>Version</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=3;i=29</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>1.0</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
+  <set:UAVariable BrowseName="4:Version" NodeId="ns=4;i=38" ParentNodeId="ns=4;i=37"
+      DataType="String">
+    <set:DisplayName>Version</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=4;i=37</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>1.0</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
+  <set:UAVariable BrowseName="2:ID" NodeId="ns=2;i=42" ParentNodeId="ns=2;i=40" DataType="String">
+    <set:DisplayName>ID</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=2;i=40</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>{5f535d4c-dd46-4c1c-898c-4e58419048b6}</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
+  <set:UAVariable BrowseName="2:ID" NodeId="ns=2;i=45" ParentNodeId="ns=2;i=44" DataType="String">
+    <set:DisplayName>ID</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=2;i=44</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>50e10905-ac18-413c-afab-ad8ed1569fff</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
+  <set:UAVariable BrowseName="5:ID" NodeId="ns=5;i=47" ParentNodeId="ns=5;i=46" DataType="String">
+    <set:DisplayName>ID</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasProperty">ns=5;i=46</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>dd0e0dfe-10f8-4068-845b-9c29699ac79b</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
+</set:UANodeSet>

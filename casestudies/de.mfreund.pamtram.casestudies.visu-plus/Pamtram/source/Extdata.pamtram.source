@@ -40,7 +40,7 @@
               </value>
               <value xsi:type="source:SourceSectionClass" xmi:id="_FCMMoV5SEeebSvNNZJQHVw" name="ExtData DataItems">
                 <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_FCMMol5SEeebSvNNZJQHVw" name="extdata">
+                <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_FCMMol5SEeebSvNNZJQHVw" name="extdata" ignoreUnmatchedElements="true">
                   <value xsi:type="source:SourceSectionClass" xmi:id="_FCMMo15SEeebSvNNZJQHVw" name="ExtData LockedChannel">
                     <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
                     <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCMMpF5SEeebSvNNZJQHVw" name="name">
@@ -81,9 +81,6 @@
                       <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
                     </attributes>
                   </value>
-                  <value xsi:type="source:SourceSectionClass" xmi:id="_FCMMs15SEeebSvNNZJQHVw" name="ExtData Rest" cardinality="ZERO__INFINITY">
-                    <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                  </value>
                   <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
                 </references>
                 <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCMMtF5SEeebSvNNZJQHVw" name="name">
@@ -110,7 +107,7 @@
   </sections>
   <sections xsi:type="source:SourceSection" xmi:id="_FCMzsV5SEeebSvNNZJQHVw" name="ExtData &quot;SignalInterface/AlertInterface&quot;">
     <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-    <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_FCMzsl5SEeebSvNNZJQHVw" name="extdata">
+    <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_FCMzsl5SEeebSvNNZJQHVw" name="extdata" ignoreUnmatchedElements="true">
       <value xsi:type="source:SourceSectionClass" xmi:id="_FCMzs15SEeebSvNNZJQHVw" name="ExtData &quot;Hardware&quot;">
         <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
         <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCMztF5SEeebSvNNZJQHVw" name="name">
@@ -124,65 +121,13 @@
       </value>
       <value xsi:type="source:SourceSectionClass" xmi:id="_FCMzuF5SEeebSvNNZJQHVw" name="ExtData &quot;Signals&quot;">
         <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-        <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_FCMzuV5SEeebSvNNZJQHVw" name="extdata">
-          <value xsi:type="source:SourceSectionClass" xmi:id="_FCMzul5SEeebSvNNZJQHVw" name="Unknown Signal Type" cardinality="ZERO__INFINITY">
-            <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-            <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_FCMzu15SEeebSvNNZJQHVw" name="extdata">
-              <value xsi:type="source:SourceSectionClass" xmi:id="_FCMzvF5SEeebSvNNZJQHVw" name="ExtData &quot;DataItems&quot;">
-                <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_FCMzvV5SEeebSvNNZJQHVw" name="extdata">
-                  <value xsi:type="source:SourceSectionClass" xmi:id="_FCMzvl5SEeebSvNNZJQHVw" name="ExtData &quot;OPCItem&quot;">
-                    <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                    <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCMzv15SEeebSvNNZJQHVw" name="name">
-                      <valueConstraints xsi:type="constraint:EqualityConstraint" xmi:id="_FCMzwF5SEeebSvNNZJQHVw" name="OPCItem" expression="OPCItem"/>
-                      <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
-                    </attributes>
-                    <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCMzwV5SEeebSvNNZJQHVw" name="valueBrowsePath">
-                      <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
-                    </attributes>
-                  </value>
-                  <value xsi:type="source:SourceSectionClass" xmi:id="_FCMzwl5SEeebSvNNZJQHVw" name="ExtData Rest" cardinality="ONE__INFINITY">
-                    <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                  </value>
-                  <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
-                </references>
-                <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCMzw15SEeebSvNNZJQHVw" name="name">
-                  <valueConstraints xsi:type="constraint:EqualityConstraint" xmi:id="_FCMzxF5SEeebSvNNZJQHVw" name="DataItems" expression="DataItems"/>
-                  <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
-                </attributes>
-              </value>
-              <value xsi:type="source:SourceSectionClass" xmi:id="_FCMzxV5SEeebSvNNZJQHVw" name="ExtData &quot;Type&quot;">
-                <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCMzxl5SEeebSvNNZJQHVw" name="name">
-                  <valueConstraints xsi:type="constraint:EqualityConstraint" xmi:id="_FCMzx15SEeebSvNNZJQHVw" name="Type" expression="Type"/>
-                  <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
-                </attributes>
-                <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCMzyF5SEeebSvNNZJQHVw" name="value exclude known Types">
-                  <valueConstraints xsi:type="constraint:EqualityConstraint" xmi:id="_FCNawF5SEeebSvNNZJQHVw" name="Integer" type="FORBIDDEN" expression="Integer"/>
-                  <valueConstraints xsi:type="constraint:EqualityConstraint" xmi:id="_FCNawV5SEeebSvNNZJQHVw" name="Double" type="FORBIDDEN" expression="Double"/>
-                  <valueConstraints xsi:type="constraint:EqualityConstraint" xmi:id="_FCNawl5SEeebSvNNZJQHVw" name="Bool" type="FORBIDDEN" expression="Bool"/>
-                  <valueConstraints xsi:type="constraint:EqualityConstraint" xmi:id="_FCNaw15SEeebSvNNZJQHVw" name="String" type="FORBIDDEN" expression="String"/>
-                  <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
-                </attributes>
-              </value>
-              <value xsi:type="source:SourceSectionClass" xmi:id="_FCNaxF5SEeebSvNNZJQHVw" name="ExtData Rest" cardinality="ONE__INFINITY">
-                <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-              </value>
-              <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
-            </references>
-          </value>
-          <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
-        </references>
-        <references xsi:type="source:SourceSectionCrossReference" xmi:id="_FCNaxV5SEeebSvNNZJQHVw" name="extdata" value="_FCNazF5SEeebSvNNZJQHVw">
+        <references xsi:type="source:SourceSectionCrossReference" xmi:id="_FCNaxV5SEeebSvNNZJQHVw" name="extdata" value="_FCNazF5SEeebSvNNZJQHVw" ignoreUnmatchedElements="true">
           <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
         </references>
         <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCNaxl5SEeebSvNNZJQHVw" name="name">
           <valueConstraints xsi:type="constraint:EqualityConstraint" xmi:id="_FCNax15SEeebSvNNZJQHVw" name="Signals" expression="Signals"/>
           <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
         </attributes>
-      </value>
-      <value xsi:type="source:SourceSectionClass" xmi:id="_FCNayF5SEeebSvNNZJQHVw" name="ExtData Rest" cardinality="ZERO__INFINITY">
-        <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
       </value>
       <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
     </references>
@@ -195,10 +140,10 @@
   </sections>
   <sections xsi:type="source:SourceSection" xmi:id="_FCNazF5SEeebSvNNZJQHVw" name="ExtData &quot;Signal&quot;" cardinality="ZERO__INFINITY" container="_FCMzuF5SEeebSvNNZJQHVw">
     <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-    <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_FCNazV5SEeebSvNNZJQHVw" name="extdata">
+    <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_FCNazV5SEeebSvNNZJQHVw" name="extdata" ignoreUnmatchedElements="true">
       <value xsi:type="source:SourceSectionClass" xmi:id="_FCNazl5SEeebSvNNZJQHVw" name="ExtData &quot;DataItems&quot;">
         <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-        <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_FCNaz15SEeebSvNNZJQHVw" name="extdata">
+        <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_FCNaz15SEeebSvNNZJQHVw" name="extdata" ignoreUnmatchedElements="true">
           <value xsi:type="source:SourceSectionClass" xmi:id="_FCNa0F5SEeebSvNNZJQHVw" name="ExtData &quot;OPCItem&quot;">
             <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
             <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCNa0V5SEeebSvNNZJQHVw" name="name">
@@ -208,9 +153,6 @@
             <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCNa015SEeebSvNNZJQHVw" name="valueBrowsePath">
               <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
             </attributes>
-          </value>
-          <value xsi:type="source:SourceSectionClass" xmi:id="_FCNa1F5SEeebSvNNZJQHVw" name="ExtData Rest" cardinality="ONE__INFINITY">
-            <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
           </value>
           <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
         </references>
@@ -242,9 +184,6 @@
         <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCOB3V5SEeebSvNNZJQHVw" name="signalName">
           <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
         </attributes>
-      </value>
-      <value xsi:type="source:SourceSectionClass" xmi:id="_FCOB3l5SEeebSvNNZJQHVw" name="ExtData Rest" cardinality="ONE__INFINITY">
-        <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
       </value>
       <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
     </references>
@@ -378,7 +317,7 @@
       </value>
       <value xsi:type="source:SourceSectionClass" xmi:id="_FCPP_l5SEeebSvNNZJQHVw" name="ExtData &quot;SignalInterface Stopper&quot;" cardinality="ONE__INFINITY">
         <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-        <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_FCPP_15SEeebSvNNZJQHVw" name="extdata">
+        <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_FCPP_15SEeebSvNNZJQHVw" name="extdata" ignoreUnmatchedElements="true">
           <value xsi:type="source:SourceSectionClass" xmi:id="_FCPQAF5SEeebSvNNZJQHVw" name="ExtData &quot;Hardware&quot;">
             <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
             <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCPQAV5SEeebSvNNZJQHVw" name="name">
@@ -395,10 +334,10 @@
             <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_FCPQBl5SEeebSvNNZJQHVw" name="extdata">
               <value xsi:type="source:SourceSectionClass" xmi:id="_FCPQB15SEeebSvNNZJQHVw" name="Signal Rest" cardinality="ZERO__INFINITY">
                 <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_FCPQCF5SEeebSvNNZJQHVw" name="extdata">
+                <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_FCPQCF5SEeebSvNNZJQHVw" name="extdata" ignoreUnmatchedElements="true">
                   <value xsi:type="source:SourceSectionClass" xmi:id="_FCPQCV5SEeebSvNNZJQHVw" name="ExtData &quot;DataItems&quot;">
                     <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                    <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_FCPQCl5SEeebSvNNZJQHVw" name="extdata">
+                    <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_FCPQCl5SEeebSvNNZJQHVw" name="extdata" ignoreUnmatchedElements="true">
                       <value xsi:type="source:SourceSectionClass" xmi:id="_FCPQC15SEeebSvNNZJQHVw" name="ExtData &quot;OPCItem&quot;">
                         <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
                         <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCPQDF5SEeebSvNNZJQHVw" name="name">
@@ -408,9 +347,6 @@
                         <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCP3AV5SEeebSvNNZJQHVw" name="valueBrowsePath">
                           <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
                         </attributes>
-                      </value>
-                      <value xsi:type="source:SourceSectionClass" xmi:id="_FCP3Al5SEeebSvNNZJQHVw" name="ExtData Rest" cardinality="ONE__INFINITY">
-                        <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
                       </value>
                       <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
                     </references>
@@ -429,9 +365,6 @@
                       <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
                     </attributes>
                   </value>
-                  <value xsi:type="source:SourceSectionClass" xmi:id="_FCP3CV5SEeebSvNNZJQHVw" name="ExtData Rest" cardinality="ONE__INFINITY">
-                    <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                  </value>
                   <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
                 </references>
               </value>
@@ -440,7 +373,7 @@
                 <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_FCP3C15SEeebSvNNZJQHVw" name="extdata">
                   <value xsi:type="source:SourceSectionClass" xmi:id="_FCP3DF5SEeebSvNNZJQHVw" name="ExtData &quot;DataItems&quot;">
                     <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                    <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_FCP3DV5SEeebSvNNZJQHVw" name="extdata">
+                    <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_FCP3DV5SEeebSvNNZJQHVw" name="extdata" ignoreUnmatchedElements="true">
                       <value xsi:type="source:SourceSectionClass" xmi:id="_FCP3Dl5SEeebSvNNZJQHVw" name="ExtData &quot;OPCItem&quot;">
                         <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
                         <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCP3D15SEeebSvNNZJQHVw" name="name">
@@ -450,9 +383,6 @@
                         <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCP3EV5SEeebSvNNZJQHVw" name="valueBrowsePath @ Integer">
                           <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
                         </attributes>
-                      </value>
-                      <value xsi:type="source:SourceSectionClass" xmi:id="_FCP3El5SEeebSvNNZJQHVw" name="ExtData Rest" cardinality="ONE__INFINITY">
-                        <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
                       </value>
                       <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
                     </references>
@@ -491,10 +421,10 @@
               </value>
               <value xsi:type="source:SourceSectionClass" xmi:id="_FCQeF15SEeebSvNNZJQHVw" name="ProductID Signal">
                 <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_FCQeGF5SEeebSvNNZJQHVw" name="extdata">
+                <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_FCQeGF5SEeebSvNNZJQHVw" name="extdata" ignoreUnmatchedElements="true">
                   <value xsi:type="source:SourceSectionClass" xmi:id="_FCQeGV5SEeebSvNNZJQHVw" name="ExtData &quot;DataItems&quot;">
                     <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                    <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_FCQeGl5SEeebSvNNZJQHVw" name="extdata">
+                    <references xsi:type="source:SourceSectionCompositeReference" xmi:id="_FCQeGl5SEeebSvNNZJQHVw" name="extdata" ignoreUnmatchedElements="true">
                       <value xsi:type="source:SourceSectionClass" xmi:id="_FCQeG15SEeebSvNNZJQHVw" name="ExtData &quot;OPCItem&quot;">
                         <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
                         <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCQeHF5SEeebSvNNZJQHVw" name="name">
@@ -504,9 +434,6 @@
                         <attributes xsi:type="source:ActualSourceSectionAttribute" xmi:id="_FCQeHl5SEeebSvNNZJQHVw" name="valueBrowsePath @ Integer">
                           <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
                         </attributes>
-                      </value>
-                      <value xsi:type="source:SourceSectionClass" xmi:id="_FCQeH15SEeebSvNNZJQHVw" name="ExtData Rest" cardinality="ONE__INFINITY">
-                        <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
                       </value>
                       <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
                     </references>
@@ -537,9 +464,6 @@
                       <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/value"/>
                     </attributes>
                   </value>
-                  <value xsi:type="source:SourceSectionClass" xmi:id="_FCRFLF5SEeebSvNNZJQHVw" name="ExtData Rest" cardinality="ONE__INFINITY">
-                    <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
-                  </value>
                   <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
                 </references>
               </value>
@@ -549,9 +473,6 @@
               <valueConstraints xsi:type="constraint:EqualityConstraint" xmi:id="_FCRFLl5SEeebSvNNZJQHVw" name="Signals" expression="Signals"/>
               <attribute href="http://gfai.de/stgml.xsd#//Externaldataelement/name"/>
             </attributes>
-          </value>
-          <value xsi:type="source:SourceSectionClass" xmi:id="_FCRFL15SEeebSvNNZJQHVw" name="ExtData Rest" cardinality="ZERO__INFINITY">
-            <eClass href="http://gfai.de/stgml.xsd#//Externaldataelement"/>
           </value>
           <eReference href="http://gfai.de/stgml.xsd#//Externaldataelement/extdata"/>
         </references>

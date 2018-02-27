@@ -3,6 +3,7 @@
 package pamtram.structure.impl;
 
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.GenLibraryPackage;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
@@ -402,6 +403,15 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getDynamicSourceElement_UseElementID() {
+		return (EAttribute)dynamicSourceElementEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getDynamicSourceElement__GetMappingHintGroup() {
 		return dynamicSourceElementEClass.getEOperations().get(0);
 	}
@@ -429,8 +439,8 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLocalDynamicSourceElement_ReferenceMatchSpec() {
-		return (EReference)localDynamicSourceElementEClass.getEStructuralFeatures().get(0);
+	public EOperation getLocalDynamicSourceElement__ValidateSourceAttributeMatchesSectionOrContainedSection__DiagnosticChain_Map() {
+		return localDynamicSourceElementEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -438,8 +448,8 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getLocalDynamicSourceElement__ValidateSourceAttributeMatchesSectionOrContainedSection__DiagnosticChain_Map() {
-		return localDynamicSourceElementEClass.getEOperations().get(0);
+	public EOperation getLocalDynamicSourceElement__ValidateFollowExternalReferencesTrueIfRequired__DiagnosticChain_Map() {
+		return localDynamicSourceElementEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -531,12 +541,13 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 
 		dynamicSourceElementEClass = createEClass(DYNAMIC_SOURCE_ELEMENT);
 		createEReference(dynamicSourceElementEClass, DYNAMIC_SOURCE_ELEMENT__SOURCE);
+		createEAttribute(dynamicSourceElementEClass, DYNAMIC_SOURCE_ELEMENT__USE_ELEMENT_ID);
 		createEOperation(dynamicSourceElementEClass, DYNAMIC_SOURCE_ELEMENT___GET_MAPPING_HINT_GROUP);
 		createEOperation(dynamicSourceElementEClass, DYNAMIC_SOURCE_ELEMENT___GET_MAPPING);
 
 		localDynamicSourceElementEClass = createEClass(LOCAL_DYNAMIC_SOURCE_ELEMENT);
-		createEReference(localDynamicSourceElementEClass, LOCAL_DYNAMIC_SOURCE_ELEMENT__REFERENCE_MATCH_SPEC);
 		createEOperation(localDynamicSourceElementEClass, LOCAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP);
+		createEOperation(localDynamicSourceElementEClass, LOCAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_FOLLOW_EXTERNAL_REFERENCES_TRUE_IF_REQUIRED__DIAGNOSTICCHAIN_MAP);
 
 		externalDynamicSourceElementEClass = createEClass(EXTERNAL_DYNAMIC_SOURCE_ELEMENT);
 		createEOperation(externalDynamicSourceElementEClass, EXTERNAL_DYNAMIC_SOURCE_ELEMENT___VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION__DIAGNOSTICCHAIN_MAP);
@@ -769,6 +780,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		globalDynamicSourceElementEClass_InstanceSelectorType.getEBounds().add(g1);
 
 		// Add supertypes to classes
+		instanceSelectorEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		instanceSelectorEClass.getESuperTypes().add(thePamtramPackage.getExpressionElement());
 		instanceSelectorEClass.getESuperTypes().add(thePamtramPackage.getModifiableElement());
 		sourceInstanceSelectorEClass.getESuperTypes().add(this.getInstanceSelector());
@@ -815,6 +827,16 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		dynamicSourceElementEClass.getESuperTypes().add(thePamtramPackage.getNamedElement());
 		dynamicSourceElementEClass.getESuperTypes().add(thePamtramPackage.getModifiableElement());
 		g1 = createEGenericType(this.getDynamicSourceElement());
+		g2 = createEGenericType(localDynamicSourceElementEClass_S);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(localDynamicSourceElementEClass_C);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(localDynamicSourceElementEClass_R);
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(localDynamicSourceElementEClass_A);
+		g1.getETypeArguments().add(g2);
+		localDynamicSourceElementEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(thePamtramPackage.getMatchSpecElement());
 		g2 = createEGenericType(localDynamicSourceElementEClass_S);
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(localDynamicSourceElementEClass_C);
@@ -890,16 +912,24 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		initEClass(dynamicSourceElementEClass, DynamicSourceElement.class, "DynamicSourceElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		g1 = createEGenericType(dynamicSourceElementEClass_A);
 		initEReference(getDynamicSourceElement_Source(), g1, null, "source", null, 1, 1, DynamicSourceElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDynamicSourceElement_UseElementID(), ecorePackage.getEBoolean(), "useElementID", null, 0, 1, DynamicSourceElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getDynamicSourceElement__GetMappingHintGroup(), thePamtramPackage.getNamedElement(), "getMappingHintGroup", 1, 1, !IS_UNIQUE, IS_ORDERED);
 
 		initEOperation(getDynamicSourceElement__GetMapping(), theMappingPackage.getMapping(), "getMapping", 1, 1, !IS_UNIQUE, IS_ORDERED);
 
 		initEClass(localDynamicSourceElementEClass, LocalDynamicSourceElement.class, "LocalDynamicSourceElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		g1 = createEGenericType(localDynamicSourceElementEClass_R);
-		initEReference(getLocalDynamicSourceElement_ReferenceMatchSpec(), g1, null, "referenceMatchSpec", null, 0, -1, LocalDynamicSourceElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = initEOperation(getLocalDynamicSourceElement__ValidateSourceAttributeMatchesSectionOrContainedSection__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateSourceAttributeMatchesSectionOrContainedSection", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getLocalDynamicSourceElement__ValidateFollowExternalReferencesTrueIfRequired__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateFollowExternalReferencesTrueIfRequired", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType();
@@ -1055,13 +1085,15 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		  (getTargetInstanceSelector_ReferenceAttribute(), 
 		   source, 
 		   new String[] {
-			 "documentation", "The TargetSectionClass one of whose created instances shall be selected."
+			 "documentation", "The TargetSectionClass one of whose created instances shall be selected.",
+			 "propertyDescriptor", "itemPropertyDescriptors.add\n\t(new <%org.eclipse.emf.edit.provider.ItemPropertyDescriptor%>\n\t\t(((<%org.eclipse.emf.edit.provider.ComposeableAdapterFactory%>)adapterFactory).getRootAdapterFactory(),\n\t\t getResourceLocator(),\n\t\t getString(\"_UI_TargetInstanceSelector_referenceAttribute_feature\"),\n\t\t getString(\"_UI_TargetInstanceSelector_referenceAttribute_description\"),\n\t\t <%pamtram.structure.StructurePackage%>.Literals.TARGET_INSTANCE_SELECTOR__REFERENCE_ATTRIBUTE,\n\t\t true,\n\t\t false,\n\t\t true,\n\t\t null,\n\t\t getString(\"_UI_BasicPropertyCategory\"),\n\t\t null) {\n\t\t\n\t\t@Override\n\t\tpublic <%java.util.Collection%><?> getChoiceOfValues(Object object) {\n\t\t\n\t\t\t<%java.util.Collection%><?> choices = super.getChoiceOfValues(object);\n\t\t\t\n\t\t\t// If a \'targetClass\' has already been set for this \'TargetInstanceSelector\', allow only those choices\n\t\t\t\t// that are part of the same <%pamtram.structure.target.TargetSection%> as the specified \'targetClass\' (or of one of the extended\n\t\t\t\t// sections).\n\t\t\t\t//\n\t\t\t\tif (object instanceof <%pamtram.structure.TargetInstanceSelector%>\n\t\t\t\t\t\t&& ((<%pamtram.structure.TargetInstanceSelector%>) object).getTargetClass() != null) {\n\t\t\t\n\t\t\t\t<%pamtram.structure.target.TargetSection%> section = ((<%pamtram.structure.TargetInstanceSelector%>) object).getTargetClass().getContainingSection();\n\t\t\t\t\tif (section != null) {\n\t\t\t\n\t\t\t\t\t<%java.util.List%><<%pamtram.structure.target.TargetSection%>> allowedSections = new <%java.util.ArrayList%><>(<%java.util.Arrays%>.asList(section));\n\t\t\t\t\t\tallowedSections.addAll(section.getAllExtend());\n\t\t\t\n\t\t\t\t\treturn choices.stream()\n\t\t\t\t\t\t\t\t.filter(c -> c instanceof pamtram.structure.target.TargetSectionAttribute && allowedSections\n\t\t\t\t\t\t\t\t\t\t.contains(((pamtram.structure.target.TargetSectionAttribute) c).getContainingSection()))\n\t\t\t\t\t\t\t\t.collect(<%java.util.stream.Collectors%>.toList());\n\t\t\t\t\t}\n\t\t\t\n\t\t\t}\n\t\t\t\n\t\t\treturn choices;\n\t\t}\n\t});"
 		   });	
 		addAnnotation
 		  (getTargetInstanceSelector_TargetClass(), 
 		   source, 
 		   new String[] {
-			 "documentation", "The TargetSectionClass one of whose created instances shall be selected."
+			 "documentation", "The TargetSectionClass one of whose created instances shall be selected.",
+			 "propertyDescriptor", "this.itemPropertyDescriptors.add(\n\t\tnew ItemPropertyDescriptor(((<%org.eclipse.emf.edit.provider.ComposeableAdapterFactory%>) this.adapterFactory).getRootAdapterFactory(),\n\t\t\t\tthis.getResourceLocator(), this.getString(\"_UI_TargetInstanceSelector_targetClass_feature\"),\n\t\t\t\tthis.getString(\"_UI_TargetInstanceSelector_targetClass_description\"),\n\t\t\t\t<%pamtram.structure.StructurePackage%>.Literals.TARGET_INSTANCE_SELECTOR__TARGET_CLASS, true, false, true, null,\n\t\t\t\tthis.getString(\"_UI_BasicPropertyCategory\"), null) {\n\n\t\t\t@Override\n\t\t\tpublic <%java.util.Collection%><?> getChoiceOfValues(Object object) {\n\n\t\t\t\t<%java.util.Collection%><?> choices = super.getChoiceOfValues(object);\n\n\t\t\t\t// If an \'affectedReference\' has already been set for this \'TargetInstanceSelector\', allow only\n\t\t\t\t// those choices\n\t\t\t\t// that are compatible with the selected reference.\n\t\t\t\t//\n\t\t\t\tif (object instanceof <%pamtram.mapping.extended.ReferenceTargetSelector%>\n\t\t\t\t\t\t&& ((<%pamtram.mapping.extended.ReferenceTargetSelector%>) object).getAffectedReference() != null\n\t\t\t\t\t\t&& ((<%pamtram.mapping.extended.ReferenceTargetSelector%>) object).getAffectedReference().getEReference() != null) {\n\n\t\t\t\t\t<%pamtram.mapping.extended.ReferenceTargetSelector%> referenceTargetSelector = (<%pamtram.mapping.extended.ReferenceTargetSelector%>) object;\n\n\t\t\t\t\treturn choices.stream().filter(c -> c instanceof pamtram.structure.target.TargetSectionClass)\n\t\t\t\t\t\t\t.map(c -> (pamtram.structure.target.TargetSectionClass) c)\n\t\t\t\t\t\t\t.filter(targetClass -> targetClass.getEClass() != null\n\t\t\t\t\t\t\t\t\t&& referenceTargetSelector.getAffectedReference().getEReference()\n\t\t\t\t\t\t\t\t\t\t\t.getEReferenceType().isSuperTypeOf(targetClass.getEClass()))\n\t\t\t\t\t\t\t.collect(<%java.util.stream.Collectors%>.toList());\n\n\t\t\t\t}\n\n\t\t\t\treturn super.getChoiceOfValues(object);\n\t\t\t}\n\t\t});"
 		   });	
 		addAnnotation
 		  (instanceSelectorSourceInterfaceEClass, 
@@ -1109,7 +1141,14 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		  (getDynamicSourceElement_Source(), 
 		   source, 
 		   new String[] {
-			 "documentation", "The attribute of a SourceSection based on which the dynamic value(s) is/are calculated.\r\n<br /><br />\r\nThe concrete sub-type of DynamicSourceElement poses additional constraints on the fact which SourceSectionAttributes may be used as \'source\'."
+			 "documentation", "The attribute of a SourceSection based on which the dynamic value(s) is/are calculated.\r\n<br /><br />\r\nThe concrete sub-type of DynamicSourceElement poses additional constraints on the fact which SourceSectionAttributes may be used as \'source\'.",
+			 "propertyDescriptor", "this.itemPropertyDescriptors.add(\r\n\t\t\t\tnew ItemPropertyDescriptor(((<%org.eclipse.emf.edit.provider.ComposeableAdapterFactory%>) this.adapterFactory).getRootAdapterFactory(),\r\n\t\t\t\t\t\tthis.getResourceLocator(), this.getString(\"_UI_DynamicSourceElement_source_feature\"),\r\n\t\t\t\t\t\tthis.getString(\"_UI_DynamicSourceElement_source_description\"),\r\n\t\t\t\t\t\t<%pamtram.structure.StructurePackage%>.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE, true, false, true, null,\r\n\t\t\t\t\t\tthis.getString(\"_UI_BasicPropertyCategory\"), null) {\r\n\r\t\t\t\t@Override\r\n\t\t\t\t\tpublic <%java.util.Collection%><?> getChoiceOfValues(Object object) {\r\n\r\t\t\t\t\t// the parent <%pamtram.mapping.Mapping%>\r\n\t\t\t\t\t\t//\r\n\t\t\t\t\t\t<%pamtram.mapping.Mapping%> mapping = ((<%pamtram.structure.DynamicSourceElement%><?, ?, ?, ?>) object).getMapping();\r\n\r\t\t\t\t\tif (mapping == null || mapping.getSourceSection() == null) {\r\n\t\t\t\t\t\t\treturn new <%java.util.ArrayList%><>();\r\n\t\t\t\t\t\t}\r\n\r\t\t\t\t\t<%pamtram.structure.generic.Class%><?, ?, ?, ?> relevantClass = mapping.getSourceSection();\r\n\r\t\t\t\t\t<%java.util.List%><Object> choiceOfValues = new <%java.util.ArrayList%><>();\r\n\r\t\t\t\t\t// iterate over all elements and return the attributes as possible options\r\n\t\t\t\t\t\t//\r\n\t\t\t\t\t\t<%java.util.Set%><<%pamtram.structure.generic.Class%><?, ?, ?, ?>> scanned = new <%java.util.HashSet%><>();\r\n\t\t\t\t\t\t<%java.util.List%><<%pamtram.structure.generic.Class%><?, ?, ?, ?>> sectionsToScan = new <%java.util.ArrayList%><>();\r\n\t\t\t\t\t\tsectionsToScan.add(relevantClass);\r\n\r\t\t\t\t\t// also regard abstract sections that this extends\r\n\t\t\t\t\t\tif (relevantClass instanceof <%pamtram.structure.generic.Section%>) {\r\n\t\t\t\t\t\t\tsectionsToScan.addAll(((<%pamtram.structure.generic.Section%><?, ?, ?, ?>) relevantClass).getAllExtend());\r\n\t\t\t\t\t\t}\r\n\r\t\t\t\t\twhile (!sectionsToScan.isEmpty()) {\r\n\t\t\t\t\t\t\t<%pamtram.structure.generic.Class%><?, ?, ?, ?> classToScan = sectionsToScan.remove(0);\r\n\t\t\t\t\t\t\tscanned.add(classToScan);\r\n\r\t\t\t\t\t\t<%java.util.Iterator%><<%org.eclipse.emf.ecore.EObject%>> it = classToScan.eAllContents();\r\n\t\t\t\t\t\t\twhile (it.hasNext()) {\r\n\t\t\t\t\t\t\t\t<%org.eclipse.emf.ecore.EObject%> next = it.next();\r\n\t\t\t\t\t\t\t\tif (next instanceof pamtram.structure.generic.Attribute) {\r\n\t\t\t\t\t\t\t\t\tchoiceOfValues.add(next);\r\n\t\t\t\t\t\t\t\t} else if (next instanceof <%pamtram.structure.generic.CrossReference%>) {\r\n\t\t\t\t\t\t\t\t\t<%java.util.List%><<%pamtram.structure.source.SourceSectionClass%>> vals = new <%java.util.ArrayList%><>();\r\n\t\t\t\t\t\t\t\t\tvals.addAll(((<%pamtram.structure.generic.CrossReference%>) next).getValue());\r\n\t\t\t\t\t\t\t\t\tvals.removeAll(scanned);\r\n\t\t\t\t\t\t\t\t\tsectionsToScan.addAll(vals);\r\n\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t}\r\n\r\t\t\t\t\treturn choiceOfValues;\r\n\t\t\t\t\t}\r\n\t\t\t\t});"
+		   });	
+		addAnnotation
+		  (getDynamicSourceElement_UseElementID(), 
+		   source, 
+		   new String[] {
+			 "documentation", "If this is set to \'<em>true</em>\' a (model-unique) numeric identifier instead of the actual value of the source attribute will be used.\r\n<p />\r\nThis can be used to insert identifiers into the target model."
 		   });	
 		addAnnotation
 		  (localDynamicSourceElementEClass, 
@@ -1121,13 +1160,13 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		  (getLocalDynamicSourceElement__ValidateSourceAttributeMatchesSectionOrContainedSection__DiagnosticChain_Map(), 
 		   source, 
 		   new String[] {
-			 "body", "if(this.getMapping() == null || this.source == null || this.getMapping().getSourceSection() == null\r\n\t\t\t\t|| !(this.source.getContainingSection() instanceof <%pamtram.structure.source.SourceSection%>)) {\r\n\treturn true;\r\n}\r\n\r\nSourceSection sourceSection = this.getMapping().getSourceSection();\r\nSourceSection containingSourceSection = (SourceSection) this.source.getContainingSection();\r\n\r\nboolean result = sourceSection == containingSourceSection \r\n\t\t|| sourceSection.getExtend().parallelStream().filter(e -> e.equals(containingSourceSection)).findAny().isPresent()\r\n\t\t|| sourceSection.getExtend().parallelStream().filter(e -> containingSourceSection.isReferencedBy(e, null)).findAny().isPresent()\r\n\t\t|| containingSourceSection.isReferencedBy(sourceSection, null);\r\n\r\nif (!result && diagnostics != null) {\r\n\t\r\n\tString errorMessage = \"The source attribute \'\" +\r\n\t\t\t this.source.getName() + \"\' is not referenced by the source section of the parent mapping \'\" +\r\n\t\t\t sourceSection.getName() + \"\' or in one of its extended sections/sub-sections!\'\";\r\n\t\r\n\tdiagnostics.add\r\n\t\t(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t <%pamtram.structure.util.StructureValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t StructureValidator.LOCAL_DYNAMIC_SOURCE_ELEMENT__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION,\r\n\t\t\t errorMessage,\r\n\t\t\t new Object [] { this, <%pamtram.structure.StructurePackage%>.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE }));\r\n\t}\r\n\r\nreturn result;"
+			 "body", "\r\nif (this.getMapping() == null || this.source == null || this.getMapping().getSourceSection() == null\r\n\t\t|| !(this.source.getContainingSection() instanceof <%pamtram.structure.source.SourceSection%>)) {\r\n\treturn true;\r\n}\r\n\r\n<%pamtram.mapping.Mapping%> mapping = this.getMapping();\r\nSourceSection sourceSection = this.getMapping().getSourceSection();\r\n\r\nboolean result = false;\r\n\r\npamtram.structure.generic.Class<?, ?, ?, ?> relevantClass = mapping.getSourceSection();\r\n\r\n// iterate over all elements and return the attributes as possible options\r\n//\r\n<%java.util.Set%><pamtram.structure.generic.Class<?, ?, ?, ?>> scanned = new <%java.util.HashSet%><>();\r\n<%java.util.List%><pamtram.structure.generic.Class<?, ?, ?, ?>> sectionsToScan = new <%java.util.ArrayList%><>();\r\nsectionsToScan.add(relevantClass);\r\n\r\n// also regard abstract sections that this extends\r\nif (relevantClass instanceof <%pamtram.structure.generic.Section%>) {\r\n\tsectionsToScan.addAll(((Section<?, ?, ?, ?>) relevantClass).getAllExtend());\r\n}\r\n\r\nwhile (!sectionsToScan.isEmpty()) {\r\n\tpamtram.structure.generic.Class<?, ?, ?, ?> classToScan = sectionsToScan.remove(0);\r\n\tscanned.add(classToScan);\r\n\r\n\t<%java.util.Iterator%><<%org.eclipse.emf.ecore.EObject%>> it = classToScan.eAllContents();\r\n\twhile (it.hasNext()) {\r\n\t\tEObject next = it.next();\r\n\t\tif (next instanceof pamtram.structure.generic.Attribute && next.equals(this.source)) {\r\n\t\t\tresult = true;\r\n\t\t\tbreak;\r\n\t\t} else if (next instanceof pamtram.structure.generic.CrossReference<?, ?, ?, ?>) {\r\n\t\t\tList<<%pamtram.structure.source.SourceSectionClass%>> vals = new ArrayList<>();\r\n\t\t\tList<pamtram.structure.generic.Class<?, ?, ?, ?>> values = new ArrayList<>(\r\n\t\t\t\t\t((pamtram.structure.generic.CrossReference<?, ?, ?, ?>) next).getValue());\r\n\t\t\tvals.addAll((<%java.util.Collection%><? extends SourceSectionClass>) values);\r\n\t\t\tvals.addAll(values.stream().filter(c -> c instanceof SourceSection)\r\n\t\t\t\t\t.flatMap(c -> ((SourceSection) c).getAllExtend().stream()).collect(<%java.util.stream.Collectors%>.toList()));\r\n\t\t\tvals.removeAll(scanned);\r\n\t\t\tsectionsToScan.addAll(vals);\r\n\t\t}\r\n\t}\r\n}\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The source attribute \'\" + this.source.getName()\r\n\t\t\t+ \"\' is not referenced by the source section of the parent mapping \'\" + sourceSection.getName()\r\n\t\t\t+ \"\' or in one of its extended sections/sub-sections!\'\";\r\n\r\n\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR, <%pamtram.structure.util.StructureValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\tStructureValidator.LOCAL_DYNAMIC_SOURCE_ELEMENT__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_SECTION_OR_CONTAINED_SECTION,\r\n\t\t\terrorMessage, new Object[] { this, <%pamtram.structure.StructurePackage%>.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE }));\r\n}\r\n\r\nreturn result;"
 		   });	
 		addAnnotation
-		  (getLocalDynamicSourceElement_ReferenceMatchSpec(), 
+		  (getLocalDynamicSourceElement__ValidateFollowExternalReferencesTrueIfRequired__DiagnosticChain_Map(), 
 		   source, 
 		   new String[] {
-			 "documentation", "In case of SourceSections referencing itself via a CrossReference, it may be necessary to further restrict the determined values that are used for the calculation (e.g. do not use the \'own\' attribute value but only attribute values of \'referenced\' elements. Therefore, this allows to specify a list of References describing a path how to get to the relevant attribute instances based on the root element of the Section."
+			 "body", "\r\nif (this.source == null || this.getMapping().getSourceSection() == null || this.followExternalReferences) {\r\n\treturn true;\r\n}\r\n\r\n<%pamtram.structure.source.SourceSection%> sourceSection = this.getMapping().getSourceSection();\r\n\r\nboolean isExternalSourceElement = !sourceSection.equals(this.source.getContainingSection())\r\n\t\t&& !sourceSection.getAllExtend().contains(this.source.getContainingSection());\r\n\r\nboolean result = true;\r\nString errorMessage = \"\";\r\nint severity = <%org.eclipse.emf.common.util.Diagnostic%>.OK;\r\n\r\nif (isExternalSourceElement) {\r\n\r\n\tresult = false;\r\n\tseverity = Diagnostic.ERROR;\r\n\terrorMessage = \"The source <%pamtram.structure.generic.Attribute%> is not part of the SourceSection specified by this <%pamtram.mapping.Mapping%>. This is not allowed unless \'followExternalReferences\' is set to \'true\'.\";\r\n\r\n} else if (this.getReferenceMatchSpec().parallelStream()\r\n\t\t.anyMatch(r -> r instanceof pamtram.structure.generic.CrossReference<?, ?, ?, ?>)) {\r\n\r\n\tresult = false;\r\n\tseverity = Diagnostic.ERROR;\r\n\terrorMessage = \"The specified <%pamtram.structure.generic.Reference%> Match Spec contains Cross References. This is not allowed unless \'followExternalReferences\' is set to \'true\'.\";\r\n\r\n}\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tdiagnostics.add(new BasicDiagnostic(severity, <%pamtram.structure.util.StructureValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\tStructureValidator.LOCAL_DYNAMIC_SOURCE_ELEMENT__VALIDATE_FOLLOW_EXTERNAL_REFERENCES_TRUE_IF_REQUIRED,\r\n\t\t\terrorMessage, new Object[] { this, <%pamtram.structure.StructurePackage%>.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE }));\r\n}\r\n\r\nreturn result;"
 		   });	
 		addAnnotation
 		  (externalDynamicSourceElementEClass, 
@@ -1139,7 +1178,7 @@ public class StructurePackageImpl extends EPackageImpl implements StructurePacka
 		  (getExternalDynamicSourceElement__ValidateSourceAttributeMatchesContainerSection__DiagnosticChain_Map(), 
 		   source, 
 		   new String[] {
-			 "body", "if(this.getMapping() == null || this.getSource() == null) {\r\n\treturn true;\r\n}\r\n\r\n<%pamtram.structure.source.SourceSection%> sourceSection = this.getMapping().getSourceSection();\r\n\r\nboolean result = sourceSection == null || !(this.getSource().getContainingSection() instanceof SourceSection) ? true : ((SourceSection) this.getSource().getContainingSection()).isContainerFor(sourceSection);\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The source attribute \'\" + this.getSource().getName() + \"\' is not part of a container section of the source section of the parent mapping \'\" + this.getMapping().getSourceSection().getName() + \"\'!\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.structure.util.StructureValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tStructureValidator.EXTERNAL_DYNAMIC_SOURCE_ELEMENT__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.StructurePackage%>.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE }));\r\n\r\n}\r\n\r\nreturn result;"
+			 "body", "if (this.getMapping() == null || this.source == null || this.getMapping().getSourceSection() == null\r\n\t\t\t\t|| !(this.source.getContainingSection() instanceof <%pamtram.structure.source.SourceSection%>)) {\r\n\t\t\treturn true;\r\n\t\t}\r\n\r\t<%pamtram.structure.source.SourceSection%> sourceSection = this.getMapping().getSourceSection();\r\n\t\t<%pamtram.structure.source.SourceSection%> containingSection = (<%pamtram.structure.source.SourceSection%>) this.getSource().getContainingSection();\r\n\r\tboolean result = containingSection.isContainerFor(sourceSection);\r\n\r\tif (!result && diagnostics != null) {\r\n\r\t\tString errorMessage = \"The source attribute \'\" + this.getSource().getName()\r\n\t\t\t\t\t+ \"\' is not part of a container section of the source section of the parent mapping \'\"\r\n\t\t\t\t\t+ this.getMapping().getSourceSection().getName() + \"\'!\";\r\n\r\t\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR, <%pamtram.structure.util.StructureValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\t<%pamtram.structure.util.StructureValidator%>.EXTERNAL_DYNAMIC_SOURCE_ELEMENT__VALIDATE_SOURCE_ATTRIBUTE_MATCHES_CONTAINER_SECTION,\r\n\t\t\t\t\terrorMessage, new Object[] { this, <%pamtram.structure.StructurePackage%>.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE }));\r\n\r\t}\r\n\r\treturn result;"
 		   });	
 		addAnnotation
 		  (globalDynamicSourceElementEClass, 

@@ -2,34 +2,30 @@
  */
 package pamtram.mapping.extended.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-
 import org.eclipse.emf.edit.provider.StyledString;
+
 import pamtram.mapping.extended.ExtendedPackage;
-import pamtram.mapping.extended.LocalMappedAttributeValueExpander;
 import pamtram.provider.PamtramEditPlugin;
 import pamtram.structure.provider.LocalDynamicSourceElementItemProvider;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.extended.LocalMappedAttributeValueExpander} object.
- * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> <!-- end-user-doc -->
  * @generated
  */
 public class LocalMappedAttributeValueExpanderItemProvider extends LocalDynamicSourceElementItemProvider {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public LocalMappedAttributeValueExpanderItemProvider(AdapterFactory adapterFactory) {
@@ -38,8 +34,7 @@ public class LocalMappedAttributeValueExpanderItemProvider extends LocalDynamicS
 
 	/**
 	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -54,8 +49,7 @@ public class LocalMappedAttributeValueExpanderItemProvider extends LocalDynamicS
 
 	/**
 	 * This adds a property descriptor for the Hints To Expand feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addHintsToExpandPropertyDescriptor(Object object) {
@@ -76,39 +70,30 @@ public class LocalMappedAttributeValueExpanderItemProvider extends LocalDynamicS
 
 	/**
 	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		return ((StyledString)getStyledText(object)).getString();
 	}
-	
 
 	/**
-	 * This returns the label styled text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
+	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((LocalMappedAttributeValueExpander)object).getName();
-    	StyledString styledLabel = new StyledString();
-		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_LocalMappedAttributeValueExpander_type"), StyledString.Style.QUALIFIER_STYLER); 
-		} else {
-			styledLabel.append(getString("_UI_LocalMappedAttributeValueExpander_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
-		}
-		return styledLabel;
+
+		return super.getStyledText(object);
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -120,8 +105,7 @@ public class LocalMappedAttributeValueExpanderItemProvider extends LocalDynamicS
 	/**
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -131,8 +115,7 @@ public class LocalMappedAttributeValueExpanderItemProvider extends LocalDynamicS
 
 	/**
 	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

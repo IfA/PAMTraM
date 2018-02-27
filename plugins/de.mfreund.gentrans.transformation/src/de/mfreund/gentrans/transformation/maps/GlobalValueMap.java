@@ -2,6 +2,7 @@ package de.mfreund.gentrans.transformation.maps;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -16,6 +17,8 @@ import pamtram.mapping.GlobalAttribute;
  * This is used to store all extracted values of {@link FixedValue FixedValues} and {@link GlobalAttribute
  * GlobalAttributes} that can be used throughout the transformation, e.g. when calculating
  * {@link ExpressionElement#getExpression() expressions}.
+ * <p />
+ * Note: Instances of this can safely be used in parallelized processes.
  *
  * @author mfreund
  *
@@ -39,27 +42,11 @@ public class GlobalValueMap {
 
 	/**
 	 * This creates an empty instance.
-	 *
 	 */
 	public GlobalValueMap() {
 
 		this.fixedValues = new HashMap<>();
 		this.globalAttributes = new HashMap<>();
-
-	}
-
-	/**
-	 * This creates an instance.
-	 *
-	 * @param fixedValues
-	 *            The values of {@link FixedValue FixedValues}.
-	 * @param globalAttributes
-	 *            The values of {@link GlobalAttribute GlobalAttributes}.
-	 */
-	public GlobalValueMap(Map<FixedValue, String> fixedValues, Map<GlobalAttribute, String> globalAttributes) {
-
-		this.fixedValues = fixedValues;
-		this.globalAttributes = globalAttributes;
 
 	}
 
@@ -71,7 +58,7 @@ public class GlobalValueMap {
 	 * @param value
 	 *            the value to add
 	 */
-	public void addFixedValue(FixedValue fixedValue, String value) {
+	public synchronized void addFixedValue(FixedValue fixedValue, String value) {
 
 		this.fixedValues.put(fixedValue, value);
 		this.globalValuesAsDouble = null;
@@ -83,7 +70,7 @@ public class GlobalValueMap {
 	 * @param fixedValues
 	 *            the {@link FixedValue FixedValues} to add
 	 */
-	public void addFixedValues(Map<FixedValue, String> fixedValues) {
+	public synchronized void addFixedValues(Map<FixedValue, String> fixedValues) {
 
 		this.fixedValues.putAll(fixedValues);
 		this.globalValuesAsDouble = null;
@@ -97,7 +84,7 @@ public class GlobalValueMap {
 	 * @param value
 	 *            the value to add
 	 */
-	public void addGlobalAttributeValue(GlobalAttribute globalAttribute, String value) {
+	public synchronized void addGlobalAttributeValue(GlobalAttribute globalAttribute, String value) {
 
 		this.globalAttributes.put(globalAttribute, value);
 		this.globalValuesAsDouble = null;
@@ -109,7 +96,7 @@ public class GlobalValueMap {
 	 * @param globalAttributeValues
 	 *            the values of {@link GlobalAttribute GlobalAttributes} to add
 	 */
-	public void addGlobalAttributeValues(Map<GlobalAttribute, String> globalAttributeValues) {
+	public synchronized void addGlobalAttributeValues(Map<GlobalAttribute, String> globalAttributeValues) {
 
 		this.globalAttributes.putAll(globalAttributeValues);
 		this.globalValuesAsDouble = null;
@@ -189,7 +176,7 @@ public class GlobalValueMap {
 	 *
 	 * @return The values of both {@link #fixedValues} and {@link #globalAttributes} represented as <em>double</em>.
 	 */
-	public Map<NamedElement, Double> getAsDouble() {
+	public synchronized Map<NamedElement, Double> getAsDouble() {
 
 		if (this.globalValuesAsDouble == null) {
 
@@ -229,7 +216,7 @@ public class GlobalValueMap {
 	public Map<String, Double> getAsDoubleByString() {
 
 		return this.getAsDouble().entrySet().stream()
-				.collect(Collectors.toMap(e -> e.getKey().getName(), e -> e.getValue()));
+				.collect(Collectors.toMap(e -> e.getKey().getName(), Entry::getValue));
 	}
 
 }

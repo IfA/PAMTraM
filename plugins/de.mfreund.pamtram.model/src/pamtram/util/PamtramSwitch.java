@@ -148,6 +148,12 @@ public class PamtramSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case PamtramPackage.MATCH_SPEC_ELEMENT: {
+				MatchSpecElement<?, ?, ?, ?> matchSpecElement = (MatchSpecElement<?, ?, ?, ?>)theEObject;
+				T result = caseMatchSpecElement(matchSpecElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case PamtramPackage.FIXED_VALUE: {
 				FixedValue fixedValue = (FixedValue)theEObject;
 				T result = caseFixedValue(fixedValue);
@@ -327,6 +333,21 @@ public class PamtramSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseModifiableElement(ModifiableElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Match Spec Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Match Spec Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> T caseMatchSpecElement(MatchSpecElement<S, C, R, A> object) {
 		return null;
 	}
 

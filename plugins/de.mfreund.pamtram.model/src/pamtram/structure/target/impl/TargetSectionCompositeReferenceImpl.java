@@ -89,7 +89,8 @@ public class TargetSectionCompositeReferenceImpl extends
 	 */
 	@Override
 	public EReference getEReference() {
-		if (eReference != null && eReference.eIsProxy()) {
+	
+		  if (eReference != null && eReference.eIsProxy()) {
 			InternalEObject oldEReference = (InternalEObject)eReference;
 			eReference = (EReference)eResolveProxy(oldEReference);
 			if (eReference != oldEReference) {
@@ -113,10 +114,12 @@ public class TargetSectionCompositeReferenceImpl extends
 	 * @generated
 	 */
 	public void setEReferenceGen(EReference newEReference) {
+	
 		EReference oldEReference = eReference;
 		eReference = newEReference;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, TargetPackage.TARGET_SECTION_COMPOSITE_REFERENCE__EREFERENCE, oldEReference, eReference));
+	
 	}
 
 	/**
@@ -157,7 +160,7 @@ public class TargetSectionCompositeReferenceImpl extends
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="dfd" nsURI="http://data-flow-diagram" nsPrefix="dfd">
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DFD" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//DFDElement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="flows" upperBound="-1"
+        eType="#//Flow" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DFDElement" abstract="true" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Process" eSuperTypes="#//DFDElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="DummyConstraint"/>
+    </eAnnotations>
+    <eOperations name="validateNumberFormatIsCorrect" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="boolean result = this.number == null || this.number.matches(&quot;[0-9]+(\\.[0-9]+)*&quot;);&#xA;&#xA;if (!result &amp;&amp; diagnostics != null) {&#xA;&#xA;&#x9;String errorMessage = &quot;The number is not formatted correctly! Valid numbers are e.g. '1', '1.10', or '1.10.8'...&quot;;&#xA;&#xA;&#x9;diagnostics.add(new BasicDiagnostic(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR, &lt;%dfd.util.DfdValidator%>.DIAGNOSTIC_SOURCE,&#xA;&#x9;&#x9;&#x9;&lt;%dfd.util.DfdValidator%>.PROCESS__VALIDATE_NUMBER_FORMAT_IS_CORRECT, errorMessage,&#xA;&#x9;&#x9;&#x9;new Object[] { this, &lt;%dfd.DfdPackage%>.Literals.PROCESS__NUMBER }));&#xA;&#xA;}&#xA;&#xA;return result;"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments/>
+          <eTypeArguments/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="number" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dfd" eType="#//DFD" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataStore" eSuperTypes="#//DFDElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Flow" abstract="true" eSuperTypes="#//NamedElement">
+    <eOperations name="validateFromPointsToElementOfSameSystem" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="boolean result = this.from == null || this.from.eContainer().equals(this.eContainer);&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;String errorMessage = &quot;The 'from' element is not part of the same (Sub-)System!&quot;;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;diagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%>&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;%dfd.util.DfdValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;%dfd.util.DfdValidator%>.FLOW__VALIDATE_FROM_POINTS_TO_ELEMENT_OF_SAME_SYSTEM,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;new Object[] { this, &lt;%dfd.DfdPackage%>.Literals.FLOW__FROM}));&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#xD;&#x9;return result;"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments/>
+          <eTypeArguments/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="validateToPointsToElementOfSameSystem" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="boolean result = this.to == null || this.to.eContainer().equals(this.eContainer);&#xD;&#xA;&#xD;&#x9;if (!result &amp;&amp; diagnostics != null) {&#xD;&#xA;&#xD;&#x9;&#x9;String errorMessage = &quot;The 'to' element is not part of the same (Sub-)System!&quot;;&#xD;&#xA;&#xD;&#x9;&#x9;diagnostics.add(new BasicDiagnostic(&lt;%org.eclipse.emf.common.util.Diagnostic%>.ERROR, &lt;%dfd.util.DfdValidator%>.DIAGNOSTIC_SOURCE,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;%dfd.util.DfdValidator%>.FLOW__VALIDATE_TO_POINTS_TO_ELEMENT_OF_SAME_SYSTEM, errorMessage,&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;new Object[] { this, &lt;%dfd.DfdPackage%>.Literals.FLOW__TO }));&#xD;&#xA;&#xD;&#x9;}&#xD;&#xA;&#xD;&#x9;return result;"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments/>
+          <eTypeArguments/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="from" eType="#//DFDElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="to" eType="#//DFDElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ControlFlow" eSuperTypes="#//Flow"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DataFlow" eSuperTypes="#//Flow"/>
+</ecore:EPackage>

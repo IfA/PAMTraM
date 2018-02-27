@@ -78,7 +78,7 @@ public interface UnaryCondition extends ComplexCondition {
 	 * @return the value of the '<em>Shared Cond Part</em>' reference.
 	 * @see #setSharedCondPart(ComplexCondition)
 	 * @see pamtram.condition.ConditionPackage#getUnaryCondition_SharedCondPart()
-	 * @model
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescriptor='\r\nthis.itemPropertyDescriptors.add(\r\n\t\tnew ItemPropertyDescriptor(((&lt;%org.eclipse.emf.edit.provider.ComposeableAdapterFactory%&gt;) this.adapterFactory).getRootAdapterFactory(),\r\n\t\t\t\tthis.getResourceLocator(), this.getString(\"_UI_UnaryCondition_sharedCondPart_feature\"),\r\n\t\t\t\tthis.getString(\"_UI_UnaryCondition_sharedCondPart_description\"),\r\n\t\t\t\t&lt;%pamtram.condition.ConditionPackage%&gt;.Literals.UNARY_CONDITION__SHARED_COND_PART, true, false, true, null,\r\n\t\t\t\tthis.getString(\"_UI_ExtendedPropertyCategory\"), null) {\r\n\r\n\t\t\t@Override\r\n\t\t\tpublic &lt;%java.util.Collection%&gt;&lt;?&gt; getChoiceOfValues(Object object) {\r\n\r\n\t\t\t\t&lt;%java.util.List%&gt;&lt;Object&gt; choiceOfValues = new &lt;%java.util.ArrayList%&gt;&lt;&gt;();\r\n\t\t\t\tchoiceOfValues.addAll(super.getChoiceOfValues(object));\r\n\t\t\t\tfor (&lt;%java.util.Iterator%&gt;&lt;Object&gt; element = choiceOfValues.iterator(); element.hasNext();) {\r\n\t\t\t\t\t&lt;%org.eclipse.emf.ecore.EObject%&gt; choiceValue = (EObject) element.next();\r\n\t\t\t\t\tif (choiceValue == null) {\r\n\t\t\t\t\t\tcontinue;\r\n\t\t\t\t\t}\r\n\t\t\t\t\tif (!(choiceValue.eContainer() instanceof &lt;%pamtram.ConditionModel%&gt;)) {\r\n\t\t\t\t\t\telement.remove();\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\r\n\t\t\t\treturn choiceOfValues;\r\n\t\t\t}\r\n\t\t});'"
 	 * @generated
 	 */
 	ComplexCondition getSharedCondPart();
@@ -100,5 +100,13 @@ public interface UnaryCondition extends ComplexCondition {
 	 * @generated
 	 */
 	boolean validateExactlyOneArg(DiagnosticChain diagnostics, Map<?, ?> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\nif(this.sharedCondPart == null) {\r\n\treturn true;\r\n}\r\n\r\n&lt;%org.eclipse.emf.ecore.EObject%&gt; sharedCondPartContainer = this.sharedCondPart.eContainer();\r\n\r\nboolean result = sharedCondPartContainer instanceof &lt;%pamtram.ConditionModel%&gt;;\r\n\r\nif (!result &amp;&amp; diagnostics != null) {\r\n\r\n\tString errorMessage = \"Reference only Conditions that are placed inside a ConditionModel!\";\r\n\r\n\tdiagnostics.add(new &lt;%org.eclipse.emf.common.util.BasicDiagnostic%&gt;\r\n\t\t\t(&lt;%org.eclipse.emf.common.util.Diagnostic%&gt;.ERROR,\r\n\t\t\t&lt;%pamtram.condition.util.ConditionValidator%&gt;.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tConditionValidator.UNARY_CONDITION__VALIDATE_REFERENCE_ONLY_CONDITIONS_FROM_CONDITION_MODEL,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, &lt;%pamtram.condition.ConditionPackage%&gt;.Literals.UNARY_CONDITION__SHARED_COND_PART }));\r\n\r\n}\r\n\r\nreturn result;'"
+	 * @generated
+	 */
+	boolean validateReferenceOnlyConditionsFromConditionModel(DiagnosticChain diagnostics, Map<?, ?> context);
 
 } // SingleConditionOperator

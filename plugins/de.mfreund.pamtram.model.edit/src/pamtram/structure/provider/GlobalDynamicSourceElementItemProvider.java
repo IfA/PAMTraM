@@ -8,27 +8,28 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.mapping.extended.ExtendedFactory;
+import pamtram.structure.DynamicSourceElement;
 import pamtram.structure.GlobalDynamicSourceElement;
 import pamtram.structure.StructureFactory;
 import pamtram.structure.StructurePackage;
 
 /**
- * This is the item provider adapter for a
- * {@link pamtram.structure.GlobalDynamicSourceElement} object. <!--
+ * This is the item provider adapter for a {@link pamtram.structure.GlobalDynamicSourceElement} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
- * 
+ *
  * @generated
  */
 public class GlobalDynamicSourceElementItemProvider extends DynamicSourceElementItemProvider {
+
 	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public GlobalDynamicSourceElementItemProvider(AdapterFactory adapterFactory) {
@@ -36,9 +37,8 @@ public class GlobalDynamicSourceElementItemProvider extends DynamicSourceElement
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -54,7 +54,8 @@ public class GlobalDynamicSourceElementItemProvider extends DynamicSourceElement
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -80,8 +81,7 @@ public class GlobalDynamicSourceElementItemProvider extends DynamicSourceElement
 
 	/**
 	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -90,28 +90,32 @@ public class GlobalDynamicSourceElementItemProvider extends DynamicSourceElement
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
+	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
+	 * @generated NOT due to usage of cumstom label if 'useElementID' is set
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((GlobalDynamicSourceElement<?, ?, ?, ?, ?>)object).getName();
-    	StyledString styledLabel = new StyledString();
-		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_GlobalDynamicSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
+
+		String label = ((DynamicSourceElement<?, ?, ?, ?>) object).getName();
+		StyledString styledLabel = new StyledString();
+		if (((DynamicSourceElement<?, ?, ?, ?>) object).isUseElementID()) {
+			styledLabel.append("Global Element ID", StyledString.Style.QUALIFIER_STYLER);
 		} else {
-			styledLabel.append(getString("_UI_GlobalDynamicSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(this.getString("_UI_GlobalDynamicSourceElement_type"),
+					StyledString.Style.QUALIFIER_STYLER);
+		}
+		if (label != null && label.length() > 0) {
+			styledLabel.append(" " + label);
 		}
 		return styledLabel;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -127,10 +131,9 @@ public class GlobalDynamicSourceElementItemProvider extends DynamicSourceElement
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing the children that can be created under this object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -156,6 +159,17 @@ public class GlobalDynamicSourceElementItemProvider extends DynamicSourceElement
 			(createChildParameter
 				(StructurePackage.Literals.GLOBAL_DYNAMIC_SOURCE_ELEMENT__INSTANCE_SELECTORS,
 				 ExtendedFactory.eINSTANCE.createContainerSelector()));
+	}
+
+	@Override
+	protected void addSourcePropertyDescriptor(Object object) {
+
+		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+				this.getString("_UI_DynamicSourceElement_source_feature"),
+				this.getString("_UI_DynamicSourceElement_source_description"),
+				StructurePackage.Literals.DYNAMIC_SOURCE_ELEMENT__SOURCE, true, false, true, null,
+				this.getString("_UI_BasicPropertyCategory"), null));
 	}
 
 }

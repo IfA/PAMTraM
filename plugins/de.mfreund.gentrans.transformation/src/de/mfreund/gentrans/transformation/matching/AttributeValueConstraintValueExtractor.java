@@ -1,19 +1,13 @@
 package de.mfreund.gentrans.transformation.matching;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.logging.Logger;
 
-import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
 import de.mfreund.gentrans.transformation.calculation.ValueCalculator;
-import de.mfreund.gentrans.transformation.calculation.ValueModifierExecutor;
+import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
-import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
 import pamtram.FixedValue;
-import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.extended.GlobalAttributeImporter;
 import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.structure.DynamicSourceElement;
@@ -41,57 +35,15 @@ public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 	/**
 	 * This creates an instance for a given list of {@link MatchedSectionDescriptor matchedSectionDescriptors}.
 	 *
-	 * @param globalValues
-	 *            The {@link GlobalValueMap} that contains the relevant values of {@link GlobalAttribute
-	 *            GlobalAttributes}.
-	 * @param instanceSelectorHandler
-	 *            The {@link InstanceSelectorHandler} used for selecting specific instances when extracting values.
-	 * @param attributeValueCalculator
-	 *            The {@link ValueCalculator} to use in order to calculate resulting values.
-	 * @param attributeValueModifierExecutor
-	 *            The {@link ValueModifierExecutor} that shall be used for modifying attribute values.
-	 * @param logger
-	 *            The {@link Logger} that shall be used to print messages.
-	 * @param useParallelization
-	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
-	 *            that the transformation result (especially the order of lists) varies between executions.
+	 * @param assetManager
+	 *            The {@link TransformationAssetManager} providing access to the various other assets used in the
+	 *            current transformation instance.
 	 */
-	public AttributeValueConstraintValueExtractor(GlobalValueMap globalValues,
-			InstanceSelectorHandler instanceSelectorHandler, ValueCalculator attributeValueCalculator,
-			ValueModifierExecutor attributeValueModifierExecutor, Logger logger, boolean useParallelization) {
+	public AttributeValueConstraintValueExtractor(TransformationAssetManager assetManager) {
 
-		super(globalValues, instanceSelectorHandler, attributeValueModifierExecutor, logger, useParallelization);
+		super(assetManager);
 
-		this.attributeValueCalculator = attributeValueCalculator;
-	}
-
-	/**
-	 * This creates an instance for a given list of {@link MatchedSectionDescriptor matchedSectionDescriptors}.
-	 *
-	 * @param instanceSelectorHandler
-	 *            The {@link InstanceSelectorHandler} used for selecting specific instances when extracting values.
-	 * @param attributeValueModifierExecutor
-	 *            The {@link ValueModifierExecutor} that shall be used for modifying attribute values.
-	 * @param attributeValueCalculator
-	 *            The {@link ValueCalculator} to use in order to calculate resulting values.
-	 * @param logger
-	 *            The {@link Logger} that shall be used to print messages.
-	 * @param useParallelization
-	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
-	 *            that the transformation result (especially the order of lists) varies between executions.
-	 * @deprecated use
-	 *             {@link #AttributeValueConstraintValueExtractor(GlobalValueMap, InstanceSelectorHandler, ValueCalculator, ValueModifierExecutor, Logger, boolean)}
-	 *             instead
-	 */
-	@Deprecated
-	public AttributeValueConstraintValueExtractor(InstanceSelectorHandler instanceSelectorHandler,
-			ValueModifierExecutor attributeValueModifierExecutor, ValueCalculator attributeValueCalculator,
-			Logger logger, boolean useParallelization) {
-
-		super(new GlobalValueMap(), instanceSelectorHandler, attributeValueModifierExecutor, logger,
-				useParallelization);
-
-		this.attributeValueCalculator = attributeValueCalculator;
+		this.attributeValueCalculator = assetManager.getValueCalculator();
 	}
 
 	/**
@@ -138,7 +90,7 @@ public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 
 		// Collect the value parts
 		//
-		Map<ValueConstraintSourceInterface, AttributeValueRepresentation> valueParts = new HashMap<>();
+		LinkedHashMap<ValueConstraintSourceInterface, AttributeValueRepresentation> valueParts = new LinkedHashMap<>();
 
 		// Extract the value part based on its type
 		//
@@ -175,8 +127,7 @@ public class AttributeValueConstraintValueExtractor extends ValueExtractor {
 		// expression
 		//
 		if (expression == null || expression.isEmpty()) {
-			return this.attributeValueCalculator.calculateValueWithoutExpression(new ArrayList<>(sourceElements),
-					valueParts, resultModifiers);
+			return this.attributeValueCalculator.calculateValueWithoutExpression(valueParts, resultModifiers);
 		} else {
 			return this.attributeValueCalculator.calculateValueWithExpression(valueParts, expression, resultModifiers);
 		}

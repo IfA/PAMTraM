@@ -13,7 +13,7 @@ import org.eclipse.swt.widgets.Shell;
 
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.resolving.UserDecisionResolvingStrategy;
-import de.mfreund.gentrans.transformation.resolving.wizards.GenericSelectionDialogRunner;
+import de.mfreund.gentrans.transformation.resolving.wizards.GenericSelectionDialog;
 import de.tud.et.ifa.agtele.emf.compare.EMFCompareUtil;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
 import pamtram.PAMTraM;
@@ -31,11 +31,10 @@ import pamtram.presentation.PamtramEditor;
  * @author mfreund
  */
 public class JoiningSelectContainerInstanceMappingModelEnhancer
-		extends MappingModelEnhancer<GenericSelectionDialogRunner<EObjectWrapper>> {
+		extends MappingModelEnhancer<GenericSelectionDialog<EObjectWrapper>> {
 
 	/**
-	 * The {@link MappingHintGroup} of which created target instances that shall
-	 * be enhanced to the selected instance.
+	 * The {@link MappingHintGroup} of which created target instances that shall be enhanced to the selected instance.
 	 */
 	private MappingHintGroup hintGroup;
 
@@ -44,10 +43,11 @@ public class JoiningSelectContainerInstanceMappingModelEnhancer
 	 *
 	 * @param pamtramModel
 	 * @param hintGroup
-	 *            The {@link MappingHintGroup} of which created target instances
-	 *            that shall be enhanced to the selected instance.
+	 *            The {@link MappingHintGroup} of which created target instances that shall be enhanced to the selected
+	 *            instance.
 	 */
 	public JoiningSelectContainerInstanceMappingModelEnhancer(PAMTraM pamtramModel, MappingHintGroup hintGroup) {
+
 		super(pamtramModel);
 		this.hintGroup = hintGroup;
 	}

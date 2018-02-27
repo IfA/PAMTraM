@@ -1,44 +1,42 @@
 package de.mfreund.gentrans.transformation.condition;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 
 import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
 import de.mfreund.gentrans.transformation.calculation.ValueConstraintReferenceValueCalculator;
-import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
+import de.mfreund.gentrans.transformation.core.TransformationAsset;
+import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
+import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
-import de.mfreund.gentrans.transformation.matching.ValueExtractor;
 import de.mfreund.gentrans.transformation.registries.MatchedSectionRegistry;
 import de.mfreund.gentrans.transformation.registries.SelectedMappingRegistry;
-import pamtram.ConditionalElement;
+import pamtram.MatchSpecElement;
 import pamtram.condition.And;
 import pamtram.condition.ApplicationDependency;
 import pamtram.condition.AttributeCondition;
 import pamtram.condition.CardinalityCondition;
 import pamtram.condition.ComparatorEnum;
 import pamtram.condition.ComplexCondition;
+import pamtram.condition.ComplexCondition.ConditionEvaluationException;
 import pamtram.condition.Condition;
 import pamtram.condition.Not;
 import pamtram.condition.Or;
 import pamtram.condition.UnaryCondition;
 import pamtram.condition.VariadicCondition;
-import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
-import pamtram.mapping.extended.MappingHint;
 import pamtram.structure.InstanceSelector;
 import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.constraint.ChoiceConstraint;
@@ -46,8 +44,11 @@ import pamtram.structure.constraint.EqualityConstraint;
 import pamtram.structure.constraint.SingleReferenceValueConstraint;
 import pamtram.structure.constraint.ValueConstraint;
 import pamtram.structure.constraint.ValueConstraintType;
+import pamtram.structure.generic.Attribute;
+import pamtram.structure.generic.CrossReference;
 import pamtram.structure.source.SourceSection;
 import pamtram.structure.source.SourceSectionClass;
+import pamtram.structure.source.SourceSectionReference;
 
 /**
  * This class will be used to evaluate conditions and store their result.
@@ -55,7 +56,7 @@ import pamtram.structure.source.SourceSectionClass;
  * @author gkoltun
  */
 
-public class ConditionHandler {
+public class ConditionHandler extends TransformationAsset {
 
 	/**
 	 * A String that is reused whenever something goes wrong.
@@ -84,11 +85,6 @@ public class ConditionHandler {
 	private final Map<ComplexCondition, CondResult> conditionRepository;
 
 	/**
-	 * The {@link Logger} be used to print messages.
-	 */
-	private Logger logger;
-
-	/**
 	 * Registry for <em>source model objects</em> that have already been matched. The matched objects are stored in a
 	 * map where the key is the corresponding {@link SourceSectionClass} that they have been matched to.
 	 */
@@ -96,7 +92,7 @@ public class ConditionHandler {
 
 	/**
 	 * The {@link SelectedMappingRegistry} where selected {@link Mapping Mappings} as well as associated
-	 * {@link MappingInstanceStorage Mapping instances} are stored. This registry is consulted when checking
+	 * {@link MappingInstanceDescriptor Mapping instances} are stored. This registry is consulted when checking
 	 * {@link ApplicationDependency ApplicationDependencies}.
 	 */
 	private SelectedMappingRegistry selectedMappingRegistry;
@@ -119,46 +115,22 @@ public class ConditionHandler {
 	private InstanceSelectorHandler instanceSelectorHandler;
 
 	/**
-	 * Whether extended parallelization shall be used during the transformation that might lead to the fact that the
-	 * transformation result (especially the order of lists) varies between executions.
-	 */
-	private boolean useParallelization;
-
-	/**
 	 * This creates an instance.
 	 *
-	 * @param matchedSections
-	 *            The map of {@link SourceSection SourceSections} and associated {@link MatchedSectionDescriptor
-	 *            MatchedSectionDescriptors} that result from the matching process.
-	 * @param selectedMappings
-	 *            The {@link SelectedMappingRegistry} where selected {@link Mapping Mappings} as well as associated
-	 *            {@link MappingInstanceStorage Mapping instances} are stored. This registry is consulted when checking
-	 *            {@link ApplicationDependency ApplicationDependencies}.
-	 * @param instanceSelectorHandler
-	 *            The {@link InstanceSelectorHandler} used to filter instances by means of {@link InstanceSelector
-	 *            InstanceSelectors}.
-	 * @param valueConstraintReferenceValueCalculator
-	 *            The {@link ValueConstraintReferenceValueCalculator} used to calculate reference values for
-	 *            {@link ValueConstraint ValueConstraints}.
-	 * @param logger
-	 *            The {@link Logger} that shall be used to print messages.
-	 * @param useParallelization
-	 *            Whether extended parallelization shall be used during the transformation that might lead to the fact
-	 *            that the transformation result (especially the order of lists) varies between executions.
+	 * @param assetManager
+	 *            The {@link TransformationAssetManager} providing access to the various other assets used in the
+	 *            current transformation instance.
 	 */
-	public ConditionHandler(MatchedSectionRegistry matchedSections, SelectedMappingRegistry selectedMappings,
-			InstanceSelectorHandler instanceSelectorHandler,
-			ValueConstraintReferenceValueCalculator valueConstraintReferenceValueCalculator, Logger logger,
-			boolean useParallelization) {
+	public ConditionHandler(TransformationAssetManager assetManager) {
 
-		this.matchedSections = matchedSections;
-		this.selectedMappingRegistry = selectedMappings;
+		super(assetManager);
+
+		this.matchedSections = assetManager.getMatchedSectionRegistry();
+		this.selectedMappingRegistry = assetManager.getSelectedMappingRegistry();
 		this.conditionRepository = new HashMap<>();
 		this.attributeConditionConstraintsWithErrors = new HashSet<>();
-		this.logger = logger;
-		this.useParallelization = useParallelization;
-		this.instanceSelectorHandler = instanceSelectorHandler;
-		this.refValueCalculator = valueConstraintReferenceValueCalculator;
+		this.instanceSelectorHandler = assetManager.getInstanceSelectorHandler();
+		this.refValueCalculator = assetManager.getValueConstraintReferenceValueCalculator();
 	}
 
 	/**
@@ -179,11 +151,10 @@ public class ConditionHandler {
 			return CondResult.TRUE;
 		}
 
-		// First, we check if that condition already has been checked. In case
-		// we are dealing with a 'global'
-		// condition, we may reuse this result.
+		// First, we check if that condition already has been checked. In case we are dealing with a 'global' condition,
+		// we may reuse this result.
 		//
-		if (this.conditionRepository.get(complexCondition) != null && !complexCondition.isLocalCondition()) {
+		if (this.conditionRepository.get(complexCondition) != null) {
 			return this.conditionRepository.get(complexCondition);
 		}
 
@@ -234,31 +205,20 @@ public class ConditionHandler {
 	private CondResult checkCardinalityCondition(CardinalityCondition sectionCondition,
 			MatchedSectionDescriptor matchedSectionDescriptor) {
 
-		// The Section referenced by the CardinalityCondition was not matched in
-		// the source model
-		//
-		if (!this.matchedSections.containsKey(sectionCondition.getTarget().getContainingSection())) {
-
-			// For conditions where the referred Section shouldn't be part of a
-			// model
-			if (sectionCondition.getValue() == 0 && sectionCondition.getComparator() == ComparatorEnum.EQ) {
-
-				return CondResult.TRUE;
-
-			} else {
-
-				return CondResult.FALSE;
-			}
-		}
-
 		// Collect all instances for the selected MatchedSectionDescriptors
 		//
 		List<EObject> correspondEClassInstances = this.getInstancesToConsider(sectionCondition,
 				matchedSectionDescriptor);
 
+		long isValue = sectionCondition.getTarget() instanceof Attribute<?, ?, ?, ?> ? correspondEClassInstances
+				.stream()
+				.flatMap(e -> this.assetManager.getModelAccessUtil()
+						.getAttributeValueAsList(e, (Attribute<?, ?, ?, ?>) sectionCondition.getTarget()).stream())
+				.count() : correspondEClassInstances.size();
+
 		// check Cardinality of the condition (e.g. the condition have to be at
 		// least 5 times true)
-		boolean cardinalityRes = this.checkCardinality(sectionCondition.getValue(), correspondEClassInstances.size(),
+		boolean cardinalityRes = this.checkCardinality(sectionCondition.getValue(), Math.toIntExact(isValue),
 				sectionCondition.getComparator());
 
 		// store and return the result
@@ -292,21 +252,15 @@ public class ConditionHandler {
 
 		// Collect the values of the referenced EAttribute for each instance
 		//
-		List<Object> srcAttrValues = ValueExtractor.getAttributeValueAsList(correspondEClassInstances,
-				attrCondition.getTarget(), this.logger);
+		List<String> srcAttrValues = this.assetManager.getModelAccessUtil()
+				.getAttributeValueAsStringList(correspondEClassInstances, attrCondition.getTarget());
 
 		/*
 		 * First, we check if all the constraints are satisfied for every attribute value of an AttributeConditon
 		 */
 		ArrayList<Boolean> attrBoolResults = new ArrayList<>();
 
-		EAttribute attribute = attrCondition.getTarget().getAttribute();
-
-		for (Object srcAttrValue : srcAttrValues) {
-
-			// convert Attribute value to String
-			final String srcAttrAsString = attribute.getEType().getEPackage().getEFactoryInstance()
-					.convertToString(attribute.getEAttributeType(), srcAttrValue);
+		for (String srcAttrAsString : srcAttrValues) {
 
 			/*
 			 * check AttributeValueConstraints
@@ -458,34 +412,8 @@ public class ConditionHandler {
 
 			// mapping has been applied
 			//
-			List<MappingInstanceStorage> storageInstances = this.selectedMappingRegistry
+			List<MappingInstanceDescriptor> storageInstances = this.selectedMappingRegistry
 					.get((Mapping) applicationDependency.getTarget());
-
-			// no instance pointers
-			if (applicationDependency.getInstanceSelectors().isEmpty()) {
-
-				// check Cardinality of the condition (e.g. the condition have
-				// to be at least 5 times true)
-				boolean cardinalityRes = this.checkCardinality(applicationDependency.getValue(),
-						storageInstances.size(), applicationDependency.getComparator());
-
-				// return Result of this condition (and store result if its
-				// referred model objects already were marked
-				// as 'matched'
-				if (cardinalityRes) {
-
-					this.storeConditionResult(applicationDependency, CondResult.TRUE);
-					return CondResult.TRUE;
-
-				} else {
-
-					this.storeConditionResult(applicationDependency, CondResult.FALSE);
-					return CondResult.FALSE;
-
-				}
-			}
-
-			// instance pointers
 
 			List<EObject> instancesToConsider = this.getInstancesToConsider(applicationDependency,
 					matchedSectionDescriptor);
@@ -540,64 +468,42 @@ public class ConditionHandler {
 	private List<EObject> getInstancesToConsider(Condition<?> condition,
 			MatchedSectionDescriptor matchedSectionDescriptor) {
 
-		// The SourceSectionClass holding the attribute that the
-		// AttributeCondition is based on
-		//
-		SourceSectionClass affectedClass;
-
-		if (condition instanceof CardinalityCondition) {
-			affectedClass = ((CardinalityCondition) condition).getTarget();
-		} else if (condition instanceof AttributeCondition) {
-			affectedClass = (SourceSectionClass) ((AttributeCondition) condition).getTarget().eContainer();
-		} else if (condition instanceof ApplicationDependency) {
-			ConditionalElement conditionalElement = ((ApplicationDependency) condition).getTarget();
-			if (conditionalElement instanceof Mapping) {
-				affectedClass = ((Mapping) conditionalElement).getSourceSection();
-			} else if (conditionalElement instanceof InstantiableMappingHintGroup) {
-				affectedClass = ((Mapping) conditionalElement.eContainer()).getSourceSection();
-			} else if (conditionalElement instanceof MappingHint) {
-				affectedClass = ((Mapping) conditionalElement.eContainer().eContainer()).getSourceSection();
-			} else {
-				this.logger.severe(() -> "Unknown type of ConditionalElement '" + conditionalElement.eClass().getName()
-						+ "' found!");
-				return new ArrayList<>();
-			}
-		} else {
-			this.logger.severe(() -> "Unknown condition type '" + condition.eClass().getName() + "' found!");
+		SourceSection affectedSection;
+		Set<SourceSectionClass> affectedClasses;
+		try {
+			affectedSection = condition.getAffectedSection();
+			affectedClasses = condition.getAffectedClasses();
+		} catch (ConditionEvaluationException e) {
+			this.logger.severe(e.getMessage());
 			return new ArrayList<>();
 		}
 
-		List<MatchedSectionDescriptor> descriptorsToConsider;
+		List<MatchedSectionDescriptor> descriptorsToConsider = new ArrayList<>();
 
-		if (condition.isLocalCondition() && condition.getInstanceSelectors().isEmpty()) {
+		if (condition.isLocalCondition()) {
 
-			// In case of a 'local' condition without any InstancePointers
-			// specified,
-			// we only consider the given 'matchedSectionDescriptor'.
-			//
-			MatchedSectionDescriptor descriptorToConsider = matchedSectionDescriptor;
+			descriptorsToConsider.add(matchedSectionDescriptor);
+
+		} else if (condition.isExternalCondition()) {
 
 			// If we are dealing with an 'external' condition (a local condition
 			// that is based on elements from a container section), we need to
 			// use the corresponding 'container descriptors' instead of the
 			// determined 'descriptors' themselves
 			//
-			if (descriptorToConsider.getAssociatedSourceSectionClass().getAllContainer()
-					.contains(affectedClass.getContainingSection())) {
+			MatchedSectionDescriptor descriptorToConsider = matchedSectionDescriptor;
+			while (!descriptorToConsider.getAssociatedSourceSection().getContainingSection().equals(affectedSection)
+					&& !descriptorToConsider.getAssociatedSourceSection().getContainingSection().getAllExtend()
+							.contains(affectedSection)) {
 
-				while (!descriptorToConsider.getAssociatedSourceSectionClass().getContainingSection()
-						.equals(affectedClass.getContainingSection())) {
-
-					if (descriptorToConsider.getContainerDescriptor() == null) {
-						this.logger.severe(() -> "Internal error while evaluating condition '" + condition.getName()
-								+ "'! Unable to determine correct MatchedSectionDescriptor.");
-						break;
-					}
-					descriptorToConsider = matchedSectionDescriptor.getContainerDescriptor();
+				if (descriptorToConsider.getContainerDescriptor() == null) {
+					this.logger.severe(() -> "Internal error while evaluating condition '" + condition.getName()
+							+ "'! Unable to determine correct MatchedSectionDescriptor.");
+					break;
 				}
+				descriptorToConsider = matchedSectionDescriptor.getContainerDescriptor();
 			}
-
-			descriptorsToConsider = Arrays.asList(descriptorToConsider);
+			descriptorsToConsider.add(descriptorToConsider);
 
 		} else {
 
@@ -606,18 +512,58 @@ public class ConditionHandler {
 			// have to consider all 'descriptors' for the SourceSection under
 			// consideration
 			//
-			descriptorsToConsider = this.matchedSections.containsKey(affectedClass.getContainingSection())
-					? this.matchedSections.get(affectedClass.getContainingSection())
-					: new ArrayList<>();
+			descriptorsToConsider.addAll(this.matchedSections.get(affectedSection));
 		}
+
+		boolean isFollowExternalReferences = condition instanceof MatchSpecElement<?, ?, ?, ?>
+				&& ((MatchSpecElement<?, ?, ?, ?>) condition).isFollowExternalReferences();
+
+		boolean includeReferenced = condition.isLocalCondition()
+				&& (!affectedSection.isAbstract()
+						&& affectedClasses.stream()
+								.anyMatch(c -> !c.getContainingSection()
+										.equals(matchedSectionDescriptor.getAssociatedSourceSection()))
+						|| isFollowExternalReferences);
 
 		// Collect all instances for the selected MatchedSectionDescriptors
 		//
-		List<EObject> correspondEClassInstances = (this.useParallelization ? descriptorsToConsider.parallelStream()
-				: descriptorsToConsider.stream()).flatMap(
-						descriptor -> Optional.ofNullable(descriptor.getSourceModelObjectsMapped().get(affectedClass))
-								.orElse(new HashSet<>()).stream())
-						.collect(Collectors.toList());
+		List<EObject> correspondEClassInstances = affectedClasses.stream()
+				.flatMap(affectedClass -> descriptorsToConsider.stream().flatMap(descriptor -> Optional
+						.ofNullable(descriptor.getMatchedSourceModelElementsFor(affectedClass, includeReferenced))
+						.orElse(new HashSet<>()).stream()))
+				.distinct().collect(Collectors.toList());
+
+		// For CardinalityConditions based on SourceSectionCrossReferences, we need to filter some more and only
+		// consider those instances that are reference via the correct reference
+		//
+		if (!correspondEClassInstances.isEmpty() && condition instanceof CardinalityCondition
+				&& ((CardinalityCondition) condition).getTarget() instanceof CrossReference<?, ?, ?, ?>) {
+
+			SourceSectionReference reference = (SourceSectionReference) ((CardinalityCondition) condition).getTarget();
+			SourceSectionClass owningClass = reference.getOwningClass();
+
+			Set<EObject> owningElements = descriptorsToConsider.stream().flatMap(descriptor -> Optional
+					.ofNullable(descriptor.getMatchedSourceModelElementsFor(owningClass, condition.isLocalCondition()))
+					.orElse(new HashSet<>()).stream()).collect(Collectors.toCollection(LinkedHashSet::new));
+
+			correspondEClassInstances = correspondEClassInstances.stream()
+					.filter(instance -> owningElements.stream()
+							.anyMatch(owner -> this.assetManager.getModelAccessUtil()
+									.getReferenceValueAsList(owner, reference).contains(instance)))
+					.collect(Collectors.toList());
+		}
+
+		// Reduce the list of instances based on a modeled 'referenceMatchSpec'.
+		//
+		if (condition instanceof MatchSpecElement<?, ?, ?, ?>
+				&& !((MatchSpecElement<?, ?, ?, ?>) condition).getReferenceMatchSpec().isEmpty()) {
+
+			correspondEClassInstances = correspondEClassInstances.stream()
+					.filter(s -> this.assetManager.getMatchSpecHandler().conformsMatchedObject(
+							matchedSectionDescriptor.getAssociatedSourceModelElement(), s,
+							(MatchSpecElement<?, ?, ?, ?>) condition))
+					.collect(Collectors.toList());
+		}
 
 		// Reduce the list of instances based on modeled InstancePointers
 		//
@@ -625,8 +571,8 @@ public class ConditionHandler {
 
 			for (SourceInstanceSelector instancePointer : condition.getInstanceSelectors()) {
 
-				correspondEClassInstances = this.instanceSelectorHandler.getSelectedInstancesByInstanceList(
-						instancePointer, correspondEClassInstances, matchedSectionDescriptor);
+				correspondEClassInstances = this.instanceSelectorHandler
+						.filterSourceInstances(correspondEClassInstances, instancePointer, matchedSectionDescriptor);
 			}
 
 		}
@@ -637,7 +583,7 @@ public class ConditionHandler {
 	/**
 	 * Store the given {@link CondResult} for the given {@link ComplexCondition} in the {@link #conditionRepository}.
 	 * <p />
-	 * Note: Result will only be stored in case of {@link ComplexCondition#isLocalCondition() global} conditions.
+	 * Note: Result will only be stored in case of {@link ComplexCondition#isGlobalCondition() global} conditions.
 	 *
 	 * @param condition
 	 *            The {@link ComplexCondition} for that the result shall be stored.
@@ -647,10 +593,27 @@ public class ConditionHandler {
 	private void storeConditionResult(ComplexCondition condition, CondResult result) {
 
 		// only store results for 'global' conditions
-		if (!condition.isLocalCondition()) {
+		if (condition.isGlobalCondition()) {
 			this.conditionRepository.put(condition, result);
 		}
 	}
+
+	// /**
+	// * Check the determined <em>isValue</em> cardinality against the required <em>refValue</em> cardinality while
+	// taking
+	// * the given {@link ComparatorEnum} into account.
+	// *
+	// * @param refValue
+	// * The required cardinality.
+	// * @param isValue
+	// * The determined (actual) cardinality.
+	// * @param comparator
+	// * The {@link ComparatorEnum} describing how to compare the two cardinalities.
+	// * @return '<em><b>true</b></em>' if the check succeeded, '<em><b>false</b></em>' otherwise.
+	// */
+	// private boolean checkCardinality(int refValue, CardinalityCondition condition, , ComparatorEnum comparator) {
+	//
+	// }
 
 	/**
 	 * Check the determined <em>isValue</em> cardinality against the required <em>refValue</em> cardinality while taking

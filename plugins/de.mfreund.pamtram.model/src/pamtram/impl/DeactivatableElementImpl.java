@@ -71,6 +71,7 @@ public abstract class DeactivatableElementImpl extends MinimalEObjectImpl.Contai
 	 * @generated
 	 */
 	public boolean isDeactivated() {
+	
 		return deactivated;
 	}
 
@@ -80,10 +81,12 @@ public abstract class DeactivatableElementImpl extends MinimalEObjectImpl.Contai
 	 * @generated
 	 */
 	public void setDeactivated(boolean newDeactivated) {
+	
 		boolean oldDeactivated = deactivated;
 		deactivated = newDeactivated;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PamtramPackage.DEACTIVATABLE_ELEMENT__DEACTIVATED, oldDeactivated, deactivated));
+	
 	}
 
 	/**

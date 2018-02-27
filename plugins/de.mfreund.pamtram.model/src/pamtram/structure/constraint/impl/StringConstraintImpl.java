@@ -116,6 +116,7 @@ public class StringConstraintImpl extends SingleReferenceValueConstraintImpl imp
 	 */
 	@Override
 	public boolean isCaseSensitive() {
+	
 		return caseSensitive;
 	}
 
@@ -125,10 +126,12 @@ public class StringConstraintImpl extends SingleReferenceValueConstraintImpl imp
 	 */
 	@Override
 	public void setCaseSensitive(boolean newCaseSensitive) {
+	
 		boolean oldCaseSensitive = caseSensitive;
 		caseSensitive = newCaseSensitive;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ConstraintPackage.STRING_CONSTRAINT__CASE_SENSITIVE, oldCaseSensitive, caseSensitive));
+	
 	}
 
 	/**
@@ -137,6 +140,7 @@ public class StringConstraintImpl extends SingleReferenceValueConstraintImpl imp
 	 */
 	@Override
 	public StringConstraintOperatorType getOperatorType() {
+	
 		return operatorType;
 	}
 
@@ -146,10 +150,12 @@ public class StringConstraintImpl extends SingleReferenceValueConstraintImpl imp
 	 */
 	@Override
 	public void setOperatorType(StringConstraintOperatorType newOperatorType) {
+	
 		StringConstraintOperatorType oldOperatorType = operatorType;
 		operatorType = newOperatorType == null ? OPERATOR_TYPE_EDEFAULT : newOperatorType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ConstraintPackage.STRING_CONSTRAINT__OPERATOR_TYPE, oldOperatorType, operatorType));
+	
 	}
 
 	/**

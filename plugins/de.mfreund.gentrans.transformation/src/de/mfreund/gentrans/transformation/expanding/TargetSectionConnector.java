@@ -3,6 +3,7 @@ package de.mfreund.gentrans.transformation.expanding;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -13,7 +14,6 @@ import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -24,8 +24,10 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import de.mfreund.gentrans.transformation.CancelTransformationException;
 import de.mfreund.gentrans.transformation.UserAbortException;
 import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
+import de.mfreund.gentrans.transformation.core.CancelableTransformationAsset;
+import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
-import de.mfreund.gentrans.transformation.descriptors.MappingInstanceStorage;
+import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
 import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
 import de.mfreund.gentrans.transformation.registries.SelectedMappingRegistry;
 import de.mfreund.gentrans.transformation.registries.TargetModelRegistry;
@@ -33,7 +35,6 @@ import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvedAdapter;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
-import de.mfreund.gentrans.transformation.util.CancelableElement;
 import pamtram.ConditionalElement;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.Mapping;
@@ -50,7 +51,7 @@ import pamtram.structure.target.TargetSectionClass;
  *
  * @author mfreund
  */
-public class TargetSectionConnector extends CancelableElement {
+public class TargetSectionConnector extends CancelableTransformationAsset {
 
 	private static final String RESOLVE_JOINING_AMBIGUITY_ENDED = "[Ambiguity] ...finished.\n";
 
@@ -71,11 +72,6 @@ public class TargetSectionConnector extends CancelableElement {
 	 * The {@link TargetModelRegistry} that is used to manage the various target models and their contents.
 	 */
 	private final TargetModelRegistry targetModelRegistry;
-
-	/**
-	 * The {@link Logger} that is used to print messages to inform the user.
-	 */
-	private final Logger logger;
 
 	/**
 	 * The {@link InstanceSelectorHandler} used to evaluate modeled {@link ContainerSelector ContainerSelectors}.
@@ -105,37 +101,20 @@ public class TargetSectionConnector extends CancelableElement {
 	/**
 	 * This creates an instance.
 	 *
-	 * @param targetSectionRegistry
-	 *            A {@link TargetSectionRegistry} that is necessary for finding instances to which sections can be
-	 *            connected.
-	 * @param instanceSelectorHandler
-	 *            The {@link InstanceSelectorHandler} used to evaluate modeled {@link ContainerSelector
-	 *            ContainerSelectors}.
-	 * @param targetModelRegistry
-	 *            The {@link TargetModelRegistry} that is used to manage the various target models and their contents.
-	 * @param maxPathLength
-	 *            The maximum length for connection paths that shall be considered by this TargetSectionConnector. If
-	 *            'maxPathLength' is set to '-1' or any other value below '0', connection paths of unbounded length are
-	 *            considered.
-	 * @param ambiguityResolvingStrategy
-	 *            The {@link IAmbiguityResolvingStrategy} that shall be used to resolve ambiguities that arise during
-	 *            the execution of the transformation.
-	 * @param logger
-	 *            The {@link Logger} that shall be used to print messages.
+	 * @param assetManager
+	 *            The {@link TransformationAssetManager} providing access to the various other assets used in the
+	 *            current transformation instance.
 	 */
-	public TargetSectionConnector(final TargetSectionRegistry targetSectionRegistry,
-			InstanceSelectorHandler instanceSelectorHandler, final TargetModelRegistry targetModelRegistry,
-			final int maxPathLength, final IAmbiguityResolvingStrategy ambiguityResolvingStrategy,
-			final Logger logger) {
+	public TargetSectionConnector(TransformationAssetManager assetManager) {
+
+		super(assetManager);
 
 		this.standardPaths = new LinkedHashMap<>();
-		this.targetSectionRegistry = targetSectionRegistry;
-		this.targetModelRegistry = targetModelRegistry;
-		this.logger = logger;
-		this.canceled = false;
-		this.instanceSelectorHandler = instanceSelectorHandler;
-		this.maxPathLength = maxPathLength;
-		this.ambiguityResolvingStrategy = ambiguityResolvingStrategy;
+		this.targetSectionRegistry = assetManager.getTargetSectionRegistry();
+		this.targetModelRegistry = assetManager.getTargetModelRegistry();
+		this.instanceSelectorHandler = assetManager.getInstanceSelectorHandler();
+		this.maxPathLength = assetManager.getTransformationConfig().getMaxPathLength();
+		this.ambiguityResolvingStrategy = assetManager.getTransformationConfig().getAmbiguityResolvingStrategy();
 		this.unconnectableElements = new LinkedHashMap<>();
 	}
 
@@ -143,8 +122,8 @@ public class TargetSectionConnector extends CancelableElement {
 	 * Join the instantiated {@link TargetSection TargetSections}.
 	 *
 	 * @param selectedMappings
-	 *            The {@link SelectedMappingRegistry} providing all the {@link MappingInstanceStorage Mapping instances}
-	 *            whose {@link TargetSection TargetSections} shall be joined.
+	 *            The {@link SelectedMappingRegistry} providing all the {@link MappingInstanceDescriptor Mapping
+	 *            instances} whose {@link TargetSection TargetSections} shall be joined.
 	 */
 	public void joinTargetSections(SelectedMappingRegistry selectedMappings) {
 
@@ -159,11 +138,15 @@ public class TargetSectionConnector extends CancelableElement {
 	 * @param mapping
 	 *            The {@link Mapping} responsible for the creation of the {@link TargetSection TargetSections}
 	 * @param mappingInstances
-	 *            The list of {@link MappingInstanceStorage instances} created based on the given {@link Mapping}.
+	 *            The list of {@link MappingInstanceDescriptor instances} created based on the given {@link Mapping}.
 	 * @return '<em><b>true</b></em>' if all instances of the TargetSection were joined successfully;
 	 *         '<em><b>false</b></em>' otherwise
 	 */
-	public boolean joinTargetSections(final Mapping mapping, final List<MappingInstanceStorage> mappingInstances) {
+	public boolean joinTargetSections(final Mapping mapping, final List<MappingInstanceDescriptor> mappingInstances) {
+
+		if (mappingInstances == null || mappingInstances.isEmpty()) {
+			return true;
+		}
 
 		// Join 'local' hint groups
 		//
@@ -193,15 +176,19 @@ public class TargetSectionConnector extends CancelableElement {
 	 *            The {@link MappingHintGroupType} responsible for the creation of the {@link TargetSection
 	 *            TargetSections} to join.
 	 * @param mappingInstances
-	 *            The list of {@link MappingInstanceStorage instances} created based on the given {@link Mapping}.
+	 *            The list of {@link MappingInstanceDescriptor instances} created based on the given {@link Mapping}.
 	 * @return '<em><b>true</b></em>' if all instances of the TargetSection were joined successfully;
 	 *         '<em><b>false</b></em>' otherwise
 	 */
 	@SuppressWarnings("unlikely-arg-type")
 	private boolean joinTargetSection(final MappingHintGroupType hintGroup,
-			final List<MappingInstanceStorage> mappingInstances) {
+			final List<MappingInstanceDescriptor> mappingInstances) {
 
 		this.checkCanceled();
+
+		if (mappingInstances.isEmpty()) {
+			return true;
+		}
 
 		// The TargetSection of which we want to join created instances
 		//
@@ -212,27 +199,32 @@ public class TargetSectionConnector extends CancelableElement {
 			// do not join sections for that a 'file' is specified, those are
 			// simply added as root elements to that file
 			//
-			this.addToTargetModelRoot(
-					targetSectionRegistry.getPamtramClassInstances(hintGroup.getTargetSection()).get(hintGroup));
+			this.addToTargetModelRoot(this.targetSectionRegistry.getPamtramClassInstances(hintGroup.getTargetSection())
+					.getOrDefault(hintGroup, new ArrayList<>()));
 			return true;
 
 		}
 
-		if (targetSectionRegistry.getPamtramClassInstances(section).keySet().isEmpty()
-				|| targetSectionRegistry.getPamtramClassInstances(section).get(hintGroup) == null) {
+		if (this.targetSectionRegistry.getPamtramClassInstances(section).keySet().isEmpty()
+				|| this.targetSectionRegistry.getPamtramClassInstances(section).get(hintGroup) == null) {
 
 			// nothing to do
 			//
 			return true;
 		}
 
+		// The active ContainerSelectors for this MappingHintGroups
+		//
+		List<ContainerSelector> containerSelectors = hintGroup.getContainerSelectors().stream()
+				.filter(c -> !c.isDeactivated()).collect(Collectors.toList());
+
 		// Join the created instances using the specified 'ContainerSelector(s)'
 		//
-		if (!hintGroup.getContainerSelectors().isEmpty()) { // link using ContainerSelector(s)
+		if (!containerSelectors.isEmpty()) { // link using ContainerSelector(s)
 
 			// The 'ContainerSelector(s)' need to be evaluated separately for each Mapping instance...
 			//
-			for (final MappingInstanceStorage mappingInstance : mappingInstances) {
+			for (final MappingInstanceDescriptor mappingInstance : mappingInstances) {
 
 				// The target model elements that need to connected to a
 				// container element
@@ -249,7 +241,7 @@ public class TargetSectionConnector extends CancelableElement {
 				// ContainerSelectors and collect the unconnectable instances
 				//
 				instancesToConnect = this.joinWithContainerSelectors(mappingInstance, instancesToConnect, hintGroup,
-						hintGroup.getContainerSelectors());
+						containerSelectors);
 
 				// After evaluation of all ContainerSelectors, if there are
 				// still unconnected instances, we add them as new root elements
@@ -262,15 +254,24 @@ public class TargetSectionConnector extends CancelableElement {
 
 		} else {
 
-			final List<EObjectWrapper> containerInstances = targetSectionRegistry
+			final List<EObjectWrapper> containerInstances = this.targetSectionRegistry
 					.getFlattenedPamtramClassInstances(section.getContainer());
 
 			/*
 			 * fetch ALL instances created by the MH-Group in question => less user input and possibly shorter
 			 * processing time
 			 */
-			final List<EObjectWrapper> rootInstances = targetSectionRegistry.getPamtramClassInstances(section)
+			final List<EObjectWrapper> rootInstances = this.targetSectionRegistry.getPamtramClassInstances(section)
 					.get(hintGroup);
+
+			if (containerInstances.isEmpty() && section.getContainer() != null) {
+				this.logger.warning(() -> "The TargetSection '" + section.getName() + "' specifies the "
+						+ section.getContainer().eClass().getName() + " '" + section.getContainer().getName()
+						+ "' as container. However, no instances of this " + section.getContainer().eClass().getName()
+						+ " have been created.");
+				this.registerAsUnconnectable(rootInstances, section);
+				return true;
+			}
 
 			// Prevent circular containments
 			//
@@ -279,7 +280,7 @@ public class TargetSectionConnector extends CancelableElement {
 			List<EObjectWrapper> unconnectedInstances = this.joinWithoutContainerSelector(rootInstances, section,
 					hintGroup,
 					section.getContainer() != null
-							? Optional.of(new HashSet<>(Arrays.asList(section.getContainer().getEClass())))
+							? Optional.of(Collections.singleton(section.getContainer().getEClass()))
 							: Optional.empty(),
 					containerInstances.isEmpty() ? Optional.empty() : Optional.of(containerInstances));
 
@@ -298,12 +299,12 @@ public class TargetSectionConnector extends CancelableElement {
 	 *            The {@link MappingHintGroupImporter} responsible for the creation of the {@link TargetSection
 	 *            TargetSections} to join.
 	 * @param mappingInstances
-	 *            The list of {@link MappingInstanceStorage instances} created based on the given {@link Mapping}.
+	 *            The list of {@link MappingInstanceDescriptor instances} created based on the given {@link Mapping}.
 	 * @return '<em><b>true</b></em>' if all instances of the TargetSection were joined successfully;
 	 *         '<em><b>false</b></em>' otherwise
 	 */
 	private boolean joinTargetSection(final MappingHintGroupImporter hintGroupImporter,
-			final List<MappingInstanceStorage> mappingInstances) {
+			final List<MappingInstanceDescriptor> mappingInstances) {
 
 		this.checkCanceled();
 
@@ -318,13 +319,14 @@ public class TargetSectionConnector extends CancelableElement {
 			// do not join sections for that a 'file' is specified, those are
 			// simply added as root elements to that file
 			//
-			this.addToTargetModelRoot(targetSectionRegistry.getPamtramClassInstances(section).get(hintGroupImporter));
+			this.addToTargetModelRoot(
+					this.targetSectionRegistry.getPamtramClassInstances(section).get(hintGroupImporter));
 			return true;
 
 		}
 
-		if (targetSectionRegistry.getPamtramClassInstances(section).keySet().isEmpty()
-				|| targetSectionRegistry.getPamtramClassInstances(section).get(hintGroupImporter) == null) {
+		if (this.targetSectionRegistry.getPamtramClassInstances(section).keySet().isEmpty()
+				|| this.targetSectionRegistry.getPamtramClassInstances(section).get(hintGroupImporter) == null) {
 
 			// nothing to do
 			//
@@ -336,7 +338,7 @@ public class TargetSectionConnector extends CancelableElement {
 		 * mapping Instance
 		 */
 		if (hintGroupImporter.getContainer() != null) {
-			for (final MappingInstanceStorage selMap : mappingInstances) {
+			for (final MappingInstanceDescriptor selMap : mappingInstances) {
 
 				if (g instanceof ConditionalElement && selMap.isElementWithNegativeCondition((ConditionalElement) g)) {
 					continue;
@@ -373,13 +375,13 @@ public class TargetSectionConnector extends CancelableElement {
 			// (target section container == global instance search)
 		} else {
 			final LinkedList<EObjectWrapper> containerInstances = new LinkedList<>();
-			final List<EObjectWrapper> rootInstances = targetSectionRegistry
+			final List<EObjectWrapper> rootInstances = this.targetSectionRegistry
 					.getPamtramClassInstances(g.getTargetSection()).get(hintGroupImporter);
-			final Set<EClass> containerClasses = new HashSet<>();
+			final Set<EClass> containerClasses = new LinkedHashSet<>();
 			if (g.getTargetSection().getContainer() != null) {
 				containerClasses.add(g.getTargetSection().getContainer().getEClass());
-				containerInstances.addAll(
-						targetSectionRegistry.getFlattenedPamtramClassInstances(g.getTargetSection().getContainer()));
+				containerInstances.addAll(this.targetSectionRegistry
+						.getFlattenedPamtramClassInstances(g.getTargetSection().getContainer()));
 
 			}
 
@@ -404,6 +406,10 @@ public class TargetSectionConnector extends CancelableElement {
 	 *            The list of {@link EObjectWrapper elements} to add.
 	 */
 	private void addToTargetModelRoot(final Collection<EObjectWrapper> elementsToAdd) {
+
+		if (elementsToAdd == null) {
+			return;
+		}
 
 		elementsToAdd.stream().forEach(this::addToTargetModelRoot);
 	}
@@ -476,12 +482,12 @@ public class TargetSectionConnector extends CancelableElement {
 		// Collect all classes that could act as common root for each of the unconnected elements
 		//
 		// TODO Support multiple target models
-		final Set<EClass> common = new HashSet<>();
+		final Set<EClass> common = new LinkedHashSet<>();
 
 		for (final EClass possibleRoot : this.targetSectionRegistry.getMetaModelClasses().stream()
 				.filter(e -> !e.isAbstract()).collect(Collectors.toList())) {
 
-			if (this.unconnectableElements.keySet().parallelStream().noneMatch(
+			if (this.unconnectableElements.keySet().stream().noneMatch(
 					c -> this.targetSectionRegistry.getConnections(c, possibleRoot, this.maxPathLength).isEmpty())) {
 
 				// There is at least one connection for between 'possibleRoot' and each of the elements (resp. the
@@ -683,18 +689,7 @@ public class TargetSectionConnector extends CancelableElement {
 		//
 		if (pathsToConsider.isEmpty()) {
 
-			if (!this.unconnectableElements.containsKey(classToConnect)) {
-
-				this.unconnectableElements.put(classToConnect,
-						new LinkedHashMap<TargetSectionClass, List<EObjectWrapper>>());
-			}
-
-			if (!this.unconnectableElements.get(classToConnect).containsKey(section)) {
-
-				this.unconnectableElements.get(classToConnect).put(section, new LinkedList<EObjectWrapper>());
-			}
-
-			this.unconnectableElements.get(classToConnect).get(section).addAll(rootInstances);
+			this.registerAsUnconnectable(rootInstances, section);
 
 			// Although none of the 'rootInstances' have been connected, we do not return them as 'unconnected
 			// instances'. The reason for this is that they will be connected later on when the 'unconnectableElements'
@@ -745,7 +740,7 @@ public class TargetSectionConnector extends CancelableElement {
 			//
 			pathsToConsider.addAll(containerClasses.get().stream().flatMap(
 					c -> this.targetSectionRegistry.getConnections(classToConnect, c, this.maxPathLength).stream())
-					.collect(Collectors.toSet()));
+					.collect(Collectors.toCollection(LinkedHashSet::new)));
 		} else {
 
 			pathsToConsider.addAll(this.targetSectionRegistry.getPaths(classToConnect, this.maxPathLength));
@@ -778,13 +773,38 @@ public class TargetSectionConnector extends CancelableElement {
 	}
 
 	/**
+	 * Registers the given list of elements as {@link #unconnectableElements unconnectable} so that they will be
+	 * regarded by {@link #combineUnlinkedSectionsWithTargetModelRoot()}.
+	 *
+	 * @param unconnectableInstances
+	 *            The list of {@link EObjectWrapper elements} to register.
+	 * @param section
+	 *            The {@link TargetSection} that was responsible for creating the instances.
+	 */
+	private void registerAsUnconnectable(List<EObjectWrapper> unconnectableInstances, TargetSection section) {
+
+		if (!this.unconnectableElements.containsKey(section.getEClass())) {
+
+			this.unconnectableElements.put(section.getEClass(),
+					new LinkedHashMap<TargetSectionClass, List<EObjectWrapper>>());
+		}
+
+		if (!this.unconnectableElements.get(section.getEClass()).containsKey(section)) {
+
+			this.unconnectableElements.get(section.getEClass()).put(section, new LinkedList<EObjectWrapper>());
+		}
+
+		this.unconnectableElements.get(section.getEClass()).get(section).addAll(unconnectableInstances);
+	}
+
+	/**
 	 * Try to join the given list of 'rootInstances' (and therefore entire sections of the target model) with other
 	 * objects of the target model.
 	 * <p>
 	 * This method is used for connecting sections using a given {@link ContainerSelector}.
 	 *
 	 * @param mappingInstance
-	 *            The {@link MappingInstanceStorage} representing the given <em>rootInstances</em>.
+	 *            The {@link MappingInstanceDescriptor} representing the given <em>rootInstances</em>.
 	 * @param rootInstances
 	 *            A list of {@link EObjectWrapper elements} to connect (created based on the given
 	 *            <em>mappingInstance</em>).
@@ -795,7 +815,7 @@ public class TargetSectionConnector extends CancelableElement {
 	 * @return A list of {@link EObjectWrapper instances} that could not be connected (a sub-list of the given
 	 *         <em>rootInstances</em> or an empty list).
 	 */
-	private List<EObjectWrapper> joinWithContainerSelectors(MappingInstanceStorage mappingInstance,
+	private List<EObjectWrapper> joinWithContainerSelectors(MappingInstanceDescriptor mappingInstance,
 			final List<EObjectWrapper> rootInstances, final MappingHintGroupType mappingGroup,
 			List<ContainerSelector> containerSelectors) {
 
@@ -835,11 +855,26 @@ public class TargetSectionConnector extends CancelableElement {
 		Map<ModelConnectionPath, List<EObjectWrapper>> containerInstancesByConnectionPaths = new LinkedHashMap<>();
 		for (ContainerSelector containerSelector : connectionPathsByContainerSelector.keySet()) {
 			for (ModelConnectionPath connectionPath : connectionPathsByContainerSelector.get(containerSelector)) {
+
 				Set<EObjectWrapper> containerInstances = new LinkedHashSet<>(
 						containerInstancesByConnectionPaths.getOrDefault(connectionPath, new ArrayList<>()));
-				containerInstances.addAll(containerInstancesByContainerSelector.get(containerSelector));
-				containerInstancesByConnectionPaths.put(connectionPath, new ArrayList<>(containerInstances));
+
+				// As connection paths starting from different root EClasses may exist in case of ContainerSelectors
+				// based on abstract TargetSections, we need to filter the fitting instances for each path separately
+				//
+				containerInstances.addAll(containerInstancesByContainerSelector.get(containerSelector).stream()
+						.filter(i -> connectionPath.getPathRootClass().equals(i.getEObject().eClass()))
+						.collect(Collectors.toList()));
+				if (!containerInstances.isEmpty()) {
+					containerInstancesByConnectionPaths.put(connectionPath, new ArrayList<>(containerInstances));
+				}
 			}
+		}
+
+		if (containerInstancesByConnectionPaths.isEmpty()) {
+			// No suitable container instances could be determined for any of the potential connection paths
+			//
+			return rootInstances;
 		}
 
 		return this.selectAndInstantiateConnections(rootInstances, containerInstancesByConnectionPaths, mappingGroup);
@@ -874,8 +909,8 @@ public class TargetSectionConnector extends CancelableElement {
 
 		// The list of (distinct) container instances represented by the 'connectionChoices'
 		//
-		List<EObjectWrapper> containerInstances = new ArrayList<>(
-				connectionChoices.values().stream().flatMap(List::stream).collect(Collectors.toSet()));
+		List<EObjectWrapper> containerInstances = new ArrayList<>(connectionChoices.values().stream()
+				.flatMap(List::stream).collect(Collectors.toCollection(LinkedHashSet::new)));
 
 		if (containerInstances.size() == rootInstances.size()) {
 			// This is the special case where there is exactly one container instance per root instance -> We connect
@@ -1171,12 +1206,17 @@ public class TargetSectionConnector extends CancelableElement {
 		Map<ContainerSelector, List<ModelConnectionPath>> connectionPathsByContainerSelector = new LinkedHashMap<>();
 		for (ContainerSelector containerSelector : containerSelectors) {
 
+			List<TargetSectionClass> potentialTargetSectionClasses = containerSelector.getTargetClass()
+					.getAllConcreteExtending();
+
 			// Check if there are any possible connection paths based on the specified 'targetClass' of the given
-			// container
-			// selector
+			// container selector (or any of the concrete extending TargetSections)
 			//
-			List<ModelConnectionPath> pathsToConsider = this.targetSectionRegistry.getConnections(eClass,
-					containerSelector.getTargetClass().getEClass(), 0);
+			List<ModelConnectionPath> pathsToConsider = potentialTargetSectionClasses.stream()
+					.flatMap(t -> this.targetSectionRegistry.getConnections(eClass, t.getEClass(), 0).stream())
+					.collect(Collectors.toList());
+
+			this.targetSectionRegistry.getConnections(eClass, containerSelector.getTargetClass().getEClass(), 0);
 			if (pathsToConsider.isEmpty()) {
 
 				this.logger.warning(() -> "Could not find a path that leads to the 'targetClass' specified for the "
@@ -1193,9 +1233,9 @@ public class TargetSectionConnector extends CancelableElement {
 
 	/**
 	 * For each of the given {@link ContainerSelector ContainerSelectors}, determines the list of {@link EObjectWrapper
-	 * container instances} satisfying at least one of the hint values for the given {@link MappingInstanceStorage} (a
-	 * subset of all instantiated elements of the {@link ContainerSelector#getTargetClass() target class} specified by
-	 * the respective ContainerSelector).
+	 * container instances} satisfying at least one of the hint values for the given {@link MappingInstanceDescriptor}
+	 * (a subset of all instantiated elements of the {@link ContainerSelector#getTargetClass() target class} specified
+	 * by the respective ContainerSelector).
 	 * <p />
 	 * Note: Those ContainerSelectors for that there is no possible container instance are not represented in the
 	 * returned Map. Put another way, each of the values of the returned map will contain at least one container
@@ -1204,13 +1244,13 @@ public class TargetSectionConnector extends CancelableElement {
 	 * @param containerSelectors
 	 *            The list of {@link ContainerSelector ContainerSelectors} to evaluate.
 	 * @param mappingInstance
-	 *            The {@link MappingInstanceStorage} providing the hint values for the given
+	 *            The {@link MappingInstanceDescriptor} providing the hint values for the given
 	 *            <em>containerSelectors</em>.
 	 * @return The list of potential {@link EObjectWrapper container instances} for each of the given
 	 *         {@link ContainerSelector ContainerSelectors}.
 	 */
 	private Map<ContainerSelector, List<EObjectWrapper>> getContainerInstancesByContainerSelector(
-			List<ContainerSelector> containerSelectors, MappingInstanceStorage mappingInstance) {
+			List<ContainerSelector> containerSelectors, MappingInstanceDescriptor mappingInstance) {
 
 		Map<ContainerSelector, List<EObjectWrapper>> containerInstancesByContainerSelector = new LinkedHashMap<>();
 
@@ -1224,7 +1264,7 @@ public class TargetSectionConnector extends CancelableElement {
 			// Filter those that satisfy one of the calculated hint values
 			//
 			possibleContainerInstances = this.instanceSelectorHandler.filterTargetInstances(possibleContainerInstances,
-					mappingInstance.getHintValues().getHintValues(containerSelector), containerSelector);
+					containerSelector, mappingInstance.getHintValues().getHintValues(containerSelector));
 
 			if (!possibleContainerInstances.isEmpty()) {
 				containerInstancesByContainerSelector.put(containerSelector, possibleContainerInstances);

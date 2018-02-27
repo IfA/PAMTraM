@@ -161,6 +161,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	 */
 	@Override
 	public String getExpression() {
+	
 		return expression;
 	}
 
@@ -170,10 +171,12 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	 */
 	@Override
 	public void setExpression(String newExpression) {
+	
 		String oldExpression = expression;
 		expression = newExpression;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.REFERENCE_TARGET_SELECTOR__EXPRESSION, oldExpression, expression));
+	
 	}
 
 	/**
@@ -182,6 +185,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	 */
 	@Override
 	public EList<ValueModifierSet> getModifiers() {
+	
 		if (modifiers == null) {
 			modifiers = new EObjectResolvingEList<ValueModifierSet>(ValueModifierSet.class, this, ExtendedPackage.REFERENCE_TARGET_SELECTOR__MODIFIERS);
 		}
@@ -194,6 +198,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	 */
 	@Override
 	public EList<InstanceSelectorSourceInterface> getSourceElements() {
+	
 		if (sourceElements == null) {
 			sourceElements = new EObjectContainmentEList<InstanceSelectorSourceInterface>(InstanceSelectorSourceInterface.class, this, ExtendedPackage.REFERENCE_TARGET_SELECTOR__SOURCE_ELEMENTS);
 		}
@@ -206,7 +211,8 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	 */
 	@Override
 	public TargetSectionAttribute getReferenceAttribute() {
-		if (referenceAttribute != null && referenceAttribute.eIsProxy()) {
+	
+		  if (referenceAttribute != null && referenceAttribute.eIsProxy()) {
 			InternalEObject oldReferenceAttribute = (InternalEObject)referenceAttribute;
 			referenceAttribute = (TargetSectionAttribute)eResolveProxy(oldReferenceAttribute);
 			if (referenceAttribute != oldReferenceAttribute) {
@@ -231,10 +237,12 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	 */
 	@Override
 	public void setReferenceAttribute(TargetSectionAttribute newReferenceAttribute) {
+	
 		TargetSectionAttribute oldReferenceAttribute = referenceAttribute;
 		referenceAttribute = newReferenceAttribute;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.REFERENCE_TARGET_SELECTOR__REFERENCE_ATTRIBUTE, oldReferenceAttribute, referenceAttribute));
+	
 	}
 
 	/**
@@ -243,7 +251,8 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	 */
 	@Override
 	public TargetSectionClass getTargetClass() {
-		if (targetClass != null && targetClass.eIsProxy()) {
+	
+		  if (targetClass != null && targetClass.eIsProxy()) {
 			InternalEObject oldTargetClass = (InternalEObject)targetClass;
 			targetClass = (TargetSectionClass)eResolveProxy(oldTargetClass);
 			if (targetClass != oldTargetClass) {
@@ -268,10 +277,12 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	 */
 	@Override
 	public void setTargetClass(TargetSectionClass newTargetClass) {
+	
 		TargetSectionClass oldTargetClass = targetClass;
 		targetClass = newTargetClass;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.REFERENCE_TARGET_SELECTOR__TARGET_CLASS, oldTargetClass, targetClass));
+	
 	}
 
 	/**
@@ -280,7 +291,8 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	 */
 	@Override
 	public TargetSectionCrossReference getAffectedReference() {
-		if (affectedReference != null && affectedReference.eIsProxy()) {
+	
+		  if (affectedReference != null && affectedReference.eIsProxy()) {
 			InternalEObject oldAffectedReference = (InternalEObject)affectedReference;
 			affectedReference = (TargetSectionCrossReference)eResolveProxy(oldAffectedReference);
 			if (affectedReference != oldAffectedReference) {
@@ -304,10 +316,12 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	 * @generated
 	 */
 	public void setAffectedReferenceGen(TargetSectionCrossReference newAffectedReference) {
+	
 		TargetSectionCrossReference oldAffectedReference = affectedReference;
 		affectedReference = newAffectedReference;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExtendedPackage.REFERENCE_TARGET_SELECTOR__AFFECTED_REFERENCE, oldAffectedReference, affectedReference));
+	
 	}
 
 	/**
@@ -343,7 +357,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -352,14 +366,13 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	 */
 	@Override
 	public boolean validateAffectedReferenceMatchesSection(final DiagnosticChain diagnostics, final Map<?, ?> context) {
-		
 		if(this.getAffectedReference() == null) {
 			return true;
 		}
 		
 		TargetSection targetSection = this.eContainer() instanceof MappingHintGroupType ? ((MappingHintGroupType) this.eContainer()).getTargetSection() : ((MappingHintGroupImporter) this.eContainer()).getHintGroup().getTargetSection();
 		
-		boolean result = targetSection == null ? true : this.getAffectedReference().getContainingSection() == targetSection || targetSection.getExtend().contains(this.getAffectedReference().getContainingSection());
+		boolean result = targetSection == null ? true : this.getAffectedReference().getContainingSection() == targetSection || targetSection.getAllExtend().contains(this.getAffectedReference().getContainingSection());
 		
 		if (!result && diagnostics != null) {
 		
@@ -375,7 +388,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -401,7 +414,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 		
 		}
 		
-		return result;
+		return result;	
 	}
 
 	@Override
@@ -464,7 +477,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 							new Object[] { this, StructurePackage.Literals.TARGET_INSTANCE_SELECTOR__TARGET_CLASS }));
 				}
 		
-			return result;
+			return result;	
 	}
 
 	/**
@@ -475,7 +488,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	public EList<InstanceSelectorSourceElement> getLocalSourceElements() {
 		return new BasicEList<>(
 				this.getSourceElements().stream().filter(i -> i instanceof InstanceSelectorSourceElement)
-						.map(i -> (InstanceSelectorSourceElement) i).collect(Collectors.toList()));
+						.map(i -> (InstanceSelectorSourceElement) i).collect(Collectors.toList()));	
 	}
 
 	/**
@@ -486,7 +499,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	public EList<InstanceSelectorExternalSourceElement> getExternalSourceElements() {
 		return new BasicEList<>(
 				this.getSourceElements().stream().filter(i -> i instanceof InstanceSelectorExternalSourceElement)
-						.map(i -> (InstanceSelectorExternalSourceElement) i).collect(Collectors.toList()));
+						.map(i -> (InstanceSelectorExternalSourceElement) i).collect(Collectors.toList()));	
 	}
 
 	/**
@@ -725,10 +738,10 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 				return validateAffectedReferenceIsNonContainment((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case ExtendedPackage.REFERENCE_TARGET_SELECTOR___VALIDATE_AFFECTED_REFERENCE_MATCHES_SECTION__DIAGNOSTICCHAIN_MAP:
 				return validateAffectedReferenceMatchesSection((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
-			case ExtendedPackage.REFERENCE_TARGET_SELECTOR___VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID__DIAGNOSTICCHAIN_MAP:
-				return validateReferenceAttributeIsValid((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case ExtendedPackage.REFERENCE_TARGET_SELECTOR___VALIDATE_TARGET_CLASS__DIAGNOSTICCHAIN_MAP:
 				return validateTargetClass((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case ExtendedPackage.REFERENCE_TARGET_SELECTOR___VALIDATE_REFERENCE_ATTRIBUTE_IS_VALID__DIAGNOSTICCHAIN_MAP:
+				return validateReferenceAttributeIsValid((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case ExtendedPackage.REFERENCE_TARGET_SELECTOR___VALIDATE_NO_MODIFIED_ATTRIBUTE_ELEMENT_TYPES_IN_CONDITION_MODEL_CONDITIONS__DIAGNOSTICCHAIN_MAP:
 				return validateNoModifiedAttributeElementTypesInConditionModelConditions((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case ExtendedPackage.REFERENCE_TARGET_SELECTOR___GET_LOCAL_SOURCE_ELEMENTS:

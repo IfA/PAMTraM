@@ -63,6 +63,24 @@ public interface Reference<S extends Section<S, C, R, A>, C extends pamtram.stru
 	 */
 	void addValuesGeneric(EList<C> values);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\n// We consider a reference as \'extended\' if:\r\n// 1. the reference is directly contained in an abstract &lt;%pamtram.structure.generic.Section%&gt;,\r\n// 2. the reference is an &lt;%pamtram.structure.generic.ActualReference%&gt; (i.e. it represents a metamodel reference), and\r\n// 3. there is another reference further downward in the extension hierarchy that represents the same metamodel\r\n// reference\r\n//\r\nif (!(this instanceof ActualReference&lt;?, ?, ?, ?&gt; &amp;&amp; this.getOwningClass() instanceof Section&lt;?, ?, ?, ?&gt;\r\n\t\t&amp;&amp; ((Section&lt;?, ?, ?, ?&gt;) this.getOwningClass()).isAbstract())) {\r\n\treturn false;\r\n}\r\n\r\n&lt;%org.eclipse.emf.ecore.EReference%&gt; eReference = ((ActualReference&lt;?, ?, ?, ?&gt;) this).getEReference();\r\n\r\nif (eReference == null) {\r\n\treturn false;\r\n}\r\n\r\nreturn ((Section&lt;?, ?, ?, ?&gt;) this.getOwningClass()).getAllExtending().stream()\r\n\t\t.flatMap(s -&gt; s.getActualReferences().stream()).anyMatch(r -&gt; r.eClass().equals(this.eClass())\r\n\t\t\t\t&amp;&amp; eReference.equals(((ActualReference&lt;?, ?, ?, ?&gt;) r).getEReference()));'"
+	 * @generated
+	 */
+	boolean isExtended();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='\r\n&lt;%org.eclipse.emf.common.util.EList%&gt;&lt;C&gt; values = new &lt;%org.eclipse.emf.common.util.BasicEList%&gt;&lt;&gt;(this.getValuesGeneric());\r\n\r\n// Only ActualReferences directly contained in Sections can extend other references\r\n//\r\nif (this.getOwningClass() instanceof &lt;%pamtram.structure.generic.Section%&gt;&lt;?, ?, ?, ?&gt; &amp;&amp; this instanceof &lt;%pamtram.structure.generic.ActualReference%&gt;&lt;?, ?, ?, ?&gt;\r\n\t\t&amp;&amp; ((ActualReference&lt;?, ?, ?, ?&gt;) this).getEReference() != null) {\r\n\r\n\t&lt;%org.eclipse.emf.ecore.EReference%&gt; eReference = ((ActualReference&lt;?, ?, ?, ?&gt;) this).getEReference();\r\n\r\n\t&lt;%java.util.List%&gt;&lt;&lt;%pamtram.structure.generic.Reference%&gt;&lt;?, ?, ?, ?&gt;&gt; extendedReferences = ((Section&lt;?, ?, ?, ?&gt;) this.getOwningClass())\r\n\t\t\t.getAllExtend().stream().flatMap(s -&gt; s.getActualReferences().stream())\r\n\t\t\t.filter(r -&gt; eReference.equals(((ActualReference&lt;?, ?, ?, ?&gt;) r).getEReference()))\r\n\t\t\t.collect(&lt;%java.util.stream.Collectors%&gt;.toList());\r\n\r\n\tvalues.addAll((&lt;%java.util.Collection%&gt;&lt;? extends C&gt;) extendedReferences.stream()\r\n\t\t\t.flatMap(r -&gt; r.getValuesGeneric().stream()).collect(Collectors.toList()));\r\n}\r\n\r\nreturn values;'"
+	 * @generated
+	 */
+	EList<C> getValuesIncludingExtended();
+
 	void addValuesGeneric(List<C> values);
 
 } // Reference

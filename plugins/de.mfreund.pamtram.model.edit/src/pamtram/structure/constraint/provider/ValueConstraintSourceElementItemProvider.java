@@ -2,21 +2,18 @@
  */
 package pamtram.structure.constraint.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.StyledString;
-
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import pamtram.PamtramPackage;
 import pamtram.condition.ConditionFactory;
 import pamtram.provider.PamtramEditPlugin;
@@ -26,15 +23,14 @@ import pamtram.structure.provider.LocalDynamicSourceElementItemProvider;
 
 /**
  * This is the item provider adapter for a {@link pamtram.structure.constraint.ValueConstraintSourceElement} object.
- * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> <!-- end-user-doc -->
  * @generated
  */
 public class ValueConstraintSourceElementItemProvider extends LocalDynamicSourceElementItemProvider {
+
 	/**
 	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ValueConstraintSourceElementItemProvider(AdapterFactory adapterFactory) {
@@ -43,8 +39,7 @@ public class ValueConstraintSourceElementItemProvider extends LocalDynamicSource
 
 	/**
 	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -59,8 +54,7 @@ public class ValueConstraintSourceElementItemProvider extends LocalDynamicSource
 
 	/**
 	 * This adds a property descriptor for the Shared Condition feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addSharedConditionPropertyDescriptor(Object object) {
@@ -83,8 +77,8 @@ public class ValueConstraintSourceElementItemProvider extends LocalDynamicSource
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -97,8 +91,7 @@ public class ValueConstraintSourceElementItemProvider extends LocalDynamicSource
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -111,8 +104,7 @@ public class ValueConstraintSourceElementItemProvider extends LocalDynamicSource
 
 	/**
 	 * This returns ValueConstraintSourceElement.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -122,38 +114,30 @@ public class ValueConstraintSourceElementItemProvider extends LocalDynamicSource
 
 	/**
 	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		return ((StyledString)getStyledText(object)).getString();
 	}
-	
+
 	/**
-	 * This returns the label styled text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
+	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((ValueConstraintSourceElement)object).getName();
-    	StyledString styledLabel = new StyledString();
-		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_ValueConstraintSourceElement_type"), StyledString.Style.QUALIFIER_STYLER); 
-		} else {
-			styledLabel.append(getString("_UI_ValueConstraintSourceElement_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
-		}
-		return styledLabel;
-	}	
+
+		return super.getStyledText(object);
+	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -171,8 +155,7 @@ public class ValueConstraintSourceElementItemProvider extends LocalDynamicSource
 	/**
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
 	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -212,8 +195,7 @@ public class ValueConstraintSourceElementItemProvider extends LocalDynamicSource
 
 	/**
 	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

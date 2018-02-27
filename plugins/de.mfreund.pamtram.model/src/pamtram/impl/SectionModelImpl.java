@@ -109,10 +109,12 @@ public abstract class SectionModelImpl<S extends Section<S, C, R, A>, C extends 
 	 * @generated
 	 */
 	public void setMetaModelPackage(EPackage newMetaModelPackage) {
+	
 		EPackage oldMetaModelPackage = metaModelPackage;
 		metaModelPackage = newMetaModelPackage;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PamtramPackage.SECTION_MODEL__META_MODEL_PACKAGE, oldMetaModelPackage, metaModelPackage));
+	
 	}
 
 	/**
@@ -121,6 +123,7 @@ public abstract class SectionModelImpl<S extends Section<S, C, R, A>, C extends 
 	 * @generated
 	 */
 	public EList<S> getSections() {
+	
 		if (sections == null) {
 			sections = new EObjectContainmentEList<S>(Section.class, this, PamtramPackage.SECTION_MODEL__SECTIONS);
 		}

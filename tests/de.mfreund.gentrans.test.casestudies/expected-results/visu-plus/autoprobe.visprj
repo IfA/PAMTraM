@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ProjectSettings>
+  <Build>1106</Build>
+  <Platforms TargetJ2SEClient="0" TargetJMSEClient="0" TargetWin32="1" TargetWin32Client="0"
+      TargetWinCE="0" TargetWinCEClient="0"/>
+  <ProjectExecution StartupSynoptic="NAVTOP"/>
+</ProjectSettings>

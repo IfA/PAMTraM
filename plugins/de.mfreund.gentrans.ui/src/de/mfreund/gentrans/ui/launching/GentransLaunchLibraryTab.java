@@ -33,7 +33,6 @@ import org.eclipse.swt.widgets.List;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.wb.swt.SWTResourceManager;
 
-import de.mfreund.gentrans.launching.GentransLaunchingDelegate;
 import de.mfreund.pamtram.properties.PropertySupplier;
 import de.tud.et.ifa.agtele.ui.listeners.KeyPressedListener;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;

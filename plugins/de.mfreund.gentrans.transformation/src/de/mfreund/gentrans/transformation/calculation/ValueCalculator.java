@@ -8,17 +8,14 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.logging.Logger;
 
+import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.AttributeValueRepresentation;
 import de.mfreund.gentrans.transformation.maps.GlobalValueMap;
-import pamtram.ConditionalElement;
 import pamtram.ExpressionElement;
-import pamtram.FixedValue;
 import pamtram.ModifiableElement;
 import pamtram.NamedElement;
-import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.extended.AttributeMapping;
 import pamtram.mapping.extended.AttributeMatcher;
-import pamtram.mapping.extended.CardinalityMapping;
 import pamtram.mapping.extended.MappingHint;
 import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.mapping.modifier.ValueModifierSet;
@@ -51,20 +48,15 @@ public class ValueCalculator {
 	/**
 	 * This creates an instance.
 	 *
-	 * @param globalValues
-	 *            The {@link GlobalValueMap} providing values of {@link GlobalAttribute GlobalAttributes} and
-	 *            {@link FixedValue FixedValues} that can be used in calculations.
-	 * @param valuemodifierExecutor
-	 *            The {@link ValueModifierExecutor} that shall be used to apply {@link ValueModifierSet
-	 *            AttributeValueModifierSets}.
-	 * @param logger
-	 *            The {@link Logger} that shall be used to print messages to the user.
+	 * @param assetManager
+	 *            The {@link TransformationAssetManager} providing access to the various other assets used in the
+	 *            current transformation instance.
 	 */
-	public ValueCalculator(GlobalValueMap globalValues, ValueModifierExecutor valuemodifierExecutor, Logger logger) {
+	public ValueCalculator(TransformationAssetManager assetManager) {
 
-		this.valuemodifierExecutor = valuemodifierExecutor;
-		this.globalValues = globalValues;
-		this.logger = logger;
+		this.valuemodifierExecutor = assetManager.getValueModifierExecutor();
+		this.globalValues = assetManager.getGlobalValues();
+		this.logger = assetManager.getLogger();
 	}
 
 	/**
@@ -83,9 +75,8 @@ public class ValueCalculator {
 	 *            for one instance that is created.
 	 * @return The calculated attribute value or <em>null</em> if no value could be calculated.
 	 */
-	@SuppressWarnings("unchecked")
 	public String calculateAttributeValue(final TargetSectionAttribute attr, MappingHint hint,
-			LinkedList<?> attrHintValueList) {
+			LinkedList<Map<?, AttributeValueRepresentation>> attrHintValueList) {
 
 		if (attrHintValueList == null) {
 			return this.calculateAttributeValue(attr, hint, (Map<?, AttributeValueRepresentation>) null);
@@ -93,8 +84,7 @@ public class ValueCalculator {
 
 			// this is the map of hint values that we will use for this
 			// calculation
-			Map<?, AttributeValueRepresentation> attrHintValues = ((LinkedList<Map<?, AttributeValueRepresentation>>) attrHintValueList)
-					.removeFirst();
+			Map<?, AttributeValueRepresentation> attrHintValues = attrHintValueList.removeFirst();
 			return this.calculateAttributeValue(attr, hint, attrHintValues);
 		}
 	}
@@ -167,20 +157,7 @@ public class ValueCalculator {
 	private String calculateAttributeValueWithoutExpression(MappingHint hint,
 			Map<?, AttributeValueRepresentation> hintValues, List<ValueModifierSet> resultModifiers) {
 
-		// Collect the source elements that determine the order in which the
-		// hint
-		// values will get appended
-		//
-		List<Object> sourceElements = new ArrayList<>();
-		if (hint instanceof AttributeMapping) {
-			sourceElements.addAll(((AttributeMapping) hint).getSourceElements());
-		} else if (hint instanceof CardinalityMapping) {
-			sourceElements.addAll(((CardinalityMapping) hint).getSourceElements());
-		} else if (hint instanceof ReferenceTargetSelector) {
-			sourceElements.addAll(((ReferenceTargetSelector) hint).getSourceElements());
-		}
-
-		return this.calculateValueWithoutExpression(sourceElements, hintValues, resultModifiers);
+		return this.calculateValueWithoutExpression(hintValues, resultModifiers);
 	}
 
 	/**
@@ -223,9 +200,6 @@ public class ValueCalculator {
 	 * Note: This simply redirects to {@link #calculateValueWithExpression(Map, String, List)} or
 	 * {@link #calculateAttributeValueWithoutExpression(MappingHint, Map, List)}.
 	 *
-	 * @param sourceElements
-	 *            The list of source elements that determine the order in which the <em>valueParts</em> shall be
-	 *            assembled.
 	 * @param expression
 	 *            An optional mathematical expression based on which the resulting value is calculated (if this is
 	 *            '<em>null</em>' or an empty string, the <em>valueParts</em> are simply stringed together).
@@ -236,12 +210,12 @@ public class ValueCalculator {
 	 *            returning it.
 	 * @return The assembled value after applying the <em>resultModifiers</em>.
 	 */
-	public String calculateValue(List<Object> sourceElements, String expression,
-			Map<?, AttributeValueRepresentation> valueParts, List<ValueModifierSet> resultModifiers) {
+	public String calculateValue(String expression, Map<?, AttributeValueRepresentation> valueParts,
+			List<ValueModifierSet> resultModifiers) {
 
 		return expression != null && !expression.isEmpty()
 				? this.calculateValueWithExpression(valueParts, expression, resultModifiers)
-				: this.calculateValueWithoutExpression(sourceElements, valueParts, resultModifiers);
+				: this.calculateValueWithoutExpression(valueParts, resultModifiers);
 	}
 
 	/**
@@ -253,9 +227,6 @@ public class ValueCalculator {
 	 * {@link ModifiableElement#getModifiers() modifiers} for each <em>sourceElement</em> (resp. the corresponding
 	 * value) have to be applied before calling this.
 	 *
-	 * @param sourceElements
-	 *            The list of source elements that determine the order in which the <em>valueParts</em> shall be
-	 *            assembled.
 	 * @param valueParts
 	 *            The value parts (the keys of the map should match the list of <em>sourceElements</em>).
 	 * @param resultModifiers
@@ -263,28 +234,12 @@ public class ValueCalculator {
 	 *            returning it.
 	 * @return The assembled value after applying the <em>resultModifiers</em>.
 	 */
-	public String calculateValueWithoutExpression(List<Object> sourceElements,
-			Map<?, AttributeValueRepresentation> valueParts, List<ValueModifierSet> resultModifiers) {
+	public String calculateValueWithoutExpression(Map<?, AttributeValueRepresentation> valueParts,
+			List<ValueModifierSet> resultModifiers) {
 
 		StringBuilder attrValueBuilder = new StringBuilder();
 
-		for (Object srcElement : sourceElements) {
-			if (valueParts.containsKey(srcElement)) {
-				attrValueBuilder.append(valueParts.get(srcElement).getNextValue());
-			} else {
-				if (srcElement instanceof ConditionalElement
-						&& (((ConditionalElement) srcElement).getLocalCondition() != null
-								|| ((ConditionalElement) srcElement).getSharedCondition() != null)) {
-					// This is probably due to a condition that evaluated to
-					// false...
-					//
-				} else {
-					this.logger.warning(() -> "SourceValue not found for element '"
-							+ (srcElement instanceof NamedElement ? ((NamedElement) srcElement).getName() : srcElement)
-							+ "'.");
-				}
-			}
-		}
+		valueParts.entrySet().stream().forEach(e -> attrValueBuilder.append(e.getValue().getNextValue()));
 
 		return this.valuemodifierExecutor.applyAttributeValueModifiers(attrValueBuilder.toString(), resultModifiers);
 	}
@@ -319,14 +274,18 @@ public class ValueCalculator {
 		// Add local variables (as double)
 		//
 		for (Entry<?, AttributeValueRepresentation> entry : valueParts.entrySet()) {
-			if (entry.getKey() instanceof NamedElement) {
 
-				String value = entry.getValue().getNextValue();
-				try {
-					vars.put(((NamedElement) entry.getKey()).getName(), Double.valueOf(value));
-				} catch (NumberFormatException e) {
-					this.logger.warning(() -> "Error parsing double of value '" + value + "'.");
+			Object key = entry.getKey();
+			String value = entry.getValue().getNextValue();
+
+			try {
+				if (key instanceof NamedElement) {
+					vars.put(((NamedElement) key).getName(), Double.valueOf(value));
+				} else if (key instanceof String) {
+					vars.put((String) key, Double.valueOf(value));
 				}
+			} catch (NumberFormatException e) {
+				this.logger.warning(() -> "Error parsing double of value '" + value + "'.");
 			}
 		}
 

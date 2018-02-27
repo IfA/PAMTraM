@@ -129,6 +129,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 */
 	@Override
 	public EList<LibraryParameter<?>> getParameters() {
+	
 		if (parameters == null) {
 			parameters = new EObjectContainmentEList<LibraryParameter<?>>(LibraryParameter.class, this, LibraryPackage.LIBRARY_ENTRY__PARAMETERS);
 		}
@@ -141,6 +142,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 */
 	@Override
 	public String getLibraryFile() {
+	
 		return libraryFile;
 	}
 
@@ -150,10 +152,12 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 */
 	@Override
 	public void setLibraryFile(String newLibraryFile) {
+	
 		String oldLibraryFile = libraryFile;
 		libraryFile = newLibraryFile;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.LIBRARY_ENTRY__LIBRARY_FILE, oldLibraryFile, libraryFile));
+	
 	}
 
 	/**
@@ -162,6 +166,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 */
 	@Override
 	public VirtualTargetSectionAttribute getClasspath() {
+	
 		return classpath;
 	}
 
@@ -186,6 +191,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 */
 	@Override
 	public void setClasspath(VirtualTargetSectionAttribute newClasspath) {
+	
 		if (newClasspath != classpath) {
 			NotificationChain msgs = null;
 			if (classpath != null)
@@ -197,6 +203,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.LIBRARY_ENTRY__CLASSPATH, newClasspath, newClasspath));
+	
 	}
 
 	/**
@@ -205,6 +212,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 */
 	@Override
 	public VirtualTargetSectionAttribute getId() {
+	
 		return id;
 	}
 
@@ -228,6 +236,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 */
 	@Override
 	public void setId(VirtualTargetSectionAttribute newId) {
+	
 		if (newId != id) {
 			NotificationChain msgs = null;
 			if (id != null)
@@ -239,6 +248,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.LIBRARY_ENTRY__ID, newId, newId));
+	
 	}
 
 	/**
@@ -247,6 +257,7 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 */
 	@Override
 	public EList<ResourceParameter> getResourceParameters() {
+	
 		if (resourceParameters == null) {
 			resourceParameters = new EObjectContainmentEList<ResourceParameter>(ResourceParameter.class, this, LibraryPackage.LIBRARY_ENTRY__RESOURCE_PARAMETERS);
 		}
@@ -259,7 +270,8 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	 */
 	@Override
 	public de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry getOriginalLibraryEntry() {
-		if (originalLibraryEntry != null && originalLibraryEntry.eIsProxy()) {
+	
+		  if (originalLibraryEntry != null && originalLibraryEntry.eIsProxy()) {
 			InternalEObject oldOriginalLibraryEntry = (InternalEObject)originalLibraryEntry;
 			originalLibraryEntry = (de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry)eResolveProxy(oldOriginalLibraryEntry);
 			if (originalLibraryEntry != oldOriginalLibraryEntry) {
@@ -285,10 +297,12 @@ public class LibraryEntryImpl extends MinimalEObjectImpl.Container implements Li
 	@Override
 	public void setOriginalLibraryEntry(
 			de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry newOriginalLibraryEntry) {
+	
 		de.tud.et.ifa.agtele.genlibrary.model.genlibrary.LibraryEntry oldOriginalLibraryEntry = originalLibraryEntry;
 		originalLibraryEntry = newOriginalLibraryEntry;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.LIBRARY_ENTRY__ORIGINAL_LIBRARY_ENTRY, oldOriginalLibraryEntry, originalLibraryEntry));
+	
 	}
 
 	/**

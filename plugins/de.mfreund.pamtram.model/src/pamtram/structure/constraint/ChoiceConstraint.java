@@ -45,6 +45,7 @@ public interface ChoiceConstraint extends ValueConstraint {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model required="true" attrValueRequired="true" refValueRequired="true" refValueMany="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return refValue.stream().anyMatch(r -&gt; r.equals(attrValue));'"
 	 * @generated
 	 */
 	boolean checkConstraint(String attrValue, EList<String> refValue);

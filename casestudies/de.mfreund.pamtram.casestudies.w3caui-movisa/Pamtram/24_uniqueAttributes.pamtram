@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ASCII"?>
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint" xmlns:extended="http://mfreund.de/pamtram/mapping/extended" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target">
+  <sourceSectionModels>
+    <metaModelPackage href="http://www.w3.org/2013/mbui-aui#/"/>
+    <sections xsi:type="source:SourceSection" name="AbstractUserInterfaceModel" cardinality="ONE__INFINITY">
+      <eClass href="http://www.w3.org/2013/mbui-aui#//AbstractUserInterfaceModel"/>
+    </sections>
+    <sections xsi:type="source:SourceSection" name="Confirmation">
+      <eClass href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit"/>
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
+        <valueConstraints xsi:type="constraint:EqualityConstraint" name="confirmation" expression="confirmation"/>
+        <attribute href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/role"/>
+      </attributes>
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="id">
+        <attribute href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/id"/>
+      </attributes>
+    </sections>
+    <sections xsi:type="source:SourceSection" name="Repetition">
+      <eClass href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit"/>
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="role">
+        <valueConstraints xsi:type="constraint:EqualityConstraint" name="confirmation" expression="repetition"/>
+        <attribute href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/role"/>
+      </attributes>
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="id">
+        <attribute href="http://www.w3.org/2013/mbui-aui#//AbstractInteractionUnit/id"/>
+      </attributes>
+    </sections>
+  </sourceSectionModels>
+  <targetSectionModels>
+    <metaModelPackage href="http://stefan-hennig.de/movisa#/"/>
+    <sections xsi:type="target:TargetSection" name="Button" cardinality="ONE__INFINITY">
+      <eClass href="http://stefan-hennig.de/movisa#//presentation/Button"/>
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="Name" unique="true" value="cloningButton">
+        <attribute href="http://stefan-hennig.de/movisa#//NamedMovisaModelElement/Name"/>
+      </attributes>
+    </sections>
+    <sections xsi:type="target:TargetSection" name="CloningButton" cardinality="ONE__INFINITY">
+      <eClass href="http://stefan-hennig.de/movisa#//presentation/Button"/>
+      <references xsi:type="target:TargetSectionCrossReference" name="ClonedComponent">
+        <eReference href="http://stefan-hennig.de/movisa#//presentation/UIComponent/ClonedComponent"/>
+      </references>
+    </sections>
+  </targetSectionModels>
+  <mappingModels>
+    <mappings name="AbstractUserInterfaceModelMapping" sourceSection="//@sourceSectionModels.0/@sections.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="CloningButton" targetSection="//@targetSectionModels.0/@sections.1">
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="ClonedComponent" referenceAttribute="//@targetSectionModels.0/@sections.0/@attributes.0" targetClass="//@targetSectionModels.0/@sections.0" affectedReference="//@targetSectionModels.0/@sections.1/@references.0">
+          <sourceElements xsi:type="pamtram:FixedValue" name="Button_aui1" value="Button_aui1"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mappings>
+    <mappings name="ButtonMapping" sourceSection="//@sourceSectionModels.0/@sections.1">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetSection="//@targetSectionModels.0/@sections.0">
+        <mappingHints xsi:type="extended:AttributeMapping" name="NameMapping" target="//@targetSectionModels.0/@sections.0/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.1" source="//@sourceSectionModels.0/@sections.1/@attributes.1"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mappings>
+    <mappings name="ButtonMapping" sourceSection="//@sourceSectionModels.0/@sections.2">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Button" targetSection="//@targetSectionModels.0/@sections.0">
+        <mappingHints xsi:type="extended:AttributeMapping" name="NameMapping" target="//@targetSectionModels.0/@sections.0/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="id" modifiers="//@mappingModels.0/@modifierSets.1" source="//@sourceSectionModels.0/@sections.2/@attributes.1"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mappings>
+    <modifierSets name="getNumber">
+      <modifiers xsi:type="modifier:SubstringReplacer" name="getNumber" regex="[^0-9]+" replacement=""/>
+    </modifierSets>
+    <modifierSets name="prependButton">
+      <modifiers xsi:type="modifier:StringPrepender" name="NextButton" string="Button_"/>
+    </modifierSets>
+    <modifierSets name="add one">
+      <modifiers xsi:type="modifier:SubstringReplacer" regex=":%s/$/\*/g" replacement=""/>
+    </modifierSets>
+  </mappingModels>
+</pamtram:PAMTraM>

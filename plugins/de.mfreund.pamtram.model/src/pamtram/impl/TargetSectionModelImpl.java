@@ -80,6 +80,7 @@ public class TargetSectionModelImpl extends SectionModelImpl<TargetSection, Targ
 	 * @generated
 	 */
 	public EList<LibraryEntry> getLibraryElements() {
+	
 		if (libraryElements == null) {
 			libraryElements = new EObjectContainmentEList<LibraryEntry>(LibraryEntry.class, this, PamtramPackage.TARGET_SECTION_MODEL__LIBRARY_ELEMENTS);
 		}

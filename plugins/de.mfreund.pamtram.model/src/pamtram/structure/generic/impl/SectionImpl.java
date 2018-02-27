@@ -5,13 +5,15 @@ package pamtram.structure.generic.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
@@ -36,6 +38,7 @@ import pamtram.structure.generic.util.GenericValidator;
  *   <li>{@link pamtram.structure.generic.impl.SectionImpl#isAbstract <em>Abstract</em>}</li>
  *   <li>{@link pamtram.structure.generic.impl.SectionImpl#getExtend <em>Extend</em>}</li>
  *   <li>{@link pamtram.structure.generic.impl.SectionImpl#getAllExtend <em>All Extend</em>}</li>
+ *   <li>{@link pamtram.structure.generic.impl.SectionImpl#getAllExtending <em>All Extending</em>}</li>
  * </ul>
  *
  * @generated
@@ -96,6 +99,7 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 	 */
 	@Override
 	public boolean isAbstract() {
+	
 		return abstract_;
 	}
 
@@ -105,10 +109,12 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 	 */
 	@Override
 	public void setAbstract(boolean newAbstract) {
+	
 		boolean oldAbstract = abstract_;
 		abstract_ = newAbstract;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, GenericPackage.SECTION__ABSTRACT, oldAbstract, abstract_));
+	
 	}
 
 	/**
@@ -117,6 +123,7 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 	 */
 	@Override
 	public EList<S> getExtend() {
+	
 		if (extend == null) {
 			extend = new EObjectResolvingEList<S>(Section.class, this, GenericPackage.SECTION__EXTEND);
 		}
@@ -129,24 +136,44 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 	 */
 	@Override
 	public EList<S> getAllExtend() {
-		Set<Object> ret = new HashSet<>();
+	
+		Set<Object> ret = new LinkedHashSet<>();
 		
-			List<Section<?, ?, ?, ?>> toCheck = new ArrayList<>();
-				toCheck.add(this);
+		List<Section<?, ?, ?, ?>> toCheck = new ArrayList<>();
+		toCheck.add(this);
 		
-			while (!toCheck.isEmpty()) {
-					Section<?, ?, ?, ?> next = toCheck.remove(0);
+		while (!toCheck.isEmpty()) {
+			Section<?, ?, ?, ?> next = toCheck.remove(0);
 		
-				List<Section<?, ?, ?, ?>> localToCheck = next.getExtend().stream().filter(e -> !ret.contains(e))
-							.collect(Collectors.toList());
-					ret.addAll(localToCheck);
-					toCheck.addAll(localToCheck);
-				}
+			List<Section<?, ?, ?, ?>> localToCheck = next.getExtend().stream().filter(e -> !ret.contains(e))
+					.collect(Collectors.toList());
+			ret.addAll(localToCheck);
+			toCheck.addAll(localToCheck);
+		}
 		
-			ret.addAll(this.getExtend().stream().flatMap(s -> s.getAllExtend().stream()).collect(Collectors.toList()));
+		return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.SECTION__ALL_EXTEND, ret.size(),
+				ret.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<S> getAllExtending() {
+	
 		
-			return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.SECTION__ALL_EXTEND, ret.size(),
-						ret.toArray());
+		Set<Object> extendingSections = new LinkedHashSet<>();
+		Iterator<Notifier> it = this.eResource().getResourceSet().getAllContents();
+		while (it.hasNext()) {
+			Notifier next = it.next();
+			if (next instanceof Section<?, ?, ?, ?> && ((Section<?, ?, ?, ?>) next).getAllExtend().contains(this)) {
+				extendingSections.add(next);
+			}
+		}
+		
+		return new EcoreEList.UnmodifiableEList<>(this, GenericPackage.Literals.SECTION__ALL_EXTENDING,
+				extendingSections.size(), extendingSections.toArray());
 	}
 
 	/**
@@ -175,7 +202,7 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 					 new Object [] { this, GenericPackage.Literals.SECTION__EXTEND }));
 			}
 		
-		return result;
+		return result;	
 	}
 
 	/**
@@ -194,7 +221,7 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 		
 		if (!result && diagnostics != null) {
 		
-			String errorMessage = "The section extends a section that is either not abstract or that references an EClass of a different (super-)type!";
+			String errorMessage = "The Section extends a Section that is either not abstract or that references an EClass of a different (super-)type!";
 		
 			diagnostics.add(new BasicDiagnostic
 					(Diagnostic.ERROR,
@@ -205,7 +232,31 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 		
 		}
 		
-		return result;
+		return result;	
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean validateNotExtendSelf(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		boolean result = !this.getAllExtend().contains(this);
+		
+		if (!result && diagnostics != null) {
+		
+			String errorMessage = "A Section must not extend itself (neither directly nor indirectly)!";
+		
+			diagnostics.add(new BasicDiagnostic
+					(Diagnostic.ERROR, 
+					GenericValidator.DIAGNOSTIC_SOURCE,
+						GenericValidator.SECTION__VALIDATE_NOT_EXTEND_SELF, 
+						errorMessage,
+					new Object[] { this, GenericPackage.Literals.SECTION__EXTEND }));
+		
+		}
+		
+		return result;	
 	}
 
 	/**
@@ -221,6 +272,8 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 				return getExtend();
 			case GenericPackage.SECTION__ALL_EXTEND:
 				return getAllExtend();
+			case GenericPackage.SECTION__ALL_EXTENDING:
+				return getAllExtending();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -274,6 +327,8 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 				return extend != null && !extend.isEmpty();
 			case GenericPackage.SECTION__ALL_EXTEND:
 				return !getAllExtend().isEmpty();
+			case GenericPackage.SECTION__ALL_EXTENDING:
+				return !getAllExtending().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -290,6 +345,8 @@ public abstract class SectionImpl<S extends Section<S, C, R, A>, C extends pamtr
 				return validateContainerMatchesExtendContainer((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 			case GenericPackage.SECTION___VALIDATE_EXTENDS_VALID_SECTIONS__DIAGNOSTICCHAIN_MAP:
 				return validateExtendsValidSections((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
+			case GenericPackage.SECTION___VALIDATE_NOT_EXTEND_SELF__DIAGNOSTICCHAIN_MAP:
+				return validateNotExtendSelf((DiagnosticChain)arguments.get(0), (Map<?, ?>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

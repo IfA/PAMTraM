@@ -114,6 +114,7 @@ public class SourceSectionClassImpl
 	 * @generated
 	 */
 	public boolean isIncludeSubTypes() {
+	
 		return includeSubTypes;
 	}
 
@@ -123,10 +124,12 @@ public class SourceSectionClassImpl
 	 * @generated
 	 */
 	public void setIncludeSubTypes(boolean newIncludeSubTypes) {
+	
 		boolean oldIncludeSubTypes = includeSubTypes;
 		includeSubTypes = newIncludeSubTypes;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SourcePackage.SOURCE_SECTION_CLASS__INCLUDE_SUB_TYPES, oldIncludeSubTypes, includeSubTypes));
+	
 	}
 
 	/**

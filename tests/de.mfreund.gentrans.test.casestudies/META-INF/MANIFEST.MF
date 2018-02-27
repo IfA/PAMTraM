@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: GenTrans Test Plugin
 Bundle-SymbolicName: de.mfreund.gentrans.test.casestudies
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 2.1.0.qualifier
 Bundle-Vendor: Matthias Freund, Institute of Automation, TU Dresden
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.junit,
@@ -20,11 +20,11 @@ Require-Bundle: org.junit,
  org.opentest4j,
  org.apiguardian,
  org.eclipse.emf.ecore,
- de.mfreund.pamtram.model,
- de.mfreund.gentrans.transformation.ui,
+ de.mfreund.pamtram.model;bundle-version="2.1.0",
+ de.mfreund.gentrans.transformation.ui;bundle-version="2.1.0",
  org.eclipse.emf.ecore.xmi,
- de.mfreund.gentrans.transformation,
- de.tud.et.ifa.agtele.eclipse.commons,
+ de.mfreund.gentrans.transformation;bundle-version="2.1.0",
+ de.tud.et.ifa.agtele.eclipse.commons;bundle-version="1.0.0",
  org.eclipse.core.resources,
  org.eclipse.core.runtime;bundle-version="3.13.0",
  org.eclipse.emf.compare,

@@ -85,6 +85,16 @@
 				Source/SmartphoneWithoutVibration.xmi,
 				Target"/>
 	
+	<!-- The files to include in the 'dfd-uml' example -->
+	<patternset id="dfd-uml.includes"
+		includes="
+			.project,
+			dfd-uml.launch,
+			metamodel/**,
+			Pamtram/dfd-uml.pamtram,
+			Source/Temperaturmessung.xmi,
+			Target/out.xmi"/>
+	
 	<!-- The files to include in the 'disl-movisa' example -->
 	<patternset id="disl-movisa.includes"
 			includes="
@@ -188,6 +198,12 @@
 		<eclipse.convertPath resourcePath="de.mfreund.pamtram.casestudies.ctt-aminolight" property="projectDir"/>
 		<zip destfile="zips/ctt-aminolight.zip" basedir="${projectDir}">
 			<patternset refid="ctt-aminolight.includes"/>
+		</zip>
+		
+		<!-- DFD-UML -->
+		<eclipse.convertPath resourcePath="de.mfreund.pamtram.casestudies.dfd-uml" property="projectDir"/>
+		<zip destfile="zips/dfd-uml.zip" basedir="${projectDir}">
+			<patternset refid="dfd-uml.includes"/>
 		</zip>
 		
 		<!-- Disl-Movisa -->

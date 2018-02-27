@@ -44,6 +44,15 @@
             class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
             finalPerspective="de.mfreund.pamtram.pamtramPerspective"
             icon="icons/project.png"
+            id="de.mfreund.pamtram.examples.dfd-uml"
+            name="DFD -&gt; UML"
+            project="true">
+      </wizard>
+      <wizard
+            category="org.eclipse.ui.Examples/de.mfreund.pamtram.examples.category"
+            class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
+            finalPerspective="de.mfreund.pamtram.pamtramPerspective"
+            icon="icons/project.png"
             id="de.mfreund.pamtram.examples.disl-movisa"
             name="Disl -&gt; Movisa"
             project="true">
@@ -148,6 +157,18 @@
          <fileToOpen
                editorID="pamtram.presentation.PamtramEditorID"
                location="de.mfreund.pamtram.casestudies.ctt-aminolight/Pamtram/ctt-aminolight.pamtram">
+         </fileToOpen>
+      </example>
+      <example
+            wizardID="de.mfreund.pamtram.examples.dfd-uml">
+         <projectDescriptor
+               contentURI="zips/dfd-uml.zip"
+               description="This casestudy demonstrates a simple transformation from Data Flow Diagrams (DFD) to UML Activity Diagrams."
+               name="de.mfreund.pamtram.casestudies.dfd-uml">
+         </projectDescriptor>
+         <fileToOpen
+               editorID="pamtram.presentation.PamtramEditorID"
+               location="de.mfreund.pamtram.casestudies.dfd-uml/Pamtram/dfd-uml.pamtram">
          </fileToOpen>
       </example>
       <example

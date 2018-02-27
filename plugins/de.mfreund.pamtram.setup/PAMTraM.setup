@@ -372,7 +372,8 @@
           xsi:type="git:GitCloneTask"
           id="clone.pamtram"
           location="${clone.location.pamtram.main}"
-          remoteURI="${clone.origin.pamtram}">
+          remoteURI="${clone.origin.pamtram}"
+          recursive="true">
         <configSections
             name="gitflow &quot;prefix&quot;">
           <properties
@@ -487,8 +488,23 @@
           name="gentrans"
           id="workingset.gentrans">
         <predicate
-            xsi:type="predicates:NamePredicate"
-            pattern="de.mfreund.gentrans.*"/>
+            xsi:type="predicates:AndPredicate">
+          <operand
+              xsi:type="predicates:NamePredicate"
+              pattern="de.mfreund.gentrans.*"/>
+          <operand
+              xsi:type="predicates:NotPredicate">
+            <operand
+                xsi:type="predicates:NamePredicate"
+                pattern=".*standalone.*"/>
+          </operand>
+          <operand
+              xsi:type="predicates:NotPredicate">
+            <operand
+                xsi:type="predicates:NamePredicate"
+                pattern=".*test.*"/>
+          </operand>
+        </predicate>
       </workingSet>
       <workingSet
           name="pamtram"
@@ -522,7 +538,7 @@
               pattern="de.mfreund.pamtram.examples"/>
           <operand
               xsi:type="predicates:LocationPredicate"
-              pattern="${clone.location.pamtram.main}\casestudies"/>
+              pattern="${clone.location.pamtram.main/casestudies/.*}"/>
         </predicate>
       </workingSet>
       <workingSet
@@ -591,6 +607,20 @@
               xsi:type="predicates:NamePredicate"
               pattern="de.tud.et.ifa.agtele.eclipse.commons.*"/>
         </predicate>
+      </workingSet>
+      <workingSet
+          name="gentrans.standalone"
+          id="workingset.gentrans.standalone">
+        <predicate
+            xsi:type="predicates:NamePredicate"
+            pattern=".*standalone.*"/>
+      </workingSet>
+      <workingSet
+          name="tests"
+          id="workingset.admin">
+        <predicate
+            xsi:type="predicates:NamePredicate"
+            pattern="de.mfreund.gentrans.test.casestudies"/>
       </workingSet>
       <description>Add projects to working sets.</description>
     </setupTask>

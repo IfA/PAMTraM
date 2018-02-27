@@ -9,6 +9,40 @@
 
 	</target>
 	
+	<!-- The files to include in the 'aml-opc-ua' example -->
+	<patternset id="aml-opc-ua.includes"
+		includes="
+			.project,
+			.classpath,
+			build.properties,
+			sample-aml-model-1.launch,
+			sample-aml-model-2.launch,
+			META-INF/**,
+			Topology.launch,
+			metamodel/**,
+			documentation/**,
+			src/**,
+			Pamtram/aml-opc-ua.pamtram,
+			Source/sample-aml-model-1.aml,
+			Source/sample-aml-model-1.xmi,
+			Source/sample-aml-model-2.aml,
+			Source/sample-aml-model-2.xmi,
+			Source/Topology.aml,
+			Source/Topology.xmi,
+			Target/AMLUANodeSet.xml"/>
+	<patternset id="amlMetaModel.includes"
+		includes="
+			.project,
+			README.MD,
+			LICENSE,
+			build.properties,
+			.classpath,
+			src/**,
+			model/**,
+			META-INF/**"/>
+	<patternset id="opc-ua-server.includes"
+		includes="**"/>
+	
 	<!-- The files to include in the 'AutoProBe' example -->
 	<patternset id="autoprobe.includes"
 			includes="
@@ -125,6 +159,18 @@
 	
 	<!-- Zip the PAMTraM examples -->
 	<target name="zip.examples" depends="init">
+		
+		<!-- AML-OPC-UA -->
+		<eclipse.convertPath resourcePath="de.mfreund.pamtram.casestudies.aml-opc-ua" property="projectDir"/>
+		<zip destfile="zips/aml-opc-ua/aml-opc-ua.zip" basedir="${projectDir}">
+			<patternset refid="aml-opc-ua.includes" />
+		</zip>
+		<zip destfile="zips/aml-opc-ua/amlMetaModel.zip" basedir="${projectDir}/../amlMetaModel">
+			<patternset refid="amlMetaModel.includes" />
+		</zip>
+		<zip destfile="zips/aml-opc-ua/opc-ua-server.zip" basedir="${projectDir}/../opc-ua-server">
+			<patternset refid="opc-ua-server.includes" />
+		</zip>
 		
 		<!-- AutoProBe -->
 		<eclipse.convertPath resourcePath="de.mfreund.pamtram.casestudies.autoprobe" property="projectDir"/>

@@ -32,7 +32,6 @@ import org.eclipse.swt.widgets.Scale;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.wb.swt.SWTResourceManager;
 
-import de.mfreund.gentrans.launching.GentransLaunchingDelegate;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import pamtram.provider.PamtramEditPlugin;
 

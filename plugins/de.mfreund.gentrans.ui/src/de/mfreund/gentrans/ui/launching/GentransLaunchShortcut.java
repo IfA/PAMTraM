@@ -26,7 +26,6 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.dialogs.ListDialog;
 
-import de.mfreund.gentrans.launching.GentransLaunchingDelegate;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
 
 /**

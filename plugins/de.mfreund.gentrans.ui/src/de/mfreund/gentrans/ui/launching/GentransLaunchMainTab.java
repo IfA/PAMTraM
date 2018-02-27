@@ -42,7 +42,6 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ListSelectionDialog;
 import org.eclipse.wb.swt.SWTResourceManager;
 
-import de.mfreund.gentrans.launching.GentransLaunchingDelegate;
 import de.tud.et.ifa.agtele.ui.util.UIHelper;
 import de.tud.et.ifa.agtele.ui.widgets.ManageableItemList;
 import pamtram.provider.PamtramEditPlugin;

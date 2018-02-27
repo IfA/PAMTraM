@@ -3,10 +3,10 @@
    <description name="PAMTraM Update Site" url="https://agtele.eats.et.tu-dresden.de/eclipse/updates/">
       This is the update site for the various plug-ins required for developing and executing model-to-model transformation with PAMTraM and GenTrans.
    </description>
-   <feature url="features/de.mfreund.pamtram.examples.feature_2.0.0.201711301007.jar" id="de.mfreund.pamtram.examples.feature" version="2.0.0.201711301007">
+   <feature url="features/de.mfreund.pamtram.examples.feature_2.1.0.qualifier.jar" id="de.mfreund.pamtram.examples.feature" version="2.1.0.qualifier">
       <category name="de.mfreund.pamtram.category"/>
    </feature>
-   <feature url="features/de.mfreund.pamtram.feature_2.0.0.201711301007.jar" id="de.mfreund.pamtram.feature" version="2.0.0.201711301007">
+   <feature url="features/de.mfreund.pamtram.feature_2.1.0.qualifier.jar" id="de.mfreund.pamtram.feature" version="2.1.0.qualifier">
       <category name="de.mfreund.pamtram.category"/>
    </feature>
    <category-def name="de.mfreund.pamtram.category" label="PAMTraM">

@@ -1,4 +1,4 @@
-package de.mfreund.gentrans.launching;
+package de.mfreund.gentrans.ui.launching;
 
 import java.io.File;
 import java.util.ArrayList;

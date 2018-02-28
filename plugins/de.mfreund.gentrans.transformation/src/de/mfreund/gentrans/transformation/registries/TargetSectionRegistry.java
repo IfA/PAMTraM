@@ -9,7 +9,6 @@ import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -17,14 +16,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.util.ExtendedMetaData;
 
 import de.mfreund.gentrans.transformation.connecting.MetaModelPath;
 import de.mfreund.gentrans.transformation.core.CancelableTransformationAsset;
 import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.library.LibraryEntryInstantiator;
-import de.tud.et.ifa.agtele.emf.EPackageHelper;
+import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.TargetSectionModel;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.structure.generic.Section;
@@ -336,30 +334,7 @@ public class TargetSectionRegistry extends CancelableTransformationAsset {
 	 */
 	private List<EClass> getClasses(final EPackage rootEPackage) {
 
-		Set<EClass> classes = new LinkedHashSet<>();
-
-		// collect all sub-packages
-		//
-		Set<EPackage> packagesToScan = EPackageHelper.collectEPackages(rootEPackage, true, true, true,
-				Optional.empty());
-
-		// scan all packages
-		//
-		for (EPackage ePackage : packagesToScan) {
-
-			final EClass docroot = ExtendedMetaData.INSTANCE.getDocumentRoot(ePackage);
-
-			ePackage.getEClassifiers().stream().filter(c -> c instanceof EClass).forEach(c -> {
-
-				// ignore DocumentRoot classes created when converting xsd to
-				// ecore
-				if (docroot != null && docroot.equals(c)) {
-					return;
-				}
-
-				classes.add((EClass) c);
-			});
-		}
+		Set<EClass> classes = AgteleEcoreUtil.getAllClassesInEPackageAndReferencedEPackages(rootEPackage);
 
 		// register all found classes
 		//

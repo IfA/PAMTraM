@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 
-import de.mfreund.gentrans.transformation.connecting.ModelConnectionPath;
+import de.mfreund.gentrans.transformation.connecting.MetaModelPath;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.resolving.ComposedAmbiguityResolvingStrategy;
@@ -509,7 +509,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	 * used during the 'old' transformation for joining the given '<em>section</em>'.
 	 */
 	@Override
-	public List<ModelConnectionPath> joiningSelectConnectionPath(List<ModelConnectionPath> choices,
+	public List<MetaModelPath> joiningSelectConnectionPath(List<MetaModelPath> choices,
 			TargetSection section) throws AmbiguityResolvingException {
 
 		/*
@@ -544,8 +544,8 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		/*
 		 * Finally, we can check which ModelConnectionPath was used to connect the 'instantiatedElement'.
 		 */
-		ModelConnectionPath usedPath = null;
-		for (ModelConnectionPath modelConnectionPath : choices) {
+		MetaModelPath usedPath = null;
+		for (MetaModelPath modelConnectionPath : choices) {
 
 			usedPath = modelConnectionPath;
 
@@ -730,8 +730,8 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	 * '<em>sectionInstances</em>'.
 	 */
 	@Override
-	public Map<ModelConnectionPath, List<EObjectWrapper>> joiningSelectConnectionPathAndContainerInstance(
-			Map<ModelConnectionPath, List<EObjectWrapper>> choices, TargetSection section,
+	public Map<MetaModelPath, List<EObjectWrapper>> joiningSelectConnectionPathAndContainerInstance(
+			Map<MetaModelPath, List<EObjectWrapper>> choices, TargetSection section,
 			List<EObjectWrapper> sectionInstances, MappingHintGroupType hintGroup) throws AmbiguityResolvingException {
 
 		/*
@@ -796,9 +796,9 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		 * all of the 'sectionInstances' should be connected to the same element (and via the same path), we examplarily
 		 * use only the first of the 'sectionInstances'.
 		 */
-		ModelConnectionPath usedPath = null;
+		MetaModelPath usedPath = null;
 		EObject usedInstance = null;
-		for (ModelConnectionPath modelConnectionPath : choices.keySet()) {
+		for (MetaModelPath modelConnectionPath : choices.keySet()) {
 
 			usedPath = modelConnectionPath;
 
@@ -864,7 +864,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		} else {
 			this.printMessage(usedPath.toString() + "-->" + containerInstancesToUse.toString(),
 					HistoryResolvingStrategy.historyDecisionPrefix);
-			HashMap<ModelConnectionPath, List<EObjectWrapper>> ret = new HashMap<>();
+			HashMap<MetaModelPath, List<EObjectWrapper>> ret = new HashMap<>();
 			ret.put(usedPath, containerInstancesToUse);
 			return super.joiningSelectConnectionPathAndContainerInstance(ret, section, sectionInstances, hintGroup);
 		}

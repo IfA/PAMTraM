@@ -28,7 +28,7 @@ import de.mfreund.gentrans.transformation.util.Pair;
  * @author mfreund
  *
  */
-public final class ModelConnectionPath {
+public final class MetaModelPath {
 
 	/**
 	 * This holds the list of path elements.
@@ -63,7 +63,7 @@ public final class ModelConnectionPath {
 	 * denotes a path in inverse order (bottom-up instead of top-down). In this case, the order of the elements will be 
 	 * inverted to create a regular (top-down) path. 
 	 */
-	private ModelConnectionPath(final LinkedList<EObject> pathElements,
+	private MetaModelPath(final LinkedList<EObject> pathElements,
 			final EObject newElement,
 			final TargetSectionRegistry targetSectionRegistry,
 			final boolean reverse) {
@@ -121,7 +121,7 @@ public final class ModelConnectionPath {
 			if (next.getLeft().equals(elementClass) && !next.getRight().isEmpty()) {
 
 				// add copy of path to possiblePaths
-				final ModelConnectionPath newSelf = new ModelConnectionPath(
+				final MetaModelPath newSelf = new MetaModelPath(
 						next.getRight(), elementClass, registry, true);
 
 				// save the determined connection path in the TargetSectionRegistry for later use
@@ -184,7 +184,7 @@ public final class ModelConnectionPath {
 			if (!registry.getTargetClassInstances(next.getLeft()).isEmpty() && !next.getRight().isEmpty()) {
 
 				// add copy of path to possiblePaths
-				final ModelConnectionPath newSelf = new ModelConnectionPath(
+				final MetaModelPath newSelf = new MetaModelPath(
 						next.getRight(), next.getLeft(), registry, false);
 
 				// save the determined connection path in the TargetSectionRegistry for later use
@@ -224,25 +224,25 @@ public final class ModelConnectionPath {
 	}
 
 	/**
-	 * For the given list of {@link ModelConnectionPath ModelConnectionPaths}, this method returns the subset of the paths
+	 * For the given list of {@link MetaModelPath ModelConnectionPaths}, this method returns the subset of the paths
 	 * that are able to connect at least as many elements to the given '<em>startInstance</em>' as denoted by the given
 	 * '<em>minimumCapacity</em>'. Therefore, {@link #getCapacity(EObject)} is consulted for every possible path.
 	 * <p />
 	 * <b>Note:</b> If 'startInstance' is <em>null</em>, the 'theoretical' capacity of the paths will be checked
 	 * (see {@link #getCapacity(EObject)}). 
 	 *
-	 * @param paths The {@link ModelConnectionPath}s that shall be checked for minimum capacity.
+	 * @param paths The {@link MetaModelPath}s that shall be checked for minimum capacity.
 	 * @param startInstance An optional {@link EObject} that shall be the starting point of the path (may be <em>null</em>).
 	 * @param minimumCapacity The minimumCapacity that has to be satisfied by the paths.
 	 * @return The subset of the given paths that satisfies the minimumCapacity.
 	 */
-	public static List<ModelConnectionPath> findPathsWithMinimumCapacity(
-			final List<ModelConnectionPath> paths,
+	public static List<MetaModelPath> findPathsWithMinimumCapacity(
+			final List<MetaModelPath> paths,
 			final EObject startInstance, final int minimumCapacity) {
 
-		final List<ModelConnectionPath> pathsToConsider = new LinkedList<>();
+		final List<MetaModelPath> pathsToConsider = new LinkedList<>();
 
-		for (final ModelConnectionPath p : paths) {
+		for (final MetaModelPath p : paths) {
 
 			if (startInstance != null && !p.leadsToRootType(startInstance.eClass())) {
 				// only consider paths with the right start instance type
@@ -259,17 +259,17 @@ public final class ModelConnectionPath {
 	}
 
 	/**
-	 * Compares two instances of {@link ModelConnectionPath}.
+	 * Compares two instances of {@link MetaModelPath}.
 	 * 
-	 * @param obj An instance of {@link ModelConnectionPath} to be compared to this path.
+	 * @param obj An instance of {@link MetaModelPath} to be compared to this path.
 	 * @return '<em><b>true</b></em>' if the elements of the two paths to be compared are equal and exist in the 
-	 * same order; '<em><b>false</b></em>' otherwise or if 'obj' is no instance of {@link ModelConnectionPath}.
+	 * same order; '<em><b>false</b></em>' otherwise or if 'obj' is no instance of {@link MetaModelPath}.
 	 */
 	@Override
 	public boolean equals(final Object obj) {
 
-		if (obj instanceof ModelConnectionPath) {
-			return ((ModelConnectionPath) obj).pathElements.equals(pathElements);
+		if (obj instanceof MetaModelPath) {
+			return ((MetaModelPath) obj).pathElements.equals(pathElements);
 		} else {
 			return false;
 		}

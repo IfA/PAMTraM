@@ -21,10 +21,10 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.ExtendedMetaData;
 
+import de.mfreund.gentrans.transformation.connecting.ModelConnectionPath;
 import de.mfreund.gentrans.transformation.core.CancelableTransformationAsset;
 import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
-import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
 import de.mfreund.gentrans.transformation.library.LibraryEntryInstantiator;
 import de.tud.et.ifa.agtele.emf.EPackageHelper;
 import pamtram.TargetSectionModel;

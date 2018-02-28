@@ -1,4 +1,4 @@
-package de.mfreund.gentrans.transformation.descriptors;
+package de.mfreund.gentrans.transformation.connecting;
 
 import java.util.Collection;
 import java.util.LinkedHashSet;
@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 
+import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import de.mfreund.gentrans.transformation.util.Pair;
 

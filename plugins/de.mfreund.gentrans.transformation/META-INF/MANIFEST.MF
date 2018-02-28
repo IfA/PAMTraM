@@ -17,6 +17,7 @@ Bundle-ClassPath: .
 Export-Package: de.mfreund.gentrans.transformation,
  de.mfreund.gentrans.transformation.calculation,
  de.mfreund.gentrans.transformation.condition,
+ de.mfreund.gentrans.transformation.connecting,
  de.mfreund.gentrans.transformation.core,
  de.mfreund.gentrans.transformation.descriptors,
  de.mfreund.gentrans.transformation.expanding,

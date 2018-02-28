@@ -7,9 +7,9 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 
+import de.mfreund.gentrans.transformation.connecting.ModelConnectionPath;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
-import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.structure.target.TargetSectionClass;

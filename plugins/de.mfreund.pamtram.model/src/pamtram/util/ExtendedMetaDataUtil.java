@@ -34,7 +34,7 @@ public class ExtendedMetaDataUtil {
 	/**
 	 * This initializes the {@link #extendedMetaData}.
 	 */
-	private static void initMetaData() {
+	private static synchronized void initMetaData() {
 
 		ExtendedMetaDataUtil.extendedMetaData = new BasicExtendedMetaData(EPackageRegistryImpl.INSTANCE);
 

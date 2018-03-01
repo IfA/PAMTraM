@@ -22,7 +22,6 @@ import de.mfreund.gentrans.transformation.core.CancelableTransformationAsset;
 import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.library.LibraryEntryInstantiator;
-import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import pamtram.TargetSectionModel;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.structure.generic.Section;
@@ -66,10 +65,7 @@ public class TargetSectionRegistry extends CancelableTransformationAsset {
 	 */
 	private final Map<TargetSectionClass, Map<InstantiableMappingHintGroup, List<EObjectWrapper>>> targetClassInstanceByHintGroupRegistry;
 
-	/**
-	 * Child classes for each class (if there are any)
-	 */
-	private final Map<EClass, Set<EClass>> childClassesRegistry;
+	private final EClassConnectionInformationRegistry subClassRegistry;
 
 	/**
 	 * Possible Paths, sorted by target MetaModel class
@@ -80,16 +76,6 @@ public class TargetSectionRegistry extends CancelableTransformationAsset {
 	 * Possible connections from a start class to a specific target class
 	 */
 	private final Map<EClass, Map<EClass, Set<MetaModelPath>>> possibleConnectionsRegistry;
-
-	/**
-	 * List of references to a Class
-	 */
-	private final Map<EClass, Set<EReference>> targetClassReferencesRegistry;
-
-	/**
-	 * Source classes that are the starting point of a specific reference
-	 */
-	private final Map<EReference, Set<EClass>> containmentReferenceSourcesRegistry;
 
 	/**
 	 * This creates an instance for multiple target meta-models.
@@ -105,11 +91,11 @@ public class TargetSectionRegistry extends CancelableTransformationAsset {
 		this.targetClassInstanceRegistry = new LinkedHashMap<>();
 		this.eObjectToEObjectWrapperMap = new HashMap<>();
 		this.targetClassInstanceByHintGroupRegistry = new LinkedHashMap<>();
-		this.childClassesRegistry = new LinkedHashMap<>();
+
+		this.subClassRegistry = new EClassConnectionInformationRegistry(this.logger);
+
 		this.possiblePathsRegistry = new LinkedHashMap<>();
 		this.possibleConnectionsRegistry = new LinkedHashMap<>();
-		this.targetClassReferencesRegistry = new LinkedHashMap<>(); // ==refsToThis
-		this.containmentReferenceSourcesRegistry = new LinkedHashMap<>(); // ==sources
 		this.attrValRegistry = new AttributeValueRegistry();
 		this.libraryEntryRegistry = new LibraryEntryRegistry();
 
@@ -117,7 +103,7 @@ public class TargetSectionRegistry extends CancelableTransformationAsset {
 				.stream().flatMap(p -> p.getTargetSectionModels().stream()).map(TargetSectionModel::getMetaModelPackage)
 				.collect(Collectors.toList()));
 
-		this.analyseTargetMetaModels(targetMetaModels);
+		this.subClassRegistry.register(targetMetaModels);
 	}
 
 	/**
@@ -226,67 +212,6 @@ public class TargetSectionRegistry extends CancelableTransformationAsset {
 	}
 
 	/**
-	 * Build various maps that describe structural features of the given <em>targetMetaModels</em>. Also, check if there
-	 * are any 'xs:any'-based elements and prepare the metamodel if necessary.
-	 *
-	 * @param targetMetaModel
-	 *            The {@link EPackage} representing the target meta-model to be analyzed.
-	 */
-	private void analyseTargetMetaModels(Set<EPackage> targetMetaModels) {
-
-		targetMetaModels.stream().forEach(this::analyseTargetMetaModel);
-
-	}
-
-	/**
-	 * Build various maps that describe structural features of the given <em>targetMetaModel</em>.
-	 * <p />
-	 * This fills the {@link #childClassesRegistry}, the {@link #containmentReferenceSourcesRegistry}, and the
-	 * {@link #targetClassReferencesRegistry}.
-	 *
-	 * @param targetMetaModel
-	 *            The {@link EPackage} representing the target meta-model to be analyzed.
-	 */
-	private void analyseTargetMetaModel(final EPackage targetMetaModel) {
-
-		// Retrieve all EClass defined in the targetMetaModel
-		//
-		final List<EClass> classesToAnalyse = this.getClasses(targetMetaModel);
-
-		// Determine the child EClasses for each EClass
-		//
-		classesToAnalyse.stream().forEach(eClass -> eClass.getEAllSuperTypes().stream()
-				.forEach(superEClass -> this.childClassesRegistry.get(superEClass).add(eClass)));
-
-		// For each containment EReference defined in the target meta-model,
-		// 1. register the EClasses that hold the ERefrence and
-		// 2. register to which EClasses this EReference points
-		//
-		classesToAnalyse.stream().forEach(e -> e.getEAllContainments().stream().forEach(c -> {
-
-			if (this.targetClassReferencesRegistry.containsKey(c.getEReferenceType())) {
-
-				if (!this.containmentReferenceSourcesRegistry.containsKey(c)) {
-					this.containmentReferenceSourcesRegistry.put(c, new LinkedHashSet<EClass>());
-				}
-				this.containmentReferenceSourcesRegistry.get(c).add(e);
-
-				this.targetClassReferencesRegistry.get(c.getEReferenceType()).add(c);
-
-			} else {
-				this.logger.warning(() -> "Ignoring targetMetaModel reference " + c.getName() + " of element "
-						+ e.getName() + " " + c.getEReferenceType().getName() + " " + c.getEType().getName());
-			}
-
-		}));
-
-		// Add inherited containment references
-		classesToAnalyse.stream().forEach(e -> this.childClassesRegistry.get(e).stream().forEach(c -> {
-			this.targetClassReferencesRegistry.get(c).addAll(this.targetClassReferencesRegistry.get(e));
-		}));
-	}
-
-	/**
 	 * This is the getter for the {@link #attrValRegistry}.
 	 *
 	 * @return The {@link AttributeValueRegistry} where created values for target attributes are registered.
@@ -311,7 +236,7 @@ public class TargetSectionRegistry extends CancelableTransformationAsset {
 	/**
 	 * For a given {@link EClass}, returns the set of <em>child classes</em> (i.e., all classes for that
 	 * {@link EClass#getEAllSuperTypes()} contains the given <em>eClass</em>) registered in the
-	 * {@link #childClassesRegistry}.
+	 * {@link #subClassRegistry}.
 	 *
 	 * @param superClass
 	 *            The {@link EClass} for that the child classes shall be returned.
@@ -319,31 +244,8 @@ public class TargetSectionRegistry extends CancelableTransformationAsset {
 	 */
 	public Set<EClass> getChildClasses(final EClass superClass) {
 
-		return this.childClassesRegistry.containsKey(superClass) ? this.childClassesRegistry.get(superClass)
-				: new LinkedHashSet<>();
+		return this.subClassRegistry.getAllSubClasses(superClass);
 
-	}
-
-	/**
-	 * This determines and returns all {@link EClass EClasses} that are defined in the given {@link EPackage} and all
-	 * sub-packages.
-	 *
-	 * @param rootEPackage
-	 *            The {@link EPackage} to scan.
-	 * @return The set of {@link EClass EClasses} contained in the given <em>rootEPackage</em>.
-	 */
-	private List<EClass> getClasses(final EPackage rootEPackage) {
-
-		Set<EClass> classes = AgteleEcoreUtil.getAllClassesInEPackageAndReferencedEPackages(rootEPackage);
-
-		// register all found classes
-		//
-		for (EClass c : classes) {
-			this.childClassesRegistry.put(c, new LinkedHashSet<EClass>());
-			this.targetClassReferencesRegistry.put(c, new LinkedHashSet<EReference>());
-		}
-
-		return new ArrayList<>(classes);
 	}
 
 	/**
@@ -357,9 +259,7 @@ public class TargetSectionRegistry extends CancelableTransformationAsset {
 	 */
 	public Set<EReference> getClassReferences(final EClass targetEClass) {
 
-		return this.targetClassReferencesRegistry.containsKey(targetEClass)
-				? this.targetClassReferencesRegistry.get(targetEClass)
-				: new LinkedHashSet<>();
+		return this.subClassRegistry.getAllReferencesToClass(targetEClass);
 
 	}
 
@@ -421,13 +321,14 @@ public class TargetSectionRegistry extends CancelableTransformationAsset {
 	}
 
 	/**
-	 * This returns the set of {@link EClass EClasses} represented in the {@link #childClassesRegistry}.
+	 * This returns the set of {@link EClass EClasses} represented in the {@link #subClassRegistry}.
 	 *
-	 * @return The key set represented in the {@link #childClassesRegistry}.
+	 * @return The key set represented in the {@link #subClassRegistry}.
 	 */
 	public Set<EClass> getMetaModelClasses() {
 
-		return this.childClassesRegistry.keySet();
+		// return this.subClassRegistry.keySet();
+		return this.subClassRegistry.getRegisteredClasses();
 	}
 
 	/**
@@ -488,9 +389,12 @@ public class TargetSectionRegistry extends CancelableTransformationAsset {
 	 */
 	public Set<EClass> getReferenceSources(final EReference ref) {
 
-		return this.containmentReferenceSourcesRegistry.containsKey(ref)
-				? this.containmentReferenceSourcesRegistry.get(ref)
-				: new LinkedHashSet<>();
+		Set<EClass> referenceSources = new LinkedHashSet<>();
+
+		referenceSources.add(ref.getEContainingClass());
+		referenceSources.addAll(this.subClassRegistry.getAllSubClasses(ref.getEContainingClass()));
+
+		return referenceSources;
 
 	}
 

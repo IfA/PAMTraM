@@ -85,7 +85,7 @@ public class JoiningSelectConnectionPathAndContainerInstanceMappingModelEnhancer
 		MetaModelPath selectedPath = this.dialog.getSingleSelection();
 
 		Optional<TargetSection> rootSectionOptional = pamtramToEnhance.getTargetSections().parallelStream()
-				.filter(t -> selectedPath.getPathRootClass().equals(t.getEClass())).findAny();
+				.filter(t -> selectedPath.getStartingClass().equals(t.getEClass())).findAny();
 
 		// The root element of the path (either an already existing element from the pamtram model or a newly created).
 		//
@@ -94,7 +94,7 @@ public class JoiningSelectConnectionPathAndContainerInstanceMappingModelEnhancer
 			rootSection = rootSectionOptional.get();
 		} else {
 			rootSection = TargetFactory.eINSTANCE.createTargetSection();
-			rootSection.setEClass(selectedPath.getPathRootClass());
+			rootSection.setEClass(selectedPath.getStartingClass());
 		}
 
 		// Instantiate the intermediate elements

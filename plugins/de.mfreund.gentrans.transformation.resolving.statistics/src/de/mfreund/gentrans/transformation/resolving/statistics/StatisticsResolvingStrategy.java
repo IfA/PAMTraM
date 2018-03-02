@@ -238,7 +238,7 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 
 		IDialogSettings mappingLayerSection = DialogSettings.getOrCreateSection(this.mappingSection, key);
 		IDialogSettings metamodelLayerSection = DialogSettings.getOrCreateSection(this.metamodelSections
-				.get(AgteleEcoreUtil.getRootEPackage(choices.keySet().iterator().next().getPathRootClass()).getNsURI()),
+				.get(AgteleEcoreUtil.getRootEPackage(choices.keySet().iterator().next().getStartingClass()).getNsURI()),
 				key);
 
 		// Sort the choices in descending order based on the number of previous
@@ -263,8 +263,8 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 	}
 
 	@Override
-	public List<MetaModelPath> joiningSelectConnectionPath(List<MetaModelPath> choices,
-			TargetSection section) throws AmbiguityResolvingException {
+	public List<MetaModelPath> joiningSelectConnectionPath(List<MetaModelPath> choices, TargetSection section)
+			throws AmbiguityResolvingException {
 
 		// We use the concatenated string representations of all paths in the
 		// list of choices as key
@@ -274,7 +274,7 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 
 		IDialogSettings mappingLayerSection = DialogSettings.getOrCreateSection(this.mappingSection, key);
 		IDialogSettings metamodelLayerSection = DialogSettings.getOrCreateSection(this.metamodelSections
-				.get(AgteleEcoreUtil.getRootEPackage(choices.get(0).getPathRootClass()).getNsURI()), key);
+				.get(AgteleEcoreUtil.getRootEPackage(choices.get(0).getStartingClass()).getNsURI()), key);
 
 		// Sort the choices in descending order based on the number of previous
 		// count
@@ -311,7 +311,7 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 		/*
 		 * Store on the meta-model layer
 		 */
-		String nsURI = AgteleEcoreUtil.getRootEPackage(resolved.getPathRootClass()).getNsURI();
+		String nsURI = AgteleEcoreUtil.getRootEPackage(resolved.getStartingClass()).getNsURI();
 		IDialogSettings metamodelLayerSection = DialogSettings.getOrCreateSection(this.metamodelSections.get(nsURI),
 				key);
 

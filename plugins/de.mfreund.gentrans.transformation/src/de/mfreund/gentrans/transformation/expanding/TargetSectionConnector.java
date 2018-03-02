@@ -728,9 +728,9 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 		for (MetaModelPath connectionPath : pathsToConsider) {
 			List<EObjectWrapper> containerInstancesForConnectionPath = containerInstances.isPresent()
 					? containerInstances.get().stream()
-							.filter(c -> c.getEObject().eClass().equals(connectionPath.getPathRootClass()))
+							.filter(c -> c.getEObject().eClass().equals(connectionPath.getStartingClass()))
 							.collect(Collectors.toList())
-					: this.targetSectionRegistry.getTargetClassInstances(connectionPath.getPathRootClass());
+					: this.targetSectionRegistry.getTargetClassInstances(connectionPath.getStartingClass());
 			containerInstancesByConnectionPaths.put(connectionPath, containerInstancesForConnectionPath);
 		}
 
@@ -783,7 +783,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 		for (final MetaModelPath p : new LinkedList<>(pathsToConsider)) {
 
 			List<EObject> possibleContainerInstances = this.targetSectionRegistry
-					.getTargetClassInstances(pathsToConsider.iterator().next().getPathRootClass()).parallelStream()
+					.getTargetClassInstances(pathsToConsider.iterator().next().getStartingClass()).parallelStream()
 					.map(EObjectWrapper::getEObject).collect(Collectors.toList());
 
 			List<EObject> rootInstancesToConnect = rootInstances.parallelStream().map(EObjectWrapper::getEObject)
@@ -891,7 +891,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 				// based on abstract TargetSections, we need to filter the fitting instances for each path separately
 				//
 				containerInstances.addAll(containerInstancesByContainerSelector.get(containerSelector).stream()
-						.filter(i -> connectionPath.getPathRootClass().equals(i.getEObject().eClass()))
+						.filter(i -> connectionPath.getStartingClass().equals(i.getEObject().eClass()))
 						.collect(Collectors.toList()));
 				if (!containerInstances.isEmpty()) {
 					containerInstancesByConnectionPaths.put(connectionPath, new ArrayList<>(containerInstances));

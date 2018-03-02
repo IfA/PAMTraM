@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EReference;
  * @author mfreund
  *
  */
-public class MetaModelPath {
+public class MetaModelPath implements IEClassConnectionPathDescriptor {
 
 	/**
 	 * This holds the list of path elements.
@@ -44,8 +44,7 @@ public class MetaModelPath {
 	 *            denotes a path in inverse order (bottom-up instead of top-down). In this case, the order of the
 	 *            elements will be inverted to create a regular (top-down) path.
 	 */
-	public MetaModelPath(final LinkedList<EObject> pathElements, final EObject newElement,
-			final boolean reverse) {
+	public MetaModelPath(final LinkedList<EObject> pathElements, final EObject newElement, final boolean reverse) {
 
 		this.pathElements = new LinkedList<>();
 		this.pathElements.addAll(pathElements);
@@ -169,22 +168,6 @@ public class MetaModelPath {
 		return inverted;
 	}
 
-	/**
-	 * Returns the {@link EClass} that is the root of the path (the upper-most class in the containment hierarchy.
-	 *
-	 * @return The EClass of the end of the path.
-	 */
-	public EClass getPathRootClass() {
-
-		return (EClass) this.pathElements.getLast();
-
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see java.lang.Object#hashCode()
-	 */
 	@Override
 	public int hashCode() {
 
@@ -204,21 +187,6 @@ public class MetaModelPath {
 		return !this.pathElements.isEmpty() && ((EClass) this.pathElements.getLast()).equals(root);
 	}
 
-	/**
-	 * This return the number of elements in the path, i.e. length of the path.
-	 *
-	 * @return The number of elements in the path.
-	 */
-	public int size() {
-
-		return this.pathElements.size();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
 
@@ -245,6 +213,24 @@ public class MetaModelPath {
 		}
 
 		return stringBuilder.toString();
+	}
+
+	@Override
+	public EClass getStartingClass() {
+
+		return (EClass) this.pathElements.getLast();
+	}
+
+	@Override
+	public EClass getTargetClass() {
+
+		return (EClass) this.pathElements.getFirst();
+	}
+
+	@Override
+	public int getLength() {
+
+		return this.getPathElements().size();
 	}
 
 }

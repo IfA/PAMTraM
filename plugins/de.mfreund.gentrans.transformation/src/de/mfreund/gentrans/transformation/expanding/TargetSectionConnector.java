@@ -19,11 +19,15 @@ import java.util.stream.IntStream;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import de.mfreund.gentrans.transformation.CancelTransformationException;
 import de.mfreund.gentrans.transformation.UserAbortException;
 import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
+import de.mfreund.gentrans.transformation.connecting.CachedEClassConnectionPathProvider;
+import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathRequirement;
+import de.mfreund.gentrans.transformation.connecting.IEClassConnectionPathProvider;
 import de.mfreund.gentrans.transformation.connecting.MetaModelPath;
 import de.mfreund.gentrans.transformation.core.CancelableTransformationAsset;
 import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
@@ -36,6 +40,7 @@ import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvedAdapter;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
 import pamtram.ConditionalElement;
+import pamtram.TargetSectionModel;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroup;
@@ -67,6 +72,8 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 	 * The {@link TargetSectionRegistry} that is used when finding instances to which sections can be connected.
 	 */
 	private final TargetSectionRegistry targetSectionRegistry;
+
+	private final IEClassConnectionPathProvider connectionPathProvider;
 
 	/**
 	 * The {@link TargetModelRegistry} that is used to manage the various target models and their contents.
@@ -111,7 +118,14 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 
 		this.standardPaths = new LinkedHashMap<>();
 		this.targetSectionRegistry = assetManager.getTargetSectionRegistry();
+
 		this.targetModelRegistry = assetManager.getTargetModelRegistry();
+
+		Set<EPackage> targetMetaModels = new LinkedHashSet<>(assetManager.getTransformationConfig().getPamtramModels()
+				.stream().flatMap(p -> p.getTargetSectionModels().stream()).map(TargetSectionModel::getMetaModelPackage)
+				.collect(Collectors.toList()));
+		this.connectionPathProvider = new CachedEClassConnectionPathProvider(targetMetaModels, this.logger,
+				this.targetSectionRegistry);
 		this.instanceSelectorHandler = assetManager.getInstanceSelectorHandler();
 		this.maxPathLength = assetManager.getTransformationConfig().getMaxPathLength();
 		this.ambiguityResolvingStrategy = assetManager.getTransformationConfig().getAmbiguityResolvingStrategy();
@@ -488,8 +502,10 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 		for (final EClass possibleRoot : this.targetSectionRegistry.getEClassConnectionPathFactory().getClasses()
 				.stream().filter(e -> !e.isAbstract()).collect(Collectors.toList())) {
 
-			if (this.unconnectableElements.keySet().stream().noneMatch(
-					c -> this.targetSectionRegistry.getConnections(c, possibleRoot, this.maxPathLength).isEmpty())) {
+			if (this.unconnectableElements.keySet().stream()
+					.noneMatch(c -> this.connectionPathProvider
+							.getConnections(new EClassConnectionPathRequirement(possibleRoot, c, this.maxPathLength))
+							.isEmpty())) {
 
 				// There is at least one connection for between 'possibleRoot' and each of the elements (resp. the
 				// corresponding 'eClasses' that have to be connected)
@@ -567,8 +583,8 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 				 * need to find all possible connections for each of the elements involved. Now we need to choose a
 				 * connection for each element. This might lead to us asking a lot of questions to the user.
 				 */
-				final List<MetaModelPath> pathSet = this.targetSectionRegistry.getConnections(unlinkeableEntry.getKey(),
-						rootClass, this.maxPathLength);
+				final List<MetaModelPath> pathSet = this.connectionPathProvider.getConnections(
+						new EClassConnectionPathRequirement(rootClass, unlinkeableEntry.getKey(), this.maxPathLength));
 
 				if (pathSet.isEmpty()) {
 
@@ -739,12 +755,15 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 			// A list of possible 'containerClasses' has been passed as parameter so we need to restrict the list of
 			// EClass that are considered when searching for connection paths.
 			//
-			pathsToConsider.addAll(containerClasses.get().stream().flatMap(
-					c -> this.targetSectionRegistry.getConnections(classToConnect, c, this.maxPathLength).stream())
+			pathsToConsider.addAll(containerClasses.get().stream()
+					.flatMap(c -> this.connectionPathProvider
+							.getConnections(new EClassConnectionPathRequirement(c, classToConnect, this.maxPathLength))
+							.stream())
 					.collect(Collectors.toCollection(LinkedHashSet::new)));
 		} else {
 
-			pathsToConsider.addAll(this.targetSectionRegistry.getPaths(classToConnect, this.maxPathLength));
+			pathsToConsider.addAll(this.connectionPathProvider
+					.getConnections(new EClassConnectionPathRequirement(classToConnect, this.maxPathLength)));
 		}
 
 		// Reduce the found paths to those that provide the necessary capacity.
@@ -1213,10 +1232,10 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 			// container selector (or any of the concrete extending TargetSections)
 			//
 			List<MetaModelPath> pathsToConsider = potentialTargetSectionClasses.stream()
-					.flatMap(t -> this.targetSectionRegistry.getConnections(eClass, t.getEClass(), 0).stream())
+					.flatMap(t -> this.connectionPathProvider
+							.getConnections(new EClassConnectionPathRequirement(t.getEClass(), eClass, 0)).stream())
 					.collect(Collectors.toList());
 
-			this.targetSectionRegistry.getConnections(eClass, containerSelector.getTargetClass().getEClass(), 0);
 			if (pathsToConsider.isEmpty()) {
 
 				this.logger.warning(() -> "Could not find a path that leads to the 'targetClass' specified for the "

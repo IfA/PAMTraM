@@ -19,12 +19,6 @@ import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
  * {@link EReference} and that form the path <b>upward</b> in the containment hierarchy. Additionally, a bunch of
  * methods that are provided that allow handling this List.
  *
- * Objects of this class can only be instantiated by the static methods
- * {@link #findPathsWithMinimumCapacity(List, EObject, int) findPathsWithMinimumCapacity(...)},
- * {@link #findPathsFromContainerToClassToConnect(TargetSectionRegistry, EClass, EClass, int)
- * findPathsFromContainerToClassToConnect(...)}, and {@link #findPathsToInstances(TargetSectionRegistry, EClass, int)
- * findPathsToInstances(...)} for finding paths.
- *
  * @author mfreund
  *
  */

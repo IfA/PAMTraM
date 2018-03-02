@@ -1,6 +1,5 @@
 package de.mfreund.gentrans.transformation.registries;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -17,7 +16,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathFactory;
-import de.mfreund.gentrans.transformation.connecting.MetaModelPath;
 import de.mfreund.gentrans.transformation.core.CancelableTransformationAsset;
 import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
@@ -77,16 +75,6 @@ public class TargetSectionRegistry extends CancelableTransformationAsset {
 	}
 
 	/**
-	 * Possible Paths, sorted by target MetaModel class
-	 */
-	private final Map<EClass, Set<MetaModelPath>> possiblePathsRegistry;
-
-	/**
-	 * Possible connections from a start class to a specific target class
-	 */
-	private final Map<EClass, Map<EClass, Set<MetaModelPath>>> possibleConnectionsRegistry;
-
-	/**
 	 * This creates an instance for multiple target meta-models.
 	 *
 	 * @param assetManager
@@ -101,8 +89,6 @@ public class TargetSectionRegistry extends CancelableTransformationAsset {
 		this.eObjectToEObjectWrapperMap = new HashMap<>();
 		this.targetClassInstanceByHintGroupRegistry = new LinkedHashMap<>();
 
-		this.possiblePathsRegistry = new LinkedHashMap<>();
-		this.possibleConnectionsRegistry = new LinkedHashMap<>();
 		this.attrValRegistry = new AttributeValueRegistry();
 		this.libraryEntryRegistry = new LibraryEntryRegistry();
 
@@ -173,25 +159,6 @@ public class TargetSectionRegistry extends CancelableTransformationAsset {
 	}
 
 	/**
-	 * Register a new {@link MetaModelPath} in the {@link #possiblePathsRegistry}.
-	 *
-	 * @param modelConnectionPath
-	 *            The {@link MetaModelPath} to register.
-	 */
-	public void addPath(final MetaModelPath modelConnectionPath) {
-
-		// The EClass at the beginning of the path (lower in the containment
-		// hierarchy).
-		EClass eClass = (EClass) modelConnectionPath.getPathElements().getFirst();
-
-		if (!this.possiblePathsRegistry.containsKey(eClass)) {
-			this.possiblePathsRegistry.put(eClass, new LinkedHashSet<MetaModelPath>());
-		}
-		this.possiblePathsRegistry.get(eClass).add(modelConnectionPath);
-
-	}
-
-	/**
 	 * This is the getter for the {@link #attrValRegistry}.
 	 *
 	 * @return The {@link AttributeValueRegistry} where created values for target attributes are registered.
@@ -211,34 +178,6 @@ public class TargetSectionRegistry extends CancelableTransformationAsset {
 	public LibraryEntryRegistry getLibraryEntryRegistry() {
 
 		return this.libraryEntryRegistry;
-	}
-
-	/**
-	 * Determines and returns the list of possible {@link MetaModelPath connections} between two {@link EClass
-	 * EClasses}.
-	 * <p />
-	 * Additionally, determined paths are registered in the {@link #possibleConnectionsRegistry} for future uses.
-	 *
-	 * @param eClass
-	 *            The {@link EClass} of the root element of a target section that needs to be connected
-	 * @param containerClass
-	 *            The {@link EClass} that is modeled to contain the target section to be connected.
-	 * @param maxPathLength
-	 *            The maximum length of the path (maximum number of intermediary elements); <em>0</em> for only direct
-	 *            connections; <em>-1</em> for an unbounded length.
-	 * @return The list of possible {@link MetaModelPath ModelConnectionPaths} to connect the given classes.
-	 */
-	public List<MetaModelPath> getConnections(EClass eClass, EClass containerClass, final int maxPathLength) {
-
-		this.possibleConnectionsRegistry.computeIfAbsent(eClass, e -> new LinkedHashMap<>());
-		this.possibleConnectionsRegistry.get(eClass).computeIfAbsent(containerClass, c -> new LinkedHashSet<>());
-
-		List<MetaModelPath> foundPaths = this.eClassConnectionPathFactory.findPathsFromContainerToClassToConnect(this,
-				eClass, containerClass, maxPathLength);
-
-		this.possibleConnectionsRegistry.get(eClass).get(containerClass).addAll(foundPaths);
-
-		return new ArrayList<>(this.possibleConnectionsRegistry.get(eClass).get(containerClass));
 	}
 
 	/**
@@ -281,34 +220,6 @@ public class TargetSectionRegistry extends CancelableTransformationAsset {
 		}
 
 		return this.targetClassInstanceByHintGroupRegistry.get(targetSectionClass);
-
-	}
-
-	/**
-	 * Determines and returns the list of possible {@link MetaModelPath connections} to connect the given
-	 * {@link EClass}.
-	 * <p />
-	 * Additionally, determined paths are registered in the {@link #possibleConnectionsRegistry} for future uses.
-	 *
-	 * @param eClass
-	 *            The {@link EClass}of the root element of a target section that needs to be connected.
-	 * @param maxPathLength
-	 *            The maximum length of the path (maximum number of intermediary elements); <em>0</em> for only direct
-	 *            connections; <em>-1</em> for an unbounded length.
-	 * @return The list of possible {@link MetaModelPath ModelConnectionPaths} to connect the given class.
-	 */
-	public Set<MetaModelPath> getPaths(final EClass eClass, final int maxPathLength) {
-
-		if (!this.possiblePathsRegistry.containsKey(eClass)) {
-			this.possiblePathsRegistry.put(eClass, new LinkedHashSet<MetaModelPath>());
-
-			List<MetaModelPath> paths = this.eClassConnectionPathFactory.findPathsToInstances(this, eClass,
-					maxPathLength);
-
-			this.possiblePathsRegistry.get(eClass).addAll(paths);
-		}
-
-		return this.possiblePathsRegistry.get(eClass);
 
 	}
 

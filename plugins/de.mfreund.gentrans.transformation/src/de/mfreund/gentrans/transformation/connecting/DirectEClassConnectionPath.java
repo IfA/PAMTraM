@@ -8,7 +8,7 @@ import java.util.Objects;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 
-public class EClassConnectionPathSegment implements IEClassConnectionPathDescriptor {
+public class DirectEClassConnectionPath implements IEClassConnectionPathDescriptor {
 
 	private final EClass sourceClass;
 
@@ -16,7 +16,7 @@ public class EClassConnectionPathSegment implements IEClassConnectionPathDescrip
 
 	private final EClass targetClass;
 
-	public EClassConnectionPathSegment(EClass sourceClass, EReference reference, EClass targetClass) {
+	public DirectEClassConnectionPath(EClass sourceClass, EReference reference, EClass targetClass) {
 
 		this.sourceClass = sourceClass;
 		this.reference = reference;
@@ -46,7 +46,7 @@ public class EClassConnectionPathSegment implements IEClassConnectionPathDescrip
 	@Override
 	public int getLength() {
 
-		return 1;
+		return 0;
 	}
 
 	@Override
@@ -56,11 +56,11 @@ public class EClassConnectionPathSegment implements IEClassConnectionPathDescrip
 			return true;
 		}
 
-		if (!(obj instanceof EClassConnectionPathSegment)) {
+		if (!(obj instanceof DirectEClassConnectionPath)) {
 			return false;
 		}
 
-		EClassConnectionPathSegment other = (EClassConnectionPathSegment) obj;
+		DirectEClassConnectionPath other = (DirectEClassConnectionPath) obj;
 
 		return Objects.equals(this.sourceClass, other.sourceClass) && Objects.equals(this.reference, other.reference)
 				&& Objects.equals(this.targetClass, other.targetClass);

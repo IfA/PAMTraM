@@ -13,7 +13,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 
-import de.mfreund.gentrans.transformation.connecting.MetaModelPath;
+import de.mfreund.gentrans.transformation.connecting.ComplexEClassConnectionPath;
 import de.mfreund.gentrans.transformation.resolving.UserDecisionResolvingStrategy;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import pamtram.structure.target.TargetSection;
@@ -24,7 +24,7 @@ import pamtram.structure.target.TargetSection;
  *
  * @author mfreund
  */
-public class JoiningSelectConnectionPathAmbiguityDialog extends GenericSelectionDialog<MetaModelPath> {
+public class JoiningSelectConnectionPathAmbiguityDialog extends GenericSelectionDialog<ComplexEClassConnectionPath> {
 
 	/**
 	 * The {@link TargetSection} for that the option shall be chosen.
@@ -42,7 +42,7 @@ public class JoiningSelectConnectionPathAmbiguityDialog extends GenericSelection
 	 *            An optional {@link SelectionListener2} that will be called when the <em>EnhanceMappingModelButton</em>
 	 *            is clicked. If no listener is given, the button will be grayed out.
 	 */
-	public JoiningSelectConnectionPathAmbiguityDialog(List<MetaModelPath> options, TargetSection element,
+	public JoiningSelectConnectionPathAmbiguityDialog(List<ComplexEClassConnectionPath> options, TargetSection element,
 			Optional<SelectionListener2> enhanceMappingModelListener) {
 
 		super("Multiple possible paths found to join elements of the target model!", options, false,

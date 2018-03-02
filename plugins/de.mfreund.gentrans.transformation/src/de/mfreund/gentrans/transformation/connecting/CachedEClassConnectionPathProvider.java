@@ -23,7 +23,7 @@ import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
  */
 public class CachedEClassConnectionPathProvider implements IEClassConnectionPathProvider {
 
-	private final Map<EClassConnectionPathRequirement, Set<MetaModelPath>> cachedConnections;
+	private final Map<EClassConnectionPathRequirement, Set<ComplexEClassConnectionPath>> cachedConnections;
 
 	private final EClassConnectionPathFactory pathFactory;
 
@@ -44,17 +44,18 @@ public class CachedEClassConnectionPathProvider implements IEClassConnectionPath
 	}
 
 	@Override
-	public List<MetaModelPath> getConnections(EClassConnectionPathRequirement connectionRequirement) {
+	public List<ComplexEClassConnectionPath> getConnections(EClassConnectionPathRequirement connectionRequirement) {
 
 		return new ArrayList<>(
 				this.cachedConnections.computeIfAbsent(connectionRequirement, this::determineConnections));
 	}
 
-	private Set<MetaModelPath> determineConnections(EClassConnectionPathRequirement connectionRequirement) {
+	private Set<ComplexEClassConnectionPath> determineConnections(
+			EClassConnectionPathRequirement connectionRequirement) {
 
-		EClass startingClass = connectionRequirement.getStartingClass();
-		EClass targetClass = connectionRequirement.getTargetClass();
-		int maxPathLength = connectionRequirement.getLength();
+		EClass startingClass = connectionRequirement.getRequiredStartingClass();
+		EClass targetClass = connectionRequirement.getRequiredTargetClass();
+		int maxPathLength = connectionRequirement.getRequiredMaximumPathLength();
 
 		if (startingClass == null) {
 			return new LinkedHashSet<>(this.pathFactory.findPathsToInstances(this.reg, targetClass, maxPathLength));

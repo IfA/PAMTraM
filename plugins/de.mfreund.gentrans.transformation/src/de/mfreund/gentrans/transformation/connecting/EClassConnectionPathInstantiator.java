@@ -21,13 +21,13 @@ import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
  */
 public class EClassConnectionPathInstantiator {
 
-	private final MetaModelPath path;
+	private final ComplexEClassConnectionPath path;
 
 	private List<EObject> createdIntermediaryElements;
 
 	private List<EObject> unconnectedElements;
 
-	public EClassConnectionPathInstantiator(MetaModelPath pathToInstantiate) {
+	public EClassConnectionPathInstantiator(ComplexEClassConnectionPath pathToInstantiate) {
 
 		this.path = pathToInstantiate;
 		this.createdIntermediaryElements = new ArrayList<>();
@@ -51,7 +51,7 @@ public class EClassConnectionPathInstantiator {
 	 */
 	public void instantiate(EObject rootObject, final Collection<EObject> objectsToConnect) {
 
-		this.unconnectedElements = this.instantiateMissingPath(this.path.getPathElements(), rootObject,
+		this.unconnectedElements = this.instantiateMissingPath(this.path.getPathSegments(), rootObject,
 				new LinkedList<>(objectsToConnect));
 
 	}
@@ -72,13 +72,13 @@ public class EClassConnectionPathInstantiator {
 	 *          path was not large enough).
 	 */
 	@SuppressWarnings("unchecked")
-	private List<EObject> instantiateMissingPath(List<EClassConnectionPathSegment> pathSegments,
+	private List<EObject> instantiateMissingPath(List<DirectEClassConnectionPath> pathSegments,
 			final EObject rootObject, List<EObject> objectsToConnect) {
 
-		final LinkedList<EClassConnectionPathSegment> pathCopy = new LinkedList<>();
+		final LinkedList<DirectEClassConnectionPath> pathCopy = new LinkedList<>();
 		pathCopy.addAll(pathSegments);
 
-		EClassConnectionPathSegment segment = pathCopy.remove(0);
+		DirectEClassConnectionPath segment = pathCopy.remove(0);
 		final EReference ref = segment.getReference();
 		Object targetInst = rootObject.eGet(ref);
 

@@ -11,6 +11,6 @@ import java.util.List;
  */
 public interface IEClassConnectionPathProvider {
 
-	List<MetaModelPath> getConnections(EClassConnectionPathRequirement connectionRequirement);
+	List<ComplexEClassConnectionPath> getConnections(EClassConnectionPathRequirement connectionRequirement);
 
 }

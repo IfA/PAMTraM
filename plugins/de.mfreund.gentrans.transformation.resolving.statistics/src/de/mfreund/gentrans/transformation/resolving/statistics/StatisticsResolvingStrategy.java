@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jface.dialogs.DialogSettings;
 import org.eclipse.jface.dialogs.IDialogSettings;
 
-import de.mfreund.gentrans.transformation.connecting.MetaModelPath;
+import de.mfreund.gentrans.transformation.connecting.ComplexEClassConnectionPath;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.resolving.AbstractAmbiguityResolvingStrategy;
@@ -226,8 +226,8 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 	}
 
 	@Override
-	public Map<MetaModelPath, List<EObjectWrapper>> joiningSelectConnectionPathAndContainerInstance(
-			Map<MetaModelPath, List<EObjectWrapper>> choices, TargetSection section,
+	public Map<ComplexEClassConnectionPath, List<EObjectWrapper>> joiningSelectConnectionPathAndContainerInstance(
+			Map<ComplexEClassConnectionPath, List<EObjectWrapper>> choices, TargetSection section,
 			List<EObjectWrapper> sectionInstances, MappingHintGroupType hintGroup) throws AmbiguityResolvingException {
 
 		// We use the concatenated string representations of all paths in the
@@ -246,7 +246,7 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 		// (we only sort the keys as, up to now, we do not perform statistical
 		// analysis on instances)
 		//
-		List<MetaModelPath> sortedKeys = choices.keySet().parallelStream()
+		List<ComplexEClassConnectionPath> sortedKeys = choices.keySet().parallelStream()
 				.sorted((o1, o2) -> StatisticsResolvingStrategy.this
 						.getWeightedCount(mappingLayerSection, metamodelLayerSection, this.weightingFactor,
 								o2.toString())
@@ -256,14 +256,14 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 
 		// We create a new LinkedHashMap as this guarantees ordering of keys
 		//
-		LinkedHashMap<MetaModelPath, List<EObjectWrapper>> sortedMap = new LinkedHashMap<>();
+		LinkedHashMap<ComplexEClassConnectionPath, List<EObjectWrapper>> sortedMap = new LinkedHashMap<>();
 		sortedKeys.stream().forEach(k -> sortedMap.put(k, choices.get(k)));
 
 		return sortedMap;
 	}
 
 	@Override
-	public List<MetaModelPath> joiningSelectConnectionPath(List<MetaModelPath> choices, TargetSection section)
+	public List<ComplexEClassConnectionPath> joiningSelectConnectionPath(List<ComplexEClassConnectionPath> choices, TargetSection section)
 			throws AmbiguityResolvingException {
 
 		// We use the concatenated string representations of all paths in the
@@ -289,7 +289,7 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 	}
 
 	@Override
-	public void joiningConnectionPathSelected(List<MetaModelPath> choices, MetaModelPath resolved) {
+	public void joiningConnectionPathSelected(List<ComplexEClassConnectionPath> choices, ComplexEClassConnectionPath resolved) {
 
 		// We use the concatenated string representations of all paths in the
 		// list of choices as key

@@ -17,7 +17,7 @@ import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.swt.widgets.Display;
 
 import de.mfreund.gentrans.transformation.UserAbortException;
-import de.mfreund.gentrans.transformation.connecting.MetaModelPath;
+import de.mfreund.gentrans.transformation.connecting.ComplexEClassConnectionPath;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
@@ -253,18 +253,18 @@ public class DialogFactory {
 	 * Note: This can be called from outside the UI thread as the dialog is executed via its own {@link Runnable}.
 	 *
 	 * @param choices
-	 *            The list of {@link MetaModelPath options} that the user can choose from.
+	 *            The list of {@link ComplexEClassConnectionPath options} that the user can choose from.
 	 * @param element
 	 *            The {@link TargetSection} for that the option shall be chosen.
 	 * @param enhanceMappingModelListener
 	 *            An optional {@link SelectionListener2} that will be called when the <em>EnhanceMappingModelButton</em>
 	 *            is clicked. If no listener is given, the button will be grayed out.
-	 * @return The chosen {@link MetaModelPath}.
+	 * @return The chosen {@link ComplexEClassConnectionPath}.
 	 * @throws AmbiguityResolvingException
 	 *             If the user pressed the <em>Abort Transformation</em> button in the dialog.
 	 */
-	public static MetaModelPath createAndExecuteJoiningSelectConnectionPathDialog(
-			List<MetaModelPath> choices, TargetSection element,
+	public static ComplexEClassConnectionPath createAndExecuteJoiningSelectConnectionPathDialog(
+			List<ComplexEClassConnectionPath> choices, TargetSection element,
 			Optional<SelectionListener2> enhanceMappingModelListener) throws AmbiguityResolvingException {
 
 		Supplier<JoiningSelectConnectionPathAmbiguityDialog> dialogSupplier = () -> new JoiningSelectConnectionPathAmbiguityDialog(
@@ -318,7 +318,7 @@ public class DialogFactory {
 	 * Note: This can be called from outside the UI thread as the dialog is executed via its own {@link Runnable}.
 	 *
 	 * @param choices
-	 *            The list of {@link MetaModelPath options} that the user can choose from.
+	 *            The list of {@link ComplexEClassConnectionPath options} that the user can choose from.
 	 * @param hintGroup
 	 *            The {@link MappingHintGroupType} that was responsible for instantiating the given 'sectionInstances'.
 	 * @param sectionInstances
@@ -326,23 +326,23 @@ public class DialogFactory {
 	 * @param enhanceMappingModelListener
 	 *            An optional {@link SelectionListener2} that will be called when the <em>EnhanceMappingModelButton</em>
 	 *            is clicked. If no listener is given, the button will be grayed out.
-	 * @return The {@link HashMap} that contains the chosen {@link MetaModelPath} and {@link EObjectWrapper
+	 * @return The {@link HashMap} that contains the chosen {@link ComplexEClassConnectionPath} and {@link EObjectWrapper
 	 *         container instance}.
 	 * @throws AmbiguityResolvingException
 	 *             If the user pressed the <em>Abort Transformation</em> button in the dialog.
 	 */
-	public static Map<MetaModelPath, List<EObjectWrapper>> createAndExecuteJoiningSelectConnectionPathAndContainerInstanceDialog(
-			Map<MetaModelPath, List<EObjectWrapper>> choices, MappingHintGroupType hintGroup,
+	public static Map<ComplexEClassConnectionPath, List<EObjectWrapper>> createAndExecuteJoiningSelectConnectionPathAndContainerInstanceDialog(
+			Map<ComplexEClassConnectionPath, List<EObjectWrapper>> choices, MappingHintGroupType hintGroup,
 			List<EObjectWrapper> sectionInstances, Optional<SelectionListener2> enhanceMappingModelListener)
 			throws AmbiguityResolvingException {
 
-		Supplier<ClassAndInstanceSelectorDialog<MetaModelPath>> dialogSupplier = () -> new JoiningSelectConnectionPathAndContainerInstanceDialog(
+		Supplier<ClassAndInstanceSelectorDialog<ComplexEClassConnectionPath>> dialogSupplier = () -> new JoiningSelectConnectionPathAndContainerInstanceDialog(
 				choices, hintGroup, sectionInstances, enhanceMappingModelListener);
 
-		ClassAndInstanceSelectorDialog<MetaModelPath> dialog = DialogFactory
+		ClassAndInstanceSelectorDialog<ComplexEClassConnectionPath> dialog = DialogFactory
 				.createAndExecuteDialog(dialogSupplier);
 
-		Map<MetaModelPath, List<EObjectWrapper>> result = new HashMap<>();
+		Map<ComplexEClassConnectionPath, List<EObjectWrapper>> result = new HashMap<>();
 		result.put(dialog.getSingleSelection(), Arrays.asList(dialog.getSingleInstance()));
 		return result;
 	}
@@ -399,7 +399,7 @@ public class DialogFactory {
 	 * @param enhanceMappingModelListener
 	 *            An optional {@link SelectionListener2} that will be called when the <em>EnhanceMappingModelButton</em>
 	 *            is clicked. If no listener is given, the button will be grayed out.
-	 * @return The {@link HashMap} that contains the chosen {@link MetaModelPath} and {@link EObjectWrapper
+	 * @return The {@link HashMap} that contains the chosen {@link ComplexEClassConnectionPath} and {@link EObjectWrapper
 	 *         container instance}.
 	 * @throws AmbiguityResolvingException
 	 *             If the user pressed the <em>Abort Transformation</em> button in the dialog.

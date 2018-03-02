@@ -80,10 +80,11 @@ public class EClassConnectionPathFactory {
 	 *            connections without any intermediary elements are allowed).
 	 * @return
 	 */
-	public List<MetaModelPath> findPathsFromContainerToClassToConnect(final TargetSectionRegistry registry,
-			final EClass elementClass, final EClass containerClass, final int maxPathLength) {
+	public List<ComplexEClassConnectionPath> findPathsFromContainerToClassToConnect(
+			final TargetSectionRegistry registry, final EClass elementClass, final EClass containerClass,
+			final int maxPathLength) {
 
-		List<MetaModelPath> foundPaths = new ArrayList<>();
+		List<ComplexEClassConnectionPath> foundPaths = new ArrayList<>();
 
 		// this list holds pairs of EClasses and possible child EClasses
 		final LinkedHashSet<Pair<EClass, LinkedList<EObject>>> pathStack = new LinkedHashSet<>();
@@ -106,7 +107,7 @@ public class EClassConnectionPathFactory {
 				pathElements.addAll(next.getRight());
 				pathElements.add(elementClass);
 				boolean reverse = true;
-				final MetaModelPath newSelf = this.constructPath(pathElements, reverse);
+				final ComplexEClassConnectionPath newSelf = this.constructPath(pathElements, reverse);
 
 				// save the determined connection path in the TargetSectionRegistry for later use
 				foundPaths.add(newSelf);
@@ -152,10 +153,10 @@ public class EClassConnectionPathFactory {
 	 *            connections without any intermediary elements are allowed).
 	 * @return
 	 */
-	public List<MetaModelPath> findPathsToInstances(final TargetSectionRegistry registry, final EClass pathStartClass,
-			final int maxPathLength) {
+	public List<ComplexEClassConnectionPath> findPathsToInstances(final TargetSectionRegistry registry,
+			final EClass pathStartClass, final int maxPathLength) {
 
-		final List<MetaModelPath> paths = new LinkedList<>();
+		final List<ComplexEClassConnectionPath> paths = new LinkedList<>();
 
 		// this list holds pairs of EClasses and possible child EClasses
 		final LinkedHashSet<Pair<EClass, LinkedList<EObject>>> pathStack = new LinkedHashSet<>();
@@ -177,7 +178,7 @@ public class EClassConnectionPathFactory {
 				Collections.reverse(pathElements);
 				boolean reverse = false;
 
-				final MetaModelPath newSelf = this.constructPath(pathElements, reverse);
+				final ComplexEClassConnectionPath newSelf = this.constructPath(pathElements, reverse);
 
 				// save the determined connection path in the TargetSectionRegistry for later use
 				paths.add(newSelf); // first class
@@ -219,45 +220,46 @@ public class EClassConnectionPathFactory {
 	 *
 	 * ${tags}
 	 */
-	private MetaModelPath constructPath(List<EObject> pathElements, boolean reverse) {
+	private ComplexEClassConnectionPath constructPath(List<EObject> pathElements, boolean reverse) {
 
-		List<EClassConnectionPathSegment> segments = new ArrayList<>();
+		List<DirectEClassConnectionPath> segments = new ArrayList<>();
 		Iterator<EObject> it = pathElements.iterator();
 		EClass sourceClass = (EClass) it.next();
 		while (it.hasNext()) {
 			EReference reference = (EReference) it.next();
 			EClass targetClass = (EClass) it.next();
-			segments.add(new EClassConnectionPathSegment(sourceClass, reference, targetClass));
+			segments.add(new DirectEClassConnectionPath(sourceClass, reference, targetClass));
 			sourceClass = targetClass;
 		}
-		final MetaModelPath newSelf = new MetaModelPath(segments);
+		final ComplexEClassConnectionPath newSelf = new ComplexEClassConnectionPath(segments);
 		return newSelf;
 	}
 
 	/**
-	 * For the given list of {@link MetaModelPath ModelConnectionPaths}, this method returns the subset of the paths
-	 * that are able to connect at least as many elements to the given '<em>startInstance</em>' as denoted by the given
-	 * '<em>minimumCapacity</em>'. Therefore, {@link #getCapacity(EObject)} is consulted for every possible path.
+	 * For the given list of {@link ComplexEClassConnectionPath ModelConnectionPaths}, this method returns the subset of
+	 * the paths that are able to connect at least as many elements to the given '<em>startInstance</em>' as denoted by
+	 * the given '<em>minimumCapacity</em>'. Therefore, {@link #getCapacity(EObject)} is consulted for every possible
+	 * path.
 	 * <p />
 	 * <b>Note:</b> If 'startInstance' is <em>null</em>, the 'theoretical' capacity of the paths will be checked (see
 	 * {@link #getCapacity(EObject)}).
 	 *
 	 * @param paths
-	 *            The {@link MetaModelPath}s that shall be checked for minimum capacity.
+	 *            The {@link ComplexEClassConnectionPath}s that shall be checked for minimum capacity.
 	 * @param startInstance
 	 *            An optional {@link EObject} that shall be the starting point of the path (may be <em>null</em>).
 	 * @param minimumCapacity
 	 *            The minimumCapacity that has to be satisfied by the paths.
 	 * @return The subset of the given paths that satisfies the minimumCapacity.
 	 */
-	public List<MetaModelPath> findPathsWithMinimumCapacity(final List<MetaModelPath> paths,
+	public List<ComplexEClassConnectionPath> findPathsWithMinimumCapacity(final List<ComplexEClassConnectionPath> paths,
 			final EObject startInstance, final int minimumCapacity) {
 
-		final List<MetaModelPath> pathsToConsider = new LinkedList<>();
+		final List<ComplexEClassConnectionPath> pathsToConsider = new LinkedList<>();
 
-		for (final MetaModelPath p : paths) {
+		for (final ComplexEClassConnectionPath p : paths) {
 
-			if (startInstance != null && !p.leadsToRootType(startInstance.eClass())) {
+			if (startInstance != null && !p.getStartingClass().equals(startInstance.eClass())) {
 				// only consider paths with the right start instance type
 				continue;
 			}

@@ -10,7 +10,7 @@ import java.util.Map.Entry;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
-import de.mfreund.gentrans.transformation.connecting.MetaModelPath;
+import de.mfreund.gentrans.transformation.connecting.ComplexEClassConnectionPath;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import pamtram.mapping.InstantiableMappingHintGroup;
@@ -98,7 +98,7 @@ public class DefaultAmbiguityResolvingStrategy extends AbstractAmbiguityResolvin
 	}
 
 	@Override
-	public List<MetaModelPath> joiningSelectConnectionPath(List<MetaModelPath> choices,
+	public List<ComplexEClassConnectionPath> joiningSelectConnectionPath(List<ComplexEClassConnectionPath> choices,
 			TargetSection section) throws AmbiguityResolvingException {
 
 		if (choices == null || choices.isEmpty()) {
@@ -109,15 +109,15 @@ public class DefaultAmbiguityResolvingStrategy extends AbstractAmbiguityResolvin
 	}
 
 	@Override
-	public Map<MetaModelPath, List<EObjectWrapper>> joiningSelectConnectionPathAndContainerInstance(
-			Map<MetaModelPath, List<EObjectWrapper>> choices, TargetSection section,
+	public Map<ComplexEClassConnectionPath, List<EObjectWrapper>> joiningSelectConnectionPathAndContainerInstance(
+			Map<ComplexEClassConnectionPath, List<EObjectWrapper>> choices, TargetSection section,
 			List<EObjectWrapper> sectionInstances, MappingHintGroupType hintGroup) throws AmbiguityResolvingException {
 
 		if (choices == null || choices.isEmpty()) {
 			return new HashMap<>();
 		} else {
-			Map<MetaModelPath, List<EObjectWrapper>> ret = new HashMap<>();
-			Entry<MetaModelPath, List<EObjectWrapper>> firstEntry = choices.entrySet().iterator().next();
+			Map<ComplexEClassConnectionPath, List<EObjectWrapper>> ret = new HashMap<>();
+			Entry<ComplexEClassConnectionPath, List<EObjectWrapper>> firstEntry = choices.entrySet().iterator().next();
 			ArrayList<EObjectWrapper> eObjectList = new ArrayList<>();
 			eObjectList.add(firstEntry.getValue().get(0));
 			ret.put(firstEntry.getKey(), eObjectList);

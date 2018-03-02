@@ -15,7 +15,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 
-import de.mfreund.gentrans.transformation.connecting.MetaModelPath;
+import de.mfreund.gentrans.transformation.connecting.ComplexEClassConnectionPath;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import pamtram.mapping.MappingHintGroupType;
@@ -25,7 +25,7 @@ import pamtram.mapping.MappingHintGroupType;
  * @author mfreund
  */
 public class JoiningSelectConnectionPathAndContainerInstanceDialog
-		extends ClassAndInstanceSelectorDialog<MetaModelPath> {
+		extends ClassAndInstanceSelectorDialog<ComplexEClassConnectionPath> {
 
 	/**
 	 * The {@link MappingHintGroupType} that was responsible for instantiating the given 'sectionInstances'.
@@ -50,7 +50,7 @@ public class JoiningSelectConnectionPathAndContainerInstanceDialog
 	 *            An optional {@link SelectionListener2} that will be called when the <em>EnhanceMappingModelButton</em>
 	 *            is clicked. If no listener is given, the button will be grayed out.
 	 */
-	public JoiningSelectConnectionPathAndContainerInstanceDialog(Map<MetaModelPath, List<EObjectWrapper>> options,
+	public JoiningSelectConnectionPathAndContainerInstanceDialog(Map<ComplexEClassConnectionPath, List<EObjectWrapper>> options,
 			MappingHintGroupType hintGroup, List<EObjectWrapper> sectionInstances,
 			Optional<SelectionListener2> enhanceMappingModelListener) {
 

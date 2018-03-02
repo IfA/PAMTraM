@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 
-import de.mfreund.gentrans.transformation.connecting.MetaModelPath;
+import de.mfreund.gentrans.transformation.connecting.ComplexEClassConnectionPath;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import pamtram.mapping.InstantiableMappingHintGroup;
@@ -115,12 +115,12 @@ public interface IAmbiguityResolvedAdapter {
 	 * resolved.
 	 *
 	 * @param choices
-	 *            The list of {@link MetaModelPath ModelConnectionPaths}
+	 *            The list of {@link ComplexEClassConnectionPath ModelConnectionPaths}
 	 *            between which could be chosen.
 	 * @param resolved
-	 *            The chosen {@link MetaModelPath}.
+	 *            The chosen {@link ComplexEClassConnectionPath}.
 	 */
-	public void joiningConnectionPathSelected(List<MetaModelPath> choices, MetaModelPath resolved);
+	public void joiningConnectionPathSelected(List<ComplexEClassConnectionPath> choices, ComplexEClassConnectionPath resolved);
 
 	/**
 	 * This method is called when a

@@ -8,52 +8,71 @@ import java.util.Objects;
 import org.eclipse.emf.ecore.EClass;
 
 /**
+ * Instances of this class represent a requirement/request for a {@link IEClassConnectionPathDescriptor connection path}
+ * that consists of an optional {@link #requiredStartingClass}, a {@link #requiredTargetClass}, and a
+ * {@link #requiredMaximumPathLength}.
+ * <p />
+ * If no {@link #getRequiredStartingClass()} is specified, this means that all potential target classes may be used as
+ * starting class.
  *
  * @author mfreund
  */
-public class EClassConnectionPathRequirement implements IEClassConnectionPathDescriptor {
+public class EClassConnectionPathRequirement {
 
-	private final EClass startingClass;
+	private final EClass requiredStartingClass;
 
-	private final EClass targetClass;
+	private final EClass requiredTargetClass;
 
-	private final int maxPathLength;
+	private final int requiredMaximumPathLength;
 
 	/**
+	 * Creates an instance.
 	 *
-	 *
-	 * ${tags}
+	 * @param requiredStartingClass
+	 * @param requiredTargetClass
+	 * @param requiredMaximumPathLength
 	 */
-	public EClassConnectionPathRequirement(EClass startingClass, EClass targetClass, int maxPathLength) {
+	public EClassConnectionPathRequirement(EClass requiredStartingClass, EClass requiredTargetClass,
+			int requiredMaximumPathLength) {
 
-		this.startingClass = startingClass;
-		this.targetClass = targetClass;
-		this.maxPathLength = maxPathLength;
+		this.requiredStartingClass = requiredStartingClass;
+		this.requiredTargetClass = requiredTargetClass;
+		this.requiredMaximumPathLength = requiredMaximumPathLength;
 	}
 
-	public EClassConnectionPathRequirement(EClass targetClass, int maxPathLength) {
+	/**
+	 * Creates an instance with an arbitrary {@link #requiredStartingClass}.
+	 *
+	 * @param requiredTargetClass
+	 * @param requiredMaximumPathLength
+	 */
+	public EClassConnectionPathRequirement(EClass requiredTargetClass, int requiredMaximumPathLength) {
 
-		this.startingClass = null;
-		this.targetClass = targetClass;
-		this.maxPathLength = maxPathLength;
+		this(null, requiredTargetClass, requiredMaximumPathLength);
 	}
 
-	@Override
-	public EClass getStartingClass() {
+	/**
+	 * @return the {@link #requiredStartingClass}
+	 */
+	public EClass getRequiredStartingClass() {
 
-		return this.startingClass;
+		return this.requiredStartingClass;
 	}
 
-	@Override
-	public EClass getTargetClass() {
+	/**
+	 * @return the {@link #requiredTargetClass}
+	 */
+	public EClass getRequiredTargetClass() {
 
-		return this.targetClass;
+		return this.requiredTargetClass;
 	}
 
-	@Override
-	public int getLength() {
+	/**
+	 * @return the {@link #requiredMaximumPathLength}
+	 */
+	public int getRequiredMaximumPathLength() {
 
-		return this.maxPathLength;
+		return this.requiredMaximumPathLength;
 	}
 
 	@Override
@@ -61,23 +80,21 @@ public class EClassConnectionPathRequirement implements IEClassConnectionPathDes
 
 		if (this == obj) {
 			return true;
-		}
-
-		if (!(obj instanceof EClassConnectionPathRequirement)) {
+		} else if (!(obj instanceof EClassConnectionPathRequirement)) {
 			return false;
 		}
 
 		EClassConnectionPathRequirement requirement = (EClassConnectionPathRequirement) obj;
 
-		return this.maxPathLength == requirement.maxPathLength
-				&& Objects.equals(this.getStartingClass(), requirement.getStartingClass())
-				&& Objects.equals(this.getTargetClass(), requirement.getTargetClass());
+		return this.requiredMaximumPathLength == requirement.requiredMaximumPathLength
+				&& Objects.equals(this.requiredStartingClass, requirement.requiredStartingClass)
+				&& Objects.equals(this.requiredTargetClass, requirement.requiredTargetClass);
 	}
 
 	@Override
 	public int hashCode() {
 
-		return Objects.hash(this.startingClass, this.targetClass, this.maxPathLength);
+		return Objects.hash(this.requiredStartingClass, this.requiredTargetClass, this.requiredMaximumPathLength);
 	}
 
 }

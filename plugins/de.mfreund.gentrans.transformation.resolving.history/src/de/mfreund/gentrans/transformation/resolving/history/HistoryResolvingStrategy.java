@@ -31,8 +31,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 
-import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathSegment;
-import de.mfreund.gentrans.transformation.connecting.MetaModelPath;
+import de.mfreund.gentrans.transformation.connecting.DirectEClassConnectionPath;
+import de.mfreund.gentrans.transformation.connecting.ComplexEClassConnectionPath;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.resolving.ComposedAmbiguityResolvingStrategy;
@@ -510,7 +510,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	 * used during the 'old' transformation for joining the given '<em>section</em>'.
 	 */
 	@Override
-	public List<MetaModelPath> joiningSelectConnectionPath(List<MetaModelPath> choices, TargetSection section)
+	public List<ComplexEClassConnectionPath> joiningSelectConnectionPath(List<ComplexEClassConnectionPath> choices, TargetSection section)
 			throws AmbiguityResolvingException {
 
 		/*
@@ -545,8 +545,8 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		/*
 		 * Finally, we can check which ModelConnectionPath was used to connect the 'instantiatedElement'.
 		 */
-		MetaModelPath usedPath = null;
-		for (MetaModelPath modelConnectionPath : choices) {
+		ComplexEClassConnectionPath usedPath = null;
+		for (ComplexEClassConnectionPath modelConnectionPath : choices) {
 
 			usedPath = modelConnectionPath;
 
@@ -555,10 +555,10 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 			 * 'instantiatedElement'.
 			 */
 			EObject currentElement = instantiatedElement;
-			Iterator<EClassConnectionPathSegment> pathElementIterator = modelConnectionPath.getPathElements()
+			Iterator<DirectEClassConnectionPath> pathElementIterator = modelConnectionPath.getPathSegments()
 					.iterator();
 			while (pathElementIterator.hasNext()) {
-				EClassConnectionPathSegment pathElement = pathElementIterator.next();
+				DirectEClassConnectionPath pathElement = pathElementIterator.next();
 				if (!currentElement.eClass().equals(pathElement.getTargetClass())
 						|| !currentElement.eContainingFeature().equals(pathElement.getReference())) {
 					usedPath = null;
@@ -727,8 +727,8 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	 * '<em>sectionInstances</em>'.
 	 */
 	@Override
-	public Map<MetaModelPath, List<EObjectWrapper>> joiningSelectConnectionPathAndContainerInstance(
-			Map<MetaModelPath, List<EObjectWrapper>> choices, TargetSection section,
+	public Map<ComplexEClassConnectionPath, List<EObjectWrapper>> joiningSelectConnectionPathAndContainerInstance(
+			Map<ComplexEClassConnectionPath, List<EObjectWrapper>> choices, TargetSection section,
 			List<EObjectWrapper> sectionInstances, MappingHintGroupType hintGroup) throws AmbiguityResolvingException {
 
 		/*
@@ -793,9 +793,9 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		 * all of the 'sectionInstances' should be connected to the same element (and via the same path), we examplarily
 		 * use only the first of the 'sectionInstances'.
 		 */
-		MetaModelPath usedPath = null;
+		ComplexEClassConnectionPath usedPath = null;
 		EObject usedInstance = null;
-		for (MetaModelPath modelConnectionPath : choices.keySet()) {
+		for (ComplexEClassConnectionPath modelConnectionPath : choices.keySet()) {
 
 			usedPath = modelConnectionPath;
 
@@ -804,10 +804,10 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 			 * 'instantiatedElement'.
 			 */
 			EObject currentElement = oldSectionInstances.get(0);
-			Iterator<EClassConnectionPathSegment> pathElementIterator = modelConnectionPath.getPathElements()
+			Iterator<DirectEClassConnectionPath> pathElementIterator = modelConnectionPath.getPathSegments()
 					.iterator();
 			while (pathElementIterator.hasNext()) {
-				EClassConnectionPathSegment pathElement = pathElementIterator.next();
+				DirectEClassConnectionPath pathElement = pathElementIterator.next();
 				if (!currentElement.eClass().equals(pathElement.getTargetClass())
 						|| !currentElement.eContainingFeature().equals(pathElement.getReference())) {
 					usedPath = null;
@@ -855,7 +855,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		} else {
 			this.printMessage(usedPath.toString() + "-->" + containerInstancesToUse.toString(),
 					HistoryResolvingStrategy.historyDecisionPrefix);
-			HashMap<MetaModelPath, List<EObjectWrapper>> ret = new HashMap<>();
+			HashMap<ComplexEClassConnectionPath, List<EObjectWrapper>> ret = new HashMap<>();
 			ret.put(usedPath, containerInstancesToUse);
 			return super.joiningSelectConnectionPathAndContainerInstance(ret, section, sectionInstances, hintGroup);
 		}

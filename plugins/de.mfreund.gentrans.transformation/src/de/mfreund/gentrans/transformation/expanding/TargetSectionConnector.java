@@ -26,6 +26,7 @@ import de.mfreund.gentrans.transformation.CancelTransformationException;
 import de.mfreund.gentrans.transformation.UserAbortException;
 import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
 import de.mfreund.gentrans.transformation.connecting.CachedEClassConnectionPathProvider;
+import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathInstantiator;
 import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathRequirement;
 import de.mfreund.gentrans.transformation.connecting.IEClassConnectionPathProvider;
 import de.mfreund.gentrans.transformation.connecting.MetaModelPath;
@@ -643,7 +644,13 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 						}
 
 						// now instantiate path
-						chosenPath.instantiate(containerInstance, unlinkeableEntry.getValue().get(tSection));
+						List<EObject> elementsToConnect = unlinkeableEntry.getValue().get(tSection).stream()
+								.map(EObjectWrapper::getEObject).collect(Collectors.toList());
+						EClassConnectionPathInstantiator i = new EClassConnectionPathInstantiator(chosenPath);
+						i.instantiate(containerInstance, elementsToConnect);
+						i.getCreatedIntermediaryElements().stream()
+								.forEach(this.targetSectionRegistry::addClassInstance);
+
 						this.logger.info("Connected to root: " + tSection.getName() + ": " + chosenPath.toString());
 					} else {
 						this.logger.warning("The chosen container '" + rootClass.getName()
@@ -1387,7 +1394,13 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 		 */
 		public List<EObjectWrapper> instantiate() {
 
-			return this.connectionPath.instantiate(this.containerInstance.getEObject(), this.rootInstances);
+			EClassConnectionPathInstantiator i = new EClassConnectionPathInstantiator(this.connectionPath);
+			i.instantiate(this.containerInstance.getEObject(),
+					this.rootInstances.stream().map(EObjectWrapper::getEObject).collect(Collectors.toList()));
+			i.getCreatedIntermediaryElements().stream()
+					.forEach(TargetSectionConnector.this.targetSectionRegistry::addClassInstance);
+			return this.rootInstances.stream().filter(r -> i.getUnconnectedElements().contains(r.getEObject()))
+					.collect(Collectors.toList());
 		}
 	}
 

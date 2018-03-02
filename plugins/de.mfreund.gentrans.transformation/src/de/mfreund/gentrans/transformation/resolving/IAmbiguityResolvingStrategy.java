@@ -12,7 +12,8 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
-import de.mfreund.gentrans.transformation.connecting.ComplexEClassConnectionPath;
+import de.mfreund.gentrans.transformation.connecting.EClassConnectionPath;
+import de.mfreund.gentrans.transformation.connecting.impl.ComplexEClassConnectionPath;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import pamtram.PAMTraM;
@@ -218,25 +219,27 @@ public interface IAmbiguityResolvingStrategy {
 	}
 
 	/**
-	 * Resolve ambiguities that arise when selecting a {@link ComplexEClassConnectionPath} to connect a {@link TargetSection} to
-	 * a certain container {@link EClass} This method is called when multiple possible ModelConnectionPaths have been
-	 * determined for the given 'section' during the '<em>joining</em>' step of the transformation.
+	 * Resolve ambiguities that arise when selecting a {@link ComplexEClassConnectionPath} to connect a
+	 * {@link TargetSection} to a certain container {@link EClass} This method is called when multiple possible
+	 * ModelConnectionPaths have been determined for the given 'section' during the '<em>joining</em>' step of the
+	 * transformation.
 	 *
 	 * @param choices
-	 *            The list of {@link ComplexEClassConnectionPath ModelConnectionPaths} that can be chosen to connect the given
-	 *            'section'.
+	 *            The list of {@link ComplexEClassConnectionPath ModelConnectionPaths} that can be chosen to connect the
+	 *            given 'section'.
 	 * @param section
 	 *            The {@link TargetSection} that shall be connected to a certain {@link EClass} (represented by the
-	 *            {@link ComplexEClassConnectionPath#getPathRootClass() root class} of every of the given ModelConnectionPaths).
+	 *            {@link EClassConnectionPath#getPathRootClass() root class} of every of the given
+	 *            ModelConnectionPaths).
 	 * @return The list of choices after applying the resolving strategy (this should be a sub-set of
 	 *         '<em>choices</em>').
 	 * @throws AmbiguityResolvingException
 	 *             If an error occurred while applying the resolving strategy.
 	 */
-	public default List<ComplexEClassConnectionPath> joiningSelectConnectionPath(List<ComplexEClassConnectionPath> choices,
+	public default List<EClassConnectionPath> joiningSelectConnectionPath(List<EClassConnectionPath> choices,
 			TargetSection section) throws AmbiguityResolvingException {
 
-		List<ComplexEClassConnectionPath> ret = new ArrayList<>();
+		List<EClassConnectionPath> ret = new ArrayList<>();
 		if (choices != null) {
 			ret.addAll(choices);
 		}
@@ -244,11 +247,12 @@ public interface IAmbiguityResolvingStrategy {
 	}
 
 	/**
-	 * Resolve ambiguities that arise when selecting a {@link ComplexEClassConnectionPath} to connect a {@link TargetSection} to
-	 * a certain container {@link EClass} This method is called when multiple possible ModelConnectionPaths have been
-	 * determined for the given 'section' during the '<em>joining</em>' step of the transformation and multiple possible
-	 * instances of this EClass exist in the target model. Consequently, ambiguities have to be resolve both for the
-	 * ModelConnectionPath to use as well as for the concrete instance (the concrete model element) to connect to.
+	 * Resolve ambiguities that arise when selecting a {@link ComplexEClassConnectionPath} to connect a
+	 * {@link TargetSection} to a certain container {@link EClass} This method is called when multiple possible
+	 * ModelConnectionPaths have been determined for the given 'section' during the '<em>joining</em>' step of the
+	 * transformation and multiple possible instances of this EClass exist in the target model. Consequently,
+	 * ambiguities have to be resolve both for the ModelConnectionPath to use as well as for the concrete instance (the
+	 * concrete model element) to connect to.
 	 *
 	 * @param choices
 	 *            A {@link HashMap} that contains the {@link ComplexEClassConnectionPath ModelConnectionPaths} and the
@@ -256,7 +260,8 @@ public interface IAmbiguityResolvingStrategy {
 	 *            'section'.
 	 * @param section
 	 *            The {@link TargetSection} that shall be connected to a certain {@link EClass} (represented by the
-	 *            {@link ComplexEClassConnectionPath#getPathRootClass() root class} of every of the given ModelConnectionPaths).
+	 *            {@link ComplexEClassConnectionPath#getPathRootClass() root class} of every of the given
+	 *            ModelConnectionPaths).
 	 * @param sectionInstances
 	 *            The list of {@link EObjectWrapper instances} of the given 'section' that need to be connected.
 	 * @param hintGroup
@@ -265,13 +270,13 @@ public interface IAmbiguityResolvingStrategy {
 	 * @throws AmbiguityResolvingException
 	 *             If an error occurred while applying the resolving strategy.
 	 */
-	public default Map<ComplexEClassConnectionPath, List<EObjectWrapper>> joiningSelectConnectionPathAndContainerInstance(
-			Map<ComplexEClassConnectionPath, List<EObjectWrapper>> choices, TargetSection section,
+	public default Map<EClassConnectionPath, List<EObjectWrapper>> joiningSelectConnectionPathAndContainerInstance(
+			Map<EClassConnectionPath, List<EObjectWrapper>> choices, TargetSection section,
 			List<EObjectWrapper> sectionInstances, MappingHintGroupType hintGroup) throws AmbiguityResolvingException {
 
-		Map<ComplexEClassConnectionPath, List<EObjectWrapper>> ret = new LinkedHashMap<>();
+		Map<EClassConnectionPath, List<EObjectWrapper>> ret = new LinkedHashMap<>();
 		if (choices != null) {
-			for (Entry<ComplexEClassConnectionPath, List<EObjectWrapper>> entry : choices.entrySet()) {
+			for (Entry<EClassConnectionPath, List<EObjectWrapper>> entry : choices.entrySet()) {
 				ret.put(entry.getKey(), new ArrayList<>(entry.getValue()));
 			}
 		}

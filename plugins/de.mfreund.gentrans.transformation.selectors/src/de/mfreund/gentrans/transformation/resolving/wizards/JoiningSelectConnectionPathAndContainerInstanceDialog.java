@@ -15,7 +15,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 
-import de.mfreund.gentrans.transformation.connecting.ComplexEClassConnectionPath;
+import de.mfreund.gentrans.transformation.connecting.impl.ComplexEClassConnectionPath;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import pamtram.mapping.MappingHintGroupType;

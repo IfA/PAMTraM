@@ -10,7 +10,8 @@ import java.util.Map.Entry;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
-import de.mfreund.gentrans.transformation.connecting.ComplexEClassConnectionPath;
+import de.mfreund.gentrans.transformation.connecting.EClassConnectionPath;
+import de.mfreund.gentrans.transformation.connecting.impl.ComplexEClassConnectionPath;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import pamtram.mapping.InstantiableMappingHintGroup;
@@ -109,15 +110,15 @@ public class DefaultAmbiguityResolvingStrategy extends AbstractAmbiguityResolvin
 	}
 
 	@Override
-	public Map<ComplexEClassConnectionPath, List<EObjectWrapper>> joiningSelectConnectionPathAndContainerInstance(
-			Map<ComplexEClassConnectionPath, List<EObjectWrapper>> choices, TargetSection section,
+	public Map<EClassConnectionPath, List<EObjectWrapper>> joiningSelectConnectionPathAndContainerInstance(
+			Map<EClassConnectionPath, List<EObjectWrapper>> choices, TargetSection section,
 			List<EObjectWrapper> sectionInstances, MappingHintGroupType hintGroup) throws AmbiguityResolvingException {
 
 		if (choices == null || choices.isEmpty()) {
 			return new HashMap<>();
 		} else {
-			Map<ComplexEClassConnectionPath, List<EObjectWrapper>> ret = new HashMap<>();
-			Entry<ComplexEClassConnectionPath, List<EObjectWrapper>> firstEntry = choices.entrySet().iterator().next();
+			Map<EClassConnectionPath, List<EObjectWrapper>> ret = new HashMap<>();
+			Entry<EClassConnectionPath, List<EObjectWrapper>> firstEntry = choices.entrySet().iterator().next();
 			ArrayList<EObjectWrapper> eObjectList = new ArrayList<>();
 			eObjectList.add(firstEntry.getValue().get(0));
 			ret.put(firstEntry.getKey(), eObjectList);

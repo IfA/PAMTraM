@@ -1,24 +1,39 @@
 /**
  *
  */
-package de.mfreund.gentrans.transformation.connecting;
+package de.mfreund.gentrans.transformation.connecting.impl;
 
 import java.util.Objects;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 
-public class DirectEClassConnectionPath implements IEClassConnectionPathDescriptor {
+import de.mfreund.gentrans.transformation.connecting.EClassConnectionPath;
 
-	private final EClass sourceClass;
+/**
+ * An {@link EClassConnectionPath} that represents a direct path between two {@link EClass EClasses} that
+ * consists of just one {@link EReference}.
+ *
+ * @author mfreund
+ */
+public class DirectEClassConnectionPath implements EClassConnectionPath {
+
+	private final EClass startingClass;
 
 	private final EReference reference;
 
 	private final EClass targetClass;
 
-	public DirectEClassConnectionPath(EClass sourceClass, EReference reference, EClass targetClass) {
+	/**
+	 * Creates a new instance.
+	 *
+	 * @param startingClass
+	 * @param reference
+	 * @param targetClass
+	 */
+	public DirectEClassConnectionPath(EClass startingClass, EReference reference, EClass targetClass) {
 
-		this.sourceClass = sourceClass;
+		this.startingClass = startingClass;
 		this.reference = reference;
 		this.targetClass = targetClass;
 	}
@@ -40,7 +55,7 @@ public class DirectEClassConnectionPath implements IEClassConnectionPathDescript
 	@Override
 	public EClass getStartingClass() {
 
-		return this.sourceClass;
+		return this.startingClass;
 	}
 
 	@Override
@@ -62,14 +77,15 @@ public class DirectEClassConnectionPath implements IEClassConnectionPathDescript
 
 		DirectEClassConnectionPath other = (DirectEClassConnectionPath) obj;
 
-		return Objects.equals(this.sourceClass, other.sourceClass) && Objects.equals(this.reference, other.reference)
+		return Objects.equals(this.startingClass, other.startingClass)
+				&& Objects.equals(this.reference, other.reference)
 				&& Objects.equals(this.targetClass, other.targetClass);
 	}
 
 	@Override
 	public int hashCode() {
 
-		return Objects.hash(this.sourceClass, this.reference, this.targetClass);
+		return Objects.hash(this.startingClass, this.reference, this.targetClass);
 	}
 
 	@Override

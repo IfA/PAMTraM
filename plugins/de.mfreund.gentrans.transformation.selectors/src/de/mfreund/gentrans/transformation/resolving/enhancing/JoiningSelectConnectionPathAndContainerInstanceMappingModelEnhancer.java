@@ -16,7 +16,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Shell;
 
-import de.mfreund.gentrans.transformation.connecting.ComplexEClassConnectionPath;
+import de.mfreund.gentrans.transformation.connecting.EClassConnectionPath;
 import de.mfreund.gentrans.transformation.resolving.UserDecisionResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.wizards.GenericSelectionDialog;
 import de.tud.et.ifa.agtele.emf.compare.EMFCompareUtil;
@@ -37,7 +37,7 @@ import pamtram.structure.target.TargetSectionCompositeReference;
  * @author mfreund
  */
 public class JoiningSelectConnectionPathAndContainerInstanceMappingModelEnhancer
-		extends MappingModelEnhancer<GenericSelectionDialog<ComplexEClassConnectionPath>> {
+		extends MappingModelEnhancer<GenericSelectionDialog<EClassConnectionPath>> {
 
 	/**
 	 * The {@link TargetSection} that shall be connected via the selected path to the selected instance.
@@ -46,7 +46,7 @@ public class JoiningSelectConnectionPathAndContainerInstanceMappingModelEnhancer
 
 	/**
 	 * The first reference create as part of
-	 * {@link #instantiateIntermediatePathElements(ComplexEClassConnectionPath, TargetSectionCompositeReference, TargetSectionClass)}
+	 * {@link #instantiateIntermediatePathElements(EClassConnectionPath, TargetSectionCompositeReference, TargetSectionClass)}
 	 * to be connected to the 'rootSection' in the end). After the execution of this method, this will hold the
 	 * {@link TargetSectionCompositeReference} that represents the first reference of the path.
 	 */
@@ -54,7 +54,7 @@ public class JoiningSelectConnectionPathAndContainerInstanceMappingModelEnhancer
 
 	/**
 	 * The final class created as part of
-	 * {@link #instantiateIntermediatePathElements(ComplexEClassConnectionPath, TargetSectionCompositeReference, TargetSectionClass)}
+	 * {@link #instantiateIntermediatePathElements(EClassConnectionPath, TargetSectionCompositeReference, TargetSectionClass)}
 	 * to be set as 'container' for the 'sectionToConnect'). After the execution of this method, this will hold the
 	 * {@link TargetSectionClass} that represents the final class of the path (Note that the final class is the second
 	 * but last class because the last class already exists in the mapping model).
@@ -82,7 +82,7 @@ public class JoiningSelectConnectionPathAndContainerInstanceMappingModelEnhancer
 
 		PAMTraM pamtramToEnhance = editor == null ? this.pamtramModel : editor.getPamtram();
 
-		ComplexEClassConnectionPath selectedPath = this.dialog.getSingleSelection();
+		EClassConnectionPath selectedPath = this.dialog.getSingleSelection();
 
 		Optional<TargetSection> rootSectionOptional = pamtramToEnhance.getTargetSections().parallelStream()
 				.filter(t -> selectedPath.getStartingClass().equals(t.getEClass())).findAny();
@@ -159,7 +159,7 @@ public class JoiningSelectConnectionPathAndContainerInstanceMappingModelEnhancer
 	 * {@link TargetSectionContainmentReference TargetSectionContainmentReferences}.
 	 *
 	 */
-	private void instantiateIntermediatePathElements(ComplexEClassConnectionPath path) {
+	private void instantiateIntermediatePathElements(EClassConnectionPath path) {
 
 		TargetSectionClass currentClass = null;
 

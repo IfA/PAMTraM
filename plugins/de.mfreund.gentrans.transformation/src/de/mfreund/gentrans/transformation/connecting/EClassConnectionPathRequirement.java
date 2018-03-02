@@ -8,7 +8,7 @@ import java.util.Objects;
 import org.eclipse.emf.ecore.EClass;
 
 /**
- * Instances of this class represent a requirement/request for a {@link IEClassConnectionPathDescriptor connection path}
+ * Instances of this class represent a requirement/request for a {@link EClassConnectionPath connection path}
  * that consists of an optional {@link #requiredStartingClass}, a {@link #requiredTargetClass}, and a
  * {@link #requiredMaximumPathLength}.
  * <p />

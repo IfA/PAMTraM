@@ -13,6 +13,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 
+import de.mfreund.gentrans.transformation.connecting.impl.ComplexEClassConnectionPath;
+import de.mfreund.gentrans.transformation.connecting.impl.DirectEClassConnectionPath;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 
 /**

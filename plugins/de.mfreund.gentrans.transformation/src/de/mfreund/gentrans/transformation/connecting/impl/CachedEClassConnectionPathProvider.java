@@ -1,7 +1,7 @@
 /**
  *
  */
-package de.mfreund.gentrans.transformation.connecting;
+package de.mfreund.gentrans.transformation.connecting.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,9 +15,13 @@ import java.util.logging.Logger;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 
+import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathFactory;
+import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathRequirement;
+import de.mfreund.gentrans.transformation.connecting.IEClassConnectionPathProvider;
 import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 
 /**
+ *
  *
  * @author mfreund
  */

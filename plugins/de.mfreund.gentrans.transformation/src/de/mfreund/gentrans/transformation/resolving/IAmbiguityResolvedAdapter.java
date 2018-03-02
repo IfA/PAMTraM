@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 
-import de.mfreund.gentrans.transformation.connecting.ComplexEClassConnectionPath;
+import de.mfreund.gentrans.transformation.connecting.EClassConnectionPath;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import pamtram.mapping.InstantiableMappingHintGroup;
@@ -15,22 +15,18 @@ import pamtram.mapping.Mapping;
 import pamtram.structure.target.TargetSectionClass;
 
 /**
- * This interface my be implemented to indicate that one is interested in how
- * {@link IAmbiguityResolvingStrategy ambiguities} have been resolved.
+ * This interface my be implemented to indicate that one is interested in how {@link IAmbiguityResolvingStrategy
+ * ambiguities} have been resolved.
  * <p />
- * Ambiguities may arise in different situations during the generic
- * transformation (e.g. during the selection of a mapping to be applied or
- * during the selection of a concrete model connection path to be used to
- * connect an element). Each of these situations is represented by a single
- * method that mimic the corresponding methods from the
- * {@link IAmbiguityResolvingStrategy} interface and that will be called when an
- * ambiguity of the type has been resolved. Thereby, every method has exactly
- * two parameters that represent the (ambiguous) options and the chosen
+ * Ambiguities may arise in different situations during the generic transformation (e.g. during the selection of a
+ * mapping to be applied or during the selection of a concrete model connection path to be used to connect an element).
+ * Each of these situations is represented by a single method that mimic the corresponding methods from the
+ * {@link IAmbiguityResolvingStrategy} interface and that will be called when an ambiguity of the type has been
+ * resolved. Thereby, every method has exactly two parameters that represent the (ambiguous) options and the chosen
  * option(s) (a sub-set of the options).
  * <p />
- * <b>Note:</b> The naming scheme of the methods always indicates in which of
- * the four steps of the transformation the ambiguity that was resolved occurred
- * by starting with the step's name.
+ * <b>Note:</b> The naming scheme of the methods always indicates in which of the four steps of the transformation the
+ * ambiguity that was resolved occurred by starting with the step's name.
  *
  * @see IAmbiguityResolvingStrategy
  *
@@ -44,8 +40,7 @@ public interface IAmbiguityResolvedAdapter {
 	 * searchingSelectSection} ambiguity has been resolved.
 	 *
 	 * @param choices
-	 *            The list of {@link MatchedSectionDescriptor
-	 *            MatchedSectionDescriptors} between which could be chosen.
+	 *            The list of {@link MatchedSectionDescriptor MatchedSectionDescriptors} between which could be chosen.
 	 * @param resolved
 	 *            The chosen {@link MatchedSectionDescriptor}.
 	 */
@@ -57,8 +52,7 @@ public interface IAmbiguityResolvedAdapter {
 	 * searchingSelectMapping} ambiguity has been resolved.
 	 *
 	 * @param choices
-	 *            The list of {@link Mapping Mappings} between which could be
-	 *            chosen.
+	 *            The list of {@link Mapping Mappings} between which could be chosen.
 	 * @param resolved
 	 *            The chosen {@link Mapping}.
 	 */
@@ -70,8 +64,7 @@ public interface IAmbiguityResolvedAdapter {
 	 * instantiatingSelectAttributeValue} ambiguity has been resolved.
 	 *
 	 * @param choices
-	 *            The list of {@link String Strings} between which could be
-	 *            chosen.
+	 *            The list of {@link String Strings} between which could be chosen.
 	 * @param resolved
 	 *            The chosen {@link String}.
 	 */
@@ -83,8 +76,7 @@ public interface IAmbiguityResolvedAdapter {
 	 * instantiatingSelectCardinality} ambiguity has been resolved.
 	 *
 	 * @param choices
-	 *            The list of {@link Integer Integers} between which could be
-	 *            chosen.
+	 *            The list of {@link Integer Integers} between which could be chosen.
 	 * @param resolved
 	 *            The chosen {@link Integer}.
 	 */
@@ -95,12 +87,10 @@ public interface IAmbiguityResolvedAdapter {
 	 * {@link IAmbiguityResolvingStrategy#joiningSelectContainerInstance(List, List, pamtram.mapping.MappingHintGroupType, pamtram.mapping.extended.ContainerSelector, String)
 	 * joiningSelectContainerInstance} or
 	 * {@link IAmbiguityResolvingStrategy#joiningSelectConnectionPathAndContainerInstance(java.util.Map, pamtram.structure.target.TargetSection, List, pamtram.mapping.MappingHintGroupType)
-	 * joiningSelectConnectionPathAndContainerInstance} ambiguity has been
-	 * resolved.
+	 * joiningSelectConnectionPathAndContainerInstance} ambiguity has been resolved.
 	 *
 	 * @param choices
-	 *            The list of {@link EObjectWrapper EObjectWrappers} between
-	 *            which could be chosen.
+	 *            The list of {@link EObjectWrapper EObjectWrappers} between which could be chosen.
 	 * @param resolved
 	 *            The chosen {@link EObjectWrapper}.
 	 */
@@ -111,25 +101,21 @@ public interface IAmbiguityResolvedAdapter {
 	 * {@link IAmbiguityResolvingStrategy#joiningSelectConnectionPath(List, pamtram.structure.target.TargetSection)
 	 * joiningSelectConnectionPath} or
 	 * {@link IAmbiguityResolvingStrategy#joiningSelectConnectionPathAndContainerInstance(java.util.Map, pamtram.structure.target.TargetSection, List, pamtram.mapping.MappingHintGroupType)
-	 * joiningSelectConnectionPathAndContainerInstance} ambiguity has been
-	 * resolved.
+	 * joiningSelectConnectionPathAndContainerInstance} ambiguity has been resolved.
 	 *
 	 * @param choices
-	 *            The list of {@link ComplexEClassConnectionPath ModelConnectionPaths}
-	 *            between which could be chosen.
+	 *            The list of {@link EClassConnectionPath ModelConnectionPaths} between which could be chosen.
 	 * @param resolved
-	 *            The chosen {@link ComplexEClassConnectionPath}.
+	 *            The chosen {@link EClassConnectionPath}.
 	 */
-	public void joiningConnectionPathSelected(List<ComplexEClassConnectionPath> choices, ComplexEClassConnectionPath resolved);
+	public void joiningConnectionPathSelected(List<EClassConnectionPath> choices, EClassConnectionPath resolved);
 
 	/**
-	 * This method is called when a
-	 * {@link IAmbiguityResolvingStrategy#joiningSelectRootElement(List)
+	 * This method is called when a {@link IAmbiguityResolvingStrategy#joiningSelectRootElement(List)
 	 * joiningSelectRootElement} ambiguity has been resolved.
 	 *
 	 * @param choices
-	 *            The list of {@link EClass EClasses} between which could be
-	 *            chosen.
+	 *            The list of {@link EClass EClasses} between which could be chosen.
 	 * @param resolved
 	 *            The chosen {@link EClass}.
 	 */
@@ -143,8 +129,7 @@ public interface IAmbiguityResolvedAdapter {
 	 * linkingSelectTargetSectionAndInstance} ambiguity has been resolved.
 	 *
 	 * @param choices
-	 *            The list of {@link EObjectWrapper EObjectWrappers} between
-	 *            which could be chosen.
+	 *            The list of {@link EObjectWrapper EObjectWrappers} between which could be chosen.
 	 * @param resolved
 	 *            The chosen {@link EObjectWrapper}.
 	 */
@@ -156,8 +141,7 @@ public interface IAmbiguityResolvedAdapter {
 	 * linkingSelectTargetSectionAndInstance} ambiguity has been resolved.
 	 *
 	 * @param choices
-	 *            The list of {@link TargetSectionClass TargetSectionClasses}
-	 *            between which could be chosen.
+	 *            The list of {@link TargetSectionClass TargetSectionClasses} between which could be chosen.
 	 * @param resolved
 	 *            The chosen {@link TargetSectionClass}.
 	 */

@@ -19,6 +19,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import de.mfreund.gentrans.transformation.connecting.impl.ComplexEClassConnectionPath;
+import de.mfreund.gentrans.transformation.connecting.impl.DirectEClassConnectionPath;
 import de.mfreund.gentrans.transformation.registries.EClassConnectionInformationRegistry;
 import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import de.mfreund.gentrans.transformation.util.Pair;

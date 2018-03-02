@@ -1,4 +1,4 @@
-package de.mfreund.gentrans.transformation.connecting;
+package de.mfreund.gentrans.transformation.connecting.impl;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -11,13 +11,15 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 
+import de.mfreund.gentrans.transformation.connecting.EClassConnectionPath;
+
 /**
- * An {@link IEClassConnectionPathDescriptor} that represents a complex path that is made up of (one or) multiple
+ * An {@link EClassConnectionPath} that represents a complex path that is made up of (one or) multiple
  * segments each represented by a {@link DirectEClassConnectionPath}.
  *
  * @author mfreund
  */
-public class ComplexEClassConnectionPath implements IEClassConnectionPathDescriptor {
+public class ComplexEClassConnectionPath implements EClassConnectionPath {
 
 	private LinkedList<DirectEClassConnectionPath> pathSegments;
 

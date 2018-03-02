@@ -15,8 +15,8 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
 
+import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathFactory;
 import de.mfreund.gentrans.transformation.connecting.MetaModelPath;
 import de.mfreund.gentrans.transformation.core.CancelableTransformationAsset;
 import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
@@ -65,7 +65,16 @@ public class TargetSectionRegistry extends CancelableTransformationAsset {
 	 */
 	private final Map<TargetSectionClass, Map<InstantiableMappingHintGroup, List<EObjectWrapper>>> targetClassInstanceByHintGroupRegistry;
 
-	private final EClassConnectionInformationRegistry subClassRegistry;
+	private final EClassConnectionPathFactory eClassConnectionPathFactory;
+
+	/**
+	 * @return the {@link #${bare_field_name}}
+	 */
+	// FIXME should not be publicly available
+	public EClassConnectionPathFactory getEClassConnectionPathFactory() {
+
+		return this.eClassConnectionPathFactory;
+	}
 
 	/**
 	 * Possible Paths, sorted by target MetaModel class
@@ -92,8 +101,6 @@ public class TargetSectionRegistry extends CancelableTransformationAsset {
 		this.eObjectToEObjectWrapperMap = new HashMap<>();
 		this.targetClassInstanceByHintGroupRegistry = new LinkedHashMap<>();
 
-		this.subClassRegistry = new EClassConnectionInformationRegistry(this.logger);
-
 		this.possiblePathsRegistry = new LinkedHashMap<>();
 		this.possibleConnectionsRegistry = new LinkedHashMap<>();
 		this.attrValRegistry = new AttributeValueRegistry();
@@ -103,7 +110,7 @@ public class TargetSectionRegistry extends CancelableTransformationAsset {
 				.stream().flatMap(p -> p.getTargetSectionModels().stream()).map(TargetSectionModel::getMetaModelPackage)
 				.collect(Collectors.toList()));
 
-		this.subClassRegistry.register(targetMetaModels);
+		this.eClassConnectionPathFactory = new EClassConnectionPathFactory(targetMetaModels, this.logger);
 	}
 
 	/**
@@ -166,33 +173,6 @@ public class TargetSectionRegistry extends CancelableTransformationAsset {
 	}
 
 	/**
-	 * Register a new {@link MetaModelPath} in the {@link #possibleConnectionsRegistry}.
-	 *
-	 * @param path
-	 *            The {@link MetaModelPath} to register.
-	 */
-	public void addConnection(final MetaModelPath path) {
-
-		// The EClass at the beginning of the path (lower in the containment
-		// hierarchy).
-		EClass elementClass = (EClass) path.getPathElements().getFirst();
-
-		// The EClass at the end of the path (higher in the containment
-		// hierarchy).
-		EClass containerClass = (EClass) path.getPathElements().getLast();
-
-		if (!this.possibleConnectionsRegistry.containsKey(elementClass)) {
-			this.possibleConnectionsRegistry.put(elementClass, new LinkedHashMap<EClass, Set<MetaModelPath>>());
-		}
-
-		if (!this.possibleConnectionsRegistry.get(elementClass).containsKey(containerClass)) {
-			this.possibleConnectionsRegistry.get(elementClass).put(containerClass, new LinkedHashSet<MetaModelPath>());
-		}
-
-		this.possibleConnectionsRegistry.get(elementClass).get(containerClass).add(path);
-	}
-
-	/**
 	 * Register a new {@link MetaModelPath} in the {@link #possiblePathsRegistry}.
 	 *
 	 * @param modelConnectionPath
@@ -234,36 +214,6 @@ public class TargetSectionRegistry extends CancelableTransformationAsset {
 	}
 
 	/**
-	 * For a given {@link EClass}, returns the set of <em>child classes</em> (i.e., all classes for that
-	 * {@link EClass#getEAllSuperTypes()} contains the given <em>eClass</em>) registered in the
-	 * {@link #subClassRegistry}.
-	 *
-	 * @param superClass
-	 *            The {@link EClass} for that the child classes shall be returned.
-	 * @return The set of {@link EClass EClasses} that have the given class as super-type.
-	 */
-	public Set<EClass> getChildClasses(final EClass superClass) {
-
-		return this.subClassRegistry.getAllSubClasses(superClass);
-
-	}
-
-	/**
-	 * Returns the set of {@link EReference EReferences} from the {@link #targetClassReferencesRegistry} with a
-	 * {@link EReference#getEReferenceType()} that is compatible with the a given {@link EClass}.
-	 *
-	 * @param targetEClass
-	 *            The {@link EClass} for that the set of {@link EReference EReferences} shall be determined.
-	 * @return The set of {@link EReference EReferences} that ponit to the given <em>targetEClass</em> or to a
-	 *         super-class.
-	 */
-	public Set<EReference> getClassReferences(final EClass targetEClass) {
-
-		return this.subClassRegistry.getAllReferencesToClass(targetEClass);
-
-	}
-
-	/**
 	 * Determines and returns the list of possible {@link MetaModelPath connections} between two {@link EClass
 	 * EClasses}.
 	 * <p />
@@ -280,21 +230,15 @@ public class TargetSectionRegistry extends CancelableTransformationAsset {
 	 */
 	public List<MetaModelPath> getConnections(EClass eClass, EClass containerClass, final int maxPathLength) {
 
-		if (!this.possibleConnectionsRegistry.containsKey(eClass)) {
-			this.possibleConnectionsRegistry.put(eClass, new LinkedHashMap<EClass, Set<MetaModelPath>>());
-		}
-		if (!this.possibleConnectionsRegistry.get(eClass).containsKey(containerClass)) {
-			this.possibleConnectionsRegistry.get(eClass).put(containerClass, new LinkedHashSet<MetaModelPath>());
+		this.possibleConnectionsRegistry.computeIfAbsent(eClass, e -> new LinkedHashMap<>());
+		this.possibleConnectionsRegistry.get(eClass).computeIfAbsent(containerClass, c -> new LinkedHashSet<>());
 
-			MetaModelPath.findPathsFromContainerToClassToConnect(this, eClass, containerClass, maxPathLength);
-		}
+		List<MetaModelPath> foundPaths = this.eClassConnectionPathFactory.findPathsFromContainerToClassToConnect(this,
+				eClass, containerClass, maxPathLength);
 
-		if (this.possibleConnectionsRegistry.get(eClass).containsKey(containerClass)) {
+		this.possibleConnectionsRegistry.get(eClass).get(containerClass).addAll(foundPaths);
 
-			return new ArrayList<>(this.possibleConnectionsRegistry.get(eClass).get(containerClass));
-		} else {
-			return new ArrayList<>();
-		}
+		return new ArrayList<>(this.possibleConnectionsRegistry.get(eClass).get(containerClass));
 	}
 
 	/**
@@ -318,17 +262,6 @@ public class TargetSectionRegistry extends CancelableTransformationAsset {
 				c -> this.targetClassInstanceByHintGroupRegistry.get(c).values().stream().flatMap(Collection::stream))
 				.collect(Collectors.toList());
 
-	}
-
-	/**
-	 * This returns the set of {@link EClass EClasses} represented in the {@link #subClassRegistry}.
-	 *
-	 * @return The key set represented in the {@link #subClassRegistry}.
-	 */
-	public Set<EClass> getMetaModelClasses() {
-
-		// return this.subClassRegistry.keySet();
-		return this.subClassRegistry.getRegisteredClasses();
 	}
 
 	/**
@@ -369,32 +302,13 @@ public class TargetSectionRegistry extends CancelableTransformationAsset {
 		if (!this.possiblePathsRegistry.containsKey(eClass)) {
 			this.possiblePathsRegistry.put(eClass, new LinkedHashSet<MetaModelPath>());
 
-			MetaModelPath.findPathsToInstances(this, eClass, maxPathLength);
+			List<MetaModelPath> paths = this.eClassConnectionPathFactory.findPathsToInstances(this, eClass,
+					maxPathLength);
+
+			this.possiblePathsRegistry.get(eClass).addAll(paths);
 		}
 
 		return this.possiblePathsRegistry.get(eClass);
-
-	}
-
-	/**
-	 * Retrieve all {@link EClass EClasses} that hold the given {@link EReference} from the
-	 * {@link #containmentReferenceSourcesRegistry}.
-	 * <p />
-	 * Note: This will return the EClass defining the given EReference as well as all EClasses inheriting from this
-	 * EClass.
-	 *
-	 * @param ref
-	 *            The {@link EReference} for that the holding {@link EClass EClasses} shall be retrieved.
-	 * @return The set of {@link EClass EClasses} that are the starting point for the given {@link EReference}.
-	 */
-	public Set<EClass> getReferenceSources(final EReference ref) {
-
-		Set<EClass> referenceSources = new LinkedHashSet<>();
-
-		referenceSources.add(ref.getEContainingClass());
-		referenceSources.addAll(this.subClassRegistry.getAllSubClasses(ref.getEContainingClass()));
-
-		return referenceSources;
 
 	}
 

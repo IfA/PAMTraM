@@ -58,8 +58,8 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 	private static final String RESOLVE_JOINING_AMBIGUITY_STARTED = "[Ambiguity] Resolve joining ambiguity...";
 
 	/**
-	 * This list stores those {@link MetaModelPath ModelConnectionPaths} that have been previously selected by the
-	 * user for a given {@link MappingHintGroupType}.
+	 * This list stores those {@link MetaModelPath ModelConnectionPaths} that have been previously selected by the user
+	 * for a given {@link MappingHintGroupType}.
 	 */
 	private final LinkedHashMap<MappingHintGroupType, MetaModelPath> standardPaths;
 
@@ -484,8 +484,9 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 		// TODO Support multiple target models
 		final Set<EClass> common = new LinkedHashSet<>();
 
-		for (final EClass possibleRoot : this.targetSectionRegistry.getMetaModelClasses().stream()
-				.filter(e -> !e.isAbstract()).collect(Collectors.toList())) {
+		// FIXME this should be moved to the MetaModelPath/Factory/etc. (independent from pamtram)
+		for (final EClass possibleRoot : this.targetSectionRegistry.getEClassConnectionPathFactory().getClasses()
+				.stream().filter(e -> !e.isAbstract()).collect(Collectors.toList())) {
 
 			if (this.unconnectableElements.keySet().stream().noneMatch(
 					c -> this.targetSectionRegistry.getConnections(c, possibleRoot, this.maxPathLength).isEmpty())) {
@@ -566,8 +567,8 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 				 * need to find all possible connections for each of the elements involved. Now we need to choose a
 				 * connection for each element. This might lead to us asking a lot of questions to the user.
 				 */
-				final List<MetaModelPath> pathSet = this.targetSectionRegistry
-						.getConnections(unlinkeableEntry.getKey(), rootClass, this.maxPathLength);
+				final List<MetaModelPath> pathSet = this.targetSectionRegistry.getConnections(unlinkeableEntry.getKey(),
+						rootClass, this.maxPathLength);
 
 				if (pathSet.isEmpty()) {
 
@@ -682,8 +683,8 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 
 		// A set of ModelConnectionPaths that are possible and thus have to be considered by the selection algorithms.
 		//
-		List<MetaModelPath> pathsToConsider = this.getModelConnectionPathsToConsider(rootInstances,
-				containerClasses, classToConnect);
+		List<MetaModelPath> pathsToConsider = this.getModelConnectionPathsToConsider(rootInstances, containerClasses,
+				classToConnect);
 
 		// If no paths have been found, register the related elements as 'unconnectable' and return.
 		//
@@ -715,8 +716,8 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 	}
 
 	/**
-	 * This returns the list of potential {@link MetaModelPath ModelConnectionPaths} that can be used to connect
-	 * the given list of <em>rootInstances</em> to an instance of one of the given <em>containerClasses</em>.
+	 * This returns the list of potential {@link MetaModelPath ModelConnectionPaths} that can be used to connect the
+	 * given list of <em>rootInstances</em> to an instance of one of the given <em>containerClasses</em>.
 	 *
 	 * @param rootInstances
 	 *            A list of {@link EObjectWrapper elements} to connect.
@@ -726,8 +727,8 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 	 *            <em>Note:</em> If the optional is not present, any EClass will be considered a valid target.
 	 * @param classToConnect
 	 *            The {@link EClass} of the <em>rootInstances</em> to be connected.
-	 * @return The list of {@link MetaModelPath ModelConnectionPaths} that can be used to connect the given list
-	 *         of <em>rootInstances</em> to instances of one of the given <em>containerClasses</em>.
+	 * @return The list of {@link MetaModelPath ModelConnectionPaths} that can be used to connect the given list of
+	 *         <em>rootInstances</em> to instances of one of the given <em>containerClasses</em>.
 	 */
 	private List<MetaModelPath> getModelConnectionPathsToConsider(final List<EObjectWrapper> rootInstances,
 			final Optional<Set<EClass>> containerClasses, final EClass classToConnect) {
@@ -748,7 +749,8 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 
 		// Reduce the found paths to those that provide the necessary capacity.
 		//
-		pathsToConsider = MetaModelPath.findPathsWithMinimumCapacity(pathsToConsider, null, rootInstances.size());
+		pathsToConsider = this.targetSectionRegistry.getEClassConnectionPathFactory()
+				.findPathsWithMinimumCapacity(pathsToConsider, null, rootInstances.size());
 
 		// Remove those paths that would lead to cyclic containments
 		//
@@ -884,9 +886,9 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 	 * Based on the given <em>connectionChoices</em>, join the given list of <em>rootInstances</em> with other objects
 	 * of the target model.
 	 * <p />
-	 * If there are multiple possible connection choices (either multiple {@link MetaModelPath connection paths}
-	 * and/or multiple {@link EObjectWrapper container instances}, this will select one of the possibilities by using
-	 * the appropriate {@link #ambiguityResolvingStrategy}.
+	 * If there are multiple possible connection choices (either multiple {@link MetaModelPath connection paths} and/or
+	 * multiple {@link EObjectWrapper container instances}, this will select one of the possibilities by using the
+	 * appropriate {@link #ambiguityResolvingStrategy}.
 	 *
 	 * @param rootInstances
 	 *            A list of {@link EObjectWrapper elements} to connect (created based on the given
@@ -920,8 +922,8 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 
 			// The set of connection choices that provide exactly as many container elements as root elements
 			//
-			Map<MetaModelPath, List<EObjectWrapper>> limitedConnectionChoices = connectionChoices.entrySet()
-					.stream().filter(e -> e.getValue().size() == containerInstances.size())
+			Map<MetaModelPath, List<EObjectWrapper>> limitedConnectionChoices = connectionChoices.entrySet().stream()
+					.filter(e -> e.getValue().size() == containerInstances.size())
 					.collect(Collectors.toMap(Entry::getKey, Entry::getValue));
 
 			if (limitedConnectionChoices.isEmpty()) {
@@ -1081,8 +1083,8 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 
 	/**
 	 * Based on the given map of <em>connectionChoices</em>, selects exactly one possible connection (consisting of a
-	 * {@link MetaModelPath} and a {@link EObjectWrapper container instance} that should be used to join the given
-	 * list of <em>rootInstances</em>.
+	 * {@link MetaModelPath} and a {@link EObjectWrapper container instance} that should be used to join the given list
+	 * of <em>rootInstances</em>.
 	 *
 	 * @param rootInstances
 	 *            A list of {@link EObjectWrapper elements} to join.
@@ -1138,9 +1140,8 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 					// If there is only one possible container instance, we only need to let the user choose the
 					// connection path
 					//
-					List<MetaModelPath> resolvedPaths = this.ambiguityResolvingStrategy
-							.joiningSelectConnectionPath(new ArrayList<>(connectionChoices.keySet()),
-									mappingGroup.getTargetSection());
+					List<MetaModelPath> resolvedPaths = this.ambiguityResolvingStrategy.joiningSelectConnectionPath(
+							new ArrayList<>(connectionChoices.keySet()), mappingGroup.getTargetSection());
 					resolved = resolvedPaths.stream()
 							.collect(Collectors.toMap(Function.identity(), connectionChoices::get));
 					selectedConnectionPath = resolvedPaths.get(0);
@@ -1181,17 +1182,16 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 	}
 
 	/**
-	 * For each of the given {@link ContainerSelector ContainerSelectors}, determines the list of
-	 * {@link MetaModelPath ModelConnectionPaths} that can be used to connect instances of the given
-	 * {@link EClass} to instances of the {@link ContainerSelector#getTargetClass() targetClass} of the
-	 * ContainerSelector.
+	 * For each of the given {@link ContainerSelector ContainerSelectors}, determines the list of {@link MetaModelPath
+	 * ModelConnectionPaths} that can be used to connect instances of the given {@link EClass} to instances of the
+	 * {@link ContainerSelector#getTargetClass() targetClass} of the ContainerSelector.
 	 * <p />
 	 * Note: Those ContainerSelectors for that there is no possible ModelConnectionPath are not represented in the
 	 * returned Map. Put another way, each of the values of the returned map will contain at least one
 	 * ModelConnectionPath.
 	 * <p />
-	 * Note: Only direct {@link MetaModelPath connection paths} (with a length of '0') are considered because the
-	 * user specified a {@link ContainerSelector}.
+	 * Note: Only direct {@link MetaModelPath connection paths} (with a length of '0') are considered because the user
+	 * specified a {@link ContainerSelector}.
 	 *
 	 * @param containerSelectors
 	 *            The list of {@link ContainerSelector ContainerSelectors} to evaluate.

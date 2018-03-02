@@ -218,6 +218,27 @@ public class EClassConnectionInformationRegistry {
 	}
 
 	/**
+	 * Retrieve all {@link EClass EClasses} that define/hold the given {@link EReference}.
+	 * <p />
+	 * Note: This will return the EClass defining the given EReference as well as all EClasses inheriting from this
+	 * EClass.
+	 *
+	 * @param reference
+	 *            The reference for that the defining/holding classes shall be retrieved
+	 * @return the classes
+	 */
+	public Set<EClass> getAllDefiningClassesForReference(final EReference reference) {
+
+		Set<EClass> referenceSources = new LinkedHashSet<>();
+
+		referenceSources.add(reference.getEContainingClass());
+		referenceSources.addAll(this.getAllSubClasses(reference.getEContainingClass()));
+
+		return referenceSources;
+
+	}
+
+	/**
 	 * Clear the registry.
 	 *
 	 */

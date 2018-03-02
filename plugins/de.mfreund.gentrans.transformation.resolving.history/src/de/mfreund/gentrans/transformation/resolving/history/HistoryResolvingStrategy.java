@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 
+import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathSegment;
 import de.mfreund.gentrans.transformation.connecting.MetaModelPath;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
@@ -509,8 +510,8 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	 * used during the 'old' transformation for joining the given '<em>section</em>'.
 	 */
 	@Override
-	public List<MetaModelPath> joiningSelectConnectionPath(List<MetaModelPath> choices,
-			TargetSection section) throws AmbiguityResolvingException {
+	public List<MetaModelPath> joiningSelectConnectionPath(List<MetaModelPath> choices, TargetSection section)
+			throws AmbiguityResolvingException {
 
 		/*
 		 * First, we need to check if we can find a match for the given 'section'.
@@ -554,22 +555,16 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 			 * 'instantiatedElement'.
 			 */
 			EObject currentElement = instantiatedElement;
-			Iterator<EObject> pathElementIterator = modelConnectionPath.getPathElements().iterator();
+			Iterator<EClassConnectionPathSegment> pathElementIterator = modelConnectionPath.getPathElements()
+					.iterator();
 			while (pathElementIterator.hasNext()) {
-				EObject pathElement = pathElementIterator.next();
-				if (pathElement instanceof EClass) {
-					if (!currentElement.eClass().equals(pathElement)) {
-						usedPath = null;
-						break;
-					}
-				} else if (pathElement instanceof EReference) {
-					if (!currentElement.eContainingFeature().equals(pathElement)) {
-						usedPath = null;
-						break;
-					} else {
-						currentElement = currentElement.eContainer();
-					}
+				EClassConnectionPathSegment pathElement = pathElementIterator.next();
+				if (!currentElement.eClass().equals(pathElement.getTargetClass())
+						|| !currentElement.eContainingFeature().equals(pathElement.getReference())) {
+					usedPath = null;
+					break;
 				}
+				currentElement = currentElement.eContainer();
 			}
 			// we have found our path
 			if (usedPath != null) {
@@ -577,7 +572,9 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 			}
 		}
 
-		if (usedPath == null) {
+		if (usedPath == null)
+
+		{
 			return super.joiningSelectConnectionPath(choices, section);
 		} else {
 			this.printMessage(usedPath.toString(), HistoryResolvingStrategy.historyDecisionPrefix);
@@ -807,22 +804,16 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 			 * 'instantiatedElement'.
 			 */
 			EObject currentElement = oldSectionInstances.get(0);
-			Iterator<EObject> pathElementIterator = modelConnectionPath.getPathElements().iterator();
+			Iterator<EClassConnectionPathSegment> pathElementIterator = modelConnectionPath.getPathElements()
+					.iterator();
 			while (pathElementIterator.hasNext()) {
-				EObject pathElement = pathElementIterator.next();
-				if (pathElement instanceof EClass) {
-					if (!currentElement.eClass().equals(pathElement)) {
-						usedPath = null;
-						break;
-					}
-				} else if (pathElement instanceof EReference) {
-					if (!currentElement.eContainingFeature().equals(pathElement)) {
-						usedPath = null;
-						break;
-					} else {
-						currentElement = currentElement.eContainer();
-					}
+				EClassConnectionPathSegment pathElement = pathElementIterator.next();
+				if (!currentElement.eClass().equals(pathElement.getTargetClass())
+						|| !currentElement.eContainingFeature().equals(pathElement.getReference())) {
+					usedPath = null;
+					break;
 				}
+				currentElement = currentElement.eContainer();
 			}
 			// we have found our path
 			if (usedPath != null) {

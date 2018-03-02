@@ -1,6 +1,7 @@
 package de.mfreund.gentrans.transformation.connecting;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.ListIterator;
 
 import org.eclipse.emf.common.util.EList;
@@ -27,7 +28,7 @@ public class MetaModelPath implements IEClassConnectionPathDescriptor {
 	 * containment hierarchy). These are connected either by one {@link EReference} (containment) or pairs of
 	 * EReferences and EClasses.
 	 */
-	private LinkedList<EObject> pathElements;
+	private LinkedList<EClassConnectionPathSegment> pathElements;
 
 	/**
 	 * Private Constructor to be used when spawning new Paths during path search. Clones the path and appends new
@@ -44,14 +45,9 @@ public class MetaModelPath implements IEClassConnectionPathDescriptor {
 	 *            denotes a path in inverse order (bottom-up instead of top-down). In this case, the order of the
 	 *            elements will be inverted to create a regular (top-down) path.
 	 */
-	public MetaModelPath(final LinkedList<EObject> pathElements, final EObject newElement, final boolean reverse) {
+	public MetaModelPath(final List<EClassConnectionPathSegment> pathElements) {
 
-		this.pathElements = new LinkedList<>();
-		this.pathElements.addAll(pathElements);
-		this.pathElements.add(newElement);
-		if (reverse) {
-			this.pathElements = this.getInvertedPathElementList();
-		}
+		this.pathElements = new LinkedList<>(pathElements);
 	}
 
 	/**
@@ -59,7 +55,7 @@ public class MetaModelPath implements IEClassConnectionPathDescriptor {
 	 *
 	 * @return The elements forming this path.
 	 */
-	public LinkedList<EObject> getPathElements() {
+	public LinkedList<EClassConnectionPathSegment> getPathElements() {
 
 		return this.pathElements;
 	}
@@ -97,75 +93,51 @@ public class MetaModelPath implements IEClassConnectionPathDescriptor {
 	 */
 	public int getCapacity(final EObject parentInstance) {
 
-		// gets toggled every loop, to help us separate refs from types
-		boolean use = false;
-
 		EObject instance = parentInstance;
 		int max = 1;
 
 		// iterate downward in the containment hierarchy starting from the root element of this path
 
-		final ListIterator<EObject> it = this.pathElements.listIterator(this.pathElements.size());
-		while (it.hasPrevious()) {
+		final ListIterator<EClassConnectionPathSegment> it = this.pathElements.listIterator();
+		while (it.hasNext()) {
 
 			// the current parent element to connect 'targetInstance'
-			final EObject e = it.previous();
+			final EClassConnectionPathSegment e = it.next();
 
 			if (max < 1) {
 				break;
 			}
 
-			if (use) {
+			// every second element in a path sequence is a reference, we only need those
+			final EReference ref = e.getReference();
+			if (instance != null) {
 
-				// every second element in a path sequence is a reference, we only need those
-				final EReference ref = (EReference) e;
-				if (instance != null) {
-					final Object targets = instance.eGet(ref);
+				final Object targets = instance.eGet(ref);
 
-					if (targets != null) {
-						if (ref.getUpperBound() == 1) {
-							instance = (EObject) targets;
-						} else if (ref.getUpperBound() > 1) {
-							@SuppressWarnings("unchecked")
-							final EList<EObject> targetsL = (EList<EObject>) targets;
-							instance = null;
-							max = max * (ref.getUpperBound() - targetsL.size());
-						} else if (ref.getUpperBound() < 0) {
-							return -1;
-						} else { // can only be 0
-							return 0;
-						}
-					} else {
+				if (targets != null) {
+					if (ref.getUpperBound() == 1) {
+						instance = (EObject) targets;
+					} else if (ref.getUpperBound() > 1) {
+						@SuppressWarnings("unchecked")
+						final EList<EObject> targetsL = (EList<EObject>) targets;
 						instance = null;
-						max = max * ref.getUpperBound();
+						max = max * (ref.getUpperBound() - targetsL.size());
+					} else if (ref.getUpperBound() < 0) {
+						return -1;
+					} else { // can only be 0
+						return 0;
 					}
 				} else {
+					instance = null;
 					max = max * ref.getUpperBound();
 				}
+			} else {
+				max = max * ref.getUpperBound();
 			}
-			use = !use;// toggle use bit
 		}
 
 		return max;
 
-	}
-
-	/**
-	 * This returns the inverted list of path elements (top-down instead of bottom-up).
-	 *
-	 * @return The inverted list of path elements.
-	 */
-	private LinkedList<EObject> getInvertedPathElementList() {
-
-		final LinkedList<EObject> inverted = new LinkedList<>();
-		final ListIterator<EObject> it = this.pathElements.listIterator(this.pathElements.size());
-
-		while (it.hasPrevious()) {
-			inverted.add(it.previous());
-
-		}
-
-		return inverted;
 	}
 
 	@Override
@@ -184,7 +156,7 @@ public class MetaModelPath implements IEClassConnectionPathDescriptor {
 	 */
 	public boolean leadsToRootType(final EClass root) {
 
-		return !this.pathElements.isEmpty() && ((EClass) this.pathElements.getLast()).equals(root);
+		return this.getStartingClass().equals(root);
 	}
 
 	@Override
@@ -192,24 +164,17 @@ public class MetaModelPath implements IEClassConnectionPathDescriptor {
 
 		StringBuilder stringBuilder = new StringBuilder();
 
-		final ListIterator<EObject> it = this.pathElements.listIterator(this.pathElements.size());
+		final ListIterator<EClassConnectionPathSegment> it = this.pathElements.listIterator();
 
-		while (it.hasPrevious()) {
+		stringBuilder.append(this.getStartingClass().getName());
 
-			final EObject prev = it.previous();
-			if (prev instanceof EClass) {
+		while (it.hasNext()) {
 
-				stringBuilder.append(((EClass) prev).getName());
+			final EClassConnectionPathSegment next = it.next();
 
-			} else if (prev instanceof EReference) {
+			stringBuilder.append("...").append(next.getReference().getName()).append("...");
 
-				// RegEx copied from:
-				// https://stackoverflow.com/questions/1097901/regular-expression-split-string-by-capital-letter-but-ignore-tla
-				stringBuilder.append("...")
-						.append(((EReference) prev).getName()
-								.replaceAll("((?<=\\p{Ll})\\p{Lu}|\\p{Lu}(?=\\p{Ll}))", " $1").toLowerCase().trim())
-						.append("...");
-			}
+			stringBuilder.append(next.getTargetClass().getName());
 		}
 
 		return stringBuilder.toString();
@@ -218,13 +183,13 @@ public class MetaModelPath implements IEClassConnectionPathDescriptor {
 	@Override
 	public EClass getStartingClass() {
 
-		return (EClass) this.pathElements.getLast();
+		return this.pathElements.getFirst().getStartingClass();
 	}
 
 	@Override
 	public EClass getTargetClass() {
 
-		return (EClass) this.pathElements.getFirst();
+		return this.pathElements.getLast().getTargetClass();
 	}
 
 	@Override

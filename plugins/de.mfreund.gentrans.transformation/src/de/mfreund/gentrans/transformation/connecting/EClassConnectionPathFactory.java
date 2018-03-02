@@ -5,6 +5,8 @@ package de.mfreund.gentrans.transformation.connecting;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -100,7 +102,11 @@ public class EClassConnectionPathFactory {
 			if (next.getLeft().equals(elementClass) && !next.getRight().isEmpty()) {
 
 				// add copy of path to possiblePaths
-				final MetaModelPath newSelf = new MetaModelPath(next.getRight(), elementClass, true);
+				List<EObject> pathElements = new ArrayList<>();
+				pathElements.addAll(next.getRight());
+				pathElements.add(elementClass);
+				boolean reverse = true;
+				final MetaModelPath newSelf = this.constructPath(pathElements, reverse);
 
 				// save the determined connection path in the TargetSectionRegistry for later use
 				foundPaths.add(newSelf);
@@ -156,7 +162,8 @@ public class EClassConnectionPathFactory {
 
 		pathStack.add(new Pair<>(pathStartClass, new LinkedList<EObject>()));
 
-		while (!pathStack.isEmpty() && !registry.isCanceled()) {
+		while (!pathStack.isEmpty()) {
+
 			final Pair<EClass, LinkedList<EObject>> next = pathStack.iterator().next();
 			pathStack.remove(next);
 
@@ -164,7 +171,13 @@ public class EClassConnectionPathFactory {
 			if (!registry.getTargetClassInstances(next.getLeft()).isEmpty() && !next.getRight().isEmpty()) {
 
 				// add copy of path to possiblePaths
-				final MetaModelPath newSelf = new MetaModelPath(next.getRight(), next.getLeft(), false);
+				List<EObject> pathElements = new ArrayList<>();
+				pathElements.addAll(next.getRight());
+				pathElements.add(next.getLeft());
+				Collections.reverse(pathElements);
+				boolean reverse = false;
+
+				final MetaModelPath newSelf = this.constructPath(pathElements, reverse);
 
 				// save the determined connection path in the TargetSectionRegistry for later use
 				paths.add(newSelf); // first class
@@ -199,6 +212,26 @@ public class EClassConnectionPathFactory {
 
 		return paths;
 
+	}
+
+	/**
+	 *
+	 *
+	 * ${tags}
+	 */
+	private MetaModelPath constructPath(List<EObject> pathElements, boolean reverse) {
+
+		List<EClassConnectionPathSegment> segments = new ArrayList<>();
+		Iterator<EObject> it = pathElements.iterator();
+		EClass sourceClass = (EClass) it.next();
+		while (it.hasNext()) {
+			EReference reference = (EReference) it.next();
+			EClass targetClass = (EClass) it.next();
+			segments.add(new EClassConnectionPathSegment(sourceClass, reference, targetClass));
+			sourceClass = targetClass;
+		}
+		final MetaModelPath newSelf = new MetaModelPath(segments);
+		return newSelf;
 	}
 
 	/**

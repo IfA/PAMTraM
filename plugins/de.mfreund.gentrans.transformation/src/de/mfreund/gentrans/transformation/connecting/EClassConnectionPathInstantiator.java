@@ -5,7 +5,6 @@ package de.mfreund.gentrans.transformation.connecting;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -52,10 +51,7 @@ public class EClassConnectionPathInstantiator {
 	 */
 	public void instantiate(EObject rootObject, final Collection<EObject> objectsToConnect) {
 
-		List<EObject> invertedPath = (List<EObject>) this.path.getPathElements().clone();
-		Collections.reverse(invertedPath);
-
-		this.unconnectedElements = this.instantiateMissingPath(invertedPath, rootObject,
+		this.unconnectedElements = this.instantiateMissingPath(this.path.getPathElements(), rootObject,
 				new LinkedList<>(objectsToConnect));
 
 	}
@@ -65,7 +61,7 @@ public class EClassConnectionPathInstantiator {
 	 * <p>
 	 * Missing instances of objects along the path will be created.
 	 *
-	 * @param invertedPath
+	 * @param pathSegments
 	 *            A list of elements describing the path to instantiate (in inverse order which means top-down).
 	 * @param rootObject
 	 *            The {@link EObject} that shall contain the list of 'objectsToConnect' after the instantiation of the
@@ -76,24 +72,24 @@ public class EClassConnectionPathInstantiator {
 	 *          path was not large enough).
 	 */
 	@SuppressWarnings("unchecked")
-	private List<EObject> instantiateMissingPath(List<EObject> invertedPath, final EObject rootObject,
-			List<EObject> objectsToConnect) {
+	private List<EObject> instantiateMissingPath(List<EClassConnectionPathSegment> pathSegments,
+			final EObject rootObject, List<EObject> objectsToConnect) {
 
-		final LinkedList<EObject> pathCopy = new LinkedList<>();
-		pathCopy.addAll(invertedPath);
-		pathCopy.remove(0);// EClass refStart=(EClass)
+		final LinkedList<EClassConnectionPathSegment> pathCopy = new LinkedList<>();
+		pathCopy.addAll(pathSegments);
 
-		final EReference ref = (EReference) pathCopy.remove(0);
+		EClassConnectionPathSegment segment = pathCopy.remove(0);
+		final EReference ref = segment.getReference();
 		Object targetInst = rootObject.eGet(ref);
 
-		if (pathCopy.size() > 1) {
+		if (!pathCopy.isEmpty()) {
 
 			// Connect to a single-valued reference
 			//
 			if (ref.getUpperBound() == 1) {// only one target instance allowed,
 				// check if it exists
 				if (targetInst == null) {
-					final EClass classToCreate = (EClass) pathCopy.get(0);
+					final EClass classToCreate = segment.getTargetClass();
 					final EObject inst = classToCreate.getEPackage().getEFactoryInstance().create(classToCreate);
 
 					this.createdIntermediaryElements.add(inst);
@@ -120,7 +116,7 @@ public class EClassConnectionPathInstantiator {
 					targetInstL.addAll(castedList);
 				}
 
-				final EClass classToCreate = (EClass) pathCopy.get(0);
+				final EClass classToCreate = segment.getTargetClass();
 
 				while (!objectsToConnect.isEmpty()) {
 
@@ -154,7 +150,7 @@ public class EClassConnectionPathInstantiator {
 						targetInstL.addAll(castedList);
 					}
 
-					final EClass classToCreate = (EClass) pathCopy.get(0);
+					final EClass classToCreate = segment.getTargetClass();
 
 					while (!objectsToConnect.isEmpty()) {
 

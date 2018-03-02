@@ -100,7 +100,7 @@ public class EClassConnectionPathFactory {
 			if (next.getLeft().equals(elementClass) && !next.getRight().isEmpty()) {
 
 				// add copy of path to possiblePaths
-				final MetaModelPath newSelf = new MetaModelPath(next.getRight(), elementClass, registry, true);
+				final MetaModelPath newSelf = new MetaModelPath(next.getRight(), elementClass, true);
 
 				// save the determined connection path in the TargetSectionRegistry for later use
 				foundPaths.add(newSelf);
@@ -164,7 +164,7 @@ public class EClassConnectionPathFactory {
 			if (!registry.getTargetClassInstances(next.getLeft()).isEmpty() && !next.getRight().isEmpty()) {
 
 				// add copy of path to possiblePaths
-				final MetaModelPath newSelf = new MetaModelPath(next.getRight(), next.getLeft(), registry, false);
+				final MetaModelPath newSelf = new MetaModelPath(next.getRight(), next.getLeft(), false);
 
 				// save the determined connection path in the TargetSectionRegistry for later use
 				paths.add(newSelf); // first class

@@ -1,6 +1,5 @@
 package de.mfreund.gentrans.transformation.connecting;
 
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.ListIterator;
 
@@ -8,8 +7,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-
-import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 
 /**
  * Instances of this class represent a connection path (via containment references) between two {@link EObject
@@ -33,17 +30,6 @@ public class MetaModelPath {
 	private LinkedList<EObject> pathElements;
 
 	/**
-	 * The registry of created target section instances that this ModelConnectionPath is associated with. Instances of
-	 * ModelConnectionPath that are created e.g. by
-	 * {@link #findPathsFromContainerToClassToConnect(TargetSectionRegistry, EClass, EClass, int)} are added to this
-	 * registry. <br />
-	 * <br />
-	 * <b>Note:</b> If a new connection path is instantiated via {@link #instantiate(EObject, Collection)}, the newly
-	 * created EObjects (representing EClasses) will be added to this TargetSectionRegistry.
-	 */
-	private final TargetSectionRegistry targetSectionRegistry;
-
-	/**
 	 * Private Constructor to be used when spawning new Paths during path search. Clones the path and appends new
 	 * element.
 	 *
@@ -53,15 +39,13 @@ public class MetaModelPath {
 	 * @param newElement
 	 *            The new element for the connection path (an EObject that represents either an {@link EClass} or an
 	 *            {@link EReference} depending on the last element of '<em>pathElements</em>'.
-	 * @param targetSectionRegistry
-	 *            The registry of created target section instances that this ModelConnectionPath is associated with.
 	 * @param reverse
 	 *            '<em>true</em>' means that the path specified by '<em>pathElements</em>' + '<em>newElement</em>'
 	 *            denotes a path in inverse order (bottom-up instead of top-down). In this case, the order of the
 	 *            elements will be inverted to create a regular (top-down) path.
 	 */
 	public MetaModelPath(final LinkedList<EObject> pathElements, final EObject newElement,
-			final TargetSectionRegistry targetSectionRegistry, final boolean reverse) {
+			final boolean reverse) {
 
 		this.pathElements = new LinkedList<>();
 		this.pathElements.addAll(pathElements);
@@ -69,7 +53,6 @@ public class MetaModelPath {
 		if (reverse) {
 			this.pathElements = this.getInvertedPathElementList();
 		}
-		this.targetSectionRegistry = targetSectionRegistry;
 	}
 
 	/**

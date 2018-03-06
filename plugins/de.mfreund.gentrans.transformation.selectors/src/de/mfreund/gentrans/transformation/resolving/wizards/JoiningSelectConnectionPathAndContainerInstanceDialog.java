@@ -15,7 +15,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 
-import de.mfreund.gentrans.transformation.connecting.impl.ComplexEClassConnectionPath;
+import de.mfreund.gentrans.transformation.connecting.EClassConnectionPath;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import pamtram.mapping.MappingHintGroupType;
@@ -25,7 +25,7 @@ import pamtram.mapping.MappingHintGroupType;
  * @author mfreund
  */
 public class JoiningSelectConnectionPathAndContainerInstanceDialog
-		extends ClassAndInstanceSelectorDialog<ComplexEClassConnectionPath> {
+		extends ClassAndInstanceSelectorDialog<EClassConnectionPath> {
 
 	/**
 	 * The {@link MappingHintGroupType} that was responsible for instantiating the given 'sectionInstances'.
@@ -50,9 +50,9 @@ public class JoiningSelectConnectionPathAndContainerInstanceDialog
 	 *            An optional {@link SelectionListener2} that will be called when the <em>EnhanceMappingModelButton</em>
 	 *            is clicked. If no listener is given, the button will be grayed out.
 	 */
-	public JoiningSelectConnectionPathAndContainerInstanceDialog(Map<ComplexEClassConnectionPath, List<EObjectWrapper>> options,
-			MappingHintGroupType hintGroup, List<EObjectWrapper> sectionInstances,
-			Optional<SelectionListener2> enhanceMappingModelListener) {
+	public JoiningSelectConnectionPathAndContainerInstanceDialog(
+			Map<EClassConnectionPath, List<EObjectWrapper>> options, MappingHintGroupType hintGroup,
+			List<EObjectWrapper> sectionInstances, Optional<SelectionListener2> enhanceMappingModelListener) {
 
 		super("Multiple possible paths and container instances found to join elements of the target model!", options,
 				false, enhanceMappingModelListener);

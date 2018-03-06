@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import de.mfreund.gentrans.transformation.connecting.impl.CapacityCalculator;
 import de.mfreund.gentrans.transformation.connecting.impl.ComplexEClassConnectionPath;
 import de.mfreund.gentrans.transformation.connecting.impl.DirectEClassConnectionPath;
 import de.mfreund.gentrans.transformation.registries.EClassConnectionInformationRegistry;
@@ -240,11 +241,11 @@ public class EClassConnectionPathFactory {
 	/**
 	 * For the given list of {@link ComplexEClassConnectionPath ModelConnectionPaths}, this method returns the subset of
 	 * the paths that are able to connect at least as many elements to the given '<em>startInstance</em>' as denoted by
-	 * the given '<em>minimumCapacity</em>'. Therefore, {@link #getCapacity(EObject)} is consulted for every possible
-	 * path.
+	 * the given '<em>minimumCapacity</em>'. Therefore, {@link #getActualCapacity(EObject)} is consulted for every
+	 * possible path.
 	 * <p />
 	 * <b>Note:</b> If 'startInstance' is <em>null</em>, the 'theoretical' capacity of the paths will be checked (see
-	 * {@link #getCapacity(EObject)}).
+	 * {@link #getActualCapacity(EObject)}).
 	 *
 	 * @param paths
 	 *            The {@link ComplexEClassConnectionPath}s that shall be checked for minimum capacity.
@@ -266,8 +267,9 @@ public class EClassConnectionPathFactory {
 				continue;
 			}
 
-			final int capacity = p.getCapacity(startInstance);
-			if (capacity != 0 && (minimumCapacity != -1 && capacity >= minimumCapacity || capacity == -1)) {
+			final Capacity capacity = p.getActualCapacity(startInstance);
+			if (CapacityCalculator.greaterOrEqualThan(capacity, new Capacity(minimumCapacity))) {
+
 				pathsToConsider.add(p);
 			}
 		}

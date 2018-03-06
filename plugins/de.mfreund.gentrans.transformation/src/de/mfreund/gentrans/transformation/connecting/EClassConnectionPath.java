@@ -4,6 +4,7 @@
 package de.mfreund.gentrans.transformation.connecting;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 
 /**
@@ -25,8 +26,32 @@ public interface EClassConnectionPath {
 	public EClass getTargetClass();
 
 	/**
-	 * @return The length of the path (i.e. the number of intermediate EClasses).
+	 * @return The length of the path (i.e. the number of intermediate {@link EReference references}).
 	 */
 	public int getLength();
+
+	/**
+	 * Calculates the paths <em>capacity</em> (how many elements of the {@link #getTargetClass() targetClass} can be
+	 * connected to one instance of the {@link #getStartingClass() startingClass} via this path).
+	 *
+	 * @return The capacity of this path.
+	 */
+	public Capacity getTheoreticalCapacity();
+
+	/**
+	 * Calculates the paths <em>actual capacity</em> for the given {@link EObject rootElement} (how many elements of the
+	 * {@link #getTargetClass() targetClass} can be connected to the startingElement via this path).
+	 *
+	 * @param startingElement
+	 * @return The capacity of this path.
+	 */
+	public Capacity getActualCapacity(EObject startingElement);
+
+	/**
+	 * Whether following this path based on the given {@link EObject startingElement} leads to the given {@link EObject
+	 * targetElement}.
+	 */
+	@SuppressWarnings("javadoc")
+	public boolean describesConnectionBetween(EObject startingElement, EObject targetElement);
 
 }

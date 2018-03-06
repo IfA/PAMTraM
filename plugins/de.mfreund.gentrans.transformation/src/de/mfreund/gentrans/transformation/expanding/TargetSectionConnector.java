@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import de.mfreund.gentrans.transformation.CancelTransformationException;
 import de.mfreund.gentrans.transformation.UserAbortException;
 import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
+import de.mfreund.gentrans.transformation.connecting.EClassConnectionPath;
 import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathInstantiator;
 import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathRequirement;
 import de.mfreund.gentrans.transformation.connecting.IEClassConnectionPathProvider;
@@ -64,10 +65,10 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 	private static final String RESOLVE_JOINING_AMBIGUITY_STARTED = "[Ambiguity] Resolve joining ambiguity...";
 
 	/**
-	 * This list stores those {@link ComplexEClassConnectionPath ModelConnectionPaths} that have been previously selected by the user
-	 * for a given {@link MappingHintGroupType}.
+	 * This list stores those {@link ComplexEClassConnectionPath ModelConnectionPaths} that have been previously
+	 * selected by the user for a given {@link MappingHintGroupType}.
 	 */
-	private final LinkedHashMap<MappingHintGroupType, ComplexEClassConnectionPath> standardPaths;
+	private final LinkedHashMap<MappingHintGroupType, EClassConnectionPath> standardPaths;
 
 	/**
 	 * The {@link TargetSectionRegistry} that is used when finding instances to which sections can be connected.
@@ -94,9 +95,9 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 
 	/**
 	 * This keeps track of {@link TargetSectionClass TargetSectionClasses} and corresponding {@link EObjectWrapper
-	 * EObjects} for that no {@link ComplexEClassConnectionPath} could be determined. These elements are potential root elements
-	 * respectively need to be connected to a - yet to be created - root element. The key of the Map thereby denotes the
-	 * {@link EClass} that the TargetSectionClasses are associated with.
+	 * EObjects} for that no {@link ComplexEClassConnectionPath} could be determined. These elements are potential root
+	 * elements respectively need to be connected to a - yet to be created - root element. The key of the Map thereby
+	 * denotes the {@link EClass} that the TargetSectionClasses are associated with.
 	 */
 	private final Map<EClass, Map<TargetSectionClass, List<EObjectWrapper>>> unconnectableElements;
 
@@ -602,9 +603,9 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 
 					// get paths with fitting capacity
 					final int neededCapacity = unlinkeableEntry.getValue().get(tSection).size();
-					final LinkedList<ComplexEClassConnectionPath> fittingPaths = new LinkedList<>();
-					for (final ComplexEClassConnectionPath p : pathSet) {
-						int capacity = p.getCapacity(containerInstance);
+					final LinkedList<EClassConnectionPath> fittingPaths = new LinkedList<>();
+					for (final EClassConnectionPath p : pathSet) {
+						int capacity = p.getActualCapacity(containerInstance).getValue();
 						if (capacity == -1 || capacity >= neededCapacity) {
 							fittingPaths.add(p);
 						}
@@ -612,7 +613,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 
 					if (!fittingPaths.isEmpty()) {
 
-						ComplexEClassConnectionPath chosenPath = fittingPaths.get(0);
+						EClassConnectionPath chosenPath = fittingPaths.get(0);
 
 						if (fittingPaths.size() > 1) {
 							/*
@@ -620,7 +621,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 							 */
 							try {
 								this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_STARTED);
-								List<ComplexEClassConnectionPath> resolved = this.ambiguityResolvingStrategy
+								List<EClassConnectionPath> resolved = this.ambiguityResolvingStrategy
 										.joiningSelectConnectionPath(fittingPaths, (TargetSection) tSection);
 								if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
 									((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
@@ -706,8 +707,8 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 
 		// A set of ModelConnectionPaths that are possible and thus have to be considered by the selection algorithms.
 		//
-		List<ComplexEClassConnectionPath> pathsToConsider = this.getModelConnectionPathsToConsider(rootInstances, containerClasses,
-				classToConnect);
+		List<ComplexEClassConnectionPath> pathsToConsider = this.getModelConnectionPathsToConsider(rootInstances,
+				containerClasses, classToConnect);
 
 		// If no paths have been found, register the related elements as 'unconnectable' and return.
 		//
@@ -724,8 +725,8 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 
 		// Map the possible container instances to the corresponding connection paths
 		//
-		Map<ComplexEClassConnectionPath, List<EObjectWrapper>> containerInstancesByConnectionPaths = new LinkedHashMap<>();
-		for (ComplexEClassConnectionPath connectionPath : pathsToConsider) {
+		Map<EClassConnectionPath, List<EObjectWrapper>> containerInstancesByConnectionPaths = new LinkedHashMap<>();
+		for (EClassConnectionPath connectionPath : pathsToConsider) {
 			List<EObjectWrapper> containerInstancesForConnectionPath = containerInstances.isPresent()
 					? containerInstances.get().stream()
 							.filter(c -> c.getEObject().eClass().equals(connectionPath.getStartingClass()))
@@ -739,8 +740,8 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 	}
 
 	/**
-	 * This returns the list of potential {@link ComplexEClassConnectionPath ModelConnectionPaths} that can be used to connect the
-	 * given list of <em>rootInstances</em> to an instance of one of the given <em>containerClasses</em>.
+	 * This returns the list of potential {@link ComplexEClassConnectionPath ModelConnectionPaths} that can be used to
+	 * connect the given list of <em>rootInstances</em> to an instance of one of the given <em>containerClasses</em>.
 	 *
 	 * @param rootInstances
 	 *            A list of {@link EObjectWrapper elements} to connect.
@@ -750,11 +751,12 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 	 *            <em>Note:</em> If the optional is not present, any EClass will be considered a valid target.
 	 * @param classToConnect
 	 *            The {@link EClass} of the <em>rootInstances</em> to be connected.
-	 * @return The list of {@link ComplexEClassConnectionPath ModelConnectionPaths} that can be used to connect the given list of
-	 *         <em>rootInstances</em> to instances of one of the given <em>containerClasses</em>.
+	 * @return The list of {@link ComplexEClassConnectionPath ModelConnectionPaths} that can be used to connect the
+	 *         given list of <em>rootInstances</em> to instances of one of the given <em>containerClasses</em>.
 	 */
-	private List<ComplexEClassConnectionPath> getModelConnectionPathsToConsider(final List<EObjectWrapper> rootInstances,
-			final Optional<Set<EClass>> containerClasses, final EClass classToConnect) {
+	private List<ComplexEClassConnectionPath> getModelConnectionPathsToConsider(
+			final List<EObjectWrapper> rootInstances, final Optional<Set<EClass>> containerClasses,
+			final EClass classToConnect) {
 
 		List<ComplexEClassConnectionPath> pathsToConsider = new LinkedList<>();
 
@@ -780,7 +782,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 
 		// Remove those paths that would lead to cyclic containments
 		//
-		for (final ComplexEClassConnectionPath p : new LinkedList<>(pathsToConsider)) {
+		for (final EClassConnectionPath p : new LinkedList<>(pathsToConsider)) {
 
 			List<EObject> possibleContainerInstances = this.targetSectionRegistry
 					.getTargetClassInstances(pathsToConsider.iterator().next().getStartingClass()).parallelStream()
@@ -880,9 +882,9 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 
 		// Map the possible container instances to the corresponding connection paths
 		//
-		Map<ComplexEClassConnectionPath, List<EObjectWrapper>> containerInstancesByConnectionPaths = new LinkedHashMap<>();
+		Map<EClassConnectionPath, List<EObjectWrapper>> containerInstancesByConnectionPaths = new LinkedHashMap<>();
 		for (ContainerSelector containerSelector : connectionPathsByContainerSelector.keySet()) {
-			for (ComplexEClassConnectionPath connectionPath : connectionPathsByContainerSelector.get(containerSelector)) {
+			for (EClassConnectionPath connectionPath : connectionPathsByContainerSelector.get(containerSelector)) {
 
 				Set<EObjectWrapper> containerInstances = new LinkedHashSet<>(
 						containerInstancesByConnectionPaths.getOrDefault(connectionPath, new ArrayList<>()));
@@ -912,16 +914,16 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 	 * Based on the given <em>connectionChoices</em>, join the given list of <em>rootInstances</em> with other objects
 	 * of the target model.
 	 * <p />
-	 * If there are multiple possible connection choices (either multiple {@link ComplexEClassConnectionPath connection paths} and/or
-	 * multiple {@link EObjectWrapper container instances}, this will select one of the possibilities by using the
-	 * appropriate {@link #ambiguityResolvingStrategy}.
+	 * If there are multiple possible connection choices (either multiple {@link ComplexEClassConnectionPath connection
+	 * paths} and/or multiple {@link EObjectWrapper container instances}, this will select one of the possibilities by
+	 * using the appropriate {@link #ambiguityResolvingStrategy}.
 	 *
 	 * @param rootInstances
 	 *            A list of {@link EObjectWrapper elements} to connect (created based on the given
 	 *            <em>mappingInstance</em>).
 	 * @param connectionChoices
-	 *            A map representing the possible connection choices (each consisting of a {@link ComplexEClassConnectionPath
-	 *            connection path} and a {@link EObjectWrapper container instance}).
+	 *            A map representing the possible connection choices (each consisting of a
+	 *            {@link ComplexEClassConnectionPath connection path} and a {@link EObjectWrapper container instance}).
 	 * @param mappingGroup
 	 *            The {@link MappingHintGroupType} that is used.
 	 *
@@ -929,7 +931,8 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 	 *         <em>rootInstances</em> or an empty list).
 	 */
 	private List<EObjectWrapper> selectAndInstantiateConnections(final List<EObjectWrapper> rootInstances,
-			Map<ComplexEClassConnectionPath, List<EObjectWrapper>> connectionChoices, final MappingHintGroupType mappingGroup) {
+			Map<EClassConnectionPath, List<EObjectWrapper>> connectionChoices,
+			final MappingHintGroupType mappingGroup) {
 
 		// The list of Connections that will get instantiated in the end
 		//
@@ -948,8 +951,8 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 
 			// The set of connection choices that provide exactly as many container elements as root elements
 			//
-			Map<ComplexEClassConnectionPath, List<EObjectWrapper>> limitedConnectionChoices = connectionChoices.entrySet().stream()
-					.filter(e -> e.getValue().size() == containerInstances.size())
+			Map<EClassConnectionPath, List<EObjectWrapper>> limitedConnectionChoices = connectionChoices.entrySet()
+					.stream().filter(e -> e.getValue().size() == containerInstances.size())
 					.collect(Collectors.toMap(Entry::getKey, Entry::getValue));
 
 			if (limitedConnectionChoices.isEmpty()) {
@@ -998,7 +1001,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 	 * @return The {@link Connection} that should be used to join the given list of <em>rootInstances</em>.
 	 */
 	private Connection getConnectionToInstantiate(final List<EObjectWrapper> rootInstances,
-			final ComplexEClassConnectionPath connectionPath, final EObjectWrapper containerInstance,
+			final EClassConnectionPath connectionPath, final EObjectWrapper containerInstance,
 			final MappingHintGroupType mappingGroup) {
 
 		Connection connectionToInstantiate = new Connection(containerInstance, connectionPath, rootInstances);
@@ -1024,7 +1027,8 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 	 * @param rootInstances
 	 *            A list of {@link EObjectWrapper elements} to join.
 	 * @param connectionPaths
-	 *            The list of possible {@link ComplexEClassConnectionPath ModelConnectionPaths} to use for the connection.
+	 *            The list of possible {@link ComplexEClassConnectionPath ModelConnectionPaths} to use for the
+	 *            connection.
 	 * @param containerInstance
 	 *            The {@link EObjectWrapper container instance} for the connection.
 	 * @param mappingGroup
@@ -1032,18 +1036,18 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 	 * @return The {@link Connection} that should be used to join the given list of <em>rootInstances</em>.
 	 */
 	private Connection getConnectionToInstantiate(final List<EObjectWrapper> rootInstances,
-			List<ComplexEClassConnectionPath> connectionPaths, EObjectWrapper containerInstance,
+			List<EClassConnectionPath> connectionPaths, EObjectWrapper containerInstance,
 			final MappingHintGroupType mappingGroup) {
 
 		// If there is already a 'standardPath' for the given 'mappingGroup', we reuse this standard path
 		//
-		ComplexEClassConnectionPath standardPath = this.standardPaths.getOrDefault(mappingGroup, null);
+		EClassConnectionPath standardPath = this.standardPaths.getOrDefault(mappingGroup, null);
 		if (standardPath != null && connectionPaths.contains(standardPath)) {
 
 			return this.getConnectionToInstantiate(rootInstances, standardPath, containerInstance, mappingGroup);
 		}
 
-		Map<ComplexEClassConnectionPath, List<EObjectWrapper>> connectionChoices = connectionPaths.stream()
+		Map<EClassConnectionPath, List<EObjectWrapper>> connectionChoices = connectionPaths.stream()
 				.collect(Collectors.toMap(Function.identity(), c -> Arrays.asList(containerInstance)));
 
 		return this.getConnectionToInstantiate(rootInstances, connectionChoices, mappingGroup);
@@ -1066,7 +1070,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 	 * @return The {@link Connection} that should be used to join the given list of <em>rootInstances</em>.
 	 */
 	private Connection getConnectionToInstantiate(final List<EObjectWrapper> rootInstances,
-			ComplexEClassConnectionPath connectionPath, List<EObjectWrapper> containerInstances,
+			EClassConnectionPath connectionPath, List<EObjectWrapper> containerInstances,
 			final MappingHintGroupType mappingGroup) {
 
 		EObjectWrapper selectedContainerInstance;
@@ -1109,24 +1113,25 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 
 	/**
 	 * Based on the given map of <em>connectionChoices</em>, selects exactly one possible connection (consisting of a
-	 * {@link ComplexEClassConnectionPath} and a {@link EObjectWrapper container instance} that should be used to join the given list
-	 * of <em>rootInstances</em>.
+	 * {@link ComplexEClassConnectionPath} and a {@link EObjectWrapper container instance} that should be used to join
+	 * the given list of <em>rootInstances</em>.
 	 *
 	 * @param rootInstances
 	 *            A list of {@link EObjectWrapper elements} to join.
 	 * @param connectionChoices
-	 *            A map representing the possible connection choices (each consisting of a {@link ComplexEClassConnectionPath
-	 *            connection path} and a {@link EObjectWrapper container instance}).
+	 *            A map representing the possible connection choices (each consisting of a
+	 *            {@link ComplexEClassConnectionPath connection path} and a {@link EObjectWrapper container instance}).
 	 * @param mappingGroup
 	 *            The {@link MappingHintGroupType} that is used.
 	 * @return The {@link Connection} that should be used to join the given list of <em>rootInstances</em>.
 	 */
 	private Connection getConnectionToInstantiate(final List<EObjectWrapper> rootInstances,
-			Map<ComplexEClassConnectionPath, List<EObjectWrapper>> connectionChoices, final MappingHintGroupType mappingGroup) {
+			Map<EClassConnectionPath, List<EObjectWrapper>> connectionChoices,
+			final MappingHintGroupType mappingGroup) {
 
 		// If there is already a 'standardPath' for the given 'mappingGroup', we reuse this standard path
 		//
-		ComplexEClassConnectionPath standardPath = this.standardPaths.getOrDefault(mappingGroup, null);
+		EClassConnectionPath standardPath = this.standardPaths.getOrDefault(mappingGroup, null);
 		if (standardPath != null && connectionChoices.containsKey(standardPath) && connectionChoices.size() > 1) {
 
 			return this.getConnectionToInstantiate(rootInstances, standardPath, connectionChoices.get(standardPath),
@@ -1138,7 +1143,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 
 			// There is only one possible connection path and container instance
 			//
-			ComplexEClassConnectionPath connectionPath = connectionChoices.keySet().iterator().next();
+			EClassConnectionPath connectionPath = connectionChoices.keySet().iterator().next();
 			return this.getConnectionToInstantiate(rootInstances, connectionPath,
 					connectionChoices.get(connectionPath).iterator().next(), mappingGroup);
 
@@ -1147,13 +1152,13 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 			// If there is only one possible connection path, we only need to let the user choose the
 			// container instance
 			//
-			ComplexEClassConnectionPath connectionPath = connectionChoices.keySet().iterator().next();
+			EClassConnectionPath connectionPath = connectionChoices.keySet().iterator().next();
 			return this.getConnectionToInstantiate(rootInstances, connectionPath, connectionChoices.get(connectionPath),
 					mappingGroup);
 
 		} else {
 
-			ComplexEClassConnectionPath selectedConnectionPath;
+			EClassConnectionPath selectedConnectionPath;
 			EObjectWrapper selectedContainerInstance;
 
 			// There are multiple possible connection paths and/or container instances
@@ -1161,13 +1166,14 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 			try {
 				this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_STARTED);
 
-				Map<ComplexEClassConnectionPath, List<EObjectWrapper>> resolved;
+				Map<EClassConnectionPath, List<EObjectWrapper>> resolved;
 				if (connectionChoices.values().stream().flatMap(List::stream).collect(Collectors.toSet()).size() == 1) {
 					// If there is only one possible container instance, we only need to let the user choose the
 					// connection path
 					//
-					List<ComplexEClassConnectionPath> resolvedPaths = this.ambiguityResolvingStrategy.joiningSelectConnectionPath(
-							new ArrayList<>(connectionChoices.keySet()), mappingGroup.getTargetSection());
+					List<EClassConnectionPath> resolvedPaths = this.ambiguityResolvingStrategy
+							.joiningSelectConnectionPath(new ArrayList<>(connectionChoices.keySet()),
+									mappingGroup.getTargetSection());
 					resolved = resolvedPaths.stream()
 							.collect(Collectors.toMap(Function.identity(), connectionChoices::get));
 					selectedConnectionPath = resolvedPaths.get(0);
@@ -1208,16 +1214,17 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 	}
 
 	/**
-	 * For each of the given {@link ContainerSelector ContainerSelectors}, determines the list of {@link ComplexEClassConnectionPath
-	 * ModelConnectionPaths} that can be used to connect instances of the given {@link EClass} to instances of the
-	 * {@link ContainerSelector#getTargetClass() targetClass} of the ContainerSelector.
+	 * For each of the given {@link ContainerSelector ContainerSelectors}, determines the list of
+	 * {@link ComplexEClassConnectionPath ModelConnectionPaths} that can be used to connect instances of the given
+	 * {@link EClass} to instances of the {@link ContainerSelector#getTargetClass() targetClass} of the
+	 * ContainerSelector.
 	 * <p />
 	 * Note: Those ContainerSelectors for that there is no possible ModelConnectionPath are not represented in the
 	 * returned Map. Put another way, each of the values of the returned map will contain at least one
 	 * ModelConnectionPath.
 	 * <p />
-	 * Note: Only direct {@link ComplexEClassConnectionPath connection paths} (with a length of '0') are considered because the user
-	 * specified a {@link ContainerSelector}.
+	 * Note: Only direct {@link ComplexEClassConnectionPath connection paths} (with a length of '0') are considered
+	 * because the user specified a {@link ContainerSelector}.
 	 *
 	 * @param containerSelectors
 	 *            The list of {@link ContainerSelector ContainerSelectors} to evaluate.
@@ -1316,9 +1323,9 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 		protected EObjectWrapper containerInstance;
 
 		/**
-		 * The {@link ComplexEClassConnectionPath connection path} to be instantiated.
+		 * The {@link EClassConnectionPath connection path} to be instantiated.
 		 */
-		protected ComplexEClassConnectionPath connectionPath;
+		protected EClassConnectionPath connectionPath;
 
 		/**
 		 * The {@link EObjectWrapper model element(s)} to be connected to the {@link #containerInstance} via the
@@ -1332,7 +1339,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 		 * @param containerInstance
 		 * @param connectionPath
 		 */
-		public Connection(EObjectWrapper containerInstance, ComplexEClassConnectionPath connectionPath) {
+		public Connection(EObjectWrapper containerInstance, EClassConnectionPath connectionPath) {
 
 			this(containerInstance, connectionPath, new ArrayList<>());
 		}
@@ -1344,7 +1351,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 		 * @param connectionPath
 		 * @param rootInstances
 		 */
-		public Connection(EObjectWrapper containerInstance, ComplexEClassConnectionPath connectionPath,
+		public Connection(EObjectWrapper containerInstance, EClassConnectionPath connectionPath,
 				Collection<EObjectWrapper> rootInstances) {
 
 			this.containerInstance = containerInstance;
@@ -1363,7 +1370,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 		/**
 		 * @return the {@link #connectionPath}
 		 */
-		public ComplexEClassConnectionPath getConnectionPath() {
+		public EClassConnectionPath getConnectionPath() {
 
 			return this.connectionPath;
 		}
@@ -1387,7 +1394,8 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 		}
 
 		/**
-		 * Instantiates this connection by invoking {@link ComplexEClassConnectionPath#instantiate(EObject, Collection)}.
+		 * Instantiates this connection by invoking
+		 * {@link ComplexEClassConnectionPath#instantiate(EObject, Collection)}.
 		 *
 		 * @return A list of elements (a subset of the {@link #rootInstances}) that could not be connected (possibly
 		 *         because the capacity of the path was not large enough).

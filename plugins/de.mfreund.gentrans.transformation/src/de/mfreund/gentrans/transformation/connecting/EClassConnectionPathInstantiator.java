@@ -4,6 +4,7 @@
 package de.mfreund.gentrans.transformation.connecting;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -23,17 +24,29 @@ import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
  */
 public class EClassConnectionPathInstantiator {
 
-	private final ComplexEClassConnectionPath path;
+	private final List<DirectEClassConnectionPath> pathSegments;
 
 	private List<EObject> createdIntermediaryElements;
 
 	private List<EObject> unconnectedElements;
 
-	public EClassConnectionPathInstantiator(ComplexEClassConnectionPath pathToInstantiate) {
+	public EClassConnectionPathInstantiator(EClassConnectionPath pathToInstantiate) {
 
-		this.path = pathToInstantiate;
+		this.pathSegments = new ArrayList<>();
 		this.createdIntermediaryElements = new ArrayList<>();
 		this.unconnectedElements = new ArrayList<>();
+	}
+
+	public EClassConnectionPathInstantiator(DirectEClassConnectionPath pathToInstantiate) {
+
+		this((EClassConnectionPath) pathToInstantiate);
+		this.pathSegments.addAll(Arrays.asList(pathToInstantiate));
+	}
+
+	public EClassConnectionPathInstantiator(ComplexEClassConnectionPath pathToInstantiate) {
+
+		this((EClassConnectionPath) pathToInstantiate);
+		this.pathSegments.addAll(pathToInstantiate.getPathSegments());
 	}
 
 	/**
@@ -53,7 +66,7 @@ public class EClassConnectionPathInstantiator {
 	 */
 	public void instantiate(EObject rootObject, final Collection<EObject> objectsToConnect) {
 
-		this.unconnectedElements = this.instantiateMissingPath(this.path.getPathSegments(), rootObject,
+		this.unconnectedElements = this.instantiateMissingPath(this.pathSegments, rootObject,
 				new LinkedList<>(objectsToConnect));
 
 	}

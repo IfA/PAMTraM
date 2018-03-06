@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -32,7 +31,6 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 
 import de.mfreund.gentrans.transformation.connecting.EClassConnectionPath;
-import de.mfreund.gentrans.transformation.connecting.impl.DirectEClassConnectionPath;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.resolving.ComposedAmbiguityResolvingStrategy;
@@ -551,22 +549,19 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 			usedPath = modelConnectionPath;
 
 			/*
-			 * Iterate over every element of the path and check if it was used to connect the given
-			 * 'instantiatedElement'.
+			 * Check if the path was used to connect the given 'instantiatedElement'.
 			 */
 			EObject currentElement = instantiatedElement;
-			Iterator<DirectEClassConnectionPath> pathElementIterator = modelConnectionPath.getPathSegments().iterator();
-			while (pathElementIterator.hasNext()) {
-				DirectEClassConnectionPath pathElement = pathElementIterator.next();
-				if (!currentElement.eClass().equals(pathElement.getTargetClass())
-						|| !currentElement.eContainingFeature().equals(pathElement.getReference())) {
+			int pathLength = modelConnectionPath.getLength();
+			for (int i = 0; i < pathLength; i++) {
+				if (currentElement.eContainer() == null) {
 					usedPath = null;
 					break;
 				}
 				currentElement = currentElement.eContainer();
 			}
 			// we have found our path
-			if (usedPath != null) {
+			if (usedPath != null && usedPath.describesConnectionBetween(currentElement, instantiatedElement)) {
 				break;
 			}
 		}
@@ -799,22 +794,19 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 			usedPath = modelConnectionPath;
 
 			/*
-			 * Iterate over every element of the path and check if it was used to connect the given
-			 * 'instantiatedElement'.
+			 * Check if the path was used to connect the given 'instantiatedElement'.
 			 */
 			EObject currentElement = oldSectionInstances.get(0);
-			Iterator<EClassConnectionPath> pathElementIterator = modelConnectionPath.getPathSegments().iterator();
-			while (pathElementIterator.hasNext()) {
-				EClassConnectionPath pathElement = pathElementIterator.next();
-				if (!currentElement.eClass().equals(pathElement.getTargetClass())
-						|| !currentElement.eContainingFeature().equals(pathElement.getReference())) {
+			int pathLength = modelConnectionPath.getLength();
+			for (int i = 0; i < pathLength; i++) {
+				if (currentElement.eContainer() == null) {
 					usedPath = null;
 					break;
 				}
 				currentElement = currentElement.eContainer();
 			}
 			// we have found our path
-			if (usedPath != null) {
+			if (usedPath != null && usedPath.describesConnectionBetween(currentElement, oldSectionInstances.get(0))) {
 				usedInstance = currentElement;
 				break;
 			}

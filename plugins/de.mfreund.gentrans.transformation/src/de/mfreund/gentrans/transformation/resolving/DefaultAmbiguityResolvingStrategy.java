@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 import de.mfreund.gentrans.transformation.connecting.EClassConnectionPath;
-import de.mfreund.gentrans.transformation.connecting.impl.ComplexEClassConnectionPath;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import pamtram.mapping.InstantiableMappingHintGroup;
@@ -99,7 +98,7 @@ public class DefaultAmbiguityResolvingStrategy extends AbstractAmbiguityResolvin
 	}
 
 	@Override
-	public List<ComplexEClassConnectionPath> joiningSelectConnectionPath(List<ComplexEClassConnectionPath> choices,
+	public List<EClassConnectionPath> joiningSelectConnectionPath(List<EClassConnectionPath> choices,
 			TargetSection section) throws AmbiguityResolvingException {
 
 		if (choices == null || choices.isEmpty()) {

@@ -1,27 +1,36 @@
 package de.mfreund.gentrans.transformation.connecting.impl;
 
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 
+import de.mfreund.gentrans.transformation.connecting.Capacity;
 import de.mfreund.gentrans.transformation.connecting.EClassConnectionPath;
+import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 
 /**
- * An {@link EClassConnectionPath} that represents a complex path that is made up of (one or) multiple
- * segments each represented by a {@link DirectEClassConnectionPath}.
+ * An {@link EClassConnectionPath} that represents a complex path that is made up of (one or) multiple segments each
+ * represented by a {@link DirectEClassConnectionPath}.
  *
  * @author mfreund
  */
 public class ComplexEClassConnectionPath implements EClassConnectionPath {
 
 	private LinkedList<DirectEClassConnectionPath> pathSegments;
+
+	private Map<DirectEClassConnectionPath, Capacity> theoreticalSegmentCapacities;
+
+	// The starting EObject used during calculation of the 'actual capacity' of the path
+	private EObject startingElement;
 
 	/**
 	 * Create a new path based on a list of {@link DirectEClassConnectionPath segments}.
@@ -31,6 +40,8 @@ public class ComplexEClassConnectionPath implements EClassConnectionPath {
 	public ComplexEClassConnectionPath(List<DirectEClassConnectionPath> pathSegments) {
 
 		this.pathSegments = new LinkedList<>(pathSegments);
+		this.theoreticalSegmentCapacities = this.pathSegments.stream().collect(Collectors.toMap(Function.identity(),
+				DirectEClassConnectionPath::getTheoreticalCapacity, (v1, v2) -> v2, LinkedHashMap::new));
 	}
 
 	/**
@@ -39,61 +50,6 @@ public class ComplexEClassConnectionPath implements EClassConnectionPath {
 	public List<DirectEClassConnectionPath> getPathSegments() {
 
 		return Collections.unmodifiableList(this.pathSegments);
-	}
-
-	/**
-	 * Calculates the paths <em>actual capacity</em> for the given {@link EObject rootElement} (how many elements can be
-	 * connected to the rootElement via this path).
-	 *
-	 * @param rootElement
-	 * @return The capacity of this path ('<em>-1</em>' is returned for paths with unbounded capacity).
-	 */
-	public int getCapacity(EObject rootElement) {
-
-		EObject instance = rootElement;
-		int max = 1;
-
-		// iterate downward in the containment hierarchy starting from the root element of this path
-
-		final ListIterator<DirectEClassConnectionPath> it = this.pathSegments.listIterator();
-		while (it.hasNext()) {
-
-			// the current parent element to connect 'targetInstance'
-			final DirectEClassConnectionPath e = it.next();
-
-			if (max < 1) {
-				break;
-			}
-
-			final EReference ref = e.getReference();
-			if (instance != null) {
-
-				final Object targets = instance.eGet(ref);
-
-				if (targets != null) {
-					if (ref.getUpperBound() == 1) {
-						instance = (EObject) targets;
-					} else if (ref.getUpperBound() > 1) {
-						@SuppressWarnings("unchecked")
-						final EList<EObject> targetsL = (EList<EObject>) targets;
-						instance = null;
-						max = max * (ref.getUpperBound() - targetsL.size());
-					} else if (ref.getUpperBound() < 0) {
-						return -1;
-					} else { // can only be 0
-						return 0;
-					}
-				} else {
-					instance = null;
-					max = max * ref.getUpperBound();
-				}
-			} else {
-				max = max * ref.getUpperBound();
-			}
-		}
-
-		return max;
-
 	}
 
 	@Override
@@ -111,7 +67,88 @@ public class ComplexEClassConnectionPath implements EClassConnectionPath {
 	@Override
 	public int getLength() {
 
-		return this.pathSegments.size() - 1;
+		return this.pathSegments.stream().mapToInt(EClassConnectionPath::getLength).reduce(0, Math::addExact);
+	}
+
+	@Override
+	public Capacity getTheoreticalCapacity() {
+
+		return CapacityCalculator.addSequentialCapacities(this.theoreticalSegmentCapacities.values());
+	}
+
+	@Override
+	public Capacity getActualCapacity(EObject startingElement) {
+
+		this.startingElement = startingElement;
+
+		Capacity capacityBasedOnFirstPathSegmentCapacity = this.getActualCapacityBasedOnFirstPathSegmentCapacity();
+
+		Capacity capacityBasedOnFollowingPathSegmentCapacities = this
+				.getActualCapacityBasedOnFollowingPathSegmentCapacities();
+
+		return CapacityCalculator.addParallelCapacities(capacityBasedOnFirstPathSegmentCapacity,
+				capacityBasedOnFollowingPathSegmentCapacities);
+
+	}
+
+	private Capacity getActualCapacityBasedOnFirstPathSegmentCapacity() {
+
+		if (this.pathSegments.isEmpty()) {
+			return Capacity.ZERO;
+		}
+
+		DirectEClassConnectionPath firstPathSegment = this.pathSegments.get(0);
+
+		Capacity actualCapacityOfFirstPathSegment = firstPathSegment.getActualCapacity(this.startingElement);
+
+		Capacity theoreticalCapacityOfRemainingPathSegments = this.getSubPath(1).getTheoreticalCapacity();
+
+		return CapacityCalculator.addSequentialCapacities(actualCapacityOfFirstPathSegment,
+				theoreticalCapacityOfRemainingPathSegments);
+	}
+
+	private Capacity getActualCapacityBasedOnFollowingPathSegmentCapacities() {
+
+		List<EObject> targetElementsOfFirstPathSegment = this.getTargetElementsOfFirstPathSegment();
+
+		EClassConnectionPath remainingSubPath = this.getSubPath(1);
+
+		List<Capacity> capacitiesOfRemainingSubPath = targetElementsOfFirstPathSegment.stream()
+				.map(remainingSubPath::getActualCapacity).collect(Collectors.toList());
+
+		return CapacityCalculator.addParallelCapacities(capacitiesOfRemainingSubPath);
+
+	}
+
+	private List<EObject> getTargetElementsOfFirstPathSegment() {
+
+		DirectEClassConnectionPath firstPathSegment = this.pathSegments.get(0);
+
+		List<Object> targetElementsOfPathSegment = AgteleEcoreUtil.getStructuralFeatureValueAsList(this.startingElement,
+				firstPathSegment.getReference());
+
+		return targetElementsOfPathSegment.stream().filter(e -> e instanceof EObject).map(e -> (EObject) e)
+				.collect(Collectors.toList());
+	}
+
+	private EClassConnectionPath getSubPath(int fromSegmentInclusive) {
+
+		return this.getSubPath(fromSegmentInclusive, this.pathSegments.size());
+	}
+
+	private EClassConnectionPath getSubPath(int fromSegmentInclusive, int toSegmentExclusive) {
+
+		List<DirectEClassConnectionPath> subPathSegments = this.pathSegments.subList(fromSegmentInclusive,
+				toSegmentExclusive);
+
+		if (subPathSegments.isEmpty()) {
+			return new EmptyEClassConnectionPath();
+		} else if (subPathSegments.size() == 1) {
+			return subPathSegments.get(0);
+		} else {
+			return new ComplexEClassConnectionPath(subPathSegments);
+		}
+
 	}
 
 	/**
@@ -161,6 +198,19 @@ public class ComplexEClassConnectionPath implements EClassConnectionPath {
 		}
 
 		return stringBuilder.toString();
+	}
+
+	@Override
+	public boolean describesConnectionBetween(EObject startingElement, EObject targetElement) {
+
+		this.startingElement = startingElement;
+
+		List<EObject> targetElementsOfFirstPathSegment = this.getTargetElementsOfFirstPathSegment();
+
+		EClassConnectionPath remainingSubPath = this.getSubPath(1);
+
+		return targetElementsOfFirstPathSegment.stream()
+				.anyMatch(e -> remainingSubPath.describesConnectionBetween(e, targetElement));
 	}
 
 }

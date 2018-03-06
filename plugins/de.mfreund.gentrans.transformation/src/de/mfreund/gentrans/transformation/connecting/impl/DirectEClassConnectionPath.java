@@ -3,6 +3,8 @@
  */
 package de.mfreund.gentrans.transformation.connecting.impl;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 import org.eclipse.emf.ecore.EClass;
@@ -135,6 +137,18 @@ public class DirectEClassConnectionPath implements EClassConnectionPath {
 	public boolean describesConnectionBetween(EObject startingElement, EObject targetElement) {
 
 		return AgteleEcoreUtil.getStructuralFeatureValueAsList(startingElement, this.reference).contains(targetElement);
+	}
+
+	@Override
+	public List<EClass> getAllClasses() {
+
+		return Arrays.asList(this.startingClass, this.targetClass);
+	}
+
+	@Override
+	public List<EReference> getAllReferences() {
+
+		return Arrays.asList(this.reference);
 	}
 
 }

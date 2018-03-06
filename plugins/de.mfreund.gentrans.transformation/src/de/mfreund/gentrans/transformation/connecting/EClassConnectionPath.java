@@ -3,6 +3,8 @@
  */
 package de.mfreund.gentrans.transformation.connecting;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -54,4 +56,13 @@ public interface EClassConnectionPath {
 	@SuppressWarnings("javadoc")
 	public boolean describesConnectionBetween(EObject startingElement, EObject targetElement);
 
+	/**
+	 * @return A list of all {@link EClass EClasses} that make up this path.
+	 */
+	public List<EClass> getAllClasses();
+
+	/**
+	 * @return A list of all {@link EReference EReferences} that make up this path.
+	 */
+	public List<EReference> getAllReferences();
 }

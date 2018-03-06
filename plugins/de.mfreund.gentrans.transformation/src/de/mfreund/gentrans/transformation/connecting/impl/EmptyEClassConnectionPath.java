@@ -3,10 +3,13 @@
  */
 package de.mfreund.gentrans.transformation.connecting.impl;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 
 import de.mfreund.gentrans.transformation.connecting.Capacity;
 import de.mfreund.gentrans.transformation.connecting.EClassConnectionPath;
@@ -52,6 +55,18 @@ public class EmptyEClassConnectionPath implements EClassConnectionPath {
 	public boolean describesConnectionBetween(EObject startingElement, EObject targetElement) {
 
 		return Objects.equals(startingElement, targetElement);
+	}
+
+	@Override
+	public List<EClass> getAllClasses() {
+
+		return Collections.emptyList();
+	}
+
+	@Override
+	public List<EReference> getAllReferences() {
+
+		return Collections.emptyList();
 	}
 
 }

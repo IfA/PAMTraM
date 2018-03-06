@@ -1,5 +1,6 @@
 package de.mfreund.gentrans.transformation.connecting.impl;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -9,9 +10,11 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 
 import de.mfreund.gentrans.transformation.connecting.Capacity;
 import de.mfreund.gentrans.transformation.connecting.EClassConnectionPath;
@@ -211,6 +214,21 @@ public class ComplexEClassConnectionPath implements EClassConnectionPath {
 
 		return targetElementsOfFirstPathSegment.stream()
 				.anyMatch(e -> remainingSubPath.describesConnectionBetween(e, targetElement));
+	}
+
+	@Override
+	public List<EClass> getAllClasses() {
+
+		return Stream
+				.concat(Arrays.asList(this.getStartingClass()).stream(),
+						this.pathSegments.stream().map(DirectEClassConnectionPath::getTargetClass))
+				.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<EReference> getAllReferences() {
+
+		return this.pathSegments.stream().map(DirectEClassConnectionPath::getReference).collect(Collectors.toList());
 	}
 
 }

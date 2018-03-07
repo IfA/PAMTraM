@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.EPackage;
 
 import de.mfreund.gentrans.transformation.connecting.Capacity;
 import de.mfreund.gentrans.transformation.connecting.EClassConnectionPath;
-import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathFactory;
 import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathProvider;
 import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathRequirement;
 import de.mfreund.gentrans.transformation.connecting.Length;

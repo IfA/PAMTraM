@@ -28,12 +28,12 @@ import de.mfreund.gentrans.transformation.UserAbortException;
 import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
 import de.mfreund.gentrans.transformation.connecting.Capacity;
 import de.mfreund.gentrans.transformation.connecting.EClassConnectionPath;
-import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathInstantiator;
 import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathProvider;
 import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathRequirement;
 import de.mfreund.gentrans.transformation.connecting.Length;
 import de.mfreund.gentrans.transformation.connecting.impl.CachedEClassConnectionPathProvider;
 import de.mfreund.gentrans.transformation.connecting.impl.ComplexEClassConnectionPath;
+import de.mfreund.gentrans.transformation.connecting.impl.EClassConnectionPathInstantiatorImpl;
 import de.mfreund.gentrans.transformation.core.CancelableTransformationAsset;
 import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
@@ -645,7 +645,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 						// now instantiate path
 						List<EObject> elementsToConnect = unlinkeableEntry.getValue().get(tSection).stream()
 								.map(EObjectWrapper::getEObject).collect(Collectors.toList());
-						EClassConnectionPathInstantiator i = new EClassConnectionPathInstantiator(chosenPath);
+						EClassConnectionPathInstantiatorImpl i = new EClassConnectionPathInstantiatorImpl(chosenPath);
 						i.instantiate(containerInstance, elementsToConnect);
 						i.getCreatedIntermediaryElements().stream()
 								.forEach(this.targetSectionRegistry::addClassInstance);
@@ -1404,7 +1404,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 		 */
 		public List<EObjectWrapper> instantiate() {
 
-			EClassConnectionPathInstantiator i = new EClassConnectionPathInstantiator(this.connectionPath);
+			EClassConnectionPathInstantiatorImpl i = new EClassConnectionPathInstantiatorImpl(this.connectionPath);
 			i.instantiate(this.containerInstance.getEObject(),
 					this.rootInstances.stream().map(EObjectWrapper::getEObject).collect(Collectors.toList()));
 			i.getCreatedIntermediaryElements().stream()

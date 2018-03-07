@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 
 import de.mfreund.gentrans.transformation.connecting.EClassConnectionPath;
+import de.mfreund.gentrans.transformation.connecting.Length;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.resolving.ComposedAmbiguityResolvingStrategy;
@@ -552,8 +553,8 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 			 * Check if the path was used to connect the given 'instantiatedElement'.
 			 */
 			EObject currentElement = instantiatedElement;
-			int pathLength = modelConnectionPath.getLength().getValue();
-			for (int i = 0; i < pathLength; i++) {
+			Length pathLength = modelConnectionPath.getLength();
+			for (int i = 0; i < pathLength.getValue(); i++) {
 				if (currentElement.eContainer() == null) {
 					usedPath = null;
 					break;
@@ -797,8 +798,8 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 			 * Check if the path was used to connect the given 'instantiatedElement'.
 			 */
 			EObject currentElement = oldSectionInstances.get(0);
-			int pathLength = modelConnectionPath.getLength().getValue();
-			for (int i = 0; i < pathLength; i++) {
+			Length pathLength = modelConnectionPath.getLength();
+			for (int i = 0; i < pathLength.getValue(); i++) {
 				if (currentElement.eContainer() == null) {
 					usedPath = null;
 					break;

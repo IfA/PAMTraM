@@ -1,7 +1,7 @@
 /**
  *
  */
-package de.mfreund.gentrans.transformation.connecting;
+package de.mfreund.gentrans.transformation.connecting.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,9 +17,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
-import de.mfreund.gentrans.transformation.connecting.impl.ComplexEClassConnectionPath;
-import de.mfreund.gentrans.transformation.connecting.impl.DirectEClassConnectionPath;
-import de.mfreund.gentrans.transformation.connecting.impl.EClassConnectionPathUtil;
+import de.mfreund.gentrans.transformation.connecting.EClassConnectionPath;
+import de.mfreund.gentrans.transformation.connecting.Length;
 import de.mfreund.gentrans.transformation.registries.EClassConnectionInformationRegistry;
 
 /**

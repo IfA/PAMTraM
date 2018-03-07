@@ -5,7 +5,6 @@ package de.mfreund.gentrans.transformation.connecting.impl;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 
 import de.mfreund.gentrans.transformation.connecting.Length;
 
@@ -26,39 +25,30 @@ public class LengthCalculator {
 		return LengthCalculator.add(Arrays.asList(lengths));
 	}
 
-	public static Length add(List<Length> lengths) {
+	public static Length add(Collection<Length> lengths) {
 
 		if (LengthCalculator.containsUnboundedLength(lengths)) {
 			return Length.UNBOUNDED;
+		} else if (LengthCalculator.containsNoConnectionLength(lengths)) {
+			return Length.NO_CONNECTION;
 		} else {
-			return new Length(lengths.stream().mapToInt(Length::getValue).reduce(1, Math::multiplyExact));
+			return Length.valueOf(LengthCalculator.addValuesOfLengths(lengths));
 		}
 	}
 
 	private static boolean containsUnboundedLength(Collection<Length> lengths) {
 
-		return lengths.contains(Length.UNBOUNDED);
+		return lengths.stream().anyMatch(Length::isUnbounded);
 	}
 
-	public static boolean greaterThan(Length length1, Length length2) {
+	private static boolean containsNoConnectionLength(Collection<Length> lengths) {
 
-		if (length1.isUnbounded()) {
-			return !length2.isUnbounded();
-		} else if (length2.isUnbounded()) {
-			return false;
-		} else {
-			return length1.getValue() > length2.getValue();
-		}
+		return lengths.stream().anyMatch(Length::isNoConnection);
 	}
 
-	public static boolean greaterThanOrEqual(Length length1, Length length2) {
+	private static int addValuesOfLengths(Collection<Length> lengths) {
 
-		if (length1.isUnbounded()) {
-			return true;
-		} else if (length2.isUnbounded()) {
-			return false;
-		} else {
-			return length1.getValue() >= length2.getValue();
-		}
+		return lengths.stream().mapToInt(Length::getValue).reduce(0, Math::addExact);
 	}
+
 }

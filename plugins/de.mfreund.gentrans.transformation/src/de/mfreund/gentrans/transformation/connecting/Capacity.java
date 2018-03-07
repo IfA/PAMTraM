@@ -3,7 +3,7 @@
  */
 package de.mfreund.gentrans.transformation.connecting;
 
-import java.util.Objects;
+import java.util.Collection;
 
 import org.eclipse.emf.ecore.EReference;
 
@@ -17,47 +17,45 @@ import org.eclipse.emf.ecore.EReference;
  * @author mfreund
  */
 @SuppressWarnings("javadoc")
-public class Capacity {
+public class Capacity extends UnsignedIntegerWithUnbounded {
 
 	public static final Capacity ZERO = new Capacity(0);
 
 	public static final Capacity UNBOUNDED = new Capacity(-1);
 
-	private final int value;
+	private Capacity(int value) {
 
-	/**
-	 * Creates an instance based on a capacity value.
-	 *
-	 * @param value
-	 *            The capacity value.
-	 */
-	public Capacity(int value) {
-
-		this.value = value;
+		super(value);
 	}
 
 	/**
-	 * Creates an instance based on the upper bound of the given {@link EReference}.
-	 *
-	 * @param reference
-	 *            The EReference.
+	 * Returns a {@link Capacity} instance representing the given value.
 	 */
-	public Capacity(EReference reference) {
+	public static Capacity valueOf(int value) {
 
-		this(reference.getUpperBound());
+		if (Capacity.UNBOUNDED.getValue() == value) {
+			return Capacity.UNBOUNDED;
+		} else if (Capacity.ZERO.getValue() == value) {
+			return Capacity.ZERO;
+		} else {
+			return new Capacity(value);
+		}
 	}
 
 	/**
-	 * @return the {@link #value}
+	 * Returns a {@link Capacity} instance representing the (upper bound of) the given {@link EReference}.
 	 */
-	public int getValue() {
+	public static Capacity valueOf(EReference reference) {
 
-		return this.value;
+		return Capacity.valueOf(reference.getUpperBound());
 	}
 
-	public boolean isUnbounded() {
+	/**
+	 * Returns a {@link Capacity} instance representing the size of the given {@link Collection}.
+	 */
+	public static Capacity valueOf(Collection<?> collection) {
 
-		return Capacity.UNBOUNDED.equals(this);
+		return Capacity.valueOf(collection.size());
 	}
 
 	public boolean isZero() {
@@ -65,21 +63,9 @@ public class Capacity {
 		return Capacity.ZERO.equals(this);
 	}
 
-	@Override
-	public boolean equals(Object obj) {
+	public boolean isSufficientFor(Capacity requiredCapacity) {
 
-		return obj instanceof Capacity && ((Capacity) obj).value == this.value;
+		return this.compareTo(requiredCapacity) >= 0;
 	}
 
-	@Override
-	public int hashCode() {
-
-		return Objects.hash(this.value);
-	}
-
-	@Override
-	public String toString() {
-
-		return String.valueOf(this.value);
-	}
 }

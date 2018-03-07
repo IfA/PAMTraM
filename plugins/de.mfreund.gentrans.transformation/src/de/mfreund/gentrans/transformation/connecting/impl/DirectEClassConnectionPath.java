@@ -124,7 +124,7 @@ public class DirectEClassConnectionPath implements EClassConnectionPath {
 		int numberOfExistingTargetElementss = this.getNumberOfExistingTargetElements(startingElement);
 
 		// should never be negative because actual cannot exceed theoretical capacity
-		return new Capacity(theoreticalCapacity.getValue() - numberOfExistingTargetElementss);
+		return Capacity.valueOf(theoreticalCapacity.getValue() - numberOfExistingTargetElementss);
 	}
 
 	private int getNumberOfExistingTargetElements(EObject startingElement) {
@@ -135,7 +135,7 @@ public class DirectEClassConnectionPath implements EClassConnectionPath {
 	@Override
 	public Capacity getTheoreticalCapacity() {
 
-		return new Capacity(this.reference);
+		return Capacity.valueOf(this.reference);
 	}
 
 	@Override

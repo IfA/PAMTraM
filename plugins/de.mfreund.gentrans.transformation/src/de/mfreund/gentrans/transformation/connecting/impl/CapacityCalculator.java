@@ -32,7 +32,7 @@ public class CapacityCalculator {
 		} else if (CapacityCalculator.containsUnboundedCapacity(capacities)) {
 			return Capacity.UNBOUNDED;
 		} else {
-			return new Capacity(capacities.stream().mapToInt(Capacity::getValue).reduce(1, Math::multiplyExact));
+			return Capacity.valueOf(CapacityCalculator.multiplyValuesOfCapacities(capacities));
 		}
 
 	}
@@ -47,40 +47,29 @@ public class CapacityCalculator {
 		if (CapacityCalculator.containsUnboundedCapacity(capacities)) {
 			return Capacity.UNBOUNDED;
 		} else {
-			return new Capacity(capacities.stream().mapToInt(Capacity::getValue).reduce(0, Math::addExact));
+			return Capacity.valueOf(CapacityCalculator.addValuesOfCapacities(capacities));
 		}
 
 	}
 
 	private static boolean containsZeroCapacity(Collection<Capacity> capacities) {
 
-		return capacities.contains(Capacity.ZERO);
+		return capacities.stream().anyMatch(Capacity::isZero);
 	}
 
 	private static boolean containsUnboundedCapacity(Collection<Capacity> capacities) {
 
-		return capacities.contains(Capacity.UNBOUNDED);
+		return capacities.stream().anyMatch(Capacity::isUnbounded);
 	}
 
-	public static boolean greaterThan(Capacity capacity1, Capacity capacity2) {
+	private static int addValuesOfCapacities(Collection<Capacity> capacities) {
 
-		if (capacity1.isUnbounded()) {
-			return !capacity2.isUnbounded();
-		} else if (capacity2.isUnbounded()) {
-			return false;
-		} else {
-			return capacity1.getValue() > capacity2.getValue();
-		}
+		return capacities.stream().mapToInt(Capacity::getValue).reduce(0, Math::addExact);
 	}
 
-	public static boolean greaterThanOrEqual(Capacity capacity1, Capacity capacity2) {
+	private static int multiplyValuesOfCapacities(Collection<Capacity> capacities) {
 
-		if (capacity1.isUnbounded()) {
-			return true;
-		} else if (capacity2.isUnbounded()) {
-			return false;
-		} else {
-			return capacity1.getValue() >= capacity2.getValue();
-		}
+		return capacities.stream().mapToInt(Capacity::getValue).reduce(1, Math::multiplyExact);
 	}
+
 }

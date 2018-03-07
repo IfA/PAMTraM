@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.EReference;
 import de.mfreund.gentrans.transformation.connecting.impl.ComplexEClassConnectionPath;
 import de.mfreund.gentrans.transformation.connecting.impl.DirectEClassConnectionPath;
 import de.mfreund.gentrans.transformation.connecting.impl.EClassConnectionPathUtil;
-import de.mfreund.gentrans.transformation.connecting.impl.LengthCalculator;
 import de.mfreund.gentrans.transformation.registries.EClassConnectionInformationRegistry;
 
 /**
@@ -86,7 +85,7 @@ public class EClassConnectionPathFactory {
 
 			} else {
 
-				if (LengthCalculator.greaterThan(maxPathLength, next.getLength())) {
+				if (maxPathLength.compareTo(next.getLength()) > 0) {
 
 					List<EClassConnectionPath> nextPossiblePathSegments = this
 							.getAllPossibleOutgoingDirectConnectionPaths(next.getTargetClass());
@@ -147,7 +146,7 @@ public class EClassConnectionPathFactory {
 				.collect(Collectors.toList());
 	}
 
-	public EClassConnectionPath join(EClassConnectionPath path1, EClassConnectionPath path2) {
+	private EClassConnectionPath join(EClassConnectionPath path1, EClassConnectionPath path2) {
 
 		List<DirectEClassConnectionPath> segments = new ArrayList<>();
 

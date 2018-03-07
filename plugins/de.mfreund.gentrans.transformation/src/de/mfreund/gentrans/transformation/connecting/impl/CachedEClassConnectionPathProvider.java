@@ -93,16 +93,15 @@ public class CachedEClassConnectionPathProvider implements EClassConnectionPathP
 	private Set<EClassConnectionPath> filterConnectionsByTheoreticalCapacity(
 			Collection<EClassConnectionPath> connections, Capacity requiredCapacity) {
 
-		return connections.stream()
-				.filter(c -> CapacityCalculator.greaterThanOrEqual(c.getTheoreticalCapacity(), requiredCapacity))
+		return connections.stream().filter(c -> c.getTheoreticalCapacity().isSufficientFor(requiredCapacity))
 				.collect(Collectors.toCollection(LinkedHashSet::new));
 	}
 
 	private Set<EClassConnectionPath> filterConnectionsByActualCapacity(Collection<EClassConnectionPath> connections,
 			Capacity requiredCapacity, EObject startingElement) {
 
-		return connections.stream().filter(
-				c -> CapacityCalculator.greaterThanOrEqual(c.getActualCapacity(startingElement), requiredCapacity))
+		return connections.stream().filter(c -> c.getActualCapacity(startingElement).isSufficientFor(requiredCapacity))
 				.collect(Collectors.toCollection(LinkedHashSet::new));
 	}
+
 }

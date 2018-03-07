@@ -133,7 +133,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 		this.instanceSelectorHandler = assetManager.getInstanceSelectorHandler();
 		// FIXME in the config, 0 means direct connection; in Length, 0 means no connection
 		int rawMaxPathLength = assetManager.getTransformationConfig().getMaxPathLength();
-		this.maxPathLength = new Length(rawMaxPathLength == -1 ? rawMaxPathLength : rawMaxPathLength + 1);
+		this.maxPathLength = Length.valueOf(rawMaxPathLength == -1 ? rawMaxPathLength : rawMaxPathLength + 1);
 		this.ambiguityResolvingStrategy = assetManager.getTransformationConfig().getAmbiguityResolvingStrategy();
 		this.unconnectableElements = new LinkedHashMap<>();
 	}
@@ -592,7 +592,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 				EClassConnectionPathRequirement connectionRequirement = new EClassConnectionPathRequirement(
 						unlinkeableEntry.getKey()).withRequiredStartingElement(containerInstance)
 								.withRequiredMaximumPathLength(this.maxPathLength)
-								.withRequiredMinimumCapacity(new Capacity(neededCapacity));
+								.withRequiredMinimumCapacity(Capacity.valueOf(neededCapacity));
 
 				final List<EClassConnectionPath> pathSet = this.connectionPathProvider
 						.getConnections(connectionRequirement);
@@ -764,14 +764,14 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 			pathsToConsider.addAll(containerClasses.get().stream().flatMap(
 					c -> this.connectionPathProvider.getConnections(new EClassConnectionPathRequirement(classToConnect)
 							.withRequiredStartingClass(c).withRequiredMaximumPathLength(this.maxPathLength)
-							.withRequiredMinimumCapacity(new Capacity(rootInstances.size()))).stream())
+							.withRequiredMinimumCapacity(Capacity.valueOf(rootInstances))).stream())
 					.collect(Collectors.toCollection(LinkedHashSet::new)));
 		} else {
 
 			pathsToConsider.addAll(
 					this.connectionPathProvider.getConnections(new EClassConnectionPathRequirement(classToConnect)
 							.withRequiredMaximumPathLength(this.maxPathLength)
-							.withRequiredMinimumCapacity(new Capacity(rootInstances.size()))));
+							.withRequiredMinimumCapacity(Capacity.valueOf(rootInstances))));
 		}
 
 		// Remove those paths that would lead to cyclic containments

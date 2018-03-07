@@ -4,7 +4,6 @@
 package de.mfreund.gentrans.transformation.connecting;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -14,8 +13,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 
-import de.mfreund.gentrans.transformation.connecting.impl.ComplexEClassConnectionPath;
 import de.mfreund.gentrans.transformation.connecting.impl.DirectEClassConnectionPath;
+import de.mfreund.gentrans.transformation.connecting.impl.EClassConnectionPathUtil;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 
 /**
@@ -32,21 +31,9 @@ public class EClassConnectionPathInstantiator {
 
 	public EClassConnectionPathInstantiator(EClassConnectionPath pathToInstantiate) {
 
-		this.pathSegments = new ArrayList<>();
+		this.pathSegments = EClassConnectionPathUtil.getPathSegments(pathToInstantiate);
 		this.createdIntermediaryElements = new ArrayList<>();
 		this.unconnectedElements = new ArrayList<>();
-	}
-
-	public EClassConnectionPathInstantiator(DirectEClassConnectionPath pathToInstantiate) {
-
-		this((EClassConnectionPath) pathToInstantiate);
-		this.pathSegments.addAll(Arrays.asList(pathToInstantiate));
-	}
-
-	public EClassConnectionPathInstantiator(ComplexEClassConnectionPath pathToInstantiate) {
-
-		this((EClassConnectionPath) pathToInstantiate);
-		this.pathSegments.addAll(pathToInstantiate.getPathSegments());
 	}
 
 	/**

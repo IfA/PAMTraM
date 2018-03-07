@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EReference;
 
 import de.mfreund.gentrans.transformation.connecting.Capacity;
 import de.mfreund.gentrans.transformation.connecting.EClassConnectionPath;
+import de.mfreund.gentrans.transformation.connecting.Length;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 
 /**
@@ -34,6 +35,16 @@ public class ComplexEClassConnectionPath implements EClassConnectionPath {
 
 	// The starting EObject used during calculation of the 'actual capacity' of the path
 	private EObject startingElement;
+
+	/**
+	 * Create a new path based on a number of {@link DirectEClassConnectionPath segments}.
+	 *
+	 * @param pathSegments
+	 */
+	public ComplexEClassConnectionPath(DirectEClassConnectionPath... pathSegments) {
+
+		this(Arrays.asList(pathSegments));
+	}
 
 	/**
 	 * Create a new path based on a list of {@link DirectEClassConnectionPath segments}.
@@ -68,9 +79,10 @@ public class ComplexEClassConnectionPath implements EClassConnectionPath {
 	}
 
 	@Override
-	public int getLength() {
+	public Length getLength() {
 
-		return this.pathSegments.stream().mapToInt(EClassConnectionPath::getLength).reduce(0, Math::addExact);
+		return this.pathSegments.stream().map(EClassConnectionPath::getLength).reduce(Length.NO_CONNECTION,
+				LengthCalculator::add);
 	}
 
 	@Override
@@ -124,6 +136,10 @@ public class ComplexEClassConnectionPath implements EClassConnectionPath {
 	}
 
 	private List<EObject> getTargetElementsOfFirstPathSegment() {
+
+		if (!this.isValidStartingElement(this.startingElement)) {
+			return Collections.emptyList();
+		}
 
 		DirectEClassConnectionPath firstPathSegment = this.pathSegments.get(0);
 

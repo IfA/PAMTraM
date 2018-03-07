@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
@@ -25,10 +26,12 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import de.mfreund.gentrans.transformation.CancelTransformationException;
 import de.mfreund.gentrans.transformation.UserAbortException;
 import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
+import de.mfreund.gentrans.transformation.connecting.Capacity;
 import de.mfreund.gentrans.transformation.connecting.EClassConnectionPath;
 import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathInstantiator;
+import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathProvider;
 import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathRequirement;
-import de.mfreund.gentrans.transformation.connecting.IEClassConnectionPathProvider;
+import de.mfreund.gentrans.transformation.connecting.Length;
 import de.mfreund.gentrans.transformation.connecting.impl.CachedEClassConnectionPathProvider;
 import de.mfreund.gentrans.transformation.connecting.impl.ComplexEClassConnectionPath;
 import de.mfreund.gentrans.transformation.core.CancelableTransformationAsset;
@@ -75,7 +78,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 	 */
 	private final TargetSectionRegistry targetSectionRegistry;
 
-	private final IEClassConnectionPathProvider connectionPathProvider;
+	private final EClassConnectionPathProvider connectionPathProvider;
 
 	/**
 	 * The {@link TargetModelRegistry} that is used to manage the various target models and their contents.
@@ -91,7 +94,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 	 * The maximum length for connection paths that shall be considered by this TargetSectionConnector. If
 	 * 'maxPathLength' is set to '-1' or any other value below '0', connection paths of unbounded length are considered.
 	 */
-	private final int maxPathLength;
+	private final Length maxPathLength;
 
 	/**
 	 * This keeps track of {@link TargetSectionClass TargetSectionClasses} and corresponding {@link EObjectWrapper
@@ -126,10 +129,11 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 		Set<EPackage> targetMetaModels = new LinkedHashSet<>(assetManager.getTransformationConfig().getPamtramModels()
 				.stream().flatMap(p -> p.getTargetSectionModels().stream()).map(TargetSectionModel::getMetaModelPackage)
 				.collect(Collectors.toList()));
-		this.connectionPathProvider = new CachedEClassConnectionPathProvider(targetMetaModels, this.logger,
-				this.targetSectionRegistry);
+		this.connectionPathProvider = new CachedEClassConnectionPathProvider(targetMetaModels, this.logger);
 		this.instanceSelectorHandler = assetManager.getInstanceSelectorHandler();
-		this.maxPathLength = assetManager.getTransformationConfig().getMaxPathLength();
+		// FIXME in the config, 0 means direct connection; in Length, 0 means no connection
+		int rawMaxPathLength = assetManager.getTransformationConfig().getMaxPathLength();
+		this.maxPathLength = new Length(rawMaxPathLength == -1 ? rawMaxPathLength : rawMaxPathLength + 1);
 		this.ambiguityResolvingStrategy = assetManager.getTransformationConfig().getAmbiguityResolvingStrategy();
 		this.unconnectableElements = new LinkedHashMap<>();
 	}
@@ -497,28 +501,27 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 
 		// Collect all classes that could act as common root for each of the unconnected elements
 		//
-		// TODO Support multiple target models
-		final Set<EClass> common = new LinkedHashSet<>();
+		List<EClassConnectionPathRequirement> requirements = this.unconnectableElements.keySet().stream()
+				.map(e -> new EClassConnectionPathRequirement(e).withRequiredMaximumPathLength(this.maxPathLength))
+				.collect(Collectors.toList());
 
-		// FIXME this should be moved to the MetaModelPath/Factory/etc. (independent from pamtram)
-		for (final EClass possibleRoot : this.targetSectionRegistry.getEClassConnectionPathFactory().getClasses()
-				.stream().filter(e -> !e.isAbstract()).collect(Collectors.toList())) {
+		Iterator<EClassConnectionPathRequirement> requirementIterator = requirements.iterator();
 
-			if (this.unconnectableElements.keySet().stream()
-					.noneMatch(c -> this.connectionPathProvider
-							.getConnections(new EClassConnectionPathRequirement(possibleRoot, c, this.maxPathLength))
-							.isEmpty())) {
+		List<EClass> rootClassesFulfillingAllrequirements = new ArrayList<>(this.connectionPathProvider
+				.getConnections(requirementIterator.next()).stream().map(EClassConnectionPath::getStartingClass)
+				.collect(Collectors.toCollection(LinkedHashSet::new)));
 
-				// There is at least one connection for between 'possibleRoot' and each of the elements (resp. the
-				// corresponding 'eClasses' that have to be connected)
-				//
-				common.add(possibleRoot);
-			}
+		while (requirementIterator.hasNext()) {
+			EClassConnectionPathRequirement requirement = requirementIterator.next();
+			rootClassesFulfillingAllrequirements.retainAll(this.connectionPathProvider.getConnections(requirement)
+					.stream().map(EClassConnectionPath::getStartingClass)
+					.collect(Collectors.toCollection(LinkedHashSet::new)));
+
 		}
 
 		this.checkCanceled();
 
-		if (common.isEmpty()) {
+		if (rootClassesFulfillingAllrequirements.isEmpty()) {
 
 			// No common root class found
 			//
@@ -536,8 +539,8 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 		//
 		EClass rootClass;
 
-		if (common.size() == 1) {
-			rootClass = common.iterator().next();
+		if (rootClassesFulfillingAllrequirements.size() == 1) {
+			rootClass = rootClassesFulfillingAllrequirements.iterator().next();
 
 		} else {
 
@@ -546,10 +549,10 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 			try {
 				this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_STARTED);
 				List<EClass> resolved = this.ambiguityResolvingStrategy
-						.joiningSelectRootElement(new ArrayList<>(common));
+						.joiningSelectRootElement(new ArrayList<>(rootClassesFulfillingAllrequirements));
 				if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
-					((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
-							.joiningRootElementSelected(new ArrayList<>(common), resolved.get(0));
+					((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy).joiningRootElementSelected(
+							new ArrayList<>(rootClassesFulfillingAllrequirements), resolved.get(0));
 				}
 				this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_ENDED);
 				rootClass = resolved.get(0);
@@ -562,7 +565,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 							() -> "The following exception occured during the resolving of an ambiguity concerning the selection of a common root class: "
 									+ e.getMessage());
 					this.logger.severe("Using default path instead...");
-					rootClass = common.iterator().next();
+					rootClass = rootClassesFulfillingAllrequirements.iterator().next();
 				}
 			}
 
@@ -585,8 +588,14 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 				 * need to find all possible connections for each of the elements involved. Now we need to choose a
 				 * connection for each element. This might lead to us asking a lot of questions to the user.
 				 */
-				final List<ComplexEClassConnectionPath> pathSet = this.connectionPathProvider.getConnections(
-						new EClassConnectionPathRequirement(rootClass, unlinkeableEntry.getKey(), this.maxPathLength));
+				final int neededCapacity = unlinkeableEntry.getValue().get(tSection).size();
+				EClassConnectionPathRequirement connectionRequirement = new EClassConnectionPathRequirement(
+						unlinkeableEntry.getKey()).withRequiredStartingElement(containerInstance)
+								.withRequiredMaximumPathLength(this.maxPathLength)
+								.withRequiredMinimumCapacity(new Capacity(neededCapacity));
+
+				final List<EClassConnectionPath> pathSet = this.connectionPathProvider
+						.getConnections(connectionRequirement);
 
 				if (pathSet.isEmpty()) {
 
@@ -601,32 +610,21 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 
 				} else {
 
-					// get paths with fitting capacity
-					final int neededCapacity = unlinkeableEntry.getValue().get(tSection).size();
-					final LinkedList<EClassConnectionPath> fittingPaths = new LinkedList<>();
-					for (final EClassConnectionPath p : pathSet) {
-						int capacity = p.getActualCapacity(containerInstance).getValue();
-						if (capacity == -1 || capacity >= neededCapacity) {
-							fittingPaths.add(p);
-						}
-					}
+					if (!pathSet.isEmpty()) {
 
-					if (!fittingPaths.isEmpty()) {
+						EClassConnectionPath chosenPath = pathSet.get(0);
 
-						EClassConnectionPath chosenPath = fittingPaths.get(0);
-
-						if (fittingPaths.size() > 1) {
+						if (pathSet.size() > 1) {
 							/*
 							 * Consult the specified resolving strategy to resolve the ambiguity.
 							 */
 							try {
 								this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_STARTED);
 								List<EClassConnectionPath> resolved = this.ambiguityResolvingStrategy
-										.joiningSelectConnectionPath(fittingPaths, (TargetSection) tSection);
+										.joiningSelectConnectionPath(pathSet, (TargetSection) tSection);
 								if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
 									((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
-											.joiningConnectionPathSelected(new ArrayList<>(fittingPaths),
-													resolved.get(0));
+											.joiningConnectionPathSelected(new ArrayList<>(pathSet), resolved.get(0));
 								}
 								this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_ENDED);
 								chosenPath = resolved.get(0);
@@ -639,7 +637,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 											() -> "The following exception occured during the resolving of an ambiguity concerning an connection path: "
 													+ e.getMessage());
 									this.logger.severe("Using default path instead...");
-									chosenPath = fittingPaths.get(0);
+									chosenPath = pathSet.get(0);
 								}
 							}
 						}
@@ -707,7 +705,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 
 		// A set of ModelConnectionPaths that are possible and thus have to be considered by the selection algorithms.
 		//
-		List<ComplexEClassConnectionPath> pathsToConsider = this.getModelConnectionPathsToConsider(rootInstances,
+		List<EClassConnectionPath> pathsToConsider = this.getModelConnectionPathsToConsider(rootInstances,
 				containerClasses, classToConnect);
 
 		// If no paths have been found, register the related elements as 'unconnectable' and return.
@@ -754,31 +752,27 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 	 * @return The list of {@link ComplexEClassConnectionPath ModelConnectionPaths} that can be used to connect the
 	 *         given list of <em>rootInstances</em> to instances of one of the given <em>containerClasses</em>.
 	 */
-	private List<ComplexEClassConnectionPath> getModelConnectionPathsToConsider(
-			final List<EObjectWrapper> rootInstances, final Optional<Set<EClass>> containerClasses,
-			final EClass classToConnect) {
+	private List<EClassConnectionPath> getModelConnectionPathsToConsider(final List<EObjectWrapper> rootInstances,
+			final Optional<Set<EClass>> containerClasses, final EClass classToConnect) {
 
-		List<ComplexEClassConnectionPath> pathsToConsider = new LinkedList<>();
+		List<EClassConnectionPath> pathsToConsider = new LinkedList<>();
 
 		if (containerClasses.isPresent()) {
 			// A list of possible 'containerClasses' has been passed as parameter so we need to restrict the list of
 			// EClass that are considered when searching for connection paths.
 			//
-			pathsToConsider.addAll(containerClasses.get().stream()
-					.flatMap(c -> this.connectionPathProvider
-							.getConnections(new EClassConnectionPathRequirement(c, classToConnect, this.maxPathLength))
-							.stream())
+			pathsToConsider.addAll(containerClasses.get().stream().flatMap(
+					c -> this.connectionPathProvider.getConnections(new EClassConnectionPathRequirement(classToConnect)
+							.withRequiredStartingClass(c).withRequiredMaximumPathLength(this.maxPathLength)
+							.withRequiredMinimumCapacity(new Capacity(rootInstances.size()))).stream())
 					.collect(Collectors.toCollection(LinkedHashSet::new)));
 		} else {
 
-			pathsToConsider.addAll(this.connectionPathProvider
-					.getConnections(new EClassConnectionPathRequirement(classToConnect, this.maxPathLength)));
+			pathsToConsider.addAll(
+					this.connectionPathProvider.getConnections(new EClassConnectionPathRequirement(classToConnect)
+							.withRequiredMaximumPathLength(this.maxPathLength)
+							.withRequiredMinimumCapacity(new Capacity(rootInstances.size()))));
 		}
-
-		// Reduce the found paths to those that provide the necessary capacity.
-		//
-		pathsToConsider = this.targetSectionRegistry.getEClassConnectionPathFactory()
-				.findPathsWithMinimumCapacity(pathsToConsider, null, rootInstances.size());
 
 		// Remove those paths that would lead to cyclic containments
 		//
@@ -859,7 +853,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 
 		// All potential connection paths
 		//
-		Map<ContainerSelector, List<ComplexEClassConnectionPath>> connectionPathsByContainerSelector = this
+		Map<ContainerSelector, List<EClassConnectionPath>> connectionPathsByContainerSelector = this
 				.getConnectionPathsByContainerSelector(containerSelectors, mappingGroup.getTargetSection().getEClass());
 
 		// All potential container instances
@@ -1138,6 +1132,12 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 					mappingGroup);
 		}
 
+		List<EClassConnectionPath> pathsWithoutInstances = connectionChoices.keySet().stream()
+				.filter(p -> connectionChoices.get(p).isEmpty()).collect(Collectors.toList());
+		if (pathsWithoutInstances.size() < connectionChoices.size()) {
+			pathsWithoutInstances.stream().forEach(connectionChoices::remove);
+		}
+
 		if (connectionChoices.keySet().size() == 1
 				&& connectionChoices.values().stream().flatMap(List::stream).collect(Collectors.toSet()).size() == 1) {
 
@@ -1233,10 +1233,10 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 	 * @return The list of potential {@link ComplexEClassConnectionPath ModelConnectionPaths} for each of the given
 	 *         {@link ContainerSelector ContainerSelectors}.
 	 */
-	private Map<ContainerSelector, List<ComplexEClassConnectionPath>> getConnectionPathsByContainerSelector(
+	private Map<ContainerSelector, List<EClassConnectionPath>> getConnectionPathsByContainerSelector(
 			List<ContainerSelector> containerSelectors, EClass eClass) {
 
-		Map<ContainerSelector, List<ComplexEClassConnectionPath>> connectionPathsByContainerSelector = new LinkedHashMap<>();
+		Map<ContainerSelector, List<EClassConnectionPath>> connectionPathsByContainerSelector = new LinkedHashMap<>();
 		for (ContainerSelector containerSelector : containerSelectors) {
 
 			List<TargetSectionClass> potentialTargetSectionClasses = containerSelector.getTargetClass()
@@ -1245,9 +1245,11 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 			// Check if there are any possible connection paths based on the specified 'targetClass' of the given
 			// container selector (or any of the concrete extending TargetSections)
 			//
-			List<ComplexEClassConnectionPath> pathsToConsider = potentialTargetSectionClasses.stream()
-					.flatMap(t -> this.connectionPathProvider
-							.getConnections(new EClassConnectionPathRequirement(t.getEClass(), eClass, 0)).stream())
+			List<EClassConnectionPath> pathsToConsider = potentialTargetSectionClasses.stream()
+					.flatMap(t -> this.connectionPathProvider.getConnections(
+							new EClassConnectionPathRequirement(eClass).withRequiredStartingClass(t.getEClass())
+									.withRequiredMaximumPathLength(Length.DIRECT_CONNECTION))
+							.stream())
 					.collect(Collectors.toList());
 
 			if (pathsToConsider.isEmpty()) {

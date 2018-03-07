@@ -3,6 +3,7 @@
  */
 package de.mfreund.gentrans.transformation.connecting;
 
+import java.util.HashSet;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
@@ -28,21 +29,21 @@ public interface EClassConnectionPath {
 	public EClass getTargetClass();
 
 	/**
-	 * @return The length of the path (i.e. the number of intermediate {@link EReference references}).
+	 * @return The {@link Length} of the path.
 	 */
-	public int getLength();
+	public Length getLength();
 
 	/**
-	 * Calculates the paths <em>capacity</em> (how many elements of the {@link #getTargetClass() targetClass} can be
-	 * connected to one instance of the {@link #getStartingClass() startingClass} via this path).
+	 * Calculates the path's <em>theoretical</em> {@link Capacity} (how many elements of the {@link #getTargetClass()
+	 * targetClass} can be connected to one instance of the {@link #getStartingClass() startingClass} via this path).
 	 *
 	 * @return The capacity of this path.
 	 */
 	public Capacity getTheoreticalCapacity();
 
 	/**
-	 * Calculates the paths <em>actual capacity</em> for the given {@link EObject rootElement} (how many elements of the
-	 * {@link #getTargetClass() targetClass} can be connected to the startingElement via this path).
+	 * Calculates the paths <em>actual</em> {@link Capacity} for the given {@link EObject rootElement} (how many
+	 * elements of the {@link #getTargetClass() targetClass} can be connected to the startingElement via this path).
 	 *
 	 * @param startingElement
 	 * @return The capacity of this path.
@@ -65,4 +66,22 @@ public interface EClassConnectionPath {
 	 * @return A list of all {@link EReference EReferences} that make up this path.
 	 */
 	public List<EReference> getAllReferences();
+
+	/**
+	 * @return '<em>true</em>' if {@link #getAllClasses()} contains the same EClass twice.
+	 */
+	public default boolean containsLoop() {
+
+		return new HashSet<>(this.getAllClasses()).size() < this.getAllClasses().size();
+	}
+
+	/**
+	 * @param startingElement
+	 * @return '<em>true</em>' if the given {@link EObject startingElement} is an instance of the
+	 *         {@link #getTargetClass()}
+	 */
+	public default boolean isValidStartingElement(EObject startingElement) {
+
+		return this.getStartingClass() != null && this.getStartingClass().isInstance(startingElement);
+	}
 }

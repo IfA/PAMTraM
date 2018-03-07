@@ -4,23 +4,18 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 
-import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathFactory;
 import de.mfreund.gentrans.transformation.core.CancelableTransformationAsset;
 import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.library.LibraryEntryInstantiator;
-import pamtram.TargetSectionModel;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.structure.generic.Section;
 import pamtram.structure.library.LibraryEntry;
@@ -63,17 +58,6 @@ public class TargetSectionRegistry extends CancelableTransformationAsset {
 	 */
 	private final Map<TargetSectionClass, Map<InstantiableMappingHintGroup, List<EObjectWrapper>>> targetClassInstanceByHintGroupRegistry;
 
-	private final EClassConnectionPathFactory eClassConnectionPathFactory;
-
-	/**
-	 * @return the {@link #${bare_field_name}}
-	 */
-	// FIXME should not be publicly available
-	public EClassConnectionPathFactory getEClassConnectionPathFactory() {
-
-		return this.eClassConnectionPathFactory;
-	}
-
 	/**
 	 * This creates an instance for multiple target meta-models.
 	 *
@@ -92,11 +76,6 @@ public class TargetSectionRegistry extends CancelableTransformationAsset {
 		this.attrValRegistry = new AttributeValueRegistry();
 		this.libraryEntryRegistry = new LibraryEntryRegistry();
 
-		Set<EPackage> targetMetaModels = new LinkedHashSet<>(assetManager.getTransformationConfig().getPamtramModels()
-				.stream().flatMap(p -> p.getTargetSectionModels().stream()).map(TargetSectionModel::getMetaModelPackage)
-				.collect(Collectors.toList()));
-
-		this.eClassConnectionPathFactory = new EClassConnectionPathFactory(targetMetaModels, this.logger);
 	}
 
 	/**

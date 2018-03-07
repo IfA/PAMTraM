@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EReference;
 
 import de.mfreund.gentrans.transformation.connecting.Capacity;
 import de.mfreund.gentrans.transformation.connecting.EClassConnectionPath;
+import de.mfreund.gentrans.transformation.connecting.Length;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 
 /**
@@ -64,9 +65,9 @@ public class DirectEClassConnectionPath implements EClassConnectionPath {
 	}
 
 	@Override
-	public int getLength() {
+	public Length getLength() {
 
-		return 1;
+		return Length.DIRECT_CONNECTION;
 	}
 
 	@Override
@@ -110,6 +111,10 @@ public class DirectEClassConnectionPath implements EClassConnectionPath {
 	@Override
 	public Capacity getActualCapacity(EObject startingElement) {
 
+		if (!this.isValidStartingElement(startingElement)) {
+			return Capacity.ZERO;
+		}
+
 		Capacity theoreticalCapacity = this.getTheoreticalCapacity();
 
 		if (theoreticalCapacity.isUnbounded()) {
@@ -136,7 +141,8 @@ public class DirectEClassConnectionPath implements EClassConnectionPath {
 	@Override
 	public boolean describesConnectionBetween(EObject startingElement, EObject targetElement) {
 
-		return AgteleEcoreUtil.getStructuralFeatureValueAsList(startingElement, this.reference).contains(targetElement);
+		return this.isValidStartingElement(startingElement) && AgteleEcoreUtil
+				.getStructuralFeatureValueAsList(startingElement, this.reference).contains(targetElement);
 	}
 
 	@Override

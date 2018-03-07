@@ -64,15 +64,23 @@ public class CapacityCalculator {
 
 	public static boolean greaterThan(Capacity capacity1, Capacity capacity2) {
 
-		if (Capacity.UNBOUNDED.equals(capacity1) && !Capacity.UNBOUNDED.equals(capacity2)) {
-			return true;
+		if (capacity1.isUnbounded()) {
+			return !capacity2.isUnbounded();
+		} else if (capacity2.isUnbounded()) {
+			return false;
 		} else {
 			return capacity1.getValue() > capacity2.getValue();
 		}
 	}
 
-	public static boolean greaterOrEqualThan(Capacity capacity1, Capacity capacity2) {
+	public static boolean greaterThanOrEqual(Capacity capacity1, Capacity capacity2) {
 
-		return Capacity.UNBOUNDED.equals(capacity1) || CapacityCalculator.greaterThan(capacity1, capacity2);
+		if (capacity1.isUnbounded()) {
+			return true;
+		} else if (capacity2.isUnbounded()) {
+			return false;
+		} else {
+			return capacity1.getValue() >= capacity2.getValue();
+		}
 	}
 }

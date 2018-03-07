@@ -6,25 +6,22 @@ package de.mfreund.gentrans.transformation.connecting;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.LinkedHashSet;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
-import de.mfreund.gentrans.transformation.connecting.impl.CapacityCalculator;
 import de.mfreund.gentrans.transformation.connecting.impl.ComplexEClassConnectionPath;
 import de.mfreund.gentrans.transformation.connecting.impl.DirectEClassConnectionPath;
+import de.mfreund.gentrans.transformation.connecting.impl.EClassConnectionPathUtil;
+import de.mfreund.gentrans.transformation.connecting.impl.LengthCalculator;
 import de.mfreund.gentrans.transformation.registries.EClassConnectionInformationRegistry;
-import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
-import de.mfreund.gentrans.transformation.util.Pair;
 
 /**
  *
@@ -33,8 +30,6 @@ import de.mfreund.gentrans.transformation.util.Pair;
 public class EClassConnectionPathFactory {
 
 	private final EClassConnectionInformationRegistry eClassConnectionInformationRegistry;
-
-	private Optional<Logger> logger;
 
 	/**
 	 * This creates an instance without an attached logger.
@@ -45,8 +40,7 @@ public class EClassConnectionPathFactory {
 	 */
 	public EClassConnectionPathFactory(Collection<EPackage> ePackages) {
 
-		this.eClassConnectionInformationRegistry = new EClassConnectionInformationRegistry();
-		this.eClassConnectionInformationRegistry.register(ePackages);
+		this(ePackages, null);
 	}
 
 	/**
@@ -59,79 +53,50 @@ public class EClassConnectionPathFactory {
 	 */
 	public EClassConnectionPathFactory(Collection<EPackage> ePackages, Logger logger) {
 
-		this.logger = Optional.ofNullable(logger);
-		this.eClassConnectionInformationRegistry = new EClassConnectionInformationRegistry(logger);
+		this.eClassConnectionInformationRegistry = logger == null ? new EClassConnectionInformationRegistry()
+				: new EClassConnectionInformationRegistry(logger);
 		this.eClassConnectionInformationRegistry.register(ePackages);
 	}
 
-	/**
-	 * This tries to determine a connection path betwenn a given '<em>container EClass</em>' (higher in the containment
-	 * hierarchy) and a given '<em>element EClass</em>' (lower in the containment hierarchy) by analyzing the concerned
-	 * meta-model. Found paths are stored in the given {@link TargetSectionRegistry}.
-	 *
-	 * @param registry
-	 *            The {@link TargetSectionRegistry} that shall be consulted for existing class instances and that
-	 *            determined connections paths will be stored to.
-	 * @param elementClass
-	 *            The {@link EClass} for that a connection (upward in the containment hierarchy) to the 'containerClass'
-	 *            shall be determined.
-	 * @param containerClass
-	 *            The {@link EClass} for that a connection (downward in the containment hierarchy) to the 'elementClass'
-	 *            shall be determined.
-	 * @param maxPathLength
-	 *            The maximum number of segments that the path may consist of ('<em>0</em>' indicating that only direct
-	 *            connections without any intermediary elements are allowed).
-	 * @return
-	 */
-	public List<ComplexEClassConnectionPath> findPathsFromContainerToClassToConnect(
-			final TargetSectionRegistry registry, final EClass elementClass, final EClass containerClass,
-			final int maxPathLength) {
+	public List<EClassConnectionPath> findPathsBetweenClasses(EClass startingClass, EClass targetClass,
+			Length maxPathLength) {
 
-		List<ComplexEClassConnectionPath> foundPaths = new ArrayList<>();
+		if (maxPathLength.isNoConnection()) {
+			return Collections.emptyList();
+		}
 
-		// this list holds pairs of EClasses and possible child EClasses
-		final LinkedHashSet<Pair<EClass, LinkedList<EObject>>> pathStack = new LinkedHashSet<>();
+		List<EClassConnectionPath> foundPaths = new ArrayList<>();
+
+		Set<EClassConnectionPath> pathStack = new LinkedHashSet<>();
 
 		// we will move downward in the containment hierarchy and start at the 'containerClass'
-		pathStack.add(new Pair<>(containerClass, new LinkedList<EObject>()));
+		pathStack.addAll(this.getAllPossibleOutgoingDirectConnectionPaths(startingClass));
 
 		// iterate as long as every possible connection path has been found
 		while (!pathStack.isEmpty()) {
 
-			final Pair<EClass, LinkedList<EObject>> next = pathStack.iterator().next();
+			final EClassConnectionPath next = pathStack.iterator().next();
 
 			pathStack.remove(next);
 
 			// a possible connection path has been found
-			if (next.getLeft().equals(elementClass) && !next.getRight().isEmpty()) {
+			if (next.getTargetClass().equals(targetClass)) {
 
-				// add copy of path to possiblePaths
-				List<EObject> pathElements = new ArrayList<>();
-				pathElements.addAll(next.getRight());
-				pathElements.add(elementClass);
-				boolean reverse = true;
-				final ComplexEClassConnectionPath newSelf = this.constructPath(pathElements, reverse);
+				foundPaths.add(next);
 
-				// save the determined connection path in the TargetSectionRegistry for later use
-				foundPaths.add(newSelf);
 			} else {
-				// check for inherited types
-				for (final EClass c : this.eClassConnectionInformationRegistry.getAllSubClasses(next.getLeft())) {
-					pathStack.add(new Pair<>(c, next.getRight()));
-				}
 
-				if (maxPathLength < 0 || next.getRight().size() / 2 - 1 < maxPathLength) {
+				if (LengthCalculator.greaterThan(maxPathLength, next.getLength())) {
 
-					// detect loop
-					if (!next.getRight().contains(next.getLeft()) && !next.getLeft().isAbstract()) {
-						// continue path finding for references
-						for (final EReference cont : next.getLeft().getEAllContainments()) {
-							final LinkedList<EObject> newRight = new LinkedList<>(next.getRight());
-							newRight.add(next.getLeft());
-							newRight.add(cont);
-							pathStack.add(new Pair<>(cont.getEReferenceType(), newRight));
-						}
-					}
+					List<EClassConnectionPath> nextPossiblePathSegments = this
+							.getAllPossibleOutgoingDirectConnectionPaths(next.getTargetClass());
+					List<EClassConnectionPath> resultingConnectionPaths = nextPossiblePathSegments.stream()
+							.map(s -> this.join(next, s)).collect(Collectors.toList());
+					List<EClassConnectionPath> resultingConnectionPathsWithoutLoops = resultingConnectionPaths.stream()
+							.filter(p -> !p.containsLoop()).collect(Collectors.toList());
+
+					pathStack.addAll(resultingConnectionPathsWithoutLoops);
+
 				}
 			}
 		}
@@ -140,147 +105,56 @@ public class EClassConnectionPathFactory {
 
 	}
 
-	/**
-	 * This tries to determine connection paths to connect a given '<em>pathStartClass</em>' (lower in the containment
-	 * hierarchy) to any other class (higher in the containment hierarchy) by analyzing the concerned meta-model. Found
-	 * paths are stored in the given {@link TargetSectionRegistry}.
-	 *
-	 * @param registry
-	 *            The {@link TargetSectionRegistry} that shall be consulted for existing class instances and that
-	 *            determined connections paths will be stored to.
-	 * @param pathStartClass
-	 *            The {@link EClass} for that a connection (upward in the containment hierarchy) to any other class
-	 *            shall be determined.
-	 * @param maxPathLength
-	 *            The maximum number of segments that the path may consist of ('<em>0</em>' indicating that only direct
-	 *            connections without any intermediary elements are allowed).
-	 * @return
-	 */
-	public List<ComplexEClassConnectionPath> findPathsToInstances(final TargetSectionRegistry registry,
-			final EClass pathStartClass, final int maxPathLength) {
+	private List<EClassConnectionPath> getAllPossibleOutgoingDirectConnectionPaths(EClass startingClass) {
 
-		final List<ComplexEClassConnectionPath> paths = new LinkedList<>();
+		List<EReference> outgoingReferences = startingClass.getEAllContainments();
 
-		// this list holds pairs of EClasses and possible child EClasses
-		final LinkedHashSet<Pair<EClass, LinkedList<EObject>>> pathStack = new LinkedHashSet<>();
-
-		pathStack.add(new Pair<>(pathStartClass, new LinkedList<EObject>()));
-
-		while (!pathStack.isEmpty()) {
-
-			final Pair<EClass, LinkedList<EObject>> next = pathStack.iterator().next();
-			pathStack.remove(next);
-
-			// check if path to this MM-Class found
-			if (!registry.getTargetClassInstances(next.getLeft()).isEmpty() && !next.getRight().isEmpty()) {
-
-				// add copy of path to possiblePaths
-				List<EObject> pathElements = new ArrayList<>();
-				pathElements.addAll(next.getRight());
-				pathElements.add(next.getLeft());
-				Collections.reverse(pathElements);
-				boolean reverse = false;
-
-				final ComplexEClassConnectionPath newSelf = this.constructPath(pathElements, reverse);
-
-				// save the determined connection path in the TargetSectionRegistry for later use
-				paths.add(newSelf); // first class
-
-			} else {
-				// check for inherited types
-				for (final EClass c : this.eClassConnectionInformationRegistry.getAllSubClasses(next.getLeft())) {
-					pathStack.add(new Pair<>(c, next.getRight()));
-				}
-
-				if (maxPathLength < 0 || next.getRight().size() / 2 - 1 < maxPathLength) {
-
-					// detect loop
-					if (!next.getRight().contains(next.getLeft()) && !next.getLeft().isAbstract()) {
-						// continue path finding for references
-						for (final EReference cont : this.eClassConnectionInformationRegistry
-								.getAllReferencesToClass(next.getLeft())) {
-							for (final EClass s : this.eClassConnectionInformationRegistry
-									.getAllDefiningClassesForReference(cont)) {
-								final LinkedList<EObject> newRight = new LinkedList<>(next.getRight());
-								newRight.add(next.getLeft());
-								newRight.add(cont);
-								pathStack.add(new Pair<>(s, newRight));
-							}
-						}
-
-					}
-				}
-			}
-
-		}
-
-		return paths;
-
+		return outgoingReferences.stream()
+				.flatMap(r -> this.getAllPossibleOutgoingDirectConnectionPaths(startingClass, r).stream())
+				.collect(Collectors.toList());
 	}
 
-	/**
-	 *
-	 *
-	 * ${tags}
-	 */
-	private ComplexEClassConnectionPath constructPath(List<EObject> pathElements, boolean reverse) {
+	private List<EClassConnectionPath> getAllPossibleOutgoingDirectConnectionPaths(EClass startingClass,
+			EReference reference) {
+
+		List<EClass> potentialTargetClasses = this.getAllPotentialTargetClasses(reference);
+
+		List<EClass> nonAbstractPotentialTargetClasses = potentialTargetClasses.stream().filter(c -> !c.isAbstract())
+				.collect(Collectors.toList());
+
+		return nonAbstractPotentialTargetClasses.stream()
+				.map(c -> new DirectEClassConnectionPath(startingClass, reference, c)).collect(Collectors.toList());
+	}
+
+	private List<EClass> getAllPotentialTargetClasses(EReference reference) {
+
+		EClass referenceType = reference.getEReferenceType();
+
+		List<EClass> potentialTargetClasses = new ArrayList<>();
+		potentialTargetClasses.add(referenceType);
+		potentialTargetClasses.addAll(this.eClassConnectionInformationRegistry.getAllSubClasses(referenceType));
+
+		return potentialTargetClasses;
+	}
+
+	public List<EClassConnectionPath> findPathsToClass(final EClass targetClass, final Length maxPathLength) {
+
+		Stream<EClass> concreteRegisteredClasses = this.eClassConnectionInformationRegistry.getRegisteredClasses()
+				.stream().filter(c -> !c.isAbstract());
+
+		return concreteRegisteredClasses
+				.flatMap(c -> this.findPathsBetweenClasses(c, targetClass, maxPathLength).stream())
+				.collect(Collectors.toList());
+	}
+
+	public EClassConnectionPath join(EClassConnectionPath path1, EClassConnectionPath path2) {
 
 		List<DirectEClassConnectionPath> segments = new ArrayList<>();
-		Iterator<EObject> it = pathElements.iterator();
-		EClass sourceClass = (EClass) it.next();
-		while (it.hasNext()) {
-			EReference reference = (EReference) it.next();
-			EClass targetClass = (EClass) it.next();
-			segments.add(new DirectEClassConnectionPath(sourceClass, reference, targetClass));
-			sourceClass = targetClass;
-		}
-		final ComplexEClassConnectionPath newSelf = new ComplexEClassConnectionPath(segments);
-		return newSelf;
-	}
 
-	/**
-	 * For the given list of {@link ComplexEClassConnectionPath ModelConnectionPaths}, this method returns the subset of
-	 * the paths that are able to connect at least as many elements to the given '<em>startInstance</em>' as denoted by
-	 * the given '<em>minimumCapacity</em>'. Therefore, {@link #getActualCapacity(EObject)} is consulted for every
-	 * possible path.
-	 * <p />
-	 * <b>Note:</b> If 'startInstance' is <em>null</em>, the 'theoretical' capacity of the paths will be checked (see
-	 * {@link #getActualCapacity(EObject)}).
-	 *
-	 * @param paths
-	 *            The {@link ComplexEClassConnectionPath}s that shall be checked for minimum capacity.
-	 * @param startInstance
-	 *            An optional {@link EObject} that shall be the starting point of the path (may be <em>null</em>).
-	 * @param minimumCapacity
-	 *            The minimumCapacity that has to be satisfied by the paths.
-	 * @return The subset of the given paths that satisfies the minimumCapacity.
-	 */
-	public List<ComplexEClassConnectionPath> findPathsWithMinimumCapacity(final List<ComplexEClassConnectionPath> paths,
-			final EObject startInstance, final int minimumCapacity) {
+		segments.addAll(EClassConnectionPathUtil.getPathSegments(path1));
+		segments.addAll(EClassConnectionPathUtil.getPathSegments(path2));
 
-		final List<ComplexEClassConnectionPath> pathsToConsider = new LinkedList<>();
-
-		for (final ComplexEClassConnectionPath p : paths) {
-
-			if (startInstance != null && !p.getStartingClass().equals(startInstance.eClass())) {
-				// only consider paths with the right start instance type
-				continue;
-			}
-
-			final Capacity capacity = p.getActualCapacity(startInstance);
-			if (CapacityCalculator.greaterOrEqualThan(capacity, new Capacity(minimumCapacity))) {
-
-				pathsToConsider.add(p);
-			}
-		}
-
-		return pathsToConsider;
-	}
-
-	public Set<EClass> getClasses() {
-
-		// FIXME remove/refactor
-		return this.eClassConnectionInformationRegistry.getRegisteredClasses();
+		return new ComplexEClassConnectionPath(segments);
 	}
 
 }

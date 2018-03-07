@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EReference;
 
 import de.mfreund.gentrans.transformation.connecting.Capacity;
 import de.mfreund.gentrans.transformation.connecting.EClassConnectionPath;
+import de.mfreund.gentrans.transformation.connecting.Length;
 
 /**
  * An {@link EClassConnectionPath} that represents an empty path (no connection possible).
@@ -34,9 +35,9 @@ public class EmptyEClassConnectionPath implements EClassConnectionPath {
 	}
 
 	@Override
-	public int getLength() {
+	public Length getLength() {
 
-		return 0;
+		return Length.NO_CONNECTION;
 	}
 
 	@Override

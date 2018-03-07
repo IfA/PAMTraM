@@ -11,8 +11,8 @@ import org.eclipse.emf.ecore.EReference;
  * Instances of this class describe the 'capacity' of an {@link EClassConnectionPath} (i.e. how many elements can be
  * connected via the path).
  * <p />
- * This is basically just a wrapper for a simple integer. However, two special static instances {@link #ZERO}
- * and {@link #UNBOUNDED} are provided to simplify handling of special cases.
+ * This is basically just a wrapper for a simple integer. However, two special static instances {@link #ZERO} and
+ * {@link #UNBOUNDED} are provided to simplify handling of special cases.
  *
  * @author mfreund
  */
@@ -27,9 +27,6 @@ public class Capacity {
 
 	/**
 	 * Creates an instance based on a capacity value.
-	 * <p />
-	 * Note: If the given value is '0', the static instance {@link #ZERO} will be returned. If the given value
-	 * is anything less than '0', the static instance {@link #UNBOUNDED} will be returned.
 	 *
 	 * @param value
 	 *            The capacity value.
@@ -80,4 +77,9 @@ public class Capacity {
 		return Objects.hash(this.value);
 	}
 
+	@Override
+	public String toString() {
+
+		return String.valueOf(this.value);
+	}
 }

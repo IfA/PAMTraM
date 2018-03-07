@@ -5,6 +5,7 @@ package de.mfreund.gentrans.transformation.resolving.enhancing;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Optional;
 
 import org.eclipse.emf.common.command.CompoundCommand;
@@ -162,20 +163,19 @@ public class JoiningSelectConnectionPathMappingModelEnhancer
 
 		TargetSectionClass currentClass = null;
 
-		// Iterate through the path elements and instantiate the intermediate
-		// TargetSectionClasses/-ContainmentReferences
-		//
-		for (int i = path.getPathSegments().size() - 2; i > 1; i -= 2) {
+		ListIterator<EClass> classIterator = path.getAllClasses().listIterator();
+		ListIterator<EReference> referenceIterator = path.getAllReferences().listIterator();
+		while (referenceIterator.hasPrevious()) {
 
-			EReference eReference = (EReference) path.getPathSegments().get(i);
-			EClass eClass = (EClass) path.getPathSegments().get(i - 1);
+			EReference eReference = referenceIterator.previous();
+			EClass eClass = classIterator.previous();
 
 			TargetSectionCompositeReference ref = TargetFactory.eINSTANCE.createTargetSectionCompositeReference();
 			ref.setEReference(eReference);
 
 			// we are at the beginning
 			//
-			if (i == path.getPathSegments().size() - 2) {
+			if (referenceIterator.nextIndex() == path.getAllReferences().size()) {
 				this.firstReference = ref;
 			} else {
 				currentClass.getReferences().add(ref);
@@ -187,7 +187,7 @@ public class JoiningSelectConnectionPathMappingModelEnhancer
 			currentClass = clazz;
 
 			// we have reached the end
-			if (i - 2 == 1) {
+			if (classIterator.previousIndex() == 1) {
 				this.finalClass = currentClass;
 			}
 		}

@@ -552,7 +552,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 			 * Check if the path was used to connect the given 'instantiatedElement'.
 			 */
 			EObject currentElement = instantiatedElement;
-			int pathLength = modelConnectionPath.getLength();
+			int pathLength = modelConnectionPath.getLength().getValue();
 			for (int i = 0; i < pathLength; i++) {
 				if (currentElement.eContainer() == null) {
 					usedPath = null;
@@ -797,7 +797,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 			 * Check if the path was used to connect the given 'instantiatedElement'.
 			 */
 			EObject currentElement = oldSectionInstances.get(0);
-			int pathLength = modelConnectionPath.getLength();
+			int pathLength = modelConnectionPath.getLength().getValue();
 			for (int i = 0; i < pathLength; i++) {
 				if (currentElement.eContainer() == null) {
 					usedPath = null;

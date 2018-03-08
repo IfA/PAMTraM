@@ -52,6 +52,17 @@ public class CapacityCalculator {
 
 	}
 
+	public static Capacity subtract(Capacity minuend, Capacity subtrahend) {
+
+		if (minuend.isUnbounded()) {
+			return Capacity.UNBOUNDED;
+		} else if (minuend.isSufficientFor(subtrahend)) {
+			return Capacity.valueOf(minuend.getValue() - subtrahend.getValue());
+		} else {
+			return Capacity.ZERO;
+		}
+	}
+
 	private static boolean containsZeroCapacity(Collection<Capacity> capacities) {
 
 		return capacities.stream().anyMatch(Capacity::isZero);

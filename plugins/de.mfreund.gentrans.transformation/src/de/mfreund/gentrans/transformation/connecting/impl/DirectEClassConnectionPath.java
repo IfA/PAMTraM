@@ -6,6 +6,7 @@ package de.mfreund.gentrans.transformation.connecting.impl;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -49,19 +50,19 @@ public class DirectEClassConnectionPath implements EClassConnectionPath {
 	 */
 	public EReference getReference() {
 
-		return this.reference;
+		return reference;
 	}
 
 	@Override
 	public EClass getTargetClass() {
 
-		return this.targetClass;
+		return targetClass;
 	}
 
 	@Override
 	public EClass getStartingClass() {
 
-		return this.startingClass;
+		return startingClass;
 	}
 
 	@Override
@@ -83,15 +84,14 @@ public class DirectEClassConnectionPath implements EClassConnectionPath {
 
 		DirectEClassConnectionPath other = (DirectEClassConnectionPath) obj;
 
-		return Objects.equals(this.startingClass, other.startingClass)
-				&& Objects.equals(this.reference, other.reference)
-				&& Objects.equals(this.targetClass, other.targetClass);
+		return Objects.equals(startingClass, other.startingClass) && Objects.equals(reference, other.reference)
+				&& Objects.equals(targetClass, other.targetClass);
 	}
 
 	@Override
 	public int hashCode() {
 
-		return Objects.hash(this.startingClass, this.reference, this.targetClass);
+		return Objects.hash(startingClass, reference, targetClass);
 	}
 
 	@Override
@@ -99,11 +99,11 @@ public class DirectEClassConnectionPath implements EClassConnectionPath {
 
 		StringBuilder stringBuilder = new StringBuilder();
 
-		stringBuilder.append(this.getStartingClass().getName());
+		stringBuilder.append(getStartingClass().getName());
 
-		stringBuilder.append("...").append(this.getReference().getName()).append("...");
+		stringBuilder.append("...").append(getReference().getName()).append("...");
 
-		stringBuilder.append(this.getTargetClass().getName());
+		stringBuilder.append(getTargetClass().getName());
 
 		return stringBuilder.toString();
 	}
@@ -111,50 +111,55 @@ public class DirectEClassConnectionPath implements EClassConnectionPath {
 	@Override
 	public Capacity getActualCapacity(EObject startingElement) {
 
-		if (!this.isValidStartingElement(startingElement)) {
+		if (!isValidStartingElement(startingElement)) {
 			return Capacity.ZERO;
 		}
 
-		Capacity theoreticalCapacity = this.getTheoreticalCapacity();
+		Capacity theoreticalCapacity = getTheoreticalCapacity();
 
 		if (theoreticalCapacity.isUnbounded()) {
 			return Capacity.UNBOUNDED;
 		}
 
-		int numberOfExistingTargetElementss = this.getNumberOfExistingTargetElements(startingElement);
+		int numberOfExistingTargetElementss = getExistingTargetElements(startingElement).size();
 
 		// should never be negative because actual cannot exceed theoretical capacity
 		return Capacity.valueOf(theoreticalCapacity.getValue() - numberOfExistingTargetElementss);
 	}
 
-	private int getNumberOfExistingTargetElements(EObject startingElement) {
+	@Override
+	public List<EObject> getExistingTargetElements(EObject startingElement) {
 
-		return AgteleEcoreUtil.getStructuralFeatureValueAsList(startingElement, this.reference).size();
+		List<Object> existingTargetObjects = AgteleEcoreUtil.getStructuralFeatureValueAsList(startingElement,
+				reference);
+
+		return existingTargetObjects.stream().filter(EObject.class::isInstance).map(EObject.class::cast)
+				.collect(Collectors.toList());
 	}
 
 	@Override
 	public Capacity getTheoreticalCapacity() {
 
-		return Capacity.valueOf(this.reference);
+		return Capacity.valueOf(reference);
 	}
 
 	@Override
 	public boolean describesConnectionBetween(EObject startingElement, EObject targetElement) {
 
-		return this.isValidStartingElement(startingElement) && AgteleEcoreUtil
-				.getStructuralFeatureValueAsList(startingElement, this.reference).contains(targetElement);
+		return isValidStartingElement(startingElement)
+				&& AgteleEcoreUtil.getStructuralFeatureValueAsList(startingElement, reference).contains(targetElement);
 	}
 
 	@Override
 	public List<EClass> getAllClasses() {
 
-		return Arrays.asList(this.startingClass, this.targetClass);
+		return Arrays.asList(startingClass, targetClass);
 	}
 
 	@Override
 	public List<EReference> getAllReferences() {
 
-		return Arrays.asList(this.reference);
+		return Arrays.asList(reference);
 	}
 
 }

@@ -53,6 +53,12 @@ public class EmptyEClassConnectionPath implements EClassConnectionPath {
 	}
 
 	@Override
+	public List<EObject> getExistingTargetElements(EObject startingElement) {
+
+		return Collections.emptyList();
+	}
+
+	@Override
 	public boolean describesConnectionBetween(EObject startingElement, EObject targetElement) {
 
 		return Objects.equals(startingElement, targetElement);

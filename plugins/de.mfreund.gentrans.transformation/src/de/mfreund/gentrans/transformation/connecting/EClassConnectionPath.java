@@ -51,6 +51,12 @@ public interface EClassConnectionPath {
 	public Capacity getActualCapacity(EObject startingElement);
 
 	/**
+	 * How many elements are connected to the given {@link EObject startingElement} via this path.
+	 */
+	@SuppressWarnings("javadoc")
+	public List<EObject> getExistingTargetElements(EObject startingElement);
+
+	/**
 	 * Whether following this path based on the given {@link EObject startingElement} leads to the given {@link EObject
 	 * targetElement}.
 	 */
@@ -72,7 +78,7 @@ public interface EClassConnectionPath {
 	 */
 	public default boolean containsLoop() {
 
-		return new HashSet<>(this.getAllClasses()).size() < this.getAllClasses().size();
+		return new HashSet<>(getAllClasses()).size() < getAllClasses().size();
 	}
 
 	/**
@@ -82,6 +88,6 @@ public interface EClassConnectionPath {
 	 */
 	public default boolean isValidStartingElement(EObject startingElement) {
 
-		return this.getStartingClass() != null && this.getStartingClass().isInstance(startingElement);
+		return getStartingClass() != null && getStartingClass().isInstance(startingElement);
 	}
 }

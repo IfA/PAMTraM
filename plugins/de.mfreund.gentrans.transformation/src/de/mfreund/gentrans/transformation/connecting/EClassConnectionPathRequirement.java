@@ -9,12 +9,16 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * Instances of this class represent a requirement/request for a {@link EClassConnectionPath connection path} that
- * consists of an optional {@link #requiredStartingClass}, a {@link #requiredTargetClass}, and a
- * {@link #requiredMaximumPathLength}.
+ * Instances of this class represent a requirement/request for a {@link EClassConnectionPath connection path}. It can be
+ * passed to an instance of {@link EClassConnectionPathProvider} in order to determine all paths that satisfy this
+ * requirement.
  * <p />
- * If no {@link #getRequiredStartingClass()} is specified, this means that all potential target classes may be used as
- * starting class.
+ * <b>Usage</b>: The most simple requirement can be specified via
+ * <code>new EClassConnectionPathRequirement(anEClass)</code>. Passing this to an instance of
+ * {@link EClassConnectionPathProvider} will return all potential paths that can be used to connect an instance of
+ * 'anEClass' to an arbitrary other model element.
+ * <p />
+ * The various <em>with...</em> methods can be used to further concretize a requirement.
  *
  * @author mfreund
  */
@@ -31,39 +35,59 @@ public class EClassConnectionPathRequirement {
 
 	private Capacity requiredMinimumCapacity;
 
-	/**
-	 * Creates an instance.
-	 *
-	 * @param requiredTargetClass
-	 */
 	public EClassConnectionPathRequirement(EClass requiredTargetClass) {
 
 		this.requiredTargetClass = requiredTargetClass;
-		this.requiredStartingClass = null;
-		this.requiredStartingElement = null;
-		this.requiredMaximumPathLength = Length.UNBOUNDED;
-		this.requiredMinimumCapacity = Capacity.ZERO;
+		requiredStartingClass = null;
+		requiredStartingElement = null;
+		requiredMaximumPathLength = Length.UNBOUNDED;
+		requiredMinimumCapacity = Capacity.ZERO;
 	}
 
+	/**
+	 * Specify the requested starting {@link EClass} for the path.
+	 * <p />
+	 * If this is not specified, this means that all potential target classes may be used as starting class.
+	 */
 	public EClassConnectionPathRequirement withRequiredStartingClass(EClass requiredStartingClass) {
 
 		this.requiredStartingClass = requiredStartingClass;
 		return this;
 	}
 
+	/**
+	 * This can be used to specify a specific starting {@link EObject}.
+	 * <p />
+	 * If set, this starting element will be used in order to determine the
+	 * {@link EClassConnectionPath#getActualCapacity(EObject) actual capacity} of a potential path and ensure that this
+	 * fulfills the {@link #getRequiredMinimumCapacity() required minimum}. If no starting element is set, only the
+	 * {@link EClassConnectionPath#getTheoreticalCapacity() theoretical capacity} of a potential path will be checked.
+	 */
 	public EClassConnectionPathRequirement withRequiredStartingElement(EObject requiredStartingElement) {
 
 		this.requiredStartingElement = requiredStartingElement;
-		this.withRequiredStartingClass(requiredStartingElement.eClass());
+		withRequiredStartingClass(requiredStartingElement.eClass());
 		return this;
 	}
 
+	/**
+	 * Specify the maximum allowed {@link Length}.
+	 * <p />
+	 * If not set, an {@link Length#UNBOUNDED unbounded} length is used as default.
+	 */
 	public EClassConnectionPathRequirement withRequiredMaximumPathLength(Length requiredMaximumPathLength) {
 
 		this.requiredMaximumPathLength = requiredMaximumPathLength;
 		return this;
 	}
 
+	/**
+	 * Specify the minimum required {@link Capacity}.
+	 * <p />
+	 * If not set, a minimum capacity of {@link Capacity#ZERO 0} is used as default.
+	 *
+	 * @see #withRequiredStartingElement(EObject)
+	 */
 	public EClassConnectionPathRequirement withRequiredMinimumCapacity(Capacity requiredMinimumCapacity) {
 
 		this.requiredMinimumCapacity = requiredMinimumCapacity;
@@ -72,27 +96,27 @@ public class EClassConnectionPathRequirement {
 
 	public EClass getRequiredStartingClass() {
 
-		return this.requiredStartingClass;
+		return requiredStartingClass;
 	}
 
 	public EObject getRequiredStartingElement() {
 
-		return this.requiredStartingElement;
+		return requiredStartingElement;
 	}
 
 	public EClass getRequiredTargetClass() {
 
-		return this.requiredTargetClass;
+		return requiredTargetClass;
 	}
 
 	public Length getRequiredMaximumPathLength() {
 
-		return this.requiredMaximumPathLength;
+		return requiredMaximumPathLength;
 	}
 
 	public Capacity getRequiredMinimumCapacity() {
 
-		return this.requiredMinimumCapacity;
+		return requiredMinimumCapacity;
 	}
 
 	@Override
@@ -106,15 +130,15 @@ public class EClassConnectionPathRequirement {
 
 		EClassConnectionPathRequirement requirement = (EClassConnectionPathRequirement) obj;
 
-		return this.requiredMaximumPathLength == requirement.requiredMaximumPathLength
-				&& Objects.equals(this.requiredStartingClass, requirement.requiredStartingClass)
-				&& Objects.equals(this.requiredTargetClass, requirement.requiredTargetClass);
+		return requiredMaximumPathLength == requirement.requiredMaximumPathLength
+				&& Objects.equals(requiredStartingClass, requirement.requiredStartingClass)
+				&& Objects.equals(requiredTargetClass, requirement.requiredTargetClass);
 	}
 
 	@Override
 	public int hashCode() {
 
-		return Objects.hash(this.requiredStartingClass, this.requiredTargetClass, this.requiredMaximumPathLength);
+		return Objects.hash(requiredStartingClass, requiredTargetClass, requiredMaximumPathLength);
 	}
 
 }

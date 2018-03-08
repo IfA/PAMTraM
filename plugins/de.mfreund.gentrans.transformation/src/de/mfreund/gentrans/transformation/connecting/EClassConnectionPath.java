@@ -42,8 +42,11 @@ public interface EClassConnectionPath {
 	public Capacity getTheoreticalCapacity();
 
 	/**
-	 * Calculates the paths <em>actual</em> {@link Capacity} for the given {@link EObject rootElement} (how many
+	 * Calculates the paths <em>actual</em> {@link Capacity} for the given {@link EObject startingElement} (how many
 	 * elements of the {@link #getTargetClass() targetClass} can be connected to the startingElement via this path).
+	 * <p />
+	 * Note: The actual capacity of a path is always less or equal to its {@link #getTheoreticalCapacity() theoretical
+	 * capacity} because it takes into account existing elements along the path that reduce the available capacity.
 	 *
 	 * @param startingElement
 	 * @return The capacity of this path.

@@ -12,8 +12,11 @@ import org.eclipse.emf.ecore.EPackage;
 import de.mfreund.gentrans.transformation.connecting.impl.CachedEClassConnectionPathProvider;
 
 /**
- * A provider for {@link EClassConnectionPath EClassConnectionPaths} based on {@link EClassConnectionPathRequirement
- * EClassConnectionPathRequirements}.
+ * Instances of this class are able to retrieve/provide a list of {@link EClassConnectionPath EClassConnectionPaths}
+ * based on a given {@link EClassConnectionPathRequirement EClassConnectionPathRequirement}.
+ * <p />
+ * Note: An implementation of this provider interface can be retrieved via {@link #getInstance(Collection)} or
+ * {@link #getInstance(Collection, Logger)}.
  *
  * @author mfreund
  */

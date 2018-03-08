@@ -68,7 +68,7 @@ public abstract class EClassConnectionPathInstantiator {
 	protected abstract void instantiate();
 
 	/**
-	 * @return the {@link #createdIntermediaryElements}
+	 * @return the list of elements that have been created automatically during instantiation of the path
 	 */
 	public List<EObject> getCreatedIntermediaryElements() {
 
@@ -76,7 +76,7 @@ public abstract class EClassConnectionPathInstantiator {
 	}
 
 	/**
-	 * @return the {@link #unconnectedElements}
+	 * @return the list of elements that could not be connected while instantiating the path
 	 */
 	public List<EObject> getUnconnectedElements() {
 

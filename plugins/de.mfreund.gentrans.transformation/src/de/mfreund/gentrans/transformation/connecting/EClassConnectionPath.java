@@ -90,4 +90,9 @@ public interface EClassConnectionPath {
 
 		return getStartingClass() != null && getStartingClass().isInstance(startingElement);
 	}
+
+	/**
+	 * @return An {@link EClassConnectionPathInstantiator} that can be used to instantiate this path.
+	 */
+	public EClassConnectionPathInstantiator createInstantiator();
 }

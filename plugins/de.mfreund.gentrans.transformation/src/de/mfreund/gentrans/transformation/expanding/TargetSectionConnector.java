@@ -15,6 +15,7 @@ import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
+import java.util.logging.Level;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -28,12 +29,13 @@ import de.mfreund.gentrans.transformation.UserAbortException;
 import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
 import de.mfreund.gentrans.transformation.connecting.Capacity;
 import de.mfreund.gentrans.transformation.connecting.EClassConnectionPath;
+import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathInstantiator;
+import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathInstantiator.EClassConnectionPathInstantiationException;
 import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathProvider;
 import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathRequirement;
 import de.mfreund.gentrans.transformation.connecting.Length;
 import de.mfreund.gentrans.transformation.connecting.impl.CachedEClassConnectionPathProvider;
 import de.mfreund.gentrans.transformation.connecting.impl.ComplexEClassConnectionPath;
-import de.mfreund.gentrans.transformation.connecting.impl.EClassConnectionPathInstantiatorImpl;
 import de.mfreund.gentrans.transformation.core.CancelableTransformationAsset;
 import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
@@ -121,21 +123,21 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 
 		super(assetManager);
 
-		this.standardPaths = new LinkedHashMap<>();
-		this.targetSectionRegistry = assetManager.getTargetSectionRegistry();
+		standardPaths = new LinkedHashMap<>();
+		targetSectionRegistry = assetManager.getTargetSectionRegistry();
 
-		this.targetModelRegistry = assetManager.getTargetModelRegistry();
+		targetModelRegistry = assetManager.getTargetModelRegistry();
 
 		Set<EPackage> targetMetaModels = new LinkedHashSet<>(assetManager.getTransformationConfig().getPamtramModels()
 				.stream().flatMap(p -> p.getTargetSectionModels().stream()).map(TargetSectionModel::getMetaModelPackage)
 				.collect(Collectors.toList()));
-		this.connectionPathProvider = new CachedEClassConnectionPathProvider(targetMetaModels, this.logger);
-		this.instanceSelectorHandler = assetManager.getInstanceSelectorHandler();
+		connectionPathProvider = new CachedEClassConnectionPathProvider(targetMetaModels, logger);
+		instanceSelectorHandler = assetManager.getInstanceSelectorHandler();
 		// FIXME in the config, 0 means direct connection; in Length, 0 means no connection
 		int rawMaxPathLength = assetManager.getTransformationConfig().getMaxPathLength();
-		this.maxPathLength = Length.valueOf(rawMaxPathLength == -1 ? rawMaxPathLength : rawMaxPathLength + 1);
-		this.ambiguityResolvingStrategy = assetManager.getTransformationConfig().getAmbiguityResolvingStrategy();
-		this.unconnectableElements = new LinkedHashMap<>();
+		maxPathLength = Length.valueOf(rawMaxPathLength == -1 ? rawMaxPathLength : rawMaxPathLength + 1);
+		ambiguityResolvingStrategy = assetManager.getTransformationConfig().getAmbiguityResolvingStrategy();
+		unconnectableElements = new LinkedHashMap<>();
 	}
 
 	/**
@@ -204,7 +206,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 	private boolean joinTargetSection(final MappingHintGroupType hintGroup,
 			final List<MappingInstanceDescriptor> mappingInstances) {
 
-		this.checkCanceled();
+		checkCanceled();
 
 		if (mappingInstances.isEmpty()) {
 			return true;
@@ -219,14 +221,14 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 			// do not join sections for that a 'file' is specified, those are
 			// simply added as root elements to that file
 			//
-			this.addToTargetModelRoot(this.targetSectionRegistry.getPamtramClassInstances(hintGroup.getTargetSection())
+			this.addToTargetModelRoot(targetSectionRegistry.getPamtramClassInstances(hintGroup.getTargetSection())
 					.getOrDefault(hintGroup, new ArrayList<>()));
 			return true;
 
 		}
 
-		if (this.targetSectionRegistry.getPamtramClassInstances(section).keySet().isEmpty()
-				|| this.targetSectionRegistry.getPamtramClassInstances(section).get(hintGroup) == null) {
+		if (targetSectionRegistry.getPamtramClassInstances(section).keySet().isEmpty()
+				|| targetSectionRegistry.getPamtramClassInstances(section).get(hintGroup) == null) {
 
 			// nothing to do
 			//
@@ -260,7 +262,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 				// Try to connect the instances with the given
 				// ContainerSelectors and collect the unconnectable instances
 				//
-				instancesToConnect = this.joinWithContainerSelectors(mappingInstance, instancesToConnect, hintGroup,
+				instancesToConnect = joinWithContainerSelectors(mappingInstance, instancesToConnect, hintGroup,
 						containerSelectors);
 
 				// After evaluation of all ContainerSelectors, if there are
@@ -274,22 +276,22 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 
 		} else {
 
-			final List<EObjectWrapper> containerInstances = this.targetSectionRegistry
+			final List<EObjectWrapper> containerInstances = targetSectionRegistry
 					.getFlattenedPamtramClassInstances(section.getContainer());
 
 			/*
 			 * fetch ALL instances created by the MH-Group in question => less user input and possibly shorter
 			 * processing time
 			 */
-			final List<EObjectWrapper> rootInstances = this.targetSectionRegistry.getPamtramClassInstances(section)
+			final List<EObjectWrapper> rootInstances = targetSectionRegistry.getPamtramClassInstances(section)
 					.get(hintGroup);
 
 			if (containerInstances.isEmpty() && section.getContainer() != null) {
-				this.logger.warning(() -> "The TargetSection '" + section.getName() + "' specifies the "
+				logger.warning(() -> "The TargetSection '" + section.getName() + "' specifies the "
 						+ section.getContainer().eClass().getName() + " '" + section.getContainer().getName()
 						+ "' as container. However, no instances of this " + section.getContainer().eClass().getName()
 						+ " have been created.");
-				this.registerAsUnconnectable(rootInstances, section);
+				registerAsUnconnectable(rootInstances, section);
 				return true;
 			}
 
@@ -297,8 +299,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 			//
 			containerInstances.removeAll(rootInstances);
 
-			List<EObjectWrapper> unconnectedInstances = this.joinWithoutContainerSelector(rootInstances, section,
-					hintGroup,
+			List<EObjectWrapper> unconnectedInstances = joinWithoutContainerSelector(rootInstances, section, hintGroup,
 					section.getContainer() != null
 							? Optional.of(Collections.singleton(section.getContainer().getEClass()))
 							: Optional.empty(),
@@ -326,7 +327,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 	private boolean joinTargetSection(final MappingHintGroupImporter hintGroupImporter,
 			final List<MappingInstanceDescriptor> mappingInstances) {
 
-		this.checkCanceled();
+		checkCanceled();
 
 		final ExportedMappingHintGroup g = hintGroupImporter.getHintGroup();
 
@@ -339,14 +340,13 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 			// do not join sections for that a 'file' is specified, those are
 			// simply added as root elements to that file
 			//
-			this.addToTargetModelRoot(
-					this.targetSectionRegistry.getPamtramClassInstances(section).get(hintGroupImporter));
+			this.addToTargetModelRoot(targetSectionRegistry.getPamtramClassInstances(section).get(hintGroupImporter));
 			return true;
 
 		}
 
-		if (this.targetSectionRegistry.getPamtramClassInstances(section).keySet().isEmpty()
-				|| this.targetSectionRegistry.getPamtramClassInstances(section).get(hintGroupImporter) == null) {
+		if (targetSectionRegistry.getPamtramClassInstances(section).keySet().isEmpty()
+				|| targetSectionRegistry.getPamtramClassInstances(section).get(hintGroupImporter) == null) {
 
 			// nothing to do
 			//
@@ -383,7 +383,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 						}
 					}
 					// link
-					this.joinWithoutContainerSelector(rootInstances, g.getTargetSection(), g,
+					joinWithoutContainerSelector(rootInstances, g.getTargetSection(), g,
 							Optional.of(new HashSet<>(Arrays.asList(hintGroupImporter.getContainer().getEClass()))),
 							containerInstances.isEmpty() ? Optional.empty() : Optional.of(containerInstances));
 
@@ -395,19 +395,19 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 			// (target section container == global instance search)
 		} else {
 			final LinkedList<EObjectWrapper> containerInstances = new LinkedList<>();
-			final List<EObjectWrapper> rootInstances = this.targetSectionRegistry
+			final List<EObjectWrapper> rootInstances = targetSectionRegistry
 					.getPamtramClassInstances(g.getTargetSection()).get(hintGroupImporter);
 			final Set<EClass> containerClasses = new LinkedHashSet<>();
 			if (g.getTargetSection().getContainer() != null) {
 				containerClasses.add(g.getTargetSection().getContainer().getEClass());
-				containerInstances.addAll(this.targetSectionRegistry
-						.getFlattenedPamtramClassInstances(g.getTargetSection().getContainer()));
+				containerInstances.addAll(
+						targetSectionRegistry.getFlattenedPamtramClassInstances(g.getTargetSection().getContainer()));
 
 			}
 
 			if (rootInstances != null && !rootInstances.isEmpty()) {
 				// link
-				this.joinWithoutContainerSelector(rootInstances, g.getTargetSection(), g,
+				joinWithoutContainerSelector(rootInstances, g.getTargetSection(), g,
 						containerClasses.isEmpty() ? Optional.empty() : Optional.of(containerClasses),
 						containerInstances.isEmpty() ? Optional.empty() : Optional.of(containerInstances));
 			}
@@ -455,9 +455,9 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 		FileType fileType = helper.getFileType();
 
 		if (path.isEmpty()) {
-			this.targetModelRegistry.addToTargetModel(element);
+			targetModelRegistry.addToTargetModel(element);
 		} else {
-			this.targetModelRegistry.addToTargetModel(element, path, fileType);
+			targetModelRegistry.addToTargetModel(element, path, fileType);
 		}
 	}
 
@@ -471,65 +471,63 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 	 */
 	public void combineUnlinkedSectionsWithTargetModelRoot() {
 
-		this.checkCanceled();
+		checkCanceled();
 
 		// Nothing to do
 		//
-		if (this.unconnectableElements.isEmpty()) {
+		if (unconnectableElements.isEmpty()) {
 			return;
 		}
 
-		this.logger.info(() -> "Joining "
-				+ this.unconnectableElements.values().parallelStream().flatMap(v -> v.values().stream())
+		logger.info(() -> "Joining "
+				+ unconnectableElements.values().parallelStream().flatMap(v -> v.values().stream())
 						.flatMap(v2 -> v2.stream()).collect(Collectors.toList()).size()
 				+ " unconnected instances with a target model root element...");
 
 		// Only one element could not be connected -> we already have our root element
 		//
-		if (this.unconnectableElements.keySet().size() == 1
-				&& this.unconnectableElements.values().iterator().next().keySet().size() == 1
-				&& this.unconnectableElements.values().iterator().next().values().iterator().next().size() == 1) {
+		if (unconnectableElements.keySet().size() == 1
+				&& unconnectableElements.values().iterator().next().keySet().size() == 1
+				&& unconnectableElements.values().iterator().next().values().iterator().next().size() == 1) {
 
 			this.addToTargetModelRoot(
-					this.unconnectableElements.values().iterator().next().values().iterator().next().get(0));
-			this.logger.info(() -> "Root element: The single instance of the target section '"
-					+ this.unconnectableElements.values().iterator().next().keySet().iterator().next().getName()
-					+ "'.");
+					unconnectableElements.values().iterator().next().values().iterator().next().get(0));
+			logger.info(() -> "Root element: The single instance of the target section '"
+					+ unconnectableElements.values().iterator().next().keySet().iterator().next().getName() + "'.");
 			return;
 
 		}
 
 		// Collect all classes that could act as common root for each of the unconnected elements
 		//
-		List<EClassConnectionPathRequirement> requirements = this.unconnectableElements.keySet().stream()
-				.map(e -> new EClassConnectionPathRequirement(e).withRequiredMaximumPathLength(this.maxPathLength))
+		List<EClassConnectionPathRequirement> requirements = unconnectableElements.keySet().stream()
+				.map(e -> new EClassConnectionPathRequirement(e).withRequiredMaximumPathLength(maxPathLength))
 				.collect(Collectors.toList());
 
 		Iterator<EClassConnectionPathRequirement> requirementIterator = requirements.iterator();
 
-		List<EClass> rootClassesFulfillingAllrequirements = new ArrayList<>(this.connectionPathProvider
+		List<EClass> rootClassesFulfillingAllrequirements = new ArrayList<>(connectionPathProvider
 				.getConnections(requirementIterator.next()).stream().map(EClassConnectionPath::getStartingClass)
 				.collect(Collectors.toCollection(LinkedHashSet::new)));
 
 		while (requirementIterator.hasNext()) {
 			EClassConnectionPathRequirement requirement = requirementIterator.next();
-			rootClassesFulfillingAllrequirements.retainAll(this.connectionPathProvider.getConnections(requirement)
-					.stream().map(EClassConnectionPath::getStartingClass)
-					.collect(Collectors.toCollection(LinkedHashSet::new)));
+			rootClassesFulfillingAllrequirements.retainAll(connectionPathProvider.getConnections(requirement).stream()
+					.map(EClassConnectionPath::getStartingClass).collect(Collectors.toCollection(LinkedHashSet::new)));
 
 		}
 
-		this.checkCanceled();
+		checkCanceled();
 
 		if (rootClassesFulfillingAllrequirements.isEmpty()) {
 
 			// No common root class found
 			//
-			for (final EClass c : this.unconnectableElements.keySet()) {
+			for (final EClass c : unconnectableElements.keySet()) {
 
-				this.logger.warning(() -> "No suitable path found for target class: " + c.getName());
+				logger.warning(() -> "No suitable path found for target class: " + c.getName());
 
-				this.unconnectableElements.get(c).values().stream().forEach(this::addToTargetModelRoot);
+				unconnectableElements.get(c).values().stream().forEach(this::addToTargetModelRoot);
 			}
 
 			return;
@@ -547,24 +545,24 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 			// Consult the specified resolving strategy to resolve the ambiguity.
 			//
 			try {
-				this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_STARTED);
-				List<EClass> resolved = this.ambiguityResolvingStrategy
+				logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_STARTED);
+				List<EClass> resolved = ambiguityResolvingStrategy
 						.joiningSelectRootElement(new ArrayList<>(rootClassesFulfillingAllrequirements));
-				if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
-					((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy).joiningRootElementSelected(
+				if (ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
+					((IAmbiguityResolvedAdapter) ambiguityResolvingStrategy).joiningRootElementSelected(
 							new ArrayList<>(rootClassesFulfillingAllrequirements), resolved.get(0));
 				}
-				this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_ENDED);
+				logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_ENDED);
 				rootClass = resolved.get(0);
 
 			} catch (AmbiguityResolvingException e) {
 				if (e.getCause() instanceof UserAbortException) {
 					throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
 				} else {
-					this.logger.severe(
+					logger.severe(
 							() -> "The following exception occured during the resolving of an ambiguity concerning the selection of a common root class: "
 									+ e.getMessage());
-					this.logger.severe("Using default path instead...");
+					logger.severe("Using default path instead...");
 					rootClass = rootClassesFulfillingAllrequirements.iterator().next();
 				}
 			}
@@ -575,11 +573,11 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 		//
 		final EObject containerInstance = rootClass.getEPackage().getEFactoryInstance().create(rootClass);
 
-		this.addToTargetModelRoot(new EObjectWrapper(containerInstance, this.targetSectionRegistry));
+		this.addToTargetModelRoot(new EObjectWrapper(containerInstance, targetSectionRegistry));
 
-		this.logger.info("Root element: '" + rootClass.getName() + "' (generated)");
+		logger.info("Root element: '" + rootClass.getName() + "' (generated)");
 
-		for (final Entry<EClass, Map<TargetSectionClass, List<EObjectWrapper>>> unlinkeableEntry : this.unconnectableElements
+		for (final Entry<EClass, Map<TargetSectionClass, List<EObjectWrapper>>> unlinkeableEntry : unconnectableElements
 				.entrySet()) {
 
 			for (final TargetSectionClass tSection : unlinkeableEntry.getValue().keySet()) {
@@ -591,11 +589,10 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 				final int neededCapacity = unlinkeableEntry.getValue().get(tSection).size();
 				EClassConnectionPathRequirement connectionRequirement = new EClassConnectionPathRequirement(
 						unlinkeableEntry.getKey()).withRequiredStartingElement(containerInstance)
-								.withRequiredMaximumPathLength(this.maxPathLength)
+								.withRequiredMaximumPathLength(maxPathLength)
 								.withRequiredMinimumCapacity(Capacity.valueOf(neededCapacity));
 
-				final List<EClassConnectionPath> pathSet = this.connectionPathProvider
-						.getConnections(connectionRequirement);
+				final List<EClassConnectionPath> pathSet = connectionPathProvider.getConnections(connectionRequirement);
 
 				if (pathSet.isEmpty()) {
 
@@ -606,7 +603,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 					// happened
 					// =>
 					// programming error
-					this.logger.severe("Error. Check container instantiation");
+					logger.severe("Error. Check container instantiation");
 
 				} else {
 
@@ -619,24 +616,24 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 							 * Consult the specified resolving strategy to resolve the ambiguity.
 							 */
 							try {
-								this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_STARTED);
-								List<EClassConnectionPath> resolved = this.ambiguityResolvingStrategy
+								logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_STARTED);
+								List<EClassConnectionPath> resolved = ambiguityResolvingStrategy
 										.joiningSelectConnectionPath(pathSet, (TargetSection) tSection);
-								if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
-									((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
+								if (ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
+									((IAmbiguityResolvedAdapter) ambiguityResolvingStrategy)
 											.joiningConnectionPathSelected(new ArrayList<>(pathSet), resolved.get(0));
 								}
-								this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_ENDED);
+								logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_ENDED);
 								chosenPath = resolved.get(0);
 
 							} catch (AmbiguityResolvingException e) {
 								if (e.getCause() instanceof UserAbortException) {
 									throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
 								} else {
-									this.logger.severe(
+									logger.severe(
 											() -> "The following exception occured during the resolving of an ambiguity concerning an connection path: "
 													+ e.getMessage());
-									this.logger.severe("Using default path instead...");
+									logger.severe("Using default path instead...");
 									chosenPath = pathSet.get(0);
 								}
 							}
@@ -645,14 +642,13 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 						// now instantiate path
 						List<EObject> elementsToConnect = unlinkeableEntry.getValue().get(tSection).stream()
 								.map(EObjectWrapper::getEObject).collect(Collectors.toList());
-						EClassConnectionPathInstantiatorImpl i = new EClassConnectionPathInstantiatorImpl(chosenPath);
+						EClassConnectionPathInstantiator i = chosenPath.createInstantiator();
 						i.instantiate(containerInstance, elementsToConnect);
-						i.getCreatedIntermediaryElements().stream()
-								.forEach(this.targetSectionRegistry::addClassInstance);
+						i.getCreatedIntermediaryElements().stream().forEach(targetSectionRegistry::addClassInstance);
 
-						this.logger.info("Connected to root: " + tSection.getName() + ": " + chosenPath.toString());
+						logger.info("Connected to root: " + tSection.getName() + ": " + chosenPath.toString());
 					} else {
-						this.logger.warning("The chosen container '" + rootClass.getName()
+						logger.warning("The chosen container '" + rootClass.getName()
 								+ "' cannot fit the elements of the type '" + unlinkeableEntry.getKey().getName()
 								+ "', sorry.");
 						this.addToTargetModelRoot(unlinkeableEntry.getValue().get(tSection));
@@ -693,7 +689,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 			final TargetSection section, final MappingHintGroupType mappingGroup,
 			final Optional<Set<EClass>> containerClasses, final Optional<List<EObjectWrapper>> containerInstances) {
 
-		this.checkCanceled();
+		checkCanceled();
 
 		// Nothing to connect
 		//
@@ -705,14 +701,14 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 
 		// A set of ModelConnectionPaths that are possible and thus have to be considered by the selection algorithms.
 		//
-		List<EClassConnectionPath> pathsToConsider = this.getModelConnectionPathsToConsider(rootInstances,
-				containerClasses, classToConnect);
+		List<EClassConnectionPath> pathsToConsider = getModelConnectionPathsToConsider(rootInstances, containerClasses,
+				classToConnect);
 
 		// If no paths have been found, register the related elements as 'unconnectable' and return.
 		//
 		if (pathsToConsider.isEmpty()) {
 
-			this.registerAsUnconnectable(rootInstances, section);
+			registerAsUnconnectable(rootInstances, section);
 
 			// Although none of the 'rootInstances' have been connected, we do not return them as 'unconnected
 			// instances'. The reason for this is that they will be connected later on when the 'unconnectableElements'
@@ -729,11 +725,11 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 					? containerInstances.get().stream()
 							.filter(c -> c.getEObject().eClass().equals(connectionPath.getStartingClass()))
 							.collect(Collectors.toList())
-					: this.targetSectionRegistry.getTargetClassInstances(connectionPath.getStartingClass());
+					: targetSectionRegistry.getTargetClassInstances(connectionPath.getStartingClass());
 			containerInstancesByConnectionPaths.put(connectionPath, containerInstancesForConnectionPath);
 		}
 
-		return this.selectAndInstantiateConnections(rootInstances, containerInstancesByConnectionPaths, mappingGroup);
+		return selectAndInstantiateConnections(rootInstances, containerInstancesByConnectionPaths, mappingGroup);
 
 	}
 
@@ -762,15 +758,14 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 			// EClass that are considered when searching for connection paths.
 			//
 			pathsToConsider.addAll(containerClasses.get().stream().flatMap(
-					c -> this.connectionPathProvider.getConnections(new EClassConnectionPathRequirement(classToConnect)
-							.withRequiredStartingClass(c).withRequiredMaximumPathLength(this.maxPathLength)
+					c -> connectionPathProvider.getConnections(new EClassConnectionPathRequirement(classToConnect)
+							.withRequiredStartingClass(c).withRequiredMaximumPathLength(maxPathLength)
 							.withRequiredMinimumCapacity(Capacity.valueOf(rootInstances))).stream())
 					.collect(Collectors.toCollection(LinkedHashSet::new)));
 		} else {
 
-			pathsToConsider.addAll(
-					this.connectionPathProvider.getConnections(new EClassConnectionPathRequirement(classToConnect)
-							.withRequiredMaximumPathLength(this.maxPathLength)
+			pathsToConsider.addAll(connectionPathProvider.getConnections(
+					new EClassConnectionPathRequirement(classToConnect).withRequiredMaximumPathLength(maxPathLength)
 							.withRequiredMinimumCapacity(Capacity.valueOf(rootInstances))));
 		}
 
@@ -778,7 +773,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 		//
 		for (final EClassConnectionPath p : new LinkedList<>(pathsToConsider)) {
 
-			List<EObject> possibleContainerInstances = this.targetSectionRegistry
+			List<EObject> possibleContainerInstances = targetSectionRegistry
 					.getTargetClassInstances(pathsToConsider.iterator().next().getStartingClass()).parallelStream()
 					.map(EObjectWrapper::getEObject).collect(Collectors.toList());
 
@@ -807,18 +802,18 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 	 */
 	private void registerAsUnconnectable(List<EObjectWrapper> unconnectableInstances, TargetSection section) {
 
-		if (!this.unconnectableElements.containsKey(section.getEClass())) {
+		if (!unconnectableElements.containsKey(section.getEClass())) {
 
-			this.unconnectableElements.put(section.getEClass(),
+			unconnectableElements.put(section.getEClass(),
 					new LinkedHashMap<TargetSectionClass, List<EObjectWrapper>>());
 		}
 
-		if (!this.unconnectableElements.get(section.getEClass()).containsKey(section)) {
+		if (!unconnectableElements.get(section.getEClass()).containsKey(section)) {
 
-			this.unconnectableElements.get(section.getEClass()).put(section, new LinkedList<EObjectWrapper>());
+			unconnectableElements.get(section.getEClass()).put(section, new LinkedList<EObjectWrapper>());
 		}
 
-		this.unconnectableElements.get(section.getEClass()).get(section).addAll(unconnectableInstances);
+		unconnectableElements.get(section.getEClass()).get(section).addAll(unconnectableInstances);
 	}
 
 	/**
@@ -843,7 +838,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 			final List<EObjectWrapper> rootInstances, final MappingHintGroupType mappingGroup,
 			List<ContainerSelector> containerSelectors) {
 
-		this.checkCanceled();
+		checkCanceled();
 
 		// Nothing to connect
 		//
@@ -853,14 +848,13 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 
 		// All potential connection paths
 		//
-		Map<ContainerSelector, List<EClassConnectionPath>> connectionPathsByContainerSelector = this
-				.getConnectionPathsByContainerSelector(containerSelectors, mappingGroup.getTargetSection().getEClass());
+		Map<ContainerSelector, List<EClassConnectionPath>> connectionPathsByContainerSelector = getConnectionPathsByContainerSelector(
+				containerSelectors, mappingGroup.getTargetSection().getEClass());
 
 		// All potential container instances
 		//
-		Map<ContainerSelector, List<EObjectWrapper>> containerInstancesByContainerSelector = this
-				.getContainerInstancesByContainerSelector(new ArrayList<>(connectionPathsByContainerSelector.keySet()),
-						mappingInstance);
+		Map<ContainerSelector, List<EObjectWrapper>> containerInstancesByContainerSelector = getContainerInstancesByContainerSelector(
+				new ArrayList<>(connectionPathsByContainerSelector.keySet()), mappingInstance);
 
 		// None of the potential container instances matches one of the hint values
 		//
@@ -901,7 +895,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 			return rootInstances;
 		}
 
-		return this.selectAndInstantiateConnections(rootInstances, containerInstancesByConnectionPaths, mappingGroup);
+		return selectAndInstantiateConnections(rootInstances, containerInstancesByConnectionPaths, mappingGroup);
 	}
 
 	/**
@@ -1000,11 +994,11 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 
 		Connection connectionToInstantiate = new Connection(containerInstance, connectionPath, rootInstances);
 
-		if (!this.standardPaths.containsKey(mappingGroup) || this.standardPaths.get(mappingGroup) != connectionPath) {
+		if (!standardPaths.containsKey(mappingGroup) || standardPaths.get(mappingGroup) != connectionPath) {
 
-			this.standardPaths.put(mappingGroup, connectionPath);
+			standardPaths.put(mappingGroup, connectionPath);
 
-			this.logger.info(() -> mappingGroup.getTargetSection().getName() + " ("
+			logger.info(() -> mappingGroup.getTargetSection().getName() + " ("
 					+ ((Mapping) mappingGroup.eContainer()).getName() + "): "
 					+ connectionToInstantiate.getConnectionPath().toString());
 		}
@@ -1035,7 +1029,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 
 		// If there is already a 'standardPath' for the given 'mappingGroup', we reuse this standard path
 		//
-		EClassConnectionPath standardPath = this.standardPaths.getOrDefault(mappingGroup, null);
+		EClassConnectionPath standardPath = standardPaths.getOrDefault(mappingGroup, null);
 		if (standardPath != null && connectionPaths.contains(standardPath)) {
 
 			return this.getConnectionToInstantiate(rootInstances, standardPath, containerInstance, mappingGroup);
@@ -1078,25 +1072,25 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 			// There are multiple possible container instances
 			//
 			try {
-				this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_STARTED);
+				logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_STARTED);
 
-				selectedContainerInstance = this.ambiguityResolvingStrategy
+				selectedContainerInstance = ambiguityResolvingStrategy
 						.joiningSelectContainerInstance(containerInstances, rootInstances, mappingGroup, null, null)
 						.iterator().next();
-				if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
-					((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
+				if (ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
+					((IAmbiguityResolvedAdapter) ambiguityResolvingStrategy)
 							.joiningContainerInstanceSelected(containerInstances, selectedContainerInstance);
 				}
-				this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_ENDED);
+				logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_ENDED);
 
 			} catch (AmbiguityResolvingException e) {
 				if (e.getCause() instanceof UserAbortException) {
 					throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
 				} else {
-					this.logger.severe(
+					logger.severe(
 							() -> "The following exception occured during the resolving of an ambiguity concerning the selection of a container instance: "
 									+ e.getMessage());
-					this.logger.severe("Using default path and instance instead...");
+					logger.severe("Using default path and instance instead...");
 					selectedContainerInstance = containerInstances.get(0);
 				}
 			}
@@ -1125,7 +1119,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 
 		// If there is already a 'standardPath' for the given 'mappingGroup', we reuse this standard path
 		//
-		EClassConnectionPath standardPath = this.standardPaths.getOrDefault(mappingGroup, null);
+		EClassConnectionPath standardPath = standardPaths.getOrDefault(mappingGroup, null);
 		if (standardPath != null && connectionChoices.containsKey(standardPath) && connectionChoices.size() > 1) {
 
 			return this.getConnectionToInstantiate(rootInstances, standardPath, connectionChoices.get(standardPath),
@@ -1164,44 +1158,43 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 			// There are multiple possible connection paths and/or container instances
 			//
 			try {
-				this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_STARTED);
+				logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_STARTED);
 
 				Map<EClassConnectionPath, List<EObjectWrapper>> resolved;
 				if (connectionChoices.values().stream().flatMap(List::stream).collect(Collectors.toSet()).size() == 1) {
 					// If there is only one possible container instance, we only need to let the user choose the
 					// connection path
 					//
-					List<EClassConnectionPath> resolvedPaths = this.ambiguityResolvingStrategy
-							.joiningSelectConnectionPath(new ArrayList<>(connectionChoices.keySet()),
-									mappingGroup.getTargetSection());
+					List<EClassConnectionPath> resolvedPaths = ambiguityResolvingStrategy.joiningSelectConnectionPath(
+							new ArrayList<>(connectionChoices.keySet()), mappingGroup.getTargetSection());
 					resolved = resolvedPaths.stream()
 							.collect(Collectors.toMap(Function.identity(), connectionChoices::get));
 					selectedConnectionPath = resolvedPaths.get(0);
 				} else {
 					// Otherwise, the user needs to select the connection path as well as the container instance
 					//
-					resolved = this.ambiguityResolvingStrategy.joiningSelectConnectionPathAndContainerInstance(
+					resolved = ambiguityResolvingStrategy.joiningSelectConnectionPathAndContainerInstance(
 							connectionChoices, mappingGroup.getTargetSection(), rootInstances, mappingGroup);
 					selectedConnectionPath = resolved.entrySet().iterator().next().getKey();
 				}
 
 				selectedContainerInstance = resolved.entrySet().iterator().next().getValue().get(0);
-				if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
-					((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy).joiningConnectionPathSelected(
+				if (ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
+					((IAmbiguityResolvedAdapter) ambiguityResolvingStrategy).joiningConnectionPathSelected(
 							new ArrayList<>(connectionChoices.keySet()), selectedConnectionPath);
-					((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy).joiningContainerInstanceSelected(
+					((IAmbiguityResolvedAdapter) ambiguityResolvingStrategy).joiningContainerInstanceSelected(
 							new ArrayList<>(connectionChoices.get(selectedConnectionPath)), selectedContainerInstance);
 				}
-				this.logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_ENDED);
+				logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_ENDED);
 
 			} catch (AmbiguityResolvingException e) {
 				if (e.getCause() instanceof UserAbortException) {
 					throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
 				} else {
-					this.logger.severe(
+					logger.severe(
 							() -> "The following exception occured during the resolving of an ambiguity concerning the selection of a common root element: "
 									+ e.getMessage());
-					this.logger.severe("Using default path and instance instead...");
+					logger.severe("Using default path and instance instead...");
 					selectedConnectionPath = connectionChoices.keySet().iterator().next();
 					selectedContainerInstance = connectionChoices.get(selectedConnectionPath).get(0);
 				}
@@ -1246,7 +1239,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 			// container selector (or any of the concrete extending TargetSections)
 			//
 			List<EClassConnectionPath> pathsToConsider = potentialTargetSectionClasses.stream()
-					.flatMap(t -> this.connectionPathProvider.getConnections(
+					.flatMap(t -> connectionPathProvider.getConnections(
 							new EClassConnectionPathRequirement(eClass).withRequiredStartingClass(t.getEClass())
 									.withRequiredMaximumPathLength(Length.DIRECT_CONNECTION))
 							.stream())
@@ -1254,7 +1247,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 
 			if (pathsToConsider.isEmpty()) {
 
-				this.logger.warning(() -> "Could not find a path that leads to the 'targetClass' specified for the "
+				logger.warning(() -> "Could not find a path that leads to the 'targetClass' specified for the "
 						+ containerSelector.printInfo());
 
 			} else {
@@ -1293,12 +1286,12 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 
 			// The instances of the specified 'targetClass' -> These are the potential containers
 			//
-			List<EObjectWrapper> possibleContainerInstances = this.targetSectionRegistry
+			List<EObjectWrapper> possibleContainerInstances = targetSectionRegistry
 					.getFlattenedPamtramClassInstances(containerSelector.getTargetClass());
 
 			// Filter those that satisfy one of the calculated hint values
 			//
-			possibleContainerInstances = this.instanceSelectorHandler.filterTargetInstances(possibleContainerInstances,
+			possibleContainerInstances = instanceSelectorHandler.filterTargetInstances(possibleContainerInstances,
 					containerSelector, mappingInstance.getHintValues().getHintValues(containerSelector));
 
 			if (!possibleContainerInstances.isEmpty()) {
@@ -1366,7 +1359,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 		 */
 		public EObjectWrapper getContainerInstance() {
 
-			return this.containerInstance;
+			return containerInstance;
 		}
 
 		/**
@@ -1374,7 +1367,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 		 */
 		public EClassConnectionPath getConnectionPath() {
 
-			return this.connectionPath;
+			return connectionPath;
 		}
 
 		/**
@@ -1382,7 +1375,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 		 */
 		public Set<EObjectWrapper> getRootInstances() {
 
-			return this.rootInstances;
+			return rootInstances;
 		}
 
 		/**
@@ -1397,19 +1390,25 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 
 		/**
 		 * Instantiates this connection by invoking
-		 * {@link ComplexEClassConnectionPath#instantiate(EObject, Collection)}.
+		 * {@link EClassConnectionPathInstantiator#instantiate(EObject, Collection)}.
 		 *
 		 * @return A list of elements (a subset of the {@link #rootInstances}) that could not be connected (possibly
 		 *         because the capacity of the path was not large enough).
 		 */
 		public List<EObjectWrapper> instantiate() {
 
-			EClassConnectionPathInstantiatorImpl i = new EClassConnectionPathInstantiatorImpl(this.connectionPath);
-			i.instantiate(this.containerInstance.getEObject(),
-					this.rootInstances.stream().map(EObjectWrapper::getEObject).collect(Collectors.toList()));
-			i.getCreatedIntermediaryElements().stream()
-					.forEach(TargetSectionConnector.this.targetSectionRegistry::addClassInstance);
-			return this.rootInstances.stream().filter(r -> i.getUnconnectedElements().contains(r.getEObject()))
+			EClassConnectionPathInstantiator instantiator = connectionPath.createInstantiator();
+
+			try {
+				instantiator.instantiate(containerInstance.getEObject(),
+						rootInstances.stream().map(EObjectWrapper::getEObject).collect(Collectors.toList()));
+
+			} catch (EClassConnectionPathInstantiationException e) {
+				logger.log(Level.SEVERE, e, () -> e.getMessage() != null ? e.getMessage() : e.toString());
+			}
+
+			instantiator.getCreatedIntermediaryElements().stream().forEach(targetSectionRegistry::addClassInstance);
+			return rootInstances.stream().filter(r -> instantiator.getUnconnectedElements().contains(r.getEObject()))
 					.collect(Collectors.toList());
 		}
 	}

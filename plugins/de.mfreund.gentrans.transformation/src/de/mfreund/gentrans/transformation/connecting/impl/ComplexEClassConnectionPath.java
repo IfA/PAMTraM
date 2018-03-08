@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EReference;
 
 import de.mfreund.gentrans.transformation.connecting.Capacity;
 import de.mfreund.gentrans.transformation.connecting.EClassConnectionPath;
+import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathInstantiator;
 import de.mfreund.gentrans.transformation.connecting.Length;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 
@@ -150,7 +151,7 @@ public class ComplexEClassConnectionPath implements EClassConnectionPath {
 	//
 	// }
 
-	private List<EObject> getTargetElementsOfFirstPathSegment(EObject startingElement) {
+	List<EObject> getTargetElementsOfFirstPathSegment(EObject startingElement) {
 
 		if (!isValidStartingElement(startingElement)) {
 			return Collections.emptyList();
@@ -165,12 +166,12 @@ public class ComplexEClassConnectionPath implements EClassConnectionPath {
 				.collect(Collectors.toList());
 	}
 
-	private EClassConnectionPath getSubPath(int fromSegmentInclusive) {
+	EClassConnectionPath getSubPath(int fromSegmentInclusive) {
 
 		return this.getSubPath(fromSegmentInclusive, pathSegments.size());
 	}
 
-	private EClassConnectionPath getSubPath(int fromSegmentInclusive, int toSegmentExclusive) {
+	EClassConnectionPath getSubPath(int fromSegmentInclusive, int toSegmentExclusive) {
 
 		List<DirectEClassConnectionPath> subPathSegments = pathSegments.subList(fromSegmentInclusive,
 				toSegmentExclusive);
@@ -260,6 +261,18 @@ public class ComplexEClassConnectionPath implements EClassConnectionPath {
 	public List<EReference> getAllReferences() {
 
 		return pathSegments.stream().map(DirectEClassConnectionPath::getReference).collect(Collectors.toList());
+	}
+
+	@Override
+	public EClassConnectionPathInstantiator createInstantiator() {
+
+		if (getSubPath(1) instanceof EmptyEClassConnectionPath) {
+			DirectEClassConnectionPath firstAndOnlyPathSegment = getPathSegments().get(0);
+			return new DirectEClassConnectionPathInstantiator(firstAndOnlyPathSegment);
+
+		} else {
+			return new ComplexEClassConnectionPathInstantiator(this);
+		}
 	}
 
 }

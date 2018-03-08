@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EReference;
 
 import de.mfreund.gentrans.transformation.connecting.Capacity;
 import de.mfreund.gentrans.transformation.connecting.EClassConnectionPath;
+import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathInstantiator;
 import de.mfreund.gentrans.transformation.connecting.Length;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 
@@ -160,6 +161,12 @@ public class DirectEClassConnectionPath implements EClassConnectionPath {
 	public List<EReference> getAllReferences() {
 
 		return Arrays.asList(reference);
+	}
+
+	@Override
+	public EClassConnectionPathInstantiator createInstantiator() {
+
+		return new DirectEClassConnectionPathInstantiator(this);
 	}
 
 }

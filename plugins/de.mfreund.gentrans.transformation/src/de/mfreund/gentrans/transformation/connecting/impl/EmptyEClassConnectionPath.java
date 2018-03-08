@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EReference;
 
 import de.mfreund.gentrans.transformation.connecting.Capacity;
 import de.mfreund.gentrans.transformation.connecting.EClassConnectionPath;
+import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathInstantiator;
 import de.mfreund.gentrans.transformation.connecting.Length;
 
 /**
@@ -74,6 +75,12 @@ public class EmptyEClassConnectionPath implements EClassConnectionPath {
 	public List<EReference> getAllReferences() {
 
 		return Collections.emptyList();
+	}
+
+	@Override
+	public EClassConnectionPathInstantiator createInstantiator() {
+
+		return new EmptyEClassConnectionPathInstantiator(this);
 	}
 
 }

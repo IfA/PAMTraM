@@ -26,12 +26,12 @@ public class ComplexEClassConnectionPathInstantiator extends EClassConnectionPat
 
 	private EClassConnectionPathInstantiator firstPathSegmentInstantiator;
 
-	private List<EObject> existingTargetElementsOfFirstPathSegment;
-
 	// All 'pathSegments' excluding the 'firstPathSegment'
 	private EClassConnectionPath remainingPath;
 
 	private EClassConnectionPathInstantiator remainingPathInstantiator;
+
+	private List<EObject> existingElementsOfFirstPathSegment;
 
 	private Capacity requiredCapacity;
 
@@ -52,8 +52,8 @@ public class ComplexEClassConnectionPathInstantiator extends EClassConnectionPat
 
 		super.init(startingElement, targetElements);
 
-		existingTargetElementsOfFirstPathSegment = firstPathSegment.getExistingTargetElements(startingElement);
 		requiredCapacity = Capacity.valueOf(targetElements);
+		existingElementsOfFirstPathSegment = firstPathSegment.getExistingTargetElements(startingElement);
 	}
 
 	/**
@@ -64,45 +64,48 @@ public class ComplexEClassConnectionPathInstantiator extends EClassConnectionPat
 	@Override
 	protected void instantiate() {
 
+		List<EObject> targetElementsOfFirstPathSegment = instantiateOrReuseFirstPathSegment();
+
+		if (hasRemainingPath()) {
+			instantiateRemainingPath(targetElementsOfFirstPathSegment);
+		}
+
+	}
+
+	private List<EObject> instantiateOrReuseFirstPathSegment() {
+
 		List<EObject> targetElementsOfFirstPathSegment;
 
-		if (firstPathSegmentIsOnlyPathSegment()) {
-			targetElementsOfFirstPathSegment = targetElements;
-
-		} else if (firstPathSegmentCanBeReused()) {
-			targetElementsOfFirstPathSegment = existingTargetElementsOfFirstPathSegment;
-
+		if (canFirstPathSegmentBeReused()) {
+			targetElementsOfFirstPathSegment = existingElementsOfFirstPathSegment;
 		} else {
-			targetElementsOfFirstPathSegment = createRequiredIntermediaryElementsForFirstPathSegment();
+			targetElementsOfFirstPathSegment = instantiateFirstPathSegment();
 		}
 
-		instantiateFirstPathSegment(targetElementsOfFirstPathSegment);
+		return targetElementsOfFirstPathSegment;
+	}
 
-		instantiateRemainingPath(targetElementsOfFirstPathSegment);
+	private boolean canFirstPathSegmentBeReused() {
+
+		return hasRemainingPath() && canExistingTargetElementsOfFirstPathSegmentBeReused();
 
 	}
 
-	private boolean firstPathSegmentIsOnlyPathSegment() {
+	private boolean hasRemainingPath() {
 
-		return remainingPath instanceof EmptyEClassConnectionPath;
+		return !(remainingPath instanceof EmptyEClassConnectionPath);
 	}
 
-	private boolean firstPathSegmentCanBeReused() {
+	private boolean canExistingTargetElementsOfFirstPathSegmentBeReused() {
 
-		return !firstPathSegmentIsOnlyPathSegment() && canTargetElementsOfFirstPathSegmentBeReused();
-
-	}
-
-	private boolean canTargetElementsOfFirstPathSegmentBeReused() {
-
-		if (existingTargetElementsOfFirstPathSegment.isEmpty()) {
+		if (existingElementsOfFirstPathSegment.isEmpty()) {
 			return false;
 
-		} else if (existingTargetElementsOfFirstPathSegment.size() == 1) {
-			return canSingleTargetElementOfFirstPathSegmentBeReused();
+		} else if (existingElementsOfFirstPathSegment.size() == 1) {
+			return canSingleTargetElementOfFirstPathSegmentBeReused(existingElementsOfFirstPathSegment.get(0));
 
-		} else if (existingTargetElementsOfFirstPathSegment.size() == targetElements.size()) {
-			return canAllTargetElementsOfFirstPathSegmentBeReused();
+		} else if (existingElementsOfFirstPathSegment.size() == targetElements.size()) {
+			return canAllTargetElementsOfFirstPathSegmentBeReused(existingElementsOfFirstPathSegment);
 
 		} else {
 			return false;
@@ -110,31 +113,16 @@ public class ComplexEClassConnectionPathInstantiator extends EClassConnectionPat
 
 	}
 
-	private boolean canSingleTargetElementOfFirstPathSegmentBeReused() {
-
-		EObject targetElementOfFirstPathSegment = existingTargetElementsOfFirstPathSegment.get(0);
+	private boolean canSingleTargetElementOfFirstPathSegmentBeReused(EObject targetElementOfFirstPathSegment) {
 
 		Capacity actualCapacityOfSubPath = remainingPath.getActualCapacity(targetElementOfFirstPathSegment);
 
 		return actualCapacityOfSubPath.isSufficientFor(requiredCapacity);
 	}
 
-	private boolean canAllTargetElementsOfFirstPathSegmentBeReused() {
+	private boolean canAllTargetElementsOfFirstPathSegmentBeReused(List<EObject> targetElementsOfFirstPathSegment) {
 
-		return existingTargetElementsOfFirstPathSegment.stream()
-				.noneMatch(e -> remainingPath.getActualCapacity(e).isZero());
-	}
-
-	private List<EObject> createRequiredIntermediaryElementsForFirstPathSegment() {
-
-		int requiredNumberOfElements = getRequiredNumberOfIntermediaryElements();
-
-		List<EObject> createdElements = IntStream.range(0, requiredNumberOfElements)
-				.mapToObj(i -> createIntermediaryElementForFirstPathSegment()).collect(Collectors.toList());
-
-		createdIntermediaryElements.addAll(createdElements);
-
-		return createdElements;
+		return targetElementsOfFirstPathSegment.stream().noneMatch(e -> remainingPath.getActualCapacity(e).isZero());
 	}
 
 	private int getRequiredNumberOfIntermediaryElements() {
@@ -160,12 +148,36 @@ public class ComplexEClassConnectionPathInstantiator extends EClassConnectionPat
 		return classToInstantiate.getEPackage().getEFactoryInstance().create(classToInstantiate);
 	}
 
-	private void instantiateFirstPathSegment(List<EObject> targetElementsOfFirstPathSegment) {
+	private List<EObject> instantiateFirstPathSegment() {
 
-		instantiate(firstPathSegmentInstantiator, startingElement, targetElementsOfFirstPathSegment);
+		List<EObject> targetElementsOfFirstPathSegment;
+
+		if (!hasRemainingPath()) {
+			targetElementsOfFirstPathSegment = targetElements;
+		} else {
+			targetElementsOfFirstPathSegment = createRequiredIntermediaryElementsForFirstPathSegment();
+		}
+
+		executeInstantiatorAndUpdateCreatedElements(firstPathSegmentInstantiator, startingElement, targetElementsOfFirstPathSegment);
+
+		return targetElementsOfFirstPathSegment;
 	}
 
-	private void instantiateRemainingPath(List<EObject> startingElementsOfRemainingPath) {
+	private List<EObject> createRequiredIntermediaryElementsForFirstPathSegment() {
+	
+		int requiredNumberOfElements = getRequiredNumberOfIntermediaryElements();
+	
+		List<EObject> createdElements = IntStream.range(0, requiredNumberOfElements)
+				.mapToObj(i -> createIntermediaryElementForFirstPathSegment()).collect(Collectors.toList());
+	
+		createdIntermediaryElements.addAll(createdElements);
+	
+		return createdElements;
+	}
+
+	private void instantiateRemainingPath(List<EObject> targetElementsOfFirstPathSegment) {
+
+		List<EObject> startingElementsOfRemainingPath = targetElementsOfFirstPathSegment;
 
 		int targetElementsPerStartingElement = getTargetElementsPerStartingElementOfRemainingPath(
 				startingElementsOfRemainingPath);
@@ -200,10 +212,10 @@ public class ComplexEClassConnectionPathInstantiator extends EClassConnectionPat
 	private void instantiateRemainingPath(EObject startingElementOfRemainingPath,
 			List<EObject> correspondingTargetElements) {
 
-		instantiate(remainingPathInstantiator, startingElementOfRemainingPath, correspondingTargetElements);
+		executeInstantiatorAndUpdateCreatedElements(remainingPathInstantiator, startingElementOfRemainingPath, correspondingTargetElements);
 	}
 
-	private void instantiate(EClassConnectionPathInstantiator instantiator, EObject startingElement,
+	private void executeInstantiatorAndUpdateCreatedElements(EClassConnectionPathInstantiator instantiator, EObject startingElement,
 			List<EObject> targetElements) {
 
 		instantiator.instantiate(startingElement, targetElements);

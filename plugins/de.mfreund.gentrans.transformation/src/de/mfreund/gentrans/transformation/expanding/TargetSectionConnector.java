@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import de.mfreund.gentrans.transformation.CancelTransformationException;
 import de.mfreund.gentrans.transformation.UserAbortException;
 import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
+import de.mfreund.gentrans.transformation.connecting.AllowedReferenceType;
 import de.mfreund.gentrans.transformation.connecting.Capacity;
 import de.mfreund.gentrans.transformation.connecting.EClassConnectionPath;
 import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathInstantiator;
@@ -501,7 +502,8 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 		// Collect all classes that could act as common root for each of the unconnected elements
 		//
 		List<EClassConnectionPathRequirement> requirements = unconnectableElements.keySet().stream()
-				.map(e -> new EClassConnectionPathRequirement(e).withRequiredMaximumPathLength(maxPathLength))
+				.map(e -> new EClassConnectionPathRequirement(e).withRequiredMaximumPathLength(maxPathLength)
+						.withAllowedReferenceType(AllowedReferenceType.CONTAINMENT))
 				.collect(Collectors.toList());
 
 		Iterator<EClassConnectionPathRequirement> requirementIterator = requirements.iterator();
@@ -590,7 +592,8 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 				EClassConnectionPathRequirement connectionRequirement = new EClassConnectionPathRequirement(
 						unlinkeableEntry.getKey()).withRequiredStartingElement(containerInstance)
 								.withRequiredMaximumPathLength(maxPathLength)
-								.withRequiredMinimumCapacity(Capacity.valueOf(neededCapacity));
+								.withRequiredMinimumCapacity(Capacity.valueOf(neededCapacity))
+								.withAllowedReferenceType(AllowedReferenceType.CONTAINMENT);
 
 				final List<EClassConnectionPath> pathSet = connectionPathProvider.getConnections(connectionRequirement);
 
@@ -760,13 +763,15 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 			pathsToConsider.addAll(containerClasses.get().stream().flatMap(
 					c -> connectionPathProvider.getConnections(new EClassConnectionPathRequirement(classToConnect)
 							.withRequiredStartingClass(c).withRequiredMaximumPathLength(maxPathLength)
-							.withRequiredMinimumCapacity(Capacity.valueOf(rootInstances))).stream())
+							.withRequiredMinimumCapacity(Capacity.valueOf(rootInstances))
+							.withAllowedReferenceType(AllowedReferenceType.CONTAINMENT)).stream())
 					.collect(Collectors.toCollection(LinkedHashSet::new)));
 		} else {
 
 			pathsToConsider.addAll(connectionPathProvider.getConnections(
 					new EClassConnectionPathRequirement(classToConnect).withRequiredMaximumPathLength(maxPathLength)
-							.withRequiredMinimumCapacity(Capacity.valueOf(rootInstances))));
+							.withRequiredMinimumCapacity(Capacity.valueOf(rootInstances))
+							.withAllowedReferenceType(AllowedReferenceType.CONTAINMENT)));
 		}
 
 		// Remove those paths that would lead to cyclic containments
@@ -1241,7 +1246,8 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 			List<EClassConnectionPath> pathsToConsider = potentialTargetSectionClasses.stream()
 					.flatMap(t -> connectionPathProvider.getConnections(
 							new EClassConnectionPathRequirement(eClass).withRequiredStartingClass(t.getEClass())
-									.withRequiredMaximumPathLength(Length.DIRECT_CONNECTION))
+									.withRequiredMaximumPathLength(Length.DIRECT_CONNECTION)
+									.withAllowedReferenceType(AllowedReferenceType.CONTAINMENT))
 							.stream())
 					.collect(Collectors.toList());
 

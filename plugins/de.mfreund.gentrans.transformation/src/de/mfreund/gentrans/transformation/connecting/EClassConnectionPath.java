@@ -54,7 +54,7 @@ public interface EClassConnectionPath {
 	public Capacity getActualCapacity(EObject startingElement);
 
 	/**
-	 * How many elements are connected to the given {@link EObject startingElement} via this path.
+	 * The elements that are connected to the given {@link EObject startingElement} via this path.
 	 */
 	@SuppressWarnings("javadoc")
 	public List<EObject> getExistingTargetElements(EObject startingElement);

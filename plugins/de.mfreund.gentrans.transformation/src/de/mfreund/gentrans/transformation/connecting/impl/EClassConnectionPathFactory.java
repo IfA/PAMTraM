@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import de.mfreund.gentrans.transformation.connecting.AllowedReferenceType;
 import de.mfreund.gentrans.transformation.connecting.EClassConnectionPath;
 import de.mfreund.gentrans.transformation.connecting.Length;
 import de.mfreund.gentrans.transformation.registries.EClassConnectionInformationRegistry;
@@ -59,7 +60,7 @@ public class EClassConnectionPathFactory {
 
 	@SuppressWarnings("javadoc")
 	public List<EClassConnectionPath> findPathsBetweenClasses(EClass startingClass, EClass targetClass,
-			Length maxPathLength) {
+			Length maxPathLength, AllowedReferenceType allowedReferenceType) {
 
 		if (maxPathLength.isNoConnection()) {
 			return Collections.emptyList();
@@ -70,7 +71,7 @@ public class EClassConnectionPathFactory {
 		Set<EClassConnectionPath> pathStack = new LinkedHashSet<>();
 
 		// we will move downward in the containment hierarchy and start at the 'containerClass'
-		pathStack.addAll(this.getAllPossibleOutgoingDirectConnectionPaths(startingClass));
+		pathStack.addAll(getAllAllowedOutgoingDirectConnectionPaths(startingClass, allowedReferenceType));
 
 		// iterate as long as every possible connection path has been found
 		while (!pathStack.isEmpty()) {
@@ -88,8 +89,8 @@ public class EClassConnectionPathFactory {
 
 				if (maxPathLength.compareTo(next.getLength()) > 0) {
 
-					List<EClassConnectionPath> nextPossiblePathSegments = this
-							.getAllPossibleOutgoingDirectConnectionPaths(next.getTargetClass());
+					List<EClassConnectionPath> nextPossiblePathSegments = getAllAllowedOutgoingDirectConnectionPaths(
+							next.getTargetClass(), allowedReferenceType);
 					List<EClassConnectionPath> resultingConnectionPaths = nextPossiblePathSegments.stream()
 							.map(s -> join(next, s)).collect(Collectors.toList());
 					List<EClassConnectionPath> resultingConnectionPathsWithoutLoops = resultingConnectionPaths.stream()
@@ -105,25 +106,41 @@ public class EClassConnectionPathFactory {
 
 	}
 
-	private List<EClassConnectionPath> getAllPossibleOutgoingDirectConnectionPaths(EClass startingClass) {
+	private List<EClassConnectionPath> getAllAllowedOutgoingDirectConnectionPaths(EClass startingClass,
+			AllowedReferenceType allowedReferenceType) {
 
-		List<EReference> outgoingReferences = startingClass.getEAllContainments();
+		List<EReference> outgoingReferences = getAllAllowedOutgoingReferences(startingClass, allowedReferenceType);
 
-		return outgoingReferences.stream()
-				.flatMap(r -> this.getAllPossibleOutgoingDirectConnectionPaths(startingClass, r).stream())
+		return getAllPossibleDirectConnectionPathsViaReferences(startingClass, outgoingReferences);
+	}
+
+	private List<EReference> getAllAllowedOutgoingReferences(EClass startingClass,
+			AllowedReferenceType allowedReferenceType) {
+
+		List<EReference> allOutgoingReferences = startingClass.getEAllReferences();
+
+		return allOutgoingReferences.stream().filter(allowedReferenceType::allows).collect(Collectors.toList());
+	}
+
+	private List<EClassConnectionPath> getAllPossibleDirectConnectionPathsViaReferences(EClass startingClass,
+			List<EReference> references) {
+
+		return references.stream()
+				.flatMap(r -> getAllPossibleDirectConnectionPathsViaReference(startingClass, r).stream())
 				.collect(Collectors.toList());
 	}
 
-	private List<EClassConnectionPath> getAllPossibleOutgoingDirectConnectionPaths(EClass startingClass,
-			EReference reference) {
+	private List<EClassConnectionPath> getAllPossibleDirectConnectionPathsViaReference(EClass startingClass,
+			EReference outgoingReference) {
 
-		List<EClass> potentialTargetClasses = getAllPotentialTargetClasses(reference);
+		List<EClass> potentialTargetClasses = getAllPotentialTargetClasses(outgoingReference);
 
 		List<EClass> nonAbstractPotentialTargetClasses = potentialTargetClasses.stream().filter(c -> !c.isAbstract())
 				.collect(Collectors.toList());
 
 		return nonAbstractPotentialTargetClasses.stream()
-				.map(c -> new DirectEClassConnectionPath(startingClass, reference, c)).collect(Collectors.toList());
+				.map(c -> new DirectEClassConnectionPath(startingClass, outgoingReference, c))
+				.collect(Collectors.toList());
 	}
 
 	private List<EClass> getAllPotentialTargetClasses(EReference reference) {
@@ -138,12 +155,14 @@ public class EClassConnectionPathFactory {
 	}
 
 	@SuppressWarnings("javadoc")
-	public List<EClassConnectionPath> findPathsToClass(EClass targetClass, Length maxPathLength) {
+	public List<EClassConnectionPath> findPathsToClass(EClass targetClass, Length maxPathLength,
+			AllowedReferenceType allowedReferenceType) {
 
 		Stream<EClass> concreteRegisteredClasses = eClassConnectionInformationRegistry.getRegisteredClasses().stream()
 				.filter(c -> !c.isAbstract());
 
-		return concreteRegisteredClasses.flatMap(c -> findPathsBetweenClasses(c, targetClass, maxPathLength).stream())
+		return concreteRegisteredClasses
+				.flatMap(c -> findPathsBetweenClasses(c, targetClass, maxPathLength, allowedReferenceType).stream())
 				.collect(Collectors.toList());
 	}
 

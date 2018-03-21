@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
+import de.mfreund.gentrans.transformation.connecting.AllowedReferenceType;
 import de.mfreund.gentrans.transformation.connecting.Capacity;
 import de.mfreund.gentrans.transformation.connecting.EClassConnectionPath;
 import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathProvider;
@@ -44,16 +45,15 @@ public class CachedEClassConnectionPathProvider implements EClassConnectionPathP
 
 	public CachedEClassConnectionPathProvider(Collection<EPackage> ePackages, Logger logger) {
 
-		this.cachedConnections = Collections.synchronizedMap(new HashMap<>());
-		this.pathFactory = logger != null ? new EClassConnectionPathFactory(ePackages, logger)
+		cachedConnections = Collections.synchronizedMap(new HashMap<>());
+		pathFactory = logger != null ? new EClassConnectionPathFactory(ePackages, logger)
 				: new EClassConnectionPathFactory(ePackages);
 	}
 
 	@Override
 	public List<EClassConnectionPath> getConnections(EClassConnectionPathRequirement connectionRequirement) {
 
-		return new ArrayList<>(
-				this.cachedConnections.computeIfAbsent(connectionRequirement, this::determineConnections));
+		return new ArrayList<>(cachedConnections.computeIfAbsent(connectionRequirement, this::determineConnections));
 	}
 
 	private Set<EClassConnectionPath> determineConnections(EClassConnectionPathRequirement connectionRequirement) {
@@ -61,13 +61,14 @@ public class CachedEClassConnectionPathProvider implements EClassConnectionPathP
 		EClass startingClass = connectionRequirement.getRequiredStartingClass();
 		EClass targetClass = connectionRequirement.getRequiredTargetClass();
 		Length maxPathLength = connectionRequirement.getRequiredMaximumPathLength();
+		AllowedReferenceType allowedReferenceType = connectionRequirement.getAllowedReferenceType();
 
 		List<EClassConnectionPath> potentialConnectionPaths;
 		if (startingClass == null) {
-			potentialConnectionPaths = this.pathFactory.findPathsToClass(targetClass, maxPathLength);
+			potentialConnectionPaths = pathFactory.findPathsToClass(targetClass, maxPathLength, allowedReferenceType);
 		} else {
-			potentialConnectionPaths = this.pathFactory.findPathsBetweenClasses(startingClass, targetClass,
-					maxPathLength);
+			potentialConnectionPaths = pathFactory.findPathsBetweenClasses(startingClass, targetClass, maxPathLength,
+					allowedReferenceType);
 		}
 
 		Capacity requiredCapacity = connectionRequirement.getRequiredMinimumCapacity();
@@ -75,10 +76,10 @@ public class CachedEClassConnectionPathProvider implements EClassConnectionPathP
 
 		Set<EClassConnectionPath> filteredConnectionPaths;
 		if (startingElement == null) {
-			filteredConnectionPaths = this.filterConnectionsByTheoreticalCapacity(potentialConnectionPaths,
+			filteredConnectionPaths = filterConnectionPathsByTheoreticalCapacity(potentialConnectionPaths,
 					requiredCapacity);
 		} else {
-			filteredConnectionPaths = this.filterConnectionsByActualCapacity(potentialConnectionPaths, requiredCapacity,
+			filteredConnectionPaths = filterConnectionPathsByActualCapacity(potentialConnectionPaths, requiredCapacity,
 					startingElement);
 		}
 

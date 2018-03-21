@@ -59,10 +59,10 @@ public class EClassConnectionInformationRegistry {
 	 */
 	public EClassConnectionInformationRegistry(Logger logger) {
 
-		this.registeredPackages = Collections.synchronizedSet(new LinkedHashSet<>());
-		this.registeredClasses = Collections.synchronizedSet(new LinkedHashSet<>());
-		this.classToSubClassesRegistry = new ConcurrentHashMap<>();
-		this.classToIncomingReferencesRegistry = new ConcurrentHashMap<>();
+		registeredPackages = Collections.synchronizedSet(new LinkedHashSet<>());
+		registeredClasses = Collections.synchronizedSet(new LinkedHashSet<>());
+		classToSubClassesRegistry = new ConcurrentHashMap<>();
+		classToIncomingReferencesRegistry = new ConcurrentHashMap<>();
 		this.logger = Optional.ofNullable(logger);
 	}
 
@@ -73,12 +73,12 @@ public class EClassConnectionInformationRegistry {
 	 */
 	public synchronized void register(Collection<EPackage> ePackages) {
 
-		Set<EPackage> ePackagesToRegister = this.getEPackagesToRegister(ePackages);
+		Set<EPackage> ePackagesToRegister = getEPackagesToRegister(ePackages);
 
-		this.registerEPackages(ePackagesToRegister);
+		registerEPackages(ePackagesToRegister);
 
-		if (this.logger.isPresent()) {
-			this.logger.get().info(() -> "The following EPackages were registered succesfully: "
+		if (logger.isPresent()) {
+			logger.get().info(() -> "The following EPackages were registered succesfully: "
 					+ ePackagesToRegister.stream().map(EPackage::getName).collect(Collectors.joining(", ")));
 		}
 
@@ -90,14 +90,14 @@ public class EClassConnectionInformationRegistry {
 				true, true, true, Optional.empty());
 
 		Set<EPackage> ePackagesToRegister = new LinkedHashSet<>(ePackagesIncludingReferenced);
-		ePackagesToRegister.removeAll(this.registeredPackages);
+		ePackagesToRegister.removeAll(registeredPackages);
 
 		return ePackagesToRegister;
 	}
 
 	private void registerEPackages(Set<EPackage> ePackages) {
 
-		this.registeredPackages.addAll(ePackages);
+		registeredPackages.addAll(ePackages);
 
 		Set<EClass> eClassesInEPackages = AgteleEcoreUtil.getAllClassesInEPackages(ePackages);
 
@@ -107,15 +107,14 @@ public class EClassConnectionInformationRegistry {
 	private void register(Set<EClass> eClasses) {
 
 		Set<EClass> eClassesToRegister = new LinkedHashSet<>(eClasses);
-		eClassesToRegister.removeAll(this.registeredClasses);
+		eClassesToRegister.removeAll(registeredClasses);
 
-		this.registeredClasses.addAll(eClassesToRegister);
+		registeredClasses.addAll(eClassesToRegister);
 
 		this.registerInClassToSubClassesRegistry(eClassesToRegister);
 
-		// TODO also handle non-containment refs
-		Set<EReference> eReferencesToRegister = eClassesToRegister.stream()
-				.flatMap(c -> c.getEAllContainments().stream()).collect(Collectors.toCollection(LinkedHashSet::new));
+		Set<EReference> eReferencesToRegister = eClassesToRegister.stream().flatMap(c -> c.getEAllReferences().stream())
+				.collect(Collectors.toCollection(LinkedHashSet::new));
 
 		this.registerInClassToIncomingReferencesRegistry(eReferencesToRegister);
 
@@ -134,8 +133,8 @@ public class EClassConnectionInformationRegistry {
 
 	private void registerInClassToSubClassesRegistry(EClass superClass, EClass subClass) {
 
-		this.classToSubClassesRegistry.computeIfAbsent(superClass, c -> new LinkedHashSet<>());
-		this.classToSubClassesRegistry.get(superClass).add(subClass);
+		classToSubClassesRegistry.computeIfAbsent(superClass, c -> new LinkedHashSet<>());
+		classToSubClassesRegistry.get(superClass).add(subClass);
 	}
 
 	private void registerInClassToIncomingReferencesRegistry(Set<EReference> incomingReferences) {
@@ -149,7 +148,7 @@ public class EClassConnectionInformationRegistry {
 
 		Set<EClass> referenceTargetIncludingSubClasses = new LinkedHashSet<>();
 		referenceTargetIncludingSubClasses.add(referenceTarget);
-		referenceTargetIncludingSubClasses.addAll(this.getAllSubClasses(referenceTarget));
+		referenceTargetIncludingSubClasses.addAll(getAllSubClasses(referenceTarget));
 
 		referenceTargetIncludingSubClasses.stream()
 				.forEach(target -> this.registerInClassToIncomingReferencesRegistry(target, incomingReference));
@@ -157,8 +156,8 @@ public class EClassConnectionInformationRegistry {
 
 	private void registerInClassToIncomingReferencesRegistry(EClass targetClass, EReference incomingReference) {
 
-		this.classToIncomingReferencesRegistry.computeIfAbsent(targetClass, c -> new LinkedHashSet<>());
-		this.classToIncomingReferencesRegistry.get(targetClass).add(incomingReference);
+		classToIncomingReferencesRegistry.computeIfAbsent(targetClass, c -> new LinkedHashSet<>());
+		classToIncomingReferencesRegistry.get(targetClass).add(incomingReference);
 
 	}
 
@@ -167,7 +166,7 @@ public class EClassConnectionInformationRegistry {
 	 */
 	public Set<EPackage> getRegisteredPackages() {
 
-		return Collections.unmodifiableSet(this.registeredPackages);
+		return Collections.unmodifiableSet(registeredPackages);
 	}
 
 	/**
@@ -175,7 +174,7 @@ public class EClassConnectionInformationRegistry {
 	 */
 	public Set<EClass> getRegisteredClasses() {
 
-		return Collections.unmodifiableSet(this.registeredClasses);
+		return Collections.unmodifiableSet(registeredClasses);
 	}
 
 	/**
@@ -189,12 +188,11 @@ public class EClassConnectionInformationRegistry {
 	 */
 	public Set<EClass> getAllSubClasses(EClass superClass) {
 
-		if (!this.registeredClasses.contains(superClass)) {
+		if (!registeredClasses.contains(superClass)) {
 			this.register(Arrays.asList(superClass.getEPackage()));
 		}
 
-		return Collections
-				.unmodifiableSet(this.classToSubClassesRegistry.getOrDefault(superClass, new LinkedHashSet<>()));
+		return Collections.unmodifiableSet(classToSubClassesRegistry.getOrDefault(superClass, new LinkedHashSet<>()));
 	}
 
 	/**
@@ -209,12 +207,12 @@ public class EClassConnectionInformationRegistry {
 	 */
 	public Set<EReference> getAllReferencesToClass(EClass targetClass) {
 
-		if (!this.registeredClasses.contains(targetClass)) {
+		if (!registeredClasses.contains(targetClass)) {
 			this.register(Arrays.asList(targetClass.getEPackage()));
 		}
 
-		return Collections.unmodifiableSet(
-				this.classToIncomingReferencesRegistry.getOrDefault(targetClass, new LinkedHashSet<>()));
+		return Collections
+				.unmodifiableSet(classToIncomingReferencesRegistry.getOrDefault(targetClass, new LinkedHashSet<>()));
 	}
 
 	/**
@@ -232,7 +230,7 @@ public class EClassConnectionInformationRegistry {
 		Set<EClass> referenceSources = new LinkedHashSet<>();
 
 		referenceSources.add(reference.getEContainingClass());
-		referenceSources.addAll(this.getAllSubClasses(reference.getEContainingClass()));
+		referenceSources.addAll(getAllSubClasses(reference.getEContainingClass()));
 
 		return referenceSources;
 
@@ -244,7 +242,7 @@ public class EClassConnectionInformationRegistry {
 	 */
 	public void clear() {
 
-		this.classToSubClassesRegistry.clear();
+		classToSubClassesRegistry.clear();
 	}
 
 }

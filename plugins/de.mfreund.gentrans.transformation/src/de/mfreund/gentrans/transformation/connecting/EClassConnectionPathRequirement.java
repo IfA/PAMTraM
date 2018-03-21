@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * <b>Usage</b>: The most simple requirement can be specified via
  * <code>new EClassConnectionPathRequirement(anEClass)</code>. Passing this to an instance of
  * {@link EClassConnectionPathProvider} will return all potential paths that can be used to connect an instance of
- * 'anEClass' to an arbitrary other model element.
+ * 'anEClass' to an arbitrary other model element via containment and/or non-containment references.
  * <p />
  * The various <em>with...</em> methods can be used to further concretize a requirement.
  *
@@ -35,6 +35,8 @@ public class EClassConnectionPathRequirement {
 
 	private Capacity requiredMinimumCapacity;
 
+	private AllowedReferenceType allowedReferenceType;
+
 	public EClassConnectionPathRequirement(EClass requiredTargetClass) {
 
 		this.requiredTargetClass = requiredTargetClass;
@@ -42,6 +44,7 @@ public class EClassConnectionPathRequirement {
 		requiredStartingElement = null;
 		requiredMaximumPathLength = Length.UNBOUNDED;
 		requiredMinimumCapacity = Capacity.ZERO;
+		allowedReferenceType = AllowedReferenceType.BOTH;
 	}
 
 	/**
@@ -94,6 +97,18 @@ public class EClassConnectionPathRequirement {
 		return this;
 	}
 
+	/**
+	 * Specify the {@link AllowedReferenceType}.
+	 * <p />
+	 * If not set, {@link AllowedReferenceType#BOTH both} types (containment and non-containment references) are
+	 * allowed.
+	 */
+	public EClassConnectionPathRequirement withAllowedReferenceType(AllowedReferenceType allowedReferenceType) {
+
+		this.allowedReferenceType = allowedReferenceType;
+		return this;
+	}
+
 	public EClass getRequiredStartingClass() {
 
 		return requiredStartingClass;
@@ -119,6 +134,11 @@ public class EClassConnectionPathRequirement {
 		return requiredMinimumCapacity;
 	}
 
+	public AllowedReferenceType getAllowedReferenceType() {
+
+		return allowedReferenceType;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 
@@ -130,15 +150,19 @@ public class EClassConnectionPathRequirement {
 
 		EClassConnectionPathRequirement requirement = (EClassConnectionPathRequirement) obj;
 
-		return requiredMaximumPathLength == requirement.requiredMaximumPathLength
+		return Objects.equals(requiredTargetClass, requirement.requiredTargetClass)
 				&& Objects.equals(requiredStartingClass, requirement.requiredStartingClass)
-				&& Objects.equals(requiredTargetClass, requirement.requiredTargetClass);
+				&& Objects.equals(requiredStartingElement, requirement.requiredStartingElement)
+				&& Objects.equals(requiredMaximumPathLength, requirement.requiredMaximumPathLength)
+				&& Objects.equals(requiredMinimumCapacity, requirement.requiredMinimumCapacity)
+				&& Objects.equals(allowedReferenceType, requirement.allowedReferenceType);
 	}
 
 	@Override
 	public int hashCode() {
 
-		return Objects.hash(requiredStartingClass, requiredTargetClass, requiredMaximumPathLength);
+		return Objects.hash(requiredStartingClass, requiredTargetClass, requiredStartingElement,
+				requiredMaximumPathLength, requiredMinimumCapacity, allowedReferenceType);
 	}
 
 }

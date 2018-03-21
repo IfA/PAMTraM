@@ -1,7 +1,7 @@
 /**
  *
  */
-package de.mfreund.gentrans.transformation.registries;
+package de.mfreund.gentrans.transformation.connecting.impl;
 
 import java.util.Arrays;
 import java.util.Collection;

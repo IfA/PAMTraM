@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.EReference;
 import de.mfreund.gentrans.transformation.connecting.AllowedReferenceType;
 import de.mfreund.gentrans.transformation.connecting.EClassConnectionPath;
 import de.mfreund.gentrans.transformation.connecting.Length;
-import de.mfreund.gentrans.transformation.registries.EClassConnectionInformationRegistry;
 
 /**
  *

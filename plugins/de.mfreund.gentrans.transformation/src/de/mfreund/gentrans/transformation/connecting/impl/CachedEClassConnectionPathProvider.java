@@ -82,25 +82,29 @@ public class CachedEClassConnectionPathProvider implements EClassConnectionPathP
 					startingElement);
 		}
 
-		return filteredConnectionPaths.stream()
-				.sorted((p1, p2) -> Integer.valueOf(p2.getLength().getValue())
-						.compareTo(Integer.valueOf(p1.getLength().getValue())))
-				.collect(Collectors.toCollection(LinkedHashSet::new));
+		return new LinkedHashSet<>(sortConnectionPathsFromShortestToLongest(filteredConnectionPaths));
 
 	}
 
-	private Set<EClassConnectionPath> filterConnectionsByTheoreticalCapacity(
+	private Set<EClassConnectionPath> filterConnectionPathsByTheoreticalCapacity(
 			Collection<EClassConnectionPath> connections, Capacity requiredCapacity) {
 
 		return connections.stream().filter(c -> c.getTheoreticalCapacity().isSufficientFor(requiredCapacity))
 				.collect(Collectors.toCollection(LinkedHashSet::new));
 	}
 
-	private Set<EClassConnectionPath> filterConnectionsByActualCapacity(Collection<EClassConnectionPath> connections,
+	private Set<EClassConnectionPath> filterConnectionPathsByActualCapacity(Collection<EClassConnectionPath> connections,
 			Capacity requiredCapacity, EObject startingElement) {
 
 		return connections.stream().filter(c -> c.getActualCapacity(startingElement).isSufficientFor(requiredCapacity))
 				.collect(Collectors.toCollection(LinkedHashSet::new));
+	}
+
+	private List<EClassConnectionPath> sortConnectionPathsFromShortestToLongest(
+			Set<EClassConnectionPath> connectionPaths) {
+
+		return connectionPaths.stream().sorted((p1, p2) -> p1.getLength().compareTo(p2.getLength()))
+				.collect(Collectors.toList());
 	}
 
 }

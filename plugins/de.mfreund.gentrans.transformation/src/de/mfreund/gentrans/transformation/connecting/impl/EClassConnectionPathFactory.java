@@ -4,6 +4,7 @@
 package de.mfreund.gentrans.transformation.connecting.impl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashSet;
@@ -51,11 +52,12 @@ public class EClassConnectionPathFactory {
 	 */
 	public EClassConnectionPathFactory(Collection<EPackage> ePackages, Logger logger) {
 
-		this.eClassConnectionInformationRegistry = logger == null ? new EClassConnectionInformationRegistry()
+		eClassConnectionInformationRegistry = logger == null ? new EClassConnectionInformationRegistry()
 				: new EClassConnectionInformationRegistry(logger);
-		this.eClassConnectionInformationRegistry.register(ePackages);
+		eClassConnectionInformationRegistry.register(ePackages);
 	}
 
+	@SuppressWarnings("javadoc")
 	public List<EClassConnectionPath> findPathsBetweenClasses(EClass startingClass, EClass targetClass,
 			Length maxPathLength) {
 
@@ -89,7 +91,7 @@ public class EClassConnectionPathFactory {
 					List<EClassConnectionPath> nextPossiblePathSegments = this
 							.getAllPossibleOutgoingDirectConnectionPaths(next.getTargetClass());
 					List<EClassConnectionPath> resultingConnectionPaths = nextPossiblePathSegments.stream()
-							.map(s -> this.join(next, s)).collect(Collectors.toList());
+							.map(s -> join(next, s)).collect(Collectors.toList());
 					List<EClassConnectionPath> resultingConnectionPathsWithoutLoops = resultingConnectionPaths.stream()
 							.filter(p -> !p.containsLoop()).collect(Collectors.toList());
 
@@ -115,7 +117,7 @@ public class EClassConnectionPathFactory {
 	private List<EClassConnectionPath> getAllPossibleOutgoingDirectConnectionPaths(EClass startingClass,
 			EReference reference) {
 
-		List<EClass> potentialTargetClasses = this.getAllPotentialTargetClasses(reference);
+		List<EClass> potentialTargetClasses = getAllPotentialTargetClasses(reference);
 
 		List<EClass> nonAbstractPotentialTargetClasses = potentialTargetClasses.stream().filter(c -> !c.isAbstract())
 				.collect(Collectors.toList());
@@ -130,18 +132,18 @@ public class EClassConnectionPathFactory {
 
 		List<EClass> potentialTargetClasses = new ArrayList<>();
 		potentialTargetClasses.add(referenceType);
-		potentialTargetClasses.addAll(this.eClassConnectionInformationRegistry.getAllSubClasses(referenceType));
+		potentialTargetClasses.addAll(eClassConnectionInformationRegistry.getAllSubClasses(referenceType));
 
 		return potentialTargetClasses;
 	}
 
-	public List<EClassConnectionPath> findPathsToClass(final EClass targetClass, final Length maxPathLength) {
+	@SuppressWarnings("javadoc")
+	public List<EClassConnectionPath> findPathsToClass(EClass targetClass, Length maxPathLength) {
 
-		Stream<EClass> concreteRegisteredClasses = this.eClassConnectionInformationRegistry.getRegisteredClasses()
-				.stream().filter(c -> !c.isAbstract());
+		Stream<EClass> concreteRegisteredClasses = eClassConnectionInformationRegistry.getRegisteredClasses().stream()
+				.filter(c -> !c.isAbstract());
 
-		return concreteRegisteredClasses
-				.flatMap(c -> this.findPathsBetweenClasses(c, targetClass, maxPathLength).stream())
+		return concreteRegisteredClasses.flatMap(c -> findPathsBetweenClasses(c, targetClass, maxPathLength).stream())
 				.collect(Collectors.toList());
 	}
 
@@ -149,10 +151,24 @@ public class EClassConnectionPathFactory {
 
 		List<DirectEClassConnectionPath> segments = new ArrayList<>();
 
-		segments.addAll(EClassConnectionPathUtil.getPathSegments(path1));
-		segments.addAll(EClassConnectionPathUtil.getPathSegments(path2));
+		segments.addAll(getPathSegments(path1));
+		segments.addAll(getPathSegments(path2));
 
 		return new ComplexEClassConnectionPath(segments);
+	}
+
+	private List<DirectEClassConnectionPath> getPathSegments(EClassConnectionPath path) {
+
+		if (path instanceof DirectEClassConnectionPath) {
+			return Arrays.asList((DirectEClassConnectionPath) path);
+		} else if (path instanceof ComplexEClassConnectionPath) {
+			return ((ComplexEClassConnectionPath) path).getPathSegments();
+		} else if (path instanceof EmptyEClassConnectionPath) {
+			return Collections.emptyList();
+		} else {
+			throw new RuntimeException(
+					"Unknown type of ConnectionPath '" + path.getClass().getName() + "' encountered. Will be ignored.");
+		}
 	}
 
 }

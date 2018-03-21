@@ -13,6 +13,9 @@ import org.eclipse.emf.ecore.EObject;
  * An abstract base implementation for classes that allow to {@link #instantiate(EObject, Collection) instantiate} an
  * {@link EClassConnectionPath}, i.e. connect one or multiple target elements to a starting elements according to the
  * path specification.
+ * <p />
+ * A suitable instantiator for a concrete {@link EClassConnectionPath} can be created via
+ * {@link EClassConnectionPath#createInstantiator()}.
  *
  * @author mfreund
  */
@@ -22,7 +25,6 @@ public abstract class EClassConnectionPathInstantiator {
 
 	protected List<EObject> createdIntermediaryElements;
 
-	// FIXME do we need this any more? we check capacity first so it should never get filled
 	protected List<EObject> unconnectedElements;
 
 	protected EObject startingElement;

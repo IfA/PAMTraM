@@ -1,6 +1,7 @@
 package de.mfreund.gentrans.transformation.connecting.impl;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -82,8 +83,12 @@ public class ComplexEClassConnectionPath implements EClassConnectionPath {
 	@Override
 	public Length getLength() {
 
-		return pathSegments.stream().map(EClassConnectionPath::getLength).reduce(Length.NO_CONNECTION,
-				LengthCalculator::add);
+		// It should also be sufficient to just count the number of pathSegments. However, this is more future-proof if
+		// we decide to also allow pathSegments that are of other types than 'DirectEClassConnectionPath'
+		//
+		Collection<Length> pathSegmentLengths = pathSegments.stream().map(EClassConnectionPath::getLength)
+				.collect(Collectors.toList());
+		return LengthCalculator.add(pathSegmentLengths);
 	}
 
 	@Override

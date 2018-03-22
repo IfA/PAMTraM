@@ -3,6 +3,7 @@
  */
 package de.mfreund.gentrans.transformation.connecting.impl;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -78,9 +79,10 @@ public class EmptyEClassConnectionPath implements EClassConnectionPath {
 	}
 
 	@Override
-	public EClassConnectionPathInstantiator createInstantiator() {
+	public EClassConnectionPathInstantiator createInstantiator(EObject startingElement,
+			Collection<EObject> targetElements) {
 
-		return new EmptyEClassConnectionPathInstantiator(this);
+		return new EmptyEClassConnectionPathInstantiator(this, startingElement, targetElements);
 	}
 
 }

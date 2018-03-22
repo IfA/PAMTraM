@@ -24,36 +24,23 @@ public class ComplexEClassConnectionPathInstantiator extends EClassConnectionPat
 
 	private DirectEClassConnectionPath firstPathSegment;
 
-	private EClassConnectionPathInstantiator firstPathSegmentInstantiator;
-
 	// All 'pathSegments' excluding the 'firstPathSegment'
 	private EClassConnectionPath remainingPath;
-
-	private EClassConnectionPathInstantiator remainingPathInstantiator;
 
 	private List<EObject> existingElementsOfFirstPathSegment;
 
 	private Capacity requiredCapacity;
 
 	@SuppressWarnings("javadoc")
-	public ComplexEClassConnectionPathInstantiator(ComplexEClassConnectionPath pathToInstantiate) {
+	public ComplexEClassConnectionPathInstantiator(ComplexEClassConnectionPath pathToInstantiate,
+			EObject startingElement, Collection<EObject> targetElements) {
 
-		super(pathToInstantiate);
+		super(pathToInstantiate, startingElement, targetElements);
 
 		firstPathSegment = pathToInstantiate.getPathSegments().get(0);
-		firstPathSegmentInstantiator = firstPathSegment.createInstantiator();
-
 		remainingPath = pathToInstantiate.getSubPath(1);
-		remainingPathInstantiator = remainingPath.createInstantiator();
-	}
-
-	@Override
-	protected void init(EObject startingElement, Collection<EObject> targetElements) {
-
-		super.init(startingElement, targetElements);
-
-		requiredCapacity = Capacity.valueOf(targetElements);
 		existingElementsOfFirstPathSegment = firstPathSegment.getExistingTargetElements(startingElement);
+		requiredCapacity = Capacity.valueOf(targetElements);
 	}
 
 	/**
@@ -62,7 +49,7 @@ public class ComplexEClassConnectionPathInstantiator extends EClassConnectionPat
 	 *
 	 */
 	@Override
-	protected void instantiate() {
+	protected void doInstantiate() {
 
 		List<EObject> targetElementsOfFirstPathSegment = instantiateOrReuseFirstPathSegment();
 
@@ -158,20 +145,22 @@ public class ComplexEClassConnectionPathInstantiator extends EClassConnectionPat
 			targetElementsOfFirstPathSegment = createRequiredIntermediaryElementsForFirstPathSegment();
 		}
 
-		executeInstantiatorAndUpdateCreatedElements(firstPathSegmentInstantiator, startingElement, targetElementsOfFirstPathSegment);
+		EClassConnectionPathInstantiator firstPathSegmentInstantiator = firstPathSegment
+				.createInstantiator(startingElement, targetElementsOfFirstPathSegment);
+		executeInstantiatorAndUpdateCreatedElements(firstPathSegmentInstantiator);
 
 		return targetElementsOfFirstPathSegment;
 	}
 
 	private List<EObject> createRequiredIntermediaryElementsForFirstPathSegment() {
-	
+
 		int requiredNumberOfElements = getRequiredNumberOfIntermediaryElements();
-	
+
 		List<EObject> createdElements = IntStream.range(0, requiredNumberOfElements)
 				.mapToObj(i -> createIntermediaryElementForFirstPathSegment()).collect(Collectors.toList());
-	
+
 		createdIntermediaryElements.addAll(createdElements);
-	
+
 		return createdElements;
 	}
 
@@ -212,13 +201,14 @@ public class ComplexEClassConnectionPathInstantiator extends EClassConnectionPat
 	private void instantiateRemainingPath(EObject startingElementOfRemainingPath,
 			List<EObject> correspondingTargetElements) {
 
-		executeInstantiatorAndUpdateCreatedElements(remainingPathInstantiator, startingElementOfRemainingPath, correspondingTargetElements);
+		EClassConnectionPathInstantiator remainingPathInstantiator = remainingPath
+				.createInstantiator(startingElementOfRemainingPath, correspondingTargetElements);
+		executeInstantiatorAndUpdateCreatedElements(remainingPathInstantiator);
 	}
 
-	private void executeInstantiatorAndUpdateCreatedElements(EClassConnectionPathInstantiator instantiator, EObject startingElement,
-			List<EObject> targetElements) {
+	private void executeInstantiatorAndUpdateCreatedElements(EClassConnectionPathInstantiator instantiator) {
 
-		instantiator.instantiate(startingElement, targetElements);
+		instantiator.instantiate();
 
 		createdIntermediaryElements.addAll(instantiator.getCreatedIntermediaryElements());
 		unconnectedElements.addAll(instantiator.getUnconnectedElements());

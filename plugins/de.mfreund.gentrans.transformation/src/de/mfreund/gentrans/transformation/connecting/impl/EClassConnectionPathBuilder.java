@@ -84,7 +84,9 @@ public class EClassConnectionPathBuilder {
 
 		buildConnectionPathsIncrementally();
 
-		sortConnectionPaths();
+		filterPathsWithRequiredCapacity();
+
+		sortPaths();
 
 		return foundPaths;
 
@@ -226,8 +228,13 @@ public class EClassConnectionPathBuilder {
 
 	private boolean isValidPath(EClassConnectionPath path) {
 
-		return !path.containsLoop() && providesRequiredCapacity(path);
+		return !path.containsLoop();
 
+	}
+
+	private void filterPathsWithRequiredCapacity() {
+
+		foundPaths = foundPaths.stream().filter(this::providesRequiredCapacity).collect(Collectors.toList());
 	}
 
 	private boolean providesRequiredCapacity(EClassConnectionPath path) {
@@ -238,7 +245,7 @@ public class EClassConnectionPathBuilder {
 		return pathCapacity.isSufficientFor(requiredCapacity);
 	}
 
-	private void sortConnectionPaths() {
+	private void sortPaths() {
 
 		foundPaths = EClassConnectionPathUtil.sortConnectionPathsFromShortestToLongest(foundPaths);
 	}

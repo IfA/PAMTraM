@@ -4,6 +4,7 @@
 package de.mfreund.gentrans.transformation.connecting.impl;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -21,13 +22,14 @@ import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 @SuppressWarnings("javadoc")
 public class DirectEClassConnectionPathInstantiator extends EClassConnectionPathInstantiator {
 
-	public DirectEClassConnectionPathInstantiator(DirectEClassConnectionPath pathToInstantiate) {
+	public DirectEClassConnectionPathInstantiator(DirectEClassConnectionPath pathToInstantiate, EObject startingElement,
+			Collection<EObject> targetElements) {
 
-		super(pathToInstantiate);
+		super(pathToInstantiate, startingElement, targetElements);
 	}
 
 	@Override
-	protected void instantiate() {
+	protected void doInstantiate() {
 
 		EReference reference = ((DirectEClassConnectionPath) pathToInstantiate).getReference();
 

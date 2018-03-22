@@ -3,6 +3,10 @@
  */
 package de.mfreund.gentrans.transformation.connecting.impl;
 
+import java.util.Collection;
+
+import org.eclipse.emf.ecore.EObject;
+
 import de.mfreund.gentrans.transformation.connecting.EClassConnectionPath;
 import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathInstantiator;
 
@@ -15,13 +19,14 @@ import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathInstant
 @SuppressWarnings("javadoc")
 public class EmptyEClassConnectionPathInstantiator extends EClassConnectionPathInstantiator {
 
-	public EmptyEClassConnectionPathInstantiator(EClassConnectionPath pathToInstantiate) {
+	public EmptyEClassConnectionPathInstantiator(EClassConnectionPath pathToInstantiate, EObject startingElement,
+			Collection<EObject> targetElements) {
 
-		super(pathToInstantiate);
+		super(pathToInstantiate, startingElement, targetElements);
 	}
 
 	@Override
-	protected void instantiate() {
+	protected void doInstantiate() {
 
 		// nothing needs to be instantiated because this represents an 'empty' path
 

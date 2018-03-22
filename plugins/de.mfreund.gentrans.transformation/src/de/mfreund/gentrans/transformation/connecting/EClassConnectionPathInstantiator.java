@@ -10,12 +10,12 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * An abstract base implementation for classes that allow to {@link #instantiate(EObject, Collection) instantiate} an
+ * An abstract base implementation for classes that allow to {@link #instantiate() instantiate} an
  * {@link EClassConnectionPath}, i.e. connect one or multiple target elements to a starting elements according to the
  * path specification.
  * <p />
  * A suitable instantiator for a concrete {@link EClassConnectionPath} can be created via
- * {@link EClassConnectionPath#createInstantiator()}.
+ * {@link EClassConnectionPath#createInstantiator(EObject, Collection)}.
  *
  * @author mfreund
  */
@@ -31,30 +31,44 @@ public abstract class EClassConnectionPathInstantiator {
 
 	protected List<EObject> targetElements;
 
-	protected EClassConnectionPathInstantiator(EClassConnectionPath pathToInstantiate) {
+	protected EClassConnectionPathInstantiator(EClassConnectionPath pathToInstantiate, EObject startingElement,
+			Collection<EObject> targetElements) {
+
+		validateParameters(pathToInstantiate, startingElement, targetElements);
 
 		this.pathToInstantiate = pathToInstantiate;
-	}
-
-	protected void init(EObject startingElement, Collection<EObject> targetElements) {
+		this.startingElement = startingElement;
+		this.targetElements = new ArrayList<>(targetElements);
 
 		createdIntermediaryElements = new ArrayList<>();
 		unconnectedElements = new ArrayList<>();
-		this.startingElement = startingElement;
-		this.targetElements = new ArrayList<>(targetElements);
+	}
+
+	private void validateParameters(EClassConnectionPath pathToInstantiate, EObject startingElement,
+			Collection<EObject> targetElements) {
+
+		if (!pathToInstantiate.isValidStartingElement(startingElement)) {
+			throw new EClassConnectionPathInstantiationException("Error creating instantiator for connection path '"
+					+ pathToInstantiate + "'! The given starting element " + startingElement
+					+ " does not match the starting EClass.");
+		}
+
+		for (EObject targetElement : targetElements) {
+
+			if (!pathToInstantiate.isValidTargetElement(targetElement)) {
+				throw new EClassConnectionPathInstantiationException("Error creating instantiator for connection path '"
+						+ pathToInstantiate + "'! The given starting element " + startingElement
+						+ " does not match the starting EClass.");
+			}
+		}
 	}
 
 	/**
-	 * Connect the given collection of targetObjects to the given startingObject according to the
-	 * {@link #pathToInstantiate}.
+	 * Connect the {@link #targetElements} to the {@link #startingElement} according to the {@link #pathToInstantiate}.
 	 *
-	 * @param startingElement
-	 * @param targetElements
 	 * @throws EClassConnectionPathInstantiationException
 	 */
-	public void instantiate(EObject startingElement, Collection<EObject> targetElements) {
-
-		init(startingElement, targetElements);
+	public void instantiate() {
 
 		if (targetElements.isEmpty()) {
 			return;
@@ -64,25 +78,7 @@ public abstract class EClassConnectionPathInstantiator {
 
 		checkStartingElementProvidesRequiredCapacity();
 
-		instantiate();
-	}
-
-	protected abstract void instantiate();
-
-	/**
-	 * @return the list of elements that have been created automatically during instantiation of the path
-	 */
-	public List<EObject> getCreatedIntermediaryElements() {
-
-		return createdIntermediaryElements != null ? createdIntermediaryElements : new ArrayList<>();
-	}
-
-	/**
-	 * @return the list of elements that could not be connected while instantiating the path
-	 */
-	public List<EObject> getUnconnectedElements() {
-
-		return unconnectedElements != null ? unconnectedElements : new ArrayList<>();
+		doInstantiate();
 	}
 
 	protected void checkStartingElementMatchesStartingClass() {
@@ -112,6 +108,24 @@ public abstract class EClassConnectionPathInstantiator {
 							+ targetElements.size() + " target elements.");
 		}
 
+	}
+
+	protected abstract void doInstantiate();
+
+	/**
+	 * @return the list of elements that have been created automatically during instantiation of the path
+	 */
+	public List<EObject> getCreatedIntermediaryElements() {
+
+		return createdIntermediaryElements != null ? createdIntermediaryElements : new ArrayList<>();
+	}
+
+	/**
+	 * @return the list of elements that could not be connected while instantiating the path
+	 */
+	public List<EObject> getUnconnectedElements() {
+
+		return unconnectedElements != null ? unconnectedElements : new ArrayList<>();
 	}
 
 	@SuppressWarnings("javadoc")

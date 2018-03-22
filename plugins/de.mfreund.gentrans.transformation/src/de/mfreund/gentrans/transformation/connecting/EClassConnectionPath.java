@@ -3,12 +3,15 @@
  */
 package de.mfreund.gentrans.transformation.connecting;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+
+import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathInstantiator.EClassConnectionPathInstantiationException;
 
 /**
  * Instances of this represent a connection path between two {@link EClass EClasses} via one or multiple
@@ -87,7 +90,7 @@ public interface EClassConnectionPath {
 	/**
 	 * @param startingElement
 	 * @return '<em>true</em>' if the given {@link EObject startingElement} is an instance of the
-	 *         {@link #getTargetClass()}
+	 *         {@link #getStartingClass()}
 	 */
 	public default boolean isValidStartingElement(EObject startingElement) {
 
@@ -95,7 +98,27 @@ public interface EClassConnectionPath {
 	}
 
 	/**
-	 * @return An {@link EClassConnectionPathInstantiator} that can be used to instantiate this path.
+	 * @param targetElement
+	 * @return '<em>true</em>' if the given {@link EObject targetElement} is an instance of the
+	 *         {@link #getTargetClass()}
 	 */
-	public EClassConnectionPathInstantiator createInstantiator();
+	public default boolean isValidTargetElement(EObject targetElement) {
+
+		return getTargetClass() != null && getTargetClass().isInstance(targetElement);
+	}
+
+	/**
+	 * Create an instantiator that can be used to instantiate the this path between the given {@link EObject
+	 * startingElement} and the list of {@link EObject targetElements}.
+	 *
+	 * @param startingElement
+	 * @param targetElements
+	 * @return An {@link EClassConnectionPathInstantiator} that can be used to instantiate this connection.
+	 *
+	 * @throws EClassConnectionPathInstantiationException
+	 *             If the given startingElement and/or targetElements do not satisfy the starting/target class of this
+	 *             path.
+	 */
+	public EClassConnectionPathInstantiator createInstantiator(EObject startingElement,
+			Collection<EObject> targetElements);
 }

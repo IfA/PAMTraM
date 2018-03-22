@@ -645,8 +645,9 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 						// now instantiate path
 						List<EObject> elementsToConnect = unlinkeableEntry.getValue().get(tSection).stream()
 								.map(EObjectWrapper::getEObject).collect(Collectors.toList());
-						EClassConnectionPathInstantiator i = chosenPath.createInstantiator();
-						i.instantiate(containerInstance, elementsToConnect);
+						EClassConnectionPathInstantiator i = chosenPath.createInstantiator(containerInstance,
+								elementsToConnect);
+						i.instantiate();
 						i.getCreatedIntermediaryElements().stream().forEach(targetSectionRegistry::addClassInstance);
 
 						logger.info("Connected to root: " + tSection.getName() + ": " + chosenPath.toString());
@@ -1395,27 +1396,29 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 		}
 
 		/**
-		 * Instantiates this connection by invoking
-		 * {@link EClassConnectionPathInstantiator#instantiate(EObject, Collection)}.
+		 * Instantiates this connection by invoking {@link EClassConnectionPathInstantiator#instantiate()}.
 		 *
 		 * @return A list of elements (a subset of the {@link #rootInstances}) that could not be connected (possibly
 		 *         because the capacity of the path was not large enough).
 		 */
 		public List<EObjectWrapper> instantiate() {
 
-			EClassConnectionPathInstantiator instantiator = connectionPath.createInstantiator();
-
 			try {
-				instantiator.instantiate(containerInstance.getEObject(),
-						rootInstances.stream().map(EObjectWrapper::getEObject).collect(Collectors.toList()));
+				List<EObject> targetElements = rootInstances.stream().map(EObjectWrapper::getEObject)
+						.collect(Collectors.toList());
+				EClassConnectionPathInstantiator instantiator = connectionPath
+						.createInstantiator(containerInstance.getEObject(), targetElements);
+				instantiator.instantiate();
+
+				instantiator.getCreatedIntermediaryElements().stream().forEach(targetSectionRegistry::addClassInstance);
+				return rootInstances.stream()
+						.filter(r -> instantiator.getUnconnectedElements().contains(r.getEObject()))
+						.collect(Collectors.toList());
 
 			} catch (EClassConnectionPathInstantiationException e) {
 				logger.log(Level.SEVERE, e, () -> e.getMessage() != null ? e.getMessage() : e.toString());
+				return new ArrayList<>(rootInstances);
 			}
-
-			instantiator.getCreatedIntermediaryElements().stream().forEach(targetSectionRegistry::addClassInstance);
-			return rootInstances.stream().filter(r -> instantiator.getUnconnectedElements().contains(r.getEObject()))
-					.collect(Collectors.toList());
 		}
 	}
 

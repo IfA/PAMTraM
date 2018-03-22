@@ -235,14 +235,15 @@ public class ComplexEClassConnectionPath implements EClassConnectionPath {
 	}
 
 	@Override
-	public EClassConnectionPathInstantiator createInstantiator() {
+	public EClassConnectionPathInstantiator createInstantiator(EObject startingElement,
+			Collection<EObject> targetElements) {
 
 		if (getSubPath(1) instanceof EmptyEClassConnectionPath) {
 			DirectEClassConnectionPath firstAndOnlyPathSegment = getPathSegments().get(0);
-			return new DirectEClassConnectionPathInstantiator(firstAndOnlyPathSegment);
+			return new DirectEClassConnectionPathInstantiator(firstAndOnlyPathSegment, startingElement, targetElements);
 
 		} else {
-			return new ComplexEClassConnectionPathInstantiator(this);
+			return new ComplexEClassConnectionPathInstantiator(this, startingElement, targetElements);
 		}
 	}
 

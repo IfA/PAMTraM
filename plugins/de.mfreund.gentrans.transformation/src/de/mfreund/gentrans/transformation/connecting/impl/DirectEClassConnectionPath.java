@@ -4,6 +4,7 @@
 package de.mfreund.gentrans.transformation.connecting.impl;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -164,9 +165,10 @@ public class DirectEClassConnectionPath implements EClassConnectionPath {
 	}
 
 	@Override
-	public EClassConnectionPathInstantiator createInstantiator() {
+	public EClassConnectionPathInstantiator createInstantiator(EObject startingElement,
+			Collection<EObject> targetElements) {
 
-		return new DirectEClassConnectionPathInstantiator(this);
+		return new DirectEClassConnectionPathInstantiator(this, startingElement, targetElements);
 	}
 
 }

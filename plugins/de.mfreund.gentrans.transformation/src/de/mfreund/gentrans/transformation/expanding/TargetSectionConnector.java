@@ -15,7 +15,6 @@ import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
-import java.util.logging.Level;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -44,7 +43,6 @@ import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathInstantiator;
 import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathProvider;
 import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathRequirement;
 import de.tud.et.ifa.agtele.emf.connecting.Length;
-import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathInstantiator.EClassConnectionPathInstantiationException;
 import pamtram.ConditionalElement;
 import pamtram.TargetSectionModel;
 import pamtram.mapping.ExportedMappingHintGroup;
@@ -973,7 +971,8 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 
 		// Instantiate each selected connection and return the elements the could not be connected
 		//
-		return selectedConnections.stream().flatMap(connection -> connection.instantiate().stream())
+		return selectedConnections.stream()
+				.flatMap(connection -> connection.instantiate(targetSectionRegistry, logger).stream())
 				.collect(Collectors.toList());
 	}
 
@@ -1305,87 +1304,6 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 		}
 
 		return containerInstancesByContainerSelector;
-	}
-
-	/**
-	 * A class that represents a connection between model elements to be instantiated. Each connection is characterized
-	 * by a {@link #startingElement}, a {@link #connectionPath}, and a list of {@link #targetElements}.
-	 * <p />
-	 * This basically represents a wrapper for an {@link EClassConnectionPathInstantiator} that works based on
-	 * {@link EObjectWrapper EObjectWrappers} instead of {@link EObject}.
-	 *
-	 * @author mfreund
-	 */
-	@SuppressWarnings("javadoc")
-	public class Connection {
-
-		protected EObjectWrapper startingElement;
-
-		protected EClassConnectionPath connectionPath;
-
-		protected List<EObjectWrapper> targetElements;
-
-		protected List<EObjectWrapper> unconnectedElements;
-
-		public Connection(EObjectWrapper startingElement, EClassConnectionPath connectionPath,
-				Collection<EObjectWrapper> targetElements) {
-
-			this.startingElement = startingElement;
-			this.connectionPath = connectionPath;
-			this.targetElements = targetElements != null ? new ArrayList<>(targetElements) : new ArrayList<>();
-			unconnectedElements = new ArrayList<>(targetElements);
-		}
-
-		public EObjectWrapper getStartingElement() {
-
-			return startingElement;
-		}
-
-		public EClassConnectionPath getConnectionPath() {
-
-			return connectionPath;
-		}
-
-		public List<EObjectWrapper> getTargetElements() {
-
-			return targetElements;
-		}
-
-		/**
-		 * Instantiates this connection by creating an {@link EClassConnectionPathInstantiator} and calling
-		 * {@link EClassConnectionPathInstantiator#instantiate() instantiate()} on it.
-		 *
-		 * @return A list of elements (a subset of the {@link #targetElements}) that could not be connected (possibly
-		 *         because the capacity of the path was not large enough).
-		 */
-		public List<EObjectWrapper> instantiate() {
-
-			try {
-				doInstantiate();
-
-			} catch (EClassConnectionPathInstantiationException e) {
-				logger.log(Level.SEVERE, e, () -> e.getMessage() != null ? e.getMessage() : e.toString());
-			}
-
-			return Collections.unmodifiableList(unconnectedElements);
-		}
-
-		protected void doInstantiate() {
-
-			EObject startingEObject = startingElement.getEObject();
-			List<EObject> targetEObjects = targetElements.stream().map(EObjectWrapper::getEObject)
-					.collect(Collectors.toList());
-			EClassConnectionPathInstantiator instantiator = connectionPath.createInstantiator(startingEObject,
-					targetEObjects);
-			instantiator.instantiate();
-
-			instantiator.getCreatedIntermediaryElements().stream().forEach(targetSectionRegistry::addClassInstance);
-
-			List<EObject> unconnectedEObjects = instantiator.getUnconnectedElements();
-
-			unconnectedElements = targetElements.stream().filter(r -> unconnectedEObjects.contains(r.getEObject()))
-					.collect(Collectors.toList());
-		}
 	}
 
 }

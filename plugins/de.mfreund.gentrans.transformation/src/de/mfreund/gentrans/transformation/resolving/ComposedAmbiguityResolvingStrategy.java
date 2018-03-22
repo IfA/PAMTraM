@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
-import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
+import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPath;
 import pamtram.PAMTraM;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
@@ -271,10 +271,10 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 	}
 
 	@Override
-	public List<ModelConnectionPath> joiningSelectConnectionPath(List<ModelConnectionPath> choices,
+	public List<EClassConnectionPath> joiningSelectConnectionPath(List<EClassConnectionPath> choices,
 			TargetSection section) throws AmbiguityResolvingException {
 
-		List<ModelConnectionPath> ret = new ArrayList<>();
+		List<EClassConnectionPath> ret = new ArrayList<>();
 		if (choices != null) {
 			ret.addAll(choices);
 		}
@@ -296,13 +296,13 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 	}
 
 	@Override
-	public Map<ModelConnectionPath, List<EObjectWrapper>> joiningSelectConnectionPathAndContainerInstance(
-			Map<ModelConnectionPath, List<EObjectWrapper>> choices, TargetSection section,
+	public Map<EClassConnectionPath, List<EObjectWrapper>> joiningSelectConnectionPathAndContainerInstance(
+			Map<EClassConnectionPath, List<EObjectWrapper>> choices, TargetSection section,
 			List<EObjectWrapper> sectionInstances, MappingHintGroupType hintGroup) throws AmbiguityResolvingException {
 
-		Map<ModelConnectionPath, List<EObjectWrapper>> ret = new LinkedHashMap<>();
+		Map<EClassConnectionPath, List<EObjectWrapper>> ret = new LinkedHashMap<>();
 		if (choices != null) {
-			for (Entry<ModelConnectionPath, List<EObjectWrapper>> entry : choices.entrySet()) {
+			for (Entry<EClassConnectionPath, List<EObjectWrapper>> entry : choices.entrySet()) {
 				ret.put(entry.getKey(), new ArrayList<>(entry.getValue()));
 			}
 		}
@@ -411,7 +411,7 @@ public class ComposedAmbiguityResolvingStrategy extends AbstractAmbiguityResolvi
 	}
 
 	@Override
-	public void joiningConnectionPathSelected(List<ModelConnectionPath> choices, ModelConnectionPath resolved) {
+	public void joiningConnectionPathSelected(List<EClassConnectionPath> choices, EClassConnectionPath resolved) {
 
 		for (IAmbiguityResolvingStrategy strategy : this.composedStrategies) {
 			if (strategy instanceof IAmbiguityResolvedAdapter) {

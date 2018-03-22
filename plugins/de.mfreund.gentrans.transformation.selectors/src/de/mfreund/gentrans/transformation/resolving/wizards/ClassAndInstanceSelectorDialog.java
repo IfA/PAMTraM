@@ -16,7 +16,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
-import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
+import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPath;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import pamtram.structure.target.TargetSection;
 
@@ -24,7 +24,7 @@ import pamtram.structure.target.TargetSection;
  * A {@link GenericSelectionDialog} that enables the user to select a 'class' (of type <em>T</em>) as well as an
  * '{@link EObjectWrapper instance}' to be used.
  * <p />
- * This is used during step 3 and 4 of the generic transformation when multiple possible {@link ModelConnectionPath
+ * This is used during step 3 and 4 of the generic transformation when multiple possible {@link EClassConnectionPath
  * ModelConnectionPaths}/{@link TargetSection TargetSections} and corresponding instances exist.
  *
  * @param <T>

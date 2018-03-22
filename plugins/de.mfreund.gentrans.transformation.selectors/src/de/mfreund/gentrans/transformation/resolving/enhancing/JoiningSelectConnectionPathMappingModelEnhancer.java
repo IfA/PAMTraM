@@ -5,6 +5,7 @@ package de.mfreund.gentrans.transformation.resolving.enhancing;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Optional;
 
 import org.eclipse.emf.common.command.CompoundCommand;
@@ -16,10 +17,10 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Shell;
 
-import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
 import de.mfreund.gentrans.transformation.resolving.UserDecisionResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.wizards.GenericSelectionDialog;
 import de.tud.et.ifa.agtele.emf.compare.EMFCompareUtil;
+import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPath;
 import pamtram.PAMTraM;
 import pamtram.PamtramPackage;
 import pamtram.presentation.PamtramEditor;
@@ -37,7 +38,7 @@ import pamtram.structure.target.TargetSectionCompositeReference;
  * @author mfreund
  */
 public class JoiningSelectConnectionPathMappingModelEnhancer
-		extends MappingModelEnhancer<GenericSelectionDialog<ModelConnectionPath>> {
+		extends MappingModelEnhancer<GenericSelectionDialog<EClassConnectionPath>> {
 
 	/**
 	 * The {@link TargetSection} that shall be connected via the selected path.
@@ -46,7 +47,7 @@ public class JoiningSelectConnectionPathMappingModelEnhancer
 
 	/**
 	 * The first reference create as part of
-	 * {@link #instantiateIntermediatePathElements(ModelConnectionPath, TargetSectionCompositeReference, TargetSectionClass)}
+	 * {@link #instantiateIntermediatePathElements(EClassConnectionPath, TargetSectionCompositeReference, TargetSectionClass)}
 	 * to be connected to the 'rootSection' in the end). After the execution of this method, this will hold the
 	 * {@link TargetSectionCompositeReference} that represents the first reference of the path.
 	 */
@@ -54,7 +55,7 @@ public class JoiningSelectConnectionPathMappingModelEnhancer
 
 	/**
 	 * The final class created as part of
-	 * {@link #instantiateIntermediatePathElements(ModelConnectionPath, TargetSectionCompositeReference, TargetSectionClass)}
+	 * {@link #instantiateIntermediatePathElements(EClassConnectionPath, TargetSectionCompositeReference, TargetSectionClass)}
 	 * to be set as 'container' for the 'sectionToConnect'). After the execution of this method, this will hold the
 	 * {@link TargetSectionClass} that represents the final class of the path (Note that the final class is the second
 	 * but last class because the last class already exists in the mapping model).
@@ -81,10 +82,10 @@ public class JoiningSelectConnectionPathMappingModelEnhancer
 
 		PAMTraM pamtramToEnhance = editor == null ? this.pamtramModel : editor.getPamtram();
 
-		ModelConnectionPath selectedPath = this.dialog.getSingleSelection();
+		EClassConnectionPath selectedPath = this.dialog.getSingleSelection();
 
 		Optional<TargetSection> rootSectionOptional = pamtramToEnhance.getTargetSections().parallelStream()
-				.filter(t -> selectedPath.getPathRootClass().equals(t.getEClass())).findAny();
+				.filter(t -> selectedPath.getStartingClass().equals(t.getEClass())).findAny();
 
 		// The root element of the path (either an already existing element from the pamtram model or a newly created).
 		//
@@ -93,7 +94,7 @@ public class JoiningSelectConnectionPathMappingModelEnhancer
 			rootSection = rootSectionOptional.get();
 		} else {
 			rootSection = TargetFactory.eINSTANCE.createTargetSection();
-			rootSection.setEClass(selectedPath.getPathRootClass());
+			rootSection.setEClass(selectedPath.getStartingClass());
 		}
 
 		// Instantiate the intermediate elements
@@ -158,24 +159,23 @@ public class JoiningSelectConnectionPathMappingModelEnhancer
 	 * {@link TargetSectionContainmentReference TargetSectionContainmentReferences}.
 	 *
 	 */
-	private void instantiateIntermediatePathElements(ModelConnectionPath path) {
+	private void instantiateIntermediatePathElements(EClassConnectionPath path) {
 
 		TargetSectionClass currentClass = null;
 
-		// Iterate through the path elements and instantiate the intermediate
-		// TargetSectionClasses/-ContainmentReferences
-		//
-		for (int i = path.getPathElements().size() - 2; i > 1; i -= 2) {
+		ListIterator<EClass> classIterator = path.getAllClasses().listIterator();
+		ListIterator<EReference> referenceIterator = path.getAllReferences().listIterator();
+		while (referenceIterator.hasPrevious()) {
 
-			EReference eReference = (EReference) path.getPathElements().get(i);
-			EClass eClass = (EClass) path.getPathElements().get(i - 1);
+			EReference eReference = referenceIterator.previous();
+			EClass eClass = classIterator.previous();
 
 			TargetSectionCompositeReference ref = TargetFactory.eINSTANCE.createTargetSectionCompositeReference();
 			ref.setEReference(eReference);
 
 			// we are at the beginning
 			//
-			if (i == path.getPathElements().size() - 2) {
+			if (referenceIterator.nextIndex() == path.getAllReferences().size()) {
 				this.firstReference = ref;
 			} else {
 				currentClass.getReferences().add(ref);
@@ -187,7 +187,7 @@ public class JoiningSelectConnectionPathMappingModelEnhancer
 			currentClass = clazz;
 
 			// we have reached the end
-			if (i - 2 == 1) {
+			if (classIterator.previousIndex() == 1) {
 				this.finalClass = currentClass;
 			}
 		}

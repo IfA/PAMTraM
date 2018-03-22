@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
-import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
 import de.mfreund.gentrans.transformation.resolving.enhancing.InstantiatingSelectAttributeValueMappingModelEnhancer;
 import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectConnectionPathAndContainerInstanceMappingModelEnhancer;
 import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectConnectionPathMappingModelEnhancer;
@@ -23,6 +22,7 @@ import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectConta
 import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectRootElementMappingModelEnhancer;
 import de.mfreund.gentrans.transformation.resolving.wizards.DialogFactory;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
+import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPath;
 import pamtram.PAMTraM;
 import pamtram.TargetSectionModel;
 import pamtram.mapping.InstantiableMappingHintGroup;
@@ -188,7 +188,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 	}
 
 	@Override
-	public List<ModelConnectionPath> joiningSelectConnectionPath(List<ModelConnectionPath> choices,
+	public List<EClassConnectionPath> joiningSelectConnectionPath(List<EClassConnectionPath> choices,
 			TargetSection section) throws AmbiguityResolvingException {
 
 		Optional<PAMTraM> pamtramModel = this.pamtramModels.stream()
@@ -199,7 +199,7 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 						() -> new RuntimeException("Internal error while determining PAMTraM instance to enhance...")),
 				section);
 
-		ModelConnectionPath result = DialogFactory.createAndExecuteJoiningSelectConnectionPathDialog(choices, section,
+		EClassConnectionPath result = DialogFactory.createAndExecuteJoiningSelectConnectionPathDialog(choices, section,
 				Optional.of(enhancer));
 
 		this.printMessage(result.toString(), UserDecisionResolvingStrategy.userDecisionPrefix);
@@ -208,8 +208,8 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 	}
 
 	@Override
-	public Map<ModelConnectionPath, List<EObjectWrapper>> joiningSelectConnectionPathAndContainerInstance(
-			Map<ModelConnectionPath, List<EObjectWrapper>> choices, TargetSection section,
+	public Map<EClassConnectionPath, List<EObjectWrapper>> joiningSelectConnectionPathAndContainerInstance(
+			Map<EClassConnectionPath, List<EObjectWrapper>> choices, TargetSection section,
 			List<EObjectWrapper> sectionInstances, MappingHintGroupType hintGroup) throws AmbiguityResolvingException {
 
 		Optional<PAMTraM> pamtramModel = this.pamtramModels.stream()
@@ -222,9 +222,9 @@ public class UserDecisionResolvingStrategy extends AbstractAmbiguityResolvingStr
 						() -> new RuntimeException("Internal error while determining PAMTraM instance to enhance...")),
 				section);
 
-		Map<ModelConnectionPath, List<EObjectWrapper>> result = DialogFactory
-				.createAndExecuteJoiningSelectConnectionPathAndContainerInstanceDialog(choices, hintGroup, sectionInstances,
-						Optional.of(enhancer));
+		Map<EClassConnectionPath, List<EObjectWrapper>> result = DialogFactory
+				.createAndExecuteJoiningSelectConnectionPathAndContainerInstanceDialog(choices, hintGroup,
+						sectionInstances, Optional.of(enhancer));
 
 		this.printMessage(
 				result.keySet().iterator().next() + "-->" + result.values().iterator().next().get(0).toString(),

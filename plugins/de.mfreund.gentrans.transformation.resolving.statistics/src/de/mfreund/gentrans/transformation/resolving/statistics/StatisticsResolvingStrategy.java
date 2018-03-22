@@ -19,10 +19,10 @@ import org.eclipse.jface.dialogs.IDialogSettings;
 
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
-import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
 import de.mfreund.gentrans.transformation.resolving.AbstractAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvedAdapter;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
+import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPath;
 import pamtram.PAMTraM;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
@@ -226,8 +226,8 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 	}
 
 	@Override
-	public Map<ModelConnectionPath, List<EObjectWrapper>> joiningSelectConnectionPathAndContainerInstance(
-			Map<ModelConnectionPath, List<EObjectWrapper>> choices, TargetSection section,
+	public Map<EClassConnectionPath, List<EObjectWrapper>> joiningSelectConnectionPathAndContainerInstance(
+			Map<EClassConnectionPath, List<EObjectWrapper>> choices, TargetSection section,
 			List<EObjectWrapper> sectionInstances, MappingHintGroupType hintGroup) throws AmbiguityResolvingException {
 
 		// We use the concatenated string representations of all paths in the
@@ -238,7 +238,7 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 
 		IDialogSettings mappingLayerSection = DialogSettings.getOrCreateSection(this.mappingSection, key);
 		IDialogSettings metamodelLayerSection = DialogSettings.getOrCreateSection(this.metamodelSections
-				.get(AgteleEcoreUtil.getRootEPackage(choices.keySet().iterator().next().getPathRootClass()).getNsURI()),
+				.get(AgteleEcoreUtil.getRootEPackage(choices.keySet().iterator().next().getStartingClass()).getNsURI()),
 				key);
 
 		// Sort the choices in descending order based on the number of previous
@@ -246,7 +246,7 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 		// (we only sort the keys as, up to now, we do not perform statistical
 		// analysis on instances)
 		//
-		List<ModelConnectionPath> sortedKeys = choices.keySet().parallelStream()
+		List<EClassConnectionPath> sortedKeys = choices.keySet().parallelStream()
 				.sorted((o1, o2) -> StatisticsResolvingStrategy.this
 						.getWeightedCount(mappingLayerSection, metamodelLayerSection, this.weightingFactor,
 								o2.toString())
@@ -256,14 +256,14 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 
 		// We create a new LinkedHashMap as this guarantees ordering of keys
 		//
-		LinkedHashMap<ModelConnectionPath, List<EObjectWrapper>> sortedMap = new LinkedHashMap<>();
+		LinkedHashMap<EClassConnectionPath, List<EObjectWrapper>> sortedMap = new LinkedHashMap<>();
 		sortedKeys.stream().forEach(k -> sortedMap.put(k, choices.get(k)));
 
 		return sortedMap;
 	}
 
 	@Override
-	public List<ModelConnectionPath> joiningSelectConnectionPath(List<ModelConnectionPath> choices,
+	public List<EClassConnectionPath> joiningSelectConnectionPath(List<EClassConnectionPath> choices,
 			TargetSection section) throws AmbiguityResolvingException {
 
 		// We use the concatenated string representations of all paths in the
@@ -274,7 +274,7 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 
 		IDialogSettings mappingLayerSection = DialogSettings.getOrCreateSection(this.mappingSection, key);
 		IDialogSettings metamodelLayerSection = DialogSettings.getOrCreateSection(this.metamodelSections
-				.get(AgteleEcoreUtil.getRootEPackage(choices.get(0).getPathRootClass()).getNsURI()), key);
+				.get(AgteleEcoreUtil.getRootEPackage(choices.get(0).getStartingClass()).getNsURI()), key);
 
 		// Sort the choices in descending order based on the number of previous
 		// count
@@ -289,7 +289,7 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 	}
 
 	@Override
-	public void joiningConnectionPathSelected(List<ModelConnectionPath> choices, ModelConnectionPath resolved) {
+	public void joiningConnectionPathSelected(List<EClassConnectionPath> choices, EClassConnectionPath resolved) {
 
 		// We use the concatenated string representations of all paths in the
 		// list of choices as key
@@ -311,7 +311,7 @@ public class StatisticsResolvingStrategy extends AbstractAmbiguityResolvingStrat
 		/*
 		 * Store on the meta-model layer
 		 */
-		String nsURI = AgteleEcoreUtil.getRootEPackage(resolved.getPathRootClass()).getNsURI();
+		String nsURI = AgteleEcoreUtil.getRootEPackage(resolved.getStartingClass()).getNsURI();
 		IDialogSettings metamodelLayerSection = DialogSettings.getOrCreateSection(this.metamodelSections.get(nsURI),
 				key);
 

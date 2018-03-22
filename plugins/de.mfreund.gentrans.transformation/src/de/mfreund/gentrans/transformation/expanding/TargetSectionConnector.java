@@ -27,16 +27,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import de.mfreund.gentrans.transformation.CancelTransformationException;
 import de.mfreund.gentrans.transformation.UserAbortException;
 import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
-import de.mfreund.gentrans.transformation.connecting.AllowedReferenceType;
-import de.mfreund.gentrans.transformation.connecting.Capacity;
-import de.mfreund.gentrans.transformation.connecting.EClassConnectionPath;
-import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathInstantiator;
-import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathInstantiator.EClassConnectionPathInstantiationException;
-import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathProvider;
-import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathRequirement;
-import de.mfreund.gentrans.transformation.connecting.Length;
-import de.mfreund.gentrans.transformation.connecting.impl.CachedEClassConnectionPathProvider;
-import de.mfreund.gentrans.transformation.connecting.impl.ComplexEClassConnectionPath;
 import de.mfreund.gentrans.transformation.core.CancelableTransformationAsset;
 import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
@@ -47,6 +37,14 @@ import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvedAdapter;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
+import de.tud.et.ifa.agtele.emf.connecting.AllowedReferenceType;
+import de.tud.et.ifa.agtele.emf.connecting.Capacity;
+import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPath;
+import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathInstantiator;
+import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathProvider;
+import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathRequirement;
+import de.tud.et.ifa.agtele.emf.connecting.Length;
+import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathInstantiator.EClassConnectionPathInstantiationException;
 import pamtram.ConditionalElement;
 import pamtram.TargetSectionModel;
 import pamtram.mapping.ExportedMappingHintGroup;
@@ -132,7 +130,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 		Set<EPackage> targetMetaModels = new LinkedHashSet<>(assetManager.getTransformationConfig().getPamtramModels()
 				.stream().flatMap(p -> p.getTargetSectionModels().stream()).map(TargetSectionModel::getMetaModelPackage)
 				.collect(Collectors.toList()));
-		connectionPathProvider = new CachedEClassConnectionPathProvider(targetMetaModels, logger);
+		connectionPathProvider = EClassConnectionPathProvider.getInstance(targetMetaModels, logger);
 		instanceSelectorHandler = assetManager.getInstanceSelectorHandler();
 		// FIXME in the config, 0 means direct connection; in Length, 0 means no connection
 		int rawMaxPathLength = assetManager.getTransformationConfig().getMaxPathLength();

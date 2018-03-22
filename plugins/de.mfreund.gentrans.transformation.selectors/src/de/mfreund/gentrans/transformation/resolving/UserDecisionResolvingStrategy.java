@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
-import de.mfreund.gentrans.transformation.connecting.EClassConnectionPath;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.resolving.enhancing.InstantiatingSelectAttributeValueMappingModelEnhancer;
@@ -23,6 +22,7 @@ import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectConta
 import de.mfreund.gentrans.transformation.resolving.enhancing.JoiningSelectRootElementMappingModelEnhancer;
 import de.mfreund.gentrans.transformation.resolving.wizards.DialogFactory;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
+import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPath;
 import pamtram.PAMTraM;
 import pamtram.TargetSectionModel;
 import pamtram.mapping.InstantiableMappingHintGroup;

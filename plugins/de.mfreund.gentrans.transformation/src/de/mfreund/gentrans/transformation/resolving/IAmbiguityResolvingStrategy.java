@@ -12,10 +12,9 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
-import de.mfreund.gentrans.transformation.connecting.EClassConnectionPath;
-import de.mfreund.gentrans.transformation.connecting.impl.ComplexEClassConnectionPath;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
+import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPath;
 import pamtram.PAMTraM;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
@@ -219,18 +218,16 @@ public interface IAmbiguityResolvingStrategy {
 	}
 
 	/**
-	 * Resolve ambiguities that arise when selecting a {@link ComplexEClassConnectionPath} to connect a
-	 * {@link TargetSection} to a certain container {@link EClass} This method is called when multiple possible
-	 * ModelConnectionPaths have been determined for the given 'section' during the '<em>joining</em>' step of the
-	 * transformation.
+	 * Resolve ambiguities that arise when selecting a {@link EClassConnectionPath} to connect a {@link TargetSection}
+	 * to a certain container {@link EClass} This method is called when multiple possible ModelConnectionPaths have been
+	 * determined for the given 'section' during the '<em>joining</em>' step of the transformation.
 	 *
 	 * @param choices
-	 *            The list of {@link ComplexEClassConnectionPath ModelConnectionPaths} that can be chosen to connect the
-	 *            given 'section'.
+	 *            The list of {@link EClassConnectionPath ModelConnectionPaths} that can be chosen to connect the given
+	 *            'section'.
 	 * @param section
 	 *            The {@link TargetSection} that shall be connected to a certain {@link EClass} (represented by the
-	 *            {@link EClassConnectionPath#getPathRootClass() root class} of every of the given
-	 *            ModelConnectionPaths).
+	 *            {@link EClassConnectionPath#getTargetClass() root class} of every of the given ModelConnectionPaths).
 	 * @return The list of choices after applying the resolving strategy (this should be a sub-set of
 	 *         '<em>choices</em>').
 	 * @throws AmbiguityResolvingException
@@ -247,21 +244,19 @@ public interface IAmbiguityResolvingStrategy {
 	}
 
 	/**
-	 * Resolve ambiguities that arise when selecting a {@link ComplexEClassConnectionPath} to connect a
-	 * {@link TargetSection} to a certain container {@link EClass} This method is called when multiple possible
-	 * ModelConnectionPaths have been determined for the given 'section' during the '<em>joining</em>' step of the
-	 * transformation and multiple possible instances of this EClass exist in the target model. Consequently,
-	 * ambiguities have to be resolve both for the ModelConnectionPath to use as well as for the concrete instance (the
-	 * concrete model element) to connect to.
+	 * Resolve ambiguities that arise when selecting a {@link EClassConnectionPath} to connect a {@link TargetSection}
+	 * to a certain container {@link EClass} This method is called when multiple possible ModelConnectionPaths have been
+	 * determined for the given 'section' during the '<em>joining</em>' step of the transformation and multiple possible
+	 * instances of this EClass exist in the target model. Consequently, ambiguities have to be resolve both for the
+	 * ModelConnectionPath to use as well as for the concrete instance (the concrete model element) to connect to.
 	 *
 	 * @param choices
-	 *            A {@link HashMap} that contains the {@link ComplexEClassConnectionPath ModelConnectionPaths} and the
+	 *            A {@link HashMap} that contains the {@link EClassConnectionPath ModelConnectionPaths} and the
 	 *            associated lists of {@link EObjectWrapper EObjectWrappers} that can be chosen to connect the given
 	 *            'section'.
 	 * @param section
 	 *            The {@link TargetSection} that shall be connected to a certain {@link EClass} (represented by the
-	 *            {@link ComplexEClassConnectionPath#getPathRootClass() root class} of every of the given
-	 *            ModelConnectionPaths).
+	 *            {@link EClassConnectionPath#getTargetClass() root class} of every of the given ModelConnectionPaths).
 	 * @param sectionInstances
 	 *            The list of {@link EObjectWrapper instances} of the given 'section' that need to be connected.
 	 * @param hintGroup

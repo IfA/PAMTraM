@@ -30,8 +30,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 
-import de.mfreund.gentrans.transformation.connecting.EClassConnectionPath;
-import de.mfreund.gentrans.transformation.connecting.Length;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
 import de.mfreund.gentrans.transformation.resolving.ComposedAmbiguityResolvingStrategy;
@@ -40,6 +38,8 @@ import de.mfreund.pamtram.transformation.Transformation;
 import de.mfreund.pamtram.transformation.TransformationMapping;
 import de.mfreund.pamtram.transformation.TransformationMappingHintGroup;
 import de.tud.et.ifa.agtele.emf.compare.EMFComparatorFactory;
+import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPath;
+import de.tud.et.ifa.agtele.emf.connecting.Length;
 import de.tud.et.ifa.agtele.resources.ResourceHelper;
 import pamtram.PAMTraM;
 import pamtram.mapping.Mapping;

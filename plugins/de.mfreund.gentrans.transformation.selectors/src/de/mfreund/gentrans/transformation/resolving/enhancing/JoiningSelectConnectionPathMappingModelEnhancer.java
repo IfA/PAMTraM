@@ -17,10 +17,10 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Shell;
 
-import de.mfreund.gentrans.transformation.connecting.EClassConnectionPath;
 import de.mfreund.gentrans.transformation.resolving.UserDecisionResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.wizards.GenericSelectionDialog;
 import de.tud.et.ifa.agtele.emf.compare.EMFCompareUtil;
+import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPath;
 import pamtram.PAMTraM;
 import pamtram.PamtramPackage;
 import pamtram.presentation.PamtramEditor;

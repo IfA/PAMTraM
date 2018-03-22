@@ -1311,114 +1311,82 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 
 	/**
 	 * A class that represents a connection between model elements to be instantiated. Each connection is characterized
-	 * by a {@link #containerInstance} (the starting point of the connection), a {@link #connectionPath}, and a set of
-	 * {@link #rootInstances} (the end point of the connection).
+	 * by a {@link #startingElement}, a {@link #connectionPath}, and a list of {@link #targetElements}.
+	 * <p />
+	 * This basically represents a wrapper for an {@link EClassConnectionPathInstantiator} that works based on
+	 * {@link EObjectWrapper EObjectWrappers} instead of {@link EObject}.
 	 *
 	 * @author mfreund
 	 */
+	@SuppressWarnings("javadoc")
 	public class Connection {
 
-		/**
-		 * The {@link EObjectWrapper model element} representing the starting point of the connection to be
-		 * instantiated.
-		 */
-		protected EObjectWrapper containerInstance;
+		protected EObjectWrapper startingElement;
 
-		/**
-		 * The {@link EClassConnectionPath connection path} to be instantiated.
-		 */
 		protected EClassConnectionPath connectionPath;
 
-		/**
-		 * The {@link EObjectWrapper model element(s)} to be connected to the {@link #containerInstance} via the
-		 * {@link #connectionPath}.
-		 */
-		protected Set<EObjectWrapper> rootInstances;
+		protected List<EObjectWrapper> targetElements;
 
-		/**
-		 * This creates an instance.
-		 *
-		 * @param containerInstance
-		 * @param connectionPath
-		 */
-		public Connection(EObjectWrapper containerInstance, EClassConnectionPath connectionPath) {
+		protected List<EObjectWrapper> unconnectedElements;
 
-			this(containerInstance, connectionPath, new ArrayList<>());
-		}
+		public Connection(EObjectWrapper startingElement, EClassConnectionPath connectionPath,
+				Collection<EObjectWrapper> targetElements) {
 
-		/**
-		 * This creates an instance.
-		 *
-		 * @param containerInstance
-		 * @param connectionPath
-		 * @param rootInstances
-		 */
-		public Connection(EObjectWrapper containerInstance, EClassConnectionPath connectionPath,
-				Collection<EObjectWrapper> rootInstances) {
-
-			this.containerInstance = containerInstance;
+			this.startingElement = startingElement;
 			this.connectionPath = connectionPath;
-			this.rootInstances = rootInstances != null ? new LinkedHashSet<>(rootInstances) : new LinkedHashSet<>();
+			this.targetElements = targetElements != null ? new ArrayList<>(targetElements) : new ArrayList<>();
+			unconnectedElements = new ArrayList<>(targetElements);
 		}
 
-		/**
-		 * @return the {@link #containerInstance}
-		 */
-		public EObjectWrapper getContainerInstance() {
+		public EObjectWrapper getStartingElement() {
 
-			return containerInstance;
+			return startingElement;
 		}
 
-		/**
-		 * @return the {@link #connectionPath}
-		 */
 		public EClassConnectionPath getConnectionPath() {
 
 			return connectionPath;
 		}
 
-		/**
-		 * @return the {@link #rootInstances}
-		 */
-		public Set<EObjectWrapper> getRootInstances() {
+		public List<EObjectWrapper> getTargetElements() {
 
-			return rootInstances;
+			return targetElements;
 		}
 
 		/**
-		 * Adds a list of {@link EObjectWrapper model elements} to the existing list of {@link #rootInstances}.
+		 * Instantiates this connection by creating an {@link EClassConnectionPathInstantiator} and calling
+		 * {@link EClassConnectionPathInstantiator#instantiate() instantiate()} on it.
 		 *
-		 * @param rootInstances
-		 */
-		public void addRootInstances(Collection<EObjectWrapper> rootInstances) {
-
-			this.rootInstances.addAll(rootInstances);
-		}
-
-		/**
-		 * Instantiates this connection by invoking {@link EClassConnectionPathInstantiator#instantiate()}.
-		 *
-		 * @return A list of elements (a subset of the {@link #rootInstances}) that could not be connected (possibly
+		 * @return A list of elements (a subset of the {@link #targetElements}) that could not be connected (possibly
 		 *         because the capacity of the path was not large enough).
 		 */
 		public List<EObjectWrapper> instantiate() {
 
 			try {
-				List<EObject> targetElements = rootInstances.stream().map(EObjectWrapper::getEObject)
-						.collect(Collectors.toList());
-				EClassConnectionPathInstantiator instantiator = connectionPath
-						.createInstantiator(containerInstance.getEObject(), targetElements);
-				instantiator.instantiate();
-
-				instantiator.getCreatedIntermediaryElements().stream().forEach(targetSectionRegistry::addClassInstance);
-				return rootInstances.stream()
-						.filter(r -> instantiator.getUnconnectedElements().contains(r.getEObject()))
-						.collect(Collectors.toList());
+				doInstantiate();
 
 			} catch (EClassConnectionPathInstantiationException e) {
 				logger.log(Level.SEVERE, e, () -> e.getMessage() != null ? e.getMessage() : e.toString());
-				return new ArrayList<>(rootInstances);
 			}
+
+			return Collections.unmodifiableList(unconnectedElements);
+		}
+
+		protected void doInstantiate() {
+
+			EObject startingEObject = startingElement.getEObject();
+			List<EObject> targetEObjects = targetElements.stream().map(EObjectWrapper::getEObject)
+					.collect(Collectors.toList());
+			EClassConnectionPathInstantiator instantiator = connectionPath.createInstantiator(startingEObject,
+					targetEObjects);
+			instantiator.instantiate();
+
+			instantiator.getCreatedIntermediaryElements().stream().forEach(targetSectionRegistry::addClassInstance);
+
+			List<EObject> unconnectedEObjects = instantiator.getUnconnectedElements();
+
+			unconnectedElements = targetElements.stream().filter(r -> unconnectedEObjects.contains(r.getEObject()))
+					.collect(Collectors.toList());
 		}
 	}
 

@@ -35,9 +35,6 @@ public class ComplexEClassConnectionPath implements EClassConnectionPath {
 
 	private Map<DirectEClassConnectionPath, Capacity> theoreticalSegmentCapacities;
 
-	// // The starting EObject used during calculation of the 'actual capacity' of the path
-	// private EObject startingElement;
-
 	/**
 	 * Create a new path based on a number of {@link DirectEClassConnectionPath segments}.
 	 *
@@ -127,35 +124,6 @@ public class ComplexEClassConnectionPath implements EClassConnectionPath {
 
 	}
 
-	// private Capacity getActualCapacityBasedOnFirstPathSegmentCapacity() {
-	//
-	// if (pathSegments.isEmpty()) {
-	// return Capacity.ZERO;
-	// }
-	//
-	// DirectEClassConnectionPath firstPathSegment = pathSegments.get(0);
-	//
-	// Capacity actualCapacityOfFirstPathSegment = firstPathSegment.getActualCapacity(startingElement);
-	//
-	// Capacity theoreticalCapacityOfRemainingPathSegments = this.getSubPath(1).getTheoreticalCapacity();
-	//
-	// return CapacityCalculator.addSequentialCapacities(actualCapacityOfFirstPathSegment,
-	// theoreticalCapacityOfRemainingPathSegments);
-	// }
-
-	// private Capacity getActualCapacityBasedOnFollowingPathSegmentCapacities() {
-	//
-	// List<EObject> targetElementsOfFirstPathSegment = getTargetElementsOfFirstPathSegment();
-	//
-	// EClassConnectionPath remainingSubPath = this.getSubPath(1);
-	//
-	// List<Capacity> capacitiesOfRemainingSubPath = targetElementsOfFirstPathSegment.stream()
-	// .map(remainingSubPath::getActualCapacity).collect(Collectors.toList());
-	//
-	// return CapacityCalculator.addParallelCapacities(capacitiesOfRemainingSubPath);
-	//
-	// }
-
 	List<EObject> getTargetElementsOfFirstPathSegment(EObject startingElement) {
 
 		if (!isValidStartingElement(startingElement)) {
@@ -242,8 +210,6 @@ public class ComplexEClassConnectionPath implements EClassConnectionPath {
 
 	@Override
 	public boolean describesConnectionBetween(EObject startingElement, EObject targetElement) {
-
-		// this.startingElement = startingElement;
 
 		List<EObject> targetElementsOfFirstPathSegment = getTargetElementsOfFirstPathSegment(startingElement);
 

@@ -165,4 +165,12 @@ public class EClassConnectionPathRequirement {
 				requiredMaximumPathLength, requiredMinimumCapacity, allowedReferenceType);
 	}
 
+	public EClassConnectionPathRequirement copy() {
+
+		return new EClassConnectionPathRequirement(requiredTargetClass).withRequiredStartingClass(requiredStartingClass)
+				.withRequiredStartingElement(requiredStartingElement)
+				.withRequiredMaximumPathLength(requiredMaximumPathLength)
+				.withRequiredMinimumCapacity(requiredMinimumCapacity).withAllowedReferenceType(allowedReferenceType);
+	}
+
 }

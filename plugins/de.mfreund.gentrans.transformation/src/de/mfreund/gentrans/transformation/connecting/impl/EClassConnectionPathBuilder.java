@@ -4,22 +4,28 @@
 package de.mfreund.gentrans.transformation.connecting.impl;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
+import java.util.Queue;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 
 import de.mfreund.gentrans.transformation.connecting.AllowedReferenceType;
+import de.mfreund.gentrans.transformation.connecting.Capacity;
 import de.mfreund.gentrans.transformation.connecting.EClassConnectionPath;
+import de.mfreund.gentrans.transformation.connecting.EClassConnectionPathRequirement;
 import de.mfreund.gentrans.transformation.connecting.Length;
 
 /**
- * A
+ * A builder that operates on an {@link EClassConnectionPathRequirement} and assembles all {@link EClassConnectionPath
+ * EClassConnectionPaths} that fulfill this requirement.
+ * <p />
+ * The {@link #buildConnectionPaths() assembly process} works iteratively starting from a certain {@link EClass} and
+ * assembling the resulting paths based on a list of {@link DirectEClassConnectionPath path segments}.
  *
  * @author mfreund
  */
@@ -29,80 +35,146 @@ public class EClassConnectionPathBuilder {
 
 	private EClass targetClass;
 
+	private EObject startingElement;
+
 	private Length maxPathLength;
+
+	private Capacity requiredCapacity;
 
 	private AllowedReferenceType allowedReferenceType;
 
 	private EClassConnectionInformationRegistry eClassConnectionInformationRegistry;
 
-	@SuppressWarnings("javadoc")
-	public EClassConnectionPathBuilder(EClass startingClass, EClass targetClass, Length maxPathLength,
-			AllowedReferenceType allowedReferenceType,
+	private List<EClassConnectionPath> foundPaths;
+
+	private Queue<EClassConnectionPath> potentialPathQueue;
+
+	private EClassConnectionPath currentPotentialPath;
+
+	/**
+	 * Create an instance.
+	 *
+	 * @param requirement
+	 *            The {@link EClassConnectionPathRequirement} that this builder operates on.
+	 * @param eClassConnectionInformationRegistry
+	 *            The {@link EClassConnectionInformationRegistry} that is consulted by the builder to retrieve potential
+	 *            connections between various {@link EClass EClasses}.
+	 */
+	public EClassConnectionPathBuilder(EClassConnectionPathRequirement requirement,
 			EClassConnectionInformationRegistry eClassConnectionInformationRegistry) {
 
-		this.startingClass = startingClass;
-		this.targetClass = targetClass;
-		this.maxPathLength = maxPathLength;
-		this.allowedReferenceType = allowedReferenceType;
+		startingClass = requirement.getRequiredStartingClass();
+		targetClass = requirement.getRequiredTargetClass();
+		maxPathLength = requirement.getRequiredMaximumPathLength();
+		allowedReferenceType = requirement.getAllowedReferenceType();
+		requiredCapacity = requirement.getRequiredMinimumCapacity();
+		startingElement = requirement.getRequiredStartingElement();
 		this.eClassConnectionInformationRegistry = eClassConnectionInformationRegistry;
 	}
 
-	public List<EClassConnectionPath> build() {
+	/**
+	 * Determine all {@link EClassConnectionPath EClassConnectionPaths} that satisfy the
+	 * {@link EClassConnectionPathRequirement} that was passed to the constructor.
+	 *
+	 * @return The list of paths.
+	 */
+	public List<EClassConnectionPath> buildConnectionPaths() {
 
-		if (maxPathLength.isNoConnection()) {
-			return Collections.emptyList();
-		}
+		initBuilder();
 
-		List<EClassConnectionPath> foundPaths = new ArrayList<>();
+		buildConnectionPathsIncrementally();
 
-		Set<EClassConnectionPath> pathStack = new LinkedHashSet<>();
-
-		// we will move downward in the containment hierarchy and start at the 'containerClass'
-		pathStack.addAll(getAllAllowedOutgoingDirectConnectionPaths(startingClass, allowedReferenceType));
-
-		// iterate as long as every possible connection path has been found
-		while (!pathStack.isEmpty()) {
-
-			final EClassConnectionPath next = pathStack.iterator().next();
-
-			pathStack.remove(next);
-
-			// a possible connection path has been found
-			if (next.getTargetClass().equals(targetClass)) {
-
-				foundPaths.add(next);
-
-			} else {
-
-				if (maxPathLength.compareTo(next.getLength()) > 0) {
-
-					List<EClassConnectionPath> nextPossiblePathSegments = getAllAllowedOutgoingDirectConnectionPaths(
-							next.getTargetClass(), allowedReferenceType);
-					List<EClassConnectionPath> resultingConnectionPaths = nextPossiblePathSegments.stream()
-							.map(s -> join(next, s)).collect(Collectors.toList());
-					List<EClassConnectionPath> resultingConnectionPathsWithoutLoops = resultingConnectionPaths.stream()
-							.filter(p -> !p.containsLoop()).collect(Collectors.toList());
-
-					pathStack.addAll(resultingConnectionPathsWithoutLoops);
-
-				}
-			}
-		}
+		sortConnectionPaths();
 
 		return foundPaths;
 
 	}
 
-	private List<EClassConnectionPath> getAllAllowedOutgoingDirectConnectionPaths(EClass startingClass,
-			AllowedReferenceType allowedReferenceType) {
+	private void initBuilder() {
 
-		List<EReference> outgoingReferences = getAllAllowedOutgoingReferences(startingClass, allowedReferenceType);
+		foundPaths = new ArrayList<>();
+		potentialPathQueue = new LinkedList<>();
+		currentPotentialPath = null;
+	}
+
+	private void buildConnectionPathsIncrementally() {
+
+		do {
+
+			// At the first iteration step, this returns 'null'. This is, however, no problem and will lead to the queue
+			// to be initialized in 'buildNextPotentialPaths'
+			//
+			currentPotentialPath = potentialPathQueue.poll();
+
+			if (currentPotentialPathLeadsToTargetClass()) {
+				foundPaths.add(currentPotentialPath);
+
+			} else {
+				buildNextPotentialPaths();
+			}
+
+		} while (!potentialPathQueue.isEmpty());
+	}
+
+	private boolean currentPotentialPathLeadsToTargetClass() {
+
+		return currentPotentialPath != null && targetClass.equals(currentPotentialPath.getTargetClass());
+	}
+
+	private void buildNextPotentialPaths() {
+
+		if (isCurrentPotentialPathOfMaxPathLength()) {
+			return;
+		}
+
+		List<EClassConnectionPath> nextPossiblePathSegments = getNextPotentialPathSegments();
+
+		for (EClassConnectionPath nextPossiblePathSegment : nextPossiblePathSegments) {
+			buildNextPotentialPath(nextPossiblePathSegment);
+		}
+	}
+
+	private boolean isCurrentPotentialPathOfMaxPathLength() {
+
+		Length currentPotentialPathLength = currentPotentialPath != null ? currentPotentialPath.getLength()
+				: Length.NO_CONNECTION;
+
+		return maxPathLength.compareTo(currentPotentialPathLength) <= 0;
+	}
+
+	private List<EClassConnectionPath> getNextPotentialPathSegments() {
+
+		if (currentPotentialPath == null) { // we are at the beginning of the building process
+			return getFirstPotentialPathSegments();
+		} else {
+			return getAllAllowedOutgoingDirectConnectionPaths(currentPotentialPath.getTargetClass());
+		}
+
+	}
+
+	private List<EClassConnectionPath> getFirstPotentialPathSegments() {
+
+		if (startingClass != null) {
+			return getAllAllowedOutgoingDirectConnectionPaths(startingClass);
+
+		} else {
+			// as no starting class was passed in the requirement, we consider all existing classes as potential
+			// starting class
+			Stream<EClass> concreteRegisteredClasses = eClassConnectionInformationRegistry.getRegisteredClasses()
+					.stream().filter(c -> !c.isAbstract());
+			return concreteRegisteredClasses.flatMap(c -> getAllAllowedOutgoingDirectConnectionPaths(c).stream())
+					.collect(Collectors.toList());
+		}
+	}
+
+	private List<EClassConnectionPath> getAllAllowedOutgoingDirectConnectionPaths(EClass startingClass) {
+
+		List<EReference> outgoingReferences = getAllAllowedOutgoingReferences(startingClass);
 
 		return getAllPossibleDirectConnectionPathsViaReferences(startingClass, outgoingReferences);
 	}
 
-	private List<EReference> getAllAllowedOutgoingReferences(EClass startingClass,
-			AllowedReferenceType allowedReferenceType) {
+	private List<EReference> getAllAllowedOutgoingReferences(EClass startingClass) {
 
 		List<EReference> allOutgoingReferences = startingClass.getEAllReferences();
 
@@ -141,28 +213,34 @@ public class EClassConnectionPathBuilder {
 		return potentialTargetClasses;
 	}
 
-	private EClassConnectionPath join(EClassConnectionPath path1, EClassConnectionPath path2) {
+	private void buildNextPotentialPath(EClassConnectionPath nextPossiblePathSegment) {
 
-		List<DirectEClassConnectionPath> segments = new ArrayList<>();
+		EClassConnectionPath resultingConnectionPath = EClassConnectionPathUtil.join(currentPotentialPath,
+				nextPossiblePathSegment);
 
-		segments.addAll(getPathSegments(path1));
-		segments.addAll(getPathSegments(path2));
+		if (isValidPath(resultingConnectionPath)) {
+			potentialPathQueue.add(resultingConnectionPath);
+		}
 
-		return new ComplexEClassConnectionPath(segments);
 	}
 
-	private List<DirectEClassConnectionPath> getPathSegments(EClassConnectionPath path) {
+	private boolean isValidPath(EClassConnectionPath path) {
 
-		if (path instanceof DirectEClassConnectionPath) {
-			return Arrays.asList((DirectEClassConnectionPath) path);
-		} else if (path instanceof ComplexEClassConnectionPath) {
-			return ((ComplexEClassConnectionPath) path).getPathSegments();
-		} else if (path instanceof EmptyEClassConnectionPath) {
-			return Collections.emptyList();
-		} else {
-			throw new RuntimeException(
-					"Unknown type of ConnectionPath '" + path.getClass().getName() + "' encountered. Will be ignored.");
-		}
+		return !path.containsLoop() && providesRequiredCapacity(path);
+
+	}
+
+	private boolean providesRequiredCapacity(EClassConnectionPath path) {
+
+		Capacity pathCapacity = startingElement != null ? path.getActualCapacity(startingElement)
+				: path.getTheoreticalCapacity();
+
+		return pathCapacity.isSufficientFor(requiredCapacity);
+	}
+
+	private void sortConnectionPaths() {
+
+		foundPaths = EClassConnectionPathUtil.sortConnectionPathsFromShortestToLongest(foundPaths);
 	}
 
 }

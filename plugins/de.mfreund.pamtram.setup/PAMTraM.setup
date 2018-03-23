@@ -161,6 +161,9 @@
         name="org.eclipse.uml2.sdk.feature.group"/>
     <requirement
         name="org.eclipse.xsd.sdk.feature.group"/>
+    <requirement
+        name="com.wdev91.eclipse.copyright.feature.feature.group"
+        optional="true"/>
     <repository
         url="http://eclipse.sonarlint.org"/>
     <repository
@@ -169,6 +172,8 @@
         url="http://download.eclipse.org/windowbuilder/WB/release/4.6/"/>
     <repository
         url="http://pweingardt.github.com/mylyn-gitlab/"/>
+    <repository
+        url="https://dl.bintray.com/jmini/Eclipse-Copyright-Generator/"/>
   </setupTask>
   <setupTask
       xsi:type="setup:CompoundTask"

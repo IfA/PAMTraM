@@ -1,6 +1,11 @@
-/**
+/*******************************************************************************
+ * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
  *
- */
+ * This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ ******************************************************************************/
 package de.mfreund.gentrans.transformation;
 
 import java.util.Date;
@@ -50,18 +55,18 @@ public class GenericTransformationRunner extends AbstractTransformationRunner {
 
 		// Prepare the transformation (validate pamtram model, merge extends, etc.)
 		//
-		if (!this.taskRunner.prepare()) {
-			this.logger.severe(GenericTransformationRunner.TRANSFORMATION_ABORTED_MESSAGE);
+		if (!taskRunner.prepare()) {
+			logger.severe(GenericTransformationRunner.TRANSFORMATION_ABORTED_MESSAGE);
 			return new TransformationResult().withAborted(true);
 		}
 
 		// Perform the various phases of the transformation
 		//
-		this.taskRunner.executeMappings();
+		taskRunner.executeMappings();
 
 		// Persist the create target model(s)
 		//
-		if (this.taskRunner.isCanceled() || !this.taskRunner.storeTargetModels()) {
+		if (taskRunner.isCanceled() || !taskRunner.storeTargetModels()) {
 			return new TransformationResult().withAborted(true);
 		}
 
@@ -69,12 +74,12 @@ public class GenericTransformationRunner extends AbstractTransformationRunner {
 
 		// Populate and store the transformation model (if necessary)
 		//
-		this.taskRunner.generateTransformationModel(startTime, endTime);
+		taskRunner.generateTransformationModel(startTime, endTime);
 
-		this.logger.info(() -> "\n################# " + "Transformation done. Time: "
+		logger.info(() -> "\n################# " + "Transformation done. Time: "
 				+ (endTime.getTime() - startTime.getTime()) / 1000d + "s" + " #################\n");
 
-		return this.taskRunner.compileTransformationResult();
+		return taskRunner.compileTransformationResult();
 
 	}
 

@@ -4,16 +4,21 @@
       label="GenTrans Standalone"
       version="1.0.0.qualifier">
 
-   <description url="http://www.example.com/description">
-      [Enter Feature Description here.]
+   <description>
+      This feature includes the plugins required for a standalone application of PAMTraM. It is not meant to be deployed to an update site but is only used by the ANT export scripts in the &apos;transformation.standalone&apos; plugin in order to build the required JARs to be included in the &apos;lib&apos; folder.
    </description>
 
-   <copyright url="http://www.example.com/copyright">
-      [Enter Copyright Description here.]
+   <copyright url="https://www.eclipse.org/legal/epl-2.0/">
+      Copyright (C) 2017-2018 Matthias Freund and others, Institute
+of Automation, TU Dresden
+This program and the accompanying materials are made available
+under the terms of the Eclipse Public License 2.0 which is available
+at https://www.eclipse.org/legal/epl-2.0/
+SPDX-License-Identifier: EPL-2.0
    </copyright>
 
-   <license url="http://www.example.com/license">
-      [Enter License Description here.]
+   <license url="%licenseURL">
+      %license
    </license>
 
    <requires>

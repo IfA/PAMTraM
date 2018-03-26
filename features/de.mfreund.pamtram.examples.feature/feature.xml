@@ -5,28 +5,22 @@
       version="2.1.0.qualifier"
       provider-name="Matthias Freund, Institute of Automation, TU Dresden">
 
-   <description url="http://www.example.com/description">
+   <description>
       This feature includes various sample model transformations
 for the PAMTraM development environment.
    </description>
 
-   <copyright url="http://www.example.com/copyright">
-      [Enter Copyright Description here.]
+   <copyright url="https://www.eclipse.org/legal/epl-2.0/">
+      Copyright (C) 2016-2018 Matthias Freund and others, Institute
+of Automation, TU Dresden
+This program and the accompanying materials are made available
+under the terms of the Eclipse Public License 2.0 which is available
+at https://www.eclipse.org/legal/epl-2.0/
+SPDX-License-Identifier: EPL-2.0
    </copyright>
 
-   <license url="https://agtele.eats.et.tu-dresden.de/eclipse/LICENSE.txt">
-      All Rights reserved 2015 TU-Dresden Institute of Automation!
-
-It has not been decided yet, which (open-source) license this project and the related projects will be published with.
-For now, the use is granted in projects that are related to education and science at the Institute of Automation at TU-Dresden, under the following terms:
-
- - You are not allowed to re-distribute any content of this project or feature or the software that is based on it.
- - No commercial use.
- - Changes on this project or feature itself are allowed only if the `Nutzungsvereinbarung` (`usage agreement`) of the Institute of Automation has been signed.
- - For feature requests and questions please contact (Lukas Baron)[mailto://lukas.baron@tu-dresden.de], (Christopher Martin)[mailto://christopher.martin@tu-dresden.de] or (Matthias Freund)[mailto://matthias.freund@tu-dresden.de].
- - This copyright notice must be preserved in this project, even if changes where made for adopting this project for your own project.
-
-These terms will be replaced, once it has been decided, which public license to issue.
+   <license url="%licenseURL">
+      %license
    </license>
 
    <url>

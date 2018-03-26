@@ -1,6 +1,11 @@
-/**
+/*******************************************************************************
+ * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
  *
- */
+ * This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ ******************************************************************************/
 package de.mfreund.gentrans.transformation;
 
 import java.util.logging.Level;
@@ -61,19 +66,19 @@ public abstract class AbstractTransformationRunner implements ITransformationRun
 
 		try {
 
-			return this.doRun();
+			return doRun();
 
 		} catch (CancelTransformationException e1) {
 
-			this.logger.log(Level.SEVERE, e1, e1::printInfo);
-			this.logger.severe("See the ErrorLog for more information!");
-			this.logger.severe("Aborting...");
+			logger.log(Level.SEVERE, e1, e1::printInfo);
+			logger.severe("See the ErrorLog for more information!");
+			logger.severe("Aborting...");
 			return new TransformationResult().withAborted(true);
 		} catch (Exception e) {
 
-			this.logger.log(Level.SEVERE, e, () -> e.getMessage() != null ? e.getMessage() : e.toString());
-			this.logger.severe("See the ErrorLog for more information!");
-			this.logger.severe("Aborting...");
+			logger.log(Level.SEVERE, e, () -> e.getMessage() != null ? e.getMessage() : e.toString());
+			logger.severe("See the ErrorLog for more information!");
+			logger.severe("Aborting...");
 
 			return new TransformationResult().withAborted(true);
 		}
@@ -94,7 +99,7 @@ public abstract class AbstractTransformationRunner implements ITransformationRun
 	@Override
 	public void cancel() {
 
-		this.taskRunner.cancel();
+		taskRunner.cancel();
 	}
 
 }

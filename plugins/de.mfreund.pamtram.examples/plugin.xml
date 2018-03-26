@@ -127,7 +127,7 @@
             wizardID="de.mfreund.pamtram.examples.autoprobe">
          <projectDescriptor
                contentURI="zips/autoprobe.zip"
-               description="This casestudy demonstrates the results from the &apos;AutoProBe&apos; project."
+               description="This casestudy demonstrates the results from the &apos;AutoProBe&apos; project. Note: This casestudy requires the Movisa and MovisaLibrary features installed. Due to copyright reasons, these two packages cannot be included in the PAMTraM/PAMTraM Examples features."
                name="de.mfreund.pamtram.casestudies.autoprobe">
          </projectDescriptor>
          <fileToOpen
@@ -175,7 +175,7 @@
             wizardID="de.mfreund.pamtram.examples.disl-movisa">
          <projectDescriptor
                contentURI="zips/disl-movisa.zip"
-               description="This casestudy demonstrates a simple transformation from &apos;DISL&apos; to &apos;Movisa&apos;."
+               description="This casestudy demonstrates a simple transformation from &apos;DISL&apos; to &apos;Movisa&apos;. Note: This casestudy requires the Movisa feature installed. Due to copyright reasons, this package cannot be included in the PAMTraM/PAMTraM Examples features."
                name="de.mfreund.pamtram.casestudies.disl-movisa">
          </projectDescriptor>
          <fileToOpen
@@ -187,7 +187,7 @@
             wizardID="de.mfreund.pamtram.examples.excel-movisa-tdp">
          <projectDescriptor
                contentURI="zips/excel-movisa-tdp.zip"
-               description="This casestudy demonstrates a simple transformation from an Excel-based meta-model to &apos;Movisa TDP&apos;."
+               description="This casestudy demonstrates a simple transformation from an Excel-based meta-model to &apos;Movisa TDP&apos;. Note: This casestudy requires the Movisa feature installed. Due to copyright reasons, this package cannot be included in the PAMTraM/PAMTraM Examples features."
                name="de.mfreund.pamtram.casestudies.excel-movisa-tdp">
          </projectDescriptor>
          <fileToOpen
@@ -211,7 +211,7 @@
             wizardID="de.mfreund.pamtram.examples.w3caui-movisa">
          <projectDescriptor
                contentURI="zips/w3caui-movisa.zip"
-               description="This casestudy demonstrates a transformation from &apos;W3CAUI&apos; to &apos;Movisa&apos;."
+               description="This casestudy demonstrates a transformation from &apos;W3CAUI&apos; to &apos;Movisa&apos;. Note: This casestudy requires the Movisa feature installed. Due to copyright reasons, this package cannot be included in the PAMTraM/PAMTraM Examples features."
                name="de.mfreund.pamtram.casestudies.w3caui-movisa">
          </projectDescriptor>
          <fileToOpen

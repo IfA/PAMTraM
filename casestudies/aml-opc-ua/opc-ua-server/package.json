@@ -4,7 +4,8 @@
   "description": "test server for import xml-Nodeset",
   "main": "opcua.js",
   "dependencies": {
-    "node-opcua": "0.1.0-12"
+    "node-opcua": "^0.2.3",
+    "semver": "^5.5.0"
   },
   "devDependencies": {},
   "scripts": {

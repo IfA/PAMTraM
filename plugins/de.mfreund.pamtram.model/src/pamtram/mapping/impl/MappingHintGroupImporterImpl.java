@@ -36,6 +36,7 @@ import pamtram.condition.ComplexCondition;
 import pamtram.impl.NamedElementImpl;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.InstantiableMappingHintGroup;
+import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingPackage;
@@ -59,6 +60,7 @@ import pamtram.util.PamtramValidator;
  *   <li>{@link pamtram.mapping.impl.MappingHintGroupImporterImpl#getHintGroup <em>Hint Group</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingHintGroupImporterImpl#getContainer <em>Container</em>}</li>
  *   <li>{@link pamtram.mapping.impl.MappingHintGroupImporterImpl#getMappingHints <em>Mapping Hints</em>}</li>
+ *   <li>{@link pamtram.mapping.impl.MappingHintGroupImporterImpl#getParentMapping <em>Parent Mapping</em>}</li>
  * </ul>
  *
  * @generated
@@ -462,6 +464,27 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Mapping getParentMapping() {
+	
+		
+		return this.eContainer() instanceof Mapping ? (Mapping) this.eContainer() : null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Mapping basicGetParentMapping() {
+		
+		return this.eContainer() instanceof Mapping ? (Mapping) this.eContainer() : null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<MappingHintType> getActiveMappingHints() {
 		Object[] hints = getMappingHints().stream().filter(h -> !(h instanceof DeactivatableElement) || !((DeactivatableElement) h).isDeactivated()).toArray();
 		return new BasicEList.UnmodifiableEList<>(hints.length, hints);	
@@ -533,6 +556,9 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 				return basicGetContainer();
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS:
 				return getMappingHints();
+			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__PARENT_MAPPING:
+				if (resolve) return getParentMapping();
+				return basicGetParentMapping();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -621,6 +647,8 @@ public class MappingHintGroupImporterImpl extends NamedElementImpl implements Ma
 				return isSetContainer();
 			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS:
 				return isSetMappingHints();
+			case MappingPackage.MAPPING_HINT_GROUP_IMPORTER__PARENT_MAPPING:
+				return basicGetParentMapping() != null;
 		}
 		return super.eIsSet(featureID);
 	}

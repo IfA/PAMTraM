@@ -151,9 +151,9 @@
           <genParameters ecoreParameter="pamtram.ecore#//structure/LocalDynamicSourceElement/validateSourceAttributeMatchesSectionOrContainedSection/diagnostics"/>
           <genParameters ecoreParameter="pamtram.ecore#//structure/LocalDynamicSourceElement/validateSourceAttributeMatchesSectionOrContainedSection/context"/>
         </genOperations>
-        <genOperations ecoreOperation="pamtram.ecore#//structure/LocalDynamicSourceElement/validateReferenceMatchSpecPresentInCaseOfAmbiguousSource">
-          <genParameters ecoreParameter="pamtram.ecore#//structure/LocalDynamicSourceElement/validateReferenceMatchSpecPresentInCaseOfAmbiguousSource/diagnostics"/>
-          <genParameters ecoreParameter="pamtram.ecore#//structure/LocalDynamicSourceElement/validateReferenceMatchSpecPresentInCaseOfAmbiguousSource/context"/>
+        <genOperations ecoreOperation="pamtram.ecore#//structure/LocalDynamicSourceElement/validateFollowExternalReferencesTrueIfRequired">
+          <genParameters ecoreParameter="pamtram.ecore#//structure/LocalDynamicSourceElement/validateFollowExternalReferencesTrueIfRequired/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//structure/LocalDynamicSourceElement/validateFollowExternalReferencesTrueIfRequired/context"/>
         </genOperations>
       </genClasses>
       <genClasses image="false" ecoreClass="pamtram.ecore#//structure/ExternalDynamicSourceElement">
@@ -625,9 +625,9 @@
       <genClasses ecoreClass="pamtram.ecore#//condition/AttributeCondition">
         <genFeatures property="None" children="true" createChild="true" propertyCategory=""
             ecoreFeature="ecore:EReference pamtram.ecore#//condition/AttributeCondition/valueConstraints"/>
-        <genOperations ecoreOperation="pamtram.ecore#//condition/AttributeCondition/validateReferenceMatchSpecPresentInCaseOfAmbiguousSource">
-          <genParameters ecoreParameter="pamtram.ecore#//condition/AttributeCondition/validateReferenceMatchSpecPresentInCaseOfAmbiguousSource/diagnostics"/>
-          <genParameters ecoreParameter="pamtram.ecore#//condition/AttributeCondition/validateReferenceMatchSpecPresentInCaseOfAmbiguousSource/context"/>
+        <genOperations ecoreOperation="pamtram.ecore#//condition/AttributeCondition/validateFollowExternalReferencesTrueIfRequired">
+          <genParameters ecoreParameter="pamtram.ecore#//condition/AttributeCondition/validateFollowExternalReferencesTrueIfRequired/diagnostics"/>
+          <genParameters ecoreParameter="pamtram.ecore#//condition/AttributeCondition/validateFollowExternalReferencesTrueIfRequired/context"/>
         </genOperations>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//condition/CardinalityCondition">
@@ -682,6 +682,7 @@
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupType/allMappingHints"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupType/allExtend"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupType/allExtending"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupType/parentMapping"/>
         <genOperations ecoreOperation="pamtram.ecore#//mapping/MappingHintGroupType/validateExtendsOnlyValidHintGroups">
           <genParameters ecoreParameter="pamtram.ecore#//mapping/MappingHintGroupType/validateExtendsOnlyValidHintGroups/diagnostics"/>
           <genParameters ecoreParameter="pamtram.ecore#//mapping/MappingHintGroupType/validateExtendsOnlyValidHintGroups/context"/>
@@ -709,6 +710,7 @@
             propertyDescription="An optional TargetSectionClass that (resp. instances of that) will be used as container for the instances created based on the TargetSection denoted by the imported MappingHintGroup."
             propertySortChoices="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupImporter/container"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupImporter/mappingHints"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference pamtram.ecore#//mapping/MappingHintGroupImporter/parentMapping"/>
         <genOperations ecoreOperation="pamtram.ecore#//mapping/MappingHintGroupImporter/getActiveMappingHints"/>
       </genClasses>
       <genClasses ecoreClass="pamtram.ecore#//mapping/ExportedMappingHintGroup"/>
@@ -836,9 +838,9 @@
           </genOperations>
           <genOperations ecoreOperation="pamtram.ecore#//mapping/extended/CardinalityMapping/getLocalSourceElements"/>
           <genOperations ecoreOperation="pamtram.ecore#//mapping/extended/CardinalityMapping/getExternalSourceElements"/>
-          <genOperations ecoreOperation="pamtram.ecore#//mapping/extended/CardinalityMapping/validateReferenceMatchSpecPresentInCaseOfAmbiguousSource">
-            <genParameters ecoreParameter="pamtram.ecore#//mapping/extended/CardinalityMapping/validateReferenceMatchSpecPresentInCaseOfAmbiguousSource/diagnostics"/>
-            <genParameters ecoreParameter="pamtram.ecore#//mapping/extended/CardinalityMapping/validateReferenceMatchSpecPresentInCaseOfAmbiguousSource/context"/>
+          <genOperations ecoreOperation="pamtram.ecore#//mapping/extended/CardinalityMapping/validateFollowExternalReferencesTrueIfRequired">
+            <genParameters ecoreParameter="pamtram.ecore#//mapping/extended/CardinalityMapping/validateFollowExternalReferencesTrueIfRequired/diagnostics"/>
+            <genParameters ecoreParameter="pamtram.ecore#//mapping/extended/CardinalityMapping/validateFollowExternalReferencesTrueIfRequired/context"/>
           </genOperations>
         </genClasses>
         <genClasses image="false" ecoreClass="pamtram.ecore#//mapping/extended/CardinalityMappingSourceInterface"/>

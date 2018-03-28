@@ -42,6 +42,7 @@ import pamtram.structure.target.TargetSectionClass;
  *   <li>{@link pamtram.mapping.MappingHintGroupImporter#getHintGroup <em>Hint Group</em>}</li>
  *   <li>{@link pamtram.mapping.MappingHintGroupImporter#getContainer <em>Container</em>}</li>
  *   <li>{@link pamtram.mapping.MappingHintGroupImporter#getMappingHints <em>Mapping Hints</em>}</li>
+ *   <li>{@link pamtram.mapping.MappingHintGroupImporter#getParentMapping <em>Parent Mapping</em>}</li>
  * </ul>
  *
  * @see pamtram.mapping.MappingPackage#getMappingHintGroupImporter()
@@ -175,6 +176,22 @@ public interface MappingHintGroupImporter extends NamedElement, InstantiableMapp
 	 * @generated
 	 */
 	boolean isSetMappingHints();
+
+	/**
+	 * Returns the value of the '<em><b>Parent Mapping</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Parent Mapping</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Parent Mapping</em>' reference.
+	 * @see pamtram.mapping.MappingPackage#getMappingHintGroupImporter_ParentMapping()
+	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='\r\nreturn this.eContainer() instanceof &lt;%pamtram.mapping.Mapping%&gt; ? (Mapping) this.eContainer() : null;'"
+	 * @generated
+	 */
+	Mapping getParentMapping();
 
 	/**
 	 * <!-- begin-user-doc -->

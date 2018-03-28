@@ -1,13 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
-  
-  This program and the accompanying materials are made
-  available under the terms of the Eclipse Public License 2.0
-  which is available at https://www.eclipse.org/legal/epl-2.0/
-  
-  SPDX-License-Identifier: EPL-2.0
--->
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="pamtram" nsURI="http://mfreund.de/pamtram" nsPrefix="pamtram">
   <eAnnotations source="http://www.eclipse.org/OCL/Import">
@@ -3151,6 +3142,15 @@
           <details key="documentation" value="The list of recursively collected MappingHintGroups extending this MappingHintGroup."/>
         </eAnnotations>
       </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parentMapping" eType="#//mapping/Mapping"
+          changeable="false" volatile="true" transient="true" derived="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="get" value="&#xD;&#xA;return this.eContainer() instanceof &lt;%pamtram.mapping.Mapping%> ? (Mapping) this.eContainer() : null;"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The Mapping that defines resp. contains this."/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="InstantiableMappingHintGroup" abstract="true"
         eSuperTypes="#//NamedElement #//DeactivatableElement #//ConditionalElement">
@@ -3188,6 +3188,16 @@
           eType="#//mapping/extended/MappingHintType" unsettable="true" containment="true">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="An optional list of MappingHints refining the imported MappingHintGroup. The specified MappingHints will be added to those already defined by the imported MappingHintGroup."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parentMapping" lowerBound="1"
+          eType="#//mapping/Mapping" changeable="false" volatile="true" transient="true"
+          derived="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="get" value="&#xD;&#xA;return this.eContainer() instanceof &lt;%pamtram.mapping.Mapping%> ? (Mapping) this.eContainer() : null;"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The Mapping that defines resp. contains this."/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>

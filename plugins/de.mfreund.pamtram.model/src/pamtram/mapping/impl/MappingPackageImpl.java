@@ -441,6 +441,15 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getMappingHintGroupType_ParentMapping() {
+		return (EReference)mappingHintGroupTypeEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getMappingHintGroupType__ValidateExtendsOnlyValidHintGroups__DiagnosticChain_Map() {
 		return mappingHintGroupTypeEClass.getEOperations().get(0);
 	}
@@ -524,6 +533,15 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 	 */
 	public EReference getMappingHintGroupImporter_MappingHints() {
 		return (EReference)mappingHintGroupImporterEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMappingHintGroupImporter_ParentMapping() {
+		return (EReference)mappingHintGroupImporterEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -624,6 +642,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		createEReference(mappingHintGroupTypeEClass, MAPPING_HINT_GROUP_TYPE__ALL_MAPPING_HINTS);
 		createEReference(mappingHintGroupTypeEClass, MAPPING_HINT_GROUP_TYPE__ALL_EXTEND);
 		createEReference(mappingHintGroupTypeEClass, MAPPING_HINT_GROUP_TYPE__ALL_EXTENDING);
+		createEReference(mappingHintGroupTypeEClass, MAPPING_HINT_GROUP_TYPE__PARENT_MAPPING);
 		createEOperation(mappingHintGroupTypeEClass, MAPPING_HINT_GROUP_TYPE___VALIDATE_EXTENDS_ONLY_VALID_HINT_GROUPS__DIAGNOSTICCHAIN_MAP);
 		createEOperation(mappingHintGroupTypeEClass, MAPPING_HINT_GROUP_TYPE___GET_ACTIVE_MAPPING_HINTS);
 		createEOperation(mappingHintGroupTypeEClass, MAPPING_HINT_GROUP_TYPE___VALIDATE_DO_NOT_USE_LIBRARY_ELEMENTS_WITHOUT_LIBRARY_NATURE__DIAGNOSTICCHAIN_MAP);
@@ -638,6 +657,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		createEReference(mappingHintGroupImporterEClass, MAPPING_HINT_GROUP_IMPORTER__HINT_GROUP);
 		createEReference(mappingHintGroupImporterEClass, MAPPING_HINT_GROUP_IMPORTER__CONTAINER);
 		createEReference(mappingHintGroupImporterEClass, MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS);
+		createEReference(mappingHintGroupImporterEClass, MAPPING_HINT_GROUP_IMPORTER__PARENT_MAPPING);
 		createEOperation(mappingHintGroupImporterEClass, MAPPING_HINT_GROUP_IMPORTER___GET_ACTIVE_MAPPING_HINTS);
 
 		exportedMappingHintGroupEClass = createEClass(EXPORTED_MAPPING_HINT_GROUP);
@@ -762,6 +782,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEReference(getMappingHintGroupType_AllMappingHints(), theExtendedPackage.getMappingHint(), null, "allMappingHints", null, 0, -1, MappingHintGroupType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getMappingHintGroupType_AllExtend(), this.getMappingHintGroupType(), null, "allExtend", null, 0, -1, MappingHintGroupType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getMappingHintGroupType_AllExtending(), this.getMappingHintGroupType(), null, "allExtending", null, 0, -1, MappingHintGroupType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getMappingHintGroupType_ParentMapping(), this.getMapping(), null, "parentMapping", null, 0, 1, MappingHintGroupType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		op = initEOperation(getMappingHintGroupType__ValidateExtendsOnlyValidHintGroups__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateExtendsOnlyValidHintGroups", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -809,6 +830,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		initEReference(getMappingHintGroupImporter_HintGroup(), this.getExportedMappingHintGroup(), null, "hintGroup", null, 1, 1, MappingHintGroupImporter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMappingHintGroupImporter_Container(), theTargetPackage.getTargetSectionClass(), null, "container", null, 0, 1, MappingHintGroupImporter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMappingHintGroupImporter_MappingHints(), theExtendedPackage.getMappingHintType(), null, "mappingHints", null, 0, -1, MappingHintGroupImporter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMappingHintGroupImporter_ParentMapping(), this.getMapping(), null, "parentMapping", null, 1, 1, MappingHintGroupImporter.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEOperation(getMappingHintGroupImporter__GetActiveMappingHints(), theExtendedPackage.getMappingHintType(), "getActiveMappingHints", 0, -1, IS_UNIQUE, IS_ORDERED);
 
@@ -1100,6 +1122,18 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 			 "documentation", "The list of recursively collected MappingHintGroups extending this MappingHintGroup."
 		   });	
 		addAnnotation
+		  (getMappingHintGroupType_ParentMapping(), 
+		   source, 
+		   new String[] {
+			 "get", "\r\nreturn this.eContainer() instanceof <%pamtram.mapping.Mapping%> ? (Mapping) this.eContainer() : null;"
+		   });	
+		addAnnotation
+		  (getMappingHintGroupType_ParentMapping(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The Mapping that defines resp. contains this."
+		   });	
+		addAnnotation
 		  (instantiableMappingHintGroupEClass, 
 		   source, 
 		   new String[] {
@@ -1140,6 +1174,18 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 		   source, 
 		   new String[] {
 			 "documentation", "An optional list of MappingHints refining the imported MappingHintGroup. The specified MappingHints will be added to those already defined by the imported MappingHintGroup."
+		   });	
+		addAnnotation
+		  (getMappingHintGroupImporter_ParentMapping(), 
+		   source, 
+		   new String[] {
+			 "get", "\r\nreturn this.eContainer() instanceof <%pamtram.mapping.Mapping%> ? (Mapping) this.eContainer() : null;"
+		   });	
+		addAnnotation
+		  (getMappingHintGroupImporter_ParentMapping(), 
+		   source, 
+		   new String[] {
+			 "documentation", "The Mapping that defines resp. contains this."
 		   });	
 		addAnnotation
 		  (exportedMappingHintGroupEClass, 

@@ -119,6 +119,16 @@
             </Item>
             <Item>
               <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_003_1_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_003.1.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_003_2_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_003.2.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
                   SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_001_1_CarrierID"
                   VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_001.1.CarrierID.CarrierID@Int</ItemID>
             </Item>
@@ -129,8 +139,23 @@
             </Item>
             <Item>
               <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_001_1_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_001.1.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_001_2_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_001.2.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
                   SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_002_1_CarrierID"
                   VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_002.1.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_002_1_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_002.1.ProductID.ProductID@Int</ItemID>
             </Item>
             <Item>
               <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
@@ -154,6 +179,26 @@
             </Item>
             <Item>
               <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Fork_001_1_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Fork_001.1.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Fork_001_2_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Fork_001.2.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Fork_001_3_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Fork_001.3.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Fork_001_4_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Fork_001.4.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
                   SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_003_1_CarrierID"
                   VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_003.1.CarrierID.CarrierID@Int</ItemID>
             </Item>
@@ -169,13 +214,38 @@
             </Item>
             <Item>
               <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_003_1_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_003.1.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_003_2_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_003.2.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_003_3_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_003.3.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
                   SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_004_1_CarrierID"
                   VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_004.1.CarrierID.CarrierID@Int</ItemID>
             </Item>
             <Item>
               <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_004_1_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_004.1.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
                   SyncWrite="1" Variable="MATFLOW_ControlElements_Fork_002_1_CarrierID"
                   VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Fork_002.1.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Fork_002_1_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Fork_002.1.ProductID.ProductID@Int</ItemID>
             </Item>
             <Item>
               <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
@@ -194,8 +264,28 @@
             </Item>
             <Item>
               <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_005_1_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_005.1.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_005_2_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_005.2.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_005_3_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_005.3.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
                   SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_006_1_CarrierID"
                   VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_006.1.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_006_1_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_006.1.ProductID.ProductID@Int</ItemID>
             </Item>
             <Item>
               <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
@@ -206,6 +296,16 @@
               <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
                   SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_004_2_CarrierID"
                   VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_004.2.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_004_1_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_004.1.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_004_2_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_004.2.ProductID.ProductID@Int</ItemID>
             </Item>
             <Item>
               <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
@@ -229,8 +329,33 @@
             </Item>
             <Item>
               <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_002_1_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_002.1.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_002_2_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_002.2.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_002_3_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_002.3.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_002_4_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_002.4.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
                   SyncWrite="1" Variable="MATFLOW_ControlElements_Fork_006_1_CarrierID"
                   VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Fork_006.1.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Fork_006_1_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Fork_006.1.ProductID.ProductID@Int</ItemID>
             </Item>
             <Item>
               <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
@@ -244,8 +369,23 @@
             </Item>
             <Item>
               <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_006_1_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_006.1.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_006_2_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_006.2.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
                   SyncWrite="1" Variable="MATFLOW_ControlElements_Fork_003_1_CarrierID"
                   VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Fork_003.1.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Fork_003_1_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Fork_003.1.ProductID.ProductID@Int</ItemID>
             </Item>
             <Item>
               <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
@@ -269,8 +409,33 @@
             </Item>
             <Item>
               <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_011_1_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_011.1.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_011_2_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_011.2.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_011_3_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_011.3.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_011_4_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_011.4.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
                   SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_012_1_CarrierID"
                   VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_012.1.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_012_1_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_012.1.ProductID.ProductID@Int</ItemID>
             </Item>
             <Item>
               <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
@@ -304,6 +469,36 @@
             </Item>
             <Item>
               <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0031_1_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0031.1.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0031_2_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0031.2.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0031_3_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0031.3.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0031_4_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0031.4.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0031_5_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0031.5.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0031_6_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0031.6.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
                   SyncWrite="1" Variable="MATFLOW_ControlElements_Fork_005_1_CarrierID"
                   VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Fork_005.1.CarrierID.CarrierID@Int</ItemID>
             </Item>
@@ -331,6 +526,36 @@
               <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
                   SyncWrite="1" Variable="MATFLOW_ControlElements_Fork_005_6_CarrierID"
                   VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Fork_005.6.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Fork_005_1_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Fork_005.1.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Fork_005_2_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Fork_005.2.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Fork_005_3_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Fork_005.3.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Fork_005_4_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Fork_005.4.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Fork_005_5_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Fork_005.5.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Fork_005_6_ProductID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Fork_005.6.ProductID.ProductID@Int</ItemID>
             </Item>
             <Item>
               <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
@@ -374,421 +599,6 @@
             </Item>
             <Item>
               <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Fork_004_1_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Fork_004.1.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_009_1_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_009.1.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_009_2_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_009.2.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_009_3_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_009.3.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_010_1_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_010.1.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_005_1_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_005.1.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_005_2_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_005.2.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0061_1_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0061.1.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0061_2_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0061.2.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0061_3_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0061.3.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0061_4_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0061.4.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0061_5_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0061.5.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0051_1_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0051.1.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0051_2_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0051.2.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0051_3_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0051.3.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0051_4_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0051.4.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0051_5_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0051.5.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0051_6_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0051.6.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_007_1_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_007.1.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_007_2_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_007.2.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_007_3_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_007.3.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_007_4_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_007.4.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_008_1_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_008.1.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0011_1_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0011.1.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0011_2_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0011.2.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0011_3_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0011.3.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0041_1_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0041.1.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0041_2_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0041.2.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0041_3_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0041.3.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0041_4_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0041.4.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0041_5_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0041.5.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0041_6_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0041.6.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0021_1_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0021.1.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0021_2_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0021.2.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0021_3_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0021.3.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0021_4_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0021.4.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0021_5_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0021.5.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0021_6_CarrierID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0021.6.CarrierID.CarrierID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_003_1_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_003.1.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_003_2_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_003.2.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_001_1_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_001.1.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_001_2_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_001.2.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_002_1_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_002.1.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Fork_001_1_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Fork_001.1.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Fork_001_2_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Fork_001.2.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Fork_001_3_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Fork_001.3.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Fork_001_4_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Fork_001.4.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_003_1_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_003.1.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_003_2_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_003.2.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_003_3_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_003.3.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_004_1_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_004.1.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Fork_002_1_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Fork_002.1.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_005_1_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_005.1.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_005_2_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_005.2.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_005_3_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_005.3.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_006_1_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_006.1.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_004_1_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_004.1.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_004_2_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_004.2.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_002_1_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_002.1.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_002_2_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_002.2.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_002_3_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_002.3.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_002_4_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_002.4.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Fork_006_1_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Fork_006.1.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_006_1_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_006.1.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_006_2_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_006.2.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Fork_003_1_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Fork_003.1.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_011_1_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_011.1.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_011_2_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_011.2.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_011_3_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_011.3.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_011_4_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_011.4.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_012_1_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_012.1.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0031_1_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0031.1.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0031_2_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0031.2.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0031_3_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0031.3.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0031_4_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0031.4.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0031_5_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0031.5.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0031_6_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0031.6.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Fork_005_1_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Fork_005.1.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Fork_005_2_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Fork_005.2.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Fork_005_3_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Fork_005.3.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Fork_005_4_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Fork_005.4.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Fork_005_5_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Fork_005.5.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
-                  SyncWrite="1" Variable="MATFLOW_ControlElements_Fork_005_6_ProductID"
-                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Fork_005.6.ProductID.ProductID@Int</ItemID>
-            </Item>
-            <Item>
-              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
                   SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_001_1_ProductID"
                   VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_001.1.ProductID.ProductID@Int</ItemID>
             </Item>
@@ -829,8 +639,28 @@
             </Item>
             <Item>
               <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Fork_004_1_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Fork_004.1.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
                   SyncWrite="1" Variable="MATFLOW_ControlElements_Fork_004_1_ProductID"
                   VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Fork_004.1.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_009_1_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_009.1.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_009_2_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_009.2.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_009_3_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_009.3.CarrierID.CarrierID@Int</ItemID>
             </Item>
             <Item>
               <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
@@ -849,8 +679,23 @@
             </Item>
             <Item>
               <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_010_1_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_010.1.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
                   SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_010_1_ProductID"
                   VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_010.1.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_005_1_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_005.1.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_005_2_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_005.2.CarrierID.CarrierID@Int</ItemID>
             </Item>
             <Item>
               <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
@@ -861,6 +706,31 @@
               <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
                   SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_005_2_ProductID"
                   VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_005.2.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0061_1_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0061.1.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0061_2_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0061.2.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0061_3_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0061.3.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0061_4_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0061.4.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0061_5_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0061.5.CarrierID.CarrierID@Int</ItemID>
             </Item>
             <Item>
               <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
@@ -886,6 +756,36 @@
               <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
                   SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0061_5_ProductID"
                   VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0061.5.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0051_1_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0051.1.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0051_2_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0051.2.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0051_3_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0051.3.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0051_4_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0051.4.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0051_5_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0051.5.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0051_6_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0051.6.CarrierID.CarrierID@Int</ItemID>
             </Item>
             <Item>
               <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
@@ -919,6 +819,26 @@
             </Item>
             <Item>
               <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_007_1_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_007.1.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_007_2_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_007.2.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_007_3_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_007.3.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_007_4_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_007.4.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
                   SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_007_1_ProductID"
                   VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_007.1.ProductID.ProductID@Int</ItemID>
             </Item>
@@ -939,8 +859,28 @@
             </Item>
             <Item>
               <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_008_1_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_008.1.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
                   SyncWrite="1" Variable="MATFLOW_ControlElements_Stopper_008_1_ProductID"
                   VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Stopper_008.1.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0011_1_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0011.1.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0011_2_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0011.2.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0011_3_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0011.3.CarrierID.CarrierID@Int</ItemID>
             </Item>
             <Item>
               <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
@@ -956,6 +896,36 @@
               <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
                   SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0011_3_ProductID"
                   VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0011.3.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0041_1_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0041.1.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0041_2_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0041.2.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0041_3_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0041.3.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0041_4_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0041.4.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0041_5_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0041.5.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0041_6_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0041.6.CarrierID.CarrierID@Int</ItemID>
             </Item>
             <Item>
               <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
@@ -986,6 +956,36 @@
               <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
                   SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0041_6_ProductID"
                   VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0041.6.ProductID.ProductID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0021_1_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0021.1.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0021_2_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0021.2.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0021_3_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0021.3.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0021_4_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0021.4.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0021_5_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0021.5.CarrierID.CarrierID@Int</ItemID>
+            </Item>
+            <Item>
+              <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"
+                  SyncWrite="1" Variable="MATFLOW_ControlElements_Merge_0021_6_CarrierID"
+                  VTType="0">urn:AutoProBe-VM:Rif e.V.:Supervision/Rif e.V.:Supervision|..LocalHost.$MATFLOW.ControlElements.Merge_0021.6.CarrierID.CarrierID@Int</ItemID>
             </Item>
             <Item>
               <ItemID EnableRead="1" EnableWrite="0" ReRead="0" SyncDataStartup="0"

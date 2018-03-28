@@ -73,12 +73,28 @@
       <Rotation/>
     </child>
     <child>
+      <object>base</object>
+      <type Border="4" height="84" stroke-width="0" width="211" x="2969" y="1576"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">ReplPenBrass5.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
       <object>Edit</object>
       <editbox height="84" stroke-width="0" width="211" x="2757" y="1491"/>
       <style edit="false" fmtscale="x" spin="false"/>
       <execution var="PARSIFAL_Devices_CIROS_Model_Objects_Mill55CNC_Outputs_ReplPenBrass4"/>
       <CommandsOnDown/>
       <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="84" stroke-width="0" width="211" x="2969" y="1491"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">ReplPenBrass4.1</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -93,12 +109,28 @@
       <Rotation/>
     </child>
     <child>
+      <object>base</object>
+      <type Border="4" height="84" stroke-width="0" width="211" x="2969" y="1407"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">ReplPenBrass3.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
       <object>Edit</object>
       <editbox height="84" stroke-width="0" width="211" x="2757" y="1322"/>
       <style edit="false" fmtscale="x" spin="false"/>
       <execution var="PARSIFAL_Devices_CIROS_Model_Objects_Mill55CNC_Outputs_ReplPenBrass2"/>
       <CommandsOnDown/>
       <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="84" stroke-width="0" width="211" x="2969" y="1322"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">ReplPenBrass2.1</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -113,12 +145,28 @@
       <Rotation/>
     </child>
     <child>
+      <object>base</object>
+      <type Border="4" height="84" stroke-width="0" width="211" x="2969" y="1238"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">ReplPenBrass1.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
       <object>Edit</object>
       <editbox height="84" stroke-width="0" width="211" x="2757" y="1153"/>
       <style edit="false" fmtscale="x" spin="false"/>
       <execution var="PARSIFAL_Devices_CIROS_Model_Objects_Mill55CNC_Outputs_ReplPenAlu5"/>
       <CommandsOnDown/>
       <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="84" stroke-width="0" width="211" x="2969" y="1153"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">ReplPenAlu5.1</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -133,12 +181,28 @@
       <Rotation/>
     </child>
     <child>
+      <object>base</object>
+      <type Border="4" height="84" stroke-width="0" width="211" x="2969" y="1069"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">ReplPenAlu4.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
       <object>Edit</object>
       <editbox height="84" stroke-width="0" width="211" x="2757" y="984"/>
       <style edit="false" fmtscale="x" spin="false"/>
       <execution var="PARSIFAL_Devices_CIROS_Model_Objects_Mill55CNC_Outputs_ReplPenAlu3"/>
       <CommandsOnDown/>
       <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="84" stroke-width="0" width="211" x="2969" y="984"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">ReplPenAlu3.1</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -153,12 +217,28 @@
       <Rotation/>
     </child>
     <child>
+      <object>base</object>
+      <type Border="4" height="84" stroke-width="0" width="211" x="2969" y="900"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">ReplPenAlu2.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
       <object>Edit</object>
       <editbox height="84" stroke-width="0" width="211" x="2757" y="816"/>
       <style edit="false" fmtscale="x" spin="false"/>
       <execution var="PARSIFAL_Devices_CIROS_Model_Objects_Mill55CNC_Outputs_ReplPenAlu1"/>
       <CommandsOnDown/>
       <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="84" stroke-width="0" width="211" x="2969" y="816"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">ReplPenAlu1.1</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -173,12 +253,28 @@
       <Rotation/>
     </child>
     <child>
+      <object>base</object>
+      <type Border="4" height="84" stroke-width="0" width="211" x="2969" y="731"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">ReplBaseReject.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
       <object>Edit</object>
       <editbox height="84" stroke-width="0" width="211" x="2757" y="647"/>
       <style edit="false" fmtscale="x" spin="false"/>
       <execution var="PARSIFAL_Devices_CIROS_Model_Objects_Mill55CNC_Outputs_ReplBaseAlu5"/>
       <CommandsOnDown/>
       <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="84" stroke-width="0" width="211" x="2969" y="647"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">ReplBaseAlu5.1</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -193,12 +289,28 @@
       <Rotation/>
     </child>
     <child>
+      <object>base</object>
+      <type Border="4" height="84" stroke-width="0" width="211" x="2969" y="562"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">ReplBaseAlu4.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
       <object>Edit</object>
       <editbox height="84" stroke-width="0" width="211" x="2757" y="478"/>
       <style edit="false" fmtscale="x" spin="false"/>
       <execution var="PARSIFAL_Devices_CIROS_Model_Objects_Mill55CNC_Outputs_ReplBaseAlu3"/>
       <CommandsOnDown/>
       <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="84" stroke-width="0" width="211" x="2969" y="478"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">ReplBaseAlu3.1</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -213,12 +325,28 @@
       <Rotation/>
     </child>
     <child>
+      <object>base</object>
+      <type Border="4" height="84" stroke-width="0" width="211" x="2969" y="393"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">ReplBaseAlu2.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
       <object>Edit</object>
       <editbox height="84" stroke-width="0" width="211" x="2757" y="309"/>
       <style edit="false" fmtscale="x" spin="false"/>
       <execution var="PARSIFAL_Devices_CIROS_Model_Objects_Mill55CNC_Outputs_ReplBaseAlu1"/>
       <CommandsOnDown/>
       <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="84" stroke-width="0" width="211" x="2969" y="309"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">ReplBaseAlu1.1</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -233,148 +361,20 @@
       <Rotation/>
     </child>
     <child>
+      <object>base</object>
+      <type Border="4" height="84" stroke-width="0" width="211" x="2969" y="224"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">TrashPen.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
       <object>Edit</object>
       <editbox height="84" stroke-width="0" width="211" x="2757" y="140"/>
       <style edit="false" fmtscale="x" spin="false"/>
       <execution var="PARSIFAL_Devices_CIROS_Model_Objects_Mill55CNC_Outputs_TrashBase"/>
       <CommandsOnDown/>
       <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="84" stroke-width="0" width="211" x="2969" y="1576"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">ReplPenBrass5.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="84" stroke-width="0" width="211" x="2969" y="1491"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">ReplPenBrass4.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="84" stroke-width="0" width="211" x="2969" y="1407"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">ReplPenBrass3.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="84" stroke-width="0" width="211" x="2969" y="1322"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">ReplPenBrass2.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="84" stroke-width="0" width="211" x="2969" y="1238"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">ReplPenBrass1.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="84" stroke-width="0" width="211" x="2969" y="1153"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">ReplPenAlu5.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="84" stroke-width="0" width="211" x="2969" y="1069"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">ReplPenAlu4.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="84" stroke-width="0" width="211" x="2969" y="984"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">ReplPenAlu3.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="84" stroke-width="0" width="211" x="2969" y="900"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">ReplPenAlu2.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="84" stroke-width="0" width="211" x="2969" y="816"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">ReplPenAlu1.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="84" stroke-width="0" width="211" x="2969" y="731"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">ReplBaseReject.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="84" stroke-width="0" width="211" x="2969" y="647"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">ReplBaseAlu5.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="84" stroke-width="0" width="211" x="2969" y="562"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">ReplBaseAlu4.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="84" stroke-width="0" width="211" x="2969" y="478"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">ReplBaseAlu3.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="84" stroke-width="0" width="211" x="2969" y="393"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">ReplBaseAlu2.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="84" stroke-width="0" width="211" x="2969" y="309"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">ReplBaseAlu1.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="84" stroke-width="0" width="211" x="2969" y="224"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">TrashPen.1</text>
       <Shadow/>
       <Rotation/>
     </child>

@@ -27,7 +27,7 @@ import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPath;
 import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathProvider;
 import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathRequirement;
 import de.tud.et.ifa.agtele.emf.connecting.Length;
-import pamtram.mapping.MappingHintGroupType;
+import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.extended.ContainerSelector;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionClass;
@@ -40,7 +40,7 @@ import pamtram.structure.target.TargetSectionClass;
 public class JoiningConnectionProvider extends AbstractConnectionProvider implements ConnectionProvider {
 
 	public JoiningConnectionProvider(TransformationAssetManager assetManager,
-			Map<MappingHintGroupType, EClassConnectionPath> standardPaths,
+			Map<InstantiableMappingHintGroup, EClassConnectionPath> standardPaths,
 			EClassConnectionPathProvider connectionPathProvider) {
 
 		super(assetManager, standardPaths, connectionPathProvider);
@@ -55,8 +55,7 @@ public class JoiningConnectionProvider extends AbstractConnectionProvider implem
 	}
 
 	public List<Connection> selectConnectionsWithoutContainerSelector(final List<EObjectWrapper> rootInstances,
-			final MappingHintGroupType mappingGroup, final Optional<Set<EClass>> containerClasses,
-			final Optional<List<EObjectWrapper>> containerInstances) {
+			InstantiableMappingHintGroup mappingGroup, final Optional<Set<EClass>> containerClasses) {
 
 		// Nothing to connect
 		//
@@ -64,9 +63,23 @@ public class JoiningConnectionProvider extends AbstractConnectionProvider implem
 			return new ArrayList<>();
 		}
 
-		TargetSection section = mappingGroup.getTargetSection();
+		TargetSection section = mappingGroup.getTargetMMSectionGeneric();
 
-		final EClass classToConnect = section.getEClass();
+		List<EObjectWrapper> containerInstances = targetSectionRegistry
+				.getFlattenedPamtramClassInstances(section.getContainer());
+
+		EClass classToConnect = section.getEClass();
+
+		if (containerInstances.isEmpty() && section.getContainer() != null) {
+			logger.warning(() -> "The TargetSection '" + section.getName() + "' specifies the "
+					+ section.getContainer().eClass().getName() + " '" + section.getContainer().getName()
+					+ "' as container. However, no instances of this " + section.getContainer().eClass().getName()
+					+ " have been created.");
+		}
+
+		// Prevent circular containments
+		//
+		containerInstances.removeAll(rootInstances);
 
 		// A set of ModelConnectionPaths that are possible and thus have to be considered by the selection algorithms.
 		//
@@ -84,8 +97,8 @@ public class JoiningConnectionProvider extends AbstractConnectionProvider implem
 		//
 		Map<EClassConnectionPath, List<EObjectWrapper>> containerInstancesByConnectionPaths = new LinkedHashMap<>();
 		for (EClassConnectionPath connectionPath : pathsToConsider) {
-			List<EObjectWrapper> containerInstancesForConnectionPath = containerInstances.isPresent()
-					? containerInstances.get().stream()
+			List<EObjectWrapper> containerInstancesForConnectionPath = !containerInstances.isEmpty()
+					? containerInstances.stream()
 							.filter(c -> c.getEObject().eClass().equals(connectionPath.getStartingClass()))
 							.collect(Collectors.toList())
 					: targetSectionRegistry.getTargetClassInstances(connectionPath.getStartingClass());
@@ -163,8 +176,9 @@ public class JoiningConnectionProvider extends AbstractConnectionProvider implem
 	}
 
 	public List<Connection> selectConnectionsWithContainerSelector(MappingInstanceDescriptor mappingInstance,
-			final List<EObjectWrapper> rootInstances, final MappingHintGroupType mappingGroup,
-			List<ContainerSelector> containerSelectors) {
+			final List<EObjectWrapper> rootInstances, InstantiableMappingHintGroup mappingGroup) {
+
+		List<ContainerSelector> containerSelectors = getActiveContainerSelectors(mappingInstance, mappingGroup);
 
 		// Nothing to connect
 		//
@@ -175,7 +189,7 @@ public class JoiningConnectionProvider extends AbstractConnectionProvider implem
 		// All potential connection paths
 		//
 		Map<ContainerSelector, List<EClassConnectionPath>> connectionPathsByContainerSelector = getConnectionPathsByContainerSelector(
-				containerSelectors, mappingGroup.getTargetSection().getEClass());
+				containerSelectors, mappingGroup.getTargetMMSectionGeneric().getEClass());
 
 		// All potential container instances
 		//
@@ -221,9 +235,7 @@ public class JoiningConnectionProvider extends AbstractConnectionProvider implem
 			return new ArrayList<>();
 		}
 
-		List<Connection> selectedConnections = selectConnections(rootInstances, containerInstancesByConnectionPaths,
-				mappingGroup);
-		return selectedConnections;
+		return selectConnections(rootInstances, containerInstancesByConnectionPaths, mappingGroup);
 	}
 
 	/**
@@ -321,5 +333,12 @@ public class JoiningConnectionProvider extends AbstractConnectionProvider implem
 		}
 
 		return containerInstancesByContainerSelector;
+	}
+
+	private List<ContainerSelector> getActiveContainerSelectors(MappingInstanceDescriptor mappingInstance,
+			InstantiableMappingHintGroup hintGroup) {
+
+		return mappingInstance.getMappingHints(hintGroup, true).stream().filter(ContainerSelector.class::isInstance)
+				.map(ContainerSelector.class::cast).collect(Collectors.toList());
 	}
 }

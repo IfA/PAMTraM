@@ -26,7 +26,9 @@ import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
 import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPath;
 import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathProvider;
+import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
+import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 
 /**
@@ -41,7 +43,7 @@ import pamtram.mapping.MappingHintGroupType;
 @SuppressWarnings("javadoc")
 public abstract class AbstractConnectionProvider extends TransformationAsset implements ConnectionProvider {
 
-	protected Map<MappingHintGroupType, EClassConnectionPath> standardConnectionsForHintGroups;
+	protected Map<InstantiableMappingHintGroup, EClassConnectionPath> standardConnectionsForHintGroups;
 
 	protected EClassConnectionPathProvider connectionPathProvider;
 
@@ -54,7 +56,7 @@ public abstract class AbstractConnectionProvider extends TransformationAsset imp
 	protected InstanceSelectorHandler instanceSelectorHandler;
 
 	public AbstractConnectionProvider(TransformationAssetManager assetManager,
-			Map<MappingHintGroupType, EClassConnectionPath> standardPaths,
+			Map<InstantiableMappingHintGroup, EClassConnectionPath> standardPaths,
 			EClassConnectionPathProvider connectionPathProvider) {
 
 		super(assetManager);
@@ -69,7 +71,7 @@ public abstract class AbstractConnectionProvider extends TransformationAsset imp
 
 	protected List<Connection> selectConnections(final List<EObjectWrapper> targetElements,
 			Map<EClassConnectionPath, List<EObjectWrapper>> connectionChoices,
-			final MappingHintGroupType mappingGroup) {
+			InstantiableMappingHintGroup mappingGroup) {
 
 		// The list of Connections that will get instantiated in the end
 		//
@@ -123,7 +125,7 @@ public abstract class AbstractConnectionProvider extends TransformationAsset imp
 	private Connection getConnectionToInstantiateBasedOnMultipleStartingElementPossibilities(
 			final List<EObjectWrapper> targetElements,
 			Map<EClassConnectionPath, List<EObjectWrapper>> connectionChoices,
-			final MappingHintGroupType mappingGroup) {
+			InstantiableMappingHintGroup mappingGroup) {
 
 		// If there is already a 'standardPath' for the given 'mappingGroup', we reuse this standard path
 		//
@@ -174,7 +176,7 @@ public abstract class AbstractConnectionProvider extends TransformationAsset imp
 					// connection path
 					//
 					List<EClassConnectionPath> resolvedPaths = ambiguityResolvingStrategy.joiningSelectConnectionPath(
-							new ArrayList<>(connectionChoices.keySet()), mappingGroup.getTargetSection());
+							new ArrayList<>(connectionChoices.keySet()), mappingGroup.getTargetMMSectionGeneric());
 					resolved = resolvedPaths.stream()
 							.collect(Collectors.toMap(Function.identity(), connectionChoices::get));
 					selectedConnectionPath = resolvedPaths.get(0);
@@ -182,7 +184,10 @@ public abstract class AbstractConnectionProvider extends TransformationAsset imp
 					// Otherwise, the user needs to select the connection path as well as the container instance
 					//
 					resolved = ambiguityResolvingStrategy.joiningSelectConnectionPathAndContainerInstance(
-							connectionChoices, mappingGroup.getTargetSection(), targetElements, mappingGroup);
+							connectionChoices, mappingGroup.getTargetMMSectionGeneric(), targetElements,
+							mappingGroup instanceof MappingHintGroupImporter
+									? ((MappingHintGroupImporter) mappingGroup).getHintGroup()
+									: (MappingHintGroupType) mappingGroup);
 					selectedConnectionPath = resolved.entrySet().iterator().next().getKey();
 				}
 
@@ -216,7 +221,7 @@ public abstract class AbstractConnectionProvider extends TransformationAsset imp
 
 	private Connection getConnectionToInstantiateBasedOnSingleStartingElementPossiblity(
 			final List<EObjectWrapper> targetElements, List<EClassConnectionPath> connectionPaths,
-			EObjectWrapper startingElement, final MappingHintGroupType mappingGroup) {
+			EObjectWrapper startingElement, InstantiableMappingHintGroup mappingGroup) {
 
 		// If there is already a 'standardPath' for the given 'mappingGroup', we reuse this standard path
 		//
@@ -235,7 +240,7 @@ public abstract class AbstractConnectionProvider extends TransformationAsset imp
 
 	private Connection getConnectionToInstantiate(final List<EObjectWrapper> rootInstances,
 			final EClassConnectionPath connectionPath, final EObjectWrapper containerInstance,
-			final MappingHintGroupType mappingGroup) {
+			InstantiableMappingHintGroup mappingGroup) {
 
 		Connection connectionToInstantiate = new Connection(containerInstance, connectionPath, rootInstances);
 
@@ -244,7 +249,7 @@ public abstract class AbstractConnectionProvider extends TransformationAsset imp
 
 			standardConnectionsForHintGroups.put(mappingGroup, connectionPath);
 
-			logger.info(() -> mappingGroup.getTargetSection().getName() + " ("
+			logger.info(() -> mappingGroup.getTargetMMSectionGeneric().getName() + " ("
 					+ ((Mapping) mappingGroup.eContainer()).getName() + "): "
 					+ connectionToInstantiate.getConnectionPath().toString());
 		}
@@ -254,7 +259,7 @@ public abstract class AbstractConnectionProvider extends TransformationAsset imp
 
 	private Connection getConnectionToInstantiate(final List<EObjectWrapper> rootInstances,
 			EClassConnectionPath connectionPath, List<EObjectWrapper> containerInstances,
-			final MappingHintGroupType mappingGroup) {
+			InstantiableMappingHintGroup mappingGroup) {
 
 		EObjectWrapper selectedContainerInstance;
 
@@ -270,7 +275,11 @@ public abstract class AbstractConnectionProvider extends TransformationAsset imp
 				logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_STARTED);
 
 				selectedContainerInstance = ambiguityResolvingStrategy
-						.joiningSelectContainerInstance(containerInstances, rootInstances, mappingGroup, null, null)
+						.joiningSelectContainerInstance(containerInstances, rootInstances,
+								mappingGroup instanceof MappingHintGroupImporter
+										? ((MappingHintGroupImporter) mappingGroup).getHintGroup()
+										: (MappingHintGroupType) mappingGroup,
+								null, null)
 						.iterator().next();
 				if (ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
 					((IAmbiguityResolvedAdapter) ambiguityResolvingStrategy)

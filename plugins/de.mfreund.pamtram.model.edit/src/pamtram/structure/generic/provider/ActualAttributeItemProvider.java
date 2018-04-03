@@ -1,10 +1,9 @@
 /*******************************************************************************
  * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
- * 
- * This program and the accompanying materials are made
- * available under the terms of the Eclipse Public License 2.0
+ *
+ * This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0
  * which is available at https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0
  ******************************************************************************/
 /**
@@ -29,29 +28,31 @@ import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.library.AttributeParameter;
 
 /**
- * This is the item provider adapter for a {@link pamtram.structure.generic.ActualAttribute} object.
- * <!-- begin-user-doc
+ * This is the item provider adapter for a {@link pamtram.structure.generic.ActualAttribute} object. <!-- begin-user-doc
  * --> <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ActualAttributeItemProvider extends AttributeItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ActualAttributeItemProvider(AdapterFactory adapterFactory) {
+
 		super(adapterFactory);
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
+
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
@@ -61,26 +62,26 @@ public class ActualAttributeItemProvider extends AttributeItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Attribute feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Attribute feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addAttributePropertyDescriptor(Object object) {
-		
-		this.itemPropertyDescriptors.add(
-				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
+
+		itemPropertyDescriptors
+				.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 						this.getResourceLocator(), this.getString("_UI_ActualAttribute_attribute_feature"),
 						this.getString("_UI_ActualAttribute_attribute_description"),
 						GenericPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE, true, false, true, null,
 						this.getString("_UI_BasicPropertyCategory"), null) {
-		
+
 					@Override
 					public Collection<?> getChoiceOfValues(Object object) {
-		
+
 						ActualAttribute<?, ?, ?, ?> att = (ActualAttribute<?, ?, ?, ?>) object;
-		
+
 						List<EAttribute> attributes = new ArrayList<>();
-		
+
 						// in case of a 'normal' TargetSectionClass, the
 						// attribute of this class can be chosen
 						if (att.getOwningClass() != null) {
@@ -92,39 +93,42 @@ public class ActualAttributeItemProvider extends AttributeItemProvider {
 							attributes.addAll(
 									((AttributeParameter) att.eContainer()).getSource().eClass().getEAllAttributes());
 						}
-		
+
 						// Do not allow 'xs:any'-content attributes
 						//
 						return attributes.stream()
-								.filter(a -> !pamtram.util.ExtendedMetaDataUtil.isAnyContentAttribute(a))
+								.filter(a -> !de.tud.et.ifa.agtele.emf.ExtendedMetaDataUtil.isAnyContentFeature(a))
 								.collect(Collectors.toList());
 					}
 				});
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+
+		return ((StyledString) getStyledText(object)).getString();
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getStyledText(Object object) {
-		String label = ((ActualAttribute<?, ?, ?, ?>)object).getName();
-    	StyledString styledLabel = new StyledString();
+
+		String label = ((ActualAttribute<?, ?, ?, ?>) object).getName();
+		StyledString styledLabel = new StyledString();
 		if (label == null || label.length() == 0) {
-			styledLabel.append(getString("_UI_ActualAttribute_type"), StyledString.Style.QUALIFIER_STYLER); 
+			styledLabel.append(getString("_UI_ActualAttribute_type"), StyledString.Style.QUALIFIER_STYLER);
 		} else {
-			styledLabel.append(getString("_UI_ActualAttribute_type"), StyledString.Style.QUALIFIER_STYLER).append(" " + label);
+			styledLabel.append(getString("_UI_ActualAttribute_type"), StyledString.Style.QUALIFIER_STYLER)
+					.append(" " + label);
 		}
 		return styledLabel;
 	}
@@ -138,18 +142,20 @@ public class ActualAttributeItemProvider extends AttributeItemProvider {
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
+
 		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

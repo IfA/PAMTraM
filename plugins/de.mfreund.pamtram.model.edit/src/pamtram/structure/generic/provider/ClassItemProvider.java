@@ -44,7 +44,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import de.tud.et.ifa.agtele.emf.EPackageHelper;
-import de.tud.et.ifa.agtele.emf.ExtendedMetaDataUtil;
+import de.tud.et.ifa.agtele.emf.XSDAnyContentUtil;
 import pamtram.PAMTraM;
 import pamtram.PamtramPackage;
 import pamtram.SectionModel;
@@ -571,7 +571,7 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 				.createTargetSectionAnyContentCrossReference();
 		if (eClass != null && object instanceof TargetSectionClass) {
 
-			if (ExtendedMetaDataUtil.allowsAnyContent(((TargetSectionClass) object).getEClass())) {
+			if (XSDAnyContentUtil.allowsAnyContent(((TargetSectionClass) object).getEClass())) {
 				newChildDescriptors.add(
 						this.createChildParameter(GenericPackage.Literals.CLASS__REFERENCES, anyContentCompositeRef));
 				newChildDescriptors

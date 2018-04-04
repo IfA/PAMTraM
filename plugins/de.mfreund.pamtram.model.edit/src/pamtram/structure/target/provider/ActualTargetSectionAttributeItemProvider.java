@@ -37,7 +37,7 @@ public class ActualTargetSectionAttributeItemProvider extends TargetSectionAttri
 
 	/**
 	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	public ActualTargetSectionAttributeItemProvider(AdapterFactory adapterFactory) {
@@ -47,7 +47,7 @@ public class ActualTargetSectionAttributeItemProvider extends TargetSectionAttri
 
 	/**
 	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -63,7 +63,7 @@ public class ActualTargetSectionAttributeItemProvider extends TargetSectionAttri
 
 	/**
 	 * This adds a property descriptor for the Attribute feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	protected void addAttributePropertyDescriptor(Object object) {
@@ -97,7 +97,8 @@ public class ActualTargetSectionAttributeItemProvider extends TargetSectionAttri
 						// Do not allow 'xs:any'-content attributes
 						//
 						return attributes.stream()
-								.filter(a -> !de.tud.et.ifa.agtele.emf.ExtendedMetaDataUtil.isAnyContentFeature(a))
+								.filter(a -> !de.tud.et.ifa.agtele.emf.XSDAnyContentUtil
+										.isAnyContentFeature(att.getOwningClass().getEClass(), a))
 								.collect(Collectors.toList());
 					}
 				});
@@ -105,7 +106,7 @@ public class ActualTargetSectionAttributeItemProvider extends TargetSectionAttri
 
 	/**
 	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override
@@ -142,7 +143,7 @@ public class ActualTargetSectionAttributeItemProvider extends TargetSectionAttri
 	/**
 	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
 	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 *
 	 * @generated
 	 */
 	@Override

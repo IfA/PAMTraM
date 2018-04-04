@@ -39,6 +39,7 @@ import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvedAdapter;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
+import de.tud.et.ifa.agtele.emf.XSDAnyContentUtil;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractAttributeParameter;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.InstantiableMappingHintGroup;
@@ -63,7 +64,6 @@ import pamtram.structure.target.TargetSectionClass;
 import pamtram.structure.target.TargetSectionCompositeReference;
 import pamtram.structure.target.TargetSectionReference;
 import pamtram.structure.target.VirtualTargetSectionAttribute;
-import pamtram.util.ExtendedMetaDataUtil;
 
 /**
  * Class for instantiating target model sections using the hints supplied by {@link MappingInstanceDescriptor
@@ -1408,7 +1408,7 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 							instance.getEObject().eSet(((TargetSectionCompositeReference) ref).getEReference(),
 									childEObjects);
 						} else if (ref instanceof TargetSectionAnyContentCompositeReference) {
-							ExtendedMetaDataUtil.addAnyConent(instance.getEObject(), childEObjects);
+							XSDAnyContentUtil.addAnyConent(instance.getEObject(), childEObjects);
 						} else {
 							this.logger.severe(() -> "Unknown type of Reference '" + ref.eClass().getName() + "'!");
 						}

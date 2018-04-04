@@ -18,7 +18,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -48,7 +47,6 @@ import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathRequirement;
 import de.tud.et.ifa.agtele.emf.connecting.Length;
 import pamtram.TargetSectionModel;
 import pamtram.mapping.InstantiableMappingHintGroup;
-import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
@@ -79,7 +77,8 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 	 */
 	private final TargetSectionRegistry targetSectionRegistry;
 
-	private final EClassConnectionPathProvider connectionPathProvider;
+	// FIXME may convert this to a transformation asset as it is required by both the TargetSectionConnector and Linker?
+	private final EClassConnectionPathProvider eClassConnectionPathProvider;
 
 	/**
 	 * The {@link TargetModelRegistry} that is used to manage the various target models and their contents.
@@ -106,7 +105,9 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 	 */
 	private IAmbiguityResolvingStrategy ambiguityResolvingStrategy;
 
-	private MappingInstanceDescriptor currentMappingInstance;
+	private MappingInstanceDescriptor currentMappingInstanceDescriptor;
+
+	private JoiningConnectionProvider joiningConnectionProvider;
 
 	/**
 	 * This creates an instance.
@@ -127,12 +128,14 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 		Set<EPackage> targetMetaModels = new LinkedHashSet<>(assetManager.getTransformationConfig().getPamtramModels()
 				.stream().flatMap(p -> p.getTargetSectionModels().stream()).map(TargetSectionModel::getMetaModelPackage)
 				.collect(Collectors.toList()));
-		connectionPathProvider = EClassConnectionPathProvider.getInstance(targetMetaModels, logger);
+		eClassConnectionPathProvider = EClassConnectionPathProvider.getInstance(targetMetaModels, logger);
 		// FIXME in the config, 0 means direct connection; in Length, 0 means no connection
 		int rawMaxPathLength = assetManager.getTransformationConfig().getMaxPathLength();
 		maxPathLength = Length.valueOf(rawMaxPathLength == -1 ? rawMaxPathLength : rawMaxPathLength + 1);
 		ambiguityResolvingStrategy = assetManager.getTransformationConfig().getAmbiguityResolvingStrategy();
 		unconnectableElements = new LinkedHashMap<>();
+		joiningConnectionProvider = new JoiningConnectionProvider(assetManager, standardPaths,
+				eClassConnectionPathProvider);
 	}
 
 	/**
@@ -144,77 +147,60 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 	 */
 	public void joinTargetSections(SelectedMappingRegistry selectedMappingRegistry) {
 
-		List<MappingInstanceDescriptor> mappingInstaces = selectedMappingRegistry.getMappingInstaces();
+		List<MappingInstanceDescriptor> mappingInstanceDescriptors = selectedMappingRegistry.getMappingInstaces();
 
-		joinTargetSectionsCreatedByMappingInstances(mappingInstaces);
+		joinTargetSectionsCreatedByMappingInstances(mappingInstanceDescriptors);
 	}
 
-	private void joinTargetSectionsCreatedByMappingInstances(List<MappingInstanceDescriptor> mappingInstances) {
+	private void joinTargetSectionsCreatedByMappingInstances(
+			List<MappingInstanceDescriptor> mappingInstanceDescriptors) {
 
-		mappingInstances.stream().forEach(this::joinTargetSectionsCreatedByMappingInstance);
+		mappingInstanceDescriptors.stream().forEach(this::joinTargetSectionsCreatedByMappingInstance);
 	}
 
-	private void joinTargetSectionsCreatedByMappingInstance(MappingInstanceDescriptor mappingInstance) {
+	private void joinTargetSectionsCreatedByMappingInstance(MappingInstanceDescriptor mappingInstanceDescriptor) {
 
-		currentMappingInstance = mappingInstance;
+		currentMappingInstanceDescriptor = mappingInstanceDescriptor;
 
-		joinTargetSectionsCreatedByMappingHintGroups();
+		List<InstantiableMappingHintGroup> activeInstantiableHintGroups = getInstantiableHintGroupsOfCurrentMappingInstance();
 
-		joinTargetSectionsCreatedByMappingHintGroupImporters();
+		activeInstantiableHintGroups.forEach(this::joinTargetSectionsCreatedByInstantiableHintGroup);
 
 	}
 
-	private void joinTargetSectionsCreatedByMappingHintGroups() {
+	private List<InstantiableMappingHintGroup> getInstantiableHintGroupsOfCurrentMappingInstance() {
 
-		Stream<MappingHintGroup> activeMappingHintGroupsOfCurrentMappingInstance = currentMappingInstance
-				.getMappingHintGroups().stream()
-				.filter(g -> g.getTargetSection() != null && g instanceof MappingHintGroup)
+		Stream<MappingHintGroup> activeMappingHintGroups = currentMappingInstanceDescriptor.getMappingHintGroups()
+				.stream().filter(g -> g.getTargetSection() != null && g instanceof MappingHintGroup)
 				.map(g -> (MappingHintGroup) g);
 
-		activeMappingHintGroupsOfCurrentMappingInstance
-				.forEach(this::joinInstancesCreatedByInstantiableMappingHintGroup);
-	}
-
-	private void joinTargetSectionsCreatedByMappingHintGroupImporters() {
-
-		Stream<MappingHintGroupImporter> activeMappingHintGroupImportersOfCurrentMappingInstance = currentMappingInstance
+		Stream<MappingHintGroupImporter> activeMappingHintGroupImporters = currentMappingInstanceDescriptor
 				.getMappingHintGroupImporters().stream()
 				.filter(i -> i.getHintGroup() != null && i.getHintGroup().getTargetSection() != null);
 
-		activeMappingHintGroupImportersOfCurrentMappingInstance
-				.forEach(this::joinInstancesCreatedByInstantiableMappingHintGroup);
-	}
-
-	/**
-	 * Join the {@link TargetSection} instances created by the given {@link MappingHintGroupType}.
-	 *
-	 * @param hintGroup
-	 *            The {@link MappingHintGroupType} responsible for the creation of the {@link TargetSection
-	 *            TargetSections} to join.
-	 * @param mappingInstances
-	 *            The list of {@link MappingInstanceDescriptor instances} created based on the given {@link Mapping}.
-	 */
-	private void joinInstancesCreatedByInstantiableMappingHintGroup(InstantiableMappingHintGroup hintGroup) {
-
-		joinInstanceCreatedByInstantiableHintGroup(hintGroup, currentMappingInstance);
+		return Stream.concat(activeMappingHintGroups, activeMappingHintGroupImporters).collect(Collectors.toList());
 
 	}
 
-	private void joinInstanceCreatedByInstantiableHintGroup(InstantiableMappingHintGroup hintGroup,
-			final MappingInstanceDescriptor mappingInstance) {
+	private void joinTargetSectionsCreatedByInstantiableHintGroup(InstantiableMappingHintGroup hintGroup) {
 
 		checkCanceled();
 
-		// The TargetSection of which we want to join created instances
-		//
-		final TargetSection section = hintGroup.getTargetMMSectionGeneric();
+		TargetSection section = hintGroup.getTargetMMSectionGeneric();
+
+		List<EObjectWrapper> instancesToConnect = getTargetElementsToConnect(hintGroup,
+				currentMappingInstanceDescriptor);
+
+		if (instancesToConnect.isEmpty()) {
+			return;
+		}
 
 		if (section.getFile() != null) {
 
 			// do not join sections for that a 'file' is specified, those are
 			// simply added as root elements to that file
 			//
-			this.addToTargetModelRoot(mappingInstance.getInstances(hintGroup, section));
+			this.addToTargetModelRoot(instancesToConnect);
 			return;
 
 		}
@@ -222,15 +208,9 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 		// The active ContainerSelectors for this MappingHintGroups
 		//
 		// FIXME should be evaluated only by the provider
-		List<ContainerSelector> containerSelectors = mappingInstance.getMappingHints(hintGroup, true).stream()
-				.filter(ContainerSelector.class::isInstance).map(ContainerSelector.class::cast)
+		List<ContainerSelector> containerSelectors = currentMappingInstanceDescriptor.getMappingHints(hintGroup, true)
+				.stream().filter(ContainerSelector.class::isInstance).map(ContainerSelector.class::cast)
 				.collect(Collectors.toList());
-
-		List<EObjectWrapper> instancesToConnect = getTargetElementsToConnect(hintGroup, mappingInstance);
-
-		if (instancesToConnect.isEmpty() || mappingInstance.isElementWithNegativeCondition(hintGroup)) {
-			return;
-		}
 
 		List<EObjectWrapper> unconnectedInstances;
 		if (!containerSelectors.isEmpty()) { // link using ContainerSelector(s)
@@ -238,15 +218,11 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 			// Try to connect the instances with the given
 			// ContainerSelectors and collect the unconnectable instances
 			//
-			unconnectedInstances = joinWithContainerSelectors(mappingInstance, instancesToConnect, hintGroup);
+			unconnectedInstances = joinWithContainerSelectors(instancesToConnect, hintGroup);
 
 		} else {
 
-			unconnectedInstances = joinWithoutContainerSelector(instancesToConnect, section, hintGroup,
-					section.getContainer() != null
-							? Optional.of(Collections.singleton(section.getContainer().getEClass()))
-							: Optional.empty(),
-					Optional.empty());
+			unconnectedInstances = joinWithoutContainerSelector(instancesToConnect, hintGroup);
 
 		}
 
@@ -258,112 +234,8 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 	private List<EObjectWrapper> getTargetElementsToConnect(InstantiableMappingHintGroup hintGroup,
 			MappingInstanceDescriptor mappingInstance) {
 
-		return mappingInstance.getInstances(hintGroup, hintGroup.getTargetMMSectionGeneric());
+		return mappingInstance.getRootInstances(hintGroup);
 	}
-
-	// /**
-	// * Join the {@link TargetSection} instances created by the given {@link MappingHintGroupType}.
-	// *
-	// * @param hintGroupImporter
-	// * The {@link MappingHintGroupImporter} responsible for the creation of the {@link TargetSection
-	// * TargetSections} to join.
-	// * @param mappingInstances
-	// * The list of {@link MappingInstanceDescriptor instances} created based on the given {@link Mapping}.
-	// * @return '<em><b>true</b></em>' if all instances of the TargetSection were joined successfully;
-	// * '<em><b>false</b></em>' otherwise
-	// */
-	// private boolean joinInstancesCreatedByMappingHintGroupImporter(final MappingHintGroupImporter hintGroupImporter)
-	// {
-	//
-	// checkCanceled();
-	//
-	// List<MappingInstanceDescriptor> mappingInstances = selectedMappingRegistry
-	// .get(hintGroupImporter.getParentMapping());
-	//
-	// final ExportedMappingHintGroup g = hintGroupImporter.getHintGroup();
-	//
-	// // The TargetSection of which we want to joing created instances
-	// //
-	// final TargetSection section = hintGroupImporter.getTargetMMSectionGeneric();
-	//
-	// if (section.getFile() != null) {
-	//
-	// // do not join sections for that a 'file' is specified, those are
-	// // simply added as root elements to that file
-	// //
-	// this.addToTargetModelRoot(targetSectionRegistry.getPamtramClassInstances(section).get(hintGroupImporter));
-	// return true;
-	//
-	// }
-	//
-	// if (targetSectionRegistry.getPamtramClassInstances(section).keySet().isEmpty()
-	// || targetSectionRegistry.getPamtramClassInstances(section).get(hintGroupImporter) == null) {
-	//
-	// // nothing to do
-	// //
-	// return true;
-	// }
-	//
-	// /*
-	// * ImportedMAppingHintGroups with containers specified will be linked to a section that was created by the same
-	// * mapping Instance
-	// */
-	// if (hintGroupImporter.getContainer() != null) {
-	// for (final MappingInstanceDescriptor selMap : mappingInstances) {
-	//
-	// final List<EObjectWrapper> rootInstances = getTargetElementsToConnect(hintGroupImporter, selMap);
-	//
-	// if (!rootInstances.isEmpty()) {
-	// final LinkedList<EObjectWrapper> containerInstances = new LinkedList<>();
-	//
-	// // get container instances created by this
-	// // mapping instance
-	// for (final MappingHintGroupType group : selMap.getMappingHintGroups()) {
-	//
-	// if (group instanceof MappingHintGroup) {
-	// final List<EObjectWrapper> insts = selMap.getInstances((MappingHintGroup) group,
-	// hintGroupImporter.getContainer());
-	// if (insts != null) {
-	// containerInstances.addAll(insts);
-	// }
-	//
-	// }
-	// }
-	// // link
-	// joinWithoutContainerSelector(rootInstances, hintGroupImporter.getTargetMMSectionGeneric(),
-	// hintGroupImporter,
-	// Optional.of(new HashSet<>(Arrays.asList(hintGroupImporter.getContainer().getEClass()))),
-	// containerInstances.isEmpty() ? Optional.empty() : Optional.of(containerInstances));
-	//
-	// }
-	// }
-	//
-	// // use container attribute of targetSection if one is
-	// // specified
-	// // (target section container == global instance search)
-	// } else {
-	// final LinkedList<EObjectWrapper> containerInstances = new LinkedList<>();
-	// final List<EObjectWrapper> rootInstances = targetSectionRegistry.getPamtramClassInstances(section)
-	// .get(hintGroupImporter);
-	// final Set<EClass> containerClasses = new LinkedHashSet<>();
-	// if (hintGroupImporter.getTargetMMSectionGeneric().getContainer() != null) {
-	// containerClasses.add(section.getContainer().getEClass());
-	// containerInstances
-	// .addAll(targetSectionRegistry.getFlattenedPamtramClassInstances(section.getContainer()));
-	//
-	// }
-	//
-	// if (rootInstances != null && !rootInstances.isEmpty()) {
-	// // link
-	// joinWithoutContainerSelector(rootInstances, hintGroupImporter.getTargetMMSectionGeneric(),
-	// hintGroupImporter,
-	// containerClasses.isEmpty() ? Optional.empty() : Optional.of(containerClasses),
-	// containerInstances.isEmpty() ? Optional.empty() : Optional.of(containerInstances));
-	// }
-	// }
-	//
-	// return true;
-	// }
 
 	/**
 	 * This adds the given list of {@link EObjectWrapper elements} as root objects to a target model.
@@ -456,14 +328,15 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 
 		Iterator<EClassConnectionPathRequirement> requirementIterator = requirements.iterator();
 
-		List<EClass> rootClassesFulfillingAllrequirements = new ArrayList<>(connectionPathProvider
+		List<EClass> rootClassesFulfillingAllrequirements = new ArrayList<>(eClassConnectionPathProvider
 				.getConnections(requirementIterator.next()).stream().map(EClassConnectionPath::getStartingClass)
 				.collect(Collectors.toCollection(LinkedHashSet::new)));
 
 		while (requirementIterator.hasNext()) {
 			EClassConnectionPathRequirement requirement = requirementIterator.next();
-			rootClassesFulfillingAllrequirements.retainAll(connectionPathProvider.getConnections(requirement).stream()
-					.map(EClassConnectionPath::getStartingClass).collect(Collectors.toCollection(LinkedHashSet::new)));
+			rootClassesFulfillingAllrequirements.retainAll(eClassConnectionPathProvider.getConnections(requirement)
+					.stream().map(EClassConnectionPath::getStartingClass)
+					.collect(Collectors.toCollection(LinkedHashSet::new)));
 
 		}
 
@@ -543,7 +416,8 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 								.withRequiredMinimumCapacity(Capacity.valueOf(neededCapacity))
 								.withAllowedReferenceType(AllowedReferenceType.CONTAINMENT);
 
-				final List<EClassConnectionPath> pathSet = connectionPathProvider.getConnections(connectionRequirement);
+				final List<EClassConnectionPath> pathSet = eClassConnectionPathProvider
+						.getConnections(connectionRequirement);
 
 				if (pathSet.isEmpty()) {
 
@@ -620,17 +494,8 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 	 *
 	 * @param rootInstances
 	 *            A list of {@link EObjectWrapper elements} to connect.
-	 * @param section
-	 *            The {@link TargetSection} that shall be connected.
 	 * @param mappingGroup
 	 *            The {@link MappingHintGroupType} that is used.
-	 * @param containerClasses
-	 *            An optional set of {@link EClass EClasses} that are considered as target when searching for connection
-	 *            paths for the given list of 'rootInstances'.<br />
-	 *            <em>Note:</em> If the optional is not present, any EClass will be considered a valid target.
-	 * @param containerInstances
-	 *            An optional list of container elements that may be used as container. <em>Note:</em> If the optional
-	 *            is not present, any instance will be considered a valid container.
 	 * @return A list of {@link EObjectWrapper instances} that could not be connected (a sub-list of the given
 	 *         <em>rootInstances</em> or an empty list). <br />
 	 *         Note: This will not contain those instances that have been determined as {@link #unconnectableElements
@@ -638,15 +503,12 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 	 *         {@link #combineUnlinkedSectionsWithTargetModelRoot()}.
 	 */
 	private List<EObjectWrapper> joinWithoutContainerSelector(final List<EObjectWrapper> rootInstances,
-			final TargetSection section, InstantiableMappingHintGroup mappingGroup,
-			final Optional<Set<EClass>> containerClasses, final Optional<List<EObjectWrapper>> containerInstances) {
+			InstantiableMappingHintGroup mappingGroup) {
 
 		checkCanceled();
 
-		JoiningConnectionProvider joiningConnectionProvider = new JoiningConnectionProvider(assetManager, standardPaths,
-				connectionPathProvider);
-		List<Connection> selectedConnections = joiningConnectionProvider
-				.selectConnectionsWithoutContainerSelector(rootInstances, mappingGroup, containerClasses);
+		List<EClassConnectionPathBasedConnection> selectedConnections = joiningConnectionProvider
+				.selectConnectionsWithoutContainerSelector(rootInstances, mappingGroup);
 
 		if (selectedConnections.isEmpty()) {
 
@@ -654,7 +516,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 			// instances'. The reason for this is that they will be connected later on when the 'unconnectableElements'
 			// are handled
 			//
-			registerAsUnconnectable(rootInstances, section);
+			registerAsUnconnectable(rootInstances, mappingGroup.getTargetMMSectionGeneric());
 			return new ArrayList<>();
 
 		}
@@ -694,25 +556,22 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 	 * <p>
 	 * This method is used for connecting sections using a given {@link ContainerSelector}.
 	 *
-	 * @param mappingInstance
-	 *            The {@link MappingInstanceDescriptor} representing the given <em>rootInstances</em>.
 	 * @param rootInstances
 	 *            A list of {@link EObjectWrapper elements} to connect (created based on the given
 	 *            <em>mappingInstance</em>).
 	 * @param mappingGroup
 	 *            The {@link MappingHintGroupType} that is used.
+	 *
 	 * @return A list of {@link EObjectWrapper instances} that could not be connected (a sub-list of the given
 	 *         <em>rootInstances</em> or an empty list).
 	 */
-	private List<EObjectWrapper> joinWithContainerSelectors(MappingInstanceDescriptor mappingInstance,
-			final List<EObjectWrapper> rootInstances, InstantiableMappingHintGroup mappingGroup) {
+	private List<EObjectWrapper> joinWithContainerSelectors(final List<EObjectWrapper> rootInstances,
+			InstantiableMappingHintGroup mappingGroup) {
 
 		checkCanceled();
 
-		JoiningConnectionProvider joiningConnectionProvider = new JoiningConnectionProvider(assetManager, standardPaths,
-				connectionPathProvider);
-		List<Connection> selectedConnections = joiningConnectionProvider
-				.selectConnectionsWithContainerSelector(mappingInstance, rootInstances, mappingGroup);
+		List<EClassConnectionPathBasedConnection> selectedConnections = joiningConnectionProvider
+				.selectConnectionsWithContainerSelector(currentMappingInstanceDescriptor, rootInstances, mappingGroup);
 
 		if (selectedConnections.isEmpty()) {
 			return Collections.unmodifiableList(rootInstances);
@@ -721,7 +580,8 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 		return instantiateConnectionsAndReturnUnconnectedElements(selectedConnections);
 	}
 
-	private List<EObjectWrapper> instantiateConnectionsAndReturnUnconnectedElements(List<Connection> connections) {
+	private List<EObjectWrapper> instantiateConnectionsAndReturnUnconnectedElements(
+			List<EClassConnectionPathBasedConnection> connections) {
 
 		return connections.stream()
 				.flatMap(connection -> connection.instantiate(targetSectionRegistry, logger).stream())

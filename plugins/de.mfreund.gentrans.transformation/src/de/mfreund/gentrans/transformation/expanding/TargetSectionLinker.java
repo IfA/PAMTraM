@@ -1,10 +1,9 @@
 /*******************************************************************************
  * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
- * 
- * This program and the accompanying materials are made
- * available under the terms of the Eclipse Public License 2.0
+ *
+ * This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0
  * which is available at https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0
  ******************************************************************************/
 package de.mfreund.gentrans.transformation.expanding;
@@ -13,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -22,8 +20,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
@@ -39,7 +37,15 @@ import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
+import de.tud.et.ifa.agtele.emf.connecting.AllowedReferenceType;
+import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPath;
+import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathInstantiator;
+import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathInstantiator.EClassConnectionPathInstantiationException;
+import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathProvider;
+import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathRequirement;
+import de.tud.et.ifa.agtele.emf.connecting.Length;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractExternalReferenceParameter;
+import pamtram.TargetSectionModel;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
@@ -54,7 +60,6 @@ import pamtram.structure.target.TargetSectionAnyContentCrossReference;
 import pamtram.structure.target.TargetSectionClass;
 import pamtram.structure.target.TargetSectionCompositeReference;
 import pamtram.structure.target.TargetSectionCrossReference;
-import pamtram.util.ExtendedMetaDataUtil;
 
 /**
  * Class for linking target model sections using the hints supplied by {@link MappingInstanceDescriptor
@@ -85,6 +90,8 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 	 */
 	private IAmbiguityResolvingStrategy ambiguityResolvingStrategy;
 
+	private EClassConnectionPathProvider eClassConnectionPathProvider;
+
 	/**
 	 * This creates an instance.
 	 *
@@ -96,9 +103,14 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 
 		super(assetManager);
 
-		this.targetSectionRegistry = assetManager.getTargetSectionRegistry();
-		this.instanceSelectorHandler = assetManager.getInstanceSelectorHandler();
-		this.ambiguityResolvingStrategy = assetManager.getTransformationConfig().getAmbiguityResolvingStrategy();
+		targetSectionRegistry = assetManager.getTargetSectionRegistry();
+		instanceSelectorHandler = assetManager.getInstanceSelectorHandler();
+		ambiguityResolvingStrategy = assetManager.getTransformationConfig().getAmbiguityResolvingStrategy();
+
+		Set<EPackage> targetMetaModels = new LinkedHashSet<>(assetManager.getTransformationConfig().getPamtramModels()
+				.stream().flatMap(p -> p.getTargetSectionModels().stream()).map(TargetSectionModel::getMetaModelPackage)
+				.collect(Collectors.toList()));
+		eClassConnectionPathProvider = EClassConnectionPathProvider.getInstance(targetMetaModels, logger);
 
 	}
 
@@ -160,13 +172,12 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 
 		// The list of CrossReferences for that we need to find target elements
 		//
-		List<CrossReference<?, ?, ?, ?>> nonContainmentReferences = this
-				.collectCrossReferencesRecursively(hintGroup.getTargetMMSectionGeneric());
+		List<TargetSectionCrossReference> nonContainmentReferences = collectCrossReferencesRecursively(
+				hintGroup.getTargetMMSectionGeneric());
 
 		// Link all found CrossReferences
 		//
-		nonContainmentReferences.stream()
-				.forEach(ref -> this.linkTargetSectionReference(hintGroup, mappingInstance, ref));
+		nonContainmentReferences.stream().forEach(ref -> linkTargetSectionReference(hintGroup, mappingInstance, ref));
 
 	}
 
@@ -182,12 +193,12 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 	 * @return The list of {@link CrossReference TargetSectionCrossReferences} defined as part of the given
 	 *         <em>targetSectionClass</em> or any contained TargetSectionClass.
 	 */
-	private List<CrossReference<?, ?, ?, ?>> collectCrossReferencesRecursively(TargetSectionClass targetSectionClass) {
+	private List<TargetSectionCrossReference> collectCrossReferencesRecursively(TargetSectionClass targetSectionClass) {
 
 		// All CrossReferences defined as direct children of the given 'targetSectionClass'
 		//
-		List<CrossReference<?, ?, ?, ?>> crossReferences = targetSectionClass.getAllReferences().stream()
-				.filter(ref -> ref instanceof CrossReference<?, ?, ?, ?>).map(ref -> (CrossReference<?, ?, ?, ?>) ref)
+		List<TargetSectionCrossReference> crossReferences = targetSectionClass.getAllReferences().stream()
+				.filter(ref -> ref instanceof TargetSectionCrossReference).map(ref -> (TargetSectionCrossReference) ref)
 				.collect(Collectors.toList());
 
 		// Now, iterate further downward in the containment hierarchy defined by the 'CompositeReferences' of the given
@@ -199,7 +210,7 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 				.collect(Collectors.toList());
 
 		for (TargetSectionClass containedClass : containedClasses) {
-			crossReferences.addAll(this.collectCrossReferencesRecursively(containedClass));
+			crossReferences.addAll(collectCrossReferencesRecursively(containedClass));
 		}
 
 		return crossReferences;
@@ -218,7 +229,7 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 	 *            The {@link TargetSectionCrossReference} for that the target elements shall be determined.
 	 */
 	private void linkTargetSectionReference(InstantiableMappingHintGroup hintGroup,
-			MappingInstanceDescriptor mappingInstance, CrossReference<?, ?, ?, ?> ref) {
+			MappingInstanceDescriptor mappingInstance, TargetSectionCrossReference ref) {
 
 		// We are searching for target elements for instances of this class
 		//
@@ -247,7 +258,7 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 			//
 			for (ReferenceTargetSelector referenceTargetSelector : referenceTargetSelectorsToConcider) {
 
-				this.linkWithReferenceTargetSelector(hintGroup, mappingInstance.getHintValues(), instancesToLink, ref,
+				linkWithReferenceTargetSelector(hintGroup, mappingInstance.getHintValues(), instancesToLink, ref,
 						referenceTargetSelector);
 			}
 
@@ -255,7 +266,7 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 
 			// Link the created instances using the 'value' of the reference or no hint at all
 			//
-			this.linkWithoutReferenceTargetSelector(hintGroup, instancesToLink, ref);
+			linkWithoutReferenceTargetSelector(hintGroup, instancesToLink, ref);
 		}
 
 	}
@@ -279,9 +290,9 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 	 */
 	private void linkWithReferenceTargetSelector(final InstantiableMappingHintGroup mappingGroup,
 			final HintValueStorage hintValues, final List<EObjectWrapper> sourceInstances,
-			final CrossReference<?, ?, ?, ?> ref, ReferenceTargetSelector referenceTargetSelector) {
+			TargetSectionCrossReference ref, ReferenceTargetSelector referenceTargetSelector) {
 
-		this.checkCanceled();
+		checkCanceled();
 
 		// Nothing to connect
 		//
@@ -291,11 +302,11 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 
 		// All potential target elements
 		//
-		List<EObjectWrapper> potentialTargetInstances = this.targetSectionRegistry
+		List<EObjectWrapper> potentialTargetInstances = targetSectionRegistry
 				.getFlattenedPamtramClassInstances(referenceTargetSelector.getTargetClass());
 
 		if (potentialTargetInstances.isEmpty()) {
-			this.logger.warning(() -> "The ReferenceTargetSelector '" + referenceTargetSelector.printInfo()
+			logger.warning(() -> "The ReferenceTargetSelector '" + referenceTargetSelector.printInfo()
 					+ " points to the target class '" + referenceTargetSelector.getTargetClass()
 					+ "'. Sadly, no instances of this Class were created.");
 			return;
@@ -310,18 +321,18 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 
 		} else {
 
-			filteredTargetInstances = this.instanceSelectorHandler.filterTargetInstances(potentialTargetInstances,
+			filteredTargetInstances = instanceSelectorHandler.filterTargetInstances(potentialTargetInstances,
 					referenceTargetSelector, hintValues.getHintValues(referenceTargetSelector));
 		}
 
 		if (filteredTargetInstances.isEmpty()) {
-			this.logger.warning(() -> "Evaluating the " + referenceTargetSelector.printInfo()
+			logger.warning(() -> "Evaluating the " + referenceTargetSelector.printInfo()
 					+ " returned no suitable target instances.");
 
 			return;
 		}
 
-		this.selectAndInstantiateConnections(sourceInstances, filteredTargetInstances, ref, mappingGroup);
+		selectAndInstantiateConnections(sourceInstances, filteredTargetInstances, ref, mappingGroup);
 
 	}
 
@@ -338,9 +349,9 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 	 *            The {@link TargetSectionCrossReference} for that the target elements shall be determined.
 	 */
 	private void linkWithoutReferenceTargetSelector(final InstantiableMappingHintGroup mappingGroup,
-			final List<EObjectWrapper> sourceInstances, final CrossReference<?, ?, ?, ?> ref) {
+			final List<EObjectWrapper> sourceInstances, TargetSectionCrossReference ref) {
 
-		this.checkCanceled();
+		checkCanceled();
 
 		// Nothing to connect
 		//
@@ -374,9 +385,8 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 			// The user modeled one or multiple allowed target classes. Thus, we only consider instances that have been
 			// created based on theses.
 			//
-			potentialTargetInstances.addAll(ref.getValuesGeneric().stream()
-					.flatMap(targetClass -> this.targetSectionRegistry
-							.getFlattenedPamtramClassInstances((TargetSectionClass) targetClass).stream())
+			potentialTargetInstances.addAll(ref.getValuesGeneric().stream().flatMap(
+					targetClass -> targetSectionRegistry.getFlattenedPamtramClassInstances(targetClass).stream())
 					.collect(Collectors.toList()));
 		}
 
@@ -394,7 +404,7 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 			// The root instances of the instantiated target section (we use these to filter the 'local' target
 			// instances for each source instance)
 			//
-			final List<EObjectWrapper> rootInstances = this.targetSectionRegistry
+			final List<EObjectWrapper> rootInstances = targetSectionRegistry
 					.getFlattenedPamtramClassInstances(mappingGroup.getTargetMMSectionGeneric());
 
 			// Determine the 'local' potential target instances separately for each of the source instances and select
@@ -406,7 +416,7 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 						.filter(r -> EcoreUtil.isAncestor(r.getEObject(), sourceInstance.getEObject())).findAny();
 
 				if (!localRootInstance.isPresent()) {
-					this.logger.severe(() -> "Internal error while linking instances via the CrossReference '"
+					logger.severe(() -> "Internal error while linking instances via the CrossReference '"
 							+ ref.getName() + "'! No local root instance could be determined.");
 					continue;
 				}
@@ -415,13 +425,13 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 						.filter(t -> EcoreUtil.isAncestor(localRootInstance.get().getEObject(), t.getEObject()))
 						.collect(Collectors.toList());
 
-				this.selectAndInstantiateConnections(Arrays.asList(sourceInstance), localPotentialTargetInstances, ref,
+				selectAndInstantiateConnections(Arrays.asList(sourceInstance), localPotentialTargetInstances, ref,
 						mappingGroup);
 			}
 
 		} else {
 
-			this.selectAndInstantiateConnections(sourceInstances, new ArrayList<>(potentialTargetInstances), ref,
+			selectAndInstantiateConnections(sourceInstances, new ArrayList<>(potentialTargetInstances), ref,
 					mappingGroup);
 		}
 
@@ -444,7 +454,7 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 	 *            The {@link MappingHintGroupType} that is used.
 	 */
 	private void selectAndInstantiateConnections(final List<EObjectWrapper> sourceInstances,
-			List<EObjectWrapper> targetInstances, final CrossReference<?, ?, ?, ?> reference,
+			List<EObjectWrapper> targetInstances, TargetSectionCrossReference reference,
 			final InstantiableMappingHintGroup mappingGroup) {
 
 		if (targetInstances.isEmpty()) {
@@ -452,6 +462,16 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 			//
 			return;
 		}
+
+		Map<EObjectWrapper, List<EObjectWrapper>> targetInstancesBySourceInstance = selectConnections(sourceInstances,
+				targetInstances, reference, mappingGroup);
+
+		instantiateConnections(reference, mappingGroup, targetInstancesBySourceInstance);
+	}
+
+	private Map<EObjectWrapper, List<EObjectWrapper>> selectConnections(List<EObjectWrapper> sourceInstances,
+			List<EObjectWrapper> targetInstances, final CrossReference<?, ?, ?, ?> reference,
+			final InstantiableMappingHintGroup mappingGroup) {
 
 		// This will be used in the end to instantiate the connections
 		//
@@ -489,23 +509,23 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 				 * instance that will be used for each source instance).
 				 */
 				try {
-					this.logger.fine(TargetSectionLinker.RESOLVE_LINKING_AMBIGUITY_STARTED);
-					List<EObjectWrapper> resolved = this.ambiguityResolvingStrategy
+					logger.fine(TargetSectionLinker.RESOLVE_LINKING_AMBIGUITY_STARTED);
+					List<EObjectWrapper> resolved = ambiguityResolvingStrategy
 							.linkingSelectTargetInstance(targetInstances, (TargetSectionCrossReference) reference,
 									mappingGroup instanceof MappingHintGroup ? (MappingHintGroup) mappingGroup
 											: ((MappingHintGroupImporter) mappingGroup).getHintGroup(),
 									null, sourceInstances);
-					this.logger.fine(TargetSectionLinker.RESOLVE_LINKING_AMBIGUITY_FINISHED);
+					logger.fine(TargetSectionLinker.RESOLVE_LINKING_AMBIGUITY_FINISHED);
 					IntStream.range(0, sourceInstances.size()).forEach(i -> targetInstancesBySourceInstance
 							.put(sourceInstances.get(i), Arrays.asList(resolved.get(0))));
 				} catch (AmbiguityResolvingException e) {
 					if (e.getCause() instanceof UserAbortException) {
 						throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
 					} else {
-						this.logger.severe(
+						logger.severe(
 								() -> "The following exception occured during the resolving of an ambiguity concerning the selection of a target instance: "
 										+ e.getMessage());
-						this.logger.severe("Using default instance instead...");
+						logger.severe("Using default instance instead...");
 						IntStream.range(0, sourceInstances.size()).forEach(i -> targetInstancesBySourceInstance
 								.put(sourceInstances.get(i), Arrays.asList(targetInstances.get(0))));
 					}
@@ -514,13 +534,44 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 			}
 		}
 
+		return targetInstancesBySourceInstance;
+	}
+
+	private void instantiateConnections(TargetSectionCrossReference reference,
+			final InstantiableMappingHintGroup mappingGroup,
+			Map<EObjectWrapper, List<EObjectWrapper>> targetInstancesBySourceInstance) {
+
 		for (Entry<EObjectWrapper, List<EObjectWrapper>> entryToInstantiate : targetInstancesBySourceInstance
 				.entrySet()) {
 
 			if (!mappingGroup.getTargetMMSectionGeneric().isLibraryEntry()) {
-				this.addValuesToReference(reference, entryToInstantiate.getValue().stream()
-						.map(EObjectWrapper::getEObject).collect(Collectors.toList()),
-						entryToInstantiate.getKey().getEObject());
+
+				EClassConnectionPathRequirement requirement = new EClassConnectionPathRequirement(
+						reference.getEReference().getEReferenceType())
+								.withRequiredReferences(Arrays.asList(reference.getEReference()))
+								.withRequiredStartingClass(reference.getEReference().getEContainingClass())
+								.withAllowedReferenceType(AllowedReferenceType.NONCONTAINMENT)
+								.withRequiredStartingElement(entryToInstantiate.getKey().getEObject())
+								.withRequiredMaximumPathLength(Length.DIRECT_CONNECTION);
+
+				List<EClassConnectionPath> connections = eClassConnectionPathProvider.getConnections(requirement);
+
+				if (connections.size() == 1) {
+
+					EClassConnectionPathInstantiator instantiator = connections.get(0)
+							.createInstantiator(entryToInstantiate.getKey().getEObject(), entryToInstantiate.getValue()
+									.stream().map(EObjectWrapper::getEObject).collect(Collectors.toList()));
+					try {
+						instantiator.instantiate();
+					} catch (EClassConnectionPathInstantiationException e) {
+						logger.severe(e.getMessage());
+					}
+
+				} else {
+					logger.severe(
+							"Internal Error: Multiple connections found for reference " + reference.getEReference());
+				}
+
 			} else {
 
 				/*
@@ -528,13 +579,13 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 				 * the targetSectionClass; instead we want to specify the value as 'target' for the affected
 				 * ExternalReferenceParameter
 				 */
-				LibraryEntry specificLibEntry = this.targetSectionRegistry.getLibraryEntryRegistry()
+				LibraryEntry specificLibEntry = targetSectionRegistry.getLibraryEntryRegistry()
 						.get(entryToInstantiate.getKey()).getLibraryEntry();
 				LibraryEntry genericLibEntry = (LibraryEntry) AgteleEcoreUtil.getAncestorOfKind(
 						mappingGroup.getTargetMMSectionGeneric(), LibraryPackage.Literals.LIBRARY_ENTRY);
 
 				if (entryToInstantiate.getValue().size() > 1) {
-					this.logger.severe(
+					logger.severe(
 							() -> "'ExternalReferenceParameters' of LibraryEntries currently only support setting a single target instance! Using the first of the selected instances for LibraryEntry '"
 									+ genericLibEntry.toString() + "'!");
 				}
@@ -549,108 +600,110 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 		}
 	}
 
-	/**
-	 * This creates a link from the given {@link EObject source element} to the given {@link EObject target element} via
-	 * the non-containment reference specified by the given {@link TargetSectionCrossReference}.
-	 *
-	 * @param ref
-	 *            The {@link TargetSectionCrossReference} that specifies the {@link EReference} to be used to create the
-	 *            link.
-	 * @param target
-	 *            The {@link EObject} to be linked to the <em>source</em> via the given reference.
-	 * @param source
-	 *            The {@link EObject} being the source of the link to be created.
-	 */
-	private void addValueToReference(final CrossReference<?, ?, ?, ?> ref, final EObject target, final EObject source) {
-
-		if (ref instanceof TargetSectionCrossReference
-				&& ((TargetSectionCrossReference) ref).getEReference().getUpperBound() == 1) {
-			if (source.eIsSet(((TargetSectionCrossReference) ref).getEReference())) {
-
-				this.logger.warning(() -> "More than one value was supposed to be connected to the CrossReference '"
-						+ ref.getName() + "' in the target section '" + ref.getContainingSection().getName()
-						+ "'. Please check your mapping model.");
-
-			} else {
-				source.eSet(((TargetSectionCrossReference) ref).getEReference(), target);
-			}
-
-		} else {
-
-			if (ref instanceof TargetSectionCrossReference) {
-
-				@SuppressWarnings("unchecked")
-				final EList<EObject> oldRefs = (EList<EObject>) source
-						.eGet(((TargetSectionCrossReference) ref).getEReference());
-				final LinkedList<EObject> newRefs = new LinkedList<>();
-				if (oldRefs != null) {
-					newRefs.addAll(oldRefs);
-				}
-				newRefs.add(target);
-				source.eSet(((TargetSectionCrossReference) ref).getEReference(), newRefs);
-
-			} else if (ref instanceof TargetSectionAnyContentCrossReference) {
-				ExtendedMetaDataUtil.addAnyConent(source, target);
-			} else {
-				this.logger.severe(() -> "Unknown type of Reference '" + ref.eClass().getName() + "'!");
-			}
-
-		}
-	}
-
-	/**
-	 * This creates a link from the given {@link EObject source element} to the given list of {@link EObject target
-	 * elements} via the non-containment reference specified by the given {@link TargetSectionCrossReference}.
-	 *
-	 * @param ref
-	 *            The {@link TargetSectionCrossReference} that specifies the {@link EReference} to be used to create the
-	 *            link.
-	 * @param targets
-	 *            The {@link EObject EObjects} to be linked to the <em>source</em> via the given reference.
-	 * @param source
-	 *            The {@link EObject} being the source of the link to be created.
-	 */
-	private void addValuesToReference(final CrossReference<?, ?, ?, ?> ref, final List<EObject> targets,
-			final EObject source) {
-
-		if (ref instanceof TargetSectionCrossReference
-				&& ((TargetSectionCrossReference) ref).getEReference().getUpperBound() == 1) {
-			if (targets.size() > 1) {
-
-				this.logger.warning(() -> "More than one value was supposed to be connected to the CrossReference '"
-						+ ref.getName() + "' in the target section '" + ref.getContainingSection().getName()
-						+ "'. Please check your mapping model.");
-			} else if (targets.isEmpty()) {
-
-				this.logger.warning(() -> "No value found to be connected to the CrossReference '" + ref.getName()
-						+ "' in the target section '" + ref.getContainingSection().getName()
-						+ "'. Please check your mapping model.");
-			} else {
-
-				this.addValueToReference(ref, targets.get(0), source);
-			}
-
-		} else {
-
-			if (ref instanceof TargetSectionCrossReference) {
-
-				@SuppressWarnings("unchecked")
-				final EList<EObject> oldRefs = (EList<EObject>) source
-						.eGet(((TargetSectionCrossReference) ref).getEReference());
-				final LinkedList<EObject> newRefs = new LinkedList<>();
-				if (oldRefs != null) {
-					newRefs.addAll(oldRefs);
-				}
-				newRefs.addAll(targets);
-				source.eSet(((TargetSectionCrossReference) ref).getEReference(), newRefs);
-
-			} else if (ref instanceof TargetSectionAnyContentCrossReference) {
-				ExtendedMetaDataUtil.addAnyConent(source, targets);
-			} else {
-				this.logger.severe(() -> "Unknown type of Reference '" + ref.eClass().getName() + "'!");
-			}
-
-		}
-	}
+	// /**
+	// * This creates a link from the given {@link EObject source element} to the given {@link EObject target element}
+	// via
+	// * the non-containment reference specified by the given {@link TargetSectionCrossReference}.
+	// *
+	// * @param ref
+	// * The {@link TargetSectionCrossReference} that specifies the {@link EReference} to be used to create the
+	// * link.
+	// * @param target
+	// * The {@link EObject} to be linked to the <em>source</em> via the given reference.
+	// * @param source
+	// * The {@link EObject} being the source of the link to be created.
+	// */
+	// private void addValueToReference(final CrossReference<?, ?, ?, ?> ref, final EObject target, final EObject
+	// source) {
+	//
+	// if (ref instanceof TargetSectionCrossReference
+	// && ((TargetSectionCrossReference) ref).getEReference().getUpperBound() == 1) {
+	// if (source.eIsSet(((TargetSectionCrossReference) ref).getEReference())) {
+	//
+	// logger.warning(() -> "More than one value was supposed to be connected to the CrossReference '"
+	// + ref.getName() + "' in the target section '" + ref.getContainingSection().getName()
+	// + "'. Please check your mapping model.");
+	//
+	// } else {
+	// source.eSet(((TargetSectionCrossReference) ref).getEReference(), target);
+	// }
+	//
+	// } else {
+	//
+	// if (ref instanceof TargetSectionCrossReference) {
+	//
+	// @SuppressWarnings("unchecked")
+	// final EList<EObject> oldRefs = (EList<EObject>) source
+	// .eGet(((TargetSectionCrossReference) ref).getEReference());
+	// final LinkedList<EObject> newRefs = new LinkedList<>();
+	// if (oldRefs != null) {
+	// newRefs.addAll(oldRefs);
+	// }
+	// newRefs.add(target);
+	// source.eSet(((TargetSectionCrossReference) ref).getEReference(), newRefs);
+	//
+	// } else if (ref instanceof TargetSectionAnyContentCrossReference) {
+	// ExtendedMetaDataUtil.addAnyConent(source, target);
+	// } else {
+	// logger.severe(() -> "Unknown type of Reference '" + ref.eClass().getName() + "'!");
+	// }
+	//
+	// }
+	// }
+	//
+	// /**
+	// * This creates a link from the given {@link EObject source element} to the given list of {@link EObject target
+	// * elements} via the non-containment reference specified by the given {@link TargetSectionCrossReference}.
+	// *
+	// * @param ref
+	// * The {@link TargetSectionCrossReference} that specifies the {@link EReference} to be used to create the
+	// * link.
+	// * @param targets
+	// * The {@link EObject EObjects} to be linked to the <em>source</em> via the given reference.
+	// * @param source
+	// * The {@link EObject} being the source of the link to be created.
+	// */
+	// private void addValuesToReference(final CrossReference<?, ?, ?, ?> ref, final List<EObject> targets,
+	// final EObject source) {
+	//
+	// if (ref instanceof TargetSectionCrossReference
+	// && ((TargetSectionCrossReference) ref).getEReference().getUpperBound() == 1) {
+	// if (targets.size() > 1) {
+	//
+	// logger.warning(() -> "More than one value was supposed to be connected to the CrossReference '"
+	// + ref.getName() + "' in the target section '" + ref.getContainingSection().getName()
+	// + "'. Please check your mapping model.");
+	// } else if (targets.isEmpty()) {
+	//
+	// logger.warning(() -> "No value found to be connected to the CrossReference '" + ref.getName()
+	// + "' in the target section '" + ref.getContainingSection().getName()
+	// + "'. Please check your mapping model.");
+	// } else {
+	//
+	// addValueToReference(ref, targets.get(0), source);
+	// }
+	//
+	// } else {
+	//
+	// if (ref instanceof TargetSectionCrossReference) {
+	//
+	// @SuppressWarnings("unchecked")
+	// final EList<EObject> oldRefs = (EList<EObject>) source
+	// .eGet(((TargetSectionCrossReference) ref).getEReference());
+	// final LinkedList<EObject> newRefs = new LinkedList<>();
+	// if (oldRefs != null) {
+	// newRefs.addAll(oldRefs);
+	// }
+	// newRefs.addAll(targets);
+	// source.eSet(((TargetSectionCrossReference) ref).getEReference(), newRefs);
+	//
+	// } else if (ref instanceof TargetSectionAnyContentCrossReference) {
+	// ExtendedMetaDataUtil.addAnyConent(source, targets);
+	// } else {
+	// logger.severe(() -> "Unknown type of Reference '" + ref.eClass().getName() + "'!");
+	// }
+	//
+	// }
+	// }
 
 }

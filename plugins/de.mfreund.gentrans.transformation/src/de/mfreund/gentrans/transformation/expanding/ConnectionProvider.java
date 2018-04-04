@@ -9,5 +9,5 @@ package de.mfreund.gentrans.transformation.expanding;
  */
 public interface ConnectionProvider {
 
-	public Connection getConnectionFor();
+	public AbstractConnection getConnectionFor();
 }

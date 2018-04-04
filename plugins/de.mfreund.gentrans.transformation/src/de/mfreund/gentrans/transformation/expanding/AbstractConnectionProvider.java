@@ -45,7 +45,7 @@ public abstract class AbstractConnectionProvider extends TransformationAsset imp
 
 	protected Map<InstantiableMappingHintGroup, EClassConnectionPath> standardConnectionsForHintGroups;
 
-	protected EClassConnectionPathProvider connectionPathProvider;
+	protected EClassConnectionPathProvider eClassConnectionPathProvider;
 
 	protected IAmbiguityResolvingStrategy ambiguityResolvingStrategy;
 
@@ -57,25 +57,25 @@ public abstract class AbstractConnectionProvider extends TransformationAsset imp
 
 	public AbstractConnectionProvider(TransformationAssetManager assetManager,
 			Map<InstantiableMappingHintGroup, EClassConnectionPath> standardPaths,
-			EClassConnectionPathProvider connectionPathProvider) {
+			EClassConnectionPathProvider eClassConnectionPathProvider) {
 
 		super(assetManager);
 
 		standardConnectionsForHintGroups = standardPaths;
-		this.connectionPathProvider = connectionPathProvider;
+		this.eClassConnectionPathProvider = eClassConnectionPathProvider;
 		ambiguityResolvingStrategy = assetManager.getTransformationConfig().getAmbiguityResolvingStrategy();
 		logger = assetManager.getLogger();
 		targetSectionRegistry = assetManager.getTargetSectionRegistry();
 		instanceSelectorHandler = assetManager.getInstanceSelectorHandler();
 	}
 
-	protected List<Connection> selectConnections(final List<EObjectWrapper> targetElements,
+	protected List<EClassConnectionPathBasedConnection> selectConnections(List<EObjectWrapper> targetElements,
 			Map<EClassConnectionPath, List<EObjectWrapper>> connectionChoices,
 			InstantiableMappingHintGroup mappingGroup) {
 
 		// The list of Connections that will get instantiated in the end
 		//
-		List<Connection> selectedConnections = new ArrayList<>();
+		List<EClassConnectionPathBasedConnection> selectedConnections = new ArrayList<>();
 
 		// The list of (distinct) container instances represented by the 'connectionChoices'
 		//
@@ -122,7 +122,7 @@ public abstract class AbstractConnectionProvider extends TransformationAsset imp
 		return selectedConnections;
 	}
 
-	private Connection getConnectionToInstantiateBasedOnMultipleStartingElementPossibilities(
+	private EClassConnectionPathBasedConnection getConnectionToInstantiateBasedOnMultipleStartingElementPossibilities(
 			final List<EObjectWrapper> targetElements,
 			Map<EClassConnectionPath, List<EObjectWrapper>> connectionChoices,
 			InstantiableMappingHintGroup mappingGroup) {
@@ -132,7 +132,7 @@ public abstract class AbstractConnectionProvider extends TransformationAsset imp
 		EClassConnectionPath standardPath = standardConnectionsForHintGroups.getOrDefault(mappingGroup, null);
 		if (standardPath != null && connectionChoices.containsKey(standardPath) && connectionChoices.size() > 1) {
 
-			return this.getConnectionToInstantiate(targetElements, standardPath, connectionChoices.get(standardPath),
+			return getConnectionToInstantiate(targetElements, standardPath, connectionChoices.get(standardPath),
 					mappingGroup);
 		}
 
@@ -148,8 +148,8 @@ public abstract class AbstractConnectionProvider extends TransformationAsset imp
 			// There is only one possible connection path and container instance
 			//
 			EClassConnectionPath connectionPath = connectionChoices.keySet().iterator().next();
-			return this.getConnectionToInstantiate(targetElements, connectionPath,
-					connectionChoices.get(connectionPath).iterator().next(), mappingGroup);
+			return this.getConnectionFor(connectionChoices.get(connectionPath).iterator().next(), targetElements,
+					connectionPath, mappingGroup);
 
 		} else if (connectionChoices.keySet().size() == 1) {
 
@@ -157,8 +157,8 @@ public abstract class AbstractConnectionProvider extends TransformationAsset imp
 			// container instance
 			//
 			EClassConnectionPath connectionPath = connectionChoices.keySet().iterator().next();
-			return this.getConnectionToInstantiate(targetElements, connectionPath,
-					connectionChoices.get(connectionPath), mappingGroup);
+			return getConnectionToInstantiate(targetElements, connectionPath, connectionChoices.get(connectionPath),
+					mappingGroup);
 
 		} else {
 
@@ -213,14 +213,14 @@ public abstract class AbstractConnectionProvider extends TransformationAsset imp
 				}
 			}
 
-			return this.getConnectionToInstantiate(targetElements, selectedConnectionPath, selectedContainerInstance,
+			return this.getConnectionFor(selectedContainerInstance, targetElements, selectedConnectionPath,
 					mappingGroup);
 		}
 
 	}
 
-	private Connection getConnectionToInstantiateBasedOnSingleStartingElementPossiblity(
-			final List<EObjectWrapper> targetElements, List<EClassConnectionPath> connectionPaths,
+	private EClassConnectionPathBasedConnection getConnectionToInstantiateBasedOnSingleStartingElementPossiblity(
+			List<EObjectWrapper> targetElements, List<EClassConnectionPath> connectionPaths,
 			EObjectWrapper startingElement, InstantiableMappingHintGroup mappingGroup) {
 
 		// If there is already a 'standardPath' for the given 'mappingGroup', we reuse this standard path
@@ -228,7 +228,7 @@ public abstract class AbstractConnectionProvider extends TransformationAsset imp
 		EClassConnectionPath standardPath = standardConnectionsForHintGroups.getOrDefault(mappingGroup, null);
 		if (standardPath != null && connectionPaths.contains(standardPath)) {
 
-			return this.getConnectionToInstantiate(targetElements, standardPath, startingElement, mappingGroup);
+			return this.getConnectionFor(startingElement, targetElements, standardPath, mappingGroup);
 		}
 
 		Map<EClassConnectionPath, List<EObjectWrapper>> connectionChoices = connectionPaths.stream()
@@ -238,11 +238,10 @@ public abstract class AbstractConnectionProvider extends TransformationAsset imp
 				mappingGroup);
 	}
 
-	private Connection getConnectionToInstantiate(final List<EObjectWrapper> rootInstances,
-			final EClassConnectionPath connectionPath, final EObjectWrapper containerInstance,
-			InstantiableMappingHintGroup mappingGroup) {
+	private EClassConnectionPathBasedConnection getConnectionFor(EObjectWrapper startingElement, final List<EObjectWrapper> targetElements,
+			EClassConnectionPath connectionPath, InstantiableMappingHintGroup mappingGroup) {
 
-		Connection connectionToInstantiate = new Connection(containerInstance, connectionPath, rootInstances);
+		EClassConnectionPathBasedConnection connectionToInstantiate = new EClassConnectionPathBasedConnection(startingElement, connectionPath, targetElements);
 
 		if (!standardConnectionsForHintGroups.containsKey(mappingGroup)
 				|| standardConnectionsForHintGroups.get(mappingGroup) != connectionPath) {
@@ -257,7 +256,7 @@ public abstract class AbstractConnectionProvider extends TransformationAsset imp
 		return connectionToInstantiate;
 	}
 
-	private Connection getConnectionToInstantiate(final List<EObjectWrapper> rootInstances,
+	private EClassConnectionPathBasedConnection getConnectionToInstantiate(final List<EObjectWrapper> rootInstances,
 			EClassConnectionPath connectionPath, List<EObjectWrapper> containerInstances,
 			InstantiableMappingHintGroup mappingGroup) {
 
@@ -300,7 +299,7 @@ public abstract class AbstractConnectionProvider extends TransformationAsset imp
 			}
 		}
 
-		return this.getConnectionToInstantiate(rootInstances, connectionPath, selectedContainerInstance, mappingGroup);
+		return this.getConnectionFor(selectedContainerInstance, rootInstances, connectionPath, mappingGroup);
 	}
 
 }

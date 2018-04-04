@@ -4,6 +4,7 @@
 package de.mfreund.gentrans.transformation.expanding;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
@@ -41,21 +42,21 @@ public class JoiningConnectionProvider extends AbstractConnectionProvider implem
 
 	public JoiningConnectionProvider(TransformationAssetManager assetManager,
 			Map<InstantiableMappingHintGroup, EClassConnectionPath> standardPaths,
-			EClassConnectionPathProvider connectionPathProvider) {
+			EClassConnectionPathProvider eClassConnectionPathProvider) {
 
-		super(assetManager, standardPaths, connectionPathProvider);
+		super(assetManager, standardPaths, eClassConnectionPathProvider);
 
 	}
 
 	@Override
-	public Connection getConnectionFor() {
+	public AbstractConnection getConnectionFor() {
 
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public List<Connection> selectConnectionsWithoutContainerSelector(final List<EObjectWrapper> rootInstances,
-			InstantiableMappingHintGroup mappingGroup, final Optional<Set<EClass>> containerClasses) {
+	public List<EClassConnectionPathBasedConnection> selectConnectionsWithoutContainerSelector(final List<EObjectWrapper> rootInstances,
+			InstantiableMappingHintGroup mappingGroup) {
 
 		// Nothing to connect
 		//
@@ -83,6 +84,9 @@ public class JoiningConnectionProvider extends AbstractConnectionProvider implem
 
 		// A set of ModelConnectionPaths that are possible and thus have to be considered by the selection algorithms.
 		//
+		Optional<Set<EClass>> containerClasses = section.getContainer() != null
+				? Optional.of(Collections.singleton(section.getContainer().getEClass()))
+				: Optional.empty();
 		List<EClassConnectionPath> pathsToConsider = getModelConnectionPathsToConsider(rootInstances, containerClasses,
 				classToConnect);
 
@@ -105,7 +109,7 @@ public class JoiningConnectionProvider extends AbstractConnectionProvider implem
 			containerInstancesByConnectionPaths.put(connectionPath, containerInstancesForConnectionPath);
 		}
 
-		List<Connection> selectedConnections = selectConnections(rootInstances, containerInstancesByConnectionPaths,
+		List<EClassConnectionPathBasedConnection> selectedConnections = selectConnections(rootInstances, containerInstancesByConnectionPaths,
 				mappingGroup);
 
 		return selectedConnections;
@@ -140,14 +144,14 @@ public class JoiningConnectionProvider extends AbstractConnectionProvider implem
 			// EClass that are considered when searching for connection paths.
 			//
 			pathsToConsider.addAll(containerClasses.get().stream().flatMap(
-					c -> connectionPathProvider.getConnections(new EClassConnectionPathRequirement(classToConnect)
+					c -> eClassConnectionPathProvider.getConnections(new EClassConnectionPathRequirement(classToConnect)
 							.withRequiredStartingClass(c).withRequiredMaximumPathLength(maxPathLength)
 							.withRequiredMinimumCapacity(Capacity.valueOf(rootInstances))
 							.withAllowedReferenceType(AllowedReferenceType.CONTAINMENT)).stream())
 					.collect(Collectors.toCollection(LinkedHashSet::new)));
 		} else {
 
-			pathsToConsider.addAll(connectionPathProvider.getConnections(
+			pathsToConsider.addAll(eClassConnectionPathProvider.getConnections(
 					new EClassConnectionPathRequirement(classToConnect).withRequiredMaximumPathLength(maxPathLength)
 							.withRequiredMinimumCapacity(Capacity.valueOf(rootInstances))
 							.withAllowedReferenceType(AllowedReferenceType.CONTAINMENT)));
@@ -175,7 +179,7 @@ public class JoiningConnectionProvider extends AbstractConnectionProvider implem
 		return pathsToConsider;
 	}
 
-	public List<Connection> selectConnectionsWithContainerSelector(MappingInstanceDescriptor mappingInstance,
+	public List<EClassConnectionPathBasedConnection> selectConnectionsWithContainerSelector(MappingInstanceDescriptor mappingInstance,
 			final List<EObjectWrapper> rootInstances, InstantiableMappingHintGroup mappingGroup) {
 
 		List<ContainerSelector> containerSelectors = getActiveContainerSelectors(mappingInstance, mappingGroup);
@@ -271,7 +275,7 @@ public class JoiningConnectionProvider extends AbstractConnectionProvider implem
 			// container selector (or any of the concrete extending TargetSections)
 			//
 			List<EClassConnectionPath> pathsToConsider = potentialTargetSectionClasses.stream()
-					.flatMap(t -> connectionPathProvider.getConnections(
+					.flatMap(t -> eClassConnectionPathProvider.getConnections(
 							new EClassConnectionPathRequirement(eClass).withRequiredStartingClass(t.getEClass())
 									.withRequiredMaximumPathLength(Length.DIRECT_CONNECTION)
 									.withAllowedReferenceType(AllowedReferenceType.CONTAINMENT))

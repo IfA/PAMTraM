@@ -67,7 +67,7 @@ public abstract class TargetSectionExpander extends CancelableTransformationAsse
 
 		List<InstantiableMappingHintGroup> activeInstantiableHintGroups = getInstantiableHintGroupsOfCurrentMappingInstance();
 
-		activeInstantiableHintGroups.forEach(this::expandTargetSectionsCreatedByInstantiableHintGroup);
+		activeInstantiableHintGroups.forEach(this::doExpandTargetSectionsCreatedByInstantiableHintGroup);
 
 	}
 
@@ -85,6 +85,12 @@ public abstract class TargetSectionExpander extends CancelableTransformationAsse
 
 	}
 
+	protected void expandTargetSectionsCreatedByInstantiableHintGroup(InstantiableMappingHintGroup hintGroup) {
+
+		checkCanceled();
+		doExpandTargetSectionsCreatedByInstantiableHintGroup(hintGroup);
+	}
+
 	/**
 	 * The actual work needs to be implemented here depending on the concrete aspect of the <em>expanding</em> phase
 	 * that is handled by a concrete sub-class.
@@ -93,6 +99,7 @@ public abstract class TargetSectionExpander extends CancelableTransformationAsse
 	 *            The {@link InstantiableMappingHintGroup} to be expanded for the
 	 *            {@link #currentMappingInstanceDescriptor}.
 	 */
-	protected abstract void expandTargetSectionsCreatedByInstantiableHintGroup(InstantiableMappingHintGroup hintGroup);
+	protected abstract void doExpandTargetSectionsCreatedByInstantiableHintGroup(
+			InstantiableMappingHintGroup hintGroup);
 
 }

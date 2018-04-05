@@ -46,8 +46,8 @@ import de.mfreund.gentrans.transformation.TransformationConfiguration;
 import de.mfreund.gentrans.transformation.TransformationRunnerFactory;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
-import de.mfreund.gentrans.transformation.expanding.TargetSectionJoiner;
 import de.mfreund.gentrans.transformation.expanding.TargetSectionInstantiator;
+import de.mfreund.gentrans.transformation.expanding.TargetSectionJoiner;
 import de.mfreund.gentrans.transformation.expanding.TargetSectionLinker;
 import de.mfreund.gentrans.transformation.matching.GlobalAttributeValueExtractor;
 import de.mfreund.gentrans.transformation.matching.HintValueExtractor;
@@ -387,11 +387,6 @@ public class TransformationTaskRunner extends CancelableElement {
 
 		targetSectionJoiner.expandTargetSections(assetManager.getSelectedMappingRegistry());
 
-		// Finally, combine the Sections that are still unlinked with the
-		// Root element of a TargetModel
-		//
-		targetSectionJoiner.combineUnlinkedSectionsWithTargetModelRoot();
-
 	}
 
 	/**
@@ -407,7 +402,7 @@ public class TransformationTaskRunner extends CancelableElement {
 
 		TargetSectionLinker targetSectionLinker = assetManager.getTargetSectionLinker();
 
-		targetSectionLinker.linkTargetSections(assetManager.getSelectedMappingRegistry());
+		targetSectionLinker.expandTargetSections(assetManager.getSelectedMappingRegistry());
 
 	}
 

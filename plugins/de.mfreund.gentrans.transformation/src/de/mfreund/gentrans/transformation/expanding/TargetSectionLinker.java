@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import de.mfreund.gentrans.transformation.CancelTransformationException;
 import de.mfreund.gentrans.transformation.UserAbortException;
 import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
-import de.mfreund.gentrans.transformation.core.CancelableTransformationAsset;
 import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.HintValueStorage;
@@ -65,7 +64,7 @@ import pamtram.structure.target.TargetSectionCrossReference;
  *
  * @author mfreund
  */
-public class TargetSectionLinker extends CancelableTransformationAsset {
+public class TargetSectionLinker extends TargetSectionExpander {
 
 	private static final String RESOLVE_LINKING_AMBIGUITY_STARTED = "[Ambiguity] Resolve linking ambiguity...";
 
@@ -108,42 +107,10 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 
 	}
 
-	/**
-	 * Link the {@link TargetSection TargetSections} represented by the given list of {@link MappingInstanceDescriptor
-	 * mapping instances}, i.e. find target elements for the various {@link TargetSectionCrossReference
-	 * TargetSectionCrossReferences} of the TargetSections.
-	 *
-	 * @param mappingInstances
-	 *            The list of {@link MappingInstanceDescriptor mapping instances} to link.
-	 */
-	public void linkTargetSections(List<MappingInstanceDescriptor> mappingInstances) {
+	@Override
+	protected void doExpandTargetSectionsCreatedByInstantiableHintGroup(InstantiableMappingHintGroup hintGroup) {
 
-		mappingInstances.stream().forEach(this::linkTargetSection);
-	}
-
-	/**
-	 * Link the {@link TargetSection TargetSections} represented by the <em>hintGroups</em> of the given
-	 * {@link MappingInstanceDescriptor}, i.e. find target elements for the various {@link TargetSectionCrossReference
-	 * TargetSectionCrossReferences} of the TargetSections.
-	 *
-	 * @param mappingInstance
-	 *            The {@link MappingInstanceDescriptor mapping instance} to link.
-	 * @return '<em><b>true</b></em>' if all instances of the linking step completed successfully;
-	 *         '<em><b>false</b></em>' otherwise
-	 */
-	public boolean linkTargetSection(final MappingInstanceDescriptor mappingInstance) {
-
-		// Link 'local' hint groups
-		//
-		mappingInstance.getMappingHintGroups().stream().filter(hg -> hg instanceof InstantiableMappingHintGroup)
-				.forEach(g -> this.linkTargetSection((InstantiableMappingHintGroup) g, mappingInstance));
-
-		// Link 'imported' hint groups
-		//
-		mappingInstance.getMappingHintGroupImporters().stream()
-				.forEach(g -> this.linkTargetSection(g, mappingInstance));
-
-		return true;
+		linkTargetSectionsCreatedByInstantiableHintGroup(hintGroup);
 	}
 
 	/**
@@ -153,14 +120,12 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 	 * @param hintGroup
 	 *            The {@link InstantiableMappingHintGroup} of which the created {@link TargetSection TargetSections}
 	 *            shall be linked.
-	 * @param mappingInstance
-	 *            The {@link MappingInstanceDescriptor mapping instance} to link.
 	 */
-	private void linkTargetSection(InstantiableMappingHintGroup hintGroup, MappingInstanceDescriptor mappingInstance) {
+	private void linkTargetSectionsCreatedByInstantiableHintGroup(InstantiableMappingHintGroup hintGroup) {
 
 		// Only go on if any instances of this section were created
 		//
-		if (mappingInstance.getInstances(hintGroup, hintGroup.getTargetMMSectionGeneric()).isEmpty()) {
+		if (currentMappingInstanceDescriptor.getInstances(hintGroup, hintGroup.getTargetMMSectionGeneric()).isEmpty()) {
 			return;
 		}
 
@@ -171,7 +136,7 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 
 		// Link all found CrossReferences
 		//
-		nonContainmentReferences.stream().forEach(ref -> linkTargetSectionReference(hintGroup, mappingInstance, ref));
+		nonContainmentReferences.stream().forEach(ref -> linkTargetSectionReference(hintGroup, ref));
 
 	}
 
@@ -217,20 +182,18 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 	 * @param hintGroup
 	 *            The {@link InstantiableMappingHintGroup} of which the created {@link TargetSection TargetSections}
 	 *            shall be linked.
-	 * @param mappingInstance
-	 *            The {@link MappingInstanceDescriptor mapping instance} to link.
 	 * @param ref
 	 *            The {@link TargetSectionCrossReference} for that the target elements shall be determined.
 	 */
-	private void linkTargetSectionReference(InstantiableMappingHintGroup hintGroup,
-			MappingInstanceDescriptor mappingInstance, TargetSectionCrossReference ref) {
+	private void linkTargetSectionReference(InstantiableMappingHintGroup hintGroup, TargetSectionCrossReference ref) {
 
 		// We are searching for target elements for instances of this class
 		//
 		final TargetSectionClass targetSectionClass = !ref.isLibraryEntry() ? (TargetSectionClass) ref.eContainer()
-				: (TargetSectionClass) ref.getContainingSection();
+				: ref.getContainingSection();
 
-		List<EObjectWrapper> instancesToLink = mappingInstance.getInstances(hintGroup, targetSectionClass);
+		List<EObjectWrapper> instancesToLink = currentMappingInstanceDescriptor.getInstances(hintGroup,
+				targetSectionClass);
 
 		if (instancesToLink.isEmpty()) {
 			// Nothing to be done
@@ -240,7 +203,7 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 
 		// Collect ReferenceTargetSelectors that affect the current reference
 		//
-		List<ReferenceTargetSelector> referenceTargetSelectorsToConcider = mappingInstance
+		List<ReferenceTargetSelector> referenceTargetSelectorsToConcider = currentMappingInstanceDescriptor
 				.getMappingHints(hintGroup, true).parallelStream()
 				.filter(h -> h instanceof ReferenceTargetSelector
 						&& ((ReferenceTargetSelector) h).getAffectedReference().equals(ref))
@@ -252,8 +215,8 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 			//
 			for (ReferenceTargetSelector referenceTargetSelector : referenceTargetSelectorsToConcider) {
 
-				linkWithReferenceTargetSelector(hintGroup, mappingInstance.getHintValues(), instancesToLink, ref,
-						referenceTargetSelector);
+				linkWithReferenceTargetSelector(hintGroup, currentMappingInstanceDescriptor.getHintValues(),
+						instancesToLink, ref, referenceTargetSelector);
 			}
 
 		} else {

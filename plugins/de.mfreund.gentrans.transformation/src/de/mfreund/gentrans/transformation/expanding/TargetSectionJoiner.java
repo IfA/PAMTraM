@@ -28,6 +28,7 @@ import de.mfreund.gentrans.transformation.UserAbortException;
 import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
+import de.mfreund.gentrans.transformation.registries.SelectedMappingRegistry;
 import de.mfreund.gentrans.transformation.registries.TargetModelRegistry;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvedAdapter;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
@@ -55,12 +56,6 @@ public class TargetSectionJoiner extends TargetSectionExpander {
 	static final String RESOLVE_JOINING_AMBIGUITY_ENDED = "[Ambiguity] ...finished.\n";
 
 	static final String RESOLVE_JOINING_AMBIGUITY_STARTED = "[Ambiguity] Resolve joining ambiguity...";
-
-	/**
-	 * This list stores those {@link ComplexEClassConnectionPath ModelConnectionPaths} that have been previously
-	 * selected by the user for a given {@link MappingHintGroupType}.
-	 */
-	private final LinkedHashMap<InstantiableMappingHintGroup, EClassConnectionPath> standardPaths;
 
 	// FIXME may convert this to a transformation asset as it is required by both the TargetSectionConnector and Linker?
 	private final EClassConnectionPathProvider eClassConnectionPathProvider;
@@ -97,8 +92,6 @@ public class TargetSectionJoiner extends TargetSectionExpander {
 
 		super(assetManager);
 
-		standardPaths = new LinkedHashMap<>();
-
 		targetModelRegistry = assetManager.getTargetModelRegistry();
 		eClassConnectionPathProvider = assetManager.getEClassConnectionPathProvider();
 
@@ -107,17 +100,24 @@ public class TargetSectionJoiner extends TargetSectionExpander {
 		maxPathLength = Length.valueOf(rawMaxPathLength == -1 ? rawMaxPathLength : rawMaxPathLength + 1);
 
 		unconnectableElements = new LinkedHashMap<>();
-		joiningConnectionProvider = new JoiningConnectionProvider(assetManager, standardPaths,
-				eClassConnectionPathProvider);
+		joiningConnectionProvider = new JoiningConnectionProvider(assetManager, eClassConnectionPathProvider);
 	}
 
 	@Override
-	protected void expandTargetSectionsCreatedByInstantiableHintGroup(InstantiableMappingHintGroup hintGroup) {
+	public void expandTargetSections(SelectedMappingRegistry selectedMappingRegistry) {
+
+		super.expandTargetSections(selectedMappingRegistry);
+
+		combineUnlinkedSectionsWithTargetModelRoot();
+	}
+
+	@Override
+	protected void doExpandTargetSectionsCreatedByInstantiableHintGroup(InstantiableMappingHintGroup hintGroup) {
 
 		joinTargetSectionsCreatedByInstantiableHintGroup(hintGroup);
 	}
 
-	void joinTargetSectionsCreatedByInstantiableHintGroup(InstantiableMappingHintGroup hintGroup) {
+	private void joinTargetSectionsCreatedByInstantiableHintGroup(InstantiableMappingHintGroup hintGroup) {
 
 		checkCanceled();
 

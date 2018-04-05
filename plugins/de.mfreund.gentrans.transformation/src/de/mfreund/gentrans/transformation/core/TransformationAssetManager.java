@@ -1,10 +1,9 @@
 /*******************************************************************************
  * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
- * 
- * This program and the accompanying materials are made
- * available under the terms of the Eclipse Public License 2.0
+ *
+ * This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0
  * which is available at https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0
  ******************************************************************************/
 /**
@@ -15,11 +14,15 @@ package de.mfreund.gentrans.transformation.core;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 
 import de.mfreund.gentrans.transformation.TransformationConfiguration;
 import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
@@ -45,9 +48,11 @@ import de.mfreund.gentrans.transformation.registries.TargetModelRegistry;
 import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import de.mfreund.gentrans.transformation.util.CancelableElement;
 import de.mfreund.gentrans.transformation.util.ICancelable;
+import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathProvider;
 import de.tud.et.ifa.agtele.genlibrary.processor.interfaces.LibraryPlugin;
 import pamtram.FixedValue;
 import pamtram.MatchSpecElement;
+import pamtram.TargetSectionModel;
 import pamtram.condition.Condition;
 import pamtram.mapping.GlobalAttribute;
 import pamtram.mapping.Mapping;
@@ -208,6 +213,12 @@ public class TransformationAssetManager extends CancelableElement {
 	private GenLibraryManager genLibraryManager;
 
 	/**
+	 * The {@link EClassConnectionPathProvider} used to determine connection paths between classes/instances in the
+	 * expanding phase of the transformation.
+	 */
+	private EClassConnectionPathProvider eClassConnectionPathProvider;
+
+	/**
 	 * This creates an instance using a default {@link Logger}.
 	 *
 	 * @see #TransformationAssetManager(TransformationConfiguration, Logger)
@@ -218,7 +229,7 @@ public class TransformationAssetManager extends CancelableElement {
 	public TransformationAssetManager(TransformationConfiguration transformationConfig) {
 
 		this.transformationConfig = transformationConfig;
-		this.objectsToCancel = new ArrayList<>();
+		objectsToCancel = new ArrayList<>();
 	}
 
 	/**
@@ -235,7 +246,7 @@ public class TransformationAssetManager extends CancelableElement {
 
 		this.transformationConfig = transformationConfig;
 		this.logger = logger;
-		this.objectsToCancel = new ArrayList<>();
+		objectsToCancel = new ArrayList<>();
 	}
 
 	/**
@@ -245,7 +256,7 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	public TransformationConfiguration getTransformationConfig() {
 
-		return this.transformationConfig;
+		return transformationConfig;
 	}
 
 	/**
@@ -253,9 +264,9 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	protected void initLogger() {
 
-		this.logger = Logger
+		logger = Logger
 				.getLogger("de.mfreund.gentrans.transformation " + DateFormat.getDateTimeInstance().format(new Date()));
-		this.logger.setLevel(this.transformationConfig.getLogLevel());
+		logger.setLevel(transformationConfig.getLogLevel());
 
 	}
 
@@ -266,11 +277,11 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	public Logger getLogger() {
 
-		if (this.logger == null) {
-			this.initLogger();
+		if (logger == null) {
+			initLogger();
 		}
 
-		return this.logger;
+		return logger;
 	}
 
 	/**
@@ -278,7 +289,7 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	protected void initGlobalValues() {
 
-		this.globalValues = new GlobalValueMap();
+		globalValues = new GlobalValueMap();
 	}
 
 	/**
@@ -288,11 +299,11 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	public GlobalValueMap getGlobalValues() {
 
-		if (this.globalValues == null) {
-			this.initGlobalValues();
+		if (globalValues == null) {
+			initGlobalValues();
 		}
 
-		return this.globalValues;
+		return globalValues;
 	}
 
 	/**
@@ -300,7 +311,7 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	protected void initElementIDs() {
 
-		this.elementIDs = new ElementIDMap();
+		elementIDs = new ElementIDMap();
 	}
 
 	/**
@@ -310,11 +321,11 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	public ElementIDMap getElementIDs() {
 
-		if (this.elementIDs == null) {
-			this.initElementIDs();
+		if (elementIDs == null) {
+			initElementIDs();
 		}
 
-		return this.elementIDs;
+		return elementIDs;
 	}
 
 	/**
@@ -322,7 +333,7 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	protected void initModelAccessUtil() {
 
-		this.modelAccessUtil = new ModelAccessUtil(this);
+		modelAccessUtil = new ModelAccessUtil(this);
 	}
 
 	/**
@@ -332,11 +343,11 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	public ModelAccessUtil getModelAccessUtil() {
 
-		if (this.modelAccessUtil == null) {
-			this.initModelAccessUtil();
+		if (modelAccessUtil == null) {
+			initModelAccessUtil();
 		}
 
-		return this.modelAccessUtil;
+		return modelAccessUtil;
 	}
 
 	/**
@@ -344,7 +355,7 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	protected void initMatchSpecHandler() {
 
-		this.matchSpecHandler = new MatchSpecHandler(this);
+		matchSpecHandler = new MatchSpecHandler(this);
 	}
 
 	/**
@@ -354,11 +365,11 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	public MatchSpecHandler getMatchSpecHandler() {
 
-		if (this.matchSpecHandler == null) {
-			this.initMatchSpecHandler();
+		if (matchSpecHandler == null) {
+			initMatchSpecHandler();
 		}
 
-		return this.matchSpecHandler;
+		return matchSpecHandler;
 	}
 
 	/**
@@ -366,7 +377,7 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	protected void initMatchedSectionRegistry() {
 
-		this.matchedSectionRegistry = new MatchedSectionRegistry(this);
+		matchedSectionRegistry = new MatchedSectionRegistry(this);
 	}
 
 	/**
@@ -376,11 +387,11 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	public MatchedSectionRegistry getMatchedSectionRegistry() {
 
-		if (this.matchedSectionRegistry == null) {
-			this.initMatchedSectionRegistry();
+		if (matchedSectionRegistry == null) {
+			initMatchedSectionRegistry();
 		}
 
-		return this.matchedSectionRegistry;
+		return matchedSectionRegistry;
 	}
 
 	/**
@@ -388,7 +399,7 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	protected void initSelectedMappingRegistry() {
 
-		this.selectedMappingRegistry = new SelectedMappingRegistry();
+		selectedMappingRegistry = new SelectedMappingRegistry();
 	}
 
 	/**
@@ -398,11 +409,11 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	public SelectedMappingRegistry getSelectedMappingRegistry() {
 
-		if (this.selectedMappingRegistry == null) {
-			this.initSelectedMappingRegistry();
+		if (selectedMappingRegistry == null) {
+			initSelectedMappingRegistry();
 		}
 
-		return this.selectedMappingRegistry;
+		return selectedMappingRegistry;
 	}
 
 	/**
@@ -410,9 +421,9 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	protected void initTargetSectionRegistry() {
 
-		this.targetSectionRegistry = new TargetSectionRegistry(this);
+		targetSectionRegistry = new TargetSectionRegistry(this);
 
-		this.objectsToCancel.add(this.targetSectionRegistry);
+		objectsToCancel.add(targetSectionRegistry);
 	}
 
 	/**
@@ -422,11 +433,11 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	public TargetSectionRegistry getTargetSectionRegistry() {
 
-		if (this.targetSectionRegistry == null) {
-			this.initTargetSectionRegistry();
+		if (targetSectionRegistry == null) {
+			initTargetSectionRegistry();
 		}
 
-		return this.targetSectionRegistry;
+		return targetSectionRegistry;
 	}
 
 	/**
@@ -434,7 +445,7 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	protected void initTargetModelRegistry() {
 
-		this.targetModelRegistry = new TargetModelRegistry(this, Optional.empty());
+		targetModelRegistry = new TargetModelRegistry(this, Optional.empty());
 	}
 
 	/**
@@ -444,11 +455,11 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	public TargetModelRegistry getTargetModelRegistry() {
 
-		if (this.targetModelRegistry == null) {
-			this.initTargetModelRegistry();
+		if (targetModelRegistry == null) {
+			initTargetModelRegistry();
 		}
 
-		return this.targetModelRegistry;
+		return targetModelRegistry;
 	}
 
 	/**
@@ -456,7 +467,7 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	protected void initValueModifierExecutor() {
 
-		this.valueModifierExecutor = new ValueModifierExecutor(this);
+		valueModifierExecutor = new ValueModifierExecutor(this);
 	}
 
 	/**
@@ -466,11 +477,11 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	public ValueModifierExecutor getValueModifierExecutor() {
 
-		if (this.valueModifierExecutor == null) {
-			this.initValueModifierExecutor();
+		if (valueModifierExecutor == null) {
+			initValueModifierExecutor();
 		}
 
-		return this.valueModifierExecutor;
+		return valueModifierExecutor;
 	}
 
 	/**
@@ -478,7 +489,7 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	protected void initValueCalculator() {
 
-		this.valueCalculator = new ValueCalculator(this);
+		valueCalculator = new ValueCalculator(this);
 	}
 
 	/**
@@ -488,11 +499,11 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	public ValueCalculator getValueCalculator() {
 
-		if (this.valueCalculator == null) {
-			this.initValueCalculator();
+		if (valueCalculator == null) {
+			initValueCalculator();
 		}
 
-		return this.valueCalculator;
+		return valueCalculator;
 	}
 
 	/**
@@ -500,7 +511,7 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	protected void initInstanceSelectorHandler() {
 
-		this.instanceSelectorHandler = new InstanceSelectorHandler(this);
+		instanceSelectorHandler = new InstanceSelectorHandler(this);
 	}
 
 	/**
@@ -510,11 +521,11 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	public InstanceSelectorHandler getInstanceSelectorHandler() {
 
-		if (this.instanceSelectorHandler == null) {
-			this.initInstanceSelectorHandler();
+		if (instanceSelectorHandler == null) {
+			initInstanceSelectorHandler();
 		}
 
-		return this.instanceSelectorHandler;
+		return instanceSelectorHandler;
 	}
 
 	/**
@@ -522,7 +533,7 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	protected void initValueConstraintReferenceValueCalculator() {
 
-		this.valueConstraintReferenceValueCalculator = new ValueConstraintReferenceValueCalculator(this);
+		valueConstraintReferenceValueCalculator = new ValueConstraintReferenceValueCalculator(this);
 	}
 
 	/**
@@ -532,11 +543,11 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	public ValueConstraintReferenceValueCalculator getValueConstraintReferenceValueCalculator() {
 
-		if (this.valueConstraintReferenceValueCalculator == null) {
-			this.initValueConstraintReferenceValueCalculator();
+		if (valueConstraintReferenceValueCalculator == null) {
+			initValueConstraintReferenceValueCalculator();
 		}
 
-		return this.valueConstraintReferenceValueCalculator;
+		return valueConstraintReferenceValueCalculator;
 	}
 
 	/**
@@ -544,7 +555,7 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	protected void initConditionHandler() {
 
-		this.conditionHandler = new ConditionHandler(this);
+		conditionHandler = new ConditionHandler(this);
 	}
 
 	/**
@@ -554,11 +565,11 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	public ConditionHandler getConditionHandler() {
 
-		if (this.conditionHandler == null) {
-			this.initConditionHandler();
+		if (conditionHandler == null) {
+			initConditionHandler();
 		}
 
-		return this.conditionHandler;
+		return conditionHandler;
 	}
 
 	/**
@@ -566,8 +577,8 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	protected void initMappingSelector() {
 
-		this.mappingSelector = new MappingSelector(this);
-		this.objectsToCancel.add(this.mappingSelector);
+		mappingSelector = new MappingSelector(this);
+		objectsToCancel.add(mappingSelector);
 	}
 
 	/**
@@ -577,11 +588,11 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	public MappingSelector getMappingSelector() {
 
-		if (this.mappingSelector == null) {
-			this.initMappingSelector();
+		if (mappingSelector == null) {
+			initMappingSelector();
 		}
 
-		return this.mappingSelector;
+		return mappingSelector;
 	}
 
 	/**
@@ -589,8 +600,8 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	protected void initHintValueExtractor() {
 
-		this.hintValueExtractor = new HintValueExtractor(this);
-		this.objectsToCancel.add(this.hintValueExtractor);
+		hintValueExtractor = new HintValueExtractor(this);
+		objectsToCancel.add(hintValueExtractor);
 	}
 
 	/**
@@ -600,11 +611,11 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	public HintValueExtractor getHintValueExtractor() {
 
-		if (this.hintValueExtractor == null) {
-			this.initHintValueExtractor();
+		if (hintValueExtractor == null) {
+			initHintValueExtractor();
 		}
 
-		return this.hintValueExtractor;
+		return hintValueExtractor;
 	}
 
 	/**
@@ -612,8 +623,8 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	protected void initGlobalAttributeValueExtractor() {
 
-		this.globalAttributeValueExtractor = new GlobalAttributeValueExtractor(this);
-		this.objectsToCancel.add(this.globalAttributeValueExtractor);
+		globalAttributeValueExtractor = new GlobalAttributeValueExtractor(this);
+		objectsToCancel.add(globalAttributeValueExtractor);
 	}
 
 	/**
@@ -623,11 +634,11 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	public GlobalAttributeValueExtractor getGlobalAttributeValueExtractor() {
 
-		if (this.globalAttributeValueExtractor == null) {
-			this.initGlobalAttributeValueExtractor();
+		if (globalAttributeValueExtractor == null) {
+			initGlobalAttributeValueExtractor();
 		}
 
-		return this.globalAttributeValueExtractor;
+		return globalAttributeValueExtractor;
 	}
 
 	/**
@@ -635,8 +646,8 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	protected void initSourceSectionMatcher() {
 
-		this.sourceSectionMatcher = new SourceSectionMatcher(this);
-		this.objectsToCancel.add(this.sourceSectionMatcher);
+		sourceSectionMatcher = new SourceSectionMatcher(this);
+		objectsToCancel.add(sourceSectionMatcher);
 	}
 
 	/**
@@ -646,11 +657,11 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	public SourceSectionMatcher getSourceSectionMatcher() {
 
-		if (this.sourceSectionMatcher == null) {
-			this.initSourceSectionMatcher();
+		if (sourceSectionMatcher == null) {
+			initSourceSectionMatcher();
 		}
 
-		return this.sourceSectionMatcher;
+		return sourceSectionMatcher;
 	}
 
 	/**
@@ -658,8 +669,8 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	protected void initTargetSectionInstantiator() {
 
-		this.targetSectionInstantiator = new TargetSectionInstantiator(this);
-		this.objectsToCancel.add(this.targetSectionInstantiator);
+		targetSectionInstantiator = new TargetSectionInstantiator(this);
+		objectsToCancel.add(targetSectionInstantiator);
 	}
 
 	/**
@@ -669,11 +680,11 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	public TargetSectionInstantiator getTargetSectionInstantiator() {
 
-		if (this.targetSectionInstantiator == null) {
-			this.initTargetSectionInstantiator();
+		if (targetSectionInstantiator == null) {
+			initTargetSectionInstantiator();
 		}
 
-		return this.targetSectionInstantiator;
+		return targetSectionInstantiator;
 	}
 
 	/**
@@ -681,8 +692,8 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	protected void initTargetSectionConnector() {
 
-		this.targetSectionConnector = new TargetSectionConnector(this);
-		this.objectsToCancel.add(this.targetSectionConnector);
+		targetSectionConnector = new TargetSectionConnector(this);
+		objectsToCancel.add(targetSectionConnector);
 	}
 
 	/**
@@ -692,11 +703,11 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	public TargetSectionConnector getTargetSectionConnector() {
 
-		if (this.targetSectionConnector == null) {
-			this.initTargetSectionConnector();
+		if (targetSectionConnector == null) {
+			initTargetSectionConnector();
 		}
 
-		return this.targetSectionConnector;
+		return targetSectionConnector;
 	}
 
 	/**
@@ -704,8 +715,8 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	protected void initTargetSectionLinker() {
 
-		this.targetSectionLinker = new TargetSectionLinker(this);
-		this.objectsToCancel.add(this.targetSectionLinker);
+		targetSectionLinker = new TargetSectionLinker(this);
+		objectsToCancel.add(targetSectionLinker);
 	}
 
 	/**
@@ -715,11 +726,11 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	public TargetSectionLinker getTargetSectionLinker() {
 
-		if (this.targetSectionLinker == null) {
-			this.initTargetSectionLinker();
+		if (targetSectionLinker == null) {
+			initTargetSectionLinker();
 		}
 
-		return this.targetSectionLinker;
+		return targetSectionLinker;
 	}
 
 	/**
@@ -727,7 +738,7 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	protected void initGenLibraryManager() {
 
-		this.genLibraryManager = new GenLibraryManager(this.transformationConfig.getLibPaths(), this.getLogger());
+		genLibraryManager = new GenLibraryManager(transformationConfig.getLibPaths(), getLogger());
 	}
 
 	/**
@@ -737,11 +748,36 @@ public class TransformationAssetManager extends CancelableElement {
 	 */
 	public GenLibraryManager getGenLibraryManager() {
 
-		if (this.genLibraryManager == null) {
-			this.initGenLibraryManager();
+		if (genLibraryManager == null) {
+			initGenLibraryManager();
 		}
 
-		return this.genLibraryManager;
+		return genLibraryManager;
+	}
+
+	/**
+	 * This initializes the {@link #eClassConnectionPathProvider}.
+	 */
+	protected void initEClassConnectionPathProvider() {
+
+		Set<EPackage> targetMetaModels = new LinkedHashSet<>(
+				getTransformationConfig().getPamtramModels().stream().flatMap(p -> p.getTargetSectionModels().stream())
+						.map(TargetSectionModel::getMetaModelPackage).collect(Collectors.toList()));
+		eClassConnectionPathProvider = EClassConnectionPathProvider.getInstance(targetMetaModels, logger);
+	}
+
+	/**
+	 * Returns the {@link #eClassConnectionPathProvider}.
+	 *
+	 * @return the {@link #eClassConnectionPathProvider}
+	 */
+	public EClassConnectionPathProvider getEClassConnectionPathProvider() {
+
+		if (eClassConnectionPathProvider == null) {
+			initEClassConnectionPathProvider();
+		}
+
+		return eClassConnectionPathProvider;
 	}
 
 	/**
@@ -751,6 +787,6 @@ public class TransformationAssetManager extends CancelableElement {
 	public void cancel() {
 
 		super.cancel();
-		this.objectsToCancel.parallelStream().forEach(ICancelable::cancel);
+		objectsToCancel.parallelStream().forEach(ICancelable::cancel);
 	}
 }

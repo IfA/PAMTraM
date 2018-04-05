@@ -21,7 +21,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
@@ -45,7 +44,6 @@ import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathProvider;
 import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathRequirement;
 import de.tud.et.ifa.agtele.emf.connecting.Length;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractExternalReferenceParameter;
-import pamtram.TargetSectionModel;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
@@ -106,11 +104,7 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 		targetSectionRegistry = assetManager.getTargetSectionRegistry();
 		instanceSelectorHandler = assetManager.getInstanceSelectorHandler();
 		ambiguityResolvingStrategy = assetManager.getTransformationConfig().getAmbiguityResolvingStrategy();
-
-		Set<EPackage> targetMetaModels = new LinkedHashSet<>(assetManager.getTransformationConfig().getPamtramModels()
-				.stream().flatMap(p -> p.getTargetSectionModels().stream()).map(TargetSectionModel::getMetaModelPackage)
-				.collect(Collectors.toList()));
-		eClassConnectionPathProvider = EClassConnectionPathProvider.getInstance(targetMetaModels, logger);
+		eClassConnectionPathProvider = assetManager.getEClassConnectionPathProvider();
 
 	}
 
@@ -599,111 +593,5 @@ public class TargetSectionLinker extends CancelableTransformationAsset {
 			}
 		}
 	}
-
-	// /**
-	// * This creates a link from the given {@link EObject source element} to the given {@link EObject target element}
-	// via
-	// * the non-containment reference specified by the given {@link TargetSectionCrossReference}.
-	// *
-	// * @param ref
-	// * The {@link TargetSectionCrossReference} that specifies the {@link EReference} to be used to create the
-	// * link.
-	// * @param target
-	// * The {@link EObject} to be linked to the <em>source</em> via the given reference.
-	// * @param source
-	// * The {@link EObject} being the source of the link to be created.
-	// */
-	// private void addValueToReference(final CrossReference<?, ?, ?, ?> ref, final EObject target, final EObject
-	// source) {
-	//
-	// if (ref instanceof TargetSectionCrossReference
-	// && ((TargetSectionCrossReference) ref).getEReference().getUpperBound() == 1) {
-	// if (source.eIsSet(((TargetSectionCrossReference) ref).getEReference())) {
-	//
-	// logger.warning(() -> "More than one value was supposed to be connected to the CrossReference '"
-	// + ref.getName() + "' in the target section '" + ref.getContainingSection().getName()
-	// + "'. Please check your mapping model.");
-	//
-	// } else {
-	// source.eSet(((TargetSectionCrossReference) ref).getEReference(), target);
-	// }
-	//
-	// } else {
-	//
-	// if (ref instanceof TargetSectionCrossReference) {
-	//
-	// @SuppressWarnings("unchecked")
-	// final EList<EObject> oldRefs = (EList<EObject>) source
-	// .eGet(((TargetSectionCrossReference) ref).getEReference());
-	// final LinkedList<EObject> newRefs = new LinkedList<>();
-	// if (oldRefs != null) {
-	// newRefs.addAll(oldRefs);
-	// }
-	// newRefs.add(target);
-	// source.eSet(((TargetSectionCrossReference) ref).getEReference(), newRefs);
-	//
-	// } else if (ref instanceof TargetSectionAnyContentCrossReference) {
-	// ExtendedMetaDataUtil.addAnyConent(source, target);
-	// } else {
-	// logger.severe(() -> "Unknown type of Reference '" + ref.eClass().getName() + "'!");
-	// }
-	//
-	// }
-	// }
-	//
-	// /**
-	// * This creates a link from the given {@link EObject source element} to the given list of {@link EObject target
-	// * elements} via the non-containment reference specified by the given {@link TargetSectionCrossReference}.
-	// *
-	// * @param ref
-	// * The {@link TargetSectionCrossReference} that specifies the {@link EReference} to be used to create the
-	// * link.
-	// * @param targets
-	// * The {@link EObject EObjects} to be linked to the <em>source</em> via the given reference.
-	// * @param source
-	// * The {@link EObject} being the source of the link to be created.
-	// */
-	// private void addValuesToReference(final CrossReference<?, ?, ?, ?> ref, final List<EObject> targets,
-	// final EObject source) {
-	//
-	// if (ref instanceof TargetSectionCrossReference
-	// && ((TargetSectionCrossReference) ref).getEReference().getUpperBound() == 1) {
-	// if (targets.size() > 1) {
-	//
-	// logger.warning(() -> "More than one value was supposed to be connected to the CrossReference '"
-	// + ref.getName() + "' in the target section '" + ref.getContainingSection().getName()
-	// + "'. Please check your mapping model.");
-	// } else if (targets.isEmpty()) {
-	//
-	// logger.warning(() -> "No value found to be connected to the CrossReference '" + ref.getName()
-	// + "' in the target section '" + ref.getContainingSection().getName()
-	// + "'. Please check your mapping model.");
-	// } else {
-	//
-	// addValueToReference(ref, targets.get(0), source);
-	// }
-	//
-	// } else {
-	//
-	// if (ref instanceof TargetSectionCrossReference) {
-	//
-	// @SuppressWarnings("unchecked")
-	// final EList<EObject> oldRefs = (EList<EObject>) source
-	// .eGet(((TargetSectionCrossReference) ref).getEReference());
-	// final LinkedList<EObject> newRefs = new LinkedList<>();
-	// if (oldRefs != null) {
-	// newRefs.addAll(oldRefs);
-	// }
-	// newRefs.addAll(targets);
-	// source.eSet(((TargetSectionCrossReference) ref).getEReference(), newRefs);
-	//
-	// } else if (ref instanceof TargetSectionAnyContentCrossReference) {
-	// ExtendedMetaDataUtil.addAnyConent(source, targets);
-	// } else {
-	// logger.severe(() -> "Unknown type of Reference '" + ref.eClass().getName() + "'!");
-	// }
-	//
-	// }
-	// }
 
 }

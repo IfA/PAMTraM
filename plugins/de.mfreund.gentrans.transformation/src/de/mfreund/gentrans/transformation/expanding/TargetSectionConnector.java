@@ -18,13 +18,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 
 import de.mfreund.gentrans.transformation.CancelTransformationException;
 import de.mfreund.gentrans.transformation.UserAbortException;
@@ -45,7 +43,6 @@ import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathInstantiator;
 import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathProvider;
 import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathRequirement;
 import de.tud.et.ifa.agtele.emf.connecting.Length;
-import pamtram.TargetSectionModel;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
@@ -122,13 +119,9 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 
 		standardPaths = new LinkedHashMap<>();
 		targetSectionRegistry = assetManager.getTargetSectionRegistry();
-
 		targetModelRegistry = assetManager.getTargetModelRegistry();
+		eClassConnectionPathProvider = assetManager.getEClassConnectionPathProvider();
 
-		Set<EPackage> targetMetaModels = new LinkedHashSet<>(assetManager.getTransformationConfig().getPamtramModels()
-				.stream().flatMap(p -> p.getTargetSectionModels().stream()).map(TargetSectionModel::getMetaModelPackage)
-				.collect(Collectors.toList()));
-		eClassConnectionPathProvider = EClassConnectionPathProvider.getInstance(targetMetaModels, logger);
 		// FIXME in the config, 0 means direct connection; in Length, 0 means no connection
 		int rawMaxPathLength = assetManager.getTransformationConfig().getMaxPathLength();
 		maxPathLength = Length.valueOf(rawMaxPathLength == -1 ? rawMaxPathLength : rawMaxPathLength + 1);

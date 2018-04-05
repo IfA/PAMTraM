@@ -10,7 +10,6 @@ package de.mfreund.gentrans.transformation.expanding;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -38,8 +37,6 @@ import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPath;
 import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathInstantiator;
 import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathRequirement;
 import pamtram.mapping.InstantiableMappingHintGroup;
-import pamtram.mapping.MappingHintGroupType;
-import pamtram.mapping.extended.ContainerSelector;
 import pamtram.structure.target.FileType;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionClass;
@@ -94,54 +91,34 @@ public class TargetSectionJoiner extends TargetSectionConnector {
 
 	private void joinCurrentHintGroup() {
 
-		TargetSection section = currentHintGroup.getTargetMMSectionGeneric();
+		List<EObjectWrapper> instancesToJoin = getInstancesToJoin(currentHintGroup, currentMappingInstanceDescriptor);
 
-		List<EObjectWrapper> instancesToConnect = getTargetElementsToConnect(currentHintGroup,
-				currentMappingInstanceDescriptor);
-
-		if (instancesToConnect.isEmpty()) {
-			return;
+		if (!instancesToJoin.isEmpty()) {
+			joinInstancesOfCurrentHintGroup(instancesToJoin);
 		}
-
-		if (section.getFile() != null) {
-
-			// do not join sections for that a 'file' is specified, those are
-			// simply added as root elements to that file
-			//
-			this.addToTargetModelRoot(instancesToConnect);
-			return;
-
-		}
-
-		List<ContainerSelector> containerSelectors = getContainerSelectorsInCurrentHintGroup();
-
-		List<EObjectWrapper> unconnectedInstances;
-		if (!containerSelectors.isEmpty()) { // link using ContainerSelector(s)
-
-			// Try to connect the instances with the given
-			// ContainerSelectors and collect the unconnectable instances
-			//
-			unconnectedInstances = joinWithContainerSelectors(instancesToConnect, currentHintGroup);
-
-		} else {
-
-			unconnectedInstances = joinWithoutContainerSelector(instancesToConnect, currentHintGroup);
-
-		}
-
-		// If there are still unconnected instances, we add them as new root elements
-		//
-		this.addToTargetModelRoot(unconnectedInstances);
 	}
 
-	private List<ContainerSelector> getContainerSelectorsInCurrentHintGroup() {
+	private void joinInstancesOfCurrentHintGroup(List<EObjectWrapper> instances) {
 
-		return currentMappingInstanceDescriptor.getMappingHints(currentHintGroup, true).stream()
-				.filter(ContainerSelector.class::isInstance).map(ContainerSelector.class::cast)
-				.collect(Collectors.toList());
+		List<JoiningConnection> selectedConnections = connectionProvider
+				.determineConnectionsToJoinInstances(currentMappingInstanceDescriptor, instances, currentHintGroup);
+
+		if (selectedConnections.isEmpty()) {
+
+			// Although none of the 'rootInstances' have been connected, we do not return them as 'unconnected
+			// instances'. The reason for this is that they will be connected later on when the 'unconnectableElements'
+			// are handled
+			//
+			registerAsUnconnectable(instances, currentHintGroup.getTargetMMSectionGeneric());
+			return;
+
+		}
+
+		instantiateConnectionsAndReturnUnconnectedElements(selectedConnections);
+
 	}
 
-	private List<EObjectWrapper> getTargetElementsToConnect(InstantiableMappingHintGroup hintGroup,
+	private List<EObjectWrapper> getInstancesToJoin(InstantiableMappingHintGroup hintGroup,
 			MappingInstanceDescriptor mappingInstance) {
 
 		return mappingInstance.getRootInstances(hintGroup);
@@ -397,45 +374,6 @@ public class TargetSectionJoiner extends TargetSectionConnector {
 	}
 
 	/**
-	 * Try to link the given list of 'rootInstances' (and therefore entire sections of the target model) to other
-	 * objects of the target model.
-	 * <p>
-	 * This method is used for connecting sections without model connection hints.
-	 *
-	 * @param rootInstances
-	 *            A list of {@link EObjectWrapper elements} to connect.
-	 * @param mappingGroup
-	 *            The {@link MappingHintGroupType} that is used.
-	 * @return A list of {@link EObjectWrapper instances} that could not be connected (a sub-list of the given
-	 *         <em>rootInstances</em> or an empty list). <br />
-	 *         Note: This will not contain those instances that have been determined as {@link #unconnectableElements
-	 *         <em>unconnectable</em>} as those are treated differently during
-	 *         {@link #combineUnlinkedSectionsWithTargetModelRoot()}.
-	 */
-	private List<EObjectWrapper> joinWithoutContainerSelector(final List<EObjectWrapper> rootInstances,
-			InstantiableMappingHintGroup mappingGroup) {
-
-		checkCanceled();
-
-		List<EClassConnectionPathBasedConnection> selectedConnections = connectionProvider
-				.selectConnectionsWithoutContainerSelector(rootInstances, mappingGroup);
-
-		if (selectedConnections.isEmpty()) {
-
-			// Although none of the 'rootInstances' have been connected, we do not return them as 'unconnected
-			// instances'. The reason for this is that they will be connected later on when the 'unconnectableElements'
-			// are handled
-			//
-			registerAsUnconnectable(rootInstances, mappingGroup.getTargetMMSectionGeneric());
-			return new ArrayList<>();
-
-		}
-
-		return instantiateConnectionsAndReturnUnconnectedElements(selectedConnections);
-
-	}
-
-	/**
 	 * Registers the given list of elements as {@link #unconnectableElements unconnectable} so that they will be
 	 * regarded by {@link #combineUnlinkedSectionsWithTargetModelRoot()}.
 	 *
@@ -460,41 +398,10 @@ public class TargetSectionJoiner extends TargetSectionConnector {
 		unconnectableElements.get(section.getEClass()).get(section).addAll(unconnectableInstances);
 	}
 
-	/**
-	 * Try to join the given list of 'rootInstances' (and therefore entire sections of the target model) with other
-	 * objects of the target model.
-	 * <p>
-	 * This method is used for connecting sections using a given {@link ContainerSelector}.
-	 *
-	 * @param rootInstances
-	 *            A list of {@link EObjectWrapper elements} to connect (created based on the given
-	 *            <em>mappingInstance</em>).
-	 * @param mappingGroup
-	 *            The {@link MappingHintGroupType} that is used.
-	 *
-	 * @return A list of {@link EObjectWrapper instances} that could not be connected (a sub-list of the given
-	 *         <em>rootInstances</em> or an empty list).
-	 */
-	private List<EObjectWrapper> joinWithContainerSelectors(final List<EObjectWrapper> rootInstances,
-			InstantiableMappingHintGroup mappingGroup) {
-
-		checkCanceled();
-
-		List<EClassConnectionPathBasedConnection> selectedConnections = connectionProvider
-				.selectConnectionsWithContainerSelector(currentMappingInstanceDescriptor, rootInstances, mappingGroup);
-
-		if (selectedConnections.isEmpty()) {
-			return Collections.unmodifiableList(rootInstances);
-		}
-
-		return instantiateConnectionsAndReturnUnconnectedElements(selectedConnections);
-	}
-
 	private List<EObjectWrapper> instantiateConnectionsAndReturnUnconnectedElements(
-			List<EClassConnectionPathBasedConnection> connections) {
+			List<JoiningConnection> connections) {
 
-		return connections.stream()
-				.flatMap(connection -> connection.instantiate(targetSectionRegistry, logger).stream())
+		return connections.stream().flatMap(connection -> connection.instantiate().stream())
 				.collect(Collectors.toList());
 	}
 

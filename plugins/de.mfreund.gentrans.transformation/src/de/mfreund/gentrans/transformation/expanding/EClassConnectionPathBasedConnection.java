@@ -13,11 +13,13 @@ package de.mfreund.gentrans.transformation.expanding;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
+import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPath;
 import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathInstantiator;
 
@@ -36,9 +38,9 @@ public class EClassConnectionPathBasedConnection extends AbstractConnection {
 	protected EClassConnectionPath connectionPath;
 
 	public EClassConnectionPathBasedConnection(EObjectWrapper startingElement, EClassConnectionPath connectionPath,
-			Collection<EObjectWrapper> targetElements) {
+			Collection<EObjectWrapper> targetElements, TargetSectionRegistry targetSectionRegistry, Logger logger) {
 
-		super(startingElement, targetElements);
+		super(startingElement, targetElements, targetSectionRegistry, logger);
 
 		this.connectionPath = connectionPath;
 	}

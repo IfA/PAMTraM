@@ -32,11 +32,15 @@ public abstract class AbstractConnection {
 
 	protected Logger logger;
 
-	public AbstractConnection(EObjectWrapper startingElement, Collection<EObjectWrapper> targetElements) {
+	public AbstractConnection(EObjectWrapper startingElement, Collection<EObjectWrapper> targetElements,
+			TargetSectionRegistry targetSectionRegistry, Logger logger) {
 
 		this.startingElement = startingElement;
 		this.targetElements = targetElements != null ? new ArrayList<>(targetElements) : new ArrayList<>();
+		this.targetSectionRegistry = targetSectionRegistry;
+		this.logger = logger;
 		unconnectedElements = new ArrayList<>(targetElements);
+
 	}
 
 	public EObjectWrapper getStartingElement() {
@@ -58,10 +62,7 @@ public abstract class AbstractConnection {
 	 * @return A list of elements (a subset of the {@link #targetElements}) that could not be connected (possibly
 	 *         because the capacity of the path was not large enough).
 	 */
-	public List<EObjectWrapper> instantiate(TargetSectionRegistry targetSectionRegistry, Logger logger) {
-
-		this.targetSectionRegistry = targetSectionRegistry;
-		this.logger = logger;
+	public List<EObjectWrapper> instantiate() {
 
 		try {
 			doInstantiate();

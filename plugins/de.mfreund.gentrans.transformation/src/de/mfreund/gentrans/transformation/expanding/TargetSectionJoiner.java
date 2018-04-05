@@ -36,9 +36,7 @@ import de.tud.et.ifa.agtele.emf.connecting.AllowedReferenceType;
 import de.tud.et.ifa.agtele.emf.connecting.Capacity;
 import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPath;
 import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathInstantiator;
-import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathProvider;
 import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathRequirement;
-import de.tud.et.ifa.agtele.emf.connecting.Length;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.extended.ContainerSelector;
@@ -51,25 +49,17 @@ import pamtram.structure.target.TargetSectionClass;
  *
  * @author mfreund
  */
-public class TargetSectionJoiner extends TargetSectionExpander {
+@SuppressWarnings("javadoc")
+public class TargetSectionJoiner extends TargetSectionConnector {
 
 	static final String RESOLVE_JOINING_AMBIGUITY_ENDED = "[Ambiguity] ...finished.\n";
 
 	static final String RESOLVE_JOINING_AMBIGUITY_STARTED = "[Ambiguity] Resolve joining ambiguity...";
 
-	// FIXME may convert this to a transformation asset as it is required by both the TargetSectionConnector and Linker?
-	private final EClassConnectionPathProvider eClassConnectionPathProvider;
-
 	/**
 	 * The {@link TargetModelRegistry} that is used to manage the various target models and their contents.
 	 */
 	private final TargetModelRegistry targetModelRegistry;
-
-	/**
-	 * The maximum length for connection paths that shall be considered by this TargetSectionConnector. If
-	 * 'maxPathLength' is set to '-1' or any other value below '0', connection paths of unbounded length are considered.
-	 */
-	private final Length maxPathLength;
 
 	/**
 	 * This keeps track of {@link TargetSectionClass TargetSectionClasses} and corresponding {@link EObjectWrapper
@@ -79,51 +69,34 @@ public class TargetSectionJoiner extends TargetSectionExpander {
 	 */
 	private final Map<EClass, Map<TargetSectionClass, List<EObjectWrapper>>> unconnectableElements;
 
-	private JoiningConnectionProvider joiningConnectionProvider;
-
-	/**
-	 * This creates an instance.
-	 *
-	 * @param assetManager
-	 *            The {@link TransformationAssetManager} providing access to the various other assets used in the
-	 *            current transformation instance.
-	 */
 	public TargetSectionJoiner(TransformationAssetManager assetManager) {
 
 		super(assetManager);
 
 		targetModelRegistry = assetManager.getTargetModelRegistry();
-		eClassConnectionPathProvider = assetManager.getEClassConnectionPathProvider();
-
-		// FIXME in the config, 0 means direct connection; in Length, 0 means no connection
-		int rawMaxPathLength = assetManager.getTransformationConfig().getMaxPathLength();
-		maxPathLength = Length.valueOf(rawMaxPathLength == -1 ? rawMaxPathLength : rawMaxPathLength + 1);
-
 		unconnectableElements = new LinkedHashMap<>();
-		joiningConnectionProvider = new JoiningConnectionProvider(assetManager, eClassConnectionPathProvider);
+		connectionProvider = new JoiningConnectionProvider(assetManager, eClassConnectionPathProvider);
 	}
 
 	@Override
-	public void expandTargetSections(SelectedMappingRegistry selectedMappingRegistry) {
+	public void expandMappingInstances(SelectedMappingRegistry selectedMappingRegistry) {
 
-		super.expandTargetSections(selectedMappingRegistry);
+		super.expandMappingInstances(selectedMappingRegistry);
 
 		combineUnlinkedSectionsWithTargetModelRoot();
 	}
 
 	@Override
-	protected void doExpandTargetSectionsCreatedByInstantiableHintGroup(InstantiableMappingHintGroup hintGroup) {
+	protected void doConnectCurrentHintGroup() {
 
-		joinTargetSectionsCreatedByInstantiableHintGroup(hintGroup);
+		joinTargetSectionsCreatedByInstantiableHintGroup();
 	}
 
-	private void joinTargetSectionsCreatedByInstantiableHintGroup(InstantiableMappingHintGroup hintGroup) {
+	private void joinTargetSectionsCreatedByInstantiableHintGroup() {
 
-		checkCanceled();
+		TargetSection section = currentHintGroup.getTargetMMSectionGeneric();
 
-		TargetSection section = hintGroup.getTargetMMSectionGeneric();
-
-		List<EObjectWrapper> instancesToConnect = getTargetElementsToConnect(hintGroup,
+		List<EObjectWrapper> instancesToConnect = getTargetElementsToConnect(currentHintGroup,
 				currentMappingInstanceDescriptor);
 
 		if (instancesToConnect.isEmpty()) {
@@ -143,9 +116,9 @@ public class TargetSectionJoiner extends TargetSectionExpander {
 		// The active ContainerSelectors for this MappingHintGroups
 		//
 		// FIXME should be evaluated only by the provider
-		List<ContainerSelector> containerSelectors = currentMappingInstanceDescriptor.getMappingHints(hintGroup, true)
-				.stream().filter(ContainerSelector.class::isInstance).map(ContainerSelector.class::cast)
-				.collect(Collectors.toList());
+		List<ContainerSelector> containerSelectors = currentMappingInstanceDescriptor
+				.getMappingHints(currentHintGroup, true).stream().filter(ContainerSelector.class::isInstance)
+				.map(ContainerSelector.class::cast).collect(Collectors.toList());
 
 		List<EObjectWrapper> unconnectedInstances;
 		if (!containerSelectors.isEmpty()) { // link using ContainerSelector(s)
@@ -153,11 +126,11 @@ public class TargetSectionJoiner extends TargetSectionExpander {
 			// Try to connect the instances with the given
 			// ContainerSelectors and collect the unconnectable instances
 			//
-			unconnectedInstances = joinWithContainerSelectors(instancesToConnect, hintGroup);
+			unconnectedInstances = joinWithContainerSelectors(instancesToConnect, currentHintGroup);
 
 		} else {
 
-			unconnectedInstances = joinWithoutContainerSelector(instancesToConnect, hintGroup);
+			unconnectedInstances = joinWithoutContainerSelector(instancesToConnect, currentHintGroup);
 
 		}
 
@@ -442,7 +415,7 @@ public class TargetSectionJoiner extends TargetSectionExpander {
 
 		checkCanceled();
 
-		List<EClassConnectionPathBasedConnection> selectedConnections = joiningConnectionProvider
+		List<EClassConnectionPathBasedConnection> selectedConnections = connectionProvider
 				.selectConnectionsWithoutContainerSelector(rootInstances, mappingGroup);
 
 		if (selectedConnections.isEmpty()) {
@@ -505,7 +478,7 @@ public class TargetSectionJoiner extends TargetSectionExpander {
 
 		checkCanceled();
 
-		List<EClassConnectionPathBasedConnection> selectedConnections = joiningConnectionProvider
+		List<EClassConnectionPathBasedConnection> selectedConnections = connectionProvider
 				.selectConnectionsWithContainerSelector(currentMappingInstanceDescriptor, rootInstances, mappingGroup);
 
 		if (selectedConnections.isEmpty()) {

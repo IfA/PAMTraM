@@ -33,6 +33,7 @@ import de.mfreund.gentrans.transformation.calculation.ValueModifierExecutor;
 import de.mfreund.gentrans.transformation.condition.ConditionHandler;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
 import de.mfreund.gentrans.transformation.expanding.TargetSectionJoiner;
+import de.mfreund.gentrans.transformation.expanding.TargetSectionConnector;
 import de.mfreund.gentrans.transformation.expanding.TargetSectionInstantiator;
 import de.mfreund.gentrans.transformation.expanding.TargetSectionLinker;
 import de.mfreund.gentrans.transformation.maps.ElementIDMap;
@@ -198,7 +199,7 @@ public class TransformationAssetManager extends CancelableElement {
 	/**
 	 * The {@link TargetSectionJoiner} that is used to perform the <em>joining</em> phase of the transformation.
 	 */
-	private TargetSectionJoiner targetSectionJoiner;
+	private TargetSectionConnector targetSectionJoiner;
 
 	/**
 	 * The {@link TargetSectionLinker} that is used to perform the <em>linking</em> phase of the transformation.
@@ -701,7 +702,7 @@ public class TransformationAssetManager extends CancelableElement {
 	 *
 	 * @return the {@link #targetSectionJoiner}
 	 */
-	public TargetSectionJoiner getTargetSectionJoiner() {
+	public TargetSectionConnector getTargetSectionJoiner() {
 
 		if (targetSectionJoiner == null) {
 			initTargetSectionJoiner();

@@ -31,15 +31,12 @@ import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.HintValueStorage;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
-import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
-import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import de.tud.et.ifa.agtele.emf.connecting.AllowedReferenceType;
 import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPath;
 import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathInstantiator;
 import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathInstantiator.EClassConnectionPathInstantiationException;
-import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathProvider;
 import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathRequirement;
 import de.tud.et.ifa.agtele.emf.connecting.Length;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractExternalReferenceParameter;
@@ -52,7 +49,6 @@ import pamtram.structure.generic.CrossReference;
 import pamtram.structure.library.ExternalReferenceParameter;
 import pamtram.structure.library.LibraryEntry;
 import pamtram.structure.library.LibraryPackage;
-import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionAnyContentCrossReference;
 import pamtram.structure.target.TargetSectionClass;
 import pamtram.structure.target.TargetSectionCompositeReference;
@@ -64,30 +60,17 @@ import pamtram.structure.target.TargetSectionCrossReference;
  *
  * @author mfreund
  */
-public class TargetSectionLinker extends TargetSectionExpander {
+public class TargetSectionLinker extends TargetSectionConnector {
 
 	private static final String RESOLVE_LINKING_AMBIGUITY_STARTED = "[Ambiguity] Resolve linking ambiguity...";
 
 	private static final String RESOLVE_LINKING_AMBIGUITY_FINISHED = "[Ambiguity] ...finished.\n";
 
 	/**
-	 * target section registry used when instantiating classes
-	 */
-	private final TargetSectionRegistry targetSectionRegistry;
-
-	/**
 	 * The {@link InstanceSelectorHandler} used to evaluate modeled {@link ReferenceTargetSelector
 	 * ReferenceTargetSelectors}.
 	 */
 	private InstanceSelectorHandler instanceSelectorHandler;
-
-	/**
-	 * This is the {@link IAmbiguityResolvingStrategy} that shall be used to resolve ambiguities that arise during the
-	 * execution of the transformation.
-	 */
-	private IAmbiguityResolvingStrategy ambiguityResolvingStrategy;
-
-	private EClassConnectionPathProvider eClassConnectionPathProvider;
 
 	/**
 	 * This creates an instance.
@@ -100,99 +83,59 @@ public class TargetSectionLinker extends TargetSectionExpander {
 
 		super(assetManager);
 
-		targetSectionRegistry = assetManager.getTargetSectionRegistry();
 		instanceSelectorHandler = assetManager.getInstanceSelectorHandler();
-		ambiguityResolvingStrategy = assetManager.getTransformationConfig().getAmbiguityResolvingStrategy();
-		eClassConnectionPathProvider = assetManager.getEClassConnectionPathProvider();
+		maxPathLength = Length.DIRECT_CONNECTION;
 
 	}
 
 	@Override
-	protected void doExpandTargetSectionsCreatedByInstantiableHintGroup(InstantiableMappingHintGroup hintGroup) {
+	protected void doConnectCurrentHintGroup() {
 
-		linkTargetSectionsCreatedByInstantiableHintGroup(hintGroup);
+		linkAllCrossReferences();
 	}
 
-	/**
-	 * Link the {@link TargetSection TargetSections} created by the given <em>hintGroup</em> using the specified
-	 * {@link MappingInstanceDescriptor mappingInstance}.
-	 *
-	 * @param hintGroup
-	 *            The {@link InstantiableMappingHintGroup} of which the created {@link TargetSection TargetSections}
-	 *            shall be linked.
-	 */
-	private void linkTargetSectionsCreatedByInstantiableHintGroup(InstantiableMappingHintGroup hintGroup) {
+	private void linkAllCrossReferences() {
 
-		// Only go on if any instances of this section were created
-		//
-		if (currentMappingInstanceDescriptor.getInstances(hintGroup, hintGroup.getTargetMMSectionGeneric()).isEmpty()) {
-			return;
-		}
+		List<TargetSectionCrossReference> crossReferences = collectContainedCrossReferencesRecursively(
+				currentHintGroup.getTargetMMSectionGeneric());
 
-		// The list of CrossReferences for that we need to find target elements
-		//
-		List<TargetSectionCrossReference> nonContainmentReferences = collectCrossReferencesRecursively(
-				hintGroup.getTargetMMSectionGeneric());
-
-		// Link all found CrossReferences
-		//
-		nonContainmentReferences.stream().forEach(ref -> linkTargetSectionReference(hintGroup, ref));
+		crossReferences.stream().forEach(this::linkCrossReference);
 
 	}
 
-	/**
-	 * Recursively collect all {@link CrossReference TargetSectionCrossReferences} that are defined as part of the given
-	 * {@link TargetSectionClass}.
-	 * <p />
-	 * Note: This also collects the CrossReferences that are part of an {@link ExternalReferenceParameter} if the given
-	 * <em>targetSectionClass</em> is a {@link TargetSection#isLibraryEntry() library entry}.
-	 *
-	 * @param targetSectionClass
-	 *            The {@link TargetSectionClass} for that the CrossReferences shall be collected.
-	 * @return The list of {@link CrossReference TargetSectionCrossReferences} defined as part of the given
-	 *         <em>targetSectionClass</em> or any contained TargetSectionClass.
-	 */
-	private List<TargetSectionCrossReference> collectCrossReferencesRecursively(TargetSectionClass targetSectionClass) {
+	private List<TargetSectionCrossReference> collectContainedCrossReferencesRecursively(
+			TargetSectionClass targetSectionClass) {
 
-		// All CrossReferences defined as direct children of the given 'targetSectionClass'
-		//
-		List<TargetSectionCrossReference> crossReferences = targetSectionClass.getAllReferences().stream()
-				.filter(ref -> ref instanceof TargetSectionCrossReference).map(ref -> (TargetSectionCrossReference) ref)
-				.collect(Collectors.toList());
+		List<TargetSectionCrossReference> recursivelyContainedCrossReferences = new ArrayList<>();
 
-		// Now, iterate further downward in the containment hierarchy defined by the 'CompositeReferences' of the given
-		// 'targetSectionClass' and collect the contained 'CrossReferences'
-		//
-		List<TargetSectionClass> containedClasses = targetSectionClass.getAllReferences().stream()
-				.filter(ref -> ref instanceof TargetSectionCompositeReference)
-				.flatMap(ref -> ((TargetSectionCompositeReference) ref).getValue().stream())
-				.collect(Collectors.toList());
+		List<TargetSectionCrossReference> directlyContainedCrossReferences = targetSectionClass.getAllReferences()
+				.stream().filter(TargetSectionCrossReference.class::isInstance)
+				.map(TargetSectionCrossReference.class::cast).collect(Collectors.toList());
+
+		recursivelyContainedCrossReferences.addAll(directlyContainedCrossReferences);
+
+		List<TargetSectionCompositeReference> directlyContainedCompositeReferences = targetSectionClass
+				.getAllReferences().stream().filter(TargetSectionCompositeReference.class::isInstance)
+				.map(TargetSectionCompositeReference.class::cast).collect(Collectors.toList());
+
+		List<TargetSectionClass> containedClasses = directlyContainedCompositeReferences.stream()
+				.flatMap(r -> r.getValue().stream()).collect(Collectors.toList());
 
 		for (TargetSectionClass containedClass : containedClasses) {
-			crossReferences.addAll(collectCrossReferencesRecursively(containedClass));
+			recursivelyContainedCrossReferences.addAll(collectContainedCrossReferencesRecursively(containedClass));
 		}
 
-		return crossReferences;
+		return recursivelyContainedCrossReferences;
 	}
 
-	/**
-	 * Link the given {@link TargetSectionCrossReference}, i.e. find target elements for the various target model
-	 * elements created by the given <em>hintGroup</em> of the given {@link MappingInstanceDescriptor}.
-	 *
-	 * @param hintGroup
-	 *            The {@link InstantiableMappingHintGroup} of which the created {@link TargetSection TargetSections}
-	 *            shall be linked.
-	 * @param ref
-	 *            The {@link TargetSectionCrossReference} for that the target elements shall be determined.
-	 */
-	private void linkTargetSectionReference(InstantiableMappingHintGroup hintGroup, TargetSectionCrossReference ref) {
+	private void linkCrossReference(TargetSectionCrossReference ref) {
 
 		// We are searching for target elements for instances of this class
 		//
 		final TargetSectionClass targetSectionClass = !ref.isLibraryEntry() ? (TargetSectionClass) ref.eContainer()
 				: ref.getContainingSection();
 
-		List<EObjectWrapper> instancesToLink = currentMappingInstanceDescriptor.getInstances(hintGroup,
+		List<EObjectWrapper> instancesToLink = currentMappingInstanceDescriptor.getInstances(currentHintGroup,
 				targetSectionClass);
 
 		if (instancesToLink.isEmpty()) {
@@ -204,7 +147,7 @@ public class TargetSectionLinker extends TargetSectionExpander {
 		// Collect ReferenceTargetSelectors that affect the current reference
 		//
 		List<ReferenceTargetSelector> referenceTargetSelectorsToConcider = currentMappingInstanceDescriptor
-				.getMappingHints(hintGroup, true).parallelStream()
+				.getMappingHints(currentHintGroup, true).parallelStream()
 				.filter(h -> h instanceof ReferenceTargetSelector
 						&& ((ReferenceTargetSelector) h).getAffectedReference().equals(ref))
 				.map(h -> (ReferenceTargetSelector) h).collect(Collectors.toList());
@@ -215,7 +158,7 @@ public class TargetSectionLinker extends TargetSectionExpander {
 			//
 			for (ReferenceTargetSelector referenceTargetSelector : referenceTargetSelectorsToConcider) {
 
-				linkWithReferenceTargetSelector(hintGroup, currentMappingInstanceDescriptor.getHintValues(),
+				linkWithReferenceTargetSelector(currentHintGroup, currentMappingInstanceDescriptor.getHintValues(),
 						instancesToLink, ref, referenceTargetSelector);
 			}
 
@@ -223,7 +166,7 @@ public class TargetSectionLinker extends TargetSectionExpander {
 
 			// Link the created instances using the 'value' of the reference or no hint at all
 			//
-			linkWithoutReferenceTargetSelector(hintGroup, instancesToLink, ref);
+			linkWithoutReferenceTargetSelector(currentHintGroup, instancesToLink, ref);
 		}
 
 	}

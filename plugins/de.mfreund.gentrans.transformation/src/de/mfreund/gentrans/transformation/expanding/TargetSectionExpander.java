@@ -16,7 +16,6 @@ import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.MappingHintGroup;
 import pamtram.mapping.MappingHintGroupImporter;
-import pamtram.structure.target.TargetSection;
 
 /**
  * An abstract base implementation for workers that are able to perform some aspects of the <em>expanding</em> step of
@@ -33,6 +32,8 @@ public abstract class TargetSectionExpander extends CancelableTransformationAsse
 
 	protected MappingInstanceDescriptor currentMappingInstanceDescriptor;
 
+	protected InstantiableMappingHintGroup currentHintGroup;
+
 	public TargetSectionExpander(TransformationAssetManager assetManager) {
 
 		super(assetManager);
@@ -42,32 +43,30 @@ public abstract class TargetSectionExpander extends CancelableTransformationAsse
 	}
 
 	/**
-	 * Join the instantiated {@link TargetSection TargetSections}.
+	 * Expand all {@link MappingInstanceDescriptor MappingInstanceDescriptors} stored in the given
+	 * {@link SelectedMappingRegistry}.
 	 *
 	 * @param selectedMappingRegistry
-	 *            The {@link SelectedMappingRegistry} providing all the {@link MappingInstanceDescriptor Mapping
-	 *            instances} whose {@link TargetSection TargetSections} shall be joined.
 	 */
-	public void expandTargetSections(SelectedMappingRegistry selectedMappingRegistry) {
+	public void expandMappingInstances(SelectedMappingRegistry selectedMappingRegistry) {
 
 		List<MappingInstanceDescriptor> mappingInstanceDescriptors = selectedMappingRegistry.getMappingInstaces();
 
-		expandTargetSectionsCreatedByMappingInstances(mappingInstanceDescriptors);
+		expandMappingInstances(mappingInstanceDescriptors);
 	}
 
-	protected void expandTargetSectionsCreatedByMappingInstances(
-			List<MappingInstanceDescriptor> mappingInstanceDescriptors) {
+	protected void expandMappingInstances(List<MappingInstanceDescriptor> mappingInstanceDescriptors) {
 
-		mappingInstanceDescriptors.stream().forEach(this::expandTargetSectionsCreatedByMappingInstance);
+		mappingInstanceDescriptors.stream().forEach(this::expandMappingInstance);
 	}
 
-	protected void expandTargetSectionsCreatedByMappingInstance(MappingInstanceDescriptor mappingInstanceDescriptor) {
+	protected void expandMappingInstance(MappingInstanceDescriptor mappingInstanceDescriptor) {
 
 		currentMappingInstanceDescriptor = mappingInstanceDescriptor;
 
 		List<InstantiableMappingHintGroup> activeInstantiableHintGroups = getInstantiableHintGroupsOfCurrentMappingInstance();
 
-		activeInstantiableHintGroups.forEach(this::doExpandTargetSectionsCreatedByInstantiableHintGroup);
+		activeInstantiableHintGroups.forEach(this::expandInstantiableHintGroup);
 
 	}
 
@@ -85,21 +84,18 @@ public abstract class TargetSectionExpander extends CancelableTransformationAsse
 
 	}
 
-	protected void expandTargetSectionsCreatedByInstantiableHintGroup(InstantiableMappingHintGroup hintGroup) {
+	protected void expandInstantiableHintGroup(InstantiableMappingHintGroup hintGroup) {
 
+		currentHintGroup = hintGroup;
 		checkCanceled();
-		doExpandTargetSectionsCreatedByInstantiableHintGroup(hintGroup);
+		doExpandCurrentHintGroup();
 	}
 
 	/**
-	 * The actual work needs to be implemented here depending on the concrete aspect of the <em>expanding</em> phase
-	 * that is handled by a concrete sub-class.
-	 *
-	 * @param hintGroup
-	 *            The {@link InstantiableMappingHintGroup} to be expanded for the
-	 *            {@link #currentMappingInstanceDescriptor}.
+	 * This performs the actual work necessary to <em>expand</em> the {@link #currentHintGroup} for the
+	 * {@link #currentMappingInstanceDescriptor} depending on the concrete aspect of the <em>expanding</em> phase that
+	 * is handled by the concrete sub-class.
 	 */
-	protected abstract void doExpandTargetSectionsCreatedByInstantiableHintGroup(
-			InstantiableMappingHintGroup hintGroup);
+	protected abstract void doExpandCurrentHintGroup();
 
 }

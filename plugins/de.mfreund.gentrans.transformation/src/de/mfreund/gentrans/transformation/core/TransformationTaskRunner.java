@@ -46,8 +46,8 @@ import de.mfreund.gentrans.transformation.TransformationConfiguration;
 import de.mfreund.gentrans.transformation.TransformationRunnerFactory;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
+import de.mfreund.gentrans.transformation.expanding.TargetSectionConnector;
 import de.mfreund.gentrans.transformation.expanding.TargetSectionInstantiator;
-import de.mfreund.gentrans.transformation.expanding.TargetSectionJoiner;
 import de.mfreund.gentrans.transformation.expanding.TargetSectionLinker;
 import de.mfreund.gentrans.transformation.matching.GlobalAttributeValueExtractor;
 import de.mfreund.gentrans.transformation.matching.HintValueExtractor;
@@ -383,9 +383,9 @@ public class TransformationTaskRunner extends CancelableElement {
 		 */
 		writePamtramMessage("Joining Instantiated TargetSections");
 
-		TargetSectionJoiner targetSectionJoiner = assetManager.getTargetSectionJoiner();
+		TargetSectionConnector targetSectionJoiner = assetManager.getTargetSectionJoiner();
 
-		targetSectionJoiner.expandTargetSections(assetManager.getSelectedMappingRegistry());
+		targetSectionJoiner.expandMappingInstances(assetManager.getSelectedMappingRegistry());
 
 	}
 
@@ -402,7 +402,7 @@ public class TransformationTaskRunner extends CancelableElement {
 
 		TargetSectionLinker targetSectionLinker = assetManager.getTargetSectionLinker();
 
-		targetSectionLinker.expandTargetSections(assetManager.getSelectedMappingRegistry());
+		targetSectionLinker.expandMappingInstances(assetManager.getSelectedMappingRegistry());
 
 	}
 

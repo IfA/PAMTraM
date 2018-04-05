@@ -57,7 +57,7 @@ import pamtram.structure.target.TargetSectionClass;
  *
  * @author mfreund
  */
-public class TargetSectionConnector extends CancelableTransformationAsset {
+public class TargetSectionJoiner extends CancelableTransformationAsset {
 
 	static final String RESOLVE_JOINING_AMBIGUITY_ENDED = "[Ambiguity] ...finished.\n";
 
@@ -113,7 +113,7 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 	 *            The {@link TransformationAssetManager} providing access to the various other assets used in the
 	 *            current transformation instance.
 	 */
-	public TargetSectionConnector(TransformationAssetManager assetManager) {
+	public TargetSectionJoiner(TransformationAssetManager assetManager) {
 
 		super(assetManager);
 
@@ -361,14 +361,14 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 			// Consult the specified resolving strategy to resolve the ambiguity.
 			//
 			try {
-				logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_STARTED);
+				logger.fine(TargetSectionJoiner.RESOLVE_JOINING_AMBIGUITY_STARTED);
 				List<EClass> resolved = ambiguityResolvingStrategy
 						.joiningSelectRootElement(new ArrayList<>(rootClassesFulfillingAllrequirements));
 				if (ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
 					((IAmbiguityResolvedAdapter) ambiguityResolvingStrategy).joiningRootElementSelected(
 							new ArrayList<>(rootClassesFulfillingAllrequirements), resolved.get(0));
 				}
-				logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_ENDED);
+				logger.fine(TargetSectionJoiner.RESOLVE_JOINING_AMBIGUITY_ENDED);
 				rootClass = resolved.get(0);
 
 			} catch (AmbiguityResolvingException e) {
@@ -434,14 +434,14 @@ public class TargetSectionConnector extends CancelableTransformationAsset {
 							 * Consult the specified resolving strategy to resolve the ambiguity.
 							 */
 							try {
-								logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_STARTED);
+								logger.fine(TargetSectionJoiner.RESOLVE_JOINING_AMBIGUITY_STARTED);
 								List<EClassConnectionPath> resolved = ambiguityResolvingStrategy
 										.joiningSelectConnectionPath(pathSet, (TargetSection) tSection);
 								if (ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
 									((IAmbiguityResolvedAdapter) ambiguityResolvingStrategy)
 											.joiningConnectionPathSelected(new ArrayList<>(pathSet), resolved.get(0));
 								}
-								logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_ENDED);
+								logger.fine(TargetSectionJoiner.RESOLVE_JOINING_AMBIGUITY_ENDED);
 								chosenPath = resolved.get(0);
 
 							} catch (AmbiguityResolvingException e) {

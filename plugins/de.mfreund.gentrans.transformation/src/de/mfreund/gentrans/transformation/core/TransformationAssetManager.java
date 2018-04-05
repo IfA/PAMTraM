@@ -32,7 +32,7 @@ import de.mfreund.gentrans.transformation.calculation.ValueConstraintReferenceVa
 import de.mfreund.gentrans.transformation.calculation.ValueModifierExecutor;
 import de.mfreund.gentrans.transformation.condition.ConditionHandler;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
-import de.mfreund.gentrans.transformation.expanding.TargetSectionConnector;
+import de.mfreund.gentrans.transformation.expanding.TargetSectionJoiner;
 import de.mfreund.gentrans.transformation.expanding.TargetSectionInstantiator;
 import de.mfreund.gentrans.transformation.expanding.TargetSectionLinker;
 import de.mfreund.gentrans.transformation.maps.ElementIDMap;
@@ -196,9 +196,9 @@ public class TransformationAssetManager extends CancelableElement {
 	private TargetSectionInstantiator targetSectionInstantiator;
 
 	/**
-	 * The {@link TargetSectionConnector} that is used to perform the <em>joining</em> phase of the transformation.
+	 * The {@link TargetSectionJoiner} that is used to perform the <em>joining</em> phase of the transformation.
 	 */
-	private TargetSectionConnector targetSectionConnector;
+	private TargetSectionJoiner targetSectionJoiner;
 
 	/**
 	 * The {@link TargetSectionLinker} that is used to perform the <em>linking</em> phase of the transformation.
@@ -688,26 +688,26 @@ public class TransformationAssetManager extends CancelableElement {
 	}
 
 	/**
-	 * This initializes the {@link #targetSectionConnector}.
+	 * This initializes the {@link #targetSectionJoiner}.
 	 */
-	protected void initTargetSectionConnector() {
+	protected void initTargetSectionJoiner() {
 
-		targetSectionConnector = new TargetSectionConnector(this);
-		objectsToCancel.add(targetSectionConnector);
+		targetSectionJoiner = new TargetSectionJoiner(this);
+		objectsToCancel.add(targetSectionJoiner);
 	}
 
 	/**
-	 * Returns the {@link #targetSectionConnector}.
+	 * Returns the {@link #targetSectionJoiner}.
 	 *
-	 * @return the {@link #targetSectionConnector}
+	 * @return the {@link #targetSectionJoiner}
 	 */
-	public TargetSectionConnector getTargetSectionConnector() {
+	public TargetSectionJoiner getTargetSectionJoiner() {
 
-		if (targetSectionConnector == null) {
-			initTargetSectionConnector();
+		if (targetSectionJoiner == null) {
+			initTargetSectionJoiner();
 		}
 
-		return targetSectionConnector;
+		return targetSectionJoiner;
 	}
 
 	/**

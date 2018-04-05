@@ -19,22 +19,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 import de.mfreund.gentrans.transformation.CancelTransformationException;
 import de.mfreund.gentrans.transformation.UserAbortException;
-import de.mfreund.gentrans.transformation.core.CancelableTransformationAsset;
 import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
-import de.mfreund.gentrans.transformation.registries.SelectedMappingRegistry;
 import de.mfreund.gentrans.transformation.registries.TargetModelRegistry;
-import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvedAdapter;
-import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
 import de.tud.et.ifa.agtele.emf.connecting.AllowedReferenceType;
 import de.tud.et.ifa.agtele.emf.connecting.Capacity;
@@ -44,8 +39,6 @@ import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathProvider;
 import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathRequirement;
 import de.tud.et.ifa.agtele.emf.connecting.Length;
 import pamtram.mapping.InstantiableMappingHintGroup;
-import pamtram.mapping.MappingHintGroup;
-import pamtram.mapping.MappingHintGroupImporter;
 import pamtram.mapping.MappingHintGroupType;
 import pamtram.mapping.extended.ContainerSelector;
 import pamtram.structure.target.FileType;
@@ -57,7 +50,7 @@ import pamtram.structure.target.TargetSectionClass;
  *
  * @author mfreund
  */
-public class TargetSectionJoiner extends CancelableTransformationAsset {
+public class TargetSectionJoiner extends TargetSectionExpander {
 
 	static final String RESOLVE_JOINING_AMBIGUITY_ENDED = "[Ambiguity] ...finished.\n";
 
@@ -68,11 +61,6 @@ public class TargetSectionJoiner extends CancelableTransformationAsset {
 	 * selected by the user for a given {@link MappingHintGroupType}.
 	 */
 	private final LinkedHashMap<InstantiableMappingHintGroup, EClassConnectionPath> standardPaths;
-
-	/**
-	 * The {@link TargetSectionRegistry} that is used when finding instances to which sections can be connected.
-	 */
-	private final TargetSectionRegistry targetSectionRegistry;
 
 	// FIXME may convert this to a transformation asset as it is required by both the TargetSectionConnector and Linker?
 	private final EClassConnectionPathProvider eClassConnectionPathProvider;
@@ -96,14 +84,6 @@ public class TargetSectionJoiner extends CancelableTransformationAsset {
 	 */
 	private final Map<EClass, Map<TargetSectionClass, List<EObjectWrapper>>> unconnectableElements;
 
-	/**
-	 * This is the {@link IAmbiguityResolvingStrategy} that shall be used to resolve ambiguities that arise during the
-	 * execution of the transformation.
-	 */
-	private IAmbiguityResolvingStrategy ambiguityResolvingStrategy;
-
-	private MappingInstanceDescriptor currentMappingInstanceDescriptor;
-
 	private JoiningConnectionProvider joiningConnectionProvider;
 
 	/**
@@ -118,64 +98,26 @@ public class TargetSectionJoiner extends CancelableTransformationAsset {
 		super(assetManager);
 
 		standardPaths = new LinkedHashMap<>();
-		targetSectionRegistry = assetManager.getTargetSectionRegistry();
+
 		targetModelRegistry = assetManager.getTargetModelRegistry();
 		eClassConnectionPathProvider = assetManager.getEClassConnectionPathProvider();
 
 		// FIXME in the config, 0 means direct connection; in Length, 0 means no connection
 		int rawMaxPathLength = assetManager.getTransformationConfig().getMaxPathLength();
 		maxPathLength = Length.valueOf(rawMaxPathLength == -1 ? rawMaxPathLength : rawMaxPathLength + 1);
-		ambiguityResolvingStrategy = assetManager.getTransformationConfig().getAmbiguityResolvingStrategy();
+
 		unconnectableElements = new LinkedHashMap<>();
 		joiningConnectionProvider = new JoiningConnectionProvider(assetManager, standardPaths,
 				eClassConnectionPathProvider);
 	}
 
-	/**
-	 * Join the instantiated {@link TargetSection TargetSections}.
-	 *
-	 * @param selectedMappingRegistry
-	 *            The {@link SelectedMappingRegistry} providing all the {@link MappingInstanceDescriptor Mapping
-	 *            instances} whose {@link TargetSection TargetSections} shall be joined.
-	 */
-	public void joinTargetSections(SelectedMappingRegistry selectedMappingRegistry) {
+	@Override
+	protected void expandTargetSectionsCreatedByInstantiableHintGroup(InstantiableMappingHintGroup hintGroup) {
 
-		List<MappingInstanceDescriptor> mappingInstanceDescriptors = selectedMappingRegistry.getMappingInstaces();
-
-		joinTargetSectionsCreatedByMappingInstances(mappingInstanceDescriptors);
+		joinTargetSectionsCreatedByInstantiableHintGroup(hintGroup);
 	}
 
-	private void joinTargetSectionsCreatedByMappingInstances(
-			List<MappingInstanceDescriptor> mappingInstanceDescriptors) {
-
-		mappingInstanceDescriptors.stream().forEach(this::joinTargetSectionsCreatedByMappingInstance);
-	}
-
-	private void joinTargetSectionsCreatedByMappingInstance(MappingInstanceDescriptor mappingInstanceDescriptor) {
-
-		currentMappingInstanceDescriptor = mappingInstanceDescriptor;
-
-		List<InstantiableMappingHintGroup> activeInstantiableHintGroups = getInstantiableHintGroupsOfCurrentMappingInstance();
-
-		activeInstantiableHintGroups.forEach(this::joinTargetSectionsCreatedByInstantiableHintGroup);
-
-	}
-
-	private List<InstantiableMappingHintGroup> getInstantiableHintGroupsOfCurrentMappingInstance() {
-
-		Stream<MappingHintGroup> activeMappingHintGroups = currentMappingInstanceDescriptor.getMappingHintGroups()
-				.stream().filter(g -> g.getTargetSection() != null && g instanceof MappingHintGroup)
-				.map(g -> (MappingHintGroup) g);
-
-		Stream<MappingHintGroupImporter> activeMappingHintGroupImporters = currentMappingInstanceDescriptor
-				.getMappingHintGroupImporters().stream()
-				.filter(i -> i.getHintGroup() != null && i.getHintGroup().getTargetSection() != null);
-
-		return Stream.concat(activeMappingHintGroups, activeMappingHintGroupImporters).collect(Collectors.toList());
-
-	}
-
-	private void joinTargetSectionsCreatedByInstantiableHintGroup(InstantiableMappingHintGroup hintGroup) {
+	void joinTargetSectionsCreatedByInstantiableHintGroup(InstantiableMappingHintGroup hintGroup) {
 
 		checkCanceled();
 

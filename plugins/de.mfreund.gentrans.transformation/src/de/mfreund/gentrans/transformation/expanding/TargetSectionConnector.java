@@ -3,7 +3,11 @@
  */
 package de.mfreund.gentrans.transformation.expanding;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
+import de.mfreund.gentrans.transformation.registries.SelectedMappingRegistry;
 import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathProvider;
 import de.tud.et.ifa.agtele.emf.connecting.Length;
 
@@ -22,6 +26,8 @@ public abstract class TargetSectionConnector extends TargetSectionExpander {
 
 	protected JoiningConnectionProvider connectionProvider;
 
+	protected List<AbstractConnection> connectionsToInstantiate;
+
 	public TargetSectionConnector(TransformationAssetManager assetManager) {
 
 		super(assetManager);
@@ -31,13 +37,22 @@ public abstract class TargetSectionConnector extends TargetSectionExpander {
 		// FIXME in the config, 0 means direct connection; in Length, 0 means no connection
 		int rawMaxPathLength = assetManager.getTransformationConfig().getMaxPathLength();
 		maxPathLength = Length.valueOf(rawMaxPathLength == -1 ? rawMaxPathLength : rawMaxPathLength + 1);
+		connectionsToInstantiate = new ArrayList<>();
+	}
+
+	@Override
+	public void expandMappingInstances(SelectedMappingRegistry selectedMappingRegistry) {
+
+		super.expandMappingInstances(selectedMappingRegistry);
+
+		instantiateConnections();
 	}
 
 	@Override
 	protected void doExpandCurrentHintGroup() {
 
 		if (hasCurrentMappinHintGroupBeenInstantiated()) {
-			doConnectCurrentHintGroup();
+			determineConnectionsToInstantiateForCurrentHintGroup();
 		}
 
 	}
@@ -47,5 +62,16 @@ public abstract class TargetSectionConnector extends TargetSectionExpander {
 		return !currentMappingInstanceDescriptor.getRootInstances(currentHintGroup).isEmpty();
 	}
 
-	protected abstract void doConnectCurrentHintGroup();
+	/**
+	 * Determine all {@link AbstractConnection AbstractConnections} that need to be instantiated in order to expand the
+	 * {@link TargetSectionExpander#currentHintGroup} and store them in the {@link #connectionsToInstantiate}. These
+	 * will be instantiated at the end of the {@link #expandMappingInstances(SelectedMappingRegistry) expanding}
+	 * process.
+	 */
+	protected abstract void determineConnectionsToInstantiateForCurrentHintGroup();
+
+	private void instantiateConnections() {
+
+		connectionsToInstantiate.stream().forEach(AbstractConnection::instantiate);
+	}
 }

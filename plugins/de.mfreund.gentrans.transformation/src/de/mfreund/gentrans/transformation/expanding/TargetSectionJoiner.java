@@ -9,6 +9,7 @@
 package de.mfreund.gentrans.transformation.expanding;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -27,17 +28,11 @@ import de.mfreund.gentrans.transformation.UserAbortException;
 import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
-import de.mfreund.gentrans.transformation.registries.SelectedMappingRegistry;
-import de.mfreund.gentrans.transformation.registries.TargetModelRegistry;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvedAdapter;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
 import de.tud.et.ifa.agtele.emf.connecting.AllowedReferenceType;
-import de.tud.et.ifa.agtele.emf.connecting.Capacity;
 import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPath;
-import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathInstantiator;
 import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathRequirement;
-import pamtram.mapping.InstantiableMappingHintGroup;
-import pamtram.structure.target.FileType;
 import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionClass;
 
@@ -54,161 +49,143 @@ public class TargetSectionJoiner extends TargetSectionConnector {
 	static final String RESOLVE_JOINING_AMBIGUITY_STARTED = "[Ambiguity] Resolve joining ambiguity...";
 
 	/**
-	 * The {@link TargetModelRegistry} that is used to manage the various target models and their contents.
-	 */
-	private final TargetModelRegistry targetModelRegistry;
-
-	/**
 	 * This keeps track of {@link TargetSectionClass TargetSectionClasses} and corresponding {@link EObjectWrapper
 	 * EObjects} for that no {@link ComplexEClassConnectionPath} could be determined. These elements are potential root
 	 * elements respectively need to be connected to a - yet to be created - root element. The key of the Map thereby
 	 * denotes the {@link EClass} that the TargetSectionClasses are associated with.
 	 */
-	private final Map<EClass, Map<TargetSectionClass, List<EObjectWrapper>>> unconnectableElements;
+	private final Map<EClass, Map<TargetSectionClass, List<EObjectWrapper>>> unconnectedElementRegistry;
+
+	private List<EObjectWrapper> unnconnectedInstances;
 
 	public TargetSectionJoiner(TransformationAssetManager assetManager) {
 
 		super(assetManager);
 
-		targetModelRegistry = assetManager.getTargetModelRegistry();
-		unconnectableElements = new LinkedHashMap<>();
+		unconnectedElementRegistry = new LinkedHashMap<>();
 		connectionProvider = new JoiningConnectionProvider(assetManager, eClassConnectionPathProvider);
 	}
 
 	@Override
-	public void expandMappingInstances(SelectedMappingRegistry selectedMappingRegistry) {
+	protected void expandMappingInstances(List<MappingInstanceDescriptor> mappingInstanceDescriptors) {
 
-		super.expandMappingInstances(selectedMappingRegistry);
+		super.expandMappingInstances(mappingInstanceDescriptors);
 
-		combineUnlinkedSectionsWithTargetModelRoot();
+		determineConnectionsToJoinUnconnectedElements();
 	}
 
 	@Override
-	protected void doConnectCurrentHintGroup() {
+	protected void determineConnectionsToInstantiateForCurrentHintGroup() {
 
-		joinCurrentHintGroup();
-	}
-
-	private void joinCurrentHintGroup() {
-
-		List<EObjectWrapper> instancesToJoin = getInstancesToJoin(currentHintGroup, currentMappingInstanceDescriptor);
+		List<EObjectWrapper> instancesToJoin = currentMappingInstanceDescriptor.getRootInstances(currentHintGroup);
 
 		if (!instancesToJoin.isEmpty()) {
-			joinInstancesOfCurrentHintGroup(instancesToJoin);
+			determineConnectionsToJoinInstancesOfCurrentHintGroup(instancesToJoin);
 		}
 	}
 
-	private void joinInstancesOfCurrentHintGroup(List<EObjectWrapper> instances) {
+	private void determineConnectionsToJoinInstancesOfCurrentHintGroup(List<EObjectWrapper> instances) {
 
 		List<JoiningConnection> selectedConnections = connectionProvider
 				.determineConnectionsToJoinInstances(currentMappingInstanceDescriptor, instances, currentHintGroup);
 
 		if (selectedConnections.isEmpty()) {
+			registerAsUnconnectable(instances);
 
-			// Although none of the 'rootInstances' have been connected, we do not return them as 'unconnected
-			// instances'. The reason for this is that they will be connected later on when the 'unconnectableElements'
-			// are handled
-			//
-			registerAsUnconnectable(instances, currentHintGroup.getTargetMMSectionGeneric());
-			return;
-
-		}
-
-		instantiateConnectionsAndReturnUnconnectedElements(selectedConnections);
-
-	}
-
-	private List<EObjectWrapper> getInstancesToJoin(InstantiableMappingHintGroup hintGroup,
-			MappingInstanceDescriptor mappingInstance) {
-
-		return mappingInstance.getRootInstances(hintGroup);
-	}
-
-	/**
-	 * This adds the given list of {@link EObjectWrapper elements} as root objects to a target model.
-	 * <p />
-	 * Note: The target model to use is determined by via the corresponding {@link EObjectWrapper#getFile() file}
-	 * attribute.
-	 *
-	 * @param elementsToAdd
-	 *            The list of {@link EObjectWrapper elements} to add.
-	 */
-	private void addToTargetModelRoot(final Collection<EObjectWrapper> elementsToAdd) {
-
-		if (elementsToAdd == null) {
-			return;
-		}
-
-		elementsToAdd.stream().forEach(this::addToTargetModelRoot);
-	}
-
-	/**
-	 * This adds the given {@link EObjectWrapper element} as root object to the target model.
-	 * <p />
-	 * Note: The target model to use is determined by via the corresponding {@link EObjectWrapper#getFile() file}
-	 * attribute.
-	 *
-	 * @param helper
-	 *            The {@link EObjectWrapper element} to add.
-	 */
-	private void addToTargetModelRoot(final EObjectWrapper helper) {
-
-		// the element to add
-		EObject element = helper.getEObject();
-
-		// the path of the target model
-		String path = helper.getFile();
-
-		// the file type of the target model
-		FileType fileType = helper.getFileType();
-
-		if (path.isEmpty()) {
-			targetModelRegistry.addToTargetModel(element);
 		} else {
-			targetModelRegistry.addToTargetModel(element, path, fileType);
+			connectionsToInstantiate.addAll(selectedConnections);
 		}
+
 	}
 
 	/**
-	 * This takes the list of {@link #unconnectableElements} and adds them to the target model.
+	 * Registers the given list of elements as {@link #unconnectedElementRegistry} so that they will be regarded by
+	 * {@link #determineConnectionsToJoinUnconnectedElements()}.
+	 *
+	 * @param unconnectableInstances
+	 *            The list of {@link EObjectWrapper elements} to register.
+	 * @param section
+	 *            The {@link TargetSection} that was responsible for creating the instances.
+	 */
+	private void registerAsUnconnectable(List<EObjectWrapper> unconnectableInstances) {
+
+		TargetSection targetSection = currentHintGroup.getTargetMMSectionGeneric();
+		EClass eClass = targetSection.getEClass();
+
+		if (!unconnectedElementRegistry.containsKey(eClass)) {
+
+			unconnectedElementRegistry.put(eClass, new LinkedHashMap<TargetSectionClass, List<EObjectWrapper>>());
+		}
+
+		if (!unconnectedElementRegistry.get(eClass).containsKey(targetSection)) {
+
+			unconnectedElementRegistry.get(eClass).put(targetSection, new LinkedList<EObjectWrapper>());
+		}
+
+		unconnectedElementRegistry.get(eClass).get(targetSection).addAll(unconnectableInstances);
+	}
+
+	/**
+	 * This takes the list of {@link #unconnectedElementRegistry} and adds them to the target model.
 	 * <p />
-	 * In the easiest case, the list of {@link #unconnectableElements} contains only a single element which will then be
-	 * used as root element. If multiple elements exist, this tries to determine a common root element and joins the
-	 * elements with it. If no common root element can be determined, multiple root elements are added to the target
+	 * In the easiest case, the list of {@link #unconnectedElementRegistry} contains only a single element which will
+	 * then be used as root element. If multiple elements exist, this tries to determine a common root element and joins
+	 * the elements with it. If no common root element can be determined, multiple root elements are added to the target
 	 * model.
 	 */
-	public void combineUnlinkedSectionsWithTargetModelRoot() {
+	private void determineConnectionsToJoinUnconnectedElements() {
 
 		checkCanceled();
 
-		// Nothing to do
-		//
-		if (unconnectableElements.isEmpty()) {
+		if (unconnectedElementRegistry.isEmpty()) {
 			return;
 		}
 
-		logger.info(() -> "Joining "
-				+ unconnectableElements.values().parallelStream().flatMap(v -> v.values().stream())
-						.flatMap(v2 -> v2.stream()).collect(Collectors.toList()).size()
+		unnconnectedInstances = unconnectedElementRegistry.values().stream().flatMap(v -> v.values().stream())
+				.flatMap(Collection::stream).collect(Collectors.toList());
+
+		logger.info(() -> "Joining " + unnconnectedInstances.size()
 				+ " unconnected instances with a target model root element...");
+
+		if (unnconnectedInstances.size() == 1) {
+			determineConnectionsToJoinSingleUnconnectedElement(unnconnectedInstances.get(0));
+
+		} else {
+			determineConnectionsToJoinMultipleUnconnectedElements();
+		}
+
+	}
+
+	private void determineConnectionsToJoinSingleUnconnectedElement(EObjectWrapper elementToJoin) {
 
 		// Only one element could not be connected -> we already have our root element
 		//
-		if (unconnectableElements.keySet().size() == 1
-				&& unconnectableElements.values().iterator().next().keySet().size() == 1
-				&& unconnectableElements.values().iterator().next().values().iterator().next().size() == 1) {
+		logger.info(() -> "Root element: The single instance of the target section '" + elementToJoin + "'.");
+		connectionsToInstantiate.add(
+				connectionProvider.determineConnectionToJoinInstancesWithTargetModelRoot(Arrays.asList(elementToJoin)));
+	}
 
-			this.addToTargetModelRoot(
-					unconnectableElements.values().iterator().next().values().iterator().next().get(0));
-			logger.info(() -> "Root element: The single instance of the target section '"
-					+ unconnectableElements.values().iterator().next().keySet().iterator().next().getName() + "'.");
-			return;
+	private void determineConnectionsToJoinMultipleUnconnectedElements() {
 
+		List<EClass> classesThatCanActAsCommonRoot = collectClassesThatCanActAsCommonRoot();
+
+		if (classesThatCanActAsCommonRoot.isEmpty()) {
+
+			logger.warning(
+					"No suitable root class found to join all unconnected elements. Adding to target model root...");
+
+			connectionsToInstantiate.add(
+					connectionProvider.determineConnectionToJoinInstancesWithTargetModelRoot(unnconnectedInstances));
+		} else {
+
+			determineConnectionsToJoinMultipleUnconnectedElements(classesThatCanActAsCommonRoot);
 		}
 
-		// Collect all classes that could act as common root for each of the unconnected elements
-		//
-		List<EClassConnectionPathRequirement> requirements = unconnectableElements.keySet().stream()
+	}
+
+	private List<EClass> collectClassesThatCanActAsCommonRoot() {
+
+		List<EClassConnectionPathRequirement> requirements = unconnectedElementRegistry.keySet().stream()
 				.map(e -> new EClassConnectionPathRequirement(e).withRequiredMaximumPathLength(maxPathLength)
 						.withAllowedReferenceType(AllowedReferenceType.CONTAINMENT))
 				.collect(Collectors.toList());
@@ -226,29 +203,59 @@ public class TargetSectionJoiner extends TargetSectionConnector {
 					.collect(Collectors.toCollection(LinkedHashSet::new)));
 
 		}
+		return rootClassesFulfillingAllrequirements;
+	}
 
-		checkCanceled();
+	private void determineConnectionsToJoinMultipleUnconnectedElements(List<EClass> classesThatCanActAsCommonRoot) {
 
-		if (rootClassesFulfillingAllrequirements.isEmpty()) {
+		EObjectWrapper newRootElement = instantiateNewRootElement(classesThatCanActAsCommonRoot);
 
-			// No common root class found
-			//
-			for (final EClass c : unconnectableElements.keySet()) {
+		connectionsToInstantiate.add(connectionProvider
+				.determineConnectionToJoinInstancesWithTargetModelRoot(Arrays.asList(newRootElement)));
 
-				logger.warning(() -> "No suitable path found for target class: " + c.getName());
+		for (final Entry<EClass, Map<TargetSectionClass, List<EObjectWrapper>>> unlinkeableEntry : unconnectedElementRegistry
+				.entrySet()) {
 
-				unconnectableElements.get(c).values().stream().forEach(this::addToTargetModelRoot);
+			for (TargetSectionClass targetSectionClass : unlinkeableEntry.getValue().keySet()) {
+
+				determineConnectionsToJoinUnconnectedElements(newRootElement, unlinkeableEntry, targetSectionClass);
 			}
-
-			return;
 		}
+	}
 
-		// The eClass that we will use for our new root element
-		//
+	private void determineConnectionsToJoinUnconnectedElements(EObjectWrapper newRootElement,
+			Entry<EClass, Map<TargetSectionClass, List<EObjectWrapper>>> unlinkeableEntry,
+			TargetSectionClass targetSectionClass) {
+
+		/*
+		 * It gets a bit tricky here. If there is more than one common container, we have to choose one. Then we need to
+		 * find all possible connections for each of the elements involved. Now we need to choose a connection for each
+		 * element. This might lead to us asking a lot of questions to the user.
+		 */
+		List<EObjectWrapper> instancesToJoin = unlinkeableEntry.getValue().get(targetSectionClass);
+
+		connectionsToInstantiate.add(connectionProvider.determineConnectionToJoinInstancesWithSpecificElement(
+				instancesToJoin, targetSectionClass, newRootElement));
+
+	}
+
+	private EObjectWrapper instantiateNewRootElement(List<EClass> classesThatCanActAsCommonRoot) {
+
+		EClass classToUseForNewRootElement = getRootClassToUse(classesThatCanActAsCommonRoot);
+
+		EObject newRootElement = classToUseForNewRootElement.getEPackage().getEFactoryInstance()
+				.create(classToUseForNewRootElement);
+
+		logger.info("Root element: '" + classToUseForNewRootElement.getName() + "' (generated)");
+		return new EObjectWrapper(newRootElement, targetSectionRegistry);
+	}
+
+	private EClass getRootClassToUse(List<EClass> classesThatCanActAsCommonRoot) {
+
 		EClass rootClass;
 
-		if (rootClassesFulfillingAllrequirements.size() == 1) {
-			rootClass = rootClassesFulfillingAllrequirements.iterator().next();
+		if (classesThatCanActAsCommonRoot.size() == 1) {
+			rootClass = classesThatCanActAsCommonRoot.iterator().next();
 
 		} else {
 
@@ -257,10 +264,10 @@ public class TargetSectionJoiner extends TargetSectionConnector {
 			try {
 				logger.fine(TargetSectionJoiner.RESOLVE_JOINING_AMBIGUITY_STARTED);
 				List<EClass> resolved = ambiguityResolvingStrategy
-						.joiningSelectRootElement(new ArrayList<>(rootClassesFulfillingAllrequirements));
+						.joiningSelectRootElement(new ArrayList<>(classesThatCanActAsCommonRoot));
 				if (ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
 					((IAmbiguityResolvedAdapter) ambiguityResolvingStrategy).joiningRootElementSelected(
-							new ArrayList<>(rootClassesFulfillingAllrequirements), resolved.get(0));
+							new ArrayList<>(classesThatCanActAsCommonRoot), resolved.get(0));
 				}
 				logger.fine(TargetSectionJoiner.RESOLVE_JOINING_AMBIGUITY_ENDED);
 				rootClass = resolved.get(0);
@@ -273,136 +280,12 @@ public class TargetSectionJoiner extends TargetSectionConnector {
 							() -> "The following exception occured during the resolving of an ambiguity concerning the selection of a common root class: "
 									+ e.getMessage());
 					logger.severe("Using default path instead...");
-					rootClass = rootClassesFulfillingAllrequirements.iterator().next();
+					rootClass = classesThatCanActAsCommonRoot.iterator().next();
 				}
 			}
 
 		}
-
-		// The new root element
-		//
-		final EObject containerInstance = rootClass.getEPackage().getEFactoryInstance().create(rootClass);
-
-		this.addToTargetModelRoot(new EObjectWrapper(containerInstance, targetSectionRegistry));
-
-		logger.info("Root element: '" + rootClass.getName() + "' (generated)");
-
-		for (final Entry<EClass, Map<TargetSectionClass, List<EObjectWrapper>>> unlinkeableEntry : unconnectableElements
-				.entrySet()) {
-
-			for (final TargetSectionClass tSection : unlinkeableEntry.getValue().keySet()) {
-				/*
-				 * It gets a bit tricky here. If there is more than one common container, we have to choose one. Then we
-				 * need to find all possible connections for each of the elements involved. Now we need to choose a
-				 * connection for each element. This might lead to us asking a lot of questions to the user.
-				 */
-				final int neededCapacity = unlinkeableEntry.getValue().get(tSection).size();
-				EClassConnectionPathRequirement connectionRequirement = new EClassConnectionPathRequirement(
-						unlinkeableEntry.getKey()).withRequiredStartingElement(containerInstance)
-								.withRequiredMaximumPathLength(maxPathLength)
-								.withRequiredMinimumCapacity(Capacity.valueOf(neededCapacity))
-								.withAllowedReferenceType(AllowedReferenceType.CONTAINMENT);
-
-				final List<EClassConnectionPath> pathSet = eClassConnectionPathProvider
-						.getConnections(connectionRequirement);
-
-				if (pathSet.isEmpty()) {
-
-					this.addToTargetModelRoot(unlinkeableEntry.getValue().get(tSection));// This
-					// should
-					// not
-					// have
-					// happened
-					// =>
-					// programming error
-					logger.severe("Error. Check container instantiation");
-
-				} else {
-
-					if (!pathSet.isEmpty()) {
-
-						EClassConnectionPath chosenPath = pathSet.get(0);
-
-						if (pathSet.size() > 1) {
-							/*
-							 * Consult the specified resolving strategy to resolve the ambiguity.
-							 */
-							try {
-								logger.fine(TargetSectionJoiner.RESOLVE_JOINING_AMBIGUITY_STARTED);
-								List<EClassConnectionPath> resolved = ambiguityResolvingStrategy
-										.joiningSelectConnectionPath(pathSet, (TargetSection) tSection);
-								if (ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
-									((IAmbiguityResolvedAdapter) ambiguityResolvingStrategy)
-											.joiningConnectionPathSelected(new ArrayList<>(pathSet), resolved.get(0));
-								}
-								logger.fine(TargetSectionJoiner.RESOLVE_JOINING_AMBIGUITY_ENDED);
-								chosenPath = resolved.get(0);
-
-							} catch (AmbiguityResolvingException e) {
-								if (e.getCause() instanceof UserAbortException) {
-									throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
-								} else {
-									logger.severe(
-											() -> "The following exception occured during the resolving of an ambiguity concerning an connection path: "
-													+ e.getMessage());
-									logger.severe("Using default path instead...");
-									chosenPath = pathSet.get(0);
-								}
-							}
-						}
-
-						// now instantiate path
-						List<EObject> elementsToConnect = unlinkeableEntry.getValue().get(tSection).stream()
-								.map(EObjectWrapper::getEObject).collect(Collectors.toList());
-						EClassConnectionPathInstantiator i = chosenPath.createInstantiator(containerInstance,
-								elementsToConnect);
-						i.instantiate();
-						i.getCreatedIntermediaryElements().stream().forEach(targetSectionRegistry::addClassInstance);
-
-						logger.info("Connected to root: " + tSection.getName() + ": " + chosenPath.toString());
-					} else {
-						logger.warning("The chosen container '" + rootClass.getName()
-								+ "' cannot fit the elements of the type '" + unlinkeableEntry.getKey().getName()
-								+ "', sorry.");
-						this.addToTargetModelRoot(unlinkeableEntry.getValue().get(tSection));
-					}
-
-				}
-			}
-		}
-
-	}
-
-	/**
-	 * Registers the given list of elements as {@link #unconnectableElements unconnectable} so that they will be
-	 * regarded by {@link #combineUnlinkedSectionsWithTargetModelRoot()}.
-	 *
-	 * @param unconnectableInstances
-	 *            The list of {@link EObjectWrapper elements} to register.
-	 * @param section
-	 *            The {@link TargetSection} that was responsible for creating the instances.
-	 */
-	private void registerAsUnconnectable(List<EObjectWrapper> unconnectableInstances, TargetSection section) {
-
-		if (!unconnectableElements.containsKey(section.getEClass())) {
-
-			unconnectableElements.put(section.getEClass(),
-					new LinkedHashMap<TargetSectionClass, List<EObjectWrapper>>());
-		}
-
-		if (!unconnectableElements.get(section.getEClass()).containsKey(section)) {
-
-			unconnectableElements.get(section.getEClass()).put(section, new LinkedList<EObjectWrapper>());
-		}
-
-		unconnectableElements.get(section.getEClass()).get(section).addAll(unconnectableInstances);
-	}
-
-	private List<EObjectWrapper> instantiateConnectionsAndReturnUnconnectedElements(
-			List<JoiningConnection> connections) {
-
-		return connections.stream().flatMap(connection -> connection.instantiate().stream())
-				.collect(Collectors.toList());
+		return rootClass;
 	}
 
 }

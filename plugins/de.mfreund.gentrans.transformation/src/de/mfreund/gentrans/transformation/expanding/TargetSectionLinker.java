@@ -89,12 +89,7 @@ public class TargetSectionLinker extends TargetSectionConnector {
 	}
 
 	@Override
-	protected void doConnectCurrentHintGroup() {
-
-		linkAllCrossReferencesInCurrentHintGroup();
-	}
-
-	private void linkAllCrossReferencesInCurrentHintGroup() {
+	protected void determineConnectionsToInstantiateForCurrentHintGroup() {
 
 		List<TargetSectionCrossReference> crossReferences = collectContainedCrossReferencesRecursively(
 				currentHintGroup.getTargetMMSectionGeneric());
@@ -182,7 +177,7 @@ public class TargetSectionLinker extends TargetSectionConnector {
 	 * Link the given {@link TargetSectionCrossReference} using the given {@link ReferenceTargetSelector}, i.e. find
 	 * target elements for the various target model elements created by the given <em>hintGroup</em> of the given
 	 * {@link MappingInstanceDescriptor}.
-	 * 
+	 *
 	 * @param sourceInstances
 	 *            The {@link EObjectWrapper instances} for which the target elements of the given
 	 *            {@link TargetSectionCrossReference} shall be determined.
@@ -243,6 +238,7 @@ public class TargetSectionLinker extends TargetSectionConnector {
 	/**
 	 * Link the given {@link TargetSectionCrossReference}, i.e. find target elements for the various target model
 	 * elements created by the given <em>hintGroup</em> of the given {@link MappingInstanceDescriptor}.
+	 * 
 	 * @param sourceInstances
 	 *            The {@link EObjectWrapper instances} for which the target elements of the given
 	 *            {@link TargetSectionCrossReference} shall be determined.

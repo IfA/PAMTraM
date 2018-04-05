@@ -55,12 +55,18 @@ public class JoiningConnectionProvider extends AbstractConnectionProvider {
 
 	private TargetModelRegistry targetModelRegistry;
 
+	private Length maxPathLength;
+
 	public JoiningConnectionProvider(TransformationAssetManager assetManager,
 			EClassConnectionPathProvider eClassConnectionPathProvider) {
 
 		super(assetManager, new LinkedHashMap<>(), eClassConnectionPathProvider);
 
 		targetModelRegistry = assetManager.getTargetModelRegistry();
+
+		// FIXME in the config, 0 means direct connection; in Length, 0 means no connection
+		int rawMaxPathLength = assetManager.getTransformationConfig().getMaxPathLength();
+		maxPathLength = Length.valueOf(rawMaxPathLength == -1 ? rawMaxPathLength : rawMaxPathLength + 1);
 
 	}
 
@@ -77,7 +83,7 @@ public class JoiningConnectionProvider extends AbstractConnectionProvider {
 		currentContainerSelectors = getActiveContainerSelectorsInCurrentHintGroup();
 
 		if (shallInstancesBeAddedToTargetModelRoot()) {
-			return determineConnectionsToJoinInstancesWithTargetModelRoot(instancesToJoin);
+			return Arrays.asList(determineConnectionToJoinInstancesWithTargetModelRoot(instancesToJoin));
 
 		} else if (currentContainerSelectors.isEmpty()) {
 			return determineConnectionsWithoutContainerSelector();
@@ -88,15 +94,90 @@ public class JoiningConnectionProvider extends AbstractConnectionProvider {
 
 	}
 
-	public List<JoiningConnection> determineConnectionsToJoinInstancesWithTargetModelRoot(
+	public JoiningConnection determineConnectionToJoinInstancesWithTargetModelRoot(
 			List<EObjectWrapper> instancesToJoin) {
 
-		return Arrays.asList(createConnectionToAddToTargetModelRoot(instancesToJoin));
+		currentContainerSelectors = null;
+		currentHintGroup = null;
+		currentInstancesToConnect = instancesToJoin;
+		currentContainerSelectors = Collections.emptyList();
+
+		return createConnectionToAddToTargetModelRoot(instancesToJoin);
+	}
+
+	public JoiningConnection determineConnectionToJoinInstancesWithSpecificElement(List<EObjectWrapper> instancesToJoin,
+			TargetSectionClass targetSectionClass, EObjectWrapper containerElement) {
+
+		currentContainerSelectors = null;
+		currentHintGroup = null;
+		currentInstancesToConnect = instancesToJoin;
+		currentContainerSelectors = Collections.emptyList();
+
+		final int neededCapacity = instancesToJoin.size();
+
+		EClassConnectionPathRequirement connectionRequirement = new EClassConnectionPathRequirement(
+				targetSectionClass.getEClass()).withRequiredStartingElement(containerElement.getEObject())
+						.withRequiredMaximumPathLength(maxPathLength)
+						.withRequiredMinimumCapacity(Capacity.valueOf(neededCapacity))
+						.withAllowedReferenceType(AllowedReferenceType.CONTAINMENT);
+
+		final List<EClassConnectionPath> pathSet = eClassConnectionPathProvider.getConnections(connectionRequirement);
+
+		if (pathSet.isEmpty()) {
+
+			return new JoiningConnection(instancesToJoin, targetSectionRegistry, targetModelRegistry, logger);
+
+		} else {
+
+			if (!pathSet.isEmpty()) {
+
+				EClassConnectionPath chosenPath = pathSet.get(0);
+
+				if (pathSet.size() > 1) {
+					/*
+					 * Consult the specified resolving strategy to resolve the ambiguity.
+					 */
+					try {
+						logger.fine(TargetSectionJoiner.RESOLVE_JOINING_AMBIGUITY_STARTED);
+						List<EClassConnectionPath> resolved = ambiguityResolvingStrategy
+								.joiningSelectConnectionPath(pathSet, (TargetSection) targetSectionClass);
+						if (ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
+							((IAmbiguityResolvedAdapter) ambiguityResolvingStrategy)
+									.joiningConnectionPathSelected(new ArrayList<>(pathSet), resolved.get(0));
+						}
+						logger.fine(TargetSectionJoiner.RESOLVE_JOINING_AMBIGUITY_ENDED);
+						chosenPath = resolved.get(0);
+
+					} catch (AmbiguityResolvingException e) {
+						if (e.getCause() instanceof UserAbortException) {
+							throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
+						} else {
+							logger.severe(
+									() -> "The following exception occured during the resolving of an ambiguity concerning an connection path: "
+											+ e.getMessage());
+							logger.severe("Using default path instead...");
+							chosenPath = pathSet.get(0);
+						}
+					}
+				}
+
+				logger.info("Connected to root: " + targetSectionClass.getName() + ": " + chosenPath.toString());
+				return new JoiningConnection(containerElement, instancesToJoin, chosenPath, targetSectionRegistry,
+						targetModelRegistry, logger);
+
+			} else {
+				logger.warning("The chosen container '" + containerElement.getEObject().eClass().getName()
+						+ "' cannot fit the elements of the type '" + targetSectionClass.getEClass().getName()
+						+ "', sorry.");
+				return new JoiningConnection(instancesToJoin, targetSectionRegistry, targetModelRegistry, logger);
+			}
+
+		}
 	}
 
 	private boolean shallInstancesBeAddedToTargetModelRoot() {
 
-		return currentHintGroup.getTargetMMSectionGeneric().getFile() != null;
+		return currentHintGroup != null && currentHintGroup.getTargetMMSectionGeneric().getFile() != null;
 	}
 
 	private JoiningConnection createConnectionToAddToTargetModelRoot(List<EObjectWrapper> instancesToJoin) {
@@ -105,6 +186,10 @@ public class JoiningConnectionProvider extends AbstractConnectionProvider {
 	}
 
 	private List<ContainerSelector> getActiveContainerSelectorsInCurrentHintGroup() {
+
+		if (currentMappingInstanceDescriptor == null || currentHintGroup == null) {
+			return Collections.emptyList();
+		}
 
 		return currentMappingInstanceDescriptor.getMappingHints(currentHintGroup, true).stream()
 				.filter(ContainerSelector.class::isInstance).map(ContainerSelector.class::cast)
@@ -180,10 +265,6 @@ public class JoiningConnectionProvider extends AbstractConnectionProvider {
 			final Optional<Set<EClass>> containerClasses, final EClass classToConnect) {
 
 		List<EClassConnectionPath> pathsToConsider = new LinkedList<>();
-
-		// FIXME in the config, 0 means direct connection; in Length, 0 means no connection
-		int rawMaxPathLength = assetManager.getTransformationConfig().getMaxPathLength();
-		Length maxPathLength = Length.valueOf(rawMaxPathLength == -1 ? rawMaxPathLength : rawMaxPathLength + 1);
 
 		if (containerClasses.isPresent()) {
 			// A list of possible 'containerClasses' has been passed as parameter so we need to restrict the list of
@@ -551,8 +632,8 @@ public class JoiningConnectionProvider extends AbstractConnectionProvider {
 		JoiningConnection connectionToInstantiate = new JoiningConnection(startingElement, targetElements,
 				connectionPath, targetSectionRegistry, targetModelRegistry, logger);
 
-		if (!standardConnectionsForHintGroups.containsKey(mappingGroup)
-				|| standardConnectionsForHintGroups.get(mappingGroup) != connectionPath) {
+		if (mappingGroup != null && (!standardConnectionsForHintGroups.containsKey(mappingGroup)
+				|| standardConnectionsForHintGroups.get(mappingGroup) != connectionPath)) {
 
 			standardConnectionsForHintGroups.put(mappingGroup, connectionPath);
 

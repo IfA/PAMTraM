@@ -5,6 +5,7 @@ package de.mfreund.gentrans.transformation.expanding;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -92,7 +93,7 @@ public abstract class AbstractConnectionProvider extends TransformationAsset imp
 			//
 			Map<EClassConnectionPath, List<EObjectWrapper>> limitedConnectionChoices = connectionChoices.entrySet()
 					.stream().filter(e -> e.getValue().size() == containerInstances.size())
-					.collect(Collectors.toMap(Entry::getKey, Entry::getValue));
+					.collect(Collectors.toMap(Entry::getKey, Entry::getValue, (v1, v2) -> v2, LinkedHashMap::new));
 
 			if (limitedConnectionChoices.isEmpty()) {
 				// Fall back to the 'default' behavior (use the same container instance for each root instance)
@@ -103,8 +104,8 @@ public abstract class AbstractConnectionProvider extends TransformationAsset imp
 				// Create a distinct connection for each pair of container/root instances
 				//
 				Map<EObjectWrapper, EObjectWrapper> containerInstanceByRootInstance = IntStream
-						.range(0, targetElements.size()).boxed()
-						.collect(Collectors.toMap(targetElements::get, containerInstances::get));
+						.range(0, targetElements.size()).boxed().collect(Collectors.toMap(targetElements::get,
+								containerInstances::get, (v1, v2) -> v2, LinkedHashMap::new));
 
 				selectedConnections.addAll(containerInstanceByRootInstance.entrySet().stream()
 						.map(e -> getConnectionToInstantiateBasedOnSingleStartingElementPossiblity(
@@ -231,17 +232,19 @@ public abstract class AbstractConnectionProvider extends TransformationAsset imp
 			return this.getConnectionFor(startingElement, targetElements, standardPath, mappingGroup);
 		}
 
-		Map<EClassConnectionPath, List<EObjectWrapper>> connectionChoices = connectionPaths.stream()
-				.collect(Collectors.toMap(Function.identity(), c -> Arrays.asList(startingElement)));
+		Map<EClassConnectionPath, List<EObjectWrapper>> connectionChoices = connectionPaths.stream().collect(Collectors
+				.toMap(Function.identity(), c -> Arrays.asList(startingElement), (v1, v2) -> v2, LinkedHashMap::new));
 
 		return getConnectionToInstantiateBasedOnMultipleStartingElementPossibilities(targetElements, connectionChoices,
 				mappingGroup);
 	}
 
-	private EClassConnectionPathBasedConnection getConnectionFor(EObjectWrapper startingElement, final List<EObjectWrapper> targetElements,
-			EClassConnectionPath connectionPath, InstantiableMappingHintGroup mappingGroup) {
+	private EClassConnectionPathBasedConnection getConnectionFor(EObjectWrapper startingElement,
+			final List<EObjectWrapper> targetElements, EClassConnectionPath connectionPath,
+			InstantiableMappingHintGroup mappingGroup) {
 
-		EClassConnectionPathBasedConnection connectionToInstantiate = new EClassConnectionPathBasedConnection(startingElement, connectionPath, targetElements);
+		EClassConnectionPathBasedConnection connectionToInstantiate = new EClassConnectionPathBasedConnection(
+				startingElement, connectionPath, targetElements);
 
 		if (!standardConnectionsForHintGroups.containsKey(mappingGroup)
 				|| standardConnectionsForHintGroups.get(mappingGroup) != connectionPath) {

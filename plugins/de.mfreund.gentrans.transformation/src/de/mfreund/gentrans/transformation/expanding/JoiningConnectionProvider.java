@@ -38,7 +38,7 @@ import pamtram.structure.target.TargetSectionClass;
  * @author mfreund
  */
 @SuppressWarnings("javadoc")
-public class JoiningConnectionProvider extends AbstractConnectionProvider implements ConnectionProvider {
+public class JoiningConnectionProvider extends AbstractConnectionProvider {
 
 	public JoiningConnectionProvider(TransformationAssetManager assetManager,
 			EClassConnectionPathProvider eClassConnectionPathProvider) {
@@ -108,10 +108,7 @@ public class JoiningConnectionProvider extends AbstractConnectionProvider implem
 			containerInstancesByConnectionPaths.put(connectionPath, containerInstancesForConnectionPath);
 		}
 
-		List<EClassConnectionPathBasedConnection> selectedConnections = selectConnections(rootInstances,
-				containerInstancesByConnectionPaths, mappingGroup);
-
-		return selectedConnections;
+		return selectConnections(rootInstances, containerInstancesByConnectionPaths, mappingGroup);
 	}
 
 	/**

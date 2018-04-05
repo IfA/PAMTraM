@@ -91,10 +91,10 @@ public class TargetSectionLinker extends TargetSectionConnector {
 	@Override
 	protected void doConnectCurrentHintGroup() {
 
-		linkAllCrossReferences();
+		linkAllCrossReferencesInCurrentHintGroup();
 	}
 
-	private void linkAllCrossReferences() {
+	private void linkAllCrossReferencesInCurrentHintGroup() {
 
 		List<TargetSectionCrossReference> crossReferences = collectContainedCrossReferencesRecursively(
 				currentHintGroup.getTargetMMSectionGeneric());
@@ -132,25 +132,17 @@ public class TargetSectionLinker extends TargetSectionConnector {
 
 		// We are searching for target elements for instances of this class
 		//
-		final TargetSectionClass targetSectionClass = !ref.isLibraryEntry() ? (TargetSectionClass) ref.eContainer()
+		final TargetSectionClass targetSectionClass = !ref.isLibraryEntry() ? ref.getOwningClass()
 				: ref.getContainingSection();
 
 		List<EObjectWrapper> instancesToLink = currentMappingInstanceDescriptor.getInstances(currentHintGroup,
 				targetSectionClass);
 
 		if (instancesToLink.isEmpty()) {
-			// Nothing to be done
-			//
 			return;
 		}
 
-		// Collect ReferenceTargetSelectors that affect the current reference
-		//
-		List<ReferenceTargetSelector> referenceTargetSelectorsToConcider = currentMappingInstanceDescriptor
-				.getMappingHints(currentHintGroup, true).parallelStream()
-				.filter(h -> h instanceof ReferenceTargetSelector
-						&& ((ReferenceTargetSelector) h).getAffectedReference().equals(ref))
-				.map(h -> (ReferenceTargetSelector) h).collect(Collectors.toList());
+		List<ReferenceTargetSelector> referenceTargetSelectorsToConcider = getReferenceTargetSelectorsForReference(ref);
 
 		if (!referenceTargetSelectorsToConcider.isEmpty()) {
 
@@ -158,28 +150,39 @@ public class TargetSectionLinker extends TargetSectionConnector {
 			//
 			for (ReferenceTargetSelector referenceTargetSelector : referenceTargetSelectorsToConcider) {
 
-				linkWithReferenceTargetSelector(currentHintGroup, currentMappingInstanceDescriptor.getHintValues(),
-						instancesToLink, ref, referenceTargetSelector);
+				linkWithReferenceTargetSelector(instancesToLink, ref, referenceTargetSelector);
 			}
 
 		} else {
 
 			// Link the created instances using the 'value' of the reference or no hint at all
 			//
-			linkWithoutReferenceTargetSelector(currentHintGroup, instancesToLink, ref);
+			linkWithoutReferenceTargetSelector(instancesToLink, ref);
 		}
 
+	}
+
+	private List<ReferenceTargetSelector> getReferenceTargetSelectorsForReference(
+			TargetSectionCrossReference reference) {
+
+		List<ReferenceTargetSelector> allReferenceTargetSelectors = getReferenceTargetSelectorsInCurrentHintGroup();
+
+		return allReferenceTargetSelectors.stream().filter(h -> h.getAffectedReference().equals(reference))
+				.collect(Collectors.toList());
+	}
+
+	private List<ReferenceTargetSelector> getReferenceTargetSelectorsInCurrentHintGroup() {
+
+		return currentMappingInstanceDescriptor.getMappingHints(currentHintGroup, true).stream()
+				.filter(h -> h instanceof ReferenceTargetSelector).map(h -> (ReferenceTargetSelector) h)
+				.collect(Collectors.toList());
 	}
 
 	/**
 	 * Link the given {@link TargetSectionCrossReference} using the given {@link ReferenceTargetSelector}, i.e. find
 	 * target elements for the various target model elements created by the given <em>hintGroup</em> of the given
 	 * {@link MappingInstanceDescriptor}.
-	 *
-	 * @param mappingGroup
-	 *            The {@link InstantiableMappingHintGroup} based on which the TargetSection gets instantiated.
-	 * @param hintValues
-	 *            The {@link HintValueStorage hint values} to take into account.
+	 * 
 	 * @param sourceInstances
 	 *            The {@link EObjectWrapper instances} for which the target elements of the given
 	 *            {@link TargetSectionCrossReference} shall be determined.
@@ -187,12 +190,13 @@ public class TargetSectionLinker extends TargetSectionConnector {
 	 *            The {@link TargetSectionCrossReference} for that the target elements shall be determined.
 	 * @param referenceTargetSelector
 	 *            The {@link ReferenceTargetSelector} to be used to determine the target elements.
+	 * @param hintValues
+	 *            The {@link HintValueStorage hint values} to take into account.
 	 */
-	private void linkWithReferenceTargetSelector(final InstantiableMappingHintGroup mappingGroup,
-			final HintValueStorage hintValues, final List<EObjectWrapper> sourceInstances,
+	private void linkWithReferenceTargetSelector(final List<EObjectWrapper> sourceInstances,
 			TargetSectionCrossReference ref, ReferenceTargetSelector referenceTargetSelector) {
 
-		checkCanceled();
+		HintValueStorage hintValues = currentMappingInstanceDescriptor.getHintValues();
 
 		// Nothing to connect
 		//
@@ -232,24 +236,23 @@ public class TargetSectionLinker extends TargetSectionConnector {
 			return;
 		}
 
-		selectAndInstantiateConnections(sourceInstances, filteredTargetInstances, ref, mappingGroup);
+		selectAndInstantiateConnections(sourceInstances, filteredTargetInstances, ref, currentHintGroup);
 
 	}
 
 	/**
 	 * Link the given {@link TargetSectionCrossReference}, i.e. find target elements for the various target model
 	 * elements created by the given <em>hintGroup</em> of the given {@link MappingInstanceDescriptor}.
-	 *
-	 * @param mappingGroup
-	 *            The {@link InstantiableMappingHintGroup} based on which the TargetSection gets instantiated.
 	 * @param sourceInstances
 	 *            The {@link EObjectWrapper instances} for which the target elements of the given
 	 *            {@link TargetSectionCrossReference} shall be determined.
 	 * @param ref
 	 *            The {@link TargetSectionCrossReference} for that the target elements shall be determined.
+	 * @param mappingGroup
+	 *            The {@link InstantiableMappingHintGroup} based on which the TargetSection gets instantiated.
 	 */
-	private void linkWithoutReferenceTargetSelector(final InstantiableMappingHintGroup mappingGroup,
-			final List<EObjectWrapper> sourceInstances, TargetSectionCrossReference ref) {
+	private void linkWithoutReferenceTargetSelector(final List<EObjectWrapper> sourceInstances,
+			TargetSectionCrossReference ref) {
 
 		checkCanceled();
 
@@ -297,7 +300,7 @@ public class TargetSectionLinker extends TargetSectionConnector {
 		// takes all created model elements into account as potential target instances.
 		//
 		boolean useLocalLinking = !ref.getValue().isEmpty() && ref.getValue().stream()
-				.allMatch(t -> t.getContainingSection().equals(mappingGroup.getTargetMMSectionGeneric()));
+				.allMatch(t -> t.getContainingSection().equals(currentHintGroup.getTargetMMSectionGeneric()));
 
 		if (useLocalLinking) {
 
@@ -305,7 +308,7 @@ public class TargetSectionLinker extends TargetSectionConnector {
 			// instances for each source instance)
 			//
 			final List<EObjectWrapper> rootInstances = targetSectionRegistry
-					.getFlattenedPamtramClassInstances(mappingGroup.getTargetMMSectionGeneric());
+					.getFlattenedPamtramClassInstances(currentHintGroup.getTargetMMSectionGeneric());
 
 			// Determine the 'local' potential target instances separately for each of the source instances and select
 			// one or multiple to be used as targets
@@ -326,13 +329,13 @@ public class TargetSectionLinker extends TargetSectionConnector {
 						.collect(Collectors.toList());
 
 				selectAndInstantiateConnections(Arrays.asList(sourceInstance), localPotentialTargetInstances, ref,
-						mappingGroup);
+						currentHintGroup);
 			}
 
 		} else {
 
 			selectAndInstantiateConnections(sourceInstances, new ArrayList<>(potentialTargetInstances), ref,
-					mappingGroup);
+					currentHintGroup);
 		}
 
 	}

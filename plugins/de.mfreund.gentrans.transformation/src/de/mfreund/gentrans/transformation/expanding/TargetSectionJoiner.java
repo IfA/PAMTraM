@@ -89,10 +89,10 @@ public class TargetSectionJoiner extends TargetSectionConnector {
 	@Override
 	protected void doConnectCurrentHintGroup() {
 
-		joinTargetSectionsCreatedByInstantiableHintGroup();
+		joinCurrentHintGroup();
 	}
 
-	private void joinTargetSectionsCreatedByInstantiableHintGroup() {
+	private void joinCurrentHintGroup() {
 
 		TargetSection section = currentHintGroup.getTargetMMSectionGeneric();
 
@@ -113,12 +113,7 @@ public class TargetSectionJoiner extends TargetSectionConnector {
 
 		}
 
-		// The active ContainerSelectors for this MappingHintGroups
-		//
-		// FIXME should be evaluated only by the provider
-		List<ContainerSelector> containerSelectors = currentMappingInstanceDescriptor
-				.getMappingHints(currentHintGroup, true).stream().filter(ContainerSelector.class::isInstance)
-				.map(ContainerSelector.class::cast).collect(Collectors.toList());
+		List<ContainerSelector> containerSelectors = getContainerSelectorsInCurrentHintGroup();
 
 		List<EObjectWrapper> unconnectedInstances;
 		if (!containerSelectors.isEmpty()) { // link using ContainerSelector(s)
@@ -137,6 +132,13 @@ public class TargetSectionJoiner extends TargetSectionConnector {
 		// If there are still unconnected instances, we add them as new root elements
 		//
 		this.addToTargetModelRoot(unconnectedInstances);
+	}
+
+	private List<ContainerSelector> getContainerSelectorsInCurrentHintGroup() {
+
+		return currentMappingInstanceDescriptor.getMappingHints(currentHintGroup, true).stream()
+				.filter(ContainerSelector.class::isInstance).map(ContainerSelector.class::cast)
+				.collect(Collectors.toList());
 	}
 
 	private List<EObjectWrapper> getTargetElementsToConnect(InstantiableMappingHintGroup hintGroup,

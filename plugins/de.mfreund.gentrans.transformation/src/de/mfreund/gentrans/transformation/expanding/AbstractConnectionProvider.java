@@ -169,7 +169,7 @@ public abstract class AbstractConnectionProvider extends TransformationAsset imp
 			// There are multiple possible connection paths and/or container instances
 			//
 			try {
-				logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_STARTED);
+				logger.fine(TargetSectionJoiner.RESOLVE_JOINING_AMBIGUITY_STARTED);
 
 				Map<EClassConnectionPath, List<EObjectWrapper>> resolved;
 				if (connectionChoices.values().stream().flatMap(List::stream).collect(Collectors.toSet()).size() == 1) {
@@ -199,7 +199,7 @@ public abstract class AbstractConnectionProvider extends TransformationAsset imp
 					((IAmbiguityResolvedAdapter) ambiguityResolvingStrategy).joiningContainerInstanceSelected(
 							new ArrayList<>(connectionChoices.get(selectedConnectionPath)), selectedContainerInstance);
 				}
-				logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_ENDED);
+				logger.fine(TargetSectionJoiner.RESOLVE_JOINING_AMBIGUITY_ENDED);
 
 			} catch (AmbiguityResolvingException e) {
 				if (e.getCause() instanceof UserAbortException) {
@@ -274,7 +274,7 @@ public abstract class AbstractConnectionProvider extends TransformationAsset imp
 			// There are multiple possible container instances
 			//
 			try {
-				logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_STARTED);
+				logger.fine(TargetSectionJoiner.RESOLVE_JOINING_AMBIGUITY_STARTED);
 
 				selectedContainerInstance = ambiguityResolvingStrategy
 						.joiningSelectContainerInstance(containerInstances, rootInstances,
@@ -287,7 +287,7 @@ public abstract class AbstractConnectionProvider extends TransformationAsset imp
 					((IAmbiguityResolvedAdapter) ambiguityResolvingStrategy)
 							.joiningContainerInstanceSelected(containerInstances, selectedContainerInstance);
 				}
-				logger.fine(TargetSectionConnector.RESOLVE_JOINING_AMBIGUITY_ENDED);
+				logger.fine(TargetSectionJoiner.RESOLVE_JOINING_AMBIGUITY_ENDED);
 
 			} catch (AmbiguityResolvingException e) {
 				if (e.getCause() instanceof UserAbortException) {

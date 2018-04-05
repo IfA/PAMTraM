@@ -41,10 +41,9 @@ import pamtram.structure.target.TargetSectionClass;
 public class JoiningConnectionProvider extends AbstractConnectionProvider implements ConnectionProvider {
 
 	public JoiningConnectionProvider(TransformationAssetManager assetManager,
-			Map<InstantiableMappingHintGroup, EClassConnectionPath> standardPaths,
 			EClassConnectionPathProvider eClassConnectionPathProvider) {
 
-		super(assetManager, standardPaths, eClassConnectionPathProvider);
+		super(assetManager, new LinkedHashMap<>(), eClassConnectionPathProvider);
 
 	}
 
@@ -55,8 +54,8 @@ public class JoiningConnectionProvider extends AbstractConnectionProvider implem
 		return null;
 	}
 
-	public List<EClassConnectionPathBasedConnection> selectConnectionsWithoutContainerSelector(final List<EObjectWrapper> rootInstances,
-			InstantiableMappingHintGroup mappingGroup) {
+	public List<EClassConnectionPathBasedConnection> selectConnectionsWithoutContainerSelector(
+			final List<EObjectWrapper> rootInstances, InstantiableMappingHintGroup mappingGroup) {
 
 		// Nothing to connect
 		//
@@ -109,8 +108,8 @@ public class JoiningConnectionProvider extends AbstractConnectionProvider implem
 			containerInstancesByConnectionPaths.put(connectionPath, containerInstancesForConnectionPath);
 		}
 
-		List<EClassConnectionPathBasedConnection> selectedConnections = selectConnections(rootInstances, containerInstancesByConnectionPaths,
-				mappingGroup);
+		List<EClassConnectionPathBasedConnection> selectedConnections = selectConnections(rootInstances,
+				containerInstancesByConnectionPaths, mappingGroup);
 
 		return selectedConnections;
 	}
@@ -179,8 +178,9 @@ public class JoiningConnectionProvider extends AbstractConnectionProvider implem
 		return pathsToConsider;
 	}
 
-	public List<EClassConnectionPathBasedConnection> selectConnectionsWithContainerSelector(MappingInstanceDescriptor mappingInstance,
-			final List<EObjectWrapper> rootInstances, InstantiableMappingHintGroup mappingGroup) {
+	public List<EClassConnectionPathBasedConnection> selectConnectionsWithContainerSelector(
+			MappingInstanceDescriptor mappingInstance, final List<EObjectWrapper> rootInstances,
+			InstantiableMappingHintGroup mappingGroup) {
 
 		List<ContainerSelector> containerSelectors = getActiveContainerSelectors(mappingInstance, mappingGroup);
 

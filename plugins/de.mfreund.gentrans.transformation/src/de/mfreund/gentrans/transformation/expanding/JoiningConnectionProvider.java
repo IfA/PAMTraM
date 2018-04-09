@@ -63,10 +63,7 @@ public class JoiningConnectionProvider extends AbstractConnectionProvider {
 		super(assetManager, new LinkedHashMap<>(), eClassConnectionPathProvider);
 
 		targetModelRegistry = assetManager.getTargetModelRegistry();
-
-		// FIXME in the config, 0 means direct connection; in Length, 0 means no connection
-		int rawMaxPathLength = assetManager.getTransformationConfig().getMaxPathLength();
-		maxPathLength = Length.valueOf(rawMaxPathLength == -1 ? rawMaxPathLength : rawMaxPathLength + 1);
+		maxPathLength = assetManager.getTransformationConfig().getMaxPathLength();
 
 	}
 

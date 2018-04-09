@@ -58,6 +58,8 @@ public class TargetSectionJoiner extends TargetSectionConnector {
 
 	private List<EObjectWrapper> unnconnectedInstances;
 
+	private JoiningConnectionProvider connectionProvider;
+
 	public TargetSectionJoiner(TransformationAssetManager assetManager) {
 
 		super(assetManager);

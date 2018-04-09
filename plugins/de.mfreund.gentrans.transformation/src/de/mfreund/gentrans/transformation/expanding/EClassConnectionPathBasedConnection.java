@@ -33,7 +33,7 @@ import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathInstantiator;
  * @author mfreund
  */
 @SuppressWarnings("javadoc")
-public class EClassConnectionPathBasedConnection extends AbstractConnection {
+public class EClassConnectionPathBasedConnection extends Connection {
 
 	protected EClassConnectionPath connectionPath;
 

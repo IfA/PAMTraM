@@ -19,7 +19,7 @@ import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathProvider;
 import pamtram.mapping.InstantiableMappingHintGroup;
 
 /**
- * An abstract base class for a ConnectionProvider that is able to return a list of {@link AbstractConnection
+ * An abstract base class for a ConnectionProvider that is able to return a list of {@link Connection
  * AbstractConnections} based on some kind of requirement.
  *
  * @author mfreund

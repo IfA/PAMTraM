@@ -24,9 +24,7 @@ public abstract class TargetSectionConnector extends TargetSectionExpander {
 
 	protected Length maxPathLength;
 
-	protected JoiningConnectionProvider connectionProvider;
-
-	protected List<AbstractConnection> connectionsToInstantiate;
+	protected List<Connection> connectionsToInstantiate;
 
 	public TargetSectionConnector(TransformationAssetManager assetManager) {
 
@@ -60,7 +58,7 @@ public abstract class TargetSectionConnector extends TargetSectionExpander {
 	}
 
 	/**
-	 * Determine all {@link AbstractConnection AbstractConnections} that need to be instantiated in order to expand the
+	 * Determine all {@link Connection AbstractConnections} that need to be instantiated in order to expand the
 	 * {@link TargetSectionExpander#currentHintGroup} and store them in the {@link #connectionsToInstantiate}. These
 	 * will be instantiated at the end of the {@link #expandMappingInstances(SelectedMappingRegistry) expanding}
 	 * process.
@@ -69,6 +67,6 @@ public abstract class TargetSectionConnector extends TargetSectionExpander {
 
 	private void instantiateConnections() {
 
-		connectionsToInstantiate.stream().forEach(AbstractConnection::instantiate);
+		connectionsToInstantiate.stream().forEach(Connection::instantiate);
 	}
 }

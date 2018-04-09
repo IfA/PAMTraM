@@ -15,12 +15,12 @@ import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPath;
 import pamtram.structure.target.FileType;
 
 /**
- * An {@link AbstractConnection} that is able to optionally wrap an {@link EClassConnectionPathBasedConnection} and add
+ * An {@link Connection} that is able to optionally wrap an {@link EClassConnectionPathBasedConnection} and add
  * unconnected elements to the root of a target model.
  *
  * @author mfreund
  */
-public class JoiningConnection extends AbstractConnection {
+public class JoiningConnection extends Connection {
 
 	private EClassConnectionPathBasedConnection wrappedConnection;
 
@@ -31,7 +31,7 @@ public class JoiningConnection extends AbstractConnection {
 	 * <p />
 	 * Note: When {@link #instantiate() instantiated}, this will first instantiate the wrapped
 	 * {@link EClassConnectionPathBasedConnection}. If this still leaves some
-	 * {@link AbstractConnection#unconnectedElements unconnectedElements}, those are added to the root of a target
+	 * {@link Connection#unconnectedElements unconnectedElements}, those are added to the root of a target
 	 * model.
 	 *
 	 * @param startingElement

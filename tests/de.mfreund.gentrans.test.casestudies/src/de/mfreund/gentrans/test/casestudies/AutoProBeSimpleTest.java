@@ -1,10 +1,9 @@
 /*******************************************************************************
  * Copyright (C) 2017-2018 Matthias Freund and others, Institute of Automation, TU Dresden
- * 
- * This program and the accompanying materials are made
- * available under the terms of the Eclipse Public License 2.0
+ *
+ * This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0
  * which is available at https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0
  ******************************************************************************/
 /**
@@ -17,6 +16,7 @@ import java.util.Collections;
 import java.util.Set;
 
 import de.mfreund.gentrans.transformation.TransformationConfiguration;
+import de.tud.et.ifa.agtele.emf.connecting.Length;
 
 /**
  *
@@ -47,7 +47,8 @@ public class AutoProBeSimpleTest extends PamtramCasestudyTest {
 
 		String libPath = "D:\\git-repos\\de.tud.et.ifa.agtele.autoprobe\\de.tud.et.ifa.agtele.autoprobe.resources\\lib";
 
-		return super.getTransformationConfig().withLibPaths(Arrays.asList(libPath)).withMaxPathLength(0);
+		return super.getTransformationConfig().withLibPaths(Arrays.asList(libPath))
+				.withMaxPathLength(Length.DIRECT_CONNECTION);
 	}
 
 }

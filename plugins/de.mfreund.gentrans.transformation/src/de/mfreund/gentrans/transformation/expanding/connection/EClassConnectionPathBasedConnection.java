@@ -7,16 +7,10 @@
  * 
  * SPDX-License-Identifier: EPL-2.0
  ******************************************************************************/
-/**
- *
- */
-package de.mfreund.gentrans.transformation.expanding;
+package de.mfreund.gentrans.transformation.expanding.connection;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -26,7 +20,6 @@ import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPath;
 import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathInstantiator;
-import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathInstantiator.EClassConnectionPathInstantiationException;
 
 /**
  * A class that represents a connection between model elements to be instantiated. Each connection is characterized by a
@@ -38,32 +31,16 @@ import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathInstantiator.ECla
  * @author mfreund
  */
 @SuppressWarnings("javadoc")
-public class Connection {
-
-	protected EObjectWrapper startingElement;
+public class EClassConnectionPathBasedConnection extends Connection {
 
 	protected EClassConnectionPath connectionPath;
 
-	protected List<EObjectWrapper> targetElements;
+	public EClassConnectionPathBasedConnection(EObjectWrapper startingElement, EClassConnectionPath connectionPath,
+			Collection<EObjectWrapper> targetElements, TargetSectionRegistry targetSectionRegistry, Logger logger) {
 
-	protected List<EObjectWrapper> unconnectedElements;
+		super(startingElement, targetElements, targetSectionRegistry, logger);
 
-	protected TargetSectionRegistry targetSectionRegistry;
-
-	protected Logger logger;
-
-	public Connection(EObjectWrapper startingElement, EClassConnectionPath connectionPath,
-			Collection<EObjectWrapper> targetElements) {
-
-		this.startingElement = startingElement;
 		this.connectionPath = connectionPath;
-		this.targetElements = targetElements != null ? new ArrayList<>(targetElements) : new ArrayList<>();
-		unconnectedElements = new ArrayList<>(targetElements);
-	}
-
-	public EObjectWrapper getStartingElement() {
-
-		return startingElement;
 	}
 
 	public EClassConnectionPath getConnectionPath() {
@@ -71,35 +48,7 @@ public class Connection {
 		return connectionPath;
 	}
 
-	public List<EObjectWrapper> getTargetElements() {
-
-		return targetElements;
-	}
-
-	/**
-	 * Instantiates this connection by creating an {@link EClassConnectionPathInstantiator} and calling
-	 * {@link EClassConnectionPathInstantiator#instantiate() instantiate()} on it.
-	 *
-	 * @param targetSectionRegistry
-	 *            The {@link TargetSectionRegistry} to which all created 'intermediate elements' shall be registered.
-	 * @return A list of elements (a subset of the {@link #targetElements}) that could not be connected (possibly
-	 *         because the capacity of the path was not large enough).
-	 */
-	public List<EObjectWrapper> instantiate(TargetSectionRegistry targetSectionRegistry, Logger logger) {
-
-		this.targetSectionRegistry = targetSectionRegistry;
-		this.logger = logger;
-
-		try {
-			doInstantiate();
-
-		} catch (EClassConnectionPathInstantiationException e) {
-			logger.log(Level.SEVERE, e, () -> e.getMessage() != null ? e.getMessage() : e.toString());
-		}
-
-		return Collections.unmodifiableList(unconnectedElements);
-	}
-
+	@Override
 	protected void doInstantiate() {
 
 		EObject startingEObject = startingElement.getEObject();

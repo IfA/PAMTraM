@@ -44,6 +44,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import de.tud.et.ifa.agtele.emf.EPackageHelper;
+import de.tud.et.ifa.agtele.emf.XSDAnyContentUtil;
 import pamtram.PAMTraM;
 import pamtram.PamtramPackage;
 import pamtram.SectionModel;
@@ -64,7 +65,6 @@ import pamtram.structure.target.TargetSection;
 import pamtram.structure.target.TargetSectionAnyContentCompositeReference;
 import pamtram.structure.target.TargetSectionAnyContentCrossReference;
 import pamtram.structure.target.TargetSectionClass;
-import pamtram.util.ExtendedMetaDataUtil;
 
 /**
  * This is the item provider adapter for a {@link pamtram.structure.generic.Class} object.
@@ -571,7 +571,7 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 				.createTargetSectionAnyContentCrossReference();
 		if (eClass != null && object instanceof TargetSectionClass) {
 
-			if (ExtendedMetaDataUtil.allowsAnyContent(((TargetSectionClass) object).getEClass())) {
+			if (XSDAnyContentUtil.allowsAnyContent(((TargetSectionClass) object).getEClass())) {
 				newChildDescriptors.add(
 						this.createChildParameter(GenericPackage.Literals.CLASS__REFERENCES, anyContentCompositeRef));
 				newChildDescriptors

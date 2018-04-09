@@ -21,6 +21,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 
+import de.tud.et.ifa.agtele.emf.XSDAnyContentUtil;
 import pamtram.structure.generic.impl.CompositeReferenceImpl;
 import pamtram.structure.target.TargetPackage;
 import pamtram.structure.target.TargetSection;
@@ -29,7 +30,6 @@ import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.target.TargetSectionClass;
 import pamtram.structure.target.TargetSectionReference;
 import pamtram.structure.target.util.TargetValidator;
-import pamtram.util.ExtendedMetaDataUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Section Any Content Composite
@@ -91,7 +91,7 @@ public class TargetSectionAnyContentCompositeReferenceImpl extends
 		
 		EClass parentEClass = ((pamtram.structure.generic.Class<?, ?, ?, ?>) this.eContainer()).getEClass();
 		
-		boolean result = parentEClass == null ? true : ExtendedMetaDataUtil.allowsAnyContent(parentEClass);
+		boolean result = parentEClass == null ? true : XSDAnyContentUtil.allowsAnyContent(parentEClass);
 		
 		if (!result && diagnostics != null) {
 		

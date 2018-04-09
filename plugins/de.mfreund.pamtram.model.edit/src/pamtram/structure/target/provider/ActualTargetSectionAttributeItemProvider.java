@@ -1,10 +1,9 @@
 /*******************************************************************************
  * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
- * 
- * This program and the accompanying materials are made
- * available under the terms of the Eclipse Public License 2.0
+ *
+ * This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0
  * which is available at https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0
  ******************************************************************************/
 /**
@@ -37,21 +36,23 @@ import pamtram.structure.library.AttributeParameter;
 public class ActualTargetSectionAttributeItemProvider extends TargetSectionAttributeItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	public ActualTargetSectionAttributeItemProvider(AdapterFactory adapterFactory) {
+
 		super(adapterFactory);
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
+
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
@@ -61,26 +62,26 @@ public class ActualTargetSectionAttributeItemProvider extends TargetSectionAttri
 	}
 
 	/**
-	 * This adds a property descriptor for the Attribute feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Attribute feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	protected void addAttributePropertyDescriptor(Object object) {
-		
-		this.itemPropertyDescriptors.add(
-				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
+
+		itemPropertyDescriptors
+				.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 						this.getResourceLocator(), this.getString("_UI_ActualAttribute_attribute_feature"),
 						this.getString("_UI_ActualAttribute_attribute_description"),
 						GenericPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE, true, false, true, null,
 						this.getString("_UI_BasicPropertyCategory"), null) {
-		
+
 					@Override
 					public Collection<?> getChoiceOfValues(Object object) {
-		
+
 						ActualAttribute<?, ?, ?, ?> att = (ActualAttribute<?, ?, ?, ?>) object;
-		
+
 						List<EAttribute> attributes = new ArrayList<>();
-		
+
 						// in case of a 'normal' TargetSectionClass, the
 						// attribute of this class can be chosen
 						if (att.getOwningClass() != null) {
@@ -92,24 +93,26 @@ public class ActualTargetSectionAttributeItemProvider extends TargetSectionAttri
 							attributes.addAll(
 									((AttributeParameter) att.eContainer()).getSource().eClass().getEAllAttributes());
 						}
-		
+
 						// Do not allow 'xs:any'-content attributes
 						//
 						return attributes.stream()
-								.filter(a -> !pamtram.util.ExtendedMetaDataUtil.isAnyContentAttribute(a))
+								.filter(a -> !de.tud.et.ifa.agtele.emf.XSDAnyContentUtil
+										.isAnyContentFeature(att.getOwningClass().getEClass(), a))
 								.collect(Collectors.toList());
 					}
 				});
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return ((StyledString)getStyledText(object)).getString();
+
+		return ((StyledString) getStyledText(object)).getString();
 	}
 
 	/**
@@ -132,18 +135,20 @@ public class ActualTargetSectionAttributeItemProvider extends TargetSectionAttri
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
+
 		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

@@ -324,6 +324,27 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Mapping getParentMapping() {
+	
+		
+		return this.eContainer() instanceof Mapping ? (Mapping) this.eContainer() : null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Mapping basicGetParentMapping() {
+		
+		return this.eContainer() instanceof Mapping ? (Mapping) this.eContainer() : null;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -501,6 +522,9 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 				return getAllExtend();
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__ALL_EXTENDING:
 				return getAllExtending();
+			case MappingPackage.MAPPING_HINT_GROUP_TYPE__PARENT_MAPPING:
+				if (resolve) return getParentMapping();
+				return basicGetParentMapping();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -575,6 +599,8 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 				return !getAllExtend().isEmpty();
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__ALL_EXTENDING:
 				return !getAllExtending().isEmpty();
+			case MappingPackage.MAPPING_HINT_GROUP_TYPE__PARENT_MAPPING:
+				return basicGetParentMapping() != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -62,12 +62,28 @@
       <Rotation/>
     </child>
     <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="1714"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">HCLOSED4.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
       <object>Edit</object>
       <editbox height="66" stroke-width="0" width="181" x="20" y="1649"/>
       <style edit="false" fmtscale="x" spin="false"/>
       <execution var="PARSIFAL_Devices_CIROS_Model_Objects_AssemblyRH5A55Robot_Inputs_HOPENED4"/>
       <CommandsOnDown/>
       <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="1649"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">HOPENED4.1</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -82,12 +98,28 @@
       <Rotation/>
     </child>
     <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="1583"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">HCLOSED3.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
       <object>Edit</object>
       <editbox height="66" stroke-width="0" width="181" x="20" y="1518"/>
       <style edit="false" fmtscale="x" spin="false"/>
       <execution var="PARSIFAL_Devices_CIROS_Model_Objects_AssemblyRH5A55Robot_Inputs_HOPENED3"/>
       <CommandsOnDown/>
       <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="1518"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">HOPENED3.1</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -102,12 +134,28 @@
       <Rotation/>
     </child>
     <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="1452"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">HCLOSED2.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
       <object>Edit</object>
       <editbox height="66" stroke-width="0" width="181" x="20" y="1386"/>
       <style edit="false" fmtscale="x" spin="false"/>
       <execution var="PARSIFAL_Devices_CIROS_Model_Objects_AssemblyRH5A55Robot_Inputs_HOPENED2"/>
       <CommandsOnDown/>
       <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="1386"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">HOPENED2.1</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -122,12 +170,28 @@
       <Rotation/>
     </child>
     <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="1321"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">GRCLOSE.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
       <object>Edit</object>
       <editbox height="66" stroke-width="0" width="181" x="20" y="1255"/>
       <style edit="false" fmtscale="x" spin="false"/>
       <execution var="PARSIFAL_Devices_CIROS_Model_Objects_AssemblyRH5A55Robot_Inputs_GROPEN"/>
       <CommandsOnDown/>
       <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="1255"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">GROPEN.1</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -142,12 +206,28 @@
       <Rotation/>
     </child>
     <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="1190"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">FED2AV.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
       <object>Edit</object>
       <editbox height="66" stroke-width="0" width="181" x="20" y="1124"/>
       <style edit="false" fmtscale="x" spin="false"/>
       <execution var="PARSIFAL_Devices_CIROS_Model_Objects_AssemblyRH5A55Robot_Inputs_FED2BP"/>
       <CommandsOnDown/>
       <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="1124"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">FED2BP.1</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -162,12 +242,28 @@
       <Rotation/>
     </child>
     <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="1058"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">FED1AV.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
       <object>Edit</object>
       <editbox height="66" stroke-width="0" width="181" x="20" y="993"/>
       <style edit="false" fmtscale="x" spin="false"/>
       <execution var="PARSIFAL_Devices_CIROS_Model_Objects_AssemblyRH5A55Robot_Inputs_FED1BP"/>
       <CommandsOnDown/>
       <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="993"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">FED1BP.1</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -182,12 +278,28 @@
       <Rotation/>
     </child>
     <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="927"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">FWORKP.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
       <object>Edit</object>
       <editbox height="66" stroke-width="0" width="181" x="20" y="862"/>
       <style edit="false" fmtscale="x" spin="false"/>
       <execution var="PARSIFAL_Devices_CIROS_Model_Objects_AssemblyRH5A55Robot_Inputs_FCYL2"/>
       <CommandsOnDown/>
       <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="862"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">FCYL2.1</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -202,12 +314,28 @@
       <Rotation/>
     </child>
     <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="796"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">FCYL1.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
       <object>Edit</object>
       <editbox height="66" stroke-width="0" width="181" x="20" y="730"/>
       <style edit="false" fmtscale="x" spin="false"/>
       <execution var="PARSIFAL_Devices_CIROS_Model_Objects_AssemblyRH5A55Robot_Inputs_P4AV"/>
       <CommandsOnDown/>
       <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="730"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">P4AV.1</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -222,12 +350,28 @@
       <Rotation/>
     </child>
     <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="665"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">P3AV.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
       <object>Edit</object>
       <editbox height="66" stroke-width="0" width="181" x="20" y="599"/>
       <style edit="false" fmtscale="x" spin="false"/>
       <execution var="PARSIFAL_Devices_CIROS_Model_Objects_AssemblyRH5A55Robot_Inputs_P2AV"/>
       <CommandsOnDown/>
       <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="599"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">P2AV.1</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -242,12 +386,28 @@
       <Rotation/>
     </child>
     <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="534"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">P1AV.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
       <object>Edit</object>
       <editbox height="66" stroke-width="0" width="181" x="20" y="468"/>
       <style edit="false" fmtscale="x" spin="false"/>
       <execution var="PARSIFAL_Devices_CIROS_Model_Objects_AssemblyRH5A55Robot_Inputs_RRESET"/>
       <CommandsOnDown/>
       <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="468"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">RRESET.1</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -262,12 +422,28 @@
       <Rotation/>
     </child>
     <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="402"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">KSWITCH.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
       <object>Edit</object>
       <editbox height="66" stroke-width="0" width="181" x="20" y="337"/>
       <style edit="false" fmtscale="x" spin="false"/>
       <execution var="PARSIFAL_Devices_CIROS_Model_Objects_AssemblyRH5A55Robot_Inputs_ASTOP"/>
       <CommandsOnDown/>
       <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="337"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">ASTOP.1</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -282,12 +458,28 @@
       <Rotation/>
     </child>
     <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="271"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">ASTART.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
       <object>Edit</object>
       <editbox height="66" stroke-width="0" width="181" x="20" y="206"/>
       <style edit="false" fmtscale="x" spin="false"/>
       <execution var="PARSIFAL_Devices_CIROS_Model_Objects_AssemblyRH5A55Robot_Inputs_STOP"/>
       <CommandsOnDown/>
       <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="206"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">STOP.1</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -302,12 +494,28 @@
       <Rotation/>
     </child>
     <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="168" x="3012" y="1419"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">HCLOSE4.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
       <object>Edit</object>
       <editbox height="66" stroke-width="0" width="168" x="2844" y="1354"/>
       <style edit="false" fmtscale="x" spin="false"/>
       <execution var="PARSIFAL_Devices_CIROS_Model_Objects_AssemblyRH5A55Robot_Outputs_HOPEN4"/>
       <CommandsOnDown/>
       <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="168" x="3012" y="1354"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">HOPEN4.1</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -322,12 +530,28 @@
       <Rotation/>
     </child>
     <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="168" x="3012" y="1288"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">HCLOSE3.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
       <object>Edit</object>
       <editbox height="66" stroke-width="0" width="168" x="2844" y="1222"/>
       <style edit="false" fmtscale="x" spin="false"/>
       <execution var="PARSIFAL_Devices_CIROS_Model_Objects_AssemblyRH5A55Robot_Outputs_HOPEN3"/>
       <CommandsOnDown/>
       <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="168" x="3012" y="1222"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">HOPEN3.1</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -342,12 +566,28 @@
       <Rotation/>
     </child>
     <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="168" x="3012" y="1157"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">HCLOSE2.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
       <object>Edit</object>
       <editbox height="66" stroke-width="0" width="168" x="2844" y="1091"/>
       <style edit="false" fmtscale="x" spin="false"/>
       <execution var="PARSIFAL_Devices_CIROS_Model_Objects_AssemblyRH5A55Robot_Outputs_HOPEN2"/>
       <CommandsOnDown/>
       <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="168" x="3012" y="1091"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">HOPEN2.1</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -362,12 +602,28 @@
       <Rotation/>
     </child>
     <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="168" x="3012" y="1026"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">HCLOSE1.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
       <object>Edit</object>
       <editbox height="66" stroke-width="0" width="168" x="2844" y="960"/>
       <style edit="false" fmtscale="x" spin="false"/>
       <execution var="PARSIFAL_Devices_CIROS_Model_Objects_AssemblyRH5A55Robot_Outputs_HOPEN1"/>
       <CommandsOnDown/>
       <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="168" x="3012" y="960"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">HOPEN1.1</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -382,12 +638,28 @@
       <Rotation/>
     </child>
     <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="168" x="3012" y="894"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">VFCYL2.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
       <object>Edit</object>
       <editbox height="66" stroke-width="0" width="168" x="2844" y="829"/>
       <style edit="false" fmtscale="x" spin="false"/>
       <execution var="PARSIFAL_Devices_CIROS_Model_Objects_AssemblyRH5A55Robot_Outputs_VFCYL1"/>
       <CommandsOnDown/>
       <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="168" x="3012" y="829"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">VFCYL1.1</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -402,12 +674,28 @@
       <Rotation/>
     </child>
     <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="168" x="3012" y="763"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">VFED2.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
       <object>Edit</object>
       <editbox height="66" stroke-width="0" width="168" x="2844" y="698"/>
       <style edit="false" fmtscale="x" spin="false"/>
       <execution var="PARSIFAL_Devices_CIROS_Model_Objects_AssemblyRH5A55Robot_Outputs_VFED1"/>
       <CommandsOnDown/>
       <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="168" x="3012" y="698"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">VFED1.1</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -422,12 +710,28 @@
       <Rotation/>
     </child>
     <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="168" x="3012" y="632"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">LEDQ2ON.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
       <object>Edit</object>
       <editbox height="66" stroke-width="0" width="168" x="2844" y="566"/>
       <style edit="false" fmtscale="x" spin="false"/>
       <execution var="PARSIFAL_Devices_CIROS_Model_Objects_AssemblyRH5A55Robot_Outputs_LEDQ1ON"/>
       <CommandsOnDown/>
       <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="168" x="3012" y="566"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">LEDQ1ON.1</text>
       <Shadow/>
       <Rotation/>
     </child>
@@ -442,324 +746,20 @@
       <Rotation/>
     </child>
     <child>
+      <object>base</object>
+      <type Border="4" height="66" stroke-width="0" width="168" x="3012" y="501"/>
+      <CommandsOnDown/>
+      <text font-family="Tahoma" font-size="18" text-anchor="middle">HRESET.1</text>
+      <Shadow/>
+      <Rotation/>
+    </child>
+    <child>
       <object>Edit</object>
       <editbox height="66" stroke-width="0" width="168" x="2844" y="435"/>
       <style edit="false" fmtscale="x" spin="false"/>
       <execution var="PARSIFAL_Devices_CIROS_Model_Objects_AssemblyRH5A55Robot_Outputs_HSTART"/>
       <CommandsOnDown/>
       <text font-family="Tahoma" font-size="18" text-anchor="middle"/>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="1714"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">HCLOSED4.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="1649"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">HOPENED4.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="1583"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">HCLOSED3.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="1518"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">HOPENED3.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="1452"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">HCLOSED2.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="1386"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">HOPENED2.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="1321"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">GRCLOSE.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="1255"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">GROPEN.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="1190"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">FED2AV.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="1124"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">FED2BP.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="1058"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">FED1AV.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="993"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">FED1BP.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="927"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">FWORKP.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="862"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">FCYL2.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="796"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">FCYL1.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="730"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">P4AV.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="665"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">P3AV.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="599"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">P2AV.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="534"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">P1AV.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="468"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">RRESET.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="402"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">KSWITCH.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="337"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">ASTOP.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="271"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">ASTART.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="181" x="201" y="206"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">STOP.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="168" x="3012" y="1419"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">HCLOSE4.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="168" x="3012" y="1354"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">HOPEN4.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="168" x="3012" y="1288"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">HCLOSE3.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="168" x="3012" y="1222"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">HOPEN3.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="168" x="3012" y="1157"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">HCLOSE2.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="168" x="3012" y="1091"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">HOPEN2.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="168" x="3012" y="1026"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">HCLOSE1.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="168" x="3012" y="960"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">HOPEN1.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="168" x="3012" y="894"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">VFCYL2.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="168" x="3012" y="829"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">VFCYL1.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="168" x="3012" y="763"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">VFED2.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="168" x="3012" y="698"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">VFED1.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="168" x="3012" y="632"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">LEDQ2ON.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="168" x="3012" y="566"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">LEDQ1ON.1</text>
-      <Shadow/>
-      <Rotation/>
-    </child>
-    <child>
-      <object>base</object>
-      <type Border="4" height="66" stroke-width="0" width="168" x="3012" y="501"/>
-      <CommandsOnDown/>
-      <text font-family="Tahoma" font-size="18" text-anchor="middle">HRESET.1</text>
       <Shadow/>
       <Rotation/>
     </child>

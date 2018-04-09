@@ -7,9 +7,6 @@
  * 
  * SPDX-License-Identifier: EPL-2.0
  ******************************************************************************/
-/**
- *
- */
 package de.mfreund.gentrans.transformation.core;
 
 import de.mfreund.gentrans.transformation.util.ICancelable;

@@ -7,9 +7,6 @@
  * 
  * SPDX-License-Identifier: EPL-2.0
  ******************************************************************************/
-/**
- *
- */
 package de.mfreund.gentrans.transformation.core;
 
 import java.io.IOException;
@@ -100,7 +97,7 @@ public class TransformationTaskRunner extends CancelableElement {
 	 */
 	public TransformationConfiguration getTransformationConfig() {
 
-		return this.transformationConfig;
+		return transformationConfig;
 	}
 
 	/**
@@ -108,7 +105,7 @@ public class TransformationTaskRunner extends CancelableElement {
 	 */
 	public TransformationAssetManager getAssetManager() {
 
-		return this.assetManager;
+		return assetManager;
 	}
 
 	/**
@@ -125,8 +122,8 @@ public class TransformationTaskRunner extends CancelableElement {
 	public TransformationTaskRunner(TransformationConfiguration config) {
 
 		super();
-		this.transformationConfig = config;
-		this.assetManager = new TransformationAssetManager(config);
+		transformationConfig = config;
+		assetManager = new TransformationAssetManager(config);
 	}
 
 	/**
@@ -145,8 +142,8 @@ public class TransformationTaskRunner extends CancelableElement {
 	public TransformationTaskRunner(TransformationConfiguration config, Logger logger) {
 
 		super();
-		this.transformationConfig = config;
-		this.assetManager = new TransformationAssetManager(config, logger);
+		transformationConfig = config;
+		assetManager = new TransformationAssetManager(config, logger);
 
 	}
 
@@ -161,40 +158,40 @@ public class TransformationTaskRunner extends CancelableElement {
 	 */
 	public boolean prepare() {
 
-		this.writePamtramMessage("Preparing Transformation");
+		writePamtramMessage("Preparing Transformation");
 
-		this.assetManager.getLogger().fine("Validating transformation configuration...");
+		assetManager.getLogger().fine("Validating transformation configuration...");
 
 		// validate the TransformationConfiguration
 		//
-		if (!this.transformationConfig.validate()) {
+		if (!transformationConfig.validate()) {
 			return false;
 		}
 
-		this.assetManager.getLogger().info(this.transformationConfig::toString);
+		assetManager.getLogger().info(transformationConfig::toString);
 
-		this.assetManager.getLogger().fine("Validation successful!");
+		assetManager.getLogger().fine("Validation successful!");
 
 		// validate the PAMTraM model
 		//
-		if (!this.validatePamtramModels()) {
+		if (!validatePamtramModels()) {
 			return false;
 		}
 
 		// Initialize the ambiguity resolving strategy
 		//
-		this.assetManager.getLogger().fine("\nInitializing ambiguity resolving strategy...");
+		assetManager.getLogger().fine("\nInitializing ambiguity resolving strategy...");
 		try {
 
-			this.transformationConfig.getAmbiguityResolvingStrategy().init(this.transformationConfig.getPamtramModels(),
-					this.transformationConfig.getSourceModels(), this.assetManager.getLogger());
-			this.assetManager.getLogger().fine("Initialization successful!");
+			transformationConfig.getAmbiguityResolvingStrategy().init(transformationConfig.getPamtramModels(),
+					transformationConfig.getSourceModels(), assetManager.getLogger());
+			assetManager.getLogger().fine("Initialization successful!");
 
 		} catch (Exception e1) {
-			this.assetManager.getLogger().log(Level.SEVERE, e1,
+			assetManager.getLogger().log(Level.SEVERE, e1,
 					() -> e1.getMessage() != null ? e1.getMessage() : e1.toString());
-			this.assetManager.getLogger().warning("Internal error. Switching to DefaultAmbiguityResolvingStrategy...");
-			this.transformationConfig.withAmbiguityResolvingStrategy(new DefaultAmbiguityResolvingStrategy());
+			assetManager.getLogger().warning("Internal error. Switching to DefaultAmbiguityResolvingStrategy...");
+			transformationConfig.withAmbiguityResolvingStrategy(new DefaultAmbiguityResolvingStrategy());
 		}
 
 		return true;
@@ -209,19 +206,19 @@ public class TransformationTaskRunner extends CancelableElement {
 	 */
 	public boolean validatePamtramModels() {
 
-		this.assetManager.getLogger().fine("\nValidating PAMTraM models...");
+		assetManager.getLogger().fine("\nValidating PAMTraM models...");
 
-		Set<Integer> diags = this.transformationConfig.getPamtramModels().stream()
+		Set<Integer> diags = transformationConfig.getPamtramModels().stream()
 				.map(pamtramModel -> Diagnostician.INSTANCE.validate(pamtramModel).getSeverity())
 				.collect(Collectors.toSet());
 
 		if (diags.contains(Diagnostic.ERROR)) {
 
-			this.assetManager.getLogger().fine("Validation completed with errors!");
+			assetManager.getLogger().fine("Validation completed with errors!");
 			return false;
 
 		} else {
-			this.assetManager.getLogger().fine("Validation successful!");
+			assetManager.getLogger().fine("Validation successful!");
 			return true;
 		}
 
@@ -237,37 +234,37 @@ public class TransformationTaskRunner extends CancelableElement {
 		/*
 		 * Perform the first step of the 'searching' step of the transformation
 		 */
-		this.performSearching_MatchSections();
+		performSearching_MatchSections();
 
 		/*
 		 * Perform the second step of the 'searching' step of the transformation
 		 */
-		this.performSearching_SelectMappings();
+		performSearching_SelectMappings();
 
 		/*
 		 * Perform the second step of the 'searching' step of the transformation
 		 */
-		this.performExtracting();
+		performExtracting();
 
 		/*
 		 * Perform the 'expanding' step of the transformation
 		 */
-		this.performInstantiating();
+		performInstantiating();
 
 		/*
 		 * Perform the 'joining' step of the transformation
 		 */
-		this.performJoining();
+		performJoining();
 
 		/*
 		 * Perform the 'linking' step of the transformation
 		 */
-		this.performLinking();
+		performLinking();
 
 		/*
 		 * Finally, instantiate the collected library entries
 		 */
-		this.performInstantiatingLibraryEntries();
+		performInstantiatingLibraryEntries();
 
 	}
 
@@ -281,26 +278,26 @@ public class TransformationTaskRunner extends CancelableElement {
 	 */
 	public void performSearching_MatchSections() {
 
-		List<PAMTraM> pamtramModels = this.transformationConfig.getPamtramModels();
+		List<PAMTraM> pamtramModels = transformationConfig.getPamtramModels();
 
 		/*
 		 * Collect the global FixedValues
 		 */
-		this.writePamtramMessage("Extracting global FixedValues");
+		writePamtramMessage("Extracting global FixedValues");
 
 		Map<FixedValue, String> globalFixedValues = pamtramModels.stream().flatMap(p -> p.getGlobalValues().stream())
 				.collect(Collectors.toMap(Function.identity(), FixedValue::getValue));
 
-		this.assetManager.getGlobalValues().addFixedValues(globalFixedValues);
+		assetManager.getGlobalValues().addFixedValues(globalFixedValues);
 
 		/*
 		 * Match the SourceSections
 		 */
-		this.writePamtramMessage("Matching SourceSections");
+		writePamtramMessage("Matching SourceSections");
 
-		SourceSectionMatcher sourceSectionMatcher = this.assetManager.getSourceSectionMatcher();
+		SourceSectionMatcher sourceSectionMatcher = assetManager.getSourceSectionMatcher();
 
-		sourceSectionMatcher.matchSections(this.transformationConfig.getSourceModels(), pamtramModels);
+		sourceSectionMatcher.matchSections(transformationConfig.getSourceModels(), pamtramModels);
 
 	}
 
@@ -313,27 +310,26 @@ public class TransformationTaskRunner extends CancelableElement {
 	 */
 	public void performSearching_SelectMappings() {
 
-		List<PAMTraM> pamtramModels = this.transformationConfig.getPamtramModels();
+		List<PAMTraM> pamtramModels = transformationConfig.getPamtramModels();
 
 		/*
 		 * Extract the values of GlobalAttributes
 		 */
-		this.writePamtramMessage("Extracting Values of Global Attributes");
+		writePamtramMessage("Extracting Values of Global Attributes");
 
-		GlobalAttributeValueExtractor globalAttributeValueExtractor = this.assetManager
-				.getGlobalAttributeValueExtractor();
+		GlobalAttributeValueExtractor globalAttributeValueExtractor = assetManager.getGlobalAttributeValueExtractor();
 
-		globalAttributeValueExtractor.extractGlobalAttributeValues(this.assetManager.getMatchedSectionRegistry(),
+		globalAttributeValueExtractor.extractGlobalAttributeValues(assetManager.getMatchedSectionRegistry(),
 				pamtramModels);
 
 		/*
 		 * Select the mapping to be applied for each of the matched SourceSections
 		 */
-		this.writePamtramMessage("Selecting Mappings for Matched Sections");
+		writePamtramMessage("Selecting Mappings for Matched Sections");
 
-		MappingSelector mappingSelector = this.assetManager.getMappingSelector();
+		MappingSelector mappingSelector = assetManager.getMappingSelector();
 
-		mappingSelector.selectMappings(this.assetManager.getMatchedSectionRegistry(), pamtramModels);
+		mappingSelector.selectMappings(assetManager.getMatchedSectionRegistry(), pamtramModels);
 
 	}
 
@@ -346,11 +342,11 @@ public class TransformationTaskRunner extends CancelableElement {
 		/*
 		 * Calculate values of mapping hints
 		 */
-		this.writePamtramMessage("Extracting Hint Values");
+		writePamtramMessage("Extracting Hint Values");
 
-		HintValueExtractor hintValueExtractor = this.assetManager.getHintValueExtractor();
+		HintValueExtractor hintValueExtractor = assetManager.getHintValueExtractor();
 
-		hintValueExtractor.extractHintValues(this.assetManager.getSelectedMappingRegistry().getMappingInstaces());
+		hintValueExtractor.extractHintValues(assetManager.getSelectedMappingRegistry().getMappingInstaces());
 
 	}
 
@@ -364,12 +360,12 @@ public class TransformationTaskRunner extends CancelableElement {
 		/*
 		 * Instantiate the TargetSections
 		 */
-		this.writePamtramMessage("Instantiating TargetSections for Selected Mappings");
+		writePamtramMessage("Instantiating TargetSections for Selected Mappings");
 
-		TargetSectionInstantiator targetSectionInstantiator = this.assetManager.getTargetSectionInstantiator();
+		TargetSectionInstantiator targetSectionInstantiator = assetManager.getTargetSectionInstantiator();
 
 		targetSectionInstantiator
-				.expandTargetSectionInstances(this.assetManager.getSelectedMappingRegistry().getMappingInstaces());
+				.expandTargetSectionInstances(assetManager.getSelectedMappingRegistry().getMappingInstaces());
 
 	}
 
@@ -383,16 +379,11 @@ public class TransformationTaskRunner extends CancelableElement {
 		/*
 		 * Join the instantiated TargetSections
 		 */
-		this.writePamtramMessage("Joining Instantiated TargetSections");
+		writePamtramMessage("Joining Instantiated TargetSections");
 
-		TargetSectionConnector targetSectionConnector = this.assetManager.getTargetSectionConnector();
+		TargetSectionConnector targetSectionJoiner = assetManager.getTargetSectionJoiner();
 
-		targetSectionConnector.joinTargetSections(this.assetManager.getSelectedMappingRegistry());
-
-		// Finally, combine the Sections that are still unlinked with the
-		// Root element of a TargetModel
-		//
-		targetSectionConnector.combineUnlinkedSectionsWithTargetModelRoot();
+		targetSectionJoiner.expandMappingInstances(assetManager.getSelectedMappingRegistry());
 
 	}
 
@@ -405,11 +396,11 @@ public class TransformationTaskRunner extends CancelableElement {
 		/*
 		 * Link the instantiated TargetSections
 		 */
-		this.writePamtramMessage("Linking Instantiated TargetSections");
+		writePamtramMessage("Linking Instantiated TargetSections");
 
-		TargetSectionLinker targetSectionLinker = this.assetManager.getTargetSectionLinker();
+		TargetSectionLinker targetSectionLinker = assetManager.getTargetSectionLinker();
 
-		targetSectionLinker.linkTargetSections(this.assetManager.getSelectedMappingRegistry().getMappingInstaces());
+		targetSectionLinker.expandMappingInstances(assetManager.getSelectedMappingRegistry());
 
 	}
 
@@ -422,24 +413,23 @@ public class TransformationTaskRunner extends CancelableElement {
 		/*
 		 * Instantiate the LibraryEntries
 		 */
-		this.writePamtramMessage("Instantiating LibraryEntries");
+		writePamtramMessage("Instantiating LibraryEntries");
 
-		LibraryEntryRegistry libraryEntryRegistry = this.assetManager.getTargetSectionRegistry()
-				.getLibraryEntryRegistry();
+		LibraryEntryRegistry libraryEntryRegistry = assetManager.getTargetSectionRegistry().getLibraryEntryRegistry();
 
 		if (libraryEntryRegistry.isEmpty()) {
 			return;
 		}
 
-		this.assetManager.getLogger().fine(() -> "Instantiating " + libraryEntryRegistry.size() + " LibraryEntries...");
+		assetManager.getLogger().fine(() -> "Instantiating " + libraryEntryRegistry.size() + " LibraryEntries...");
 
 		/*
 		 * Iterate over all stored instantiators and instantiate the associated library entry in the given target model.
 		 */
 		libraryEntryRegistry.values().stream()
 				.forEach(libraryEntryInstantiator -> libraryEntryInstantiator.instantiate(
-						this.assetManager.getGenLibraryManager(), this.assetManager.getValueCalculator(),
-						this.assetManager.getTargetSectionRegistry())
+						assetManager.getGenLibraryManager(), assetManager.getValueCalculator(),
+						assetManager.getTargetSectionRegistry())
 
 		);
 
@@ -456,9 +446,9 @@ public class TransformationTaskRunner extends CancelableElement {
 		/*
 		 * create the target models
 		 */
-		this.writePamtramMessage("Storing Target Model(s).");
+		writePamtramMessage("Storing Target Model(s).");
 
-		return this.assetManager.getTargetModelRegistry().saveTargetModels();
+		return assetManager.getTargetModelRegistry().saveTargetModels();
 	}
 
 	/**
@@ -480,27 +470,27 @@ public class TransformationTaskRunner extends CancelableElement {
 
 		// Check if we need to create a transformation model
 		//
-		if (this.transformationConfig.getTransformationModelPath() == null) {
+		if (transformationConfig.getTransformationModelPath() == null) {
 			return false;
 		}
 
-		Optional<String> transformationModelName = this.getTransformationModelName();
+		Optional<String> transformationModelName = getTransformationModelName();
 		if (!transformationModelName.isPresent()) {
 			return false;
 		}
 
 		// Create the TransformationModel for the performed transformation
 		//
-		Transformation transformationModel = this.internalGenerateTransformationModel(startTime, endTime,
+		Transformation transformationModel = internalGenerateTransformationModel(startTime, endTime,
 				transformationModelName.get());
 
 		/*
 		 * save the transformation model and create copies of all referenced resources
 		 */
 		try {
-			this.internalPersistTransformationModel(transformationModel);
+			internalPersistTransformationModel(transformationModel);
 		} catch (final IOException e) {
-			this.assetManager.getLogger().log(Level.SEVERE, e,
+			assetManager.getLogger().log(Level.SEVERE, e,
 					() -> "The XMI resource for the TransformationModel could not be created.");
 			return false;
 		}
@@ -537,7 +527,7 @@ public class TransformationTaskRunner extends CancelableElement {
 		// Create the TransformationModel
 		//
 		Transformation transformationModel = TransformationFactory.eINSTANCE.createTransformation();
-		transformationModel.setId(Integer.toString(this.hashCode()));
+		transformationModel.setId(Integer.toString(hashCode()));
 		transformationModel.setStartDate(startTime);
 		transformationModel.setEndDate(endTime);
 		transformationModel.setName(transformationModelName);
@@ -545,22 +535,21 @@ public class TransformationTaskRunner extends CancelableElement {
 		// Populate the transformation model with the participating models
 		//
 		transformationModel.getPamtramInstances().addAll( // add pamtram models
-				this.transformationConfig.getPamtramModels());
+				transformationConfig.getPamtramModels());
 		transformationModel.getLibraryEntries().addAll( // add library entries
-				this.transformationConfig.getPamtramModels().stream()
+				transformationConfig.getPamtramModels().stream()
 						.flatMap(p -> p.getTargetSectionModels().stream().flatMap(t -> t.getLibraryElements().stream()))
 						.map(LibraryEntry::getOriginalLibraryEntry).collect(Collectors.toList()));
 		transformationModel.getSourceModels().addAll( // add source models
-				this.transformationConfig.getSourceModels());
+				transformationConfig.getSourceModels());
 		transformationModel.getTargetModels().addAll( // add target models
-				this.assetManager.getTargetModelRegistry().getTargetModels().values().stream()
-						.flatMap(Collection::stream).collect(Collectors.toList()));
+				assetManager.getTargetModelRegistry().getTargetModels().values().stream().flatMap(Collection::stream)
+						.collect(Collectors.toList()));
 
 		// Create the various TransformationMappings and
 		// TransformationMappingHintGroups
 		//
-		for (final MappingInstanceDescriptor selMap : this.assetManager.getSelectedMappingRegistry()
-				.getMappingInstaces()) {
+		for (final MappingInstanceDescriptor selMap : assetManager.getSelectedMappingRegistry().getMappingInstaces()) {
 
 			/*
 			 * Create a TransformationMapping for the mapping
@@ -634,7 +623,7 @@ public class TransformationTaskRunner extends CancelableElement {
 
 		String fileExtension = PamtramEditPlugin.INSTANCE.getString("TRANSFORMATION_MODEL_FILE_ENDING");
 		URI transformationFolderUri = ResourceHelper
-				.getURIForPathString(this.transformationConfig.getTransformationModelPath())
+				.getURIForPathString(transformationConfig.getTransformationModelPath())
 				.appendSegment(transformationModel.getName());
 		URI transformationModelUri = transformationFolderUri
 				.appendSegment(transformationModel.getName() + fileExtension);
@@ -740,7 +729,7 @@ public class TransformationTaskRunner extends CancelableElement {
 	 */
 	protected void writePamtramMessage(final String msg) {
 
-		this.assetManager.getLogger().info(() -> "\n################# " + msg + " #################\n");
+		assetManager.getLogger().info(() -> "\n################# " + msg + " #################\n");
 	}
 
 	/**
@@ -752,10 +741,10 @@ public class TransformationTaskRunner extends CancelableElement {
 	 */
 	public TransformationResult compileTransformationResult() {
 
-		return new TransformationResult().withMatchedSectionRegistry(this.assetManager.getMatchedSectionRegistry())
-				.withSelectedMappingRegistry(this.assetManager.getSelectedMappingRegistry())
-				.withTargetSectionRegistry(this.assetManager.getTargetSectionRegistry())
-				.withTargetModelRegistry(this.assetManager.getTargetModelRegistry());
+		return new TransformationResult().withMatchedSectionRegistry(assetManager.getMatchedSectionRegistry())
+				.withSelectedMappingRegistry(assetManager.getSelectedMappingRegistry())
+				.withTargetSectionRegistry(assetManager.getTargetSectionRegistry())
+				.withTargetModelRegistry(assetManager.getTargetModelRegistry());
 
 	}
 
@@ -769,7 +758,7 @@ public class TransformationTaskRunner extends CancelableElement {
 	public void cancel() {
 
 		super.cancel();
-		this.assetManager.cancel();
+		assetManager.cancel();
 		throw new CancelTransformationException();
 	}
 

@@ -1,10 +1,9 @@
 /*******************************************************************************
  * Copyright (C) 2017-2018 Matthias Freund and others, Institute of Automation, TU Dresden
- * 
- * This program and the accompanying materials are made
- * available under the terms of the Eclipse Public License 2.0
+ *
+ * This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0
  * which is available at https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0
  ******************************************************************************/
 /**
@@ -18,6 +17,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import de.mfreund.gentrans.transformation.TransformationConfiguration;
+import de.tud.et.ifa.agtele.emf.connecting.Length;
 
 /**
  * An abstract base class for all basic {@link PamtramCasestudyTest PamtramCasestudyTests} that are based on the
@@ -35,21 +35,21 @@ public abstract class W3CAUICasestudyBasedBasicTest extends PamtramCasestudyTest
 	@Override
 	protected String getCaseStudyName() {
 
-		return "basic/" + this.getCaseStudyIdentifier();
+		return "basic/" + getCaseStudyIdentifier();
 	}
 
 	@Override
 	protected Set<String> getSourceModels() {
 
-		return Collections.singleton(
-				"/de.mfreund.pamtram.casestudies.w3caui-movisa/Source/" + this.getCaseStudyIdentifier() + ".xmi");
+		return Collections
+				.singleton("/de.mfreund.pamtram.casestudies.w3caui-movisa/Source/" + getCaseStudyIdentifier() + ".xmi");
 	}
 
 	@Override
 	protected Set<String> getPamtramModels() {
 
 		return Collections.singleton(
-				"/de.mfreund.pamtram.casestudies.w3caui-movisa/Pamtram/" + this.getCaseStudyIdentifier() + ".pamtram");
+				"/de.mfreund.pamtram.casestudies.w3caui-movisa/Pamtram/" + getCaseStudyIdentifier() + ".pamtram");
 	}
 
 	public static class _01_AttributeMappingTest extends W3CAUICasestudyBasedBasicTest {
@@ -193,7 +193,7 @@ public abstract class W3CAUICasestudyBasedBasicTest extends PamtramCasestudyTest
 		@Override
 		protected TransformationConfiguration getTransformationConfig() {
 
-			return super.getTransformationConfig().withMaxPathLength(0);
+			return super.getTransformationConfig().withMaxPathLength(Length.DIRECT_CONNECTION);
 		}
 
 	}
@@ -297,7 +297,7 @@ public abstract class W3CAUICasestudyBasedBasicTest extends PamtramCasestudyTest
 		@Override
 		protected TransformationConfiguration getTransformationConfig() {
 
-			return super.getTransformationConfig().withMaxPathLength(0);
+			return super.getTransformationConfig().withMaxPathLength(Length.DIRECT_CONNECTION);
 		}
 
 	}

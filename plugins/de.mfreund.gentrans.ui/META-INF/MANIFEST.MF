@@ -22,7 +22,8 @@ Require-Bundle: org.eclipse.ui,
  de.mfreund.gentrans.transformation.resolving.statistics,
  de.mfreund.gentrans.transformation.resolving.user,
  de.mfreund.gentrans.transformation.resolving.history,
- org.eclipse.emf.ecore.xmi
+ org.eclipse.emf.ecore.xmi,
+ de.tud.et.ifa.agtele.eclipse.commons
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: Matthias Freund, Institute of Automation, TU Dresden

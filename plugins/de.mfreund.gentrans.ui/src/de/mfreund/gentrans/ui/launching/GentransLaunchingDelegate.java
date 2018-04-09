@@ -40,6 +40,7 @@ import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.UserDecisionResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.history.HistoryResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.statistics.StatisticsResolvingStrategy;
+import de.tud.et.ifa.agtele.emf.connecting.Length;
 import de.tud.et.ifa.agtele.ui.listeners.ProjectRefreshingJobDoneListener;
 import pamtram.provider.PamtramEditPlugin;
 
@@ -205,7 +206,8 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		//
 		boolean openTargetModelOnCompletion = configuration
 				.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_OPEN_TARGET_MODEL_ON_COMPLETION, true);
-		int maxPathLength = configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_MAX_PATH_LENGTH, -1);
+		int rawMaxPathLength = configuration.getAttribute(GentransLaunchingDelegate.ATTRIBUTE_NAME_MAX_PATH_LENGTH, -1);
+		Length maxPathLength = Length.valueOf(rawMaxPathLength == -1 ? rawMaxPathLength : rawMaxPathLength + 1);
 		boolean rememberAmbiguousMappingChoice = configuration.getAttribute("rememberAmbiguousMappingChoice", true);
 		Level logLevel = Level.ALL;
 		try {

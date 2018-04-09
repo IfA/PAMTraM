@@ -1,10 +1,9 @@
 /*******************************************************************************
  * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
- * 
- * This program and the accompanying materials are made
- * available under the terms of the Eclipse Public License 2.0
+ *
+ * This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0
  * which is available at https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0
  ******************************************************************************/
 package de.mfreund.gentrans.transformation;
@@ -24,6 +23,7 @@ import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
+import de.tud.et.ifa.agtele.emf.connecting.Length;
 import de.tud.et.ifa.agtele.resources.ResourceHelper;
 import pamtram.PAMTraM;
 import pamtram.util.PamtramModelUtil;
@@ -127,14 +127,14 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 		// given
 		// BaseTransformationConfiguraiton
 		//
-		this.openTargetModelOnCompletion = baseConfig.isOpenTargetModelOnCompletion();
-		this.defaultTargetModel = baseConfig.getDefaultTargetModel();
-		this.transformationModelPath = baseConfig.getTransformationModelPath();
-		this.maxPathLength = baseConfig.getMaxPathLength();
-		this.onlyAskOnceOnAmbiguousMappings = baseConfig.isOnlyAskOnceOnAmbiguousMappings();
-		this.libPaths = baseConfig.getLibPaths();
-		this.ambiguityResolvingStrategy = baseConfig.getAmbiguityResolvingStrategy();
-		this.useParallelization = baseConfig.isUseParallelization();
+		openTargetModelOnCompletion = baseConfig.isOpenTargetModelOnCompletion();
+		defaultTargetModel = baseConfig.getDefaultTargetModel();
+		transformationModelPath = baseConfig.getTransformationModelPath();
+		maxPathLength = baseConfig.getMaxPathLength();
+		onlyAskOnceOnAmbiguousMappings = baseConfig.isOnlyAskOnceOnAmbiguousMappings();
+		libPaths = baseConfig.getLibPaths();
+		ambiguityResolvingStrategy = baseConfig.getAmbiguityResolvingStrategy();
+		useParallelization = baseConfig.isUseParallelization();
 
 		// Initialize the mandatory parameters
 		//
@@ -268,15 +268,15 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 			return false;
 		}
 
-		if (this.sourceModels == null || this.sourceModels.isEmpty()) {
+		if (sourceModels == null || sourceModels.isEmpty()) {
 			return false;
 		}
 
-		if (this.pamtramModels == null || this.pamtramModels.isEmpty()) {
+		if (pamtramModels == null || pamtramModels.isEmpty()) {
 			return false;
 		}
 
-		if (this.targetBasePath == null || this.targetBasePath.isEmpty()) {
+		if (targetBasePath == null || targetBasePath.isEmpty()) {
 			return false;
 		}
 
@@ -305,7 +305,7 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	}
 
 	@Override
-	public TransformationConfiguration withMaxPathLength(int maxPathLength) {
+	public TransformationConfiguration withMaxPathLength(Length maxPathLength) {
 
 		super.withMaxPathLength(maxPathLength);
 		return this;
@@ -340,7 +340,7 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	 */
 	public List<EObject> getSourceModels() {
 
-		return this.sourceModels;
+		return sourceModels;
 	}
 
 	/**
@@ -350,7 +350,7 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	 */
 	public List<PAMTraM> getPamtramModels() {
 
-		return this.pamtramModels;
+		return pamtramModels;
 	}
 
 	/**
@@ -360,7 +360,7 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	 */
 	public String getTargetBasePath() {
 
-		return this.targetBasePath;
+		return targetBasePath;
 	}
 
 	/**
@@ -371,10 +371,10 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 
 		StringBuilder builder = new StringBuilder();
 		builder.append("- Source Model(s): ");
-		builder.append("\n\t" + this.sourceModels.stream().map(m -> m.eResource().getURI().toString())
+		builder.append("\n\t" + sourceModels.stream().map(m -> m.eResource().getURI().toString())
 				.collect(Collectors.joining("\n\t")));
 		builder.append("\n- PAMTraM Model(s): ");
-		builder.append("\n\t" + this.pamtramModels.stream().map(m -> m.eResource().getURI().toString())
+		builder.append("\n\t" + pamtramModels.stream().map(m -> m.eResource().getURI().toString())
 				.collect(Collectors.joining("\n\t")));
 
 		builder.append("\n" + super.toString());

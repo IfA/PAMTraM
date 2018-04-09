@@ -1,10 +1,9 @@
 /*******************************************************************************
  * Copyright (C) 2017-2018 Matthias Freund and others, Institute of Automation, TU Dresden
- * 
- * This program and the accompanying materials are made
- * available under the terms of the Eclipse Public License 2.0
+ *
+ * This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0
  * which is available at https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0
  ******************************************************************************/
 /**
@@ -16,6 +15,7 @@ import java.util.Collections;
 import java.util.Set;
 
 import de.mfreund.gentrans.transformation.TransformationConfiguration;
+import de.tud.et.ifa.agtele.emf.connecting.Length;
 
 /**
  *
@@ -44,7 +44,7 @@ public class DFDUMLTest extends PamtramCasestudyTest {
 	@Override
 	protected TransformationConfiguration getTransformationConfig() {
 
-		return super.getTransformationConfig().withMaxPathLength(0);
+		return super.getTransformationConfig().withMaxPathLength(Length.DIRECT_CONNECTION);
 	}
 
 }

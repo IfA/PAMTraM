@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import org.eclipse.emf.ecore.EClass;
+
 import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
 import de.mfreund.gentrans.transformation.core.TransformationAsset;
 import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
@@ -14,8 +16,11 @@ import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
 import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
+import de.tud.et.ifa.agtele.emf.connecting.AllowedReferenceType;
 import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPath;
 import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathProvider;
+import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathRequirement;
+import de.tud.et.ifa.agtele.emf.connecting.Length;
 import pamtram.mapping.InstantiableMappingHintGroup;
 
 /**
@@ -45,6 +50,10 @@ public abstract class AbstractConnectionProvider extends TransformationAsset {
 
 	protected List<EObjectWrapper> currentInstancesToConnect;
 
+	protected Length maxPathLength;
+
+	protected AllowedReferenceType allowedReferenceType;
+
 	public AbstractConnectionProvider(TransformationAssetManager assetManager,
 			Map<InstantiableMappingHintGroup, EClassConnectionPath> standardPaths,
 			EClassConnectionPathProvider eClassConnectionPathProvider) {
@@ -57,6 +66,18 @@ public abstract class AbstractConnectionProvider extends TransformationAsset {
 		logger = assetManager.getLogger();
 		targetSectionRegistry = assetManager.getTargetSectionRegistry();
 		instanceSelectorHandler = assetManager.getInstanceSelectorHandler();
+		maxPathLength = assetManager.getTransformationConfig().getMaxPathLength();
+	}
+
+	/**
+	 * Create an {@link EClassConnectionPathRequirement} based on the given <em>classToConnect</em>, the
+	 * {@link #maxPathLength}, and the {@link #allowedReferenceType}.
+	 *
+	 */
+	protected EClassConnectionPathRequirement getBaseEClassConnectionPathRequirement(EClass classToConnect) {
+
+		return new EClassConnectionPathRequirement(classToConnect).withRequiredMaximumPathLength(maxPathLength)
+				.withAllowedReferenceType(allowedReferenceType);
 	}
 
 }

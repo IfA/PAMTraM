@@ -12,14 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
 import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
 import de.mfreund.gentrans.transformation.expanding.connection.LinkingConnection;
 import de.mfreund.gentrans.transformation.expanding.connection.LinkingConnectionProvider;
 import de.tud.et.ifa.agtele.emf.connecting.Length;
-import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.structure.target.TargetSectionClass;
 import pamtram.structure.target.TargetSectionCompositeReference;
 import pamtram.structure.target.TargetSectionCrossReference;
@@ -30,18 +28,12 @@ import pamtram.structure.target.TargetSectionCrossReference;
  *
  * @author mfreund
  */
-@SuppressWarnings("unused")
+@SuppressWarnings("javadoc")
 public class TargetSectionLinker extends TargetSectionConnector {
 
 	public static final String RESOLVE_LINKING_AMBIGUITY_STARTED = "[Ambiguity] Resolve linking ambiguity...";
 
 	public static final String RESOLVE_LINKING_AMBIGUITY_FINISHED = "[Ambiguity] ...finished.\n";
-
-	/**
-	 * The {@link InstanceSelectorHandler} used to evaluate modeled {@link ReferenceTargetSelector
-	 * ReferenceTargetSelectors}.
-	 */
-	private InstanceSelectorHandler instanceSelectorHandler;
 
 	private LinkingConnectionProvider connectionProvider;
 
@@ -56,7 +48,6 @@ public class TargetSectionLinker extends TargetSectionConnector {
 
 		super(assetManager);
 
-		instanceSelectorHandler = assetManager.getInstanceSelectorHandler();
 		maxPathLength = Length.DIRECT_CONNECTION;
 
 		connectionProvider = new LinkingConnectionProvider(assetManager, eClassConnectionPathProvider);

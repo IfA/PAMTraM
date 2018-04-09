@@ -54,6 +54,9 @@ public class LinkingConnectionProvider extends AbstractConnectionProvider {
 
 		super(assetManager, new LinkedHashMap<>(), eClassConnectionPathProvider);
 
+		maxPathLength = Length.DIRECT_CONNECTION;
+		allowedReferenceType = AllowedReferenceType.NONCONTAINMENT;
+
 	}
 
 	public List<LinkingConnection> determineConnectionsToLinkInstances(
@@ -363,13 +366,11 @@ public class LinkingConnectionProvider extends AbstractConnectionProvider {
 
 			if (!mappingGroup.getTargetMMSectionGeneric().isLibraryEntry()) {
 
-				EClassConnectionPathRequirement requirement = new EClassConnectionPathRequirement(
+				EClassConnectionPathRequirement requirement = getBaseEClassConnectionPathRequirement(
 						reference.getEReference().getEReferenceType())
 								.withRequiredReferences(Arrays.asList(reference.getEReference()))
 								.withRequiredStartingClass(reference.getEReference().getEContainingClass())
-								.withAllowedReferenceType(AllowedReferenceType.NONCONTAINMENT)
-								.withRequiredStartingElement(entryToInstantiate.getKey().getEObject())
-								.withRequiredMaximumPathLength(Length.DIRECT_CONNECTION);
+								.withRequiredStartingElement(entryToInstantiate.getKey().getEObject());
 
 				List<EClassConnectionPath> connections = eClassConnectionPathProvider.getConnections(requirement);
 

@@ -56,16 +56,13 @@ public class JoiningConnectionProvider extends AbstractConnectionProvider {
 
 	private TargetModelRegistry targetModelRegistry;
 
-	private Length maxPathLength;
-
 	public JoiningConnectionProvider(TransformationAssetManager assetManager,
 			EClassConnectionPathProvider eClassConnectionPathProvider) {
 
 		super(assetManager, new LinkedHashMap<>(), eClassConnectionPathProvider);
 
 		targetModelRegistry = assetManager.getTargetModelRegistry();
-		maxPathLength = assetManager.getTransformationConfig().getMaxPathLength();
-
+		allowedReferenceType = AllowedReferenceType.CONTAINMENT;
 	}
 
 	public List<JoiningConnection> determineConnectionsToJoinInstances(MappingInstanceDescriptor mappingInstance,
@@ -113,11 +110,9 @@ public class JoiningConnectionProvider extends AbstractConnectionProvider {
 
 		final int neededCapacity = instancesToJoin.size();
 
-		EClassConnectionPathRequirement connectionRequirement = new EClassConnectionPathRequirement(
+		EClassConnectionPathRequirement connectionRequirement = getBaseEClassConnectionPathRequirement(
 				targetSectionClass.getEClass()).withRequiredStartingElement(containerElement.getEObject())
-						.withRequiredMaximumPathLength(maxPathLength)
-						.withRequiredMinimumCapacity(Capacity.valueOf(neededCapacity))
-						.withAllowedReferenceType(AllowedReferenceType.CONTAINMENT);
+						.withRequiredMinimumCapacity(Capacity.valueOf(neededCapacity));
 
 		final List<EClassConnectionPath> pathSet = eClassConnectionPathProvider.getConnections(connectionRequirement);
 
@@ -268,18 +263,17 @@ public class JoiningConnectionProvider extends AbstractConnectionProvider {
 			// A list of possible 'containerClasses' has been passed as parameter so we need to restrict the list of
 			// EClass that are considered when searching for connection paths.
 			//
-			pathsToConsider.addAll(containerClasses.get().stream().flatMap(
-					c -> eClassConnectionPathProvider.getConnections(new EClassConnectionPathRequirement(classToConnect)
-							.withRequiredStartingClass(c).withRequiredMaximumPathLength(maxPathLength)
-							.withRequiredMinimumCapacity(Capacity.valueOf(rootInstances))
-							.withAllowedReferenceType(AllowedReferenceType.CONTAINMENT)).stream())
+			pathsToConsider.addAll(containerClasses.get().stream()
+					.flatMap(c -> eClassConnectionPathProvider.getConnections(
+							getBaseEClassConnectionPathRequirement(classToConnect).withRequiredStartingClass(c)
+									.withRequiredMinimumCapacity(Capacity.valueOf(rootInstances)))
+							.stream())
 					.collect(Collectors.toCollection(LinkedHashSet::new)));
 		} else {
 
-			pathsToConsider.addAll(eClassConnectionPathProvider.getConnections(
-					new EClassConnectionPathRequirement(classToConnect).withRequiredMaximumPathLength(maxPathLength)
-							.withRequiredMinimumCapacity(Capacity.valueOf(rootInstances))
-							.withAllowedReferenceType(AllowedReferenceType.CONTAINMENT)));
+			pathsToConsider.addAll(
+					eClassConnectionPathProvider.getConnections(getBaseEClassConnectionPathRequirement(classToConnect)
+							.withRequiredMinimumCapacity(Capacity.valueOf(rootInstances))));
 		}
 
 		// Remove those paths that would lead to cyclic containments
@@ -392,9 +386,8 @@ public class JoiningConnectionProvider extends AbstractConnectionProvider {
 			//
 			List<EClassConnectionPath> pathsToConsider = potentialTargetSectionClasses.stream()
 					.flatMap(t -> eClassConnectionPathProvider.getConnections(
-							new EClassConnectionPathRequirement(eClass).withRequiredStartingClass(t.getEClass())
-									.withRequiredMaximumPathLength(Length.DIRECT_CONNECTION)
-									.withAllowedReferenceType(AllowedReferenceType.CONTAINMENT))
+							getBaseEClassConnectionPathRequirement(eClass).withRequiredStartingClass(t.getEClass())
+									.withRequiredMaximumPathLength(Length.DIRECT_CONNECTION))
 							.stream())
 					.collect(Collectors.toList());
 

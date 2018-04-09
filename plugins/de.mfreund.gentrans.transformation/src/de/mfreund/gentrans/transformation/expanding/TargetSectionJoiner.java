@@ -28,6 +28,8 @@ import de.mfreund.gentrans.transformation.UserAbortException;
 import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
+import de.mfreund.gentrans.transformation.expanding.connection.JoiningConnection;
+import de.mfreund.gentrans.transformation.expanding.connection.JoiningConnectionProvider;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvedAdapter;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
 import de.tud.et.ifa.agtele.emf.connecting.AllowedReferenceType;
@@ -44,9 +46,9 @@ import pamtram.structure.target.TargetSectionClass;
 @SuppressWarnings("javadoc")
 public class TargetSectionJoiner extends TargetSectionConnector {
 
-	static final String RESOLVE_JOINING_AMBIGUITY_ENDED = "[Ambiguity] ...finished.\n";
+	public static final String RESOLVE_JOINING_AMBIGUITY_ENDED = "[Ambiguity] ...finished.\n";
 
-	static final String RESOLVE_JOINING_AMBIGUITY_STARTED = "[Ambiguity] Resolve joining ambiguity...";
+	public static final String RESOLVE_JOINING_AMBIGUITY_STARTED = "[Ambiguity] Resolve joining ambiguity...";
 
 	/**
 	 * This keeps track of {@link TargetSectionClass TargetSectionClasses} and corresponding {@link EObjectWrapper

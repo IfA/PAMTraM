@@ -1,7 +1,7 @@
 /**
  *
  */
-package de.mfreund.gentrans.transformation.expanding;
+package de.mfreund.gentrans.transformation.expanding.connection;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,6 +23,7 @@ import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.HintValueStorage;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
+import de.mfreund.gentrans.transformation.expanding.TargetSectionLinker;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import de.tud.et.ifa.agtele.emf.connecting.AllowedReferenceType;

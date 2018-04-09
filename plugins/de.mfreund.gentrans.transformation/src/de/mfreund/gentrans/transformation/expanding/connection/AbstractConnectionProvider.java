@@ -1,7 +1,7 @@
 /**
  *
  */
-package de.mfreund.gentrans.transformation.expanding;
+package de.mfreund.gentrans.transformation.expanding.connection;
 
 import java.util.List;
 import java.util.Map;

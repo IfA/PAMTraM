@@ -16,6 +16,8 @@ import de.mfreund.gentrans.transformation.calculation.InstanceSelectorHandler;
 import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
+import de.mfreund.gentrans.transformation.expanding.connection.LinkingConnection;
+import de.mfreund.gentrans.transformation.expanding.connection.LinkingConnectionProvider;
 import de.tud.et.ifa.agtele.emf.connecting.Length;
 import pamtram.mapping.extended.ReferenceTargetSelector;
 import pamtram.structure.target.TargetSectionClass;
@@ -31,9 +33,9 @@ import pamtram.structure.target.TargetSectionCrossReference;
 @SuppressWarnings("unused")
 public class TargetSectionLinker extends TargetSectionConnector {
 
-	static final String RESOLVE_LINKING_AMBIGUITY_STARTED = "[Ambiguity] Resolve linking ambiguity...";
+	public static final String RESOLVE_LINKING_AMBIGUITY_STARTED = "[Ambiguity] Resolve linking ambiguity...";
 
-	static final String RESOLVE_LINKING_AMBIGUITY_FINISHED = "[Ambiguity] ...finished.\n";
+	public static final String RESOLVE_LINKING_AMBIGUITY_FINISHED = "[Ambiguity] ...finished.\n";
 
 	/**
 	 * The {@link InstanceSelectorHandler} used to evaluate modeled {@link ReferenceTargetSelector

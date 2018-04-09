@@ -1,7 +1,7 @@
 /**
  *
  */
-package de.mfreund.gentrans.transformation.expanding;
+package de.mfreund.gentrans.transformation.expanding.connection;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,6 +27,7 @@ import de.mfreund.gentrans.transformation.UserAbortException;
 import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MappingInstanceDescriptor;
+import de.mfreund.gentrans.transformation.expanding.TargetSectionJoiner;
 import de.mfreund.gentrans.transformation.registries.TargetModelRegistry;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvedAdapter;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;

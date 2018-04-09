@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
+import de.mfreund.gentrans.transformation.expanding.connection.Connection;
 import de.mfreund.gentrans.transformation.registries.SelectedMappingRegistry;
 import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPathProvider;
 import de.tud.et.ifa.agtele.emf.connecting.Length;

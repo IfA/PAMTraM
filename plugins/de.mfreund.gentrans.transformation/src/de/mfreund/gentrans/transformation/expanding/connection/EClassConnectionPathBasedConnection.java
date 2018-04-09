@@ -9,7 +9,7 @@
 /**
  *
  */
-package de.mfreund.gentrans.transformation.expanding;
+package de.mfreund.gentrans.transformation.expanding.connection;
 
 import java.util.Collection;
 import java.util.List;

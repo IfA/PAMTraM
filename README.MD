@@ -1,6 +1,37 @@
 # PAMTraM 
 
-PAMTraM is an Eclipse- and [EMF][]-based modeling workbench that allows developing and running model-to-model transformations between arbitrary source and target modeling languages. It originated from the PhD thesis of Matthias Freund that is available [here](http://nbn-resolving.de/urn:nbn:de:bsz:14-qucosa-229173) (German).
+PAMTraM is an Eclipse- and [EMF][]-based modeling workbench that allows developing and running model-to-model transformations between arbitrary source and target modeling languages. It originated from the PhD thesis of Matthias Freund that is available [here](http://nbn-resolving.de/urn:nbn:de:bsz:14-qucosa-229173) (German) and was developed during his time at the [Institute of Automation at TU Dresden](http://www.et.tu-dresden.de/ifa).
+
+## Installation
+
+### User Setup
+
+If you just want to use PAMTraM as is in order to develop and run model-to-model transformations, you can install the current version into your Eclipse instance via the [Update Site].
+
+### Development Setup
+
+If you want to extend PAMTraM, you should make use of the [Setup File] for the [Eclipse Installer] that will automatically:
+
+ * Install all required Eclipse features
+ * Clone the PAMTraM, [GenLibrary](#genlibrary), and [Eclipse Commons](#eclipse-commons) Git repositories
+ * Import all projects
+ * Add the imported projects to working sets
+ * Adjust a couple of settings in the Eclipse installation
+
+In order to execute the installer, perform the following steps:
+
+ * Download and execute the [Eclipse Installer]
+ * Switch to the *Advanced Mode* (via the hamburger icon at the upper right of the installer)
+ * Choose the *Eclipse Modeling Tools* version (any other version should work as well)
+ * Add the *PAMTraM* project by 
+    * clicking the small, green '**+**' icon, 
+    * entering the URL of the Setup File ([https://agtele.eats.et.tu-dresden.de/eclipse/setups/PAMTraM.setup][Setup File]),
+    * confirming with *OK* and 
+    * selecting the new project with a *double click*
+ * Specify the relevant variables on the next screen (especially the install and clone locations)
+ * Execute the installer
+
+ After the installer finished successfully, you should be good to go...
 
 ## Sub-Projects
 
@@ -63,4 +94,7 @@ The AGTele GenLibrary Project provides a generic (base) implementation for a mod
 
 See [GenLibrary Project](https://git.agtele.eats.et.tu-dresden.de/agtele/de.tud.et.ifa.agtele.genlibrary)
 
-[EMF](https://www.eclipse.org/modeling/emf/)
+[EMF]: https://www.eclipse.org/modeling/emf/
+[Eclipse Installer]: https://www.eclipse.org/downloads/eclipse-packages/
+[Update Site]: https://agtele.eats.et.tu-dresden.de/eclipse/updates/
+[Setup File]: https://agtele.eats.et.tu-dresden.de/eclipse/setups/PAMTraM.setup

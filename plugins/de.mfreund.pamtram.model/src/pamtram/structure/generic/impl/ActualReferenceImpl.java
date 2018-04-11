@@ -1,10 +1,9 @@
 /*******************************************************************************
  * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
- * 
- * This program and the accompanying materials are made
- * available under the terms of the Eclipse Public License 2.0
+ *
+ * This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0
  * which is available at https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0
  ******************************************************************************/
 /**
@@ -13,16 +12,17 @@ package pamtram.structure.generic.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.GenericPackage;
@@ -31,23 +31,24 @@ import pamtram.structure.generic.Section;
 import pamtram.structure.generic.util.GenericValidator;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Actual Reference</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Actual Reference</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link pamtram.structure.generic.impl.ActualReferenceImpl#getEReference <em>EReference</em>}</li>
+ * <li>{@link pamtram.structure.generic.impl.ActualReferenceImpl#getEReference <em>EReference</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class ActualReferenceImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> extends ReferenceImpl<S, C, R, A> implements ActualReference<S, C, R, A> {
+public abstract class ActualReferenceImpl<S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>>
+		extends ReferenceImpl<S, C, R, A> implements ActualReference<S, C, R, A> {
+
 	/**
 	 * The cached value of the '{@link #getEReference() <em>EReference</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getEReference()
 	 * @generated
 	 * @ordered
@@ -55,8 +56,7 @@ public abstract class ActualReferenceImpl<S extends Section<S, C, R, A>, C exten
 	protected EReference eReference;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected ActualReferenceImpl() {
@@ -64,8 +64,7 @@ public abstract class ActualReferenceImpl<S extends Section<S, C, R, A>, C exten
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -74,10 +73,10 @@ public abstract class ActualReferenceImpl<S extends Section<S, C, R, A>, C exten
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getEReference() {
 	
 		  if (eReference != null && eReference.eIsProxy()) {
@@ -92,8 +91,7 @@ public abstract class ActualReferenceImpl<S extends Section<S, C, R, A>, C exten
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference basicGetEReference() {
@@ -101,10 +99,10 @@ public abstract class ActualReferenceImpl<S extends Section<S, C, R, A>, C exten
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEReference(EReference newEReference) {
 	
 		EReference oldEReference = eReference;
@@ -115,29 +113,30 @@ public abstract class ActualReferenceImpl<S extends Section<S, C, R, A>, C exten
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean validateEReferenceMatchesParentEClass(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
-		if(this.isLibraryEntry() || this.getEReference() == null || !(this.eContainer() instanceof pamtram.structure.generic.Class)) {
+		if (isLibraryEntry() || this.getEReference() == null
+				|| !(eContainer() instanceof pamtram.structure.generic.Class)) {
 			return true;
 		}
 		
-		EClass parentEClass = ((pamtram.structure.generic.Class<?, ?, ?, ?>) this.eContainer()).getEClass();
+		EClass parentEClass = ((pamtram.structure.generic.Class<?, ?, ?, ?>) eContainer()).getEClass();
 		
-		boolean result = parentEClass == null ? true : parentEClass.getEAllReferences().contains(this.getEReference());
+		boolean result = parentEClass == null ? true
+				: pamtram.util.XSDAnyContentUtil.getEAllReferencesIncludingVirtualAnyContentReference(parentEClass)
+						.contains(this.getEReference());
 		
 		if (!result && diagnostics != null) {
 		
-			String errorMessage = "The eReference '" + this.getEReference().getName() + "' is not allowed by the containing Class!";
+			String errorMessage = "The eReference '" + this.getEReference().getName()
+					+ "' is not allowed by the containing Class!";
 		
-			diagnostics.add(new BasicDiagnostic
-					(Diagnostic.ERROR,
-					GenericValidator.DIAGNOSTIC_SOURCE,
-							GenericValidator.ACTUAL_REFERENCE__VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS,
-							errorMessage,
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, GenericValidator.DIAGNOSTIC_SOURCE,
+					GenericValidator.ACTUAL_REFERENCE__VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS, errorMessage,
 					new Object[] { this, GenericPackage.Literals.ACTUAL_REFERENCE__EREFERENCE }));
 		
 		}
@@ -146,8 +145,7 @@ public abstract class ActualReferenceImpl<S extends Section<S, C, R, A>, C exten
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -161,8 +159,7 @@ public abstract class ActualReferenceImpl<S extends Section<S, C, R, A>, C exten
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -176,8 +173,7 @@ public abstract class ActualReferenceImpl<S extends Section<S, C, R, A>, C exten
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -191,8 +187,7 @@ public abstract class ActualReferenceImpl<S extends Section<S, C, R, A>, C exten
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -205,8 +200,7 @@ public abstract class ActualReferenceImpl<S extends Section<S, C, R, A>, C exten
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -218,4 +212,4 @@ public abstract class ActualReferenceImpl<S extends Section<S, C, R, A>, C exten
 		return super.eInvoke(operationID, arguments);
 	}
 
-} //ActualReferenceImpl
+} // ActualReferenceImpl

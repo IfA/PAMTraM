@@ -29,8 +29,6 @@ import pamtram.structure.generic.MetaModelElement;
 import pamtram.structure.generic.Reference;
 import pamtram.structure.generic.Section;
 import pamtram.structure.generic.VirtualAttribute;
-
-import pamtram.structure.generic.VirtualReference;
 import pamtram.structure.target.*;
 
 /**
@@ -110,16 +108,8 @@ public class TargetAdapterFactory extends AdapterFactoryImpl {
 				return createTargetSectionCompositeReferenceAdapter();
 			}
 			@Override
-			public Adapter caseTargetSectionAnyContentCompositeReference(TargetSectionAnyContentCompositeReference object) {
-				return createTargetSectionAnyContentCompositeReferenceAdapter();
-			}
-			@Override
 			public Adapter caseTargetSectionCrossReference(TargetSectionCrossReference object) {
 				return createTargetSectionCrossReferenceAdapter();
-			}
-			@Override
-			public Adapter caseTargetSectionAnyContentCrossReference(TargetSectionAnyContentCrossReference object) {
-				return createTargetSectionAnyContentCrossReferenceAdapter();
 			}
 			@Override
 			public Adapter caseTargetSectionAttribute(TargetSectionAttribute object) {
@@ -168,10 +158,6 @@ public class TargetAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseActualReference(ActualReference<S, C, R, A> object) {
 				return createActualReferenceAdapter();
-			}
-			@Override
-			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseVirtualReference(VirtualReference<S, C, R, A> object) {
-				return createVirtualReferenceAdapter();
 			}
 			@Override
 			public <S extends Section<S, C, R, A>, C extends pamtram.structure.generic.Class<S, C, R, A>, R extends Reference<S, C, R, A>, A extends Attribute<S, C, R, A>> Adapter caseCrossReference(CrossReference<S, C, R, A> object) {
@@ -272,20 +258,6 @@ public class TargetAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.target.TargetSectionAnyContentCompositeReference <em>Section Any Content Composite Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.structure.target.TargetSectionAnyContentCompositeReference
-	 * @generated
-	 */
-	public Adapter createTargetSectionAnyContentCompositeReferenceAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link pamtram.structure.target.TargetSectionCrossReference <em>Section Cross Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -296,20 +268,6 @@ public class TargetAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTargetSectionCrossReferenceAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.target.TargetSectionAnyContentCrossReference <em>Section Any Content Cross Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.structure.target.TargetSectionAnyContentCrossReference
-	 * @generated
-	 */
-	public Adapter createTargetSectionAnyContentCrossReferenceAdapter() {
 		return null;
 	}
 
@@ -478,20 +436,6 @@ public class TargetAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createActualReferenceAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link pamtram.structure.generic.VirtualReference <em>Virtual Reference</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see pamtram.structure.generic.VirtualReference
-	 * @generated
-	 */
-	public Adapter createVirtualReferenceAdapter() {
 		return null;
 	}
 

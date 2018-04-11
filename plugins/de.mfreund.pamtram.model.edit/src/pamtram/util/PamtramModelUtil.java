@@ -1,10 +1,9 @@
 /*******************************************************************************
  * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
- * 
- * This program and the accompanying materials are made
- * available under the terms of the Eclipse Public License 2.0
+ *
+ * This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0
  * which is available at https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0
  ******************************************************************************/
 package pamtram.util;
@@ -247,7 +246,7 @@ public interface PamtramModelUtil extends EPackageHelper {
 		 */
 		public Set<EPackage> getRegisteredPackages() {
 
-			return this.registeredPackages == null ? new HashSet<>() : this.registeredPackages;
+			return registeredPackages == null ? new HashSet<>() : registeredPackages;
 		}
 
 		/**
@@ -350,60 +349,126 @@ public interface PamtramModelUtil extends EPackageHelper {
 	public static PAMTraM loadPamtramModel(ResourceSet resourceSet, URI pamtramUri, boolean registerPackagesGlobally)
 			throws ModelLoadException {
 
-		// The ePackage registry to which we will on-the-fly-register new
-		// packages.
-		//
-		EPackage.Registry ePackageRegistry = registerPackagesGlobally ? EPackage.Registry.INSTANCE
-				: resourceSet.getPackageRegistry();
+		return new PamtramModelLoader(resourceSet, pamtramUri, registerPackagesGlobally).loadPamtramModel();
+	}
 
-		// a temporary resource set that we will use to load the PAMTraM
-		// model; this allows us to safely load resources even if
-		// packages are not yet registered because errors won't show up in
-		// the original resource set
-		//
-		ResourceSet tempResourceSet = new ResourceSetImpl();
-		tempResourceSet.setPackageRegistry(resourceSet.getPackageRegistry());
+	/**
+	 * A helper class that allows loading {@link PAMTraM} models and ensuring that all referenced {@link EPackage
+	 * EPackages} are automatically registered.
+	 *
+	 * @author mfreund
+	 */
+	@SuppressWarnings("javadoc")
+	public class PamtramModelLoader {
 
-		// load the pamtram model
-		Resource pamtramResource = tempResourceSet.getResource(pamtramUri, true);
-		if (!(pamtramResource.getContents().get(0) instanceof PAMTraM)) {
-			throw new ModelLoadException("The pamtram file does not seem to contain a pamtram instance. Aborting...");
+		private URI pamtramUri;
+
+		private ResourceSet resourceSet;
+
+		private EPackage.Registry ePackageRegistry;
+
+		private IProject pamtramProject;
+
+		private PAMTraM pamtramModel;
+
+		public PamtramModelLoader(ResourceSet resourceSet, URI pamtramUri, boolean registerPackagesGlobally) {
+
+			this.pamtramUri = pamtramUri;
+			pamtramProject = ResourcesPlugin.getWorkspace().getRoot().findMember(pamtramUri.toPlatformString(true))
+					.getProject();
+			this.resourceSet = resourceSet;
+			ePackageRegistry = registerPackagesGlobally ? EPackage.Registry.INSTANCE : resourceSet.getPackageRegistry();
 		}
 
-		PAMTraM pamtramModel = (PAMTraM) pamtramResource.getContents().get(0);
+		public PAMTraM loadPamtramModel() throws ModelLoadException {
 
-		// try to register the ePackages involved in the pamtram model (if
-		// not already done)
-		//
-		IProject project = ResourcesPlugin.getWorkspace().getRoot().findMember(pamtramUri.toPlatformString(true))
-				.getProject();
-		EPackageCheck result = PamtramModelUtil.checkInvolvedEPackages(pamtramModel, project, ePackageRegistry);
-		switch (result) {
-			case ERROR_PACKAGE_NOT_FOUND:
-				throw new ModelLoadException("One or more EPackages are not loaded correctly. Aborting...");
-			case ERROR_METAMODEL_FOLDER_NOT_FOUND:
+			// Load the PAMTraM model in a temporary ResourceSet; This allows us to safely load resources even if
+			// packages are not yet registered because errors won't show up in the original resource set
+			//
+			loadPamtramModelViaTemporaryResourceSet();
+
+			EPackageCheck ePackageCheckResult = PamtramModelUtil.checkInvolvedEPackages(pamtramModel, pamtramProject,
+					ePackageRegistry);
+
+			switch (ePackageCheckResult) {
+				case ERROR_PACKAGE_NOT_FOUND:
+					handlePackageNotFoundError();
+					break;
+				case ERROR_METAMODEL_FOLDER_NOT_FOUND:
+					handleMetamodelNotFoundError();
+					break;
+				case ERROR_PAMTRAM_NOT_FOUND:
+					handlePamtramNotFoundError();
+					break;
+				case OK_PACKAGES_REGISTERED:
+					handlePackagesRegistered();
+					break;
+				case OK_NOTHING_REGISTERED:
+					handleNothingRegistered();
+					break;
+				default:
+					break;
+			}
+
+			return pamtramModel;
+		}
+
+		private void handlePackageNotFoundError() throws ModelLoadException {
+
+			throw new ModelLoadException("One or more EPackages are not loaded correctly. Aborting...");
+		}
+
+		private void handleMetamodelNotFoundError() throws ModelLoadException {
+
+			throw new ModelLoadException(
+					"Folder 'metamodel' not found in project '" + pamtramProject.getName() + "'. Aborting...");
+		}
+
+		private void handlePamtramNotFoundError() throws ModelLoadException {
+
+			throw new ModelLoadException("Internal error during EPackage check. Aborting...");
+		}
+
+		private void handlePackagesRegistered() throws ModelLoadException {
+
+			// if packages have been registered, we reload the model with the original resource set; otherwise,
+			// proxy resolving does not seem to work correctly
+			//
+			loadPamtramModelViaResourceSet(resourceSet);
+		}
+
+		private void handleNothingRegistered() {
+
+			// if nothing needed to be registered, we can simply add the
+			// loaded resource(s) to the original resource set
+			resourceSet.getResources().addAll(pamtramModel.eResource().getResourceSet().getResources());
+		}
+
+		private void loadPamtramModelViaTemporaryResourceSet() throws ModelLoadException {
+
+			ResourceSet tempResourceSet = createResourceSetWithEPackageRegistry(ePackageRegistry);
+
+			loadPamtramModelViaResourceSet(tempResourceSet);
+		}
+
+		private ResourceSet createResourceSetWithEPackageRegistry(EPackage.Registry ePackageRegistry) {
+
+			ResourceSet tempResourceSet = new ResourceSetImpl();
+			tempResourceSet.setPackageRegistry(ePackageRegistry);
+			return tempResourceSet;
+		}
+
+		private void loadPamtramModelViaResourceSet(ResourceSet resourceSet) throws ModelLoadException {
+
+			Resource pamtramResource = resourceSet.getResource(pamtramUri, true);
+
+			if (!(pamtramResource.getContents().get(0) instanceof PAMTraM)) {
 				throw new ModelLoadException(
-						"Folder 'metamodel' not found in project '" + project.getName() + "'. Aborting...");
-			case ERROR_PAMTRAM_NOT_FOUND:
-				throw new ModelLoadException("Internal error during EPackage check. Aborting...");
-			case OK_PACKAGES_REGISTERED:
-				// if packages have been registered, we reload the model with
-				// the original resource set; otherwise, proxy resolving does
-				// not seem to work correctly
-				pamtramModel.eResource().unload();
-				pamtramResource = resourceSet.getResource(pamtramUri, true);
-				pamtramModel = (PAMTraM) pamtramResource.getContents().get(0);
-				break;
-			case OK_NOTHING_REGISTERED:
-				// if nothing needed to be registered, we can simply add the
-				// loaded resource(s) to the original resource set
-				resourceSet.getResources().addAll(tempResourceSet.getResources());
-				break;
-			default:
-				break;
-		}
+						"The pamtram file does not seem to contain a pamtram instance. Aborting...");
+			}
 
-		return pamtramModel;
+			pamtramModel = (PAMTraM) pamtramResource.getContents().get(0);
+		}
 	}
 
 	/**

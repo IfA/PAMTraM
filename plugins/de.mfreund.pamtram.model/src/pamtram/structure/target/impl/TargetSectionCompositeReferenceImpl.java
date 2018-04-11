@@ -1,10 +1,9 @@
 /*******************************************************************************
  * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
- * 
- * This program and the accompanying materials are made
- * available under the terms of the Eclipse Public License 2.0
+ *
+ * This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0
  * which is available at https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0
  ******************************************************************************/
 /**
@@ -37,8 +36,8 @@ import pamtram.structure.target.TargetSectionCompositeReference;
 import pamtram.structure.target.TargetSectionReference;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Target
- * Section Containment Reference</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Target Section Containment Reference</b></em>'.
+ * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -54,7 +53,8 @@ public class TargetSectionCompositeReferenceImpl extends
 
 	/**
 	 * The cached value of the '{@link #getEReference() <em>EReference</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getEReference()
 	 * @generated
 	 * @ordered
@@ -79,8 +79,8 @@ public class TargetSectionCompositeReferenceImpl extends
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc --> This is specialized for the
-	 * more specific element type known in this context.
+	 * <!-- begin-user-doc --> <!-- end-user-doc --> This is specialized for the more specific element type known in
+	 * this context.
 	 *
 	 * @generated
 	 */
@@ -137,8 +137,8 @@ public class TargetSectionCompositeReferenceImpl extends
 	@Override
 	public void setEReference(EReference newEReference) {
 
-		this.setNameDerived(this.eReference, newEReference, null, null);
-		this.setEReferenceGen(newEReference);
+		this.setNameDerived(eReference, newEReference, null, null);
+		setEReferenceGen(newEReference);
 	}
 
 	/**
@@ -148,23 +148,24 @@ public class TargetSectionCompositeReferenceImpl extends
 	@Override
 	public boolean validateEReferenceMatchesParentEClass(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
-		if(this.isLibraryEntry() || this.getEReference() == null || !(this.eContainer() instanceof pamtram.structure.generic.Class)) {
+		if (isLibraryEntry() || this.getEReference() == null
+				|| !(eContainer() instanceof pamtram.structure.generic.Class)) {
 			return true;
 		}
 		
-		EClass parentEClass = ((pamtram.structure.generic.Class<?, ?, ?, ?>) this.eContainer()).getEClass();
+		EClass parentEClass = ((pamtram.structure.generic.Class<?, ?, ?, ?>) eContainer()).getEClass();
 		
-		boolean result = parentEClass == null ? true : parentEClass.getEAllReferences().contains(this.getEReference());
+		boolean result = parentEClass == null ? true
+				: pamtram.util.XSDAnyContentUtil.getEAllReferencesIncludingVirtualAnyContentReference(parentEClass)
+						.contains(this.getEReference());
 		
 		if (!result && diagnostics != null) {
 		
-			String errorMessage = "The eReference '" + this.getEReference().getName() + "' is not allowed by the containing Class!";
+			String errorMessage = "The eReference '" + this.getEReference().getName()
+					+ "' is not allowed by the containing Class!";
 		
-			diagnostics.add(new BasicDiagnostic
-					(Diagnostic.ERROR,
-					GenericValidator.DIAGNOSTIC_SOURCE,
-							GenericValidator.ACTUAL_REFERENCE__VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS,
-							errorMessage,
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, GenericValidator.DIAGNOSTIC_SOURCE,
+					GenericValidator.ACTUAL_REFERENCE__VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS, errorMessage,
 					new Object[] { this, GenericPackage.Literals.ACTUAL_REFERENCE__EREFERENCE }));
 		
 		}
@@ -303,14 +304,14 @@ public class TargetSectionCompositeReferenceImpl extends
 	@Override
 	public void addValuesGeneric(EList<TargetSectionClass> values) {
 
-		this.getValue().addAll(values);
+		getValue().addAll(values);
 
 	}
 
 	@Override
 	public EList<TargetSectionClass> getValuesGeneric() {
 
-		return this.getValue();
+		return getValue();
 	}
 
 } // TargetSectionCompositeReferenceImpl

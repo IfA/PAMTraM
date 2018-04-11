@@ -1,16 +1,16 @@
 /*******************************************************************************
  * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
- * 
- * This program and the accompanying materials are made
- * available under the terms of the Eclipse Public License 2.0
+ *
+ * This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0
  * which is available at https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0
  ******************************************************************************/
 package de.mfreund.gentrans.transformation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -150,7 +150,7 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	 * Note: The instance is initialized with a default {@link BaseTransformationConfiguration}.
 	 *
 	 * @see #createInstanceFromSourceModels(List, List, String)
-	 * @see #createInstanceFromSourcePaths(Set, List, String)
+	 * @see #createInstanceFromSourcePaths(Set, List, String, Optional)
 	 *
 	 * @param sourceFilePaths
 	 *            List of file paths of the source models. Each path must either be absolute or relative to the
@@ -159,22 +159,23 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	 *            Paths to the {@link PAMTraM} models to be executed in the form 'project-name/path'.
 	 * @param targetBasePath
 	 *            File path relative to that all target models will be created in the form 'project-name/path'.
+	 * @param resourceSet
+	 *            An optional {@link ResourceSet} into that the PAMTraM models shall be loaded.
 	 * @return The created {@link TransformationConfiguration}.
 	 * @throws InitializationException
 	 *             If the initialization failed for some reason, e.g. because one of the models could not be loaded.
 	 */
 	public static TransformationConfiguration createInstanceFromSourcePaths(Set<String> sourceFilePaths,
-			Set<String> pamtramPaths, String targetBasePath) throws InitializationException {
+			Set<String> pamtramPaths, String targetBasePath, Optional<ResourceSet> resourceSet)
+			throws InitializationException {
 
-		// Create a resource set to load the models.
-		//
-		ResourceSet resourceSet = new ResourceSetImpl();
+		ResourceSet resourceSetToUse = resourceSet.orElseGet(ResourceSetImpl::new);
 
 		// Load the PAMTraM models
 		//
 		List<PAMTraM> pamtramModels = null;
 		try {
-			pamtramModels = PamtramModelUtil.loadPamtramModels(resourceSet, pamtramPaths, true);
+			pamtramModels = PamtramModelUtil.loadPamtramModels(resourceSetToUse, pamtramPaths, true);
 		} catch (ModelLoadException e) {
 			throw new TransformationConfiguration().new InitializationException(e);
 		}
@@ -183,8 +184,8 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 			throw new TransformationConfiguration().new InitializationException("No PAMTraM model was loaded!");
 		}
 
-		return TransformationConfiguration.createInstanceFromSourcePaths(sourceFilePaths, pamtramModels,
-				targetBasePath);
+		return TransformationConfiguration.createInstanceFromSourcePaths(sourceFilePaths, pamtramModels, targetBasePath,
+				Optional.of(resourceSetToUse));
 	}
 
 	/**
@@ -193,7 +194,7 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	 * Note: The instance is initialized with a default {@link BaseTransformationConfiguration}.
 	 *
 	 * @see #createInstanceFromSourceModels(List, List, String)
-	 * @see #createInstanceFromSourcePaths(Set, List, String)
+	 * @see #createInstanceFromSourcePaths(Set, List, String, Optional)
 	 *
 	 * @param sourceFilePaths
 	 *            List of file paths of the source models. Each path must either be absolute or relative to the
@@ -202,29 +203,29 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	 *            The transformation model
 	 * @param targetBasePath
 	 *            File path relative to that all target models will be created in the form 'project-name/path'.
+	 * @param resourceSet
+	 *            An optional {@link ResourceSet} into that the PAMTraM models shall be loaded.
 	 * @return The created {@link TransformationConfiguration}.
 	 * @throws InitializationException
 	 *             If the initialization failed for some reason, e.g. because one of the models could not be loaded.
 	 */
 	public static TransformationConfiguration createInstanceFromSourcePaths(Set<String> sourceFilePaths,
-			List<PAMTraM> pamtramModels, String targetBasePath) throws InitializationException {
-
-		// Create a resource set to load the models.
-		//
-		ResourceSet resourceSet = new ResourceSetImpl();
+			List<PAMTraM> pamtramModels, String targetBasePath, Optional<ResourceSet> resourceSet)
+			throws InitializationException {
 
 		// Load the source models
 		//
-		List<EObject> sourceModels = null;
+		List<EObject> sourceModels = new ArrayList<>();
 
 		try {
-			sourceModels = TransformationConfiguration.loadSourceModels(resourceSet, sourceFilePaths);
+			sourceModels = TransformationConfiguration.loadSourceModels(resourceSet.orElseGet(ResourceSetImpl::new),
+					sourceFilePaths);
 		} catch (Exception e) {
 
 			throw new TransformationConfiguration().new InitializationException(e);
 		}
 
-		if (sourceModels == null || sourceModels.isEmpty()) {
+		if (sourceModels.isEmpty()) {
 			throw new TransformationConfiguration().new InitializationException(
 					"The loaded source model(s) was/were empty!");
 		}
@@ -237,8 +238,8 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	 * <p />
 	 * Note: The instance is initialized with a default {@link BaseTransformationConfiguration}.
 	 *
-	 * @see #createInstanceFromSourcePaths(Set, Set, String)
-	 * @see #createInstanceFromSourcePaths(Set, List, String)
+	 * @see #createInstanceFromSourcePaths(Set, Set, String, Optional)
+	 * @see #createInstanceFromSourcePaths(Set, List, String, Optional)
 	 *
 	 * @param sourceModels
 	 *            The list of source models

@@ -44,7 +44,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
 import de.tud.et.ifa.agtele.emf.EPackageHelper;
-import de.tud.et.ifa.agtele.emf.XSDAnyContentUtil;
+import de.tud.et.ifa.agtele.emf.connecting.AllowedReferenceType;
 import pamtram.PAMTraM;
 import pamtram.PamtramPackage;
 import pamtram.SectionModel;
@@ -62,9 +62,6 @@ import pamtram.structure.target.FileAttribute;
 import pamtram.structure.target.TargetFactory;
 import pamtram.structure.target.TargetPackage;
 import pamtram.structure.target.TargetSection;
-import pamtram.structure.target.TargetSectionAnyContentCompositeReference;
-import pamtram.structure.target.TargetSectionAnyContentCrossReference;
-import pamtram.structure.target.TargetSectionClass;
 
 /**
  * This is the item provider adapter for a {@link pamtram.structure.generic.Class} object.
@@ -251,40 +248,48 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 	 * @generated
 	 */
 	protected void addContainerPropertyDescriptor(Object object) {
-		this.itemPropertyDescriptors.add(new ItemPropertyDescriptor(
-						((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
-						this.getString("_UI_Class_container_feature"),
-						object instanceof SourceSectionClass ? this.getString("_UI_SourceSectionClass_container_description")
-								: this.getString("_UI_TargetSectionClass_container_description"),
-						GenericPackage.Literals.CLASS__CONTAINER, true, false, true, null,
-						this.getString("_UI_ExtendedPropertyCategory"), null) {
 		
-				@Override
-					public Collection<?> getChoiceOfValues(Object object) {
+		itemPropertyDescriptors.add(new ItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+				this.getString("_UI_Class_container_feature"),
+				object instanceof SourceSectionClass ? this.getString("_UI_SourceSectionClass_container_description")
+						: this.getString("_UI_TargetSectionClass_container_description"),
+				GenericPackage.Literals.CLASS__CONTAINER, true, false, true, null,
+				this.getString("_UI_ExtendedPropertyCategory"), null) {
 		
-					List<Object> ret = new ArrayList<>();
+			@Override
+			public Collection<?> getChoiceOfValues(Object object) {
 		
-					if (object instanceof Section<?, ?, ?, ?>) {
-							ret = super.getChoiceOfValues(object).stream()
-									.filter(o -> o instanceof pamtram.structure.generic.Class<?, ?, ?, ?>)
-									.map(o -> (pamtram.structure.generic.Class<?, ?, ?, ?>) o)
-									.filter(o -> o.getEClass().getEAllContainments().stream().anyMatch(
-											c -> c.getEReferenceType().isSuperTypeOf(((pamtram.structure.generic.Class<?, ?, ?, ?>) object).getEClass())))
-									.filter(o -> !o.getAllContainer().contains(object)).collect(Collectors.toList());
-						} else {
+				List<Object> ret = new ArrayList<>();
 		
-						// For normal 'Classes', the container property is not relevant to the
-							// user. If it is set, it has to point to the containing 'Class'...
-							//
-							if (((EObject) object).eContainer().eContainer() instanceof pamtram.structure.generic.Class<?, ?, ?, ?>) {
-								ret.add(((EObject) object).eContainer().eContainer());
-							}
-						}
+				if (object instanceof Section<?, ?, ?, ?>) {
+					ret = super.getChoiceOfValues(object).stream()
+							.filter(o -> o instanceof pamtram.structure.generic.Class<?, ?, ?, ?>)
+							.map(o -> (pamtram.structure.generic.Class<?, ?, ?, ?>) o)
+							.filter(o -> pamtram.util.XSDAnyContentUtil
+									.getEAllReferencesIncludingVirtualAnyContentReference(o.getEClass(),
+											de.tud.et.ifa.agtele.emf.connecting.AllowedReferenceType.CONTAINMENT)
+									.stream()
+									.anyMatch(c -> c.getEReferenceType().equals(EcorePackage.Literals.EOBJECT) || c
+											.getEReferenceType()
+											.isSuperTypeOf(((pamtram.structure.generic.Class<?, ?, ?, ?>) object)
+													.getEClass())))
+							.filter(o -> !o.getAllContainer().contains(object)).collect(Collectors.toList());
+				} else {
 		
-					return ret;
-		
+					// For normal 'Classes', the container property is not relevant to the
+					// user. If it is set, it has to point to the containing 'Class'...
+					//
+					if (((EObject) object).eContainer()
+							.eContainer() instanceof pamtram.structure.generic.Class<?, ?, ?, ?>) {
+						ret.add(((EObject) object).eContainer().eContainer());
+					}
 				}
-				});
+		
+				return ret;
+		
+			}
+		});
 	}
 
 	/**
@@ -444,7 +449,10 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 			// Reference defined
 			// in the containing Class
 			//
-			Optional<EReference> eReference = eClass.getEAllContainments().stream()
+			Optional<EReference> eReference = pamtram.util.XSDAnyContentUtil
+					.getEAllReferencesIncludingVirtualAnyContentReference(eClass,
+							de.tud.et.ifa.agtele.emf.connecting.AllowedReferenceType.CONTAINMENT)
+					.stream()
 					.filter(r -> !((Class<?, ?, ?, ?>) object).getActualReferences().stream()
 							.map(actualRef -> ((ActualReference<?, ?, ?, ?>) actualRef).getEReference())
 							.collect(java.util.stream.Collectors.toList()).contains(r))
@@ -462,8 +470,10 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 			// Reference defined
 			// in the containing Class
 			//
-			Optional<EReference> eReference = eClass.getEAllReferences().stream()
-					.filter(r -> !r.isContainment() && !((Class<?, ?, ?, ?>) object).getActualReferences().stream()
+			Optional<EReference> eReference = pamtram.util.XSDAnyContentUtil
+					.getEAllReferencesIncludingVirtualAnyContentReference(eClass, AllowedReferenceType.NONCONTAINMENT)
+					.stream()
+					.filter(r -> !((Class<?, ?, ?, ?>) object).getActualReferences().stream()
 							.map(actualRef -> ((ActualReference<?, ?, ?, ?>) actualRef).getEReference())
 							.collect(java.util.stream.Collectors.toList()).contains(r))
 					.findAny();
@@ -498,8 +508,10 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 			// Reference defined
 			// in the containing Class
 			//
-			Optional<EReference> eReference = eClass.getEAllReferences().stream()
-					.filter(r -> !r.isContainment() && !((Class<?, ?, ?, ?>) object).getActualReferences().stream()
+			Optional<EReference> eReference = pamtram.util.XSDAnyContentUtil
+					.getEAllReferencesIncludingVirtualAnyContentReference(eClass, AllowedReferenceType.NONCONTAINMENT)
+					.stream()
+					.filter(r -> !((Class<?, ?, ?, ?>) object).getActualReferences().stream()
 							.map(actualRef -> ((ActualReference<?, ?, ?, ?>) actualRef).getEReference())
 							.collect(java.util.stream.Collectors.toList()).contains(r))
 					.findAny();
@@ -560,24 +572,6 @@ public class ClassItemProvider extends MetaModelElementItemProvider {
 
 		newChildDescriptors.add(createChildParameter(GenericPackage.Literals.CLASS__ATTRIBUTES,
 				SourceFactory.eINSTANCE.createVirtualSourceSectionAttribute()));
-
-		/*
-		 * A 'TargetSectionAnyContent' reference must only be added as child of an appropriate 'TargetSectionClass'
-		 */
-		TargetSectionAnyContentCompositeReference anyContentCompositeRef = TargetFactory.eINSTANCE
-				.createTargetSectionAnyContentCompositeReference();
-		TargetSectionAnyContentCrossReference anyContentCrossRef = TargetFactory.eINSTANCE
-				.createTargetSectionAnyContentCrossReference();
-		if (eClass != null && object instanceof TargetSectionClass) {
-
-			if (XSDAnyContentUtil.allowsAnyContent(((TargetSectionClass) object).getEClass())) {
-				newChildDescriptors
-						.add(createChildParameter(GenericPackage.Literals.CLASS__REFERENCES, anyContentCompositeRef));
-				newChildDescriptors
-						.add(createChildParameter(GenericPackage.Literals.CLASS__REFERENCES, anyContentCrossRef));
-			}
-
-		}
 
 	}
 

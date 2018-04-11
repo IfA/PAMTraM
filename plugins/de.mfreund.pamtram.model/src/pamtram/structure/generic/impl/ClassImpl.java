@@ -1,10 +1,9 @@
 /*******************************************************************************
  * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
- * 
- * This program and the accompanying materials are made
- * available under the terms of the Eclipse Public License 2.0
+ *
+ * This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0
  * which is available at https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0
  ******************************************************************************/
 /**
@@ -38,6 +37,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
+import de.tud.et.ifa.agtele.emf.connecting.AllowedReferenceType;
 import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.Attribute;
 import pamtram.structure.generic.CardinalityType;
@@ -270,7 +270,7 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 		if (container == null) {
 			if (this instanceof Section) {
 				return ((Section<S, C, R, A>) this).getExtend().stream()
-						.filter(s -> !this.equals(s) && s.getContainer() != null).map(Section::getContainer).findFirst()
+						.filter(s -> !equals(s) && s.getContainer() != null).map(Section::getContainer).findFirst()
 						.orElse(null);
 			} else {
 				return this.getOwningContainmentReference().getOwningClass();
@@ -693,37 +693,41 @@ public abstract class ClassImpl<S extends Section<S, C, R, A>, C extends pamtram
 	 */
 	@Override
 	public boolean validateContainerIsValid(final DiagnosticChain diagnostics, final Map<?, ?> context) {
+		
 		boolean result;
-				String errorMessage = "";
+		String errorMessage = "";
 		
-			if (this.getContainer() == null) {
-					// nothing specified -> no problem as the 'container' is an optional info
-					//
-					result = true;
-				} else if (this instanceof Section<?, ?, ?, ?>) {
-					// For Sections, the container must point to a Class that can theoretically (according to the metamodel) act
-					// as container
-					//
-					result = this.getEClass() == null || this.getContainer().getEClass() == null
-							|| this.getContainer().getEClass().getEAllContainments().stream().map(org.eclipse.emf.ecore.EReference::getEReferenceType)
-									.anyMatch(e -> e.isSuperTypeOf(this.getEClass()));
-					errorMessage = "The 'container' reference must point to a Class whose type (EClass) owns a suitable containment reference!";
-				} else {
-					// For normal Class, the container must point to a the containing Class
-					//
-					result = this.getContainer().equals(this.eContainer().eContainer());
-					errorMessage = "The 'container' refrence must point to the containing Class!";
-				}
+		if (this.getContainer() == null) {
+			// nothing specified -> no problem as the 'container' is an optional info
+			//
+			result = true;
+		} else if (this instanceof Section<?, ?, ?, ?>) {
+			// For Sections, the container must point to a Class that can theoretically (according to the metamodel) act
+			// as container
+			//
+			result = this.getEClass() == null || this.getContainer().getEClass() == null
+					|| pamtram.util.XSDAnyContentUtil
+							.getEAllReferencesIncludingVirtualAnyContentReference(this.getContainer().getEClass(),
+									AllowedReferenceType.CONTAINMENT)
+							.stream().map(org.eclipse.emf.ecore.EReference::getEReferenceType).anyMatch(
+									e -> e.equals(EcorePackage.Literals.EOBJECT) || e.isSuperTypeOf(this.getEClass()));
+			errorMessage = "The 'container' reference must point to a Class whose type (EClass) owns a suitable containment reference!";
+		} else {
+			// For normal Class, the container must point to a the containing Class
+			//
+			result = this.getContainer().equals(this.eContainer().eContainer());
+			errorMessage = "The 'container' refrence must point to the containing Class!";
+		}
 		
-			if (!result && diagnostics != null) {
+		if (!result && diagnostics != null) {
 		
-				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, GenericValidator.DIAGNOSTIC_SOURCE,
-							GenericValidator.CLASS__VALIDATE_CONTAINER_IS_VALID, errorMessage,
-							new Object[] { this, GenericPackage.Literals.CLASS__CONTAINER }));
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, GenericValidator.DIAGNOSTIC_SOURCE,
+					GenericValidator.CLASS__VALIDATE_CONTAINER_IS_VALID, errorMessage,
+					new Object[] { this, GenericPackage.Literals.CLASS__CONTAINER }));
 		
-			}
+		}
 		
-			return result;	
+		return result;	
 	}
 
 	/**

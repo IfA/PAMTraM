@@ -1,10 +1,9 @@
 /*******************************************************************************
  * Copyright (C) 2017-2018 Matthias Freund and others, Institute of Automation, TU Dresden
- * 
- * This program and the accompanying materials are made
- * available under the terms of the Eclipse Public License 2.0
+ *
+ * This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0
  * which is available at https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0
  ******************************************************************************/
 /**
@@ -16,6 +15,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.logging.Level;
@@ -180,7 +180,7 @@ public abstract class PamtramCasestudyTest {
 		TransformationConfiguration config;
 		try {
 			config = TransformationConfiguration.createInstanceFromSourcePaths(getSourceModels(), getPamtramModels(),
-					getTargetBasePath());
+					getTargetBasePath(), Optional.empty());
 			config.withLogLevel(Level.INFO).withLogLevel(Level.WARNING).withOpenTargetModelOnCompletion(false)
 					.withOnlyAskOnceOnAmbiguousMappings(true).withUseParallelization(false);
 

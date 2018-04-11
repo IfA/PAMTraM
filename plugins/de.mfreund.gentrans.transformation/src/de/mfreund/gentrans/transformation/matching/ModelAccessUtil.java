@@ -1,10 +1,9 @@
 /*******************************************************************************
  * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
- * 
- * This program and the accompanying materials are made
- * available under the terms of the Eclipse Public License 2.0
+ *
+ * This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0
  * which is available at https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0
  ******************************************************************************/
 package de.mfreund.gentrans.transformation.matching;
@@ -25,6 +24,7 @@ import org.eclipse.ocl.ParserException;
 import de.mfreund.gentrans.transformation.core.TransformationAsset;
 import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
 import de.tud.et.ifa.agtele.emf.AgteleEcoreUtil;
+import de.tud.et.ifa.agtele.emf.XSDAnyContentUtil;
 import pamtram.structure.generic.ActualAttribute;
 import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.Attribute;
@@ -68,7 +68,7 @@ public class ModelAccessUtil extends TransformationAsset {
 
 		super(assetManager);
 
-		this.bufferedValues = new ConcurrentHashMap<>();
+		bufferedValues = new ConcurrentHashMap<>();
 	}
 
 	/**
@@ -89,7 +89,7 @@ public class ModelAccessUtil extends TransformationAsset {
 	 */
 	public List<EObject> getReferenceValueAsList(EObject eObject, Reference<?, ?, ?, ?> reference) {
 
-		return this.getFeatureValueAsListBuffered(eObject, reference).stream().filter(e -> e instanceof EObject)
+		return getFeatureValueAsListBuffered(eObject, reference).stream().filter(e -> e instanceof EObject)
 				.map(e -> (EObject) e).collect(Collectors.toList());
 	}
 
@@ -132,7 +132,7 @@ public class ModelAccessUtil extends TransformationAsset {
 	 */
 	public List<Object> getAttributeValueAsList(EObject eObject, Attribute<?, ?, ?, ?> attribute) {
 
-		return this.getFeatureValueAsListBuffered(eObject, attribute);
+		return getFeatureValueAsListBuffered(eObject, attribute);
 	}
 
 	/**
@@ -217,7 +217,7 @@ public class ModelAccessUtil extends TransformationAsset {
 
 		ObjectFeaturePair pair = new ObjectFeaturePair(eObject, feature);
 
-		return this.bufferedValues.computeIfAbsent(pair, p -> this.getFeatureValueAsListRaw(p.eObject, p.feature));
+		return bufferedValues.computeIfAbsent(pair, p -> getFeatureValueAsListRaw(p.eObject, p.feature));
 
 	}
 
@@ -249,7 +249,11 @@ public class ModelAccessUtil extends TransformationAsset {
 					? ((ActualReference<?, ?, ?, ?>) feature).getEReference()
 					: ((ActualAttribute<?, ?, ?, ?>) feature).getAttribute();
 
-			ret = AgteleEcoreUtil.getStructuralFeatureValueAsList(eObject, eFeature);
+			if (XSDAnyContentUtil.isAnyContentFeature(eObject.eClass(), eFeature)) {
+				ret.addAll(XSDAnyContentUtil.getAnyContent(eObject));
+			} else {
+				ret.addAll(AgteleEcoreUtil.getStructuralFeatureValueAsList(eObject, eFeature));
+			}
 
 		} else if (feature instanceof VirtualSourceSectionCrossReference
 				|| feature instanceof VirtualSourceSectionAttribute) {
@@ -262,9 +266,9 @@ public class ModelAccessUtil extends TransformationAsset {
 			try {
 				value = OCLUtil.evaluteQuery(derivation, eObject);
 			} catch (ParserException e) {
-				this.logger.severe(() -> "Unable to evaluate OCL query '" + derivation + "' for the "
+				logger.severe(() -> "Unable to evaluate OCL query '" + derivation + "' for the "
 						+ feature.eClass().getName() + " '" + feature.getName() + "'!");
-				this.logger.severe(() -> "The following error occurred: " + e.getMessage());
+				logger.severe(() -> "The following error occurred: " + e.getMessage());
 			}
 
 			if (value instanceof Collection<?>) {
@@ -274,8 +278,8 @@ public class ModelAccessUtil extends TransformationAsset {
 			}
 
 		} else {
-			this.assetManager.getLogger().severe(() -> "Unsupported MetaModelElement type '"
-					+ feature.eClass().getName() + "' encountered for feature value retrieval! Skipping evaluation...");
+			assetManager.getLogger().severe(() -> "Unsupported MetaModelElement type '" + feature.eClass().getName()
+					+ "' encountered for feature value retrieval! Skipping evaluation...");
 		}
 
 		return ret;
@@ -328,13 +332,13 @@ public class ModelAccessUtil extends TransformationAsset {
 
 			ObjectFeaturePair key = (ObjectFeaturePair) o;
 
-			return this.eObject == key.eObject && this.feature == key.feature;
+			return eObject == key.eObject && feature == key.feature;
 		}
 
 		@Override
 		public int hashCode() {
 
-			return this.eObject.hashCode() + this.feature.hashCode();
+			return eObject.hashCode() + feature.hashCode();
 		}
 	}
 }

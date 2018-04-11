@@ -196,23 +196,24 @@ public class SourceSectionCrossReferenceImpl
 	@Override
 	public boolean validateEReferenceMatchesParentEClass(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
-		if(this.isLibraryEntry() || this.getEReference() == null || !(this.eContainer() instanceof pamtram.structure.generic.Class)) {
+		if (isLibraryEntry() || this.getEReference() == null
+				|| !(eContainer() instanceof pamtram.structure.generic.Class)) {
 			return true;
 		}
 		
-		EClass parentEClass = ((pamtram.structure.generic.Class<?, ?, ?, ?>) this.eContainer()).getEClass();
+		EClass parentEClass = ((pamtram.structure.generic.Class<?, ?, ?, ?>) eContainer()).getEClass();
 		
-		boolean result = parentEClass == null ? true : parentEClass.getEAllReferences().contains(this.getEReference());
+		boolean result = parentEClass == null ? true
+				: pamtram.util.XSDAnyContentUtil.getEAllReferencesIncludingVirtualAnyContentReference(parentEClass)
+						.contains(this.getEReference());
 		
 		if (!result && diagnostics != null) {
 		
-			String errorMessage = "The eReference '" + this.getEReference().getName() + "' is not allowed by the containing Class!";
+			String errorMessage = "The eReference '" + this.getEReference().getName()
+					+ "' is not allowed by the containing Class!";
 		
-			diagnostics.add(new BasicDiagnostic
-					(Diagnostic.ERROR,
-					GenericValidator.DIAGNOSTIC_SOURCE,
-							GenericValidator.ACTUAL_REFERENCE__VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS,
-							errorMessage,
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, GenericValidator.DIAGNOSTIC_SOURCE,
+					GenericValidator.ACTUAL_REFERENCE__VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS, errorMessage,
 					new Object[] { this, GenericPackage.Literals.ACTUAL_REFERENCE__EREFERENCE }));
 		
 		}

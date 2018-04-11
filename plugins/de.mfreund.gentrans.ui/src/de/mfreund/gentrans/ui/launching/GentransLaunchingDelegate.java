@@ -1,10 +1,9 @@
 /*******************************************************************************
  * Copyright (C) 2015-2018 Matthias Freund and others, Institute of Automation, TU Dresden
- * 
- * This program and the accompanying materials are made
- * available under the terms of the Eclipse Public License 2.0
+ *
+ * This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0
  * which is available at https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0
  ******************************************************************************/
 package de.mfreund.gentrans.ui.launching;
@@ -14,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -173,7 +173,7 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		// will be thrown
 		// and the launch is canceled.
 		//
-		this.validateLaunchConfig(configuration);
+		validateLaunchConfig(configuration);
 
 		// get the associated files from the launch configuration
 		//
@@ -234,15 +234,14 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 		// Initialize the strategy that shall be used to resolve ambiguities
 		// base on the given launch configuration.
 		//
-		IAmbiguityResolvingStrategy resolvingStrategy = this.initializeAmbiguityResolvingStrategy(configuration,
-				project);
+		IAmbiguityResolvingStrategy resolvingStrategy = initializeAmbiguityResolvingStrategy(configuration, project);
 
 		// Create and run the transformation job
 		//
 		TransformationConfiguration transformationConfig;
 		try {
 			transformationConfig = TransformationConfiguration.createInstanceFromSourcePaths(sourceFiles, pamtramFiles,
-					targetBasePath);
+					targetBasePath, Optional.empty());
 		} catch (InitializationException e) {
 			throw new CoreException(new Status(IStatus.ERROR, "de.mfreund.gentrans", e.getMessage(), e));
 		}
@@ -352,11 +351,11 @@ public class GentransLaunchingDelegate implements ILaunchConfigurationDelegate {
 
 		// Validate the settings in the 'Main' tab
 		//
-		this.validateMainTab(configuration);
+		validateMainTab(configuration);
 
 		// Validate the settings in the 'Library' tab
 		//
-		this.validateLibraryTab(configuration);
+		validateLibraryTab(configuration);
 
 	}
 

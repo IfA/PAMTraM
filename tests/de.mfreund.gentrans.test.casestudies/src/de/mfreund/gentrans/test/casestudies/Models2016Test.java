@@ -1,10 +1,9 @@
 /*******************************************************************************
  * Copyright (C) 2017-2018 Matthias Freund and others, Institute of Automation, TU Dresden
- * 
- * This program and the accompanying materials are made
- * available under the terms of the Eclipse Public License 2.0
+ *
+ * This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0
  * which is available at https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0
  ******************************************************************************/
 /**
@@ -35,6 +34,7 @@ public abstract class Models2016Test extends PamtramCasestudyTest {
 		return "models2016";
 	}
 
+	@SuppressWarnings("javadoc")
 	public static class LibraryMM1ToMM2Test extends Models2016Test {
 
 		@Override
@@ -70,13 +70,13 @@ public abstract class Models2016Test extends PamtramCasestudyTest {
 					targetModels.size() == 1 && "Library_mm2.xmi".equals(targetModels.iterator().next()));
 
 			URI expectedResultURI = URI.createPlatformResourceURI(
-					PamtramCasestudyTest.expectedResultsFolderPath + "/" + this.getCaseStudyName() + "/Library_mm2.xmi",
+					PamtramCasestudyTest.expectedResultsFolderPath + "/" + getCaseStudyName() + "/Library_mm2.xmi",
 					true);
 
 			URI resultURI = URI.createPlatformResourceURI(
-					PamtramCasestudyTest.resultsFolderPath + "/" + this.getCaseStudyName() + "/Library_mm2.xmi", true);
+					PamtramCasestudyTest.resultsFolderPath + "/" + getCaseStudyName() + "/Library_mm2.xmi", true);
 
-			this.assertResultingModelIsEqualToExpected(
+			assertResultingModelIsEqualToExpected(
 					ResourceHelper.convertPlatformToFileURI(expectedResultURI).toFileString(),
 					ResourceHelper.convertPlatformToFileURI(resultURI).toFileString());
 
@@ -84,6 +84,7 @@ public abstract class Models2016Test extends PamtramCasestudyTest {
 
 	}
 
+	@SuppressWarnings("javadoc")
 	public static class LibraryMM2ToMM1Test extends Models2016Test {
 
 		@Override
@@ -119,13 +120,13 @@ public abstract class Models2016Test extends PamtramCasestudyTest {
 					targetModels.size() == 1 && "Library_mm1.xmi".equals(targetModels.iterator().next()));
 
 			URI expectedResultURI = URI.createPlatformResourceURI(
-					PamtramCasestudyTest.expectedResultsFolderPath + "/" + this.getCaseStudyName() + "/Library_mm1.xmi",
+					PamtramCasestudyTest.expectedResultsFolderPath + "/" + getCaseStudyName() + "/Library_mm1.xmi",
 					true);
 
 			URI resultURI = URI.createPlatformResourceURI(
-					PamtramCasestudyTest.resultsFolderPath + "/" + this.getCaseStudyName() + "/Library_mm1.xmi", true);
+					PamtramCasestudyTest.resultsFolderPath + "/" + getCaseStudyName() + "/Library_mm1.xmi", true);
 
-			this.assertResultingModelIsEqualToExpected(
+			assertResultingModelIsEqualToExpected(
 					ResourceHelper.convertPlatformToFileURI(expectedResultURI).toFileString(),
 					ResourceHelper.convertPlatformToFileURI(resultURI).toFileString());
 

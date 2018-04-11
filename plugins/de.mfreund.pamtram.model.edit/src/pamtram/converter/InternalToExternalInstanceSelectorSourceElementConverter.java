@@ -1,10 +1,9 @@
 /*******************************************************************************
  * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
- * 
- * This program and the accompanying materials are made
- * available under the terms of the Eclipse Public License 2.0
+ *
+ * This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0
  * which is available at https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0
  ******************************************************************************/
 package pamtram.converter;
@@ -18,12 +17,12 @@ import pamtram.structure.InstanceSelectorSourceElement;
 import pamtram.structure.StructurePackage;
 
 /**
- * An {@link IConverter} that is able to convert a normal {@link AttributeMatcherSourceElement} to an
- * {@link AttributeMatcherExternalSourceElement}.
+ * An {@link IConverter} that is able to convert a normal {@link InstanceSelectorSourceElement} to an
+ * {@link InstanceSelectorExternalSourceElement}.
  *
  * @author mfreund
  */
-public class InternalToExternalSourceAttrMatcherElementConverter
+public class InternalToExternalInstanceSelectorSourceElementConverter
 		implements IConverter<InstanceSelectorSourceElement, InstanceSelectorExternalSourceElement> {
 
 	@Override
@@ -32,7 +31,7 @@ public class InternalToExternalSourceAttrMatcherElementConverter
 		EPackage ePackage = source.eClass().getEPackage();
 		InstanceSelectorExternalSourceElement target = (InstanceSelectorExternalSourceElement) ePackage
 				.getEFactoryInstance()
-				.create((EClass) ePackage.getEClassifier("ComplexAttributeMatcherExternalSourceElement"));
+				.create((EClass) ePackage.getEClassifier("InstanceSelectorExternalSourceElement"));
 
 		if (source.getName() != null) {
 			target.setName(source.getName());

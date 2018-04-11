@@ -36,23 +36,21 @@ import pamtram.structure.library.AttributeParameter;
 public class ActualSourceSectionAttributeItemProvider extends SourceSectionAttributeItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ActualSourceSectionAttributeItemProvider(AdapterFactory adapterFactory) {
-
 		super(adapterFactory);
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
@@ -62,26 +60,26 @@ public class ActualSourceSectionAttributeItemProvider extends SourceSectionAttri
 	}
 
 	/**
-	 * This adds a property descriptor for the Attribute feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This adds a property descriptor for the Attribute feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addAttributePropertyDescriptor(Object object) {
-
+		
 		itemPropertyDescriptors
 				.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 						this.getResourceLocator(), this.getString("_UI_ActualAttribute_attribute_feature"),
 						this.getString("_UI_ActualAttribute_attribute_description"),
 						GenericPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE, true, false, true, null,
 						this.getString("_UI_BasicPropertyCategory"), null) {
-
+		
 					@Override
 					public Collection<?> getChoiceOfValues(Object object) {
-
+		
 						ActualAttribute<?, ?, ?, ?> att = (ActualAttribute<?, ?, ?, ?>) object;
-
+		
 						List<EAttribute> attributes = new ArrayList<>();
-
+		
 						// in case of a 'normal' TargetSectionClass, the
 						// attribute of this class can be chosen
 						if (att.getOwningClass() != null) {
@@ -93,7 +91,7 @@ public class ActualSourceSectionAttributeItemProvider extends SourceSectionAttri
 							attributes.addAll(
 									((AttributeParameter) att.eContainer()).getSource().eClass().getEAllAttributes());
 						}
-
+		
 						// Do not allow 'xs:any'-content attributes
 						//
 						return attributes.stream()
@@ -105,14 +103,13 @@ public class ActualSourceSectionAttributeItemProvider extends SourceSectionAttri
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-
-		return ((StyledString) getStyledText(object)).getString();
+		return ((StyledString)getStyledText(object)).getString();
 	}
 
 	/**
@@ -135,20 +132,18 @@ public class ActualSourceSectionAttributeItemProvider extends SourceSectionAttri
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-
 		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

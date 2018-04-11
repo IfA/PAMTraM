@@ -1,10 +1,9 @@
 /*******************************************************************************
  * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
- * 
- * This program and the accompanying materials are made
- * available under the terms of the Eclipse Public License 2.0
+ *
+ * This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0
  * which is available at https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0
  ******************************************************************************/
 package de.mfreund.gentrans.transformation.matching;
@@ -101,9 +100,9 @@ public class HintValueExtractor extends ValueExtractor {
 
 		super(assetManager);
 
-		this.valueCalculator = assetManager.getValueCalculator();
-		this.matchedSections = assetManager.getMatchedSectionRegistry();
-		this.exportedHintValues = Collections.synchronizedMap(new LinkedHashMap<>());
+		valueCalculator = assetManager.getValueCalculator();
+		matchedSections = assetManager.getMatchedSectionRegistry();
+		exportedHintValues = Collections.synchronizedMap(new LinkedHashMap<>());
 	}
 
 	/**
@@ -175,7 +174,7 @@ public class HintValueExtractor extends ValueExtractor {
 					.getMatchedSourceModelElementsFor(sourceSectionAttribute.getOwningClass(), true);
 
 			for (EObject eObject : eObjectsMatchedAgainstAttribute) {
-				this.assetManager.getElementIDs().getID(eObject, sourceSectionAttribute);
+				assetManager.getElementIDs().getID(eObject, sourceSectionAttribute);
 			}
 		}
 	}
@@ -195,11 +194,11 @@ public class HintValueExtractor extends ValueExtractor {
 		mappingInstance.getExportedMappingHints().stream().forEach(h -> {
 			// There should be only one hint value for exported hints
 			//
-			if (this.exportedHintValues.containsKey(h)) {
-				this.logger.warning(() -> "Multiple occurences found for exported hint '" + h.getName()
+			if (exportedHintValues.containsKey(h)) {
+				logger.warning(() -> "Multiple occurences found for exported hint '" + h.getName()
 						+ "'! This is currently not supported!");
 			}
-			this.exportedHintValues.put(h, this.extractHintValue(h, mappingInstance));
+			exportedHintValues.put(h, this.extractHintValue(h, mappingInstance));
 		});
 
 	}
@@ -217,6 +216,7 @@ public class HintValueExtractor extends ValueExtractor {
 	 * @param mappingInstance
 	 *            The {@link MappingInstanceDescriptor} for that the hint values shall be extracted.
 	 */
+	@SuppressWarnings("unlikely-arg-type")
 	private void extractImportedHintValues(MappingInstanceDescriptor mappingInstance) {
 
 		Map<MappingHint, HintValue> importedHintValues = new LinkedHashMap<>();
@@ -225,12 +225,12 @@ public class HintValueExtractor extends ValueExtractor {
 
 			for (MappingHint importedHint : importer.getHintGroup().getActiveMappingHints()) {
 
-				if (!this.exportedHintValues.containsKey(importedHint)) {
-					this.logger.severe(() -> "No value found to import for MappingHint '" + importedHint + "'!");
+				if (!exportedHintValues.containsKey(importedHint)) {
+					logger.severe(() -> "No value found to import for MappingHint '" + importedHint + "'!");
 					continue;
 				}
 
-				importedHintValues.put(importedHint, this.exportedHintValues.get(importedHint).createCopy());
+				importedHintValues.put(importedHint, exportedHintValues.get(importedHint).createCopy());
 			}
 
 			importer.getActiveMappingHints().stream().filter(h -> h instanceof MappedAttributeValueExpander)
@@ -246,8 +246,7 @@ public class HintValueExtractor extends ValueExtractor {
 						for (ExpandableHint hintToExpand : h.getHintsToExpand()) {
 
 							if (!importedHintValues.containsKey(hintToExpand)) {
-								this.logger
-										.severe(() -> "No hint value found for ExpandableHint '" + hintToExpand + "'!");
+								logger.severe(() -> "No hint value found for ExpandableHint '" + hintToExpand + "'!");
 								return;
 							}
 
@@ -321,7 +320,7 @@ public class HintValueExtractor extends ValueExtractor {
 			}
 
 			if (!hintValueMap.isEmpty()) {
-				ret = HintValue.create((MappingHint) hint, hintValueMap, this.valueCalculator);
+				ret = HintValue.create((MappingHint) hint, hintValueMap, valueCalculator);
 			}
 
 		} else if (hint instanceof CardinalityMapping) {
@@ -330,11 +329,11 @@ public class HintValueExtractor extends ValueExtractor {
 
 		} else {
 
-			this.logger.severe(() -> "Unsupported type of MappingHint found: '" + hint.eClass().getName() + "'!");
+			logger.severe(() -> "Unsupported type of MappingHint found: '" + hint.eClass().getName() + "'!");
 			return null;
 		}
 
-		return ret != null ? ret : HintValue.create((MappingHint) hint, null, this.valueCalculator);
+		return ret != null ? ret : HintValue.create((MappingHint) hint, null, valueCalculator);
 
 	}
 
@@ -357,8 +356,8 @@ public class HintValueExtractor extends ValueExtractor {
 		if (sourceElement instanceof GlobalDynamicSourceElement<?, ?, ?, ?, ?>) {
 			attributeValueRepresentation = this.extractValue(
 					(GlobalDynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute, SourceInstanceSelector>) sourceElement,
-					this.matchedSections, matchedSectionDescriptor,
-					this.assetManager.getTransformationConfig().isUseParallelization());
+					matchedSections, matchedSectionDescriptor,
+					assetManager.getTransformationConfig().isUseParallelization());
 		} else if (sourceElement instanceof DynamicSourceElement<?, ?, ?, ?>) {
 			attributeValueRepresentation = this.extractValue(
 					(DynamicSourceElement<SourceSection, SourceSectionClass, SourceSectionReference, SourceSectionAttribute>) sourceElement,
@@ -369,7 +368,7 @@ public class HintValueExtractor extends ValueExtractor {
 			attributeValueRepresentation = this.extractValue((GlobalAttributeImporter) sourceElement,
 					matchedSectionDescriptor);
 		} else {
-			this.logger.severe(() -> "Unsupported type of source element for a MappingHint found: '"
+			logger.severe(() -> "Unsupported type of source element for a MappingHint found: '"
 					+ sourceElement.eClass().getName() + "'!");
 		}
 		return attributeValueRepresentation;
@@ -403,7 +402,7 @@ public class HintValueExtractor extends ValueExtractor {
 			} else if (cardinalityMapping.getSource() instanceof SourceSectionAttribute) {
 				sourceClasses.add(((SourceSectionAttribute) cardinalityMapping.getSource()).getOwningClass());
 			} else {
-				this.logger.severe(() -> "CardinalityMapping '" + cardinalityMapping.getName()
+				logger.severe(() -> "CardinalityMapping '" + cardinalityMapping.getName()
 						+ "' specifies an unsupported element type as 'source' ('"
 						+ cardinalityMapping.getSource().eClass().getName() + "').");
 				return null;
@@ -417,13 +416,13 @@ public class HintValueExtractor extends ValueExtractor {
 			//
 			if (!cardinalityMapping.getReferenceMatchSpec().isEmpty()) {
 				sourceElements = sourceElements.stream()
-						.filter(e -> this.assetManager.getMatchSpecHandler().conformsMatchedObject(
+						.filter(e -> assetManager.getMatchSpecHandler().conformsMatchedObject(
 								matchedSectionDescriptor.getAssociatedSourceModelElement(), e, cardinalityMapping))
 						.collect(Collectors.toSet());
 			}
 
 			if (sourceElements.isEmpty()) {
-				return HintValue.create(cardinalityMapping, 0, this.valueCalculator);
+				return HintValue.create(cardinalityMapping, 0, valueCalculator);
 			}
 
 			int resultingCardinality = 0;
@@ -441,12 +440,12 @@ public class HintValueExtractor extends ValueExtractor {
 				// may be more than one attribute value per source element)
 				//
 				SourceSectionAttribute sourceAttribute = (SourceSectionAttribute) cardinalityMapping.getSource();
-				resultingCardinality = sourceElements.stream().mapToInt(sourceElement -> this.assetManager
+				resultingCardinality = sourceElements.stream().mapToInt(sourceElement -> assetManager
 						.getModelAccessUtil().getAttributeValueAsList(sourceElement, sourceAttribute).size()).sum();
 
 			}
 
-			return HintValue.create(cardinalityMapping, resultingCardinality, this.valueCalculator);
+			return HintValue.create(cardinalityMapping, resultingCardinality, valueCalculator);
 
 		} else {
 			// This keeps track of the extracted hint value parts
@@ -468,7 +467,7 @@ public class HintValueExtractor extends ValueExtractor {
 
 			}
 
-			return hintValue.isEmpty() ? null : HintValue.create(cardinalityMapping, hintValue, this.valueCalculator);
+			return hintValue.isEmpty() ? null : HintValue.create(cardinalityMapping, hintValue, valueCalculator);
 		}
 
 	}
@@ -492,7 +491,7 @@ public class HintValueExtractor extends ValueExtractor {
 				&& ((ActualSourceSectionAttribute) mappedAttributeValueExpander.getSourceAttribute()).getAttribute()
 						.isMany()) {
 			// FIXME Currently, we do not support many-valued attributes
-			this.logger.severe("MappedAttributeValueExpanders based on multi-valued attributes are not yet supported!");
+			logger.severe("MappedAttributeValueExpanders based on multi-valued attributes are not yet supported!");
 			return "";
 		}
 

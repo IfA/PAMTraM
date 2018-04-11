@@ -1,10 +1,9 @@
 /*******************************************************************************
  * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
- * 
- * This program and the accompanying materials are made
- * available under the terms of the Eclipse Public License 2.0
+ *
+ * This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0
  * which is available at https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0
  ******************************************************************************/
 package de.mfreund.gentrans.transformation.resolving;
@@ -312,8 +311,7 @@ public interface IAmbiguityResolvingStrategy {
 	 * Resolve ambiguities that arise when selecting the target {@link EObjectWrapper element} for a
 	 * {@link CrossReference} during the '<em>linking</em>' step of the transformation. This method is either called if
 	 * no {@link ReferenceTargetSelector} has been defined for the affected reference or if the evaluation of the
-	 * MappingInstanceSelector's {@link ReferenceTargetSelector#getMatcher() matcher} delivered multiple possible target
-	 * elements.
+	 * {@link ReferenceTargetSelector} delivered multiple possible target elements.
 	 *
 	 * @param choices
 	 *            The list of {@link EObjectWrapper elements} that can be chosen as target.

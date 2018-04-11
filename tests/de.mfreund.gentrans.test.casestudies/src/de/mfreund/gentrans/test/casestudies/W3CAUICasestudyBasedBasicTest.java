@@ -52,6 +52,7 @@ public abstract class W3CAUICasestudyBasedBasicTest extends PamtramCasestudyTest
 				"/de.mfreund.pamtram.casestudies.w3caui-movisa/Pamtram/" + getCaseStudyIdentifier() + ".pamtram");
 	}
 
+	@SuppressWarnings("javadoc")
 	public static class _01_AttributeMappingTest extends W3CAUICasestudyBasedBasicTest {
 
 		@Override
@@ -62,6 +63,7 @@ public abstract class W3CAUICasestudyBasedBasicTest extends PamtramCasestudyTest
 
 	}
 
+	@SuppressWarnings("javadoc")
 	public static class _02_ExternalAttributeMappingTest extends W3CAUICasestudyBasedBasicTest {
 
 		@Override
@@ -72,6 +74,7 @@ public abstract class W3CAUICasestudyBasedBasicTest extends PamtramCasestudyTest
 
 	}
 
+	@SuppressWarnings("javadoc")
 	public static class _03_multiValuedAttributeMappingTest extends W3CAUICasestudyBasedBasicTest {
 
 		@Override
@@ -82,6 +85,7 @@ public abstract class W3CAUICasestudyBasedBasicTest extends PamtramCasestudyTest
 
 	}
 
+	@SuppressWarnings("javadoc")
 	public static class _04_modelConnectionHintTest extends W3CAUICasestudyBasedBasicTest {
 
 		@Override
@@ -92,6 +96,7 @@ public abstract class W3CAUICasestudyBasedBasicTest extends PamtramCasestudyTest
 
 	}
 
+	@SuppressWarnings("javadoc")
 	public static class _05_attributeMappingWithExpressionTest extends W3CAUICasestudyBasedBasicTest {
 
 		@Override
@@ -102,6 +107,7 @@ public abstract class W3CAUICasestudyBasedBasicTest extends PamtramCasestudyTest
 
 	}
 
+	@SuppressWarnings("javadoc")
 	public static class _06_containerCheckTest extends W3CAUICasestudyBasedBasicTest {
 
 		@Override
@@ -112,6 +118,7 @@ public abstract class W3CAUICasestudyBasedBasicTest extends PamtramCasestudyTest
 
 	}
 
+	@SuppressWarnings("javadoc")
 	public static class _07_emptyReferenceTest extends W3CAUICasestudyBasedBasicTest {
 
 		@Override
@@ -122,6 +129,7 @@ public abstract class W3CAUICasestudyBasedBasicTest extends PamtramCasestudyTest
 
 	}
 
+	@SuppressWarnings("javadoc")
 	public static class _08_cardinalityMappingTest extends W3CAUICasestudyBasedBasicTest {
 
 		@Override
@@ -132,6 +140,7 @@ public abstract class W3CAUICasestudyBasedBasicTest extends PamtramCasestudyTest
 
 	}
 
+	@SuppressWarnings("javadoc")
 	public static class _09_attributeMappingWithFixedValueTest extends W3CAUICasestudyBasedBasicTest {
 
 		@Override
@@ -142,6 +151,7 @@ public abstract class W3CAUICasestudyBasedBasicTest extends PamtramCasestudyTest
 
 	}
 
+	@SuppressWarnings("javadoc")
 	public static class _10_applicationDependencyTest extends W3CAUICasestudyBasedBasicTest {
 
 		@Override
@@ -152,6 +162,7 @@ public abstract class W3CAUICasestudyBasedBasicTest extends PamtramCasestudyTest
 
 	}
 
+	@SuppressWarnings("javadoc")
 	public static class _11_equivalentSourceSectionsTest extends W3CAUICasestudyBasedBasicTest {
 
 		@Override
@@ -162,6 +173,7 @@ public abstract class W3CAUICasestudyBasedBasicTest extends PamtramCasestudyTest
 
 	}
 
+	@SuppressWarnings("javadoc")
 	public static class _12_attributeMappingWithGlobalSourceElementTest extends W3CAUICasestudyBasedBasicTest {
 
 		@Override
@@ -172,6 +184,7 @@ public abstract class W3CAUICasestudyBasedBasicTest extends PamtramCasestudyTest
 
 	}
 
+	@SuppressWarnings("javadoc")
 	public static class _13_matchSubTypesTest extends W3CAUICasestudyBasedBasicTest {
 
 		@Override
@@ -182,6 +195,7 @@ public abstract class W3CAUICasestudyBasedBasicTest extends PamtramCasestudyTest
 
 	}
 
+	@SuppressWarnings("javadoc")
 	public static class _14_ignoreUnmatchedElementsTest extends W3CAUICasestudyBasedBasicTest {
 
 		@Override
@@ -198,6 +212,7 @@ public abstract class W3CAUICasestudyBasedBasicTest extends PamtramCasestudyTest
 
 	}
 
+	@SuppressWarnings("javadoc")
 	public static class _15_virtualSourceSectionAttributeTest extends W3CAUICasestudyBasedBasicTest {
 
 		@Override
@@ -208,6 +223,7 @@ public abstract class W3CAUICasestudyBasedBasicTest extends PamtramCasestudyTest
 
 	}
 
+	@SuppressWarnings("javadoc")
 	public static class _16_virtualSourceSectionCrossReferenceTest extends W3CAUICasestudyBasedBasicTest {
 
 		@Override
@@ -218,6 +234,7 @@ public abstract class W3CAUICasestudyBasedBasicTest extends PamtramCasestudyTest
 
 	}
 
+	@SuppressWarnings("javadoc")
 	public static class _17_multiplePamtramModelsTest extends W3CAUICasestudyBasedBasicTest {
 
 		@Override
@@ -236,6 +253,7 @@ public abstract class W3CAUICasestudyBasedBasicTest extends PamtramCasestudyTest
 
 	}
 
+	@SuppressWarnings("javadoc")
 	public static class _18_modelConnectionHint2Test extends W3CAUICasestudyBasedBasicTest {
 
 		@Override
@@ -246,6 +264,7 @@ public abstract class W3CAUICasestudyBasedBasicTest extends PamtramCasestudyTest
 
 	}
 
+	@SuppressWarnings("javadoc")
 	public static class _19_modelConnectionHint3Test extends W3CAUICasestudyBasedBasicTest {
 
 		@Override
@@ -256,6 +275,7 @@ public abstract class W3CAUICasestudyBasedBasicTest extends PamtramCasestudyTest
 
 	}
 
+	@SuppressWarnings("javadoc")
 	public static class _20_modelConnectionHint4Test extends W3CAUICasestudyBasedBasicTest {
 
 		@Override
@@ -266,6 +286,7 @@ public abstract class W3CAUICasestudyBasedBasicTest extends PamtramCasestudyTest
 
 	}
 
+	@SuppressWarnings("javadoc")
 	public static class _21_cardinalityConditionForReferenceTest extends W3CAUICasestudyBasedBasicTest {
 
 		@Override
@@ -276,6 +297,7 @@ public abstract class W3CAUICasestudyBasedBasicTest extends PamtramCasestudyTest
 
 	}
 
+	@SuppressWarnings("javadoc")
 	public static class _22_crossReferenceTest extends W3CAUICasestudyBasedBasicTest {
 
 		@Override
@@ -286,6 +308,7 @@ public abstract class W3CAUICasestudyBasedBasicTest extends PamtramCasestudyTest
 
 	}
 
+	@SuppressWarnings("javadoc")
 	public static class _23_multipleExtendsTest extends W3CAUICasestudyBasedBasicTest {
 
 		@Override
@@ -302,6 +325,7 @@ public abstract class W3CAUICasestudyBasedBasicTest extends PamtramCasestudyTest
 
 	}
 
+	@SuppressWarnings("javadoc")
 	public static class _24_uniqueAttributesTest extends W3CAUICasestudyBasedBasicTest {
 
 		@Override

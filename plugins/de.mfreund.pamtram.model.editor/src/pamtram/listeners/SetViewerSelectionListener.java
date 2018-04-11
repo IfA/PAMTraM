@@ -1,10 +1,9 @@
 /*******************************************************************************
  * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
- * 
- * This program and the accompanying materials are made
- * available under the terms of the Eclipse Public License 2.0
+ *
+ * This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0
  * which is available at https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0
  ******************************************************************************/
 package pamtram.listeners;
@@ -27,9 +26,10 @@ import pamtram.presentation.PamtramEditor;
  * It ensures that the 'current viewer' is always kept up to date and thus that, e.g., the properties view always
  * displays the properties of the correct element.
  * <p />
- * Additionally, depending of the resulting selection in the {@link #viewer}, {@link #handleEmptySelection()},
- * {@link #handleSingleSelection(Object)} or {@link #handleMultiSelection(List)} is called. While the default
- * implementations of these methods do nothing, clients may override these.
+ * Additionally, depending of the resulting selection in the {@link #viewer},
+ * {@link #handleEmptySelection(SelectionEvent)}, {@link #handleSingleSelection(Object, SelectionEvent)} or
+ * {@link #handleMultiSelection(List, SelectionEvent)} is called. While the default implementations of these methods do
+ * nothing, clients may override these.
  *
  * @author mfreund
  */
@@ -66,20 +66,20 @@ public class SetViewerSelectionListener implements SelectionListener2 {
 	@Override
 	public void widgetSelected(SelectionEvent e) {
 
-		this.editor.setCurrentViewer(this.viewer);
+		editor.setCurrentViewer(viewer);
 
-		if (e.item == null || !(this.viewer.getSelection() instanceof StructuredSelection)) {
+		if (e.item == null || !(viewer.getSelection() instanceof StructuredSelection)) {
 			return;
 		}
 
-		StructuredSelection selection = (StructuredSelection) this.viewer.getSelection();
+		StructuredSelection selection = (StructuredSelection) viewer.getSelection();
 
 		if (selection.isEmpty()) {
-			this.handleEmptySelection(e);
+			handleEmptySelection(e);
 		} else if (selection.size() == 1) {
-			this.handleSingleSelection(selection.getFirstElement(), e);
+			handleSingleSelection(selection.getFirstElement(), e);
 		} else {
-			this.handleMultiSelection(Arrays.asList(selection.toArray()), e);
+			handleMultiSelection(Arrays.asList(selection.toArray()), e);
 		}
 	}
 

@@ -1,10 +1,9 @@
 /*******************************************************************************
  * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
- * 
- * This program and the accompanying materials are made
- * available under the terms of the Eclipse Public License 2.0
+ *
+ * This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0
  * which is available at https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0
  ******************************************************************************/
 /**
@@ -44,8 +43,7 @@ import pamtram.mapping.modifier.ValueModifierSet;
 import pamtram.util.PamtramValidator;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Mapping
- * Model</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Mapping Model</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
@@ -64,9 +62,11 @@ import pamtram.util.PamtramValidator;
  * @generated
  */
 public class MappingModelImpl extends NamedElementImpl implements MappingModel {
+
 	/**
 	 * The default value of the '{@link #isDeactivated() <em>Deactivated</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #isDeactivated()
 	 * @generated
 	 * @ordered
@@ -75,7 +75,8 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 
 	/**
 	 * The cached value of the '{@link #isDeactivated() <em>Deactivated</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #isDeactivated()
 	 * @generated
 	 * @ordered
@@ -83,9 +84,9 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	protected boolean deactivated = DEACTIVATED_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getLocalCondition() <em>Local Condition</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getLocalCondition() <em>Local Condition</em>}' containment reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getLocalCondition()
 	 * @generated
 	 * @ordered
@@ -94,7 +95,8 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 
 	/**
 	 * The cached value of the '{@link #getSharedCondition() <em>Shared Condition</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @see #getSharedCondition()
 	 * @generated
 	 * @ordered
@@ -102,8 +104,9 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	protected ComplexCondition sharedCondition;
 
 	/**
-	 * The cached value of the '{@link #getMappings() <em>Mappings</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getMappings() <em>Mappings</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getMappings()
 	 * @generated
 	 * @ordered
@@ -111,9 +114,9 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	protected EList<Mapping> mappings;
 
 	/**
-	 * The cached value of the '{@link #getModifierSets() <em>Modifier Sets</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getModifierSets() <em>Modifier Sets</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getModifierSets()
 	 * @generated
 	 * @ordered
@@ -121,9 +124,9 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	protected EList<ValueModifierSet> modifierSets;
 
 	/**
-	 * The cached value of the '{@link #getGlobalValues() <em>Global Values</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getGlobalValues() <em>Global Values</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getGlobalValues()
 	 * @generated
 	 * @ordered
@@ -132,8 +135,7 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 
 	/**
 	 * The cached value of the '{@link #getGlobalAttributes() <em>Global Attributes</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getGlobalAttributes()
 	 * @generated
 	 * @ordered
@@ -267,10 +269,10 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ComplexCondition> getAllConditions() {
 	
 		java.util.Set<Object> ret = new java.util.LinkedHashSet<>();
@@ -337,10 +339,9 @@ public class MappingModelImpl extends NamedElementImpl implements MappingModel {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> This returns the active mappings (the subset of
-	 * the defined mappings ({@link #mapping}) for that
-	 * {@link Mapping#isDeactivated()} and {@link Mapping#isAbstract()} both
-	 * return '<em>false</em>'). <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> This returns the active mappings (the subset of the defined mappings ({@link #mappings})
+	 * for that {@link Mapping#isDeactivated()} and {@link Mapping#isAbstract()} both return '<em>false</em>'). <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	@Override

@@ -1,10 +1,9 @@
 /*******************************************************************************
  * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
- * 
- * This program and the accompanying materials are made
- * available under the terms of the Eclipse Public License 2.0
+ *
+ * This program and the accompanying materials are made available under the terms of the Eclipse Public License 2.0
  * which is available at https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0
  ******************************************************************************/
 /**
@@ -359,45 +358,47 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean validateSourceElementMatchesSectionOrContainedSection(final DiagnosticChain diagnostics,
 			final Map<?, ?> context) {
 		
-		if (this.getSource() == null || !(this.eContainer().eContainer() instanceof Mapping)
-				|| ((Mapping) this.eContainer().eContainer()).getSourceSection() == null) {
+		if (getSource() == null || !(eContainer().eContainer() instanceof Mapping)
+				|| ((Mapping) eContainer().eContainer()).getSourceSection() == null) {
 			return true;
 		}
 		
-		Mapping mapping = (Mapping) this.eContainer().eContainer();
+		Mapping mapping = (Mapping) eContainer().eContainer();
 		
 		boolean result = false;
 		
-		pamtram.structure.generic.Class<?, ?, ?, ?> relevantClass = mapping.getSourceSection();
+		SourceSection relevantClass = mapping.getSourceSection();
 		
 		// iterate over all elements and return the attributes as possible options
 		//
-		Set<pamtram.structure.generic.Class<?, ?, ?, ?>> scanned = new HashSet<>();
-		List<pamtram.structure.generic.Class<?, ?, ?, ?>> sectionsToScan = new ArrayList<>();
+		Set<SourceSectionClass> scanned = new HashSet<>();
+		List<SourceSectionClass> sectionsToScan = new ArrayList<>();
 		sectionsToScan.add(relevantClass);
 		
 		// also regard abstract sections that this extends
 		if (relevantClass instanceof Section) {
-			sectionsToScan.addAll(((Section<?, ?, ?, ?>) relevantClass).getAllExtend());
+			sectionsToScan.addAll(relevantClass.getAllExtend());
 		}
 		
 		while (!sectionsToScan.isEmpty()) {
-			pamtram.structure.generic.Class<?, ?, ?, ?> classToScan = sectionsToScan.remove(0);
+			SourceSectionClass classToScan = sectionsToScan.remove(0);
 			scanned.add(classToScan);
 		
 			Iterator<EObject> it = classToScan.eAllContents();
 			while (it.hasNext()) {
 				EObject next = it.next();
-				if (this.getSource().equals(next)) {
+				if (getSource().equals(next)) {
 					result = true;
 					break;
-				} else if (next instanceof CrossReference) {
+				} else if (next instanceof CrossReference && next instanceof SourceSectionReference) {
 					List<SourceSectionClass> vals = new ArrayList<>();
-					vals.addAll(((CrossReference) next).getValue());
+					vals.addAll(
+							(Collection<? extends SourceSectionClass>) ((CrossReference<?, ?, ?, ?>) next).getValue());
 					vals.removeAll(scanned);
 					sectionsToScan.addAll(vals);
 				}
@@ -406,7 +407,7 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 		
 		if (!result && diagnostics != null) {
 		
-			String errorMessage = "The source element '" + this.getSource().getName()
+			String errorMessage = "The source element '" + getSource().getName()
 					+ "' is not part of the source section referenced by parent mapping '" + mapping.getName() + "'!";
 		
 			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, ExtendedValidator.DIAGNOSTIC_SOURCE,
@@ -424,29 +425,31 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 */
 	@Override
 	public boolean validateTargetClassMatchesSection(final DiagnosticChain diagnostics, final Map<?, ?> context) {
-		if (this.getTarget() == null || !(this.eContainer() instanceof MappingHintGroupType)
-						|| ((MappingHintGroupType) this.eContainer()).getTargetSection() == null) {
-					return true;
-				}
-				
-				MappingHintGroupType mappingHintGroup = (MappingHintGroupType) this.eContainer();
 		
-			boolean result = this.getTarget().getContainingSection() == mappingHintGroup
-						.getTargetSection() || mappingHintGroup.getAllExtend().contains(this.getTarget().getContainingSection());
+		if (getTarget() == null || !(eContainer() instanceof MappingHintGroupType)
+				|| ((MappingHintGroupType) eContainer()).getTargetSection() == null) {
+			return true;
+		}
 		
-			if (!result && diagnostics != null) {
+		MappingHintGroupType mappingHintGroup = (MappingHintGroupType) eContainer();
 		
-				String errorMessage = "The target class '" + this.getTarget().getName()
-							+ "' is not part of the target section referenced by parent hint group '"
-							+ mappingHintGroup.getName() + "'!";
+		boolean result = getTarget().getContainingSection() == mappingHintGroup.getTargetSection()
+				|| mappingHintGroup.getAllExtend().stream().map(MappingHintGroupType::getTargetSection)
+						.collect(Collectors.toSet()).contains(getTarget().getContainingSection());
 		
-				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, ExtendedValidator.DIAGNOSTIC_SOURCE,
-							ExtendedValidator.CARDINALITY_MAPPING__VALIDATE_TARGET_CLASS_MATCHES_SECTION, errorMessage,
-							new Object[] { this, ExtendedPackage.Literals.CARDINALITY_MAPPING__TARGET }));
+		if (!result && diagnostics != null) {
 		
-			}
+			String errorMessage = "The target class '" + getTarget().getName()
+					+ "' is not part of the target section referenced by parent hint group '"
+					+ mappingHintGroup.getName() + "'!";
 		
-			return result;	
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, ExtendedValidator.DIAGNOSTIC_SOURCE,
+					ExtendedValidator.CARDINALITY_MAPPING__VALIDATE_TARGET_CLASS_MATCHES_SECTION, errorMessage,
+					new Object[] { this, ExtendedPackage.Literals.CARDINALITY_MAPPING__TARGET }));
+		
+		}
+		
+		return result;	
 	}
 
 	/**
@@ -826,7 +829,6 @@ public class CardinalityMappingImpl extends MappingHintImpl implements Cardinali
 	 * @generated
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 			case ExtendedPackage.CARDINALITY_MAPPING___VALIDATE_SOURCE_ELEMENT_MATCHES_SECTION_OR_CONTAINED_SECTION__DIAGNOSTICCHAIN_MAP:

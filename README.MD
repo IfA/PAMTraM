@@ -69,7 +69,7 @@ In order to execute the installer, perform the following steps:
 *  The **Standalone Feature Project** defining the all plugins required for standalone execution of GenTrans transformations.<br/> See [Examples Feature Project Readme](./standalone/de.mfreund.gentrans.standalone.feature/README.md)
 
 ### Casestudies
-*  [AML-OPC UA](./casestudies/aml-op-ua/README.md)
+*  [AML-OPC UA](./casestudies/aml-opc-ua/README.md)
 *  [AutoProbe](./casestudies/de.mfreund.pamtram.casestudies.autoprobe/README.md)
 *  [AutoProbe Simplified](./casestudies/de.mfreund.pamtram.casestudies.autoprobe-simplified-diss/README.md)
 *  [Company-Visualization](./casestudies/de.mfreund.pamtram.casestudies.company-viz/README.md)

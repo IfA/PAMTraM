@@ -11,3 +11,4 @@ Export-Package: de.mfreund.pamtram.preferences,
  de.mfreund.pamtram.properties
 Bundle-Vendor: Matthias Freund, Institute of Automation, TU Dresden
 Bundle-ClassPath: .
+Automatic-Module-Name: de.mfreund.pamtram

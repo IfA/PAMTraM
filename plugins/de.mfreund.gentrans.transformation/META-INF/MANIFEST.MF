@@ -28,3 +28,4 @@ Export-Package: de.mfreund.gentrans.transformation,
  de.mfreund.gentrans.transformation.resolving,
  de.mfreund.gentrans.transformation.util
 Bundle-Vendor: Matthias Freund, Institute of Automation, TU Dresden
+Automatic-Module-Name: de.mfreund.gentrans.transformation

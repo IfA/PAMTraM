@@ -19,3 +19,4 @@ Export-Package: de.mfreund.gentrans.transformation,
  de.mfreund.gentrans.transformation.logging
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: Matthias Freund, Institute of Automation, TU Dresden
+Automatic-Module-Name: de.mfreund.gentrans.transformation.ui

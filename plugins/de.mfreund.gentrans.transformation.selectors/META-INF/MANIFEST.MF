@@ -19,3 +19,4 @@ Bundle-ActivationPolicy: lazy
 Export-Package: de.mfreund.gentrans.transformation.resolving,
  de.mfreund.gentrans.transformation.resolving.wizards
 Bundle-Vendor: Matthias Freund, Institute of Automation, TU Dresden
+Automatic-Module-Name: de.mfreund.gentrans.transformation.resolving.user

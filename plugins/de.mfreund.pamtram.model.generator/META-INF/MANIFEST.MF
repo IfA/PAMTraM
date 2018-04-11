@@ -13,3 +13,4 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Export-Package: de.mfreund.pamtram.model.generator
 Bundle-Vendor: Matthias Freund, Institute of Automation, TU Dresden
+Automatic-Module-Name: de.mfreund.pamtram.model.generator

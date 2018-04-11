@@ -15,3 +15,4 @@ Export-Package: de.mfreund.pamtram.transformation,
 Require-Bundle: de.mfreund.pamtram.model;bundle-version="2.1.0";visibility:=reexport,
  org.eclipse.emf.ecore
 Bundle-ActivationPolicy: lazy
+Automatic-Module-Name: de.mfreund.pamtram.transformation.model

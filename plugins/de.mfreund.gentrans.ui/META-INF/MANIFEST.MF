@@ -29,3 +29,4 @@ Bundle-ActivationPolicy: lazy
 Bundle-Vendor: Matthias Freund, Institute of Automation, TU Dresden
 Export-Package: de.mfreund.gentrans.ui,
  de.mfreund.gentrans.ui.launching
+Automatic-Module-Name: de.mfreund.gentrans.ui

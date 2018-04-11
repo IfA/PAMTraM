@@ -14,3 +14,4 @@ Require-Bundle: de.mfreund.gentrans.transformation;bundle-version="2.0.0",
 Export-Package: de.mfreund.gentrans.transformation.resolving.statistics
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: de.mfreund.gentrans.transformation.resolving.statistics.StatisticsResolvingStrategyPlugin
+Automatic-Module-Name: de.mfreund.gentrans.transformation.resolving.statistics

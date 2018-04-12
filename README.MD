@@ -81,6 +81,7 @@ In order to execute the installer, perform the following steps:
 *  [Visu+](./casestudies/de.mfreund.pamtram.casestudies.visu-plus/README.md)
 *  [W3CAUI-Movisa](./casestudies/de.mfreund.pamtram.casestudies.w3caui-movisa/README.md)
 *  [DFD-UML Activity Diagrams](./casestudies/dfd-uml/README.md)
+*  [XML-XML](.casestudies/xml-xml/README.md)
 
 ## Related Projects
 

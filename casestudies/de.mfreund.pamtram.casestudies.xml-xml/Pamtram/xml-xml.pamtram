@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ASCII"?>
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:extended="http://mfreund.de/pamtram/mapping/extended" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:target="http://mfreund.de/pamtram/structure/target">
+  <sourceSectionModels name="com.example.xml">
+    <metaModelPackage href="http://example.com/xml#/"/>
+    <sections xsi:type="source:SourceSection" name="RootElementType">
+      <eClass href="http://example.com/xml#//RootElementType"/>
+      <references xsi:type="source:SourceSectionCompositeReference" name="any" ignoreUnmatchedElements="true">
+        <value xsi:type="source:SourceSectionClass" name="ChildElement2Type" cardinality="ZERO__INFINITY">
+          <eClass href="http://example.com/xml#//ChildElement2Type"/>
+          <attributes xsi:type="source:ActualSourceSectionAttribute" name="value">
+            <attribute href="http://example.com/xml#//ChildElement2Type/value"/>
+          </attributes>
+        </value>
+        <eReference href="http://example.com/xml#//RootElementType/any.1"/>
+      </references>
+    </sections>
+    <sections xsi:type="source:SourceSection" name="ChildElement1Type" cardinality="ONE__INFINITY">
+      <eClass href="http://example.com/xml#//ChildElement1Type"/>
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="value">
+        <attribute href="http://example.com/xml#//ChildElement1Type/value"/>
+      </attributes>
+    </sections>
+  </sourceSectionModels>
+  <targetSectionModels name="example">
+    <metaModelPackage href="http://example.com/xml#/"/>
+    <sections xsi:type="target:TargetSection" name="RootElementType" file="//@targetSectionModels.0/@sections.0/@attributes.0">
+      <eClass href="http://example.com/xml#//RootElementType"/>
+      <references xsi:type="target:TargetSectionCompositeReference" name="any">
+        <value xsi:type="target:TargetSectionClass" name="ChildElement2Type" cardinality="ZERO__INFINITY">
+          <eClass href="http://example.com/xml#//ChildElement2Type"/>
+          <attributes xsi:type="target:ActualTargetSectionAttribute" name="value">
+            <attribute href="http://example.com/xml#//ChildElement2Type/value"/>
+          </attributes>
+        </value>
+        <eReference href="http://example.com/xml#//RootElementType/any.1"/>
+      </references>
+      <attributes xsi:type="target:FileAttribute" value="target-model.xml" fileType="XML"/>
+    </sections>
+    <sections xsi:type="target:TargetSection" name="ChildElement1Type" cardinality="ONE__INFINITY">
+      <eClass href="http://example.com/xml#//ChildElement1Type"/>
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="value">
+        <attribute href="http://example.com/xml#//ChildElement1Type/value"/>
+      </attributes>
+    </sections>
+  </targetSectionModels>
+  <mappingModels>
+    <mappings name="rootMapping" sourceSection="//@sourceSectionModels.0/@sections.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="rootElement" targetSection="//@targetSectionModels.0/@sections.0">
+        <mappingHints xsi:type="extended:AttributeMapping" name="valueMapping" target="//@targetSectionModels.0/@sections.0/@references.0/@value.0/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="value" source="//@sourceSectionModels.0/@sections.0/@references.0/@value.0/@attributes.0"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mappings>
+    <mappings name="child1Mapping" sourceSection="//@sourceSectionModels.0/@sections.1">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="child1" targetSection="//@targetSectionModels.0/@sections.1">
+        <mappingHints xsi:type="extended:AttributeMapping" name="valueMapping" target="//@targetSectionModels.0/@sections.1/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="value" source="//@sourceSectionModels.0/@sections.1/@attributes.0"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mappings>
+  </mappingModels>
+  <conditionModels/>
+</pamtram:PAMTraM>

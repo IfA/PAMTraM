@@ -93,6 +93,15 @@
             name="Company -&gt; Visualization"
             project="true">
       </wizard>
+      <wizard
+            category="org.eclipse.ui.Examples/de.mfreund.pamtram.examples.category"
+            class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
+            finalPerspective="de.mfreund.pamtram.pamtramPerspective"
+            icon="icons/project.png"
+            id="de.mfreund.pamtram.examples.xml-xml"
+            name="XML -&gt; XML"
+            project="true">
+      </wizard>
       <category
             id="de.mfreund.pamtram.examples.category"
             name="PAMTraM"
@@ -229,6 +238,18 @@
          <fileToOpen
                editorID="pamtram.presentation.PamtramEditorID"
                location="de.mfreund.pamtram.casestudies.company-viz/Pamtram/company-viz.pamtram">
+         </fileToOpen>
+      </example>
+      <example
+            wizardID="de.mfreund.pamtram.examples.xml-xml">
+         <projectDescriptor
+               contentURI="zips/xml-xml.zip"
+               description="This casestudy demonstrates the capabilities of PAMTraM to support XML/XSD source and target (meta-)models."
+               name="de.mfreund.pamtram.casestudies.xml-xml">
+         </projectDescriptor>
+         <fileToOpen
+               editorID="pamtram.presentation.PamtramEditorID"
+               location="de.mfreund.pamtram.casestudies.xml-xml/Pamtram/xml-xml.pamtram">
          </fileToOpen>
       </example>
    </extension>

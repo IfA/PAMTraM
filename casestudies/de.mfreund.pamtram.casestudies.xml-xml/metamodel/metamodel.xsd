@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified" targetNamespace="http://example.com/xml"
+	xmlns:xe="http://example.com/xml">
+
+	<!-- the root element -->
+	<xs:element name="rootElement">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:any minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="childElement1">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string" />
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="childElement2">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:int" />
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	
+</xs:schema>

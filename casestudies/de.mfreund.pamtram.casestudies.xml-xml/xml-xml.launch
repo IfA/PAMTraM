@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="de.mfreund.gentrans.launchConfigurationType.gentrans">
+<booleanAttribute key="enableHistory" value="false"/>
+<booleanAttribute key="enableStatistics" value="false"/>
+<booleanAttribute key="enableUser" value="true"/>
+<booleanAttribute key="handleExpanding" value="false"/>
+<listAttribute key="libraryPaths"/>
+<stringAttribute key="logLevel" value="INFO"/>
+<intAttribute key="maxPathLength" value="-1"/>
+<booleanAttribute key="openTargetModelOnCompletion" value="true"/>
+<listAttribute key="pamtramFiles">
+<listEntry value="xml-xml.pamtram"/>
+</listAttribute>
+<stringAttribute key="project" value="de.mfreund.pamtram.casestudies.xml-xml"/>
+<booleanAttribute key="rememberAmbiguousMappingChoice" value="true"/>
+<listAttribute key="srcFiles">
+<listEntry value="source-model.xml"/>
+</listAttribute>
+<booleanAttribute key="storeTransformation" value="false"/>
+<stringAttribute key="targetFile" value="out.xmi"/>
+<stringAttribute key="transformationModel" value=""/>
+<booleanAttribute key="useParallelization" value="false"/>
+<intAttribute key="weightingFactor" value="50"/>
+</launchConfiguration>

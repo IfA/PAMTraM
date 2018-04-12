@@ -164,6 +164,16 @@
 			Source/IfA.xmi,
 			Target/visualization.xmi"/>
 	
+	<!-- The files to include in the 'xml-xml' example -->
+	<patternset id="xml-xml.includes"
+		includes="
+			.project,
+			xml-xml.launch,
+			metamodel/**,
+			Pamtram/xml-xml.pamtram,
+			Source/source-model.xml,
+			Target/target-model.xml"/>
+	
 	
 	<!-- Zip the PAMTraM examples -->
 	<target name="zip.examples" depends="init">
@@ -232,6 +242,12 @@
 		<eclipse.convertPath resourcePath="de.mfreund.pamtram.casestudies.company-viz" property="projectDir"/>
 		<zip destfile="zips/company-viz.zip" basedir="${projectDir}">
 			<patternset refid="company-viz.includes"/>
+		</zip>
+		
+		<!-- XML-XML -->
+		<eclipse.convertPath resourcePath="de.mfreund.pamtram.casestudies.xml-xml" property="projectDir"/>
+		<zip destfile="zips/xml-xml.zip" basedir="${projectDir}">
+			<patternset refid="xml-xml.includes"/>
 		</zip>
 		
 	</target>

@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (C) 2017-2018 Matthias Freund and others, Institute of Automation, TU Dresden
+  
+  This program and the accompanying materials are made
+  available under the terms of the Eclipse Public License 2.0
+  which is available at https://www.eclipse.org/legal/epl-2.0/
+  
+  Contributors:
+    Institute of Automation, TU Dresden - Initial API and implementation
+  
+  SPDX-License-Identifier: EPL-2.0
+-->
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style">
   <viewpoint:DAnalysis xmi:id="_E8h9IEH4Eea0us9_amfTrQ" selectedViews="_FJuroEH4Eea0us9_amfTrQ _FJ31kEH4Eea0us9_amfTrQ _FJ6R0EH4Eea0us9_amfTrQ _FKA_gEH4Eea0us9_amfTrQ" version="12.0.0.201704271200">
     <semanticResources>company.ecore</semanticResources>

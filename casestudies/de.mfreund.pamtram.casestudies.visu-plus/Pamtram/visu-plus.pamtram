@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="ASCII"?>
+<!--
+  Copyright (C) 2016-2018 Matthias Freund and others, Institute of Automation, TU Dresden
+  
+  This program and the accompanying materials are made
+  available under the terms of the Eclipse Public License 2.0
+  which is available at https://www.eclipse.org/legal/epl-2.0/
+  
+  Contributors:
+    Institute of Automation, TU Dresden - Initial API and implementation
+  
+  SPDX-License-Identifier: EPL-2.0
+-->
 <pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:condition="http://mfreund.de/pamtram/condition" xmlns:constraint="http://mfreund.de/pamtram/structure/constraint" xmlns:extended="http://mfreund.de/pamtram/mapping/extended" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:modifier="http://mfreund.de/pamtram/mapping/modifier" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:target="http://mfreund.de/pamtram/structure/target">
   <sharedSourceSectionModels href="source/Layers.pamtram.source#_FCE34F5SEeebSvNNZJQHVw"/>
   <sharedSourceSectionModels href="source/Viobjects.pamtram.source#_FCHUIF5SEeebSvNNZJQHVw"/>

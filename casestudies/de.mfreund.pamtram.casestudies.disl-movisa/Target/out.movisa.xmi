@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
+  
+  This program and the accompanying materials are made
+  available under the terms of the Eclipse Public License 2.0
+  which is available at https://www.eclipse.org/legal/epl-2.0/
+  
+  Contributors:
+    Institute of Automation, TU Dresden - Initial API and implementation
+  
+  SPDX-License-Identifier: EPL-2.0
+-->
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:actions="http://stefan-hennig.de/movisa/algorithm/actions" xmlns:algorithm="http://stefan-hennig.de/movisa/algorithm" xmlns:generic="http://stefan-hennig.de/movisa/clientdata/perspective/technical/generic" xmlns:movisa="http://stefan-hennig.de/movisa" xmlns:presentation="http://stefan-hennig.de/movisa/presentation">
   <presentation:DropDownInteraction>
     <CommonTrigger xsi:type="presentation:Click" Name="Dialog_1_eBO_2_Select_Option_1_SignalTrigger" Effect="/0/@OwnedEffect.0"/>

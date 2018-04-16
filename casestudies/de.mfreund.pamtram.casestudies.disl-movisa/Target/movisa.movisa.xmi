@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="ASCII"?>
+<!--
+  Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
+  
+  This program and the accompanying materials are made
+  available under the terms of the Eclipse Public License 2.0
+  which is available at https://www.eclipse.org/legal/epl-2.0/
+  
+  Contributors:
+    Institute of Automation, TU Dresden - Initial API and implementation
+  
+  SPDX-License-Identifier: EPL-2.0
+-->
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:actions="http://stefan-hennig.de/movisa/algorithm/actions" xmlns:algorithm="http://stefan-hennig.de/movisa/algorithm" xmlns:movisa="http://stefan-hennig.de/movisa" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:presentation="http://stefan-hennig.de/movisa/presentation">
   <movisa:VisualizationApplicationModel Name="Neues Benutzungsmodell" Author="disl2movisa.etl" Version="20140722_143724">
     <AlgorithmDomain Name="Neues Benutzungsmodell_algoModel" Author="disl2movisa.etl" MovisaBuildVersion="rev0.6.2-2010-11-24" Version="20140722_143724">

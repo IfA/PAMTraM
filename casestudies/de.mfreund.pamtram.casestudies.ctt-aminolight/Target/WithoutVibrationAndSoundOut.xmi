@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (C) 2016-2018 Matthias Freund and others, Institute of Automation, TU Dresden
+  
+  This program and the accompanying materials are made
+  available under the terms of the Eclipse Public License 2.0
+  which is available at https://www.eclipse.org/legal/epl-2.0/
+  
+  Contributors:
+    Institute of Automation, TU Dresden - Initial API and implementation
+  
+  SPDX-License-Identifier: EPL-2.0
+-->
 <amino-ui:CUIModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:am-var="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/AlgorithmModel/Variables" xmlns:amino-ui="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1" xmlns:ani="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/Animation" xmlns:cm="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/ConditionModel" xmlns:df="dfsa" xmlns:pp-vis-assets="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/VisualPresentationProfile/Assets" xmlns:pp-vis-colors="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/VisualPresentationProfile/ColorDefinition" xmlns:pp-vis-rep-props="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/VisualPresentationProfile/Representation/Properties" xmlns:pp-vis-rep-pval="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/VisualPresentationProfile/Representation/PropertyValues" xmlns:se="sewef" xmlns:td="http://et.tu-dresden.de/ifa/AMINO-UI/model/v0.1/CoreLanguageModel/PresentationModel/TextDefinition" name="FAS">
   <components xsi:type="amino-ui:simpleContainer" name="relative velocityTextComponent">
     <containedElements name="Staticrelative velocityTextComponent">

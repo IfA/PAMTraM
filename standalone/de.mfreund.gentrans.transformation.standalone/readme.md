@@ -6,19 +6,20 @@ Therefore, the file ``StandaloneGenTransRunner.java`` provides an (almost) MWE o
 
 ## Prerequisites
 
-The current version of all required JARs need to be present in the ``lib`` folder.
+The current version of all required JARs need to be present in the ``lib`` folder and added to the project's build path.
 
 In order to update those JARs, the following steps need to be performed from within a running Eclipse instance.
 
 - Import this project as well as the ``de.mfreund.gentrans.standalone.feature`` project into the workspace.
 - Run the ant script ``export1.xml`` that will export the ``gentrans.standalone.feature`` to the ``temp`` folder of this project.
 - After the ``temp`` folder has been populated with the exported plugins, run the ant script ``export2.xml``.
+- Add the JARs in the ``lib`` folder to the build path by selecting all JARS, clicking right and selecting ``Build Path -> Add to Build Path``
 
 Note: Both ant scripts have to be run in the same JRE as the workspace.
 
 ## Run a transformation from within Eclipse
 
-If the required JARs have been updated (see above), the build path of the Eclipse project has to be updated. Therefore, go to ``Right Click -> Build Path -> Configure Build Path... -> Libraries``, delete all missing JARs and add all JARs from the ``lib`` folder.
+Note: In order to prevent compilation errors in case the ``lib`` folder is empty/not on the classpath, the ``Java Builder`` has been disabled for this project (this is usually no problem because this project is not required for PAMTraM but constitutes just a sample usage). In order to be able to run a transformation from within Eclipse, you have to add/comment in the builder in the ``.project`` file manually. 
 
 Run the launch configuration file ``RunTransformation.launch`` that calls the ``StandaloneGenTransRunner`` to transformation the source model ``sample-models/source-model.xmi`` via the PAMTraM model ``sample-models/pamtram-model.pamtram`` and stores the result in the file ``sample-models/target-model.xmi``.
 

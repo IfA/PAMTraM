@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="lib/de.mfreund.gentrans.transformation_1.8.0.201710121422.jar"/>
-	<classpathentry kind="lib" path="lib/de.mfreund.pamtram_1.8.0.201710121422.jar"/>
-	<classpathentry kind="lib" path="lib/de.mfreund.pamtram.model_1.9.0.201710121422.jar"/>
-	<classpathentry kind="lib" path="lib/de.mfreund.pamtram.model.edit_1.9.0.201710121422.jar"/>
-	<classpathentry kind="lib" path="lib/de.mfreund.pamtram.transformation.model_1.0.2.201710121422.jar"/>
-	<classpathentry kind="lib" path="lib/de.tud.et.ifa.agtele.eclipse.commons_1.0.0.201710121422.jar"/>
-	<classpathentry kind="lib" path="lib/de.tud.et.ifa.agtele.genlibrary_1.3.0.201710121422.jar"/>
-	<classpathentry kind="lib" path="lib/de.tud.et.ifa.agtele.genlibrary.edit_1.3.0.201710121422.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="lib" path="lib/de.mfreund.gentrans.transformation_2.2.0.201804171533.jar"/>
+	<classpathentry kind="lib" path="lib/de.mfreund.pamtram_2.2.0.201804171533.jar"/>
+	<classpathentry kind="lib" path="lib/de.mfreund.pamtram.model_2.2.0.201804171533.jar"/>
+	<classpathentry kind="lib" path="lib/de.mfreund.pamtram.model.edit_2.2.0.201804171533.jar"/>
+	<classpathentry kind="lib" path="lib/de.mfreund.pamtram.transformation.model_2.2.0.201804171533.jar"/>
+	<classpathentry kind="lib" path="lib/de.tud.et.ifa.agtele.eclipse.commons_1.1.0.201804171533.jar"/>
+	<classpathentry kind="lib" path="lib/de.tud.et.ifa.agtele.genlibrary_1.4.0.201804171533.jar"/>
+	<classpathentry kind="lib" path="lib/de.tud.et.ifa.agtele.genlibrary.edit_1.4.0.201804171533.jar"/>
 	<classpathentry kind="lib" path="lib/javax.inject_1.0.0.v20091030.jar"/>
 	<classpathentry kind="lib" path="lib/lpg.runtime.java_2.0.17.v201004271640.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.core.commands_3.9.0.v20170530-1048.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.core.contenttype_3.6.0.v20170207-1037.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.core.expressions_3.6.0.v20170207-1037.jar"/>
-	<classpathentry kind="lib" path="lib/org.eclipse.core.jobs_3.9.1.v20170714-0547.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.core.jobs_3.9.3.v20180115-1757.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.core.resources_3.12.0.v20170417-1558.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.core.runtime_3.13.0.v20170207-1030.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.debug.core_3.11.0.v20170605-1534.jar"/>
@@ -40,22 +41,21 @@
 	<classpathentry kind="lib" path="lib/org.eclipse.equinox.common_3.9.0.v20170207-1454.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.equinox.preferences_3.7.0.v20170126-2132.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.equinox.registry_3.7.0.v20170222-1344.jar"/>
-	<classpathentry kind="lib" path="lib/org.eclipse.jdt.core_3.13.50.v20171007-0855.jar"/>
-	<classpathentry kind="lib" path="lib/org.eclipse.jdt.core.manipulation_1.9.50.v20170920-1015.jar"/>
-	<classpathentry kind="lib" path="lib/org.eclipse.jdt.ui_3.13.50.v20170929-1653.jar"/>
-	<classpathentry kind="lib" path="lib/org.eclipse.jface_3.13.1.v20170810-0135.jar"/>
-	<classpathentry kind="lib" path="lib/org.eclipse.jface.text_3.12.0.v20170523-1043.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.jdt.core_3.13.102.v20180330-0919.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.jdt.core.manipulation_1.9.100.v20180321-0831.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.jdt.ui_3.13.100.v20180330-0726.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.jface_3.13.2.v20171022-1656.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.jface.text_3.12.2.v20180112-1341.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.ocl_3.6.200.v20170522-1736.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.ocl.common_1.4.200.v20160613-1518.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.ocl.ecore_3.6.200.v20170522-1736.jar"/>
-	<classpathentry kind="lib" path="lib/org.eclipse.osgi_3.12.50.v20170928-1321.jar"/>
-	<classpathentry kind="lib" path="lib/org.eclipse.swt_3.106.1.v20170926-0519.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.osgi_3.12.100.v20180210-1608.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.swt_3.106.3.v20180329-0507.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.text_3.6.100.v20170203-0814.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.ui_3.109.0.v20170411-1742.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.ui.ide_3.13.1.v20170822-1526.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.ui.views_3.9.0.v20170226-1833.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.ui.workbench_3.110.1.v20170704-1208.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.xsd_2.13.0.v20170609-0928.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

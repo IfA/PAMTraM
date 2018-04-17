@@ -2,7 +2,7 @@
 <feature
       id="de.mfreund.pamtram.examples.feature"
       label="PAMTraM Examples"
-      version="2.1.0.qualifier"
+      version="2.2.0.qualifier"
       provider-name="Matthias Freund, Institute of Automation, TU Dresden">
 
    <description>

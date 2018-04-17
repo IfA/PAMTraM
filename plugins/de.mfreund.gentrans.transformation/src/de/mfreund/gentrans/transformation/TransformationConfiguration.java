@@ -1,7 +1,20 @@
+/*******************************************************************************
+ * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
+ * 
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ * 
+ * Contributors:
+ *   Institute of Automation, TU Dresden - Initial API and implementation
+ * 
+ * SPDX-License-Identifier: EPL-2.0
+ ******************************************************************************/
 package de.mfreund.gentrans.transformation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -15,6 +28,7 @@ import org.eclipse.emf.ecore.xmi.impl.GenericXMLResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
+import de.tud.et.ifa.agtele.emf.connecting.Length;
 import de.tud.et.ifa.agtele.resources.ResourceHelper;
 import pamtram.PAMTraM;
 import pamtram.util.PamtramModelUtil;
@@ -118,14 +132,14 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 		// given
 		// BaseTransformationConfiguraiton
 		//
-		this.openTargetModelOnCompletion = baseConfig.isOpenTargetModelOnCompletion();
-		this.defaultTargetModel = baseConfig.getDefaultTargetModel();
-		this.transformationModelPath = baseConfig.getTransformationModelPath();
-		this.maxPathLength = baseConfig.getMaxPathLength();
-		this.onlyAskOnceOnAmbiguousMappings = baseConfig.isOnlyAskOnceOnAmbiguousMappings();
-		this.libPaths = baseConfig.getLibPaths();
-		this.ambiguityResolvingStrategy = baseConfig.getAmbiguityResolvingStrategy();
-		this.useParallelization = baseConfig.isUseParallelization();
+		openTargetModelOnCompletion = baseConfig.isOpenTargetModelOnCompletion();
+		defaultTargetModel = baseConfig.getDefaultTargetModel();
+		transformationModelPath = baseConfig.getTransformationModelPath();
+		maxPathLength = baseConfig.getMaxPathLength();
+		onlyAskOnceOnAmbiguousMappings = baseConfig.isOnlyAskOnceOnAmbiguousMappings();
+		libPaths = baseConfig.getLibPaths();
+		ambiguityResolvingStrategy = baseConfig.getAmbiguityResolvingStrategy();
+		useParallelization = baseConfig.isUseParallelization();
 
 		// Initialize the mandatory parameters
 		//
@@ -140,7 +154,7 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	 * Note: The instance is initialized with a default {@link BaseTransformationConfiguration}.
 	 *
 	 * @see #createInstanceFromSourceModels(List, List, String)
-	 * @see #createInstanceFromSourcePaths(Set, List, String)
+	 * @see #createInstanceFromSourcePaths(Set, List, String, Optional)
 	 *
 	 * @param sourceFilePaths
 	 *            List of file paths of the source models. Each path must either be absolute or relative to the
@@ -149,22 +163,23 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	 *            Paths to the {@link PAMTraM} models to be executed in the form 'project-name/path'.
 	 * @param targetBasePath
 	 *            File path relative to that all target models will be created in the form 'project-name/path'.
+	 * @param resourceSet
+	 *            An optional {@link ResourceSet} into that the PAMTraM models shall be loaded.
 	 * @return The created {@link TransformationConfiguration}.
 	 * @throws InitializationException
 	 *             If the initialization failed for some reason, e.g. because one of the models could not be loaded.
 	 */
 	public static TransformationConfiguration createInstanceFromSourcePaths(Set<String> sourceFilePaths,
-			Set<String> pamtramPaths, String targetBasePath) throws InitializationException {
+			Set<String> pamtramPaths, String targetBasePath, Optional<ResourceSet> resourceSet)
+			throws InitializationException {
 
-		// Create a resource set to load the models.
-		//
-		ResourceSet resourceSet = new ResourceSetImpl();
+		ResourceSet resourceSetToUse = resourceSet.orElseGet(ResourceSetImpl::new);
 
 		// Load the PAMTraM models
 		//
 		List<PAMTraM> pamtramModels = null;
 		try {
-			pamtramModels = PamtramModelUtil.loadPamtramModels(resourceSet, pamtramPaths, true);
+			pamtramModels = PamtramModelUtil.loadPamtramModels(resourceSetToUse, pamtramPaths, true);
 		} catch (ModelLoadException e) {
 			throw new TransformationConfiguration().new InitializationException(e);
 		}
@@ -173,8 +188,8 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 			throw new TransformationConfiguration().new InitializationException("No PAMTraM model was loaded!");
 		}
 
-		return TransformationConfiguration.createInstanceFromSourcePaths(sourceFilePaths, pamtramModels,
-				targetBasePath);
+		return TransformationConfiguration.createInstanceFromSourcePaths(sourceFilePaths, pamtramModels, targetBasePath,
+				Optional.of(resourceSetToUse));
 	}
 
 	/**
@@ -183,7 +198,7 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	 * Note: The instance is initialized with a default {@link BaseTransformationConfiguration}.
 	 *
 	 * @see #createInstanceFromSourceModels(List, List, String)
-	 * @see #createInstanceFromSourcePaths(Set, List, String)
+	 * @see #createInstanceFromSourcePaths(Set, List, String, Optional)
 	 *
 	 * @param sourceFilePaths
 	 *            List of file paths of the source models. Each path must either be absolute or relative to the
@@ -192,29 +207,29 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	 *            The transformation model
 	 * @param targetBasePath
 	 *            File path relative to that all target models will be created in the form 'project-name/path'.
+	 * @param resourceSet
+	 *            An optional {@link ResourceSet} into that the PAMTraM models shall be loaded.
 	 * @return The created {@link TransformationConfiguration}.
 	 * @throws InitializationException
 	 *             If the initialization failed for some reason, e.g. because one of the models could not be loaded.
 	 */
 	public static TransformationConfiguration createInstanceFromSourcePaths(Set<String> sourceFilePaths,
-			List<PAMTraM> pamtramModels, String targetBasePath) throws InitializationException {
-
-		// Create a resource set to load the models.
-		//
-		ResourceSet resourceSet = new ResourceSetImpl();
+			List<PAMTraM> pamtramModels, String targetBasePath, Optional<ResourceSet> resourceSet)
+			throws InitializationException {
 
 		// Load the source models
 		//
-		List<EObject> sourceModels = null;
+		List<EObject> sourceModels = new ArrayList<>();
 
 		try {
-			sourceModels = TransformationConfiguration.loadSourceModels(resourceSet, sourceFilePaths);
+			sourceModels = TransformationConfiguration.loadSourceModels(resourceSet.orElseGet(ResourceSetImpl::new),
+					sourceFilePaths);
 		} catch (Exception e) {
 
 			throw new TransformationConfiguration().new InitializationException(e);
 		}
 
-		if (sourceModels == null || sourceModels.isEmpty()) {
+		if (sourceModels.isEmpty()) {
 			throw new TransformationConfiguration().new InitializationException(
 					"The loaded source model(s) was/were empty!");
 		}
@@ -227,8 +242,8 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	 * <p />
 	 * Note: The instance is initialized with a default {@link BaseTransformationConfiguration}.
 	 *
-	 * @see #createInstanceFromSourcePaths(Set, Set, String)
-	 * @see #createInstanceFromSourcePaths(Set, List, String)
+	 * @see #createInstanceFromSourcePaths(Set, Set, String, Optional)
+	 * @see #createInstanceFromSourcePaths(Set, List, String, Optional)
 	 *
 	 * @param sourceModels
 	 *            The list of source models
@@ -259,15 +274,15 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 			return false;
 		}
 
-		if (this.sourceModels == null || this.sourceModels.isEmpty()) {
+		if (sourceModels == null || sourceModels.isEmpty()) {
 			return false;
 		}
 
-		if (this.pamtramModels == null || this.pamtramModels.isEmpty()) {
+		if (pamtramModels == null || pamtramModels.isEmpty()) {
 			return false;
 		}
 
-		if (this.targetBasePath == null || this.targetBasePath.isEmpty()) {
+		if (targetBasePath == null || targetBasePath.isEmpty()) {
 			return false;
 		}
 
@@ -296,7 +311,7 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	}
 
 	@Override
-	public TransformationConfiguration withMaxPathLength(int maxPathLength) {
+	public TransformationConfiguration withMaxPathLength(Length maxPathLength) {
 
 		super.withMaxPathLength(maxPathLength);
 		return this;
@@ -331,7 +346,7 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	 */
 	public List<EObject> getSourceModels() {
 
-		return this.sourceModels;
+		return sourceModels;
 	}
 
 	/**
@@ -341,7 +356,7 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	 */
 	public List<PAMTraM> getPamtramModels() {
 
-		return this.pamtramModels;
+		return pamtramModels;
 	}
 
 	/**
@@ -351,7 +366,7 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 	 */
 	public String getTargetBasePath() {
 
-		return this.targetBasePath;
+		return targetBasePath;
 	}
 
 	/**
@@ -362,10 +377,10 @@ public class TransformationConfiguration extends BaseTransformationConfiguration
 
 		StringBuilder builder = new StringBuilder();
 		builder.append("- Source Model(s): ");
-		builder.append("\n\t" + this.sourceModels.stream().map(m -> m.eResource().getURI().toString())
+		builder.append("\n\t" + sourceModels.stream().map(m -> m.eResource().getURI().toString())
 				.collect(Collectors.joining("\n\t")));
 		builder.append("\n- PAMTraM Model(s): ");
-		builder.append("\n\t" + this.pamtramModels.stream().map(m -> m.eResource().getURI().toString())
+		builder.append("\n\t" + pamtramModels.stream().map(m -> m.eResource().getURI().toString())
 				.collect(Collectors.joining("\n\t")));
 
 		builder.append("\n" + super.toString());

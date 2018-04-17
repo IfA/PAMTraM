@@ -1,9 +1,22 @@
+/*******************************************************************************
+ * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
+ * 
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ * 
+ * Contributors:
+ *   Institute of Automation, TU Dresden - Initial API and implementation
+ * 
+ * SPDX-License-Identifier: EPL-2.0
+ ******************************************************************************/
 /**
  */
 package pamtram.mapping.extended.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -30,9 +43,10 @@ import pamtram.mapping.extended.ExtendedFactory;
 import pamtram.mapping.extended.ExtendedPackage;
 import pamtram.provider.DeactivatableElementItemProvider;
 import pamtram.structure.generic.CardinalityType;
-import pamtram.structure.generic.Class;
 import pamtram.structure.generic.CrossReference;
 import pamtram.structure.source.SourceSectionClass;
+import pamtram.structure.source.SourceSectionReference;
+import pamtram.structure.target.TargetSection;
 
 /**
  * This is the item provider adapter for a {@link pamtram.mapping.extended.CardinalityMapping} object. <!--
@@ -78,8 +92,8 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 	 */
 	protected void addExpressionPropertyDescriptor(Object object) {
 
-		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
+		itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
 				this.getString("_UI_ExpressionElement_expression_feature"),
 				this.getString("_UI_CardinalityMapping_expression_description"),
 				PamtramPackage.Literals.EXPRESSION_ELEMENT__EXPRESSION, true, false, false,
@@ -93,18 +107,18 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 	 */
 	protected void addModifiersPropertyDescriptor(Object object) {
 
-		this.itemPropertyDescriptors.add(this.createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(), this.getResourceLocator(),
-				this.getString("_UI_ModifiableElement_modifiers_feature"),
-				this.getString("_UI_CardinalityMapping_modifiers_description"),
-				PamtramPackage.Literals.MODIFIABLE_ELEMENT__MODIFIERS, true, false, true, null,
-				this.getString("_UI_ExtendedPropertyCategory"), null));
+		itemPropertyDescriptors.add(
+				this.createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						this.getResourceLocator(), this.getString("_UI_ModifiableElement_modifiers_feature"),
+						this.getString("_UI_CardinalityMapping_modifiers_description"),
+						PamtramPackage.Literals.MODIFIABLE_ELEMENT__MODIFIERS, true, false, true, null,
+						this.getString("_UI_ExtendedPropertyCategory"), null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Reference Match Spec feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Reference Match Spec feature. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 *
 	 * @generated
 	 */
 	protected void addReferenceMatchSpecPropertyDescriptor(Object object) {
@@ -125,8 +139,8 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 
 	/**
 	 * This adds a property descriptor for the Follow External References feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	protected void addFollowExternalReferencesPropertyDescriptor(Object object) {
@@ -150,37 +164,19 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSourcePropertyDescriptorGen(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_CardinalityMapping_source_feature"),
-				 getString("_UI_CardinalityMapping_source_description"),
-				 ExtendedPackage.Literals.CARDINALITY_MAPPING__SOURCE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 getString("_UI_BasicPropertyCategory"),
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Source feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 */
 	protected void addSourcePropertyDescriptor(Object object) {
-
-		this.itemPropertyDescriptors.add(
-				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
+		
+		itemPropertyDescriptors
+				.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 						this.getResourceLocator(), this.getString("_UI_CardinalityMapping_source_feature"),
 						this.getString("_UI_CardinalityMapping_source_description"),
 						ExtendedPackage.Literals.CARDINALITY_MAPPING__SOURCE, true, false, true, null,
 						this.getString("_UI_BasicPropertyCategory"), null) {
-
+		
+					@SuppressWarnings("unchecked")
 					@Override
 					public Collection<?> getChoiceOfValues(Object object) {
-
+		
 						// the parent mapping
 						Mapping mapping = null;
 						if (((CardinalityMapping) object).eContainer() instanceof MappingHintGroupType) {
@@ -190,29 +186,33 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 							mapping = (Mapping) ((MappingHintGroupImporter) ((CardinalityMapping) object).eContainer())
 									.eContainer();
 						}
-
+		
+						if (mapping == null) {
+							return Collections.emptyList();
+						}
+		
 						// the source section
 						SourceSectionClass source = mapping.getSourceSection();
-
+		
 						List<Object> choiceOfValues = new ArrayList<>();
-
+		
 						// iterate over all elements and return the classes and
 						// attributes
 						// as possible options
 						Set<SourceSectionClass> scanned = new HashSet<>();
 						List<SourceSectionClass> sectionsToScan = new ArrayList<>();
 						sectionsToScan.add(source);
-
-						while (sectionsToScan.size() > 0) {
+		
+						while (!sectionsToScan.isEmpty()) {
 							SourceSectionClass classToScan = sectionsToScan.remove(0);
 							scanned.add(classToScan);
-
+		
 							if (!classToScan.getCardinality().equals(CardinalityType.ONE)) {
 								choiceOfValues.add(classToScan);
 							}
 							choiceOfValues.addAll(classToScan.getAttributes());
 							choiceOfValues.addAll(classToScan.getReferences());
-
+		
 							Iterator<EObject> it = classToScan.eAllContents();
 							while (it.hasNext()) {
 								EObject next = it.next();
@@ -222,15 +222,17 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 									}
 									choiceOfValues.addAll(((SourceSectionClass) next).getAttributes());
 									choiceOfValues.addAll(((SourceSectionClass) next).getReferences());
-								} else if (next instanceof CrossReference) {
+								} else if (next instanceof CrossReference && next instanceof SourceSectionReference) {
 									List<SourceSectionClass> vals = new ArrayList<>();
-									vals.addAll(((CrossReference) next).getValue());
+									vals.addAll(
+											(Collection<? extends SourceSectionClass>) ((CrossReference<?, ?, ?, ?>) next)
+													.getValue());
 									vals.removeAll(scanned);
 									sectionsToScan.addAll(vals);
 								}
 							}
 						}
-
+		
 						return choiceOfValues;
 					}
 				});
@@ -241,39 +243,20 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTargetPropertyDescriptorGen(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_CardinalityMapping_target_feature"),
-				 getString("_UI_CardinalityMapping_target_description"),
-				 ExtendedPackage.Literals.CARDINALITY_MAPPING__TARGET,
-				 true,
-				 false,
-				 true,
-				 null,
-				 getString("_UI_BasicPropertyCategory"),
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Target feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 */
 	protected void addTargetPropertyDescriptor(Object object) {
-
-		this.itemPropertyDescriptors.add(
-				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
+		
+		itemPropertyDescriptors
+				.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 						this.getResourceLocator(), this.getString("_UI_CardinalityMapping_target_feature"),
 						this.getString("_UI_CardinalityMapping_target_description"),
 						ExtendedPackage.Literals.CARDINALITY_MAPPING__TARGET, true, false, true, null,
 						this.getString("_UI_BasicPropertyCategory"), null) {
-
+		
 					@Override
 					public Collection<?> getChoiceOfValues(Object object) {
-
+		
 						// the target section
-						Class target = null;
+						TargetSection target = null;
 						if (((CardinalityMapping) object).eContainer() instanceof MappingHintGroupType) {
 							target = ((MappingHintGroupType) ((CardinalityMapping) object).eContainer())
 									.getTargetSection();
@@ -281,14 +264,18 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 							target = ((MappingHintGroupImporter) ((CardinalityMapping) object).eContainer())
 									.getHintGroup().getTargetSection();
 						}
-
+		
+						if (target == null) {
+							return Collections.emptyList();
+						}
+		
 						List<Object> choiceOfValues = new ArrayList<>();
-
+		
 						// is the target itself a possible option?
 						if (target.getCardinality().getValue() != CardinalityType.ONE_VALUE) {
 							choiceOfValues.add(target);
 						}
-
+		
 						// iterate over all elements and return the attributes
 						// as
 						// possible options
@@ -296,12 +283,12 @@ public class CardinalityMappingItemProvider extends MappingHintItemProvider {
 						while (it.hasNext()) {
 							EObject next = it.next();
 							if (next instanceof pamtram.structure.generic.Class
-									&& ((pamtram.structure.generic.Class) next).getCardinality()
+									&& ((pamtram.structure.generic.Class<?, ?, ?, ?>) next).getCardinality()
 											.getValue() != CardinalityType.ONE_VALUE) {
 								choiceOfValues.add(next);
 							}
 						}
-
+		
 						return choiceOfValues;
 					}
 				});

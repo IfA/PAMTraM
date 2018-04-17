@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
+ * 
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ * 
+ * Contributors:
+ *   Institute of Automation, TU Dresden - Initial API and implementation
+ * 
+ * SPDX-License-Identifier: EPL-2.0
+ ******************************************************************************/
 /**
  *
  */
@@ -52,8 +64,9 @@ public abstract class MappingModelEnhancer<D extends AbstractDialog> implements 
 	/**
 	 * This is the setter for the {@link #dialog}.
 	 * <p />
-	 * Note: This needs to be called before the {@link AbstractDialog#enhanceMappingModelButton} is pressed by the user.
-	 * Note: The passed <em>dialogRunner</em> needs to be of the same type as the generic type parameter <em>D</em>.
+	 * Note: This needs to be called before the <em>enhanceMappingModelButton</em> in the {@link AbstractDialog} is
+	 * pressed by the user. Note: The passed <em>dialogRunner</em> needs to be of the same type as the generic type
+	 * parameter <em>D</em>.
 	 *
 	 * @param dialog
 	 *            The {@link AbstractDialog} that this enhancer operates on (based on that the enhancement is executed).

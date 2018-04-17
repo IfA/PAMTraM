@@ -1,17 +1,15 @@
-/***********************************************************************
- * Copyright (c) 2007 Anyware Technologies
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
+/*******************************************************************************
+ * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
+ * 
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ * 
  * Contributors:
- *    Anyware Technologies - initial API and implementation
- *
- * $Id: EReferencesContentProvider.java,v 1.3 2008/04/28 08:41:19 jlescot Exp $
- **********************************************************************/
-
+ *   Institute of Automation, TU Dresden - Initial API and implementation
+ * 
+ * SPDX-License-Identifier: EPL-2.0
+ ******************************************************************************/
 package de.mfreund.pamtram.ui.views;
 
 import java.util.ArrayList;

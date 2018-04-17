@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
+ * 
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ * 
+ * Contributors:
+ *   Institute of Automation, TU Dresden - Initial API and implementation
+ * 
+ * SPDX-License-Identifier: EPL-2.0
+ ******************************************************************************/
 /**
  */
 package pamtram.mapping;
@@ -37,6 +49,7 @@ import pamtram.structure.target.TargetSection;
  *   <li>{@link pamtram.mapping.MappingHintGroupType#getAllMappingHints <em>All Mapping Hints</em>}</li>
  *   <li>{@link pamtram.mapping.MappingHintGroupType#getAllExtend <em>All Extend</em>}</li>
  *   <li>{@link pamtram.mapping.MappingHintGroupType#getAllExtending <em>All Extending</em>}</li>
+ *   <li>{@link pamtram.mapping.MappingHintGroupType#getParentMapping <em>Parent Mapping</em>}</li>
  * </ul>
  *
  * @see pamtram.mapping.MappingPackage#getMappingHintGroupType()
@@ -235,6 +248,22 @@ public interface MappingHintGroupType extends NamedElement {
 	 * @generated
 	 */
 	EList<MappingHintGroupType> getAllExtending();
+
+	/**
+	 * Returns the value of the '<em><b>Parent Mapping</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Parent Mapping</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Parent Mapping</em>' reference.
+	 * @see pamtram.mapping.MappingPackage#getMappingHintGroupType_ParentMapping()
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel get='\r\nreturn this.eContainer() instanceof &lt;%pamtram.mapping.Mapping%&gt; ? (Mapping) this.eContainer() : null;'"
+	 * @generated
+	 */
+	Mapping getParentMapping();
 
 	/**
 	 * <!-- begin-user-doc -->

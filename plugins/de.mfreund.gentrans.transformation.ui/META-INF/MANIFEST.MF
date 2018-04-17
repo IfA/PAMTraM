@@ -2,14 +2,14 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: GenTrans Transformation UI
 Bundle-SymbolicName: de.mfreund.gentrans.transformation.ui
-Bundle-Version: 2.1.0.qualifier
+Bundle-Version: 2.2.0.qualifier
 Bundle-Activator: de.mfreund.gentrans.transformation.ui.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- de.mfreund.gentrans.transformation;bundle-version="2.1.0",
- de.tud.et.ifa.agtele.eclipse.commons;bundle-version="1.0.0",
- de.tud.et.ifa.agtele.eclipse.commons.ui;bundle-version="1.0.1",
- de.mfreund.pamtram.transformation.model;bundle-version="2.1.0",
+ de.mfreund.gentrans.transformation;bundle-version="2.2.0",
+ de.tud.et.ifa.agtele.eclipse.commons;bundle-version="1.1.0",
+ de.tud.et.ifa.agtele.eclipse.commons.ui;bundle-version="1.1.0",
+ de.mfreund.pamtram.transformation.model;bundle-version="2.2.0",
  org.eclipse.ui.console;bundle-version="3.6.100",
  org.eclipse.core.resources;bundle-version="3.11.0",
  org.eclipse.emf.common;bundle-version="2.12.0",
@@ -19,3 +19,4 @@ Export-Package: de.mfreund.gentrans.transformation,
  de.mfreund.gentrans.transformation.logging
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: Matthias Freund, Institute of Automation, TU Dresden
+Automatic-Module-Name: de.mfreund.gentrans.transformation.ui

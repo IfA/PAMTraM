@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
+ * 
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ * 
+ * Contributors:
+ *   Institute of Automation, TU Dresden - Initial API and implementation
+ * 
+ * SPDX-License-Identifier: EPL-2.0
+ ******************************************************************************/
 package de.mfreund.gentrans.transformation;
 
 import java.util.ArrayList;
@@ -8,6 +20,7 @@ import java.util.stream.Collectors;
 import de.mfreund.gentrans.transformation.resolving.ComposedAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.DefaultAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
+import de.tud.et.ifa.agtele.emf.connecting.Length;
 import pamtram.structure.library.LibraryEntry;
 import pamtram.structure.target.FileAttribute;
 
@@ -45,10 +58,9 @@ public class BaseTransformationConfiguration {
 	protected String transformationModelPath;
 
 	/**
-	 * Maximum length for connection paths in the 'joining' step. '<em>0</em>' means that only direct connections are
-	 * allowed; '<em>-1</em>' means that the maximum length is unbounded.
+	 * Maximum length for connection paths in the 'joining' step.
 	 */
-	protected int maxPathLength;
+	protected Length maxPathLength;
 
 	/**
 	 * Determines whether the user should be asked every time an ambiguous mapping was detected, or if the first user
@@ -89,14 +101,14 @@ public class BaseTransformationConfiguration {
 
 		// Initialize all parameters with default values.
 		//
-		this.withDefaultTargetModel(null);
-		this.withTransformationModelPath(null);
-		this.withMaxPathLength(-1);
-		this.withOnlyAskOnceOnAmbiguousMappings(true);
-		this.withLibPaths(null);
-		this.withAmbiguityResolvingStrategy(null);
-		this.withLogLevel(null);
-		this.withUseParallelization(false);
+		withDefaultTargetModel(null);
+		withTransformationModelPath(null);
+		withMaxPathLength(Length.UNBOUNDED);
+		withOnlyAskOnceOnAmbiguousMappings(true);
+		withLibPaths(null);
+		withAmbiguityResolvingStrategy(null);
+		withLogLevel(null);
+		withUseParallelization(false);
 	}
 
 	/**
@@ -107,7 +119,7 @@ public class BaseTransformationConfiguration {
 	 */
 	public boolean validate() {
 
-		return this.defaultTargetModel != null && this.ambiguityResolvingStrategy != null;
+		return defaultTargetModel != null && ambiguityResolvingStrategy != null;
 	}
 
 	/**
@@ -159,16 +171,14 @@ public class BaseTransformationConfiguration {
 
 	/**
 	 * Set the {@link #maxPathLength}.
-	 * <p />
-	 * Note: If this is set to anything than '<em>0</em>', it means that the maximum length is unbounded.
 	 *
 	 * @param maxPathLength
 	 *            The {@link #maxPathLength} to set.
 	 * @return The {@link BaseTransformationConfiguration} after setting the {@link #maxPathLength}.
 	 */
-	public BaseTransformationConfiguration withMaxPathLength(int maxPathLength) {
+	public BaseTransformationConfiguration withMaxPathLength(Length maxPathLength) {
 
-		this.maxPathLength = maxPathLength < 0 ? -1 : maxPathLength;
+		this.maxPathLength = maxPathLength;
 		return this;
 	}
 
@@ -294,7 +304,7 @@ public class BaseTransformationConfiguration {
 	 */
 	public boolean isOpenTargetModelOnCompletion() {
 
-		return this.openTargetModelOnCompletion;
+		return openTargetModelOnCompletion;
 	}
 
 	/**
@@ -304,7 +314,7 @@ public class BaseTransformationConfiguration {
 	 */
 	public String getDefaultTargetModel() {
 
-		return this.defaultTargetModel;
+		return defaultTargetModel;
 	}
 
 	/**
@@ -314,7 +324,7 @@ public class BaseTransformationConfiguration {
 	 */
 	public String getTransformationModelPath() {
 
-		return this.transformationModelPath;
+		return transformationModelPath;
 	}
 
 	/**
@@ -322,9 +332,9 @@ public class BaseTransformationConfiguration {
 	 *
 	 * @return the maxPathLength
 	 */
-	public int getMaxPathLength() {
+	public Length getMaxPathLength() {
 
-		return this.maxPathLength;
+		return maxPathLength;
 	}
 
 	/**
@@ -334,7 +344,7 @@ public class BaseTransformationConfiguration {
 	 */
 	public boolean isOnlyAskOnceOnAmbiguousMappings() {
 
-		return this.onlyAskOnceOnAmbiguousMappings;
+		return onlyAskOnceOnAmbiguousMappings;
 	}
 
 	/**
@@ -344,7 +354,7 @@ public class BaseTransformationConfiguration {
 	 */
 	public List<String> getLibPaths() {
 
-		return this.libPaths;
+		return libPaths;
 	}
 
 	/**
@@ -354,7 +364,7 @@ public class BaseTransformationConfiguration {
 	 */
 	public IAmbiguityResolvingStrategy getAmbiguityResolvingStrategy() {
 
-		return this.ambiguityResolvingStrategy;
+		return ambiguityResolvingStrategy;
 	}
 
 	/**
@@ -364,7 +374,7 @@ public class BaseTransformationConfiguration {
 	 */
 	public Level getLogLevel() {
 
-		return this.logLevel;
+		return logLevel;
 	}
 
 	/**
@@ -374,7 +384,7 @@ public class BaseTransformationConfiguration {
 	 */
 	public boolean isUseParallelization() {
 
-		return this.useParallelization;
+		return useParallelization;
 	}
 
 	/**
@@ -384,16 +394,15 @@ public class BaseTransformationConfiguration {
 	public String toString() {
 
 		StringBuilder builder = new StringBuilder();
-		builder.append("- Open Target Model on Completion: " + this.openTargetModelOnCompletion);
-		builder.append("\n- Default Target Model: " + this.defaultTargetModel);
-		builder.append("\n- Maximum length for Connection Paths: " + this.maxPathLength);
-		builder.append("\n- Remember Choices For Ambiguous Mappings: " + this.onlyAskOnceOnAmbiguousMappings);
-		builder.append("\n- Create Transformation Model: " + (this.transformationModelPath != null ? "true" : "false"));
-		builder.append("\n- Extended Parallelization: " + this.useParallelization);
-		builder.append("\n- Used Ambiguity Resolving Strategy: " + this.ambiguityResolvingStrategy);
+		builder.append("- Open Target Model on Completion: " + openTargetModelOnCompletion);
+		builder.append("\n- Default Target Model: " + defaultTargetModel);
+		builder.append("\n- Maximum length for Connection Paths: " + maxPathLength);
+		builder.append("\n- Remember Choices For Ambiguous Mappings: " + onlyAskOnceOnAmbiguousMappings);
+		builder.append("\n- Create Transformation Model: " + (transformationModelPath != null ? "true" : "false"));
+		builder.append("\n- Extended Parallelization: " + useParallelization);
+		builder.append("\n- Used Ambiguity Resolving Strategy: " + ambiguityResolvingStrategy);
 		builder.append("\n- Library Location(s): ");
-		builder.append(
-				this.libPaths.isEmpty() ? "---" : "\n\t" + this.libPaths.stream().collect(Collectors.joining("\n\t")));
+		builder.append(libPaths.isEmpty() ? "---" : "\n\t" + libPaths.stream().collect(Collectors.joining("\n\t")));
 
 		return builder.toString();
 	}

@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
+ * 
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ * 
+ * Contributors:
+ *   Institute of Automation, TU Dresden - Initial API and implementation
+ * 
+ * SPDX-License-Identifier: EPL-2.0
+ ******************************************************************************/
 package de.mfreund.gentrans.transformation.resolving;
 
 import java.util.ArrayList;
@@ -12,7 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
-import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
+import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPath;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
 import pamtram.mapping.MappingHintGroupType;
@@ -98,7 +110,7 @@ public class DefaultAmbiguityResolvingStrategy extends AbstractAmbiguityResolvin
 	}
 
 	@Override
-	public List<ModelConnectionPath> joiningSelectConnectionPath(List<ModelConnectionPath> choices,
+	public List<EClassConnectionPath> joiningSelectConnectionPath(List<EClassConnectionPath> choices,
 			TargetSection section) throws AmbiguityResolvingException {
 
 		if (choices == null || choices.isEmpty()) {
@@ -109,15 +121,15 @@ public class DefaultAmbiguityResolvingStrategy extends AbstractAmbiguityResolvin
 	}
 
 	@Override
-	public Map<ModelConnectionPath, List<EObjectWrapper>> joiningSelectConnectionPathAndContainerInstance(
-			Map<ModelConnectionPath, List<EObjectWrapper>> choices, TargetSection section,
+	public Map<EClassConnectionPath, List<EObjectWrapper>> joiningSelectConnectionPathAndContainerInstance(
+			Map<EClassConnectionPath, List<EObjectWrapper>> choices, TargetSection section,
 			List<EObjectWrapper> sectionInstances, MappingHintGroupType hintGroup) throws AmbiguityResolvingException {
 
 		if (choices == null || choices.isEmpty()) {
 			return new HashMap<>();
 		} else {
-			Map<ModelConnectionPath, List<EObjectWrapper>> ret = new HashMap<>();
-			Entry<ModelConnectionPath, List<EObjectWrapper>> firstEntry = choices.entrySet().iterator().next();
+			Map<EClassConnectionPath, List<EObjectWrapper>> ret = new HashMap<>();
+			Entry<EClassConnectionPath, List<EObjectWrapper>> firstEntry = choices.entrySet().iterator().next();
 			ArrayList<EObjectWrapper> eObjectList = new ArrayList<>();
 			eObjectList.add(firstEntry.getValue().get(0));
 			ret.put(firstEntry.getKey(), eObjectList);

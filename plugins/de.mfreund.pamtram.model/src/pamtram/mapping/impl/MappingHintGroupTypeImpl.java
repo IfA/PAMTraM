@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
+ * 
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ * 
+ * Contributors:
+ *   Institute of Automation, TU Dresden - Initial API and implementation
+ * 
+ * SPDX-License-Identifier: EPL-2.0
+ ******************************************************************************/
 /**
  */
 package pamtram.mapping.impl;
@@ -315,6 +327,27 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Mapping getParentMapping() {
+	
+		
+		return this.eContainer() instanceof Mapping ? (Mapping) this.eContainer() : null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Mapping basicGetParentMapping() {
+		
+		return this.eContainer() instanceof Mapping ? (Mapping) this.eContainer() : null;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -492,6 +525,9 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 				return getAllExtend();
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__ALL_EXTENDING:
 				return getAllExtending();
+			case MappingPackage.MAPPING_HINT_GROUP_TYPE__PARENT_MAPPING:
+				if (resolve) return getParentMapping();
+				return basicGetParentMapping();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -566,6 +602,8 @@ public abstract class MappingHintGroupTypeImpl extends NamedElementImpl implemen
 				return !getAllExtend().isEmpty();
 			case MappingPackage.MAPPING_HINT_GROUP_TYPE__ALL_EXTENDING:
 				return !getAllExtending().isEmpty();
+			case MappingPackage.MAPPING_HINT_GROUP_TYPE__PARENT_MAPPING:
+				return basicGetParentMapping() != null;
 		}
 		return super.eIsSet(featureID);
 	}

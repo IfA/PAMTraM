@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xe:rootElement xmlns:xe="http://example.com/xml">
+  <xe:ChildElement2Type>1</xe:ChildElement2Type>
+  <xe:ChildElement1Type>test</xe:ChildElement1Type>
+</xe:rootElement>

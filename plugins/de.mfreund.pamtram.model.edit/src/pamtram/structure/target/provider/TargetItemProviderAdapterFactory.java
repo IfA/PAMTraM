@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
+ * 
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ * 
+ * Contributors:
+ *   Institute of Automation, TU Dresden - Initial API and implementation
+ * 
+ * SPDX-License-Identifier: EPL-2.0
+ ******************************************************************************/
 /**
  */
 package pamtram.structure.target.provider;
@@ -166,29 +178,6 @@ public class TargetItemProviderAdapterFactory extends TargetAdapterFactory imple
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.target.TargetSectionAnyContentCompositeReference} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected TargetSectionAnyContentCompositeReferenceItemProvider targetSectionAnyContentCompositeReferenceItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.structure.target.TargetSectionAnyContentCompositeReference}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createTargetSectionAnyContentCompositeReferenceAdapter() {
-		if (targetSectionAnyContentCompositeReferenceItemProvider == null) {
-			targetSectionAnyContentCompositeReferenceItemProvider = new TargetSectionAnyContentCompositeReferenceItemProvider(this);
-		}
-
-		return targetSectionAnyContentCompositeReferenceItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link pamtram.structure.target.TargetSectionCrossReference} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -209,29 +198,6 @@ public class TargetItemProviderAdapterFactory extends TargetAdapterFactory imple
 		}
 
 		return targetSectionCrossReferenceItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link pamtram.structure.target.TargetSectionAnyContentCrossReference} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected TargetSectionAnyContentCrossReferenceItemProvider targetSectionAnyContentCrossReferenceItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link pamtram.structure.target.TargetSectionAnyContentCrossReference}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createTargetSectionAnyContentCrossReferenceAdapter() {
-		if (targetSectionAnyContentCrossReferenceItemProvider == null) {
-			targetSectionAnyContentCrossReferenceItemProvider = new TargetSectionAnyContentCrossReferenceItemProvider(this);
-		}
-
-		return targetSectionAnyContentCrossReferenceItemProvider;
 	}
 
 	/**
@@ -383,9 +349,7 @@ public class TargetItemProviderAdapterFactory extends TargetAdapterFactory imple
 		if (fileAttributeItemProvider != null) fileAttributeItemProvider.dispose();
 		if (targetSectionClassItemProvider != null) targetSectionClassItemProvider.dispose();
 		if (targetSectionCompositeReferenceItemProvider != null) targetSectionCompositeReferenceItemProvider.dispose();
-		if (targetSectionAnyContentCompositeReferenceItemProvider != null) targetSectionAnyContentCompositeReferenceItemProvider.dispose();
 		if (targetSectionCrossReferenceItemProvider != null) targetSectionCrossReferenceItemProvider.dispose();
-		if (targetSectionAnyContentCrossReferenceItemProvider != null) targetSectionAnyContentCrossReferenceItemProvider.dispose();
 		if (actualTargetSectionAttributeItemProvider != null) actualTargetSectionAttributeItemProvider.dispose();
 		if (virtualTargetSectionAttributeItemProvider != null) virtualTargetSectionAttributeItemProvider.dispose();
 	}

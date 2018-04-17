@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
+ * 
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ * 
+ * Contributors:
+ *   Institute of Automation, TU Dresden - Initial API and implementation
+ * 
+ * SPDX-License-Identifier: EPL-2.0
+ ******************************************************************************/
 /**
  */
 package pamtram.mapping.extended.impl;
@@ -61,7 +73,6 @@ import pamtram.structure.util.StructureValidator;
  * <li>{@link pamtram.mapping.extended.impl.ReferenceTargetSelectorImpl#getTargetClass <em>Target Class</em>}</li>
  * <li>{@link pamtram.mapping.extended.impl.ReferenceTargetSelectorImpl#getAffectedReference <em>Affected
  * Reference</em>}</li>
- * <li>{@link pamtram.mapping.extended.impl.ReferenceTargetSelectorImpl#getMatcher <em>Matcher</em>}</li>
  * </ul>
  *
  * @generated
@@ -330,8 +341,8 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	@Override
 	public void setAffectedReference(TargetSectionCrossReference newAffectedReference) {
 
-		this.setNameDerived(this.affectedReference, newAffectedReference, null, null);
-		this.setAffectedReferenceGen(newAffectedReference);
+		this.setNameDerived(affectedReference, newAffectedReference, null, null);
+		setAffectedReferenceGen(newAffectedReference);
 	}
 
 	/**
@@ -420,8 +431,7 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 	@Override
 	public boolean validateReferenceAttributeIsValid(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 
-		if (this.referenceAttribute == null || this.targetClass == null
-				|| this.targetClass.getContainingSection() == null) {
+		if (referenceAttribute == null || targetClass == null || targetClass.getContainingSection() == null) {
 			return true;
 		}
 
@@ -430,12 +440,12 @@ public class ReferenceTargetSelectorImpl extends MappingHintImpl implements Refe
 		// sections).
 		//
 
-		TargetSection section = this.targetClass.getContainingSection();
+		TargetSection section = targetClass.getContainingSection();
 
 		List<TargetSection> allowedSections = new ArrayList<>(Arrays.asList(section));
 		allowedSections.addAll(section.getAllExtend());
 
-		boolean result = allowedSections.contains(this.referenceAttribute.getContainingSection());
+		boolean result = allowedSections.contains(referenceAttribute.getContainingSection());
 
 		if (!result && diagnostics != null) {
 

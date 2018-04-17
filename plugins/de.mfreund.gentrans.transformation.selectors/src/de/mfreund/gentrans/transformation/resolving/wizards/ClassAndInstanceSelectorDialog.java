@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
+ * 
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ * 
+ * Contributors:
+ *   Institute of Automation, TU Dresden - Initial API and implementation
+ * 
+ * SPDX-License-Identifier: EPL-2.0
+ ******************************************************************************/
 package de.mfreund.gentrans.transformation.resolving.wizards;
 
 import java.util.ArrayList;
@@ -16,7 +28,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
-import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
+import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPath;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import pamtram.structure.target.TargetSection;
 
@@ -24,7 +36,7 @@ import pamtram.structure.target.TargetSection;
  * A {@link GenericSelectionDialog} that enables the user to select a 'class' (of type <em>T</em>) as well as an
  * '{@link EObjectWrapper instance}' to be used.
  * <p />
- * This is used during step 3 and 4 of the generic transformation when multiple possible {@link ModelConnectionPath
+ * This is used during step 3 and 4 of the generic transformation when multiple possible {@link EClassConnectionPath
  * ModelConnectionPaths}/{@link TargetSection TargetSections} and corresponding instances exist.
  *
  * @param <T>

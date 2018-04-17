@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
+ * 
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ * 
+ * Contributors:
+ *   Institute of Automation, TU Dresden - Initial API and implementation
+ * 
+ * SPDX-License-Identifier: EPL-2.0
+ ******************************************************************************/
 /**
  *
  */
@@ -13,8 +25,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 
-import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
 import de.mfreund.gentrans.transformation.resolving.UserDecisionResolvingStrategy;
+import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPath;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import pamtram.structure.target.TargetSection;
 
@@ -24,7 +36,7 @@ import pamtram.structure.target.TargetSection;
  *
  * @author mfreund
  */
-public class JoiningSelectConnectionPathAmbiguityDialog extends GenericSelectionDialog<ModelConnectionPath> {
+public class JoiningSelectConnectionPathAmbiguityDialog extends GenericSelectionDialog<EClassConnectionPath> {
 
 	/**
 	 * The {@link TargetSection} for that the option shall be chosen.
@@ -42,7 +54,7 @@ public class JoiningSelectConnectionPathAmbiguityDialog extends GenericSelection
 	 *            An optional {@link SelectionListener2} that will be called when the <em>EnhanceMappingModelButton</em>
 	 *            is clicked. If no listener is given, the button will be grayed out.
 	 */
-	public JoiningSelectConnectionPathAmbiguityDialog(List<ModelConnectionPath> options, TargetSection element,
+	public JoiningSelectConnectionPathAmbiguityDialog(List<EClassConnectionPath> options, TargetSection element,
 			Optional<SelectionListener2> enhanceMappingModelListener) {
 
 		super("Multiple possible paths found to join elements of the target model!", options, false,

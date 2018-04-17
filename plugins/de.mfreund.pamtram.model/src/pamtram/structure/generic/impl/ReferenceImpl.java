@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
+ * 
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ * 
+ * Contributors:
+ *   Institute of Automation, TU Dresden - Initial API and implementation
+ * 
+ * SPDX-License-Identifier: EPL-2.0
+ ******************************************************************************/
 /**
  */
 package pamtram.structure.generic.impl;
@@ -5,12 +17,14 @@ package pamtram.structure.generic.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -237,6 +251,28 @@ public abstract class ReferenceImpl<S extends Section<S, C, R, A>, C extends pam
 
 		this.addValuesGeneric(new BasicEList<>(values));
 
+	}
+
+	@Override
+	public EObject eResolveProxy(InternalEObject proxy) {
+
+		EObject resolved = super.eResolveProxy(proxy);
+
+		if (resolved != null && !resolved.eIsProxy()) {
+			return resolved;
+		}
+
+		// Resolve in case of a 'virtual' xs:any-content reference
+		if (this instanceof ActualReference<?, ?, ?, ?> && proxy.eProxyURI().hasFragment()
+				&& proxy.eProxyURI().fragment().contains("/any") && getOwningClass() != null
+				&& getOwningClass().getEClass() != null) {
+			EClass owningEClass = getOwningClass().getEClass();
+			Optional<EReference> virtualAnyContentReference = pamtram.util.XSDAnyContentUtil
+					.getOrCreateVirtualAnyContentReference(owningEClass);
+			return virtualAnyContentReference.isPresent() ? virtualAnyContentReference.get() : resolved;
+		}
+
+		return resolved;
 	}
 
 } // ReferenceImpl

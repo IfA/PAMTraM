@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
+ * 
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ * 
+ * Contributors:
+ *   Institute of Automation, TU Dresden - Initial API and implementation
+ * 
+ * SPDX-License-Identifier: EPL-2.0
+ ******************************************************************************/
 /**
  *
  */
@@ -19,9 +31,9 @@ import org.eclipse.swt.widgets.Display;
 import de.mfreund.gentrans.transformation.UserAbortException;
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
-import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
 import de.mfreund.gentrans.transformation.resolving.UserDecisionResolvingStrategy;
+import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPath;
 import de.tud.et.ifa.agtele.ui.listeners.SelectionListener2;
 import pamtram.mapping.InstantiableMappingHintGroup;
 import pamtram.mapping.Mapping;
@@ -253,18 +265,18 @@ public class DialogFactory {
 	 * Note: This can be called from outside the UI thread as the dialog is executed via its own {@link Runnable}.
 	 *
 	 * @param choices
-	 *            The list of {@link ModelConnectionPath options} that the user can choose from.
+	 *            The list of {@link EClassConnectionPath options} that the user can choose from.
 	 * @param element
 	 *            The {@link TargetSection} for that the option shall be chosen.
 	 * @param enhanceMappingModelListener
 	 *            An optional {@link SelectionListener2} that will be called when the <em>EnhanceMappingModelButton</em>
 	 *            is clicked. If no listener is given, the button will be grayed out.
-	 * @return The chosen {@link ModelConnectionPath}.
+	 * @return The chosen {@link EClassConnectionPath}.
 	 * @throws AmbiguityResolvingException
 	 *             If the user pressed the <em>Abort Transformation</em> button in the dialog.
 	 */
-	public static ModelConnectionPath createAndExecuteJoiningSelectConnectionPathDialog(
-			List<ModelConnectionPath> choices, TargetSection element,
+	public static EClassConnectionPath createAndExecuteJoiningSelectConnectionPathDialog(
+			List<EClassConnectionPath> choices, TargetSection element,
 			Optional<SelectionListener2> enhanceMappingModelListener) throws AmbiguityResolvingException {
 
 		Supplier<JoiningSelectConnectionPathAmbiguityDialog> dialogSupplier = () -> new JoiningSelectConnectionPathAmbiguityDialog(
@@ -318,7 +330,7 @@ public class DialogFactory {
 	 * Note: This can be called from outside the UI thread as the dialog is executed via its own {@link Runnable}.
 	 *
 	 * @param choices
-	 *            The list of {@link ModelConnectionPath options} that the user can choose from.
+	 *            The list of {@link EClassConnectionPath options} that the user can choose from.
 	 * @param hintGroup
 	 *            The {@link MappingHintGroupType} that was responsible for instantiating the given 'sectionInstances'.
 	 * @param sectionInstances
@@ -326,23 +338,23 @@ public class DialogFactory {
 	 * @param enhanceMappingModelListener
 	 *            An optional {@link SelectionListener2} that will be called when the <em>EnhanceMappingModelButton</em>
 	 *            is clicked. If no listener is given, the button will be grayed out.
-	 * @return The {@link HashMap} that contains the chosen {@link ModelConnectionPath} and {@link EObjectWrapper
+	 * @return The {@link HashMap} that contains the chosen {@link EClassConnectionPath} and {@link EObjectWrapper
 	 *         container instance}.
 	 * @throws AmbiguityResolvingException
 	 *             If the user pressed the <em>Abort Transformation</em> button in the dialog.
 	 */
-	public static Map<ModelConnectionPath, List<EObjectWrapper>> createAndExecuteJoiningSelectConnectionPathAndContainerInstanceDialog(
-			Map<ModelConnectionPath, List<EObjectWrapper>> choices, MappingHintGroupType hintGroup,
+	public static Map<EClassConnectionPath, List<EObjectWrapper>> createAndExecuteJoiningSelectConnectionPathAndContainerInstanceDialog(
+			Map<EClassConnectionPath, List<EObjectWrapper>> choices, MappingHintGroupType hintGroup,
 			List<EObjectWrapper> sectionInstances, Optional<SelectionListener2> enhanceMappingModelListener)
 			throws AmbiguityResolvingException {
 
-		Supplier<ClassAndInstanceSelectorDialog<ModelConnectionPath>> dialogSupplier = () -> new JoiningSelectConnectionPathAndContainerInstanceDialog(
+		Supplier<ClassAndInstanceSelectorDialog<EClassConnectionPath>> dialogSupplier = () -> new JoiningSelectConnectionPathAndContainerInstanceDialog(
 				choices, hintGroup, sectionInstances, enhanceMappingModelListener);
 
-		ClassAndInstanceSelectorDialog<ModelConnectionPath> dialog = DialogFactory
+		ClassAndInstanceSelectorDialog<EClassConnectionPath> dialog = DialogFactory
 				.createAndExecuteDialog(dialogSupplier);
 
-		Map<ModelConnectionPath, List<EObjectWrapper>> result = new HashMap<>();
+		Map<EClassConnectionPath, List<EObjectWrapper>> result = new HashMap<>();
 		result.put(dialog.getSingleSelection(), Arrays.asList(dialog.getSingleInstance()));
 		return result;
 	}
@@ -399,7 +411,7 @@ public class DialogFactory {
 	 * @param enhanceMappingModelListener
 	 *            An optional {@link SelectionListener2} that will be called when the <em>EnhanceMappingModelButton</em>
 	 *            is clicked. If no listener is given, the button will be grayed out.
-	 * @return The {@link HashMap} that contains the chosen {@link ModelConnectionPath} and {@link EObjectWrapper
+	 * @return The {@link HashMap} that contains the chosen {@link EClassConnectionPath} and {@link EObjectWrapper
 	 *         container instance}.
 	 * @throws AmbiguityResolvingException
 	 *             If the user pressed the <em>Abort Transformation</em> button in the dialog.

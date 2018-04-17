@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
+ * 
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ * 
+ * Contributors:
+ *   Institute of Automation, TU Dresden - Initial API and implementation
+ * 
+ * SPDX-License-Identifier: EPL-2.0
+ ******************************************************************************/
 /**
  */
 package pamtram.mapping.extended.impl;
@@ -25,6 +37,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import de.tud.et.ifa.agtele.emf.connecting.AllowedReferenceType;
 import pamtram.ExpressionElement;
 import pamtram.ModifiableElement;
 import pamtram.PamtramPackage;
@@ -303,65 +316,67 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 	@Override
 	public boolean validateTargetClassMatchesPossibleContainerType(final DiagnosticChain diagnostics,
 			final Map<?, ?> context) {
-		if (!(this.eContainer() instanceof MappingHintGroupType) || this.getTargetClass() == null) {
-					return true;
-				}
 		
-			TargetSection targetSection = ((MappingHintGroupType) this.eContainer()).getTargetSection();
+		if (!(eContainer() instanceof MappingHintGroupType) || getTargetClass() == null) {
+			return true;
+		}
 		
-			if (targetSection == null || targetSection.getEClass() == null) {
-					return true;
-				}
+		TargetSection targetSection = ((MappingHintGroupType) eContainer()).getTargetSection();
 		
-			boolean result = this.getTargetClass().getEClass().getEAllContainments().parallelStream()
-						.anyMatch(r -> r.getEReferenceType().isSuperTypeOf(targetSection.getEClass()));
+		if (targetSection == null || targetSection.getEClass() == null) {
+			return true;
+		}
 		
-			if (!result && diagnostics != null) {
+		boolean result = pamtram.util.XSDAnyContentUtil
+				.getEAllReferencesIncludingVirtualAnyContentReference(getTargetClass().getEClass(),
+						AllowedReferenceType.CONTAINMENT)
+				.parallelStream().anyMatch(r -> r.getEReferenceType().isSuperTypeOf(targetSection.getEClass()));
 		
-				int severity = Diagnostic.ERROR;
-					String errorMessage = "The type of the parent hint group's target section ('"
+		if (!result && diagnostics != null) {
+		
+			int severity = Diagnostic.ERROR;
+			String errorMessage = "The type of the parent hint group's target section ('"
+					+ targetSection.getEClass().getName()
+					+ "') cannot be connected to (contained in) the specified target class ('"
+					+ getTargetClass().getName() + "')!";
+		
+			// If the TargetSection is abstract, we need to check if there are some concrete sub-Sections that may act
+			// as container
+			//
+			if (getTargetClass().getContainingSection().isAbstract()) {
+		
+				List<TargetSection> extendingSections = EcoreUtil.UsageCrossReferencer
+						.find(getTargetClass().getContainingSection(), eResource().getResourceSet()).parallelStream()
+						.filter(s -> pamtram.structure.generic.GenericPackage.Literals.SECTION__EXTEND
+								.equals(s.getEStructuralFeature()))
+						.map(s -> (TargetSection) s.getEObject()).collect(Collectors.toList());
+		
+				if (extendingSections.stream()
+						.anyMatch(concreteSection -> concreteSection.getEClass().getEAllContainments().parallelStream()
+								.anyMatch(r -> r.getEReferenceType().isSuperTypeOf(targetSection.getEClass())))) {
+					severity = Diagnostic.WARNING;
+					errorMessage = "The type of the parent hint group's target section ('"
 							+ targetSection.getEClass().getName()
 							+ "') cannot be connected to (contained in) the specified target class ('"
-							+ this.getTargetClass().getName() + "')!";
-		
-				// If the TargetSection is abstract, we need to check if there are some concrete sub-Sections that may act
-					// as container
-					//
-					if (this.getTargetClass().getContainingSection().isAbstract()) {
-		
-					List<TargetSection> extendingSections = EcoreUtil.UsageCrossReferencer
-								.find(this.getTargetClass().getContainingSection(), this.eResource().getResourceSet())
-								.parallelStream()
-								.filter(s -> pamtram.structure.generic.GenericPackage.Literals.SECTION__EXTEND.equals(s.getEStructuralFeature()))
-								.map(s -> (TargetSection) s.getEObject()).collect(Collectors.toList());
-		
-					if (extendingSections.stream()
-								.anyMatch(concreteSection -> concreteSection.getEClass().getEAllContainments().parallelStream()
-										.anyMatch(r -> r.getEReferenceType().isSuperTypeOf(targetSection.getEClass())))) {
-							severity = Diagnostic.WARNING;
-							errorMessage = "The type of the parent hint group's target section ('"
-									+ targetSection.getEClass().getName()
-									+ "') cannot be connected to (contained in) the specified target class ('"
-									+ this.getTargetClass().getName()
-									+ "'). However, there are some concrete sub-classes that are valid containers and will be used instead!";
-						}
-					}
-		
-				diagnostics.add(new BasicDiagnostic(severity, ExtendedValidator.DIAGNOSTIC_SOURCE,
-							ExtendedValidator.CONTAINER_SELECTOR__VALIDATE_TARGET_CLASS_MATCHES_POSSIBLE_CONTAINER_TYPE,
-							errorMessage,
-							new Object[] { this, StructurePackage.Literals.TARGET_INSTANCE_SELECTOR__TARGET_CLASS }));
-		
+							+ getTargetClass().getName()
+							+ "'). However, there are some concrete sub-classes that are valid containers and will be used instead!";
+				}
 			}
 		
-			return result;	
+			diagnostics.add(new BasicDiagnostic(severity, ExtendedValidator.DIAGNOSTIC_SOURCE,
+					ExtendedValidator.CONTAINER_SELECTOR__VALIDATE_TARGET_CLASS_MATCHES_POSSIBLE_CONTAINER_TYPE,
+					errorMessage,
+					new Object[] { this, StructurePackage.Literals.TARGET_INSTANCE_SELECTOR__TARGET_CLASS }));
+		
+		}
+		
+		return result;	
 	}
 
 	@Override
 	public boolean validateReferenceAttributeIsValid(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 
-		if (this.referenceAttribute == null || this.targetClass == null
-				|| this.targetClass.getContainingSection() == null) {
+		if (referenceAttribute == null || targetClass == null || targetClass.getContainingSection() == null) {
 			return true;
 		}
 
@@ -370,12 +385,12 @@ public class ContainerSelectorImpl extends MappingHintImpl implements ContainerS
 		// sections).
 		//
 
-		TargetSection section = this.targetClass.getContainingSection();
+		TargetSection section = targetClass.getContainingSection();
 
 		List<TargetSection> allowedSections = new ArrayList<>(Arrays.asList(section));
 		allowedSections.addAll(section.getAllExtend());
 
-		boolean result = allowedSections.contains(this.referenceAttribute.getContainingSection());
+		boolean result = allowedSections.contains(referenceAttribute.getContainingSection());
 
 		if (!result && diagnostics != null) {
 

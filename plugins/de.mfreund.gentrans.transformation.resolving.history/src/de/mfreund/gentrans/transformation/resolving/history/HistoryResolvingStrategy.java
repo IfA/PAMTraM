@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Copyright (C) 2015-2018 Matthias Freund and others, Institute of Automation, TU Dresden
+ * 
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ * 
+ * Contributors:
+ *   Institute of Automation, TU Dresden - Initial API and implementation
+ * 
+ * SPDX-License-Identifier: EPL-2.0
+ ******************************************************************************/
 package de.mfreund.gentrans.transformation.resolving.history;
 
 import java.io.IOException;
@@ -5,7 +17,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -33,13 +44,14 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 
 import de.mfreund.gentrans.transformation.descriptors.EObjectWrapper;
 import de.mfreund.gentrans.transformation.descriptors.MatchedSectionDescriptor;
-import de.mfreund.gentrans.transformation.descriptors.ModelConnectionPath;
 import de.mfreund.gentrans.transformation.resolving.ComposedAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.pamtram.transformation.Transformation;
 import de.mfreund.pamtram.transformation.TransformationMapping;
 import de.mfreund.pamtram.transformation.TransformationMappingHintGroup;
 import de.tud.et.ifa.agtele.emf.compare.EMFComparatorFactory;
+import de.tud.et.ifa.agtele.emf.connecting.EClassConnectionPath;
+import de.tud.et.ifa.agtele.emf.connecting.Length;
 import de.tud.et.ifa.agtele.resources.ResourceHelper;
 import pamtram.PAMTraM;
 import pamtram.mapping.Mapping;
@@ -509,7 +521,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	 * used during the 'old' transformation for joining the given '<em>section</em>'.
 	 */
 	@Override
-	public List<ModelConnectionPath> joiningSelectConnectionPath(List<ModelConnectionPath> choices,
+	public List<EClassConnectionPath> joiningSelectConnectionPath(List<EClassConnectionPath> choices,
 			TargetSection section) throws AmbiguityResolvingException {
 
 		/*
@@ -544,40 +556,32 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		/*
 		 * Finally, we can check which ModelConnectionPath was used to connect the 'instantiatedElement'.
 		 */
-		ModelConnectionPath usedPath = null;
-		for (ModelConnectionPath modelConnectionPath : choices) {
+		EClassConnectionPath usedPath = null;
+		for (EClassConnectionPath modelConnectionPath : choices) {
 
 			usedPath = modelConnectionPath;
 
 			/*
-			 * Iterate over every element of the path and check if it was used to connect the given
-			 * 'instantiatedElement'.
+			 * Check if the path was used to connect the given 'instantiatedElement'.
 			 */
 			EObject currentElement = instantiatedElement;
-			Iterator<EObject> pathElementIterator = modelConnectionPath.getPathElements().iterator();
-			while (pathElementIterator.hasNext()) {
-				EObject pathElement = pathElementIterator.next();
-				if (pathElement instanceof EClass) {
-					if (!currentElement.eClass().equals(pathElement)) {
-						usedPath = null;
-						break;
-					}
-				} else if (pathElement instanceof EReference) {
-					if (!currentElement.eContainingFeature().equals(pathElement)) {
-						usedPath = null;
-						break;
-					} else {
-						currentElement = currentElement.eContainer();
-					}
+			Length pathLength = modelConnectionPath.getLength();
+			for (int i = 0; i < pathLength.getValue(); i++) {
+				if (currentElement.eContainer() == null) {
+					usedPath = null;
+					break;
 				}
+				currentElement = currentElement.eContainer();
 			}
 			// we have found our path
-			if (usedPath != null) {
+			if (usedPath != null && usedPath.describesConnectionBetween(currentElement, instantiatedElement)) {
 				break;
 			}
 		}
 
-		if (usedPath == null) {
+		if (usedPath == null)
+
+		{
 			return super.joiningSelectConnectionPath(choices, section);
 		} else {
 			this.printMessage(usedPath.toString(), HistoryResolvingStrategy.historyDecisionPrefix);
@@ -730,8 +734,8 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 	 * '<em>sectionInstances</em>'.
 	 */
 	@Override
-	public Map<ModelConnectionPath, List<EObjectWrapper>> joiningSelectConnectionPathAndContainerInstance(
-			Map<ModelConnectionPath, List<EObjectWrapper>> choices, TargetSection section,
+	public Map<EClassConnectionPath, List<EObjectWrapper>> joiningSelectConnectionPathAndContainerInstance(
+			Map<EClassConnectionPath, List<EObjectWrapper>> choices, TargetSection section,
 			List<EObjectWrapper> sectionInstances, MappingHintGroupType hintGroup) throws AmbiguityResolvingException {
 
 		/*
@@ -796,36 +800,26 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		 * all of the 'sectionInstances' should be connected to the same element (and via the same path), we examplarily
 		 * use only the first of the 'sectionInstances'.
 		 */
-		ModelConnectionPath usedPath = null;
+		EClassConnectionPath usedPath = null;
 		EObject usedInstance = null;
-		for (ModelConnectionPath modelConnectionPath : choices.keySet()) {
+		for (EClassConnectionPath modelConnectionPath : choices.keySet()) {
 
 			usedPath = modelConnectionPath;
 
 			/*
-			 * Iterate over every element of the path and check if it was used to connect the given
-			 * 'instantiatedElement'.
+			 * Check if the path was used to connect the given 'instantiatedElement'.
 			 */
 			EObject currentElement = oldSectionInstances.get(0);
-			Iterator<EObject> pathElementIterator = modelConnectionPath.getPathElements().iterator();
-			while (pathElementIterator.hasNext()) {
-				EObject pathElement = pathElementIterator.next();
-				if (pathElement instanceof EClass) {
-					if (!currentElement.eClass().equals(pathElement)) {
-						usedPath = null;
-						break;
-					}
-				} else if (pathElement instanceof EReference) {
-					if (!currentElement.eContainingFeature().equals(pathElement)) {
-						usedPath = null;
-						break;
-					} else {
-						currentElement = currentElement.eContainer();
-					}
+			Length pathLength = modelConnectionPath.getLength();
+			for (int i = 0; i < pathLength.getValue(); i++) {
+				if (currentElement.eContainer() == null) {
+					usedPath = null;
+					break;
 				}
+				currentElement = currentElement.eContainer();
 			}
 			// we have found our path
-			if (usedPath != null) {
+			if (usedPath != null && usedPath.describesConnectionBetween(currentElement, oldSectionInstances.get(0))) {
 				usedInstance = currentElement;
 				break;
 			}
@@ -864,7 +858,7 @@ public class HistoryResolvingStrategy extends ComposedAmbiguityResolvingStrategy
 		} else {
 			this.printMessage(usedPath.toString() + "-->" + containerInstancesToUse.toString(),
 					HistoryResolvingStrategy.historyDecisionPrefix);
-			HashMap<ModelConnectionPath, List<EObjectWrapper>> ret = new HashMap<>();
+			HashMap<EClassConnectionPath, List<EObjectWrapper>> ret = new HashMap<>();
 			ret.put(usedPath, containerInstancesToUse);
 			return super.joiningSelectConnectionPathAndContainerInstance(ret, section, sectionInstances, hintGroup);
 		}

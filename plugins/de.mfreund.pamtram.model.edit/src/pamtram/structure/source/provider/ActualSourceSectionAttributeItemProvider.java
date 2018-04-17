@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
+ * 
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ * 
+ * Contributors:
+ *   Institute of Automation, TU Dresden - Initial API and implementation
+ * 
+ * SPDX-License-Identifier: EPL-2.0
+ ******************************************************************************/
 /**
  */
 package pamtram.structure.source.provider;
@@ -58,8 +70,8 @@ public class ActualSourceSectionAttributeItemProvider extends SourceSectionAttri
 	 */
 	protected void addAttributePropertyDescriptor(Object object) {
 		
-		this.itemPropertyDescriptors.add(
-				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
+		itemPropertyDescriptors
+				.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 						this.getResourceLocator(), this.getString("_UI_ActualAttribute_attribute_feature"),
 						this.getString("_UI_ActualAttribute_attribute_description"),
 						GenericPackage.Literals.ACTUAL_ATTRIBUTE__ATTRIBUTE, true, false, true, null,
@@ -87,7 +99,8 @@ public class ActualSourceSectionAttributeItemProvider extends SourceSectionAttri
 						// Do not allow 'xs:any'-content attributes
 						//
 						return attributes.stream()
-								.filter(a -> !pamtram.util.ExtendedMetaDataUtil.isAnyContentAttribute(a))
+								.filter(a -> !de.tud.et.ifa.agtele.emf.XSDAnyContentUtil
+										.isAnyContentFeature(att.getOwningClass().getEClass(), a))
 								.collect(Collectors.toList());
 					}
 				});

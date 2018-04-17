@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
+ * 
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ * 
+ * Contributors:
+ *   Institute of Automation, TU Dresden - Initial API and implementation
+ * 
+ * SPDX-License-Identifier: EPL-2.0
+ ******************************************************************************/
 /**
  */
 package pamtram.structure.target.impl;
@@ -165,23 +177,24 @@ public class TargetSectionCrossReferenceImpl
 	@Override
 	public boolean validateEReferenceMatchesParentEClass(final DiagnosticChain diagnostics, final Map<?, ?> context) {
 		
-		if(this.isLibraryEntry() || this.getEReference() == null || !(this.eContainer() instanceof pamtram.structure.generic.Class)) {
+		if (isLibraryEntry() || this.getEReference() == null
+				|| !(eContainer() instanceof pamtram.structure.generic.Class)) {
 			return true;
 		}
 		
-		EClass parentEClass = ((pamtram.structure.generic.Class<?, ?, ?, ?>) this.eContainer()).getEClass();
+		EClass parentEClass = ((pamtram.structure.generic.Class<?, ?, ?, ?>) eContainer()).getEClass();
 		
-		boolean result = parentEClass == null ? true : parentEClass.getEAllReferences().contains(this.getEReference());
+		boolean result = parentEClass == null ? true
+				: pamtram.util.XSDAnyContentUtil.getEAllReferencesIncludingVirtualAnyContentReference(parentEClass)
+						.contains(this.getEReference());
 		
 		if (!result && diagnostics != null) {
 		
-			String errorMessage = "The eReference '" + this.getEReference().getName() + "' is not allowed by the containing Class!";
+			String errorMessage = "The eReference '" + this.getEReference().getName()
+					+ "' is not allowed by the containing Class!";
 		
-			diagnostics.add(new BasicDiagnostic
-					(Diagnostic.ERROR,
-					GenericValidator.DIAGNOSTIC_SOURCE,
-							GenericValidator.ACTUAL_REFERENCE__VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS,
-							errorMessage,
+			diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, GenericValidator.DIAGNOSTIC_SOURCE,
+					GenericValidator.ACTUAL_REFERENCE__VALIDATE_EREFERENCE_MATCHES_PARENT_ECLASS, errorMessage,
 					new Object[] { this, GenericPackage.Literals.ACTUAL_REFERENCE__EREFERENCE }));
 		
 		}

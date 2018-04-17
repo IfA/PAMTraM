@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
+ * 
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ * 
+ * Contributors:
+ *   Institute of Automation, TU Dresden - Initial API and implementation
+ * 
+ * SPDX-License-Identifier: EPL-2.0
+ ******************************************************************************/
 /**
  */
 package pamtram.structure.source.provider;
@@ -22,7 +34,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import pamtram.commands.ReplacingDragAndDropAddCommand;
 import pamtram.provider.PamtramEditPlugin;
-import pamtram.structure.generic.Class;
 import pamtram.structure.generic.GenericPackage;
 import pamtram.structure.generic.impl.ReferenceImpl;
 import pamtram.structure.generic.provider.CompositeReferenceItemProvider;
@@ -33,8 +44,7 @@ import pamtram.structure.source.SourceSectionClass;
 import pamtram.structure.source.SourceSectionCompositeReference;
 
 /**
- * This is the item provider adapter for a
- * {@link pamtram.structure.SourceSectionContainmentReference} object. <!--
+ * This is the item provider adapter for a {@link pamtram.structure.SourceSectionContainmentReference} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  *
  * @generated
@@ -42,9 +52,8 @@ import pamtram.structure.source.SourceSectionCompositeReference;
 public class SourceSectionCompositeReferenceItemProvider extends CompositeReferenceItemProvider {
 
 	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public SourceSectionCompositeReferenceItemProvider(AdapterFactory adapterFactory) {
@@ -52,9 +61,8 @@ public class SourceSectionCompositeReferenceItemProvider extends CompositeRefere
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -70,7 +78,8 @@ public class SourceSectionCompositeReferenceItemProvider extends CompositeRefere
 
 	/**
 	 * This adds a property descriptor for the Ignore Unmatched Elements feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
 	protected void addIgnoreUnmatchedElementsPropertyDescriptor(Object object) {
@@ -90,41 +99,40 @@ public class SourceSectionCompositeReferenceItemProvider extends CompositeRefere
 	}
 
 	/**
-	 * This adds a property descriptor for the EReference feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
-	 * @generated NOT
+	 * This adds a property descriptor for the EReference feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
 	 */
 	protected void addEReferencePropertyDescriptor(Object object) {
-
-		this.itemPropertyDescriptors.add(
-				new ItemPropertyDescriptor(((ComposeableAdapterFactory) this.adapterFactory).getRootAdapterFactory(),
+		
+		itemPropertyDescriptors
+				.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 						this.getResourceLocator(), this.getString("_UI_Reference_eReference_feature"),
 						this.getString("_UI_ActualReference_eReference_description"),
 						GenericPackage.Literals.ACTUAL_REFERENCE__EREFERENCE, true, false, true, null,
 						this.getString("_UI_BasicPropertyCategory"), null) {
-
+		
 					@Override
 					public Collection<?> getChoiceOfValues(Object object) {
-
+		
 						// make sure that only those references can be selected
 						// that belong to the parent eClass
-						Class<?, ?, ?, ?> parent = (Class<?, ?, ?, ?>) ((ReferenceImpl<?, ?, ?, ?>) object)
-								.eContainer();
-
-						// filter the choices further so that only containment
-						// references are displayed
-						return parent.getEClass().getEAllReferences().stream()
-								.filter(org.eclipse.emf.ecore.EReference::isContainment).collect(Collectors.toList());
-
+						pamtram.structure.generic.Class<?, ?, ?, ?> parent = ((ReferenceImpl<?, ?, ?, ?>) object)
+								.getOwningClass();
+		
+						// do not filter the choices further so that containment
+						// as well as non-containment references are displayed
+						return pamtram.util.XSDAnyContentUtil
+								.getEAllReferencesIncludingVirtualAnyContentReference(parent.getEClass()).stream()
+								.collect(Collectors.toList());
+		
 					}
 				});
 	}
 
 	/**
 	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -133,8 +141,7 @@ public class SourceSectionCompositeReferenceItemProvider extends CompositeRefere
 	}
 
 	/**
-	 * This returns the label styled text for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label styled text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated NOT
 	 */
@@ -145,10 +152,10 @@ public class SourceSectionCompositeReferenceItemProvider extends CompositeRefere
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -164,10 +171,9 @@ public class SourceSectionCompositeReferenceItemProvider extends CompositeRefere
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing the children that can be created under this object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -176,9 +182,8 @@ public class SourceSectionCompositeReferenceItemProvider extends CompositeRefere
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

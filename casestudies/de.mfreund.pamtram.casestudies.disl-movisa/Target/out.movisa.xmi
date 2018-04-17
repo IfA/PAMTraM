@@ -1,680 +1,710 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<movisa:VisualizationApplicationModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:actions="http://stefan-hennig.de/movisa/algorithm/actions" xmlns:algorithm="http://stefan-hennig.de/movisa/algorithm" xmlns:generic="http://stefan-hennig.de/movisa/clientdata/perspective/technical/generic" xmlns:movisa="http://stefan-hennig.de/movisa" xmlns:presentation="http://stefan-hennig.de/movisa/presentation" Name="Prozessvisualisierung_20110303_202702" Author="disl2movisa.pamtram" MovisaBuildVersion="@(#)&lt;label>(on: &lt;date>)@">
-  <AlgorithmDomain Name="AlgorithmModel" Author="disl2movisa.pamtram" MovisaBuildVersion="rev0.6.2-2010-11-24" Version="1.0">
-    <OwnedElement xsi:type="algorithm:BooleanType" Name="Boolean"/>
-    <OwnedElement xsi:type="algorithm:StringType" Name="String"/>
-    <OwnedElement xsi:type="algorithm:IntegerType" Name="Integer"/>
-    <OwnedElement xsi:type="algorithm:SignalCollection" Name="UiComponents">
-      <Signal Name="Dialog_1_eBO_5_Confirm_Changed_signal"/>
-      <Signal Name="Dialog_1_eBO_6_Confirm_Changed_signal"/>
-      <Signal Name="Dialog_1_eBO_7_Confirm_Changed_signal"/>
-      <Signal Name="Dialog_2_eBO_7_Confirm_Changed_signal"/>
-      <Signal Name="eBO_1_signal"/>
-      <Signal Name="eBO_3_signal"/>
-      <Signal Name="eBO_5_signal"/>
-      <Signal Name="Dialog_1_eBO_2_Select_Option_0_Changed_signal"/>
-      <Signal Name="Dialog_1_eBO_2_Select_Option_1_Changed_signal"/>
-      <Signal Name="Dialog_1_eBO_2_Select_Option_2_Changed_signal"/>
-      <Signal Name="Dialog_1_eBO_4_Select_Option_0_Changed_signal"/>
-      <Signal Name="Dialog_1_eBO_4_Select_Option_1_Changed_signal"/>
-      <Signal Name="Dialog_1_eBO_4_Select_Option_2_Changed_signal"/>
-      <Signal Name="Dialog_2_eBO_2_Input_Changed_signal"/>
-      <Signal Name="Dialog_2_eBO_4_Input_Changed_signal"/>
-      <Signal Name="Dialog_2_eBO_6_Input_Changed_signal"/>
-    </OwnedElement>
-    <OwnedElement xsi:type="algorithm:SignalCollection" Name="PanelTransitions">
-      <Signal Name="Dialog_1_signal"/>
-      <Signal Name="Dialog_2_signal"/>
-    </OwnedElement>
-    <OwnedElement xsi:type="algorithm:SignalCollection" Name="NavigationFlowTriggers"/>
-    <OwnedElement xsi:type="algorithm:SignalCollection" Name="VariableChangedSignals">
-      <Signal Name="Behaelter_A_FL_Changed"/>
-      <Signal Name="Behaelter_B_FL_Changed"/>
-      <Signal Name="V1_FL_Changed"/>
-      <Signal Name="V2_FL_Changed"/>
-      <Signal Name="P3_FL_Changed"/>
-      <Signal Name="Start_Umpumpen_FL_Changed"/>
-    </OwnedElement>
-    <OwnedElement xsi:type="algorithm:Class" Name="Navigation" MovisaRuntimeInstance="true">
-      <OwnedBehavior Name="NavigationStateMachine">
-        <OwnedTransition Name="Dialog_1_to_Dialog_1" Source="//@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.1" Target="//@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.1"/>
-        <OwnedTransition Name="Dialog_2_to_Dialog_2" Source="//@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.2" Target="//@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.2"/>
-        <OwnedTransition Name="Dialog_1_to_Dialog_2" Source="//@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.1" Target="//@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.2" Trigger="//@AlgorithmDomain/@OwnedElement.4/@Signal.1"/>
-        <OwnedTransition Name="Dialog_2_to_Dialog_1" Source="//@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.2" Target="//@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.1" Trigger="//@AlgorithmDomain/@OwnedElement.4/@Signal.0"/>
-        <StateMachineElement xsi:type="algorithm:PseudoState" Name="idle"/>
-        <StateMachineElement xsi:type="algorithm:State" Name="Dialog_1_state" OutgoingTransition="//@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@OwnedTransition.0 //@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@OwnedTransition.2">
-          <StateActivityBlock Name="Dialog_1_activityBlock"/>
-        </StateMachineElement>
-        <StateMachineElement xsi:type="algorithm:State" Name="Dialog_2_state" OutgoingTransition="//@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@OwnedTransition.1 //@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@OwnedTransition.3">
-          <StateActivityBlock Name="Dialog_2_activityBlock"/>
-        </StateMachineElement>
-      </OwnedBehavior>
-      <OwnedReception Name="reception_Dialog_2_signal" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.1"/>
-      <OwnedReception Name="reception_Dialog_1_signal" Signal="//@AlgorithmDomain/@OwnedElement.4/@Signal.0"/>
-    </OwnedElement>
-    <OwnedElement xsi:type="algorithm:Class" Name="Dialog_1_eBO_5_Confirm_Changed_Class" MovisaRuntimeInstance="true">
-      <OwnedBehavior Name="Dialog_1_eBO_5_Confirm_Changed_SM">
-        <OwnedTransition Name="Initial2Main" Source="//@AlgorithmDomain/@OwnedElement.8/@OwnedBehavior.0/@StateMachineElement.0" Target="//@AlgorithmDomain/@OwnedElement.8/@OwnedBehavior.0/@StateMachineElement.1"/>
-        <OwnedTransition Name="Initial2Main" Source="//@AlgorithmDomain/@OwnedElement.8/@OwnedBehavior.0/@StateMachineElement.1" Target="//@AlgorithmDomain/@OwnedElement.8/@OwnedBehavior.0/@StateMachineElement.1"/>
-        <StateMachineElement xsi:type="algorithm:PseudoState" Name="Initial" OutgoingTransition="//@AlgorithmDomain/@OwnedElement.8/@OwnedBehavior.0/@OwnedTransition.0"/>
-        <StateMachineElement xsi:type="algorithm:State" Name="MainState" OutgoingTransition="//@AlgorithmDomain/@OwnedElement.8/@OwnedBehavior.0/@OwnedTransition.1">
-          <StateActivityBlock Name="MainStateSAB">
-            <Edge xsi:type="actions:ControlFlow" Name="eBO_5_Confirm_Changed_ControlFlow" Source="//@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.0" Target="//@AlgorithmDomain/@OwnedElement.8/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1"/>
-            <Edge xsi:type="actions:ObjectFlow" Name="eBO_5_Confirm_Changed_ObjectFlow" Source="//@AlgorithmDomain/@OwnedElement.8/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.2/@Result" Target="//@AlgorithmDomain/@OwnedElement.8/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1/@Value"/>
-            <Action xsi:type="actions:AcceptEventAction" Name="eBO_5_Confirm_Changed_Action1" Trigger="//@AlgorithmDomain/@OwnedElement.3/@Signal.0"/>
-            <Action xsi:type="actions:WriteDataItemAction" Name="eBO_5_Confirm_Changed_Action2" IncomingControlFlow="//@AlgorithmDomain/@OwnedElement.8/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" DataItem="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.5">
-              <Value Multiplicity="1..1" Type="//@AlgorithmDomain/@OwnedElement.0" IncomingObjectFlow="//@AlgorithmDomain/@OwnedElement.8/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
-            </Action>
-            <Action xsi:type="actions:ValueSpecificationAction" Name="eBO_5_Confirm_Changed_Action3" Value="true">
-              <Result Multiplicity="1..1" Type="//@AlgorithmDomain/@OwnedElement.0" OutgoingObjectFlow="//@AlgorithmDomain/@OwnedElement.8/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
-            </Action>
-          </StateActivityBlock>
-        </StateMachineElement>
-      </OwnedBehavior>
-      <OwnedReception Name="Dialog_1_reception_eBO_5_Confirm_Changed_signal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.0"/>
-    </OwnedElement>
-    <OwnedElement xsi:type="algorithm:Class" Name="Dialog_1_eBO_6_Confirm_Changed_Class" MovisaRuntimeInstance="true">
-      <OwnedBehavior Name="Dialog_1_eBO_6_Confirm_Changed_SM">
-        <OwnedTransition Name="Initial2Main" Source="//@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@StateMachineElement.0" Target="//@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@StateMachineElement.1"/>
-        <OwnedTransition Name="Initial2Main" Source="//@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@StateMachineElement.1" Target="//@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@StateMachineElement.1"/>
-        <StateMachineElement xsi:type="algorithm:PseudoState" Name="Initial" OutgoingTransition="//@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@OwnedTransition.0"/>
-        <StateMachineElement xsi:type="algorithm:State" Name="MainState" OutgoingTransition="//@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@OwnedTransition.1">
-          <StateActivityBlock Name="MainStateSAB">
-            <Edge xsi:type="actions:ControlFlow" Name="eBO_6_Confirm_Changed_ControlFlow" Source="//@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.0" Target="//@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1"/>
-            <Edge xsi:type="actions:ObjectFlow" Name="eBO_6_Confirm_Changed_ObjectFlow" Source="//@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.2/@Result" Target="//@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1/@Value"/>
-            <Action xsi:type="actions:AcceptEventAction" Name="eBO_6_Confirm_Changed_Action4" OutgoingControlFlow="//@AlgorithmDomain/@OwnedElement.8/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0 //@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Trigger="//@AlgorithmDomain/@OwnedElement.3/@Signal.1"/>
-            <Action xsi:type="actions:WriteDataItemAction" Name="eBO_6_Confirm_Changed_Action5" IncomingControlFlow="//@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" DataItem="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.5">
-              <Value Multiplicity="1..1" Type="//@AlgorithmDomain/@OwnedElement.0" IncomingObjectFlow="//@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
-            </Action>
-            <Action xsi:type="actions:ValueSpecificationAction" Name="eBO_6_Confirm_Changed_Action6" Value="false">
-              <Result Multiplicity="1..1" Type="//@AlgorithmDomain/@OwnedElement.0" OutgoingObjectFlow="//@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
-            </Action>
-          </StateActivityBlock>
-        </StateMachineElement>
-      </OwnedBehavior>
-      <OwnedReception Name="Dialog_1_reception_eBO_6_Confirm_Changed_signal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.1"/>
-    </OwnedElement>
-    <OwnedElement xsi:type="algorithm:Class" Name="Dialog_1_eBO_2_Select_Option_0_Changed_Class" MovisaRuntimeInstance="true">
-      <OwnedBehavior Name="Dialog_1_eBO_2_Select_Option_0_Changed_SM">
-        <OwnedTransition Name="Initial2Main" Source="//@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@StateMachineElement.0" Target="//@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@StateMachineElement.1"/>
-        <OwnedTransition Name="Initial2Main" Source="//@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@StateMachineElement.1" Target="//@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@StateMachineElement.1"/>
-        <StateMachineElement xsi:type="algorithm:PseudoState" Name="Initial" OutgoingTransition="//@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@OwnedTransition.0"/>
-        <StateMachineElement xsi:type="algorithm:State" Name="MainState" OutgoingTransition="//@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@OwnedTransition.1">
-          <StateActivityBlock Name="MainStateSAB">
-            <Edge xsi:type="actions:ControlFlow" Name="eBO_2_Select_Option_0_Changed_ControlFlow" Source="//@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.0" Target="//@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1"/>
-            <Edge xsi:type="actions:ObjectFlow" Name="eBO_2_Select_Option_0_Changed_ObjectFlow" Source="//@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.2/@Result" Target="//@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1/@Value"/>
-            <Action xsi:type="actions:AcceptEventAction" Name="eBO_2_Select_Option_0_Changed_Action7" OutgoingControlFlow="//@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Trigger="//@AlgorithmDomain/@OwnedElement.3/@Signal.7"/>
-            <Action xsi:type="actions:WriteDataItemAction" Name="eBO_2_Select_Option_0_Changed_Action8" IncomingControlFlow="//@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" DataItem="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.0">
-              <Value Multiplicity="1..1" Type="//@AlgorithmDomain/@OwnedElement.2" IncomingObjectFlow="//@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
-            </Action>
-            <Action xsi:type="actions:ValueSpecificationAction" Name="eBO_2_Select_Option_0_Changed_Action9" Value="1">
-              <Result Multiplicity="1..1" Type="//@AlgorithmDomain/@OwnedElement.2" OutgoingObjectFlow="//@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
-            </Action>
-          </StateActivityBlock>
-        </StateMachineElement>
-      </OwnedBehavior>
-      <OwnedReception Name="Dialog_1_reception_eBO_2_Select_Option_0_Changed_signal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.7"/>
-    </OwnedElement>
-    <OwnedElement xsi:type="algorithm:Class" Name="Dialog_1_eBO_2_Select_Option_1_Changed_Class" MovisaRuntimeInstance="true">
-      <OwnedBehavior Name="Dialog_1_eBO_2_Select_Option_1_Changed_SM">
-        <OwnedTransition Name="Initial2Main" Source="//@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@StateMachineElement.0" Target="//@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@StateMachineElement.1"/>
-        <OwnedTransition Name="Initial2Main" Source="//@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@StateMachineElement.1" Target="//@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@StateMachineElement.1"/>
-        <StateMachineElement xsi:type="algorithm:PseudoState" Name="Initial" OutgoingTransition="//@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@OwnedTransition.0"/>
-        <StateMachineElement xsi:type="algorithm:State" Name="MainState" OutgoingTransition="//@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@OwnedTransition.1">
-          <StateActivityBlock Name="MainStateSAB">
-            <Edge xsi:type="actions:ControlFlow" Name="eBO_2_Select_Option_1_Changed_ControlFlow" Source="//@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.0" Target="//@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1"/>
-            <Edge xsi:type="actions:ObjectFlow" Name="eBO_2_Select_Option_1_Changed_ObjectFlow" Source="//@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.2/@Result" Target="//@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1/@Value"/>
-            <Action xsi:type="actions:AcceptEventAction" Name="eBO_2_Select_Option_1_Changed_Action10" OutgoingControlFlow="//@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Trigger="//@AlgorithmDomain/@OwnedElement.3/@Signal.8"/>
-            <Action xsi:type="actions:WriteDataItemAction" Name="eBO_2_Select_Option_1_Changed_Action11" IncomingControlFlow="//@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" DataItem="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.0">
-              <Value Multiplicity="1..1" Type="//@AlgorithmDomain/@OwnedElement.2" IncomingObjectFlow="//@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
-            </Action>
-            <Action xsi:type="actions:ValueSpecificationAction" Name="eBO_2_Select_Option_1_Changed_Action12" Value="2">
-              <Result Multiplicity="1..1" Type="//@AlgorithmDomain/@OwnedElement.2" OutgoingObjectFlow="//@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
-            </Action>
-          </StateActivityBlock>
-        </StateMachineElement>
-      </OwnedBehavior>
-      <OwnedReception Name="Dialog_1_reception_eBO_2_Select_Option_1_Changed_signal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.8"/>
-    </OwnedElement>
-    <OwnedElement xsi:type="algorithm:Class" Name="Dialog_1_eBO_2_Select_Option_2_Changed_Class" MovisaRuntimeInstance="true">
-      <OwnedBehavior Name="Dialog_1_eBO_2_Select_Option_2_Changed_SM">
-        <OwnedTransition Name="Initial2Main" Source="//@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@StateMachineElement.0" Target="//@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@StateMachineElement.1"/>
-        <OwnedTransition Name="Initial2Main" Source="//@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@StateMachineElement.1" Target="//@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@StateMachineElement.1"/>
-        <StateMachineElement xsi:type="algorithm:PseudoState" Name="Initial" OutgoingTransition="//@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@OwnedTransition.0"/>
-        <StateMachineElement xsi:type="algorithm:State" Name="MainState" OutgoingTransition="//@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@OwnedTransition.1">
-          <StateActivityBlock Name="MainStateSAB">
-            <Edge xsi:type="actions:ControlFlow" Name="eBO_2_Select_Option_2_Changed_ControlFlow" Source="//@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.0" Target="//@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1"/>
-            <Edge xsi:type="actions:ObjectFlow" Name="eBO_2_Select_Option_2_Changed_ObjectFlow" Source="//@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.2/@Result" Target="//@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1/@Value"/>
-            <Action xsi:type="actions:AcceptEventAction" Name="eBO_2_Select_Option_2_Changed_Action13" OutgoingControlFlow="//@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Trigger="//@AlgorithmDomain/@OwnedElement.3/@Signal.9"/>
-            <Action xsi:type="actions:WriteDataItemAction" Name="eBO_2_Select_Option_2_Changed_Action14" IncomingControlFlow="//@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" DataItem="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.0">
-              <Value Multiplicity="1..1" Type="//@AlgorithmDomain/@OwnedElement.2" IncomingObjectFlow="//@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
-            </Action>
-            <Action xsi:type="actions:ValueSpecificationAction" Name="eBO_2_Select_Option_2_Changed_Action15" Value="3">
-              <Result Multiplicity="1..1" Type="//@AlgorithmDomain/@OwnedElement.2" OutgoingObjectFlow="//@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
-            </Action>
-          </StateActivityBlock>
-        </StateMachineElement>
-      </OwnedBehavior>
-      <OwnedReception Name="Dialog_1_reception_eBO_2_Select_Option_2_Changed_signal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.9"/>
-    </OwnedElement>
-    <OwnedElement xsi:type="algorithm:Class" Name="Dialog_1_eBO_4_Select_Option_0_Changed_Class" MovisaRuntimeInstance="true">
-      <OwnedBehavior Name="Dialog_1_eBO_4_Select_Option_0_Changed_SM">
-        <OwnedTransition Name="Initial2Main" Source="//@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@StateMachineElement.0" Target="//@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@StateMachineElement.1"/>
-        <OwnedTransition Name="Initial2Main" Source="//@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@StateMachineElement.1" Target="//@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@StateMachineElement.1"/>
-        <StateMachineElement xsi:type="algorithm:PseudoState" Name="Initial" OutgoingTransition="//@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@OwnedTransition.0"/>
-        <StateMachineElement xsi:type="algorithm:State" Name="MainState" OutgoingTransition="//@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@OwnedTransition.1">
-          <StateActivityBlock Name="MainStateSAB">
-            <Edge xsi:type="actions:ControlFlow" Name="eBO_4_Select_Option_0_Changed_ControlFlow" Source="//@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.0" Target="//@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1"/>
-            <Edge xsi:type="actions:ObjectFlow" Name="eBO_4_Select_Option_0_Changed_ObjectFlow" Source="//@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.2/@Result" Target="//@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1/@Value"/>
-            <Action xsi:type="actions:AcceptEventAction" Name="eBO_4_Select_Option_0_Changed_Action16" OutgoingControlFlow="//@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Trigger="//@AlgorithmDomain/@OwnedElement.3/@Signal.10"/>
-            <Action xsi:type="actions:WriteDataItemAction" Name="eBO_4_Select_Option_0_Changed_Action17" IncomingControlFlow="//@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" DataItem="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.1">
-              <Value Multiplicity="1..1" Type="//@AlgorithmDomain/@OwnedElement.2" IncomingObjectFlow="//@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
-            </Action>
-            <Action xsi:type="actions:ValueSpecificationAction" Name="eBO_4_Select_Option_0_Changed_Action18" Value="1">
-              <Result Multiplicity="1..1" Type="//@AlgorithmDomain/@OwnedElement.2" OutgoingObjectFlow="//@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
-            </Action>
-          </StateActivityBlock>
-        </StateMachineElement>
-      </OwnedBehavior>
-      <OwnedReception Name="Dialog_1_reception_eBO_4_Select_Option_0_Changed_signal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.10"/>
-    </OwnedElement>
-    <OwnedElement xsi:type="algorithm:Class" Name="Dialog_1_eBO_4_Select_Option_1_Changed_Class" MovisaRuntimeInstance="true">
-      <OwnedBehavior Name="Dialog_1_eBO_4_Select_Option_1_Changed_SM">
-        <OwnedTransition Name="Initial2Main" Source="//@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@StateMachineElement.0" Target="//@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@StateMachineElement.1"/>
-        <OwnedTransition Name="Initial2Main" Source="//@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@StateMachineElement.1" Target="//@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@StateMachineElement.1"/>
-        <StateMachineElement xsi:type="algorithm:PseudoState" Name="Initial" OutgoingTransition="//@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@OwnedTransition.0"/>
-        <StateMachineElement xsi:type="algorithm:State" Name="MainState" OutgoingTransition="//@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@OwnedTransition.1">
-          <StateActivityBlock Name="MainStateSAB">
-            <Edge xsi:type="actions:ControlFlow" Name="eBO_4_Select_Option_1_Changed_ControlFlow" Source="//@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.0" Target="//@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1"/>
-            <Edge xsi:type="actions:ObjectFlow" Name="eBO_4_Select_Option_1_Changed_ObjectFlow" Source="//@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.2/@Result" Target="//@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1/@Value"/>
-            <Action xsi:type="actions:AcceptEventAction" Name="eBO_4_Select_Option_1_Changed_Action19" OutgoingControlFlow="//@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Trigger="//@AlgorithmDomain/@OwnedElement.3/@Signal.11"/>
-            <Action xsi:type="actions:WriteDataItemAction" Name="eBO_4_Select_Option_1_Changed_Action20" IncomingControlFlow="//@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" DataItem="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.1">
-              <Value Multiplicity="1..1" Type="//@AlgorithmDomain/@OwnedElement.2" IncomingObjectFlow="//@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
-            </Action>
-            <Action xsi:type="actions:ValueSpecificationAction" Name="eBO_4_Select_Option_1_Changed_Action21" Value="2">
-              <Result Multiplicity="1..1" Type="//@AlgorithmDomain/@OwnedElement.2" OutgoingObjectFlow="//@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
-            </Action>
-          </StateActivityBlock>
-        </StateMachineElement>
-      </OwnedBehavior>
-      <OwnedReception Name="Dialog_1_reception_eBO_4_Select_Option_1_Changed_signal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.11"/>
-    </OwnedElement>
-    <OwnedElement xsi:type="algorithm:Class" Name="Dialog_1_eBO_4_Select_Option_2_Changed_Class" MovisaRuntimeInstance="true">
-      <OwnedBehavior Name="Dialog_1_eBO_4_Select_Option_2_Changed_SM">
-        <OwnedTransition Name="Initial2Main" Source="//@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@StateMachineElement.0" Target="//@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@StateMachineElement.1"/>
-        <OwnedTransition Name="Initial2Main" Source="//@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@StateMachineElement.1" Target="//@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@StateMachineElement.1"/>
-        <StateMachineElement xsi:type="algorithm:PseudoState" Name="Initial" OutgoingTransition="//@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@OwnedTransition.0"/>
-        <StateMachineElement xsi:type="algorithm:State" Name="MainState" OutgoingTransition="//@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@OwnedTransition.1">
-          <StateActivityBlock Name="MainStateSAB">
-            <Edge xsi:type="actions:ControlFlow" Name="eBO_4_Select_Option_2_Changed_ControlFlow" Source="//@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.0" Target="//@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1"/>
-            <Edge xsi:type="actions:ObjectFlow" Name="eBO_4_Select_Option_2_Changed_ObjectFlow" Source="//@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.2/@Result" Target="//@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1/@Value"/>
-            <Action xsi:type="actions:AcceptEventAction" Name="eBO_4_Select_Option_2_Changed_Action22" OutgoingControlFlow="//@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Trigger="//@AlgorithmDomain/@OwnedElement.3/@Signal.12"/>
-            <Action xsi:type="actions:WriteDataItemAction" Name="eBO_4_Select_Option_2_Changed_Action23" IncomingControlFlow="//@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" DataItem="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.1">
-              <Value Multiplicity="1..1" Type="//@AlgorithmDomain/@OwnedElement.2" IncomingObjectFlow="//@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
-            </Action>
-            <Action xsi:type="actions:ValueSpecificationAction" Name="eBO_4_Select_Option_2_Changed_Action24" Value="3">
-              <Result Multiplicity="1..1" Type="//@AlgorithmDomain/@OwnedElement.2" OutgoingObjectFlow="//@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
-            </Action>
-          </StateActivityBlock>
-        </StateMachineElement>
-      </OwnedBehavior>
-      <OwnedReception Name="Dialog_1_reception_eBO_4_Select_Option_2_Changed_signal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.12"/>
-    </OwnedElement>
-    <OwnedElement xsi:type="algorithm:Class" Name="Dialog_2_eBO_2_Input_Changed_Class" MovisaRuntimeInstance="true">
-      <OwnedBehavior Name="Dialog_2_eBO_2_Input_Changed_SM">
-        <OwnedTransition Name="Initial2Main" Source="//@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@StateMachineElement.0" Target="//@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@StateMachineElement.1"/>
-        <OwnedTransition Name="Initial2Main" Source="//@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@StateMachineElement.1" Target="//@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@StateMachineElement.1"/>
-        <StateMachineElement xsi:type="algorithm:PseudoState" Name="Initial" OutgoingTransition="//@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@OwnedTransition.0"/>
-        <StateMachineElement xsi:type="algorithm:State" Name="MainState" OutgoingTransition="//@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@OwnedTransition.1">
-          <StateActivityBlock Name="MainStateSAB">
-            <Edge xsi:type="actions:ControlFlow" Name="eBO_2_Input_Changed_ControlFlow" Source="//@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.0" Target="//@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1"/>
-            <Edge xsi:type="actions:ObjectFlow" Name="eBO_2_Input_Changed_ObjectFlow" Guard="#property:value" Source="//@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.2/@Result" Target="//@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1/@Value"/>
-            <Action xsi:type="actions:AcceptEventAction" Name="eBO_2_Input_Changed_Action25" OutgoingControlFlow="//@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Context="//@AlgorithmDomain/@OwnedElement.16" Trigger="//@AlgorithmDomain/@OwnedElement.3/@Signal.13"/>
-            <Action xsi:type="actions:WriteDataItemAction" Name="eBO_2_Input_Changed_Action26" IncomingControlFlow="//@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Context="//@AlgorithmDomain/@OwnedElement.16" DataItem="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.2">
-              <Value Name="eBO_2_Input_Changed_Action27" Multiplicity="1..1" Type="//@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.4" IncomingObjectFlow="//@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
-            </Action>
-            <Action xsi:type="actions:ReadPresentationModelAction" Name="eBO_2_Input_Changed_Action28" Context="//@AlgorithmDomain/@OwnedElement.16">
-              <Result Name="eBO_2_Input_Changed_Action29" Multiplicity="1..1" Type="//@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.4" OutgoingObjectFlow="//@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
-            </Action>
-          </StateActivityBlock>
-        </StateMachineElement>
-      </OwnedBehavior>
-      <OwnedReception Name="Dialog_2_reception_eBO_2_Input_Changed_signal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.13"/>
-    </OwnedElement>
-    <OwnedElement xsi:type="algorithm:Class" Name="Dialog_2_eBO_4_Input_Changed_Class" MovisaRuntimeInstance="true">
-      <OwnedBehavior Name="Dialog_2_eBO_4_Input_Changed_SM">
-        <OwnedTransition Name="Initial2Main" Source="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.0" Target="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1"/>
-        <OwnedTransition Name="Initial2Main" Source="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1" Target="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1"/>
-        <StateMachineElement xsi:type="algorithm:PseudoState" Name="Initial" OutgoingTransition="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@OwnedTransition.0"/>
-        <StateMachineElement xsi:type="algorithm:State" Name="MainState" OutgoingTransition="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@OwnedTransition.1">
-          <StateActivityBlock Name="MainStateSAB">
-            <Edge xsi:type="actions:ControlFlow" Name="eBO_4_Input_Changed_ControlFlow" Source="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.0" Target="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1"/>
-            <Edge xsi:type="actions:ObjectFlow" Name="eBO_4_Input_Changed_ObjectFlow" Guard="#property:value" Source="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.2/@Result" Target="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1/@Value"/>
-            <Action xsi:type="actions:AcceptEventAction" Name="eBO_4_Input_Changed_Action30" OutgoingControlFlow="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Context="//@AlgorithmDomain/@OwnedElement.17" Trigger="//@AlgorithmDomain/@OwnedElement.3/@Signal.14"/>
-            <Action xsi:type="actions:WriteDataItemAction" Name="eBO_4_Input_Changed_Action31" IncomingControlFlow="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Context="//@AlgorithmDomain/@OwnedElement.17" DataItem="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.3">
-              <Value Name="eBO_4_Input_Changed_Action32" Multiplicity="1..1" Type="//@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.5" IncomingObjectFlow="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
-            </Action>
-            <Action xsi:type="actions:ReadPresentationModelAction" Name="eBO_4_Input_Changed_Action33" Context="//@AlgorithmDomain/@OwnedElement.17">
-              <Result Name="eBO_4_Input_Changed_Action34" Multiplicity="1..1" Type="//@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.5" OutgoingObjectFlow="//@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
-            </Action>
-          </StateActivityBlock>
-        </StateMachineElement>
-      </OwnedBehavior>
-      <OwnedReception Name="Dialog_2_reception_eBO_4_Input_Changed_signal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.14"/>
-    </OwnedElement>
-    <OwnedElement xsi:type="algorithm:Class" Name="Dialog_2_eBO_6_Input_Changed_Class" MovisaRuntimeInstance="true">
-      <OwnedBehavior Name="Dialog_2_eBO_6_Input_Changed_SM">
-        <OwnedTransition Name="Initial2Main" Source="//@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@StateMachineElement.0" Target="//@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@StateMachineElement.1"/>
-        <OwnedTransition Name="Initial2Main" Source="//@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@StateMachineElement.1" Target="//@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@StateMachineElement.1"/>
-        <StateMachineElement xsi:type="algorithm:PseudoState" Name="Initial" OutgoingTransition="//@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@OwnedTransition.0"/>
-        <StateMachineElement xsi:type="algorithm:State" Name="MainState" OutgoingTransition="//@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@OwnedTransition.1">
-          <StateActivityBlock Name="MainStateSAB">
-            <Edge xsi:type="actions:ControlFlow" Name="eBO_6_Input_Changed_ControlFlow" Source="//@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.0" Target="//@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1"/>
-            <Edge xsi:type="actions:ObjectFlow" Name="eBO_6_Input_Changed_ObjectFlow" Guard="#property:value" Source="//@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.2/@Result" Target="//@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1/@Value"/>
-            <Action xsi:type="actions:AcceptEventAction" Name="eBO_6_Input_Changed_Action35" OutgoingControlFlow="//@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Context="//@AlgorithmDomain/@OwnedElement.18" Trigger="//@AlgorithmDomain/@OwnedElement.3/@Signal.15"/>
-            <Action xsi:type="actions:WriteDataItemAction" Name="eBO_6_Input_Changed_Action36" IncomingControlFlow="//@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Context="//@AlgorithmDomain/@OwnedElement.18" DataItem="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.4">
-              <Value Name="eBO_6_Input_Changed_Action37" Multiplicity="1..1" Type="//@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.6" IncomingObjectFlow="//@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
-            </Action>
-            <Action xsi:type="actions:ReadPresentationModelAction" Name="eBO_6_Input_Changed_Action38" Context="//@AlgorithmDomain/@OwnedElement.18">
-              <Result Name="eBO_6_Input_Changed_Action39" Multiplicity="1..1" Type="//@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.6" OutgoingObjectFlow="//@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
-            </Action>
-          </StateActivityBlock>
-        </StateMachineElement>
-      </OwnedBehavior>
-      <OwnedReception Name="Dialog_2_reception_eBO_6_Input_Changed_signal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.15"/>
-    </OwnedElement>
-  </AlgorithmDomain>
-  <ClientDataDomain>
-    <LogicalDataPerspective>
-      <OwnedDataItem Name="Behaelter_A_FL" Dimension="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDimension.0" SignalOnChange="//@AlgorithmDomain/@OwnedElement.6/@Signal.0" Type="//@AlgorithmDomain/@OwnedElement.2"/>
-      <OwnedDataItem Name="Behaelter_B_FL" Dimension="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDimension.0" SignalOnChange="//@AlgorithmDomain/@OwnedElement.6/@Signal.1" Type="//@AlgorithmDomain/@OwnedElement.2"/>
-      <OwnedDataItem Name="V1_FL" Dimension="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDimension.0" SignalOnChange="//@AlgorithmDomain/@OwnedElement.6/@Signal.2" Type="//@AlgorithmDomain/@OwnedElement.2"/>
-      <OwnedDataItem Name="V2_FL" Dimension="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDimension.0" SignalOnChange="//@AlgorithmDomain/@OwnedElement.6/@Signal.3" Type="//@AlgorithmDomain/@OwnedElement.2"/>
-      <OwnedDataItem Name="P3_FL" Dimension="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDimension.0" SignalOnChange="//@AlgorithmDomain/@OwnedElement.6/@Signal.4" Type="//@AlgorithmDomain/@OwnedElement.2"/>
-      <OwnedDataItem Name="Start_Umpumpen_FL" Dimension="//@ClientDataDomain/@LogicalDataPerspective/@OwnedDimension.0" SignalOnChange="//@AlgorithmDomain/@OwnedElement.6/@Signal.5" Type="//@AlgorithmDomain/@OwnedElement.0"/>
-      <OwnedDimension Name="IntegerDimension" Unit="Integer"/>
-    </LogicalDataPerspective>
-    <TechnicalDataPerspective>
-      <OwnedServer xsi:type="generic:GenericServer"/>
-    </TechnicalDataPerspective>
-  </ClientDataDomain>
-  <PresentationDomain Name="PresentationModel" Author="disl2movisa.pamtram" MovisaBuildVersion="rev0.6.2-2010-11-24" Version="1.0">
-    <OwnedColorDefinition>
-      <OwnedColorValue xsi:type="presentation:RGBColor" Name="Geld" Transparency="1" Blue="12" Green="12" Red="255"/>
-    </OwnedColorDefinition>
-    <OwnedMultiLingualTextDefinition>
-      <OwnedLanguageDefinition Name="German" LocaleId="de-DE"/>
-      <OwnedTextDefinition Name="Bestaetigung_dass_die_Information_wahrgenommen_wurde">
-        <TranslatedTextItem Value="Bestaetigung_dass_die_Information_wahrgenommen_wurde" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
-      </OwnedTextDefinition>
-      <OwnedTextDefinition Name="DummyInputValueTextItem">
-        <TranslatedTextItem Value="100" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
-      </OwnedTextDefinition>
-      <OwnedTextDefinition Name="Dialog_1_eBO_5_Confirm_textDef">
-        <TranslatedTextItem Value="Start Umpumpen" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
-      </OwnedTextDefinition>
-      <OwnedTextDefinition Name="Dialog_1_eBO_6_Confirm_textDef">
-        <TranslatedTextItem Value="Stop Umpumpen" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
-      </OwnedTextDefinition>
-      <OwnedTextDefinition Name="Dialog_1_eBO_7_Confirm_textDef">
-        <TranslatedTextItem Value="Konfiguration" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
-      </OwnedTextDefinition>
-      <OwnedTextDefinition Name="Dialog_2_eBO_7_Confirm_textDef">
-        <TranslatedTextItem Value="OK" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
-      </OwnedTextDefinition>
-      <OwnedTextDefinition Name="Dialog_1_eBO_1_textDef">
-        <TranslatedTextItem Value="Quell-Behälter" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
-      </OwnedTextDefinition>
-      <OwnedTextDefinition Name="Dialog_1_eBO_3_textDef">
-        <TranslatedTextItem Value="Ziel-Behälter" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
-      </OwnedTextDefinition>
-      <OwnedTextDefinition Name="Dialog_2_eBO_1_textDef">
-        <TranslatedTextItem Value="V1" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
-      </OwnedTextDefinition>
-      <OwnedTextDefinition Name="Dialog_2_eBO_3_textDef">
-        <TranslatedTextItem Value="V2" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
-      </OwnedTextDefinition>
-      <OwnedTextDefinition Name="Dialog_2_eBO_5_textDef">
-        <TranslatedTextItem Value="P3" Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
-      </OwnedTextDefinition>
-      <OwnedTextDefinition Name="Dialog_1_eBO_2_Select_Option_0_textDef">
-        <TranslatedTextItem Value="Behaelter_1 " Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
-      </OwnedTextDefinition>
-      <OwnedTextDefinition Name="Dialog_1_eBO_2_Select_Option_1_textDef">
-        <TranslatedTextItem Value="Behaelter_2 " Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
-      </OwnedTextDefinition>
-      <OwnedTextDefinition Name="Dialog_1_eBO_2_Select_Option_2_textDef">
-        <TranslatedTextItem Value="Behaelter_3 " Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
-      </OwnedTextDefinition>
-      <OwnedTextDefinition Name="Dialog_1_eBO_4_Select_Option_0_textDef">
-        <TranslatedTextItem Value="Pumpe_1 " Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
-      </OwnedTextDefinition>
-      <OwnedTextDefinition Name="Dialog_1_eBO_4_Select_Option_1_textDef">
-        <TranslatedTextItem Value="Pumpe_2 " Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
-      </OwnedTextDefinition>
-      <OwnedTextDefinition Name="Dialog_1_eBO_4_Select_Option_2_textDef">
-        <TranslatedTextItem Value="Pumpe_3 " Language="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
-      </OwnedTextDefinition>
-    </OwnedMultiLingualTextDefinition>
-    <OwnedNavigationFlow xsi:type="presentation:NewViewNavigationFlow" Name="Start" Source="//@PresentationDomain/@OwnedNavigationRoot" Target="//@PresentationDomain/@OwnedPanel.0"/>
-    <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="Dialog_1_eBO_7_Confirm_Changed" Source="//@PresentationDomain/@OwnedPanel.0" Target="//@PresentationDomain/@OwnedPanel.1" Trigger="//@AlgorithmDomain/@OwnedElement.3/@Signal.2"/>
-    <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="Dialog_2_eBO_7_Confirm_Changed" Source="//@PresentationDomain/@OwnedPanel.1" Target="//@PresentationDomain/@OwnedPanel.0" Trigger="//@AlgorithmDomain/@OwnedElement.3/@Signal.3"/>
-    <OwnedNavigationRoot/>
-    <OwnedNavigationTerminator/>
-    <OwnedPanel Name="Dialog_1">
-      <OwnedUIComponent xsi:type="presentation:Button" Name="Dialog_1_eBO_5_Confirm">
-        <Interaction>
-          <CommonTrigger xsi:type="presentation:Click" Name="Dialog_1_eBO_5_Confirm_SignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.0/@OwnedUIComponent.0/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Dialog_1_eBO_5_Confirm_signal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.0"/>
-        </Interaction>
-        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.2">
-          <Position Name="Dialog_1_eBO_5_Confirm_pos">
-            <X Name="pos_x" Unit="PIXEL" Value="530.0"/>
-            <Y Name="pos_y" Unit="PIXEL" Value="10.0"/>
-            <Z Name="pos_z" Unit="PIXEL"/>
-          </Position>
-          <Size Name="Dialog_1_eBO_5_Confirm_size">
-            <Height Name="_height" Unit="PIXEL" Value="40.0"/>
-            <Width Name="_width" Unit="PIXEL" Value="100.0"/>
-          </Size>
-          <ToolTipText Name="Dialog_1_eBO_5_Confirm_ttt" Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.0"/>
-        </Representation>
-      </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:Button" Name="Dialog_1_eBO_6_Confirm">
-        <Interaction>
-          <CommonTrigger xsi:type="presentation:Click" Name="Dialog_1_eBO_6_Confirm_SignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.0/@OwnedUIComponent.1/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Dialog_1_eBO_6_Confirm_signal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.1"/>
-        </Interaction>
-        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.3">
-          <Position Name="Dialog_1_eBO_6_Confirm_pos">
-            <X Name="pos_x" Unit="PIXEL" Value="660.0"/>
-            <Y Name="pos_y" Unit="PIXEL" Value="10.0"/>
-            <Z Name="pos_z" Unit="PIXEL"/>
-          </Position>
-          <Size Name="Dialog_1_eBO_6_Confirm_size">
-            <Height Name="_height" Unit="PIXEL" Value="40.0"/>
-            <Width Name="_width" Unit="PIXEL" Value="100.0"/>
-          </Size>
-          <ToolTipText Name="Dialog_1_eBO_6_Confirm_ttt" Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.0"/>
-        </Representation>
-      </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:Button" Name="Dialog_1_eBO_7_Confirm">
-        <Interaction>
-          <CommonTrigger xsi:type="presentation:Click" Name="Dialog_1_eBO_7_Confirm_SignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.0/@OwnedUIComponent.2/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Dialog_1_eBO_7_Confirm_signal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.2"/>
-        </Interaction>
-        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.4">
-          <Position Name="Dialog_1_eBO_7_Confirm_pos">
-            <X Name="pos_x" Unit="PIXEL" Value="790.0"/>
-            <Y Name="pos_y" Unit="PIXEL" Value="10.0"/>
-            <Z Name="pos_z" Unit="PIXEL"/>
-          </Position>
-          <Size Name="Dialog_1_eBO_7_Confirm_size">
-            <Height Name="_height" Unit="PIXEL" Value="40.0"/>
-            <Width Name="_width" Unit="PIXEL" Value="100.0"/>
-          </Size>
-          <ToolTipText Name="Dialog_1_eBO_7_Confirm_ttt" Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.0"/>
-        </Representation>
-      </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Dialog_1_eBO_1">
-        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.6">
-          <Format FontFace="VERDANA" FontStyle="NORMAL" FontWeight="MEDIUM">
-            <FontSize Unit="POINT" Value="10.0"/>
-          </Format>
-          <Position Name="eBO_1_Dialog_1_pos">
-            <X Name="Dialog_1_inform2_eBO_3_pos_x" Unit="PIXEL" Value="10.0"/>
-            <Y Name="Dialog_1_inform2_eBO_3_pos_y" Unit="PIXEL" Value="10.0"/>
-            <Z Name="Dialog_1_inform2_eBO_3_pos_z" Unit="PIXEL"/>
-          </Position>
-          <Size Name="eBO_1_Dialog_1_size">
-            <Height Name="Dialog_1_inform2_eBO_3_height" Unit="PIXEL" Value="40.0"/>
-            <Width Name="Dialog_1_inform2_eBO_3_width" Unit="PIXEL" Value="100.0"/>
-          </Size>
-        </Representation>
-      </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Dialog_1_eBO_3">
-        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.7">
-          <Format FontFace="VERDANA" FontStyle="NORMAL" FontWeight="MEDIUM">
-            <FontSize Unit="POINT" Value="10.0"/>
-          </Format>
-          <Position Name="eBO_3_Dialog_1_pos">
-            <X Name="Dialog_1_inform2_eBO_3_pos_x" Unit="PIXEL" Value="270.0"/>
-            <Y Name="Dialog_1_inform2_eBO_3_pos_y" Unit="PIXEL" Value="10.0"/>
-            <Z Name="Dialog_1_inform2_eBO_3_pos_z" Unit="PIXEL"/>
-          </Position>
-          <Size Name="eBO_3_Dialog_1_size">
-            <Height Name="Dialog_1_inform2_eBO_3_height" Unit="PIXEL" Value="40.0"/>
-            <Width Name="Dialog_1_inform2_eBO_3_width" Unit="PIXEL" Value="100.0"/>
-          </Size>
-        </Representation>
-      </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:DropDown" Name="Dialog_1_eBO_2_Select">
-        <Interaction>
-          <CommonTrigger xsi:type="presentation:Click" Name="Dialog_1_eBO_2_Select_Option_0_SignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.0/@OwnedUIComponent.5/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Dialog_1_eBO_2_Select_Option_0_signal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.7"/>
-        </Interaction>
-        <Representation>
-          <Position Name="eBO_2_Select_Dialog_1_pos">
-            <X Name="Dialog_1_inform2_eBO_3_pos_x" Unit="PIXEL" Value="140.0"/>
-            <Y Name="Dialog_1_inform2_eBO_3_pos_y" Unit="PIXEL" Value="10.0"/>
-            <Z Name="Dialog_1_inform2_eBO_3_pos_z" Unit="PIXEL"/>
-          </Position>
-          <Size Name="eBO_2_Select_Dialog_1_size">
-            <Height Name="Dialog_1_inform2_eBO_3_height" Unit="PIXEL" Value="40.0"/>
-            <Width Name="Dialog_1_inform2_eBO_3_width" Unit="PIXEL" Value="100.0"/>
-          </Size>
-          <DropDownOption Label="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.11" Value="Vorgabewert 0"/>
-          <DropDownOption Label="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.12" Value="Vorgabewert 1"/>
-          <DropDownOption Label="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.13" Value="Vorgabewert 2"/>
-        </Representation>
-      </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:DropDown" Name="Dialog_1_eBO_4_Select">
-        <Interaction>
-          <CommonTrigger xsi:type="presentation:Click" Name="Dialog_1_eBO_4_Select_Option_0_SignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.0/@OwnedUIComponent.6/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Dialog_1_eBO_4_Select_Option_0_signal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.10"/>
-        </Interaction>
-        <Representation>
-          <Position Name="eBO_4_Select_Dialog_1_pos">
-            <X Name="Dialog_1_inform2_eBO_3_pos_x" Unit="PIXEL" Value="400.0"/>
-            <Y Name="Dialog_1_inform2_eBO_3_pos_y" Unit="PIXEL" Value="10.0"/>
-            <Z Name="Dialog_1_inform2_eBO_3_pos_z" Unit="PIXEL"/>
-          </Position>
-          <Size Name="eBO_4_Select_Dialog_1_size">
-            <Height Name="Dialog_1_inform2_eBO_3_height" Unit="PIXEL" Value="40.0"/>
-            <Width Name="Dialog_1_inform2_eBO_3_width" Unit="PIXEL" Value="100.0"/>
-          </Size>
-          <DropDownOption Label="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.14" Value="Vorgabewert 0"/>
-          <DropDownOption Label="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.15" Value="Vorgabewert 1"/>
-          <DropDownOption Label="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.16" Value="Vorgabewert 2"/>
-        </Representation>
-      </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:RadioButtonGroup" Name="Dialog_1_eBO_2_Select">
-        <Option Name="Dialog_1_eBO_2_Select_Option_0">
+<!--
+  Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
+  
+  This program and the accompanying materials are made
+  available under the terms of the Eclipse Public License 2.0
+  which is available at https://www.eclipse.org/legal/epl-2.0/
+  
+  Contributors:
+    Institute of Automation, TU Dresden - Initial API and implementation
+  
+  SPDX-License-Identifier: EPL-2.0
+-->
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:actions="http://stefan-hennig.de/movisa/algorithm/actions" xmlns:algorithm="http://stefan-hennig.de/movisa/algorithm" xmlns:generic="http://stefan-hennig.de/movisa/clientdata/perspective/technical/generic" xmlns:movisa="http://stefan-hennig.de/movisa" xmlns:presentation="http://stefan-hennig.de/movisa/presentation">
+  <presentation:DropDownInteraction>
+    <CommonTrigger xsi:type="presentation:Click" Name="Dialog_1_eBO_2_Select_Option_1_SignalTrigger" Effect="/0/@OwnedEffect.0"/>
+    <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Dialog_1_eBO_2_Select_Option_1_signal" Signal="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.8"/>
+  </presentation:DropDownInteraction>
+  <presentation:DropDownInteraction>
+    <CommonTrigger xsi:type="presentation:Click" Name="Dialog_1_eBO_2_Select_Option_2_SignalTrigger" Effect="/1/@OwnedEffect.0"/>
+    <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Dialog_1_eBO_2_Select_Option_2_signal" Signal="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.9"/>
+  </presentation:DropDownInteraction>
+  <presentation:DropDownInteraction>
+    <CommonTrigger xsi:type="presentation:Click" Name="Dialog_1_eBO_4_Select_Option_1_SignalTrigger" Effect="/2/@OwnedEffect.0"/>
+    <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Dialog_1_eBO_4_Select_Option_1_signal" Signal="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.11"/>
+  </presentation:DropDownInteraction>
+  <presentation:DropDownInteraction>
+    <CommonTrigger xsi:type="presentation:Click" Name="Dialog_1_eBO_4_Select_Option_2_SignalTrigger" Effect="/3/@OwnedEffect.0"/>
+    <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Dialog_1_eBO_4_Select_Option_2_signal" Signal="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.12"/>
+  </presentation:DropDownInteraction>
+  <movisa:VisualizationApplicationModel Name="Prozessvisualisierung_20110303_202702" Author="disl2movisa.pamtram" MovisaBuildVersion="@(#)&lt;label>(on: &lt;date>)@">
+    <AlgorithmDomain Name="AlgorithmModel" Author="disl2movisa.pamtram" MovisaBuildVersion="rev0.6.2-2010-11-24" Version="1.0">
+      <OwnedElement xsi:type="algorithm:BooleanType" Name="Boolean"/>
+      <OwnedElement xsi:type="algorithm:StringType" Name="String"/>
+      <OwnedElement xsi:type="algorithm:IntegerType" Name="Integer"/>
+      <OwnedElement xsi:type="algorithm:SignalCollection" Name="UiComponents">
+        <Signal Name="Dialog_1_eBO_5_Confirm_Changed_signal"/>
+        <Signal Name="Dialog_1_eBO_6_Confirm_Changed_signal"/>
+        <Signal Name="Dialog_1_eBO_7_Confirm_Changed_signal"/>
+        <Signal Name="Dialog_2_eBO_7_Confirm_Changed_signal"/>
+        <Signal Name="eBO_1_signal"/>
+        <Signal Name="eBO_3_signal"/>
+        <Signal Name="eBO_5_signal"/>
+        <Signal Name="Dialog_1_eBO_2_Select_Option_0_Changed_signal"/>
+        <Signal Name="Dialog_1_eBO_2_Select_Option_1_Changed_signal"/>
+        <Signal Name="Dialog_1_eBO_2_Select_Option_2_Changed_signal"/>
+        <Signal Name="Dialog_1_eBO_4_Select_Option_0_Changed_signal"/>
+        <Signal Name="Dialog_1_eBO_4_Select_Option_1_Changed_signal"/>
+        <Signal Name="Dialog_1_eBO_4_Select_Option_2_Changed_signal"/>
+        <Signal Name="Dialog_2_eBO_2_Input_Changed_signal"/>
+        <Signal Name="Dialog_2_eBO_4_Input_Changed_signal"/>
+        <Signal Name="Dialog_2_eBO_6_Input_Changed_signal"/>
+      </OwnedElement>
+      <OwnedElement xsi:type="algorithm:SignalCollection" Name="PanelTransitions">
+        <Signal Name="Dialog_1_signal"/>
+        <Signal Name="Dialog_2_signal"/>
+      </OwnedElement>
+      <OwnedElement xsi:type="algorithm:SignalCollection" Name="NavigationFlowTriggers"/>
+      <OwnedElement xsi:type="algorithm:SignalCollection" Name="VariableChangedSignals">
+        <Signal Name="Behaelter_A_FL_Changed"/>
+        <Signal Name="Behaelter_B_FL_Changed"/>
+        <Signal Name="V1_FL_Changed"/>
+        <Signal Name="V2_FL_Changed"/>
+        <Signal Name="P3_FL_Changed"/>
+        <Signal Name="Start_Umpumpen_FL_Changed"/>
+      </OwnedElement>
+      <OwnedElement xsi:type="algorithm:Class" Name="Navigation" MovisaRuntimeInstance="true">
+        <OwnedBehavior Name="NavigationStateMachine">
+          <OwnedTransition Name="Dialog_1_to_Dialog_1" Source="/4/@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.1" Target="/4/@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.1"/>
+          <OwnedTransition Name="Dialog_2_to_Dialog_2" Source="/4/@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.2" Target="/4/@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.2"/>
+          <OwnedTransition Name="Dialog_1_to_Dialog_2" Source="/4/@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.1" Target="/4/@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.2" Trigger="/4/@AlgorithmDomain/@OwnedElement.4/@Signal.1"/>
+          <OwnedTransition Name="Dialog_2_to_Dialog_1" Source="/4/@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.2" Target="/4/@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@StateMachineElement.1" Trigger="/4/@AlgorithmDomain/@OwnedElement.4/@Signal.0"/>
+          <StateMachineElement xsi:type="algorithm:PseudoState" Name="idle"/>
+          <StateMachineElement xsi:type="algorithm:State" Name="Dialog_1_state" OutgoingTransition="/4/@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@OwnedTransition.0 /4/@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@OwnedTransition.2">
+            <StateActivityBlock Name="Dialog_1_activityBlock"/>
+          </StateMachineElement>
+          <StateMachineElement xsi:type="algorithm:State" Name="Dialog_2_state" OutgoingTransition="/4/@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@OwnedTransition.1 /4/@AlgorithmDomain/@OwnedElement.7/@OwnedBehavior.0/@OwnedTransition.3">
+            <StateActivityBlock Name="Dialog_2_activityBlock"/>
+          </StateMachineElement>
+        </OwnedBehavior>
+        <OwnedReception Name="reception_Dialog_2_signal" Signal="/4/@AlgorithmDomain/@OwnedElement.4/@Signal.1"/>
+        <OwnedReception Name="reception_Dialog_1_signal" Signal="/4/@AlgorithmDomain/@OwnedElement.4/@Signal.0"/>
+      </OwnedElement>
+      <OwnedElement xsi:type="algorithm:Class" Name="Dialog_1_eBO_5_Confirm_Changed_Class" MovisaRuntimeInstance="true">
+        <OwnedBehavior Name="Dialog_1_eBO_5_Confirm_Changed_SM">
+          <OwnedTransition Name="Initial2Main" Source="/4/@AlgorithmDomain/@OwnedElement.8/@OwnedBehavior.0/@StateMachineElement.0" Target="/4/@AlgorithmDomain/@OwnedElement.8/@OwnedBehavior.0/@StateMachineElement.1"/>
+          <OwnedTransition Name="Initial2Main" Source="/4/@AlgorithmDomain/@OwnedElement.8/@OwnedBehavior.0/@StateMachineElement.1" Target="/4/@AlgorithmDomain/@OwnedElement.8/@OwnedBehavior.0/@StateMachineElement.1"/>
+          <StateMachineElement xsi:type="algorithm:PseudoState" Name="Initial" OutgoingTransition="/4/@AlgorithmDomain/@OwnedElement.8/@OwnedBehavior.0/@OwnedTransition.0"/>
+          <StateMachineElement xsi:type="algorithm:State" Name="MainState" OutgoingTransition="/4/@AlgorithmDomain/@OwnedElement.8/@OwnedBehavior.0/@OwnedTransition.1">
+            <StateActivityBlock Name="MainStateSAB">
+              <Edge xsi:type="actions:ControlFlow" Name="eBO_5_Confirm_Changed_ControlFlow" Source="/4/@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.0" Target="/4/@AlgorithmDomain/@OwnedElement.8/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1"/>
+              <Edge xsi:type="actions:ObjectFlow" Name="eBO_5_Confirm_Changed_ObjectFlow" Source="/4/@AlgorithmDomain/@OwnedElement.8/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.2/@Result" Target="/4/@AlgorithmDomain/@OwnedElement.8/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1/@Value"/>
+              <Action xsi:type="actions:AcceptEventAction" Name="eBO_5_Confirm_Changed_Action1" Trigger="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.0"/>
+              <Action xsi:type="actions:WriteDataItemAction" Name="eBO_5_Confirm_Changed_Action1" IncomingControlFlow="/4/@AlgorithmDomain/@OwnedElement.8/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" DataItem="/4/@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.5">
+                <Value Multiplicity="1..1" Type="/4/@AlgorithmDomain/@OwnedElement.0" IncomingObjectFlow="/4/@AlgorithmDomain/@OwnedElement.8/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
+              </Action>
+              <Action xsi:type="actions:ValueSpecificationAction" Name="eBO_5_Confirm_Changed_Action1" Value="true">
+                <Result Multiplicity="1..1" Type="/4/@AlgorithmDomain/@OwnedElement.0" OutgoingObjectFlow="/4/@AlgorithmDomain/@OwnedElement.8/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
+              </Action>
+            </StateActivityBlock>
+          </StateMachineElement>
+        </OwnedBehavior>
+        <OwnedReception Name="Dialog_1_reception_eBO_5_Confirm_Changed_signal" Signal="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.0"/>
+      </OwnedElement>
+      <OwnedElement xsi:type="algorithm:Class" Name="Dialog_1_eBO_6_Confirm_Changed_Class" MovisaRuntimeInstance="true">
+        <OwnedBehavior Name="Dialog_1_eBO_6_Confirm_Changed_SM">
+          <OwnedTransition Name="Initial2Main" Source="/4/@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@StateMachineElement.0" Target="/4/@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@StateMachineElement.1"/>
+          <OwnedTransition Name="Initial2Main" Source="/4/@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@StateMachineElement.1" Target="/4/@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@StateMachineElement.1"/>
+          <StateMachineElement xsi:type="algorithm:PseudoState" Name="Initial" OutgoingTransition="/4/@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@OwnedTransition.0"/>
+          <StateMachineElement xsi:type="algorithm:State" Name="MainState" OutgoingTransition="/4/@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@OwnedTransition.1">
+            <StateActivityBlock Name="MainStateSAB">
+              <Edge xsi:type="actions:ControlFlow" Name="eBO_6_Confirm_Changed_ControlFlow" Source="/4/@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.0" Target="/4/@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1"/>
+              <Edge xsi:type="actions:ObjectFlow" Name="eBO_6_Confirm_Changed_ObjectFlow" Source="/4/@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.2/@Result" Target="/4/@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1/@Value"/>
+              <Action xsi:type="actions:AcceptEventAction" Name="eBO_6_Confirm_Changed_Action2" OutgoingControlFlow="/4/@AlgorithmDomain/@OwnedElement.8/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0 /4/@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Trigger="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.1"/>
+              <Action xsi:type="actions:WriteDataItemAction" Name="eBO_6_Confirm_Changed_Action2" IncomingControlFlow="/4/@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" DataItem="/4/@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.5">
+                <Value Multiplicity="1..1" Type="/4/@AlgorithmDomain/@OwnedElement.0" IncomingObjectFlow="/4/@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
+              </Action>
+              <Action xsi:type="actions:ValueSpecificationAction" Name="eBO_6_Confirm_Changed_Action2" Value="false">
+                <Result Multiplicity="1..1" Type="/4/@AlgorithmDomain/@OwnedElement.0" OutgoingObjectFlow="/4/@AlgorithmDomain/@OwnedElement.9/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
+              </Action>
+            </StateActivityBlock>
+          </StateMachineElement>
+        </OwnedBehavior>
+        <OwnedReception Name="Dialog_1_reception_eBO_6_Confirm_Changed_signal" Signal="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.1"/>
+      </OwnedElement>
+      <OwnedElement xsi:type="algorithm:Class" Name="Dialog_1_eBO_2_Select_Option_0_Changed_Class" MovisaRuntimeInstance="true">
+        <OwnedBehavior Name="Dialog_1_eBO_2_Select_Option_0_Changed_SM">
+          <OwnedTransition Name="Initial2Main" Source="/4/@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@StateMachineElement.0" Target="/4/@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@StateMachineElement.1"/>
+          <OwnedTransition Name="Initial2Main" Source="/4/@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@StateMachineElement.1" Target="/4/@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@StateMachineElement.1"/>
+          <StateMachineElement xsi:type="algorithm:PseudoState" Name="Initial" OutgoingTransition="/4/@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@OwnedTransition.0"/>
+          <StateMachineElement xsi:type="algorithm:State" Name="MainState" OutgoingTransition="/4/@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@OwnedTransition.1">
+            <StateActivityBlock Name="MainStateSAB">
+              <Edge xsi:type="actions:ControlFlow" Name="eBO_2_Select_Option_0_Changed_ControlFlow" Source="/4/@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.0" Target="/4/@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1"/>
+              <Edge xsi:type="actions:ObjectFlow" Name="eBO_2_Select_Option_0_Changed_ObjectFlow" Source="/4/@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.2/@Result" Target="/4/@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1/@Value"/>
+              <Action xsi:type="actions:AcceptEventAction" Name="eBO_2_Select_Option_0_Changed_Action3" OutgoingControlFlow="/4/@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Trigger="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.7"/>
+              <Action xsi:type="actions:WriteDataItemAction" Name="eBO_2_Select_Option_0_Changed_Action3" IncomingControlFlow="/4/@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" DataItem="/4/@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.0">
+                <Value Multiplicity="1..1" Type="/4/@AlgorithmDomain/@OwnedElement.2" IncomingObjectFlow="/4/@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
+              </Action>
+              <Action xsi:type="actions:ValueSpecificationAction" Name="eBO_2_Select_Option_0_Changed_Action3" Value="1">
+                <Result Multiplicity="1..1" Type="/4/@AlgorithmDomain/@OwnedElement.2" OutgoingObjectFlow="/4/@AlgorithmDomain/@OwnedElement.10/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
+              </Action>
+            </StateActivityBlock>
+          </StateMachineElement>
+        </OwnedBehavior>
+        <OwnedReception Name="Dialog_1_reception_eBO_2_Select_Option_0_Changed_signal" Signal="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.7"/>
+      </OwnedElement>
+      <OwnedElement xsi:type="algorithm:Class" Name="Dialog_1_eBO_2_Select_Option_1_Changed_Class" MovisaRuntimeInstance="true">
+        <OwnedBehavior Name="Dialog_1_eBO_2_Select_Option_1_Changed_SM">
+          <OwnedTransition Name="Initial2Main" Source="/4/@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@StateMachineElement.0" Target="/4/@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@StateMachineElement.1"/>
+          <OwnedTransition Name="Initial2Main" Source="/4/@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@StateMachineElement.1" Target="/4/@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@StateMachineElement.1"/>
+          <StateMachineElement xsi:type="algorithm:PseudoState" Name="Initial" OutgoingTransition="/4/@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@OwnedTransition.0"/>
+          <StateMachineElement xsi:type="algorithm:State" Name="MainState" OutgoingTransition="/4/@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@OwnedTransition.1">
+            <StateActivityBlock Name="MainStateSAB">
+              <Edge xsi:type="actions:ControlFlow" Name="eBO_2_Select_Option_1_Changed_ControlFlow" Source="/4/@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.0" Target="/4/@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1"/>
+              <Edge xsi:type="actions:ObjectFlow" Name="eBO_2_Select_Option_1_Changed_ObjectFlow" Source="/4/@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.2/@Result" Target="/4/@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1/@Value"/>
+              <Action xsi:type="actions:AcceptEventAction" Name="eBO_2_Select_Option_1_Changed_Action4" OutgoingControlFlow="/4/@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Trigger="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.8"/>
+              <Action xsi:type="actions:WriteDataItemAction" Name="eBO_2_Select_Option_1_Changed_Action4" IncomingControlFlow="/4/@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" DataItem="/4/@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.0">
+                <Value Multiplicity="1..1" Type="/4/@AlgorithmDomain/@OwnedElement.2" IncomingObjectFlow="/4/@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
+              </Action>
+              <Action xsi:type="actions:ValueSpecificationAction" Name="eBO_2_Select_Option_1_Changed_Action4" Value="2">
+                <Result Multiplicity="1..1" Type="/4/@AlgorithmDomain/@OwnedElement.2" OutgoingObjectFlow="/4/@AlgorithmDomain/@OwnedElement.11/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
+              </Action>
+            </StateActivityBlock>
+          </StateMachineElement>
+        </OwnedBehavior>
+        <OwnedReception Name="Dialog_1_reception_eBO_2_Select_Option_1_Changed_signal" Signal="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.8"/>
+      </OwnedElement>
+      <OwnedElement xsi:type="algorithm:Class" Name="Dialog_1_eBO_2_Select_Option_2_Changed_Class" MovisaRuntimeInstance="true">
+        <OwnedBehavior Name="Dialog_1_eBO_2_Select_Option_2_Changed_SM">
+          <OwnedTransition Name="Initial2Main" Source="/4/@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@StateMachineElement.0" Target="/4/@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@StateMachineElement.1"/>
+          <OwnedTransition Name="Initial2Main" Source="/4/@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@StateMachineElement.1" Target="/4/@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@StateMachineElement.1"/>
+          <StateMachineElement xsi:type="algorithm:PseudoState" Name="Initial" OutgoingTransition="/4/@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@OwnedTransition.0"/>
+          <StateMachineElement xsi:type="algorithm:State" Name="MainState" OutgoingTransition="/4/@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@OwnedTransition.1">
+            <StateActivityBlock Name="MainStateSAB">
+              <Edge xsi:type="actions:ControlFlow" Name="eBO_2_Select_Option_2_Changed_ControlFlow" Source="/4/@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.0" Target="/4/@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1"/>
+              <Edge xsi:type="actions:ObjectFlow" Name="eBO_2_Select_Option_2_Changed_ObjectFlow" Source="/4/@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.2/@Result" Target="/4/@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1/@Value"/>
+              <Action xsi:type="actions:AcceptEventAction" Name="eBO_2_Select_Option_2_Changed_Action5" OutgoingControlFlow="/4/@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Trigger="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.9"/>
+              <Action xsi:type="actions:WriteDataItemAction" Name="eBO_2_Select_Option_2_Changed_Action5" IncomingControlFlow="/4/@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" DataItem="/4/@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.0">
+                <Value Multiplicity="1..1" Type="/4/@AlgorithmDomain/@OwnedElement.2" IncomingObjectFlow="/4/@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
+              </Action>
+              <Action xsi:type="actions:ValueSpecificationAction" Name="eBO_2_Select_Option_2_Changed_Action5" Value="3">
+                <Result Multiplicity="1..1" Type="/4/@AlgorithmDomain/@OwnedElement.2" OutgoingObjectFlow="/4/@AlgorithmDomain/@OwnedElement.12/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
+              </Action>
+            </StateActivityBlock>
+          </StateMachineElement>
+        </OwnedBehavior>
+        <OwnedReception Name="Dialog_1_reception_eBO_2_Select_Option_2_Changed_signal" Signal="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.9"/>
+      </OwnedElement>
+      <OwnedElement xsi:type="algorithm:Class" Name="Dialog_1_eBO_4_Select_Option_0_Changed_Class" MovisaRuntimeInstance="true">
+        <OwnedBehavior Name="Dialog_1_eBO_4_Select_Option_0_Changed_SM">
+          <OwnedTransition Name="Initial2Main" Source="/4/@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@StateMachineElement.0" Target="/4/@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@StateMachineElement.1"/>
+          <OwnedTransition Name="Initial2Main" Source="/4/@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@StateMachineElement.1" Target="/4/@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@StateMachineElement.1"/>
+          <StateMachineElement xsi:type="algorithm:PseudoState" Name="Initial" OutgoingTransition="/4/@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@OwnedTransition.0"/>
+          <StateMachineElement xsi:type="algorithm:State" Name="MainState" OutgoingTransition="/4/@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@OwnedTransition.1">
+            <StateActivityBlock Name="MainStateSAB">
+              <Edge xsi:type="actions:ControlFlow" Name="eBO_4_Select_Option_0_Changed_ControlFlow" Source="/4/@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.0" Target="/4/@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1"/>
+              <Edge xsi:type="actions:ObjectFlow" Name="eBO_4_Select_Option_0_Changed_ObjectFlow" Source="/4/@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.2/@Result" Target="/4/@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1/@Value"/>
+              <Action xsi:type="actions:AcceptEventAction" Name="eBO_4_Select_Option_0_Changed_Action6" OutgoingControlFlow="/4/@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Trigger="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.10"/>
+              <Action xsi:type="actions:WriteDataItemAction" Name="eBO_4_Select_Option_0_Changed_Action6" IncomingControlFlow="/4/@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" DataItem="/4/@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.1">
+                <Value Multiplicity="1..1" Type="/4/@AlgorithmDomain/@OwnedElement.2" IncomingObjectFlow="/4/@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
+              </Action>
+              <Action xsi:type="actions:ValueSpecificationAction" Name="eBO_4_Select_Option_0_Changed_Action6" Value="1">
+                <Result Multiplicity="1..1" Type="/4/@AlgorithmDomain/@OwnedElement.2" OutgoingObjectFlow="/4/@AlgorithmDomain/@OwnedElement.13/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
+              </Action>
+            </StateActivityBlock>
+          </StateMachineElement>
+        </OwnedBehavior>
+        <OwnedReception Name="Dialog_1_reception_eBO_4_Select_Option_0_Changed_signal" Signal="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.10"/>
+      </OwnedElement>
+      <OwnedElement xsi:type="algorithm:Class" Name="Dialog_1_eBO_4_Select_Option_1_Changed_Class" MovisaRuntimeInstance="true">
+        <OwnedBehavior Name="Dialog_1_eBO_4_Select_Option_1_Changed_SM">
+          <OwnedTransition Name="Initial2Main" Source="/4/@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@StateMachineElement.0" Target="/4/@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@StateMachineElement.1"/>
+          <OwnedTransition Name="Initial2Main" Source="/4/@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@StateMachineElement.1" Target="/4/@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@StateMachineElement.1"/>
+          <StateMachineElement xsi:type="algorithm:PseudoState" Name="Initial" OutgoingTransition="/4/@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@OwnedTransition.0"/>
+          <StateMachineElement xsi:type="algorithm:State" Name="MainState" OutgoingTransition="/4/@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@OwnedTransition.1">
+            <StateActivityBlock Name="MainStateSAB">
+              <Edge xsi:type="actions:ControlFlow" Name="eBO_4_Select_Option_1_Changed_ControlFlow" Source="/4/@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.0" Target="/4/@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1"/>
+              <Edge xsi:type="actions:ObjectFlow" Name="eBO_4_Select_Option_1_Changed_ObjectFlow" Source="/4/@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.2/@Result" Target="/4/@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1/@Value"/>
+              <Action xsi:type="actions:AcceptEventAction" Name="eBO_4_Select_Option_1_Changed_Action7" OutgoingControlFlow="/4/@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Trigger="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.11"/>
+              <Action xsi:type="actions:WriteDataItemAction" Name="eBO_4_Select_Option_1_Changed_Action7" IncomingControlFlow="/4/@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" DataItem="/4/@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.1">
+                <Value Multiplicity="1..1" Type="/4/@AlgorithmDomain/@OwnedElement.2" IncomingObjectFlow="/4/@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
+              </Action>
+              <Action xsi:type="actions:ValueSpecificationAction" Name="eBO_4_Select_Option_1_Changed_Action7" Value="2">
+                <Result Multiplicity="1..1" Type="/4/@AlgorithmDomain/@OwnedElement.2" OutgoingObjectFlow="/4/@AlgorithmDomain/@OwnedElement.14/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
+              </Action>
+            </StateActivityBlock>
+          </StateMachineElement>
+        </OwnedBehavior>
+        <OwnedReception Name="Dialog_1_reception_eBO_4_Select_Option_1_Changed_signal" Signal="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.11"/>
+      </OwnedElement>
+      <OwnedElement xsi:type="algorithm:Class" Name="Dialog_1_eBO_4_Select_Option_2_Changed_Class" MovisaRuntimeInstance="true">
+        <OwnedBehavior Name="Dialog_1_eBO_4_Select_Option_2_Changed_SM">
+          <OwnedTransition Name="Initial2Main" Source="/4/@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@StateMachineElement.0" Target="/4/@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@StateMachineElement.1"/>
+          <OwnedTransition Name="Initial2Main" Source="/4/@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@StateMachineElement.1" Target="/4/@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@StateMachineElement.1"/>
+          <StateMachineElement xsi:type="algorithm:PseudoState" Name="Initial" OutgoingTransition="/4/@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@OwnedTransition.0"/>
+          <StateMachineElement xsi:type="algorithm:State" Name="MainState" OutgoingTransition="/4/@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@OwnedTransition.1">
+            <StateActivityBlock Name="MainStateSAB">
+              <Edge xsi:type="actions:ControlFlow" Name="eBO_4_Select_Option_2_Changed_ControlFlow" Source="/4/@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.0" Target="/4/@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1"/>
+              <Edge xsi:type="actions:ObjectFlow" Name="eBO_4_Select_Option_2_Changed_ObjectFlow" Source="/4/@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.2/@Result" Target="/4/@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1/@Value"/>
+              <Action xsi:type="actions:AcceptEventAction" Name="eBO_4_Select_Option_2_Changed_Action8" OutgoingControlFlow="/4/@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Trigger="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.12"/>
+              <Action xsi:type="actions:WriteDataItemAction" Name="eBO_4_Select_Option_2_Changed_Action8" IncomingControlFlow="/4/@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" DataItem="/4/@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.1">
+                <Value Multiplicity="1..1" Type="/4/@AlgorithmDomain/@OwnedElement.2" IncomingObjectFlow="/4/@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
+              </Action>
+              <Action xsi:type="actions:ValueSpecificationAction" Name="eBO_4_Select_Option_2_Changed_Action8" Value="3">
+                <Result Multiplicity="1..1" Type="/4/@AlgorithmDomain/@OwnedElement.2" OutgoingObjectFlow="/4/@AlgorithmDomain/@OwnedElement.15/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
+              </Action>
+            </StateActivityBlock>
+          </StateMachineElement>
+        </OwnedBehavior>
+        <OwnedReception Name="Dialog_1_reception_eBO_4_Select_Option_2_Changed_signal" Signal="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.12"/>
+      </OwnedElement>
+      <OwnedElement xsi:type="algorithm:Class" Name="Dialog_2_eBO_2_Input_Changed_Class" MovisaRuntimeInstance="true">
+        <OwnedBehavior Name="Dialog_2_eBO_2_Input_Changed_SM">
+          <OwnedTransition Name="Initial2Main" Source="/4/@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@StateMachineElement.0" Target="/4/@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@StateMachineElement.1"/>
+          <OwnedTransition Name="Initial2Main" Source="/4/@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@StateMachineElement.1" Target="/4/@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@StateMachineElement.1"/>
+          <StateMachineElement xsi:type="algorithm:PseudoState" Name="Initial" OutgoingTransition="/4/@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@OwnedTransition.0"/>
+          <StateMachineElement xsi:type="algorithm:State" Name="MainState" OutgoingTransition="/4/@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@OwnedTransition.1">
+            <StateActivityBlock Name="MainStateSAB">
+              <Edge xsi:type="actions:ControlFlow" Name="eBO_2_Input_Changed_ControlFlow" Source="/4/@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.0" Target="/4/@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1"/>
+              <Edge xsi:type="actions:ObjectFlow" Name="eBO_2_Input_Changed_ObjectFlow" Guard="#property:value" Source="/4/@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.2/@Result" Target="/4/@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1/@Value"/>
+              <Action xsi:type="actions:AcceptEventAction" Name="eBO_2_Input_Changed_Action9" OutgoingControlFlow="/4/@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Context="/4/@AlgorithmDomain/@OwnedElement.16" Trigger="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.13"/>
+              <Action xsi:type="actions:WriteDataItemAction" Name="eBO_2_Input_Changed_Action9" IncomingControlFlow="/4/@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Context="/4/@AlgorithmDomain/@OwnedElement.16" DataItem="/4/@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.2">
+                <Value Name="eBO_2_Input_Changed_Action9" Multiplicity="1..1" Type="/4/@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.4" IncomingObjectFlow="/4/@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
+              </Action>
+              <Action xsi:type="actions:ReadPresentationModelAction" Name="eBO_2_Input_Changed_Action9" Context="/4/@AlgorithmDomain/@OwnedElement.16">
+                <Result Name="eBO_2_Input_Changed_Action9" Multiplicity="1..1" Type="/4/@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.4" OutgoingObjectFlow="/4/@AlgorithmDomain/@OwnedElement.16/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
+              </Action>
+            </StateActivityBlock>
+          </StateMachineElement>
+        </OwnedBehavior>
+        <OwnedReception Name="Dialog_2_reception_eBO_2_Input_Changed_signal" Signal="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.13"/>
+      </OwnedElement>
+      <OwnedElement xsi:type="algorithm:Class" Name="Dialog_2_eBO_4_Input_Changed_Class" MovisaRuntimeInstance="true">
+        <OwnedBehavior Name="Dialog_2_eBO_4_Input_Changed_SM">
+          <OwnedTransition Name="Initial2Main" Source="/4/@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.0" Target="/4/@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1"/>
+          <OwnedTransition Name="Initial2Main" Source="/4/@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1" Target="/4/@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1"/>
+          <StateMachineElement xsi:type="algorithm:PseudoState" Name="Initial" OutgoingTransition="/4/@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@OwnedTransition.0"/>
+          <StateMachineElement xsi:type="algorithm:State" Name="MainState" OutgoingTransition="/4/@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@OwnedTransition.1">
+            <StateActivityBlock Name="MainStateSAB">
+              <Edge xsi:type="actions:ControlFlow" Name="eBO_4_Input_Changed_ControlFlow" Source="/4/@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.0" Target="/4/@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1"/>
+              <Edge xsi:type="actions:ObjectFlow" Name="eBO_4_Input_Changed_ObjectFlow" Guard="#property:value" Source="/4/@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.2/@Result" Target="/4/@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1/@Value"/>
+              <Action xsi:type="actions:AcceptEventAction" Name="eBO_4_Input_Changed_Action10" OutgoingControlFlow="/4/@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Context="/4/@AlgorithmDomain/@OwnedElement.17" Trigger="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.14"/>
+              <Action xsi:type="actions:WriteDataItemAction" Name="eBO_4_Input_Changed_Action10" IncomingControlFlow="/4/@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Context="/4/@AlgorithmDomain/@OwnedElement.17" DataItem="/4/@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.3">
+                <Value Name="eBO_4_Input_Changed_Action10" Multiplicity="1..1" Type="/4/@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.5" IncomingObjectFlow="/4/@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
+              </Action>
+              <Action xsi:type="actions:ReadPresentationModelAction" Name="eBO_4_Input_Changed_Action10" Context="/4/@AlgorithmDomain/@OwnedElement.17">
+                <Result Name="eBO_4_Input_Changed_Action10" Multiplicity="1..1" Type="/4/@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.5" OutgoingObjectFlow="/4/@AlgorithmDomain/@OwnedElement.17/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
+              </Action>
+            </StateActivityBlock>
+          </StateMachineElement>
+        </OwnedBehavior>
+        <OwnedReception Name="Dialog_2_reception_eBO_4_Input_Changed_signal" Signal="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.14"/>
+      </OwnedElement>
+      <OwnedElement xsi:type="algorithm:Class" Name="Dialog_2_eBO_6_Input_Changed_Class" MovisaRuntimeInstance="true">
+        <OwnedBehavior Name="Dialog_2_eBO_6_Input_Changed_SM">
+          <OwnedTransition Name="Initial2Main" Source="/4/@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@StateMachineElement.0" Target="/4/@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@StateMachineElement.1"/>
+          <OwnedTransition Name="Initial2Main" Source="/4/@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@StateMachineElement.1" Target="/4/@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@StateMachineElement.1"/>
+          <StateMachineElement xsi:type="algorithm:PseudoState" Name="Initial" OutgoingTransition="/4/@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@OwnedTransition.0"/>
+          <StateMachineElement xsi:type="algorithm:State" Name="MainState" OutgoingTransition="/4/@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@OwnedTransition.1">
+            <StateActivityBlock Name="MainStateSAB">
+              <Edge xsi:type="actions:ControlFlow" Name="eBO_6_Input_Changed_ControlFlow" Source="/4/@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.0" Target="/4/@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1"/>
+              <Edge xsi:type="actions:ObjectFlow" Name="eBO_6_Input_Changed_ObjectFlow" Guard="#property:value" Source="/4/@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.2/@Result" Target="/4/@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Action.1/@Value"/>
+              <Action xsi:type="actions:AcceptEventAction" Name="eBO_6_Input_Changed_Action11" OutgoingControlFlow="/4/@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Context="/4/@AlgorithmDomain/@OwnedElement.18" Trigger="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.15"/>
+              <Action xsi:type="actions:WriteDataItemAction" Name="eBO_6_Input_Changed_Action11" IncomingControlFlow="/4/@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.0" Context="/4/@AlgorithmDomain/@OwnedElement.18" DataItem="/4/@ClientDataDomain/@LogicalDataPerspective/@OwnedDataItem.4">
+                <Value Name="eBO_6_Input_Changed_Action11" Multiplicity="1..1" Type="/4/@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.6" IncomingObjectFlow="/4/@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
+              </Action>
+              <Action xsi:type="actions:ReadPresentationModelAction" Name="eBO_6_Input_Changed_Action11" Context="/4/@AlgorithmDomain/@OwnedElement.18">
+                <Result Name="eBO_6_Input_Changed_Action11" Multiplicity="1..1" Type="/4/@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.6" OutgoingObjectFlow="/4/@AlgorithmDomain/@OwnedElement.18/@OwnedBehavior.0/@StateMachineElement.1/@StateActivityBlock/@Edge.1"/>
+              </Action>
+            </StateActivityBlock>
+          </StateMachineElement>
+        </OwnedBehavior>
+        <OwnedReception Name="Dialog_2_reception_eBO_6_Input_Changed_signal" Signal="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.15"/>
+      </OwnedElement>
+    </AlgorithmDomain>
+    <ClientDataDomain>
+      <LogicalDataPerspective>
+        <OwnedDataItem Name="Behaelter_A_FL" Dimension="/4/@ClientDataDomain/@LogicalDataPerspective/@OwnedDimension.0" SignalOnChange="/4/@AlgorithmDomain/@OwnedElement.6/@Signal.0" Type="/4/@AlgorithmDomain/@OwnedElement.2"/>
+        <OwnedDataItem Name="Behaelter_B_FL" Dimension="/4/@ClientDataDomain/@LogicalDataPerspective/@OwnedDimension.0" SignalOnChange="/4/@AlgorithmDomain/@OwnedElement.6/@Signal.1" Type="/4/@AlgorithmDomain/@OwnedElement.2"/>
+        <OwnedDataItem Name="V1_FL" Dimension="/4/@ClientDataDomain/@LogicalDataPerspective/@OwnedDimension.0" SignalOnChange="/4/@AlgorithmDomain/@OwnedElement.6/@Signal.2" Type="/4/@AlgorithmDomain/@OwnedElement.2"/>
+        <OwnedDataItem Name="V2_FL" Dimension="/4/@ClientDataDomain/@LogicalDataPerspective/@OwnedDimension.0" SignalOnChange="/4/@AlgorithmDomain/@OwnedElement.6/@Signal.3" Type="/4/@AlgorithmDomain/@OwnedElement.2"/>
+        <OwnedDataItem Name="P3_FL" Dimension="/4/@ClientDataDomain/@LogicalDataPerspective/@OwnedDimension.0" SignalOnChange="/4/@AlgorithmDomain/@OwnedElement.6/@Signal.4" Type="/4/@AlgorithmDomain/@OwnedElement.2"/>
+        <OwnedDataItem Name="Start_Umpumpen_FL" Dimension="/4/@ClientDataDomain/@LogicalDataPerspective/@OwnedDimension.0" SignalOnChange="/4/@AlgorithmDomain/@OwnedElement.6/@Signal.5" Type="/4/@AlgorithmDomain/@OwnedElement.0"/>
+        <OwnedDimension Name="IntegerDimension" Unit="Integer"/>
+      </LogicalDataPerspective>
+      <TechnicalDataPerspective>
+        <OwnedServer xsi:type="generic:GenericServer"/>
+      </TechnicalDataPerspective>
+    </ClientDataDomain>
+    <PresentationDomain Name="PresentationModel" Author="disl2movisa.pamtram" MovisaBuildVersion="rev0.6.2-2010-11-24" Version="1.0">
+      <OwnedColorDefinition>
+        <OwnedColorValue xsi:type="presentation:RGBColor" Name="Geld" Transparency="1" Blue="12" Green="12" Red="255"/>
+      </OwnedColorDefinition>
+      <OwnedMultiLingualTextDefinition>
+        <OwnedLanguageDefinition Name="German" LocaleId="de-DE"/>
+        <OwnedTextDefinition Name="Bestaetigung_dass_die_Information_wahrgenommen_wurde">
+          <TranslatedTextItem Value="Bestaetigung_dass_die_Information_wahrgenommen_wurde" Language="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+        </OwnedTextDefinition>
+        <OwnedTextDefinition Name="DummyInputValueTextItem">
+          <TranslatedTextItem Value="100" Language="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+        </OwnedTextDefinition>
+        <OwnedTextDefinition Name="Dialog_1_eBO_5_Confirm_textDef">
+          <TranslatedTextItem Value="Start Umpumpen" Language="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+        </OwnedTextDefinition>
+        <OwnedTextDefinition Name="Dialog_1_eBO_6_Confirm_textDef">
+          <TranslatedTextItem Value="Stop Umpumpen" Language="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+        </OwnedTextDefinition>
+        <OwnedTextDefinition Name="Dialog_1_eBO_7_Confirm_textDef">
+          <TranslatedTextItem Value="Konfiguration" Language="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+        </OwnedTextDefinition>
+        <OwnedTextDefinition Name="Dialog_2_eBO_7_Confirm_textDef">
+          <TranslatedTextItem Value="OK" Language="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+        </OwnedTextDefinition>
+        <OwnedTextDefinition Name="Dialog_1_eBO_1_textDef">
+          <TranslatedTextItem Value="Quell-Behälter" Language="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+        </OwnedTextDefinition>
+        <OwnedTextDefinition Name="Dialog_1_eBO_3_textDef">
+          <TranslatedTextItem Value="Ziel-Behälter" Language="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+        </OwnedTextDefinition>
+        <OwnedTextDefinition Name="Dialog_2_eBO_1_textDef">
+          <TranslatedTextItem Value="V1" Language="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+        </OwnedTextDefinition>
+        <OwnedTextDefinition Name="Dialog_2_eBO_3_textDef">
+          <TranslatedTextItem Value="V2" Language="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+        </OwnedTextDefinition>
+        <OwnedTextDefinition Name="Dialog_2_eBO_5_textDef">
+          <TranslatedTextItem Value="P3" Language="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+        </OwnedTextDefinition>
+        <OwnedTextDefinition Name="Dialog_1_eBO_2_Select_Option_0_textDef">
+          <TranslatedTextItem Value="Behaelter_1 " Language="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+        </OwnedTextDefinition>
+        <OwnedTextDefinition Name="Dialog_1_eBO_2_Select_Option_1_textDef">
+          <TranslatedTextItem Value="Behaelter_2 " Language="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+        </OwnedTextDefinition>
+        <OwnedTextDefinition Name="Dialog_1_eBO_2_Select_Option_2_textDef">
+          <TranslatedTextItem Value="Behaelter_3 " Language="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+        </OwnedTextDefinition>
+        <OwnedTextDefinition Name="Dialog_1_eBO_4_Select_Option_0_textDef">
+          <TranslatedTextItem Value="Pumpe_1 " Language="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+        </OwnedTextDefinition>
+        <OwnedTextDefinition Name="Dialog_1_eBO_4_Select_Option_1_textDef">
+          <TranslatedTextItem Value="Pumpe_2 " Language="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+        </OwnedTextDefinition>
+        <OwnedTextDefinition Name="Dialog_1_eBO_4_Select_Option_2_textDef">
+          <TranslatedTextItem Value="Pumpe_3 " Language="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedLanguageDefinition.0"/>
+        </OwnedTextDefinition>
+      </OwnedMultiLingualTextDefinition>
+      <OwnedNavigationFlow xsi:type="presentation:NewViewNavigationFlow" Name="Start" Source="/4/@PresentationDomain/@OwnedNavigationRoot" Target="/4/@PresentationDomain/@OwnedPanel.0"/>
+      <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="Dialog_1_eBO_7_Confirm_Changed" Source="/4/@PresentationDomain/@OwnedPanel.0" Target="/4/@PresentationDomain/@OwnedPanel.1" Trigger="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.2"/>
+      <OwnedNavigationFlow xsi:type="presentation:ChangeViewNavigationFlow" Name="Dialog_2_eBO_7_Confirm_Changed" Source="/4/@PresentationDomain/@OwnedPanel.1" Target="/4/@PresentationDomain/@OwnedPanel.0" Trigger="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.3"/>
+      <OwnedNavigationRoot/>
+      <OwnedNavigationTerminator/>
+      <OwnedPanel Name="Dialog_1">
+        <OwnedUIComponent xsi:type="presentation:Button" Name="Dialog_1_eBO_5_Confirm">
           <Interaction>
-            <CommonTrigger xsi:type="presentation:Click" Name="Dialog_1_eBO_2_Select_Option_0_SignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.0/@OwnedUIComponent.7/@Option.0/@Interaction/@OwnedEffect.0"/>
-            <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Dialog_1_eBO_2_Select_Option_0_signal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.7"/>
+            <CommonTrigger xsi:type="presentation:Click" Name="Dialog_1_eBO_5_Confirm_SignalTrigger" Effect="/4/@PresentationDomain/@OwnedPanel.0/@OwnedUIComponent.0/@Interaction/@OwnedEffect.0"/>
+            <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Dialog_1_eBO_5_Confirm_signal" Signal="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.0"/>
           </Interaction>
-          <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.11" Value="Vorgabewert 0"/>
-        </Option>
-        <Option Name="Dialog_1_eBO_2_Select_Option_1">
+          <Representation Text="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.2">
+            <Position Name="Dialog_1_eBO_5_Confirm_pos">
+              <X Name="pos_x" Unit="PIXEL" Value="530.0"/>
+              <Y Name="pos_y" Unit="PIXEL" Value="10.0"/>
+              <Z Name="pos_z" Unit="PIXEL"/>
+            </Position>
+            <Size Name="Dialog_1_eBO_5_Confirm_size">
+              <Height Name="_height" Unit="PIXEL" Value="40.0"/>
+              <Width Name="_width" Unit="PIXEL" Value="100.0"/>
+            </Size>
+            <ToolTipText Name="Dialog_1_eBO_5_Confirm_ttt" Text="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.0"/>
+          </Representation>
+        </OwnedUIComponent>
+        <OwnedUIComponent xsi:type="presentation:Button" Name="Dialog_1_eBO_6_Confirm">
           <Interaction>
-            <CommonTrigger xsi:type="presentation:Click" Name="Dialog_1_eBO_2_Select_Option_1_SignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.0/@OwnedUIComponent.7/@Option.1/@Interaction/@OwnedEffect.0"/>
-            <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Dialog_1_eBO_2_Select_Option_1_signal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.8"/>
+            <CommonTrigger xsi:type="presentation:Click" Name="Dialog_1_eBO_6_Confirm_SignalTrigger" Effect="/4/@PresentationDomain/@OwnedPanel.0/@OwnedUIComponent.1/@Interaction/@OwnedEffect.0"/>
+            <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Dialog_1_eBO_6_Confirm_signal" Signal="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.1"/>
           </Interaction>
-          <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.12" Value="Vorgabewert 1"/>
-        </Option>
-        <Option Name="Dialog_1_eBO_2_Select_Option_2">
+          <Representation Text="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.3">
+            <Position Name="Dialog_1_eBO_6_Confirm_pos">
+              <X Name="pos_x" Unit="PIXEL" Value="660.0"/>
+              <Y Name="pos_y" Unit="PIXEL" Value="10.0"/>
+              <Z Name="pos_z" Unit="PIXEL"/>
+            </Position>
+            <Size Name="Dialog_1_eBO_6_Confirm_size">
+              <Height Name="_height" Unit="PIXEL" Value="40.0"/>
+              <Width Name="_width" Unit="PIXEL" Value="100.0"/>
+            </Size>
+            <ToolTipText Name="Dialog_1_eBO_6_Confirm_ttt" Text="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.0"/>
+          </Representation>
+        </OwnedUIComponent>
+        <OwnedUIComponent xsi:type="presentation:Button" Name="Dialog_1_eBO_7_Confirm">
           <Interaction>
-            <CommonTrigger xsi:type="presentation:Click" Name="Dialog_1_eBO_2_Select_Option_2_SignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.0/@OwnedUIComponent.7/@Option.2/@Interaction/@OwnedEffect.0"/>
-            <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Dialog_1_eBO_2_Select_Option_2_signal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.9"/>
+            <CommonTrigger xsi:type="presentation:Click" Name="Dialog_1_eBO_7_Confirm_SignalTrigger" Effect="/4/@PresentationDomain/@OwnedPanel.0/@OwnedUIComponent.2/@Interaction/@OwnedEffect.0"/>
+            <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Dialog_1_eBO_7_Confirm_signal" Signal="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.2"/>
           </Interaction>
-          <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.13" Value="Vorgabewert 2"/>
-        </Option>
-        <Representation>
-          <Position Name="eBO_2_Select_Dialog_1_pos">
-            <X Name="Dialog_1_inform2_eBO_3_pos_x" Unit="PIXEL" Value="140.0"/>
-            <Y Name="Dialog_1_inform2_eBO_3_pos_y" Unit="PIXEL" Value="10.0"/>
-            <Z Name="Dialog_1_inform2_eBO_3_pos_z" Unit="PIXEL"/>
-          </Position>
-          <Size Name="eBO_2_Select_Dialog_1_size">
-            <Height Name="Dialog_1_inform2_eBO_3_height" Unit="PIXEL" Value="40.0"/>
-            <Width Name="Dialog_1_inform2_eBO_3_width" Unit="PIXEL" Value="100.0"/>
-          </Size>
-        </Representation>
-      </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:RadioButtonGroup" Name="Dialog_1_eBO_4_Select">
-        <Option Name="Dialog_1_eBO_4_Select_Option_0">
+          <Representation Text="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.4">
+            <Position Name="Dialog_1_eBO_7_Confirm_pos">
+              <X Name="pos_x" Unit="PIXEL" Value="790.0"/>
+              <Y Name="pos_y" Unit="PIXEL" Value="10.0"/>
+              <Z Name="pos_z" Unit="PIXEL"/>
+            </Position>
+            <Size Name="Dialog_1_eBO_7_Confirm_size">
+              <Height Name="_height" Unit="PIXEL" Value="40.0"/>
+              <Width Name="_width" Unit="PIXEL" Value="100.0"/>
+            </Size>
+            <ToolTipText Name="Dialog_1_eBO_7_Confirm_ttt" Text="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.0"/>
+          </Representation>
+        </OwnedUIComponent>
+        <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Dialog_1_eBO_1">
+          <Representation Text="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.6">
+            <Format FontFace="VERDANA" FontStyle="NORMAL" FontWeight="MEDIUM">
+              <FontSize Unit="POINT" Value="10.0"/>
+            </Format>
+            <Position Name="eBO_1_Dialog_1_pos">
+              <X Name="Dialog_1_inform2_eBO_3_pos_x" Unit="PIXEL" Value="10.0"/>
+              <Y Name="Dialog_1_inform2_eBO_3_pos_y" Unit="PIXEL" Value="10.0"/>
+              <Z Name="Dialog_1_inform2_eBO_3_pos_z" Unit="PIXEL"/>
+            </Position>
+            <Size Name="eBO_1_Dialog_1_size">
+              <Height Name="Dialog_1_inform2_eBO_3_height" Unit="PIXEL" Value="40.0"/>
+              <Width Name="Dialog_1_inform2_eBO_3_width" Unit="PIXEL" Value="100.0"/>
+            </Size>
+          </Representation>
+        </OwnedUIComponent>
+        <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Dialog_1_eBO_3">
+          <Representation Text="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.7">
+            <Format FontFace="VERDANA" FontStyle="NORMAL" FontWeight="MEDIUM">
+              <FontSize Unit="POINT" Value="10.0"/>
+            </Format>
+            <Position Name="eBO_3_Dialog_1_pos">
+              <X Name="Dialog_1_inform2_eBO_3_pos_x" Unit="PIXEL" Value="270.0"/>
+              <Y Name="Dialog_1_inform2_eBO_3_pos_y" Unit="PIXEL" Value="10.0"/>
+              <Z Name="Dialog_1_inform2_eBO_3_pos_z" Unit="PIXEL"/>
+            </Position>
+            <Size Name="eBO_3_Dialog_1_size">
+              <Height Name="Dialog_1_inform2_eBO_3_height" Unit="PIXEL" Value="40.0"/>
+              <Width Name="Dialog_1_inform2_eBO_3_width" Unit="PIXEL" Value="100.0"/>
+            </Size>
+          </Representation>
+        </OwnedUIComponent>
+        <OwnedUIComponent xsi:type="presentation:DropDown" Name="Dialog_1_eBO_2_Select">
           <Interaction>
-            <CommonTrigger xsi:type="presentation:Click" Name="Dialog_1_eBO_4_Select_Option_0_SignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.0/@OwnedUIComponent.8/@Option.0/@Interaction/@OwnedEffect.0"/>
-            <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Dialog_1_eBO_4_Select_Option_0_signal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.10"/>
+            <CommonTrigger xsi:type="presentation:Click" Name="Dialog_1_eBO_2_Select_Option_0_SignalTrigger" Effect="/4/@PresentationDomain/@OwnedPanel.0/@OwnedUIComponent.5/@Interaction/@OwnedEffect.0"/>
+            <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Dialog_1_eBO_2_Select_Option_0_signal" Signal="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.7"/>
           </Interaction>
-          <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.14" Value="Vorgabewert 0"/>
-        </Option>
-        <Option Name="Dialog_1_eBO_4_Select_Option_1">
+          <Representation>
+            <Position Name="eBO_2_Select_Dialog_1_pos">
+              <X Name="Dialog_1_inform2_eBO_3_pos_x" Unit="PIXEL" Value="140.0"/>
+              <Y Name="Dialog_1_inform2_eBO_3_pos_y" Unit="PIXEL" Value="10.0"/>
+              <Z Name="Dialog_1_inform2_eBO_3_pos_z" Unit="PIXEL"/>
+            </Position>
+            <Size Name="eBO_2_Select_Dialog_1_size">
+              <Height Name="Dialog_1_inform2_eBO_3_height" Unit="PIXEL" Value="40.0"/>
+              <Width Name="Dialog_1_inform2_eBO_3_width" Unit="PIXEL" Value="100.0"/>
+            </Size>
+            <DropDownOption Label="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.11" Value="Vorgabewert 0"/>
+            <DropDownOption Label="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.12" Value="Vorgabewert 1"/>
+            <DropDownOption Label="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.13" Value="Vorgabewert 2"/>
+          </Representation>
+        </OwnedUIComponent>
+        <OwnedUIComponent xsi:type="presentation:DropDown" Name="Dialog_1_eBO_4_Select">
           <Interaction>
-            <CommonTrigger xsi:type="presentation:Click" Name="Dialog_1_eBO_4_Select_Option_1_SignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.0/@OwnedUIComponent.8/@Option.1/@Interaction/@OwnedEffect.0"/>
-            <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Dialog_1_eBO_4_Select_Option_1_signal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.11"/>
+            <CommonTrigger xsi:type="presentation:Click" Name="Dialog_1_eBO_4_Select_Option_0_SignalTrigger" Effect="/4/@PresentationDomain/@OwnedPanel.0/@OwnedUIComponent.6/@Interaction/@OwnedEffect.0"/>
+            <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Dialog_1_eBO_4_Select_Option_0_signal" Signal="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.10"/>
           </Interaction>
-          <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.15" Value="Vorgabewert 1"/>
-        </Option>
-        <Option Name="Dialog_1_eBO_4_Select_Option_2">
+          <Representation>
+            <Position Name="eBO_4_Select_Dialog_1_pos">
+              <X Name="Dialog_1_inform2_eBO_3_pos_x" Unit="PIXEL" Value="400.0"/>
+              <Y Name="Dialog_1_inform2_eBO_3_pos_y" Unit="PIXEL" Value="10.0"/>
+              <Z Name="Dialog_1_inform2_eBO_3_pos_z" Unit="PIXEL"/>
+            </Position>
+            <Size Name="eBO_4_Select_Dialog_1_size">
+              <Height Name="Dialog_1_inform2_eBO_3_height" Unit="PIXEL" Value="40.0"/>
+              <Width Name="Dialog_1_inform2_eBO_3_width" Unit="PIXEL" Value="100.0"/>
+            </Size>
+            <DropDownOption Label="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.14" Value="Vorgabewert 0"/>
+            <DropDownOption Label="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.15" Value="Vorgabewert 1"/>
+            <DropDownOption Label="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.16" Value="Vorgabewert 2"/>
+          </Representation>
+        </OwnedUIComponent>
+        <OwnedUIComponent xsi:type="presentation:RadioButtonGroup" Name="Dialog_1_eBO_2_Select">
+          <Option Name="Dialog_1_eBO_2_Select_Option_0">
+            <Interaction>
+              <CommonTrigger xsi:type="presentation:Click" Name="Dialog_1_eBO_2_Select_Option_0_SignalTrigger" Effect="/4/@PresentationDomain/@OwnedPanel.0/@OwnedUIComponent.7/@Option.0/@Interaction/@OwnedEffect.0"/>
+              <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Dialog_1_eBO_2_Select_Option_0_signal" Signal="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.7"/>
+            </Interaction>
+            <Representation Text="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.11" Value="Vorgabewert 0"/>
+          </Option>
+          <Option Name="Dialog_1_eBO_2_Select_Option_1">
+            <Interaction>
+              <CommonTrigger xsi:type="presentation:Click" Name="Dialog_1_eBO_2_Select_Option_1_SignalTrigger" Effect="/4/@PresentationDomain/@OwnedPanel.0/@OwnedUIComponent.7/@Option.1/@Interaction/@OwnedEffect.0"/>
+              <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Dialog_1_eBO_2_Select_Option_1_signal" Signal="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.8"/>
+            </Interaction>
+            <Representation Text="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.12" Value="Vorgabewert 1"/>
+          </Option>
+          <Option Name="Dialog_1_eBO_2_Select_Option_2">
+            <Interaction>
+              <CommonTrigger xsi:type="presentation:Click" Name="Dialog_1_eBO_2_Select_Option_2_SignalTrigger" Effect="/4/@PresentationDomain/@OwnedPanel.0/@OwnedUIComponent.7/@Option.2/@Interaction/@OwnedEffect.0"/>
+              <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Dialog_1_eBO_2_Select_Option_2_signal" Signal="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.9"/>
+            </Interaction>
+            <Representation Text="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.13" Value="Vorgabewert 2"/>
+          </Option>
+          <Representation>
+            <Position Name="eBO_2_Select_Dialog_1_pos">
+              <X Name="Dialog_1_inform2_eBO_3_pos_x" Unit="PIXEL" Value="140.0"/>
+              <Y Name="Dialog_1_inform2_eBO_3_pos_y" Unit="PIXEL" Value="10.0"/>
+              <Z Name="Dialog_1_inform2_eBO_3_pos_z" Unit="PIXEL"/>
+            </Position>
+            <Size Name="eBO_2_Select_Dialog_1_size">
+              <Height Name="Dialog_1_inform2_eBO_3_height" Unit="PIXEL" Value="40.0"/>
+              <Width Name="Dialog_1_inform2_eBO_3_width" Unit="PIXEL" Value="100.0"/>
+            </Size>
+          </Representation>
+        </OwnedUIComponent>
+        <OwnedUIComponent xsi:type="presentation:RadioButtonGroup" Name="Dialog_1_eBO_4_Select">
+          <Option Name="Dialog_1_eBO_4_Select_Option_0">
+            <Interaction>
+              <CommonTrigger xsi:type="presentation:Click" Name="Dialog_1_eBO_4_Select_Option_0_SignalTrigger" Effect="/4/@PresentationDomain/@OwnedPanel.0/@OwnedUIComponent.8/@Option.0/@Interaction/@OwnedEffect.0"/>
+              <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Dialog_1_eBO_4_Select_Option_0_signal" Signal="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.10"/>
+            </Interaction>
+            <Representation Text="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.14" Value="Vorgabewert 0"/>
+          </Option>
+          <Option Name="Dialog_1_eBO_4_Select_Option_1">
+            <Interaction>
+              <CommonTrigger xsi:type="presentation:Click" Name="Dialog_1_eBO_4_Select_Option_1_SignalTrigger" Effect="/4/@PresentationDomain/@OwnedPanel.0/@OwnedUIComponent.8/@Option.1/@Interaction/@OwnedEffect.0"/>
+              <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Dialog_1_eBO_4_Select_Option_1_signal" Signal="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.11"/>
+            </Interaction>
+            <Representation Text="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.15" Value="Vorgabewert 1"/>
+          </Option>
+          <Option Name="Dialog_1_eBO_4_Select_Option_2">
+            <Interaction>
+              <CommonTrigger xsi:type="presentation:Click" Name="Dialog_1_eBO_4_Select_Option_2_SignalTrigger" Effect="/4/@PresentationDomain/@OwnedPanel.0/@OwnedUIComponent.8/@Option.2/@Interaction/@OwnedEffect.0"/>
+              <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Dialog_1_eBO_4_Select_Option_2_signal" Signal="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.12"/>
+            </Interaction>
+            <Representation Text="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.16" Value="Vorgabewert 2"/>
+          </Option>
+          <Representation>
+            <Position Name="eBO_4_Select_Dialog_1_pos">
+              <X Name="Dialog_1_inform2_eBO_3_pos_x" Unit="PIXEL" Value="400.0"/>
+              <Y Name="Dialog_1_inform2_eBO_3_pos_y" Unit="PIXEL" Value="10.0"/>
+              <Z Name="Dialog_1_inform2_eBO_3_pos_z" Unit="PIXEL"/>
+            </Position>
+            <Size Name="eBO_4_Select_Dialog_1_size">
+              <Height Name="Dialog_1_inform2_eBO_3_height" Unit="PIXEL" Value="40.0"/>
+              <Width Name="Dialog_1_inform2_eBO_3_width" Unit="PIXEL" Value="100.0"/>
+            </Size>
+          </Representation>
+        </OwnedUIComponent>
+      </OwnedPanel>
+      <OwnedPanel Name="Dialog_2">
+        <OwnedUIComponent xsi:type="presentation:Button" Name="Dialog_2_eBO_7_Confirm">
           <Interaction>
-            <CommonTrigger xsi:type="presentation:Click" Name="Dialog_1_eBO_4_Select_Option_2_SignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.0/@OwnedUIComponent.8/@Option.2/@Interaction/@OwnedEffect.0"/>
-            <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Dialog_1_eBO_4_Select_Option_2_signal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.12"/>
+            <CommonTrigger xsi:type="presentation:Click" Name="Dialog_2_eBO_7_Confirm_SignalTrigger" Effect="/4/@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.0/@Interaction/@OwnedEffect.0"/>
+            <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Dialog_2_eBO_7_Confirm_signal" Signal="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.3"/>
           </Interaction>
-          <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.16" Value="Vorgabewert 2"/>
-        </Option>
-        <Representation>
-          <Position Name="eBO_4_Select_Dialog_1_pos">
-            <X Name="Dialog_1_inform2_eBO_3_pos_x" Unit="PIXEL" Value="400.0"/>
-            <Y Name="Dialog_1_inform2_eBO_3_pos_y" Unit="PIXEL" Value="10.0"/>
-            <Z Name="Dialog_1_inform2_eBO_3_pos_z" Unit="PIXEL"/>
-          </Position>
-          <Size Name="eBO_4_Select_Dialog_1_size">
-            <Height Name="Dialog_1_inform2_eBO_3_height" Unit="PIXEL" Value="40.0"/>
-            <Width Name="Dialog_1_inform2_eBO_3_width" Unit="PIXEL" Value="100.0"/>
-          </Size>
-        </Representation>
-      </OwnedUIComponent>
-    </OwnedPanel>
-    <OwnedPanel Name="Dialog_2">
-      <OwnedUIComponent xsi:type="presentation:Button" Name="Dialog_2_eBO_7_Confirm">
-        <Interaction>
-          <CommonTrigger xsi:type="presentation:Click" Name="Dialog_2_eBO_7_Confirm_SignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.0/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Dialog_2_eBO_7_Confirm_signal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.3"/>
-        </Interaction>
-        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.5">
-          <Position Name="Dialog_2_eBO_7_Confirm_pos">
-            <X Name="pos_x" Unit="PIXEL" Value="790.0"/>
-            <Y Name="pos_y" Unit="PIXEL" Value="10.0"/>
-            <Z Name="pos_z" Unit="PIXEL"/>
-          </Position>
-          <Size Name="Dialog_2_eBO_7_Confirm_size">
-            <Height Name="_height" Unit="PIXEL" Value="40.0"/>
-            <Width Name="_width" Unit="PIXEL" Value="100.0"/>
-          </Size>
-          <ToolTipText Name="Dialog_2_eBO_7_Confirm_ttt" Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.0"/>
-        </Representation>
-      </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Dialog_2_eBO_1">
-        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.8">
-          <Format FontFace="VERDANA" FontStyle="NORMAL" FontWeight="MEDIUM">
-            <FontSize Unit="POINT" Value="10.0"/>
-          </Format>
-          <Position Name="eBO_1_Dialog_2_pos">
-            <X Name="Dialog_1_inform2_eBO_3_pos_x" Unit="PIXEL" Value="10.0"/>
-            <Y Name="Dialog_1_inform2_eBO_3_pos_y" Unit="PIXEL" Value="10.0"/>
-            <Z Name="Dialog_1_inform2_eBO_3_pos_z" Unit="PIXEL"/>
-          </Position>
-          <Size Name="eBO_1_Dialog_2_size">
-            <Height Name="Dialog_1_inform2_eBO_3_height" Unit="PIXEL" Value="40.0"/>
-            <Width Name="Dialog_1_inform2_eBO_3_width" Unit="PIXEL" Value="100.0"/>
-          </Size>
-        </Representation>
-      </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Dialog_2_eBO_3">
-        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.9">
-          <Format FontFace="VERDANA" FontStyle="NORMAL" FontWeight="MEDIUM">
-            <FontSize Unit="POINT" Value="10.0"/>
-          </Format>
-          <Position Name="eBO_3_Dialog_2_pos">
-            <X Name="Dialog_1_inform2_eBO_3_pos_x" Unit="PIXEL" Value="270.0"/>
-            <Y Name="Dialog_1_inform2_eBO_3_pos_y" Unit="PIXEL" Value="10.0"/>
-            <Z Name="Dialog_1_inform2_eBO_3_pos_z" Unit="PIXEL"/>
-          </Position>
-          <Size Name="eBO_3_Dialog_2_size">
-            <Height Name="Dialog_1_inform2_eBO_3_height" Unit="PIXEL" Value="40.0"/>
-            <Width Name="Dialog_1_inform2_eBO_3_width" Unit="PIXEL" Value="100.0"/>
-          </Size>
-        </Representation>
-      </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Dialog_2_eBO_5">
-        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.10">
-          <Format FontFace="VERDANA" FontStyle="NORMAL" FontWeight="MEDIUM">
-            <FontSize Unit="POINT" Value="10.0"/>
-          </Format>
-          <Position Name="eBO_5_Dialog_2_pos">
-            <X Name="Dialog_1_inform2_eBO_3_pos_x" Unit="PIXEL" Value="530.0"/>
-            <Y Name="Dialog_1_inform2_eBO_3_pos_y" Unit="PIXEL" Value="10.0"/>
-            <Z Name="Dialog_1_inform2_eBO_3_pos_z" Unit="PIXEL"/>
-          </Position>
-          <Size Name="eBO_5_Dialog_2_size">
-            <Height Name="Dialog_1_inform2_eBO_3_height" Unit="PIXEL" Value="40.0"/>
-            <Width Name="Dialog_1_inform2_eBO_3_width" Unit="PIXEL" Value="100.0"/>
-          </Size>
-        </Representation>
-      </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:Input" Name="Dialog_2_eBO_2_Input">
-        <Interaction>
-          <CommonTrigger xsi:type="presentation:Click" Name="Dialog_2_eBO_2_Input_SignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.4/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Dialog_2_eBO_2_Input_signal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.13"/>
-        </Interaction>
-        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.1" MaxLength="10">
-          <Position Name="Dialog_2_eBO_2_Input_pos">
-            <X Name="Dialog_1_do_eBO_2_pos_x" Unit="PIXEL" Value="140.0"/>
-            <Y Name="Dialog_1_do_eBO_2_pos_y" Unit="PIXEL" Value="10.0"/>
-            <Z Name="Dialog_1_do_eBO_2_pos_z" Unit="PIXEL"/>
-          </Position>
-          <Size Name="Dialog_2_eBO_2_Input_size">
-            <Height Name="Dialog_1_do_eBO_2_height" Unit="PIXEL" Value="40.0"/>
-            <Width Name="Dialog_1_do_eBO_2_width" Unit="PIXEL" Value="100.0"/>
-          </Size>
-        </Representation>
-      </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:Input" Name="Dialog_2_eBO_4_Input">
-        <Interaction>
-          <CommonTrigger xsi:type="presentation:Click" Name="Dialog_2_eBO_4_Input_SignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.5/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Dialog_2_eBO_4_Input_signal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.14"/>
-        </Interaction>
-        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.1" MaxLength="10">
-          <Position Name="Dialog_2_eBO_4_Input_pos">
-            <X Name="Dialog_1_do_eBO_2_pos_x" Unit="PIXEL" Value="400.0"/>
-            <Y Name="Dialog_1_do_eBO_2_pos_y" Unit="PIXEL" Value="10.0"/>
-            <Z Name="Dialog_1_do_eBO_2_pos_z" Unit="PIXEL"/>
-          </Position>
-          <Size Name="Dialog_2_eBO_4_Input_size">
-            <Height Name="Dialog_1_do_eBO_2_height" Unit="PIXEL" Value="40.0"/>
-            <Width Name="Dialog_1_do_eBO_2_width" Unit="PIXEL" Value="100.0"/>
-          </Size>
-        </Representation>
-      </OwnedUIComponent>
-      <OwnedUIComponent xsi:type="presentation:Input" Name="Dialog_2_eBO_6_Input">
-        <Interaction>
-          <CommonTrigger xsi:type="presentation:Click" Name="Dialog_2_eBO_6_Input_SignalTrigger" Effect="//@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.6/@Interaction/@OwnedEffect.0"/>
-          <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Dialog_2_eBO_6_Input_signal" Signal="//@AlgorithmDomain/@OwnedElement.3/@Signal.15"/>
-        </Interaction>
-        <Representation Text="//@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.1" MaxLength="10">
-          <Position Name="Dialog_2_eBO_6_Input_pos">
-            <X Name="Dialog_1_do_eBO_2_pos_x" Unit="PIXEL" Value="660.0"/>
-            <Y Name="Dialog_1_do_eBO_2_pos_y" Unit="PIXEL" Value="10.0"/>
-            <Z Name="Dialog_1_do_eBO_2_pos_z" Unit="PIXEL"/>
-          </Position>
-          <Size Name="Dialog_2_eBO_6_Input_size">
-            <Height Name="Dialog_1_do_eBO_2_height" Unit="PIXEL" Value="40.0"/>
-            <Width Name="Dialog_1_do_eBO_2_width" Unit="PIXEL" Value="100.0"/>
-          </Size>
-        </Representation>
-      </OwnedUIComponent>
-    </OwnedPanel>
-  </PresentationDomain>
-</movisa:VisualizationApplicationModel>
+          <Representation Text="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.5">
+            <Position Name="Dialog_2_eBO_7_Confirm_pos">
+              <X Name="pos_x" Unit="PIXEL" Value="790.0"/>
+              <Y Name="pos_y" Unit="PIXEL" Value="10.0"/>
+              <Z Name="pos_z" Unit="PIXEL"/>
+            </Position>
+            <Size Name="Dialog_2_eBO_7_Confirm_size">
+              <Height Name="_height" Unit="PIXEL" Value="40.0"/>
+              <Width Name="_width" Unit="PIXEL" Value="100.0"/>
+            </Size>
+            <ToolTipText Name="Dialog_2_eBO_7_Confirm_ttt" Text="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.0"/>
+          </Representation>
+        </OwnedUIComponent>
+        <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Dialog_2_eBO_1">
+          <Representation Text="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.8">
+            <Format FontFace="VERDANA" FontStyle="NORMAL" FontWeight="MEDIUM">
+              <FontSize Unit="POINT" Value="10.0"/>
+            </Format>
+            <Position Name="eBO_1_Dialog_2_pos">
+              <X Name="Dialog_1_inform2_eBO_3_pos_x" Unit="PIXEL" Value="10.0"/>
+              <Y Name="Dialog_1_inform2_eBO_3_pos_y" Unit="PIXEL" Value="10.0"/>
+              <Z Name="Dialog_1_inform2_eBO_3_pos_z" Unit="PIXEL"/>
+            </Position>
+            <Size Name="eBO_1_Dialog_2_size">
+              <Height Name="Dialog_1_inform2_eBO_3_height" Unit="PIXEL" Value="40.0"/>
+              <Width Name="Dialog_1_inform2_eBO_3_width" Unit="PIXEL" Value="100.0"/>
+            </Size>
+          </Representation>
+        </OwnedUIComponent>
+        <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Dialog_2_eBO_3">
+          <Representation Text="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.9">
+            <Format FontFace="VERDANA" FontStyle="NORMAL" FontWeight="MEDIUM">
+              <FontSize Unit="POINT" Value="10.0"/>
+            </Format>
+            <Position Name="eBO_3_Dialog_2_pos">
+              <X Name="Dialog_1_inform2_eBO_3_pos_x" Unit="PIXEL" Value="270.0"/>
+              <Y Name="Dialog_1_inform2_eBO_3_pos_y" Unit="PIXEL" Value="10.0"/>
+              <Z Name="Dialog_1_inform2_eBO_3_pos_z" Unit="PIXEL"/>
+            </Position>
+            <Size Name="eBO_3_Dialog_2_size">
+              <Height Name="Dialog_1_inform2_eBO_3_height" Unit="PIXEL" Value="40.0"/>
+              <Width Name="Dialog_1_inform2_eBO_3_width" Unit="PIXEL" Value="100.0"/>
+            </Size>
+          </Representation>
+        </OwnedUIComponent>
+        <OwnedUIComponent xsi:type="presentation:TextLabel" Name="Dialog_2_eBO_5">
+          <Representation Text="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.10">
+            <Format FontFace="VERDANA" FontStyle="NORMAL" FontWeight="MEDIUM">
+              <FontSize Unit="POINT" Value="10.0"/>
+            </Format>
+            <Position Name="eBO_5_Dialog_2_pos">
+              <X Name="Dialog_1_inform2_eBO_3_pos_x" Unit="PIXEL" Value="530.0"/>
+              <Y Name="Dialog_1_inform2_eBO_3_pos_y" Unit="PIXEL" Value="10.0"/>
+              <Z Name="Dialog_1_inform2_eBO_3_pos_z" Unit="PIXEL"/>
+            </Position>
+            <Size Name="eBO_5_Dialog_2_size">
+              <Height Name="Dialog_1_inform2_eBO_3_height" Unit="PIXEL" Value="40.0"/>
+              <Width Name="Dialog_1_inform2_eBO_3_width" Unit="PIXEL" Value="100.0"/>
+            </Size>
+          </Representation>
+        </OwnedUIComponent>
+        <OwnedUIComponent xsi:type="presentation:Input" Name="Dialog_2_eBO_2_Input">
+          <Interaction>
+            <CommonTrigger xsi:type="presentation:Click" Name="Dialog_2_eBO_2_Input_SignalTrigger" Effect="/4/@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.4/@Interaction/@OwnedEffect.0"/>
+            <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Dialog_2_eBO_2_Input_signal" Signal="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.13"/>
+          </Interaction>
+          <Representation Text="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.1" MaxLength="10">
+            <Position Name="Dialog_2_eBO_2_Input_pos">
+              <X Name="Dialog_1_do_eBO_2_pos_x" Unit="PIXEL" Value="140.0"/>
+              <Y Name="Dialog_1_do_eBO_2_pos_y" Unit="PIXEL" Value="10.0"/>
+              <Z Name="Dialog_1_do_eBO_2_pos_z" Unit="PIXEL"/>
+            </Position>
+            <Size Name="Dialog_2_eBO_2_Input_size">
+              <Height Name="Dialog_1_do_eBO_2_height" Unit="PIXEL" Value="40.0"/>
+              <Width Name="Dialog_1_do_eBO_2_width" Unit="PIXEL" Value="100.0"/>
+            </Size>
+          </Representation>
+        </OwnedUIComponent>
+        <OwnedUIComponent xsi:type="presentation:Input" Name="Dialog_2_eBO_4_Input">
+          <Interaction>
+            <CommonTrigger xsi:type="presentation:Click" Name="Dialog_2_eBO_4_Input_SignalTrigger" Effect="/4/@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.5/@Interaction/@OwnedEffect.0"/>
+            <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Dialog_2_eBO_4_Input_signal" Signal="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.14"/>
+          </Interaction>
+          <Representation Text="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.1" MaxLength="10">
+            <Position Name="Dialog_2_eBO_4_Input_pos">
+              <X Name="Dialog_1_do_eBO_2_pos_x" Unit="PIXEL" Value="400.0"/>
+              <Y Name="Dialog_1_do_eBO_2_pos_y" Unit="PIXEL" Value="10.0"/>
+              <Z Name="Dialog_1_do_eBO_2_pos_z" Unit="PIXEL"/>
+            </Position>
+            <Size Name="Dialog_2_eBO_4_Input_size">
+              <Height Name="Dialog_1_do_eBO_2_height" Unit="PIXEL" Value="40.0"/>
+              <Width Name="Dialog_1_do_eBO_2_width" Unit="PIXEL" Value="100.0"/>
+            </Size>
+          </Representation>
+        </OwnedUIComponent>
+        <OwnedUIComponent xsi:type="presentation:Input" Name="Dialog_2_eBO_6_Input">
+          <Interaction>
+            <CommonTrigger xsi:type="presentation:Click" Name="Dialog_2_eBO_6_Input_SignalTrigger" Effect="/4/@PresentationDomain/@OwnedPanel.1/@OwnedUIComponent.6/@Interaction/@OwnedEffect.0"/>
+            <OwnedEffect xsi:type="presentation:SendSignalEffect" Name="triggering_Dialog_2_eBO_6_Input_signal" Signal="/4/@AlgorithmDomain/@OwnedElement.3/@Signal.15"/>
+          </Interaction>
+          <Representation Text="/4/@PresentationDomain/@OwnedMultiLingualTextDefinition/@OwnedTextDefinition.1" MaxLength="10">
+            <Position Name="Dialog_2_eBO_6_Input_pos">
+              <X Name="Dialog_1_do_eBO_2_pos_x" Unit="PIXEL" Value="660.0"/>
+              <Y Name="Dialog_1_do_eBO_2_pos_y" Unit="PIXEL" Value="10.0"/>
+              <Z Name="Dialog_1_do_eBO_2_pos_z" Unit="PIXEL"/>
+            </Position>
+            <Size Name="Dialog_2_eBO_6_Input_size">
+              <Height Name="Dialog_1_do_eBO_2_height" Unit="PIXEL" Value="40.0"/>
+              <Width Name="Dialog_1_do_eBO_2_width" Unit="PIXEL" Value="100.0"/>
+            </Size>
+          </Representation>
+        </OwnedUIComponent>
+      </OwnedPanel>
+    </PresentationDomain>
+  </movisa:VisualizationApplicationModel>
+</xmi:XMI>

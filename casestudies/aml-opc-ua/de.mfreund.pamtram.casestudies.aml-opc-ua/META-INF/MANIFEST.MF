@@ -8,3 +8,4 @@ Require-Bundle: org.eclipse.emf,
  org.eclipse.emf.common,
  org.eclipse.emf.ecore;bundle-version="2.13.0",
  org.eclipse.emf.ecore.xmi;bundle-version="2.13.0"
+Automatic-Module-Name: de.mfreund.pamtram.casestudies.aml-opc-ua

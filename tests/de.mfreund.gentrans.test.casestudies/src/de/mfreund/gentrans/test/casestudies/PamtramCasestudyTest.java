@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Copyright (C) 2017-2018 Matthias Freund and others, Institute of Automation, TU Dresden
+ * 
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ * 
+ * Contributors:
+ *   Institute of Automation, TU Dresden - Initial API and implementation
+ * 
+ * SPDX-License-Identifier: EPL-2.0
+ ******************************************************************************/
 /**
  *
  */
@@ -7,6 +19,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.logging.Level;
@@ -55,9 +68,9 @@ public abstract class PamtramCasestudyTest {
 	@Before
 	public void createOutputDirectory() {
 
-		System.out.println("Create Output Directory for casestudy '" + this.getCaseStudyName() + "'...");
+		System.out.println("Create Output Directory for casestudy '" + getCaseStudyName() + "'...");
 
-		String resultsPath = PamtramCasestudyTest.resultsFolderPath + "/" + this.getCaseStudyName();
+		String resultsPath = PamtramCasestudyTest.resultsFolderPath + "/" + getCaseStudyName();
 		URI resultsPathURI = URI.createPlatformResourceURI(resultsPath, true);
 		IContainer resultsPathFolder = ResourceHelper.getContainerForURI(resultsPathURI);
 
@@ -84,7 +97,7 @@ public abstract class PamtramCasestudyTest {
 		// Create the transformation runner
 		//
 		ITransformationRunner runner = TransformationRunnerWithUIFactory.INSTANCE
-				.createGenericTransformationRunner(this.getTransformationConfig());
+				.createGenericTransformationRunner(getTransformationConfig());
 
 		// Execute the transformation
 		//
@@ -92,7 +105,7 @@ public abstract class PamtramCasestudyTest {
 
 		// Validate the result
 		//
-		this.validateCaseStudyResult(result);
+		validateCaseStudyResult(result);
 
 	}
 
@@ -107,13 +120,13 @@ public abstract class PamtramCasestudyTest {
 		}
 
 		URI expectedResultsFolderURI = URI.createPlatformResourceURI(
-				PamtramCasestudyTest.expectedResultsFolderPath + "/" + this.getCaseStudyName(), true);
+				PamtramCasestudyTest.expectedResultsFolderPath + "/" + getCaseStudyName(), true);
 		IContainer expectedResultsFolder = ResourceHelper.getContainerForURI(expectedResultsFolderURI);
 
 		Assert.assertTrue("Failed to retrieve results folder!", expectedResultsFolder instanceof IFolder);
 
-		URI resultsFolderURI = URI.createPlatformResourceURI(
-				PamtramCasestudyTest.resultsFolderPath + "/" + this.getCaseStudyName(), true);
+		URI resultsFolderURI = URI
+				.createPlatformResourceURI(PamtramCasestudyTest.resultsFolderPath + "/" + getCaseStudyName(), true);
 		IContainer resultsFolder = ResourceHelper.getContainerForURI(resultsFolderURI);
 
 		Assert.assertTrue("Failed to retrieve results folder!", resultsFolder instanceof IFolder);
@@ -148,7 +161,7 @@ public abstract class PamtramCasestudyTest {
 							ResourceHelper.getURIForPathString(resultsFiles.get(i).getFullPath().toString()))
 					.toFileString();
 
-			this.assertResultingModelIsEqualToExpected(expectedFile, resultFile);
+			assertResultingModelIsEqualToExpected(expectedFile, resultFile);
 
 		}
 
@@ -170,8 +183,8 @@ public abstract class PamtramCasestudyTest {
 
 		TransformationConfiguration config;
 		try {
-			config = TransformationConfiguration.createInstanceFromSourcePaths(this.getSourceModels(),
-					this.getPamtramModels(), this.getTargetBasePath());
+			config = TransformationConfiguration.createInstanceFromSourcePaths(getSourceModels(), getPamtramModels(),
+					getTargetBasePath(), Optional.empty());
 			config.withLogLevel(Level.INFO).withLogLevel(Level.WARNING).withOpenTargetModelOnCompletion(false)
 					.withOnlyAskOnceOnAmbiguousMappings(true).withUseParallelization(false);
 
@@ -198,7 +211,7 @@ public abstract class PamtramCasestudyTest {
 	 */
 	protected String getTargetBasePath() {
 
-		return PamtramCasestudyTest.resultsFolderPath + "/" + this.getCaseStudyName();
+		return PamtramCasestudyTest.resultsFolderPath + "/" + getCaseStudyName();
 	}
 
 	/**
@@ -223,16 +236,16 @@ public abstract class PamtramCasestudyTest {
 	 */
 	protected void assertResultingModelIsEqualToExpected(String expected, String result) {
 
-		if (this.getTargetModelType().equals(FileType.XMI)) {
+		if (getTargetModelType().equals(FileType.XMI)) {
 
-			this.assertResultingXMIModelIsEqualToExpected(expected, result);
+			assertResultingXMIModelIsEqualToExpected(expected, result);
 
-		} else if (this.getTargetModelType().equals(FileType.XML)) {
+		} else if (getTargetModelType().equals(FileType.XML)) {
 
-			this.assertResultingXMLModelIsEqualToExpected(expected, result);
+			assertResultingXMLModelIsEqualToExpected(expected, result);
 
 		} else {
-			Assert.fail("Unsupported target model file type: " + this.getTargetModelType().getName());
+			Assert.fail("Unsupported target model file type: " + getTargetModelType().getName());
 		}
 	}
 
@@ -247,22 +260,29 @@ public abstract class PamtramCasestudyTest {
 	 */
 	protected void assertResultingXMIModelIsEqualToExpected(String expected, String result) {
 
-		ResourceSet rs = new ResourceSetImpl();
+		ResourceSet rs1 = new ResourceSetImpl();
+		ResourceSet rs2 = new ResourceSetImpl();
 
-		Resource expectedResultResource = rs.getResource(URI.createFileURI(expected), true);
-		Resource resultResource = rs.getResource(URI.createFileURI(result), true);
+		Resource expectedResultResource = rs1.getResource(URI.createFileURI(expected), true);
+		Resource resultResource = rs2.getResource(URI.createFileURI(result), true);
 
-		Comparison compareResult = EMFCompareUtil.compare(expectedResultResource, resultResource);
+		Comparison compareResult = EMFCompareUtil.compare(rs1, rs2);
 
 		Assert.assertTrue(
-				"Comparing expected file '" + expectedResultResource.getURI().lastSegment() + "' and actual result '"
-						+ resultResource.getURI().lastSegment() + "' resulted in conflicts!",
+				"Comparing expected file '" + getNameOfResource(expectedResultResource) + "' and actual result '"
+						+ getNameOfResource(resultResource) + "' resulted in conflicts!",
 				compareResult.getConflicts().isEmpty());
 
 		Assert.assertTrue(
-				"Comparing expected file '" + expectedResultResource.getURI().lastSegment() + "' and actual result '"
-						+ resultResource.getURI().lastSegment() + "' resulted in differences!",
+				"Comparing expected file '" + getNameOfResource(expectedResultResource) + "' and actual result '"
+						+ getNameOfResource(resultResource) + "' resulted in differences!",
 				compareResult.getDifferences().isEmpty());
+	}
+
+	protected String getNameOfResource(Resource resource) {
+
+		URI resourceURI = resource.getURI();
+		return resourceURI == null ? "" : resourceURI.lastSegment();
 	}
 
 	/**

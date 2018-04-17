@@ -2451,6 +2451,19 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
+  <set:UAVariable BrowseName="2:Unit" NodeId="ns=2;i=36" ParentNodeId="ns=2;i=35"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=35</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>mm</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
   <set:UAVariable BrowseName="2:depth" NodeId="ns=2;i=38" ParentNodeId="ns=2;i=34"
       DataType="Float">
     <set:DisplayName>depth</set:DisplayName>
@@ -2464,6 +2477,19 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
+  <set:UAVariable BrowseName="2:Unit" NodeId="ns=2;i=39" ParentNodeId="ns=2;i=38"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=38</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>mm</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
   <set:UAVariable BrowseName="2:width" NodeId="ns=2;i=40" ParentNodeId="ns=2;i=34"
       DataType="Float">
     <set:DisplayName>width</set:DisplayName>
@@ -2474,6 +2500,19 @@
     <set:Value>
       <types:ListOfString>
         <types:String>240</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
+  <set:UAVariable BrowseName="2:Unit" NodeId="ns=2;i=41" ParentNodeId="ns=2;i=40"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=40</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>mm</types:String>
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
@@ -2512,6 +2551,19 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
+  <set:UAVariable BrowseName="2:Unit" NodeId="ns=2;i=46" ParentNodeId="ns=2;i=45"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=45</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>mm</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
   <set:UAVariable BrowseName="2:depth" NodeId="ns=2;i=48" ParentNodeId="ns=2;i=44"
       DataType="Float">
     <set:DisplayName>depth</set:DisplayName>
@@ -2522,6 +2574,19 @@
     <set:Value>
       <types:ListOfString>
         <types:String>190</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
+  <set:UAVariable BrowseName="2:Unit" NodeId="ns=2;i=49" ParentNodeId="ns=2;i=48"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=48</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>mm</types:String>
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
@@ -2538,6 +2603,19 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
+  <set:UAVariable BrowseName="2:Unit" NodeId="ns=2;i=51" ParentNodeId="ns=2;i=50"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=50</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>mm</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
   <set:UAVariable BrowseName="2:totalVolume" NodeId="ns=2;i=52" ParentNodeId="ns=2;i=53"
       DataType="Float">
     <set:DisplayName>totalVolume</set:DisplayName>
@@ -2548,6 +2626,19 @@
     <set:Value>
       <types:ListOfString>
         <types:String>12</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
+  <set:UAVariable BrowseName="2:Unit" NodeId="ns=2;i=55" ParentNodeId="ns=2;i=52"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=52</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>l</types:String>
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
@@ -2573,6 +2664,19 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
+  <set:UAVariable BrowseName="2:Unit" NodeId="ns=2;i=58" ParentNodeId="ns=2;i=57"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=57</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>mm</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
   <set:UAVariable BrowseName="2:depth" NodeId="ns=2;i=60" ParentNodeId="ns=2;i=56"
       DataType="Float">
     <set:DisplayName>depth</set:DisplayName>
@@ -2583,6 +2687,19 @@
     <set:Value>
       <types:ListOfString>
         <types:String>190</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
+  <set:UAVariable BrowseName="2:Unit" NodeId="ns=2;i=61" ParentNodeId="ns=2;i=60"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=60</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>mm</types:String>
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
@@ -2599,6 +2716,19 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
+  <set:UAVariable BrowseName="2:Unit" NodeId="ns=2;i=63" ParentNodeId="ns=2;i=62"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=62</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>mm</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
   <set:UAVariable BrowseName="2:TemperatureRange" NodeId="ns=2;i=64" ParentNodeId="ns=2;i=65"
       DataType="String">
     <set:DisplayName>TemperatureRange</set:DisplayName>
@@ -2609,6 +2739,19 @@
     <set:Value>
       <types:ListOfString>
         <types:String>0...65</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
+  <set:UAVariable BrowseName="2:Unit" NodeId="ns=2;i=67" ParentNodeId="ns=2;i=64"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=64</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>°C</types:String>
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
@@ -2625,6 +2768,19 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
+  <set:UAVariable BrowseName="2:Unit" NodeId="ns=2;i=69" ParentNodeId="ns=2;i=68"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=68</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>A</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
   <set:UAVariable BrowseName="2:maximalFlowrate" NodeId="ns=2;i=70" ParentNodeId="ns=2;i=65"
       DataType="Float">
     <set:DisplayName>maximalFlowrate</set:DisplayName>
@@ -2635,6 +2791,19 @@
     <set:Value>
       <types:ListOfString>
         <types:String>10</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
+  <set:UAVariable BrowseName="2:Unit" NodeId="ns=2;i=71" ParentNodeId="ns=2;i=70"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=70</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>l/min</types:String>
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
@@ -3686,6 +3855,19 @@
     </set:References>
     <set:Value/>
   </set:UAVariable>
+  <set:UAVariable BrowseName="12:Unit" NodeId="ns=12;i=246" ParentNodeId="ns=12;i=244"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=244</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>°C</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
   <set:UAVariable BrowseName="12:CurrentUsage" NodeId="ns=12;i=247" ParentNodeId="ns=12;i=245"
       DataType="String">
     <set:DisplayName>CurrentUsage</set:DisplayName>
@@ -3694,6 +3876,19 @@
       <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">ns=1;i=3007</set:Reference>
     </set:References>
     <set:Value/>
+  </set:UAVariable>
+  <set:UAVariable BrowseName="12:Unit" NodeId="ns=12;i=248" ParentNodeId="ns=12;i=247"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=247</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>A</types:String>
+      </types:ListOfString>
+    </set:Value>
   </set:UAVariable>
   <set:UAVariable BrowseName="12:ISO10628Type" NodeId="ns=12;i=249" ParentNodeId="ns=12;i=250">
     <set:DisplayName>ISO10628Type</set:DisplayName>
@@ -4030,6 +4225,19 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
+  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=299" ParentNodeId="ns=15;i=298"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=298</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>l</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
   <set:UAVariable BrowseName="15:dimensions" NodeId="ns=15;i=300" ParentNodeId="ns=15;i=32"
       DataType="String">
     <set:DisplayName>dimensions</set:DisplayName>
@@ -4052,6 +4260,19 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
+  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=302" ParentNodeId="ns=15;i=301"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=301</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>mm</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
   <set:UAVariable BrowseName="15:width" NodeId="ns=15;i=304" ParentNodeId="ns=15;i=300"
       DataType="Float">
     <set:DisplayName>width</set:DisplayName>
@@ -4062,6 +4283,19 @@
     <set:Value>
       <types:ListOfString>
         <types:String>240</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
+  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=305" ParentNodeId="ns=15;i=304"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=304</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>mm</types:String>
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
@@ -4078,6 +4312,19 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
+  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=307" ParentNodeId="ns=15;i=306"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=306</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>mm</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
   <set:UAVariable BrowseName="15:maximalTemperature" NodeId="ns=15;i=308" ParentNodeId="ns=15;i=32"
       DataType="Float">
     <set:DisplayName>maximalTemperature</set:DisplayName>
@@ -4088,6 +4335,19 @@
     <set:Value>
       <types:ListOfString>
         <types:String>65</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
+  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=309" ParentNodeId="ns=15;i=308"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=308</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>°C</types:String>
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
@@ -4147,6 +4407,19 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
+  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=318" ParentNodeId="ns=15;i=317"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=317</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>l</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
   <set:UAVariable BrowseName="15:dimensions" NodeId="ns=15;i=319" ParentNodeId="ns=15;i=54"
       DataType="String">
     <set:DisplayName>dimensions</set:DisplayName>
@@ -4169,6 +4442,19 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
+  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=321" ParentNodeId="ns=15;i=320"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=320</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>mm</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
   <set:UAVariable BrowseName="15:width" NodeId="ns=15;i=323" ParentNodeId="ns=15;i=319"
       DataType="Float">
     <set:DisplayName>width</set:DisplayName>
@@ -4182,6 +4468,19 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
+  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=324" ParentNodeId="ns=15;i=323"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=323</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>mm</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
   <set:UAVariable BrowseName="15:depth" NodeId="ns=15;i=325" ParentNodeId="ns=15;i=319"
       DataType="Float">
     <set:DisplayName>depth</set:DisplayName>
@@ -4192,6 +4491,19 @@
     <set:Value>
       <types:ListOfString>
         <types:String>190</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
+  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=326" ParentNodeId="ns=15;i=325"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=325</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>mm</types:String>
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
@@ -4261,6 +4573,19 @@
     <set:Value>
       <types:ListOfString>
         <types:String>1000</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
+  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=338" ParentNodeId="ns=15;i=337"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=337</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>W</types:String>
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
@@ -4394,6 +4719,19 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
+  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=354" ParentNodeId="ns=15;i=353"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=353</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>°C</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
   <set:UAVariable BrowseName="15:CurrentUsage" NodeId="ns=15;i=355" ParentNodeId="ns=15;i=66"
       DataType="String">
     <set:DisplayName>CurrentUsage</set:DisplayName>
@@ -4407,6 +4745,19 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
+  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=356" ParentNodeId="ns=15;i=355"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=355</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>A</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
   <set:UAVariable BrowseName="15:maximalFlowrate" NodeId="ns=15;i=357" ParentNodeId="ns=15;i=66"
       DataType="Float">
     <set:DisplayName>maximalFlowrate</set:DisplayName>
@@ -4417,6 +4768,19 @@
     <set:Value>
       <types:ListOfString>
         <types:String>10</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
+  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=358" ParentNodeId="ns=15;i=357"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=357</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>l/min</types:String>
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
@@ -4513,6 +4877,19 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
+  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=374" ParentNodeId="ns=15;i=372"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=372</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>bar</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
   <set:UAVariable BrowseName="15:safeState" NodeId="ns=15;i=375" ParentNodeId="ns=15;i=373"
       DataType="String">
     <set:DisplayName>safeState</set:DisplayName>
@@ -4601,6 +4978,19 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
+  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=386" ParentNodeId="ns=15;i=385"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=385</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>mm</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
   <set:UAVariable BrowseName="15:depth" NodeId="ns=15;i=388" ParentNodeId="ns=15;i=384"
       DataType="Float">
     <set:DisplayName>depth</set:DisplayName>
@@ -4614,6 +5004,19 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
+  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=389" ParentNodeId="ns=15;i=388"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=388</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>mm</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
   <set:UAVariable BrowseName="15:width" NodeId="ns=15;i=390" ParentNodeId="ns=15;i=384"
       DataType="Float">
     <set:DisplayName>width</set:DisplayName>
@@ -4624,6 +5027,19 @@
     <set:Value>
       <types:ListOfString>
         <types:String>240</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
+  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=391" ParentNodeId="ns=15;i=390"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=390</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>mm</types:String>
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
@@ -4662,6 +5078,19 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
+  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=396" ParentNodeId="ns=15;i=395"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=395</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>mm</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
   <set:UAVariable BrowseName="15:depth" NodeId="ns=15;i=398" ParentNodeId="ns=15;i=394"
       DataType="Float">
     <set:DisplayName>depth</set:DisplayName>
@@ -4672,6 +5101,19 @@
     <set:Value>
       <types:ListOfString>
         <types:String>190</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
+  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=399" ParentNodeId="ns=15;i=398"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=398</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>mm</types:String>
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
@@ -4688,6 +5130,19 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
+  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=401" ParentNodeId="ns=15;i=400"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=400</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>mm</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
   <set:UAVariable BrowseName="15:totalVolume" NodeId="ns=15;i=402" ParentNodeId="ns=15;i=403"
       DataType="Float">
     <set:DisplayName>totalVolume</set:DisplayName>
@@ -4698,6 +5153,19 @@
     <set:Value>
       <types:ListOfString>
         <types:String>12</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
+  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=404" ParentNodeId="ns=15;i=402"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=402</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>l</types:String>
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
@@ -4723,6 +5191,19 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
+  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=407" ParentNodeId="ns=15;i=406"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=406</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>mm</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
   <set:UAVariable BrowseName="15:depth" NodeId="ns=15;i=409" ParentNodeId="ns=15;i=405"
       DataType="Float">
     <set:DisplayName>depth</set:DisplayName>
@@ -4733,6 +5214,19 @@
     <set:Value>
       <types:ListOfString>
         <types:String>190</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
+  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=410" ParentNodeId="ns=15;i=409"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=409</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>mm</types:String>
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
@@ -4749,6 +5243,19 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
+  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=412" ParentNodeId="ns=15;i=411"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=411</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>mm</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
   <set:UAVariable BrowseName="15:TemperatureRange" NodeId="ns=15;i=413" ParentNodeId="ns=15;i=414"
       DataType="String">
     <set:DisplayName>TemperatureRange</set:DisplayName>
@@ -4759,6 +5266,19 @@
     <set:Value>
       <types:ListOfString>
         <types:String>0...65</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
+  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=415" ParentNodeId="ns=15;i=413"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=413</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>°C</types:String>
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
@@ -4775,6 +5295,19 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
+  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=417" ParentNodeId="ns=15;i=416"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=416</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>A</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
   <set:UAVariable BrowseName="15:maximalFlowrate" NodeId="ns=15;i=418" ParentNodeId="ns=15;i=414"
       DataType="Float">
     <set:DisplayName>maximalFlowrate</set:DisplayName>
@@ -4785,6 +5318,19 @@
     <set:Value>
       <types:ListOfString>
         <types:String>10</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
+  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=419" ParentNodeId="ns=15;i=418"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=418</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>l/min</types:String>
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
@@ -4867,6 +5413,19 @@
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>
+  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=430" ParentNodeId="ns=15;i=429"
+      DataType="String">
+    <set:DisplayName>Unit</set:DisplayName>
+    <set:References>
+      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=429</set:Reference>
+      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
+    </set:References>
+    <set:Value>
+      <types:ListOfString>
+        <types:String>W</types:String>
+      </types:ListOfString>
+    </set:Value>
+  </set:UAVariable>
   <set:UAVariable BrowseName="15:remoteType" NodeId="ns=15;i=431" ParentNodeId="ns=15;i=341">
     <set:DisplayName>remoteType</set:DisplayName>
     <set:Description>The attribute “remoteType” describes the location of the operator interface.</set:Description>
@@ -4934,565 +5493,6 @@
     <set:Value>
       <types:ListOfString>
         <types:String>I</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="2:Unit" NodeId="ns=2;i=36" ParentNodeId="ns=2;i=35"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=35</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>mm</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="2:Unit" NodeId="ns=2;i=39" ParentNodeId="ns=2;i=38"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=38</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>mm</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="2:Unit" NodeId="ns=2;i=41" ParentNodeId="ns=2;i=40"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=40</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>mm</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="2:Unit" NodeId="ns=2;i=46" ParentNodeId="ns=2;i=45"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=45</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>mm</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="2:Unit" NodeId="ns=2;i=49" ParentNodeId="ns=2;i=48"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=48</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>mm</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="2:Unit" NodeId="ns=2;i=51" ParentNodeId="ns=2;i=50"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=50</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>mm</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="2:Unit" NodeId="ns=2;i=55" ParentNodeId="ns=2;i=52"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=52</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>l</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="2:Unit" NodeId="ns=2;i=58" ParentNodeId="ns=2;i=57"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=57</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>mm</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="2:Unit" NodeId="ns=2;i=61" ParentNodeId="ns=2;i=60"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=60</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>mm</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="2:Unit" NodeId="ns=2;i=63" ParentNodeId="ns=2;i=62"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=62</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>mm</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="2:Unit" NodeId="ns=2;i=67" ParentNodeId="ns=2;i=64"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=64</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>°C</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="2:Unit" NodeId="ns=2;i=69" ParentNodeId="ns=2;i=68"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=68</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>A</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="2:Unit" NodeId="ns=2;i=71" ParentNodeId="ns=2;i=70"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=2;i=70</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>l/min</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="12:Unit" NodeId="ns=12;i=246" ParentNodeId="ns=12;i=244"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=244</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>°C</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="12:Unit" NodeId="ns=12;i=248" ParentNodeId="ns=12;i=247"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=12;i=247</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>A</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=299" ParentNodeId="ns=15;i=298"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=298</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>l</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=302" ParentNodeId="ns=15;i=301"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=301</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>mm</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=305" ParentNodeId="ns=15;i=304"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=304</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>mm</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=307" ParentNodeId="ns=15;i=306"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=306</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>mm</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=309" ParentNodeId="ns=15;i=308"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=308</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>°C</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=318" ParentNodeId="ns=15;i=317"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=317</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>l</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=321" ParentNodeId="ns=15;i=320"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=320</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>mm</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=324" ParentNodeId="ns=15;i=323"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=323</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>mm</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=326" ParentNodeId="ns=15;i=325"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=325</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>mm</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=338" ParentNodeId="ns=15;i=337"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=337</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>W</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=354" ParentNodeId="ns=15;i=353"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=353</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>°C</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=356" ParentNodeId="ns=15;i=355"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=355</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>A</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=358" ParentNodeId="ns=15;i=357"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=357</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>l/min</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=374" ParentNodeId="ns=15;i=372"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=372</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>bar</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=386" ParentNodeId="ns=15;i=385"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=385</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>mm</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=389" ParentNodeId="ns=15;i=388"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=388</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>mm</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=391" ParentNodeId="ns=15;i=390"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=390</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>mm</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=396" ParentNodeId="ns=15;i=395"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=395</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>mm</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=399" ParentNodeId="ns=15;i=398"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=398</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>mm</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=401" ParentNodeId="ns=15;i=400"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=400</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>mm</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=404" ParentNodeId="ns=15;i=402"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=402</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>l</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=407" ParentNodeId="ns=15;i=406"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=406</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>mm</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=410" ParentNodeId="ns=15;i=409"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=409</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>mm</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=412" ParentNodeId="ns=15;i=411"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=411</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>mm</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=415" ParentNodeId="ns=15;i=413"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=413</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>°C</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=417" ParentNodeId="ns=15;i=416"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=416</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>A</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=419" ParentNodeId="ns=15;i=418"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=418</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>l/min</types:String>
-      </types:ListOfString>
-    </set:Value>
-  </set:UAVariable>
-  <set:UAVariable BrowseName="15:Unit" NodeId="ns=15;i=430" ParentNodeId="ns=15;i=429"
-      DataType="String">
-    <set:DisplayName>Unit</set:DisplayName>
-    <set:References>
-      <set:Reference IsForward="false" ReferenceType="HasComponent">ns=15;i=429</set:Reference>
-      <set:Reference IsForward="true" ReferenceType="HasTypeDefinition">PropertyType</set:Reference>
-    </set:References>
-    <set:Value>
-      <types:ListOfString>
-        <types:String>W</types:String>
       </types:ListOfString>
     </set:Value>
   </set:UAVariable>

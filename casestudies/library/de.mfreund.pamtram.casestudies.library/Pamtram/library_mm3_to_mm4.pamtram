@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (C) 2016-2018 Matthias Freund and others, Institute of Automation, TU Dresden
+  
+  This program and the accompanying materials are made
+  available under the terms of the Eclipse Public License 2.0
+  which is available at https://www.eclipse.org/legal/epl-2.0/
+  
+  Contributors:
+    Institute of Automation, TU Dresden - Initial API and implementation
+  
+  SPDX-License-Identifier: EPL-2.0
+-->
+<pamtram:PAMTraM xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:extended="http://mfreund.de/pamtram/mapping/extended" xmlns:mapping="http://mfreund.de/pamtram/mapping" xmlns:pamtram="http://mfreund.de/pamtram" xmlns:source="http://mfreund.de/pamtram/structure/source" xmlns:structure="http://mfreund.de/pamtram/structure" xmlns:target="http://mfreund.de/pamtram/structure/target">
+  <sourceSectionModels>
+    <metaModelPackage href="http://mm3#/"/>
+    <sections xsi:type="source:SourceSection" name="Library">
+      <eClass href="http://mm3#//Library"/>
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="name">
+        <attribute href="http://mm3#//Library/name"/>
+      </attributes>
+    </sections>
+    <sections xsi:type="source:SourceSection" name="Member">
+      <eClass href="http://mm3#//Member"/>
+      <references xsi:type="source:SourceSectionCrossReference" name="bookLoans" value="//@sourceSectionModels.0/@sections.2">
+        <eReference href="http://mm3#//Member/bookLoans"/>
+      </references>
+      <references xsi:type="source:SourceSectionCrossReference" name="filmLoans" value="//@sourceSectionModels.0/@sections.3">
+        <eReference href="http://mm3#//Member/filmLoans"/>
+      </references>
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="name">
+        <attribute href="http://mm3#//Member/name"/>
+      </attributes>
+    </sections>
+    <sections xsi:type="source:SourceSection" name="Book" cardinality="ZERO__INFINITY">
+      <eClass href="http://mm3#//Book"/>
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="name">
+        <attribute href="http://mm3#//Book/name"/>
+      </attributes>
+    </sections>
+    <sections xsi:type="source:SourceSection" name="Film" cardinality="ZERO__INFINITY">
+      <eClass href="http://mm3#//Film"/>
+      <attributes xsi:type="source:ActualSourceSectionAttribute" name="name">
+        <attribute href="http://mm3#//Film/name"/>
+      </attributes>
+    </sections>
+  </sourceSectionModels>
+  <targetSectionModels>
+    <metaModelPackage href="http://mm4#/"/>
+    <sections xsi:type="target:TargetSection" name="Library">
+      <eClass href="http://mm4#//Library"/>
+    </sections>
+    <sections xsi:type="target:TargetSection" name="Member">
+      <eClass href="http://mm4#//Member"/>
+      <references xsi:type="target:TargetSectionCrossReference" name="loans" value="//@targetSectionModels.0/@sections.2">
+        <eReference href="http://mm4#//Member/loans"/>
+      </references>
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="name">
+        <attribute href="http://mm4#//Member/name"/>
+      </attributes>
+    </sections>
+    <sections xsi:type="target:TargetSection" name="Medium">
+      <eClass href="http://mm4#//Medium"/>
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="name">
+        <attribute href="http://mm4#//Medium/name"/>
+      </attributes>
+      <attributes xsi:type="target:ActualTargetSectionAttribute" name="type">
+        <attribute href="http://mm4#//Medium/type"/>
+      </attributes>
+    </sections>
+  </targetSectionModels>
+  <mappingModels>
+    <mappings name="LibraryMapping" deactivated="true" sourceSection="//@sourceSectionModels.0/@sections.0">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Library" targetSection="//@targetSectionModels.0/@sections.0"/>
+    </mappings>
+    <mappings name="MemberMapping" sourceSection="//@sourceSectionModels.0/@sections.1">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Member" targetSection="//@targetSectionModels.0/@sections.1">
+        <mappingHints xsi:type="extended:AttributeMapping" name="nameMapping" target="//@targetSectionModels.0/@sections.1/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="name" source="//@sourceSectionModels.0/@sections.1/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="loans" referenceAttribute="//@targetSectionModels.0/@sections.2/@attributes.0" targetClass="//@targetSectionModels.0/@sections.2" affectedReference="//@targetSectionModels.0/@sections.1/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="name" source="//@sourceSectionModels.0/@sections.2/@attributes.0" followExternalReferences="true"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:ReferenceTargetSelector" name="loans" referenceAttribute="//@targetSectionModels.0/@sections.2/@attributes.0" targetClass="//@targetSectionModels.0/@sections.2" affectedReference="//@targetSectionModels.0/@sections.1/@references.0">
+          <sourceElements xsi:type="structure:InstanceSelectorSourceElement" name="name" source="//@sourceSectionModels.0/@sections.3/@attributes.0" followExternalReferences="true"/>
+        </mappingHints>
+      </mappingHintGroups>
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Member" targetSection="//@targetSectionModels.0/@sections.1" deactivated="true">
+        <mappingHints xsi:type="extended:AttributeMapping" name="nameMapping" target="//@targetSectionModels.0/@sections.1/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="name" source="//@sourceSectionModels.0/@sections.1/@attributes.0"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mappings>
+    <mappings name="BookMapping" sourceSection="//@sourceSectionModels.0/@sections.2">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Medium" targetSection="//@targetSectionModels.0/@sections.2">
+        <mappingHints xsi:type="extended:AttributeMapping" name="nameMapping" target="//@targetSectionModels.0/@sections.2/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="name" source="//@sourceSectionModels.0/@sections.2/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:AttributeMapping" name="typeMapping" target="//@targetSectionModels.0/@sections.2/@attributes.1">
+          <sourceElements xsi:type="pamtram:FixedValue" name="Book" value="Book"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mappings>
+    <mappings name="FilmMapping" sourceSection="//@sourceSectionModels.0/@sections.3">
+      <mappingHintGroups xsi:type="mapping:MappingHintGroup" name="Medium" targetSection="//@targetSectionModels.0/@sections.2">
+        <mappingHints xsi:type="extended:AttributeMapping" name="nameMapping" target="//@targetSectionModels.0/@sections.2/@attributes.0">
+          <sourceElements xsi:type="extended:AttributeMappingSourceElement" name="name" source="//@sourceSectionModels.0/@sections.3/@attributes.0"/>
+        </mappingHints>
+        <mappingHints xsi:type="extended:AttributeMapping" name="typeMapping" target="//@targetSectionModels.0/@sections.2/@attributes.1">
+          <sourceElements xsi:type="pamtram:FixedValue" name="Film" value="Film"/>
+        </mappingHints>
+      </mappingHintGroups>
+    </mappings>
+  </mappingModels>
+</pamtram:PAMTraM>

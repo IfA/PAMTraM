@@ -2,14 +2,15 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: PAMTraM Section Generator
 Bundle-SymbolicName: de.mfreund.pamtram.model.generator;singleton:=true
-Bundle-Version: 2.1.0.qualifier
+Bundle-Version: 2.2.0.qualifier
 Bundle-Activator: de.mfreund.pamtram.model.generator.Activator
 Require-Bundle: org.eclipse.core.runtime,
- de.mfreund.pamtram.model.editor;bundle-version="2.1.0",
- de.tud.et.ifa.agtele.eclipse.commons.ui;bundle-version="1.0.1",
- de.tud.et.ifa.agtele.eclipse.commons;bundle-version="1.0.0",
+ de.mfreund.pamtram.model.editor;bundle-version="2.2.0",
+ de.tud.et.ifa.agtele.eclipse.commons.ui;bundle-version="1.1.0",
+ de.tud.et.ifa.agtele.eclipse.commons;bundle-version="1.1.0",
  org.eclipse.emf.compare
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Export-Package: de.mfreund.pamtram.model.generator
 Bundle-Vendor: Matthias Freund, Institute of Automation, TU Dresden
+Automatic-Module-Name: de.mfreund.pamtram.model.generator

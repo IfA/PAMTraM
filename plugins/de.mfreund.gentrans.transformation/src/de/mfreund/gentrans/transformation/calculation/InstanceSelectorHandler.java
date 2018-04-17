@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
+ * 
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ * 
+ * Contributors:
+ *   Institute of Automation, TU Dresden - Initial API and implementation
+ * 
+ * SPDX-License-Identifier: EPL-2.0
+ ******************************************************************************/
 package de.mfreund.gentrans.transformation.calculation;
 
 import java.util.ArrayList;
@@ -15,7 +27,6 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 
 import de.mfreund.gentrans.transformation.core.TransformationAsset;
 import de.mfreund.gentrans.transformation.core.TransformationAssetManager;
@@ -27,7 +38,6 @@ import pamtram.structure.SourceInstanceSelector;
 import pamtram.structure.TargetInstanceSelector;
 import pamtram.structure.generic.CompositeReference;
 import pamtram.structure.source.SourceSectionClass;
-import pamtram.structure.source.SourceSectionReference;
 import pamtram.structure.target.TargetSectionClass;
 import pamtram.structure.target.TargetSectionReference;
 
@@ -45,12 +55,6 @@ public class InstanceSelectorHandler extends TransformationAsset {
 	private InstanceSelectorValueExtractor valueExtractor;
 
 	/**
-	 * Whether extended parallelization shall be used during the transformation that might lead to the fact that the
-	 * transformation result (especially the order of lists) varies between executions.
-	 */
-	private boolean useParallelization;
-
-	/**
 	 * This creates an instance.
 	 *
 	 * @param assetManager
@@ -61,8 +65,7 @@ public class InstanceSelectorHandler extends TransformationAsset {
 
 		super(assetManager);
 
-		this.valueExtractor = new InstanceSelectorValueExtractor(assetManager);
-		this.useParallelization = assetManager.getTransformationConfig().isUseParallelization();
+		valueExtractor = new InstanceSelectorValueExtractor(assetManager);
 
 	}
 
@@ -87,8 +90,7 @@ public class InstanceSelectorHandler extends TransformationAsset {
 			return new ArrayList<>(instanceList);
 		}
 
-		String referenceValue = this.valueExtractor.extractRequiredTargetValue(instanceSelector,
-				matchedSectionDescriptor);
+		String referenceValue = valueExtractor.extractRequiredTargetValue(instanceSelector, matchedSectionDescriptor);
 
 		return this.filterSourceInstances(instanceList, instanceSelector, Arrays.asList(referenceValue));
 
@@ -115,8 +117,7 @@ public class InstanceSelectorHandler extends TransformationAsset {
 			return new ArrayList<>(instanceList);
 		}
 
-		String referenceValue = this.valueExtractor.extractRequiredTargetValue(instanceSelector,
-				matchedSectionDescriptor);
+		String referenceValue = valueExtractor.extractRequiredTargetValue(instanceSelector, matchedSectionDescriptor);
 
 		return this.filterTargetInstances(instanceList, instanceSelector, Arrays.asList(referenceValue));
 
@@ -157,7 +158,7 @@ public class InstanceSelectorHandler extends TransformationAsset {
 		//
 		Map<EObject, List<String>> referenceValueBySourceInstance = potentialSourceInstances.stream()
 				.collect(Collectors.toMap(Function.identity(),
-						c -> this.getReferenceAttributeInstancesBySourceInstance(c, sourceInstanceSelector).stream()
+						c -> getReferenceAttributeInstancesBySourceInstance(c, sourceInstanceSelector).stream()
 								.flatMap(r -> InstanceSelectorHandler.this.assetManager.getModelAccessUtil()
 										.getAttributeValueAsStringList(r,
 												sourceInstanceSelector.getReferenceAttribute())
@@ -214,7 +215,7 @@ public class InstanceSelectorHandler extends TransformationAsset {
 		//
 		Map<EObjectWrapper, List<String>> referenceValueByTargetInstance = potentialTargetInstances.stream()
 				.collect(Collectors.toMap(Function.identity(),
-						c -> this.getReferenceAttributeInstancesByTargetInstance(c, targetInstanceSelector).stream()
+						c -> getReferenceAttributeInstancesByTargetInstance(c, targetInstanceSelector).stream()
 								.map(r -> r.getAttributeValue(targetInstanceSelector.getReferenceAttribute()))
 								.collect(Collectors.toList())));
 
@@ -285,7 +286,7 @@ public class InstanceSelectorHandler extends TransformationAsset {
 			return Arrays.asList(sourceInstance);
 		}
 
-		Optional<MatchedSectionDescriptor> descriptor = this.assetManager.getMatchedSectionRegistry()
+		Optional<MatchedSectionDescriptor> descriptor = assetManager.getMatchedSectionRegistry()
 				.getRegisteredDescriptorFor(sourceInstance);
 
 		if (descriptor.isPresent()) {
@@ -295,46 +296,10 @@ public class InstanceSelectorHandler extends TransformationAsset {
 					.collect(Collectors.toList());
 		} else {
 
-			this.logger.severe(() -> "Unable to evaluate " + sourceInstanceSelector.printInfo()
+			logger.severe(() -> "Unable to evaluate " + sourceInstanceSelector.printInfo()
 					+ "! No descriptor found for the source model element!");
 			return new ArrayList<>();
 		}
-
-	}
-
-	/**
-	 * This returns the {@link EObject element or elements} determined by iteratively evaluating the given list of
-	 * {@link SourceSectionReference SourceSectionReference}.
-	 * <p />
-	 * The referenced elements are determined by redirecting to {@link EStructuralFeature#eGet(EStructuralFeature)}.
-	 * <p />
-	 * Note: As EReferences can be {@link EStructuralFeature#isMany() many-valued}, this will return either no value, a
-	 * single value, or a list of values.
-	 *
-	 * @param sourceInstance
-	 *            The base instance from which the references are to be followed.
-	 * @param references
-	 *            The {@link SourceSectionReference references} that are iteratively applied to determine the elements
-	 *            to return.
-	 * @return The determined referenced elements (either an empty list, a list consisting of a single value, or
-	 *         multiple values). If <em>eReferences</em> is empty, returns a list containing the given <em>eObject</em>.
-	 */
-	private List<EObject> getReferencedElements(EObject sourceInstance, List<SourceSectionReference> references) {
-
-		if (references.isEmpty()) {
-			return Arrays.asList(sourceInstance);
-		}
-
-		SourceSectionReference firstReference = references.remove(0);
-
-		this.assetManager.getModelAccessUtil().getReferenceValueAsList(sourceInstance, firstReference);
-
-		List<EObject> referencedElements = this.assetManager.getModelAccessUtil()
-				.getReferenceValueAsList(sourceInstance, firstReference);
-
-		return referencedElements.stream()
-				.flatMap(e -> this.getReferencedElements(e, new ArrayList<>(references)).stream())
-				.collect(Collectors.toList());
 
 	}
 
@@ -450,11 +415,11 @@ public class InstanceSelectorHandler extends TransformationAsset {
 				currentClass = (TargetSectionClass) owningCompositeReference.getOwningClass();
 			}
 
-			return Arrays.asList(
-					this.assetManager.getTargetSectionRegistry().getInstanceWrapper(referenceAttributeInstance));
+			return Arrays
+					.asList(assetManager.getTargetSectionRegistry().getInstanceWrapper(referenceAttributeInstance));
 		}
 
-		this.logger.severe(() -> "Unable to evaluate " + targetInstanceSelector.printInfo()
+		logger.severe(() -> "Unable to evaluate " + targetInstanceSelector.printInfo()
 				+ "! The specified 'reference attribute' is not valid.");
 		return new ArrayList<>();
 	}

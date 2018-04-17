@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
+ * 
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ * 
+ * Contributors:
+ *   Institute of Automation, TU Dresden - Initial API and implementation
+ * 
+ * SPDX-License-Identifier: EPL-2.0
+ ******************************************************************************/
 /**
  */
 package pamtram.mapping;
@@ -402,13 +414,22 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_HINT_GROUP_TYPE__ALL_EXTENDING = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
+	 * The feature id for the '<em><b>Parent Mapping</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP_TYPE__PARENT_MAPPING = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 10;
+
+	/**
 	 * The number of structural features of the '<em>Hint Group Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_GROUP_TYPE_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 10;
+	int MAPPING_HINT_GROUP_TYPE_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 11;
 
 	/**
 	 * The operation id for the '<em>Validate Extends Only Valid Hint Groups</em>' operation.
@@ -656,6 +677,15 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_HINT_GROUP__ALL_EXTENDING = MAPPING_HINT_GROUP_TYPE__ALL_EXTENDING;
 
 	/**
+	 * The feature id for the '<em><b>Parent Mapping</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP__PARENT_MAPPING = MAPPING_HINT_GROUP_TYPE__PARENT_MAPPING;
+
+	/**
 	 * The feature id for the '<em><b>Deactivated</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -866,13 +896,22 @@ public interface MappingPackage extends EPackage {
 	int MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
+	 * The feature id for the '<em><b>Parent Mapping</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAPPING_HINT_GROUP_IMPORTER__PARENT_MAPPING = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
 	 * The number of structural features of the '<em>Hint Group Importer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MAPPING_HINT_GROUP_IMPORTER_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 7;
+	int MAPPING_HINT_GROUP_IMPORTER_FEATURE_COUNT = PamtramPackage.NAMED_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The operation id for the '<em>Validate Reference Only Conditions From Condition Model</em>' operation.
@@ -999,6 +1038,15 @@ public interface MappingPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXPORTED_MAPPING_HINT_GROUP__ALL_EXTENDING = MAPPING_HINT_GROUP_TYPE__ALL_EXTENDING;
+
+	/**
+	 * The feature id for the '<em><b>Parent Mapping</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPORTED_MAPPING_HINT_GROUP__PARENT_MAPPING = MAPPING_HINT_GROUP_TYPE__PARENT_MAPPING;
 
 	/**
 	 * The number of structural features of the '<em>Exported Mapping Hint Group</em>' class.
@@ -1372,6 +1420,17 @@ public interface MappingPackage extends EPackage {
 	EReference getMappingHintGroupType_AllExtending();
 
 	/**
+	 * Returns the meta object for the reference '{@link pamtram.mapping.MappingHintGroupType#getParentMapping <em>Parent Mapping</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Parent Mapping</em>'.
+	 * @see pamtram.mapping.MappingHintGroupType#getParentMapping()
+	 * @see #getMappingHintGroupType()
+	 * @generated
+	 */
+	EReference getMappingHintGroupType_ParentMapping();
+
+	/**
 	 * Returns the meta object for the '{@link pamtram.mapping.MappingHintGroupType#validateExtendsOnlyValidHintGroups(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Extends Only Valid Hint Groups</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1473,6 +1532,17 @@ public interface MappingPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getMappingHintGroupImporter_MappingHints();
+
+	/**
+	 * Returns the meta object for the reference '{@link pamtram.mapping.MappingHintGroupImporter#getParentMapping <em>Parent Mapping</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Parent Mapping</em>'.
+	 * @see pamtram.mapping.MappingHintGroupImporter#getParentMapping()
+	 * @see #getMappingHintGroupImporter()
+	 * @generated
+	 */
+	EReference getMappingHintGroupImporter_ParentMapping();
 
 	/**
 	 * Returns the meta object for the '{@link pamtram.mapping.MappingHintGroupImporter#getActiveMappingHints() <em>Get Active Mapping Hints</em>}' operation.
@@ -1749,6 +1819,14 @@ public interface MappingPackage extends EPackage {
 		EReference MAPPING_HINT_GROUP_TYPE__ALL_EXTENDING = eINSTANCE.getMappingHintGroupType_AllExtending();
 
 		/**
+		 * The meta object literal for the '<em><b>Parent Mapping</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MAPPING_HINT_GROUP_TYPE__PARENT_MAPPING = eINSTANCE.getMappingHintGroupType_ParentMapping();
+
+		/**
 		 * The meta object literal for the '<em><b>Validate Extends Only Valid Hint Groups</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1831,6 +1909,14 @@ public interface MappingPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MAPPING_HINT_GROUP_IMPORTER__MAPPING_HINTS = eINSTANCE.getMappingHintGroupImporter_MappingHints();
+
+		/**
+		 * The meta object literal for the '<em><b>Parent Mapping</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MAPPING_HINT_GROUP_IMPORTER__PARENT_MAPPING = eINSTANCE.getMappingHintGroupImporter_ParentMapping();
 
 		/**
 		 * The meta object literal for the '<em><b>Get Active Mapping Hints</b></em>' operation.

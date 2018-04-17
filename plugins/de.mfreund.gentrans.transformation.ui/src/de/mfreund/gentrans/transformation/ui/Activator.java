@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Copyright (C) 2015-2018 Matthias Freund and others, Institute of Automation, TU Dresden
+ * 
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ * 
+ * Contributors:
+ *   Institute of Automation, TU Dresden - Initial API and implementation
+ * 
+ * SPDX-License-Identifier: EPL-2.0
+ ******************************************************************************/
 package de.mfreund.gentrans.transformation.ui;
 
 import org.eclipse.core.runtime.ILog;
@@ -11,7 +23,7 @@ import org.osgi.framework.BundleContext;
  */
 public class Activator extends AbstractUIPlugin {
 
-	// The plug-in ID
+	@SuppressWarnings("javadoc")
 	public static final String PLUGIN_ID = "de.mfreund.gentrans.transformation.ui"; //$NON-NLS-1$
 
 	// The shared instance
@@ -26,7 +38,7 @@ public class Activator extends AbstractUIPlugin {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
 	 */
 	@Override
@@ -38,7 +50,7 @@ public class Activator extends AbstractUIPlugin {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
 	 */
 	@Override
@@ -129,7 +141,7 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public static void log(int severity, String msg, Exception e) {
 
-		Activator.getDefault().getLog().log(new Status(severity, Activator.PLUGIN_ID, Status.OK, msg, e));
+		Activator.getDefault().getLog().log(new Status(severity, Activator.PLUGIN_ID, IStatus.OK, msg, e));
 	}
 
 }

@@ -111,7 +111,6 @@
 				.project,
 				excel-movisa-tdp.launch,
 				metamodel/mbtcp-variablen.xlsx,
-				metamodel/movisa.ecore,
 				metamodel/Variablen.ecore,
 				Pamtram/excel-movisa-tdp.pamtram,
 				Pamtram/source/**,
@@ -136,7 +135,6 @@
 			w3caui-movisa (platform model 2).launch,
 			w3caui-movisa (platform model 3).launch,
 			metamodel/aui.xsd.ecore,
-			metamodel/movisa.ecore,
 			metamodel/platform_metamodel.ecore,
 			Pamtram/w3caui-movisa.pamtram,
 			Source/allgemeinesModell.xmi,
@@ -165,6 +163,16 @@
 			Pamtram/company-viz.pamtram,
 			Source/IfA.xmi,
 			Target/visualization.xmi"/>
+	
+	<!-- The files to include in the 'xml-xml' example -->
+	<patternset id="xml-xml.includes"
+		includes="
+			.project,
+			xml-xml.launch,
+			metamodel/**,
+			Pamtram/xml-xml.pamtram,
+			Source/source-model.xml,
+			Target/target-model.xml"/>
 	
 	
 	<!-- Zip the PAMTraM examples -->
@@ -234,6 +242,12 @@
 		<eclipse.convertPath resourcePath="de.mfreund.pamtram.casestudies.company-viz" property="projectDir"/>
 		<zip destfile="zips/company-viz.zip" basedir="${projectDir}">
 			<patternset refid="company-viz.includes"/>
+		</zip>
+		
+		<!-- XML-XML -->
+		<eclipse.convertPath resourcePath="de.mfreund.pamtram.casestudies.xml-xml" property="projectDir"/>
+		<zip destfile="zips/xml-xml.zip" basedir="${projectDir}">
+			<patternset refid="xml-xml.includes"/>
 		</zip>
 		
 	</target>

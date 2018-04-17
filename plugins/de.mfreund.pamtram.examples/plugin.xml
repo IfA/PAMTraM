@@ -93,6 +93,15 @@
             name="Company -&gt; Visualization"
             project="true">
       </wizard>
+      <wizard
+            category="org.eclipse.ui.Examples/de.mfreund.pamtram.examples.category"
+            class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
+            finalPerspective="de.mfreund.pamtram.pamtramPerspective"
+            icon="icons/project.png"
+            id="de.mfreund.pamtram.examples.xml-xml"
+            name="XML -&gt; XML"
+            project="true">
+      </wizard>
       <category
             id="de.mfreund.pamtram.examples.category"
             name="PAMTraM"
@@ -127,7 +136,7 @@
             wizardID="de.mfreund.pamtram.examples.autoprobe">
          <projectDescriptor
                contentURI="zips/autoprobe.zip"
-               description="This casestudy demonstrates the results from the &apos;AutoProBe&apos; project."
+               description="This casestudy demonstrates the results from the &apos;AutoProBe&apos; project. Note: This casestudy requires the Movisa and MovisaLibrary features installed. Due to copyright reasons, these two packages cannot be included in the PAMTraM/PAMTraM Examples features."
                name="de.mfreund.pamtram.casestudies.autoprobe">
          </projectDescriptor>
          <fileToOpen
@@ -175,7 +184,7 @@
             wizardID="de.mfreund.pamtram.examples.disl-movisa">
          <projectDescriptor
                contentURI="zips/disl-movisa.zip"
-               description="This casestudy demonstrates a simple transformation from &apos;DISL&apos; to &apos;Movisa&apos;."
+               description="This casestudy demonstrates a simple transformation from &apos;DISL&apos; to &apos;Movisa&apos;. Note: This casestudy requires the Movisa feature installed. Due to copyright reasons, this package cannot be included in the PAMTraM/PAMTraM Examples features."
                name="de.mfreund.pamtram.casestudies.disl-movisa">
          </projectDescriptor>
          <fileToOpen
@@ -187,7 +196,7 @@
             wizardID="de.mfreund.pamtram.examples.excel-movisa-tdp">
          <projectDescriptor
                contentURI="zips/excel-movisa-tdp.zip"
-               description="This casestudy demonstrates a simple transformation from an Excel-based meta-model to &apos;Movisa TDP&apos;."
+               description="This casestudy demonstrates a simple transformation from an Excel-based meta-model to &apos;Movisa TDP&apos;. Note: This casestudy requires the Movisa feature installed. Due to copyright reasons, this package cannot be included in the PAMTraM/PAMTraM Examples features."
                name="de.mfreund.pamtram.casestudies.excel-movisa-tdp">
          </projectDescriptor>
          <fileToOpen
@@ -211,7 +220,7 @@
             wizardID="de.mfreund.pamtram.examples.w3caui-movisa">
          <projectDescriptor
                contentURI="zips/w3caui-movisa.zip"
-               description="This casestudy demonstrates a transformation from &apos;W3CAUI&apos; to &apos;Movisa&apos;."
+               description="This casestudy demonstrates a transformation from &apos;W3CAUI&apos; to &apos;Movisa&apos;. Note: This casestudy requires the Movisa feature installed. Due to copyright reasons, this package cannot be included in the PAMTraM/PAMTraM Examples features."
                name="de.mfreund.pamtram.casestudies.w3caui-movisa">
          </projectDescriptor>
          <fileToOpen
@@ -229,6 +238,18 @@
          <fileToOpen
                editorID="pamtram.presentation.PamtramEditorID"
                location="de.mfreund.pamtram.casestudies.company-viz/Pamtram/company-viz.pamtram">
+         </fileToOpen>
+      </example>
+      <example
+            wizardID="de.mfreund.pamtram.examples.xml-xml">
+         <projectDescriptor
+               contentURI="zips/xml-xml.zip"
+               description="This casestudy demonstrates the capabilities of PAMTraM to support XML/XSD source and target (meta-)models."
+               name="de.mfreund.pamtram.casestudies.xml-xml">
+         </projectDescriptor>
+         <fileToOpen
+               editorID="pamtram.presentation.PamtramEditorID"
+               location="de.mfreund.pamtram.casestudies.xml-xml/Pamtram/xml-xml.pamtram">
          </fileToOpen>
       </example>
    </extension>

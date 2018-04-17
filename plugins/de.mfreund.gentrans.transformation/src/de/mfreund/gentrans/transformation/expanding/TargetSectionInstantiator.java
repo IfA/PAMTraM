@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
+ * 
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ * 
+ * Contributors:
+ *   Institute of Automation, TU Dresden - Initial API and implementation
+ * 
+ * SPDX-License-Identifier: EPL-2.0
+ ******************************************************************************/
 package de.mfreund.gentrans.transformation.expanding;
 
 import java.util.ArrayList;
@@ -30,6 +42,7 @@ import de.mfreund.gentrans.transformation.registries.TargetSectionRegistry;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvedAdapter;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy;
 import de.mfreund.gentrans.transformation.resolving.IAmbiguityResolvingStrategy.AmbiguityResolvingException;
+import de.tud.et.ifa.agtele.emf.XSDAnyContentUtil;
 import de.tud.et.ifa.agtele.genlibrary.model.genlibrary.AbstractAttributeParameter;
 import pamtram.mapping.ExportedMappingHintGroup;
 import pamtram.mapping.InstantiableMappingHintGroup;
@@ -41,6 +54,7 @@ import pamtram.mapping.extended.CardinalityMapping;
 import pamtram.mapping.extended.ContainerSelector;
 import pamtram.mapping.extended.MappingHint;
 import pamtram.structure.generic.ActualAttribute;
+import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.CardinalityType;
 import pamtram.structure.generic.CompositeReference;
 import pamtram.structure.generic.VirtualAttribute;
@@ -48,13 +62,11 @@ import pamtram.structure.library.AttributeParameter;
 import pamtram.structure.library.LibraryEntry;
 import pamtram.structure.target.ActualTargetSectionAttribute;
 import pamtram.structure.target.TargetSection;
-import pamtram.structure.target.TargetSectionAnyContentCompositeReference;
 import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.target.TargetSectionClass;
 import pamtram.structure.target.TargetSectionCompositeReference;
 import pamtram.structure.target.TargetSectionReference;
 import pamtram.structure.target.VirtualTargetSectionAttribute;
-import pamtram.util.ExtendedMetaDataUtil;
 
 /**
  * Class for instantiating target model sections using the hints supplied by {@link MappingInstanceDescriptor
@@ -102,10 +114,10 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 
 		super(assetManager);
 
-		this.targetSectionRegistry = assetManager.getTargetSectionRegistry();
-		this.ambiguityResolvingStrategy = assetManager.getTransformationConfig().getAmbiguityResolvingStrategy();
-		this.useParallelization = assetManager.getTransformationConfig().isUseParallelization();
-		this.wrongCardinalityContainmentRefs = new HashSet<>();
+		targetSectionRegistry = assetManager.getTargetSectionRegistry();
+		ambiguityResolvingStrategy = assetManager.getTransformationConfig().getAmbiguityResolvingStrategy();
+		useParallelization = assetManager.getTransformationConfig().isUseParallelization();
+		wrongCardinalityContainmentRefs = new HashSet<>();
 
 	}
 
@@ -122,7 +134,7 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 	 */
 	public void expandTargetSectionInstances(List<MappingInstanceDescriptor> mappingInstances) {
 
-		this.logger.info(() -> "Instantiating " + mappingInstances.size() + " TargetSection instances...");
+		logger.info(() -> "Instantiating " + mappingInstances.size() + " TargetSection instances...");
 
 		// Iterate over all the mapping instances and expand them
 		//
@@ -184,7 +196,7 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 		if (instancesBySection == null) {
 			if (hintGroup.getTargetSection().getCardinality() != CardinalityType.ZERO_INFINITY) {// Error
 
-				this.logger.severe(() -> "Error instantiating target section '" + hintGroup.getTargetSection().getName()
+				logger.severe(() -> "Error instantiating target section '" + hintGroup.getTargetSection().getName()
 						+ "' using mapping rule '" + mappingInstance.getMapping().getName() + "'");
 			}
 		} else {
@@ -223,7 +235,7 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 		if (instancesBySection == null) {
 			if (mappingHintGroupImporter.getHintGroup().getTargetSection()
 					.getCardinality() != CardinalityType.ZERO_INFINITY) {// Error
-				this.logger.severe(() -> "Error instantiating target section '"
+				logger.severe(() -> "Error instantiating target section '"
 						+ mappingHintGroupImporter.getHintGroup().getTargetSection().getName()
 						+ "' using mapping rule '" + mappingInstance.getMapping().getName() + "'");
 			}
@@ -378,7 +390,7 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 
 		// Determine the cardinality based on Attribute- and CardinalityMappings
 		//
-		int cardinality = this.determineCardinality(targetSectionClass, mappingGroup, mappingHints, hintValues);
+		int cardinality = determineCardinality(targetSectionClass, mappingGroup, mappingHints, hintValues);
 
 		// Cardinality == 0
 		//
@@ -386,7 +398,7 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 
 			if (!targetSectionClass.getCardinality().equals(CardinalityType.ZERO_INFINITY)) {
 
-				this.logger.severe(() -> "TargetMMSection class '" + targetSectionClass.getName()
+				logger.severe(() -> "TargetMMSection class '" + targetSectionClass.getName()
 						+ "' has a cardinality of at least 1 specified, but no suitable mappingHint was found.");
 
 				return null;
@@ -404,13 +416,14 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 
 		// instantiate self(s)
 		//
-		final List<EObjectWrapper> instances = IntStream.range(0, cardinality).mapToObj(
-				i -> this.instantiateTargetSectionClass(targetSectionClass, mappingGroup, mappingHints, hintValues))
+		final List<EObjectWrapper> instances = IntStream.range(0, cardinality)
+				.mapToObj(
+						i -> instantiateTargetSectionClass(targetSectionClass, mappingGroup, mappingHints, hintValues))
 				.collect(Collectors.toList());
 
 		// create attributes
 		//
-		final List<EObjectWrapper> markedForDelete = this.instantiateTargetSectionAttributes(targetSectionClass,
+		final List<EObjectWrapper> markedForDelete = instantiateTargetSectionAttributes(targetSectionClass,
 				mappingGroup, mappingHints, hintValues, instances);
 
 		if (markedForDelete == null) {
@@ -419,8 +432,8 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 
 		// create containment references
 		//
-		boolean result = this.instantiateTargetSectionContainmentReferences(targetSectionClass, mappingGroup,
-				mappingHints, hintValues, createdInstancesByTargetSectionClass, instances, markedForDelete);
+		boolean result = instantiateTargetSectionContainmentReferences(targetSectionClass, mappingGroup, mappingHints,
+				hintValues, createdInstancesByTargetSectionClass, instances, markedForDelete);
 
 		if (!result) {
 			return null;
@@ -432,7 +445,7 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 		// All went well...
 		for (final EObjectWrapper instance : instances) {
 			// Add instance to map of targetMetaModel
-			this.targetSectionRegistry.addClassInstance(instance, mappingGroup, targetSectionClass);
+			targetSectionRegistry.addClassInstance(instance, mappingGroup, targetSectionClass);
 		}
 
 		if (createdInstancesByTargetSectionClass.containsKey(targetSectionClass)) {
@@ -501,8 +514,8 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 
 		// Check if there are any CardinalityMapping that tell about the required cardinality
 		//
-		Optional<Integer> cardinalityMappingsBasedCardinality = this
-				.determineCardinalityMappingsBasedCardinality(targetSectionClass, mappingHints, hintValues);
+		Optional<Integer> cardinalityMappingsBasedCardinality = determineCardinalityMappingsBasedCardinality(
+				targetSectionClass, mappingHints, hintValues);
 
 		// If a CardinalityMapping has been specified, this trumps all other hints implicitly providing a cardinality.
 		// However, we have to regard the minimum cardinality specified by the TargetSectionClass.
@@ -513,12 +526,12 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 
 		// Check if there are any AttributeMappings that can indicate a suitable cardinality
 		//
-		Optional<Integer> attributeMappingsBasedCardinality = this
-				.determineAttributeMappingsBasedCardinality(targetSectionClass, mappingHints, hintValues);
+		Optional<Integer> attributeMappingsBasedCardinality = determineAttributeMappingsBasedCardinality(
+				targetSectionClass, mappingHints, hintValues);
 
 		// Check if there are any ContainerSelectors that can indicate a suitable cardinality
 		//
-		Optional<Integer> containerSelectorsBasedCardinality = this.determineContainerSelectorsBasedCardinality(
+		Optional<Integer> containerSelectorsBasedCardinality = determineContainerSelectorsBasedCardinality(
 				targetSectionClass, mappingGroup, mappingHints, hintValues);
 
 		// If (at least) one AttributeMapping or ContainerSelector has been specified, we use the cardinality determined
@@ -541,14 +554,14 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 		 * resolve the ambiguity.
 		 */
 		try {
-			this.logger.fine(TargetSectionInstantiator.RESOLVE_INSTANTIATING_AMBIGUITY_STARTED);
-			List<Integer> resolved = this.ambiguityResolvingStrategy
+			logger.fine(TargetSectionInstantiator.RESOLVE_INSTANTIATING_AMBIGUITY_STARTED);
+			List<Integer> resolved = ambiguityResolvingStrategy
 					.instantiatingSelectCardinality(Arrays.asList((Integer) null), targetSectionClass, mappingGroup);
-			if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
-				((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
+			if (ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
+				((IAmbiguityResolvedAdapter) ambiguityResolvingStrategy)
 						.instantiatingCardinalitySelected(Arrays.asList((Integer) null), resolved.get(0));
 			}
-			this.logger.fine(TargetSectionInstantiator.RESOLVE_INSTANTIATING_AMBIGUITY_FINISHED);
+			logger.fine(TargetSectionInstantiator.RESOLVE_INSTANTIATING_AMBIGUITY_FINISHED);
 			if (resolved.get(0) != null) {
 				return resolved.get(0);
 			} else {
@@ -559,10 +572,10 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 			if (e.getCause() instanceof UserAbortException) {
 				throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
 			} else {
-				this.logger.severe(
+				logger.severe(
 						() -> "The following exception occured during the resolving of an ambiguity concerning a cardinality: "
 								+ e.getMessage());
-				this.logger.severe("Using default cardinality instead...");
+				logger.severe("Using default cardinality instead...");
 				return targetSectionClassLowerBound;
 			}
 		}
@@ -610,14 +623,12 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 					if (doubleValue == Math.floor(doubleValue) && !Double.isInfinite(doubleValue)) {
 						cardinalityMappingBasedCardinalities.add(Double.valueOf(hintVal).intValue());
 					} else {
-						this.logger
-								.severe(() -> "Unable to parse Integer from calculated value for CardinalityMapping '"
-										+ cardinalityMapping.getName() + "! The problematic value was '" + hintVal
-										+ "'.");
+						logger.severe(() -> "Unable to parse Integer from calculated value for CardinalityMapping '"
+								+ cardinalityMapping.getName() + "! The problematic value was '" + hintVal + "'.");
 						continue;
 					}
 				} catch (NumberFormatException e) {
-					this.logger.severe(() -> "Unable to parse Integer from calculated value for CardinalityMapping '"
+					logger.severe(() -> "Unable to parse Integer from calculated value for CardinalityMapping '"
 							+ cardinalityMapping.getName() + "! The problematic value was '" + hintVal + "'.");
 					continue;
 				}
@@ -628,7 +639,7 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 		// TODO find a useful algorithm to handle cases where multiple CardinalityMappings deliver different results
 		if (cardinalityMappingBasedCardinalities.size() > 1
 				&& cardinalityMappingBasedCardinalities.stream().distinct().count() > 1) {
-			this.logger.warning(() -> "Multiple CardinalityMappings providing different cardinalities found for "
+			logger.warning(() -> "Multiple CardinalityMappings providing different cardinalities found for "
 					+ targetSectionClass.printInfo()
 					+ ". This is currently not supported. Instead, only the first determined cardinality ('"
 					+ cardinalityMappingBasedCardinalities.get(0) + "') will be used.");
@@ -672,7 +683,7 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 			for (TargetSectionAttribute targetAttribute : hints.stream().map(AttributeMapping::getTarget)
 					.collect(Collectors.toCollection(LinkedHashSet::new))) {
 
-				int localAttributeMappingHintCardinality = this.getTargetAttributeCardinality(hintValues, hints,
+				int localAttributeMappingHintCardinality = getTargetAttributeCardinality(hintValues, hints,
 						targetAttribute);
 
 				if (localAttributeMappingHintCardinality > attributeMappingHintCardinality) {
@@ -798,7 +809,7 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 
 		// create an EObjectTransformationHelper that wraps the eObject and more
 		// stuff
-		EObjectWrapper instTransformationHelper = new EObjectWrapper(inst, this.targetSectionRegistry);
+		EObjectWrapper instTransformationHelper = new EObjectWrapper(inst, targetSectionRegistry);
 
 		/*
 		 * If the target section is a library entry, we create a new 'LibraryEntryInstantiator' that will insert the
@@ -817,10 +828,9 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 			LibraryEntry clonedLibEntry = (LibraryEntry) EcoreUtil.copyAll(originals).iterator().next();
 
 			LibraryEntryInstantiator instLibraryEntryInstantiator = new LibraryEntryInstantiator(clonedLibEntry,
-					instTransformationHelper, mappingGroup, mappingHints, hintValues, this.logger);
+					instTransformationHelper, mappingGroup, mappingHints, hintValues, logger);
 
-			this.targetSectionRegistry.getLibraryEntryRegistry().put(instTransformationHelper,
-					instLibraryEntryInstantiator);
+			targetSectionRegistry.getLibraryEntryRegistry().put(instTransformationHelper, instLibraryEntryInstantiator);
 		}
 
 		return instTransformationHelper;
@@ -871,7 +881,7 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 			// Get a useful number of hint values
 			//
 			LinkedList<String> attrHintValues = new LinkedList<>(
-					this.harmonizeHintValues(attr, instances.size(), hintValues, attributeMappings));
+					harmonizeHintValues(attr, instances.size(), hintValues, attributeMappings));
 
 			// No hint values are present, so we either use the default value (if present) are ask the
 			// AmbiguityResolvingStrategy for a value to use
@@ -887,24 +897,24 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 						 * Consult the specified resolving strategy to resolve the ambiguity.
 						 */
 						try {
-							this.logger.fine("\n[Ambiguity] Resolve expanding ambiguity...");
-							List<String> resolved = this.ambiguityResolvingStrategy.instantiatingSelectAttributeValue(
+							logger.fine("\n[Ambiguity] Resolve expanding ambiguity...");
+							List<String> resolved = ambiguityResolvingStrategy.instantiatingSelectAttributeValue(
 									Arrays.asList((String) null), attr, instance.getEObject(), mappingGroup);
-							if (this.ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
-								((IAmbiguityResolvedAdapter) this.ambiguityResolvingStrategy)
+							if (ambiguityResolvingStrategy instanceof IAmbiguityResolvedAdapter) {
+								((IAmbiguityResolvedAdapter) ambiguityResolvingStrategy)
 										.instantiatingAttributeValueSelected(Arrays.asList((String) null),
 												resolved.get(0));
 							}
-							this.logger.fine("[Ambiguity] ...finished.");
+							logger.fine("[Ambiguity] ...finished.");
 							attrHintValues.add(resolved.get(0));
 						} catch (AmbiguityResolvingException e) {
 							if (e.getCause() instanceof UserAbortException) {
 								throw new CancelTransformationException(e.getCause().getMessage(), e.getCause());
 							} else {
-								this.logger.severe(
+								logger.severe(
 										() -> "The following exception occured during the resolving of an ambiguity concerning an attribute value: "
 												+ e.getMessage());
-								this.logger.severe("Using default value instead...");
+								logger.severe("Using default value instead...");
 								continue;
 							}
 						}
@@ -932,7 +942,7 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 					String attrValue = hintValuesForInstance.get(j);
 
 					if (attr.isUnique() && (attributeValues.get(attr).contains(attrValue)
-							|| this.targetSectionRegistry.getAttrValRegistry().attributeValueExists(attr, attrValue))) {
+							|| targetSectionRegistry.getAttrValRegistry().attributeValueExists(attr, attrValue))) {
 
 						/*
 						 * we can only delete this at the end, or else the attributeHint values won't fit anymore
@@ -965,17 +975,17 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 
 				if (numberOfValuesPerInstance > 1) {
 					if (attr instanceof VirtualAttribute<?, ?, ?, ?>) {
-						this.logger.severe(() -> "Trying to set multiple values for a VirtualAttribute ('"
-								+ attr.getName() + "'). This is currently not supported!");
+						logger.severe(() -> "Trying to set multiple values for a VirtualAttribute ('" + attr.getName()
+								+ "'). This is currently not supported!");
 						continue;
 					} else if (targetSectionClass.isLibraryEntry()) {
-						this.logger.severe(
+						logger.severe(
 								() -> "Trying to set multiple values for an AttributeParameter of a LibraryEntry ('"
 										+ targetSectionClass.getName() + "'). This is currently not supported!");
 						continue;
 					} else if (!((ActualAttribute<?, ?, ?, ?>) attr).getAttribute().isMany()) {
-						this.logger.severe(() -> "Trying to set multiple values for an ActualAttribute ('"
-								+ attr.getName() + "') that is based on a single-valued EAttribute!");
+						logger.severe(() -> "Trying to set multiple values for an ActualAttribute ('" + attr.getName()
+								+ "') that is based on a single-valued EAttribute!");
 						continue;
 					}
 				}
@@ -987,7 +997,7 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 				// values (e.g. based on another attribute mapping) instead of overwriting them
 				//
 				List<String> setValues = !isMany ? new ArrayList<>()
-						: new ArrayList<>(this.getCurrentAttributeValues(instance, attr));
+						: new ArrayList<>(getCurrentAttributeValues(instance, attr));
 				setValues.addAll(IntStream.range(0, numberOfValuesPerInstance)
 						.mapToObj(i -> attributeValues.get(attr).get(instances.indexOf(instance) + i))
 						.collect(Collectors.toList()));
@@ -1008,8 +1018,8 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 						 * part of the targetSectionClass; instead we want to specify the value as 'new value' for the
 						 * affected AttributeParameter
 						 */
-						LibraryEntry specificLibEntry = this.targetSectionRegistry.getLibraryEntryRegistry()
-								.get(instance).getLibraryEntry();
+						LibraryEntry specificLibEntry = targetSectionRegistry.getLibraryEntryRegistry().get(instance)
+								.getLibraryEntry();
 						LibraryEntry genericLibEntry = (LibraryEntry) targetSectionClass.eContainer().eContainer();
 						int attParamIndex = genericLibEntry.getParameters().indexOf(attr.eContainer());
 						if (attParamIndex >= 0) {
@@ -1030,7 +1040,7 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 					}
 
 				} catch (final IllegalArgumentException e) {
-					this.logger.severe(() -> "Could not set Attribute " + attr.getName() + " of target section Class "
+					logger.severe(() -> "Could not set Attribute " + attr.getName() + " of target section Class "
 							+ targetSectionClass.getName() + " in target section "
 							+ targetSectionClass.getContainingSection().getName()
 							+ ".\nThe problematic value(s) was/were: '" + String.join(", ", setValues) + "'.");
@@ -1134,7 +1144,7 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 
 				// Less hint values found than instances -> This should not happen
 				//
-				this.logger.severe(() -> "Cardinality mismatch (expected number of hint values: " + expected + ", got :"
+				logger.severe(() -> "Cardinality mismatch (expected number of hint values: " + expected + ", got :"
 						+ numberOfHintValues + ") for " + hint.printInfo()
 						+ ". Maybe check Cardinality of Metamodel section?");
 				return new ArrayList<>();
@@ -1199,7 +1209,7 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 
 				// Less hint values found than instances -> This should not happen
 				//
-				this.logger.severe(() -> "Cardinality mismatch (expected number of hint values: " + expected + ", got :"
+				logger.severe(() -> "Cardinality mismatch (expected number of hint values: " + expected + ", got :"
 						+ numberOfHintValues + ") for the following AttributeMappings: "
 						+ String.join(", ", attributeMappingsForAttribute.stream().map(MappingHint::printInfo)
 								.collect(Collectors.toList()).toArray(new String[] {}))
@@ -1212,7 +1222,7 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 
 			// Less hint values found than instances -> This should not happen
 			//
-			this.logger.severe(() -> "Cardinality mismatch (expected number of hint values: " + expected + ", got :"
+			logger.severe(() -> "Cardinality mismatch (expected number of hint values: " + expected + ", got :"
 					+ attrHintValues.size() + ") for TargetSectionAttribute " + attribute.getName()
 					+ ". Maybe check Cardinality of Metamodel section?");
 			return new ArrayList<>();
@@ -1229,16 +1239,14 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 
 			if (attrHintValues.size() / expected > 1) {
 				if (attribute instanceof VirtualTargetSectionAttribute) {
-					this.logger.severe(() -> "Trying to set multiple values for a VirtualAttribute ('"
-							+ attribute.getName() + "'). This is currently not supported!");
+					logger.severe(() -> "Trying to set multiple values for a VirtualAttribute ('" + attribute.getName()
+							+ "'). This is currently not supported!");
 				} else if (attribute.isLibraryEntry()) {
-					this.logger
-							.severe(() -> "Trying to set multiple values for an AttributeParameter of a LibraryEntry ('"
-									+ attribute.getContainingSection().getName()
-									+ "'). This is currently not supported!");
+					logger.severe(() -> "Trying to set multiple values for an AttributeParameter of a LibraryEntry ('"
+							+ attribute.getContainingSection().getName() + "'). This is currently not supported!");
 				} else {
-					this.logger.severe(() -> "Trying to set multiple values for an ActualAttribute ('"
-							+ attribute.getName() + "') that is based on a single-valued EAttribute!");
+					logger.severe(() -> "Trying to set multiple values for an ActualAttribute ('" + attribute.getName()
+							+ "') that is based on a single-valued EAttribute!");
 				}
 			}
 
@@ -1267,8 +1275,7 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 
 		// For LibraryEntries, we need to find the value that was set for the appropriate AttributeParameter
 		//
-		LibraryEntry specificLibEntry = this.targetSectionRegistry.getLibraryEntryRegistry().get(instance)
-				.getLibraryEntry();
+		LibraryEntry specificLibEntry = targetSectionRegistry.getLibraryEntryRegistry().get(instance).getLibraryEntry();
 		LibraryEntry genericLibEntry = (LibraryEntry) attribute.getContainingSection().eContainer().eContainer();
 
 		String currentValue = null;
@@ -1329,7 +1336,7 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 
 		// collect all containment references
 		//
-		List<CompositeReference<?, ?, ?, ?>> containmentReferences = (this.useParallelization
+		List<CompositeReference<?, ?, ?, ?>> containmentReferences = (useParallelization
 				? targetSectionClass.getAllReferences().parallelStream()
 				: targetSectionClass.getAllReferences().stream())
 						.filter(ref -> ref instanceof CompositeReference<?, ?, ?, ?>)
@@ -1358,7 +1365,7 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 
 					} else {
 
-						this.logger.warning("NoChildren");
+						logger.warning("NoChildren");
 						return false;
 					}
 				}
@@ -1372,11 +1379,11 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 					if (ref instanceof TargetSectionCompositeReference
 							&& ((TargetSectionCompositeReference) ref).getEReference().getUpperBound() == 1) {
 
-						if (childInstances.size() > 1 && !this.wrongCardinalityContainmentRefs.contains(ref)) {
+						if (childInstances.size() > 1 && !wrongCardinalityContainmentRefs.contains(ref)) {
 
-							this.wrongCardinalityContainmentRefs.add((TargetSectionCompositeReference) ref);
+							wrongCardinalityContainmentRefs.add((TargetSectionCompositeReference) ref);
 
-							this.logger.severe(() -> "More than one value was supposed to be connected to the "
+							logger.severe(() -> "More than one value was supposed to be connected to the "
 									+ "CompositeReference '" + ref.getName() + "' in the target section '"
 									+ ref.getContainingSection().getName() + "', instantiated by the Mapping '"
 									+ ((Mapping) mappingGroup.eContainer()).getName() + "' (Group: '"
@@ -1395,13 +1402,16 @@ public class TargetSectionInstantiator extends CancelableTransformationAsset {
 							childEObjects.add(o.getEObject());
 						}
 
-						if (ref instanceof TargetSectionCompositeReference) {
-							instance.getEObject().eSet(((TargetSectionCompositeReference) ref).getEReference(),
-									childEObjects);
-						} else if (ref instanceof TargetSectionAnyContentCompositeReference) {
-							ExtendedMetaDataUtil.addAnyConent(instance.getEObject(), childEObjects);
+						if (ref instanceof ActualReference<?, ?, ?, ?>) {
+							if (XSDAnyContentUtil.isAnyContentFeature(instance.getEObject().eClass(),
+									((ActualReference<?, ?, ?, ?>) ref).getEReference())) {
+								XSDAnyContentUtil.addAnyContent(instance.getEObject(), childEObjects);
+							} else {
+								instance.getEObject().eSet(((TargetSectionCompositeReference) ref).getEReference(),
+										childEObjects);
+							}
 						} else {
-							this.logger.severe(() -> "Unknown type of Reference '" + ref.eClass().getName() + "'!");
+							logger.severe(() -> "Unknown type of Reference '" + ref.eClass().getName() + "'!");
 						}
 					}
 				}

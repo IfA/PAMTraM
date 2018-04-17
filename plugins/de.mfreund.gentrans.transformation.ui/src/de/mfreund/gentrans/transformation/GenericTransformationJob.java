@@ -1,6 +1,15 @@
-/**
- *
- */
+/*******************************************************************************
+ * Copyright (C) 2015-2018 Matthias Freund and others, Institute of Automation, TU Dresden
+ * 
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ * 
+ * Contributors:
+ *   Institute of Automation, TU Dresden - Initial API and implementation
+ * 
+ * SPDX-License-Identifier: EPL-2.0
+ ******************************************************************************/
 package de.mfreund.gentrans.transformation;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -41,14 +50,14 @@ public class GenericTransformationJob extends Job {
 
 		this.transformationConfig = transformationConfig;
 
-		this.setPriority(Job.BUILD);
+		setPriority(Job.BUILD);
 	}
 
 	@Override
 	protected void canceling() {
 
-		if (this.genTransRunner != null) {
-			this.genTransRunner.cancel();
+		if (genTransRunner != null) {
+			genTransRunner.cancel();
 		}
 
 		super.canceling();
@@ -58,18 +67,18 @@ public class GenericTransformationJob extends Job {
 	protected IStatus run(final IProgressMonitor monitor) {
 
 		try {
-			this.genTransRunner = TransformationRunnerWithUIFactory.INSTANCE
-					.createGenericTransformationRunner(this.transformationConfig, monitor);
-			this.genTransRunner.run();
+			genTransRunner = TransformationRunnerWithUIFactory.INSTANCE
+					.createGenericTransformationRunner(transformationConfig, monitor);
+			genTransRunner.run();
 
 			return org.eclipse.core.runtime.Status.OK_STATUS;
 
 		} catch (final Exception e) {
-			Activator.getDefault().getLog().log(new Status(Status.CANCEL, "de.mfreund.gentrans.transformation.ui",
+			Activator.getDefault().getLog().log(new Status(IStatus.CANCEL, "de.mfreund.gentrans.transformation.ui",
 					e.getMessage() != null ? e.getMessage() : e.toString(), e));
 			return org.eclipse.core.runtime.Status.CANCEL_STATUS;
 		} finally {
-			this.genTransRunner = null;
+			genTransRunner = null;
 		}
 	}
 

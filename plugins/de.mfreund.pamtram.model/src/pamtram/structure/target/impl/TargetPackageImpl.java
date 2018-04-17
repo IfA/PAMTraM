@@ -1,3 +1,15 @@
+/*******************************************************************************
+ * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
+ * 
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ * 
+ * Contributors:
+ *   Institute of Automation, TU Dresden - Initial API and implementation
+ * 
+ * SPDX-License-Identifier: EPL-2.0
+ ******************************************************************************/
 /**
  */
 package pamtram.structure.target.impl;
@@ -57,8 +69,6 @@ import pamtram.structure.target.FileType;
 import pamtram.structure.target.TargetFactory;
 import pamtram.structure.target.TargetPackage;
 import pamtram.structure.target.TargetSection;
-import pamtram.structure.target.TargetSectionAnyContentCompositeReference;
-import pamtram.structure.target.TargetSectionAnyContentCrossReference;
 import pamtram.structure.target.TargetSectionAttribute;
 import pamtram.structure.target.TargetSectionClass;
 import pamtram.structure.target.TargetSectionCompositeReference;
@@ -115,21 +125,7 @@ public class TargetPackageImpl extends EPackageImpl implements TargetPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass targetSectionAnyContentCompositeReferenceEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass targetSectionCrossReferenceEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass targetSectionAnyContentCrossReferenceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -359,24 +355,6 @@ public class TargetPackageImpl extends EPackageImpl implements TargetPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTargetSectionAnyContentCompositeReference() {
-		return targetSectionAnyContentCompositeReferenceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getTargetSectionAnyContentCompositeReference__ValidateIsAllowed__DiagnosticChain_Map() {
-		return targetSectionAnyContentCompositeReferenceEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getTargetSectionCrossReference() {
 		return targetSectionCrossReferenceEClass;
 	}
@@ -388,24 +366,6 @@ public class TargetPackageImpl extends EPackageImpl implements TargetPackage {
 	 */
 	public EOperation getTargetSectionCrossReference__ValidateEReferenceIsNonContainment__DiagnosticChain_Map() {
 		return targetSectionCrossReferenceEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getTargetSectionAnyContentCrossReference() {
-		return targetSectionAnyContentCrossReferenceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getTargetSectionAnyContentCrossReference__ValidateIsAllowed__DiagnosticChain_Map() {
-		return targetSectionAnyContentCrossReferenceEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -505,14 +465,8 @@ public class TargetPackageImpl extends EPackageImpl implements TargetPackage {
 
 		targetSectionCompositeReferenceEClass = createEClass(TARGET_SECTION_COMPOSITE_REFERENCE);
 
-		targetSectionAnyContentCompositeReferenceEClass = createEClass(TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE);
-		createEOperation(targetSectionAnyContentCompositeReferenceEClass, TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE___VALIDATE_IS_ALLOWED__DIAGNOSTICCHAIN_MAP);
-
 		targetSectionCrossReferenceEClass = createEClass(TARGET_SECTION_CROSS_REFERENCE);
 		createEOperation(targetSectionCrossReferenceEClass, TARGET_SECTION_CROSS_REFERENCE___VALIDATE_EREFERENCE_IS_NON_CONTAINMENT__DIAGNOSTICCHAIN_MAP);
-
-		targetSectionAnyContentCrossReferenceEClass = createEClass(TARGET_SECTION_ANY_CONTENT_CROSS_REFERENCE);
-		createEOperation(targetSectionAnyContentCrossReferenceEClass, TARGET_SECTION_ANY_CONTENT_CROSS_REFERENCE___VALIDATE_IS_ALLOWED__DIAGNOSTICCHAIN_MAP);
 
 		targetSectionAttributeEClass = createEClass(TARGET_SECTION_ATTRIBUTE);
 		createEAttribute(targetSectionAttributeEClass, TARGET_SECTION_ATTRIBUTE__UNIQUE);
@@ -613,28 +567,6 @@ public class TargetPackageImpl extends EPackageImpl implements TargetPackage {
 		g2 = createEGenericType(this.getTargetSectionAttribute());
 		g1.getETypeArguments().add(g2);
 		targetSectionCompositeReferenceEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theGenericPackage.getCompositeReference());
-		g2 = createEGenericType(this.getTargetSection());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(this.getTargetSectionClass());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(this.getTargetSectionReference());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(this.getTargetSectionAttribute());
-		g1.getETypeArguments().add(g2);
-		targetSectionAnyContentCompositeReferenceEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getTargetSectionReference());
-		targetSectionAnyContentCompositeReferenceEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theGenericPackage.getVirtualReference());
-		g2 = createEGenericType(this.getTargetSection());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(this.getTargetSectionClass());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(this.getTargetSectionReference());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(this.getTargetSectionAttribute());
-		g1.getETypeArguments().add(g2);
-		targetSectionAnyContentCompositeReferenceEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(theGenericPackage.getCrossReference());
 		g2 = createEGenericType(this.getTargetSection());
 		g1.getETypeArguments().add(g2);
@@ -657,28 +589,6 @@ public class TargetPackageImpl extends EPackageImpl implements TargetPackage {
 		g2 = createEGenericType(this.getTargetSectionAttribute());
 		g1.getETypeArguments().add(g2);
 		targetSectionCrossReferenceEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theGenericPackage.getCrossReference());
-		g2 = createEGenericType(this.getTargetSection());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(this.getTargetSectionClass());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(this.getTargetSectionReference());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(this.getTargetSectionAttribute());
-		g1.getETypeArguments().add(g2);
-		targetSectionAnyContentCrossReferenceEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getTargetSectionReference());
-		targetSectionAnyContentCrossReferenceEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(theGenericPackage.getVirtualReference());
-		g2 = createEGenericType(this.getTargetSection());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(this.getTargetSectionClass());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(this.getTargetSectionReference());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(this.getTargetSectionAttribute());
-		g1.getETypeArguments().add(g2);
-		targetSectionAnyContentCrossReferenceEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(theGenericPackage.getAttribute());
 		g2 = createEGenericType(this.getTargetSection());
 		g1.getETypeArguments().add(g2);
@@ -746,31 +656,9 @@ public class TargetPackageImpl extends EPackageImpl implements TargetPackage {
 
 		initEClass(targetSectionCompositeReferenceEClass, TargetSectionCompositeReference.class, "TargetSectionCompositeReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(targetSectionAnyContentCompositeReferenceEClass, TargetSectionAnyContentCompositeReference.class, "TargetSectionAnyContentCompositeReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		op = initEOperation(getTargetSectionAnyContentCompositeReference__ValidateIsAllowed__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateIsAllowed", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
 		initEClass(targetSectionCrossReferenceEClass, TargetSectionCrossReference.class, "TargetSectionCrossReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		op = initEOperation(getTargetSectionCrossReference__ValidateEReferenceIsNonContainment__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateEReferenceIsNonContainment", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEClass(targetSectionAnyContentCrossReferenceEClass, TargetSectionAnyContentCrossReference.class, "TargetSectionAnyContentCrossReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		op = initEOperation(getTargetSectionAnyContentCrossReference__ValidateIsAllowed__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateIsAllowed", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType();
@@ -898,18 +786,6 @@ public class TargetPackageImpl extends EPackageImpl implements TargetPackage {
 			 "documentation", "This represents a reference (as an instance of an EReference) of an element structure to be created in a target model. CompositeReferences can be used to describe the tree that is the basis of an element structure.\r\n<br />\r\nIn order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the \'value\' reference."
 		   });	
 		addAnnotation
-		  (targetSectionAnyContentCompositeReferenceEClass, 
-		   source, 
-		   new String[] {
-			 "documentation", "This represents a virtual reference for elements that are based on an XSD with \'xs:any\' specified as content. CompositeReferences can be used to describe the tree that is the basis of an element structure.\r\n<br />\r\nIn order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the \'value\' reference."
-		   });	
-		addAnnotation
-		  (getTargetSectionAnyContentCompositeReference__ValidateIsAllowed__DiagnosticChain_Map(), 
-		   source, 
-		   new String[] {
-			 "body", "\r\nif (!(this.eContainer() instanceof pamtram.structure.generic.Class)) {\r\n\treturn true;\r\n}\r\n\r\n<%org.eclipse.emf.ecore.EClass%> parentEClass = ((pamtram.structure.generic.Class<?, ?, ?, ?>) this.eContainer()).getEClass();\r\n\r\nboolean result = parentEClass == null ? true : <%pamtram.util.ExtendedMetaDataUtil%>.allowsAnyContent(parentEClass);\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The containing Class does not allow \'any\' content!\";\r\n\r\n\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR, <%pamtram.structure.target.util.TargetValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\tTargetValidator.TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE__VALIDATE_IS_ALLOWED, errorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.target.TargetPackage%>.Literals.TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE }));\r\n\r\n}\r\n\r\nreturn result;"
-		   });	
-		addAnnotation
 		  (targetSectionCrossReferenceEClass, 
 		   source, 
 		   new String[] {
@@ -920,18 +796,6 @@ public class TargetPackageImpl extends EPackageImpl implements TargetPackage {
 		   source, 
 		   new String[] {
 			 "body", "\r\nboolean result = this.getEReference() == null ? true : !this.getEReference().isContainment();\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The eReference \'\" + this.getEReference().getName() + \"\' is no non-containment reference! CrossReferences based on ContainmentReferences are not yet supported...\";\r\n\r\n\tdiagnostics.add(new <%org.eclipse.emf.common.util.BasicDiagnostic%>\r\n\t\t\t(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR,\r\n\t\t\t<%pamtram.structure.target.util.TargetValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\t\t\tTargetValidator.TARGET_SECTION_CROSS_REFERENCE__VALIDATE_EREFERENCE_IS_NON_CONTAINMENT,\r\n\t\t\t\t\terrorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.generic.GenericPackage%>.Literals.ACTUAL_REFERENCE__EREFERENCE }));\r\n\r\n}\r\n\r\nreturn result;"
-		   });	
-		addAnnotation
-		  (targetSectionAnyContentCrossReferenceEClass, 
-		   source, 
-		   new String[] {
-			 "documentation", "This represents a virtual reference for elements that are based on an XSD with \'xs:any\' specified as content. It can be used to reference any other element structure to be created in a target model. CrossReferences can be used to describe references to other element structures or to other elements of this structure.\r\n<br />\r\nIn order to allow for the description of complex element structures, target elements (Classes) can be specified for References via the \'value\' reference."
-		   });	
-		addAnnotation
-		  (getTargetSectionAnyContentCrossReference__ValidateIsAllowed__DiagnosticChain_Map(), 
-		   source, 
-		   new String[] {
-			 "body", "\r\nif (!(this.eContainer() instanceof pamtram.structure.generic.Class)) {\r\n\treturn true;\r\n}\r\n\r\n<%org.eclipse.emf.ecore.EClass%> parentEClass = ((pamtram.structure.generic.Class<?, ?, ?, ?>) this.eContainer()).getEClass();\r\n\r\nboolean result = parentEClass == null ? true : <%pamtram.util.ExtendedMetaDataUtil%>.allowsAnyContent(parentEClass);\r\n\r\nif (!result && diagnostics != null) {\r\n\r\n\tString errorMessage = \"The containing Class does not allow \'any\' content!\";\r\n\r\n\tdiagnostics.add(new BasicDiagnostic(<%org.eclipse.emf.common.util.Diagnostic%>.ERROR, <%pamtram.structure.target.util.TargetValidator%>.DIAGNOSTIC_SOURCE,\r\n\t\t\tTargetValidator.TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE__VALIDATE_IS_ALLOWED, errorMessage,\r\n\t\t\tnew Object[] { this, <%pamtram.structure.target.TargetPackage%>.Literals.TARGET_SECTION_ANY_CONTENT_COMPOSITE_REFERENCE }));\r\n\r\n}\r\n\r\nreturn result;"
 		   });	
 		addAnnotation
 		  (targetSectionAttributeEClass, 

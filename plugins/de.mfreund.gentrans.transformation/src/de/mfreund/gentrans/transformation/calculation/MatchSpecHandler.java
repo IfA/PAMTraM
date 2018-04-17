@@ -1,6 +1,15 @@
-/**
- *
- */
+/*******************************************************************************
+ * Copyright (C) 2014-2018 Matthias Freund and others, Institute of Automation, TU Dresden
+ * 
+ * This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License 2.0
+ * which is available at https://www.eclipse.org/legal/epl-2.0/
+ * 
+ * Contributors:
+ *   Institute of Automation, TU Dresden - Initial API and implementation
+ * 
+ * SPDX-License-Identifier: EPL-2.0
+ ******************************************************************************/
 package de.mfreund.gentrans.transformation.calculation;
 
 import java.util.ArrayList;
@@ -14,6 +23,7 @@ import pamtram.MatchSpecElement;
 import pamtram.impl.MatchSpecElementImpl;
 import pamtram.structure.generic.ActualReference;
 import pamtram.structure.generic.Reference;
+import pamtram.util.XSDAnyContentUtil;
 
 /**
  * A simple util class to evaluate {@link MatchSpecElement MatchSpecElements}.
@@ -65,14 +75,14 @@ public class MatchSpecHandler extends TransformationAsset {
 
 		if (firstSegment instanceof ActualReference<?, ?, ?, ?>) {
 
-			if (!root.eClass().getEAllReferences()
+			if (!XSDAnyContentUtil.getEAllReferencesIncludingVirtualAnyContentReference(root.eClass())
 					.contains(((ActualReference<?, ?, ?, ?>) firstSegment).getEReference())) {
-				this.logger.severe("Faulty Reference Match Spec encountered!");
+				logger.severe("Faulty Reference Match Spec encountered!");
 				return false;
 			}
 		}
 
-		List<EObject> values = this.assetManager.getModelAccessUtil().getReferenceValueAsList(root, firstSegment);
+		List<EObject> values = assetManager.getModelAccessUtil().getReferenceValueAsList(root, firstSegment);
 		if (localReferenceSegments.isEmpty()) {
 			return values.contains(matchedElement);
 		} else {

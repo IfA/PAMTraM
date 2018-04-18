@@ -1,12 +1,14 @@
 # PAMTraM 
 
-PAMTraM is an Eclipse- and [EMF][]-based modeling workbench that allows developing and running model-to-model transformations between arbitrary source and target modeling languages. It originated from the PhD thesis of Matthias Freund that is available [here](http://nbn-resolving.de/urn:nbn:de:bsz:14-qucosa-229173) (German) and was developed during his time at the [Institute of Automation at TU Dresden](http://www.et.tu-dresden.de/ifa).
+PAMTraM is an Eclipse- and [EMF][]-based modeling workbench that allows developing and running model-to-model transformations between arbitrary source and target modeling languages. It originated from the PhD thesis of Matthias Freund that is available [here](http://nbn-resolving.de/urn:nbn:de:bsz:14-qucosa-229173) (German) and was developed as part of the DFG research project *KonTrans - Kontextabhängige Transformationsmodelle* (Context-dependent Transformation Models) that was conducted at [Institute of Automation at TU Dresden](http://www.et.tu-dresden.de/ifa).
 
 ## Installation
 
 ### User Setup
 
 If you just want to use PAMTraM as is in order to develop and run model-to-model transformations, you can install the current version into your Eclipse instance via the [Update Site].
+
+Note: This update site is only available from within the campus network of TU Dresden! If you have no possibility to connect to this network, you need to clone the repository and install the feature manually.
 
 ### Development Setup
 
@@ -94,6 +96,11 @@ See [Eclipse Commons Project](https://git.agtele.eats.et.tu-dresden.de/agtele-pu
 The AGTele GenLibrary Project provides a generic (base) implementation for a model-based library system for MBUID. PAMTraM integrates GenLibrary so that conforming library entries can be integrated into a model transformation, i.e. instantiated in the course of the transformation.
 
 See [GenLibrary Project](https://git.agtele.eats.et.tu-dresden.de/agtele/de.tud.et.ifa.agtele.genlibrary)
+
+### Platform Metamodel
+
+The Platform metamodel project provides generic, extensible, [EMF][]-based platform modeling language for the *Model-based Development of User Interfaces* (MBUID). It was developed as part of the same research project as PAMTraM.
+
 
 [EMF]: https://www.eclipse.org/modeling/emf/
 [Eclipse Installer]: https://www.eclipse.org/downloads/eclipse-packages/

@@ -403,6 +403,21 @@
               key="master"
               value="master"/>
         </configSections>
+        <configSections
+            name="remote &quot;github&quot;">
+          <properties
+              key="url"
+              value="https://github.com/IfA/PAMTraM.git"/>
+          <properties
+              key="push"
+              value="refs/heads/develop:refs/heads/develop"/>
+          <properties
+              key="push"
+              value="refs/heads/master:refs/heads/master"/>
+          <properties
+              key="push"
+              value="refs/tags/*:refs/tags/*"/>
+        </configSections>
         <description>Clone the 'de.mfreund.pamtram.git' repository.</description>
       </setupTask>
       <setupTask
